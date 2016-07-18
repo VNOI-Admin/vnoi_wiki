@@ -1,6 +1,6 @@
-# Thuật toán
+## Thuật toán
 
-# Kinh nghiệm phỏng vấn
+## Kinh nghiệm phỏng vấn
 
-# Các chủ đề trong khoa học máy tính
+## Các chủ đề trong khoa học máy tính
 
