@@ -25,6 +25,10 @@ với:
 
 $\phi = \frac{1 + \sqrt{5} }{2}$
 
+và
+
+$\psi = -\frac{1}{phi}$
+
 Mục đích của điều này là để giảm thiểu số phép tính. Ví dụ tôi muốn tính số thứ 1000 của dãy trên, việc thay giá trị $n = 1000$ và công thức tổng quát trên của dãy sẽ nhanh hơn việc áp dụng số công thức truy hồi:
 
 $F_n = F_{n – 1} + F_{n – 2}$
