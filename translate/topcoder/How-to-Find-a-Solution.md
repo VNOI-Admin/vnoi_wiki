@@ -41,7 +41,7 @@ Những bài sử dụng BFS thường yêu cầu tìm số bước ít nhất (
 
 **Gợi ý:**
 	
-- Coi các từ là các trạng thái. Có nhiều nhất 26^4 từ khác nhau gồm 4 chữ cái.
+- Coi các từ là các trạng thái. Có nhiều nhất $26^4$ từ khác nhau gồm 4 chữ cái.
 - Có nhiều cách để biến một trạng thái để một trạng thái khác.
 - Chi phí để biến đổi 1 trạng thái luôn là 1 (với 1 lần click)
 - Bạn cần phải tìm số bước nhỏ nhất để đến được trạng thái địch từ trạng thái ban đầu.
