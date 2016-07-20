@@ -54,3 +54,4 @@ Quay lại vấn đề, tại sao tôi lại nói vòng lặp là một trong nh
 
 Lúc mới học tin, tôi thấy hứng thú với lối tư duy mới này. Tôi thấy nó giúp tôi tiếp cận gần hơn với những gì đang xảy ra trong cuộc sống. Nếu như lúc trước tôi chỉ biết bấm máy tính thì bây giờ tôi đã biết quan tâm xem nó thực hiện những phép tính thế nào. Hiểu thêm về thế giới xung quanh làm tôi thấy hạnh phúc. Mọi môn học khác đều có cái hay của nó và đều có thể dẫn tôi đến cái cảm giác đó nhưng tôi đến với Tin học là một cái duyên. Vì thế khi bảo tôi nói ra lý do cần phải học Tin học, tôi không nghĩ ra lý do nào. Một ngày nọ tôi ăn được một món ngon, thế là tôi là về quyết định học cách nấu món đó. Chỉ vậy thôi.
 
+[[Đọc tiếp phần 2|algo/basic/hoc-tin-the-nao-2]]
