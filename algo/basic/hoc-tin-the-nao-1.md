@@ -27,7 +27,7 @@ $\phi = \frac{1 + \sqrt{5} }{2}$
 
 Mục đích của điều này là để giảm thiểu số phép tính. Ví dụ tôi muốn tính số thứ 1000 của dãy trên, việc thay giá trị $n = 1000$ và công thức tổng quát trên của dãy sẽ nhanh hơn việc áp dụng số công thức truy hồi:
 
-$Fn = Fn – 1 + Fn – 2$
+$F_n = F_{n – 1} + F_{n – 2}$
 
 và tính ra 999 số trước đó!
 
