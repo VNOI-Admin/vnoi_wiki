@@ -1,5 +1,7 @@
 # Tôi đã học tin học như thế nào? Phần 2: bắt đầu từ đâu
 
+Tác giả: Nguyễn Xuân Khánh
+
 Trong bài viết này mình sẽ cố gắng trả lời ngắn gọn và đơn giản những câu hỏi mà mình nghĩ rằng sẽ có ích đối với các bạn đặc biệt có đam mê đối với Tin học, nhưng mới tiếp xúc và không biết phải bắt đầu từ đâu. Trọng tâm của mình sẽ là việc học thuật toán để tham gia các kì thi quốc gia, tuy nhiên mình cũng sẽ cố gắng gợi mở thêm nhiều hướng khác trong phạm trù kinh nghiệm của mình.
 
 *Lưu ý*: Xuất xứ của mình là một người học Tin để thi quốc gia, sau đó chuyển dần sang nghiên cứu khoa học về Machine Learning. Vì thế, những gì được viết dưới đây xuất phát từ kinh nghiệm của riêng bản thân mình, và chỉ thể hiện góc nhìn từ con đường mình đã đi. Mình khuyên các bạn nên chừa ra một khoảng trống trong tâm hồn để thu nhặt các ý kiến từ các góc nhìn khác.
