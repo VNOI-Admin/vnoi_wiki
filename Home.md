@@ -10,3 +10,5 @@
 
 ## Các chủ đề trong khoa học máy tính
 
+- Machine Learning
+    - [[Machine Learning 101: Làm quen|cs/ml/machine-learning-101]]
