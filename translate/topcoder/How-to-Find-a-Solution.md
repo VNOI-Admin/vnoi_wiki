@@ -24,7 +24,7 @@ Loại bài này cũng có những bài cần một chút tìm kiếm
 
 Như bạn có thể thấy, đây là một bài toán tìm kiếm rất đơn giản. Bạn chỉ cần theo các bước được mô tả trong đề và tìm ra 2 giá trị yêu cầu. Những bài TC khác có thể yêu cầu sắp xếp các bộ theo quy luật nào đó. Những bài như vậy có thể trong những dạng bài này, vì chúng quá dễ hiểu - chỉ sắp xếp! Bạn có thể làm với thuật toán sort O(N^2) hoặc sử dụng các thư viên có sẵn. 
 	 
-** Ví dụ khác: **
+**Ví dụ khác:**
 
 [MedalTable](http://community.topcoder.com/stat?c=problem_statement&pm=2922&rd=5855) - SRM 209 Div 1 
 
@@ -39,7 +39,7 @@ Những bài sử dụng BFS thường yêu cầu tìm số bước ít nhất (
 > 
 > Bạn cần phải tìm số lần bấm nút nhỏ nhất để từ ban đầu biến thành từ đích mà không đi qua từ cấm, hoặc trả về -1 nếu không thể biến được.
 
-** Gợi ý: **
+**Gợi ý:**
 	
 - Coi các từ là các trạng thái. Có nhiều nhất 26^4 từ khác nhau gồm 4 chữ cái.
 - Có nhiều cách để biến một trạng thái để một trạng thái khác.
@@ -51,7 +51,7 @@ Mọi thứ đều chỉ ra rằng bài này cần giải bằng BFS. Những đ
 > [CaptureThemAll](http://community.topcoder.com/stat?c=problem_statement&pm=2915&rd=5853) - SRM 207 Div 2 (3rd problem):
 > Harry đang chơi cờ vua. Anh có một quân mã, còn đối thủ là Joe có 1 quân hậu và 1 quân xe. Hãy tìm số bước nhỏ nhất để quân mã phải đi để ăn được cả hậu và xe.
 
-** Gợi ý: ** Mới đầu, có vẻ như bài này là 1 bài quy hoạch động hoặc backtrack. Nhưng nếu để ý kĩ đề bài, ta sẽ có những nhận xét sau:
+**Gợi ý:** Mới đầu, có vẻ như bài này là 1 bài quy hoạch động hoặc backtrack. Nhưng nếu để ý kĩ đề bài, ta sẽ có những nhận xét sau:
 
 - Đề cho 1 bảng.
 - Quân mã có thể đi từ 1 ô tới các ô mà nó có thể đi được.
@@ -64,7 +64,7 @@ Chú ý rằng phần lớn những gợi ý về thuật giải BFS là chi ph�
 
 Bạn có thể luyện tập thêm về BFS bằng những ví dụ sau:
 
-** Ví dụ khác: **
+**Ví dụ khác:**
 
 [RevolvingDoors](http://community.topcoder.com/stat?c=problem_statement&pm=3064&rd=5869) - SRM 233 Div 1
 
