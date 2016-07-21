@@ -1,3 +1,5 @@
+Tác giả: Đinh Hoàng Phong
+
 # Những kinh nghiệm khi phỏng vấn
 
 ## Một số điểm cần lưu ý trong khi viết resume
@@ -58,6 +60,3 @@ Với những bạn chưa có nhiều kiến thức hoặc muốn ôn tập lạ
 Với những bạn đã có những kiến thức cơ bản về thuật toán và cấu trúc dữ liệu thì cơ bản các bạn chỉ cần luyện tập kĩ năng trả lời câu hỏi sao cho thật là thuần thục. Một số trang web để các bạn luyện tập như leetcode, hackerrank, ...
 
 Nếu bạn có quen một ai đó có thể giúp đỡ bạn, bạn hãy nhờ họ làm một cuộc phỏng vấn thử. Trong lúc phỏng vấn thử này, họ sẽ đưa cho bạn một câu hỏi, và nhiệm vụ của bạn là hãy trả lời một cách suôn sẻ, và họ sẽ đưa ra ý kiến của riêng họ về những điều bạn có thể cải thiện để tiến bộ hơn.
-
-
-Tác giả: Đinh Hoàng Phong, Nguyễn Thành Trung, Nguyễn Tuấn Anh
