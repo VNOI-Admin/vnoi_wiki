@@ -8,6 +8,9 @@
 - Những kiến thức cơ bản:
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 
+- Quy hoạch động:
+    - [[Kĩ thuật bao lồi|translate/P3G/Convex-Hull-Trick]]
+
 ## Kinh nghiệm phỏng vấn
 
 - [[Những kinh nghiệm chung khi phỏng vấn|interview/general-experience]]
