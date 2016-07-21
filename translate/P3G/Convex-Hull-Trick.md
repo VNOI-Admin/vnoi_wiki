@@ -94,8 +94,7 @@ print cost[N]
 ```
 Ở trên `cost[k]` lưu lại chi phí cực tiểu để lấy được `k` hình chữ nhật đầu tiên. Hiển nhiên, `cost[0]=0`. Để tính toán được `cost[i]` với `i` khác 0, ta có tính tổng chi phí để lấy được các tập trước và cộng nó với chi phí của tập cuối cùng(có chứa `i`). Chi phí của một tập có thể dễ dàng tính bằng cách lấy tích của chiều dài hình chữ nhật đầu tiên và chiều rộng của hình chữ nhật cuối cùng. Vậy ta có `min(cost[i],cost[j]+rect[i].h*rect[j+1].w)` với j là hình chữ nhật đầu tiên của tập cuối cùng. Với $N=50000$ thì thuật toán $\mathcal{O}(N^2)$ này là quá chậm.
  
-#### ** Nhận xét 3: Sử dụng bao lồi **
-
+#### **Nhận xét 3: Sử dụng bao lồi**
 Với $m_j=rect[j+1].w, b_j=cost[j], x=rect[i].h$ với $rect[x].h$ là chiều rộng của hình chữ nhật $x$ và $rect[x].w$ là chiều dài của hình chữ nhật $x$. Vậy thì bài toán trờ về tìm hàm cực tiểu của $y=m_jx+b_j$ bằng cách tìm $j$ tối ưu. Nó giống hoàn toàn bài toán chúng ta đã đề cập ở trên. Giả sử ta đã hoàn thành việc cài đặt cấu trúc đã đề cập ở trên chúng ta có thể có mã giả ở dưới đây:
 ```
 input N
