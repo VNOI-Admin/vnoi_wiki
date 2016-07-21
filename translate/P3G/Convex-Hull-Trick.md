@@ -159,16 +159,16 @@ Ngược với bài "acquire" khi chúng ta phải tối thiểu hóa hàm quy h
 Do dễ thấy $\delta(n)>\delta(n-1)$, giống như bài "acquire" các truy vấn chúng ta cũng tăng dần theo thứ tự do vậy chúng ta có thể khơi tạo một biến chạy để chạy song song khi làm quy hoạch động (bỏ được phần chặt nhị phân).
 
 
-## Biến thể động
+## Biến thể động (Fully Dynamic Variant)
 
 Kĩ thuật này có thể dễ dàng được thực hiện khi các đường thẳng được thêm trước tất cả các truy vấn hay các đường thẳng được thêm vào theo thứ tự giảm dần của hệ số góc. Hoặc với cấu trúc deque chúng ta cũng có thể thêm những đường thẳng có hệ số góc lớn hơn hết các đường thẳng đã có. Nhưng có những lúc sẽ có các bài toán khi chúng ta phải giải quyết các truy vấn và thêm đường thẳng lồng vào nhau với các hệ số góc ngẫu nhiên. Chúng ta không thể sắp xếp lại trước (do bị lồng vào truy vấn) và không thể sắp xếp lại với mỗi lần thêm đường thẳng (vậy sẽ cho ta một độ phức tạp tuyến tính với mỗi truy vấn).
 
-Có tồn tại một cách để thêm các đường thẳng ngẫu nhiên vào trong độ phức tạp logarit. Chúng ta lưu các đoạn thẳng trong một cấu trúc có thứ tự động như `std::set` của C++. Mỗi đường thẳng chứa hệ số góc và giao điểm $y$(sắp xếp theo hệ số góc trước rồi theo $y$)  cùng với một biến $left$ thêm, $x$ nhỏ nhất sao cho đường thẳng này đạt cực tiểu trong tập các đường thẳng. 
+Có tồn tại một cách để thêm các đường thẳng ngẫu nhiên vào trong độ phức tạp log. Chúng ta lưu các đoạn thẳng trong một cấu trúc có thứ tự động như `std::set` của C++. Mỗi đường thẳng chứa hệ số góc và giao điểm $y$ (sắp xếp theo hệ số góc trước rồi theo $y$)  cùng với một biến $left$ thêm, $x$ nhỏ nhất sao cho đường thẳng này đạt cực tiểu trong tập các đường thẳng. 
 Sắp đường thẳng này vào vị trí đúng của nó và những đường bị loại sẽ là các đường liên tiếp kế bên nó. Chúng ta dùng các điều kiện tương tự trên để bỏ các đường thẳng bên trái và bên phải nó.
 
 Để trả lời truy vấn, chúng ta dùng một *set* nữa dùng chính các biến ấy nhưng lại sắp xếp theo $left$. Vậy mỗi lần truy vấn ta có thể dễ dàng chặt nhị phân để tìm ra kết quả như đã nói ở trên.
 
-##Code
+## Code
 
 [Code C++ cho "acquire"](http://wcipeg.com/wiki/Convex_hull_trick/acquire.cpp)
 
