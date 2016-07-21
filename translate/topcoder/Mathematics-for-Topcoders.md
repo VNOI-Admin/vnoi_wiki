@@ -6,7 +6,7 @@
 
  <p style="text-align: justify;">      Tôi đã từng thấy nhiều người thi <strong> Topcoder </strong> phàn nàn việc thiếu công bằng trong đề thi, khi mà có quá nhiều thứ thuộc về Toán học – điểm yếu của họ. Cá nhân tôi, tôi yêu Toán và vì vậy mà tôi sẽ có phần thiên vị hơn trong vấn đề này. Tuy nhiên, tôi hoàn toàn tin tưởng rằng, cái bài tập nên có <strong>ít nhất một thứ thuộc về Toán học và Khoa học máy tính phải đi liền với nó</strong>. Thật khó tưởng tượng khi mà cả hai lĩnh vực này cũng tồn tại mà không hề có bất kỳ sự tương tác nào lẫn nhau. Ngày nay, một trong những sự kết hợp tuyệt vời đó chính là việc áp dụng Toán học vào Tin học bằng việc giải những hệ thống phương trình to lớn hay tìm nghiệm xấp xỉ đối với những phương trình mà không hề tồn tại một công thức nào cả. Toán học còn được sử dụng rộng rãi trong việc nghiên cứu về <i>Khoa học máy tính</i>, cũng như là áp dụng cho các <i>thuật toán về đồ thị</i> và <i>lĩnh vực thị giác máy tính</i>. </p>
 
- <p style="text-align: justify;"> <i>Bài viết này sẽ thỏa luận về lý thuyết và ứng dụng của một vài cấu trúc Toán học phổ biến</i>. Các chủ đề được đề cập tới bao gồm: </p>
+ <p style="text-align: justify;"> <i>Bài viết này sẽ thảo luận về lý thuyết và ứng dụng của một vài cấu trúc Toán học phổ biến</i>. Các chủ đề được đề cập tới bao gồm: </p>
 
 1.        Số nguyên tố.<br>
 2. 	  Ước chung lớn nhất <i>(GCD)</i>.<br>
