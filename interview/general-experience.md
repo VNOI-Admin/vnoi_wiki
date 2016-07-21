@@ -1,6 +1,6 @@
-Tác giả: Đinh Hoàng Phong
-
 # Những kinh nghiệm khi phỏng vấn
+
+Tác giả: Đinh Hoàng Phong
 
 ## Một số điểm cần lưu ý trong khi viết resume
 
