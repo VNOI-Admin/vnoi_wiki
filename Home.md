@@ -5,6 +5,9 @@
     - [[Tôi đã học Tin như thế nào - phần 2|algo/basic/hoc-tin-the-nao-2]]
     - [[Tầm quan trọng của Thuật Toán|translate/topcoder/The-Importance-of-Algorithm]]
 
+- Những kiến thức cơ bản:
+    - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
+
 ## Kinh nghiệm phỏng vấn
 
 - [[Những kinh nghiệm chung khi phỏng vấn|interview/general-experience]]
