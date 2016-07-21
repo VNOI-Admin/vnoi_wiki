@@ -52,3 +52,9 @@ Dạng câu hỏi về kĩ thuật (technical questions)
 Dạng câu hỏi về kĩ năng ứng xử (behavior questions)
 
 - Một số công ty sẽ yêu cầu bạn trả lời những tình huống nhất định để đánh giá về con người của bạn có phù hợp với yêu cầu nhất định hay không.
+
+Với những bạn chưa có nhiều kiến thức hoặc muốn ôn tập lại kiến thức về thuật toán và cấu trúc dữ liệu thì các bạn có thể tìm đọc những cuốn sách (như sách của thầy Lê Minh Hoàng) hoặc những bài viết tiếp theo của chúng tôi về những kiến thức cơ bản/nâng cao cần biết về thuật toán.
+
+Với những bạn đã có những kiến thức cơ bản về thuật toán và cấu trúc dữ liệu thì cơ bản các bạn chỉ cần luyện tập kĩ năng trả lời câu hỏi sao cho thật là thuần thục. Một số trang web để các bạn luyện tập như leetcode, hackerrank, ...
+
+Nếu bạn có quen một ai đó có thể giúp đỡ bạn, bạn hãy nhờ họ làm một cuộc phỏng vấn thử. Trong lúc phỏng vấn thử này, họ sẽ đưa cho bạn một câu hỏi, và nhiệm vụ của bạn là hãy trả lời một cách suôn sẻ, và họ sẽ đưa ra ý kiến của riêng họ về những điều bạn có thể cải thiện để tiến bộ hơn.
