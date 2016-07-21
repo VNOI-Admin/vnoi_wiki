@@ -46,7 +46,7 @@ Chúng ta còn có thể làm cho đoạn mã này chạy nhanh hơn nữa bằn
     {
         if (n <= 1) return false;
         if (n == 2) return true;
-        if (n%2 == 0) return false;
+        if (n % 2 == 0) return false;
         int m = Math.sqrt(n);
 	
         for (int i = 3; i <= m; i += 2)
@@ -108,14 +108,14 @@ Và giờ thì tất cả những số còn sót lại chính là các số nguy
     {
         boolean[] prime=new boolean[n+1];
         Arrays.fill(prime,true);
-        prime[0]=false;
-        prime[1]=false;
-        int m=Math.sqrt(n);
+        prime[0] = false;
+        prime[1] = false;
+        int m = Math.sqrt(n);
 		
-        for (int i=2; i<=m; i++)
+        for (int i = 2; i <= m; i++)
             if (prime[i])
-                for (int k=i*i; k<=n; k+=i)
-                    prime[k]=false;
+                for (int k = i * i; k <= n; k += i)
+                    prime[k] = false;
 		
         return prime;
     } 
@@ -147,7 +147,7 @@ Và giờ thì tất cả những số còn sót lại chính là các số nguy
 
 ## Ước chung lớn nhất
 
-**Ước chung lớn nhất** (Greatest Common Divisor) của hai số  tự nhiên $a$ và $b$ là số lớn nhất mà cả $a$ và $b$ đều chia hết. Để tìm được `GCD(a, b)`, một cách đơn giản, ta có thể lấy số nhỏ hơn trong hai số $a$ và $b$ rồi giảm dần cho đến khi nào có được một số mà cả $a$ và $b$ đều cùng chia hết cho số đó.
+**Ước chung lớn nhất** (Greatest Common Divisor) của hai số  tự nhiên $a$ và $b$ là số lớn nhất mà cả $a$ và $b$ đều chia hết. Để tìm được $GCD(a, b)$, một cách đơn giản, ta có thể lấy số nhỏ hơn trong hai số $a$ và $b$ rồi giảm dần cho đến khi nào có được một số mà cả $a$ và $b$ đều cùng chia hết cho số đó.
 
 **Java**
 
@@ -199,7 +199,7 @@ Và phần dư cuối cùng mà khác 0 chính là ước chung lớn nhất mà
 **Pascal**
 
 ```pascal
-	//giả định a và b đều khác 0
+	// giả định a và b đều khác 0
 	function GCD(a, b : Integer): Integer;
 	begin
 		if (b = 0) then exit(a)
@@ -239,33 +239,33 @@ Xem thêm: [Thuật toán Euclid mở rộng](http://vnoi.info/library/82/419/)
 
 ## Hình học
 
-Đôi khi, bài toán yêu cầu ta tìm phần giao của các hình chữ nhật. Có rất nhiều cách để biểu diễn một hình chữ nhật. Đối với hệ trục tọa độ Cartesian, thì cách biểu diễn phổ biến nhất chính là lưu giữ giá trị tọa độ của góc trái - dưới và góc phải - trên của hình chữ nhật.
+Đôi khi, bài toán yêu cầu ta tìm phần giao của các hình chữ nhật với các cạnh song song trục tọa độ. Có rất nhiều cách để biểu diễn một hình chữ nhật. Đối với hệ trục tọa độ Cartesian, thì cách biểu diễn phổ biến nhất chính là lưu giữ giá trị tọa độ của góc trái - dưới và góc phải - trên của hình chữ nhật.
 
 Giả sử chúng ta có hai hình chữ nhật $R1$ và $R2$. Đặt $(x1, y1)$ là tọa độ góc trái - dưới, $(x2, y2)$ là tọa độ góc phải - trên của hình chữ nhật $R1$. Tương tự với $R2$, ta đặt $(x3, y3)$, $(x4, y4)$ lần lượt là tọa độ góc trái - dưới và góc phải - trên của $R2$. Phần giao của $R1$ và $R2$ sẽ là hình chữ nhật $R3$ có tọa độ trái - dưới là $(max(x1, x3), max(y1, y3))$ và tọa độ góc phải - trên là $(min(x2, x4), min(y2, y4))$. Nếu  $max(x1, x3) > min(x2, x4)$ hoặc $max(y1, y3) > min(y2, y4)$ thì sẽ không tồn tại hình chữ nhật $R3$, hay nói các khác là $R1$ và $R2$ không giao nhau. Công thức này còn được mở rộng ra hơn không gian 2 chiều giống như là trong bài [CuboidJoin (SRM 191, Div 2 Hard)](http://topcoder.bgcoder.com/print.php?id=514). 
 
-Thường thì, khi làm bài chúng ta sẽ phải đối mặt với những đa giác mà cạnh của nó mang giá trị nguyên. Những đa giác đó được gọi là [Đa giác lưới](http://mathworld.wolfram.com/LatticePolygon.html). Trong phần hướng dẫn cơ bản về khái niệm hình học ([Geometry Concepts](https://www.topcoder.com/community/data-science/data-science-tutorials/geometry-concepts-basic-concepts/)), lbackstrom đã trình bày một cách ngắn gọn cách tính diện tích thông qua các cạnh của đa giác. Bây giờ, giả sử ta không biết được chính xác vị trí các cạnh mà thay vào đó ta có được các giá trị sau:
+Thường thì, khi làm bài chúng ta sẽ phải đối mặt với những đa giác mà đỉnh của nó là số nguyên. Những đa giác đó được gọi là [Đa giác lưới](http://mathworld.wolfram.com/LatticePolygon.html) (lattice polygon). Trong phần hướng dẫn cơ bản về khái niệm hình học ([Geometry Concepts](https://www.topcoder.com/community/data-science/data-science-tutorials/geometry-concepts-basic-concepts/)), lbackstrom đã trình bày một cách ngắn gọn cách tính diện tích thông qua các cạnh của đa giác. Bây giờ, giả sử ta không biết được chính xác vị trí các cạnh mà thay vào đó ta có được các giá trị sau:
 
 ```
-    B = số lượng điểm nằm ở rìa đa giác
-    I = số lượng điểm nằm trong đa giác
+    B = số lượng điểm nằm ở trên cạnh đa giác (Boundary)
+    I = số lượng điểm nằm trong đa giác (Inside)
 ```
 
-Thật kỳ diệu, thông qua hai giá trị trên ta có thể tính được diện tích đa giác bằng công thức sau:
+Thật vi diệu, thông qua hai giá trị trên ta có thể tính được diện tích đa giác bằng công thức sau:
 
 ```
     Diện tích = B/2 + I - 1
 ```
 
-Công thức trên được gọi là [định lý Pick](https://en.wikipedia.org/wiki/Pick%27s_theorem) được chứng minh bởi Georg Alexander Pick (1859 – 1943). Để chứng minh được rằng định lý Pick có tính chất bao quát cho toàn bộ mọi đa giác lưới, ta chứng minh theo 4 bước:
+Công thức trên được gọi là [**định lý Pick**](https://en.wikipedia.org/wiki/Pick%27s_theorem) được chứng minh bởi *Georg Alexander Pick* (1859 – 1943). Để chứng minh được rằng định lý Pick có tính chất bao quát cho toàn bộ mọi đa giác lưới, ta chứng minh theo 4 bước:
 
 - Bước 1: chứng minh định lý Pick đúng với mọi hình chữ nhật lưới, có cạnh song song với trục tọa độ.
 - Bước 2: chứng minh được định lý Pick vẫn đúng với mọi tam giác vuông có hai cạnh song song với trục tọa đô (bởi chúng là phân nửa diện tích một hình chữ nhật lưới có tọa độ một đỉnh là góc vuông của tam giác và có cạnh là các cạnh góc vuông của tam giác).
 - Bước 3: chứng minh định lý Pick đúng với mọi tam giác, bởi một tam giác bất kỳ đều có thể biểu diễn thành một hình chữ nhật bằng cách ghép cặp với một vài tam giác vuông khác.
-- Bước 4: ta thấy rằng mọi đa giác lưới có chung cạnh sẽ tạo thành một đa giác lưới khác bằng cách xóa đi cạnh chung, và mọi đa giác lưới đều có thể tạo ra bằng cách ghép các hình chữ nhật và tam giác.
+- Bước 4: ta thấy rằng mọi cặp 2 đa giác lưới có chung cạnh sẽ tạo thành một đa giác lưới khác bằng cách xóa đi cạnh chung, và mọi đa giác lưới đều có thể tạo ra bằng cách ghép các hình tam giác.
 
 Tổng hợp lại 4 bước trên và ta sẽ thu được kết quả rằng định lý Pick đúng với mọi đa giác lưới. Định lý Pick khá hữu ích khi ta cần tìm số điểm có tọa độ nguyên bên trong một đa giác lớn.
 
-Một công thức đáng nhớ khác đó chính là công thức [Euler](https://en.wikipedia.org/wiki/Euler%27s_formula) dành cho các khối đa diện. Khối đa diện được định nghĩa là một khối (một đa giác) mà ta có thể chia thành nhiều đa giác nhỏ hơn. Các đa giác nhỏ hơn được gọi là mặt, cách đỉnh của mặt cũng được gọi là đỉnh của khối đa diện và tương tự, các cạnh của mặt cũng gọi là cạnh. Dưới đây là công thức Euler.
+Một công thức đáng nhớ khác đó chính là công thức [Euler](https://en.wikipedia.org/wiki/Euler_characteristic) dành cho các khối đa diện. Khối đa diện được định nghĩa là một khối (một đa giác) mà ta có thể chia thành nhiều đa giác nhỏ hơn. Các đa giác nhỏ hơn được gọi là mặt, cách đỉnh của mặt cũng được gọi là đỉnh của khối đa diện và tương tự, các cạnh của mặt cũng gọi là cạnh. Dưới đây là công thức Euler.
 
 ```
     V - E + F = 2, với:
@@ -275,6 +275,7 @@ Một công thức đáng nhớ khác đó chính là công thức [Euler](https
 ```
 
 Ví dụ, xét một hình vuông mà cả hai đường chéo đều được vẽ. Ta sẽ có $V = 5$, $E = 8$ và $F = 5$ (phần nằm ngoài hình vuông cũng được coi như là một mặt), ta sẽ có $V - E + F = 2$.
+
 Ta có thể sử dụng quy nạp để chứng minh nó như sau: Ta sẽ bắt đầu với $V = 2$, vì mỗi đỉnh đều cần phải có ít nhất một cạnh. Và nếu $V = 2$ thì chỉ có xảy ra duy nhất một dạng khối đa diện mà thôi. Đó là dạng khối đa diện mà hai cạnh sẽ nối với $E$ đỉnh. Khối đa diện nãy cũng sẽ có $E$ mặt, ($E-1$ mặt bên trong hình và 1 mặt ngoài hình). Thế nên $V - E + F = 2 - E + E = 2$ (điều phải chứng minh). Giờ ta giả sử định lý Euler đúng với $V$ từ $[2, n]$, xét $V = n+1$. Chọn một cạnh $w$ bất kỳ. Giờ giả định $w$ nối với tất cả những lưới còn lại có $G$ đỉnh. Nếu bỏ đi cạnh $w$ này và những đỉnh mà nó nối, ta sẽ có một lưới với $n$ cạnh, $E - G$ đỉnh và $F-G+1$ mặt. Từ giả định trên ta có:
 
 ```
@@ -288,7 +289,7 @@ Vậy với $V = n+1$, ta cũng vẫn thu được kết quả là $V - E + F = 
 
 Một trong những bài toán mà người thi Topcoder đối mặt nhiều nhất đó chính là việc chuyển đổi số từ hệ cơ số nhị phân sang hệ cơ số thập phân và ngược lại (cùng với nhiều hệ cơ số khác).
 
-Vậy hệ cơ số nghĩa là gì? Ta sẽ bắt đầu với hệ cơ số tiêu chuẩn (hệ thập phân). Xét số 4325 ở hệ cơ số 10. Ta thấy 4325 có thể phân tích thành $5 + 2*10 + 3*10*10 + 4*10*10*10$. Chú ý rằng mỗi "giá trị" của chữ số tiếp theo sau của số được nhân thêm tích số 10 khi ta xét từ phải qua trái. Hệ nhị phân cũng hoạt động theo cách tương tự như thế. Nó sử dụng hai chữ số 0 và 1 và "giá trị" của từng chữ số sẽ được nhân thêm 2 khi ta xét từ phải qua trái. Ví dụ, số 1011 ở dạng nhị phân có thể biểu diễn thành $1 + 1 x 2 + 0 x 2 x 2 + 1 x 2 x 2 x 2 = 1 + 2 + 8 = 11$ và trở lại thành số ở hệ thập phân là 11. Và đây chính là cách để ta chuyển từ số ở hệ nhị phân (hoặc bất kỳ hệ số nào) về hệ cơ số thập phân. Sau đây là đoạn mã để chuyển từ một hệ cơ số n (2 ) thành hệ cơ số thập phân.
+Vậy hệ cơ số nghĩa là gì? Ta sẽ bắt đầu với hệ cơ số tiêu chuẩn (hệ thập phân). Xét số 4325 ở hệ cơ số 10. Ta thấy 4325 có thể phân tích thành $5 + 2\*10 + 3\*10\*10 + 4\*10\*10\*10$. Chú ý rằng mỗi "giá trị" của chữ số tiếp theo sau của số được nhân thêm tích số 10 khi ta xét từ phải qua trái. Hệ nhị phân cũng hoạt động theo cách tương tự như thế. Nó sử dụng hai chữ số 0 và 1 và "giá trị" của từng chữ số sẽ được nhân thêm 2 khi ta xét từ phải qua trái. Ví dụ, số 1011 ở dạng nhị phân có thể biểu diễn thành $1 + 1\*2 + 0\*2\*2 + 1\*2\*2\*2 = 1 + 2 + 8 = 11$ và trở lại thành số ở hệ thập phân là 11. Và đây chính là cách để ta chuyển từ số ở hệ nhị phân (hoặc bất kỳ hệ số nào) về hệ cơ số thập phân. Sau đây là đoạn mã để chuyển số $n$ từ một hệ cơ số $b$ $(2 \le b \le n)$ thành hệ cơ số thập phân.
 
 **Java**
 
@@ -300,7 +301,7 @@ Vậy hệ cơ số nghĩa là gì? Ta sẽ bắt đầu với hệ cơ số ti�
 		      
         while(n > 0)
         {
-            result += n%10*multiplier;
+            result += n % 10 * multiplier;
             multiplier *= b;
             n /= 10;
         }
@@ -331,7 +332,7 @@ Vậy hệ cơ số nghĩa là gì? Ta sẽ bắt đầu với hệ cơ số ti�
 Người dùng Java hẳn sẽ rất vui khi biết rằng vẫn có cách khác đơn giản hơn để thực hiện việc này.
 
 ```java
-    return Integer.parseInt(""+n,b);
+    return Integer.parseInt("" + n, b);
 ```
 
 Để chuyển một số từ hệ thập phần về hệ nhị phân cũng khá đơn giản. Giả sử ta muốn chuyển số 43 từ hệ thập phân về hệ nhị phân. Tại bước đầu của công thức ta sẽ chia đôi 43 và lưu lại giá trị phần dư, tiếp tục xử lý với số được chia đôi đó cho đến khi nó bằng 0. Và danh sách số dư sau cuối cùng cũng chính là cách biểu diễn số nhị phân cần tìm.
@@ -357,7 +358,7 @@ Vậy 43 sẽ được biểu diễn thành 101011 ở dạng nhị phân. Bằn
 	      
         while(n > 0)
         {
-            result += n%b*multiplier;
+            result += n % b * multiplier;
             multiplier *= 10;
             n /= b;
         }
@@ -384,7 +385,7 @@ Vậy 43 sẽ được biểu diễn thành 101011 ở dạng nhị phân. Bằn
     end;
 ```
 
-Đối với trường hợp b lớn hơn 10, ta sẽ xử dụng các ký tự không phải số để đại diện cho các số từ 9 trở lên. Ví dụ, ta sẽ để 'A' đại diện cho 10, 'B' cho 11, ... Đoạn mã sau đây sẽ cho phép ta chuyển từ số thập phân sang bất kỳ hệ cơ số nào (lên đến 20).
+Đối với trường hợp $b$ lớn hơn 10, ta sẽ xử dụng các ký tự không phải chữ số để đại diện cho các số từ 10 trở lên. Ví dụ, ta sẽ để 'A' đại diện cho 10, 'B' cho 11, ... Đoạn mã sau đây sẽ cho phép ta chuyển từ số thập phân sang bất kỳ hệ cơ số nào (lên đến 20).
 
 **Java**
 
@@ -431,14 +432,14 @@ Trong Java, ta có thể sử dụng những cách tắt sau để chuẩn từ 
 
 ## Phân số và số phức
 
-Phân số thường được gặp rất nhiều trong các bài tập. Thường thì vấn đề khó khăn nhất mà ta cần phải đối mặt đó chính là việc biểu diễn các phân số đó. Mặc dù nó hoàn toàn khả thi trong việc tạo ra một lớp (class) khác để lưu trữ một cách đầy đủ các thông tin về phần số, nhưng trong nhiều trường hợp thì cách thường dùng nhất là sử dụng mảng lưu 2 giá trị bằng cách ghép cặp (pair). Ý tưởng là ta sẽ lưu số đầu tiên là tử số, số thứ hai là mẫu số.Ta sẽ bắt đầu bằng việc nhân hai phân số a và b:
+Phân số thường được gặp rất nhiều trong các bài tập. Thường thì vấn đề khó khăn nhất mà ta cần phải đối mặt đó chính là việc biểu diễn các phân số đó. Mặc dù nó hoàn toàn khả thi trong việc tạo ra một lớp (class) khác để lưu trữ một cách đầy đủ các thông tin về phần số, nhưng trong nhiều trường hợp thì cách thường dùng nhất là sử dụng mảng lưu 2 giá trị bằng cách ghép cặp (pair). Ý tưởng là ta sẽ lưu số đầu tiên là tử số, số thứ hai là mẫu số. Ta sẽ bắt đầu bằng việc nhân hai phân số a và b:
 
 **Java**
 
 ```java
     public int[] multiplyFractions(int[] a, int[] b)
     {
-        int[] c = {a[0]*b[0], a[1]*b[1]};
+        int[] c = {a[0] * b[0], a[1] * b[1]};
         return c;
     }
 ```
@@ -480,8 +481,8 @@ Một khi hai phân số đã có mẫu số bằng nhau, thì ta chỉ cần đ
 ```java
     public int[] addFractions(int[] a, int[] b)
     {
-        int denom = LCM(a[1],b[1]);
-        int[] c= {denom/a[1]*a[0] + denom/b[1]*b[0], denom};
+        int denom = LCM(a[1], b[1]);
+        int[] c= {denom / a[1] * a[0] + denom / b[1] * b[0], denom};
         return c;
     }
 ```
@@ -504,7 +505,7 @@ Cuối cùng, nó rất cần thiết để biết được cách tối giản p
 **Java**
 
 ```java
-    public void reduceFraction(int[] &a)
+    public void reduceFraction(int[] a)
     {
         int b = GCD(a[0],a[1]);
         a[0] /= b;
@@ -527,13 +528,12 @@ Cuối cùng, nó rất cần thiết để biết được cách tối giản p
 
 Bằng phương pháp tương tự, ta cũng có thể biểu diễn được số phức. Một cách tổng quát, số phức được biểu diễn dưới dạng $a + ib$ với $a$, $b$ là số thực và $i$ là căn bậc hai của -1. Ví dụ, để cộng hai số phức, ta sẽ cộng đơn giản như sau:
 
-```
-    m + n
-    = (a + ib) + (c + id)
-    = (a + c) + i(b + d)
-```
+$m + n$
+$= (a + bi) + (c + di)$
+$= (a + c) + (b + d)$
 
-Việc nhân hai số phức cũng tương tự như việc nhân số thực, trừ việc i*i bằng -1.
+
+Việc nhân hai số phức cũng tương tự như việc nhân số thực, trừ việc $i*i$ bằng -1.
 
 ```
     m * n
@@ -566,4 +566,4 @@ Bằng việc lưu trữ phần số thực ở phần tử thứ nhất và ph�
 
 ##  Tổng kết:
 
-Tổng kết lại, tôi chỉ muốn nói rằng bạn không thể đứng đầu Topcoder mà không nắm rõ Toán học và những thuật toán mà tôi vừa nêu trên. Thường thì một trong những chủ đề Toán học thường gặp nhất trong các bài tập đó là số nguyên tố. Nó cũng thường liên quan đến những bài về hệ cơ số, mà nguyên nhân chủ yếu là vì máy tính hoạt động dựa trên hệ nhị phân, nên ta cần phải biết cách chuyển từ hệ nhị phân về hệ thập phân. Còn công thức tính ước chung lớn nhất (GCD) và bội chung nhỏ nhất (LCM) thì được dùng nhiều trong cả những bài tập "thuần toán" và cả hình học. Cuối cùng, tôi viết chủ đề Phân số và số phức là việc nó không chỉ cần thiết cho việc thi Topcoder, mà bởi nó còn vô cùng quan trọng khi làm việc với những con số.
+Tổng kết lại, tôi chỉ muốn nói rằng bạn không thể đạt rating cao ở Topcoder mà không nắm rõ Toán học và những thuật toán nêu trên. Thường thì một trong những chủ đề Toán học thường gặp nhất trong các bài tập đó là số nguyên tố. Tiếp đó là những bài về hệ cơ số, mà nguyên nhân chủ yếu là vì máy tính hoạt động dựa trên hệ nhị phân, nên ta cần phải biết cách chuyển từ hệ nhị phân về hệ thập phân. Còn công thức tính ước chung lớn nhất (GCD) và bội chung nhỏ nhất (LCM) thì được dùng nhiều trong cả những bài tập "thuần toán" và cả hình học. Cuối cùng, tôi viết chủ đề Phân số và số phức là việc nó không chỉ cần thiết cho việc thi Topcoder, mà bởi nó còn vô cùng quan trọng khi làm việc với những con số.
