@@ -92,14 +92,14 @@ so sánh nhãn nút gốc với nút lớn hơn trong 2 nút con của nó ( n�
   Cho một tập N nhãn, ta có thể xây dựng một binary heap chứa N nút mỗi nút chứa một nhãn tương ứng với N nhãn đã cho. Một cách đơn giản ta có thể thực hiện N phép thêm nút, tuy vậy có một kĩ thuật hiệu quả để xây dựng binary heap được gọi là bottom-up construction. Kỹ thuật này yêu cầu xây dựng một cây nhịp phân đầy đủ trước và thự hiện top-down heapify. Chứng minh kết quả của cách xây dựng là một Binary Heap không phải là khó.
 
 * **Analysis complexity:** 
- * Khi thực hiện N bước thêm nút ta có thể thấy độ phức tạp là O( NlogN)
- * Ở cách xây dựng thứ 2 ta thấy nếu một nút ở độ xâu k nó sẽ mất không quá h - k lần so sánh với nút con ( h là độ cao của cây, gốc có dộ cao h = 0 và số nút của cây N = 2^(h+1) ) và một nửa số nút trên cây là lá và sẽ không phải so sánh với nút con nào cả, ta suy ra được:
-    * Ở độ sâu k = h-1 có 2^(h-1) -> số phép so sánh là 1 x 2^(h-1) = 1/4 x N
-    * Ở độ sâu k = h-2 có 2^(h-1) -> số phép so sánh là 2 x 2^(h-2) = 2/8 x N
+   * Khi thực hiện N bước thêm nút ta có thể thấy độ phức tạp là O( NlogN)
+   * Ở cách xây dựng thứ 2 ta thấy nếu một nút ở độ xâu k nó sẽ mất không quá h - k lần so sánh với nút con ( h là độ cao của cây, gốc có dộ cao h = 0 và số nút của cây N = 2^(h+1) ) và một nửa số nút trên cây là lá và sẽ không phải so sánh với nút con nào cả, ta suy ra được:
+      * Ở độ sâu k = h-1 có 2^(h-1) -> số phép so sánh là 1 x 2^(h-1) = 1/4 x N
+      * Ở độ sâu k = h-2 có 2^(h-1) -> số phép so sánh là 2 x 2^(h-2) = 2/8 x N
     ...
-    * Ở độ sâu k = 0 ( gốc ) -> số phép so sánh là hx1 = h/N x N
+      * Ở độ sâu k = 0 ( gốc ) -> số phép so sánh là hx1 = h/N x N
 
-    * Tổng hợp lại ta có:
+      * Tổng hợp lại ta có:
    
                 1/4 x N + 2/8 x N + 3/16 x N + ... + h/N x N = N phép so sánh
 
