@@ -8,7 +8,7 @@ Nguồn: [P3G](http://wcipeg.com/wiki/Convex_hull_trick)
 
 ## Lịch sử
 
-Kĩ thuật bao có lẽ là thuật toán được sử dụng nhiều nhất đề ăn trọn toàn bộ số điểm trong nhiều bài toán USACO, như là bài [Acquire](http://tjsct.wikidot.com/usaco-mar08-gold) trong bảng gold của USACO tháng 3 năm 2008. Thuật toán được đưa vào các cuộc thi lập trình một cách rộng rãi sau bài [Batch Scheduling](http://wcipeg.com/problem/ioi0221) trong kì thi IOI 2002. Đây là một kĩ thuật khá lạ và ít có nguồn trên mạng về vấn đề này. 
+Kĩ thuật bao lồi được biết đến nhiều nhất có lẽ vì nó cần để ăn trọn toàn bộ số điểm trong nhiều bài toán USACO, như là bài [Acquire](http://tjsct.wikidot.com/usaco-mar08-gold) trong bảng gold của USACO tháng 3 năm 2008. Thuật toán được đưa vào các cuộc thi lập trình một cách rộng rãi sau bài [Batch Scheduling](http://wcipeg.com/problem/ioi0221) trong kì thi IOI 2002. Đây là một kĩ thuật khá lạ và ít có nguồn trên mạng về vấn đề này. 
 
 ## Bài toán cơ bản
 
