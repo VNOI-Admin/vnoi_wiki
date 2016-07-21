@@ -23,7 +23,7 @@ Sau khi ta vẽ các đường thẳng lên hệ trục tọa độ, dễ thấy
 
 ## Thuật toán duyệt
 
-Với mỗi truy vấn trong $Q$ truy vấn, ta duyệt qua từng hàm số và thử từng từng hàm và xem thử hàm nào trả giá trị cực tiểu cho giá trị $x$. Nếu có $M$ đường thẳng và $Q$ truy vấn, độ phức tạp của thuật toán sẽ $\mathcal{O}(MQ)$. Kĩ thuật này giúp giảm độ phức tạp xuống còn $\mathcal{O}((Q+M)\log M$, một độ phức tạp hiệu quá hơn nhiều. 
+Với mỗi truy vấn trong $Q$ truy vấn, ta duyệt qua từng hàm số và thử từng từng hàm và xem thử hàm nào trả giá trị cực tiểu cho giá trị $x$. Nếu có $M$ đường thẳng và $Q$ truy vấn, độ phức tạp của thuật toán sẽ $\mathcal{O}(MQ)$. Kĩ thuật bao lồi sẽ giúp giảm độ phức tạp xuống còn $\mathcal{O}((Q+M)\log M$, một độ phức tạp hiệu quá hơn nhiều. 
 
 
 ## Kĩ thuật
@@ -39,9 +39,10 @@ Xét hình vẽ ở trên. Đường thẳng $y=4$ sẽ không bao giờ là gi�
 - Dùng thuật toán tìm kiếm nhị phân cơ bản để có thể tìm kiếm đáp án cho từng truy vấn.
 
 ### Ý nghĩa của tên kĩ thuật
-Cụm từ *bao lồi* được sử dụng sai để chỉ *hình bao trên/dưới*. Trong ví dụ, nếu chúng ta coi mỗi phần đoạn thẳng tối ựu của đường thẳng (bỏ qua đường $y=4$), chúng ta sẽ những đoạn đó tạo thành một *hình bao dưới*, một tập các đoạn thẳng chứa tất cả điểm cực tiểu cho tất cả giá trị của $x$ (hình bao dưới được tô bằng màu xanh trong hình. Cái tên *kĩ thuật bao lồi* xuất phát từ việc đường bao trên tạo thành một đường lồi, từ đó thành bao lội của một tập điểm.
+Cụm từ *bao lồi* được sử dụng sai để chỉ *hình bao trên/dưới* (upper / lower envelope). Trong ví dụ, nếu chúng ta coi mỗi phần đoạn thẳng tối ựu của đường thẳng (bỏ qua đường $y=4$), chúng ta sẽ những đoạn đó tạo thành một *hình bao dưới* (lower envelope), một tập các đoạn thẳng chứa tất cả điểm cực tiểu cho tất cả giá trị của $x$ (hình bao dưới được tô bằng màu xanh trong hình. Cái tên *kĩ thuật bao lồi* xuất phát từ việc đường bao trên tạo thành một đường lồi, từ đó thành bao lồi của một tập điểm.
 
 ### Thêm một đường vào tập
+
 Ta có thể thấy nếu ta có một tập đường thẳng đã được xác định sắp xếp, ta có thể dễ dàng trả lời bất kì truy vấn nào với độ phức tạp là $\mathcal{O}(\log{} M)$ với tìm kiếm nhị phân. Vậy nếu chúng ta tìm ra cách thêm một đường thẳng vào tính toán lại một cách hiệu quả là chúng ta đã có một thuật toán hoạt động ngon lành.
 
 Giả sử chúng ta được xử lý tất cả đường thẳng trước khi làm các truy vấn thì chúng ta chỉ cần đơn giản sắp xếp các đường thẳng theo hệ số góc và thêm từng đường một vào. Sẽ có thể một số đường không quan trọng và sẽ bị bỏ đi. Chúng ta sẽ sử dụng cấu trúc dữ liệu Stack để cài đặt, bỏ từng đường thẳng vào stack và nếu đường nào không quan trọng sẽ bị bỏ ra ngoài đến khi chỉ còn một đường thẳng (đường thẳng cuối không thể bỏ) 
