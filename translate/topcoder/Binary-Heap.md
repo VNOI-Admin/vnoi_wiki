@@ -99,7 +99,9 @@ so sánh nhãn nút gốc với nút lớn hơn trong 2 nút con của nó ( n�
     ...
     * Ở độ sâu k = 0 ( gốc ) -> số phép so sánh là hx1 = h/N x N
 
-    * Tổng hợp lại ta có 1/4 x N + 2/8 x N + 3/16 x N + ... + h/N x N = N
+    * Tổng hợp lại ta có:
+   
+                1/4 x N + 2/8 x N + 3/16 x N + ... + h/N x N = N phép so sánh
 
 
 
