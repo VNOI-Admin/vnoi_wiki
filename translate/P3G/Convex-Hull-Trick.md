@@ -75,7 +75,7 @@ Giả sử tồn tại hai hình chữ nhật A và B mà mà cả chiều dài 
 #### **Nhận xét 2: Đoạn liên tiếp**
 Sau khi sắp xếp, ta có thể hình dung được rằng nếu chúng ta chọn hai hình chữ nhật ở vị trí $i$ và ở vị trí $j$ thì ta có thể chọn tất cả hình chữ nhật từ $i+1$ đến $j-1$ mà không tốn chi phí nào cả. Vậy ta có thể thấy rằng cách phân hoạch tối ưu là một cách phân dãy thành các đoạn liên tiếp và chi phí của một đoạn là bằng tích của chiều dài của hình chữ nhật đầu tiên và chiều rộng của hình chữ nhật cuối cùng.  
 #### **Lời giải Quy Hoạch Động**
-Vậy bài toán trờ về bài toán phân dãy sao cho tổng chi phí của các dãy là tối ưu. Đây là một dạng bài quy hoạch động hay gặp và chúng ta có thể dễ dàng nghĩ ra thuật toán $\mathcal{O}(N^2)$ như 	giả mã phía dưới. (Giả sử các hình đã được sắp xếp và bỏ đi những hình chữ nhật không quan trọng)
+Vậy bài toán trờ về bài toán phân dãy sao cho tổng chi phí của các dãy là tối ưu. Đây là một dạng bài quy hoạch động hay gặp và chúng ta có thể dễ dàng nghĩ ra thuật toán $\mathcal{O}(N^2)$ như mã giả phía dưới. (Giả sử các hình đã được sắp xếp và bỏ đi những hình chữ nhật không quan trọng)
 	
 ```
 input N
@@ -123,7 +123,7 @@ Tương tự như bài trên công thức quy hoạch động có thể dễ th�
 - `adjust(i,j) = a*sum(i,j)^2 + b*sum(i,j) + c` 
 Ta có:
 $dp(n) = max_{k=0}^{n-1}[dp(k)+adjust(k+1,n)]$
-Giả mã:
+Mã giả:
 ```
 dp[0] ← 0
 for n ∈ [1..N]
