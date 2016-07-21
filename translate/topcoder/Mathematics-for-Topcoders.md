@@ -125,7 +125,7 @@ pascal
 		prime[0] := false;
 		prime[1] := false;
 
-                m := trunc(sqrt(n));
+		m := trunc(sqrt(n));
 		for i := 2 to m do
 			if (prime[i]) then
 				for j := i to n div i do
@@ -444,7 +444,6 @@ pascal
 ```
     function addFractions(a, b : ps): ps;
     var
-        a, b : ps;
         denom : Integer;
     begin
         denom := LCM(a.y, b.y);
@@ -454,13 +453,28 @@ pascal
 ```
   Cuối cùng, nó rất cần thiết để biết được cách <i>tối giản phân số</i> thành <strong>phân số tối giản</strong>. Và phân số chỉ tối giản khi và chỉ khi ước chung lớn nhất của tử số và mẫu số là 1. Chúng ta sẽ làm như sau:
 
+C++
+
 ```
-    public void reduceFraction(int[] a)
+    public void reduceFraction(int[] &a)
     {
         int b = GCD(a[0],a[1]);
         a[0] /= b;
         a[1] /= b;
     }
+```
+
+pascal
+
+```
+	procedure reduceFraction(var a : ps);
+	var
+		b : Integer;	
+	begin
+		b := GCD(a.x, a.y);
+		a.x := a.x div b;
+		a.y := a.y div b;
+	end;
 ```
 
  Bằng phương pháp tương tự, ta cũng có thể biểu diễn được số phức. Một cách tổng quát, số phức được biểu diễn dưới dạng <i>a + ib</i> với <i>a</i>, <i>b</i> là số thực và <i>i</i> là căn bậc hai của -1. Ví dụ, để cộng hai số phức, ta sẽ cộng đơn giản như sau:
