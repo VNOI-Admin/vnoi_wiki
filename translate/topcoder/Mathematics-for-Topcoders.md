@@ -18,7 +18,7 @@
 ## Số nguyên tố:
 
  <p style="text-align: justify;"> Một số tự nhiên là số nguyên tố <i> khi và chỉ khi nó chỉ chia hết cho 1 và chính nó</i>. Ví dụ như 2, 3, 5, 79, 311 và 1931 đều là số nguyên tố, trong khi 21 thì không phải, bởi nó chia hết cho 3 và 7. Để xác định xem một số tự nhiên n có phải là số nguyên tố hay không, ta chỉ cần đơn giản kiểm tra xem nó có chia hết cho bất kỳ số nào nhỏ hơn nó và lớn 1 hay không. Chúng ta có thể sử dụng phép chia có dư (toán tử %) để kiểm tra <strong>khả năng chia hết của nó</strong>: </p>
-C++
+Java/ C++
 
 ```
     for (int i = 2; i < n; i++) 
@@ -28,7 +28,7 @@ C++
 
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
 	for i := 2 to n - 1 do
@@ -38,7 +38,7 @@ pascal
 ```
  <p style="text-align: justify;"> Chúng ta còn có thể làm cho đoạn mã này chạy nhanh hơn nữa bằng việc nhận ra rằng, ta chỉ cần xét khả năng chia hết cho <i>mọi giá trị i lớn hơn 1 và nhỏ hơn hoặc bằng với phần nguyên của căn bậc 2 của n </i>, <strong>tạm gọi là m</strong>. Tại sao lại thế nhỉ ? Đấy là bởi vì nếu n chia hết cho bất kỳ số n lớn hơn m thì kết quả nhận được cũng chỉ là một số nhỏ hơn hoặc bằng m. Tiếp tục cải tiến, ta sẽ thấy rằng <strong>không tồn tại</strong> <i>bất kỳ một số nguyên tố chẵn nào lớn hơn 2</i>. Và giờ, sau khi đã kiểm tra rằng n là số lẻ thì ta có thể an tâm tăng biến <i>i</i> lên 2 giá trị. Đây sẽ là đoạn mã áp dụng phương thức kiểm tra số nguyên tố mới nhất này:</p>
 
-C++
+Java/ C++
 
 ```
     public boolean isPrime (int n)
@@ -56,7 +56,7 @@ C++
     }
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
 	function IsPrime (n : Integer): Boolean;
@@ -92,7 +92,7 @@ pascal
  <p style="text-align: justify;"> Tiếp đến, ta sẽ chọn 5, ta thấy không còn bội nào của 5 nhỏ hơn bằng 20 còn sót nên ta lại tiếp tục xét đến 7, ...</p>
  <p style="text-align: justify;"> Và giờ thì tất cả những số còn sót lại chính là các số nguyên tố mà ta cần tìm. Dưới đây là đoạn mã cho <strong>Sàng nguyên tố Eratosthenes:</strong></p>
 
-C++
+Java/ C++
 
 ```
     public boolean[] sieve(int n)
@@ -112,7 +112,7 @@ C++
     } 
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
 	//mảng kiểm tra số nguyên tố prime[0..n]
@@ -138,7 +138,7 @@ pascal
 
 <p style="text-align: justify;"><strong>Ước chung lớn nhất <i>(GCD)</i></strong> của hai số  tự nhiên <i>a</i> và <i>b</i> là <strong>số lớn nhất mà cả <i>a</i> và <i>b</i> đều chia hết</strong>. Để tìm được <i>GCD(a, b)</i>, một cách đơn giản, ta có thể lấy số nhỏ hơn trong hai số <i>a</i> và <i>b</i> rồi <i>giảm dần</i> cho đến khi nào có được một số mà cả <i>a</i> và <i>b</i> đều <i>cùng chia hết</i> cho số đó.</p>
 
-C++
+Java/ C++
 
 ```
     for (int i=Math.min(a,b); i>=1; i--)
@@ -146,7 +146,7 @@ C++
             return i;
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
 	for i := min(a, b) downto 1 do
@@ -167,7 +167,7 @@ pascal
 ```
  <p style="text-align: justify;"> Và phần dư cuối cùng mà khác 0 chính là ước chung lớn nhất mà ta cần tìm. Vậy ước chung lớn nhất của 1314 và 2336 chính là 146. Thuật toán trên sẽ được mô phỏng lại bằng một đoạn mã đệ quy đơn giản:</p>
 
-C++
+Java/ C++
 
 ```
     //giả định rằng a và b đều khác 0
@@ -181,7 +181,7 @@ C++
 
 ```	
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
 	//giả định a và b đều khác 0
@@ -193,7 +193,7 @@ pascal
 ```
  <p style="text-align: justify;"> Đặc biệt, <strong>thuật toán Euclid</strong> còn được áp dụng trong việc tìm <i>bội chung nhỏ nhất (LCM)</i> của hai số tự nhiên. Ví dụ, bội chung nhỏ nhất của 6 và 9 là 18 vì 18 là số nhỏ nhất mà <i>chia hết cho cả a lẫn b</i>. Dưới đây là đoạn mã cho việc tìm bội chung nhỏ nhất:</p>
 
-C++
+Java/ C++
 
 ```
     public int LCM(int a, int b)
@@ -203,7 +203,7 @@ C++
 
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
 	function LCM(a, b : Integer): Integer;
@@ -254,7 +254,7 @@ Vậy với V = n+1, ta cũng vẫn thu được kết quả là V - E + F = 2. 
  Một trong những bài toán mà người thi <strong>Topcoder</strong> đối mặt nhiều nhất đó chính là việc chuyển đổi số từ <i>hệ cơ số nhị phân</i> sang <i>hệ cơ số thập phân</i> và ngược lại (cùng với nhiều hệ cơ số khác).<br>
 Vậy hệ cơ số nghĩa là gì ? Ta sẽ bắt đầu với hệ cơ số tiêu chuẩn (<i>hệ thập phân</i>). Xét số 4325 ở hệ cơ số 10. Ta thấy 4325 có thể phân tích thành <i>5 + 2 x 10 + 3 x 10 x 10 + 4 x 10 x 10 x 10</i>. Chú ý rằng mỗi <i>"giá trị"</i> của chữ số tiếp theo sau của số được nhân thêm tích số 10 khi ta xét từ phải qua trái. <strong>Hệ nhị phân</strong> cũng hoạt động theo cách tương tự như thế. Nó sử dụng hai chữ số 0 và 1 và <i>"giá trị"</i> của từng chữ số sẽ được nhân thêm 2 khi ta xét từ phải qua trái. Ví dụ, số 1011 ở dạng nhị phân có thể biểu diễn thành <i>1 + 1 x 2 + 0 x 2 x 2 + 1 x 2 x 2 x 2 = 1 + 2 + 8 = 11</i> và trở lại thành số ở hệ thập phân là 11. Và đây chính là cách để ta chuyển từ số ở hệ nhị phân (<i>hoặc bất kỳ hệ số nào</i>) về hệ cơ số thập phân. Sau đây là đoạn mã để chuyển từ một hệ cơ số n (<i>2 <= n <= 10</i>) thành hệ cơ số thập phân.
 
-C++
+Java/ C++
 
 ```
     public int toDecimal(int n, int b)
@@ -273,7 +273,7 @@ C++
     }
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
     function ToDectimal(n, b : Integer): Integer;
@@ -307,7 +307,7 @@ pascal
 ```
   Vậy 43 sẽ được biểu diễn thành 101011 ở dạng nhị phân. Bằng việc thay số 2 thành số <i>b</i>, ta có thể chuyển từ hệ thập phân về bất kỳ hệ cơ số <i>b</i> nào (<i>2 <= b <= 10</i>):
 
-C++
+Java/ C++
 
 ```
     public int fromDecimal(int n, int b)
@@ -326,7 +326,7 @@ C++
     }
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
     function FromDecimal(n, b : Integer): Integer;
@@ -345,7 +345,7 @@ pascal
 ```
  Đối với trường hợp <i>b</i> lớn hơn 10, ta sẽ xử dụng các ký tự không phải số để đại diện cho các số từ 9 trở lên. Ví dụ, ta sẽ để <i>'A'</i> đại diện cho 10, <i>'B'</i> cho 11, ... Đoạn mã sau đây sẽ cho phép ta chuyển từ số thập phân sang bất kỳ hệ cơ số nào (lên đến 20).
 
-C++
+Java/ C++
 
 ```
     public String fromDecimal2(int n, int b)
@@ -363,7 +363,7 @@ C++
     }
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
     function FromDecimal2(n, b : Integer): String;
@@ -390,7 +390,7 @@ pascal
 
  Phân số thường được gặp rất nhiều trong các bài tập. Thường thì vấn đề khó khăn nhất mà ta cần phải đối mặt đó chính là việc biểu diễn các phân số đó. Mặc dù nó hoàn toàn khả thi trong việc tạo ra một lớp (<i>class</i>) khác để lưu trữ một cách đầy đủ các thông tin về phần số, nhưng trong nhiều trường hợp thì cách thường dùng nhất là sử dụng mảng lưu 2 giá trị bằng cách ghép cặp (<i>pair</i>). Ý tưởng là ta sẽ lưu số đầu tiên là <strong>tử số</strong>, số thứ hai là <strong>mẫu số</strong>.Ta sẽ bắt đầu bằng việc nhân hai phân số <i>a</i> và <i>b</i>:
 
-C++
+Java/ C++
 
 ```
     public int[] multiplyFractions(int[] a, int[] b)
@@ -400,7 +400,7 @@ C++
     }
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
     type
@@ -428,7 +428,7 @@ pascal
 
  Đây là đoạn mã cho chương trình công hai phân số: 
 
-C++
+Java/ C++
 
 ```
     public int[] addFractions(int[] a, int[] b)
@@ -439,7 +439,7 @@ C++
     }
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
     function addFractions(a, b : ps): ps;
@@ -453,7 +453,7 @@ pascal
 ```
   Cuối cùng, nó rất cần thiết để biết được cách <i>tối giản phân số</i> thành <strong>phân số tối giản</strong>. Và phân số chỉ tối giản khi và chỉ khi ước chung lớn nhất của tử số và mẫu số là 1. Chúng ta sẽ làm như sau:
 
-C++
+Java/ C++
 
 ```
     public void reduceFraction(int[] &a)
@@ -464,7 +464,7 @@ C++
     }
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
 	procedure reduceFraction(var a : ps);
@@ -493,7 +493,7 @@ pascal
 ```
   Bằng việc lưu trữ phần số thực ở phần tử thứ nhất và phần số phức ở phần tử thứ hai trong một mảng hai giá trị như đoạn mã dưới đây:
 
-C++
+Java/ C++
 
 ```
     public int[] multiplyComplex(int[] m, int[] n)
@@ -503,7 +503,7 @@ C++
     }
 ```
 
-pascal
+Pascal (Nguyễn Tiến Trọng)
 
 ```
     function multiplyComplex(m, n : ps): ps;
