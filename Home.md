@@ -1,3 +1,5 @@
+# Trang chủ
+
 ## Thuật toán
 
 - Về cách học Tin học:
