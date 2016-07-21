@@ -124,6 +124,8 @@ pascal
 		fillchar(prime, sizeof(prime), 1);
 		prime[0] := false;
 		prime[1] := false;
+
+                m := trunc(sqrt(n));
 		for i := 2 to m do
 			if (prime[i]) then
 				for j := i to n div i do
