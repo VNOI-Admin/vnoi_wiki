@@ -128,7 +128,7 @@
  Thường thì, khi làm bài chúng ta sẽ phải đối mặt với những đa giác mà cạnh của nó mang giá trị nguyên. Những đa giác đó được gọi là [<strong>Đa giác lưới</strong>](http://mathworld.wolfram.com/LatticePolygon.html). Trong phần <i>hướng dẫn cơ bản về khái niệm hình học</i> ([<strong>Geometry Concepts</strong>](https://www.topcoder.com/community/data-science/data-science-tutorials/geometry-concepts-basic-concepts/)), lbackstrom đã trình bày một cách ngắn gọn cách tính diện tích thông qua các cạnh của đa giác. Bây giờ, giả sử ta không biết được chính xác vị trí các cạnh mà thay vào đó ta có được các giá trị sau:
 ```
     B = số lượng điểm nằm ở rìa đa giác
-    I = số lượn điểm nằm trong đa giác
+    I = số lượng điểm nằm trong đa giác
 ```
  <p style="text-align: justify;"> Thật kỳ diệu, thông qua hai giá trị trên ta có thể tính được diện tích đa giác bằng công thức sau:</p>
 ```
