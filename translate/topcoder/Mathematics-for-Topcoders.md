@@ -121,7 +121,7 @@
 
 ## Hình học
 
- Đôi khi, bài toán yêu cầu ta tìm phần giao của các hình chữ nhật. Có rất nhiều cách để biểu diễn một hình chữ nhật. Đối với hệ trục tọa độ <i>Cartesian</i>, thì các biểu diễn phổ biến nhất chính là lưu giữ giá trị tọa độ của góc <strong>trái - dưới</strong> và góc <strong>phải - trên</strong> của hình chữ nhật.
+ Đôi khi, bài toán yêu cầu ta tìm phần giao của các hình chữ nhật. Có rất nhiều cách để biểu diễn một hình chữ nhật. Đối với hệ trục tọa độ <i>Cartesian</i>, thì cách biểu diễn phổ biến nhất chính là lưu giữ giá trị tọa độ của góc <strong>trái - dưới</strong> và góc <strong>phải - trên</strong> của hình chữ nhật.
 <br>
  Giả sử chúng ta có hai hình chữ nhật R1 và R2. Đặt <i>(x1, y1)</i> là tọa độ góc trái - dưới, <i>(x2, y2)</i> là tọa độ góc phải - trên của hình chữ nhật R1. Tương tự với R2, ta đặt <i>(x3, y3)</i>, <i> (x4, y4)</i> lần lượt là tọa độ góc trái - dưới và góc phải - trên của R2. Phần giao của R1 và R2 sẽ là hình chữ nhật R3 có tọa độ trái - dưới là <i><strong>(max(x1, x3), max(y1, y3))</strong></i> và tọa độ góc phải - trên là <i><strong>(min(x2, x4), min(y2, y4))</strong></i>. Nếu <strong> max(x1, x3) > min(x2, x4)</strong> hoặc <strong>max(y1, y3) > min(y2, y4)</strong> thì sẽ <i>không tồn tại</i> hình chữ nhật R3, hay nói các khác là R1 và R2 không giao nhau. Công thức này còn được mở rộng ra hơn không gian 2 chiều giống như là trong bài [<i>CuboidJoin (SRM 191, Div 2 Hard)</i>](http://topcoder.bgcoder.com/print.php?id=514). 
 <br>
