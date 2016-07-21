@@ -30,7 +30,7 @@ Một số tự nhiên là số nguyên tố  khi và chỉ khi nó chỉ chia h
 
 **Pascal**
 
-```pas
+```pascal
     for i := 2 to n - 1 do
         if (n mod i = 0) then exit(false);
 
@@ -59,7 +59,7 @@ Chúng ta còn có thể làm cho đoạn mã này chạy nhanh hơn nữa bằn
 
 **Pascal**
 
-```pas
+```pascal
 	function IsPrime (n : Integer): Boolean;
 	var
 		i : Integer;
@@ -123,7 +123,7 @@ Và giờ thì tất cả những số còn sót lại chính là các số nguy
 
 **Pascal**
 
-```pas
+```pascal
 	//mảng kiểm tra số nguyên tố prime[0..n]
 
 	function sieve(n : Integer): Boolean;	
@@ -159,7 +159,7 @@ Và giờ thì tất cả những số còn sót lại chính là các số nguy
 
 **Pascal**
 
-```pas
+```pascal
 	for i := min(a, b) downto 1 do
 		if (a mod i = 0) and (b mod i = 0) then exit(i);
 ```
@@ -196,9 +196,9 @@ Và phần dư cuối cùng mà khác 0 chính là ước chung lớn nhất mà
     }
 ```	
 
-**Pascal
+**Pascal**
 
-```pas
+```pascal
 	//giả định a và b đều khác 0
 	function GCD(a, b : Integer): Integer;
 	begin
@@ -220,7 +220,7 @@ Và phần dư cuối cùng mà khác 0 chính là ước chung lớn nhất mà
 
 **Pascal**
 
-```pas
+```pascal
 	function LCM(a, b : Integer): Integer;
 	begin
 		exit(a * b / GCD(a, b));
@@ -311,7 +311,7 @@ Vậy hệ cơ số nghĩa là gì? Ta sẽ bắt đầu với hệ cơ số ti�
 
 **Pascal**
 
-```cpp
+```pascal
     function ToDectimal(n, b : Integer): Integer;
     var
         mul : Integer = 1;
@@ -368,7 +368,7 @@ Vậy 43 sẽ được biểu diễn thành 101011 ở dạng nhị phân. Bằn
 
 **Pascal**
 
-```pas
+```pascal
     function FromDecimal(n, b : Integer): Integer;
     var
         mul := 1;
@@ -406,7 +406,7 @@ Vậy 43 sẽ được biểu diễn thành 101011 ở dạng nhị phân. Bằn
 
 **Pascal**
 
-```pas
+```pascal
     function FromDecimal2(n, b : Integer): String;
     var
         chars : string = '0123456789ABCDEFGHIJ';
@@ -445,7 +445,7 @@ Phân số thường được gặp rất nhiều trong các bài tập. Thườ
 
 **Pascal**
 
-```pas
+```pascal
     type
         ps = record
         x, y : Integer;
@@ -488,7 +488,7 @@ Một khi hai phân số đã có mẫu số bằng nhau, thì ta chỉ cần đ
 
 **Pascal**
 
-```pas
+```pascal
     function addFractions(a, b : ps): ps;
     var
         denom : Integer;
@@ -514,7 +514,7 @@ Cuối cùng, nó rất cần thiết để biết được cách tối giản p
 
 **Pascal**
 
-```
+```pascal
 	procedure reduceFraction(var a : ps);
 	var
 		b : Integer;	
@@ -556,7 +556,7 @@ Bằng việc lưu trữ phần số thực ở phần tử thứ nhất và ph�
 
 **Pascal**
 
-```pas
+```pascal
     function multiplyComplex(m, n : ps): ps;
     begin
         result.x := m.x * n.x - m.y * n.y;
