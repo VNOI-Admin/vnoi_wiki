@@ -4,7 +4,7 @@
  
 ## Giới thiệu:
 
- <p style="text-align: justify;"> Tôi đã từng thấy nhiều người thi <strong> Topcoder </strong> phàn nàn việc thiếu công bằng trong đề thi, khi mà có quá nhiều thứ thuộc về Toán học – điểm yếu của họ. Cá nhân tôi, tôi yêu Toán và vì vậy mà tôi sẽ có phần thiên vị hơn trong vấn đề này. Tuy nhiên, tôi hoàn toàn tin tưởng rằng, cái bài tập nên có <strong>ít nhất một thứ thuộc về Toán học và Khoa học máy tính phải đi liền với nó</strong>. Thật khó tưởng tượng khi mà cả hai lĩnh vực này cũng tồn tại mà không hề có bất kỳ sự tương tác nào lẫn nhau. Ngày nay, một trong những sự kết hợp tuyệt vời đó chính là việc áp dụng Toán học vào Tin học bằng việc giải những hệ thống phương trình to lớn hay tìm nghiệm xấp xỉ đối với những phương trình mà không hề tồn tại một công thức nào cả. Toán học còn được sử dụng rộng rãi trong việc nghiên cứu về <i>Khoa học máy tính</i>, cũng như là áp dụng cho các <i>thuật toán về đồ thị</i> và <i>lĩnh vực thị giác máy tính</i>. </p>
+ <p style="text-align: justify;">      Tôi đã từng thấy nhiều người thi <strong> Topcoder </strong> phàn nàn việc thiếu công bằng trong đề thi, khi mà có quá nhiều thứ thuộc về Toán học – điểm yếu của họ. Cá nhân tôi, tôi yêu Toán và vì vậy mà tôi sẽ có phần thiên vị hơn trong vấn đề này. Tuy nhiên, tôi hoàn toàn tin tưởng rằng, cái bài tập nên có <strong>ít nhất một thứ thuộc về Toán học và Khoa học máy tính phải đi liền với nó</strong>. Thật khó tưởng tượng khi mà cả hai lĩnh vực này cũng tồn tại mà không hề có bất kỳ sự tương tác nào lẫn nhau. Ngày nay, một trong những sự kết hợp tuyệt vời đó chính là việc áp dụng Toán học vào Tin học bằng việc giải những hệ thống phương trình to lớn hay tìm nghiệm xấp xỉ đối với những phương trình mà không hề tồn tại một công thức nào cả. Toán học còn được sử dụng rộng rãi trong việc nghiên cứu về <i>Khoa học máy tính</i>, cũng như là áp dụng cho các <i>thuật toán về đồ thị</i> và <i>lĩnh vực thị giác máy tính</i>. </p>
 
  <p style="text-align: justify;"> <i>Bài viết này sẽ thỏa luận về lý thuyết và ứng dụng của một vài cấu trúc Toán học phổ biến</i>. Các chủ đề được đề cập tới bao gồm: </p>
 
@@ -143,18 +143,18 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
         E = số đỉnh của khối
         F = số mặt của khối
 ```
- <p style="text-align: justify;"> Ví dụ, xét một hình vuông mà cả hai đường chéo đều được vẽ. Ta sẽ có V = 5, E = 8 và F = 5 (phần nằm ngoài hình vuông cũng được coi như là một mặt), ta sẽ có <i>V - E + F = 2</i>.
- <p style="text-align: justify;"> Ta có thể sử dụng quy nạp để chứng minh nó như sao: Ta sẽ bắt đầu với V = 2, vì mỗi đỉnh đều cần phải có ít nhất một cạnh. Và nếu V = 2 thì chỉ có xảy ra duy nhất một dạng khối đa diện mà thôi. Đó là dạng khối đa diện mà hai cạnh sẽ nối với E đỉnh. Khối đa diện nãy cũng sẽ có E mặt, (E-1 mặt bên trong hình và 1 mặt ngoài hình). Thế nên <strong>V - E + F = 2 - E + E = 2</strong> (<i>điều phải chứng minh</i>). Giờ ta giả sử định lý Euler đúng với V từ <strong>[2, n]</strong>, xét <i>V = n+1</i>. Chọn một cạnh <i>w</i> bất kỳ. Giờ giả định <i>w</i> nối với tất cả những lưới còn lại có G đỉnh. Nếu bỏ đi cạnh <i>w</i> này và những đỉnh mà nó nối, ta sẽ có một lưới với <i>n</i> cạnh, <i>E - G</i> đỉnh và <i>F-G+1</i> mặt. Từ giả định trên ta có:
+Ví dụ, xét một hình vuông mà cả hai đường chéo đều được vẽ. Ta sẽ có V = 5, E = 8 và F = 5 (phần nằm ngoài hình vuông cũng được coi như là một mặt), ta sẽ có <i>V - E + F = 2</i>.<br>
+Ta có thể sử dụng quy nạp để chứng minh nó như sao: Ta sẽ bắt đầu với V = 2, vì mỗi đỉnh đều cần phải có ít nhất một cạnh. Và nếu V = 2 thì chỉ có xảy ra duy nhất một dạng khối đa diện mà thôi. Đó là dạng khối đa diện mà hai cạnh sẽ nối với E đỉnh. Khối đa diện nãy cũng sẽ có E mặt, (E-1 mặt bên trong hình và 1 mặt ngoài hình). Thế nên <strong>V - E + F = 2 - E + E = 2</strong> (<i>điều phải chứng minh</i>). Giờ ta giả sử định lý Euler đúng với V từ <strong>[2, n]</strong>, xét <i>V = n+1</i>. Chọn một cạnh <i>w</i> bất kỳ. Giờ giả định <i>w</i> nối với tất cả những lưới còn lại có G đỉnh. Nếu bỏ đi cạnh <i>w</i> này và những đỉnh mà nó nối, ta sẽ có một lưới với <i>n</i> cạnh, <i>E - G</i> đỉnh và <i>F-G+1</i> mặt. Từ giả định trên ta có:
 ```
     (n) - (E - G) + (F - G + 1) = 2
     <=> (n+1) - E + F = 2
 ```
- <p>Vậy với V = n+1, ta cũng vẫn thu được kết quả là V - E + F = 2. Vậy là với phương pháp quy nạp toán học, ta đã chứng minh được định lý Euler.</p>
+Vậy với V = n+1, ta cũng vẫn thu được kết quả là V - E + F = 2. Vậy là với phương pháp quy nạp toán học, ta đã chứng minh được định lý Euler.
 
-##Hệ cơ số:
+## Hệ cơ số:
 
- <p style="text-align: justify;"> Một trong những bài toán mà người thi <strong>Topcoder</strong> đối mặt nhiều nhất đó chính là việc chuyển đổi số từ <i>hệ cơ số nhị phân</i> sang <i>hệ cơ số thập phân</i> và ngược lại (cùng với nhiều hệ cơ số khác).
- <p style="text-align: justify;"> Vậy hệ cơ số nghĩa là gì ? Ta sẽ bắt đầu với hệ cơ số tiêu chuẩn (<i>hệ thập phân</i>). Xét số 4325 ở hệ cơ số 10. Ta thấy 4325 có thể phân tích thành <i>5 + 2 x 10 + 3 x 10 x 10 + 4 x 10 x 10 x 10</i>. Chú ý rằng mỗi <i>"giá trị"</i> của chữ số tiếp theo sau của số được nhân thêm tích số 10 khi ta xét từ phải qua trái. <strong>Hệ nhị phân</strong> cũng hoạt động theo cách tương tự như thế. Nó sử dụng hai chữ số 0 và 1 và <i>"giá trị"</i> của từng chữ số sẽ được nhân thêm 2 khi ta xét từ phải qua trái. Ví dụ, số 1011 ở dạng nhị phân có thể biểu diễn thành <i>1 + 1 x 2 + 0 x 2 x 2 + 1 x 2 x 2 x 2 = 1 + 2 + 8 = 11</i> và trở lại thành số ở hệ thập phân là 11. Và đây chính là cách để ta chuyển từ số ở hệ nhị phân (<i>hoặc bất kỳ hệ số nào</i>) về hệ cơ số thập phân. Sau đây là đoạn mã để chuyển từ một hệ cơ số n (<i>2 <= n <= 10</i>) thành hệ cơ số thập phân.
+ Một trong những bài toán mà người thi <strong>Topcoder</strong> đối mặt nhiều nhất đó chính là việc chuyển đổi số từ <i>hệ cơ số nhị phân</i> sang <i>hệ cơ số thập phân</i> và ngược lại (cùng với nhiều hệ cơ số khác).<br>
+Vậy hệ cơ số nghĩa là gì ? Ta sẽ bắt đầu với hệ cơ số tiêu chuẩn (<i>hệ thập phân</i>). Xét số 4325 ở hệ cơ số 10. Ta thấy 4325 có thể phân tích thành <i>5 + 2 x 10 + 3 x 10 x 10 + 4 x 10 x 10 x 10</i>. Chú ý rằng mỗi <i>"giá trị"</i> của chữ số tiếp theo sau của số được nhân thêm tích số 10 khi ta xét từ phải qua trái. <strong>Hệ nhị phân</strong> cũng hoạt động theo cách tương tự như thế. Nó sử dụng hai chữ số 0 và 1 và <i>"giá trị"</i> của từng chữ số sẽ được nhân thêm 2 khi ta xét từ phải qua trái. Ví dụ, số 1011 ở dạng nhị phân có thể biểu diễn thành <i>1 + 1 x 2 + 0 x 2 x 2 + 1 x 2 x 2 x 2 = 1 + 2 + 8 = 11</i> và trở lại thành số ở hệ thập phân là 11. Và đây chính là cách để ta chuyển từ số ở hệ nhị phân (<i>hoặc bất kỳ hệ số nào</i>) về hệ cơ số thập phân. Sau đây là đoạn mã để chuyển từ một hệ cơ số n (<i>2 <= n <= 10</i>) thành hệ cơ số thập phân.
 ```
     public int toDecimal(int n, int b)
     {
@@ -171,11 +171,11 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
         return result;
     }
 ```
- <p style="text-align: justify;"> Người dùng <strong>Java</strong> hẳn sẽ rất vui khi biết rằng vẫn có cách khác đơn giản hơn để thực hiện việc này.
+ Người dùng <strong>Java</strong> hẳn sẽ rất vui khi biết rằng vẫn có cách khác đơn giản hơn để thực hiện việc này.
 ```	
     return Integer.parseInt(""+n,b);
 ```
- <p style="text-align: justify;"> Để chuyển một số từ hệ thập phần về hệ nhị phân cũng khá đơn giản. Giả sử ta muốn chuyển số 43 từ hệ thập phân về hệ nhị phân. Tại bước đầu của công thức ta sẽ chia đôi 43 và lưu lại giá trị phần dư, tiếp tục xử lý với số được chia đôi đó cho đến khi nó bằng 0. Và danh sách số dư sau cuối cùng cũng chính là cách biểu diễn số nhị phân cần tìm.
+ Để chuyển một số từ hệ thập phần về hệ nhị phân cũng khá đơn giản. Giả sử ta muốn chuyển số 43 từ hệ thập phân về hệ nhị phân. Tại bước đầu của công thức ta sẽ chia đôi 43 và lưu lại giá trị phần dư, tiếp tục xử lý với số được chia đôi đó cho đến khi nó bằng 0. Và danh sách số dư sau cuối cùng cũng chính là cách biểu diễn số nhị phân cần tìm.
 ```
     43/2 = 21 + dư 1
     21/2 = 10 + dư 1
@@ -184,7 +184,7 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
     2/2  = 1  + dư 0
     1/2  = 0  + dư 1
 ```
- <p style="text-align: justify;"> Vậy 43 sẽ được biểu diễn thành 101011 ở dạng nhị phân. Bằng việc thay số 2 thành số <i>b</i>, ta có thể chuyển từ hệ thập phân về bất kỳ hệ cơ số <i>b</i> nào (<i>2 <= b <= 10</i>):
+  Vậy 43 sẽ được biểu diễn thành 101011 ở dạng nhị phân. Bằng việc thay số 2 thành số <i>b</i>, ta có thể chuyển từ hệ thập phân về bất kỳ hệ cơ số <i>b</i> nào (<i>2 <= b <= 10</i>):
 ```
     public int fromDecimal(int n, int b)
     {
@@ -201,7 +201,7 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
         return result;
     }
 ```
- <p style="text-align: justify;"> Đối với trường hợp <i>b</i> lớn hơn 10, ta sẽ xử dụng các ký tự không phải số để đại diện cho các số từ 9 trở lên. Ví dụ, ta sẽ để <i>'A'</i> đại diện cho 10, <i>'B'</i> cho 11, ... Đoạn mã sau đây sẽ cho phép ta chuyển từ số thập phân sang bất kỳ hệ cơ số nào (lên đến 20).
+ Đối với trường hợp <i>b</i> lớn hơn 10, ta sẽ xử dụng các ký tự không phải số để đại diện cho các số từ 9 trở lên. Ví dụ, ta sẽ để <i>'A'</i> đại diện cho 10, <i>'B'</i> cho 11, ... Đoạn mã sau đây sẽ cho phép ta chuyển từ số thập phân sang bất kỳ hệ cơ số nào (lên đến 20).
 ```
     public String fromDecimal2(int n, int b)
     {
@@ -217,7 +217,7 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
         return result;
     }
 ```
- <p style="text-align: justify;"> Trong <strong>Java</strong>, ta có thể sử dụng những cách tắt sau để chuẩn từ hệ thập phân sang như hệ số thông dụng khác, như là hệ nhị phân, hệ bát phân, hệ thập lục phân.
+ Trong <strong>Java</strong>, ta có thể sử dụng những cách tắt sau để chuẩn từ hệ thập phân sang như hệ số thông dụng khác, như là hệ nhị phân, hệ bát phân, hệ thập lục phân.
 ```
     Integer.toBinaryString(n);
     Integer.toOctalString(n);
@@ -226,7 +226,7 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
 
 ## Phân số và số phức
 
- <p style="text-align: justify;"> Phân số thường được gặp rất nhiều trong các bài tập. Thường thì vấn đề khó khăn nhất mà ta cần phải đối mặt đó chính là việc biểu diễn các phân số đó. Mặc dù nó hoàn toàn khả thi trong việc tạo ra một lớp (<i>class</i>) khác để lưu trữ một cách đầy đủ các thông tin về phần số, nhưng trong nhiều trường hợp thì cách thường dùng nhất là sử dụng mảng lưu 2 giá trị bằng cách ghép cặp (<i>pair</i>). Ý tưởng là ta sẽ lưu số đầu tiên là <strong>tử số</strong>, số thứ hai là <strong>mẫu số</strong>.Ta sẽ bắt đầu bằng việc nhân hai phân số <i>a</i> và <i>b</i>:
+ Phân số thường được gặp rất nhiều trong các bài tập. Thường thì vấn đề khó khăn nhất mà ta cần phải đối mặt đó chính là việc biểu diễn các phân số đó. Mặc dù nó hoàn toàn khả thi trong việc tạo ra một lớp (<i>class</i>) khác để lưu trữ một cách đầy đủ các thông tin về phần số, nhưng trong nhiều trường hợp thì cách thường dùng nhất là sử dụng mảng lưu 2 giá trị bằng cách ghép cặp (<i>pair</i>). Ý tưởng là ta sẽ lưu số đầu tiên là <strong>tử số</strong>, số thứ hai là <strong>mẫu số</strong>.Ta sẽ bắt đầu bằng việc nhân hai phân số <i>a</i> và <i>b</i>:
 ```
     public int[] multiplyFractions(int[] a, int[] b)
     {
@@ -234,16 +234,16 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
         return c;
     }
 ```
- <p style="text-align: justify;"> Cộng phân số thì có một chút phức tạp hơn, bởi chỉ có nhưng phân số có cùng mẫu số mới có thể cộng trực tiếp. Trước hết ta sẽ tìm <strong>mẫu số chung</strong> của hai phân số và nhân tử số hai phân số theo tỉ số giữa mẫu số cũ với mẫu số chung. <i>Mẫu số chung</i> là số có thể chia hết cho cả mẫu của hai phân số, hay đơn giản hơn đó chính là <i>bội chung nhỏ nhất</i> của hai mẫu số. Ví dụ để cộng hai phân số 4/9 và 1/6. <i>Bội chung nhỏ nhất</i> của 9 và 6 là 18. Để chuyển đổi hai phân số ta sẽ lấy phân số thứ nhất nhân cho 2/2 và số thứ hai cho 3/3.
+ Cộng phân số thì có một chút phức tạp hơn, bởi chỉ có nhưng phân số có cùng mẫu số mới có thể cộng trực tiếp. Trước hết ta sẽ tìm <strong>mẫu số chung</strong> của hai phân số và nhân tử số hai phân số theo tỉ số giữa mẫu số cũ với mẫu số chung. <i>Mẫu số chung</i> là số có thể chia hết cho cả mẫu của hai phân số, hay đơn giản hơn đó chính là <i>bội chung nhỏ nhất</i> của hai mẫu số. Ví dụ để cộng hai phân số 4/9 và 1/6. <i>Bội chung nhỏ nhất</i> của 9 và 6 là 18. Để chuyển đổi hai phân số ta sẽ lấy phân số thứ nhất nhân cho 2/2 và số thứ hai cho 3/3.
 ```
     4/9 + 1/6 = (4*2)/(9 * 2) + (1 * 3)/(6 * 3) =  8/18 +  3/18
 ```
- <p style="text-align: justify;"> Một khi hai phân số đã có mẫu số bằng nhau, thì ta chỉ cần đơn giản cộng hai phân số đó lại và nhận kết quả cuối cùng là phân số 11/18. Trừ cũng rất đơn giản, chỉ khác nhau ở bước cuối cùng.
+ Một khi hai phân số đã có mẫu số bằng nhau, thì ta chỉ cần đơn giản cộng hai phân số đó lại và nhận kết quả cuối cùng là phân số 11/18. Trừ cũng rất đơn giản, chỉ khác nhau ở bước cuối cùng.
 ```
     4/9 - 1/6 =  8/18 - 3/18 =  5/18
 ```
 
- <p style="text-align: justify;"> Đây là đoạn mã cho chương trình công hai phân số: 
+ Đây là đoạn mã cho chương trình công hai phân số: 
 
 ```
     public int[] addFractions(int[] a, int[] b)
@@ -253,7 +253,7 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
         return c;
     }
 ```
- <p style="text-align: justify;"> Cuối cùng, nó rất cần thiết để biết được cách <i>tối giản phân số</i> thành <strong>phân số tối giản</strong>. Và phân số chỉ tối giản khi và chỉ khi ước chung lớn nhất của tử số và mẫu số là 1. Chúng ta sẽ làm như sau:
+  Cuối cùng, nó rất cần thiết để biết được cách <i>tối giản phân số</i> thành <strong>phân số tối giản</strong>. Và phân số chỉ tối giản khi và chỉ khi ước chung lớn nhất của tử số và mẫu số là 1. Chúng ta sẽ làm như sau:
 
 ```
     public void reduceFraction(int[] a)
@@ -264,13 +264,13 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
     }
 ```
 
- <p style="text-align: justify;"> Bằng phương pháp tương tự, ta cũng có thể biểu diễn được số phức. Một cách tổng quát, số phức được biểu diễn dưới dạng <i>a + ib</i> với <i>a</i>, <i>b</i> là số thực và <i>i</i> là căn bậc hai của -1. Ví dụ, để cộng hai số phức, ta sẽ cộng đơn giản như sau:
+ Bằng phương pháp tương tự, ta cũng có thể biểu diễn được số phức. Một cách tổng quát, số phức được biểu diễn dưới dạng <i>a + ib</i> với <i>a</i>, <i>b</i> là số thực và <i>i</i> là căn bậc hai của -1. Ví dụ, để cộng hai số phức, ta sẽ cộng đơn giản như sau:
 ```
     m + n
     = (a + ib) + (c + id)
     = (a + c) + i(b + d)
 ```
- <p style="text-align: justify;"> Việc nhân hai số phức cũng tương tự như việc nhân số thực, trừ việc <i>i*i</i> bằng -1.
+ Việc nhân hai số phức cũng tương tự như việc nhân số thực, trừ việc <i>i*i</i> bằng -1.
 
 ```
     m * n
@@ -278,7 +278,7 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
     = ac + iad + ibc + (i^2)bd
     = (ac - bd) + i(ad + bc)
 ```
- <p style="text-align: justify;">  Bằng việc lưu trữ phần số thực ở phần tử thứ nhất và phần số phức ở phần tử thứ hai trong một mảng hai giá trị như đoạn mã dưới đây:
+  Bằng việc lưu trữ phần số thực ở phần tử thứ nhất và phần số phức ở phần tử thứ hai trong một mảng hai giá trị như đoạn mã dưới đây:
 
 ```
     public int[] multiplyComplex(int[] m, int[] n)
@@ -288,6 +288,7 @@ Công thức trên được gọi là [<strong>định lý Pick</strong>](https:
     }
 ```
 
-##  Tổng kết
+##  Tổng kết:
+<br>
 
- <p style="text-align: justify;"> Tổng kết lại, tôi chỉ muốn nói rằng đó là bất khả thi nếu bạn muốn đứng đầu <strong>Topcoder</strong> mà không hiểu chút gì về những cấu trúc Toán học và những thuật toán mà tôi vừa nêu lên. Thường thì một trong những chủ đề Toán học thường gặp nhất trong các bài tập đó là <strong>số nguyên tố</strong>. Nó cũng thường liên quan đến những bài về <strong>hệ cơ số</strong>, mà nguyên nhân chủ yếu là vì máy tính hoạt động dựa trên hệ nhị phân, nên ta cần phải biết cách chuyển từ hệ nhị phân về hệ thập phân. Còn công thức tính ước chung lớn nhất (<strong>GCD</strong>) và bội chung nhỏ nhất (<strong>LCM</strong>)thì được dùng nhiều trong cả những bài tập <i>"thuần toán"</i> và cả hình học. Cuối cùng, tôi viết chủ đề <strong>Phân số và số phức</strong> là việc nó không chỉ cần thiết cho việc thi <strong>Topcoder</strong>, mà bởi nó còn vô cùng quan trọng trong việc biểu diễn ý nghĩa các số nhất định.
+ Tổng kết lại, tôi chỉ muốn nói rằng đó là bất khả thi nếu bạn muốn đứng đầu <strong>Topcoder</strong> mà không hiểu chút gì về những cấu trúc Toán học và những thuật toán mà tôi vừa nêu lên. Thường thì một trong những chủ đề Toán học thường gặp nhất trong các bài tập đó là <strong>số nguyên tố</strong>. Nó cũng thường liên quan đến những bài về <strong>hệ cơ số</strong>, mà nguyên nhân chủ yếu là vì máy tính hoạt động dựa trên hệ nhị phân, nên ta cần phải biết cách chuyển từ hệ nhị phân về hệ thập phân. Còn công thức tính ước chung lớn nhất (<strong>GCD</strong>) và bội chung nhỏ nhất (<strong>LCM</strong>) thì được dùng nhiều trong cả những bài tập <i>"thuần toán"</i> và cả hình học. Cuối cùng, tôi viết chủ đề <strong>Phân số và số phức</strong> là việc nó không chỉ cần thiết cho việc thi <strong>Topcoder</strong>, mà bởi nó còn vô cùng quan trọng trong việc biểu diễn ý nghĩa các số nhất định.
