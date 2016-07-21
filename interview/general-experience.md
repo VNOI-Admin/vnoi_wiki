@@ -22,6 +22,8 @@ Ví dụ: [một resume được trình bày rõ ràng](http://www.clarkson.edu/
 
 - **Coding assessment**: Phần này bạn sẽ phải giải 1 đến 2 bài toán trong một thời gian quy định. Các bài toán này chủ yếu tập trung vào thuật toán (algorithms) và cấu trúc dữ liệu (data structure) đơn giản, không quá phức tạp.
 - **Phone screening**: Phần này bạn sẽ phải trả lời phỏng vấn trực tiếp qua điện thoại (hoặc Skype/Hangouts/...)
+- **Onsite Interview**: Đến vòng phỏng vấn này, bạn sẽ được mời đến công ty và sẽ có 3-5 người phỏng vấn bạn trực tiếp tại chỗ. Ở mỗi lần phỏng vấn, sẽ có khoảng 1 đến 3 nhân viên đưa ra những câu hỏi khác nhau cho bạn. Một số công ty sẽ có nhân viên dẫn bạn đi ăn sáng/trưa/tối để đánh giá con người của bạn.
+- **Interview with hiring manager**: Một số công ty sẽ yêu cầu bạn thêm một phần phỏng vấn với một hiring manager, người đưa ra quyết định cuối cùng về việc có tuyển dụng bạn hay không. Ở vòng này có thể là technical hoặc behavioral skills.
 
 
 ## Những điều cần biết khi trả lời phỏng vấn
