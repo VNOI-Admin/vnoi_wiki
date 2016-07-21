@@ -1,18 +1,18 @@
 # **Kĩ thuật bao lồi (Convex Hull Trick)**
 
----
+
 
 **Kĩ thuật bao lồi** là kĩ thuật (hoặc là cấu trúc dữ liệu) dùng để xác định hiệu quả, có tiền xử lý, cực trị của một tập các hàm tuyến tính tại một giá trị của biến độc lập. Mặc dù tên gọi giống nhưng kĩ thuật này lại khá khác biệt so với thuật toán bao lồi của hình học tính toán.
 
 ## Lịch sử
 
----
+
 
 Kĩ thuật bao có lẽ là thuật toán được sử dụng nhiều nhất đề ăn trọn toàn bộ số điểm trong nhiều bài toán USACO, như là bài ["Acquire"](http://tjsct.wikidot.com/usaco-mar08-gold) trong bảng gold của USACO tháng 3 năm 2008. Thuật toán được đưa vào các cuộc thi lập trình một cách rộng rãi sau bài [Batch Scheduling](http://wcipeg.com/problem/ioi0221) trong kì thi IOI 2002. Đây là một kĩ thuật khá lạ và ít có nguồn trên mạng về vấn đề này. 
 
 ## Bài toán cơ bản
 
----
+
 
 Cho một tập lớn các hàm tuyến tính có dạng $ y=m_i+b_i $ và một số lượng lớn truy vấn. Mỗi truy vấn là một số $x$ và hỏi giá trị cực tiểu $y$ có thể đạt được nếu chúng ta thế $x$ vào một trong những phương trình đã cho. Ví dụ, cho các phương trình $y=4$, $y=\frac{4}{3}+\frac{2}{3}x$, $y=12-3x$ và $y=3-\frac{1}{2}x$ và truy vấn $x=1$. Chúng ta phải tìm phương trình mà trả về giá trị cực tiểu hoặc giá trị cực tiểu đó (trong trường hợp này là phương trình $y=\frac{4}{3}+\frac{2}{3}x$ và giá trị cực tiểu đó là 2.)
 
@@ -24,13 +24,13 @@ Sau khi ta vẽ các đường thẳng lên hệ trục tọa độ, dễ thấy
 
 ## Thuật toán duyệt
 
----
+
 
 Với mỗi truy vấn trong $Q$ truy vấn, ta duyệt qua từng hàm số và thử từng từng hàm và xem thử hàm nào trả giá trị cực tiểu cho giá trị $x$. Nếu có $M$ đường thẳng và $Q$ truy vấn, độ phức tạp của thuật toán sẽ $\mathcal{O}(MQ)$. Kĩ thuật này giúp giảm độ phức tạp xuống còn $\mathcal{O}((Q+M)\log M$, một độ phức tạp hiệu quá hơn nhiều. 
 
 ## Kĩ thuật
 
----
+
 
 Xét hình vẽ ở trên. Đường thẳng $y=4$ sẽ không bao giờ là giá trị nhỏ nhất với tất cả giá trị của $x$.  Mỗi đường trong mỗi đường thẳng còn lại sẽ lại trả lại giá trị cực tiểu trong một và chỉ một đoạn liên tiếp (có thể có một biên là $+\infty$ hoặc $-\infty$).  Đường chấm đậm sẽ cho giá trị cực tiểu với tất cả giá trị nằm bên trái điểm giao với đường đen đậm. Đường đen đậm sẽ cho giá trị cực tiểu với tất cả giá trị giữa giao điểm của nó với đường nhạt và đường chấm đậm. Và đường nhạt sẽ nhận cực tiểu cho tất cả giá trị bên phải giao điểm với đường đậm. Một nhận xét nữa là với giá trị của $x$ càng tăng thì hệ số góc của các hàm số sẽ giảm, $\frac{2}{3}, \frac{-1}{2}, -3$. Với một chút chứng minh dễ thấy rằng điều này luôn đúng. 
 
@@ -65,7 +65,7 @@ Vậy thời gian cho việc xây dựng sẽ là $\mathcal{O}(M\log{M})$. Với
 
 ## Ví dụ 1: USACO Tháng 3 năm 2008 "Acquire"
 
----
+
 
 #### **Bài toán**
 Cho $N(N\le50000)$ hình chữ nhật khác nhau về hình dạng, mục tiêu của bài toán là phải lấy được tất cả hình chữ nhật. Một tập hình chữ nhật có thể được với chi phí bằng tích của chiều dài dài nhất và chiều rộng dài nhất. Chúng ta cần phân hoạch tập các hình chữ nhật này một cách khôn khéo sao cho tổng chi phí có thể được tối thiểu hóa và tính chi phí này. Hình chữ nhật không thể được xoay (đổi chiều dài và chiều rộng).
@@ -115,7 +115,7 @@ Rõ ràng các đường thẳng đã được sắp xếp giảm dần về đ�
 
 ## Ví dụ 2: APIO 2010 Commando
 
-----
+
 
 #### **Bài toán**
 Bạn được cho:
@@ -151,7 +151,7 @@ Do dễ thấy $\delta(n)>\delta(n-1)$, giống như bài "acquire" các truy v�
 
 ##Biến thể động
 
----
+
 
 Kĩ thuật này có thể dễ dàng được thực hiện khi các đường thẳng được thêm trước tất cả các truy vấn hay các đường thẳng được thêm vào theo thứ tự giảm dần của hệ số góc. Hoặc với cấu trúc deque chúng ta cũng có thể thêm những đường thẳng có hệ số góc lớn hơn hết các đường thẳng đã có. Nhưng có những lúc sẽ có các bài toán khi chúng ta phải giải quyết các truy vấn và thêm đường thẳng lồng vào nhau với các hệ số góc ngẫu nhiên. Chúng ta không thể sắp xếp lại trước (do bị lồng vào truy vấn) và không thể sắp xếp lại với mỗi lần thêm đường thẳng (vậy sẽ cho ta một độ phức tạp tuyến tính với mỗi truy vấn).
 
@@ -162,7 +162,7 @@ Sắp đường thẳng này vào vị trí đúng của nó và những đườ
 
 ##Code
 
----
+
 
 [Code C++ cho "acquire"](http://wcipeg.com/wiki/Convex_hull_trick/acquire.cpp)
 
