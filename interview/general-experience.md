@@ -49,7 +49,7 @@ Dạng câu hỏi về kĩ thuật (technical questions)
 - Câu hỏi về cấu trúc dữ liệu (data structure)
 - Câu hỏi về khả năng thiết kế hệ thống (system design)
 
-Dạng câu hỏi về kĩ năng ứng xử (behavior questions)
+Dạng câu hỏi về kĩ năng ứng xử (behavioral questions)
 
 - Một số công ty sẽ yêu cầu bạn trả lời những tình huống nhất định để đánh giá về con người của bạn có phù hợp với yêu cầu nhất định hay không.
 
