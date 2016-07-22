@@ -132,7 +132,7 @@ Kĩ thuật này thường được sử dụng với những bài có giới h�
 
 > **[BridgeCrossing](http://community.topcoder.com/stat?c=problem_statement&pm=1599&rd=4535) – SRM 146 Div 2 (3rd problem):**
 > Có một nhóm người cần sang cầu. Tuy nhiên, do cầu quá cũ, nên một lần chỉ được tối đa 2 người qua cầu. Trời thì tối, chỉ có một cái đèn pin. Hai người cùng đi qua cầu thì thời gian của hai người sẽ là thời gian của người chậm hơn. Do không thể ném đèn pin từ bên này sang bên kia, nên một người sẽ phải quay lại rồi đi với một người khác. Hỏi thời gian ít nhất để tất cả cùng qua cầu.
-
+>
 > Có nhiều nhất là 6 người.
 
 **Hints:**
@@ -200,9 +200,9 @@ Cũng không dễ để có thể xác định được một bài toán sử d�
 
 > Ví dụ
 > Cho một danh sách các ống nước, mỗi ống chỉ cho một lượng nước nhất định được đi qua. Các ông được nối với nhau.
-
+>
 > Tìm lượng nước lớn nhất có thể chảy được từ điểm đầu đến điểm cuối trong một đơn vị thời gian.
-
+>
 > N <= 100
 
 Dễ dàng thấy được lượng nước ở mỗi ống là trọng số các cạnh, khớp nối các ống là các đỉnh trong đồ thị. Bạn phải tìm lượng nước lớn nhất chảy từ đỉnh bắt đầu đến đỉnh kết thúc.
