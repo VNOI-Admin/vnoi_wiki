@@ -1,5 +1,7 @@
 # Cách tiếp cận những bài toán trên Topcoder : Phần 1
 
+**Bài viết chưa hoàn thiện**
+
 Bài viết bởi [leadhyena_inran](https://www.topcoder.com/members/leadhyena_inran/). Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/planning-an-approach-to-a-topcoder-problem-part-1/) 
 
 Việc tìm ra những cách tiếp cận bài toán là một nghệ thuật, nó có thể gây khó khăn cho cả những coder kì cựu nhất cũng như những người mới vào. Để tìm ra cách giải phù hợp, chúng ta phải dùng tổ hợp nhiều phép tính toán, đệ quy, cũng như cảm nhận bằng trực giác, bằng sự sáng tạo và thậm chí là may mắn. Cảm giác bất lực trước những bài khó thường làm chúng ta nản chí, và có thể bỏ cuộc giữa chừng. Tuy nhiên, nếu có gắng thì mọi việc đều có thể thực hiện được. Bởi lí do đó, bài hướng dẫn này sẽ đưa ra những kĩ năng để giúp các bạn chọn những hướng tiếp cận rõ ràng cho những bài toán như vậy.
