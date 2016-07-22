@@ -76,7 +76,7 @@ Bạn có thể luyện tập thêm về BFS bằng những ví dụ sau:
 
 Thỉnh thoảng bạn sẽ gặp phải bài toán cần tới Loang, một kĩ thuật sử dụng BFS để tìm tất cả các điểm có thể đi tới. Điểm khác biệt giữa Loang so với những bài BFS ở trên là bạn không phải tìm chi phí nhỏ nhất.
 
-Ví dụ, có một mê cung, ô 1 là không đi được và 0 là đi được. Ban cần phải tìm tất cả các ô mà có thể đi đến từ ô góc trái trên. Bài này chỉ cần lấy ra một đỉnh đã thăm, nhét tất cả các đỉnh chưa thăm mà kề với đỉnh hiện tại vào queue rồi tiếp tục làm như vậy cho đến khi queue rỗng. Lưu ý rằng nếu số đỉnh lớn, cài đặt bằng DFS (Depth First Search) sẽ có thể bị tràn stack do đệ quy quá sâu, nếu lúc compile code không tăng kích thước stack (xem thêm giải thích [ở đây](http://stackoverflow.com/questions/214741/what-is-a-stackoverflowerror)). Tốt hơn hết là nên dùng BFS. Đây là một bài ví dụ:
+Ví dụ, có một mê cung, ô 1 là không đi được và 0 là đi được. Ban cần phải tìm tất cả các ô mà có thể đi đến từ ô góc trái trên. Bài này chỉ cần lấy ra một đỉnh đã thăm, nhét tất cả các đỉnh chưa thăm mà kề với đỉnh hiện tại vào queue rồi tiếp tục làm như vậy cho đến khi queue rỗng. Lưu ý rằng nếu số đỉnh lớn, cài đặt bằng DFS (Depth First Search) sẽ có thể bị tràn stack do đệ quy quá sâu và compile code không tăng kích thước stack (xem thêm giải thích [ở đây](http://stackoverflow.com/questions/214741/what-is-a-stackoverflowerror)). Tốt hơn hết là nên dùng BFS. Đây là một bài ví dụ:
 
 >**[grafixMask](http://community.topcoder.com/stat?c=problem_statement&pm=2998&rd=5857)** - SRM 211 Div 1: 
 Cho một bitmap $400 * 600$. Có một tập hình chữ nhật bao phủ bitmap này (các góc của chúng có tọa độ nguyên). Bạn cần phải tìm ra tất cả các vùng liên tiếp không bị phủ và kích thước của chúng.
