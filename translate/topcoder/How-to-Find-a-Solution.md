@@ -238,4 +238,4 @@ Những tính chất trên giống hệt với dấu hiệu nhận biết của 
 
 ### Kết luận
 
-Để có thể tìm ra được lời giải cho một bài toán bàn cần phải làm nhiều bài tập để luyện khả năng nhận định bài toán cũng như tăng thêm kinh nghiệm. Ngoài ra, còn rất nhiều dạng bài khác mà trong phạm vi bài viết này không thể bao phủ hết được.
+Để có thể tìm ra được lời giải cho một bài toán bạn cần phải làm nhiều bài tập để luyện khả năng nhận định bài toán cũng như tăng thêm kinh nghiệm. Ngoài ra, còn rất nhiều dạng bài khác mà trong phạm vi bài viết này không thể bao phủ hết được.
