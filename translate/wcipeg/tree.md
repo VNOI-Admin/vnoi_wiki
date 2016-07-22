@@ -55,6 +55,55 @@ Trong một số cây, một thứ tự duyệt đã được định sẵn cho 
 
 ## Cây nhị phân (binary tree) và cây k-phân (k-ary tree)
 
-Cây nhị phân là cây có gốc mà mỗi nút có tối đa 2 nút con, gọi là nút con trái (left) và phải (right). Cây con có gốc là nút con trái của một nút gọi là cây con trái (left subtree), cây con phải (right subtree) cũng định nghĩa tương tự. Cây nhị phân đặc biệt thú vị bởi khả năng tổ chức và quản lý dữ liệu của nó, như trong cây nhị phân tìm kiếm (binary search tree), heap nhị phân (binary heap).
+Cây nhị phân là cây có gốc mà mỗi nút có tối đa 2 nút con, gọi là nút con trái (left) và phải (right). Cây con có gốc là nút con trái của một nút gọi là cây con trái (left subtree), cây con phải (right subtree) cũng định nghĩa tương tự. Cây nhị phân đặc biệt thú vị bởi khả năng tổ chức và quản lý dữ liệu của nó, như trong cây nhị phân tìm kiếm (binary search tree), đống nhị phân (binary heap).
 
-Một cây nhị phân được coi là có vô hạn số tầng, nhưng chỉ có một số tầng thường được sử dụng. Mỗi tầng của cây bao gồm tất cả các nút có cùng độ sâu. Tầng 0 của cây chỉ bao gồm 1 nút là gốc; tầng thứ nhất chứa những đỉnh con của gốc, như vậy tầng 1 chứa tối đa 2 nút; tầng thứ 2 chứa tất cả nút cháu của nút gốc (con của con của gốc), như vậy tầng này chứa tối đa 4 nút;... tổng quát: tầng thứ h của cây nhị phân có thể chứa tới $2^{h}$ đỉnh. Nếu một cây nhị phân có chiều cao h thì số đỉnh tối đa nó có thể chứa là $1 + 2 + 4 + ... + 2^{h} = 2^{h+1} - 1$. Ngược lại, cây nhị phân có N đỉnh sẽ có chiều cao ít nhất là $\left \lceil log_2 (N + 1) \right \rceil - 1$
+Một cây nhị phân được coi là có vô hạn số tầng, nhưng chỉ có một số tầng thường được sử dụng. Mỗi tầng của cây bao gồm tất cả các nút có cùng độ sâu. Tầng 0 của cây chỉ bao gồm 1 nút là gốc; tầng thứ nhất chứa những đỉnh con của gốc, như vậy tầng 1 chứa tối đa 2 nút; tầng thứ 2 chứa tất cả nút cháu của nút gốc (con của con của gốc), như vậy tầng này chứa tối đa 4 nút;... tổng quát: tầng thứ h của cây nhị phân có thể chứa tới $2^{h}$ đỉnh. Nếu một cây nhị phân có chiều cao h thì số đỉnh tối đa nó có thể chứa là $1 + 2 + 4 + ... + 2^{h} = 2^{h+1} - 1$. Ngược lại, cây nhị phân có N đỉnh sẽ có chiều cao ít nhất là $\left \lceil log_2 (N + 1) \right \rceil - 1$.
+
+Một cây nhị phân được gọi là hoàn chỉnh (complete) nếu tất cả các nút từ tầng 0 đến tầng h - 1 đều được sử dụng, và tất cả các nút trên tầng h đều dồn về bên trái nhiều nhất có thể. Một cây nhị phân hoàn chỉnh sẽ luôn có chiều cao thấp nhất có thể có. Một cây nhị phân gọi là cân bằng (balance) nếu chênh lệnh chiều cao của 2 nút lá bất kì đều không quá 1, nếu tất cả nút lá đều có cùng chiều cao thì nó được coi là hoàn toàn cân bằng (perfectly balanced). Cây cân bằng rất hữu ích trong việc tìm kiếm một cách hiệu quả.
+
+Tổng quát, một cây k-phân (k-ary tree) là một cây có gốc mà mỗi nút có tối đa k nút con, các thuật ngữ định nghĩa tương tự như cây nhị phân.
+
+### Duyệt theo thứ tự giữa (inorder traversal)
+
+Ngoài duyệt theo thứ tự trước và sau, cây nhị phân còn có cách duyệt theo thứ tự giữa (inorder traversal). Một nút được coi là đã thăm sau khi tất cả nút thuộc cây con trái của nó được thăm và trước khi bất kì đỉnh nào thuộc cây con phải của nó được thăm. Trình tự duyệt theo thứ tự giữa là duy nhất đối với mỗi cây nhị phân, và duyệt cây nhị phân tìm kiếm theo thứ tự giữa luôn trả về một danh sách đã sắp xếp.
+
+## Các cấu trúc dữ liệu
+Các cấu trúc dữ liệu sau đều dựa trên cây có gốc, thường là cây nhị phân:
+
+* Cây nhị phân tìm kiếm (binary search tree): nhãn của một nút luôn không nhỏ hơn nhãn của nút con trái của nó (nếu có) và không lớn hơn nhãn của nút con phải của nó (nếu có). Cây 2-3, 2-3-4 hay B-cây cũng giống vậy, nhưng mỗi nút có thể có hơn 2 nút con.
+
+* Heap nhị phân (binary heap): một cây nhị phân hoàn chỉnh mà nhãn của mỗi nút luôn không nhỏ hơn nhãn của các nút con của nó (nếu có) (heap max, tương tự với heap min)
+	* Heap nhị thức (binomial heap): chức năng cũng như heap nhị phân nhưng có thêm phương thức hợp 2 heap
+	* Heap Fibonaci: cũng như heap nhị thức nhưng thường nhanh hơn cả heap nhị thức
+
+* Cây phân đoạn (segment tree, range tree hay interval tree): một cây nhị phân quản lý một dãy, với mỗi lá biểu diễn một phần tử của dãy, và giá trị của mỗi nút không phải lá là một hàm kết hợp giá trị 2 nút con của nó. Cây phân đoạn cho phép tính toán hiệu quả các hàm kết hợp trên các đoạn của dãy.
+
+* Cây chỉ số nhị phân (binary indexed tree - BIT) hay cây Fenwick: cũng như cây phân đoạn nhưng cho phép tính toán hiệu quả các hàm kết hợp chỉ trên các tiền tố (prefix).
+
+* Cây phân tích cú pháp (parse tree): cây biểu diễn việc phân tích cú pháp của một chuỗi. Khi viết liên tiếp các ký tự trên các lá của cây từ trái sang phải thì ta được chuỗi ban đầu. Mỗi cây con quản lý một đoạn con của chuỗi, và các nút không phải là lá mang thông tin về quan hệ cú pháp giữa các đoạn con mà các nút con của nó quản lí.
+
+* Cây cú pháp trừu tượng (abstract syntax tree - AST): cũng giống như cây phân tích cú pháp nhưng nó mang thông tin trừu tượng hơn so với cây phân tích cú pháp. Lá của nó mang những khái niệm (concept) cơ bản và các nút lưu giữ quan hệ logic hơn là quan hệ cú pháp (quan hệ có nghĩa)
+
+*  Cây k-chiều (k-dimensional tree hay kd-tree): lưu trữ các điểm thuộc không gian k-chiều
+
+* Cây trie hay cây tiền tố (prefix tree): mỗi nút lưu giữ một ký tự và mỗi đường đi từ gốc đến một nút thể hiện một tiền tố của chuỗi.
+
+* Câu hậu tố (suffix tree): cũng giống như trie, nhưng mỗi đường đi sẽ thể hiện một hậu tố.
+
+## Các bài toán về cây
+
+* Cây khung nhỏ nhất (minium spanning tree): cây T gọi là cây khung của đồ thị G khi T là đồ thị con của G và chứa tất cả đỉnh của G. Trọng số của cây là tổng trọng số của tất cả các cạnh trên cây. Cần tìm cây khung có trọng số nhỏ nhất.
+	
+	* Cây khung có kích thước nhỏ nhất (minimum diameter spanning tree): tìm cây khung sao cho khoảng cách lớn nhất giữa 2 điểm bất kì là nhỏ nhất.
+	
+	* Cây khung cũng tình cờ được sinh ra trong các phép duyệt đồ thị như DFS hay BFS, tạo nên cây DFS và cây BFS. Thực hiện Dijkstra với tìm kiếm ưu tiên cho ta một cây đường đi ngắn nhất (shortest paths tree)
+
+* Tổ tiên chung thấp nhất (lowest common ancestor - LCA): cho một cặp nút trên cây, yêu cầu tìm tổ tiên chung thấp nhất của 2 nút này, tức nút thấp nhất là tổ tiên của cả 2 nút này.
+
+* Chúng ta có thể dễ dàng tìm khoảng cách giữa các cặp đỉnh trong cây dù có trọng số hay không trọng số bởi vì chỉ có một đường đi duy nhất, ta có thể thực hiện bằng phép duyệt DFS hay BFS
+	
+	* Để tìm kích thước (diameter) của một cây, ta chọn một đỉnh bắt đầu bất kì u, tìm đỉnh v xa u nhất sử dụng DFS hay BFS, rồi tìm đỉnh w xa v nhất. Khoảng cách giữa v và w là kích thước của cây.
+
+	* Trong bài toán truy vấn khoảng cách động (dynamic distance query), chúng ta muốn tìm khoảng cách giữa các cặp nút trong cây, đồng thời ta cũng cần có thể thay đổi trọng số của các cạnh. Bài toán này có thể được giải bằng cấu trúc heavy-light decomposition.
+
+* Bài toán cặp ghép cực đại (maximum matching problem), tập phủ đỉnh cực đại (minimum vertex cover problem), tập phủ cạnh cực đại (minimum edge cover problem) và tập độc lập cực đại (maximum independent set) đều nhận những lời giải quy hoạch động (dynamic programming) đơn giản khi mà đồ thị là một cây.
