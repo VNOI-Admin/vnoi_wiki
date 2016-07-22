@@ -104,6 +104,6 @@ Các cấu trúc dữ liệu sau đều dựa trên cây có gốc, và thườn
 	
 	* Để tìm **kích thước** (**diameter**) của một cây, ta chọn một đỉnh bắt đầu bất kì $u$, tìm đỉnh $v$ xa $u$ nhất sử dụng DFS hay BFS, rồi tìm đỉnh $w$ xa $v$ nhất. Khoảng cách giữa $v$ và $w$ là kích thước của cây.
 
-	* Trong bài toán** truy vấn khoảng cách động** (**dynamic distance query**), chúng ta muốn tìm khoảng cách giữa các cặp nút trong cây, đồng thời ta cũng cần có thể thay đổi trọng số của các cạnh. Bài toán này có thể được giải bằng cấu trúc [**heavy-light decomposition**](http://vnoi.info/forum/5/5012/).
+	* Trong bài toán **truy vấn khoảng cách động** (**dynamic distance query**), chúng ta muốn tìm khoảng cách giữa các cặp nút trong cây, đồng thời ta cũng cần có thể thay đổi trọng số của các cạnh. Bài toán này có thể được giải bằng cấu trúc [**heavy-light decomposition**](http://vnoi.info/forum/5/5012/).
 
 * Bài toán **cặp ghép cực đại** ([**maximum matching**](https://en.wikipedia.org/wiki/Matching_(graph_theory))), **tập phủ đỉnh cực đại** ([**minimum vertex cover**](https://en.wikipedia.org/wiki/Vertex_cover)), **tập phủ cạnh cực đại** ([**minimum edge cover**](https://en.wikipedia.org/wiki/Edge_cover)) và **tập độc lập cực đại** ([**maximum independent set**](https://en.wikipedia.org/wiki/Independent_set_(graph_theory))) đều nhận những lời giải quy hoạch động (dynamic programming) đơn giản khi mà đồ thị là một cây.
