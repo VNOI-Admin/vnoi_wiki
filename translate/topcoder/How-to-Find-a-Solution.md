@@ -2,18 +2,18 @@
 
 Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/how-to-find-a-solution/)
 
-## Giới thiệu ##
+## Giới thiệu
 
-Với nhiều bài toán trên topcoder (TC), lời giải có thể được tìm ra ngay sau một nốt nhạc. Điều này có được là do những nét tương đồng giữa những bài toán có lời giải giống nhau. Những nét tương đồng này chính là những gợi ý tuyệt vời cho những coder kinh nghiệm để có thể nhận định được những bài toán. Mục tiêu chính của bài viết này là hướng dẫn để các bạn cũng có thể nhận định được chúng.
+Với nhiều bài toán trên topcoder (TC), lời giải có thể được tìm ra ngay sau một nốt nhạc. Điều này có được là do những nét tương đồng giữa những bài toán có lời giải giống nhau. Những nét tương đồng này chính là những gợi ý tuyệt vời cho những coder kinh nghiệm để có thể nhận định được lời giải bài toán. Mục tiêu chính của bài viết này là hướng dẫn để các bạn cũng có thể nhận định được chúng.
 
-### Những bài toán không yêu cầu kĩ năng đặc biệt (mô phỏng, tìm kiếm, sắp xếp, ...) ###
+### Những bài toán không yêu cầu kĩ năng đặc biệt (mô phỏng, tìm kiếm, sắp xếp, ...)
 
 Hầu hết các trường hợp, những bài toán này thường chỉ yêu cầu bạn thực hiện từng bước một với những công việc rất đơn giản. Giới hạn thì không quá lớn cũng không quá nhỏ. Và những bài này thường là bài đầu tiên (bài dễ nhất) trong TC SRM. Chúng thường để kiểm tra xem bạn code nhanh và chính xác như nào, và không yêu cầu kiến thức về thuật toán.
 
 Hầu hết các bài toàn sẽ yêu cầu bạn mô phỏng tất cả các bước được nêu ra trong đề. 
 
 > **[BusinessTasks](https://community.topcoder.com/stat?c=problem_statement&pm=1585&rd=6535) - SRM 236 Div 1:**
-> 	Có N nhiệm vụ được liệt kê dưới dạng 1 vòng tròn, nhiệm vụ đầu tiên kề với nhiệm vụ cuối cùng. Cho một số n. Bắt đầu từ nhiệm vụ đầu tiên, di chuyển theo chiều kim đồng hồ (từ thứ 1 đến thứ 2 rồi tiếp tục như vậy) và đồng thời đếm từ 1 đến n. Vừa di chuyển vừa đếm, khi đếm đến n, bỏ nhiệm vụ hiện tại ra khỏi danh sách và đếm từ nhiệm vụ tiếp theo. Lặp lại thủ tục này cho đến khi chỉ còn 1 nhiệm vụ. Return nhiệm vụ đó.
+> Có N nhiệm vụ được liệt kê dưới dạng 1 vòng tròn, nhiệm vụ đầu tiên kề với nhiệm vụ cuối cùng. Cho một số n. Bắt đầu từ nhiệm vụ đầu tiên, di chuyển theo chiều kim đồng hồ (từ thứ 1 đến thứ 2 rồi tiếp tục như vậy) và đồng thời đếm từ 1 đến n. Vừa di chuyển vừa đếm, khi đếm đến n, bỏ nhiệm vụ hiện tại ra khỏi danh sách và đếm từ nhiệm vụ tiếp theo. Lặp lại thủ tục này cho đến khi chỉ còn 1 nhiệm vụ. Return nhiệm vụ đó.
 
 Với $N <= 1000$ bài này chỉ là vấn đề của code, không có thuật toán gì đặc biệt - thực hiện từng bước một cho đến khi chỉ còn lại một nhiệm vụ. Những loại bài toán này thường có N nhỏ, vậy nên không cần phải quan tâm đến trường hợp N lớn. Cần nhớ rằng trong topcoder thì 100 triệu phép tính vẫn có thể chạy được. 
 
@@ -28,7 +28,7 @@ Như bạn có thể thấy, đây là một bài toán tìm kiếm rất đơn 
 
 **[MedalTable](http://community.topcoder.com/stat?c=problem_statement&pm=2922&rd=5855) - SRM 209 Div 1**
 
-### Tìm kiếm theo chiều rộng (Breadth First Search - BFS) ###
+### Tìm kiếm theo chiều rộng (Breadth First Search - BFS)
 
 Những bài sử dụng BFS thường yêu cầu tìm số bước ít nhất (hoặc đường đi ngắn nhất) từ điểm đầu đến điểm cuối. Bên cạnh đó, đường đi giữa 2 điểm bất kì thường có chung trọng số (và thường là 1). Phổ biến nhất là dạng bài cho bảng NxM, có những ô đi qua được và những ô không đi qua được. Bảng này có thể là mê cung, sơ đồ, các thành phố hoặc các thứ các thứ tương đương. Có thể nói đây là những bài toàn BFS kinh điển (classic). Bởi vì độ phức tạp của BFS là tuyến tính trong hầu hết các trường hợp ($N^2$ hoặc $NlogN$), giới hạn của N (hoặc M) có thể lớn, lên tới 1 triệu.
 
