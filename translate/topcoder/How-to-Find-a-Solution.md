@@ -13,9 +13,9 @@ Hầu hết các trường hợp, những bài toán này thường chỉ yêu c
 Hầu hết các bài toàn sẽ yêu cầu bạn mô phỏng tất cả các bước được nêu ra trong đề. 
 
 > **[BusinessTasks](https://community.topcoder.com/stat?c=problem_statement&pm=1585&rd=6535) - SRM 236 Div 1:**
-> Có N nhiệm vụ được liệt kê dưới dạng 1 vòng tròn, nhiệm vụ đầu tiên kề với nhiệm vụ cuối cùng. Cho một số n. Bắt đầu từ nhiệm vụ đầu tiên, di chuyển theo chiều kim đồng hồ (từ thứ 1 đến thứ 2 rồi tiếp tục như vậy) và đồng thời đếm từ 1 đến n. Vừa di chuyển vừa đếm, khi đếm đến n, bỏ nhiệm vụ hiện tại ra khỏi danh sách và đếm từ nhiệm vụ tiếp theo. Lặp lại thủ tục này cho đến khi chỉ còn 1 nhiệm vụ. Return nhiệm vụ đó.
+> Có $N$ nhiệm vụ được liệt kê dưới dạng 1 vòng tròn, nhiệm vụ đầu tiên kề với nhiệm vụ cuối cùng. Cho một số $n$. Bắt đầu từ nhiệm vụ đầu tiên, di chuyển theo chiều kim đồng hồ (từ thứ 1 đến thứ 2 rồi tiếp tục như vậy) và đồng thời đếm từ 1 đến $n$. Vừa di chuyển vừa đếm, khi đếm đến n, bỏ nhiệm vụ hiện tại ra khỏi danh sách và đếm từ nhiệm vụ tiếp theo. Lặp lại thủ tục này cho đến khi chỉ còn 1 nhiệm vụ. Return nhiệm vụ đó.
 
-Với $N \le 1000$ bài này chỉ là vấn đề của code, không có thuật toán gì đặc biệt - thực hiện từng bước một cho đến khi chỉ còn lại một nhiệm vụ. Những loại bài toán này thường có N nhỏ, vậy nên không cần phải quan tâm đến trường hợp N lớn. Cần nhớ rằng trong topcoder thì 100 triệu phép tính vẫn có thể chạy được. 
+Với $N \le 1000$ bài này chỉ là vấn đề của code, không có thuật toán gì đặc biệt - thực hiện từng bước một cho đến khi chỉ còn lại một nhiệm vụ. Những loại bài toán này thường có $N$ nhỏ, vậy nên không cần phải quan tâm đến trường hợp $N$ lớn. Cần nhớ rằng trong topcoder thì 100 triệu phép tính vẫn có thể chạy được. 
 
 Có một số bài yêu cầu bạn phải tìm kiếm 
 
@@ -30,7 +30,7 @@ Như bạn có thể thấy, đây là một bài toán tìm kiếm rất đơn 
 
 ### Tìm kiếm theo chiều rộng (Breadth First Search - BFS)
 
-Những bài sử dụng BFS thường yêu cầu tìm số bước ít nhất (hoặc đường đi ngắn nhất) từ điểm đầu đến điểm cuối. Bên cạnh đó, đường đi giữa 2 điểm bất kì thường có chung trọng số (và thường là 1). Phổ biến nhất là dạng bài cho bảng $N * M$, có những ô đi qua được và những ô không đi qua được. Bảng này có thể là mê cung, sơ đồ, các thành phố hoặc các thứ các thứ tương đương. Có thể nói đây là những bài toàn BFS kinh điển (classic). Bởi vì độ phức tạp của BFS là tuyến tính trong hầu hết các trường hợp ($N^2$ hoặc $NlogN$), giới hạn của N (hoặc M) có thể lớn, lên tới 1 triệu.
+Những bài sử dụng BFS thường yêu cầu tìm số bước ít nhất (hoặc đường đi ngắn nhất) từ điểm đầu đến điểm cuối. Bên cạnh đó, đường đi giữa 2 điểm bất kì thường có chung trọng số (và thường là 1). Phổ biến nhất là dạng bài cho bảng $N * M$, có những ô đi qua được và những ô không đi qua được. Bảng này có thể là mê cung, sơ đồ, các thành phố hoặc các thứ các thứ tương đương. Có thể nói đây là những bài toàn BFS kinh điển (classic). Bởi vì độ phức tạp của BFS là tuyến tính trong hầu hết các trường hợp ($N^2$ hoặc $NlogN$), giới hạn của $N$ (hoặc $M$) có thể lớn, lên tới 1 triệu.
 
 > **[SmartWordToy](http://community.topcoder.com/stat?c=problem_statement&pm=3935&rd=6532) - SRM 233 Div 1:**
 > Cho một từ gồm 4 chữ cái Latin in thường. Với một lần click bạn có thể đổi bất kì chữ nào thành chữ cái trước hoặc sau nó trong bảng chữ cái (ví dụ 'c' có thể thành 'b' hoặc 'd'). Bảng chữ cái sẽ theo chu kì vòng lặp, tức là 'a' có thể thành 'z' và 'z' có thể thành 'a'.
@@ -105,7 +105,7 @@ Hai kĩ thuật này được gộp chung vào một loại vì chúng khá gi�
 - Đề yêu cầu tìm các trường hợp thỏa mã 1 quy luật nhất định (ở đây là ăn tất cả các quân đã cho).
 - Giới hạn bé - chỉ có 8 quân mã.
 
-Giới hạn x, y trong bài trên không quan trọng, bạn chỉ cần thử các vị trí có thể ăn một quân mã và đối với từng vị trí thì xét xem nó có ăn được các quân còn lại không.
+Giới hạn $x, y$ trong bài trên không quan trọng, bạn chỉ cần thử các vị trí có thể ăn một quân mã và đối với từng vị trí thì xét xem nó có ăn được các quân còn lại không.
 
 Một ví dụ khác:
 
@@ -160,7 +160,7 @@ Ta sẽ bắt đầu bằng việc đưa 2 người bất kì qua cầu rồi ti
 
 **Hints:**
 
-- Giới hạn của N và S đều ở mức vừa phải.
+- Giới hạn của $N$ và $S$ đều ở mức vừa phải.
 - Một trạng thái định nghĩa là số đồng xu nhỏ nhất để tổng bằng 1 giá trị.
 - Tổng i phụ thuộc vào các tổng bé hơn j (j < i).
 - Bằng cách thêm một đồng xu, ta di chuyển từ trạng thái này sang trạng thái khác.
@@ -172,7 +172,7 @@ Tất cả những tính chất trên cho thấy đây là một bài QHĐ.
 
 **Hints:**
 
-- Giới hạn của N không lớn không nhỏ.
+- Giới hạn của $N$ không lớn không nhỏ.
 - $f(i, d)$ là độ dài dãy con zig-zag dài nhất kết thúc tại i, còn d = 0 nếu số trước i bé hơn nó và d = 1 nếu ngược lại.
 - $f(i, d)$ được tính bởi $f(j, e)$ $(j < i)$.
 - Nếu thêm một số vào trong dãy hiện tại thì ta được một dãy dài hơn.
@@ -209,12 +209,12 @@ Dễ dàng thấy được lượng nước ở mỗi ống là trọng số cá
 
 #### Cặp ghép (Optimal Pair Matching)
 
-Dạng bài này thường cho 2 tập và các quy tắc, bạn phải sử dụng các quy tắc này để ghép càng nhiều càng tốt các phần tử ở tập A với các phần tử ở tập B.
+Dạng bài này thường cho 2 tập và các quy tắc, bạn phải sử dụng các quy tắc này để ghép càng nhiều càng tốt các phần tử ở tập $ A$ với các phần tử ở tập $ B$.
 
 > **[Parking](http://community.topcoder.com/stat?c=problem_statement&pm=3530&rd=6535) – SRM 236 Div 1:**
-> Cho N cái xe và M chỗ đỗ xe trên một cái bảng hình chữ nhật, trong đó có một số ô không đi qua được. Bạn cần tìm một cách để đưa tất cả các xe vào điểm đỗ xe, sao cho số lớn nhất trong các khoảng cách từ một xe đến chỗ đỗ của nó là nhỏ nhất có thể. Một điểm đỗ xe chỉ cho phép một xe đỗ.
+> Cho $N$ cái xe và $M$ chỗ đỗ xe trên một cái bảng hình chữ nhật, trong đó có một số ô không đi qua được. Bạn cần tìm một cách để đưa tất cả các xe vào điểm đỗ xe, sao cho số lớn nhất trong các khoảng cách từ một xe đến chỗ đỗ của nó là nhỏ nhất có thể. Một điểm đỗ xe chỉ cho phép một xe đỗ.
 
-**Hints:**  Nhận xét bài này, ta thấy có 2 tập: xe và điểm đỗ xe, chúng ta cần thực hiện ghép mỗi xe với một điểm đỗ tương ứng. Tồn tại một cạnh giữa 1 xe và 1 điểm đỗ nếu có đường đi giữa chúng và trọng số của cạnh này là đường đi ngắn nhất giữa 2 điểm này. Bước tiếp theo là chia nhị phân khoảng cách dài nhất: ở mỗi bước, xóa đi các cạnh có độ dài lớn hơn C; nếu vẫn có thể ghép tất cả các xe vào điểm đỗ thì chọn một giá trị C nhỏ hơn; ngược lại thì chọn một giá trị C lớn hơn. Khi đã chia nhị phân xong, giá trị C nhỏ nhất sẽ là kết quả cần tìm.
+**Hints:**  Nhận xét bài này, ta thấy có 2 tập: xe và điểm đỗ xe, chúng ta cần thực hiện ghép mỗi xe với một điểm đỗ tương ứng. Tồn tại một cạnh giữa 1 xe và 1 điểm đỗ nếu có đường đi giữa chúng và trọng số của cạnh này là đường đi ngắn nhất giữa 2 điểm này. Bước tiếp theo là chia nhị phân khoảng cách dài nhất: ở mỗi bước, xóa đi các cạnh có độ dài lớn hơn $C$; nếu vẫn có thể ghép tất cả các xe vào điểm đỗ thì chọn một giá trị $C$ nhỏ hơn; ngược lại thì chọn một giá trị $C$ lớn hơn. Khi đã chia nhị phân xong, giá trị $C$ nhỏ nhất sẽ là kết quả cần tìm.
 
 #### Linear Programming (Simplex) 
 
