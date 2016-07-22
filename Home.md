@@ -12,7 +12,7 @@
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 
 - Quy hoạch động:
-    - [[Kĩ thuật bao lồi|translate/P3G/Convex-Hull-Trick]]
+    - [[Kĩ thuật bao lồi|translate/wcipeg/Convex-Hull-Trick]]
 
 ## Kinh nghiệm phỏng vấn
 
