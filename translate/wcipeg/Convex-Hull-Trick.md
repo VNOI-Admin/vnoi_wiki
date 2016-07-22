@@ -122,7 +122,10 @@ Bạn được cho:
 - Một dãy có **$N$ số nguyên dương** ($1\le N \le 10^6$)
 - Một hàm số bậc 2 với hệ số nguyên duong $f(x)= ax^2 + bx +c$, $a\lt0$.
 Mục tiêu cũng của bài toán là phân dãy này ra thành các đoạn liên tiếp sao tổng các hàm $f$ trên các dãy là lớn nhất ( giá trị của hàm $f$ lên dãy là $f(x)$ với $x$ là tổng dãy đó) .
-Tương tự như bài trên công thức quy hoạch động có thể dễ thấy công thức $\mathcal{O}(N^2)$. Định nghĩa rằng:
+Tương tự như bài trên công thức quy hoạch động có thể dễ thấy công thức $\mathcal{O}(N^2)$.
+
+Định nghĩa rằng:
+
 - `sum(i,j) = x[i] + x[i+1] + ... + x[j]` 
 - `adjust(i,j) = a*sum(i,j)^2 + b*sum(i,j) + c` 
 
