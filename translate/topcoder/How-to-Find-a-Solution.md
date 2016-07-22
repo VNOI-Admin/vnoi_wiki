@@ -15,12 +15,12 @@ Hầu hết các bài toàn sẽ yêu cầu bạn mô phỏng tất cả các b�
 > **[BusinessTasks](https://community.topcoder.com/stat?c=problem_statement&pm=1585&rd=6535) - SRM 236 Div 1:**
 > Có N nhiệm vụ được liệt kê dưới dạng 1 vòng tròn, nhiệm vụ đầu tiên kề với nhiệm vụ cuối cùng. Cho một số n. Bắt đầu từ nhiệm vụ đầu tiên, di chuyển theo chiều kim đồng hồ (từ thứ 1 đến thứ 2 rồi tiếp tục như vậy) và đồng thời đếm từ 1 đến n. Vừa di chuyển vừa đếm, khi đếm đến n, bỏ nhiệm vụ hiện tại ra khỏi danh sách và đếm từ nhiệm vụ tiếp theo. Lặp lại thủ tục này cho đến khi chỉ còn 1 nhiệm vụ. Return nhiệm vụ đó.
 
-Với $N <= 1000$ bài này chỉ là vấn đề của code, không có thuật toán gì đặc biệt - thực hiện từng bước một cho đến khi chỉ còn lại một nhiệm vụ. Những loại bài toán này thường có N nhỏ, vậy nên không cần phải quan tâm đến trường hợp N lớn. Cần nhớ rằng trong topcoder thì 100 triệu phép tính vẫn có thể chạy được. 
+Với $N \le 1000$ bài này chỉ là vấn đề của code, không có thuật toán gì đặc biệt - thực hiện từng bước một cho đến khi chỉ còn lại một nhiệm vụ. Những loại bài toán này thường có N nhỏ, vậy nên không cần phải quan tâm đến trường hợp N lớn. Cần nhớ rằng trong topcoder thì 100 triệu phép tính vẫn có thể chạy được. 
 
 Có một số bài yêu cầu bạn phải tìm kiếm 
 
 > **[TallPeople](http://community.topcoder.com/stat?c=problem_statement&pm=2923&rd=5854) - SRM 208 Div 1:**
-> Có một nhóm người được xếp thành một ma trận R x C, R hàng, C cột. Nhiệm vụ của bạn là trả về 2 số - Số thứ nhất là chiều cao của người cao nhất trong những người thấp nhất ở mỗi hàng, số thứ hai là chiều cao của người thấp nhất trong những người cao nhất ở mỗi cột.
+> Có một nhóm người được xếp thành một ma trận $R * C$, $R$ hàng, $C$ cột. Nhiệm vụ của bạn là trả về 2 số - Số thứ nhất là chiều cao của người cao nhất trong những người thấp nhất ở mỗi hàng, số thứ hai là chiều cao của người thấp nhất trong những người cao nhất ở mỗi cột.
 
 Như bạn có thể thấy, đây là một bài toán tìm kiếm rất đơn giản. Bạn chỉ cần theo các bước được mô tả trong đề và tìm ra 2 giá trị yêu cầu. Những bài TC khác có thể yêu cầu sắp xếp các bộ theo quy luật nào đó. Bạn có thể làm với thuật toán sort $O(N^2)$ hoặc sử dụng các thư viên có sẵn.
 
@@ -30,7 +30,7 @@ Như bạn có thể thấy, đây là một bài toán tìm kiếm rất đơn 
 
 ### Tìm kiếm theo chiều rộng (Breadth First Search - BFS)
 
-Những bài sử dụng BFS thường yêu cầu tìm số bước ít nhất (hoặc đường đi ngắn nhất) từ điểm đầu đến điểm cuối. Bên cạnh đó, đường đi giữa 2 điểm bất kì thường có chung trọng số (và thường là 1). Phổ biến nhất là dạng bài cho bảng NxM, có những ô đi qua được và những ô không đi qua được. Bảng này có thể là mê cung, sơ đồ, các thành phố hoặc các thứ các thứ tương đương. Có thể nói đây là những bài toàn BFS kinh điển (classic). Bởi vì độ phức tạp của BFS là tuyến tính trong hầu hết các trường hợp ($N^2$ hoặc $NlogN$), giới hạn của N (hoặc M) có thể lớn, lên tới 1 triệu.
+Những bài sử dụng BFS thường yêu cầu tìm số bước ít nhất (hoặc đường đi ngắn nhất) từ điểm đầu đến điểm cuối. Bên cạnh đó, đường đi giữa 2 điểm bất kì thường có chung trọng số (và thường là 1). Phổ biến nhất là dạng bài cho bảng $N * M$, có những ô đi qua được và những ô không đi qua được. Bảng này có thể là mê cung, sơ đồ, các thành phố hoặc các thứ các thứ tương đương. Có thể nói đây là những bài toàn BFS kinh điển (classic). Bởi vì độ phức tạp của BFS là tuyến tính trong hầu hết các trường hợp ($N^2$ hoặc $NlogN$), giới hạn của N (hoặc M) có thể lớn, lên tới 1 triệu.
 
 > **[SmartWordToy](http://community.topcoder.com/stat?c=problem_statement&pm=3935&rd=6532) - SRM 233 Div 1:**
 > Cho một từ gồm 4 chữ cái Latin in thường. Với một lần click bạn có thể đổi bất kì chữ nào thành chữ cái trước hoặc sau nó trong bảng chữ cái (ví dụ 'c' có thể thành 'b' hoặc 'd'). Bảng chữ cái sẽ theo chu kì vòng lặp, tức là 'a' có thể thành 'z' và 'z' có thể thành 'a'.
@@ -79,7 +79,7 @@ Thỉnh thoảng bạn sẽ gặp phải bài toán cần tới Loang, một kĩ
 Ví dụ, có một mê cung, ô 1 là không đi được và 0 là đi được. Ban cần phải tìm tất cả các ô mà có thể đi đến từ ô góc trái trên. Bài này chỉ cần lấy ra một đỉnh đã thăm, nhét tất cả các đỉnh chưa thăm mà kề với đỉnh hiện tại vào queue rồi tiếp tục làm như vậy cho đến khi queue rỗng. Lưu ý rằng hầu hết trường hợp DFS (Depth First Search) sẽ không thể chạy được vì sẽ bị tràn stack. Tốt hơn hết là nên dùng BFS. Đây là một bài ví dụ:
 
 >**[grafixMask](http://community.topcoder.com/stat?c=problem_statement&pm=2998&rd=5857)** - SRM 211 Div 1: 
-Cho một bitmap 400 x 600. Có một tập hình chữ nhật bao phủ bitmap này (các góc của chúng có tọa độ nguyên). Bạn cần phải tìm ra tất cả các vùng liên tiếp không bị phủ và kích thước của chúng.
+Cho một bitmap $400 * 600$. Có một tập hình chữ nhật bao phủ bitmap này (các góc của chúng có tọa độ nguyên). Bạn cần phải tìm ra tất cả các vùng liên tiếp không bị phủ và kích thước của chúng.
 
 **Hints:**
 
@@ -91,14 +91,14 @@ Những dấu hiệu trên cho thấy bài này cần phải sử dụng Loang
 
 ### Duyệt trâu và quay lui (Brute Force and Backtracking)
 
-Hai kĩ thuật này được gộp chung vào một loại vì chúng khá giống nhau. Quay lui là kĩ thuật nâng cao và tối ưu hơn so với duyệt trâu. Nó thường sử dụng đệ quy và áp dụng cho những bài có giới hạn nhỏ $(N <= 20)$
+Hai kĩ thuật này được gộp chung vào một loại vì chúng khá giống nhau. Quay lui là kĩ thuật nâng cao và tối ưu hơn so với duyệt trâu. Nó thường sử dụng đệ quy và áp dụng cho những bài có giới hạn nhỏ $(N \le 20)$
 
 #### Duyệt trâu (Brute Force)
 
 Đối với những bài duyệt trâu thì giới hạn thường bé. Duyệt trâu bản chất đúng như cái tên của nó, là duyệt hết tất cả các trường hợp và chọn ra cái tốt nhất. Nó rất dễ xây dựng và cài đặt.
 
 > **[GeneralChess](http://community.topcoder.com/stat?c=problem_statement&pm=2430&rd=5072) - SRM 197 Div 1:**
-> Cho một số quân mã (nhiều nhất là 8) cùng với vị trí của chúng $(-10000 <= x, y <= 10000)$. Bạn cần phải tìm các vị trí để đặt thêm một quân mã mà nó có thể ăn được tất cả các quân đã cho.
+> Cho một số quân mã (nhiều nhất là 8) cùng với vị trí của chúng $(-10000 \le x, y \le 10000)$. Bạn cần phải tìm các vị trí để đặt thêm một quân mã mà nó có thể ăn được tất cả các quân đã cho.
 
 **Hints:**
 
@@ -115,7 +115,7 @@ Một ví dụ khác:
 >Kích thước lớn nhất của lưới là 50
 
 **Hints:** Tại mỗi điểm giao bạn thử từng bán kính một sao cho thỏa mãn đề bài. Rồi chọn ra bán kính lớn nhất trong số chúng. 
-Phân tích độ phức tạp: Có nhiều nhất là 50 x 50 ô, bán kính là một số nguyên với max là 25 và bạn cần kiểm tra các điểm trên thuộc đường tròn trong một thời gian tuyến tính. Tổng độ phức tạp sẽ rất bé và bạn có thể yên tâm duyệt trâu.
+Phân tích độ phức tạp: Có nhiều nhất là $50 * 50$ ô, bán kính là một số nguyên với max là 25 và bạn cần kiểm tra các điểm trên thuộc đường tròn trong một thời gian tuyến tính. Tổng độ phức tạp sẽ rất bé và bạn có thể yên tâm duyệt trâu.
 
 **Ví dụ khác:**
 
@@ -152,11 +152,11 @@ Ta sẽ bắt đầu bằng việc đưa 2 người bất kì qua cầu rồi ti
 
 ### Quy hoạch động (Dynamic Programming)
 
-Để giải quyết cũng như nhìn ra dạng bài này thì chủ yếu dựa vào kinh nghiệm. Thường thì giới hạn trong các bài QHĐ không lớn cũng không nhỏ, độ phức tạp thường là $N^2$ , $N^3$ , ... Nếu như giới hạn quá nhỏ (với TC thì thường $N <= 30$) thì thường không phải là DP. Trong QHĐ thì các bài toán lớn sẽ được chia thành các bài toán nhỏ hơn và tính dựa vào chúng. Để hiểu hơn về QHĐ, bạn có thể tham khảo [bài này](http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=dynProg).
+Để giải quyết cũng như nhìn ra dạng bài này thì chủ yếu dựa vào kinh nghiệm. Thường thì giới hạn trong các bài QHĐ không lớn cũng không nhỏ, độ phức tạp thường là $N^2$ , $N^3$ , ... Nếu như giới hạn quá nhỏ (với TC thì thường $N \le 30$) thì thường không phải là DP. Trong QHĐ thì các bài toán lớn sẽ được chia thành các bài toán nhỏ hơn và tính dựa vào chúng. Để hiểu hơn về QHĐ, bạn có thể tham khảo [bài này](http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=dynProg).
 
 > Thử phân tích một ví dụ đơn giản:
-> Cho N đồng xu với giá trị của chúng(V1, V2, ..., VN) và một số S. Tìm số đồng xu nhỏ nhất mà tổng giá trị của chúng bằng S (bạn có thể dùng một đồng nhiều lần) hoặc thông báo không có cách nào như vậy.
-> $N <= 1000$ và $S <= 1000$
+> Cho N đồng xu với giá trị của chúng($V_1$, $V_2$, ..., $V_N$) và một số S. Tìm số đồng xu nhỏ nhất mà tổng giá trị của chúng bằng S (bạn có thể dùng một đồng nhiều lần) hoặc thông báo không có cách nào như vậy.
+> $N \le 1000$ và $S \le 1000$
 
 **Hints:**
 
@@ -168,7 +168,7 @@ Ta sẽ bắt đầu bằng việc đưa 2 người bất kì qua cầu rồi ti
 Tất cả những tính chất trên cho thấy đây là một bài QHĐ.
 
 > **[ZigZag](http://community.topcoder.com/stat?c=problem_statement&pm=1259&rd=4493) – 2003 TCCC Semifinals 3:**
-> Một dãy số được gọi là zig-zag nếu các hiệu giữa những liền nhau là một dãy đan dấu (luân phiên âm dương âm dương ...). Dãy có ít hơn 2 số là 1 dãy zig-zag. Cho một dãy số tìm dãy con zig-zag dài nhất. Một dãy con thu được bằng cách xóa bỏ một số số trong dãy ban đầu (hoặc không xóa). Giới hạn N <= 50
+> Một dãy số được gọi là zig-zag nếu các hiệu giữa những liền nhau là một dãy đan dấu (luân phiên âm dương âm dương ...). Dãy có ít hơn 2 số là 1 dãy zig-zag. Cho một dãy số tìm dãy con zig-zag dài nhất. Một dãy con thu được bằng cách xóa bỏ một số số trong dãy ban đầu (hoặc không xóa). Giới hạn $N \le 50$
 
 **Hints:**
 
@@ -203,7 +203,7 @@ Cũng không dễ để có thể xác định được một bài toán sử d�
 >
 > Tìm lượng nước lớn nhất có thể chảy được từ điểm đầu đến điểm cuối trong một đơn vị thời gian.
 >
-> N <= 100
+> $N \le 100$
 
 Dễ dàng thấy được lượng nước ở mỗi ống là trọng số các cạnh, khớp nối các ống là các đỉnh trong đồ thị. Bạn phải tìm lượng nước lớn nhất chảy từ đỉnh bắt đầu đến đỉnh kết thúc.
 
