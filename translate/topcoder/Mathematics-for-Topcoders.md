@@ -372,7 +372,7 @@ Vậy 43 sẽ được biểu diễn thành 101011 ở dạng nhị phân. Bằn
 ```pascal
     function FromDecimal(n, b : Integer): Integer;
     var
-        mul := 1;
+        mul : Integer = 1;
     begin
         result := 0;
 
