@@ -1,4 +1,4 @@
-[Bài viết chưa hoàn thiện]
+[Dịch từ [Tree - PEGWiki](http://wcipeg.com/wiki/Tree)]
 
 # Cây (Tree)
 ----
