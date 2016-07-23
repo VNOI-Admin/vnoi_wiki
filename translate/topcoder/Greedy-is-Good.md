@@ -19,3 +19,6 @@ Ta vẫn không cần phải xét tất cả các trường hợp, hãy thử m�
 * Sửa phòng (3 tiếng).
 * Tham nhạc buổi hòa nhạc Rock (4 tiếng).
 * Chơi bắn súng nước sơn (6 tiếng).
+
+Trong 10 hành động, ta đã lựa ra được 6 hành động (hoàn toàn không tệ). Giờ thì thuật toán của ta đã chậm lại nhưng nó trở nên đáng tin cậy hơn nếu đây là lựa chọn tốt nhất mà ta có thể thực hiện. Và quả thực, đáp án chính là 6. John rất hài lòng về sự hỗ trợ của chúng ta, nhưng sau khi trở về từ kỳ nghỉ với kế hoạch thông minh của chúng ta, John đã phải đối mặt với những rắc rối nghiêm trọng khác:
+
