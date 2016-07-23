@@ -1,4 +1,6 @@
-#[Seam Carving Algorithm](http://kirilllykov.github.io/blog/2013/06/06/seam-carving-algorithm/)
+#Seam Carving Algorithm
+
+[Nguồn](http://kirilllykov.github.io/blog/2013/06/06/seam-carving-algorithm/)
 
 ##Giới thiệu
 
