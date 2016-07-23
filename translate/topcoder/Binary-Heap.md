@@ -108,7 +108,7 @@ so sánh nhãn nút gốc với nút lớn hơn trong 2 nút con của nó ( n�
    
                 1/4 x N + 2/8 x N + 3/16 x N + ... + h/N x N = N phép so sánh
 
-### 3. Câu hỏi thêm cho bạn đọc ###
+## 3. Câu hỏi thêm cho bạn đọc ##
 
 * Tại sao Binary Heap nên là một cây nhị phân đầy đủ **TC1** ?
 
