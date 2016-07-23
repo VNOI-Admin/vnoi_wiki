@@ -1,4 +1,4 @@
-# Cách tiếp cận những bài toán trên Topcoder : Phần 1
+# Cách tiếp cận những bài toán trên Topcoder: Phần 1
 
 **Bài viết chưa hoàn thiện**
 
