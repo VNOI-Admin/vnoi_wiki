@@ -12,7 +12,7 @@ Kĩ thuật bao lồi được biết đến nhiều nhất có lẽ vì nó c�
 
 ## Bài toán cơ bản
 
-Cho một tập lớn các hàm tuyến tính có dạng $y = m_i + b_i$ và một số lượng lớn truy vấn. Mỗi truy vấn là một số $x$ và hỏi giá trị cực tiểu $y$ có thể đạt được nếu chúng ta thế $x$ vào một trong những phương trình đã cho. Ví dụ, cho các phương trình $y=4$, $y=\frac{4}{3}+\frac{2}{3}x$, $y=12-3x$ và $y=3-\frac{1}{2}x$ và truy vấn $x=1$. Chúng ta phải tìm phương trình mà trả về giá trị cực tiểu hoặc giá trị cực tiểu đó (trong trường hợp này là phương trình $y=\frac{4}{3}+\frac{2}{3}x$ và giá trị cực tiểu đó là 2).
+Cho một tập lớn các hàm tuyến tính có dạng $y = m_i x + b_i$ và một số lượng lớn truy vấn. Mỗi truy vấn là một số $x$ và hỏi giá trị cực tiểu $y$ có thể đạt được nếu chúng ta thế $x$ vào một trong những phương trình đã cho. Ví dụ, cho các phương trình $y=4$, $y=\frac{4}{3}+\frac{2}{3}x$, $y=12-3x$ và $y=3-\frac{1}{2}x$ và truy vấn $x=1$. Chúng ta phải tìm phương trình mà trả về giá trị cực tiểu hoặc giá trị cực tiểu đó (trong trường hợp này là phương trình $y=\frac{4}{3}+\frac{2}{3}x$ và giá trị cực tiểu đó là 2).
 
 Biến thể của bài toán có thể là tìm giá trị cực đại có thể giải quyết với một thay đổi nhỏ vì vậy trong bài viết này chỉ tập trung vào bài toán tìm giá trị cực tiểu.
 
@@ -34,12 +34,12 @@ Xét hình vẽ ở trên. Đường thẳng $y=4$ sẽ không bao giờ là gi�
 
 - Bỏ đi các đường thẳng không quan trọng như $y=4$ trong ví dụ (những đường thẳng mà không nhận giá trị cực tiểu trong bất kì đoạn nào)
 
-- Sắp xếp các đoạn thẳng còn lại theo hệ số góc và được một tập các $N$ đoạn thẳng (của $N$ đường thẳng còn lại) mà mỗi đoạn có một đường thẳng nhận giá trị cực tiểu. 
+- Sắp xếp các đoạn thẳng còn lại theo hệ số góc và được một tập $N$ đoạn thẳng (của $N$ đường thẳng còn lại) mà mỗi đoạn có một đường thẳng nhận giá trị cực tiểu. 
 
 - Dùng thuật toán tìm kiếm nhị phân cơ bản để có thể tìm kiếm đáp án cho từng truy vấn.
 
 ### Ý nghĩa của tên kĩ thuật
-Cụm từ *bao lồi* được sử dụng sai để chỉ *hình bao trên/dưới* (upper / lower envelope). Trong ví dụ, nếu chúng ta coi mỗi phần đoạn thẳng tối ựu của đường thẳng (bỏ qua đường $y=4$), chúng ta sẽ những đoạn đó tạo thành một *hình bao dưới* (lower envelope), một tập các đoạn thẳng chứa tất cả điểm cực tiểu cho tất cả giá trị của $x$ (hình bao dưới được tô bằng màu xanh trong hình. Cái tên *kĩ thuật bao lồi* xuất phát từ việc đường bao trên tạo thành một đường lồi, từ đó thành bao lồi của một tập điểm.
+Cụm từ *bao lồi* được sử dụng để chỉ *hình bao trên/dưới* (upper / lower envelope). Trong ví dụ, nếu chúng ta coi mỗi phần đoạn thẳng tối ưu của đường thẳng (bỏ qua đường $y=4$), chúng ta sẽ thấy những đoạn đó tạo thành một *hình bao dưới* (lower envelope), một tập các đoạn thẳng chứa tất cả điểm cực tiểu cho mọi giá trị của $x$ (hình bao dưới được tô bằng màu xanh trong hình. Cái tên *kĩ thuật bao lồi* xuất phát từ việc đường bao trên tạo thành một đường lồi, từ đó thành bao lồi của một tập điểm.
 
 ### Thêm một đường vào tập
 
@@ -64,7 +64,7 @@ Vậy thời gian cho việc xây dựng sẽ là $\mathcal{O}(M\log{M})$. Với
 ## Ví dụ 1: USACO Tháng 3 năm 2008 "Acquire"
 
 ### Bài toán
-Cho $N(N \le 50000)$ hình chữ nhật khác nhau về hình dạng, mục tiêu của bài toán là phải lấy được tất cả hình chữ nhật. Một tập hình chữ nhật có thể được với chi phí bằng tích của chiều dài dài nhất và chiều rộng dài nhất. Chúng ta cần phân hoạch tập các hình chữ nhật này một cách khôn khéo sao cho tổng chi phí có thể được tối thiểu hóa và tính chi phí này. Hình chữ nhật không thể được xoay (đổi chiều dài và chiều rộng).
+Cho $N(N \le 50000)$ hình chữ nhật khác nhau về hình dạng, mục tiêu của bài toán là phải lấy được tất cả hình chữ nhật. Một tập hình chữ nhật có thể thu được với chi phí bằng tích của chiều dài dài nhất và chiều rộng dài nhất. Chúng ta cần phân hoạch tập các hình chữ nhật này một cách khôn khéo sao cho tổng chi phí có thể được tối thiểu hóa và tính chi phí này. Hình chữ nhật không thể được xoay (đổi chiều dài và chiều rộng).
 
 #### Nhận xét 1: Tồn tại các hình chữ nhật không quan trọng
 
