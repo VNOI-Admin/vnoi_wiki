@@ -1,8 +1,9 @@
-
 # Cấu Trúc Dữ Liệu
-**Bài viết chưa hoàn thiện**
+***Bài viết chưa hoàn thiện***
 
-Nguồn: [Codeforces](http://codeforces.com/blog/entry/15729)
+**Nguồn:** [Codeforces](http://codeforces.com/blog/entry/15729)
+
+**Tác giả:** [amd](http://codeforces.com/profile/amd)
 
 [[_TOC_]]
 
