@@ -23,6 +23,8 @@ Một cấu trúc như trên được gọi là max binary heap vì nhãn ở g�
 
 Binary Heap được dùng để xây dựng lên cấu trúc của một priority queue ( trong C++, java... ) hay dùng để tăng tốc các thuật toán như dijkstra, prim..
 
+*(**Các bạn có thể vào [visualgo](http://visualgo.net/heap) để có thể hình dung cụ thể về các thao tác trên Heap**)*
+
 ## 2. Các thao tác trên Binary Heap
 
 ### 2.0. Các thao tác thường dùng với Binary Heap là 
