@@ -112,4 +112,4 @@ so sánh nhãn nút gốc với nút lớn hơn trong 2 nút con của nó ( n�
 
 * Nếu Heap không phải là một cây nhị phân mà là một cây tam phân, tứ phân, k-phân thì độ phức tạp của các thao tác sẽ thay đổi thế nào ?
 
-* **TC1** cần thêm điểu kiện các phần tử của tập phải là một [totally ordered set](http://wcipeg.com/wiki/Partial_order#Total_order) ( 2 giá trị bất kì trong tập đều có thể so sánh được và có tính chất bắc cầu a <= b, b <= c -> a <= c, ví dụ như tập số thực **R**)
+* **TC1** cần thêm điểu kiện tập nhãn phải là một [totally ordered set](http://wcipeg.com/wiki/Partial_order#Total_order) ( 2 giá trị bất kì trong tập đều có thể so sánh được và có tính chất bắc cầu a <= b, b <= c -> a <= c, ví dụ như tập số thực **R**)
