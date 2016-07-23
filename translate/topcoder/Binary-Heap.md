@@ -42,7 +42,7 @@ Binary Heap được dùng để xây dựng lên cấu trúc của một priori
 
 * **Analyse complexity:** **O(1)**
 
-  *Thông thường thao tác này sẽ đi kèm với thao tác xóa nút gốc để tìm nhãn tiếp theo ( như khi sort ). Thao tác xóa sẽ được miêu tả ở mục **2.3** *
+*Thông thường thao tác này sẽ đi kèm với thao tác xóa nút gốc để tìm nhãn tiếp theo ( như khi sort ). Thao tác xóa sẽ được miêu tả ở mục **2.3** *
 
 
 ### 2.2. Thêm một nút ( node ) trên cây
