@@ -512,3 +512,13 @@ function res = energyGrey(I)
     res = abs(imfilter(I, [-1,0,1], 'replicate')) + abs(imfilter(I, [-1;0;1], 'replicate'));
 end
 ```
+
+##Tham khảo
+
+[Wikipedia](https://en.wikipedia.org/wiki/Seam_carving)
+
+[Seam Carving for Content-Aware Image Scaling](http://graphics.cs.cmu.edu/courses/15-463/2010_fall/hw/proj2/imret.pdf)
+
+[https://jeremykun.com/2013/03/04/seam-carving-for-content-aware-image-scaling/](https://jeremykun.com/2013/03/04/seam-carving-for-content-aware-image-scaling/)
+
+[http://kirilllykov.github.io/blog/2013/06/06/seam-carving-algorithm/](http://kirilllykov.github.io/blog/2013/06/06/seam-carving-algorithm/)
