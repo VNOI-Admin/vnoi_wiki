@@ -42,7 +42,7 @@ Binary Heap được dùng để xây dựng lên cấu trúc của một priori
 
 * **Analyse complexity:** **O(1)**
 
-*Thông thường thao tác này sẽ đi kèm với thao tác xóa nút gốc để tìm nhãn tiếp theo ( như khi sort ). Thao tác xóa sẽ được miêu tả ở mục **2.3** *
+  *(Thông thường thao tác này sẽ đi kèm với thao tác xóa nút gốc để tìm nhãn tiếp theo ( như khi sort ). Thao tác xóa sẽ được miêu tả ở mục **2.3**)*
 
 
 ### 2.2. Thêm một nút ( node ) trên cây
@@ -70,7 +70,7 @@ Binary Heap được dùng để xây dựng lên cấu trúc của một priori
         * Vun đống từ trên xuống ( top-down heapify) 
 so sánh nhãn nút gốc với nút lớn hơn trong 2 nút con của nó ( nếu có một nút con chính nó là nút được xét) nếu nó nhỏ hơn nút con lớn hơn của nó đổi chỗ 2 nút này, tiếp tục xét tiếp với 2 nút con mới cho đến khi nó lớn hơn hặc bằng nút con lớn hơn của nó hoặc nó không có con hay nút lá ( leaf)
 
-* **Analyse complexity: ** Nếu cây chỉ có duy nhất nút gốc độ phức tạp là O(1). Trong trường hợp còn lại 
+* **Analyse complexity:** Nếu cây chỉ có duy nhất nút gốc độ phức tạp là O(1). Trong trường hợp còn lại 
     * Xóa nút gốc khỏi cây có độ phức tạp **O(1)**
     * Vun đống từ trên xuống ( top-down heapify) cũng như bottom-up heapify không vượt quá độ xâu của h của cây nên có độ phức tạp là **O(logN)**
 
@@ -106,7 +106,7 @@ so sánh nhãn nút gốc với nút lớn hơn trong 2 nút con của nó ( n�
    
                 1/4 x N + 2/8 x N + 3/16 x N + ... + h/N x N = N phép so sánh
 
-### 3. Câu hỏi thêm cho bạn đọc###
+### 3. Câu hỏi thêm cho bạn đọc ###
 
 * Tại sao Binary Heap nên là một cây nhị phân đầy đủ **TC1** ?
 
