@@ -98,13 +98,12 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
 
 * **Độ phức tạp:**
    * Khi thực hiện $N$ bước thêm nút ta có thể thấy độ phức tạp là $O(log{1} + log{2} + ... + log{N}) = O(NlogN)$.
-   * Ở cách xây dựng thứ 2 ta thấy nếu một nút ở độ xâu $k$ nó sẽ mất không quá $h - k$ lần so sánh với nút con ($h$ là độ cao của cây, gốc có dộ cao là 0 và số nút của cây $N < 2^{h+1}$) và một nửa số nút trên cây là lá và sẽ không phải so sánh với nút con nào cả, ta suy ra được:
+   * Ở cách xây dựng thứ 2 ta thấy nếu một nút ở độ xâu $k$ nó sẽ mất không quá $h - k$ lần so sánh với nút con (nhắc lại $h$ là độ sâu của cây và số nút của cây $N < 2^{h+1}$) và một nửa số nút trên cây là lá và sẽ không phải so sánh với nút con nào cả, ta suy ra được:
       * Ở độ sâu $k = h-1$ có $2^{h-1}$ nút -> số phép so sánh là $1 \* 2^{h-1} = 1/4 \* N$
       * Ở độ sâu $k = h-2$ có $2^{h-2}$ nút -> số phép so sánh là $2 \* 2^{h-2} = 2/8 \* N$
       * Ở độ sâu $k = h-3$ có $2^{h-3}$ nút -> số phép so sánh là $3 \* 2^{h-3} = 3/16 \* N$
         ...
       * Ở độ sâu $k = 0$ (gốc) -> số phép so sánh là $h \* 1 = h/N \* N$
-
       * Tổng hợp lại ta có: $1/4 \* N + 2/8 \* N + 3/16 \* N + ... + h/N \* N = N$ phép so sánh
 
 ## 3. Câu hỏi thêm cho bạn đọc ##
