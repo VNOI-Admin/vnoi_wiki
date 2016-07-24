@@ -49,8 +49,7 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
 * **Độ phức tạp:** 
  * Quá trình chọn vị trí cho nút chỉ mất $O(1)$
  * Quá trình vun đống từ dưới lên (bottom-up heapify) ta có thể thấy số lần so sánh và đổi chỗ 2 phần tử không quá độ sâu của cây nhị phân hay ($\le log(N+1)$ với $N$ là số nút hiện có trên cây). 
- 
- **Độ phức tạp của cả quá trình này là $O(logN)$
+ * Độ phức tạp của cả quá trình này là $O(logN)$
 
 ### 2.3. Xóa một nút (node) khỏi cây
 
