@@ -60,3 +60,9 @@ Với những bạn chưa có nhiều kiến thức hoặc muốn ôn tập lạ
 Với những bạn đã có những kiến thức cơ bản về thuật toán và cấu trúc dữ liệu thì cơ bản các bạn chỉ cần luyện tập kĩ năng trả lời câu hỏi sao cho thật là thuần thục. Một số trang web để các bạn luyện tập như leetcode, hackerrank, ...
 
 Nếu bạn có quen một ai đó có thể giúp đỡ bạn, bạn hãy nhờ họ làm một cuộc phỏng vấn thử. Trong lúc phỏng vấn thử này, họ sẽ đưa cho bạn một câu hỏi, và nhiệm vụ của bạn là hãy trả lời một cách suôn sẻ, và họ sẽ đưa ra ý kiến của riêng họ về những điều bạn có thể cải thiện để tiến bộ hơn.
+
+## Những điều mà các nhà tuyển dụng thường chú ý
+
+- Khả năng chuyên môn giỏi: Điều này thể hiện qua cách bạn giải quyết các vấn đề, bài toán mà họ đưa ra. Bạn có thể không phải là người giỏi nhất, nhưng chỉ cần bạn thể hiện đúng năng lực của mình với sự tự tin và kiến thức của bản thân, họ sẽ có một đánh giá công bằng nhất về trình độ hiện tại và có thể là tương lai của bạn.
+- Khả năng giao tiếp thuần thục: Họ đang tìm kiếm những nhân viên tương lai mà họ đánh giá rằng họ có thể huấn luyện/làm việc chung với chính bản thân họ được. Vì vậy, hãy cứ thoải mái chia sẻ và trao đổi với người phỏng vấn để họ biết được khả năng thật sự của bạn ở mức độ nào.
+- Sự trung thật: Bạn sẽ không bao giờ thành công nếu thiếu yếu tố này. Một ví dụ đơn giản như nếu bạn đã biết chắc chắn đáp án của câu hỏi mà nhà tuyển dụng đưa ra, hãy thành thật nói với họ như vậy.
