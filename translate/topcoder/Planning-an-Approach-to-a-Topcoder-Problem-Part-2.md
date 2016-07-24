@@ -65,4 +65,22 @@ Không bao giờ có cách tiếp cận tốt nhất cho tất cả các coder, 
 
 Để có quyền chọn một trong hai cách tiếp cận, bạn phải nghĩ ra được cả hai. Cách luyện tập cho việc này là hãy tìm nhiều cách giải khác nhau của một bài toán (ví dụ như giải lại các bài SRM đã tham gia với cách giải khác). Bằng cách này, bạn sẽ tăng được khả năng tìm kiếm nhiều cách tiếp cận vấn đề, có thể đó là một cách tốt hơn, hay hơn, hay thậm chi là dễ debug hơn.
 
+## Quay lui các cách tiếp cận sai
+Như đã nói đến ở phần trước, một bài toán có rất nhiều cách tiếp cận là điều rất thường gặp. Bạn có thể chợt nghĩ đến nó khi đang code cách làm hiện tại. Một trong những kĩ năng khó để luyện tập nhất khi tham gia SRM đó là khả năng để hoàn toàn tập trung vào cách tiếp cận hiện tại, không bị phân tâm bởi có nhiều cách tiếp cận khác. Nhớ rằng bạn sẽ không được thưởng thêm điểm cho việc code tối ưu hơn, hay logic hơn. Bạn lấy điểm dựa vào khả năng giải quyết được vấn đề nhanh nhất có thể. Nếu bạn nghĩ ra được một hướng giải tốt hơn hướng giải mà bạn đã code được phân nửa, hãy phân tích xem bạn sẽ mất bao nhiêu thời gian để chuyển qua hướng giải đó. Trong hầu hết trường hợp, sự thay đổi là không đáng.
 
+Không hề dễ dàng cho việc tìm một hướng tiếp cận đúng đắn trong lần đầu tiên. Code một solution và debug nó dễ chịu hơn là việc nhận ra mình đã hoàn toàn đi sai hướng. Nếu bạn gặp phải trường hợp đó, bất kể là gì, đừng xóa nó.  Đặt tên lại những hàm chính hay bất kì hàm con hay cấu trúc dữ liệu nào có thể chỉnh sửa được. Lí do là trong khi bạn muốn code lại hoàn toàn những dòng code “sạch” mới, bạn phải thừa nhận rằng những dòng code cũ có thể giống như vậy. Việc code lại sẽ làm bạn không nghĩ ra được thứ gì mới. Hơn nữa, giữ lại code cũ có thể giúp bạn test những cách tiếp cận tiếp theo, cũng như việc tạo ra test để hack các cách tiếp cận khác.
+
+## Kết luận
+Mặc dù cần rất nhiều suy nghĩ logic, việc tìm cách tiếp cận bài toán không phải là một bộ môn khoa học, mà nó là chỉ là khả năng suy đoán với việc chuẩn bị kế hoạch tốt. Muốn đạt được hiệu quả trong việc tiếp cận bài toán cũng như tự tin hơn với đáp án của mình thì bạn phải tìm những ý tưởng sáng tạo, những suy nghĩ tỉ mỉ, cẩn thận. Việc đó sẽ tiết kiệm được nhiều thời gian cho bạn trong lúc code và debug. Khả năng tính toán trước những gì mình sẽ code trước khi chạm tay vào bàn phím chỉ có thể đạt được qua việc luyện tập, nhưng phần thưởng cho sự chăm chỉ này là khả năng giải quyết vấn đề cũng như rating sẽ lên như diều gặp gió.
+
+## Những bài tập có đề cập tới:
+TCI ’02 Round 2 Div I Med – [MatArith](https://community.topcoder.com/stat?c=problem_statement&pm=511&rd=4335)
+SRM 170 Div I Med – [CityLink](http://community.topcoder.com/stat?c=problem_statement&pm=1864&rd=4655)
+SRM 172 Div I Med – [Fifteen](http://community.topcoder.com/stat?c=problem_statement&pm=2920&rd=5852)
+SRM 206 Div I Hard – [HexagonIntersections](https://community.topcoder.com/stat?c=problem_statement&pm=2920&rd=5852)
+SRM 195 Div I Easy – [FanFailure](https://community.topcoder.com/stat?c=problem_statement&pm=2235&rd=5070)
+SRM 167 Div I Med – [TeamPhoto](https://community.topcoder.com/stat?c=problem_statement&pm=1614&rd=4640)
+SRM 174 Div I Easy – [BirthdayOdds](https://community.topcoder.com/stat?c=problem_statement&pm=1848&rd=4675)
+SRM 191 Div I Hard – [MagicianTour](https://community.topcoder.com/stat?c=problem_statement&pm=2346&rd=4775)
+SRM 210 Div II Hard – [TopographicalImage](https://community.topcoder.com/stat?c=problem_statement&pm=2932&rd=5856)
+SRM 206 Div I Easy – [OmahaLow](https://community.topcoder.com/stat?c=problem_statement&pm=2435&rd=5852)
