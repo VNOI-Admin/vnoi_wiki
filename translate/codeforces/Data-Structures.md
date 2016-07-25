@@ -459,4 +459,4 @@ Source: [mukel](http://codeforces.com/profile/mukel)
 ---
 
 ##Fibonacci Heap
-Fibonacci Heap là một dạng heap có **độ phức tạp** bé hơn. Chúng ta không cần quan tâm Fibonacci Heap là gì vì trong thư viện **STL C++** đã có sẵn, được gọi là** priority_queue**.
+Fibonacci Heap là một dạng heap có **độ phức tạp** bé hơn. Chúng ta không cần quan tâm Fibonacci Heap là gì vì trong thư viện **STL C++** đã có sẵn, được gọi là **priority_queue**.
