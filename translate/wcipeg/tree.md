@@ -14,7 +14,7 @@ Với một đồ thị bất kì, nếu 2 trong 3 mệnh đề sau là đúng, 
 - Đồ thị không có chu trình
 - Số đỉnh của đồ thị lớn hơn số cạnh của đồ thị đúng 1 đơn vị
 
-Điều đó có nghĩa là, chỉ cần thỏa 2 trong 3 điều kiện đó thì đồ thị chắc chắn sẽ là một cây, và cây đó sẽ thỏa cả 3 điều kiện trên (trừ cây rỗng - cây không có đỉnh nào, mặc dù vậy nhưng đôi khi cũng được coi là một cây).
+Điều đó có nghĩa là, chỉ cần thỏa 2 trong 3 điều kiện đó thì đồ thị chắc chắn sẽ là một cây, và cây đó sẽ thỏa cả 3 điều kiện trên (trừ cây rỗng - cây không có đỉnh nào).
 
 Ngoài ra, nếu mỗi cặp đỉnh của đồ thị đều có chính xác 1 đường đi thì đồ thị là cây và ngược lại.
 
@@ -24,9 +24,12 @@ Mọi cây đều là đồ thị phẳng ([planar graph](https://vi.wikipedia.o
 
 **Cây có gốc** (**rooted tree**) là cây có một đỉnh cụ thể gọi là **gốc** (**root**) của cây. Một số cây không có gốc (**unroot**), có thể là do cây không cần đỉnh nào đặc biệt để làm gốc.
 
-- Trong một cây hữu cơ, có một số điểm mà ở đó thân và cành cây phân nhánh. Ta coi những điểm đó, cùng với mặt đất và các điểm kết thúc của những cành cây nhỏ nhất là các **đỉnh** đồ thị, trong đó đỉnh ở mặt đất là **gốc** cây, còn thân cây và cành cây là các **cạnh** . Ý nghĩa của việc này là để thân và các cành đều được coi là xuất phát từ gốc (như cách cây mọc trong thực tế). Những đỉnh là điểm kết thúc của các cành cây nhỏ nhất, mà luôn có bậc là 1, được gọi là **lá** (**leaf**). Khoảng cách từ gốc đến các nút khác đôi khi được gọi là **chiều cao** (**height**) của nút, nhưng trong khoa học máy tính chúng ta thường vẽ cây ngược lại nên khoảng cách này thường được gọi là **độ sâu** (**depth**) của nút. Chiều cao lớn nhất trong tất cả các đỉnh của cây được gọi là chiều cao của cây (**tree's height**).
+- Trong một cây hữu cơ, có một số điểm mà ở đó thân và cành cây phân nhánh. Ta coi những điểm đó, cùng với mặt đất và các điểm kết thúc của những cành cây nhỏ nhất là các **đỉnh** đồ thị, trong đó đỉnh ở mặt đất là **gốc** cây, còn thân cây và cành cây là các **cạnh** . Ý nghĩa của việc này là để thân và các cành đều được coi là xuất phát từ gốc. Một số định nghĩa xuất phát từ ví dụ này:
+    - Những đỉnh là điểm kết thúc của các cành cây nhỏ nhất, mà luôn có bậc là 1, được gọi là **lá** (**leaf**).
+    - Khoảng cách từ gốc đến các nút khác đôi khi được gọi là **chiều cao** (**height**) của nút (trong khoa học máy tính chúng ta thường vẽ cây ngược lại nên khoảng cách này thường được gọi là **độ sâu** (**depth**) của nút).
+    - Chiều cao lớn nhất trong tất cả các đỉnh của cây được gọi là chiều cao của cây (**tree's height**).
 
-- **Gia phả** (**family tree**): bao gồm tất cả hậu duệ của một người (cụ tổ). Xem mỗi người trong cây gia đình là một đỉnh, và giữa 2 đỉnh có cạnh nối nếu 1 trong 2 người là **con** (**child**) của người còn lại. Gắn nhãn cụ tổ là đỉnh gốc. Như vậy tất cả những người có đỉnh kề với đỉnh gốc là con của cụ tổ, và do vậy, những đỉnh đó gọi là con của đỉnh gốc. Tổng quát:
+- **Gia phả** (**family tree**): bao gồm tất cả hậu duệ của một người (cụ tổ). Xem mỗi người trong cây gia đình là một đỉnh, và giữa 2 đỉnh có cạnh nối nếu 1 trong 2 người là **con** (**child**) của người còn lại. Gắn nhãn cụ tổ là đỉnh gốc. Như vậy tất cả những người có đỉnh kề với đỉnh gốc là con của cụ tổ, và do vậy, những đỉnh đó gọi là con của đỉnh gốc. Một số định nghĩa bắt nguồn từ ví dụ này:
     - Nếu 2 nút kề nhau thì nút ở xa gốc hơn được coi là con của nút ở gần gốc hơn, và nút gần gốc hơn là **cha** (**parent**) của nút xa gốc hơn. Mỗi nút có đúng 1 nút cha, trừ nút gốc.
     - Nút $u$, cùng các con của nó, các con của các con của nó,... được gọi là các **hậu duệ** (**descendant**) của nó. (tùy định nghĩa, u có thể không được coi là hậu duệ của chính nó).
     - Nút $u$, cùng cha của nó, cha của cha của nó,... gọi là các **tổ tiên** (**ancestor**) của nó. (tùy định nghĩa, u có thể không được coi là tổ tiên của chính nó).
@@ -38,7 +41,7 @@ Mọi cây đều là đồ thị phẳng ([planar graph](https://vi.wikipedia.o
 
 Một vài chú ý:
 
-- Ta hoàn toàn có thể coi một cây có gốc là không gốc (không quan tâm nút nào là gốc) và ngược lại, coi một cây không gốc là 1 cây có gốc (bằng cách chọn một đỉnh bất kỳ làm gốc).
+- Ta hoàn toàn có thể coi một cây có gốc là không gốc (bằng cách không quan tâm nút nào là gốc) và ngược lại, coi một cây không gốc là 1 cây có gốc (bằng cách chọn một đỉnh bất kỳ làm gốc).
 
 - Trong một cây có gốc, nút gốc không được coi là lá kể cả khi nó có bậc là 1 (trừ khi cây chỉ có 1 đỉnh). Mặt khác, trong một cây không gốc, mọi đỉnh có bậc 1 được coi là lá.
 
