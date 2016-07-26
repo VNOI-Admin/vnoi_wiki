@@ -1,5 +1,7 @@
 [[_TOC_]]
-# Sử dụng biểu thức chính quy (Using Regular Expressions) #
+
+
+# Sử dụng biểu thức chính quy #
 
 Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/using-regular-expressions-2/)
 
@@ -108,7 +110,7 @@ POSIX_regex hỗ trợ 2 kiểu biểu thức chính quy khác nhau: cơ bản v
 Với POSIX, bạn chỉ có thể tìm kiếm biểu thức chính quy mà không thể khớp được. Để khớp được, bạn phải biên dịch nó thành một pattern buffer, sử dụng 'regcomp'. Một khi đã biên dịch thành pattern buffer bạn có thể tìm kiếm trong một xâu kết thúc bằng null bằng cách dùng 'regexec'. Nếu một trong hai hàm 'regcomp' và 'regexec' gặp lỗi nó sẽ trả về error code. Để biết được lỗi là gì bạn dùng 'regerror'. Để giải phóng bộ nhớ của pattern buffer bạn dùng 'regfree'.   
 Để biết cách sử dụng chi tiết mời các bạn xem mục [2] và [3] ở phần tham khảo. 
 
-#### Ví dụ: ####
+##### Ví dụ: #####
 Sau đây là một ví dụ về cách sử dụng các hàm này:
 ```cpp
 regex_t reg;
@@ -141,7 +143,7 @@ GNU_regex API có nhiều hàm hơn. Với các hàm của GNU_regex các bạn 
 Để biết cách sử dụng chi tiết mời các bạn xem mục [3] ở phần tham khảo. 
 
 
-#### Ví dụ: ####
+##### Ví dụ: #####
 ```cpp
 string pattern = "([a-z]+).\\1";
 string str = "top-topcoder|coder";
