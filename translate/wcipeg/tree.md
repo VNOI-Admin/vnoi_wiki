@@ -4,7 +4,7 @@ Nguồn: [wcipeg](http://wcipeg.com/wiki/Tree)
 
 ## Định nghĩa
 
-**Cây** (**tree**) là một đồ thị vô hướng liên thông không có chu trình. Tập hợp các cây không giao nhau gọi là một **rừng** (**forest**).
+**Cây** (**tree**) là một đồ thị vô hướng liên thông không có chu trình. Tập hợp các cây không có đỉnh chung gọi là một **rừng** (**forest**).
 
 ## Tính chất
 
@@ -24,16 +24,16 @@ Mọi cây đều là đồ thị phẳng ([planar graph](https://vi.wikipedia.o
 
 **Cây có gốc** (**rooted tree**) là cây có một đỉnh cụ thể gọi là **gốc** (**root**) của cây. Một số cây không có gốc (**unroot**), có thể là do cây không cần đỉnh nào đặc biệt để làm gốc.
 
-- Trong một cây hữu cơ, có một số điểm mà ở đó thân và cành cây phân nhánh. Ta coi những điểm đó, cùng với mặt đất và các điểm kết thúc của những cành cây nhỏ nhất là các **đỉnh** đồ thị, trong đó đỉnh ở mặt đất là **gốc** cây, còn thân cây và cành cây là các **cạnh** . Ý nghĩa của việc này là để thân và các cành đều được coi là xuất phát từ gốc. Một số định nghĩa xuất phát từ ví dụ này:
+- Trong một cây trong tự nhiên, có một số điểm mà ở đó thân và cành cây phân nhánh. Ta coi những điểm đó, cùng với mặt đất và các điểm kết thúc của những cành cây nhỏ nhất là các **đỉnh** đồ thị, trong đó đỉnh ở mặt đất là **gốc** cây, còn thân cây và cành cây là các **cạnh**. Ý nghĩa của việc này là để thân và các cành đều được coi là xuất phát từ gốc. Một số định nghĩa xuất phát từ ví dụ này:
     - Những đỉnh là điểm kết thúc của các cành cây nhỏ nhất, mà luôn có bậc là 1, được gọi là **lá** (**leaf**).
-    - Khoảng cách từ gốc đến các nút khác đôi khi được gọi là **chiều cao** (**height**) của nút (trong khoa học máy tính chúng ta thường vẽ cây ngược lại nên khoảng cách này thường được gọi là **độ sâu** (**depth**) của nút).
+    - Khoảng cách từ gốc đến các đỉnh khác đôi khi được gọi là **chiều cao** (**height**) của đỉnh (trong khoa học máy tính chúng ta thường vẽ cây ngược lại nên khoảng cách này thường được gọi là **độ sâu** (**depth**) của đỉnh).
     - Chiều cao lớn nhất trong tất cả các đỉnh của cây được gọi là chiều cao của cây (**tree's height**).
 
-- **Gia phả** (**family tree**): bao gồm tất cả hậu duệ của một người (cụ tổ). Xem mỗi người trong cây gia đình là một đỉnh, và giữa 2 đỉnh có cạnh nối nếu 1 trong 2 người là **con** (**child**) của người còn lại. Gắn nhãn cụ tổ là đỉnh gốc. Như vậy tất cả những người có đỉnh kề với đỉnh gốc là con của cụ tổ, và do vậy, những đỉnh đó gọi là con của đỉnh gốc. Một số định nghĩa bắt nguồn từ ví dụ này:
-    - Nếu 2 nút kề nhau thì nút ở xa gốc hơn được coi là con của nút ở gần gốc hơn, và nút gần gốc hơn là **cha** (**parent**) của nút xa gốc hơn. Mỗi nút có đúng 1 nút cha, trừ nút gốc.
-    - Nút $u$, cùng các con của nó, các con của các con của nó,... được gọi là các **hậu duệ** (**descendant**) của nó. (tùy định nghĩa, u có thể không được coi là hậu duệ của chính nó).
-    - Nút $u$, cùng cha của nó, cha của cha của nó,... gọi là các **tổ tiên** (**ancestor**) của nó. (tùy định nghĩa, u có thể không được coi là tổ tiên của chính nó).
-    - Nút gốc là tổ tiên của tất cả các nút.
+- **Gia phả** (**family tree**): bao gồm tất cả hậu duệ của một người (cụ tổ). Xem mỗi người trong cây gia đình là một đỉnh, và giữa 2 đỉnh có cạnh nối nếu 1 trong 2 người là **con** (**child**) của người còn lại. Đỉnh ứng với cụ tổ là đỉnh gốc. Những đỉnh ứng với những người con của cụ tổ, được gọi là những đỉnh con của đỉnh gốc. Một số định nghĩa bắt nguồn từ ví dụ này:
+    - Nếu 2 đỉnh kề nhau thì đỉnh ở xa gốc hơn được coi là con của đỉnh ở gần gốc hơn, và đỉnh gần gốc hơn là **cha** (**parent**) của đỉnh xa gốc hơn. Mỗi đỉnh có đúng 1 cha, trừ gốc.
+    - Đỉnh $u$, cùng các con của nó, các con của các con của nó,... được gọi là các **hậu duệ** (**descendant**) của nó. (tùy định nghĩa, u có thể không được coi là hậu duệ của chính nó).
+    - Đỉnh $u$, cùng cha của nó, cha của cha của nó,... gọi là các **tổ tiên** (**ancestor**) của nó. (tùy định nghĩa, u có thể không được coi là tổ tiên của chính nó).
+    - Gốc là tổ tiên của tất cả các đỉnh.
 
 - Cho một số thành phố không được nối với nhau, chúng ta muốn xây dựng một số con đường giữa các thành phố sao cho có đúng 1 đường đi giữa mỗi cặp thành phố. Từ đó mà ta sẽ xây dựng những con đường sao cho các thành phố là các đỉnh còn các con đường là các cạnh của cây. Đây là một ví dụ về cây không có gốc, bởi vì chẳng có lí do đặc biệt nào để để đánh dấu một thành phố là gốc cả.
 
@@ -41,25 +41,25 @@ Mọi cây đều là đồ thị phẳng ([planar graph](https://vi.wikipedia.o
 
 Một vài chú ý:
 
-- Ta hoàn toàn có thể coi một cây có gốc là không gốc (bằng cách không quan tâm nút nào là gốc) và ngược lại, coi một cây không gốc là 1 cây có gốc (bằng cách chọn một đỉnh bất kỳ làm gốc).
+- Ta hoàn toàn có thể coi một cây có gốc là không gốc (bằng cách không quan tâm đỉnh nào là gốc) và ngược lại, coi một cây không gốc là 1 cây có gốc (bằng cách chọn một đỉnh bất kỳ làm gốc).
 
-- Trong một cây có gốc, nút gốc không được coi là lá kể cả khi nó có bậc là 1 (trừ khi cây chỉ có 1 đỉnh). Mặt khác, trong một cây không gốc, mọi đỉnh có bậc 1 được coi là lá.
+- Trong một cây có gốc, gốc không được coi là lá kể cả khi nó có bậc là 1 (trừ khi cây chỉ có 1 đỉnh). Mặt khác, trong một cây không gốc, mọi đỉnh có bậc 1 được coi là lá.
 
 - Mọi đồ thị con liên thông của một cây cũng là một cây và được gọi là **cây con** (**subtree**).
 
-- Nếu cây có gốc, một nút $u$ và tất cả các hâu duệ của nó được gọi là **cây con gốc $u$**. (Cây con có gốc ở gốc chính là cây ban đầu).
+- Nếu cây có gốc, một đỉnh $u$ và tất cả các hâu duệ của nó được gọi là **cây con gốc $u$**. (Cây con có gốc ở gốc chính là cây ban đầu).
 
 ## Cây nhị phân (binary tree) và cây k-phân (k-ary tree)
 
-- **Cây nhị phân** (**binary tree**) là cây có gốc mà mỗi nút có *tối đa* 2 nút con, gọi là **nút con trái** (**left**) và **phải** (**right**). Cây con có gốc là nút con trái của một nút gọi là **cây con trái** (**left subtree**). **Cây con phải** (**right subtree**) cũng định nghĩa tương tự. Cây nhị phân được sử dụng rất nhiều ví dụ như trong *cây nhị phân tìm kiếm* (*binary search tree*), [*heap nhị phân* (*binary heap*)|translate/wcipeg/Binary-Heap],...
+- **Cây nhị phân** (**binary tree**) là cây có gốc mà mỗi đỉnh có *tối đa* 2 con, gọi là **con trái** (**left**) và **phải** (**right**). Cây con có gốc là đỉnh con trái của một đỉnh gọi là **cây con trái** (**left subtree**). **Cây con phải** (**right subtree**) cũng định nghĩa tương tự. Cây nhị phân được sử dụng rất nhiều ví dụ như trong *cây nhị phân tìm kiếm* (*binary search tree*), [*heap nhị phân* (*binary heap*)|translate/wcipeg/Binary-Heap],...
 
-- Một cây nhị phân được coi là có vô hạn số **tầng** (**level**), nhưng chỉ có một số tầng thường được sử dụng. Mỗi tầng của cây bao gồm tất cả các nút có cùng độ sâu. Tầng $0$ của cây chỉ bao gồm $1$ nút là gốc; tầng thứ nhất chứa những đỉnh con của gốc, như vậy tầng $1$ chứa tối đa $2$ nút; tầng thứ $2$ chứa tất cả nút cháu của nút gốc (con của con của gốc), như vậy tầng này chứa tối đa $4$ nút;... tổng quát: tầng thứ $h$ của cây nhị phân có thể chứa tới $2^{h}$ đỉnh. Nếu một cây nhị phân có chiều cao $h$ thì số đỉnh tối đa nó có thể chứa là $1 + 2 + 4 + ... + 2^{h} = 2^{h+1} - 1$. Mặt khác, cây nhị phân có $N$ đỉnh sẽ có chiều cao ít nhất là $\left \lceil log_2 (N + 1) \right \rceil - 1$.
+- Một cây nhị phân được coi là có vô hạn số **tầng** (**level**), nhưng chỉ có một số tầng thường được sử dụng. Mỗi tầng của cây bao gồm tất cả các đỉnh có cùng độ sâu. Tầng $0$ của cây chỉ bao gồm $1$ đỉnh là gốc; tầng thứ nhất chứa những đỉnh con của gốc, như vậy tầng $1$ chứa tối đa $2$ đỉnh; tầng thứ $2$ chứa tất cả đỉnh cháu của gốc (con của con của gốc), như vậy tầng này chứa tối đa $4$ đỉnh;... tổng quát: tầng thứ $h$ của cây nhị phân có thể chứa tới $2^{h}$ đỉnh. Nếu một cây nhị phân có chiều cao $h$ thì số đỉnh tối đa nó có thể chứa là $1 + 2 + 4 + ... + 2^{h} = 2^{h+1} - 1$. Mặt khác, cây nhị phân có $N$ đỉnh sẽ có chiều cao ít nhất là $\left \lceil log_2 (N + 1) \right \rceil - 1$.
 
-- Một cây nhị phân được gọi là **hoàn chỉnh** (**complete**) nếu tất cả các nút từ tầng $0$ đến tầng $h - 1$ đều được sử dụng, và tất cả các nút trên tầng $h$ đều dồn về bên trái nhiều nhất có thể. Một cây nhị phân hoàn chỉnh sẽ luôn có chiều cao *thấp nhất* có thể có.
+- Một cây nhị phân được gọi là **hoàn chỉnh** (**complete**) nếu tất cả các đỉnh từ tầng $0$ đến tầng $h - 1$ đều được sử dụng, và tất cả các đỉnh trên tầng $h$ đều dồn về bên trái nhiều nhất có thể. Một cây nhị phân hoàn chỉnh sẽ luôn có chiều cao *thấp nhất* có thể có.
 
-- Một cây nhị phân gọi là **cân bằng** (**balance**) nếu chênh lệnh chiều cao của 2 nút lá bất kì đều không quá 1, nếu tất cả nút lá đều có cùng chiều cao thì nó được coi là **hoàn toàn cân bằng** (**perfectly balanced**). Các cây cân bằng thường được sử dụng rất hiệu quả trong việc tìm kiếm dữ liệu.
+- Một cây nhị phân gọi là **cân bằng** (**balance**) nếu chênh lệnh chiều cao của 2 đỉnh lá bất kì đều không quá 1, nếu tất cả đỉnh lá đều có cùng chiều cao thì nó được coi là **hoàn toàn cân bằng** (**perfectly balanced**). Các cây cân bằng thường được sử dụng rất hiệu quả trong việc tìm kiếm dữ liệu.
 
-- Tổng quát, một **cây k-phân** (**k-ary tree**) là một cây có gốc mà mỗi nút có tối đa k nút con, các thuật ngữ khác định nghĩa tương tự như cây nhị phân.
+- Tổng quát, một **cây k-phân** (**k-ary tree**) là một cây có gốc mà mỗi đỉnh có tối đa k con, các thuật ngữ khác định nghĩa tương tự như cây nhị phân.
 
 ## Duyệt cây (tree traversal) 
 
@@ -67,7 +67,7 @@ Một vài chú ý:
 
 ### Duyệt theo thứ tự trước (pre-order)
 
-Trong cách duyệt theo thứ tự trước, chúng ta sẽ thực hiện một phép tìm kiếm theo chiều sâu (**DFS**) bắt đầu từ đỉnh gốc, mỗi nút sẽ được đánh dấu đã đi qua ngay khi nó được đưa vào stack lần đầu.
+Trong cách duyệt theo thứ tự trước, chúng ta sẽ thực hiện một phép tìm kiếm theo chiều sâu (**DFS**) bắt đầu từ đỉnh gốc, mỗi đỉnh sẽ được đánh dấu đã đi qua ngay khi nó được đưa vào stack lần đầu.
 
 ```
 DFS(u):
@@ -78,7 +78,7 @@ DFS(u):
 
 ### Duyệt theo thứ tự sau (post-order)
 
-Phép duyệt theo thứ tự sau cũng tương tự, nhưng khác ở chỗ là một nút được coi là đã thăm ngay khi *tất cả* các nút con của nó đã được thăm (các nút lá được đánh dấu đã thăm khi chúng vừa được đưa vào stack vì chúng không có nút con). 
+Phép duyệt theo thứ tự sau cũng tương tự, nhưng khác ở chỗ là một đỉnh được coi là đã thăm ngay khi *tất cả* các con của nó đã được thăm (các đỉnh lá được đánh dấu đã thăm khi chúng vừa được đưa vào stack vì chúng không có con). 
 
 ```
 DFS(u):
@@ -87,11 +87,11 @@ DFS(u):
   post_order <- u
 ```
 
-Ta có thể định nghĩa thứ tự cho các con của 1 nút: "con thứ nhất", "con thứ hai",... Khi đó, phép duyệt theo thứ tự trước hay sau đều chỉ sinh ra một thứ tự duy nhất.
+Ta có thể định nghĩa thứ tự cho các con của 1 đỉnh: "con thứ nhất", "con thứ hai",... Khi đó, phép duyệt theo thứ tự trước hay sau đều chỉ sinh ra một thứ tự duy nhất.
 
 ### Duyệt theo thứ tự giữa (inorder)
 
-Ngoài duyệt theo thứ tự trước và sau, cây **nhị phân** còn có cách duyệt theo **thứ tự giữa** (**inorder traversal**). Một nút được coi là đã thăm sau khi tất cả nút thuộc cây con trái của nó được thăm và trước khi bất kì đỉnh nào thuộc cây con phải của nó được thăm. Trình tự duyệt theo thứ tự giữa là duy nhất đối với mỗi cây nhị phân, và duyệt cây nhị phân tìm kiếm theo thứ tự giữa luôn trả về một danh sách đã sắp xếp.
+Ngoài duyệt theo thứ tự trước và sau, cây **nhị phân** còn có cách duyệt theo **thứ tự giữa** (**inorder traversal**). Một đỉnh được coi là đã thăm sau khi tất cả đỉnh thuộc cây con trái của nó được thăm và trước khi bất kì đỉnh nào thuộc cây con phải của nó được thăm. Trình tự duyệt theo thứ tự giữa là duy nhất đối với mỗi cây nhị phân, và duyệt cây nhị phân tìm kiếm theo thứ tự giữa luôn trả về một danh sách đã sắp xếp.
 
 ```
 DFS(u)
@@ -104,23 +104,23 @@ DFS(u)
 
 Các cấu trúc dữ liệu sau đều dựa trên cây có gốc, và thường là cây nhị phân:
 
-- **Cây nhị phân tìm kiếm** ([**binary search tree**](https://vi.wikipedia.org/wiki/C%C3%A2y_t%C3%ACm_ki%E1%BA%BFm_nh%E1%BB%8B_ph%C3%A2n)): nhãn của một nút luôn không nhỏ hơn nhãn của nút con trái của nó (nếu có) và không lớn hơn nhãn của nút con phải của nó (nếu có). [Cây 2-3-4](https://vi.wikipedia.org/wiki/C%C3%A2y_2-3-4) hay [B-tree](https://vi.wikipedia.org/wiki/B-c%C3%A2y) cũng giống vậy, nhưng mỗi nút có thể có hơn 2 nút con.
+- **Cây nhị phân tìm kiếm** ([**binary search tree**](https://vi.wikipedia.org/wiki/C%C3%A2y_t%C3%ACm_ki%E1%BA%BFm_nh%E1%BB%8B_ph%C3%A2n)): nhãn của một đỉnh luôn không nhỏ hơn nhãn của đỉnh con trái của nó (nếu có) và không lớn hơn nhãn của đỉnh con phải của nó (nếu có). [Cây 2-3-4](https://vi.wikipedia.org/wiki/C%C3%A2y_2-3-4) hay [B-tree](https://vi.wikipedia.org/wiki/B-c%C3%A2y) cũng giống vậy, nhưng mỗi đỉnh có thể có hơn 2 con.
 
-- **Heap** ([**binary heap**](https://vi.wikipedia.org/wiki/%C4%90%E1%BB%91ng_nh%E1%BB%8B_ph%C3%A2n)): một cây nhị phân hoàn chỉnh mà nhãn của mỗi nút luôn không nhỏ hơn nhãn của các nút con của nó (nếu có) (heap max, tương tự với heap min)
+- **Heap** ([**binary heap**](https://vi.wikipedia.org/wiki/%C4%90%E1%BB%91ng_nh%E1%BB%8B_ph%C3%A2n)): một cây nhị phân hoàn chỉnh mà nhãn của mỗi đỉnh luôn không nhỏ hơn nhãn của các con của nó (nếu có) (heap max, tương tự với heap min)
     - [**Binomial Heap**](https://en.wikipedia.org/wiki/Binomial_heap): chức năng cũng như Heap nhị phân nhưng có thêm phương thức hợp 2 heap
     - [**Fibonaci Heap**](https://en.wikipedia.org/wiki/Fibonacci_heap): cũng như Binomial Heap nhưng thường nhanh hơn cả Binomial Heap
 
-- **Cây phân đoạn** (**segment tree**, **range tree** hay [**interval tree**](https://en.wikipedia.org/wiki/Interval_tree)): một cây nhị phân quản lý một dãy, với mỗi lá biểu diễn một phần tử của dãy, và giá trị của mỗi nút khác lá là một hàm kết hợp giá trị 2 nút con của nó.
+- **Cây phân đoạn** (**segment tree**, **range tree** hay [**interval tree**](https://en.wikipedia.org/wiki/Interval_tree)): một cây nhị phân quản lý một dãy, với mỗi lá biểu diễn một phần tử của dãy, và giá trị của mỗi đỉnh khác lá là một hàm kết hợp giá trị 2 con của nó.
 
 - [**Binary indexed tree**](https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/)) hay **Fenwick tree**: cho phép tính toán và truy vấn trên các **tiền tố** (**prefix**) của dãy.
 
-- [**Parse tree**](https://en.wikipedia.org/wiki/Parse_tree): cây biểu diễn việc phân tích cú pháp của một chuỗi. Khi viết liên tiếp các ký tự trên các lá của cây từ trái sang phải thì ta được chuỗi ban đầu. Mỗi cây con quản lý một đoạn con của chuỗi, và các nút không phải là lá mang thông tin về quan hệ cú pháp giữa các đoạn con mà các nút con của nó quản lí.
+- [**Parse tree**](https://en.wikipedia.org/wiki/Parse_tree): cây biểu diễn việc phân tích cú pháp của một chuỗi. Khi viết liên tiếp các ký tự trên các lá của cây từ trái sang phải thì ta được chuỗi ban đầu. Mỗi cây con quản lý một đoạn con của chuỗi, và các đỉnh không phải là lá mang thông tin về quan hệ cú pháp giữa các đoạn con mà các con của nó quản lí.
 
-- [**Abstract syntax tree**](https://en.wikipedia.org/wiki/Abstract_syntax_tree): cũng giống như cây phân tích cú pháp nhưng nó mang thông tin trừu tượng hơn so với cây phân tích cú pháp. Lá của nó mang những *khái niệm* (*concept*) cơ bản và các nút lưu giữ quan hệ logic hơn là quan hệ cú pháp của cây phân tích cú pháp (mối quan hệ *có nghĩa*).
+- [**Abstract syntax tree**](https://en.wikipedia.org/wiki/Abstract_syntax_tree): cũng giống như cây phân tích cú pháp nhưng nó mang thông tin trừu tượng hơn so với cây phân tích cú pháp. Lá của nó mang những *khái niệm* (*concept*) cơ bản và các đỉnh lưu giữ quan hệ logic hơn là quan hệ cú pháp của cây phân tích cú pháp (mối quan hệ *có nghĩa*).
 
 - **Cây kd** (**k-dimensional tree** hay [**kd-tree**](https://en.wikipedia.org/wiki/K-d_tree)): lưu trữ và quản lý các điểm thuộc không gian k-chiều.
 
-- **Cây trie** hay **cây tiền tố** ([**prefix tree**](http://vnoi.info/library/121/4973/)): mỗi nút lưu giữ một ký tự và mỗi đường đi từ gốc đến một nút thể hiện một tiền tố của chuỗi.
+- **Cây trie** hay **cây tiền tố** ([**prefix tree**](http://vnoi.info/library/121/4973/)): mỗi đỉnh lưu giữ một ký tự và mỗi đường đi từ gốc đến một đỉnh thể hiện một tiền tố của chuỗi.
 
 - [**Suffix tree**](https://en.wikipedia.org/wiki/Suffix_tree): cũng giống như trie, nhưng mỗi đường đi sẽ thể hiện một hậu tố.
 
@@ -130,10 +130,10 @@ Các cấu trúc dữ liệu sau đều dựa trên cây có gốc, và thườn
     - **Cây khung nhỏ nhất** (**minimum diameter spanning tree**): tìm cây khung sao cho khoảng cách lớn nhất giữa 2 đỉnh bất kì là nhỏ nhất.
     - Cây khung cũng tình cờ được sinh ra trong các phép duyệt đồ thị như DFS hay BFS, tạo nên cây DFS và cây BFS. Dijkstra cho ta một **cây đường đi ngắn nhất** (**shortest paths tree**)
 
-- **Tổ tiên chung gần nhất** [**Lowest Common Ancestor - LCA**](https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/)): cho một cặp nút trên cây, yêu cầu tìm tổ tiên chung thấp nhất của 2 nút này, tức nút thấp nhất là tổ tiên của cả 2 nút này.
+- **Tổ tiên chung gần nhất** [**Lowest Common Ancestor - LCA**](https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/)): cho một cặp đỉnh trên cây, yêu cầu tìm tổ tiên chung thấp nhất của 2 đỉnh này, tức đỉnh thấp nhất là tổ tiên của cả 2 đỉnh này.
 
 - Chúng ta có thể dễ dàng tìm khoảng cách giữa các cặp đỉnh trong cây dù có trọng số hay không trọng số bởi vì chỉ có một đường đi duy nhất, ta có thể thực hiện bằng phép duyệt DFS hay BFS
     - Để tìm **đường kính** (**diameter**) của một cây, ta chọn một đỉnh bắt đầu bất kì $u$, tìm đỉnh $v$ xa $u$ nhất sử dụng DFS hay BFS, rồi tìm đỉnh $w$ xa $v$ nhất. Khoảng cách giữa $v$ và $w$ là kích thước của cây.
-    - Trong bài toán **dynamic distance query**, chúng ta muốn tìm khoảng cách giữa các cặp nút trong cây, đồng thời ta cũng cần có thể thay đổi trọng số của các cạnh. Bài toán này có thể được giải bằng cấu trúc [**heavy-light decomposition**](http://vnoi.info/forum/5/5012/).
+    - Trong bài toán **dynamic distance query**, chúng ta muốn tìm khoảng cách giữa các cặp đỉnh trong cây, đồng thời ta cũng cần có thể thay đổi trọng số của các cạnh. Bài toán này có thể được giải bằng cấu trúc [**heavy-light decomposition**](http://vnoi.info/forum/5/5012/).
 
 * Bài toán **cặp ghép cực đại** ([**maximum matching**](https://en.wikipedia.org/wiki/Matching_(graph_theory))), **tập phủ đỉnh cực đại** ([**minimum vertex cover**](https://en.wikipedia.org/wiki/Vertex_cover)), **tập phủ cạnh cực đại** ([**minimum edge cover**](https://en.wikipedia.org/wiki/Edge_cover)) và **tập độc lập cực đại** ([**maximum independent set**](https://en.wikipedia.org/wiki/Independent_set_(graph_theory))) đều nhận những lời giải quy hoạch động (dynamic programming) đơn giản khi mà đồ thị là một cây.
