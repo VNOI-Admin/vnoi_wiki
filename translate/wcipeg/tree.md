@@ -35,7 +35,7 @@ Mọi cây đều là đồ thị phẳng ([planar graph](https://vi.wikipedia.o
     - Đỉnh $u$, cùng cha của nó, cha của cha của nó,... gọi là các **tổ tiên** (**ancestor**) của nó. (tùy định nghĩa, u có thể không được coi là tổ tiên của chính nó).
     - Gốc là tổ tiên của tất cả các đỉnh.
 
-- Cho một số thành phố không được nối với nhau, chúng ta muốn xây dựng một số con đường giữa các thành phố sao cho có đúng 1 đường đi giữa mỗi cặp thành phố. Từ đó mà ta sẽ xây dựng những con đường sao cho các thành phố là các đỉnh còn các con đường là các cạnh của cây. Đây là một ví dụ về cây không có gốc, bởi vì chẳng có lí do đặc biệt nào để để đánh dấu một thành phố là gốc cả.
+- Cho một số thành phố không được nối với nhau, chúng ta muốn xây dựng một số con đường giữa các thành phố sao cho có đúng 1 đường đi giữa mỗi cặp thành phố. Ta sẽ xây dựng những con đường sao cho các thành phố là các đỉnh còn các con đường là các cạnh của cây. Đây là một ví dụ về cây không có gốc, bởi vì chẳng có lí do đặc biệt nào để để đánh dấu một thành phố là gốc cả.
 
 - Đặt song song 2 tấm gỗ gần nhau và đóng đinh vào 2 tấm gỗ đó, nhúng chúng vào nước có xà phòng và glyxerin rồi lấy ra, các tấm phim xà phòng (soap film) sẽ nối các đinh với nhau mà không hình thành chu trình ([ví dụ](https://www.youtube.com/watch?v=PI6rAOWu-Og)). Đây gọi là **cây Steiner** ([**Steiner tree**](https://en.wikipedia.org/wiki/Steiner_tree_problem)), một ví dụ nữa cho cây không có gốc vì chẳng có lí gì lại đi đặt một đỉnh bất kì làm gốc.
 
@@ -47,11 +47,11 @@ Một vài chú ý:
 
 - Mọi đồ thị con liên thông của một cây cũng là một cây và được gọi là **cây con** (**subtree**).
 
-- Nếu cây có gốc, một đỉnh $u$ và tất cả các hâu duệ của nó được gọi là **cây con gốc $u$**. (Cây con có gốc ở gốc chính là cây ban đầu).
+- Nếu cây có gốc, một đỉnh $u$ và tất cả các hâu duệ của nó được gọi là **cây con gốc $u$**. (Cây con có gốc ở đỉnh gốc chính là cây ban đầu).
 
 ## Cây nhị phân (binary tree) và cây k-phân (k-ary tree)
 
-- **Cây nhị phân** (**binary tree**) là cây có gốc mà mỗi đỉnh có *tối đa* 2 con, gọi là **con trái** (**left**) và **phải** (**right**). Cây con có gốc là đỉnh con trái của một đỉnh gọi là **cây con trái** (**left subtree**). **Cây con phải** (**right subtree**) cũng định nghĩa tương tự. Cây nhị phân được sử dụng rất nhiều ví dụ như trong *cây nhị phân tìm kiếm* (*binary search tree*), [*heap nhị phân* (*binary heap*)|translate/wcipeg/Binary-Heap],...
+- **Cây nhị phân** (**binary tree**) là cây có gốc mà mỗi đỉnh có *tối đa* 2 con, gọi là **con trái** (**left**) và **phải** (**right**). Cây con có gốc là đỉnh con trái của một đỉnh gọi là **cây con trái** (**left subtree**). **Cây con phải** (**right subtree**) cũng định nghĩa tương tự. Cây nhị phân được sử dụng rất nhiều ví dụ như trong *cây nhị phân tìm kiếm* (*binary search tree*), [[Heap nhị phân|translate/wcipeg/Binary-Heap]],...
 
 - Một cây nhị phân được coi là có vô hạn số **tầng** (**level**), nhưng chỉ có một số tầng thường được sử dụng. Mỗi tầng của cây bao gồm tất cả các đỉnh có cùng độ sâu. Tầng $0$ của cây chỉ bao gồm $1$ đỉnh là gốc; tầng thứ nhất chứa những đỉnh con của gốc, như vậy tầng $1$ chứa tối đa $2$ đỉnh; tầng thứ $2$ chứa tất cả đỉnh cháu của gốc (con của con của gốc), như vậy tầng này chứa tối đa $4$ đỉnh;... tổng quát: tầng thứ $h$ của cây nhị phân có thể chứa tới $2^{h}$ đỉnh. Nếu một cây nhị phân có chiều cao $h$ thì số đỉnh tối đa nó có thể chứa là $1 + 2 + 4 + ... + 2^{h} = 2^{h+1} - 1$. Mặt khác, cây nhị phân có $N$ đỉnh sẽ có chiều cao ít nhất là $\left \lceil log_2 (N + 1) \right \rceil - 1$.
 
@@ -65,18 +65,18 @@ Một vài chú ý:
 
 **Duyệt cây** là việc thăm tất cả đỉnh của cây. Liệt kê các đỉnh được thăm theo thứ tự, ta thu được một thứ tự duyệt cây. Nếu một cây có $N$ đỉnh thì sẽ có $N!$ thứ tự duyệt cây. Có 2 cách duyệt quan trọng là duyệt theo **thứ tự trước** (**preoder**) và duyệt theo **thứ tự sau** (**postorder**). 
 
-### Duyệt theo thứ tự trước (pre-order)
+### Duyệt theo thứ tự trước (preorder)
 
 Trong cách duyệt theo thứ tự trước, chúng ta sẽ thực hiện một phép tìm kiếm theo chiều sâu (**DFS**) bắt đầu từ đỉnh gốc, mỗi đỉnh sẽ được đánh dấu đã đi qua ngay khi nó được đưa vào stack lần đầu.
 
 ```
 DFS(u):
-  pre_order <- u
+  preorder <- u
   for v in children(u):
     DFS(v)
 ```
 
-### Duyệt theo thứ tự sau (post-order)
+### Duyệt theo thứ tự sau (postorder)
 
 Phép duyệt theo thứ tự sau cũng tương tự, nhưng khác ở chỗ là một đỉnh được coi là đã thăm ngay khi *tất cả* các con của nó đã được thăm (các đỉnh lá được đánh dấu đã thăm khi chúng vừa được đưa vào stack vì chúng không có con). 
 
@@ -84,7 +84,7 @@ Phép duyệt theo thứ tự sau cũng tương tự, nhưng khác ở chỗ là
 DFS(u):
   for v in children(u):
     DFS(v)
-  post_order <- u
+  postorder <- u
 ```
 
 Ta có thể định nghĩa thứ tự cho các con của 1 đỉnh: "con thứ nhất", "con thứ hai",... Khi đó, phép duyệt theo thứ tự trước hay sau đều chỉ sinh ra một thứ tự duy nhất.
@@ -107,12 +107,12 @@ Các cấu trúc dữ liệu sau đều dựa trên cây có gốc, và thườn
 - **Cây nhị phân tìm kiếm** ([**binary search tree**](https://vi.wikipedia.org/wiki/C%C3%A2y_t%C3%ACm_ki%E1%BA%BFm_nh%E1%BB%8B_ph%C3%A2n)): nhãn của một đỉnh luôn không nhỏ hơn nhãn của đỉnh con trái của nó (nếu có) và không lớn hơn nhãn của đỉnh con phải của nó (nếu có). [Cây 2-3-4](https://vi.wikipedia.org/wiki/C%C3%A2y_2-3-4) hay [B-tree](https://vi.wikipedia.org/wiki/B-c%C3%A2y) cũng giống vậy, nhưng mỗi đỉnh có thể có hơn 2 con.
 
 - **Heap** ([**binary heap**](https://vi.wikipedia.org/wiki/%C4%90%E1%BB%91ng_nh%E1%BB%8B_ph%C3%A2n)): một cây nhị phân hoàn chỉnh mà nhãn của mỗi đỉnh luôn không nhỏ hơn nhãn của các con của nó (nếu có) (heap max, tương tự với heap min)
-    - [**Binomial Heap**](https://en.wikipedia.org/wiki/Binomial_heap): chức năng cũng như Heap nhị phân nhưng có thêm phương thức hợp 2 heap
-    - [**Fibonaci Heap**](https://en.wikipedia.org/wiki/Fibonacci_heap): cũng như Binomial Heap nhưng thường nhanh hơn cả Binomial Heap
+    - [**Binomial Heap**](https://en.wikipedia.org/wiki/Binomial_heap): chức năng cũng như Heap nhị phân nhưng có thêm phương thức kết hợp 2 heap.
+    - [**Fibonaci Heap**](https://en.wikipedia.org/wiki/Fibonacci_heap): cũng như Binomial Heap nhưng thường nhanh hơn cả Binomial Heap.
 
 - **Cây phân đoạn** (**segment tree**, **range tree** hay [**interval tree**](https://en.wikipedia.org/wiki/Interval_tree)): một cây nhị phân quản lý một dãy, với mỗi lá biểu diễn một phần tử của dãy, và giá trị của mỗi đỉnh khác lá là một hàm kết hợp giá trị 2 con của nó.
 
-- [**Binary indexed tree**](https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/)) hay **Fenwick tree**: cho phép tính toán và truy vấn trên các **tiền tố** (**prefix**) của dãy.
+- [**Binary indexed tree**](https://www.topcoder.com/community/data-science/data-science-tutorials/binary-indexed-trees/)) hay **Fenwick tree**: cho phép tính toán và truy vấn trên các **tiền tố** (**prefix**) của một dãy số.
 
 - [**Parse tree**](https://en.wikipedia.org/wiki/Parse_tree): cây biểu diễn việc phân tích cú pháp của một chuỗi. Khi viết liên tiếp các ký tự trên các lá của cây từ trái sang phải thì ta được chuỗi ban đầu. Mỗi cây con quản lý một đoạn con của chuỗi, và các đỉnh không phải là lá mang thông tin về quan hệ cú pháp giữa các đoạn con mà các con của nó quản lí.
 
@@ -136,4 +136,4 @@ Các cấu trúc dữ liệu sau đều dựa trên cây có gốc, và thườn
     - Để tìm **đường kính** (**diameter**) của một cây, ta chọn một đỉnh bắt đầu bất kì $u$, tìm đỉnh $v$ xa $u$ nhất sử dụng DFS hay BFS, rồi tìm đỉnh $w$ xa $v$ nhất. Khoảng cách giữa $v$ và $w$ là kích thước của cây.
     - Trong bài toán **dynamic distance query**, chúng ta muốn tìm khoảng cách giữa các cặp đỉnh trong cây, đồng thời ta cũng cần có thể thay đổi trọng số của các cạnh. Bài toán này có thể được giải bằng cấu trúc [**heavy-light decomposition**](http://vnoi.info/forum/5/5012/).
 
-* Bài toán **cặp ghép cực đại** ([**maximum matching**](https://en.wikipedia.org/wiki/Matching_(graph_theory))), **tập phủ đỉnh cực đại** ([**minimum vertex cover**](https://en.wikipedia.org/wiki/Vertex_cover)), **tập phủ cạnh cực đại** ([**minimum edge cover**](https://en.wikipedia.org/wiki/Edge_cover)) và **tập độc lập cực đại** ([**maximum independent set**](https://en.wikipedia.org/wiki/Independent_set_(graph_theory))) đều nhận những lời giải quy hoạch động (dynamic programming) đơn giản khi mà đồ thị là một cây.
+- Bài toán **cặp ghép cực đại** ([**maximum matching**](https://en.wikipedia.org/wiki/Matching_(graph_theory))), **tập phủ đỉnh cực đại** ([**minimum vertex cover**](https://en.wikipedia.org/wiki/Vertex_cover)), **tập phủ cạnh cực đại** ([**minimum edge cover**](https://en.wikipedia.org/wiki/Edge_cover)) và **tập độc lập cực đại** ([**maximum independent set**](https://en.wikipedia.org/wiki/Independent_set_(graph_theory))) đều nhận những lời giải quy hoạch động (dynamic programming) đơn giản khi mà đồ thị là một cây.
