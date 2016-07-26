@@ -8,6 +8,15 @@ print 'Hello'
 
 Tables:
 
-|A|B|C|AA|
-| --- | --- | --- | --- |
-|Q|W   |    E | RR     |
+<table>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>CC</th>
+</tr>
+<tr>
+<td>X</td>
+<td>Y</td>
+<td>Z</td>
+</tr>
+</table>
