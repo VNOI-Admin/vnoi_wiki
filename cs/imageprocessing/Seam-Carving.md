@@ -175,7 +175,7 @@ end
 5) Truy vết theo T và TBM.
 ```
 
-Đoạn code thực thi bằng matlab
+Đoạn code bằng matlab
 
 ```matlab
 function [T, transBitMask] = findTransportMatrix(sizeReduction, image)
@@ -185,28 +185,36 @@ function [T, transBitMask] = findTransportMatrix(sizeReduction, image)
     T = zeros(sizeReduction(1) + 1, sizeReduction(2) + 1, 'double');
     transBitMask = ones(size(T)) * -1;
 
-    % fill in borders
+    % Khởi tạo T(i, 1), T(1, i), TBM(i, 1), TBM(1, i)
     imageNoRow = image;
     for i = 2 : size(T, 1)
+        % Tính năng lượng
         energy = energyRGB(imageNoRow);
+        % Tìm đường seam ngang tối ưu
         [optSeamMask, seamEnergyRow] = findOptSeam(energy');
+        % Xóa đường seam
         imageNoRow = reduceImageByMask(imageNoRow, optSeamMask, 0);
-        transBitMask(i, 1) = 0;
 
+        % Tính T và TBM
         T(i, 1) = T(i - 1, 1) + seamEnergyRow;
+        transBitMask(i, 1) = 0;
     end;
 
     imageNoColumn = image;
     for j = 2 : size(T, 2)
+        % Tính năng lượng
         energy = energyRGB(imageNoColumn);
+        % Tìm đường seam dọc
         [optSeamMask, seamEnergyColumn] = findOptSeam(energy);
+        % Xóa đường seam dọc
         imageNoColumn = reduceImageByMask(imageNoColumn, optSeamMask, 1);
-        transBitMask(1, j) = 1;
 
+        % Tính TBM & T
+        transBitMask(1, j) = 1;
         T(1, j) = T(1, j - 1) + seamEnergyColumn;
     end;
 
-    % on the borders, just remove one column and one row before proceeding
+    % Xóa 1 hàng và 1 cột
     energy = energyRGB(image);
     [optSeamMask, seamEnergyRow] = findOptSeam(energy');
     image = reduceImageByMask(image, optSeamMask, 0);
@@ -218,7 +226,7 @@ function [T, transBitMask] = findTransportMatrix(sizeReduction, image)
     % fill in internal part
     for i = 2 : size(T, 1)
 
-        imageWithoutRow = image; % copy for deleting columns
+        imageWithoutRow = image; % Ta sẽ xóa 1 hàng của imageWithoutRow
 
         for j = 2 : size(T, 2)
             energy = energyRGB(imageWithoutRow);
@@ -235,7 +243,7 @@ function [T, transBitMask] = findTransportMatrix(sizeReduction, image)
             T(i, j) = val;
             transBitMask(i, j) = ind - 1;
 
-            % move from left to right
+            % Ta xóa lần lượt từng cột
             imageWithoutRow = imageNoColumn;
         end;
 
@@ -254,6 +262,8 @@ end
 
 ```matlab
 function imageEnlarged = enlargeImageByMaskVertical(image, seamMask)
+% Input: Ảnh và đường seam
+% Output: Ảnh đã được phóng to thêm 1 cột
 
     avg = @(image, i, j, k) (image(i, j-1, k) + image(i, j+1, k))/2;
 
@@ -267,6 +277,8 @@ function imageEnlarged = enlargeImageByMaskVertical(image, seamMask)
 end
 
 function imageEnlarged = enlargeImageByMaskHorizontal(image, seamMask)
+% Input: Ảnh và đường seam
+% Output: Ảnh đã được phóng to thêm 1 hàng
 
     avg = @(image, i, j, k) (image(i-1, j, k) + image(i+1, j, k))/2;
 
@@ -281,7 +293,9 @@ end
 ```
 
 
-##Source code
+## Source code
+
+Dưới đây là toàn bộ code của tác giả (giữ nguyên lại comment gốc bằng tiếng Anh)
 
 ```matlab
 % (C) Copyright Kirill Lykov 2013.
