@@ -4,49 +4,59 @@
 
 ## Giới thiệu
 
-Seam carving là một thuật toán dùng để thay đổi kích thước hình ảnh, nó được giới thiệu trong bài báo cáo khoa học của [S. Avidan & A. Shamir](http://www.win.tue.nl/~wstahw/edu/2IV05/seamcarving.pdf). Trong bài báo, việc thay đổi kích thước ảnh được thực hiện bằng cách loại bỏ đi các điểm ảnh ít quan trọng và giữ lại các điểm ảnh quan trọng. Bức ảnh dưới đây là sẽ họa điều này (ảnh bên trên là ảnh gốc với kích thước 332x480 và ảnh bên dưới là ảnh sau khi áp dụng thuật toán seam carving đẻ thu nhỏ còn lại kích thước là 272x400).
+**Seam carving** là một thuật toán dùng để thay đổi kích thước hình ảnh, nó được giới thiệu trong bài báo cáo khoa học của [S. Avidan & A. Shamir](http://www.win.tue.nl/~wstahw/edu/2IV05/seamcarving.pdf). Trong bài báo, việc thay đổi kích thước ảnh được thực hiện bằng cách loại bỏ đi các điểm ảnh ít quan trọng và giữ lại các điểm ảnh quan trọng. Bức ảnh dưới đây là minh họa điều này (ảnh bên trên là ảnh gốc với kích thước 332x480 và ảnh bên dưới là ảnh sau khi áp dụng thuật toán seam carving đẻ thu nhỏ còn lại kích thước là 272x400).
 
 ![](http://kirilllykov.github.io/images/seamcarving/sea-thai.jpg) 
 
 ![](http://kirilllykov.github.io/images/seamcarving/sea-thai-reduced.jpg)
 
-Thuật toán này khá phổ biến nên có thể tìm thấy rất nhiều bài viết nói về nó. Tuy nhiên hầu hết đa số các tác giả đã không đọc bài báo cáo ban đầu và chỉ cung cấp cách cài đặt thuật toán khá cơ bản. Trong bài viết này tôi sẽ mô tả thuật toán cũng như tất cả các chi tiết được viết bởi Avidan & Shamir. Tuy nhiên, ở bài viết này ta sẽ đi nghiên về cài đặt mà không đi sâu về chứng minh cụ thể. Ở đây ta sẽ sử dụng matlab để cài đặt thuật toán. Phần chứng minh cụ thể các bạn xem ở phần tham khảo.
+Thuật toán này khá phổ biến nên có thể dễ dàng tìm thấy rất nhiều bài viết nói về nó. Tuy nhiên hầu hết đa số các tác giả đã không đọc bài báo cáo ban đầu và chỉ cung cấp cách cài đặt thuật toán khá cơ bản. Trong bài viết này tôi sẽ mô tả thuật toán đầy đủ các chi tiết như trong bài viết của Avidan & Shamir, dưới góc nhìn của một lập trình viên. Ở đây ta sẽ sử dụng matlab để cài đặt thuật toán. Phần chứng minh cụ thể các bạn xem ở phần tham khảo.
 
 ## Năng lượng (Energy)
 
-Để đơn giản hóa, ở bài viết chỉ tập trung nói việc làm giảm kích thước hình ảnh. Tuy nhiên việc làm tăng kích thước hình ảnh cũng làm tương tự, và sẽ được mô tả ở phần sau. Ý tưởng là việc loại bỏ các nội dung có ít ý nghĩa đối với người sử dụng (chứ ít thông tin). Ta gọi thông tin này là "Năng lượng" (Energy). Vì vậy ta sẽ giới thiệu hàm năng lượng để tính năng lượng điểm ảnh từ các điểm ảnh của ảnh gốc. Ví dụ, ở đây ta có thể tính năng lượng của ảnh thông qua đạo hàm của từng điểm ảnh theo các hướng: $e_{1}=\left | \frac{\delta I}{\delta x} \right | + \left | \frac{\delta I}{\delta y} \right |$. Nếu như ảnh có 3 kênh màu thì ta lấy tổng giá trị năng lượng của 3 kênh này lại với nhau. Đoạn code Matlab dưới đây sẽ mô tả quá trình tính. Hàm `imfilter` được áp dụng cho các điểm ảnh được đánh dấu, do đó kết quả $dI(i, j)/dx = I(i+1)-I(i-1)/dx$ với $dx = 1$.
+Để đơn giản, bài viết này chỉ tập trung nói về việc làm giảm kích thước hình ảnh. Tuy nhiên việc làm tăng kích thước hình ảnh cũng có thể làm tương tự, và sẽ được mô tả sơ qua ở phần sau. Ý tưởng chính của thuật toán là việc loại bỏ các nội dung có ít ý nghĩa đối với người sử dụng (chứa ít thông tin). Ta gọi thông tin này là **Năng lượng** (Energy). Vì vậy ta cần định nghĩa hàm năng lượng để tính năng lượng điểm ảnh từ các điểm ảnh của ảnh gốc. Ví dụ, ở đây ta có thể tính năng lượng của ảnh thông qua đạo hàm của từng điểm ảnh theo các hướng:
+
+$e_{1}=\left | \frac{\delta I}{\delta x} \right | + \left | \frac{\delta I}{\delta y} \right |$. 
+
+Nếu như ảnh có 3 kênh màu thì ta lấy tổng giá trị năng lượng của 3 kênh này lại với nhau. Đoạn code Matlab dưới đây sẽ mô tả quá trình tính. Hàm `imfilter` được áp dụng cho các điểm ảnh được đánh dấu, do đó kết quả là
+
+$dI(i, j)/dx = I(i+1)-I(i-1)/dx$ với $dx = 1$.
 
 ```matlab
 function res = energyRGB(I)
-% returns energy of all pixelels
+% Input: Ảnh màu (3 kênh màu)
+% Output: Một mảng 2 chiều thể hiện năng lượng của các điểm trong ảnh.
 % e = |dI/dx| + |dI/dy|
+% Vì ảnh có 3 kênh màu nên ta trả ra tổng năng lượng theo 3 kênh màu
     res = energyGrey(I(:, :, 1)) + energyGrey(I(:, :, 2)) + energyGrey(I(:, :, 3));
 
 function res = energyGrey(I)
-% returns energy of all pixelels
+% Input: Ảnh đen trắng
+% Output: Một mảng 2 chiều thể hiện năng lượng của các điểm trong ảnh.
 % e = |dI/dx| + |dI/dy|
     res = abs(imfilter(I, [-1,0,1], 'replicate')) + abs(imfilter(I, [-1;0;1], 'replicate'));
 end
 ```
 
-Sơ đồ năng lượng ảnh sau khi tính:
+Năng lượng thu được:
 
 ![](http://kirilllykov.github.io/images/seamcarving/sea-thai-energy.jpg)
 
+
 ## Seam
 
-Nếu chúng ta xóa đi các điểm ảnh có nặng lượng thấp theo một vị trí ngẫu nhiên, ta sẽ ra một hình ảnh méo mó. Nếu chúng ta xóa theo cột hoặc hàng với năng lượng tối thiểu, ta sẽ nhận được một bức ảnh hoàn chỉnh được thu nhỏ kích thước lại. Ở đây cột j nghĩa là {(i, j) với j cố định}, hàng i - {(i, j) với i là hằng số}. Giải pháp được giới thiệu được tổng quát hóa các dòng và cột (được gọi là đường seam). Nói đúng hơn, gọi $I$ là một bức ảnh có kích thước $n \* m$, một đường seam dọc là $(s^x)i = (i, x(i))s.t.\forall i, |x(i) - x(i - 1)| \leq 1$ trong đó $x[1..n] \to [1..m]$. Nói một cách dễ hiểu hơn, một đường seam dọc là một đường đi từ biên trên của bức ảnh xuống biên dưới của bức ảnh với độ dài đường đi bằng chiều rộng của bức ảnh, và với mỗi phần vị trí $(i, j)$ của đường seam, ta có thể đi tiếp đến các phần tử $(i + 1, j - 1)$, $(i + 1, j)$, $(i + 1, j + 1)$. Tương tự ta cũng có thể định nghĩa cho đường seam theo chiều ngang. Ví dụ về các đường màu đen là các đường seam trong hình dưới đây.
+Nếu chúng ta xóa đi các điểm ảnh có nặng lượng thấp nhất ở các vị trí ngẫu nhiên, ta sẽ ra một hình ảnh méo mó. Nếu chúng ta xóa theo cột hoặc hàng với năng lượng tối thiểu, ta sẽ nhận được một bức ảnh hoàn chỉnh được thu nhỏ kích thước lại. Ở đây cột j nghĩa là tập hợp {(i, j) với j cố định} và một hàng i nghĩa là tập hợp {(i, j) với i cố định}.
+
+Thuật toán Seam Carving xóa các hàng và cột tổng quát (được gọi là đường seam). Cụ thể hơn, gọi $I$ là một bức ảnh có kích thước $n \* m$, một đường seam dọc là $(s^x)i = (i, x(i))s.t.\forall i, |x(i) - x(i - 1)| \leq 1$ trong đó $x[1..n] \to [1..m]$. Nói một cách dễ hiểu hơn, một đường seam dọc (**vertical seam**) là một đường đi từ biên trên của bức ảnh xuống biên dưới của bức ảnh với độ dài đường đi bằng chiều cao của bức ảnh, và với mỗi phần vị trí $(i, j)$ của đường seam, ta có thể đi tiếp đến các phần tử $(i + 1, j - 1)$, $(i + 1, j)$, $(i + 1, j + 1)$. Tương tự ta cũng có thể định nghĩa cho đường seam ngang (**horizontal seam**). Ví dụ về các đường màu đen là các đường seam trong hình dưới đây.
 
 ![](http://kirilllykov.github.io/images/seamcarving/sea-thai-seams.jpg)
 
 Chúng ta sẽ tìm kiếm một đường seam sao cho có tổng giá trị năng lượng là nhỏ nhất (theo chiều chúng ta chọn): $s^*= [\min \limits_{s} \sum\limits_{i=1}^n e(I(s_{i}))]$. Cách để tìm được kết quả tối ưu cho bài toàn là sử dụng phương pháp quy hoạch động.
 
 1. Tìm đường seam tối ưu từ biên trên của ảnh đến mỗi điểm ảnh $(i, j)$.
-	+ Gọi $M[i, j]$ là giá trị năng lượng nhỏ nhất đi từ biên trên của ảnh đến điểm ảnh $(i, j)$.
-
-	+ $M[1, j] = e(1, j)$ với $e(i, j)$ là năng lượng điểm ảnh tại $(i, j)$.
-
-	+ $M[i, j] = min(M[i - 1, j - 1], M[i - 1, j], M[i - 1, j + 1]) + e(i, j)$.
+    - Gọi $M[i, j]$ là giá trị năng lượng nhỏ nhất đi từ biên trên của ảnh đến điểm ảnh $(i, j)$.
+    - $M[1, j] = e(1, j)$ với $e(i, j)$ là năng lượng điểm ảnh tại $(i, j)$.
+    - $M[i, j] = min(M[i - 1, j - 1], M[i - 1, j], M[i - 1, j + 1]) + e(i, j)$.
 
 2. Ở biên dưới của ảnh, ta tìm điểm đường seam tối ưu (tổng giá trị năng lượng thấp nhất thông qua bảng phương án $M$) và đi ngược về để tìm đường đi tối ưu.
 
@@ -54,12 +64,13 @@ Chúng ta sẽ tìm kiếm một đường seam sao cho có tổng giá trị n�
 
 ```matlab
 function [optSeamMask, seamEnergy] = findOptSeam(energy)
-% finds optimal seam
-% returns mask with 0 mean a pixel is in the seam
+% Input: mảng 2 chiều là năng lượng của các điểm ảnh
+% Output: Đường seam dọc tối ưu & năng lượng
+% Mảng optSeamMask gồm 0/1, với 0 thể hiện điểm đó thuộc đường seam
+% Để tìm đường seam ngang tối ưu, cho Input là ma trận chuyển vị
 
-    % find M for vertical seams
-    % for vertical - use I`
-    M = padarray(energy, [0 1], realmax('double')); % to avoid handling border elements
+    % Tính mảng quy hoạch động M cho các đường seam dọc
+    M = padarray(energy, [0 1], realmax('double')); % Thêm 1 cột 0 ở đầu để tránh xử lý biên
 
     sz = size(M);
     for i = 2 : sz(1)
@@ -69,16 +80,16 @@ function [optSeamMask, seamEnergy] = findOptSeam(energy)
         end
     end
 
-    % find the min element in the last raw
+    % Tìm phần tử nhỏ nhất hàng cuối
     [val, indJ] = min(M(sz(1), :));
     seamEnergy = val;
 
     optSeamMask = zeros(size(energy), 'uint8');
 
-    %go backward and save (i, j)
+    % Đi ngược lại và truy vết
     for i = sz(1) : -1 : 2
-        %optSeam(i) = indJ - 1;
-        optSeamMask(i, indJ - 1) = 1; % -1 because of padding on 1 element from left
+        % optSeam(i) = indJ - 1;
+        optSeamMask(i, indJ - 1) = 1; % -1 vì lúc đầu ta thêm một cột 0 vào bên trái
         neighbors = [M(i - 1, indJ - 1) M(i - 1, indJ) M(i - 1, indJ + 1)];
         [val, indIncr] = min(neighbors);
 
@@ -87,19 +98,21 @@ function [optSeamMask, seamEnergy] = findOptSeam(energy)
         indJ = indJ + (indIncr - 2); % (x - 2): [1,2]->[-1,1]]
     end
 
-    optSeamMask(1, indJ - 1) = 1; % -1 because of padding on 1 element from left
+    optSeamMask(1, indJ - 1) = 1; % -1 vì lúc đầu ta thêm một cột 0 vào bên trái
     optSeamMask = ~optSeamMask;
 end
 ```
 
 Để tìm đường seam ngang, ta chỉ cần chuyển vị ma trận năng lượng lại.
 
-##Tìm phương án tối ưu để xóa đường seam
+## Tìm phương án tối ưu để xóa đường seam
 
-Bây giờ ta có thể tính toán ra được đường seam và sử dụng đoạn code dưới đây, ta thậm chí có thể loại bỏ đường seam ra khỏi bức ảnh.
+Bây giờ ta có thể tính toán ra được đường seam và sử dụng đoạn code dưới đây, ta có thể loại bỏ đường seam ra khỏi bức ảnh.
 
 ```matlab
 function imageReduced = reduceImageByMaskVertical(image, seamMask)
+    % Input: Ảnh & mask của đường seam
+    % Output: Ảnh sau khi xóa đường seam dọc
     imageReduced = zeros(size(image, 1), size(image, 2) - 1, size(image, 3));
     for i = 1 : size(seamMask, 1)
         imageReduced(i, :, 1) = image(i, seamMask(i, :), 1);
@@ -109,6 +122,8 @@ function imageReduced = reduceImageByMaskVertical(image, seamMask)
 end
 
 function imageReduced = reduceImageByMaskHorizontal(image, seamMask)
+    % Input: Ảnh & mask của đường seam
+    % Output: Ảnh sau khi xóa đường seam ngang
     imageReduced = zeros(size(image, 1) - 1, size(image, 2), size(image, 3));
     for j = 1 : size(seamMask, 2)
         imageReduced(:, j, 1) = image(seamMask(:, j), j, 1);
@@ -122,48 +137,50 @@ end
 
 ```
 1) T(0, 0) = 0;
-2) Intialize borders of T:
+2) Khởi tạo T:
    for all j {
        T(0, j) = T(0, j - 1) + E(seamVertical);
    }
    for all i {
        T(i, 0) = T(j - 1, 0) + E(seamHorizontal);
     }
-3) Initialize borders of TBM:
-   for all j { T(0, j) = 1; }
-   for all i { T(0, i) = 0; }
-4) Fill in T and TBM (c-like pseudocode):
+3) Initialize borders of TransBitMask (TBM):
+   for all j { TBM(0, j) = 1; }
+   for all i { TBM(0, i) = 0; }
+4) Tính T và TBM:
    for i = 2 to r {
        imageWithoutRow = image;
        for j = 2 to c {
             energy = computeEnergy(imageWithoutRow);
 
-      horizontalSeamEnergy = findHorizontalSeamEnergy(energy);
-      verticalSeamEnergy = findVerticalSeamEnergy(energy);
-      tVertical = T(i - 1, j) + verticalSeamEnergy;
-      tHorizontal = T(i, j - 1) _ horizontalSeamEnergy;
-      if (tVertical < tHorizontal) {
-         T(i, j) = tVertical;
-         transBitMask(i, j) = 1
-      } else {
-         T(i, j) = tHorizontal;    
-         transBitMask(i, j) = 0
-      }
-            // move from left to right - delete vertical seam
+            horizontalSeamEnergy = findHorizontalSeamEnergy(energy);
+            verticalSeamEnergy = findVerticalSeamEnergy(energy);
+            tVertical = T(i - 1, j) + verticalSeamEnergy;
+            tHorizontal = T(i, j - 1) _ horizontalSeamEnergy;
+            if (tVertical < tHorizontal) {
+                T(i, j) = tVertical;
+                TBM(i, j) = 1
+            } else {
+                T(i, j) = tHorizontal;    
+                TBM(i, j) = 0
+            }
+            // Xóa đường seam dọc
             imageWithoutRow = removeVerticalSeam(energy);
         }
 
         energy = computeEnergy(image);
         image = removeHorizontalSeam(energy);
     }
-5) Go backward starting from T(r, c) and following the TBM.
+
+5) Truy vết theo T và TBM.
 ```
 
 Đoạn code thực thi bằng matlab
 
 ```matlab
 function [T, transBitMask] = findTransportMatrix(sizeReduction, image)
-% find optimal order of removing raws and columns
+% Input: Kích thước cần giảm & ảnh gốc
+% Output: T, TBM định nghĩa ở trên
 
     T = zeros(sizeReduction(1) + 1, sizeReduction(2) + 1, 'double');
     transBitMask = ones(size(T)) * -1;
@@ -231,7 +248,7 @@ function [T, transBitMask] = findTransportMatrix(sizeReduction, image)
 end
 ```
 
-##Phóng to hình hảnh
+## Phóng to hình ảnh
 
 Để phóng to hình ảnh, thay vì ta loại bỏ đường seam ra khỏi ảnh, thì ta thêm một đường seam mới vào với giá trị trung bình của các điểm ảnh lận cận.
 
