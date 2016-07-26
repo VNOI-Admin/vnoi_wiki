@@ -1,20 +1,20 @@
-#Seam Carving Algorithm
+# Seam Carving Algorithm
 
 [Nguồn](http://kirilllykov.github.io/blog/2013/06/06/seam-carving-algorithm/)
 
-##Giới thiệu
+## Giới thiệu
 
-Seam carving là một thuật toán dùng để thay đổi kích thước hình ảnh, nó được giới thiệu trong bài báo cáo khoa học của [S. Avidan & A. Shamir](http://www.win.tue.nl/~wstahw/edu/2IV05/seamcarving.pdf). Trong bài báo, nội dung chính của vấn việc thay đổi kích thước ảnh là việc loại bỏ đi các điểm ảnh ít nghĩa và giữ lại các điểm ảnh quan trọng. Bức ảnh dưới đây là sẽ họa điều này (ảnh gốc bên trên minh họa tấm ảnh 332x480 và ảnh bên dưới minh họa sau khi áp dụng thuật toán seam carving đẻ thu nhỏ còn lại kích thước là 272x400).
+Seam carving là một thuật toán dùng để thay đổi kích thước hình ảnh, nó được giới thiệu trong bài báo cáo khoa học của [S. Avidan & A. Shamir](http://www.win.tue.nl/~wstahw/edu/2IV05/seamcarving.pdf). Trong bài báo, việc thay đổi kích thước ảnh được thực hiện bằng cách loại bỏ đi các điểm ảnh ít quan trọng và giữ lại các điểm ảnh quan trọng. Bức ảnh dưới đây là sẽ họa điều này (ảnh bên trên là ảnh gốc với kích thước 332x480 và ảnh bên dưới là ảnh sau khi áp dụng thuật toán seam carving đẻ thu nhỏ còn lại kích thước là 272x400).
 
 ![](http://kirilllykov.github.io/images/seamcarving/sea-thai.jpg) 
 
 ![](http://kirilllykov.github.io/images/seamcarving/sea-thai-reduced.jpg)
 
-Thuật toán này khá ấn tượng để có thể tìm thấy rất nhiều bài viết nói về nó. Tuy nhiên hầu hết đa số các tác giả đã không đọc bài báo cáo ban đầu và cung cấp cách cài đặt thuật toán khá cơ bản. Trong bài viết này tôi sẽ mô tả thuật toán cũng như tất cả các chi tiết như được viết bởi Avidan & Shamir. Tuy nhiên, ở bài viết này ta sẽ đi nghiên về cài đặt mà không đi sâu về chứng minh cụ thể. Ở đây ta sẽ sử dụng matlab để cài đặt thuật toán. Phần chứng minh cụ thể các bạn xem ở phần tham khảo.
+Thuật toán này khá phổ biến nên có thể tìm thấy rất nhiều bài viết nói về nó. Tuy nhiên hầu hết đa số các tác giả đã không đọc bài báo cáo ban đầu và chỉ cung cấp cách cài đặt thuật toán khá cơ bản. Trong bài viết này tôi sẽ mô tả thuật toán cũng như tất cả các chi tiết được viết bởi Avidan & Shamir. Tuy nhiên, ở bài viết này ta sẽ đi nghiên về cài đặt mà không đi sâu về chứng minh cụ thể. Ở đây ta sẽ sử dụng matlab để cài đặt thuật toán. Phần chứng minh cụ thể các bạn xem ở phần tham khảo.
 
-##Năng lượng (Energy)
+## Năng lượng (Energy)
 
-Để đơn giản hóa, ở bài viết chỉ tập trung nói việc làm giảm kích thước hình ảnh. Tuy nhiên việc làm tăng kích thước hình ảnh cũng làm tương tự, và sẽ được mô tả ở phần sau. Ý tưởng là việc loại bỏ các nội dung có ít ý nghĩa đối với người sử dụng (chứ ít thông tin). Ta gọi thông tin này là "Năng lượng" (Energy). Vì vậy ta sẽ giới thiệu hàm năng lượng để tính năng lượng điểm ảnh từ các điểm ảnh của ảnh gốc. Ví dụ, ở đây ta có thể tính năng lượng của ảnh thông qua đạo hàm của từng điểm ảnh theo các hướng: $e_{1}=\left | \frac{\delta I}{\delta x} \right | + \left | \frac{\delta I}{\delta y} \right |$. Nếu như ảnh có 3 kênh màu thì ta lấy tổng giá trị năng lượng của 3 kênh này lại với nhau. Đoạn code Matlab dưới đây sẽ mô tả quá trình tính. Hàm imfilter được áp dụng cho các điểm ảnh được đánh dấu, do đó kết quả dI(i, j)/dx = I(i+1)-I(i-1)/dx với dx = 1.
+Để đơn giản hóa, ở bài viết chỉ tập trung nói việc làm giảm kích thước hình ảnh. Tuy nhiên việc làm tăng kích thước hình ảnh cũng làm tương tự, và sẽ được mô tả ở phần sau. Ý tưởng là việc loại bỏ các nội dung có ít ý nghĩa đối với người sử dụng (chứ ít thông tin). Ta gọi thông tin này là "Năng lượng" (Energy). Vì vậy ta sẽ giới thiệu hàm năng lượng để tính năng lượng điểm ảnh từ các điểm ảnh của ảnh gốc. Ví dụ, ở đây ta có thể tính năng lượng của ảnh thông qua đạo hàm của từng điểm ảnh theo các hướng: $e_{1}=\left | \frac{\delta I}{\delta x} \right | + \left | \frac{\delta I}{\delta y} \right |$. Nếu như ảnh có 3 kênh màu thì ta lấy tổng giá trị năng lượng của 3 kênh này lại với nhau. Đoạn code Matlab dưới đây sẽ mô tả quá trình tính. Hàm `imfilter` được áp dụng cho các điểm ảnh được đánh dấu, do đó kết quả $dI(i, j)/dx = I(i+1)-I(i-1)/dx$ với $dx = 1$.
 
 ```matlab
 function res = energyRGB(I)
@@ -33,9 +33,9 @@ Sơ đồ năng lượng ảnh sau khi tính:
 
 ![](http://kirilllykov.github.io/images/seamcarving/sea-thai-energy.jpg)
 
-##Seam
+## Seam
 
-Nếu chúng ta xóa đi các điểm ảnh có nặng lượng thấp theo một vị trí ngẫu nhiên, ta sẽ ra một hình ảnh méo mó. Nếu chúng ta xóa theo cột hoặc hàng với năng lượng tối hiểu, ta sẽ nhận được một bức ảnh hoàn chỉnh được thu nhỏ kích thước lại. Ở đây cột i nghĩa là {(i, j) với j được định nghĩa trước}, hàng - {(i, j) với i được định nghĩa trước}. Giải pháp được giới thiệu được khái quá hóa các dòng và cột (được gọi là đường seam). Nói đúng hơn, gọi I là một bức ảnh có kích thước $nxm$, một đường seam dọc là $(s^x)i = (i, x(i))s.t.\forall i, |x(i) - x(i - 1)| \leq 1$ trong đó $x[1..n] \to [1..m]$. Điều đó có nghĩa là, một đường seam dọc là một đường đi từ biên trên của bức ảnh xuống biên dưới của bức ảnh với độ dài đường đi bằng chiều rộng của bức ảnh, và với mỗi phần vị trí $(i, j)$ của đường seam, ta có thể đi tiếp đến các phần tử $(i + 1, j - 1)$, $(i + 1, j)$, $(i + 1, j + 1)$. Tương tự ta cũng có thể định nghĩa cho đường seam theo chiều ngang. Ví dụ về các đường màu đen là các đường seam trong hình dưới đây.
+Nếu chúng ta xóa đi các điểm ảnh có nặng lượng thấp theo một vị trí ngẫu nhiên, ta sẽ ra một hình ảnh méo mó. Nếu chúng ta xóa theo cột hoặc hàng với năng lượng tối thiểu, ta sẽ nhận được một bức ảnh hoàn chỉnh được thu nhỏ kích thước lại. Ở đây cột j nghĩa là {(i, j) với j cố định}, hàng i - {(i, j) với i là hằng số}. Giải pháp được giới thiệu được tổng quát hóa các dòng và cột (được gọi là đường seam). Nói đúng hơn, gọi $I$ là một bức ảnh có kích thước $n \* m$, một đường seam dọc là $(s^x)i = (i, x(i))s.t.\forall i, |x(i) - x(i - 1)| \leq 1$ trong đó $x[1..n] \to [1..m]$. Nói một cách dễ hiểu hơn, một đường seam dọc là một đường đi từ biên trên của bức ảnh xuống biên dưới của bức ảnh với độ dài đường đi bằng chiều rộng của bức ảnh, và với mỗi phần vị trí $(i, j)$ của đường seam, ta có thể đi tiếp đến các phần tử $(i + 1, j - 1)$, $(i + 1, j)$, $(i + 1, j + 1)$. Tương tự ta cũng có thể định nghĩa cho đường seam theo chiều ngang. Ví dụ về các đường màu đen là các đường seam trong hình dưới đây.
 
 ![](http://kirilllykov.github.io/images/seamcarving/sea-thai-seams.jpg)
 
@@ -50,7 +50,7 @@ Chúng ta sẽ tìm kiếm một đường seam sao cho có tổng giá trị n�
 
 2. Ở biên dưới của ảnh, ta tìm điểm đường seam tối ưu (tổng giá trị năng lượng thấp nhất thông qua bảng phương án $M$) và đi ngược về để tìm đường đi tối ưu.
 
-Lưu ý: trong đoạn code dưới đây trả về một ma trận $nxm$ chỉ gồm 0 và 1 với các điểm ảnh trên đường đi seam sẽ có giá trị là 0 và ngược lại.
+**Lưu ý**: trong đoạn code dưới đây trả về một ma trận $n \* m$ chỉ gồm 0 và 1 với các điểm ảnh trên đường đi seam sẽ có giá trị là 0 và ngược lại.
 
 ```matlab
 function [optSeamMask, seamEnergy] = findOptSeam(energy)
