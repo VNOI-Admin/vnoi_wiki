@@ -2,7 +2,7 @@ Test markdown syntax
 
 Code:
 
-```python
+```py
 print 'Hello'
 ```
 
