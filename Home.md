@@ -12,6 +12,9 @@
 - Những kiến thức cơ bản:
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 
+- Cấu trúc dữ liệu:
+    - [[Binary Heap|translate/wcipeg/Binary-Heap]]
+
 - Quy hoạch động:
     - [[Kĩ thuật bao lồi|translate/wcipeg/Convex-Hull-Trick]]
 
@@ -23,4 +26,5 @@
 
 - Machine Learning
     - [[Machine Learning 101: Làm quen|cs/ml/machine-learning-101]]
-- Programming Languages
+- Xử lý ảnh
+    - [[Seam Carving|cs/imageprocessing/Seam-Carving]]
