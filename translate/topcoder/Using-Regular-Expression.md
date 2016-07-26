@@ -1,7 +1,7 @@
-[[_TOC_]]
-
 
 # Sử dụng biểu thức chính quy #
+
+[[_TOC_]]
 
 Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/using-regular-expressions-2/)
 
