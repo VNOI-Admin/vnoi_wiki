@@ -19,4 +19,9 @@ Tables:
 <td>Y</td>
 <td>Z</td>
 </tr>
+<tr>
+<td>UU</td>
+<td>V</td>
+<td>WW</td>
+</tr>
 </table>
