@@ -9,10 +9,11 @@
     - [[Một số tài liệu hay về Thuật Toán|algo/basic/Tai-Lieu-Thuat-Toan]]
     - [[Nghệ thuật giải bài|translate/topcoder/How-to-Find-a-Solution]]
 
-- Những kiến thức cơ bản:
+- Những kiến thức nhập môn:
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 
 - Cấu trúc dữ liệu:
+    - [[Cây|translate/wcipeg/tree]]
     - [[Binary Heap|translate/wcipeg/Binary-Heap]]
 
 - Quy hoạch động:
