@@ -19,6 +19,11 @@
 - Quy hoạch động:
     - [[Kĩ thuật bao lồi|translate/wcipeg/Convex-Hull-Trick]]
 
+
+## Ngôn ngữ lập trình:
+
+- [[Sử dụng regex|translate/topcoder/Using-Regular-Expression]]
+
 ## Kinh nghiệm phỏng vấn
 
 - [[Những kinh nghiệm chung khi phỏng vấn|interview/general-experience]]
