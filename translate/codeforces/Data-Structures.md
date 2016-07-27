@@ -688,6 +688,7 @@ void shift(int id,int l,int r){//pass update information to the children
 ```
 
 Hàm để chuyển các thông tin đã cập nhật sang node con:
+
 ```cpp
 
 void shift(int id,int l,int r){//pass update information to the children
@@ -696,7 +697,7 @@ void shift(int id,int l,int r){//pass update information to the children
 	upd(id * 2 + 1, mid, r, lazy[id]);
 	lazy[id] = 0;// passing is done
 }
-```cpp
+```
 
 
 Hàm để thực hiện truy vấn yêu cầu tăng giá trị:
