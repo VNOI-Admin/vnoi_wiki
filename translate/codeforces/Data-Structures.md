@@ -8,7 +8,7 @@
 
 [[_TOC_]]
 
-Trong bài viết này, mình sẽ giới thiệu tới các bạn một số Cấu trúc dữ liệu hữu ích, cũng như kỹ năng sử dụng và cách cài đặt chúng.
+Trong bài viết này, mình sẽ giới thiệu một cách sơ lược tới các bạn một số Cấu trúc dữ liệu hữu ích, cũng như kỹ năng sử dụng và cách cài đặt chúng.
 
 # 1. Cây
 
@@ -83,10 +83,10 @@ void merge(int x, int y) {
         // độ phức tạp mỗi thao tác xuống log(n).
         // Nếu kết hợp cả Union-by-rank và Path-compression thì độ phức tạp mỗi thao tác là ackerman(n),
         // rất rất nhỏ với n.
-		swap(x, y);
+        swap(x, y);
     }
-	par[x] += par[y];
-	par[y] = x;
+    par[x] += par[y];
+    par[y] = x;
 }
 ```
 
@@ -101,7 +101,7 @@ Ta lưu vị trí các viên sỏi trong một **vector** (hoặc **mảng**) v�
 Khi cài đặt DSU, cách này không được sử dụng (do phức tạp hơn cách trên), tuy nhiên ý tưởng này có thể được áp dụng cho nhiều bài khác.
 
 
-## Sets (Cây Đỏ Đen; Red-Black Trees)
+## 3.3. Sets (Cây Đỏ Đen; Red-Black Trees)
 
 Một cách khác là lưu chúng trong một cây đỏ đen (trong C++ là **set** thư viện **STL**). Ta làm y như đã làm với vectors, độ phức tạp sẽ là $O(nlog^2n)$. (1 log cho việc nhập vào).
 
@@ -110,9 +110,8 @@ _Bài tập: (Phải tham gia nhóm [ACM-OI](http://codeforces.com/group/L1Sf9F4
 - [Hamro & Tools](http://codeforces.com/group/L1Sf9F4uBt/contest/200499/problem/E)
 - [TROY Query](http://codeforces.com/gym/100571/problem/F)
 
----
 
-# Cây Tiền Tố (Trie)
+# 4. Cây Tiền Tố (Trie)
 
 Trong khoa học máy tính, trie, hay cây tiền tố, là một cấu trúc dữ liệu sử dụng cây có thứ tự, dùng để lưu trữ một mảng liên kết của các xâu kí tự.
 
@@ -124,16 +123,23 @@ _Khởi tạo Cây Tiền Tố: (0-based code)_
 
 ```cpp
 
-int x[MAX_NUMBER_OF_NODES][MAX_ASCII_CODE], next = 1; //initially all numbers in x are -1
+// nodes[i]: nút i trên trie
+// nodes[i][j]: nút tiếp theo trên cây trie, nếu ta xuất phát từ nút i, và đi theo ký tự j
+// Ban đầu, khởi tạo x[i][j] = -1
+// nNodes = số nút trên cây trie. Ban đầu, cây có đúng 1 nút gốc.
 
-void build(string s) {
-	int i = 0, v = 0;
-	while(i < s.size()) {
-		if(x[v][s[i]] == -1)
-			v = x[v][s[i++]] = next++;
-		else
-			v = x[v][s[i++]];
-	}
+int nodes[MAX_NUMBER_OF_NODES][MAX_ASCII_CODE], nNodes = 1;
+
+void add(string s) {  // thêm xâu s vào trie.
+    int v = 0; // Đỉnh hiện tại
+    for(char c : s) { // Xét lần lượt từng ký tự c của xâu s
+        if (nodes[v][c] == -1) {
+            // Nếu hiện không có đỉnh tiếp theo nếu xuất phát từ đỉnh v và đi theo ký tự c, ta phải thêm 1 đỉnh mới.
+            nodes[v][c] = nNodes++;
+        }
+        // Đi từ đỉnh v, theo cạnh tương ứng với ký tự c.
+        v = nodes[v][c];
+    }
 }
 ```
 
@@ -188,9 +194,15 @@ _Code:_
 
 ```cpp
 for(int j = 0; j < MAX_LOG; j++)
-	for(int i = 0; i < n; i++)
-        if (i + (1 << j) - 1 < n)
-            st[i][j] = (j ? min(st[i][j-1], st[i + (1 << (j-1)) - 1][j-1]): a[i]);
+    for(int i = 0; i < n; i++)
+        if (i + (1 << j) - 1 < n) {
+            if (j == 0) {
+                st[i][j] = a[i];
+            }
+            else {
+                st[i][j] = min(st[i][j-1], st[i + (1 << (j-1)) - 1][j-1]);
+            }
+        }
 ```
 
 Và với mỗi truy vấn, đầu tiên, tìm giá $x$ lớn nhất sao cho $2^x < r-l+1$ và xuất ra $min(st[l][x], st[r-2^x+1][x])$.
@@ -226,14 +238,14 @@ _Code (1-based):_
 ```cpp
 int fen[MAX_N];
 void update(int p, int val){
-	for(int i = p; i <= n; i += i & -i)
-		fen[i] += val;
+    for(int i = p; i <= n; i += i & -i)
+        fen[i] += val;
 }
 int sum(int p) {
-	int ans = 0;
-	for(int i = p; i; i -= i & -i)
-		ans += fen[i];
-	return ans;
+    int ans = 0;
+    for(int i = p; i; i -= i & -i)
+        ans += fen[i];
+    return ans;
 }
 ```
 
@@ -274,14 +286,14 @@ _Code C++:_
 
 vector<int> s;
 void split(int x, int y, int id = 1, int l = 0, int r = n) { // id is the index of the node
-	if (x >= r or l >= y) return ; // in this case, intersect of [l,r) and [x,y) is empty
-	if (x <= l && r <= y) {
-		s.push_back(id); 
-		return ;
-	}
-	int mid = (l+r)/2;
-	split(x,y,id * 2,l,mid);
-	split(x,y,id * 2 + 1,mid,r);
+    if (x >= r or l >= y) return ; // in this case, intersect of [l,r) and [x,y) is empty
+    if (x <= l && r <= y) {
+        s.push_back(id); 
+        return ;
+    }
+    int mid = (l+r)/2;
+    split(x,y,id * 2,l,mid);
+    split(x,y,id * 2 + 1,mid,r);
 }
 
 ```
@@ -300,14 +312,14 @@ Trước khi xử lý các truy vấn, ta sẽ gọi hàm `build()`:
 
 ```cpp
 void build(int id = 1, int l = 0, int r = n) {
-	if (r - l < 2) {  // l + 1 == r
-		s[id] = a[l];
-		return ;
-	}
-	int mid = (l + r) / 2;
-	build(id * 2, l, mid);
-	build(id * 2 + 1, mid, r);
-	s[id] = s[id * 2] + s[id * 2 + 1];
+    if (r - l < 2) {  // l + 1 == r
+        s[id] = a[l];
+        return ;
+    }
+    int mid = (l + r) / 2;
+    build(id * 2, l, mid);
+    build(id * 2 + 1, mid, r);
+    s[id] = s[id * 2] + s[id * 2 + 1];
 }
 
 ```
@@ -316,16 +328,16 @@ Hàm modify:
 
 ```cpp
 void modify(int p, int x, int id = 1, int l = 0, int r = n) {
-	s[id] += x - a[p];
-	if (r - l < 2) { // l = r - 1 = p
-		a[p] = x;
-		return ;
-	}
-	int mid = (l + r) / 2;
-	if(p < mid)
-		modify(p, x, id * 2, l, mid);
-	else
-		modify(p, x, id * 2 + 1, mid, r);
+    s[id] += x - a[p];
+    if (r - l < 2) { // l = r - 1 = p
+        a[p] = x;
+        return ;
+    }
+    int mid = (l + r) / 2;
+    if(p < mid)
+        modify(p, x, id * 2, l, mid);
+    else
+        modify(p, x, id * 2 + 1, mid, r);
 }
 ```
 
@@ -333,11 +345,11 @@ Hàm sum:
 
 ```cpp
 int sum(int x, int y, int id = 1, int l = 0, int r = n) {
-	if (x >= r or l >= y) return 0;
-	if (x <= l && r <= y) return s[id];
-	int mid = (l+r) / 2;
-	return sum(x, y, id * 2, l, mid) +
-	       sum(x, y, id * 2 + 1, mid, r);
+    if (x >= r or l >= y) return 0;
+    if (x <= l && r <= y) return s[id];
+    int mid = (l+r) / 2;
+    return sum(x, y, id * 2, l, mid) +
+           sum(x, y, id * 2 + 1, mid, r);
 }
 ```
 
@@ -363,8 +375,8 @@ Hàm cập nhật một node:
 
 ```cpp
 void upd(int id, int l, int r, int x) { // increase all members in this interval by x
-	lazy[id] += x;
-	s[id] += (r - l) * x;
+    lazy[id] += x;
+    s[id] += (r - l) * x;
 }
 ```
 
@@ -373,10 +385,10 @@ Hàm chuyển các thông tin đã cập nhật sang node con:
 ```cpp
 
 void shift(int id, int l, int r) { //pass update information to the children
-	int mid = (l+r)/2;
-	upd(id * 2, l, mid, lazy[id]);
-	upd(id * 2 + 1, mid, r, lazy[id]);
-	lazy[id] = 0; // passing is done
+    int mid = (l+r)/2;
+    upd(id * 2, l, mid, lazy[id]);
+    upd(id * 2 + 1, mid, r, lazy[id]);
+    lazy[id] = 0; // passing is done
 }
 ```
 
@@ -385,10 +397,10 @@ Hàm để chuyển các thông tin đã cập nhật sang node con:
 ```cpp
 
 void shift(int id, int l, int r) { //pass update information to the children
-	int mid = (l + r) / 2;
-	upd(id * 2, l, mid, lazy[id]);
-	upd(id * 2 + 1, mid, r, lazy[id]);
-	lazy[id] = 0; // passing is done
+    int mid = (l + r) / 2;
+    upd(id * 2, l, mid, lazy[id]);
+    upd(id * 2 + 1, mid, r, lazy[id]);
+    lazy[id] = 0; // passing is done
 }
 ```
 
@@ -397,16 +409,16 @@ Hàm để thực hiện truy vấn yêu cầu tăng giá trị:
 
 ```cpp
 void increase(int x, int y, int v, int id = 1, int l = 0, int r = n) {
-	if (x >= r or l >= y) return ;
-	if (x <= l && r <= y) {
-		upd(id, l, r, v);
-		return ;
-	}
-	shift(id, l, r);
-	int mid = (l+r) / 2;
-	increase(x, y, v, id * 2, l, mid);
-	increase(x, y, v, id * 2 + 1, mid, r);
-	s[id] = s[id * 2] + s[id * 2 + 1];
+    if (x >= r or l >= y) return ;
+    if (x <= l && r <= y) {
+        upd(id, l, r, v);
+        return ;
+    }
+    shift(id, l, r);
+    int mid = (l+r) / 2;
+    increase(x, y, v, id * 2, l, mid);
+    increase(x, y, v, id * 2 + 1, mid, r);
+    s[id] = s[id * 2] + s[id * 2 + 1];
 }
 ```
 
@@ -415,12 +427,12 @@ Hàm để trả lời các truy vấn hỏi tổng đoạn:
 ```cpp
 
 int sum(int x, int y, int id = 1, int l = 0, int r = n) {
-	if (x >= r or l >= y) return 0;
-	if (x <= l && r <= y) return s[id];
-	shift(id, l, r);
-	int mid = (l+r)/2;
-	return sum(x, y, id * 2, l, mid) +
-	       sum(x, y, id * 2 + 1, mid, r);
+    if (x >= r or l >= y) return 0;
+    if (x <= l && r <= y) return s[id];
+    shift(id, l, r);
+    int mid = (l+r)/2;
+    return sum(x, y, id * 2, l, mid) +
+           sum(x, y, id * 2 + 1, mid, r);
 }
 
 ```
@@ -456,44 +468,44 @@ _Code C++:_
 
 namespace HashSuffixArray {
 
-	const int MAXN = 1 << 21;
+    const int MAXN = 1 << 21;
 
-	typedef unsigned long long hash;
-	const hash BASE = 137;
+    typedef unsigned long long hash;
+    const hash BASE = 137;
 
-	int N;
-	char * S;
-	int sa[MAXN];
-	hash h[MAXN], hPow[MAXN];
+    int N;
+    char * S;
+    int sa[MAXN];
+    hash h[MAXN], hPow[MAXN];
 
-	#define getHash(lo, size) (h[lo] - h[(lo) + (size)] * hPow[size])
+    #define getHash(lo, size) (h[lo] - h[(lo) + (size)] * hPow[size])
 
-	inline bool sufCmp(int i, int j)
-	{
-		int lo = 1, hi = min(N - i, N - j);
-		while (lo <= hi)
-		{
-			int mid = (lo + hi) >> 1;
-			if (getHash(i, mid) == getHash(j, mid))
-				lo = mid + 1;
-			else
-				hi = mid - 1;
-		}
-		return S[i + hi] < S[j + hi];
-	}
+    inline bool sufCmp(int i, int j)
+    {
+        int lo = 1, hi = min(N - i, N - j);
+        while (lo <= hi)
+        {
+            int mid = (lo + hi) >> 1;
+            if (getHash(i, mid) == getHash(j, mid))
+                lo = mid + 1;
+            else
+                hi = mid - 1;
+        }
+        return S[i + hi] < S[j + hi];
+    }
 
-	void buildSA()
-	{
-		N = strlen(S);
-		hPow[0] = 1;
-		for (int i = 1; i <= N; ++i)
-			hPow[i] = hPow[i - 1] * BASE;
-		h[N] = 0;
-		for (int i = N - 1; i >= 0; --i)
-			h[i] = h[i + 1] * BASE + S[i], sa[i] = i;
+    void buildSA()
+    {
+        N = strlen(S);
+        hPow[0] = 1;
+        for (int i = 1; i <= N; ++i)
+            hPow[i] = hPow[i - 1] * BASE;
+        h[N] = 0;
+        for (int i = N - 1; i >= 0; --i)
+            h[i] = h[i + 1] * BASE + S[i], sa[i] = i;
 
-		stable_sort(sa, sa + N, sufCmp);
-	}
+        stable_sort(sa, sa + N, sufCmp);
+    }
 
 } // end namespace HashSuffixArray
 
@@ -519,43 +531,43 @@ using namespace std;
 
 namespace SuffixArray
 {
-	const int MAXN = 1 << 21;
-	char * S;
-	int N, gap;
-	int sa[MAXN], pos[MAXN], tmp[MAXN], lcp[MAXN];
+    const int MAXN = 1 << 21;
+    char * S;
+    int N, gap;
+    int sa[MAXN], pos[MAXN], tmp[MAXN], lcp[MAXN];
 
-	bool sufCmp(int i, int j)
-	{
-		if (pos[i] != pos[j])
-			return pos[i] < pos[j];
-		i += gap;
-		j += gap;
-		return (i < N && j < N) ? pos[i] < pos[j] : i > j;
-	}
+    bool sufCmp(int i, int j)
+    {
+        if (pos[i] != pos[j])
+            return pos[i] < pos[j];
+        i += gap;
+        j += gap;
+        return (i < N && j < N) ? pos[i] < pos[j] : i > j;
+    }
 
-	void buildSA()
-	{
-		N = strlen(S);
-		REP(i, N) sa[i] = i, pos[i] = S[i];
-		for (gap = 1;; gap *= 2)
-		{
-			sort(sa, sa + N, sufCmp);
-			REP(i, N - 1) tmp[i + 1] = tmp[i] + sufCmp(sa[i], sa[i + 1]);
-			REP(i, N) pos[sa[i]] = tmp[i];
-			if (tmp[N - 1] == N - 1) break;
-		}
-	}
+    void buildSA()
+    {
+        N = strlen(S);
+        REP(i, N) sa[i] = i, pos[i] = S[i];
+        for (gap = 1;; gap *= 2)
+        {
+            sort(sa, sa + N, sufCmp);
+            REP(i, N - 1) tmp[i + 1] = tmp[i] + sufCmp(sa[i], sa[i + 1]);
+            REP(i, N) pos[sa[i]] = tmp[i];
+            if (tmp[N - 1] == N - 1) break;
+        }
+    }
 
-	void buildLCP()
-	{
-		for (int i = 0, k = 0; i < N; ++i) if (pos[i] != N - 1)
-		{
-			for (int j = sa[pos[i] + 1]; S[i + k] == S[j + k];)
-			++k;
-			lcp[pos[i]] = k;
-			if (k)--k;
-		}
-	}
+    void buildLCP()
+    {
+        for (int i = 0, k = 0; i < N; ++i) if (pos[i] != N - 1)
+        {
+            for (int j = sa[pos[i] + 1]; S[i + k] == S[j + k];)
+            ++k;
+            lcp[pos[i]] = k;
+            if (k)--k;
+        }
+    }
 } // end namespace SuffixArray
 
 ```
