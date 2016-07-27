@@ -1,6 +1,6 @@
 # Cấu Trúc Dữ Liệu
 ***Bài viết chưa hoàn thiện***
-
+d
 **Nguồn:** [Codeforces](http://codeforces.com/blog/entry/15729)
 
 **Tác giả:** [amd](http://codeforces.com/profile/amd)
