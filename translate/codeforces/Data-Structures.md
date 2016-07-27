@@ -576,13 +576,14 @@ Source: [mukel](http://codeforces.com/profile/mukel)
 
 ---
 
-#13. Thuật toán phân tách cây ( Heave-light decomposition )
+#13. Thuật toán phân tách cây ( Heavy-light decomposition )
 
-[Thuật toán phân tách cây](http://vnoi.info/forum/5/5012/)
+Đọc ở đây: [Thuật toán phân tách cây](http://vnoi.info/forum/5/5012/)
+
 Tác giả: [pencil_man](http://vnoi.info/user/profile/pencil_man/)
 
 #14. Persistent Data Structures 
 
-[Persistent Data Structures](http://vnoi.info/library/8/3/)
+Đọc ở đây: [Persistent Data Structures](http://vnoi.info/library/8/3/)
 
 Tác giả: [admin](http://vnoi.info/user/profile/admin/)
