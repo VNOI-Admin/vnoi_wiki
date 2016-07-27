@@ -46,6 +46,7 @@ Với những yêu cầu trên, ta có thể sử dụng nhiều cấu trúc, nh
 Cây là cấu trúc hữu hiệu nhất dùng cho DSU. Với mỗi đỉnh, ta lưu lại đỉnh cha của nó ( đỉnh cha của đỉnh gốc là -1 ). Ban đầu, mọi đỉnh cha được set là -1. Có các truy vấn **tìm đỉnh gốc** của mỗi hộp ( có được gốc, ta có thể truy ra vị trí của hộp ) và các truy vấn yêu cầu **hợp** 2 cây lại. Để thuật toán nhanh hơn, mỗi lần tìm gốc của mỗi đỉnh, ta đặt đỉnh cha của nó là gốc cho truy vấn tiếp theo. Luôn muốn độ cao của cây là nhỏ nhất có thể, vì vậy, mỗi khi nhập các hộp lại với nhau, ta bỏ các bộ dụng cụ trong hộp có ít bộ hơn vào hộp còn lại.
 
 [[/uploads/tree1.png|tree1]]
+
 _Code C++ ( [bmerry](http://codeforces.com/profile/bmerry) )_
 
 ```cpp
@@ -457,6 +458,8 @@ Source: [mukel](http://codeforces.com/profile/mukel)
 
 **Tính chất của Heap:** Giá trị trên một đỉnh luôn **lớn hơn hoặc bằng** giá trị **đỉnh con** của nó. Ta có thể dùng heap trong **Heap Sort* ( **Sắp xếp vun đống** ).
 
+[[/uploads/heap1.png|heap1]]
+
 ---
 
 ##Fibonacci Heap
@@ -467,12 +470,15 @@ Fibonacci Heap là một dạng heap có **độ phức tạp** bé hơn. Chúng
 ## Cây Tìm Kiếm Nhị Phân 
 **Cây Tìm Kiếm Nhị Phân** ( **BST Binary Search Tree** ) là một cây nhị phân có tính chất: Với mỗi giá trị trên node đang xét, giá trị của mọi node trên cây con trái luôn nhỏ hơn node đang xét và giá trị của mọi node trên cây con phải luôn lớn hơn node đang xét.
 
+[[/uploads/bst1.png|bst1]]
+
 ---
 
 ##Cây Đỏ Đen ( Red-Black Tree )
 Cây đỏ đen là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp **O(log(N))**.
 Thư viện **STL C++** có sẵn CTDL này, dưới dạng **set**.
 
+[[/uploads/redblack1.png\red****
 ---
 
 ##SQRT Decomposition
