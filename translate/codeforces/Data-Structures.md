@@ -8,43 +8,48 @@
 
 [[_TOC_]]
 
-Trong bài viết này, mình sẽ giới thiệu tới các bạn một số Cấu trúc dữ liệu hữu ích, cũng như kỹ năng sử dụng chúng.
+Trong bài viết này, mình sẽ giới thiệu tới các bạn một số Cấu trúc dữ liệu hữu ích, cũng như kỹ năng sử dụng và cách cài đặt chúng.
 
-#Cây
+# 1. Cây
+
 Cây là một trong những CTDL thông dụng và hữu ích nhất. Cây là một đồ thị liên thông không có chu trình. Có nhiều dạng cây như **Cây Có Gốc (Rooted Trees)**, **Cây Có Hướng (Directed Trees)**,... 
 
 Bạn có thể đọc thêm về cây ở [[bài viết này|translate/wcipeg/tree]].
 
-# Partial Sum
+# 2. Partial Sum
+
 Có 2 dạng bài có thể giải được bằng cách áp dụng Partial Sum.
 
 **Những bài đưa ra các truy vấn yêu cầu cho biết tổng một số phần tử.**
 
-Lời giải cho những bài như thế này như nhau, chỉ cần biết cách giải một trong số chúng.
-
 **Ví dụ:** Cho một mảng $a_1,a_2,a_3,...,a_N$. Mỗi truy vấn cho biết 2 số $L$ và $R$, yêu cầu in ra tổng $a_L + a_{L+1} + ... + a_R$.
 
-**Cách giải:** Tạo một mảng $S$, với mỗi phần tử $S_i = a_1 + a_2 + ... + a_i$. Xuất ra: $S_R – S_{L-1}$.
+**Cách giải:** Tạo một mảng $S$, với $S_i = a_1 + a_2 + ... + a_i$. Xuất ra: $S_R – S_{L-1}$.
 
 
 **Những bài yêu cầu thay đổi giá trị các phần tử trong một đoạn.**
-
-Lời giải cho những bài như thế này như nhau, chỉ cần biết cách giải một trong số chúng.
 
 **Ví dụ:** Cho mảng $a_1,a_2,...,a_N$. Mỗi truy vấn cho 3 số $L$, $R$, $V$. với mỗi $i (L \le i \le R)$, cộng $V$ vào $a_i$. Sau khi hoàn thành, in toàn bộ mảng ra.
 
 **Cách giải:**  Tạo một mảng $P$: $p_1,p_2,...,p_N$ với mỗi phần tử được khởi tạo với giá trị $0$. Mỗi truy vấn, tăng $p_L$ lên $V$ và trừ $p_{R+1}$ đi $V$. Sau đó, với mỗi $i$ (từ 1), $p_i += p_{i–1}.$
 
-# Disjoints Sets
+# 3. Disjoints Sets
+
 **Disjoint Sets** là 1 CTDL rất hữu dụng, sử dụng rất nhanh, gọn và dễ dàng. Nó được dùng làm nền tảng cho một số thuật toán, như **Kruskal’s** và **Prim’s**, 2 thuật toán tìm **cây khung** nhỏ nhất trên đồ thị.
 
-**Disjoint Sets**, hoặc **DSU** (**Disjoint Sets Union**) như tên gọi của, là một tập hợp các tập hợp. Hãy tưởng tượng chúng ta có một vài cái hộp cũng như một vài bộ dụng cụ và ban đầu mỗi bộ dụng cụ nằm trong một cái hộp. Thông thường, ta sẽ nhận được các truy vấn để hợp 2 hộp lại với nhau hoặc in ra các bộ dụng cụ có trong hộp hoặc tìm hộp có các bộ dụng cụ nhất định.
+**Disjoint Sets**, hoặc **DSU** (**Disjoint Sets Union**) như tên gọi của nó, là một tập hợp các tập hợp.
+
+Hãy tưởng tượng chúng ta có $n$ cái hộp và $n$ viên sỏi. Các viên sỏi phân biệt. Ban đầu mỗi viên sỏi nằm trong một cái hộp. ta cần thực hiện 2 loại truy vấn:
+
+1. Cho hết sỏi ở 2 hộp $u$ và $v$ vào cùng một hộp.
+2. Kiểm tra 2 viên sỏi $i$ và $j$ có thuộc cùng một hộp hay không
 
 Giả sử, chỉ có duy nhất 1 bộ dụng cụ trong 1 hộp. Ta có $n$ bộ dụng cụ, $n$ hộp, và ban đầu, bộ thứ $i$ sẽ nằm trong hộp thứ $i$.
 
 Với những yêu cầu trên, ta có thể sử dụng nhiều cấu trúc, như:
 
-## Cây
+## 3.1. Cây
+
 Cây là cấu trúc hữu hiệu nhất dùng cho DSU. Với mỗi đỉnh, ta lưu lại đỉnh cha của nó (đỉnh cha của đỉnh gốc là -1). Ban đầu, mọi đỉnh cha được set là -1. Có các truy vấn **tìm đỉnh gốc** của mỗi hộp (có được gốc, ta có thể truy ra vị trí của hộp) và các truy vấn yêu cầu **hợp** 2 cây lại. Để thuật toán nhanh hơn, mỗi lần tìm gốc của mỗi đỉnh, ta đặt đỉnh cha của nó là gốc cho truy vấn tiếp theo. Luôn muốn độ cao của cây là nhỏ nhất có thể, vì vậy, mỗi khi nhập các hộp lại với nhau, ta bỏ các bộ dụng cụ trong hộp có ít bộ hơn vào hộp còn lại.
 
 [[/uploads/tree1.png|tree1]]
@@ -52,26 +57,48 @@ Cây là cấu trúc hữu hiệu nhất dùng cho DSU. Với mỗi đỉnh, ta 
 _Code C++ ([bmerry](http://codeforces.com/profile/bmerry))_
 
 ```cpp
+
+// par[i] = x nếu viên sỏi i và viên sỏi x nằm trong cùng một hộp
+// Nếu par[i] < 0 thì viên sỏi i nằm trong hộp i, và -par[i] chính là số sỏi trong hộp đó.
+// Ban đầu, khởi tạo par[i] = -1 với mọi i.
+
 int root(int v) {
-    return par[v] < 0 ? v : (par[v] = root(par[v]));
+    // Cho 1 số v, tìm hộp chứa viên sỏi v
+    return par[v] < 0
+            ? v
+            : (par[v] = root(par[v])); // Viên sỏi v nằm trong cùng hộp với viên sỏi chứa par[v]
+                                       // Chú ý ở đây ta gán lại par[v] = root(par[v]), kĩ thuật này
+                                       // được gọi là Path Compression, giúp giảm độ phức tạp mỗi
+                                       // thao tác xuống log(n)
 }
-void merge(int x, int y) {  // x and y are some tools (vertices)
-    if ((x = root(x)) == (y = root(y))
+
+void merge(int x, int y) {
+    // Gộp 2 hộp chứa viên sỏi x và y vào cùng 1 hộp
+    if ((x = root(x)) == (y = root(y)) {
+        // 2 viên sỏi x và y đã thuộc cùng 1 hộp, ta không cần làm gì cả
         return ;
-    if (par[y] < par[x])    // balancing the height of the tree
+    }
+    if (par[y] < par[x]) {
+        // Ta gộp vào hộp chứa nhiều sỏi hơn. Kĩ thuật này gọi là Union-by-rank, và cũng giúp giảm
+        // độ phức tạp mỗi thao tác xuống log(n).
+        // Nếu kết hợp cả Union-by-rank và Path-compression thì độ phức tạp mỗi thao tác là ackerman(n),
+        // rất rất nhỏ với n.
 		swap(x, y);
+    }
 	par[x] += par[y];
 	par[y] = x;
 }
 ```
 
-## Mảng, Vector
+## 3.2. Mảng, Vector
 
-Ta lưu vị trí các bộ dụng cụ trong một **vector** (hoặc **mảng**) và mỗi khi có truy vấn yêu cầu **nhập** hai hộp, ta bỏ các bộ dụng cụ ở hộp có ít bộ hơn vào hộp còn lại.
+Ta lưu vị trí các viên sỏi trong một **vector** (hoặc **mảng**) và mỗi khi có truy vấn yêu cầu **nhập** hai hộp, ta bỏ các viên sỏi ở hộp có ít viên sỏi hơn vào hộp còn lại.
 
-Độ phức tạp không cao vì với mỗi bộ dụng cụ, lấy và bỏ nó vào hộp chỉ có độ phức tạp cao nhất là $log(n)$.
+Độ phức tạp không cao vì với mỗi viên sỏi, tổng số lần lấy và bỏ nó vào hộp chỉ tối đa là $log(n)$.
 
-Độ phức tạp sẽ là $O(nlog(n))$.
+Độ phức tạp cho $n$ thao tác sẽ là $O(nlog(n))$.
+
+Khi cài đặt DSU, cách này không được sử dụng (do phức tạp hơn cách trên), tuy nhiên ý tưởng này có thể được áp dụng cho nhiều bài khác.
 
 
 ## Sets (Cây Đỏ Đen; Red-Black Trees)
@@ -96,12 +123,14 @@ Cây Tiền Tố là một dạng  **DFA** (**Determining Finite Automata**) (**
 _Khởi tạo Cây Tiền Tố: (0-based code)_
 
 ```cpp
+
 int x[MAX_NUMBER_OF_NODES][MAX_ASCII_CODE], next = 1; //initially all numbers in x are -1
+
 void build(string s) {
 	int i = 0, v = 0;
 	while(i < s.size()) {
 		if(x[v][s[i]] == -1)
-			v = x[v][s[i++]] = next ++;
+			v = x[v][s[i++]] = next++;
 		else
 			v = x[v][s[i++]];
 	}
@@ -110,166 +139,32 @@ void build(string s) {
 
 _Bài tập: [A lot of games](http://codeforces.com/contest/456/problem/D)_
 
----
-
-
-# Mảng Hậu Tố (Suffix Array)
-
-**Mảng Hậu Tố** là một CTDL giúp **sort** các **hậu tố** theo **thứ tự từ điển**.
-
-Mảng này chứa các số nguyên, khởi đầu của các hậu tố.
-
-Có 2 cách để xây dựng một mảng hậu tố:
-
-1. **Thuật toán không xác định:** Sử dụng thuật toán **Rabin-Karp** và kiểm tra nếu một hậu tố có thứ tự từ điển nhỏ hơn một hậu tố khác,tìm **mảng tiền tố chung lớn nhất** (**LCP**), sau đó sử dụng **Tìm Kiếm Nhị Phân** và **hàm băm** (**Hash**) và kiểm tra ký tự tiếp theo sau **LCP** của chúng.
-
-_Code C++:_
-
-
-```cpp
-
-namespace HashSuffixArray {
-
-	const int MAXN = 1 << 21;
-
-	typedef unsigned long long hash;
-	const hash BASE = 137;
-
-	int N;
-	char * S;
-	int sa[MAXN];
-	hash h[MAXN], hPow[MAXN];
-
-	#define getHash(lo, size) (h[lo] - h[(lo) + (size)] * hPow[size])
-
-	inline bool sufCmp(int i, int j)
-	{
-		int lo = 1, hi = min(N - i, N - j);
-		while (lo <= hi)
-		{
-			int mid = (lo + hi) >> 1;
-			if (getHash(i, mid) == getHash(j, mid))
-				lo = mid + 1;
-			else
-				hi = mid - 1;
-		}
-		return S[i + hi] < S[j + hi];
-	}
-
-	void buildSA()
-	{
-		N = strlen(S);
-		hPow[0] = 1;
-		for (int i = 1; i <= N; ++i)
-			hPow[i] = hPow[i - 1] * BASE;
-		h[N] = 0;
-		for (int i = N - 1; i >= 0; --i)
-			h[i] = h[i + 1] * BASE + S[i], sa[i] = i;
-
-		stable_sort(sa, sa + N, sufCmp);
-	}
-
-} // end namespace HashSuffixArray
-
-```
-
-2. **Thuật toán xác định:** Sort log(Độ dài lớn nhất) bước, với bước thứ i (tính từ 0), sort chúng theo $2^i$ ký tự đầu tiên và đưa hậu tố có cùng tiền tố với $2^{i}$ ký tự vào cùng một bucket.
-
-_Code:_
-
-```cpp
-
-/*
-Suffix array O(n lg^2 n)
-LCP table O(n)
-*/
-#include <cstdio>
-#include <algorithm>
-#include <cstring>
-
-using namespace std;
-
-#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
-
-namespace SuffixArray
-{
-	const int MAXN = 1 << 21;
-	char * S;
-	int N, gap;
-	int sa[MAXN], pos[MAXN], tmp[MAXN], lcp[MAXN];
-
-	bool sufCmp(int i, int j)
-	{
-		if (pos[i] != pos[j])
-			return pos[i] < pos[j];
-		i += gap;
-		j += gap;
-		return (i < N && j < N) ? pos[i] < pos[j] : i > j;
-	}
-
-	void buildSA()
-	{
-		N = strlen(S);
-		REP(i, N) sa[i] = i, pos[i] = S[i];
-		for (gap = 1;; gap *= 2)
-		{
-			sort(sa, sa + N, sufCmp);
-			REP(i, N - 1) tmp[i + 1] = tmp[i] + sufCmp(sa[i], sa[i + 1]);
-			REP(i, N) pos[sa[i]] = tmp[i];
-			if (tmp[N - 1] == N - 1) break;
-		}
-	}
-
-	void buildLCP()
-	{
-		for (int i = 0, k = 0; i < N; ++i) if (pos[i] != N - 1)
-		{
-			for (int j = sa[pos[i] + 1]; S[i + k] == S[j + k];)
-			++k;
-			lcp[pos[i]] = k;
-			if (k)--k;
-		}
-	}
-} // end namespace SuffixArray
-
-```
-
-Source: [mukel](http://codeforces.com/profile/mukel)
-
----
-
 
 # Heap
 
 **Heap** là một **cây nhị phân** (**cây có gốc** mà mỗi đỉnh có **không quá hai con**) và mỗi đỉnh mang một giá trị.
 
-**Tính chất của Heap:** Giá trị trên một đỉnh luôn **lớn hơn hoặc bằng** giá trị **đỉnh con** của nó. Ta có thể dùng heap trong **Heap Sort** (**Sắp xếp vun đống**).
+**Tính chất của Heap:** Giá trị trên một đỉnh luôn **lớn hơn hoặc bằng** giá trị các **đỉnh con** của nó. Ta có thể dùng heap trong **Heap Sort** (**Sắp xếp vun đống**).
 
 [[/uploads/heap1.png|heap1]]
 
 Bạn có thể đọc thêm về Heap [[ở đây|translate/wcipeg/Binary-Heap]]
 
----
 
-# Fibonacci Heap
+## Fibonacci Heap
 
 Fibonacci Heap là một dạng heap có **độ phức tạp** bé hơn. Chúng ta không cần quan tâm Fibonacci Heap là gì vì trong thư viện **STL C++** đã có sẵn, được gọi là **priority_queue**.
-
----
 
 # Cây Tìm Kiếm Nhị Phân 
 **Cây Tìm Kiếm Nhị Phân** (**BST Binary Search Tree**) là một cây nhị phân có tính chất: Với mỗi giá trị trên node đang xét, giá trị của mọi node trên cây con trái luôn nhỏ hơn node đang xét và giá trị của mọi node trên cây con phải luôn lớn hơn node đang xét.
 
 [[/uploads/bst1.png|bst1]]
 
----
-
 # Cây Đỏ Đen (Red-Black Tree)
 Cây đỏ đen là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp **O(log(N))**.
 Thư viện **STL C++** có sẵn CTDL này, dưới dạng **set**.
 
 [[/uploads/redblack1.png|redblack1]]
----
 
 # SQRT Decomposition
 
@@ -282,8 +177,6 @@ _Bài tập:_
 2. [DZY LOVES COLORS](http://codeforces.com/contest/444/problem/C)
 
 3. Các bài toán dạng **RMQ** (**range minimum query**)
-
----
 
 # Sparse Table
 
@@ -315,8 +208,6 @@ _Bài tập:_
 2. [GCDSSQ](http://codeforces.com/contest/475/problem/D)
 
 3. [LCM Query](http://codeforces.com/gym/100570/problem/A)
-
----
 
 # Fenwick
 
@@ -355,8 +246,6 @@ _Bài tập:_
 2. [Pashmak and Parmida’s problem](http://codeforces.com/contest/459/problem/D)
 
 3. [BST](http://hsin.hr/coci/archive/2008_2009/contest3_tasks.pdf)
-
----
 
 # Segment Tree
 
@@ -536,7 +425,6 @@ int sum(int x, int y, int id = 1, int l = 0, int r = n) {
 
 ```
 
-
 _Bài tập:_
 
 - [GSS1](http://www.spoj.com/problems/GSS1/)
@@ -550,3 +438,126 @@ _Bài tập:_
 - [Copying Data](http://codeforces.com/problemset/problem/292/E)
 - [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/)C
 - [FRBSUM](http://www.codechef.com/JAN14/problems/FRBSUM)
+
+# Mảng Hậu Tố (Suffix Array)
+
+**Mảng Hậu Tố** là một CTDL giúp **sort** các **hậu tố** theo **thứ tự từ điển**.
+
+Mảng này chứa các số nguyên, khởi đầu của các hậu tố.
+
+Có 2 cách để xây dựng một mảng hậu tố:
+
+1. **Thuật toán không xác định:** Sử dụng thuật toán **Rabin-Karp** và kiểm tra nếu một hậu tố có thứ tự từ điển nhỏ hơn một hậu tố khác,tìm **mảng tiền tố chung lớn nhất** (**LCP**), sau đó sử dụng **Tìm Kiếm Nhị Phân** và **hàm băm** (**Hash**) và kiểm tra ký tự tiếp theo sau **LCP** của chúng.
+
+_Code C++:_
+
+
+```cpp
+
+namespace HashSuffixArray {
+
+	const int MAXN = 1 << 21;
+
+	typedef unsigned long long hash;
+	const hash BASE = 137;
+
+	int N;
+	char * S;
+	int sa[MAXN];
+	hash h[MAXN], hPow[MAXN];
+
+	#define getHash(lo, size) (h[lo] - h[(lo) + (size)] * hPow[size])
+
+	inline bool sufCmp(int i, int j)
+	{
+		int lo = 1, hi = min(N - i, N - j);
+		while (lo <= hi)
+		{
+			int mid = (lo + hi) >> 1;
+			if (getHash(i, mid) == getHash(j, mid))
+				lo = mid + 1;
+			else
+				hi = mid - 1;
+		}
+		return S[i + hi] < S[j + hi];
+	}
+
+	void buildSA()
+	{
+		N = strlen(S);
+		hPow[0] = 1;
+		for (int i = 1; i <= N; ++i)
+			hPow[i] = hPow[i - 1] * BASE;
+		h[N] = 0;
+		for (int i = N - 1; i >= 0; --i)
+			h[i] = h[i + 1] * BASE + S[i], sa[i] = i;
+
+		stable_sort(sa, sa + N, sufCmp);
+	}
+
+} // end namespace HashSuffixArray
+
+```
+
+2. **Thuật toán xác định:** Sort log(Độ dài lớn nhất) bước, với bước thứ i (tính từ 0), sort chúng theo $2^i$ ký tự đầu tiên và đưa hậu tố có cùng tiền tố với $2^{i}$ ký tự vào cùng một bucket.
+
+_Code:_
+
+```cpp
+
+/*
+Suffix array O(n lg^2 n)
+LCP table O(n)
+*/
+#include <cstdio>
+#include <algorithm>
+#include <cstring>
+
+using namespace std;
+
+#define REP(i, n) for (int i = 0; i < (int)(n); ++i)
+
+namespace SuffixArray
+{
+	const int MAXN = 1 << 21;
+	char * S;
+	int N, gap;
+	int sa[MAXN], pos[MAXN], tmp[MAXN], lcp[MAXN];
+
+	bool sufCmp(int i, int j)
+	{
+		if (pos[i] != pos[j])
+			return pos[i] < pos[j];
+		i += gap;
+		j += gap;
+		return (i < N && j < N) ? pos[i] < pos[j] : i > j;
+	}
+
+	void buildSA()
+	{
+		N = strlen(S);
+		REP(i, N) sa[i] = i, pos[i] = S[i];
+		for (gap = 1;; gap *= 2)
+		{
+			sort(sa, sa + N, sufCmp);
+			REP(i, N - 1) tmp[i + 1] = tmp[i] + sufCmp(sa[i], sa[i + 1]);
+			REP(i, N) pos[sa[i]] = tmp[i];
+			if (tmp[N - 1] == N - 1) break;
+		}
+	}
+
+	void buildLCP()
+	{
+		for (int i = 0, k = 0; i < N; ++i) if (pos[i] != N - 1)
+		{
+			for (int j = sa[pos[i] + 1]; S[i + k] == S[j + k];)
+			++k;
+			lcp[pos[i]] = k;
+			if (k)--k;
+		}
+	}
+} // end namespace SuffixArray
+
+```
+
+Source: [mukel](http://codeforces.com/profile/mukel)
