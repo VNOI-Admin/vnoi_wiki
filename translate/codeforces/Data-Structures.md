@@ -13,7 +13,7 @@ Trong bài viết này, mình sẽ giới thiệu tới các bạn một số C�
 #Cây
 Cây là một trong những CTDL thông dụng và hữu ích nhất. Cây là một đồ thị liên thông không có chu trình. Có nhiều dạng cây như **Cây Có Gốc (Rooted Trees)**, **Cây Có Hướng (Directed Trees)**,... 
 
-Bạn có thể đọc thêm về cây ở [[bài viết này|translate/wcipeg/tree]]
+Bạn có thể đọc thêm về cây ở [[bài viết này|translate/wcipeg/tree]].
 
 # Partial Sum
 Có 2 dạng bài có thể giải được bằng cách áp dụng Partial Sum.
@@ -22,7 +22,7 @@ Có 2 dạng bài có thể giải được bằng cách áp dụng Partial Sum.
 
 Lời giải cho những bài như thế này như nhau, chỉ cần biết cách giải một trong số chúng.
 
-**Ví dụ:** Cho một mảng $a_1,a_2,a_3,...,a_N$. Mỗi truy vấn cho biết 2 số L và R, yêu cầu in ra tổng $a_L + a_{L+1} + ... + a_R$.
+**Ví dụ:** Cho một mảng $a_1,a_2,a_3,...,a_N$. Mỗi truy vấn cho biết 2 số $L$ và $R$, yêu cầu in ra tổng $a_L + a_{L+1} + ... + a_R$.
 
 **Cách giải:** Tạo một mảng $S$, với mỗi phần tử $S_i = a_1 + a_2 + ... + a_i$. Xuất ra: $S_R – S_{L-1}$.
 
@@ -40,7 +40,7 @@ Lời giải cho những bài như thế này như nhau, chỉ cần biết các
 
 **Disjoint Sets**, hoặc **DSU** (**Disjoint Sets Union**) như tên gọi của, là một tập hợp các tập hợp. Hãy tưởng tượng chúng ta có một vài cái hộp cũng như một vài bộ dụng cụ và ban đầu mỗi bộ dụng cụ nằm trong một cái hộp. Thông thường, ta sẽ nhận được các truy vấn để hợp 2 hộp lại với nhau hoặc in ra các bộ dụng cụ có trong hộp hoặc tìm hộp có các bộ dụng cụ nhất định.
 
-Giả sử, chỉ có duy nhất 1 bộ dụng cụ trong 1 hộp. Ta có n bộ dụng cụ, n hộp, và ban đầu, bộ thứ i sẽ nằm trong hộp thứ i.
+Giả sử, chỉ có duy nhất 1 bộ dụng cụ trong 1 hộp. Ta có $n$ bộ dụng cụ, $n$ hộp, và ban đầu, bộ thứ $i$ sẽ nằm trong hộp thứ $i$.
 
 Với những yêu cầu trên, ta có thể sử dụng nhiều cấu trúc, như:
 
@@ -66,13 +66,16 @@ void merge(int x, int y) {  // x and y are some tools (vertices)
 ```
 
 ## Mảng, Vector
+
 Ta lưu vị trí các bộ dụng cụ trong một **vector** (hoặc **mảng**) và mỗi khi có truy vấn yêu cầu **nhập** hai hộp, ta bỏ các bộ dụng cụ ở hộp có ít bộ hơn vào hộp còn lại.
 
 Độ phức tạp không cao vì với mỗi bộ dụng cụ, lấy và bỏ nó vào hộp chỉ có độ phức tạp cao nhất là $log(n)$.
 
 Độ phức tạp sẽ là $O(nlog(n))$.
 
+
 ## Sets (Cây Đỏ Đen; Red-Black Trees)
+
 Một cách khác là lưu chúng trong một cây đỏ đen (trong C++ là **set** thư viện **STL**). Ta làm y như đã làm với vectors, độ phức tạp sẽ là $O(nlog^2n)$. (1 log cho việc nhập vào).
 
 _Bài tập: (Phải tham gia nhóm [ACM-OI](http://codeforces.com/group/L1Sf9F4uBt))_
@@ -317,7 +320,7 @@ _Bài tập:_
 
 # Fenwick
 
-**Fenwick** hay ở Việt Nam được gọi là **Cây Chỉ Số Nhị Phân** (** BIT Binary Indexed Tree**) là một CTDL với $n$ node và mỗi node thứ $i$ chứa thông tin về các phần tử trong đoạn $[i – (i & -i), i]$
+**Fenwick** hay ở Việt Nam được gọi là **Cây Chỉ Số Nhị Phân** (** BIT Binary Indexed Tree**) là một CTDL với $n$ node và mỗi node thứ $i$ chứa thông tin về các phần tử trong đoạn $ [i – (i & -i), i] $
 
 **Ví dụ:** Có một mảng $a_1,a_2,...,a_N$ và được mặc định bằng 0. Chúng ta nhận được các truy vấn, 1 là tăng phần tử $a_P$ lên $VAL$, 2 là in ra $a_1+a_2+...+a_P$.
 
@@ -398,21 +401,21 @@ void split(int x, int y, int id = 1, int l = 0, int r = n) { // id is the index 
 
 Ta có một mảng $a_1,a_2,...,a_N$ và $q$ truy vấn. Có 2 loại truy vấn:
 
-1. $S L R$: In ra $a_L + a_{L+1} + ... + a_R$.
+1. $S$ $L$ $R$: In ra $a_L + a_{L+1} + ... + a_R$.
 
-2. $M p x$: Thay đổi giá trị của $a_P = X$.
+2. $M$ $p$ $x$: Thay đổi giá trị của $a_P = X$.
 
-Đầu tiên cần xây dựng **Segment Tree**, với mỗi node ta lưu lại tổng đoạn của nó, với node $i$ ta gọi đó là s[i], nên ta sẽ xây Segment Tree ban đầu như sau.
+Đầu tiên cần xây dựng **Segment Tree**, với mỗi node ta lưu lại tổng đoạn của nó, với node $i$ ta gọi đó là $s_i$, nên ta sẽ xây Segment Tree ban đầu như sau.
 
-Trước khi xử lý các truy vấn, ta sẽ gọi hàm build():
+Trước khi xử lý các truy vấn, ta sẽ gọi hàm `build()`:
 
 ```cpp
-void build(int id = 1,int l = 0,int r = n) {
+void build(int id = 1, int l = 0, int r = n) {
 	if (r - l < 2) {  // l + 1 == r
 		s[id] = a[l];
 		return ;
 	}
-	int mid = (l+r)/2;
+	int mid = (l + r) / 2;
 	build(id * 2, l, mid);
 	build(id * 2 + 1, mid, r);
 	s[id] = s[id * 2] + s[id * 2 + 1];
@@ -493,7 +496,7 @@ Hàm để chuyển các thông tin đã cập nhật sang node con:
 ```cpp
 
 void shift(int id, int l, int r) { //pass update information to the children
-	int mid = (l+r) / 2;
+	int mid = (l + r) / 2;
 	upd(id * 2, l, mid, lazy[id]);
 	upd(id * 2 + 1, mid, r, lazy[id]);
 	lazy[id] = 0; // passing is done
@@ -513,7 +516,7 @@ void increase(int x, int y, int v, int id = 1, int l = 0, int r = n) {
 	shift(id, l, r);
 	int mid = (l+r) / 2;
 	increase(x, y, v, id * 2, l, mid);
-	increase(x, y, v, id*2+1, mid, r);
+	increase(x, y, v, id * 2 + 1, mid, r);
 	s[id] = s[id * 2] + s[id * 2 + 1];
 }
 ```
