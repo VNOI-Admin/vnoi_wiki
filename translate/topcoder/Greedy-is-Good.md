@@ -51,4 +51,39 @@ Tổng quát lại, ta thấy được rằng mỗi đáp án của chúng ta đ
 * Tính lựa chọn tối ưu: Từ những kết quả tối ưu cục bộ ta có thể đi đến kết quả tối ưu toàn cục mà không cần phải xem xét lại các kết quả.
 * Tính tối ưu từ bài toán nhỏ: Kết quả tối ưu có được xác định bằng các kết quả tối ưu từ bài toán nhỏ hơn.
 
-Đoạn mã giả dưới đây sẽ cho ta thấy
+Đoạn mã giả dưới đây diễn ta cách lựa chọn tối ưu các hoạt động bằng thuật toán tham lam mà ta vừa chứng minh phía trên:
+
+```
+Đặt N là số hoạt động và 
+{I} là hoạt động thứ I  ( 1 <= I <= N )
+
+Với mỗi {I}, xét S[I] và F[I] lần lượt là thời gian bắt đầu và kết thúc của hoạt động đó.
+Sắp xếp lại các hoạt động theo thứ tự tăng dần của thời gian kết thúc.
+- Có nghĩa là, với I < J ta phải có F [I] <= F [J]
+
+//  A là tập hợp các hoạt động được chọn
+A = {1}
+//  J là hoạt động cuối cùng được chọn
+J = 1
+For I = 2  to N
+// ta có thể chọn I nếu nó là hoạt động cuối cùng
+// việc chọn lựa đã hoàn thành
+      If S [I] >= F [J]
+// lựa chọn hoạt động 'I'
+                A = A + {I}
+// hoạt động 'I' giờ trở thành hoạt động cuối cùng được lựa chọn
+                J = I
+      Endif
+Endfor
+
+Return A
+```
+
+Sau khi áp dụng thuật toán trên, *"Fun plan"* của Johnny sẽ như thế này:
+* Xóa hết mọi lỗi và đi tắm.
+* Thứ 3 để đánh cờ và chiến thắng.
+* Cả ngày để chơi Starcraft, có vẻ vui đây.
+* Hai ngày tiếp theo để nghỉ ngơi.
+* Và vào ngày cuối cùng, lấy một ít điểm rating từ **Topcoder**, tắm rửa, tận hưởng bữa ăn *"sâu bọ"* và những ly rượu hảo hạng.
+
+Vấn đề của John Smith đã được giải quyết, tuy nhiên đây chỉ là một ví dụ mà Tham lam có thể hoạt động. Một vài vấn đề thật sự khác đến từ **Topcoder** sẽ giúp bạn hiểu rõ hơn về khái niệm này. Trước khi tiếp tục, có lẽ bạn cần phải luyện tập thêm chút ít nữa với những gì mà bạn vừa đọc, bằng bài tập tương tự với *Lựa chọn hành động*, tên là [Boxing ](http://www.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880)
