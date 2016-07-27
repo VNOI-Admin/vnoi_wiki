@@ -23,7 +23,7 @@ Có 2 dạng bài có thể giải được bằng cách áp dụng Partial Sum.
 Lời giải cho những bài như thế này như nhau, chỉ cần biết cách giải một trong số chúng.
 
 **Ví dụ:** Cho một mảng **a1,a2,a3,…,aN**. Mỗi truy vấn cho biết 2 số L và R, yêu cầu in ra tổng **aL + a(L+1) + … + aR**. 
-**Cách giải:** Tạo một mảng S, với mỗi phần tử **S(i) = a1 + a2 + ..+ a(i) **. Xuất ra:  sR – S(l-1) .
+**Cách giải:** Tạo một mảng S, với mỗi phần tử S(i) = a1 + a2 + ..+ a(i). Xuất ra:  sR – S(l-1) .
 
 
 **Những bài yêu cầu thay đổi giá trị các phần tử trong một đoạn.**
@@ -34,9 +34,9 @@ Lời giải cho những bài như thế này như nhau, chỉ cần biết các
 **Cách giải:**  Tạo một mảng P: **p1,p2,…pN** với mỗi phần tử được khởi tạo với giá trị **0**. Mỗi truy vấn, tăng **p(L)** lên **V** và trừ **p(R+1)** đi V. Sau đó, với mỗi i ( chạy từ 1 ), **p(i) += p (i–1).**
 
 ## Disjoints Sets
-Disjoint Sets là 1 CTDL rất hữu dụng, sử dụng rất nhanh, gọn và dễ dàng. Nó được dùng làm nền tảng cho một số thuật toán, như Kruskal’s và Prim’s, 2 thuật toán tìm cây khung nhỏ nhất trên đồ thị.
+**Disjoint Sets** là 1 CTDL rất hữu dụng, sử dụng rất nhanh, gọn và dễ dàng. Nó được dùng làm nền tảng cho một số thuật toán, như **Kruskal’s** và **Prim’s**, 2 thuật toán tìm **cây khung** nhỏ nhất trên đồ thị.
 
-Disjoint Sets, hoặc DSU ( Disjoint Sets Union ) như tên gọi của, là một tập hợp các tổng. Hãy tưởng tượng chúng ta có một vài cái hộp cũng như một vài bộ dụng cụ và ban đầu mỗi bộ dụng cụ nằm trong một cái hộp. Thông thường, ta sẽ nhận được các truy vấn để hợp 2 hộp lại với nhau hoặc in ra các bộ dụng cụ có trong hộp hoặc tìm hộp có các bộ dụng cụ nhất định.
+**Disjoint Sets**, hoặc **DSU** ( **Disjoint Sets Union** ) như tên gọi của, là một tập hợp các tổng. Hãy tưởng tượng chúng ta có một vài cái hộp cũng như một vài bộ dụng cụ và ban đầu mỗi bộ dụng cụ nằm trong một cái hộp. Thông thường, ta sẽ nhận được các truy vấn để hợp 2 hộp lại với nhau hoặc in ra các bộ dụng cụ có trong hộp hoặc tìm hộp có các bộ dụng cụ nhất định.
 
 Giả sử, chỉ có duy nhất 1 bộ dụng cụ trong 1 hộp. Ta có n bộ dụng cụ, n hộp, và ban đầu, bộ thứ i sẽ nằm trong hộp thứ i.
 
@@ -79,11 +79,11 @@ _Bài tập: (Phải tham gia nhóm [ACM-OI](http://codeforces.com/group/L1Sf9F4
 ## Cây Tiền Tố ( Tries )
 Trong khoa học máy tính, trie, hay cây tiền tố, là một cấu trúc dữ liệu sử dụng cây có thứ tự, dùng để lưu trữ một mảng liên kết của các xâu kí tự.
 
-Cây Tiền Tố là một dạng  **DFA** (**Determining Finite Automata**) (**Automat Hữu Hạn **). Với các chuỗi xâu, Cây Tiền Tố là **cây có gốc nhỏ nhất** với một ký tự trên mỗi cạnh và mỗi chuỗi có thể được biểu diễn bằng cách viết các ký tự theo đường từ gốc đến các node.
+Cây Tiền Tố là một dạng  **DFA** ( **Determining Finite Automata** ) ( **Automat Hữu Hạn** ). Với các chuỗi xâu, Cây Tiền Tố là **cây có gốc nhỏ nhất** với một ký tự trên mỗi cạnh và mỗi chuỗi có thể được biểu diễn bằng cách viết các ký tự theo đường từ gốc đến các node.
 
-**Mảng tiền tố chung lớn nhất** (**LCP Longest Common Prefix ** ) của mỗi 2 trong các chuỗi là **Tổ Tiên Chung Thấp Nhất** (** LCA Lowest Common Ancestor **) của các node trong Cây Tiền Tố.
+**Mảng tiền tố chung lớn nhất** ( **LCP Longest Common Prefix** ) của mỗi 2 trong các chuỗi là **Tổ Tiên Chung Thấp Nhất** ( **LCA Lowest Common Ancestor** ) của các node trong Cây Tiền Tố.
 
-_ Khởi tạo Cây Tiền Tố: (0-based code) _
+_Khởi tạo Cây Tiền Tố: (0-based code)_
 ```cpp
 int x[MAX_NUMBER_OF_NODES][MAX_ASCII_CODE], next = 1; //initially all numbers in x are -1
 void build(string s){
@@ -97,7 +97,7 @@ void build(string s){
 }
 ```
 
-_Bài tập: [A lot of games](http://codeforces.com/contest/456/problem/D ) _
+_Bài tập: [A lot of games](http://codeforces.com/contest/456/problem/D )_
 
 ---
 
@@ -164,7 +164,7 @@ _Code C++:_
 
 ```
 
-2. **Thuật toán xác định:** Sort log(Độ dài lớn nhất) bước, với bước thứ i ( tính từ 0 ), sort chúng theo 2^i ký tự đầu tiên và đưa hậu tố có cùng tiền tố với 2^i ký tự vào cùng một bucket.
+2. **Thuật toán xác định:** Sort log(Độ dài lớn nhất) bước, với bước thứ i ( tính từ 0 ), sort chúng theo $2^i$ ký tự đầu tiên và đưa hậu tố có cùng tiền tố với $2^{i}$ ký tự vào cùng một bucket.
 
 _Code:_
 
@@ -233,7 +233,7 @@ Source: [mukel](http://codeforces.com/profile/mukel)
 
 **Heap** là một **cây nhị phân** ( **cây có gốc** mà mỗi đỉnh có **không quá hai con** ) và mỗi đỉnh mang một giá trị.
 
-**Tính chất của Heap:** Giá trị trên một đỉnh luôn **lớn hơn hoặc bằng** giá trị **đỉnh con** của nó. Ta có thể dùng heap trong **Heap Sort* ( **Sắp xếp vun đống** ).
+**Tính chất của Heap:** Giá trị trên một đỉnh luôn **lớn hơn hoặc bằng** giá trị **đỉnh con** của nó. Ta có thể dùng heap trong **Heap Sort** ( **Sắp xếp vun đống** ).
 
 [[/uploads/heap1.png|heap1]]
 
@@ -260,7 +260,7 @@ Thư viện **STL C++** có sẵn CTDL này, dưới dạng **set**.
 
 ##SQRT Decomposition
 
-Giả sử, ta có một mảng **a1,a2,…,aN**  và k = $\sqrt{N}$    sqrt (N) . Ta chia mảng này thành k phần, mỗi phần chứa k phần tử a. Với việc này, ta có thể làm nhiều việc với độ phức tạp **O(sqrt(N))**. Thông thường sử dụng **sqrt decomposition** đối với truy vấn yêu cầu chỉnh sửa phần tử mảng hoặc hỏi.
+Giả sử, ta có một mảng **a1,a2,…,aN**  và k = $\sqrt{N}$    sqrt (N) . Ta chia mảng này thành k phần, mỗi phần chứa k phần tử a. Với việc này, ta có thể làm nhiều việc với độ phức tạp **O( $\sqrt{N}$ )**. Thông thường sử dụng **sqrt decomposition** đối với truy vấn yêu cầu chỉnh sửa phần tử mảng hoặc hỏi.
 
 _Bài tập:_
 
@@ -274,9 +274,9 @@ _Bài tập:_
 
 ##Sparse Table
 
-Có mảng **a1,a2,…,aN** và các truy vấn. Mỗi truy vấn cho chúng ta 2 số **L** và **R** ( **L<=R** ) và bạn phải in ra giá trị **nhỏ nhất** của (**aL,aL+1….,aR** ). 
+Có mảng **a1,a2,…,aN** và các truy vấn. Mỗi truy vấn cho chúng ta 2 số **L** và **R** ( **L<=R** ) và bạn phải in ra giá trị **nhỏ nhất** của ( **aL,aL+1….,aR** ). 
 
-**Cách giải** sử dụng **Sparse Table**: Với mỗi giá trị i ( **1<=i<=N** ) và với mỗi j với điều kiện j>=0 và ( **i + $2^j$ – 1** ) <= n, ta lưu giá trị **min( Ai, Ai+1, …. , A(i+ 2^i) **) trong phần tử **st[i][j]** ( khởi tạo các phần tử mảng st = 0 ).
+**Cách giải** sử dụng **Sparse Table**: Với mỗi giá trị i ( **1<=i<=N** ) và với mỗi j với điều kiện j>=0 và ( **i + $2^j$ – 1** ) <= n, ta lưu giá trị **min( Ai, Ai+1, …. , A(i+ $2^i$) )** trong phần tử **st[i][j]** ( khởi tạo các phần tử mảng st = 0 ).
 
 _Code:_
 
@@ -286,13 +286,13 @@ for(int j = 0;j < MAX_LOG;j++)
 		st[i][j] = (j ? min(st[i][j-1], st[i + (1 << (j-1)) - 1][j-1]): a[i]);
 ```
 
-Và với mỗi truy vấn, đầu tiên, tìm giá x lớn nhất sao cho 2^x < (r-l+1) và xuất ra min ( st[l][x], st[r-2^x+1][x] ).
+Và với mỗi truy vấn, đầu tiên, tìm giá x lớn nhất sao cho $2^x$ < **r-l+1** và xuất ra **min ( st[l][x], st[r-$2^x$+1][x] ) **.
 
-Vậy, ý tưởng chính của Sparse Table là lưu lại giá trị cho mỗi đoạn độ dài 2^k ( với mỗi k ).
+Vậy, ý tưởng chính của Sparse Table là lưu lại giá trị cho mỗi đoạn độ dài $2^k$ ( với mỗi k ).
 
-Có thể dùng ý tưởng tương tự cho việc cài đặt LCA và các thuật toán khác.
+Có thể dùng ý tưởng tương tự cho việc cài đặt **LCA** và các thuật toán khác.
 
-Độ phức tạp của sẽ là O ( n*log(n) ) và các truy vấn sẽ được xử lý với độ phức tạp O(1).
+**Độ phức tạp** của sẽ là **O(n.log(n))** và các truy vấn sẽ được xử lý với độ phức tạp **O(1)**.
 
 _Bài tập:_ 
 
