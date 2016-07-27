@@ -167,14 +167,14 @@ Fibonacci Heap là một dạng heap có **độ phức tạp** bé hơn. Chúng
 [[/uploads/bst1.png|bst1]]
 
 # 7. Cây Đỏ Đen (Red-Black Tree)
-Cây đỏ đen là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp **O(log(N))**.
+Cây đỏ đen là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $O(log(N))$.
 Thư viện **STL C++** có sẵn CTDL này, dưới dạng **set**.
 
 [[/uploads/redblack1.png|redblack1]]
 
 # 8. SQRT Decomposition
 
-Giả sử, ta có một mảng $a_1,a_2,...,a_N$  và $k = \sqrt{N}$. Ta chia mảng này thành $k$ phần, mỗi phần chứa $k$ phần tử của mảng a. Với việc này, ta có thể làm nhiều việc với độ phức tạp $O(\sqrt{N})$. Thông thường sử dụng **sqrt decomposition** đối với truy vấn yêu cầu chỉnh sửa phần tử mảng hoặc hỏi.
+Giả sử, ta có một mảng $a_1,a_2,...,a_N$  và $k = \sqrt{N}$. Ta chia mảng này thành $k$ phần, mỗi phần chứa $k$ phần tử của mảng a. Với việc này, ta có thể làm nhiều việc với độ phức tạp $O(\sqrt{N})$. Thông thường sử dụng **sqrt decomposition** để xử lý truy vấn yêu cầu chỉnh sửa phần tử mảng hoặc hỏi.
 
 _Bài tập:_
 
@@ -211,7 +211,7 @@ Vậy, ý tưởng chính của Sparse Table là lưu lại giá trị cho mỗi
 
 Có thể dùng ý tưởng tương tự cho việc cài đặt **LCA** và các thuật toán khác.
 
-**Độ phức tạp** của sẽ là $O(nlogn)$ và các truy vấn sẽ được xử lý với độ phức tạp $O(1)$.
+**Độ phức tạp** của sẽ là $O(nlog(n))$ và các truy vấn sẽ được xử lý với độ phức tạp $O(1)$.
 
 _Bài tập:_ 
 
