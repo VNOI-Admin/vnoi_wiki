@@ -286,7 +286,7 @@ for(int j = 0;j < MAX_LOG;j++)
 		st[i][j] = (j ? min(st[i][j-1], st[i + (1 << (j-1)) - 1][j-1]): a[i]);
 ```
 
-Và với mỗi truy vấn, đầu tiên, tìm giá x lớn nhất sao cho $2^x$ < **r-l+1** và xuất ra **min ( st[l][x], st[r-$2^x$+1][x] ) **.
+Và với mỗi truy vấn, đầu tiên, tìm giá x lớn nhất sao cho $2^x$ < **r-l+1** và xuất ra **min ( st[l][x], st[r-$2^x$+1][x] )**.
 
 Vậy, ý tưởng chính của Sparse Table là lưu lại giá trị cho mỗi đoạn độ dài $2^k$ ( với mỗi k ).
 
@@ -307,7 +307,7 @@ _Bài tập:_
 ##Fenwick
 **Fenwick** hay ở Việt Nam được gọi là **Cây Chỉ Số Nhị Phân** ( ** BIT Binary Indexed Tree** ) là một CTDL với n node và mỗi node thứ i chứa thông tin về các phần tử trong đoạn [ i – i& - i, i]. 
 
-**Ví dụ: ** Có một mảng **a1,a2,…..,aN** và được mặc định bằng 0. Chúng ta nhận được các truy vấn, 1 là tăng phần tử **aP** lên **VAL**, 2 là in ra **a1+a2+…+aP**.
+**Ví dụ:** Có một mảng **a1,a2,…..,aN** và được mặc định bằng 0. Chúng ta nhận được các truy vấn, 1 là tăng phần tử **aP** lên **VAL**, 2 là in ra **a1+a2+…+aP**.
 
 Giờ chúng ta chỉ cần quan tâm cách giải bài toán này với Fenwick ( nhưng sau đó bạn có thể tìm tòi và áp dụng nó cho nhiều bài tập khác ).
 
@@ -439,7 +439,7 @@ int sum(int x,int y,int id = 1,int l = 0,int r = n){
 ###Lazy Propagation
 Tưởng tượng ta cần cập nhật, thay đổi giá trị trên các đoạn, ta phải làm gì bây giờ ?
 
-**Ví dụ: **
+**Ví dụ:**
 Có một mảng a1,a2,…,aN và các truy vấn. Có 2 loại truy vấn:
 
 1.	**S L R** : In ra **aL + a(L+1) + …. + aR**.
