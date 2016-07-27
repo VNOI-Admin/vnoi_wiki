@@ -7,15 +7,15 @@
 
 [[_TOC_]]
 
-## Giới thiệu
+# Giới thiệu
 Hôm nay, mình muốn giới thiệu tới các bạn một số Cấu trúc dữ liệu hữu ích.
 Qua bài viết này, ta sẽ cố gắng nâng cao kỹ năng sử dụng chúng.
 Một số CTDL quan trọng:
 
-## Cây
+#Cây
 Cây là một trong những CTDL thông dụng và hữu ích nhất. Cây là một đồ thị liên thông không có chu trình. Có nhiều dạng cây như **Cây Có Gốc ( Rooted Trees )**, **Cây Có Hướng ( Directed Trees )**,… 
 
-## Partial Sum
+# Partial Sum
 Có 2 dạng bài có thể giải được bằng cách áp dụng Partial Sum.
 
 **Những bài đưa ra các truy vấn yêu cầu cho biết tổng một số phần tử.**
@@ -33,7 +33,7 @@ Lời giải cho những bài như thế này như nhau, chỉ cần biết các
 **Ví dụ:** Cho mảng **a1,a2,….aN**. Mỗi truy vấn cho 3 số L,R,V. với mỗi **i ( L<=i<=R )**, cộng **V** vào **a(i)**. Sau khi hoàn thành, in toàn bộ mảng ra.
 **Cách giải:**  Tạo một mảng P: **p1,p2,…pN** với mỗi phần tử được khởi tạo với giá trị **0**. Mỗi truy vấn, tăng **p(L)** lên **V** và trừ **p(R+1)** đi V. Sau đó, với mỗi i ( chạy từ 1 ), **p(i) += p (i–1).**
 
-## Disjoints Sets
+# Disjoints Sets
 **Disjoint Sets** là 1 CTDL rất hữu dụng, sử dụng rất nhanh, gọn và dễ dàng. Nó được dùng làm nền tảng cho một số thuật toán, như **Kruskal’s** và **Prim’s**, 2 thuật toán tìm **cây khung** nhỏ nhất trên đồ thị.
 
 **Disjoint Sets**, hoặc **DSU** ( **Disjoint Sets Union** ) như tên gọi của, là một tập hợp các tổng. Hãy tưởng tượng chúng ta có một vài cái hộp cũng như một vài bộ dụng cụ và ban đầu mỗi bộ dụng cụ nằm trong một cái hộp. Thông thường, ta sẽ nhận được các truy vấn để hợp 2 hộp lại với nhau hoặc in ra các bộ dụng cụ có trong hộp hoặc tìm hộp có các bộ dụng cụ nhất định.
@@ -42,7 +42,7 @@ Giả sử, chỉ có duy nhất 1 bộ dụng cụ trong 1 hộp. Ta có n bộ
 
 Với những yêu cầu trên, ta có thể sử dụng nhiều cấu trúc, như:
 
-### Cây
+## Cây
 Cây là cấu trúc hữu hiệu nhất dùng cho DSU. Với mỗi đỉnh, ta lưu lại đỉnh cha của nó ( đỉnh cha của đỉnh gốc là -1 ). Ban đầu, mọi đỉnh cha được set là -1. Có các truy vấn **tìm đỉnh gốc** của mỗi hộp ( có được gốc, ta có thể truy ra vị trí của hộp ) và các truy vấn yêu cầu **hợp** 2 cây lại. Để thuật toán nhanh hơn, mỗi lần tìm gốc của mỗi đỉnh, ta đặt đỉnh cha của nó là gốc cho truy vấn tiếp theo. Luôn muốn độ cao của cây là nhỏ nhất có thể, vì vậy, mỗi khi nhập các hộp lại với nhau, ta bỏ các bộ dụng cụ trong hộp có ít bộ hơn vào hộp còn lại.
 
 [[/uploads/tree1.png|tree1]]
@@ -60,13 +60,13 @@ void merge(int x,int y){	//	x and y are some tools (vertices)
 }
 ```
 
-### Mảng, Vector
+## Mảng, Vector
 Ta lưu vị trí các bộ dụng cụ trong một **vector** ( hoặc **mảng** ) và mỗi khi có truy vấn yêu cầu **nhập** hai hộp, ta bỏ các bộ dụng cụ ở hộp có ít bộ hơn vào hộp còn lại.
 
 Độ phức tạp không cao vì với mỗi bộ dụng cụ, lấy và bỏ nó vào hộp chỉ có độ phức tạp cao nhất là **log(n)**.
 Độ phức tạp sẽ là **O(n.log(n))**.
 
-### Sets ( Cây Đỏ Đen; Red-Black Trees )
+## Sets ( Cây Đỏ Đen; Red-Black Trees )
 Một cách khác là lưu chúng trong một cây đỏ đen ( trong C++ là **set** thư viện **STL** ). Ta làm y như đã làm với vectors, độ phức tạp sẽ là **O(n.log^2.n)**. ( 1 log cho việc nhập vào ).
 
 _Bài tập: (Phải tham gia nhóm [ACM-OI](http://codeforces.com/group/L1Sf9F4uBt) )_
@@ -76,7 +76,7 @@ _Bài tập: (Phải tham gia nhóm [ACM-OI](http://codeforces.com/group/L1Sf9F4
 
 ---
 
-## Cây Tiền Tố ( Tries )
+# Cây Tiền Tố ( Tries )
 Trong khoa học máy tính, trie, hay cây tiền tố, là một cấu trúc dữ liệu sử dụng cây có thứ tự, dùng để lưu trữ một mảng liên kết của các xâu kí tự.
 
 Cây Tiền Tố là một dạng  **DFA** ( **Determining Finite Automata** ) ( **Automat Hữu Hạn** ). Với các chuỗi xâu, Cây Tiền Tố là **cây có gốc nhỏ nhất** với một ký tự trên mỗi cạnh và mỗi chuỗi có thể được biểu diễn bằng cách viết các ký tự theo đường từ gốc đến các node.
@@ -101,7 +101,7 @@ _Bài tập: [A lot of games](http://codeforces.com/contest/456/problem/D )_
 
 ---
 
-## Mảng Hậu Tố (Suffix Array)
+# Mảng Hậu Tố (Suffix Array)
 **Mảng Hậu Tố** là một CTDL giúp **sort** các **hậu tố** theo **thứ tự từ điển**.
 
 Mảng này chứa các số nguyên, khởi đầu của các hậu tố.
@@ -229,7 +229,7 @@ Source: [mukel](http://codeforces.com/profile/mukel)
 
 ---
 
-##Heap
+#Heap
 
 **Heap** là một **cây nhị phân** ( **cây có gốc** mà mỗi đỉnh có **không quá hai con** ) và mỗi đỉnh mang một giá trị.
 
@@ -239,26 +239,26 @@ Source: [mukel](http://codeforces.com/profile/mukel)
 
 ---
 
-##Fibonacci Heap
+#Fibonacci Heap
 Fibonacci Heap là một dạng heap có **độ phức tạp** bé hơn. Chúng ta không cần quan tâm Fibonacci Heap là gì vì trong thư viện **STL C++** đã có sẵn, được gọi là **priority_queue**.
 
 ---
 
-## Cây Tìm Kiếm Nhị Phân 
+# Cây Tìm Kiếm Nhị Phân 
 **Cây Tìm Kiếm Nhị Phân** ( **BST Binary Search Tree** ) là một cây nhị phân có tính chất: Với mỗi giá trị trên node đang xét, giá trị của mọi node trên cây con trái luôn nhỏ hơn node đang xét và giá trị của mọi node trên cây con phải luôn lớn hơn node đang xét.
 
 [[/uploads/bst1.png|bst1]]
 
 ---
 
-##Cây Đỏ Đen ( Red-Black Tree )
+#Cây Đỏ Đen ( Red-Black Tree )
 Cây đỏ đen là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp **O(log(N))**.
 Thư viện **STL C++** có sẵn CTDL này, dưới dạng **set**.
 
 [[/uploads/redblack1.png|redblack1]]
 ---
 
-##SQRT Decomposition
+#SQRT Decomposition
 
 Giả sử, ta có một mảng **a1,a2,…,aN**  và k = $\sqrt{N}$    sqrt (N) . Ta chia mảng này thành k phần, mỗi phần chứa k phần tử a. Với việc này, ta có thể làm nhiều việc với độ phức tạp **O( $\sqrt{N}$ )**. Thông thường sử dụng **sqrt decomposition** đối với truy vấn yêu cầu chỉnh sửa phần tử mảng hoặc hỏi.
 
@@ -272,7 +272,7 @@ _Bài tập:_
 
 ---
 
-##Sparse Table
+#Sparse Table
 
 Có mảng **a1,a2,…,aN** và các truy vấn. Mỗi truy vấn cho chúng ta 2 số **L** và **R** ( **L<=R** ) và bạn phải in ra giá trị **nhỏ nhất** của ( **aL,aL+1….,aR** ). 
 
@@ -304,7 +304,7 @@ _Bài tập:_
 
 ---
 
-##Fenwick
+#Fenwick
 **Fenwick** hay ở Việt Nam được gọi là **Cây Chỉ Số Nhị Phân** ( ** BIT Binary Indexed Tree** ) là một CTDL với n node và mỗi node thứ i chứa thông tin về các phần tử trong đoạn [ i – i& - i, i]. 
 
 **Ví dụ:** Có một mảng **a1,a2,…..,aN** và được mặc định bằng 0. Chúng ta nhận được các truy vấn, 1 là tăng phần tử **aP** lên **VAL**, 2 là in ra **a1+a2+…+aP**.
@@ -343,7 +343,7 @@ _Bài tập: _
 
 ---
 
-##Cây Đoạn ( Segment Tree )
+#Cây Đoạn ( Segment Tree )
 Có một mảng gồm các phần tử và các truy vấn trong đoạn. Nếu có thể chia đoạn thành các đoạn nhỏ với độ phức tạp **O(log(n))** thì sẽ rất tốt.
 
 **Segment Tree** (**Cây Đoạn**) sinh ra để làm việc đó.  **Segment Tree** là một cây mà mỗi node của nó thuộc một đoạn.
@@ -436,7 +436,7 @@ int sum(int x,int y,int id = 1,int l = 0,int r = n){
 
 ```
 
-###Lazy Propagation
+##Lazy Propagation
 Tưởng tượng ta cần cập nhật, thay đổi giá trị trên các đoạn, ta phải làm gì bây giờ ?
 
 **Ví dụ:**
