@@ -311,6 +311,8 @@ _Bài tập:_
 
 Giờ chúng ta chỉ cần quan tâm cách giải bài toán này với Fenwick ( nhưng sau đó bạn có thể tìm tòi và áp dụng nó cho nhiều bài tập khác ).
 
+[[/uploads/fenwick1.gif|fenwick1]]
+
 **Độ phức tạp** khi xử lý các truy vấn là **O(log(n))**. 
 
 _Code ( 1-based ):_
