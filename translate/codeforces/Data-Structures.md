@@ -159,7 +159,7 @@ Bạn có thể đọc thêm về Heap [[ở đây|translate/wcipeg/Binary-Heap]
 
 ## Fibonacci Heap
 
-Fibonacci Heap là một dạng heap có **độ phức tạp** bé hơn. Chúng ta không cần quan tâm Fibonacci Heap là gì vì trong thư viện **STL C++** đã có sẵn, được gọi là **priority_queue**.
+**Fibonacci Heap** là một dạng heap có **độ phức tạp** bé hơn. Chúng ta không cần quan tâm Fibonacci Heap là gì vì trong thư viện **STL C++** đã có sẵn, dưới tên gọi **priority_queue**.
 
 # 6. Cây Tìm Kiếm Nhị Phân 
 **Cây Tìm Kiếm Nhị Phân** (**BST Binary Search Tree**) là một cây nhị phân có tính chất: Với mỗi giá trị trên node đang xét, giá trị của mọi node trên cây con trái luôn nhỏ hơn node đang xét và giá trị của mọi node trên cây con phải luôn lớn hơn node đang xét.
