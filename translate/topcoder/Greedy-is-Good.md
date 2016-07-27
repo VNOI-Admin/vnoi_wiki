@@ -12,9 +12,9 @@ Là một con người tràn trề sinh lực, John muốn dành thời gian nhi
 <tr><td>4</td> <td>Thạm dự nhạc hội Rock</td> <td>Thứ 3, 19:00 đến thứ 3, 23:00</td></tr>
 <tr><td>5</td> <td>Chiến thắng cuộc thi Starcraft</td> <td>Thứ 4, 15:00 đến thứ 5, 15:00</td></tr>
 <tr><td>6</td> <td>Chơi trò bắn súng nước sơn</td> <td>Thứ 5, 10:00 đến thứ 5, 16:00</td></tr>
-<tr><td>7</td> <td>Tham gia kỳ thi SRM trên **Topcoder**</td> <td>Thứ 7, 12:00 đến thứ 7, 14:00</td></tr>
+<tr><td>7</td> <td>Tham gia kỳ thi SRM trên <strong>Topcoder</strong></td> <td>Thứ 7, 12:00 đến thứ 7, 14:00</td></tr>
 <tr><td>8</td> <td>Tắm rửa</td> <td>Thứ 7, 20:30 đến thứ 7, 20:45</td></tr>
-<tr><td>9</td> <td>Tổ chức tiệc ngủ</td> <td>Thứ 7, 21:01 đến thứ 7, 23:59</td></tr>
+<tr><td>9</td> <td>Tổ chức tiệc ngủ</td> <td>Thứ 7, 21:00 đến Chủ nhật, 6:00</td></tr>
 <tr><td>10</td> <td>Tham gia thử thách <i>"All you can eat"</i> và <i>"All you can drink"</i></td> <td>Thứ 7, 21:01 đến thứ 7, 23:59</td></tr>
 </table>
 Giờ anh ấy muốn thực hiện được tối đa các hoạt động trong thời gian biểu trên. Mặc dù một kế hoạch an toàn thì cần phải có chút lý trí vào đó, nhưng giờ thì hồn anh ấy đã đắm chìm vào kỳ nghỉ rồi.
