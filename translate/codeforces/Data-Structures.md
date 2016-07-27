@@ -676,7 +676,9 @@ void upd(int id,int l,int r,int x){//	increase all members in this interval by x
 ```
 
 Hàm chuyển các thông tin đã cập nhật sang node con:
+
 ```cpp
+
 void shift(int id,int l,int r){//pass update information to the children
 	int mid = (l+r)/2;
 	upd(id * 2, l, mid, lazy[id]);
@@ -686,12 +688,16 @@ void shift(int id,int l,int r){//pass update information to the children
 ```
 
 Hàm để chuyển các thông tin đã cập nhật sang node con:
+```cpp
+
 void shift(int id,int l,int r){//pass update information to the children
 	int mid = (l+r)/2;
 	upd(id * 2, l, mid, lazy[id]);
 	upd(id * 2 + 1, mid, r, lazy[id]);
 	lazy[id] = 0;// passing is done
 }
+```cpp
+
 
 Hàm để thực hiện truy vấn yêu cầu tăng giá trị:
 
@@ -708,7 +714,7 @@ void increase(int x,int y,int v,int id = 1,int l = 0,int r = n){
 	increase(x, y, v, id*2+1, mid, r);
 	s[id] = s[id * 2] + s[id * 2 + 1];
 }
-```cpp
+```
 
 Hàm để trả lời các truy vấn hỏi tổng đoạn:
 
@@ -725,14 +731,15 @@ int sum(int x,int y,int id = 1,int l = 0,int r = n){
 
 ```
 
-_Bài tập: _
+
+_Bài tập:_
 
 -	[GSS1](http://www.spoj.com/problems/GSS1/)
 -	[GSS3](http://www.spoj.com/problems/GSS3/)
 -	[MULTQ3](http://www.spoj.com/problems/MULTQ3)
 -	[DQUERY](http://www.spoj.com/problems/DQUERY )
 -	[KQUERY](http://www.spoj.com/problems/KQUERY)
--[POSTERS](http://www.spoj.com/problems/POSTERS) 
+-       [POSTERS](http://www.spoj.com/problems/POSTERS) 
 -	[PATULJCI](http://www.spoj.com/problems/PATULJCI) 
 -	[New Year Domino](http://codeforces.com/problemset/problem/500/E) 
 -	[Copying Data](http://codeforces.com/problemset/problem/292/E )
