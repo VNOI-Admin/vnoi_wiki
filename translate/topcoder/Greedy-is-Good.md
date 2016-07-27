@@ -4,10 +4,22 @@ John Smith đang gặp rắc rối! Anh ấy là một thành viên của **Topc
 Thay vì tiếp tục vướng vào mớ rắc rối, John đã có một quyết định tiến bộ hơn. Quá đủ cho việc lập trình! John nói. Anh ấy quyết định sẽ có một kỳ nghỉ như là phần thưởng cho những nỗ lực của mình.
 
 Là một con người tràn trề sinh lực, John muốn dành thời gian nhiều cho cuộc đời của mình. Có quá nhiều thứ mà anh ta muốn làm, nhưng không may là anh ta không thể nào làm hết tất cả chúng được. Thế nên trong lúc ăn sáng, John đã vạch ra một *"Fun plan"* được thể hiện bằng một thời gian biểu cho từng hoạt động như sau:
-
+<table>
+<tr><th>Id</th> <th>Hoạt động</th> <th>Thời gian</th></tr>
+<tr><td>1</td> <td>Sửa phòng</td> <td>Thứ 2, 22:00 đến thứ 3, 1:00</td></tr>
+<tr><td>2</td> <td>Du lịch Hawaii</td> <td>Thứ 3, 6:00 đến thứ 7, 22:00</td></tr>
+<tr><td>3</td> <td>Vô địch cuộc thi cờ vua</td> <td>Thứ 3, 11:00 đến thứ 3, 21:00</td></tr>
+<tr><td>4</td> <td>Thạm dự nhạc hội Rock</td> <td>Thứ 3, 19:00 đến thứ 3, 23:00</td></tr>
+<tr><td>5</td> <td>Chiến thắng cuộc thi Starcraft</td> <td>Thứ 4, 15:00 đến thứ 5, 15:00</td></tr>
+<tr><td>6</td> <td>Chơi trò bắn súng nước sơn</td> <td>Thứ 5, 10:00 đến thứ 5, 16:00</td></tr>
+<tr><td>7</td> <td>Tham gia kỳ thi SRM trên **Topcoder**</td> <td>Thứ 7, 12:00 đến thứ 7, 14:00</td></tr>
+<tr><td>8</td> <td>Tắm rửa</td> <td>Thứ 7, 20:30 đến thứ 7, 20:45</td></tr>
+<tr><td>9</td> <td>Tổ chức tiệc ngủ</td> <td>Thứ 7, 21:01 đến thứ 7, 23:59</td></tr>
+<tr><td>10</td> <td>Tham gia thử thách <i>"All you can eat"</i> và <i>"All you can drink"</i></td> <td>Thứ 7, 21:01 đến thứ 7, 23:59</td></tr>
+</table>
 Giờ anh ấy muốn thực hiện được tối đa các hoạt động trong thời gian biểu trên. Mặc dù một kế hoạch an toàn thì cần phải có chút lý trí vào đó, nhưng giờ thì hồn anh ấy đã đắm chìm vào kỳ nghỉ rồi.
 
-Liệu ta có thể giúp anh ấy có một kỳ nghỉ tuyệt vời? Ta hoàn toàn có thể! Đầu tiên, ta hãy đưa ra một giả định. Là một lập trình viên tỉ mỉ, một khi đã đặt ra kế hoạch, anh ấy buộc phải thực hiện nó. Thế nên, mỗi hoạt động chỉ có hai chọn lựa là có hoặc không. Và với mỗi trường hợp chọn lựa cho hoạt động thứ nhất, ta lại có thêm 2 lựa chọn cho hoạt động thứ 2. Phân tích nhanh ta sẽ thấy được rằng có $2^n$ trường hợp, và trong tình huống này thì đó sẽ là 1024 trường hợp. Với mỗi trường hợp ta sẽ kiểm tra xem nó có thỏa mãn giới hạn về thời gian hay không. Từ đây, việc cho lựa 1 phương  án có nhiều hoạt động nhất sẽ trở nên dễ dàng hơn.Với khá nhiều sự chọn lựa như thế này, John buộc phải nhờ đến sự giúp đỡ của chiếc máy tính đang mệt mỏi. Nhưng điều gì sẽ xảy ra nếu John có tới 50 hoạt động trong danh sách? Thậm chí dùng đến cả chiếc máy tính mạnh mẽ nhất thế giới thì cũng cần đến vài năm để tìm ra câu trả lời. Thế nên, phương án này kahs phi thực tế.
+Liệu ta có thể giúp anh ấy có một kỳ nghỉ tuyệt vời? Ta hoàn toàn có thể! Đầu tiên, ta hãy đưa ra một giả định. Là một lập trình viên tỉ mỉ, một khi đã đặt ra kế hoạch, anh ấy buộc phải thực hiện nó. Thế nên, mỗi hoạt động chỉ có hai chọn lựa là có hoặc không. Và với mỗi trường hợp chọn lựa cho hoạt động thứ nhất, ta lại có thêm 2 lựa chọn cho hoạt động thứ 2. Phân tích nhanh ta sẽ thấy được rằng có $2^n$ trường hợp, và trong tình huống này thì đó sẽ là 1024 trường hợp. Với mỗi trường hợp ta sẽ kiểm tra xem nó có thỏa mãn giới hạn về thời gian hay không. Từ đây, việc cho lựa 1 phương  án có nhiều hoạt động nhất sẽ trở nên dễ dàng hơn.Với khá nhiều sự chọn lựa như thế này, John buộc phải nhờ đến sự giúp đỡ của chiếc máy tính đang mệt mỏi. Nhưng điều gì sẽ xảy ra nếu John có tới 50 hoạt động trong danh sách? Thậm chí dùng đến cả chiếc máy tính mạnh mẽ nhất thế giới thì cũng cần đến vài năm để tìm ra câu trả lời. Thế nên, phương án này khá phi thực tế.
 
 Giờ hãy đơn giản hóa vấn đề cũng như niềm tin vào bản năng nền tảng của chúng ta. Một phương án tốt sẽ tạo ra cơ hội thành công ngay khi mà thời cơ đến. Đó là, nếu ta có hai hoạt động và chúng bị trùng về thời gian, ta sẽ ưu tiên lựa chọn hoạt động xảy ra trước nhằm tiết kiệm thời gian. Ví dụ trong trường hợp anh ta bắt đầu buổi tối đầu tiên bằng việc sửa chữa phòng. Buổi sáng, anh ấy sẽ bắt một chuyến bay. Và chưa đầy một ngày nhưng anh ấy đã thực hiện được 2 hoạt động. Thật tuyệt vời! Nhưng thật ra, đó chỉ lại **lựa chọn tốt nhất** lúc này thôi. Và bây giờ thì ta có gì, 5 ngày ăn chơi ở Hawaii và cho đến tận tối thứ 7 thì anh ấy vẫn chỉ thực hiện được 2 hoạt động. Hãy nghĩ xem trong 5 ngày đó anh ta đã có thể thực hiện được những gì. Mặc dù đơn giản và thực thi rất nhanh, song rất không may là thuật toán này lại không chính xác.
 
