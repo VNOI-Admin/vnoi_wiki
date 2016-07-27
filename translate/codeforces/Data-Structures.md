@@ -255,7 +255,7 @@ Fibonacci Heap là một dạng heap có **độ phức tạp** bé hơn. Chúng
 Cây đỏ đen là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp **O(log(N))**.
 Thư viện **STL C++** có sẵn CTDL này, dưới dạng **set**.
 
-[[/uploads/redblack1.png\red****
+[[/uploads/redblack1.png|redblack1]]
 ---
 
 ##SQRT Decomposition
