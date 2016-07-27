@@ -460,3 +460,283 @@ Source: [mukel](http://codeforces.com/profile/mukel)
 
 ##Fibonacci Heap
 Fibonacci Heap là một dạng heap có **độ phức tạp** bé hơn. Chúng ta không cần quan tâm Fibonacci Heap là gì vì trong thư viện **STL C++** đã có sẵn, được gọi là **priority_queue**.
+
+---
+
+## Cây Tìm Kiếm Nhị Phân 
+**Cây Tìm Kiếm Nhị Phân** ( **BST Binary Search Tree** ) là một cây nhị phân có tính chất: Với mỗi giá trị trên node đang xét, giá trị của mọi node trên cây con trái luôn nhỏ hơn node đang xét và giá trị của mọi node trên cây con phải luôn lớn hơn node đang xét.
+
+---
+
+##Cây Đỏ Đen ( Red-Black Tree )
+Cây đỏ đen là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp **O(log(N))**.
+Thư viện **STL C++** có sẵn CTDL này, dưới dạng **set**.
+
+---
+
+##SQRT Decomposition
+
+Giả sử, ta có một mảng **a1,a2,…,aN**  và k = $\sqrt{N}$    sqrt (N) . Ta chia mảng này thành k phần, mỗi phần chứa k phần tử a. Với việc này, ta có thể làm nhiều việc với độ phức tạp **O(sqrt(N))**. Thông thường sử dụng **sqrt decomposition** đối với truy vấn yêu cầu chỉnh sửa phần tử mảng hoặc hỏi.
+
+_Bài tập:_
+
+1. [HOLES](http://codeforces.com/problemset/problem/13/E)
+
+2. [DZY LOVES COLORS](http://codeforces.com/contest/444/problem/C)
+
+3. Các bài toán dạng **RMQ** ( **range minimum query** )
+
+---
+
+##Sparse Table
+
+Có mảng **a1,a2,…,aN** và các truy vấn. Mỗi truy vấn cho chúng ta 2 số **L** và **R** ( **L<=R** ) và bạn phải in ra giá trị **nhỏ nhất** của (**aL,aL+1….,aR** ). 
+
+**Cách giải** sử dụng **Sparse Table**: Với mỗi giá trị i ( **1<=i<=N** ) và với mỗi j với điều kiện j>=0 và ( **i + $2^j$ – 1** ) <= n, ta lưu giá trị **min( Ai, Ai+1, …. , A(i+ 2^i) **) trong phần tử **st[i][j]** ( khởi tạo các phần tử mảng st = 0 ).
+
+_Code:_
+
+```cpp
+for(int j = 0;j < MAX_LOG;j++)
+	for(int i = 0; i < n;i ++)if(i + (1 << j) - 1 < n)
+		st[i][j] = (j ? min(st[i][j-1], st[i + (1 << (j-1)) - 1][j-1]): a[i]);
+```
+
+Và với mỗi truy vấn, đầu tiên, tìm giá x lớn nhất sao cho 2^x < (r-l+1) và xuất ra min ( st[l][x], st[r-2^x+1][x] ).
+
+Vậy, ý tưởng chính của Sparse Table là lưu lại giá trị cho mỗi đoạn độ dài 2^k ( với mỗi k ).
+
+Có thể dùng ý tưởng tương tự cho việc cài đặt LCA và các thuật toán khác.
+
+Độ phức tạp của sẽ là O ( n*log(n) ) và các truy vấn sẽ được xử lý với độ phức tạp O(1).
+
+_Bài tập:_ 
+
+1. [Strip](http://codeforces.com/contest/487/problem/B)
+
+2. [GCDSSQ](http://codeforces.com/contest/475/problem/D)
+
+3. [LCM Query](http://codeforces.com/gym/100570/problem/A)
+
+---
+
+##Fenwick
+**Fenwick** hay ở Việt Nam được gọi là **Cây Chỉ Số Nhị Phân** ( ** BIT Binary Indexed Tree** ) là một CTDL với n node và mỗi node thứ i chứa thông tin về các phần tử trong đoạn [ i – i& - i, i]. 
+
+**Ví dụ: ** Có một mảng **a1,a2,…..,aN** và được mặc định bằng 0. Chúng ta nhận được các truy vấn, 1 là tăng phần tử **aP** lên **VAL**, 2 là in ra **a1+a2+…+aP**.
+
+Giờ chúng ta chỉ cần quan tâm cách giải bài toán này với Fenwick ( nhưng sau đó bạn có thể tìm tòi và áp dụng nó cho nhiều bài tập khác ).
+
+**Độ phức tạp** khi xử lý các truy vấn là **O(log(n))**. 
+
+_Code ( 1-based ):_
+
+```cpp
+int fen[MAX_N];
+void update(int p,int val){
+	for(int i = p;i <= n;i += i & -i)
+		fen[i] += val;
+}
+int sum(int p){
+	int ans = 0;
+	for(int i = p;i;i -= i & -i)
+		ans += fen[i];
+	return ans;
+}
+```
+
+Mảng bắt buộc phải là 1-based, không thể chạy với 0-based.
+
+_Bài tập: _
+
+1. [Inversions](http://acm.sgu.ru/problem.php?contest=0&problem=180)
+
+2. [Pashmak and Parmida’s problem](http://codeforces.com/contest/459/problem/D)
+
+3. [BST](http://hsin.hr/coci/archive/2008_2009/contest3_tasks.pdf)
+
+---
+
+##Cây Đoạn ( Segment Tree )
+Có một mảng gồm các phần tử và các truy vấn trong đoạn. Nếu có thể chia đoạn thành các đoạn nhỏ với độ phức tạp **O(log(n))** thì sẽ rất tốt.
+
+**Segment Tree** (**Cây Đoạn**) sinh ra để làm việc đó.  **Segment Tree** là một cây mà mỗi node của nó thuộc một đoạn.
+
+Gốc của cây thuộc đoạn **[0,n)** (**0-based**).
+
+Mỗi node có 0 hoặc 2 node con, trái và phải. Nếu đoạn của một node là **[L,r)** cùng điều kiện **L+1 # R** thì đoạn node con của node đó sẽ là **[L,mid)** và **[mid,R)** với mid=$/frac{L+R}{2} , độ cao của cây là **O(log(n))**.
+
+Mỗi node có một chỉ số, quy định rằng, gốc có chỉ số là 1, và các node con của đỉnh chỉ số X sẽ có chỉ số là **2X** và **2X+1**.
+
+**Segment Tree** là một CTDL phổ biến và hữu hiệu. Tất cả các bài tập có thể giải bằng **Fenwick** ( **Cây chỉ số nhị phân BIT** ) thì có thể giải được bằng **Segment Tree**.
+Nếu kích thước đoạn của gốc là **N**, Segment Tree có thể có tới **4N** Node.
+
+Để chia một đoạn thành nhiều node, làm như sau:
+Giả sử rằng S là một **set** các node mà **hợp** đoạn của nó là **[x,y)** và không có 2 node khác nhau trong S có giao.
+
+Một node i với đoạn **[L,r)** trong S khi và chỉ khi **X<=L<=R<=Y** và nếu node cha có đoạn **[B,e)**, **X>L**  và **R>Y**.
+
+_Code C++: _
+
+```cpp
+
+vector<int> s;
+void split(int x,int y, int id = 1,int l = 0, int r = n){//	id is the index of the node
+	if(x >= r or l >= y)	return ;	// in this case, intersect of [l,r) and [x,y) is empty
+	if(x <= l && r <= y){
+		s.push_back(id); 
+		return ;
+	}
+	int mid = (l+r)/2;
+	split(x,y,id * 2,l,mid);
+	split(x,y,id * 2 + 1,mid,r);
+}
+
+```
+
+**Ví dụ: **
+
+Ta có một mảng **a1,a2,…,aN** và q truy vấn. Có 2 loại truy vấn:
+
+1.	**S L R : In ra **aL + a(L+1) + …. + aR**.
+
+2.	**M p x** : Thay đổi giá trị của **aP** = **X**.
+
+Đầu tiên cần xây dựng **Segment Tree**, với mỗi node ta lưu lại tổng đoạn của nó, với node i ta gọi đó là s[i], nên ta sẽ xây Segment Tree ban đầu như sau.
+
+Trước khi xử lý các truy vấn, ta sẽ gọi hàm build():
+
+```cpp
+void build(int id = 1,int l = 0,int r = n){
+	if(r - l < 2){	//	l + 1 == r
+		s[id] = a[l];
+		return ;
+	}
+	int mid = (l+r)/2;
+	build(id * 2, l, mid);
+	build(id * 2 + 1, mid, r);
+	s[id] = s[id * 2] + s[id * 2 + 1];
+}
+
+```
+
+Hàm modify:
+
+```cpp
+void modify(int p,int x,int id = 1,int l = 0,int r = n){
+	s[id] += x - a[p];
+	if(r - l < 2){	//	l = r - 1 = p
+		a[p] = x;
+		return ;
+	}
+	int mid = (l + r)/2;
+	if(p < mid)
+		modify(p, x, id * 2, l, mid);
+	else
+		modify(p, x, id * 2 + 1, mid, r);
+}
+```
+
+Hàm sum:
+
+```cpp
+int sum(int x,int y,int id = 1,int l = 0,int r = n){
+	if(x >= r or l >= y)	return 0;
+	if(x <= l && r <= y)	return s[id];
+	int mid = (l+r)/2;
+	return sum(x, y, id * 2, l, mid) +
+	       sum(x, y, id * 2 + 1, mid, r);
+}
+
+```
+
+###Lazy Propagation
+Tưởng tượng ta cần cập nhật, thay đổi giá trị trên các đoạn, ta phải làm gì bây giờ ?
+
+**Ví dụ: **
+Có một mảng a1,a2,…,aN và các truy vấn. Có 2 loại truy vấn:
+
+1.	**S L R** : In ra **aL + a(L+1) + …. + aR**.
+
+2.	**I L R X** : với mỗi i từ **L<=i<=R**, tăng **a(i)** lên **x**.
+
+Ta không nên cập nhật toàn bộ node trong đoạn này, chỉ cập nhật node lớn nhất, rồi chuyển nó sang node con khi ta cần. Thủ thuật này gọi là **Lazy Propagation**, ta nên tạo một mảng **lazy** (cho node) với mặc định là 0 và mỗi khi thực hiện yêu cầu của truy vấn, tăng **lazy[id]** lên **x**.
+
+Như trên, ta cần một mảng S cho các node.
+
+Vậy, hàm **build** phải giống như trên. Nhưng ta cần thêm một số hàm nữa:
+
+Hàm cập nhật một node:
+
+```cpp
+void upd(int id,int l,int r,int x){//	increase all members in this interval by x
+	lazy[id] += x;
+	s[id] += (r - l) * x;
+}
+```
+
+Hàm chuyển các thông tin đã cập nhật sang node con:
+```cpp
+void shift(int id,int l,int r){//pass update information to the children
+	int mid = (l+r)/2;
+	upd(id * 2, l, mid, lazy[id]);
+	upd(id * 2 + 1, mid, r, lazy[id]);
+	lazy[id] = 0;// passing is done
+}
+```
+
+Hàm để chuyển các thông tin đã cập nhật sang node con:
+void shift(int id,int l,int r){//pass update information to the children
+	int mid = (l+r)/2;
+	upd(id * 2, l, mid, lazy[id]);
+	upd(id * 2 + 1, mid, r, lazy[id]);
+	lazy[id] = 0;// passing is done
+}
+
+Hàm để thực hiện truy vấn yêu cầu tăng giá trị:
+
+```cpp
+void increase(int x,int y,int v,int id = 1,int l = 0,int r = n){
+	if(x >= r or l >= y)	return ;
+	if(x <= l && r <= y){
+		upd(id, l, r, v);
+		return ;
+	}
+	shift(id, l, r);
+	int mid = (l+r)/2;
+	increase(x, y, v, id * 2, l, mid);
+	increase(x, y, v, id*2+1, mid, r);
+	s[id] = s[id * 2] + s[id * 2 + 1];
+}
+```cpp
+
+Hàm để trả lời các truy vấn hỏi tổng đoạn:
+
+```cpp
+
+int sum(int x,int y,int id = 1,int l = 0,int r = n){
+	if(x >= r or l >= y)	return 0;
+	if(x <= l && r <= y)	return s[id];
+	shift(id, l, r);
+	int mid = (l+r)/2;
+	return sum(x, y, id * 2, l, mid) +
+	       sum(x, y, id * 2 + 1, mid, r);
+}
+
+```
+
+_Bài tập: _
+
+-	[GSS1](http://www.spoj.com/problems/GSS1/)
+-	[GSS3](http://www.spoj.com/problems/GSS3/)
+-	[MULTQ3](http://www.spoj.com/problems/MULTQ3)
+-	[DQUERY](http://www.spoj.com/problems/DQUERY )
+-	[KQUERY](http://www.spoj.com/problems/KQUERY)
+-[POSTERS](http://www.spoj.com/problems/POSTERS) 
+-	[PATULJCI](http://www.spoj.com/problems/PATULJCI) 
+-	[New Year Domino](http://codeforces.com/problemset/problem/500/E) 
+-	[Copying Data](http://codeforces.com/problemset/problem/292/E )
+-	[DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/)C
+-	[FRBSUM](http://www.codechef.com/JAN14/problems/FRBSUM)
+
+
