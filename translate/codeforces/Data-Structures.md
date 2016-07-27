@@ -350,7 +350,7 @@ Có một mảng gồm các phần tử và các truy vấn trong đoạn. Nếu
 
 Gốc của cây thuộc đoạn **[0,n)** (**0-based**).
 
-Mỗi node có 0 hoặc 2 node con, trái và phải. Nếu đoạn của một node là **[L,r)** cùng điều kiện **L+1 # R** thì đoạn node con của node đó sẽ là **[L,mid)** và **[mid,R)** với mid=$/frac{L+R}{2} , độ cao của cây là **O(log(n))**.
+Mỗi node có 0 hoặc 2 node con, trái và phải. Nếu đoạn của một node là **[L,r)** cùng điều kiện **L+1 # R** thì đoạn node con của node đó sẽ là **[L,mid)** và **[mid,R)** với mid=$/frac{L+R}{2}$ , độ cao của cây là **O(log(n))**.
 
 Mỗi node có một chỉ số, quy định rằng, gốc có chỉ số là 1, và các node con của đỉnh chỉ số X sẽ có chỉ số là **2X** và **2X+1**.
 
@@ -380,7 +380,7 @@ void split(int x,int y, int id = 1,int l = 0, int r = n){//	id is the index of t
 
 ```
 
-**Ví dụ: **
+**Ví dụ:**
 
 Ta có một mảng **a1,a2,…,aN** và q truy vấn. Có 2 loại truy vấn:
 
