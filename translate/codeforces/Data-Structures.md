@@ -1,7 +1,5 @@
 # Cấu Trúc Dữ Liệu
 
-***Bài viết chưa hoàn thiện***
-
 **Nguồn:** [Codeforces](http://codeforces.com/blog/entry/15729)
 
 **Tác giả:** [amd](http://codeforces.com/profile/amd)
@@ -574,16 +572,16 @@ namespace SuffixArray
 
 Source: [mukel](http://codeforces.com/profile/mukel)
 
----
 
-#13. Thuật toán phân tách cây ( Heavy-light decomposition )
+# 13. Thuật toán phân tách cây (Heavy-light decomposition)
 
-Đọc ở đây: [Thuật toán phân tách cây](http://vnoi.info/forum/5/5012/)
+**Heavy Light Decomposition** là một thuật toán được áp dụng nhiều trong những bài cần xử lý các truy vấn trên cây. Heavy-light decomposition là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
 
-Tác giả: [pencil_man](http://vnoi.info/user/profile/pencil_man/)
+Bạn có thể đọc thêm ở: [[Thuật toán phân tách cây|algo/data-structures/heavy-light-decomposition]]
 
-#14. Persistent Data Structures 
 
-Đọc ở đây: [Persistent Data Structures](http://vnoi.info/library/8/3/)
+# 14. Persistent Data Structures 
 
-Tác giả: [admin](http://vnoi.info/user/profile/admin/)
+Persistent Data Structures là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu.
+
+Bạn có thể thêm ở: [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
