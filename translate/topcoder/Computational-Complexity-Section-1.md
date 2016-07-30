@@ -9,12 +9,37 @@ Trong bài viết này tôi sẽ giới thiệu tới các bạn về chủ đ�
 
 ## Ví dụ 1
 Giả sử bạn được phân công viết một chương trình để xử lý một tập dữ liệu gồm nhiều bản ghi mà công ty của bạn đã thu thập. Bạn đã cài đặt hai thuật toán và kiểm tra thời gian chạy trên một vài tập dữ liệu con với số bản ghi khác nhau. Thời gian chạy được thống kê trong bảng 1. 
-
-|                |       |        |       |       |        |        |
-|----------------|-------|--------|-------|-------|------- |--------|
-|Số lượng bản ghi| 10    | 20     | 50    | 100   | 1000   | 5000   |
-|Thuật toán 1    | 0.00s |  0.01s | 0.05s | 0.47s | 23.92s | 47min  |
-|Thuật toán 2	 | 0.05s |  0.05s | 0.06s | 0.11s | 0.78s  | 14.22s |
+<table>
+<tbody>
+<tr>
+<td>Số lượng bản ghi</td>
+<td>10</td>
+<td>20</td>
+<td>50</td>
+<td>100</td>
+<td>1000</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>Thuật toán 1</td>
+<td>0.00s</td>
+<td>0.01s</td>
+<td>0.05s</td>
+<td>0.47s</td>
+<td>23.92s</td>
+<td>47min</td>
+</tr>
+<tr>
+<td>Thuật toán 2</td>
+<td>0.05s</td>
+<td>0.05s</td>
+<td>0.06s</td>
+<td>0.11s</td>
+<td>0.78s</td>
+<td>14.22s</td>
+</tr>
+</tbody>
+</table>
 Bảng 1: Thời gian chạy của hai thuật toán 1, 2
 
 Từ bảng 1 ta có thể đánh giá một cách không chính thức rằng thuật toán nào tốt hơn (vì thường là ta có thể ước lượng số lượng bản ghi cần xử lý). Với một công ty thì kết luận dựa trên việc chạy thử như vậy có thể chấp nhận được. Nhưng từ góc nhìn của một người lập trình, phương án tốt hơn là có thể đánh giá thời gian chạy của hai thuật toán **trước khi** tiến hành chạy thử - như vậy chỉ cần cài đặt một lần cho thuật toán có thời gian chạy nhỏ hơn. 
@@ -27,11 +52,28 @@ Kết luận so sánh về độ tốt giữa hai thuật toán đã được ch
 
 ## Mẹo gộp hai thuật toán
 Nếu xem xét Ví dụ 1 kỹ hơn chúng ta sẽ thấy là có một thuật toán với thời gian chạy được thống kê ở Bảng 2:
-
-|                                           |
-|----------------|-------|--------|-------|-------|------- |--------|
-|Số lượng bản ghi| 10    | 20     | 50    | 100   | 1000   | 5000   |
-|Thuật toán 3    | 0.00s |	0.01s |	0.05s |	0.11s |	0.78s | 14.22s  |
+<table>
+<tbody>
+<tr>
+<td>Số lượng bản ghi</td>
+<td>10</td>
+<td>20</td>
+<td>50</td>
+<td>100</td>
+<td>1000</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>Thuật toán 3</td>
+<td>$N$ 0.00s</td>
+<td>0.01s</td>
+<td>0.05s</td>
+<td>0.11s</td>
+<td>0.78s</td>
+<td>14.22s</td>
+</tr>
+</tbody>
+</table>
 Bảng 2: Thời gian chạy của thuật toán 3
 
 Ý tưởng của thuât toán 3: nếu số lượng bản ghi nhỏ thì ta áp dụng thuật toán 1, ngược lại áp dụng thuật toán 2.
@@ -157,17 +199,29 @@ Nói cách khác: nếu hằng số là lớn thì thường là các hằng s�
 Ví dụ: bài toán yêu cầu đếm số lần xuất hiện của mỗi loại ký tự trong một chuỗi độ dài $N$ ký tự. Thuật toán đơn giản nhất là duyệt cả chuỗi một lần cho mỗi loại ký tự. Kích cỡ bảng chữ cái không thay đổi (ví dụ nhiều nhất là 255 ký tự trong ngôn ngữ C), vì vậy thuật toán là tuyến tính với $N$. Mặc dù vậy, ta nên viết độ phức tạp thời gian là $ \Theta(|S|.N)$, trong đó $S$ là bảng chữ cái được sử dụng (Lưu ý là có một thuật toán tốt hơn giải bài toán này trong $ \Theta(| S| + N)$.
 
 Trong một kỳ thi trên TopCoder, một thuật toán thực thi 1 000 000 000 phép nhân hiếm khi chạy trong giới hạn thời gian cho phép. Thực tế này cộng với quan sát ở trên và một vài kinh nghiệm với các bài toán trên TopCoder giúp ta tổng kết bảng sau:
-
-|complexity |	maximum N|
-|-----------|------------|
-|$ \Theta$(N) |	100 000 000|
-|$ \Theta$(N log N)| 	40 000 000|
-|$ \Theta$(N^2) |	10 000|
-|$ \Theta$(N^3) |	500|
-|$ \Theta$(N^4) |	90|
-|$ \Theta$(2^N) |	20|
-|$ \Theta$(N!) |	11|
-
+<table>
+<tbody>
+<tr>
+<th>complexity</th>
+<th>maximum N</th>
+</tr>
+<tr>
+<td>$ \Theta$(N) </td><td>100 000 000</td>
+</tr><tr>
+<td>$ \Theta$(N log N)</td><td> 	40 000 000</td>
+</tr><tr>
+<td>$ \Theta$(N^2) </td><td>	10 000</td>
+</tr><tr>
+<td>$ \Theta$(N^3) </td><td>	500</td>
+</tr><tr>
+<td>$ \Theta$(N^4) </td><td>	90</td>
+</tr><tr>
+<td>$ \Theta$(2^N) </td><td>	20</td>
+</tr><tr>
+<td>$ \Theta$(N!) </td><td> 11</td>
+</tr>
+</tbody>
+</table>
 Bảng 3: Giá trị $N$ lớn nhất để các thuật toán có độ phức tạp khác nhau chạy trong tối đa 8 giây
 
 # Lưu ý khi phân tích độ phức tạp thuật toán
