@@ -39,6 +39,7 @@ Team Admins VNOI đã quyết tâm xây dựng một **thư viện** VNOI mới 
     - [[Tổng quan về cấu trúc dữ liệu|translate/codeforces/Data-Structures]]
     - [[Cây|translate/wcipeg/tree]]
     - [[Binary Heap|translate/wcipeg/Binary-Heap]]
+    - [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
 
 - Quy hoạch động:
     - [[Kĩ thuật bao lồi|translate/wcipeg/Convex-Hull-Trick]]
