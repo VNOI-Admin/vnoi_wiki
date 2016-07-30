@@ -7,7 +7,8 @@ Note: Trong bài này có thể có nhiều phần bạn đã biết, bạn hoà
 ##Giới thiệu 
 
 
-----------
+***
+
 
 
 ###Beginner
@@ -65,7 +66,7 @@ Dựa vào bảng trên, ta có thể truy vết lại được những đồng 
 Bài QHĐ trên còn có một cách tiếp cận khác nữa. Lần này, ta sẽ không tính liên tiếp các tổng. Bắt đầu từ trạng thái 0. Thử nhét đồng xu thứ 1 vào các tổng đã tính. Nếu như tổng $t$ có số đồng xu ít hơn số đồng xu hiện tại thì tiến hành cập nhật. Rồi tiếp tục thử với đồng thứ 2, 3 cho đến khi thử hết các đồng. Ví dụ, nhét đồng 1 (giá trị 1) vào tổng 0 ta có tổng 1. Vì ta chưa tính tổng 1 nên $S[1] = 1$. Nhét đồng 1 vào tổng 1 ta có $S[2] = 2$. Tiếp tục làm như vậy với các tổng còn lại. Sau đồng 1, ta nhét đồng 2(giá trị 3) vào tổng 0 ta được 1, mà $S[3] = 3 > 1$, ta cập nhật $S[3] = 1$. Tiếp tục nhét đồng 2 vào các tổng còn lại cũng nhét các đồng xu khác.
 
 
-----------
+***
 
 
 ###Elementary
@@ -93,7 +94,9 @@ Gợi ý: Tại mỗi bước, chọn ra trong số các đỉnh chưa thăm mà
    
 
 
-----------
+
+***
+
 
 
 ### Intermediate
@@ -127,7 +130,9 @@ $S[i][j]$ có thể được tính từ trái sang phải, từ trên xuống d�
  - [ChessMetric](http://community.topcoder.com/tc?module=ProblemDetail&rd=4482&pm=1592) – 2003 TCCC Round 4
 
 
-----------
+
+***
+
 
 
 ###Upper-Intermediate
@@ -189,7 +194,9 @@ Có thể dễ dàng thấy đây là một bài Dijkstra cơ bản, tuy nhiên 
  - [ShortPalindromes](http://community.topcoder.com/tc?module=ProblemDetail&rd=4630&pm=1861) – SRM 165 Div 2
 
 
-----------
+
+***
+
 
 
 ### Advanced
@@ -223,7 +230,8 @@ Bằng cách này, chúng ta đã có một cái nhìn khác về bài toán. C�
 Khi gặp một bài toán, hãy để ý xem nó có được giải trong thời gian đa thức không. Nếu có, thử xác định trạng thái của nó, cách chuyển trạng thái, và nếu không chuyển được trạng thái, hãy thử tối ưu nó về một bài QHĐ (như ví dụ ở trên).
 
 
-----------
+***
+
 
 
 **Những bài đã đề cập ở trên:**
