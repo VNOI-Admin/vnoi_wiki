@@ -233,18 +233,30 @@ Khi gặp một bài toán, hãy để ý xem nó có được giải trong th�
 ***
 
 
-
 **Những bài đã đề cập ở trên:**
-TCCC ’03 Semifinals 3 Div I Easy – [ZigZag](http://community.topcoder.com/tc?module=ProblemDetail&rd=4493&pm=1259)
-TCCC ’04 Round 4 Div I Easy – [BadNeighbors](http://community.topcoder.com/tc?module=ProblemDetail&rd=5009&pm=2402)
-TCCC ’04 Round 1 Div I Med – [FlowerGarden](http://community.topcoder.com/tc?module=ProblemDetail&rd=5006&pm=1918)
-TCO ’03 Semifinals 4 Div I Easy – [AvoidRoads](http://community.topcoder.com/tc?module=ProblemDetail&rd=4709&pm=1889)
-TCCC ’03 Round 4 Div I Easy – [ChessMetric](http://community.topcoder.com/tc?module=ProblemDetail&rd=4482&pm=1592)
-TCO ’03 Round 4 Div I Med – [Jewelry](http://community.topcoder.com/tc?module=ProblemDetail&rd=4705&pm=1166)
-SRM 150 Div I Med – [StripePainter](http://community.topcoder.com/tc?module=ProblemDetail&rd=4555&pm=1215)
-SRM 197 Div II Hard – [QuickSums](http://community.topcoder.com/tc?module=ProblemDetail&rd=5072&pm=2829)
-SRM 165 Div II Hard – [ShortPalindromes](http://community.topcoder.com/tc?module=ProblemDetail&rd=4630&pm=1861)
-SRM 208 Div I Hard – [StarAdventure](http://community.topcoder.com/tc?module=ProblemDetail&rd=5854&pm=2940)
-SRM 178 Div I Hard – [MiniPaint](http://community.topcoder.com/tc?module=ProblemDetail&rd=4710&pm=1996)
+
+ - TCCC ’03 Semifinals 3 Div I Easy –
+   [ZigZag](http://community.topcoder.com/tc?module=ProblemDetail&rd=4493&pm=1259)
+ - TCCC ’04 Round 4 Div I Easy –
+   [BadNeighbors](http://community.topcoder.com/tc?module=ProblemDetail&rd=5009&pm=2402)
+ - TCCC ’04 Round 1 Div I Med –
+   [FlowerGarden](http://community.topcoder.com/tc?module=ProblemDetail&rd=5006&pm=1918)
+ - TCO ’03 Semifinals 4 Div I Easy –
+   [AvoidRoads](http://community.topcoder.com/tc?module=ProblemDetail&rd=4709&pm=1889)
+ - TCCC ’03 Round 4 Div I Easy –
+   [ChessMetric](http://community.topcoder.com/tc?module=ProblemDetail&rd=4482&pm=1592)
+ - TCO ’03 Round 4 Div I Med –
+   [Jewelry](http://community.topcoder.com/tc?module=ProblemDetail&rd=4705&pm=1166)
+ - SRM 150 Div I Med –
+   [StripePainter](http://community.topcoder.com/tc?module=ProblemDetail&rd=4555&pm=1215)
+ - SRM 197 Div II Hard –
+   [QuickSums](http://community.topcoder.com/tc?module=ProblemDetail&rd=5072&pm=2829)
+ - SRM 165 Div II Hard –
+   [ShortPalindromes](http://community.topcoder.com/tc?module=ProblemDetail&rd=4630&pm=1861)
+ - SRM 208 Div I Hard –
+   [StarAdventure](http://community.topcoder.com/tc?module=ProblemDetail&rd=5854&pm=2940)
+ - SRM 178 Div I Hard –
+   [MiniPaint](http://community.topcoder.com/tc?module=ProblemDetail&rd=4710&pm=1996)
+
 
 
