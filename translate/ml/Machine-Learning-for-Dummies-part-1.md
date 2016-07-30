@@ -1,4 +1,3 @@
-**Bài viết chưa hoàn thiện.**
 Nguồn: [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/12/introduction-to-machine-learning/)
 
 Có thể bạn đã nghe đến cụm từ **Machine Learning** (hay **Data Mining**, **Big Data**, **Data Science**,...) nhưng bạn chưa bao giờ hiểu ý nghĩa thực sự của chúng là gì. Có thể tất cả những gì bạn biết là "À! Đó là những thuật ngữ trong Toán học và Tin học", và ...thế là hết. Có thể bạn phải sử dụng những phần mềm dựa trên **Machine Learning** trong công việc nhưng với bạn, chúng hoạt động như là ma thuật vậy.
@@ -22,4 +21,25 @@ Thật sự không dễ để có thể đưa ra một định nghĩa mang tính
 ![translate_ml_iris_with_labels](http://blog.mathieu.guillame-bert.com/wp-content/uploads/2015/07/iris_with_labels.jpg)
 
 Bốn thông số của mỗi bông hoa được gọi là các *thuộc tính*. Trong **Machine Learning**, một quan sát đơn thuần chỉ là một danh sách các thuộc tính. Khi so sánh các quan sát, thực ra chúng ta so sánh các thuộc tính. Ví dụ: *"Bông hoa này có cánh hoa dài hơn bông hoa kia"*. Các thuộc tính có thể đại diện cho những thứ rất khác nhau. Ví dụ: độ dài của máy bay, thời gian của cơn bão, nhiệt độ của căn phòng, màu sắc của bức tường,... Nói chung, các thuộc tính thường được chia thành hai loại: thuộc tính dạng số (numbers) và thuộc tính dạng thể loại (categories). Sự khác biệt của hai loại thuộc tính này không quá nghiêm ngặt, nhưng thông thường, khi thuộc tính có thể so sánh được (>, <), ta coi nó là thuộc tính dạng số (ví dụ như độ dài của cánh hoa diên vĩ), ngược lại chúng ta coi nó là thuộc tính dạng thể loại (ví dụ như màu sắc của một bông hoa hay chủng loại của một chú chó). 
+
+Ngoài ra, với mỗi quan sát (hay với mỗi bông hoa diên vĩ), chúng ta có một "lớp" (**class**). Một lớp là một thông tin bổ sung về một quan sát. Trong ví dụ về hoa diên vĩ, ta giả sử rằng lớp của một bông hoa diên vĩ chính là loài của nó. Trong ví dụ này, chúng ta chỉ quan tâm ba loài hoa diên vĩ: **Setosa**, **Versicolour** và **Viginica**.
+
+Tóm lại, chúng ta có một tập hợp các quan sát (các bông hoa diên vĩ). Với mỗi quan sát, chúng ta có một số các thuộc tính và một lớp. Bảng dưới đây minh hoạ một tập hợp các quan sát trong ví dụ về hoa diên vĩ. Một bảng kiểu này thường được gọi là một **dataset** hay bộ dữ liệu.
+
+![translate_ml_iris_table](http://blog.mathieu.guillame-bert.com/wp-content/uploads/2015/07/table.png)
+
+Giả sử rằng chúng ta có 150 quan sát như vậy (tương ứng với 150 bông hoa diên vĩ). Tuy nhiên, với quan sát cuối cùng (hay bông hoa diên vĩ cuối cùng), chúng ta không biết lớp của nó là gì (hay không biết bông hoa thuộc loài gì). Chúng ta có thể tự hỏi: Liệu loài hoa có liên quan đến kích thước của cánh hoa và đài hoa không? Có chăng một loài hoa có cánh hoa dài hơn so với các loài diên vĩ khác? Nói cách khác, liệu chúng ta có thể sử dụng 149 bông hoa diên vĩ mà chúng ta đã biết lớp của nó, và tìm ra lớp của bông hoa cuối cùng không? Đó chính xác là bài toán phân loại. Diễn đạt theo cách khác, bài toán phân loại có thể mô tả như sau:
+
+*Giả sử chúng ta có một tập hợp các quan sát được đánh nhãn (hay các quan sát mà chúng ta đã biết lớp của nó) và một quan sát chưa được đánh nhãn. Làm thế nào để tìm ra lớp của quan sát đó?*
+
+Trong thực tế, dĩ nhiên các kỹ thuật phân loại không chỉ được dùng để phân loại hoa. Các ngân hàng sử dụng nó để phân loại khách hàng (ví dụ: liệu khách hàng có hoàn lại nợ tín dụng hay không?). Các bệnh viện ứng dụng nó để phân loại bệnh nhân, các công ty bảo hiểm dùng trong việc phân loại các thân chủ của mình... Phân loại còn có thể được sử dụng ở một mức độ sâu sắc hơn. Ví dụ, các loại camera hiện đại dùng **classification** để nhận diện khuôn mặt, dịch vụ bưu điện sử dụng nó trong việc nhận dạng địa chỉ viết tay. Các thương gia dự đoán thị trường bằng các thuật toán phân loại, trong khi những nhà khí tượng sử dụng nó để dự báo thời tiết.
+
+Điểm khác biệt chính giữa những ví dụ trên chính là các thuộc tính. Với khách hàng của các ngân hàng, thuộc tính là thu nhập hàng tháng, điểm tín dụng, số lần sử dụng thẻ gần đây,... Với bệnh nhân thì thuộc tính là giới tính, nhịp tim, huyết áp,... Với các bức ảnh, thuộc tính chính là giá trị màu của từng điểm ảnh.
+
+Trong bài viết tiếp theo, tác giả sẽ trình bày các giải bài toán phân loại. Chính xác hơn, tác giả sẽ trình bày hai thuật toán phân loại được sử dụng rộng rãi mà bất cứ nhà nghiên cứu về **Machine Learning** nào cũng biết.
+
+Hẹn gặp lại các bạn trong bài viết tiếp theo. 
+
+
+ 
 
