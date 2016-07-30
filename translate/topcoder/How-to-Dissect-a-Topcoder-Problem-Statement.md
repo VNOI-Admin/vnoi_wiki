@@ -95,7 +95,7 @@ Thông thường bạn nên test code của mình với tất cả các test ví
 Các ví dụ này không phải lúc nào cũng bao quát hết trường hợp! Code bạn chạy đúng với các test ví dụ không có nghĩa là nó đúng. Vì vậy hãy test nhiều, và nghĩ ra các test của chính bạn. Chú ý rằng sau **Coding Phase**, Topcoder còn có phần **Challenge Phase** - bạn có thể dùng các test của bạn để bắt lỗi sai trong code người khác và được thêm điểm.
 
 
-## Giải một bài toán
+# Bài toán ví dụ
 
 Bây giờ chúng ta sẽ thử một bài toán, phân tích nó, từng bước một.
 
@@ -113,7 +113,7 @@ Các giới hạn được đề cập rõ ràng. Phần input mảng sẽ gồm
 
 Cuối cùng, là phần ví dụ. Thường thì đề bài sẽ bao gồm một ví dụ test cùng chú giải, là test số 0. Sau đó là các test khác có chú giải hoặc không. Ta cũng cần lưu ý rằng một test ví dụ có kết quả là số âm, để bổ sung cho phần lưu ý.
 
-## Một bài toán phức tạp hơn
+# Một bài toán phức tạp hơn
 
 Bây giờ hãy nhìn qua [Poetry](http://community.topcoder.com/tc?module=ProblemDetail&rd=4655&pm=1835), vòng SRM 170 Div 2 Hard. Đối với bài toán này, bạn rất khó để giải được trong thời gian cho phép, nhưng chúng ta hãy cùng thử nghiên cứu đề bài.
 
@@ -127,7 +127,7 @@ Phần ràng buộc khá cơ bản như các bài toán topcoder khác: sẽ có
 
 Cuối cùng là một vài ví dụ. Thường, các bài toán thường đánh đố hoặc có một đề bài phức tạp cùng nhiều ví dụ hơn, để làm rõ ít nhất một vài điểm trong đề bài. Nhắc lại, điều này không có nghĩa rằng bạn đúng các test đấy là tương đương bạn có một bài giải đầy đủ và hoàn toàn chính xác, nhưng nó sẽ có cơ hội cao hơn để tìm các lỗi nếu có nhiều ví dụ bạn biết kết quả.
 
-## Try It Yourself
+# Bài tập luyện tập
 
 Đây là danh sách các bài toán tương tự, được xếp thành các nhóm theo độ khó hiểu. Hãy tự làm trong phòng Arena Practice Rooms. Ngay cả việc bạn không thể giải chúng, ít nhất bạn có thể tìm ra bài toán muốn bạn làm gì khi phân chia thành các phần khác nhau.
 
