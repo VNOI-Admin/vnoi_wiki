@@ -1,6 +1,6 @@
 # Persistent Data Structures
 
-**Tác giả:** Nguyễn RR Thành Trung
+**Tác giả:** Nguyễn *RR* Thành Trung
 
 [[_TOC_]]
 
