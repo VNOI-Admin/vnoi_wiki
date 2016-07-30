@@ -2,3 +2,5 @@
 Nguồn: [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/12/introduction-to-machine-learning/)
 
 Có thể bạn đã nghe đến cụm từ **Machine Learning** (hay **Data Mining**, **Big Data**, **Data Science**,...) nhưng bạn chưa bao giờ hiểu ý nghĩa thực sự của chúng là gì. Có thể tất cả những gì bạn biết là "À! Đó là những thuật ngữ trong Toán học và Tin học", và ...thế là hết. Có thể bạn phải sử dụng những phần mềm dựa trên **Machine Learning** trong công việc nhưng với bạn, chúng hoạt động như là ma thuật vậy.
+
+Nếu bạn vẫn đang còn tò mò, thì **Machine Learning** được dùng trong hầu hết mọi lĩnh vực, ngay khi có một quan sát nào đó được ghi nhận. Ví dụ, **Machine Learning** được sử dụng bởi các ngân hàng để phát hiện gian lận và dự đoán rủi ro, được dùng bởi nhà quản lí thư điện tử để phát hiện thư rác. Các bác sĩ dùng **Machine Learning** để hỗ trợ chẩn đoán, các nhà sinh học ứng dụng *Machine Learning* trong việc phân tích DNA. Chúng ta cũng đang tiếp xúc với nó hàng ngày khi Google/Bing/Yahoo đều sử dụng **Machine Learning** để trả lời các truy vấn. 
