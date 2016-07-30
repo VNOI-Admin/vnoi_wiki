@@ -7,7 +7,6 @@ Note: Trong bài này có thể có nhiều phần bạn đã biết, bạn hoà
 
 ##Giới thiệu 
 
-
 ###Beginner
 
 #### QHĐ là gì ?
@@ -59,10 +58,10 @@ Xét tiếp đến tổng 4, rồi đến 11 bằng cách như trên.
 <table width="400" cellspacing="0" cellpadding="5" class="formFrame" align="center" style="visibility: visible;">
 	<tbody>
 		<tr>
-			<td nowrap="nowrap">Sum</td>
-			<td nowrap="nowrap">Min. nr. of coins</td>
-			<td nowrap="nowrap">Coin value added to a smaller sum to<br>
-				obtain this sum (it is displayed in brackets)</td>
+			<td nowrap="nowrap">Tổng</td>
+			<td nowrap="nowrap">Lượng xu nhỏ nhất</td>
+			<td nowrap="nowrap">Xu được chọn<br>
+				(tổng còn lại)</td>
 		</tr>
 		<tr>
 			<td >0</td>
@@ -142,7 +141,48 @@ Ta quy định trạng thái $i$ là dãy con không giảm dài nhất kết th
 
 Hãy xem bảng sau với dãy: 5, 3, 4, 8, 6, 7:
 
-[[/uploads/dynamicprogramming_pic2.JPG]]
+<table width="400" cellspacing="0" cellpadding="5" class="formFrame" align="center" style="visibility: visible;">
+	<tbody>
+		<tr>
+			<td >I</td>
+			<td >Đồ dài dãy con<br>
+				không tăng dài nhất<br>
+				của i số đầu tiên</td>
+			<td >Vị trí của kí tự cuối <br>
+				trong dãy</td>
+		</tr>
+		<tr>
+			<td >1</td>
+			<td >1</td>
+			<td >1</td>
+		</tr>
+		<tr>
+			<td >2</td>
+			<td >1</td>
+			<td >2</td>
+		</tr>
+		<tr>
+			<td >3</td>
+			<td >2</td>
+			<td >2</td>
+		</tr>
+		<tr>
+			<td >4</td>
+			<td >3</td>
+			<td >3</td>
+		</tr>
+		<tr>
+			<td >5</td>
+			<td >3</td>
+			<td >3</td>
+		</tr>
+		<tr>
+			<td >6</td>
+			<td >4</td>
+			<td >5</td>
+		</tr>
+	</tbody>
+</table>
 
 **Bài luyện tập:**
 Cho đồ thị vô hướng $G$ có $N$ đỉnh ($N \le  1000$) và các cạnh có trọng số dương. Tìm đường đi ngắn nhất từ đỉnh 1 đến đỉnh $N$ hoặc thông báo không tồn tại đường đi.
@@ -271,8 +311,6 @@ Bằng cách này, chúng ta đã có một cái nhìn khác về bài toán. C�
 
 **Note:**
 Khi gặp một bài toán, hãy để ý xem nó có được giải trong thời gian đa thức không. Nếu có, thử xác định trạng thái của nó, cách chuyển trạng thái, và nếu không chuyển được trạng thái, hãy thử tối ưu nó về một bài QHĐ (như ví dụ ở trên).
-
-
 
 **Những bài đã đề cập ở trên:**
 
