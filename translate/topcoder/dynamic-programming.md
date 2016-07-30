@@ -54,25 +54,11 @@ Xét tiếp đến tổng 4, rồi đến 11 bằng cách như trên.
 	For j = 0 to N - 1
 	   If (Vj<=i AND Min[i-Vj]+1<Min[i])
 	Then Min[i]=Min[i-Vj]+1
-	
 	Output Min[S]
 
 Đây là lời giải cho tất cả các tổng: 
 
-| Tổng| Lượng xu nhỏ nhất | Xu được chọn |
-|-----|-------------------|--------------|
-|0    |0        		  |  _           |
-|1    |1        		  |1 (0)         |
-|2    |2        		  |1 (1)         |
-|3    |1        		  |3 (0)         |
-|4    |2        		  |1 (3)         |
-|5    |1        		  |5 (0)         |
-|6    |2        		  |3 (3)         |
-|7    |3        		  |1 (6)         |
-|8    |2        		  |3 (5)         |
-|9    |3        		  |1 (8)         |
-|10   |2        		  |5 (5)         |
-|11   |3        		  |1 (10)        |
+[[/uploads/dynamicprogramming_pic1.JPG]]
 
 Vậy là chung ta đã tìm được lời giải cho 3 đồng xu tổng bằng 11.
 Dựa vào bảng trên, ta có thể truy vết lại được những đồng xu nào được chọn để tối ưu bài toán.
@@ -92,15 +78,8 @@ Cho một dãy N số - $A[1], A[2], ..., A[N]$. Tìm dãy con không giảm dà
 Ta quy định trạng thái $i$ là dãy con không giảm dài nhất kết thúc tại $A[i]$. Với độ dài bằng một, thì mỗi đoạn bao gồm một phần tử $i$. Với $j<i$, tính được $i$ khi có $A[j] \le A[i]$ (vì đây là dãy không giảm). Khi đó $S[i] = Min(S[i], S[j] + 1)$. Tiếp tục tính như vậy cho đến khi đến được trạng thái N.
 
 Hãy xem bảng sau với dãy: 5, 3, 4, 8, 6, 7:
- 
-|i	  | Đồ dài dãy con k.tăng dài nhất | Vị trí của kí tự cuối trong dãy |
-|-----|-------------------|--------------|
-|1    |1        		  |1         |
-|2    |1        		  |2         |
-|3    |2        		  |2         |
-|4    |3        		  |3	     |
-|5    |3        		  |3         |
-|6    |4        		  |5         |
+
+[[/uploads/dynamicprogramming_pic2.JPG]]
 
 **Bài luyện tập:**
 Cho đồ thị vô hướng $G$ có $N$ đỉnh ($N \le  1000$) và các cạnh có trọng số dương. Tìm đường đi ngắn nhất từ đỉnh 1 đến đỉnh $N$ hoặc thông báo không tồn tại đường đi.
