@@ -13,6 +13,7 @@
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 
 - Cấu trúc dữ liệu:
+    - [[Tổng quan về cấu trúc dữ liệu|translate/codeforces/Data-Structures]]
     - [[Cây|translate/wcipeg/tree]]
     - [[Binary Heap|translate/wcipeg/Binary-Heap]]
 
