@@ -1,6 +1,6 @@
 # Nghệ thuật giải bài
 
-Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/how-to-find-a-solution/)
+Bài viết gốc: [How to Find a Solution - đăng bởi Dumitru trên Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/how-to-find-a-solution/)
 
 ## Giới thiệu
 
