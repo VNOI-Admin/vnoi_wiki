@@ -1,6 +1,7 @@
 # Quy hoạch động (Dynamic Programming) _ Từ con số 0
 
 Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/dynamic-programming-from-novice-to-advanced/).
+
 Có rất nhiều bài toán được giải quyết bằng **quy hoạch động (QHĐ)**. Và việc giải những bài dạng này sẽ giúp bạn tăng kĩ năng của mình. Bài viết này sẽ giúp bạn hiểu được **QHĐ** thông qua các ví dụ cụ thể.
 Note: Trong bài này có thể có nhiều phần bạn đã biết, bạn hoàn toàn có thể bỏ qua những phần đó và đọc tiếp.
 
@@ -55,7 +56,76 @@ Xét tiếp đến tổng 4, rồi đến 11 bằng cách như trên.
 
 Đây là lời giải cho tất cả các tổng: 
 
-[[/uploads/dynamicprogramming_pic1.JPG]]
+<table width="400" cellspacing="0" cellpadding="5" class="formFrame" align="center" style="visibility: visible;">
+	<tbody>
+		<tr>
+			<td nowrap="nowrap">Sum</td>
+			<td nowrap="nowrap">Min. nr. of coins</td>
+			<td nowrap="nowrap">Coin value added to a smaller sum to<br>
+				obtain this sum (it is displayed in brackets)</td>
+		</tr>
+		<tr>
+			<td >0</td>
+			<td >0</td>
+			<td >-</td>
+		</tr>
+		<tr>
+			<td >1</td>
+			<td >1</td>
+			<td >1 (0)</td>
+		</tr>
+		<tr>
+			<td >2</td>
+			<td >2</td>
+			<td >1 (1)</td>
+		</tr>
+		<tr>
+			<td >3</td>
+			<td >1</td>
+			<td >3 (0)</td>
+		</tr>
+		<tr>
+			<td >4</td>
+			<td >2</td>
+			<td >1 (3)</td>
+		</tr>
+		<tr>
+			<td >5</td>
+			<td >1</td>
+			<td >5 (0)</td>
+		</tr>
+		<tr>
+			<td >6</td>
+			<td >2</td>
+			<td >3 (3)</td>
+		</tr>
+		<tr>
+			<td >7</td>
+			<td >3</td>
+			<td >1 (6)</td>
+		</tr>
+		<tr>
+			<td >8</td>
+			<td >2</td>
+			<td >3 (5)</td>
+		</tr>
+		<tr>
+			<td >9</td>
+			<td >3</td>
+			<td >1 (8)</td>
+		</tr>
+		<tr>
+			<td >10</td>
+			<td >2</td>
+			<td >5 (5)</td>
+		</tr>
+		<tr>
+			<td >11</td>
+			<td >3</td>
+			<td >1 (10)</td>
+		</tr>
+	</tbody>
+</table>
 
 Vậy là chung ta đã tìm được lời giải cho 3 đồng xu tổng bằng 11.
 Dựa vào bảng trên, ta có thể truy vết lại được những đồng xu nào được chọn để tối ưu bài toán.
