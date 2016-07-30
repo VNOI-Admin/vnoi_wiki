@@ -1,6 +1,6 @@
 # Tầm Quan Trọng Của Thuật Toán
 
-Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/the-importance-of-algorithms/) 
+Bài viết gốc: [The Importance of Algorithms - đăng bởi lbackstrom trên Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/the-importance-of-algorithms/) 
 
 
 ## Mở đầu
