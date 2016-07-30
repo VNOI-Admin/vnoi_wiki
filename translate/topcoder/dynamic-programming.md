@@ -1,14 +1,10 @@
 # Quy hoạch động (Dynamic Programming) _ Từ con số 0
 
-Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/dynamic-programming-from-novice-to-advanced/)
+Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/dynamic-programming-from-novice-to-advanced/).
 Có rất nhiều bài toán được giải quyết bằng **quy hoạch động (QHĐ)**. Và việc giải những bài dạng này sẽ giúp bạn tăng kĩ năng của mình. Bài viết này sẽ giúp bạn hiểu được **QHĐ** thông qua các ví dụ cụ thể.
 Note: Trong bài này có thể có nhiều phần bạn đã biết, bạn hoàn toàn có thể bỏ qua những phần đó và đọc tiếp.
 
 ##Giới thiệu 
-
-
-***
-
 
 
 ###Beginner
@@ -65,10 +61,6 @@ Vậy là chung ta đã tìm được lời giải cho 3 đồng xu tổng bằn
 Dựa vào bảng trên, ta có thể truy vết lại được những đồng xu nào được chọn để tối ưu bài toán.
 Bài QHĐ trên còn có một cách tiếp cận khác nữa. Lần này, ta sẽ không tính liên tiếp các tổng. Bắt đầu từ trạng thái 0. Thử nhét đồng xu thứ 1 vào các tổng đã tính. Nếu như tổng $t$ có số đồng xu ít hơn số đồng xu hiện tại thì tiến hành cập nhật. Rồi tiếp tục thử với đồng thứ 2, 3 cho đến khi thử hết các đồng. Ví dụ, nhét đồng 1 (giá trị 1) vào tổng 0 ta có tổng 1. Vì ta chưa tính tổng 1 nên $S[1] = 1$. Nhét đồng 1 vào tổng 1 ta có $S[2] = 2$. Tiếp tục làm như vậy với các tổng còn lại. Sau đồng 1, ta nhét đồng 2(giá trị 3) vào tổng 0 ta được 1, mà $S[3] = 3 > 1$, ta cập nhật $S[3] = 1$. Tiếp tục nhét đồng 2 vào các tổng còn lại cũng nhét các đồng xu khác.
 
-
-***
-
-
 ###Elementary
 
 Bây giờ, chúng ta cùng đến một khái niệm mới, **công thức truy hồi (recurrent relation)**, mối liên hệ giữa những trạng thái.
@@ -90,14 +82,7 @@ Gợi ý: Tại mỗi bước, chọn ra trong số các đỉnh chưa thăm mà
 
  - [ZigZag](http://community.topcoder.com/tc?module=ProblemDetail&rd=4493&pm=1259) – 2003 TCCC Semifinals 3.
  - [BadNeighbors](http://community.topcoder.com/tc?module=ProblemDetail&rd=5009&pm=2402) – 2004 TCCC Round 4.
- - [FlowerGarden](http://community.topcoder.com/tc?module=ProblemDetail&rd=5006&pm=1918) – 2004 TCCC Round 1
-   
-
-
-
-***
-
-
+ - [FlowerGarden](http://community.topcoder.com/tc?module=ProblemDetail&rd=5006&pm=1918) – 2004 TCCC Round 1.
 
 ### Intermediate
 
@@ -128,12 +113,6 @@ $S[i][j]$ có thể được tính từ trái sang phải, từ trên xuống d�
 
  - [AvoidRoads](http://community.topcoder.com/tc?module=ProblemDetail&rd=4709&pm=1889) – 2003 TCO Semifinals 4
  - [ChessMetric](http://community.topcoder.com/tc?module=ProblemDetail&rd=4482&pm=1592) – 2003 TCCC Round 4
-
-
-
-***
-
-
 
 ###Upper-Intermediate
 
@@ -193,12 +172,6 @@ Có thể dễ dàng thấy đây là một bài Dijkstra cơ bản, tuy nhiên 
  - [QuickSums](http://community.topcoder.com/tc?module=ProblemDetail&rd=5072&pm=2829) – SRM 197 Div 2
  - [ShortPalindromes](http://community.topcoder.com/tc?module=ProblemDetail&rd=4630&pm=1861) – SRM 165 Div 2
 
-
-
-***
-
-
-
 ### Advanced
 
 Những bài sau đây sẽ cần một chút kĩ năng quan sát để có thể tối ưu chúng thành bài QHĐ.
@@ -229,8 +202,6 @@ Bằng cách này, chúng ta đã có một cái nhìn khác về bài toán. C�
 **Note:**
 Khi gặp một bài toán, hãy để ý xem nó có được giải trong thời gian đa thức không. Nếu có, thử xác định trạng thái của nó, cách chuyển trạng thái, và nếu không chuyển được trạng thái, hãy thử tối ưu nó về một bài QHĐ (như ví dụ ở trên).
 
-
-***
 
 
 **Những bài đã đề cập ở trên:**
