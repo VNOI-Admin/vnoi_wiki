@@ -36,7 +36,7 @@ Trong thực tế, dĩ nhiên các kỹ thuật phân loại không chỉ đư�
 
 Điểm khác biệt chính giữa những ví dụ trên chính là các thuộc tính. Với khách hàng của các ngân hàng, thuộc tính là thu nhập hàng tháng, điểm tín dụng, số lần sử dụng thẻ gần đây,... Với bệnh nhân thì thuộc tính là giới tính, nhịp tim, huyết áp,... Với các bức ảnh, thuộc tính chính là giá trị màu của từng điểm ảnh.
 
-Trong bài viết tiếp theo, tác giả sẽ trình bày các giải bài toán phân loại. Chính xác hơn, tác giả sẽ trình bày hai thuật toán phân loại được sử dụng rộng rãi mà bất cứ nhà nghiên cứu về **Machine Learning** nào cũng biết.
+Trong bài viết tiếp theo, tác giả sẽ trình bày cách giải bài toán phân loại. Chính xác hơn, tác giả sẽ trình bày hai thuật toán phân loại được sử dụng rộng rãi mà bất cứ nhà nghiên cứu về **Machine Learning** nào cũng biết.
 
 Hẹn gặp lại các bạn trong bài viết tiếp theo. 
 
