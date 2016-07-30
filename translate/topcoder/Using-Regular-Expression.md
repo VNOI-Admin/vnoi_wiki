@@ -2,7 +2,7 @@
 
 [[_TOC_]]
 
-Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/using-regular-expressions-2/)
+Bài viết gốc: [Using Regular Expressions - đăng bởi Dan[Popovici] & mariusmuja trên Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/using-regular-expressions-2/)
 
 # Giới thiệu
 
