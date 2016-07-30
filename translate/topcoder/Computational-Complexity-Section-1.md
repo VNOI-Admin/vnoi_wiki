@@ -206,19 +206,19 @@ Trong một kỳ thi trên TopCoder, một thuật toán thực thi 1 000 000 00
 <th>maximum N</th>
 </tr>
 <tr>
-<td>$ \Theta$(N) </td><td>100 000 000</td>
+<td>$ \Theta(N)$ </td><td>100 000 000</td>
 </tr><tr>
-<td>$ \Theta$(N log N)</td><td> 	40 000 000</td>
+<td>$ \Theta$(N log N)$</td><td> 	40 000 000</td>
 </tr><tr>
-<td>$ \Theta$(N^2) </td><td>	10 000</td>
+<td>$ \Theta$(N^2)$ </td><td>	10 000</td>
 </tr><tr>
-<td>$ \Theta$(N^3) </td><td>	500</td>
+<td>$ \Theta$(N^3)$ </td><td>	500</td>
 </tr><tr>
-<td>$ \Theta$(N^4) </td><td>	90</td>
+<td>$ \Theta$(N^4)$ </td><td>	90</td>
 </tr><tr>
-<td>$ \Theta$(2^N) </td><td>	20</td>
+<td>$ \Theta$(2^N)$ </td><td>	20</td>
 </tr><tr>
-<td>$ \Theta$(N!) </td><td> 11</td>
+<td>$ \Theta$(N!)$ </td><td> 11</td>
 </tr>
 </tbody>
 </table>
