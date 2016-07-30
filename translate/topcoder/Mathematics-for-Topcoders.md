@@ -1,6 +1,6 @@
 # Toán học trong Tin học
 
-Nguồn bài: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/mathematics-for-topcoders/)
+Bài viết gốc: [Mathematics for Topcoders - đăng bởi dimkadimon trên Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/mathematics-for-topcoders/)
 
 ## Giới thiệu:
 
