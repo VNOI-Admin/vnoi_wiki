@@ -1,5 +1,7 @@
 # Những lần phỏng vấn và những bài học rút ra
 
+**Tác giả**: Lê Trương Quốc Thắng
+
 **Thông thường trong các vòng phỏng vấn sẽ có một vòng về chuyên ngành các bạn đam mê. Mình chuyên về Android nên các vòng bên dưới là về Android**
 
 ## SkedGo Internship
