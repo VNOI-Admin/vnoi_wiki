@@ -103,7 +103,7 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
       * Ở độ sâu $k = h-2$ có $2^{h-2}$ nút số phép so sánh là $2 \* 2^{h-2} = 2/8 \* N$
       * Ở độ sâu $k = h-3$ có $2^{h-3}$ nút số phép so sánh là $3 \* 2^{h-3} = 3/16 \* N$
         ...
-      * Ở độ sâu $k = 0$ (gốc) -> số phép so sánh là $h \* 1 = h/N \* N$
+      * Ở độ sâu $k = 0$ (gốc) có $1$ nút số phép so sánh là $h \* 1 = h/N \* N$
       * Tổng hợp lại ta có: $1/4 \* N + 2/8 \* N + 3/16 \* N + ... + h/N \* N = N$ phép so sánh
 
 ## 3. Câu hỏi thêm cho bạn đọc ##
