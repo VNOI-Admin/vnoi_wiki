@@ -10,11 +10,11 @@ Trong bài viết này tôi sẽ giới thiệu tới các bạn về chủ đ�
 ## Ví dụ 1
 Giả sử bạn được phân công viết một chương trình để xử lý một tập dữ liệu gồm nhiều bản ghi mà công ty của bạn đã thu thập. Bạn đã cài đặt hai thuật toán và kiểm tra thời gian chạy trên một vài tập dữ liệu con với số bản ghi khác nhau. Thời gian chạy được thống kê trong bảng 1. 
 
-|                                           |
+|                |       |        |       |       |        |        |
 |----------------|-------|--------|-------|-------|------- |--------|
 |Số lượng bản ghi| 10    | 20     | 50    | 100   | 1000   | 5000   |
-|Thuật toán 1    | 0.00s |	0.01s |	0.05s |	0.47s |	23.92s | 47min  |
-|Thuật toán 2	 | 0.05s |	0.05s |	0.06s |	0.11s |	0.78s  | 14.22s |
+|Thuật toán 1    | 0.00s |  0.01s | 0.05s | 0.47s | 23.92s | 47min  |
+|Thuật toán 2	 | 0.05s |  0.05s | 0.06s | 0.11s | 0.78s  | 14.22s |
 Bảng 1: Thời gian chạy của hai thuật toán 1, 2
 
 Từ bảng 1 ta có thể đánh giá một cách không chính thức rằng thuật toán nào tốt hơn (vì thường là ta có thể ước lượng số lượng bản ghi cần xử lý). Với một công ty thì kết luận dựa trên việc chạy thử như vậy có thể chấp nhận được. Nhưng từ góc nhìn của một người lập trình, phương án tốt hơn là có thể đánh giá thời gian chạy của hai thuật toán **trước khi** tiến hành chạy thử - như vậy chỉ cần cài đặt một lần cho thuật toán có thời gian chạy nhỏ hơn. 
