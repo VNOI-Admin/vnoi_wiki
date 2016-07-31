@@ -14,7 +14,7 @@ Note: Trong bài này có thể có nhiều phần bạn đã biết, bạn hoà
 
 Để hiểu rõ hơn hãy xem ví dụ sau:
 
-Cho $N$ đồng xu và giá tiền của mỗi đồng ($V_1,V_2,...,V_N$), và số $S$. Tìm số đồng xu nhỏ nhất để tổng giá trị của chúng bằng $S$ (số lượng đồng xu không giới hạn). 
+Cho $N$ đồng xu và giá tiền của mỗi đồng ($V_0,V_1,...,V_{N-1}~$),  và số $S$. Tìm số đồng xu nhỏ nhất để tổng giá trị của chúng bằng $S$ (số lượng đồng xu không giới hạn). 
 
 Bây giờ chúng ta sẽ xây dựng thuật giải:
 
@@ -33,11 +33,11 @@ Cho các đồng xu với giá tiền 1, 3 và 5.
 Và $S$ = 11.
 
 Đầu tiên, ta bắt đầu từ trạng thái 0, chúng ta có $f[0] = 0$. 
-Xét đến tổng 1. Có duy nhất đồng xu 1 nhỏ hơn hoặc bằng tổng 1, nên ta có $f[1] = f[1-V_1] + 1 = f[0] + 1 = 1$. 
-Xét đến tổng 2. Cũng giống như tổng trước, chỉ có 1 đổng xu $\le$ 2, có $f[2] = f[2-V_1] + 1 = f[1]+1 = 2$ 
+Xét đến tổng 1. Có duy nhất đồng xu 1 nhỏ hơn hoặc bằng tổng 1, nên ta có $f[1] = f[1-V_0] + 1 = f[0] + 1 = 1$. 
+Xét đến tổng 2. Cũng giống như tổng trước, chỉ có 1 đổng xu $\le$ 2, có $f[2] = f[2-V_0] + 1 = f[1]+1 = 2$ 
 Đến tổng 3. Lần này có 2 đồng xu $\le$ 3 là 1 và 3. 
-	- Nếu ta chọn đồng 1, ta có $f[3] = f[3-V_1] + 1 = f[2] + 1 = 3$
-	- Nếu ta chọn đồng 3, ta có $f[3] = f[3-V_2] + 1 = f[0] + 1 = 1$
+	- Nếu ta chọn đồng 1, ta có $f[3] = f[3-V_0] + 1 = f[2] + 1 = 3$
+	- Nếu ta chọn đồng 3, ta có $f[3] = f[3-V_1] + 1 = f[0] + 1 = 1$
 Rõ ràng là 1 $\le$ 3 nên ta chọn đồng 3 và $f[3] = 1$
 Xét tiếp đến tổng 4, rồi đến 11 bằng cách như trên.
 
@@ -136,7 +136,7 @@ Bây giờ, chúng ta cùng đến một khái niệm mới, **công thức truy
 Ví dụ:
 Cho một dãy N số - $A[1], A[2], ..., A[N]$. Tìm dãy con không giảm dài nhất.
 
-Ta quy định trạng thái $i$ là dãy con không giảm dài nhất kết thúc tại $A[i]$. Với độ dài bằng một, thì mỗi đoạn bao gồm một phần tử $i$. Với $j<i$, tính được $i$ khi tồn tại $A[j] \le A[i]$ (vì đây là dãy không giảm). Khi đó $S[i] = Min(S[i], S[j] + 1)$. Tiếp tục tính như vậy cho đến khi đến được trạng thái N.
+Ta quy định trạng thái $S[i]$ là dãy con không giảm dài nhất kết thúc tại $A[i]$. Với $i>1$ và $j<i$, tính được $i$ khi tồn tại $A[j] \le A[i]$ (vì đây là dãy không giảm). Khi đó $S[i] = Max(S[i], S[j] + 1)$. Tiếp tục tính như vậy cho đến khi đến được trạng thái $S[N]$.
 
 Hãy xem bảng sau với dãy: 5, 3, 4, 8, 6, 7:
 
@@ -197,8 +197,8 @@ Gợi ý: Tại mỗi bước, chọn ra trong số các đỉnh chưa thăm mà
 
 Tới đây bạn sẽ được làm quen với QHĐ 2 chiều.
 
-**Problem:**
-Cho một bảng $M * N$, mỗi ô có một lượng táo. Bắt đầu từ ô trái trên, mỗi bước có thể đi sang phải hoặc xuống dưới. Bạn có thể ăn được nhiều nhất bao nhiêu quả táo.
+**Bài toán:**
+Cho một bảng $M * N$, mỗi ô có một lượng táo. Bắt đầu từ ô trái trên, mỗi bước có thể đi sang phải hoặc xuống dưới. Bạn có thể ăn được nhiều nhất bao nhiêu quả táo ?
 
 Cách giải bài này cũng tương tự như những bài trước.
 
@@ -244,21 +244,21 @@ Có thể dễ dàng thấy đây là một bài Dijkstra cơ bản, tuy nhiên 
     
     While(TRUE)
     
-    Trong số những trạng thái chưa thăm (i,j) tìm cái có Min[i][j]
-    nhỏ nhất. Giải sử nó là (k,l).
-    
-    Nếu không tìm được (k,l) nào mà Min[k][l] nhỏ hơn dương vô cùng - thoát vòng lặp.
-    
-    Đánh dấu (k,l) đã thăm
-    
-    For All Neighbors p of Vertex k.
-       If (l-S[p]>=0 AND
-        Min[p][l-S[p]]>Min[k][l]+Dist[k][p])
-          Then Min[p][l-S[p]]=Min[k][l]+Dist[k][p]
-       i.e.
-    Nếu tại (i,j) có đủ tiền để đi qua p (l-S[p] là số tiền còn lại sau khi đi qua p), và đường đi ngắn nhất của (p,l-S[p]) lớn hơn [đường đi ngắn nhất tới (k,l)] + [khoảng cách từ k tới p)],
-    thì gán (i,j) bằn tổng này.
-    End For
+	    Trong số những trạng thái chưa thăm (i,j) tìm cái có Min[i][j]
+	    nhỏ nhất. Giải sử nó là (k,l).
+	    
+	    Nếu không tìm được (k,l) nào mà Min[k][l] nhỏ hơn dương vô cùng - thoát vòng lặp.
+	    
+	    Đánh dấu (k,l) đã thăm
+	    
+	    For All Neighbors p of Vertex k.
+	       If (l-S[p]>=0 AND
+	        Min[p][l-S[p]]>Min[k][l]+Dist[k][p])
+	          Then Min[p][l-S[p]]=Min[k][l]+Dist[k][p]
+	       i.e.
+	    Nếu tại (i,j) có đủ tiền để đi qua p (l-S[p] là số tiền còn lại sau khi đi qua p), và đường đi ngắn nhất của (p,l-S[p]) lớn hơn [đường đi ngắn nhất tới (k,l)] + [khoảng cách từ k tới p)],
+	    thì gán (i,j) bằn tổng này.
+	    End For
     
     End While
     
