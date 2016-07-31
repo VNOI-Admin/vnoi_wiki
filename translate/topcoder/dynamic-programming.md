@@ -44,7 +44,7 @@ Xét tiếp đến tổng 4, rồi đến 11 bằng cách như trên.
 
 **Mã giả:**
 
-	Set Min[i] equal to Infinity for all of i
+	Gán Min[i] bằng dương vô cùng với mọi i
 	Min[0]=0
 	
 	For i = 1 to S
@@ -238,42 +238,33 @@ Có thể dễ dàng thấy đây là một bài Dijkstra cơ bản, tuy nhiên 
 
 **Mã giả:**
 
-    Set states(i,j) as unvisited for all (i,j)
-    Set Min[i][j] to Infinity for all (i,j)
+    Gán mọi(i,j) là chưa thăm
+    Gán Min[i][j] bằng dương vô cùng với mọi (i,j)
     
     Min[0][M]=0
     
     While(TRUE)
     
-    Among all unvisited states(i,j) find the one for which Min[i][j]
-    is the smallest. Let this state found be (k,l).
+    Trong số những trạng thái chưa thăm (i,j) tìm cái có Min[i][j]
+    nhỏ nhất. Giải sử nó là (k,l).
     
-    If there wasn't found any state (k,l) for which Min[k][l] is
-    less than Infinity - exit While loop.
+    Nếu không tìm được (k,l) nào mà Min[k][l] nhỏ hơn dương vô cùng - thoát vòng lặp.
     
-    Mark state(k,l) as visited
+    Đánh dấu (k,l) đã thăm
     
     For All Neighbors p of Vertex k.
        If (l-S[p]>=0 AND
         Min[p][l-S[p]]>Min[k][l]+Dist[k][p])
           Then Min[p][l-S[p]]=Min[k][l]+Dist[k][p]
        i.e.
-    If for state(i,j) there are enough money left for
-    going to vertex p (l-S[p] represents the money that
-    will remain after passing to vertex p), and the
-    shortest path found for state(p,l-S[p]) is bigger
-    than [the shortest path found for
-    state(k,l)] + [distance from vertex k to vertex p)],
-    then set the shortest path for state(i,j) to be equal
-    to this sum.
+    Nếu tại (i,j) có đủ tiền để đi qua p (l-S[p] là số tiền còn lại sau khi đi qua p), và đường đi ngắn nhất của (p,l-S[p]) lớn hơn [đường đi ngắn nhất tới (k,l)] + [khoảng cách từ k tới p)],
+    thì gán (i,j) bằn tổng này.
     End For
     
     End While
     
-    Find the smallest number among Min[N-1][j] (for all j, 0<=j<=M);
-    if there are more than one such states, then take the one with greater
-    j. If there are no states(N-1,j) with value less than Infinity - then
-    such a path doesn't exist.
+    Tìm số nhỏ nhất trong các Min[N-1][j] (for all j, 0<=j<=M);
+    Nếu có nhiều hơn một trạng thái, lấy trạng thái nào có j lớn nhất. Nếu không có (N-1,j) nào nhỏ hơn dương vô cùng - không tồn tại đường đi.
 
 **Các bài luyện tập:**
 
