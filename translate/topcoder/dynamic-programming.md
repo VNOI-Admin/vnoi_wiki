@@ -2,8 +2,8 @@
 
 Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/dynamic-programming-from-novice-to-advanced/).
 
-Có rất nhiều bài toán được giải quyết bằng **quy hoạch động (QHĐ)**. Và việc giải những bài dạng này sẽ giúp bạn tăng kĩ năng của mình. Bài viết này sẽ giúp bạn hiểu được **QHĐ** thông qua các ví dụ cụ thể.
-Note: Trong bài này có thể có nhiều phần bạn đã biết, bạn hoàn toàn có thể bỏ qua những phần đó và đọc tiếp.
+Có rất nhiều bài toán được áp dụng **quy hoạch động (QHĐ)**. QHĐ là một trong những kĩ thuật quan trọng. Bài viết này sẽ giúp bạn hiểu được **QHĐ** thông qua các ví dụ cụ thể.
+Note: Trong bài này có thể có nhiều phần bạn đã biết, bạn hoàn toàn có thể chuyển qua đọc phần khác.
 
 ##Giới thiệu 
 
@@ -11,11 +11,11 @@ Note: Trong bài này có thể có nhiều phần bạn đã biết, bạn hoà
 
 #### QHĐ là gì ?
 
-**QHĐ** là kĩ thuật được được dùng khi có một công thức và một (hoặc một vài) trạng thái bắt đầu. Một bài toán nhỏ được tính bởi các bài toán đã tìm ra trước đó. **QHĐ** có độ phức tạp đa thức nên chắc chắn sẽ chạy nhanh hơn quay lui và duyệt trâu.
+**QHĐ** là kĩ thuật được được dùng khi có một công thức và một (hoặc một vài) trạng thái bắt đầu. Một bài toán được tính bởi các bài toán nhỏ hơn đã tìm ra trước đó. **QHĐ** có độ phức tạp đa thức nên chắc chắn sẽ chạy nhanh hơn quay lui và duyệt trâu.
 
 Để hiểu rõ hơn hãy xem ví dụ sau:
 
-Cho $N$ đồng xu, giá trị của chúng ($V_1,V_2,...,V_N$), và số $S$. Tìm số lượng nhỏ nhất đồng xu để tổng giá trị của chúng bằng $S$ (số lượng đồng xu không giới hạn). 
+Cho $N$ đồng xu và giá tiền của mỗi đồng ($V_1,V_2,...,V_N$), và số $S$. Tìm số đồng xu nhỏ nhất để tổng giá trị của chúng bằng $S$ (số lượng đồng xu không giới hạn). 
 
 Bây giờ chúng ta sẽ xây dựng thuật giải:
 
@@ -23,7 +23,7 @@ Bây giờ chúng ta sẽ xây dựng thuật giải:
 
 #### Trạng thái là gì ?
 
-Nó là từ để chỉ một trường hợp, một bài toàn nhỏ của bài toán lớn. Ví dụ, trạng thái là số lượng xu nhỏ nhất để tổng bằng $i$, với $i \le S$. Để tìm ra trạng thái $i$, cần phải tìm tất cả các trạng thái nhỏ hơn $j$ $(j < i)$. Một khi đã tìm ra trạng thái $i$, ta có thể dễ dàng tìm ra trạng thái của $i+1$.
+Nó là từ để chỉ một trường hợp, một bài toán con của bài toán lớn. Ví dụ, trạng thái là số lượng xu nhỏ nhất để tổng bằng $i$, với $i \le S$. Để tìm ra trạng thái $i$, cần phải tìm tất cả các trạng thái nhỏ hơn $j$ $(j < i)$. Một khi đã tìm ra trạng thái $i$, ta có thể dễ dàng tìm ra trạng thái của $i+1$.
 
 #### Làm thế nào để tìm được ?
 
@@ -126,9 +126,9 @@ Xét tiếp đến tổng 4, rồi đến 11 bằng cách như trên.
 	</tbody>
 </table>
 
-Vậy là chung ta đã tìm được lời giải cho 3 đồng xu tổng bằng 11.
+Vậy là chúng ta đã tìm được lời giải cho 3 đồng xu tổng bằng 11.
 Dựa vào bảng trên, ta có thể truy vết lại được những đồng xu nào được chọn để tối ưu bài toán.
-Bài QHĐ trên còn có một cách tiếp cận khác nữa. Lần này, ta sẽ không tính liên tiếp các tổng. Bắt đầu từ trạng thái 0. Thử nhét đồng xu thứ 1 vào các tổng đã tính. Nếu như tổng $t$ có số đồng xu ít hơn số đồng xu hiện tại thì tiến hành cập nhật. Rồi tiếp tục thử với đồng thứ 2, 3 cho đến khi thử hết các đồng. Ví dụ, nhét đồng 1 (giá trị 1) vào tổng 0 ta có tổng 1. Vì ta chưa tính tổng 1 nên $S[1] = 1$. Nhét đồng 1 vào tổng 1 ta có $S[2] = 2$. Tiếp tục làm như vậy với các tổng còn lại. Sau đồng 1, ta nhét đồng 2(giá trị 3) vào tổng 0 ta được 1, mà $S[3] = 3 > 1$, ta cập nhật $S[3] = 1$. Tiếp tục nhét đồng 2 vào các tổng còn lại cũng nhét các đồng xu khác.
+Bài QHĐ trên còn có một cách tiếp cận khác nữa. Lần này, ta sẽ không tính liên tiếp các tổng. Bắt đầu từ trạng thái 0. Thử nhét đồng xu thứ 1 vào các tổng đã tính. Nếu như tổng $t$ có số đồng xu ít hơn số đồng xu hiện tại thì tiến hành cập nhật. Rồi tiếp tục thử với đồng thứ 2, 3 cho đến khi thử hết các đồng. Ví dụ, nhét đồng 1 (giá trị 1) vào tổng 0 ta có tổng 1. Vì ta chưa tính tổng 1 nên $S[1] = 1$. Nhét đồng 1 vào tổng 1 ta có $S[2] = 2$. Tiếp tục làm như vậy với các tổng còn lại. Sau đồng 1, ta nhét đồng 2(giá trị 3) vào tổng 0 ta được 1, mà $S[3] = 3 > 1$, ta cập nhật $S[3] = 1$. Tiếp tục nhét đồng 2 vào các tổng còn lại, cũng nhứ thử nhét các đồng xu khác.
 
 ###Elementary
 
@@ -137,7 +137,7 @@ Bây giờ, chúng ta cùng đến một khái niệm mới, **công thức truy
 Ví dụ:
 Cho một dãy N số - $A[1], A[2], ..., A[N]$. Tìm dãy con không giảm dài nhất.
 
-Ta quy định trạng thái $i$ là dãy con không giảm dài nhất kết thúc tại $A[i]$. Với độ dài bằng một, thì mỗi đoạn bao gồm một phần tử $i$. Với $j<i$, tính được $i$ khi có $A[j] \le A[i]$ (vì đây là dãy không giảm). Khi đó $S[i] = Min(S[i], S[j] + 1)$. Tiếp tục tính như vậy cho đến khi đến được trạng thái N.
+Ta quy định trạng thái $i$ là dãy con không giảm dài nhất kết thúc tại $A[i]$. Với độ dài bằng một, thì mỗi đoạn bao gồm một phần tử $i$. Với $j<i$, tính được $i$ khi tồn tại $A[j] \le A[i]$ (vì đây là dãy không giảm). Khi đó $S[i] = Min(S[i], S[j] + 1)$. Tiếp tục tính như vậy cho đến khi đến được trạng thái N.
 
 Hãy xem bảng sau với dãy: 5, 3, 4, 8, 6, 7:
 
@@ -145,8 +145,8 @@ Hãy xem bảng sau với dãy: 5, 3, 4, 8, 6, 7:
 	<tbody>
 		<tr>
 			<td >I</td>
-			<td >Đồ dài dãy con<br>
-				không tăng dài nhất<br>
+			<td >Độ dài dãy con<br>
+				không giảm dài nhất<br>
 				của i số đầu tiên</td>
 			<td >Vị trí của kí tự cuối <br>
 				trong dãy</td>
@@ -199,7 +199,7 @@ Gợi ý: Tại mỗi bước, chọn ra trong số các đỉnh chưa thăm mà
 Tới đây bạn sẽ được làm quen với QHĐ 2 chiều.
 
 **Problem:**
-Cho một bảng $M * N$, mỗi ô có một lượng táo. Bắt đầu từ ô trái trên, mỗi bước có thể đi sang phải hoặc xuống dưới. Tìm số lượng táo nhiều nhất thu được.
+Cho một bảng $M * N$, mỗi ô có một lượng táo. Bắt đầu từ ô trái trên, mỗi bước có thể đi sang phải hoặc xuống dưới. Bạn có thể ăn được nhiều nhất bao nhiêu quả táo.
 
 Cách giải bài này cũng tương tự như những bài trước.
 
@@ -226,15 +226,15 @@ $S[i][j]$ có thể được tính từ trái sang phải, từ trên xuống d�
 
 ###Upper-Intermediate
 
-Phần này sẽ giới thiệu với bạn những bài toán có thêm những điều kiện bổ sung.
+Phần này sẽ giới thiệu với bạn những bài toán cùng với một số điều kiện.
 
 **Đây là một ví dụ cụ thể:**
 
 Cho đồ thị vô hướng $G$ có trọng số dương và $N$ đỉnh.
 
-Ban đầu bạn có số tiền là $M$. Để đi qua đỉnh $i$, bạn phải trải số tiền là $S[i]$. Và đương nhiên, nếu không đủ tiền thì bạn không đi được. Tìm đường đi ngắn nhất từ 1 tới $N$ thỏa mãn tiêu chí trên. Nếu có nhiều đường ngắn nhất, in ra đường với chi phí nhỏ nhất. Giới hạn: $1<N \le 100 $; $0 \le M \le 100$;  $0 \le S[i] \le 100$. 
+Ban đầu bạn có số tiền là $M$. Để đi qua đỉnh $i$, bạn phải trả số tiền là $S[i]$. Và đương nhiên, nếu không đủ tiền thì bạn không đi được. Tìm đường đi ngắn nhất từ 1 tới $N$ thỏa mãn tiêu chí trên. Nếu có nhiều đường ngắn nhất, in ra đường với chi phí nhỏ nhất. Giới hạn: $1<N \le 100 $; $0 \le M \le 100$;  $0 \le S[i] \le 100$. 
 
-Có thể dễ dàng thấy đây là một bài Dijkstra cơ bản, tuy nhiên chỉ khác ở chỗ nó có thêm một điều kiện. Trong bài toàn Dijkstra cơ bản ta có  $Min[i]$ , là độ dài đường đi ngắn nhất từ 1 tới $i$. Còn ở đây, chúng ta cần phải quan tâm đến số tiền còn lại. Do đó chúng ta có thể mở rộng mảng này thành $Min[i][j]$ , là độ dài đường đi ngắn nhất tới $i$, và còn lại số tiền là $j$. Bằng cách này bài toán đã được đưa về bài toán Dijkstra quen thuộc. Tại mỗi bước ta tìm trạng thái $(i,j)$ có quãng đường ngắn nhất, đánh dấu là đã thăm rồi update cho các trạng thái cạnh nó. Đáp án sẽ là $Min[N-1][j]$ có giá trị nhỏ nhất (và $j$ lớn nhất trong số các $Min[N-1][j]$ có cùng giá trị).
+Có thể dễ dàng thấy đây là một bài Dijkstra cơ bản, tuy nhiên chỉ khác ở chỗ nó có thêm một điều kiện. Trong bài toán Dijkstra cơ bản ta có  $Min[i]$ , là độ dài đường đi ngắn nhất từ 1 tới $i$. Còn ở đây, chúng ta cần phải quan tâm đến số tiền còn lại. Do đó chúng ta có thể mở rộng mảng này thành $Min[i][j]$ , là độ dài đường đi ngắn nhất tới $i$, và còn lại số tiền là $j$. Bằng cách này bài toán đã được đưa về bài toán Dijkstra quen thuộc. Tại mỗi bước ta tìm trạng thái $(i,j)$ có quãng đường ngắn nhất, đánh dấu là đã thăm rồi update cho các trạng thái cạnh nó. Đáp án sẽ là $Min[N][j]$ có giá trị nhỏ nhất (và $j$ lớn nhất trong số các $Min[N][j]$ có cùng giá trị).
 
 **Mã giả:**
 
@@ -284,22 +284,22 @@ Có thể dễ dàng thấy đây là một bài Dijkstra cơ bản, tuy nhiên 
 
 ### Advanced
 
-Những bài sau đây sẽ cần một chút kĩ năng quan sát để có thể tối ưu chúng thành bài QHĐ.
+Những bài sau đây sẽ cần một chút kĩ năng phân tích để có thể tối ưu chúng thành bài QHĐ.
 
 **Problem [StarAdventure](http://community.topcoder.com/tc?module=ProblemDetail&rd=5854&pm=2940) – SRM 208 Div 1:**
 
 Cho ma trận M hàng, N cột ($N * M$). Mỗi ô có một lượng táo.
 Bạn đang ở ô góc trái trên. Bạn chỉ có thể đi xuống hoặc sang phải. Bạn cần tới ô góc phải dưới. Rồi quay lại ô trái trên bằng cách lên hoặc sang trái. Cuối cùng, bạn quay lại ô phải dưới.
-Tìm số táo nhiều nhất mà bạn có thể thu được.
-Khi đi qua một ô, toàn bộ táo của ô đấy bị lấy hết và ô đấy không còn táo.
+Tìm số táo nhiều nhất mà bạn có thể ăn được.
+Khi đi qua một ô, toàn bộ táo của ô đấy sẽ bị ăn hết.
 
 Giới hạn: $1 < N, M \le 50$ mỗi ô có từ 0 đến 1000 quả táo.
 
-Đọc đến đây, hẳn bạn sẽ thấy cái đề này quen quen, nó chính là bài mở rộng của bài toán phần Intermediate. Ta có thể thử đưa bài toán này về thành bài toán trên. Để ý thấy đường đi từ ô góc phải dưới lên trái trên cũng có thể coi là một đường đi từ góc trái trên xuống. Như vậy, chúng ta phải xử lý bài toán với 3 đường đi từ trái trên xuống. Gọi 3 đường này trái, giữa và phải. Khi 2 đường giao nhau (như hình dưới):
+Đọc đến đây, hẳn bạn sẽ thấy cái đề này quen quen, nó chính là bài mở rộng của bài toán phần Intermediate. Ta có thể thử đưa bài toán này về thành bài toán trên. Để ý thấy đường đi từ ô góc phải dưới lên trái trên cũng có thể coi là một đường đi từ góc trái trên xuống. Như vậy, chúng ta phải xử lý bài toán với 3 đường đi từ trái trên xuống. Gọi 3 đường này là trái, giữa và phải. Khi 2 đường giao nhau (như hình dưới):
 
 ![enter image description here](https://www.topcoder.com/i/education/dynProg_1.gif) 
 
-Hình trên cũng tương đương với hình sau:
+thì nó cũng tương đương với hình sau:
 
 ![enter image description here](https://www.topcoder.com/i/education/dynProg_2.gif)
 
