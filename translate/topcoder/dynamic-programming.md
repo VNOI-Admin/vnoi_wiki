@@ -1,8 +1,8 @@
-# Quy hoạch động (Dynamic Programming) _ Từ con số 0
+# Nhập môn Quy hoạch động
 
 Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/dynamic-programming-from-novice-to-advanced/).
 
-Có rất nhiều bài toán được áp dụng **quy hoạch động (QHĐ)**. QHĐ là một trong những kĩ thuật quan trọng. Bài viết này sẽ giúp bạn hiểu được **QHĐ** thông qua các ví dụ cụ thể.
+Có rất nhiều bài toán được áp dụng **quy hoạch động (QHĐ)** (**Dynamic Programming**). QHĐ là một trong những kĩ thuật quan trọng. Bài viết này sẽ giúp bạn hiểu được **QHĐ** thông qua các ví dụ cụ thể.
 Note: Trong bài này có thể có nhiều phần bạn đã biết, bạn hoàn toàn có thể chuyển qua đọc phần khác.
 
 ##Giới thiệu 
