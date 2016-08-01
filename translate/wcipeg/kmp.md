@@ -1,22 +1,144 @@
 # Thuật toán Knuth-Morris-Pratt (KMP)
-[Nguồn P3G](http://wcipeg.com/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)
 
-Thuật toán Knuth-Morris-Pratt là một thuật toán với thời gian chạy tuyến tính nhằm giải quyết bài toán tìm kiếm một chuỗi: Yêu cầu tìm xâu $N$ trong xâu $H$. Thuật toán được xây dựng dựa vào quan sát rằng một xâu con chung của $N$ và $H$ sẽ đưa ra được gợi ý $N$ có khớp với các vị trí sau của $H$ hay không. Bởi vì xâu con chung này đồng nghĩa với một phần của $H$ đã khớp với một phần của $N$, nên nếu ta tổ chức trước $N$ ta sẽ thu được những kết luận về $H$ ( nhờ xâu con chung) mà không cần quay ngược và so sánh lại những ký tự đã khớp. Theo cách hiểu nào đó, ta muốn tính toán trước cách xâu $N$ tự khớp với chính nó. Nhờ vậy thuật toán sẽ "không quay nhìn lại" và chỉ duyệt qua $H$ một lần duy nhất. Cùng với quá trình tiền xử lí tuyến tính, thuật toán có thời gian chạy tuyến tính. 
+**Nguồn**: [wcipeg](http://wcipeg.com/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)
+
+**Người dịch**: Trần Kim Thạch
+
+Thuật toán Knuth-Morris-Pratt (KMP) là một thuật toán với thời gian chạy tuyến tính nhằm giải quyết bài toán tìm kiếm một chuỗi: Cho một xâu $T$ và xâu $S$. Tìm tất cả các lần xuất hiện của xâu $S$ trong xâu $T$.
+
+Ví dụ:
+
+```
+S = abc
+T = abcabcabc
+
+Các lần xuất hiện: 1, 4, 7.
+```
+
+Thuật toán được xây dựng dựa vào quan sát rằng một xâu con chung của $S$ và $T$ sẽ đưa ra được thông tin $S$ có khớp với các vị trí sau của $T$ hay không. Bởi vì xâu con chung này đồng nghĩa với một phần của $T$ đã khớp với một phần của $S$, nên bằng việc khởi tạo trước một số thông tin với xâu $S$, ta sẽ thu được những kết luận về $T$ (nhờ xâu con chung) mà không cần quay ngược và so sánh lại những ký tự đã khớp.
+
+Cụ thể hơn, ta muốn tính toán trước cách xâu $S$ tự khớp với chính nó. Nhờ vậy thuật toán sẽ *không quay nhìn lại* và chỉ duyệt qua $T$ một lần duy nhất.
+
+Cùng với quá trình tiền xử lí tuyến tính $O(|T|)$ (với $|T|$ là độ dài xâu $T$), thuật toán có thời gian chạy tuyến tính.
 
 ## Cảm hứng
+
 Cảm hứng của KMP có thể được minh họa rõ nhất qua 3 ví dụ dưới đây.
 
 ### Ví dụ 1
-Ở ví dụ này, ta cần tìm xâu $S = aaa$ trong xâu $T = aaaaaaaaa$ ($S$ được lặp 7 lần). Thuật duyệt bình thường sẽ bắt đầu bằng cách so $S_1$ với $T_1$, $S_2$ với $T_2$, $S_3$ với $T_3$ và tìm được vị trí số 1 là vị trí khớp của $S$ trong $T$ . Sau đó nó tiếp tục so $S_1$ với $T_2$, $S_2$ với $T_3$, $S_3$ với $T_4$, tìm được vị trí số 2 và cứ mãi như vậy cho đến khi đủ hết trường hợp. Tuy nhiên ta có thể làm tốt hơn nếu ta xử lý sẵn $S$ và để ý $S_1$ giống $S_2$, và $S_2$ giống $S_3$. Vậy **tiền tố** độ dài 2 của $S$ khớp với **xâu con** độ dài 2 ở vị trí thứ 2 của $S$; $S$ tự khớp một phần. Bây giờ, khi đã biết $S_1$, $S_2$, $S_3$ lần lượt khớp với $T_1$, $T_2$, $T_3$, ta không cần quan tâm đến $T_1$ nữa. Vì ta đang muốn tìm một kết quả khớp ở vị trí số 2, có $S_2$, $S_3$ lần lượt khớp với $T_2$, $T_3$ và $S_1 = S_2$, $S_2 = S_3$, suy ra $S_1$ và $S_2$ lần lượt khớp với $T_2$ và $T_3$. Việc kiểm tra $T_2$, $T_3$ là không cần thiết nữa. Ta chỉ cần kiểm tra nốt $S_3 = T_4$ là đã kết luận được $S$ được tìm thấy ở vị trí 2 trong $T$. Như vậy, sau đáp án ở vị trí $1$, ta chỉ cần thêm *một* thao tác để kết luận $S$ cũng có ở vị trí $2$ trong $T$, thay vì *ba* như thuật duyệt bình thường. Đến đây ta biết $S_1$, $S_2$, $S_3$ lần lượt khớp với $T_2$, $T_3$, $T_4$, lại kết luận được $S_1$, $S_2$ khớp $T_3$,  $T_4$. Ta sau đó so $S_3$ với $T_5$, tìm được một đáp án nữa, cứ thế tiếp tục. Trong khi thuật toán duyệt cần đến $3$ phép tính cho mỗi lần lặp của $S$ trong $T$, kĩ thuật của chúng ta chỉ cần $3$ phép tính ở lần lặp đầu và $1$ cho mỗi kết quả sau, và không xét lại các kí tự của $T$. (Đây cũng là cách con người giải quyết bài toán) 
+
+```
+S = aaa
+T = aaaaaaaaa
+```
+
+Ở ví dụ này, ta cần các lần xuất hiện của xâu $S$ trong xâu $T$ ($S$ xuất hiện 7 lần).
+
+Ta có thể duyệt bình thường với độ phức tạp $O(|S| \* |T|)$ như sau:
+
+- So $S_1$ với $T_1$, $S_2$ với $T_2$, $S_3$ với $T_3$, do đó vị trí số 1 là vị trí khớp của $S$ trong $T$.
+- So $S_1$ với $T_2$, $S_2$ với $T_3$, $S_3$ với $T_4$, tìm được vị trí số 2 là vị trí khớp của $S$ trong $T$.
+- So $S_1$ với $T_3$, $S_2$ với $T_4$, $S_3$ với $T_5$, tìm được vị trí số 3 là vị trí khớp của $S$ trong $T$.
+
+Và cứ mãi như vậy cho đến khi đủ hết trường hợp.
+
+Tuy nhiên ta có thể làm tốt hơn nếu ta tiền xử lý $S$ và để ý:
+
+- $S_1$ giống $S_2$
+- $S_2$ giống $S_3$.
+
+Vậy **tiền tố** độ dài 2 của $S$ ($S_1 S_2$) khớp với **xâu con** độ dài 2 ở vị trí thứ 2 của $S$ ($S_2 S_3$) - nói cách khác, $S$ tự khớp một phần.
+
+Sau khi kiểm tra khớp ở vị trí số 1 (so sánh $S$ với $T_1 T_2 T_3$), ta đã biết:
+
+- $S_1 = T_1$
+- $S_2 = T_2$
+- $S_3 = T_3$
+
+Khi ta kiểm tra khớp ở vị trí số 2 (so sánh $S$ với $T_2 T_3 T_4$), ta có:
+
+- $S_2 = T_2$, $S_3 = T_3$
+- $S_1 = S_2$, $S_2 = S_3$
+
+Suy ra:
+- $S_1 = T_2$
+- $S_2 = T_3$.
+
+Do vậy, việc so sánh với $T_2$, $T_3$ là không cần thiết nữa. Ta chỉ cần kiểm tra nốt $S_3 = T_4$ là đã kết luận được $S$ được tìm thấy ở vị trí 2 trong $T$. Như vậy, sau đáp án ở vị trí $1$, ta chỉ cần thêm $1$ thao tác để kết luận $S$ cũng có ở vị trí $2$ trong $T$, thay vì $3$ như thuật duyệt bình thường. Đến đây ta biết:
+
+- $S_1 = T_2$
+- $S_2 = T_3$
+- $S_3 = T_4$
+
+Và tương tự, lại kết luận được:
+
+- $S_1 = T_3$
+- $S_2 = T_4$.
+
+Ta sau đó chỉ cần so $S_3$ với $T_5$, tìm được một đáp án nữa, cứ thế tiếp tục. Trong khi thuật toán duyệt cần đến $3$ phép tính cho mỗi lần so sánh $S$ với một xâu con của $T$, kĩ thuật của chúng ta chỉ cần $3$ phép tính ở lần lặp đầu và $1$ cho mỗi kết quả sau, và không xét lại các kí tự của $T$. (Đây cũng là cách con người giải quyết bài toán) 
 
 ### Ví dụ 2
-Bây giờ hãy cùng search xâu $S = aaa$ trong xâu $T =  aabaabaaa$. Như ở trên, ta bắt đầu như thuật toán duyệt, so sánh $S_1$ với $T_1$, $S_2$ với $T_2$, và $S_3$ với $T_3$. Ở đây ta thấy $S_3$ khác $T_3$, vậy $S$ **không** khớp với $T$ ở vị trí $1$. Đến bước này thuật duyệt sẽ tiếp tục bằng cách so $S_1$ với $T_2$ và $S_2$ với $T_3$, không khớp; rồi lại so $S_1$ với $T_3$, không khớp; cứ như vậy. Thế nhưng chúng ta sẽ thấy ngay rằng sau kết quả không khớp ở vị trí đầu, khả năng tìm thấy $S$ ở các vị trí $2$ và $3$ của $T$ đã không còn. Lí do là vì, như đã trình bày ở ví dụ 1, $S_2$ giống với $S_3$, nếu $S_3 \neq T_3$ thì $S_2 \neq T_3$. Tương tự như vậy, do $S_1 = S_2$ và $S_2 \neq T_3$ nên $S_1 \neq T_3$, ta không cần tìm $S$ ở vị trí thứ $3$ của $T$ làm gì. Sẽ hợp lí hơn khi bắt đầu tiếp ở vị trí số $4$ (ta có thể tìm được $S_2S_3S_4$ $=$ $T_4T_5T_6$). Tiếp tục không khớp, ta dùng lập luận tương tự loại bỏ vị trí số $5$ và $6$, và bắt đầu lại ở vị trí số $7$ (ở đây 2 xâu khớp nhau). Lần nữa, hãy chú ý các kí tự của $T$ được duyệt qua theo trình tự.
+
+```
+S = aaa
+T =  aabaabaaa
+```
+
+Như ở trên, ta bắt đầu như thuật toán duyệt, so sánh:
+
+- $S_1$ với $T_1$
+- $S_2$ với $T_2$
+- $S_3$ với $T_3$
+
+Ở đây ta thấy $S_3$ khác $T_3$, vậy $S$ **không** khớp với $T$ ở vị trí $1$. Đến bước này thuật duyệt sẽ tiếp tục bằng cách so $S_1$ với $T_2$ và $S_2$ với $T_3$, không khớp; rồi lại so $S_1$ với $T_3$, không khớp; cứ như vậy.
+
+Thế nhưng chúng ta sẽ thấy ngay rằng sau kết quả không khớp ở vị trí đầu, khả năng tìm thấy $S$ ở các vị trí $2$ và $3$ của $T$ đã không còn. Lí do là vì, như đã trình bày ở ví dụ 1:
+
+- $S_2 = S_3$
+- $S_3 \neq T_3$
+
+Do đó $S_2 \neq T_3$.
+
+Tương tự như vậy, do:
+
+- $S_1 = S_2$
+- $S_2 \neq T_3$
+
+Nên $S_1 \neq T_3$, ta không cần tìm $S$ ở vị trí thứ $3$ của $T$ làm gì. Sẽ hợp lí hơn khi bắt đầu tiếp ở vị trí số $4$ (do ta không thể chắc chắn có thể tìm được hay không $S_2 S_3 S_4 \, = \, T_4T_5T_6$).
+
+Sau khi so sánh ở vị trí 4 và thấy tiếp tục không khớp, ta dùng lập luận tương tự loại bỏ vị trí số $5$ và $6$, và bắt đầu lại ở vị trí số $7$ (ở đây 2 xâu khớp nhau). Lần nữa, hãy chú ý các kí tự của $T$ được duyệt qua theo trình tự.
 
 ### Ví dụ 3
 
-Đây là một ví dụ phức tạp hơn. Ta có $S = tartan$ và $T = tartaric$_$acid $. Ta quan sát thấy **tiền tố** độ dài $2$ của $S$ khớp với chính **xâu con** độ dài $2$ bắt đầu ở vị trí số $4$ của nó. Bây giờ lần lượt so sánh các vị trí từ $1$ đến $6$ trong hai xâu. Ta thấy $S_6$ không khớp với $T_6$, vậy không có kết quả ở vị trí số $1$. Ở đây hãy chú ý, do $S_1 \neq S_2$ và $S_1 \neq S_3$, mà $S_2 = T_2$ và $S_3 = T_3$, hẳn nhiên $S_1 \neq T_2$ và $S_1 \neq T_3$. Vậy không thể có trùng khớp ở vị trí số $2$ và $3$. Tới đây hãy nhớ lại rằng $S_1 = S_4$, $S_2 = S_5$ và $S_4 = T_4$, $S_5 = T_5$. Ta suy ra $S_1 = T_4$, $S_2 = T_5$. Vậy ta sẽ tiếp tục ở $S_3$ với $T_6$. Làm theo cách này, ta loại bỏ được hai trường hợp và bắt đầu duyệt lại không phải ở đầu mà ở giữa xâu $S$, tránh được việc xét lại $T_4$ và $T_5$.
+Đây là một ví dụ phức tạp hơn:
+
+```
+S = tartan
+T = tartaric_acid
+```
+
+Ta quan sát thấy **tiền tố** độ dài $2$ của $S$ khớp với chính **xâu con** độ dài $2$ bắt đầu ở vị trí số $4$ của nó. Bây giờ lần lượt so sánh các vị trí từ $S_1$ đến $S_6$ với $T_1$ đến $T_6$. Ta thấy $S_6$ không khớp với $T_6$, vậy không có kết quả ở vị trí số $1$.
+
+Ở đây hãy chú ý:
+
+- $S_1 \neq S_2$
+- $S_1 \neq S_3$
+- $S_2 = T_2$
+- $S_3 = T_3$
+
+Nên ta có $S_1 \neq T_2$ và $S_1 \neq T_3$. Vậy không thể có trùng khớp ở vị trí số $2$ và $3$.
+
+Tới đây hãy nhớ lại rằng:
+
+- $S_1 = S_4$
+- $S_2 = S_5$
+- $S_4 = T_4$
+- $S_5 = T_5$
+
+Ta suy ra $S_1 = T_4$, $S_2 = T_5$. Vậy ta sẽ tiếp tục kiểm tra vị trí số 4 bằng việc so sánh $S_3$ với $T_6$. Làm theo cách này, ta loại bỏ được hai trường hợp và bắt đầu duyệt lại không phải ở đầu mà ở giữa xâu $S$, tránh được việc xét lại $T_4$ và $T_5$.
 
 ## Ý tưởng chính
+
 *Gọi $S^i$ là tiền tố độ dài $i$ của xâu $S$.*
 
 Các ví dụ trên đã cho thấy, KMP hoạt động dựa trên quan sát rằng một số xâu con của xâu cần tìm có khớp với xâu con nào khác của xâu cần tìm hay không, tuy nhiên định hướng chung, mang tính hệ thống của thuật toán thì chưa rõ ràng. Định hướng này được phát biểu như sau:
