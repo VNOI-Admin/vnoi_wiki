@@ -46,3 +46,12 @@ binary_search(A, target):
 Với mỗi so sánh, **tìm kiếm nhị phân** sử dụng hai nửa **không gian tìm kiếm**, nên ta có thể khẳng định rằng **tìm kiếm nhị phân**  không bao giờ sử dụng nhiều hơn $O(logN)$ để tìm **giá trị cần tìm**. 
 
 Lưu ý rằng **tìm kiếm nhị phân** sẽ truy cập vào một phần tử ngẫu nhiên trong dãy, cho nên với những bài toán đặc trưng, nên sử dụng **tìm kiếm tuần tự** thay vì **tìm kiếm nhị phân**.
+
+#Tìm kiếm nhị phân trong thư viện
+
+Thư viện **STL C++** thực hiện các tìm kiếm trong các hàm **LOWER_BOUND**, **UPPER_BOUND**, **binary_search** và **equal_range** tùy vào những gì bạn cần mà lựa chọn hàm phù hợp. 
+
+**Java** thì có sẵn **Arrays.binary_search** và **.NET Framework** có **Array.BinarySearch**.
+
+Chỉ nên dùng **tìm kiếm nhị phân** có sẵn trong thư viện khi bạn đã nắm chắt tư tưởng của thuật toán.
+
