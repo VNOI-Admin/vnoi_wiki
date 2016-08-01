@@ -29,7 +29,7 @@ Bảng $\pi$, gọi là **hàm tiền tố**, chiếm bộ nhớ tuyến tính, 
 ## Tính toán độ phức tạp
 
 Để tính độ phức tạp cho hàm tiền xử lí, trước tiên ta có quan sát:
-*Dãy $\pi_i^{*} = i, \pi_i, \pi_{\pi_i}, \pi_{\pi_{\pi_i}}, ... ,0$ chứa toàn bộ những giá trị $j$ thỏa mãn $S^j \sqsupset S^i$.
+Dãy $\pi_i^{*} = i, \pi_i, \pi_{\pi_i}, \pi_{\pi_{\pi_i}}, ... ,0$ chứa toàn bộ những giá trị $j$ thỏa mãn $S^j \sqsupset S^i$.
 
 Vậy, ta có thể đếm toàn bộ những hậu tố của $S^i$ đồng thời là tiền tố của $S$ bằng cách bắt đầu với $i$, dò nó trong bảng $\pi$, dùng kết quả đó dò tiếp tục và tiếp tục, đến khi kết thúc bằng $0$. 
 
