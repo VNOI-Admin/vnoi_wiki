@@ -73,7 +73,7 @@ Coi như ta đã xây dựng xong bảng $\pi$. Đây là lúc ta sử dụng nh
 
 Nếu ta đã biết từ $S_1$ đến $S_k$ khớp với từ $T_j$ đến $T_{j+k-1}$, vị trí nào ta có thể bỏ qua? Đây là cốt lõi của thuật toán KMP:
 
-*Lí thuyết*: if $k>0$ thì $p = k - \pi_k$ sẽ là giá trị $p$ nhỏ nhất sao cho $S_1,...,S_{k-p}$ khớp với $T_{j+p},...,T_{j+k-1}$, theo đúng trình tự. (Nếu $k=0$, $p=1$.) 
+*Lí thuyết*: Nếu $k>0$ thì $p = k - \pi_k$ sẽ là giá trị $p$ nhỏ nhất sao cho $S_1,...,S_{k-p}$ khớp với $T_{j+p},...,T_{j+k-1}$, theo đúng trình tự. (Nếu $k=0$, $p=1$.) 
 
 Suy nghĩ thật kĩ lí thuyết này. Nếu $p>0$ *không thỏa mãn*  $S_1,...,S_{k-p}$ khớp với $T_{j+p},...,T_{j+k-1}$, vậy $S$ **không khớp** với $T$ ở vị trí $j+p$, tức ta có thể loại bỏ vị trí này. Mặt khác, nếu $p>0$ *thỏa mãn* yêu cầu trên, xâu $S$ **có khả năng** khớp với $T$ ở vị trí $j+p$, và thực tế là các kí tự từ vị trí $j+p$ đến $j+k-1$ đều đã khớp với các vị trí tương ứng ở $S$. Ta chỉ cần tiếp tục bằng cách so $S_{k-p+1}$ với $T_{j+k}$, "không quay đầu lại" như đã hứa.
 
