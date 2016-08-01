@@ -300,5 +300,5 @@ for i ∈ [1..n]
 
 ## Bài tập áp dụng:
 
-- [VOJ - SUBSTR](vn.spoj.com/problems/SUBSTR).
+- [VOJ - SUBSTR](http://vn.spoj.com/problems/SUBSTR).
     - [Code C++](http://ideone.com/4E11f6)
