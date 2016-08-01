@@ -22,7 +22,7 @@ Các ví dụ trên đã cho thấy, KMP hoạt động dựa trên quan sát r�
 
 *Ở mỗi vị trí $i$ của $S$, tìm hậu tố dài nhất của $S^i$ mà cũng là tiền tố của $S$.*
 
-Ta sẽ gọi độ dài của xâu con này là $\pi_i$. Ta cũng có thể định nghĩa $\pi_i$ là số $j$ lớn nhất để $S^j sq S^i$.
+Ta sẽ gọi độ dài của xâu con này là $\pi_i$. Ta cũng có thể định nghĩa $\pi_i$ là số $j$ lớn nhất để $S^j \sqsupset S^i$.
 
 Bảng $\pi$, gọi là **hàm tiền tố**, chiếm bộ nhớ tuyến tính, và như sẽ trình bày dưới đây, chạy trong thời gian tuyến tính. Bảng sẽ chứa *toàn bộ* các thông tin cần thiết để máy thực hiện những phương án "thông minh nhất" cho quá trình tìm kiếm. Cụ thể hơn, như trong ví dụ 1 và 2, ta có $\pi_3 = 2$, nghĩa là tiền tố **aa** khớp với hậu tố **aa**. Trong ví dụ 3, ta có $\pi_5 = 2$. Điều này cho ta biết tiền tố **ta** khớp với xâu con **ta** kết thúc ở vị trí thứ $5$. Tổng quát, bảng $\pi$ cho ta biết, sau một lần khớp hoặc không khớp giữa "cây kim" và "đống rớm", vị trí tiếp theo trong "đống rơm" ta cần kiểm tra là gì. Các phép so sẽ tiếp tục ở các vị trí tiếp theo, không bao giờ quay ngược về các kí tự ta đã kiểm tra rồi.
 
