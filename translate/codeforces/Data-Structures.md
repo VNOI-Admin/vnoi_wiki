@@ -584,4 +584,4 @@ Bạn có thể đọc thêm ở: [[Thuật toán phân tách cây|algo/data-str
 
 Persistent Data Structures là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu.
 
-Bạn có thể thêm ở: [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
+Bạn có thể  đọc thêm ở: [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
