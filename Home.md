@@ -21,6 +21,9 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
 
 - [[Cấu trúc dữ liệu|translate/codeforces/Data-Structures]]
 
+- Xử lý xâu:
+    - [[Thuật toán KMP|translate/wcipeg/kmp]]
+
 - Quy hoạch động:
     - [[Nhập môn Quy hoạch động|translate/topcoder/dynamic-programming]]
     - [[Kĩ thuật bao lồi|translate/wcipeg/Convex-Hull-Trick]]
