@@ -1,5 +1,5 @@
 # Thuật toán Knuth-Morris-Pratt (KMP)
-#### (Nguồn)[http://wcipeg.com/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm]
+#### [Nguồn](http://wcipeg.com/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)
 
 Thuật toán Knuth-Morris-Pratt là một thuật toán với thời gian chạy tuyến tính nhằm giải quyết bài toán tìm kiếm một chuỗi: Yêu cầu tìm xâu $N$ trong xâu $H$. Thuật toán được xây dựng dựa vào quan sát rằng một xâu con chung của $N$ và $H$ sẽ đưa ra được gợi ý $N$ có khớp với các vị trí sau của $H$ hay không. Bởi vì xâu con chung này đồng nghĩa với một phần của $H$ đã khớp với một phần của $N$, nên nếu ta tổ chức trước $N$ ta sẽ thu được những kết luận về $H$ ( nhờ xâu con chung) mà không cần quay ngược và so sánh lại những ký tự đã khớp. Theo cách hiểu nào đó, ta muốn tính toán trước cách xâu $N$ tự khớp với chính nó. Nhờ vậy thuật toán sẽ "không quay nhìn lại" và chỉ duyệt qua $H$ một lần duy nhất. Cùng với quá trình tiền xử lí tuyến tính, thuật toán có thời gian chạy tuyến tính. 
 
