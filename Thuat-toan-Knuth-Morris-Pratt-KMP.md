@@ -40,7 +40,7 @@ Giờ ta chứng minh phản chứng rằng nếu $S^j \sqsupset S^i$, $j$ thu�
 Từ đây, ta có thể xây dựng một thuật toán để tính bảng $\pi$. Với mỗi $i$, đầu tiên ta tìm số $j>0$ sao cho $S^j \sqsupset S^i$. Nếu không tìm được, ta kết luận $\pi_i = 0$ (như trường hợp $i=1$). Quan sát rằng nếu có $j>0$ thỏa mãn, vậy khi xóa bỏ kí tự cuối của hậu tố này, ta thu được một hậu tố của $S6{i-1}$ đồng thời là tiền tố của $S$, tức là $S^{j-1} \sqsupset S^{i-1}$. Vậy bước đầu ta đếm mọi hậu tố không-rỗng của $S^{i-1}$ đồng thời là tiền tố của $S$. Nếu ta tìm được một hậu tố độ dài $k$ đồng thời thỏa $S_k = S_i$, vậy $S^{k+1} \sqsupset S^i$, và $k+1$ là một giá trị khả dĩ của $j$. Vậy ta sẽ gán $k = \pi_{i-1}$ và tiếp tục lặp lại trong dãy $\pi_{\pi_i}, \pi_{\pi_{\pi_i}}, ... $ Quá trình sẽ dừng lại nếu gặp phải một phần tử $j$ trong dãy sao cho $S_{j+1} = S_i$, và gán $\pi_i = j+1$; cách này sẽ luôn cho kết quả tối ưu vì dãy $\pi_{i-1}^*$ luôn giảm và nó chứa toàn bộ giá trị $k$ khả dĩ. Nếu đi đến hết dãy, vậy $\pi = 0$.
 
 Dưới đây là mã giả:
-`
+```
 π[1] ← 0
 for i ∈ [2..m]
     k ← π[i-1]
@@ -50,11 +50,11 @@ for i ∈ [2..m]
         π[i] ← 0
     else
         π[i] ← k+1
-`
+```
 
 Hoặc có thể viết như sau:
 
-`
+```
 π[1] ← 0
 k ← 0
 for i ∈ [2..m]
@@ -63,7 +63,7 @@ for i ∈ [2..m]
     if S[k+1] = S[i]
         k ← k+1
     π[i] ← k
-` 
+```
 
 Thuật toán có độ phức tạp $O(m)$. Để hiểu tại sao thì hãy để ý, `k` không bao giờ âm; nó không thể giảm nhiều hơn mức nó tăng. `k` chỉ tăng ở dòng ` k ← k+1`, vốn chỉ bị gọi nhiều nhất là $m-1$ lần. Vậy `k` giảm nhiều nhất là k lần. Nhưng `k` giảm ở mỗi lần lặp của vòng `while`, vậy vòng `while` có độ phức tạp tuyến tính. Tất cả những câu lệnh trong vòng `for` đều có độ phức tạp là hằng số, nên cả thuật toán có độ phức tạp tuyến tính.
 
@@ -80,7 +80,7 @@ Suy nghĩ thật kĩ lí thuyết này. Nếu $p>0$ *không thỏa mãn*  $S_1,.
 *Chứng minh:* Có $0 \le q < k$. Nếu $S^q \sqsupset S^k$, vậy theo định nghĩa ta có $S_1,...,S_q = S_{k-q+1},..., S_k$. Nhưng vì $S_1,..., S_k = T_j,...,T_{j+k-1}$, nên $S_{k-q+1},...,S_k = T_{j+k-q},...,T_{j+k-1}$. Vậy $S_1,...S_q = T_{j+k-q},...,T_{j+k-1}$. Nếu, mặt khác, $S^q không \sqsupset S^k$, vậy $S_1,...,S_q \neq S_{k-q+1},..., S_k$, dẫn đến $S_{k-q+1},...,S_k = T_{j+k-q},...,T_{j+k-1}$ là sai, và dẫn đến $S_1,...S_q = T_{j+k-q},...,T_{j+k-1}$ là sai. Kết luận, $k-q$ là một giá trị khả dĩ của $p$ khi và chỉ khi $S^q \sqsupset S^k$. Do maximum của $q$ là $\pi_k$, minumum của $p$ được xác định bởi $k-\pi_k$.
 
 Dưới đây là mã giả:
-`
+```
 j ← 1
 k ← 0
 while j+m-1 ≤ n
@@ -93,12 +93,12 @@ while j+m-1 ≤ n
     else
         j ← j+k-π[k]
         k ← π[k]
-`
+```
 
 Ta dò trong xâu cần search một lần một kí tự; kí tự đang được xét là nằm ở vị trí $j+k$. Nếu xảy ra không trùng khớp, ta dùng bảng $\pi$ để tìm đến vị trí khả dĩ tiếp theo.
 
 Đoạn code tương đương dưới đây thể hiện rõ hơn việc thuật toán xét một kí tự một lần và không quay ngược lại:
-`
+```
 k ← 0
 for i ∈ [1..n]
     while k > 0 and S[k+1] ≠ T[i]
@@ -108,6 +108,6 @@ for i ∈ [1..n]
     if k = m
         print "Match at position " i-m+1
         k ← π[k]
-`
+```
 
 Ở đây, `i` tương ứng với `j+k` ở đoạn code trên. Mỗi lần lặp của vòng lặp trong của một trong 2 đoạn code tương ứng với một lần lặp của vòng lặp ngoài ở đoạn còn lại. Ở đoạn thứ hai, ta cũng có thể chứng minh thuật có độ phức tạp $O(n)$; mỗi lần vòng `while` ở trong được thực hiện, giá trị của `k` giảm, nhưng nó không thể giảm nhiều hơn `n` lần bởi `k` khởi đầu là không và không bao giờ âm. `k` chỉ tăng nhiều nhất một lần ở vòng lặp ngoài (tức nhiều nhất tổng cộng `n` lần). Vậy vòng lặp trong chỉ lặp nhiều nhất `n` lần, và tất cả các câu lệnh khác có độ phức tạp hằng số.
