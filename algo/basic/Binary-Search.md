@@ -41,3 +41,8 @@ binary_search(A, target):
 
 ```
 
+#Độ phức tạp
+
+Với mỗi so sánh, **tìm kiếm nhị phân** sử dụng hai nửa **không gian tìm kiếm**, nên ta có thể khẳng định rằng **tìm kiếm nhị phân**  không bao giờ sử dụng nhiều hơn $O(logN)$ để tìm **giá trị cần tìm**. 
+
+Lưu ý rằng **tìm kiếm nhị phân** sẽ truy cập vào một phần tử ngẫu nhiên trong dãy, cho nên với những bài toán đặc trưng, nên sử dụng **tìm kiếm tuần tự** thay vì **tìm kiếm nhị phân**.
