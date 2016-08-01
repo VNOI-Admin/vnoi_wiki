@@ -1,4 +1,5 @@
 # Thuật toán Knuth-Morris-Pratt (KMP)
+#### (Nguồn)[http://wcipeg.com/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm]
 
 Thuật toán Knuth-Morris-Pratt là một thuật toán với thời gian chạy tuyến tính nhằm giải quyết bài toán tìm kiếm một chuỗi: Yêu cầu tìm xâu $N$ trong xâu $H$. Thuật toán được xây dựng dựa vào quan sát rằng một xâu con chung của $N$ và $H$ sẽ đưa ra được gợi ý $N$ có khớp với các vị trí sau của $H$ hay không. Bởi vì xâu con chung này đồng nghĩa với một phần của $H$ đã khớp với một phần của $N$, nên nếu ta tổ chức trước $N$ ta sẽ thu được những kết luận về $H$ ( nhờ xâu con chung) mà không cần quay ngược và so sánh lại những ký tự đã khớp. Theo cách hiểu nào đó, ta muốn tính toán trước cách xâu $N$ tự khớp với chính nó. Nhờ vậy thuật toán sẽ "không quay nhìn lại" và chỉ duyệt qua $H$ một lần duy nhất. Cùng với quá trình tiền xử lí tuyến tính, thuật toán có thời gian chạy tuyến tính. 
 
@@ -77,7 +78,7 @@ Nếu ta đã biết từ $S_1$ đến $S_k$ khớp với từ $T_j$ đến $T_{
 
 Suy nghĩ thật kĩ lí thuyết này. Nếu $p>0$ *không thỏa mãn*  $S_1,...,S_{k-p}$ khớp với $T_{j+p},...,T_{j+k-1}$, vậy $S$ **không khớp** với $T$ ở vị trí $j+p$, tức ta có thể loại bỏ vị trí này. Mặt khác, nếu $p>0$ *thỏa mãn* yêu cầu trên, xâu $S$ **có khả năng** khớp với $T$ ở vị trí $j+p$, và thực tế là các kí tự từ vị trí $j+p$ đến $j+k-1$ đều đã khớp với các vị trí tương ứng ở $S$. Ta chỉ cần tiếp tục bằng cách so $S_{k-p+1}$ với $T_{j+k}$, "không quay đầu lại" như đã hứa.
 
-*Chứng minh:* Có $0 \le q < k$. Nếu $S^q \sqsupset S^k$, vậy theo định nghĩa ta có $S_1,...,S_q = S_{k-q+1},..., S_k$. Nhưng vì $S_1,..., S_k = T_j,...,T_{j+k-1}$, nên $S_{k-q+1},...,S_k = T_{j+k-q},...,T_{j+k-1}$. Vậy $S_1,...S_q = T_{j+k-q},...,T_{j+k-1}$. Nếu, mặt khác, $S^q không \sqsupset S^k$, vậy $S_1,...,S_q \neq S_{k-q+1},..., S_k$, dẫn đến $S_{k-q+1},...,S_k = T_{j+k-q},...,T_{j+k-1}$ là sai, và dẫn đến $S_1,...S_q = T_{j+k-q},...,T_{j+k-1}$ là sai. Kết luận, $k-q$ là một giá trị khả dĩ của $p$ khi và chỉ khi $S^q \sqsupset S^k$. Do maximum của $q$ là $\pi_k$, minumum của $p$ được xác định bởi $k-\pi_k$.
+*Chứng minh:* Có $0 \le q < k$. Nếu $S^q \sqsupset S^k$, vậy theo định nghĩa ta có $S_1,...,S_q = S_{k-q+1},..., S_k$. Nhưng vì $S_1,..., S_k = T_j,...,T_{j+k-1}$, nên $S_{k-q+1},...,S_k = T_{j+k-q},...,T_{j+k-1}$. Vậy $S_1,...S_q = T_{j+k-q},...,T_{j+k-1}$. Nếu, mặt khác, $S^q \nsqsupset S^k$, vậy $S_1,...,S_q \neq S_{k-q+1},..., S_k$, dẫn đến $S_{k-q+1},...,S_k = T_{j+k-q},...,T_{j+k-1}$ là sai, và dẫn đến $S_1,...S_q = T_{j+k-q},...,T_{j+k-1}$ là sai. Kết luận, $k-q$ là một giá trị khả dĩ của $p$ khi và chỉ khi $S^q \sqsupset S^k$. Do maximum của $q$ là $\pi_k$, minumum của $p$ được xác định bởi $k-\pi_k$.
 
 Dưới đây là mã giả:
 ```
