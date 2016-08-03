@@ -29,6 +29,7 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
 
 - Xử lý xâu:
     - [[Thuật toán KMP|translate/wcipeg/kmp]]
+    - [[Hash|algo/string/hash]]
 
 - Quy hoạch động:
     - [[Nhập môn Quy hoạch động|translate/topcoder/dynamic-programming]]
