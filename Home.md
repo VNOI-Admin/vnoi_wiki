@@ -44,3 +44,5 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
     - [[Classification - Phần 1|translate/ml/Machine-Learning-for-Dummies-part-1]]
 - Xử lý ảnh
     - [[Seam Carving|cs/imageprocessing/Seam-Carving]]
+- Cryptography
+    - [[Public Key Cryptography và RSA|cs/crypto/Public-Key-Cryptography]]
