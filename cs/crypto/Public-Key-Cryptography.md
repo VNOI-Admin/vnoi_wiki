@@ -12,7 +12,7 @@ Bài viết này nhằm giúp bạn đọc nắm được ý tưởng cơ bản 
 
 # 2. Lịch sử
 
-## 2.1. Mã hóa khóa đối xứng (Symmetric-key cryptography)
+## 2.1. Mã hóa khóa đối xứng (_Symmetric-key cryptography_)
 
 Cho đến trước năm 1976, các phương pháp mã hóa đều là mã hóa đối xứng. 
 
@@ -24,7 +24,7 @@ Các hệ mật mã đối xứng sử dụng chung khóa cho cả bên gửi l�
 - Để đảm bảo trong 1 nhóm $n$ người cần phải có 1 số lượng khóa khá lớn - $\frac{n(n-1)}{2}$ khóa. Điều này dẫn đến một bài toán về việc lưu trữ, phân phối một số lượng lớn khóa mà vẫn phải đảm bảo sự an toàn của chúng.
 - Do bên gửi và nhận sử dụng chung khóa, chúng ta không thể xác định được nguồn gốc của một thông điệp (message).
 
-## 2.2. Mã hóa khóa công khai (Public-key cryptography)
+## 2.2. Mã hóa khóa công khai (_Public-key cryptography_)
 
 Vào năm 1874, William Stanley Jevons viết trong quyển _The Principles of Science_ về mối liên hệ giữa các hàm một chiều và mật mã học. Đặc biệt, ông đã đi sâu vào bài toán phân tích ra thừa số nguyên tố (sau này được sử dụng trong thuật toán RSA). 
 
