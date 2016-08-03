@@ -16,7 +16,7 @@ Cho một tập lớn các hàm tuyến tính có dạng $y = m_i x + b_i$ và m
 
 Biến thể của bài toán có thể là tìm giá trị cực đại có thể giải quyết với một thay đổi nhỏ vì vậy trong bài viết này chỉ tập trung vào bài toán tìm giá trị cực tiểu.
 
-Sau khi ta vẽ các đường thẳng lên hệ trục tọa độ, dễ thấy rằng: chúng ta muốn xác định, tại $x=1$(đường màu đỏ)  đường nào có tọa độ $y$ nhỏ nhất. Ở trong trường hợp này là đưởng màu đen đậm $y=\frac{4}{3}+\frac{2}{3}x$.
+Sau khi ta vẽ các đường thẳng lên hệ trục tọa độ, dễ thấy rằng: chúng ta muốn xác định, tại $x=1$(đường màu đỏ)  đường nào có tọa độ $y$ nhỏ nhất. Ở trong trường hợp này là đường nét đứt đậm $y=\frac{4}{3}+\frac{2}{3}x$.
 
 [[/uploads/translate_p3g_Convex_hull_trick1.png]]
 
