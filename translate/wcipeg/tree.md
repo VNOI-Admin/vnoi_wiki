@@ -2,6 +2,8 @@
 
 Nguồn: [wcipeg](http://wcipeg.com/wiki/Tree)
 
+[[_TOC_]]
+
 ## Định nghĩa
 
 **Cây** (**tree**) là một đồ thị vô hướng liên thông không có chu trình. Tập hợp các cây không có đỉnh chung gọi là một **rừng** (**forest**).
@@ -22,7 +24,7 @@ Mọi cây đều là đồ thị phẳng ([planar graph](https://vi.wikipedia.o
 
 ## Các ví dụ:
 
-**Cây có gốc** (**rooted tree**) là cây có một đỉnh cụ thể gọi là **gốc** (**root**) của cây. Một số cây không có gốc (**unroot**), có thể là do cây không cần đỉnh nào đặc biệt để làm gốc.
+**Cây có gốc** (**rooted tree**) là cây có một đỉnh cụ thể gọi là **gốc** (**root**) của cây. Một số cây không có gốc (**unrooted tree**), có thể là do cây không cần đỉnh nào đặc biệt để làm gốc.
 
 - Trong một cây trong tự nhiên, có một số điểm mà ở đó thân và cành cây phân nhánh. Ta coi những điểm đó, cùng với mặt đất và các điểm kết thúc của những cành cây nhỏ nhất là các **đỉnh** đồ thị, trong đó đỉnh ở mặt đất là **gốc** cây, còn thân cây và cành cây là các **cạnh**. Ý nghĩa của việc này là để thân và các cành đều được coi là xuất phát từ gốc. Một số định nghĩa xuất phát từ ví dụ này:
     - Những đỉnh là điểm kết thúc của các cành cây nhỏ nhất, mà luôn có bậc là 1, được gọi là **lá** (**leaf**).
@@ -39,7 +41,7 @@ Mọi cây đều là đồ thị phẳng ([planar graph](https://vi.wikipedia.o
 
 - Đặt song song 2 tấm gỗ gần nhau và đóng đinh vào 2 tấm gỗ đó, nhúng chúng vào nước có xà phòng và glyxerin rồi lấy ra, các tấm phim xà phòng (soap film) sẽ nối các đinh với nhau mà không hình thành chu trình ([ví dụ](https://www.youtube.com/watch?v=PI6rAOWu-Og)). Đây gọi là **cây Steiner** ([**Steiner tree**](https://en.wikipedia.org/wiki/Steiner_tree_problem)), một ví dụ nữa cho cây không có gốc vì chẳng có lí gì lại đi đặt một đỉnh bất kì làm gốc.
 
-Một vài chú ý:
+_Một vài chú ý:_
 
 - Ta hoàn toàn có thể coi một cây có gốc là không gốc (bằng cách không quan tâm đỉnh nào là gốc) và ngược lại, coi một cây không gốc là 1 cây có gốc (bằng cách chọn một đỉnh bất kỳ làm gốc).
 
@@ -130,7 +132,7 @@ Các cấu trúc dữ liệu sau đều dựa trên cây có gốc, và thườn
     - **Cây khung nhỏ nhất** (**minimum diameter spanning tree**): tìm cây khung sao cho khoảng cách lớn nhất giữa 2 đỉnh bất kì là nhỏ nhất.
     - Cây khung cũng tình cờ được sinh ra trong các phép duyệt đồ thị như DFS hay BFS, tạo nên cây DFS và cây BFS. Dijkstra cho ta một **cây đường đi ngắn nhất** (**shortest paths tree**)
 
-- **Tổ tiên chung gần nhất** [**Lowest Common Ancestor - LCA**](https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/)): cho một cặp đỉnh trên cây, yêu cầu tìm tổ tiên chung thấp nhất của 2 đỉnh này, tức đỉnh thấp nhất là tổ tiên của cả 2 đỉnh này.
+- **Tổ tiên chung gần nhất** ([**Lowest Common Ancestor - LCA**](https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/)): cho một cặp đỉnh trên cây, yêu cầu tìm tổ tiên chung thấp nhất của 2 đỉnh này, tức đỉnh thấp nhất là tổ tiên của cả 2 đỉnh này.
 
 - Chúng ta có thể dễ dàng tìm khoảng cách giữa các cặp đỉnh trong cây dù có trọng số hay không trọng số bởi vì chỉ có một đường đi duy nhất, ta có thể thực hiện bằng phép duyệt DFS hay BFS
     - Để tìm **đường kính** (**diameter**) của một cây, ta chọn một đỉnh bắt đầu bất kì $u$, tìm đỉnh $v$ xa $u$ nhất sử dụng DFS hay BFS, rồi tìm đỉnh $w$ xa $v$ nhất. Khoảng cách giữa $v$ và $w$ là kích thước của cây.
