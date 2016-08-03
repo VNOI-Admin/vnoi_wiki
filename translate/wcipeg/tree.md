@@ -4,11 +4,11 @@ Nguồn: [wcipeg](http://wcipeg.com/wiki/Tree)
 
 [[_TOC_]]
 
-## Định nghĩa
+# Định nghĩa
 
 **Cây** (**tree**) là một đồ thị vô hướng liên thông không có chu trình. Tập hợp các cây không có đỉnh chung gọi là một **rừng** (**forest**).
 
-## Tính chất
+# Tính chất
 
 Với một đồ thị bất kì, nếu 2 trong 3 mệnh đề sau là đúng, thì mệnh đề còn lại là đúng:
 
@@ -22,7 +22,7 @@ Ngoài ra, nếu mỗi cặp đỉnh của đồ thị đều có chính xác 1 
 
 Mọi cây đều là đồ thị phẳng ([planar graph](https://vi.wikipedia.org/wiki/%C4%90%E1%BB%93_th%E1%BB%8B_ph%E1%BA%B3ng)), nhưng không phải mọi đồ thị phẳng đều là cây.
 
-## Các ví dụ:
+# Các ví dụ:
 
 **Cây có gốc** (**rooted tree**) là cây có một đỉnh cụ thể gọi là **gốc** (**root**) của cây. Một số cây không có gốc (**unrooted tree**), có thể là do cây không cần đỉnh nào đặc biệt để làm gốc.
 
@@ -51,7 +51,7 @@ _Một vài chú ý:_
 
 - Nếu cây có gốc, một đỉnh $u$ và tất cả các hâu duệ của nó được gọi là **cây con gốc $u$**. (Cây con có gốc ở đỉnh gốc chính là cây ban đầu).
 
-## Cây nhị phân (binary tree) và cây k-phân (k-ary tree)
+# Cây nhị phân (binary tree) và cây k-phân (k-ary tree)
 
 - **Cây nhị phân** (**binary tree**) là cây có gốc mà mỗi đỉnh có *tối đa* 2 con, gọi là **con trái** (**left**) và **phải** (**right**). Cây con có gốc là đỉnh con trái của một đỉnh gọi là **cây con trái** (**left subtree**). **Cây con phải** (**right subtree**) cũng định nghĩa tương tự. Cây nhị phân được sử dụng rất nhiều ví dụ như trong *cây nhị phân tìm kiếm* (*binary search tree*), [[Heap nhị phân|translate/wcipeg/Binary-Heap]],...
 
@@ -63,11 +63,11 @@ _Một vài chú ý:_
 
 - Tổng quát, một **cây k-phân** (**k-ary tree**) là một cây có gốc mà mỗi đỉnh có tối đa k con, các thuật ngữ khác định nghĩa tương tự như cây nhị phân.
 
-## Duyệt cây (tree traversal) 
+# Duyệt cây (tree traversal) 
 
 **Duyệt cây** là việc thăm tất cả đỉnh của cây. Liệt kê các đỉnh được thăm theo thứ tự, ta thu được một thứ tự duyệt cây. Nếu một cây có $N$ đỉnh thì sẽ có $N!$ thứ tự duyệt cây. Có 2 cách duyệt quan trọng là duyệt theo **thứ tự trước** (**preoder**) và duyệt theo **thứ tự sau** (**postorder**). 
 
-### Duyệt theo thứ tự trước (preorder)
+## Duyệt theo thứ tự trước (preorder)
 
 Trong cách duyệt theo thứ tự trước, chúng ta sẽ thực hiện một phép tìm kiếm theo chiều sâu (**DFS**) bắt đầu từ đỉnh gốc, mỗi đỉnh sẽ được đánh dấu đã đi qua ngay khi nó được đưa vào stack lần đầu.
 
@@ -78,7 +78,7 @@ DFS(u):
     DFS(v)
 ```
 
-### Duyệt theo thứ tự sau (postorder)
+## Duyệt theo thứ tự sau (postorder)
 
 Phép duyệt theo thứ tự sau cũng tương tự, nhưng khác ở chỗ là một đỉnh được coi là đã thăm ngay khi *tất cả* các con của nó đã được thăm (các đỉnh lá được đánh dấu đã thăm khi chúng vừa được đưa vào stack vì chúng không có con). 
 
@@ -91,7 +91,7 @@ DFS(u):
 
 Ta có thể định nghĩa thứ tự cho các con của 1 đỉnh: "con thứ nhất", "con thứ hai",... Khi đó, phép duyệt theo thứ tự trước hay sau đều chỉ sinh ra một thứ tự duy nhất.
 
-### Duyệt theo thứ tự giữa (inorder)
+## Duyệt theo thứ tự giữa (inorder)
 
 Ngoài duyệt theo thứ tự trước và sau, cây **nhị phân** còn có cách duyệt theo **thứ tự giữa** (**inorder traversal**). Một đỉnh được coi là đã thăm sau khi tất cả đỉnh thuộc cây con trái của nó được thăm và trước khi bất kì đỉnh nào thuộc cây con phải của nó được thăm. Trình tự duyệt theo thứ tự giữa là duy nhất đối với mỗi cây nhị phân, và duyệt cây nhị phân tìm kiếm theo thứ tự giữa luôn trả về một danh sách đã sắp xếp.
 
@@ -102,7 +102,7 @@ DFS(u)
   DFS(u.right_child)
 ```
 
-## Các cấu trúc dữ liệu
+# Các cấu trúc dữ liệu
 
 Các cấu trúc dữ liệu sau đều dựa trên cây có gốc, và thường là cây nhị phân:
 
@@ -126,7 +126,7 @@ Các cấu trúc dữ liệu sau đều dựa trên cây có gốc, và thườn
 
 - [**Suffix tree**](https://en.wikipedia.org/wiki/Suffix_tree): cũng giống như trie, nhưng mỗi đường đi sẽ thể hiện một hậu tố.
 
-## Các bài toán về cây
+# Các bài toán về cây
 
 - **Cây khung nhỏ nhất** (**minium spanning tree**): cây $T$ gọi là **cây khung** (**span**) của đồ thị $G$ khi $T$ là đồ thị con của $G$ và chứa tất cả đỉnh của $G$. Trọng số của cây là tổng trọng số của tất cả các cạnh trên cây. Cần tìm cây khung có trọng số nhỏ nhất.
     - **Cây khung nhỏ nhất** (**minimum diameter spanning tree**): tìm cây khung sao cho khoảng cách lớn nhất giữa 2 đỉnh bất kì là nhỏ nhất.
