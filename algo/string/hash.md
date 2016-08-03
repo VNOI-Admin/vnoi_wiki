@@ -46,9 +46,9 @@ Chúng ta cần tìm ra tất cả các vị trí $i (1 \le i \le m − n + 1)$ 
 
 Đây chính là tư tưởng của thuật toán: đổi 2 xâu từ hệ cơ số 26 ra hệ cơ số 10, rồi đem so sánh ở hệ cơ số 10. Tuy nhiên, chúng ta nhận thấy rằng, khi đổi 1 xâu ra biểu diễn ở hệ cơ số 10, biểu diễn này có thể rất lớn và nằm ngoài phạm vi lưu trữ số nguyên của máy tính.
 
-Để khắc phục điều này, chúng ta chuyển sang so sánh 2 biểu diễn của 2 xâu ở hệ cơ số 10 sau khi lấy phần dư cho một số nguyên đủ lớn. Cụ thể hơn: nếu biểu diễn trong hệ thập phân của xâu $a$ là $x$ và biểu diễn trong hệ thập phân của xâu $b$ là $y$, chúng ta sẽ coi $a$ bằng $b$ ‘khi và chỉ khi’ $x mod base = y mod base$ trong đó $base$ là một số nguyên đủ lớn.
+Để khắc phục điều này, chúng ta chuyển sang so sánh 2 biểu diễn của 2 xâu ở hệ cơ số 10 sau khi lấy phần dư cho một số nguyên đủ lớn. Cụ thể hơn: nếu biểu diễn trong hệ thập phân của xâu $a$ là $x$ và biểu diễn trong hệ thập phân của xâu $b$ là $y$, chúng ta sẽ coi $a$ bằng $b$ ‘khi và chỉ khi’ $x \mod base = y \mod base$ trong đó $base$ là một số nguyên đủ lớn.
 
-Dễ dàng nhận thấy việc so sánh $x mod base$ với $y mod base$ rồi kết luận $a$ có bằng với $b$ hay không là sai. $x mod base = y mod base$ chỉ là điều kiện cần để $a$ bằng $b$ chứ chưa phải điều  kiện đủ. Tuy nhiên, chúng ta sẽ chấp nhận lập luận sai này trong thuật toán Hash. Và coi điều kiện cần như điều kiện đủ. Trên thực tế, lập luận sai này có những lúc dẫn đến so sánh xâu không chính xác và chương trình bị chạy ra kết quả sai. Nhưng cũng thực tế cho thấy rằng, khi chọn $base$ là một số nguyên lớn, số lượng những trường hợp sai rất ít, và ta có thể coi Hash là một thuật toán chính xác.
+Dễ dàng nhận thấy việc so sánh $x \mod base$ với $y \mod base$ rồi kết luận $a$ có bằng với $b$ hay không là sai. $x \mod base = y \mod base$ chỉ là điều kiện cần để $a$ bằng $b$ chứ chưa phải điều  kiện đủ. Tuy nhiên, chúng ta sẽ chấp nhận lập luận sai này trong thuật toán Hash. Và coi điều kiện cần như điều kiện đủ. Trên thực tế, lập luận sai này có những lúc dẫn đến so sánh xâu không chính xác và chương trình bị chạy ra kết quả sai. Nhưng cũng thực tế cho thấy rằng, khi chọn $base$ là một số nguyên lớn, số lượng những trường hợp sai rất ít, và ta có thể coi Hash là một thuật toán chính xác.
 
 Để đơn giản trong việc trình bày tiếp thuật toán, chúng ta sẽ gọi biểu diễn của một xâu trong hệ thập phân sau khi lấy phần dư cho base là mã Hash của xâu đó. Nhắc lại, 2 xâu bằng nhau ‘khi và chỉ khi’ mã Hash của 2 xâu bằng nhau.
 
@@ -65,7 +65,7 @@ for (i : 1 .. n)
 Phần khó hơn của thuật toán Hash là: Tính mã Hash của một đoạn con $T[i..j]$ của xâu $T$ $(1 \le i \le j \le N)$.
 
 - Để hình dung cho đơn giản, xét ví dụ sau: Xét xâu $s$ và biểu diễn của nó dưới cơ số 26: $(4,1,2,5,1,7,8)$. Chúng ta cần lấy mã Hash của đoạn con từ phần tử thứ 3 đến phần tử thứ 6, nghĩa là cần lấy mã Hash của xâu $(2,5,1,7)$. Nhận thấy, để lấy được xâu $s[3..6]$, chỉ cần lấy số $s[1..6]$ là $(4,1,2,5,1,7)$ trừ cho số ($s[1..2]$ nhân với $26^4$) là $(4,1,0,0,0,0)$ ta sẽ thu được $(2,5,1,7)$.
-- Để cài đặt ý tưởng này, chúng ta cần khởi tạo $26^x mod base$ với $(0 \le x \le m)$ và mã Hash của tất cả những tiền tố của $s$, cụ thể là mã Hash của những xâu $s[1..i]$ với $(1 \le i \le m)$.
+- Để cài đặt ý tưởng này, chúng ta cần khởi tạo $26^x \mod base$ với $(0 \le x \le m)$ và mã Hash của tất cả những tiền tố của $s$, cụ thể là mã Hash của những xâu $s[1..i]$ với $(1 \le i \le m)$.
 
 ```
 pow[0] = 1
@@ -79,7 +79,7 @@ for (i : 1 .. m)
 
 ```
 
-Trong đoạn code trên, chúng ta thu được mảng $pow[i]$ (lưu lại $26^i mod base$) và mảng $hashT[i]$ (lưu lại mã Hash của $T[1..i]$).
+Trong đoạn code trên, chúng ta thu được mảng $pow[i]$ (lưu lại $26^i \mod base$) và mảng $hashT[i]$ (lưu lại mã Hash của $T[1..i]$).
 
 - Để lấy mã Hash của $T[i..j]$ ta viết hàm sau:
 
@@ -165,7 +165,7 @@ Bài toán đặt ra như sau: Bạn được cho một xâu $s$ độ dài $n (
 - Một ‘thuật toán chuẩn’ không thể áp dụng vào bài toán này đó là thuật toán KMP. Ngoài KMP ra, có 2 ‘thuật toán chuẩn’ có thể áp dụng được. Thuật toán thứ nhất đó là sử dụng thuật toán Manachar để tính bán kính đối xứng tại tất cả vị trí trong xâu. Thuật toán thứ 2 đó là sử dụng Suffix Array và LCP (Longest Common Prefix) cho xâu được nối bởi $s$ và xâu $s$ viết theo thứ tự ngược lại. 2 thuật toán này đều không dễ dàng để cài đặt, và nằm ngoài phạm vi bài viết, nên tôi chỉ nêu sơ qua mà không đi vào chi tiết.
 - Bây giờ, chúng ta sẽ xét thuật toán ‘không chuẩn’ là thuật toán Hash. Để đơn giản, chúng ta xét trường hợp độ dài của xâu đối xứng là lẻ (trường hợp chẵn xử lý hoàn toàn tương tự).
 - Giả sử xâu đối xứng độ dài lẻ dài nhất có độ dài là $l$. Dễ thấy, trong xâu $s$ tồn tại xâu đối xứng độ dài $l−2$, $l−4$,... Tuy nhiên, xâu $s$ không tồn tài xâu đối xứng độ dài $l+2$, $l+4$, ... Như vậy, $s$ thỏa mãn tính chất chia nhị phân. Chúng ta sẽ chia nhị phân để tìm độ dài lớn nhất có thể. Với mỗi độ dài $l$, chúng ta cần kiểm tra xem trong xâu có tồn tại một xâu con là xâu đối xứng độ dài $l$ hay không. Để làm việc này, ta duyệt qua tất cả tất cả các xâu con độ dài $l$ trong $s$.
-- Bài toán còn lại là: kiểm tra xem $s[i . j]$ với $(1 \le i \le j \le m; (j−i+1) mod 2 = 1)$ có phải là xâu đối xứng hay không.
+- Bài toán còn lại là: kiểm tra xem $s[i . j]$ với $(1 \le i \le j \le m; (j−i+1) \mod 2 = 1)$ có phải là xâu đối xứng hay không.
 - Cách làm như sau. Gọi $t$ là xâu $s$ viết theo thứ tự ngược lại. Bằng thuật toán Hash, chúng ta có thể kiểm tra được một xâu con nào đó của $t$ có bằng một xâu con nào đó của $s$ hay không. Như vậy, chúng ta cần kiểm tra $s[i..k]$ có bằng $t[n−j+1..n−k+1]$ hay không với $k$ là tâm đối xứng, nói cách khác $k = (i+j)/2$. Như vậy bài toán đã được giải. Độ phức tạp cho 2 cách làm này là $O(n log(n))$.
 
 ## k-th alphabetical cyclic
