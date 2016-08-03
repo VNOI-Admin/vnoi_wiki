@@ -23,7 +23,7 @@ Có rất nhiều thuật toán có thể giải quyết bài toán này. Ngư�
 - **Brute-force**: Với một cách tiếp cận trực tiếp, chúng ta có thể thu được thuật toán để giải. Tuy nhiên độ phực tạp của nó là rất lớn trong trường hợp xấu nhất. Thuật toán brute-force so khớp tất cả các vị trí xuất hiện của đoạn mẫu trong đoạn văn bản. Cụ thể độ phức tạp cho thuật toán này là $O(mn)$.
 -  **[[Knuth-Morris-Pratt|translate/wcipeg/kmp]]**: Hay còn được viết tắt là KMP, được phát minh vào năm 1974, bởi Donald Knuth, Vaughan Pratt và James H. Morris.  Thuật toán này sử dụng một correction-array, là một thuật toán rất hiệu quả, có độ phức tạp là $O(m + n)$.
 
-## d. Mục đích bài viết
+## Mục đích bài viết
 
 Trong bài viết này, người viết chỉ tập trung vào một thuật toán. Tác giả xin gọi thuật toán này là Hash. Theo như bản thân người viết đánh giá, đây là thuật toán rất hiệu quả đặc biệt là trong thi cử. Nó hiệu quả bởi 3 yếu tố: tốc độ thực thi, linh động trong việc sử dụng (ứng dụng hiệu quả) và sự đơn giản trong cài đặt.
 
