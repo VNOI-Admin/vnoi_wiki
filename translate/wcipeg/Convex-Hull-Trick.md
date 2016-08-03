@@ -47,7 +47,7 @@ Ta có thể thấy nếu ta có một tập đường thẳng đã được xá
 
 Giả sử chúng ta được xử lý tất cả đường thẳng trước khi làm các truy vấn thì chúng ta chỉ cần đơn giản sắp xếp các đường thẳng theo hệ số góc và thêm từng đường một vào. Sẽ có thể một số đường không quan trọng và sẽ bị bỏ đi. Chúng ta sẽ sử dụng cấu trúc dữ liệu Stack để cài đặt, bỏ từng đường thẳng vào stack và nếu đường nào không quan trọng sẽ bị bỏ ra ngoài đến khi chỉ còn một đường thẳng (đường thẳng cuối không thể bỏ) 
 
-Vậy làm sao để có thể xác định đường thẳng nào sẽ bị bỏ khỏi stack? Giả sử $l_1$, $l_2$ và $l_3$ là đường thẳng áp chót trên stack, đường thẳng cuối cùng trong stack và đường thẳng được thêm vào stack. Đoạn $l_2$ không quan trọng(không có giá trị cực tiểu ở điểm nào) khi và chỉ khi giao điểm của $l_1$ và $l_3$ nằm bên trái giao điểm của $l_1$ và $l_2$ (Đoạn mà $l_3$ nhận giá trị cực tiểu đã nằm đè lên đoạn của $l_2$). Giả sử rằng không có ba đường nào trùng hay song song với nhau (có thể giải quyết một cách đơn giản).
+Vậy làm sao để có thể xác định đường thẳng nào sẽ bị bỏ khỏi stack? Giả sử $l_1$, $l_2$ và $l_3$ là đường thẳng áp chót (gần cuối ) trên stack, đường thẳng cuối cùng trong stack và đường thẳng được thêm vào stack. Đoạn $l_2$ không quan trọng(không có giá trị cực tiểu ở điểm nào) khi và chỉ khi giao điểm của $l_1$ và $l_3$ nằm bên trái giao điểm của $l_1$ và $l_2$ (Đoạn mà $l_3$ nhận giá trị cực tiểu đã nằm đè lên đoạn của $l_2$). Giả sử rằng không có ba đường nào trùng hay song song với nhau (có thể giải quyết một cách đơn giản).
 
 ### Phân tích thuật toán
 
