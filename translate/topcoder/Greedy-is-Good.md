@@ -88,8 +88,16 @@ Sau khi áp dụng thuật toán trên, *"Fun plan"* của Johnny sẽ như th�
 
 Vấn đề của John Smith đã được giải quyết, tuy nhiên đây chỉ là một ví dụ mà Tham lam có thể hoạt động. Một vài vấn đề thật sự khác đến từ **Topcoder** sẽ giúp bạn hiểu rõ hơn về khái niệm này. Trước khi tiếp tục, có lẽ bạn cần phải luyện tập thêm chút ít nữa với những gì mà bạn vừa đọc, bằng bài tập tương tự với *Lựa chọn hành động*, tên là [Boxing ](http://www.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880)
 
-**BioScore
+**BioScore**
+
 Trong bài toán này, bạn sẽ được yêu cầu làm tối đa hóa số điểm trung bình của các cặp tương đồng. Từ đáp án tối ưu cần tìm, ta có thể xem nó như một gợi ý nhằm tìm ra phương án thích hợp. Thường, đối với dạng bài toán này, ta sẽ sử dụng phương pháp *quy hoạch động* nhưng trong một vài trường hợp thì chiến lược **Tham lam** vẫn có thể được sử dụng.
 
 Việc đầu tiên mà ta cần làm là xây dựng một ma trận cho biết số lần lặp (**ma trận tần số**). Đây là một công việc khá nhẹ nhàng khi mà ta chỉ cần so sánh từng cặp ký tự ở hai chuỗi và đếm số lần xuất hiện của mỗi loại *axit nucleic* (AA, AC, AG, AT, CA, CC, CG, CT, GA, GC, GG, GT, TA, TC, TG, TT). Từng loại *axit nucleic* sẽ được xem như một phần tử trong ma trận và giá trị của nó chính là số lần xuất hiện của nó. Ví dụ, hãy xét bộ { "ACTAGAGAC", "AAAAAAAAA", "TAGTCATAC", "GCAGCATTC" } được sử dụng ở ví dụ thứ 2.
-![a](http://community.topcoder.com/i/education/greedyAlg3.gif)
+
+![Ví dụ](http://community.topcoder.com/i/education/greedyAlg3.gif)
+
+Ở góc phải dưới của minh họa trên, ta có thể thấy kết quả của ma trận tần số. Giờ đặt nó là F. Giờ việc mà ta cần làm là tìm ra một ma trận S khác sao cho tổng của 16 loại F[i, j]*S[i, j] (1 <= i, j <= 4) là lớn nhất.
+
+Giờ ta xét giới hạn của từng ma trận:
+
+1) 
