@@ -19,7 +19,13 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
 - Những kiến thức nhập môn:
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 
-- [[Cấu trúc dữ liệu|translate/codeforces/Data-Structures]]
+- Cấu trúc dữ liệu:
+    - [[Tổng quan về Cấu trúc dữ liệu|translate/codeforces/Data-Structures]]
+    - [[Cây|translate/wcipeg/tree]]
+    - [[Trie|algo/data-structures/trie]]
+    - [[Binary Heap|translate/wcipeg/Binary-Heap]]
+    - [[Heavy Light Decomposition - Thuật toán phân tách cây|algo/data-structures/heavy-light-decomposition]]
+    - [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
 
 - Xử lý xâu:
     - [[Thuật toán KMP|translate/wcipeg/kmp]]
