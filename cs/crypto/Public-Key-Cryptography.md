@@ -1,14 +1,18 @@
-Bài viết này nhằm giúp bạn đọc nắm được ý tưởng cơ bản của các hệ mã hóa khóa công khai và một số ứng dụng của chúng. Ngoài ra, chúng ta cũng sẽ tìm hiểu về thuật toán mã hóa RSA, một hệ mã hóa khóa công khai được sử dụng khá phổ biến hiện nay.
+# Public Key Cryptography
+
+**Tác giả**: Hoàng Gia Minh
+
+Bài viết này nhằm giúp bạn đọc nắm được ý tưởng cơ bản của các hệ **mã hóa khóa công khai** (**Public Key Cryptography**) và một số ứng dụng của chúng. Ngoài ra, chúng ta cũng sẽ tìm hiểu về thuật toán mã hóa RSA, một hệ mã hóa khóa công khai được sử dụng khá phổ biến hiện nay.
 
 [[_TOC_]]
 
 # 1. Một số khái niệm
 
-**Mã hóa** (Encryption): Quá trình chuyển đổi thông tin từ dạng thông thường, có thể tiếp nhận được sang thành dạng không tiếp nhận được (nếu không có khóa bí mật) nhằm mục đích giữ bí mật thông tin.
+**Mã hóa** (Encryption): Quá trình chuyển đổi thông tin từ dạng thông thường (có thể đọc được) sang thành dạng không đọc được (nếu không có khóa bí mật), nhằm mục đích giữ bí mật thông tin.
 
-**Giải mã** (Decryption): Là quá trình ngược của mã hóa - chuyển đổi từ thông tin mã hóa về thông tin ban đầu.
+**Giải mã** (Decryption): Là quá trình ngược của mã hóa - chuyển đổi từ thông tin đã mã hóa về thông tin ban đầu.
 
-**Khóa** (Key): Một đoạn thông tin được sử dụng để mã hóa, giải mã hoặc cả hai. 
+**Khóa** (Key): Một đoạn thông tin được sử dụng để mã hóa và/hoặc giải mã.
 
 # 2. Lịch sử
 
@@ -16,9 +20,12 @@ Bài viết này nhằm giúp bạn đọc nắm được ý tưởng cơ bản 
 
 Cho đến trước năm 1976, các phương pháp mã hóa đều là mã hóa đối xứng. 
 
-Các hệ mật mã đối xứng sử dụng chung khóa cho cả bên gửi lẫn bên nhận. Hai khóa này có thể giống nhau hoặc khác nhau nhưng có thể dễ dàng tìm ra được khóa còn lại nếu đã biết một khóa.
+Các hệ mã hóa đối xứng sử dụng **cùng một khóa** cho cả bên gửi lẫn bên nhận. Nói một cách chính xác hơn, hai khóa này có thể:
 
-Ưu điểm của các phương pháp này là đơn giản, tốc độ cao, mang lại hiệu quả tốt nếu bạn không chia sẻ khóa của mình cho người khác. Tuy nhiên, chúng lại có các nhược điểm sau:
+- giống nhau, hoặc
+- khác nhau nhưng có thể dễ dàng tìm ra được khóa còn lại nếu đã biết một khóa.
+
+Ưu điểm của các phương pháp này là đơn giản, tốc độ cao, mang lại hiệu quả tốt nếu bạn không chia sẻ khóa của mình cho ai khác ngoài người nhận. Tuy nhiên, chúng lại có các nhược điểm sau:
 
 - Để có thể trao đổi thông tin bí mật với nhau, hai bên phải thống nhất với nhau trước về khóa bí mật. Bài toán đặt ra là làm sao có thể đảm bảo việc gửi khóa cho nhau là bí mật.
 - Để đảm bảo trong 1 nhóm $n$ người cần phải có 1 số lượng khóa khá lớn - $\frac{n(n-1)}{2}$ khóa. Điều này dẫn đến một bài toán về việc lưu trữ, phân phối một số lượng lớn khóa mà vẫn phải đảm bảo sự an toàn của chúng.
@@ -28,21 +35,23 @@ Các hệ mật mã đối xứng sử dụng chung khóa cho cả bên gửi l�
 
 Vào năm 1874, William Stanley Jevons viết trong quyển _The Principles of Science_ về mối liên hệ giữa các hàm một chiều và mật mã học. Đặc biệt, ông đã đi sâu vào bài toán phân tích ra thừa số nguyên tố (sau này được sử dụng trong thuật toán RSA). 
 
-> _Liệu rằng bạn đọc có thể đoán được 2 số nguyên nào có tích bằng 8616460799? Tôi nghĩ rằng ngoài tôi ra thì không ai có thể biết kết quả được._
+> _Liệu rằng bạn đọc có thể đoán được 2 số nguyên nào có tích bằng 8,616,460,799? Tôi nghĩ rằng ngoài tôi ra thì không ai có thể biết kết quả được._
 
 Năm 1976, Whitfield Diffie và Martin Hellman công bố bài báo [New Directions in Cryptography](http://www-ee.stanford.edu/~hellman/publications/24.pdf), làm thay đổi căn bản về cách các hệ mật mã hoạt động.  Bài báo đã đưa ra một hệ thống mã hóa bất đối xứng trong đó nêu ra phương pháp trao đổi khóa công khai, giải quyết các hạn chế của mã đối xứng.
 
-Khác với mã đối xứng, mã hóa khóa bất đối xứng sử dụng một cặp khóa: khóa công khai (public key) và khóa bí mật (private key). Hai khóa này được xây dựng sao cho từ một khóa, rất khó có cách sinh ra được khóa còn lại. Một khóa sẽ dành để mã hóa, khóa còn lại dùng để giải mã. Chỉ có người sở hữu nắm được khóa bí mật trong khi khóa công khai được phổ biến rộng rãi. 
+Khác với mã đối xứng, mã hóa khóa bất đối xứng sử dụng một cặp khóa: **khóa công khai** (**public key**) và **khóa bí mật** (**private key**). Hai khóa này được xây dựng sao cho từ một khóa, rất khó có cách sinh ra được khóa còn lại. Một khóa sẽ dành để mã hóa, khóa còn lại dùng để giải mã. Chỉ có người sở hữu nắm được khóa bí mật trong khi khóa công khai được phổ biến rộng rãi. Hình vẽ sau minh họa việc mã hóa và giải mã:
+
+![Hình minh họa](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Public_key_encryption.svg/500px-Public_key_encryption.svg.png)
 
 # 3. Ứng dụng
 
 Mật mã hóa khóa công khai hay còn gọi là mã hóa bất đối xứng có 2 ứng dụng phổ biến sau:
 
-## 3.3. Mã hóa công khai (_Public-key encryption_): 
+## 3.1. Mã hóa công khai (_Public-key encryption_): 
 
 Một thông điệp được mã hóa bằng khóa công khai của người nhận. Thông điệp này chỉ có thể giải mã được bằng khóa bí mật mà chỉ người nhận có. 
 
-## 3.4. Chữ ký điện tử (_Digital signatures_): 
+## 3.2. Chữ ký điện tử (_Digital signatures_): 
 
 Chữ ký điện tử là thông tin đi kèm với dữ liệu nhằm mục đích xác định chủ sở hữu của dữ liệu đó.
 
@@ -56,7 +65,7 @@ Cụ thể hơn, bên gửi sẽ tính ra mã hash $h$ của văn bản, sau đ�
 
 # 4. RSA
 
-RSA là một trong những phương pháp mã hóa khóa công khai đầu tiên được ứng dụng rộng rãi trong việc đảm bảo an toàn khi truyền thông tin. Sự bất đối xứng của hệ mã này được dựa trên quan sát là khó có thể phân tích ra thừa số nguyên tố của một số là tích của 2 số nguyên tố. RSA được tạo thành bằng chữ cái đầu tiên của Ron Rivest, Adi Shamir, Lenonard Adleman, 3 người đầu tiên mô tả thuật toán vào năm 1977.
+RSA là một trong những phương pháp mã hóa khóa công khai đầu tiên được ứng dụng rộng rãi trong việc đảm bảo an toàn khi truyền thông tin. Sự bất đối xứng của hệ mã này được dựa trên quan sát là khó có thể phân tích ra thừa số nguyên tố của một số là tích của 2 số nguyên tố. RSA được tạo thành bằng chữ cái đầu tiên của Ron **R**ivest, Adi **S**hamir, Lenonard **A**dleman, 3 người đầu tiên mô tả thuật toán vào năm 1977.
 
 Nguyên lý cơ bản của RSA dựa trên nhận định là có thể tìm được 3 số nguyên dương rất lớn $e$, $d$ và $n$ mà:
 
