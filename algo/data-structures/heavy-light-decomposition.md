@@ -1,6 +1,6 @@
 # Heavy-Light Decomposition
 
-Tác giả: Nguyen Dinh Tri Cuong
+Tác giả: Nguyễn Đình Trí Cường
 
 [[_TOC_]]
 
