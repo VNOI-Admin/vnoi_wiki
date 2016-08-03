@@ -143,7 +143,7 @@ void add(string s) {  // thêm xâu s vào trie.
 
 _Bài tập: [A lot of games](http://codeforces.com/contest/456/problem/D)_
 
-Bạn cũng có thể đọc thêm [bài viết về trie|algo/data-structures/trie]
+Bạn cũng có thể đọc thêm [[bài viết về trie|algo/data-structures/trie]]
 
 
 # 5. Heap
