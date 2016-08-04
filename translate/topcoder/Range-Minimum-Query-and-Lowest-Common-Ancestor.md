@@ -1,5 +1,7 @@
 # Range Minimum Query và Lowest Common Ancestor
 
+[Bài viết chưa hoàn thiện]
+
 [[_TOC_]]
 
 ## Các định nghĩa
