@@ -31,7 +31,7 @@ for (int i = 0; i < data.Length; i++)
       }
 ```
 
-Ý tưởng: đi qua từng phần tử từ đầu tới cuối, và tráo đổi nếu phần tử đầu lớn hơn phần tử liền kề sau nó. Vì thế, phần tử nhỏ nhất sẽ "nổi" lên trên bề mặt. Độ phức tạp thuật toán là O(n^2), tức rất chậm so với các dữ liệu lớn. Điểm lợi duy nhất của thuật toán này, là nó dễ hiểu và dễ nhớ. Ngoài ra, không có thêm bộ nhớ nào cần dùng.
+Ý tưởng: đi qua từng phần tử từ đầu tới cuối, và tráo đổi nếu phần tử đầu lớn hơn phần tử liền kề sau nó. Vì thế, phần tử nhỏ nhất sẽ "nổi" lên trên bề mặt. Độ phức tạp thuật toán là $O(n^{2})$, tức rất chậm so với các dữ liệu lớn. Điểm lợi duy nhất của thuật toán này, là nó dễ hiểu và dễ nhớ. Ngoài ra, không có thêm bộ nhớ nào cần dùng.
 
 ### Sắp xếp chèn ###
 
@@ -65,7 +65,7 @@ Dữ liệu sẽ thay đổi như sau:
 { 1,  4,  5,  6,  6,  7,  9, 11, 12, 15, 18}
 ```
 
-Một trong những lợi ích chính của thuật toán này là việc sắp xếp sẽ nhanh hơn với các danh sách mà các phẩn tử gần như đúng thứ tự. Ví dụ, khi một người cần sắp xếp các high scores trong game, sắp xếp chèn là một lựa chọn rất tốt.
+Một trong những lợi ích chính của thuật toán này là việc sắp xếp sẽ nhanh hơn với các danh sách mà các phẩn tử gần như đúng thứ tự. Ví dụ, khi một người cần sắp xếp các highscores trong game, sắp xếp chèn là một lựa chọn rất tốt.
 
 ### Sắp xếp trộn ###
 
@@ -103,7 +103,7 @@ int[] mergeSort (int[] data) {
 }
 ```
 
-Mỗi lần gọi đệ quy mất O(n), và tổng cộng cần O(log n) như vậy, do đó độ phức tạp thuật toán là O(n * log n). Thuật toán này có thể được cải thiện để sắp xếp một danh sách gần như đúng thứ tự. Sau khi đã sắp xếp từng nửa danh sách, nếu phần tử cao nhất của phần này nhỏ hơn phần tử nhỏ nhất của phần kia, thủ tục trộn không cần thiết nữa. (Ví dụ là phần Java API là phần cải tiến thuật toán này). Dữ liệu, qua từng lời đệ quy, sẽ như thế này:
+Mỗi lần gọi đệ quy mất $O(n)$, và tổng cộng cần $O(log{n})$ như vậy, do đó độ phức tạp thuật toán là $O(n*log{n})$. Thuật toán này có thể được cải thiện để sắp xếp một danh sách gần như đúng thứ tự. Sau khi đã sắp xếp từng nửa danh sách, nếu phần tử cao nhất của phần này nhỏ hơn phần tử nhỏ nhất của phần kia, thủ tục trộn không cần thiết nữa. (Ví dụ là phần Java API là phần cải tiến thuật toán này). Dữ liệu, qua từng lời đệ quy, sẽ như thế này:
 ```
 {18, 6, 9, 1, 4, 15, 12, 5, 6, 7, 11}
 {18, 6, 9, 1, 4} {15, 12, 5, 6, 7, 11}
@@ -132,7 +132,7 @@ for (int i = 0; i < data.Length; i++)
    data[i] = h.RemoveLowest();
 ```
 
-Độ phức tạp thuật toán này là giới hạn trên của O(n * log n). Ngoài ra, thuật toán này yêu cầu thêm bộ nhớ là kích cỡ của dữ liệu. Sắp xếp vun đống có điểm yếu là không ổn định, và khó hiểu hơn các thuật toán sắp xếp cơ bản.
+Độ phức tạp thuật toán này là giới hạn trên của $O(n*log{n})$. Ngoài ra, thuật toán này yêu cầu thêm bộ nhớ là kích cỡ của dữ liệu. Sắp xếp vun đống có điểm yếu là không ổn định, và khó hiểu hơn các thuật toán sắp xếp cơ bản.
 
 ### Sắp xếp nhanh ###
 
@@ -157,7 +157,7 @@ Array quickSort(Array data) {
 }
 ```
 
-Thách thức trong sắp xếp nhanh là xác định phần tử khóa làm mốc chia thành hai nhóm. Độ phức tạp thuật toán này phụ thuộc vào chọn phần tử đó chính xác như thế nào. Trong trường hợp tốt nhất, độ phức tạp là O(n * log n), và xấu nhất đối với hai tập có cùng một phần tử là O(n^2). Dữ liệu sẽ thay đổi như sau:
+Thách thức trong sắp xếp nhanh là xác định phần tử khóa làm mốc chia thành hai nhóm. Độ phức tạp thuật toán này phụ thuộc vào chọn phần tử đó chính xác như thế nào. Trong trường hợp tốt nhất, độ phức tạp là $O(n*log{n})$, và xấu nhất đối với hai tập có cùng một phần tử là $O(n^{2})$. Dữ liệu sẽ thay đổi như sau:
 ```
 {18, 6, 9, 1, 4, 15, 12, 5, 6, 7, 11}
 {6, 9, 1, 4, 12, 5, 6, 7, 11} {15} {18}
@@ -198,13 +198,13 @@ Lấy 4 bit và chỉ cần 1 bước, cùng 16 nhóm:
 
 Chú ý rằng, với ví dụ cuối, ta có nhiều nhóm rỗng. Điều này giải thích rằng, ta có bao nhiêu bit ta có thể chọn hơn trước khi dùng đến giới hạn bộ nhớ. Thời gian thực hiện giống như số các xô càng lớn đưa thành một danh sách có thể đôi lúc phải xem xét.
 
-Bởi vì hiệu quả sắp xếp cơ số khác với sắp xếp so sánh bình thường, nó có thể có hiệu quả cao hơn nữa. Độ phức tạp là O(n * k) với k là kích cỡ của khóa. (số nguyên 32 bit, nếu lấy 4 bit, k=8). Điểm yếu cơ bản là một vài dữ liệu rất dài (như chuỗi), hoặc khó dùng thuật toán này (chẳng hạn kiểu negative floating-point là một ví dụ).
+Bởi vì hiệu quả sắp xếp cơ số khác với sắp xếp so sánh bình thường, nó có thể có hiệu quả cao hơn nữa. Độ phức tạp là $O(n*{k})$ với k là kích cỡ của khóa. (số nguyên 32 bit, nếu lấy 4 bit, k=8). Điểm yếu cơ bản là một vài dữ liệu rất dài (như chuỗi), hoặc khó dùng thuật toán này (chẳng hạn kiểu negative floating-point là một ví dụ).
 
 ### Các thư viện dùng để sắp xếp ###
 
 Ngày nay, đại đa số các ngôn ngữ lập trình đã bao gồm nhiều thư viện cung cáp các thuật toán tốt cho chúng ta. Như .NET framework, Java API, và C++ STL, tất cả đều đã có sẵn thuật toán sắp xếp. Và tốt nhất là cấu trúc cơ bản của nó giống nhau từ ngôn ngữ này đến ngôn ngữ khác.
 
-Với các kiểu dữ liệu điển hình như scalars, floats, chuỗi, mọi thứ cần dùng để sắp xếp đã có sẵn. Nhưng nếu ta có dữ liệu cần thuật toán sắp xếp phức tạp hơn? Rất may, lập trình hướng đối đã cho ta các thư viện kinh điển để giải quyết việc này.
+Với các kiểu dữ liệu điển hình như scalars, floats, chuỗi, mọi thứ cần dùng để sắp xếp đã có sẵn. Nhưng nếu ta có dữ liệu cần thuật toán sắp xếp phức tạp hơn? Rất may, lập trình hướng đối tượng đã cho ta các thư viện kinh điển để giải quyết việc này.
 
 Trong cả Java và C# (cũng như VB), có giao diện gọi là Comparable (IComparable in .NET). Bằng việc chạy giao diện IComparable trên một class đã khai báo, bạn thêm hàm ***int CompareTo (object other)***, hàm này sẽ trả về một kết quả, kết quả đó sẽ <=0, hoặc là một số dương lớn hơn tham số. Thư viện chứa hàm sort sẽ chạy tốt trên kiểu dữ liệu mới.
 
