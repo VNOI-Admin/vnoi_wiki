@@ -1,5 +1,7 @@
 # Interval Tree trên tập đoạn thẳng
 
+**Tác giả**: Vũ *chipchip* Phúc Hoàng
+
 # Bài toán
 
 Cho một tập hợp chứa các đường thẳng có dạng $ax + b$, mỗi đường thẳng được biểu diễn bằng một cặp số $(a, b)$. Cần thực hiện hai truy vấn:
@@ -32,7 +34,7 @@ Xây dựng một cây Interval Tree để quản lí tập các đoạn thẳng
 
 Như vậy, thông tin lưu trên cây IT sẽ được biểu diễn bằng một mảng line, line là một cặp số $(a, b)$ biểu diễn đường thẳng.
 
-```cpp
+```
 line it[MAXX * 4]; // MAXX là giới hạn trục hoành
 ```
 
