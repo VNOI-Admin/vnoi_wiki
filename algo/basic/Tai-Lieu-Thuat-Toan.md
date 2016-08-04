@@ -44,12 +44,6 @@ Giới thiệu về thuật toán LCA
 
 [Link Download](https://www.dropbox.com/s/5dqgf6dtnawdehc/LCA_bangcht_doc.pdf?dl=0)
 
-**7. Hash - Lê Khắc Minh Tuệ**
-
-Giới thiệu về thuật toán Hash.
-
-[Link Download](https://www.dropbox.com/s/7joccxnc0pyzyeo/Hash.pdf?dl=0)
-
-**8. KC-BOOK3**
+**7. KC-BOOK3**
 
 [Link download](http://www.mediafire.com/download/x0kwqv8sv7xxhpg/252136344-KCBOOK3.pdf)
