@@ -1,5 +1,6 @@
 # Range Minimum Query và Lowest Common Ancestor
 
+[Dịch từ Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/)
 [[_TOC_]]
 
 ## Các định nghĩa
