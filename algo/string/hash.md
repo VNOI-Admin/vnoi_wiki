@@ -189,6 +189,35 @@ Bài toán đặt ra như sau: Bạn được cho xâu $s$ độ dài $n (n \le 
 - Bây giờ, với mỗi $l$ khi đang chia nhị phân, chúng ta sẽ phải kiểm tra liệu có tồn tại xâu con nào xuất hiện ít nhất $k$ lần hay không. Điều này được làm rất đơn giản, bằng cách sinh mọi mã Hash của các xâu con độ dài $k$ trong $s$. Sau đó sắp xếp lại các mã Hash này theo chiều tăng dần, rồi kiếm tra xem có một đoạn liên tiếp các mã Hash nào giống nhau độ dài $l$ hay không.
 - Như vậy, độ phức tạp để  chia nhị phân là $O(log(n))$, độ phức tạp của sắp xếp là $O(n log(n))$, vậy độ phức tạp của cả bài toán là $O(n log^2(n) )$.
 
+
+# Đánh giá độ chính xác
+
+Thông thường, khi sử dụng Hash, ta thường gặp phải 2 trường hợp như sau:
+
+1. Trả lời $Q$ truy vấn, mỗi truy vấn có dạng kiểm tra 2 đoạn con của 2 xâu có bằng nhau hay không
+2. Cho $N$ xâu, kiểm tra tất cả các xâu có phân biệt hay không.
+
+Giả sử ta chọn $base$ là một số nguyên tố khoảng $10^9$, và giả sử dữ liệu được sinh ngẫu nhiên và hàm hash của chúng ta đủ tốt để Hash của các xâu được phân bố đều và ngẫu nhiên.
+
+## Trường hợp 1
+
+Giả sử $Q$ khoảng $10^5$, và bộ test có $T = 100$ test.
+
+- Với 2 xâu khác nhau, xác suất để nó có cùng Hash là xấp xỉ $1 / 10^9$. Như vậy, xác suất để trả lời đúng 1 truy vấn là: $1 - 1 / 10^9$.
+- Ở trường hợp xấu nhất, ta có $Q$ truy vấn mà mỗi truy vấn là một cặp xâu khác nhau. Xác suất để ta trả lời đúng tất cả các truy vấn là: $(1 - 1 / 10^9)^Q$.
+- Xác suất để ta trả lời đúng tất cả các truy vấn của tất cả các test là: $(1 - 1 / 10^9)^{Q \* T}$.
+
+Thay số vào, xác suất để trả lời đúng tất cả các truy vấn là $0.9900$, đủ lớn để ta yên tâm qua tất cả các test, với điều kiện test không được sinh dựa trên $P$. (Chú ý nếu bạn đang thi những contest như Topcoder / Codeforces, người khác có thể đọc được $P$ của bạn và sinh test để challenge code của bạn).
+
+## Trường hợp 2
+
+Theo [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem), ta dễ dàng thấy rằng, nếu có $\sqrt(P) = 3*10^4$ xâu, xác suất để 2 xâu bằng nhau là rất lớn. Thật vậy, xác suất để tất cả các xâu khác nhau là:
+
+$(1 - 1 / 10^9) \* (1 - 2 / 10^9) \* (1 - 3 / 10^9) \* ... (1 - N / 10^9)$.
+
+Với $N = 30,000$, tích trên là $0.6376$, nghĩa là bạn có gần $40%$ xác suất trả lời sai. Do vậy, bạn bắt buộc phải dùng nhiều $base$ khác nhau.
+
+
 # Tổng kết
 
 ## Thuật toán
