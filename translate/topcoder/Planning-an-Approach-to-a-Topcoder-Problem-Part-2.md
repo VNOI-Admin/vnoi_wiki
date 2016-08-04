@@ -8,7 +8,7 @@ Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science
 
 # Tiếp cận từ dưới lên (Bottom-up Programming)
 
-Kỹ thuật này ngược với kỹ thuật chia nhỏ vấn đề đã được nói đến ở bài viết trước, và nó nên là kỹ thuật đầu tiên bạn nghĩ tới khi bạn chưa tìm ra hướng giải. Bottom-up programming là phương pháp xuất phát từ những hàm cơ bản, chỉnh sửa, kết hợp chúng để giải được bài toán ban đầu. Nhiều lúc khi vừa đọc đề bạn sẽ thấy rằng bạn cần một hàm cụ thể nào đó, nếu nó đã atomic hay dễ dàng cài đặt thì bạn có thể có thể xây dựng thẳng lên từ những hàm cơ bản đó thay vì chia nhỏ ra.
+Kỹ thuật này ngược với kỹ thuật chia nhỏ vấn đề đã được nói đến ở [[bài viết trước|translate/topcoder/Planning-an-Approach-to-a-Topcoder-Problem-Part-1]], và nó nên là kỹ thuật đầu tiên bạn nghĩ tới khi bạn chưa tìm ra hướng giải. Bottom-up programming là phương pháp xuất phát từ những hàm cơ bản, chỉnh sửa, kết hợp chúng để giải được bài toán ban đầu. Nhiều lúc khi vừa đọc đề bạn sẽ thấy rằng bạn cần một hàm cụ thể nào đó, nếu nó đã atomic hay dễ dàng cài đặt thì bạn có thể có thể xây dựng thẳng lên từ những hàm cơ bản đó thay vì chia nhỏ ra.
 
 Trong bài MatArith ở phần trước, chương trình con để cộng và nhân ma trận cũng có thể áp dụng kĩ thuật này. Bạn có thể viết một hàm `evalMult` nhỏ hơn có nhiệm vụ nhân các ma trận với nhau bằng cách xử lí luôn trên string, một hàm `evalAdd` tương tự để cộng ma trận. 
 
