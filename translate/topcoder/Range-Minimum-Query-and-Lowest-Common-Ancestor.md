@@ -1,49 +1,59 @@
-# Range Minimum Query và Lowest Common Ancestor
+# Bài toán RMQ và bài toán LCA
 
 **Nguồn**: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/)
 
 [[_TOC_]]
 
+Trong bài viết này, tác giả sẽ giới thiệu với bạn 2 bài toán cơ bản: Bài toán RMQ và bài toán LCA, cũng như mối liên hệ giữa 2 bài toán này.
+
+
 # Các định nghĩa
 
-Gỉa sử thuật toán có thời gian tiền xử lý là $f(n)$ và thời gian truy vấn $g(n)$. Ta ký hiệu độ phức tạp tổng quát của thuật toán là $< f(n),g(n) >$.
+Gỉa sử thuật toán có thời gian tiền xử lý là $f(n)$ và thời gian trả lời 1 truy vấn là $g(n)$. Ta ký hiệu độ phức tạp tổng quát của thuật toán là $< f(n),g(n) >$.
 
-Vị trí của phần tử có giá trị nhỏ nhất trong đoạn từ $i$ đến $j$ của mảng $A$ là $RMQ_A(i,j)$.
+## Bài toán Range Minimum Query (RMQ)
 
-Nút xa gốc nhất và là tổ tiên của cả 2 nút $u$ và $v$ trong cây có gốc $T$ là $LCA_T(u,v)$
-
-# Range Minimum Query (RMQ)
-
-Cho mảng $A[0,N-1]$. Tìm vị trí của phần tử có giá trị nhỏ nhất trong một đoạn cho trước.
+Cho mảng $A[0,N-1]$. Bạn cần trả lời $Q$ truy vấn. Mỗi truy vấn gồm 2 số $i$, $j$ và bạn cần đưa ra vị trí của phần tử có giá trị nhỏ nhất trong đoạn từ $i$ đến $j$ của mảng $A$, ký hiệu là $RMQ_A(i,j)$.
 
 ![](http://community.topcoder.com/i/education/lca/RMQ_001.gif)
 
-## Thuật toán tầm thường
+## Bài toán Lowest Common Ancestor (LCA)
+
+Cho cây có gốc $T$ và 2 nút $u$ và $v$ của cây. Bạn cần trả lời $Q$ truy vấn. Mỗi truy vấn gồm 2 số $i$, $j$ và bạn cần tìm nút xa gốc nhất mà là tổ tiên của cả 2 nút $u$ và $v$, ký hiệu là $LCA_T(u,v)$.
+
+![](http://community.topcoder.com/i/education/lca/LCA_001.gif)
+
+
+
+# Bài toán RMQ
+
+## Thuật toán $< O(1), O(N) >$
+
+Thuật toán hiển nhiên nhất cho bài RMQ là ta không cần tiền xử lý gì cả. Với mỗi truy vấn, ta xét lần lượt từng phần tử từ $i$ đến $j$ để tìm phần tử nhỏ nhất. Hiển nhiên, độ phức tạp thuật toán này là $< O(1), O(N) >$.
+
+## Thuật toán $< O(N^2),O(1) >$
 
 Lưu giá trị của $RMQ_A(i,j)$ trong một bảng $M[0,N-1][0,N-1]$.
 
 Thuật toán sẽ có độ phức tạp $< O(N^3),O(1) >$. Tuy nhiên ta có thể sử dụng quy hoạch động để giảm độ phức tạp xuống $< O(N^2),O(1) >$ như sau:
 
-```cpp
-void process1(int M[MAXN][MAXN], int A[MAXN], int N)
-  {
-      int i, j;
-      for (i = 0; i < N; i++)
+```
+      for i = 0 .. N-1
           M[i][i] = i;
-      for (i = 0; i < N; i++)
-          for (j = i + 1; j < N; j++)
+
+      for i = 0 .. N-1
+          for j = i+1 .. N-1
               if (A[M[i][j - 1]] < A[j])
                   M[i][j] = M[i][j - 1];
               else
                   M[i][j] = j;
-  }
 ```
 
 Có thể thấy thuật toán này khá chậm và tốn bộ nhớ $O(N^2)$ nên sẽ không hữu ích với những dữ liệu lớn hơn.
 
 ## Thuật toán $< O(N),O(\sqrt N) >$
 
-Một ý tưởng độc đáo là chia mảng thành $\sqrt N$ phần. Ta sử dụng một vector $M[0,\sqrt N]$ để lưu giá trị mỗi phần. $M$ có thể dễ dàng tính được trong $O(N)$:
+Ta có thể chia mảng thành $\sqrt N$ phần. Ta sử dụng một vector $M[0, \sqrt N]$ để lưu giá trị mỗi phần. $M$ có thể dễ dàng tính được trong $O(N)$:
 
 ![](http://community.topcoder.com/i/education/lca/RMQ_002.gif)
 
@@ -64,21 +74,22 @@ Ta sử dụng mảng $M[0,N-1][0,logN]$ với $M[i][j]$ là chỉ số của ph
 ![](http://community.topcoder.com/i/education/lca/RMQ_007.gif)
 
 ```cpp
- void process2(int M[MAXN][LOGMAXN], int A[MAXN], int N)
-  {
-      int i, j;
+void process2(int M[MAXN][LOGMAXN], int A[MAXN], int N)
+{
+  int i, j;
 
-  //initialize M for the intervals with length 1
-      for (i = 0; i < N; i++)
-          M[i][0] = i;
-  //compute values from smaller to bigger intervals
-      for (j = 1; 1 << j <= N; j++)
-          for (i = 0; i + (1 << j) - 1 < N; i++)
-              if (A[M[i][j - 1]] < A[M[i + (1 << (j - 1))][j - 1]])
-                  M[i][j] = M[i][j - 1];
-              else
-                  M[i][j] = M[i + (1 << (j - 1))][j - 1];
-  }
+  // Khởi tạo M với các khoảng độ dài 1
+  for (i = 0; i < N; i++)
+    M[i][0] = i;
+
+  // Tính M với các khoảng dài 2^j
+  for (j = 1; 1 << j <= N; j++)
+    for (i = 0; i + (1 << j) - 1 < N; i++)
+      if (A[M[i][j - 1]] < A[M[i + (1 << (j - 1))][j - 1]])
+        M[i][j] = M[i][j - 1];
+      else
+        M[i][j] = M[i + (1 << (j - 1))][j - 1];
+}
 ```
 
 Để tính $RMQ_A(i,j)$ ta dựa vào 2 đoạn con độ dài $2^k$ phủ hết $[i,j]$, với $k=log(j-i+1)$:
@@ -86,6 +97,7 @@ Ta sử dụng mảng $M[0,N-1][0,logN]$ với $M[i][j]$ là chỉ số của ph
 ![](http://community.topcoder.com/i/education/lca/RMQ_005.gif)
 
 Độ phức tạp tổng quát của thuật toán này là $< O(NlogN),O(1) >$
+
 
 ## Cây phân đoạn (segment tree, interval tree, range tree)
 
@@ -96,66 +108,95 @@ Ta biểu diễn cây bằng một mảng $M[1,2*2^{[logN]+1}]$ với $M[i]$ là
 Khởi tạo:
 
 ```cpp
-  void initialize(intnode, int b, int e, int M[MAXIND], int A[MAXN], int N)
+void initialize(intnode, int b, int e, int M[MAXIND], int A[MAXN], int N)
+{
+  if (b == e)
+    M[node] = b;
+  else
   {
-      if (b == e)
-          M[node] = b;
-      else
-       {
-  //compute the values in the left and right subtrees
-          initialize(2 * node, b, (b + e) / 2, M, A, N);
-          initialize(2 * node + 1, (b + e) / 2 + 1, e, M, A, N);
-  //search for the minimum value in the first and
-  //second half of the interval
-          if (A[M[2 * node]] <= A[M[2 * node + 1]])
-              M[node] = M[2 * node];
-          else
-              M[node] = M[2 * node + 1];
-      }
+    // Khởi tạo nút con trái và nút con phải
+    initialize(2 * node, b, (b + e) / 2, M, A, N);
+    initialize(2 * node + 1, (b + e) / 2 + 1, e, M, A, N);
+
+    // Tính giá trị nhỏ nhất dựa trên 2 nút con
+    if (A[M[2 * node]] <= A[M[2 * node + 1]])
+      M[node] = M[2 * node];
+    else
+      M[node] = M[2 * node + 1];
   }
+}
 ```
 
 Truy vấn:
 
 ```cpp
 int query(int node, int b, int e, int M[MAXIND], int A[MAXN], int i, int j)
-  {
-      int p1, p2;
+{
+  int p1, p2;
 
-  //if the current interval doesn't intersect
-  //the query interval return -1
-      if (i > e || j < b)
-          return -1;
+  // Đoạn cần tính không giao với đoạn của nút hiện tại
+  // --> return -1
+  if (i > e || j < b)
+    return -1;
 
-  //if the current interval is included in
-  //the query interval return M[node]
-      if (b >= i && e <= j)
-          return M[node];
+  // Đoạn cần tính nằm trong hoàn toàn trong đoạn của nút hiện tại
+  // --> return M[node]
+  if (b >= i && e <= j)
+    return M[node];
 
-  //compute the minimum position in the
-  //left and right part of the interval
-      p1 = query(2 * node, b, (b + e) / 2, M, A, i, j);
-      p2 = query(2 * node + 1, (b + e) / 2 + 1, e, M, A, i, j);
+  // Tìm giá trị nhỏ nhất trong 2 cây con trái và cây con phải
+  p1 = query(2 * node, b, (b + e) / 2, M, A, i, j);
+  p2 = query(2 * node + 1, (b + e) / 2 + 1, e, M, A, i, j);
 
-  //return the position where the overall
-  //minimum is
-      if (p1 == -1)
-          return M[node] = p2;
-      if (p2 == -1)
-          return M[node] = p1;
-      if (A[p1] <= A[p2])
-          return M[node] = p1;
-      return M[node] = p2;
-  }
+  // Tìm giá trị nhỏ nhất trong các cây con
+  if (p1 == -1)
+    return M[node] = p2;
+  if (p2 == -1)
+    return M[node] = p1;
+  if (A[p1] <= A[p2])
+    return M[node] = p1;
+  return M[node] = p2;
+}
 ```
 
 Mỗi truy vấn sẽ được thực hiện trong $O(logN)$ và thuật toán có độ phức tạp tổng quát là $< O(N),O(logN) >$
 
-# Lowest Common Ancestor (LCA)
+# Bài toán LCA
 
-Cho cây có gốc $T$ và 2 nút $u$ và $v$ của cây. Tìm nút xa gốc nhất mà là tổ tiên của cả 2 nút $u$ và $v$.
+## Thuật toán $< O(1), O(N) >$
 
-![](http://community.topcoder.com/i/education/lca/LCA_001.gif)
+Thuật toán hồn nhiên nhất như sau:
+
+- Đặt $h(u)$ là độ cao của đỉnh $u$.
+- Để trả lời truy vấn $u$, $v$. Không làm mất tính tổng quát, giả sử $h(u) > h(v)$.
+  - Ta đi từ $u$ đến $u'$, với $u'$ là tổ tiên của $u$ và $h(u') = h(v)$.
+  - Ta đồng thời đi từ $u$ và $v$ lên cha của nó, đến khi 2 đỉnh này trùng nhau (lúc đó cả 2 đỉnh đều ở LCA).
+
+[[/uploads/translate_topcoder_lca_rmq.png]]
+
+Ví dụ:
+
+- Ta cần tìm LCA của $u$ và $v$. Ban đầu $h(u) > h(v)$.
+- Ta đi từ $u$ đến tổ tiên của $u$ mà có $h(u') = h(v)$: Đi từ $u$ lên $u4$ lên $u3$.
+- Sau đó đồng thời đi từ $u$ và $v$ lên cha của nó đến khi 2 đỉnh bằng nhau:
+  - $u = u2, v = v2$
+  - $u = u1, v = v1$
+  - $u = v = lca$
+
+```
+function LCA(u, v):
+  if h(u) < h(v):
+    swap(u, v)
+
+  while h(u) > h(v):
+    u = parent(u)
+
+  while u != v:
+    u = parent(u)
+    v = parent(v)
+
+  return u
+```
 
 ## Thuật toán $< O(N),O(\sqrt N) >$
 
