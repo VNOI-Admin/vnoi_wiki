@@ -147,7 +147,7 @@ int query(int node, int b, int e, int M[MAXIND], int A[MAXN], int i, int j)
   }
 ~~~
 
-Mỗi truy vấn sẽ được thực hiện trong $O(log_N)$ và thuật toán có độ phức tạp tổng quát là $< O(N),O(log_N) >$
+Mỗi truy vấn sẽ được thực hiện trong $O(logN)$ và thuật toán có độ phức tạp tổng quát là $< O(N),O(logN) >$
 
 ## Lowest Common Ancestor (LCA)
 
