@@ -98,7 +98,7 @@ void Update(int node, int l, int h, line val)
 
 Bây giờ việc phải làm là điền vào chỗ `// Do Something`. Ta có một đường thẳng `val` và đường thẳng `it[node]`, cả hai đều chỉ được xét trong khoảng từ `low[node]` đến `high[node]`. Lấy `mid` là điểm giữa của khoảng `(mid = (low[node] + high[node]) / 2)`. Ta sẽ thay đổi nút `it[node]` và cả các con của nó. Có 6 trường hợp có thể xảy ra:
 
-1. `it[node]` hoàn toàn nằm trên `val`. Trường hợp này ta chỉ bỏ qua mà không làm gì, vì `val` chắc chắn không bao giờ đạt `max` trong khoảng `low[node]` đến `high[node]`.
+1. `it[node]` hoàn toàn nằm trên `val`. Trường hợp này ta chỉ bỏ qua mà không làm gì, vì `val` chắc chắn không bao giờ đạt max trong khoảng `low[node]` đến `high[node]`.
 
    ```cpp
 if(Get(it[node], low[node]) >= Get(val, low[node]) && Get(it[node], high[node]) >= Get(val, high[node]))
@@ -107,7 +107,7 @@ if(Get(it[node], low[node]) >= Get(val, low[node]) && Get(it[node], high[node]) 
 }
    ```
 
-2. `it[node]` hoàn toàn nằm dưới `val`. Trường hợp này ta gán `it[node]` bằng `val`, `it[node]` cũ không còn giá trị khi tìm `max`.
+2. `it[node]` hoàn toàn nằm dưới `val`. Trường hợp này ta gán `it[node]` bằng `val`, `it[node]` cũ không còn giá trị khi tìm max.
 
     ```cpp
 if(Get(it[node], low[node]) <= Get(val, low[node]) && Get(it[node], high[node]) <= Get(val, high[node]))
@@ -117,7 +117,8 @@ if(Get(it[node], low[node]) <= Get(val, low[node]) && Get(it[node], high[node]) 
 }
     ```
 
-3. Nửa bên trái của `it[node]` hoàn toàn nằm trên nửa bên trái của `val`. Vậy `val` chắc chắn không bao giờ đạt `max` tại nửa trái của khoảng `node`, ta giữ lại `it[node]` tại `node` và down `val` xuống con phải `(node * 2 + 1)`.
+3. Nửa bên trái của `it[node]` hoàn toàn nằm trên nửa bên trái của `val`. Vậy `val` chắc chắn không bao giờ đạt max tại nửa trái của khoảng `node`, ta giữ lại `it[node]` tại `node` và down `val` xuống con phải `(node * 2 + 1)`.
+
     ```cpp
 if(Get(it[node], low[node]) >= Get(val, low[node]) && Get(it[node], mid) >= Get(val, mid))
 {
