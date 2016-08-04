@@ -1,7 +1,5 @@
 # Range Minimum Query và Lowest Common Ancestor
 
-[Bài viết chưa hoàn thiện]
-
 [[_TOC_]]
 
 ## Các định nghĩa
@@ -55,7 +53,7 @@ Dễ thấy thuật toán không sử dụng quá $3\sqrt N$ phép toán cho m�
 
 Đây là một hướng tiếp cận tốt hơn để tiền xử lý $RMQ$ cho các đoạn con có độ dài $2^k$, sử dụng quy hoạch động.
 
-Ta sử dụng mảng $M[0,N-1][0,logN]$ với $M[i][j]$ là chỉ số của phần tử có giá trị nhỏ nhất trong đoạn có độ dài $2^j$ và bắt đầu ở $i$. Ví dụ:
+Ta sử dụng mảng $M[0,N-1][0,log_N]$ với $M[i][j]$ là chỉ số của phần tử có giá trị nhỏ nhất trong đoạn có độ dài $2^j$ và bắt đầu ở $i$. Ví dụ:
 
 ![](http://community.topcoder.com/i/education/lca/RMQ_003.gif)
 
@@ -81,15 +79,15 @@ Ta sử dụng mảng $M[0,N-1][0,logN]$ với $M[i][j]$ là chỉ số của ph
   }
 ~~~
 
-Để tính $RMQ_A(i,j)$ ta dựa vào 2 đoạn con độ dài $2^k$ phủ hết $[i,j]$, với $k=log{j-i+1}$:
+Để tính $RMQ_A(i,j)$ ta dựa vào 2 đoạn con độ dài $2^k$ phủ hết $[i,j]$, với $k=log_{j-i+1}$:
 
 ![](http://community.topcoder.com/i/education/lca/RMQ_005.gif)
 
-Độ phức tạp tổng quát của thuật toán này là $< O(NlogN),O(1) >$
+Độ phức tạp tổng quát của thuật toán này là $< O(Nlog_N),O(1) >$
 
 ### Cây phân đoạn (segment tree, interval tree, range tree)
 
-Ta biểu diễn cây bằng một mảng $M[1,2*2^{[logN]+1}]$ với $M[i]$ là vị trí có giá trị nhỏ nhất trong đoạn mà nút $i$ quản lý.
+Ta biểu diễn cây bằng một mảng $M[1,2*2^{[log_N]+1}]$ với $M[i]$ là vị trí có giá trị nhỏ nhất trong đoạn mà nút $i$ quản lý.
 
 ![](http://community.topcoder.com/i/education/lca/RMQ_004.gif)
 
@@ -149,7 +147,7 @@ int query(int node, int b, int e, int M[MAXIND], int A[MAXN], int i, int j)
   }
 ~~~
 
-Mỗi truy vấn sẽ được thực hiện trong $O(logN)$ và thuật toán có độ phức tạp tổng quát là $< O(N),O(logN) >$
+Mỗi truy vấn sẽ được thực hiện trong $O(log_N)$ và thuật toán có độ phức tạp tổng quát là $< O(N),O(log_N) >$
 
 ## Lowest Common Ancestor (LCA)
 
@@ -219,9 +217,9 @@ Truy vấn:
 
 Hàm này sử dụng tối đa $2\sqrt H$ phép toán. Với cách tiếp cận này chúng ta có thuật toán $< O(N),O(\sqrt H) >$, trong trường hợp tệ nhất thì $N=H$ nên độ phức tạp tổng quát của thuật toán là $< O(N),O(\sqrt N) >$.
 
-### Thuật toán $< O(Nlog_N),O(logN) >$
+### Thuật toán $< O(NlogN),O(logN) >$
 
-Ứng dụng quy hoạch động chúng ta có một thuật toán nhanh hơn. Đầu tiên chúng ta tính một bảng $P[1,N][1,logN]$ với $P[i][j]$ là tổ tiên thứ $2^j$ của $i$:
+Ứng dụng quy hoạch động chúng ta có một thuật toán nhanh hơn. Đầu tiên chúng ta tính một bảng $P[1,N][1,log_N]$ với $P[i][j]$ là tổ tiên thứ $2^j$ của $i$:
 
 ![](https://community.topcoder.com/i/education/lca/LCA_005.gif)
 
@@ -249,13 +247,13 @@ Code:
   }
 ~~~
 
-Phương pháp này tốn $O(logN)$ cả về bộ nhớ lẫn thời gian.
+Phương pháp này tốn $O(log_N)$ cả về bộ nhớ lẫn thời gian.
 
 Gọi $L[i]$ là tầng của $i$. Để tính $LCA(p,q)$ thì đầu tiên chúng ta cần đảm bảo nó cùng nằm trên một tầng
 
-* Đưa $p$ và $q$ về cùng một tầng: giả sử $L[p]>L[q]$, việc đưa $p$ và $q$ về cùng tầng cũng giống như việc chuyển $L[p]-L[q]$ sang hệ cơ số $2$ vậy. Duyệt $j$ từ $log{L[p]}$ xuống $0$, nếu tổ tiên thứ $2^j$ của $p$ không cao hơn $q$ thì ta cho $p$ nhảy lên tổ tiên thứ $2^j$ của nó.
+* Đưa $p$ và $q$ về cùng một tầng: giả sử $L[p]>L[q]$, việc đưa $p$ và $q$ về cùng tầng cũng giống như việc chuyển $L[p]-L[q]$ sang hệ cơ số $2$ vậy. Duyệt $j$ từ $log_{L[p]}$ xuống $0$, nếu tổ tiên thứ $2^j$ của $p$ không cao hơn $q$ thì ta cho $p$ nhảy lên tổ tiên thứ $2^j$ của nó.
 
-* Sau khi $p$ và $q$ đã ở cùng tầng, ta sẽ tính $RMQ(p,q)$: cũng như trên, ta sẽ duyệt $j$ từ $log{L[p]}$ xuống $0$, nếu tổ tiên thứ $2^j$ của $p$ và $q$ khác nhau thì chắc chắn $RMQ(p,q)$ sẽ ở cao hơn, khi đó ta sẽ cho cả $p$ và $q$ nhảy lên tổ tiên thứ $2^j$ của nó. Cuối cùng thì $p$ và $q$ sẽ có cùng cha, vậy nên khi đó $RMQ(p,q)=T[p]=T[q]$.
+* Sau khi $p$ và $q$ đã ở cùng tầng, ta sẽ tính $RMQ(p,q)$: cũng như trên, ta sẽ duyệt $j$ từ $log_{L[p]}$ xuống $0$, nếu tổ tiên thứ $2^j$ của $p$ và $q$ khác nhau thì chắc chắn $RMQ(p,q)$ sẽ ở cao hơn, khi đó ta sẽ cho cả $p$ và $q$ nhảy lên tổ tiên thứ $2^j$ của nó. Cuối cùng thì $p$ và $q$ sẽ có cùng cha, vậy nên khi đó $RMQ(p,q)=T[p]=T[q]$.
 
 Code:
 
@@ -292,7 +290,7 @@ int query(int N, int P[MAXN][LOGMAXN], int T[MAXN],
   }
 ~~~
 
-Mỗi lần gọi hàm này chỉ tốn tối đa $2logH$ phép toán. Trong trường hợp tệ nhất thì $H=N$ nên độ phức tạp tổng quát của thuật toán này là $< O(NlogN),O(logN) >.
+Mỗi lần gọi hàm này chỉ tốn tối đa $2log_H$ phép toán. Trong trường hợp tệ nhất thì $H=N$ nên độ phức tạp tổng quát của thuật toán này là $< O(Nlog_N),O(log_N) >.
 
 ## Từ LCA đến RMQ
 
@@ -426,3 +424,67 @@ void computeTree(int A[MAXN], int N, int T[MAXN])  {
       T[st[0]] = -1;
   }
 ~~~
+
+## Thuật toán $< O(N),O(1) >$ cho bài toán RMQ thu hẹp
+
+Chúng ta sẽ giải bài toán $RMQ$ cho dãy $A[0,N-1]$ với $|A[i]-A[i-1]|=1$ với mọi $i\in[1,N-1]$.
+
+Hãy biến đổi $A$ thành một dãy nhị phân có $N-1$ phần tử, với $B[i]=A[i]-A[i-1]$. Như vậy $A[i]=A[0]+B[1]+..+B[i]$ và $B[i]$ chỉ nhận giá trị $1$ hoặc $-1$.
+
+Chúng ta chia $A$ thành các block kích thước $l=[logN/2]$. Gọi $M[i]$ là giá trị nhỏ nhất trong block thứ $i$ và $D[i]$ là vị trí của giá trị nhỏ nhất này trong $A$. Cả $M$ và $D$ đều có $N/l$ phần tử. Ta tính $M$ bằng Sparse Table như ở trên, tốn $O(N/l*l*log(l))=O(N)$ về bộ nhớ và thời gian. Bây giờ việc cần làm là tính $RMQ$ giữa 2 vị trí bất kì trong một block, chúng ta lưu những giá trị này vào bảng $P[0,N/l][0,l][0,l]$.
+
+Nhận thấy $B$ là một dãy nhị phân, mà mỗi block có $l$ phần tử. Vì số lượng dãy nhị phân độ dài $l$ là $2^l=\sqrt N$ là một số khá nhỏ nên chúng ta nghĩ đến việc tính trước tất cả các RMQ cho tất cả các dãy nhị phân độ dài $l$.
+
+Ví dụ: với độ dài 3 sẽ có 8 tổ hợp:
+
+~~~
+000(=0)
+001(=1)
+010(=2)
+011(=3)
+100(=4)
+101(=5)
+110(=6)
+111(=7)
+~~~
+
+Với $0$ ứng với $-1$, ta sẽ tính trước được cho các dãy
+
+~~~
+[-1,-1,-1]
+[-1,-1,1]
+[-1,1,-1]
+[-1,1,1]
+[1,-1,-1]
+[1,-1,1]
+[1,1,-1]
+[1,1,1]
+~~~
+
+ Như vậy việc tính $P$ có thể được thực hiện trong $O(\sqrt N*l^2)$. Sau đó chỉ cần dựa vào đó mà tính được RMQ của mỗi block trong $B$. Tuy nhiên ta cần tính trước giá trị thập phân của mỗi block trước và lưu vào một mảng $T[N/l]$. Cuối cùng để tính $RMQ_A(i,j)$ ta chỉ cần dựa vào $T$ và $P$.
+
+## Một số bài để luyện tập
+
+[LCA](http://www.spoj.com/problems/LCA/)
+
+[QTREE2](http://www.spoj.pl/problems/QTREE2/)
+
+[HBTLCA](http://vn.spoj.com/problems/HBTLCA/)
+
+[UPGRANET](http://vn.spoj.com/problems/UPGRANET/)
+
+[VOTREE](http://vn.spoj.com/problems/VOTREE/)
+
+[SRM 310 - Floating Median](http://www.topcoder.com/stat?c=problem_statement&pm=6551&rd=9990)
+
+[http://acm.pku.edu.cn/JudgeOnline/problem?id=1986](http://acm.pku.edu.cn/JudgeOnline/problem?id=1986)
+
+[http://acm.pku.edu.cn/JudgeOnline/problem?id=2374](http://acm.pku.edu.cn/JudgeOnline/problem?id=2374)
+
+[http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=2045](http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=2045)
+
+[http://acm.pku.edu.cn/JudgeOnline/problem?id=2763](http://acm.pku.edu.cn/JudgeOnline/problem?id=2763)
+
+[http://acm.uva.es/p/v109/10938.html](http://acm.uva.es/p/v109/10938.html)
+
+[http://acm.sgu.ru/problem.php?contest=0&problem=155](http://acm.sgu.ru/problem.php?contest=0&problem=155)
