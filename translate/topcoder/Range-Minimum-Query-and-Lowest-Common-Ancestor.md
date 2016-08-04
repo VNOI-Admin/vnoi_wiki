@@ -324,7 +324,7 @@ function LCA(N, P[MAXN][MAXLOGN], T[MAXN], h[MAXN], u, v):
   return T[u];
 ```
 
-Mỗi lần gọi hàm này chỉ tốn tối đa $2logH$ phép toán. Trong trường hợp tệ nhất thì $H=N$ nên độ phức tạp tổng quát của thuật toán này là $< O(NlogN),O(logN) >.
+Mỗi lần gọi hàm này chỉ tốn tối đa $2logH$ phép toán. Trong trường hợp tệ nhất thì $H=N$ nên độ phức tạp tổng quát của thuật toán này là $< O(NlogN),O(logN) >$.
 
 # Từ LCA đến RMQ
 
