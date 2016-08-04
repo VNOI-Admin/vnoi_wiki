@@ -350,7 +350,7 @@ Cũng dễ thấy là mỗi 2 phần tử liên tiếp trong $L$ đều hơn ké
 
 # Từ RMQ đến LCA
 
-Một cây Cartesian của một dãy $A[0,N-1]$ là một cây nhị phân $C(A)$ có gốc là phần tử nhỏ nhất trong $A$ và có vị trí $i$. Cây con trái của $C(A)$ là cây Cartesian của $A[0,i-1]$ nếu $i>0$, ngược lại thì không có. Cây con phải của $C(A)$ là cây Cartesian của $A[i+1,N-1]$.
+Một [*cây Cartesian*](http://wcipeg.com/wiki/Cartesian_tree) của một dãy $A[0,N-1]$ là một cây nhị phân $C(A)$ có gốc là phần tử nhỏ nhất trong $A$ và có vị trí $i$. Cây con trái của $C(A)$ là cây Cartesian của $A[0,i-1]$ nếu $i>0$, ngược lại thì không có. Cây con phải của $C(A)$ là cây Cartesian của $A[i+1,N-1]$.
 
 Dễ thấy rằng $RMQ_A(i,j)=LCA_C(i,j)$.
 
