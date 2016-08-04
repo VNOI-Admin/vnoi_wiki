@@ -129,5 +129,7 @@ Từ trực giác ta có thể thấy ngay đến phương án như: đã sẽ g
 **4) Các phần tử trên đường chéo phải dương ($score(x, x) > 0$)**
 
 Sự khác biệt giữa các phần tử trên đường chéo và các phần tử còn lại này càng lớn. Nhìn chung, ta có hai loại phần tử:
-bốn phần tử trên đường chéo (các phần tử đại diện cho AA, CC, GG, TT)
+bốn phần tử trên đường chéo (các phần tử đại diện cho AA, CC, GG, TT) và sáu phần tử không nằm trên đường chéo (các phần tử đại diện cho AC + CA, AG + GA, AT + TA, CG + GC, CT + TC, GT +TG). Mỗi nhóm trên sẽ có các trạng thái khác nhau, tùy thuộc vào cách mà ta đặt giá trị cho chúng.
+
+Đơn giản hóa vấn đề, **với mỗi trạng thái ta đặt nhóm thứ nhất, ta sẽ tìm ra đáp án tối ưu cho nhóm thứ hai**. Bởi vì tất cả các phần tử ở nhóm thứ hai đều có chung tính chất, ta sẽ sử dụng **phương pháp Tham lam** để tìm kết quả tối ưu cho nhóm thứ hai. Nhưng vì mỗi giá trị ở nhóm thứ nhất đều có thể chọn trong khoảng $[1, 10]$, nên giá trị tổng mà ta tìm kiếm ở nhóm hai cần phải được tính toán lại. Không khó để nhận ra 
 
