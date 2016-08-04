@@ -214,123 +214,114 @@ Ta có thể tính $P$ bằng DFS ($T[i]$ là cha của $i$, $nr=\sqrt H$ và $L
 void dfs(int node, int T[MAXN], int N, int P[MAXN], int L[MAXN], int nr)  {
       int k;
 
-  //if node is situated in the first
-  //section then P[node] = 1
-  //if node is situated at the beginning
-  //of some section then P[node] = T[node]
-  //if none of those two cases occurs, then
-  //P[node] = P[T[node]]
-      if (L[node] < nr)
-          P[node] = 1;
-      else
-          if(!(L[node] % nr))
-              P[node] = T[node];
-          else
-              P[node] = P[T[node]];
+  // Nếu nút ở phần đầu tiên, thì P[node] = 1
+  // Nếu nút ở đầu của 1 phần, thì P[node] = T[node]
+  // Trường hợp còn lại, P[node] = P[T[node]]
+  if (L[node] < nr)
+    P[node] = 1;
+  else
+    if(!(L[node] % nr))
+      P[node] = T[node];
+    else
+      P[node] = P[T[node]];
 
-     for each son k of node
-         dfs(k, T, N, P, L, nr);
-  }
+  // DFS xuống các con
+  for each son k of node
+    dfs(k, T, N, P, L, nr);
+}
 ```
 
 Truy vấn:
 
 ```cpp
- int LCA(int T[MAXN], int P[MAXN], int L[MAXN], int x, int y)
-  {
-  //as long as the node in the next section of
-  //x and y is not one common ancestor
-  //we get the node situated on the smaller
-  //lever closer
-      while (P[x] != P[y])
-          if (L[x] > L[y])
-             x = P[x];
-          else
-              y = P[y];
+int LCA(int T[MAXN], int P[MAXN], int L[MAXN], int x, int y)
+{
+  // Nếu còn nút ở phần tiếp theo không phải là tổ tiên của cả x và y,
+  // ta nhảy lên phần tiếp theo. Đoạn này cũng tương tự như thuật toán
+  // <O(1), O(N)> nhưng thay vì nhảy từng nút, ta nhảy từng đoạn.
+  while (P[x] != P[y])
+    if (L[x] > L[y])
+      x = P[x];
+    else
+      y = P[y];
 
-  //now they are in the same section, so we trivially compute the LCA
-      while (x != y)
-          if (L[x] > L[y])
-             x = T[x];
-          else
-             y = T[y];
-      return x;
-  }
+  // Giờ x và y ở cùng phần. Ta tìm LCA giống như thuật <O(1), O(N)>
+  while (x != y)
+    if (L[x] > L[y])
+      x = T[x];
+    else
+      y = T[y];
+    return x;
+}
 ```
 
 Hàm này sử dụng tối đa $2\sqrt H$ phép toán. Với cách tiếp cận này chúng ta có thuật toán $< O(N),O(\sqrt H) >$, trong trường hợp tệ nhất thì $N=H$ nên độ phức tạp tổng quát của thuật toán là $< O(N),O(\sqrt N) >$.
 
 ## Thuật toán $< O(NlogN),O(logN) >$
 
-Ứng dụng quy hoạch động chúng ta có một thuật toán nhanh hơn. Đầu tiên chúng ta tính một bảng $P[1,N][1,logN]$ với $P[i][j]$ là tổ tiên thứ $2^j$ của $i$:
+Ứng dụng Sparse Table chúng ta có một thuật toán nhanh hơn. Đầu tiên chúng ta tính một bảng $P[1,N][1,logN]$ với $P[i][j]$ là tổ tiên thứ $2^j$ của $i$:
 
 ![](https://community.topcoder.com/i/education/lca/LCA_005.gif)
 
 Code:
 
 ```cpp
- void process3(int N, int T[MAXN], int P[MAXN][LOGMAXN])
-  {
-      int i, j;
+void process3(int N, int T[MAXN], int P[MAXN][LOGMAXN])
+{
+  int i, j;
 
-  //we initialize every element in P with -1
-      for (i = 0; i < N; i++)
-          for (j = 0; 1 << j < N; j++)
-              P[i][j] = -1;
+  // Khởi tạo
+  for (i = 0; i < N; i++)
+    for (j = 0; 1 << j < N; j++)
+      P[i][j] = -1;
 
-  //the first ancestor of every node i is T[i]
-      for (i = 0; i < N; i++)
-          P[i][0] = T[i];
+  // Khởi tạo cha thứ 2^0 = 1 của mỗi nút
+  for (i = 0; i < N; i++)
+    P[i][0] = T[i];
 
-  //bottom up dynamic programing
-      for (j = 1; 1 << j < N; j++)
-         for (i = 0; i < N; i++)
-             if (P[i][j - 1] != -1)
-                 P[i][j] = P[P[i][j - 1]][j - 1];
-  }
+  // Quy hoạch động
+  for (j = 1; 1 << j < N; j++)
+    for (i = 0; i < N; i++)
+      if (P[i][j - 1] != -1)
+        P[i][j] = P[P[i][j - 1]][j - 1];
+}
 ```
 
-Phương pháp này tốn $O(logN)$ cả về bộ nhớ lẫn thời gian.
+Bước khởi tạo này tốn $O(NlogN)$ bộ nhớ lẫn thời gian.
 
-Gọi $L[i]$ là tầng của $i$. Để tính $LCA(p,q)$ thì đầu tiên chúng ta cần đảm bảo nó cùng nằm trên một tầng
+Cách tìm LCA giống hệt như thuật toán $<O(1), O(N)>$, nhưng để tăng tốc, thay vì nhảy lên cha ở mỗi bước, thì ta dùng mảng $P$ để nhảy, từ đó thu được độ phức tạp $O(logN)$ cho mỗi bước. Cụ thể:
 
-* Đưa $p$ và $q$ về cùng một tầng: giả sử $L[p]>L[q]$, việc đưa $p$ và $q$ về cùng tầng cũng giống như việc chuyển $L[p]-L[q]$ sang hệ cơ số $2$ vậy. Duyệt $j$ từ $log{L[p]}$ xuống $0$, nếu tổ tiên thứ $2^j$ của $p$ không cao hơn $q$ thì ta cho $p$ nhảy lên tổ tiên thứ $2^j$ của nó.
-
-* Sau khi $p$ và $q$ đã ở cùng tầng, ta sẽ tính $RMQ(p,q)$: cũng như trên, ta sẽ duyệt $j$ từ $log{L[p]}$ xuống $0$, nếu tổ tiên thứ $2^j$ của $p$ và $q$ khác nhau thì chắc chắn $RMQ(p,q)$ sẽ ở cao hơn, khi đó ta sẽ cho cả $p$ và $q$ nhảy lên tổ tiên thứ $2^j$ của nó. Cuối cùng thì $p$ và $q$ sẽ có cùng cha, vậy nên khi đó $RMQ(p,q)=T[p]=T[q]$.
+- Gọi $h(u)$ là độ cao của nút $u$. Để tính $LCA(u, v)$, giả sử $h(u) > h(v)$, đầu tiên ta tìm $u'$ là tổ tiên của $u$ và có $h(u') = h(v)$:
+  - Rõ ràng, ta cần nhảy từ $u$ lên cha thứ $h(u) - h(v)$. Ta chuyển $h(u) - h(v)$ sang hệ 2. Duyệt $j$ từ $log{h(u)}$ xuống $0$, nếu tổ tiên thứ $2^j$ của $u$ không cao hơn $v$ thì ta cho $p$ nhảy lên tổ tiên thứ $2^j$ của nó.
+- Sau khi $u$ và $v$ đã ở cùng tầng, ta sẽ tính $LCA(u, v)$: cũng như trên, ta sẽ duyệt $j$ từ $log{h(u)}$ xuống $0$, nếu tổ tiên thứ $2^j$ của $u$ và $v$ khác nhau thì chắc chắn $LCA(u, v)$ sẽ ở cao hơn, khi đó ta sẽ cho cả $u$ và $v$ nhảy lên tổ tiên thứ $2^j$ của nó. Cuối cùng thì $u$ và $v$ sẽ có cùng cha, vậy nên khi đó $LCA(u, v) = T[u] = T[v]$.
 
 Code:
 
-```cpp
+```
 
-int query(int N, int P[MAXN][LOGMAXN], int T[MAXN],
-  int L[MAXN], int p, int q)
-  {
-      int tmp, log, i;
+function LCA(N, P[MAXN][MAXLOGN], T[MAXN], h[MAXN], u, v):
+  if h(u) < h(v):
+    // Đổi u và v
+    swap(u, v)
 
-  //if p is situated on a higher level than q then we swap them
-      if (L[p] < L[q])
-          tmp = p, p = q, q = tmp;
+  log = log2( h(u) )
 
-  //we compute the value of [log(L[p)]
-      for (log = 1; 1 << log <= L[p]; log++);
-      log--;
+  // Tìm tổ tiên u' của u sao cho h(u') = h(v)
 
-  //we find the ancestor of node p situated on the same level
-  //with q using the values in P
-      for (i = log; i >= 0; i--)
-          if (L[p] - (1 << i) >= L[q])
-              p = P[p][i];
+  for i = log .. 0:
+    if h(u) - 2^i >= h(v):
+      u = P[u][i]
 
-      if (p == q)
-          return p;
+  if u == v:
+    return u
 
-  //we compute LCA(p, q) using the values in P
-      for (i = log; i >= 0; i--)
-          if (P[p][i] != -1 && P[p][i] != P[q][i])
-              p = P[p][i], q = P[q][i];
+  // Tính LCA(u, v):
+  for i = log .. 0:
+    if P[u][i] != -1 and P[u][i] != P[v][i]:
+      u = P[u][i]
+      v = P[v][i]
 
-      return T[p];
-  }
+  return T[u];
 ```
 
 Mỗi lần gọi hàm này chỉ tốn tối đa $2logH$ phép toán. Trong trường hợp tệ nhất thì $H=N$ nên độ phức tạp tổng quát của thuật toán này là $< O(NlogN),O(logN) >.
@@ -375,67 +366,67 @@ Bây giờ việc cần làm chỉ còn là tính $C(A)$ trong thời gian tuy�
 
 Ví dụ đối với cây ở trên:
 
-<div style="font-family: 'Lucida Grande', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Lucida Sans Unicode', Helvetica, Arial, sans-serif; font-size: 0.9em; overflow-x: hidden; overflow-y: auto; margin: 0px !important; padding: 5px 20px 26px !important; background-color: rgb(255, 255, 255);font-family: 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, SimSun, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Segoe UI', AppleSDGothicNeo-Medium, 'Malgun Gothic', Verdana, Tahoma, sans-serif; padding: 20px;padding: 20px; color: rgb(34, 34, 34); font-size: 15px; font-family: 'Roboto Condensed', Tauri, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, SimSun, 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Segoe UI', AppleSDGothicNeo-Medium, 'Malgun Gothic', Verdana, Tahoma, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; background: rgb(255, 255, 255);"><table style="padding: 0px; border-collapse: collapse; border-spacing: 0px; margin-bottom: 16px;background-color: rgb(250, 250, 250);">
+<table >
 <thead>
 <tr>
-<th style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">Bước</th>
-<th style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">Stack</th>
-<th style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;font-weight: bold;border: 1px solid rgb(230, 230, 230);">Sự hình thành cây</th>
+<th >Bước</th>
+<th >Stack</th>
+<th >Sự hình thành cây</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">0</td>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">0</td>
-<td style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">0 là nút duy nhất trong cây</td>
+<td >0</td>
+<td >0</td>
+<td >0 là nút duy nhất trong cây</td>
 </tr>
-<tr style="background-color: rgb(242, 242, 242);">
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">1</td>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">0 1</td>
-<td style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">1 được đẩy vào cuối stack. Giờ 1 là con phải của 0</td>
-</tr>
-<tr>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">2</td>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">0 2</td>
-<td style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">2 được đẩy vào cạnh 0, 1 bị xóa vì (<span style="margin-top: 0px;margin-bottom: 0px;"><span class="MathJax_Preview" style="color: rgb(136, 136, 136);"></span><span class="MathJax" id="MathJax-Element-279-Frame" role="textbox" aria-readonly="true" style="display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px;"><nobr style="border: 0px; padding: 0px; margin: 0px; max-width: 5000em; max-height: 5000em; min-width: 0px; min-height: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;white-space: nowrap !important;-webkit-transition: none; transition: none;"><span class="math" id="MathJax-Span-2369" style="width: 6.083em; display: inline-block;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"><span style="display: inline-block; position: relative; width: 4.973em; height: 0px; font-size: 122%;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"><span style="position: absolute; clip: rect(1.764em 1000em 3.092em -0.457em); top: -2.678em; left: 0em;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"><span class="mrow" id="MathJax-Span-2370" style="display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"><span class="mi" id="MathJax-Span-2371" style="font-family: MathJax_Math; font-style: italic;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">A</span><span class="mo" id="MathJax-Span-2372" style="font-family: MathJax_Main;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">[</span><span class="mn" id="MathJax-Span-2373" style="font-family: MathJax_Main;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">2</span><span class="mo" id="MathJax-Span-2374" style="font-family: MathJax_Main;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">]</span><span class="mo" id="MathJax-Span-2375" style="font-family: MathJax_Main; padding-left: 0.278em;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">&lt;</span><span class="mi" id="MathJax-Span-2376" style="font-family: MathJax_Math; font-style: italic; padding-left: 0.278em;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">A</span><span class="mo" id="MathJax-Span-2377" style="font-family: MathJax_Main;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">[</span><span class="mn" id="MathJax-Span-2378" style="font-family: MathJax_Main;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">1</span><span class="mo" id="MathJax-Span-2379" style="font-family: MathJax_Main;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">]</span></span><span style="display: inline-block; width: 0px; height: 2.678em;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.353em; vertical-align: -0.372em;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-279">A[2] < A[1]</script></span>). Lúc này 2 là con phải của 0 và con trái của 2 là 1</td>
-</tr>
-<tr style="background-color: rgb(242, 242, 242);">
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">3</td>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">3</td>
-<td style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);"><span style="margin-top: 0px;margin-bottom: 0px;"><span class="MathJax_Preview" style="color: rgb(136, 136, 136);"></span><span class="MathJax" id="MathJax-Element-280-Frame" role="textbox" aria-readonly="true" style="display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px;"><nobr style="border: 0px; padding: 0px; margin: 0px; max-width: 5000em; max-height: 5000em; min-width: 0px; min-height: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;white-space: nowrap !important;-webkit-transition: none; transition: none;"><span class="math" id="MathJax-Span-2380" style="width: 2.283em; display: inline-block;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"><span style="display: inline-block; position: relative; width: 1.858em; height: 0px; font-size: 122%;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"><span style="position: absolute; clip: rect(1.764em 1000em 3.092em -0.457em); top: -2.678em; left: 0em;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"><span class="mrow" id="MathJax-Span-2381" style="display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"><span class="mi" id="MathJax-Span-2382" style="font-family: MathJax_Math; font-style: italic;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">A</span><span class="mo" id="MathJax-Span-2383" style="font-family: MathJax_Main;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">[</span><span class="mn" id="MathJax-Span-2384" style="font-family: MathJax_Main;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">3</span><span class="mo" id="MathJax-Span-2385" style="font-family: MathJax_Main;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;">]</span></span><span style="display: inline-block; width: 0px; height: 2.678em;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"></span></span></span><span style="border-left-width: 0em; border-left-style: solid; display: inline-block; overflow: hidden; width: 0px; height: 1.353em; vertical-align: -0.372em;display: inline; position: static; border: 0px; padding: 0px; margin: 0px; vertical-align: 0px; line-height: normal; text-decoration: none;-webkit-transition: none; transition: none;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-280">A[3]</script></span> hiện đang là phần tử nhỏ nhất cho nên mọi phần tử của stack bị pop ra và 3 trở thành gốc cây. Con trái của 3 là 0</td>
+<tr >
+<td >1</td>
+<td >0 1</td>
+<td >1 được đẩy vào cuối stack. Giờ 1 là con phải của 0</td>
 </tr>
 <tr>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">4</td>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">3 4</td>
-<td style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">4 được thêm vào cạnh 3 và con phải của 3 là 4</td>
+<td >2</td>
+<td >0 2</td>
+<td >A[2] < A[1]</script></span>). Lúc này 2 là con phải của 0 và con trái của 2 là 1</td>
 </tr>
-<tr style="background-color: rgb(242, 242, 242);">
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">5</td>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">3 4 5</td>
-<td style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">5 được thêm vào cạnh 4, con phải của 4 là 5</td>
-</tr>
-<tr>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">6</td>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">3 4 5 6</td>
-<td style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">6 được thêm vào cạnh 5, con phải của 5 là 6</td>
-</tr>
-<tr style="background-color: rgb(242, 242, 242);">
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">7</td>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">3 4 5 6 7</td>
-<td style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">7 được thêm vào cạnh 6, con phải của 6 là 7</td>
+<tr >
+<td >3</td>
+<td >3</td>
+<td >A[3]</script></span> hiện đang là phần tử nhỏ nhất cho nên mọi phần tử của stack bị pop ra và 3 trở thành gốc cây. Con trái của 3 là 0</td>
 </tr>
 <tr>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">8</td>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">3 8</td>
-<td style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">8 được thêm vào cạnh 3, các phần tử lớn hơn bị loại bỏ. 8 giờ là con phải của 3 và con trái của 8 là 4</td>
+<td >4</td>
+<td >3 4</td>
+<td >4 được thêm vào cạnh 3 và con phải của 3 là 4</td>
 </tr>
-<tr style="background-color: rgb(242, 242, 242);">
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">9</td>
-<td style="text-align:center; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">3 8 9</td>
-<td style="text-align:left; border: 1px solid rgb(204, 204, 204); margin: 0px; padding: 6px 13px;border: 1px solid rgb(230, 230, 230);">9 được thêm vào cạnh 8, con phải của 8 là 9</td>
+<tr >
+<td >5</td>
+<td >3 4 5</td>
+<td >5 được thêm vào cạnh 4, con phải của 4 là 5</td>
+</tr>
+<tr>
+<td >6</td>
+<td >3 4 5 6</td>
+<td >6 được thêm vào cạnh 5, con phải của 5 là 6</td>
+</tr>
+<tr >
+<td >7</td>
+<td >3 4 5 6 7</td>
+<td >7 được thêm vào cạnh 6, con phải của 6 là 7</td>
+</tr>
+<tr>
+<td >8</td>
+<td >3 8</td>
+<td >8 được thêm vào cạnh 3, các phần tử lớn hơn bị loại bỏ. 8 giờ là con phải của 3 và con trái của 8 là 4</td>
+</tr>
+<tr >
+<td >9</td>
+<td >3 8 9</td>
+<td >9 được thêm vào cạnh 8, con phải của 8 là 9</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 
 Vì mỗi phần tử của $A$ đều chỉ push và pop 1 lần nên độ phức tạp thuật toán là $O(N)$.
 
