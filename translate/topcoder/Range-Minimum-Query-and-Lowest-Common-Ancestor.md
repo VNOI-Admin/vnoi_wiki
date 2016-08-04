@@ -317,3 +317,32 @@ Gỉa sử $H[u]<H[v]$. Dễ thấy việc cần làm lúc này là tìm nút c�
 Cũng dễ thấy là mỗi 2 phần tử liên tiếp trong $L$ đều hơn kém nhau đúng 1 đơn vị.
 
 ## Từ RMQ đến LCA
+
+Một cây Cartesian của một dãy $A[0,N-1]$ là một cây nhị phân $C(A)$ có gốc là phần tử nhỏ nhất trong $A$ và có vị trí $i$. Cây con trái của $C(A)$ là cây Cartesian của $A[0,i-1]$ nếu $i>0$, ngược lại thì không có. Cây con phải của $C(A)$ là cây Cartesian của $A[i+1,N-1]$.
+
+Dễ thấy rằng $RMQ_A(i,j)=LCA_C(i,j)$.
+
+ ![](http://community.topcoder.com/i/education/lca/LCA_009.gif)
+
+ ![](http://community.topcoder.com/i/education/lca/LCA_010.gif)
+
+Bây giờ việc cần làm chỉ còn là tính $C(A)$ trong thời gian tuyến tính. Chúng ta sẽ sử dụng một cái stack.
+
+* Ban đầu stack rỗng. Ta lần lượt đẩy các phần tử của $A$ vào stack.
+
+* Tại bước thứ $i$, $A[i]$ sẽ được đẩy vào ngay cạnh phần tử cuối cùng không lớn hơn $A[i]$ trong stack, các phần tử lớn hơn $A[i]$ bị loại khỏi stack. Phần tử trong stack ở vị trí của $A[i]$ trước khi chèn $A[i]$ vào sẽ là con trái của $i$, còn $i$ sẽ là con phải của phần tử trước nó trong stack. Ở mỗi bước thì phần tử đầu tiên trong stack sẽ là gốc của cây Cartesian.
+
+Ví dụ đối với cây ở trên:
+
+|Step|	Stack	|Modifications made in the tree|
+|---|---|---|
+|0|	0|	0 is the only node in the tree.|
+|1|	0 1|	1 is added at the end of the stack. Now, 1 is the right son of 0.
+|2|	0 2|	2 is added next to 0, and 1 is removed (A[2] < A[1]). Now, 2 is the right son of 0 and the left son of 2 is 1.
+|3|	3	|A[3] is the smallest element in the vector so far, so all elements in the stack will be removed and 3 will become the root of the tree. The left child of 3 is 0.
+|4|	3 4	|4 is added next to 3, and the right son of 3 is 4.
+|5|	3 4 5|	5 is added next to 4, and the right son of 4 is 5.
+|6|	3 4 5 6|	6 is added next to 5, and the right son of 5 is 6.
+|7|	3 4 5 6 7|	7 is added next to 6, and the right son of 6 is 7.
+|8|	3 8|	8 is added next to 3, and all greater elements are removed. 8 is now the right child of 3 and the left child of 8 is 4.
+|9|	3 8 9|	9 is added next to 8, and the right son of 8 is 9.
