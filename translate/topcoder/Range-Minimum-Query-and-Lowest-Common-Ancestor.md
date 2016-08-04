@@ -292,3 +292,28 @@ int query(int N, int P[MAXN][LOGMAXN], int T[MAXN],
   }
 ~~~
 
+Mỗi lần gọi hàm này chỉ tốn tối đa $2log_H$ phép toán. Trong trường hợp tệ nhất thì $H=N$ nên độ phức tạp tổng quát của thuật toán này là $< O(Nlog_N),O(log_N) >.
+
+## Từ LCA đến RMQ
+
+Ta có thể giảm bài toán LCA lại thành bài toán RMQ trong thời gian tuyến tính, do đó mà mọi thuật toán để giải bài toán RMQ đều có thể sử dụng để giải bài toán LCA. Hãy cùng xét ví dụ sau:
+
+![](http://community.topcoder.com/i/education/lca/LCA_006.gif)
+
+![](http://community.topcoder.com/i/education/lca/LCA_007.gif)
+
+Để ý rằng $LCA_T(u,v)$ là nút gần gốc nhất xuất hiện giữa lúc thăm $u$ và $v$ trong phép duyệt DFS. Vì thế ta có thể xét tất cả các phần tử giữa các cặp chỉ số bất kì của $u$ và $v$ trong dãy Euler Tour và tìm nút cao nhất. Ta xây dựng 3 mảng:
+
+* $E[1,2*N-1]$: dãy thứ tự thăm của các nút trên đường đi Euler, $E[i]$ là nút được thăm thứ $i$ trên đường đi.
+
+* $L[1,2*N-1]$: tầng của các nút, $L[i]$ là tầng của nút $E[i]$
+
+* $H[1,N]$: $H[i]$ là vị trí xuất hiện đầu tiên của nút $i$ trên Euler Tour
+
+Gỉa sử $H[u]<H[v]$. Dễ thấy việc cần làm lúc này là tìm nút có $L$ nhỏ nhất trên $E[H[u]..H[v]]$. Do đó $LCA_T(u,v)=E[RMQ_L(H[u],H[v]))]. Ví dụ:
+
+ ![](http://community.topcoder.com/i/education/lca/LCA_008.gif)
+
+Cũng dễ thấy là mỗi 2 phần tử liên tiếp trong $L$ đều hơn kém nhau đúng 1 đơn vị.
+
+## Từ RMQ đến LCA
