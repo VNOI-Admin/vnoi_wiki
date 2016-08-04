@@ -342,7 +342,7 @@ Ta có thể giảm bài toán LCA lại thành bài toán RMQ trong thời gian
 
 * $H[1,N]$: $H[i]$ là vị trí xuất hiện đầu tiên của nút $i$ trên Euler Tour
 
-Gỉa sử $H[u]<H[v]$. Dễ thấy việc cần làm lúc này là tìm nút có $L$ nhỏ nhất trên $E[H[u]..H[v]]$. Do đó $LCA_T(u,v)=E[RMQ_L(H[u],H[v]))]. Ví dụ:
+Gỉa sử $H[u]<H[v]$. Dễ thấy việc cần làm lúc này là tìm nút có $L$ nhỏ nhất trên $E[H[u]..H[v]]$. Do đó $LCA_T(u,v)=E[RMQ_L(H[u],H[v]))]$. Ví dụ:
 
  ![](http://community.topcoder.com/i/education/lca/LCA_008.gif)
 
@@ -434,27 +434,24 @@ Vì mỗi phần tử của $A$ đều chỉ push và pop 1 lần nên độ ph�
 void computeTree(int A[MAXN], int N, int T[MAXN])  {
       int st[MAXN], i, k, top = -1;
 
-  //we start with an empty stack
-  //at step i we insert A[i] in the stack
+  //Bắt đầu với stack rỗng
+  //Ở bước thứ i ta đẩy i và stack
       for (i = 0; i < N; i++)
       {
-  //compute the position of the first element that is
-  //equal or smaller than A[i]
+  //Tìm vị trí của phần tử đầu tiên nhỏ hơn hoặc bằng A[i] trong stack
           k = top;
           while (k >= 0 && A[st[k]] > A[i])
               k--;
-  //we modify the tree as explained above
+  //Chỉnh sửa cây theo mô tả ở trên
          if (k != -1)
               T[i] = st[k];
          if (k < top)
               T[st[k + 1]] = i;
-  //we insert A[i] in the stack and remove
-  //any bigger elements
+  //Đẩy i vào stack rồi xóa các phần tử lớn hơn A[i]
           st[++k] = i;
           top = k;
       }
-  //the first element in the stack is the root of
-  //the tree, so it has no father
+  //Phần tử đầu tiên trongs stack là gốc cây nên nó không có cha
       T[st[0]] = -1;
   }
 ```
