@@ -395,3 +395,34 @@ Ví dụ đối với cây ở trên:
 </tr>
 </tbody>
 </table></div>
+
+Vì mỗi phần tử của $A$ đều chỉ push và pop 1 lần nên độ phức tạp thuật toán là $O(N)$.
+
+~~~cpp
+void computeTree(int A[MAXN], int N, int T[MAXN])  {
+      int st[MAXN], i, k, top = -1;
+   
+  //we start with an empty stack
+  //at step i we insert A[i] in the stack
+      for (i = 0; i < N; i++)
+      {
+  //compute the position of the first element that is 
+  //equal or smaller than A[i]
+          k = top;
+          while (k >= 0 && A[st[k]] > A[i])
+              k--;
+  //we modify the tree as explained above
+         if (k != -1)
+              T[i] = st[k];
+         if (k < top)
+              T[st[k + 1]] = i;
+  //we insert A[i] in the stack and remove 
+  //any bigger elements
+          st[++k] = i;
+          top = k;
+      }
+  //the first element in the stack is the root of 
+  //the tree, so it has no father
+      T[st[0]] = -1;
+  }
+~~~
