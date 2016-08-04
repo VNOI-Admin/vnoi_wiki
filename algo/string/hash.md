@@ -121,7 +121,7 @@ int main() {
     // Input
     string T, P;
     cin >> T >> P;
- 
+
     // Initialize
     int m=T.size(), n=P.size();
     T = " " + T;
@@ -215,7 +215,16 @@ Theo [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem), ta dễ
 
 $(1 - 1 / 10^9) \* (1 - 2 / 10^9) \* (1 - 3 / 10^9) \* ... (1 - N / 10^9)$.
 
-Với $N = 30,000$, tích trên là $0.6376$, nghĩa là bạn có gần $40%$ xác suất trả lời sai. Do vậy, bạn bắt buộc phải dùng nhiều $base$ khác nhau.
+Với $N = 30,000$, tích trên là $0.6376$, nghĩa là bạn có gần $0.40$ xác suất trả lời sai. Do vậy, bạn bắt buộc phải dùng nhiều $base$ khác nhau.
+
+
+# Hash tràn số
+
+Trên thực tế, khi cài đặt Hash sử dụng nhiều phép $mod$ sẽ làm chương trình chạy chậm. Vì vậy, để tăng tốc độ, người ta thường cài đặt với $base = 2^64$. Do đó, nếu sử dụng kiểu dữ liệu số 64-bit, ta không cần dùng phép $mod$ mà cứ để các phép tính tràn số. Kĩ thuật này được gọi là Hash tràn số. Tuy nhiên khi cài đặt như vậy có một vài chú ý:
+
+- Việc sử dụng $base$ không phải là số nguyên tố (và hơn nữa lại là 1 số cố định) khiến cho hàm Hash không đủ tốt. Nếu test được sinh ngẫu nhiên, thì nó không có vấn đề gì cả. Nhưng ở trên Codeforces, vì những người thi cùng có thể "hack" code của bạn bằng test tự sinh, nên bạn hầu như không thể AC các bài Hash với Hash tràn số. Bạn có thể đọc thêm về cách sinh test giết Hash tràn số [ở đây](http://codeforces.com/blog/entry/4898). Cách giải quyết là dùng hash tràn số kết hợp với một $base$ khác.
+- Nếu dùng Pascal, cần tắt báo tràn số, nếu không chương trình sẽ chạy bị lỗi (`$Q-`)
+
 
 
 # Tổng kết
