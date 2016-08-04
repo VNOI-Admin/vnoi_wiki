@@ -28,6 +28,7 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
     - [[Heavy Light Decomposition - Thuật toán phân tách cây|algo/data-structures/heavy-light-decomposition]]
     - [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
     - [[Mo's algorithm|algo/data-structures/mo-algorithm]]
+    - [[IT đoạn thẳng|algo/data-structures/interval-tree-tap-doan-thang]]
 
 - Xử lý xâu:
     - [[Thuật toán KMP|translate/wcipeg/kmp]]
