@@ -4,7 +4,7 @@ John Smith đang gặp rắc rối! Anh ấy là một thành viên của **Topc
 Thay vì tiếp tục vướng vào mớ rắc rối, John đã có một quyết định tiến bộ hơn. Quá đủ cho việc lập trình! John nói. Anh ấy quyết định sẽ có một kỳ nghỉ như là phần thưởng cho những nỗ lực của mình.
 
 Là một con người tràn trề sinh lực, John muốn dành thời gian nhiều cho cuộc đời của mình. Có quá nhiều thứ mà anh ta muốn làm, nhưng không may là anh ta không thể nào làm hết tất cả chúng được. Thế nên trong lúc ăn sáng, John đã vạch ra một *"Fun plan"* được thể hiện bằng một thời gian biểu cho từng hoạt động như sau:
-<table>
+<table align="center">
 <tr><th>Id</th> <th>Hoạt động</th> <th>Thời gian</th></tr>
 <tr><td>1</td> <td>Sửa phòng</td> <td>Thứ 2, 22:00 đến thứ 3, 1:00</td></tr>
 <tr><td>2</td> <td>Du lịch Hawaii</td> <td>Thứ 3, 6:00 đến thứ 7, 22:00</td></tr>
@@ -80,24 +80,54 @@ Return A
 ```
 
 Sau khi áp dụng thuật toán trên, *"Fun plan"* của Johnny sẽ như thế này:
+
 * Xóa hết mọi lỗi và đi tắm.
+
 * Thứ 3 để đánh cờ và chiến thắng.
+
 * Cả ngày để chơi Starcraft, có vẻ vui đây.
+
 * Hai ngày tiếp theo để nghỉ ngơi.
+
 * Và vào ngày cuối cùng, lấy một ít điểm rating từ **Topcoder**, tắm rửa, tận hưởng bữa ăn *"sâu bọ"* và những ly rượu hảo hạng.
 
 Vấn đề của John Smith đã được giải quyết, tuy nhiên đây chỉ là một ví dụ mà Tham lam có thể hoạt động. Một vài vấn đề thật sự khác đến từ **Topcoder** sẽ giúp bạn hiểu rõ hơn về khái niệm này. Trước khi tiếp tục, có lẽ bạn cần phải luyện tập thêm chút ít nữa với những gì mà bạn vừa đọc, bằng bài tập tương tự với *Lựa chọn hành động*, tên là [Boxing ](http://www.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880)
 
 **BioScore**
 
-Trong bài toán này, bạn sẽ được yêu cầu làm tối đa hóa số điểm trung bình của các cặp tương đồng. Từ đáp án tối ưu cần tìm, ta có thể xem nó như một gợi ý nhằm tìm ra phương án thích hợp. Thường, đối với dạng bài toán này, ta sẽ sử dụng phương pháp *quy hoạch động* nhưng trong một vài trường hợp thì chiến lược **Tham lam** vẫn có thể được sử dụng.
+Đối với bài tập này, bạn sẽ được yêu cầu làm tối đa hóa số điểm trung bình của các cặp tương đồng. Từ đáp án tối ưu cần tìm, ta có thể xem nó như một gợi ý nhằm giúp ta tìm ra phương án thích hợp. Thường thì, đối với dạng bài toán này, ta sẽ sử dụng phương pháp *quy hoạch động* để giải quyết, nhưng trong một vài trường hợp thì chiến lược **Tham lam** vẫn hoàn toàn có thể được sử dụng.
 
-Việc đầu tiên mà ta cần làm là xây dựng một ma trận cho biết số lần lặp (**ma trận tần số**). Đây là một công việc khá nhẹ nhàng khi mà ta chỉ cần so sánh từng cặp ký tự ở hai chuỗi và đếm số lần xuất hiện của mỗi loại *axit nucleic* (AA, AC, AG, AT, CA, CC, CG, CT, GA, GC, GG, GT, TA, TC, TG, TT). Từng loại *axit nucleic* sẽ được xem như một phần tử trong ma trận và giá trị của nó chính là số lần xuất hiện của nó. Ví dụ, hãy xét bộ { "ACTAGAGAC", "AAAAAAAAA", "TAGTCATAC", "GCAGCATTC" } được sử dụng ở ví dụ thứ 2.
+Việc đầu tiên mà ta cần làm là *xây dựng một ma trận cho biết số lần lặp* (**ma trận tần số**). Đây là một công việc khá nhẹ nhàng khi mà ta chỉ cần ghép từng cặp ký tự ở hai chuỗi tạo thành một *axit nucleic* rồi đếm số lần xuất hiện của chúng (AA, AC, AG, AT, CA, CC, CG, CT, GA, GC, GG, GT, TA, TC, TG, TT). Từng loại *axit nucleic* sẽ được xem như một phần tử trong ma trận và giá trị của nó chính là số lần xuất hiện của nó. Ví dụ, hãy xét bộ {"ACTAGAGAC", "AAAAAAAAA", "TAGTCATAC", "GCAGCATTC"} được sử dụng ở ví dụ thứ 2.
 
 ![Ví dụ](http://community.topcoder.com/i/education/greedyAlg3.gif)
 
-Ở góc phải dưới của minh họa trên, ta có thể thấy kết quả của ma trận tần số. Giờ đặt nó là F. Giờ việc mà ta cần làm là tìm ra một ma trận S khác sao cho tổng của 16 loại F[i, j]*S[i, j] (1 <= i, j <= 4) là lớn nhất.
+Ở góc phải - dưới của hình minh họa trên, ta có thể thấy kết quả của ma trận tần số đối với bộ đã cho. Tạm gọi nó là F. Giờ việc mà ta cần làm là tìm ra một ma trận S khác sao cho tổng của các tích số của 16 loại *axit nucleic* **$F[i, j]*S[i, j]$** $(1 <= i, j <= 4)$ là lớn nhất.
 
-Giờ ta xét giới hạn của từng ma trận:
+Giờ ta xét từng điều kiện cho ma trận cần tìm:
 
-1) 
+**1) Tổng của 16 phần tử bằng 0:**
+
+Đây là một điều kiện khá phổ biến. Bởi tất cả các phần tử của **F** đều dương (em nghĩ là không âm chứ?), nên các điểm cuối cùng có xu hướng tăng khi ta tăng phần tử của **S**. Nhưng bởi vì tống của chúng phải bằng 0, thế nên khi ta tăng giá trị 1 phần tử lên thì ta sẽ phải giảm đi giá trị của 1 phần tử khác. Thử thách ở điều kiện này chính là phải tìm ra một sự phân bố tối ưu.
+
+**2) Giá trị mỗi phần tử chỉ nằm trong khoảng từ -10 đến 10 ($S[i, j] \in [-10, 10]$)**
+
+Lại một điều kiện phổ biến khác! Với điều kiện này, khoảng tìm kiếm của chúng ta đã được thu hẹp đi rất nhiều, song vẫn còn khá nhiều lựa chọn cho ta.
+
+**3) Mỗi phần tử đối xứng phải có giá trị bằng nhau ($score(x, y) = score(y, x)$)**
+
+Bởi vì tính đối xứng, ta phải quy định cho các điểm cho các cặp như "AC" và "CA" bằng nhau. Như là một hệ quả, ta đã vô tình đếm số lần xuất hiện của chúng. Đối với ví dụ trên, ta đã có tần số của tập hợp các cặp như sau:
+
+<table align="center">
+<tr><td>AA: 14</td> <td>CC: 4</td> <td>GG: 0</td> <td>TT: 1   </td></tr>
+<tr><td>AC+CA: 11</td> <td>AG+GA: 10</td> <td>AT+TA: 10</td> <td></td> </tr>
+<tr><td>CG+GC: 2</td> <td>TC+CT: 0</td> <td></td> <td></td></tr>
+<tr><td>GT+TG: 3</td> <td></td> <td></td> <td></td></tr>
+</table>
+
+Từ trực giác ta có thể thấy ngay đến phương án như: đã sẽ gán điểm số càng cao đối với cặp xuất hiện càng nhiều lần. Tuy nhiên, ta lại bị ràng buộc rằng tổng các phần tử phải bằng 0, một vấn đề khác lại nảy sinh. Những cặp như AA, CC, GG, TT chỉ xuất hiện một lần trong ma trận nên số điểm của chúng sẽ ít hơn so với tổng điểm.
+
+**4) Các phần tử trên đường chéo phải dương ($score(x, x) > 0$)**
+
+Sự khác biệt giữa các phần tử trên đường chéo và các phần tử còn lại này càng lớn. Nhìn chung, ta có hai loại phần tử:
+bốn phần tử trên đường chéo (các phần tử đại diện cho AA, CC, GG, TT)
+
