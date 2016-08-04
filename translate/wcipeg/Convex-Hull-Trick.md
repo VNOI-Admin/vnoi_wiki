@@ -1,6 +1,7 @@
 # **Kĩ thuật bao lồi (Convex Hull Trick)**
 
 **Nguồn**: [P3G](http://wcipeg.com/wiki/Convex_hull_trick)
+
 **Người dịch**: Phan Minh Hoàng
 
 
