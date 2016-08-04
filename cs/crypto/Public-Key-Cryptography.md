@@ -8,7 +8,7 @@ Bài viết này nhằm giúp bạn đọc nắm được ý tưởng cơ bản 
 
 # 1. Một số khái niệm
 
-**Mã hóa** (Encryption): Quá trình chuyển đổi thông tin từ dạng thông thường (có thể đọc được) sang thành dạng không đọc được (nếu không có khóa bí mật), nhằm mục đích giữ bí mật thông tin.
+**Mã hóa** (Encryption): Quá trình chuyển đổi thông tin từ dạng thông thường (có thể đọc được) sang dạng không đọc được (nếu không có khóa bí mật), nhằm bảo mật thông tin.
 
 **Giải mã** (Decryption): Là quá trình ngược của mã hóa - chuyển đổi từ thông tin đã mã hóa về thông tin ban đầu.
 
