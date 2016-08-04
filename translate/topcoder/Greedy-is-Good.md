@@ -131,5 +131,40 @@ Từ trực giác ta có thể thấy ngay đến phương án như: đã sẽ g
 Sự khác biệt giữa các phần tử trên đường chéo và các phần tử còn lại này càng lớn. Nhìn chung, ta có hai loại phần tử:
 bốn phần tử trên đường chéo (các phần tử đại diện cho AA, CC, GG, TT) và sáu phần tử không nằm trên đường chéo (các phần tử đại diện cho AC + CA, AG + GA, AT + TA, CG + GC, CT + TC, GT +TG). Mỗi nhóm trên sẽ có các trạng thái khác nhau, tùy thuộc vào cách mà ta đặt giá trị cho chúng.
 
-Đơn giản hóa vấn đề, **với mỗi trạng thái ta đặt nhóm thứ nhất, ta sẽ tìm ra đáp án tối ưu cho nhóm thứ hai**. Bởi vì tất cả các phần tử ở nhóm thứ hai đều có chung tính chất, ta sẽ sử dụng **phương pháp Tham lam** để tìm kết quả tối ưu cho nhóm thứ hai. Nhưng vì mỗi giá trị ở nhóm thứ nhất đều có thể chọn trong khoảng $[1, 10]$, nên giá trị tổng mà ta tìm kiếm ở nhóm hai cần phải được tính toán lại. Không khó để nhận ra 
+Đơn giản hóa vấn đề, **với mỗi trạng thái ta đặt nhóm thứ nhất, ta sẽ tìm ra đáp án tối ưu cho nhóm thứ hai**. Bởi vì tất cả các phần tử ở nhóm thứ hai đều có chung tính chất, ta sẽ sử dụng **phương pháp Tham lam** để tìm kết quả tối ưu cho nhóm thứ hai. Nhưng vì mỗi giá trị ở nhóm thứ nhất đều có thể chọn trong khoảng $[1, 10]$, nên giá trị tổng mà ta tìm kiếm ở nhóm hai cần phải được tính toán lại. Không khó để nhận ra tổng của nhóm thứ nhất có thể là bất kỳ số nào trong khoảng $[4, 40]$. Như một hệ quả, dựa vào việc ta chọn tổng ở nhóm một, ta có thể suy ra được tổng của nhóm hai sẽ trong khoảng $[-20, -2]$ (*chúng ta không được quên rằng nhóm hai đối xứng, xuất hiện hai lần trong ma trận nên giá trị phải nhân đôi lên*).
 
+Và giờ, ta đã đến được **cốt lõi của vấn đề**. Lời giải cho cả vấn đề này chính là việc tìm được giá trị điểm tối ưu cho nhóm thứ hai. Nếu vấn đề quả thật là **lựa chọn tham lam** và **tối ưu hóa cục bộ**, ta hoàn toàn có thể lấy một phần tử ra, gắn cho nó giá trị tối ưu và thực hiện tương tự với các phần tử còn lại.
+
+**Ta có được khẳng định như sau: Nếu ta luôn luôn gán giá trị lớn nhất có thể cho phần tử xuất hiện nhiều lần nhất trong một nhóm, và cuối cùng ta sẽ thu được kết quả lớn nhất có thể cho toàn nhóm đó.** 
+
+Việc đầu tiên mà ta cần làm là sắp xếp lại sáu phần tử này trong ma trận F. Giờ, ta sẽ thực sự tính toán các giá trị tương ứng trong S. Tổng điểm tối thiểu mà ta đạt được là -20, một ý nghĩ chợt lóe lên trong ta, hai giá trị đầu tiên sẽ được gắn bằng 10 (kể cả 4 giá trị còn lại ta có gán -10 đi chăng nữa thì ta vẫn thu về được giá trị -20). Ta biến rằng số điểm cuối cùng sẽ nhỏ hơn 0. Bởi vì ta muốn tối đa hóa số điểm của phần tử đầu tiên nên ba phần tử còn lại sẽ là -10 (trong trường hợp tốt nhất, điểm tổng sẽ là -2 và lúc đó, ta sẽ điền số điểm như sau: [10, 10, 8, -10, -10, -10]). Cuối cùng, giá trị của phần tử thứ ba sẽ được xác định dựa vào lựa chon của ta cho nhóm thứ nhất. Đối với giá trị lớn nhất là 10, ta sẽ trừ đi phần nửa của tổng số điểm của nhóm thức nhất (ta lưu ý rằng tổng nói trên buộc phải là số chẵn).
+
+Giờ thì ta cần phải chứng minh rằng phương pháp của mình là đúng. Cách chứng mình này cũng không quá phức tạp. Nhằm mục đích để tổng của **S** là một hằng số, ta chỉ có thể giảm các cặp có số lần xuất hiện nhiều hơn tăng những cặp có số lần xuất hiện ít hơn. Gọi **f1** và **f2** lần lượt là số lần xuất hiện của của hai cặp và $f1 >= f2$. Ta có $f1 * s1 + f2 * s2 = X$, với X là tổng tối đa mà ta đạt được. Bằng **giả định Tham lam** của ta, $s1 >= s2$. Vì tổng $s1+s2$ là một hằng số, tổng trên sẽ biến đổi thành $f1*(s1-a)+f2*(s2-a) = Y$ với a là số dương ($a > 0$). Ta tìm ra được rằng $Y-X = a * (f2-f1)$. Bởi vì $f1 >= f2$ nên khoảng cách này luôn dương. Vì Y có thể lựa chọn tùy ý, ta có thể kết thúc *lựa chọn Tham lam* ban đầu bằng việc luôn cho Y số điểm lớn nhất.
+
+Ta áp dụng thuật toán trên cho mỗi trạng thái của các phần tử trong nhóm đầu tiên và lưu lại kết quả tốt nhất. 
+
+Phương pháp biểu diễn: Thay vì phải dùng tới hai ma trận **F** và **S**, **ta có thể dùng một mảng đề lưu đồng thời cả cả số lần lặp lẫn số điểm tương ứng**. 4 phần tử đầu tiên của mảng **F** sẽ thể hiện tần số của các cặp AA, CC, GG, TT. 6 phần tử tiếp theo sẽ lưu số lần lặp của các cặp có thể sinh ra và được sắp xếp giảm dần dựa vào tần số  (F[5] >= F[6] >= F[7] >= F[8] >= F[9] >= F[10]). **S** sẽ là một mảng có 10 phần tử mà $S[i]$ chính là số điểm mà ta phân bổ cho cặp $i$. 
+
+Ý tưởng chính của thuật toán trên sẽ được minh họa trong đoạn mã giả dưới đây:
+
+```Best = -Infinity
+For S [1] = 1 to 10
+      For S [2] = 1 to 10
+            For S [3] = 1 to 10
+                  For S [4] = 1 to 10
+                        If  (S [1] + S [2] + S [3] + S [4]) mod 2 = 0
+                             S [5] = S[6] = 10
+                             S [7] = 10 - (S [1] + S [2] + S [3] + S[4]) / 2
+                             S [8] = S [9] = S [10] = -10
+//  biến Best sẽ lưu lại giá trị trung bình lớn nhất
+                             Best = max (Best , score (F,S))
+//  kết quả tốt nhất thu được đến lúc này
+                       Endif
+                 Endfor
+           Endfor
+      Endfor
+Endfor
+Return Best
+```
+
+Đối với mảng lưu điểm đã cho (trong trường hợp của chúng ta là mảng **S**), ta sẽ tính kết quả cuối cùng bằng việc chỉ tính tổng của tích $F[I] * S[I] ( 1 <= I <=10)$ và chia nó cho $N * (N-1) / 2$ để thu được kết quả trung bình.
