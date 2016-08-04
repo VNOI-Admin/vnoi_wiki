@@ -1,9 +1,10 @@
 # Range Minimum Query và Lowest Common Ancestor
 
-[Dịch từ Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/)
+**Nguồn**: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/range-minimum-query-and-lowest-common-ancestor/)
+
 [[_TOC_]]
 
-## Các định nghĩa
+# Các định nghĩa
 
 Gỉa sử thuật toán có thời gian tiền xử lý là $f(n)$ và thời gian truy vấn $g(n)$. Ta ký hiệu độ phức tạp tổng quát của thuật toán là $< f(n),g(n) >$.
 
@@ -11,19 +12,19 @@ Vị trí của phần tử có giá trị nhỏ nhất trong đoạn từ $i$ �
 
 Nút xa gốc nhất và là tổ tiên của cả 2 nút $u$ và $v$ trong cây có gốc $T$ là $LCA_T(u,v)$
 
-## Range Minimum Query (RMQ)
+# Range Minimum Query (RMQ)
 
 Cho mảng $A[0,N-1]$. Tìm vị trí của phần tử có giá trị nhỏ nhất trong một đoạn cho trước.
 
 ![](http://community.topcoder.com/i/education/lca/RMQ_001.gif)
 
-### Thuật toán tầm thường
+## Thuật toán tầm thường
 
 Lưu giá trị của $RMQ_A(i,j)$ trong một bảng $M[0,N-1][0,N-1]$.
 
 Thuật toán sẽ có độ phức tạp $< O(N^3),O(1) >$. Tuy nhiên ta có thể sử dụng quy hoạch động để giảm độ phức tạp xuống $< O(N^2),O(1) >$ như sau:
 
-~~~cpp
+```cpp
 void process1(int M[MAXN][MAXN], int A[MAXN], int N)
   {
       int i, j;
@@ -36,11 +37,11 @@ void process1(int M[MAXN][MAXN], int A[MAXN], int N)
               else
                   M[i][j] = j;
   }
-~~~
+```
 
 Có thể thấy thuật toán này khá chậm và tốn bộ nhớ $O(N^2)$ nên sẽ không hữu ích với những dữ liệu lớn hơn.
 
-### Thuật toán $< O(N),O(\sqrt N) >$
+## Thuật toán $< O(N),O(\sqrt N) >$
 
 Một ý tưởng độc đáo là chia mảng thành $\sqrt N$ phần. Ta sử dụng một vector $M[0,\sqrt N]$ để lưu giá trị mỗi phần. $M$ có thể dễ dàng tính được trong $O(N)$:
 
@@ -50,7 +51,7 @@ Một ý tưởng độc đáo là chia mảng thành $\sqrt N$ phần. Ta sử 
 
 Dễ thấy thuật toán không sử dụng quá $3\sqrt N$ phép toán cho mỗi truy vấn.
 
-### Sparse Table (ST)
+## Sparse Table (ST)
 
 Đây là một hướng tiếp cận tốt hơn để tiền xử lý $RMQ$ cho các đoạn con có độ dài $2^k$, sử dụng quy hoạch động.
 
@@ -62,7 +63,7 @@ Ta sử dụng mảng $M[0,N-1][0,logN]$ với $M[i][j]$ là chỉ số của ph
 
 ![](http://community.topcoder.com/i/education/lca/RMQ_007.gif)
 
-~~~cpp
+```cpp
  void process2(int M[MAXN][LOGMAXN], int A[MAXN], int N)
   {
       int i, j;
@@ -78,7 +79,7 @@ Ta sử dụng mảng $M[0,N-1][0,logN]$ với $M[i][j]$ là chỉ số của ph
               else
                   M[i][j] = M[i + (1 << (j - 1))][j - 1];
   }
-~~~
+```
 
 Để tính $RMQ_A(i,j)$ ta dựa vào 2 đoạn con độ dài $2^k$ phủ hết $[i,j]$, với $k=log(j-i+1)$:
 
@@ -86,7 +87,7 @@ Ta sử dụng mảng $M[0,N-1][0,logN]$ với $M[i][j]$ là chỉ số của ph
 
 Độ phức tạp tổng quát của thuật toán này là $< O(NlogN),O(1) >$
 
-### Cây phân đoạn (segment tree, interval tree, range tree)
+## Cây phân đoạn (segment tree, interval tree, range tree)
 
 Ta biểu diễn cây bằng một mảng $M[1,2*2^{[logN]+1}]$ với $M[i]$ là vị trí có giá trị nhỏ nhất trong đoạn mà nút $i$ quản lý.
 
@@ -94,7 +95,7 @@ Ta biểu diễn cây bằng một mảng $M[1,2*2^{[logN]+1}]$ với $M[i]$ là
 
 Khởi tạo:
 
-~~~cpp
+```cpp
   void initialize(intnode, int b, int e, int M[MAXIND], int A[MAXN], int N)
   {
       if (b == e)
@@ -104,7 +105,7 @@ Khởi tạo:
   //compute the values in the left and right subtrees
           initialize(2 * node, b, (b + e) / 2, M, A, N);
           initialize(2 * node + 1, (b + e) / 2 + 1, e, M, A, N);
-  //search for the minimum value in the first and 
+  //search for the minimum value in the first and
   //second half of the interval
           if (A[M[2 * node]] <= A[M[2 * node + 1]])
               M[node] = M[2 * node];
@@ -112,31 +113,31 @@ Khởi tạo:
               M[node] = M[2 * node + 1];
       }
   }
-~~~
+```
 
 Truy vấn:
 
-~~~cpp
+```cpp
 int query(int node, int b, int e, int M[MAXIND], int A[MAXN], int i, int j)
   {
       int p1, p2;
 
-  //if the current interval doesn't intersect 
+  //if the current interval doesn't intersect
   //the query interval return -1
       if (i > e || j < b)
           return -1;
 
-  //if the current interval is included in 
+  //if the current interval is included in
   //the query interval return M[node]
       if (b >= i && e <= j)
           return M[node];
 
-  //compute the minimum position in the 
+  //compute the minimum position in the
   //left and right part of the interval
       p1 = query(2 * node, b, (b + e) / 2, M, A, i, j);
       p2 = query(2 * node + 1, (b + e) / 2 + 1, e, M, A, i, j);
 
-  //return the position where the overall 
+  //return the position where the overall
   //minimum is
       if (p1 == -1)
           return M[node] = p2;
@@ -146,17 +147,17 @@ int query(int node, int b, int e, int M[MAXIND], int A[MAXN], int i, int j)
           return M[node] = p1;
       return M[node] = p2;
   }
-~~~
+```
 
 Mỗi truy vấn sẽ được thực hiện trong $O(logN)$ và thuật toán có độ phức tạp tổng quát là $< O(N),O(logN) >$
 
-## Lowest Common Ancestor (LCA)
+# Lowest Common Ancestor (LCA)
 
 Cho cây có gốc $T$ và 2 nút $u$ và $v$ của cây. Tìm nút xa gốc nhất mà là tổ tiên của cả 2 nút $u$ và $v$.
 
 ![](http://community.topcoder.com/i/education/lca/LCA_001.gif)
 
-### Thuật toán $< O(N),O(\sqrt N) >$
+## Thuật toán $< O(N),O(\sqrt N) >$
 
 Ý tưởng chia input thành các phần bằng nhau như trong bài toán $RMQ$ cũng có thể được sử dụng với $LCA$. Chúng ta sẽ chia cây thành $\sqrt H$ phần, với $H$ là chiều cao cây. Phần đầu bao gồm các tầng từ $0$ đến $\sqrt H-1$, phần 2 sẽ gồm các tầng từ $\sqrt H$ đến $2\sqrt H-1$,...:
 
@@ -168,15 +169,15 @@ Giờ với mỗi nút chúng ta có thể biết được nút tổ tiên ở p
 
 Ta có thể tính $P$ bằng DFS ($T[i]$ là cha của $i$, $nr=\sqrt H$ và $L[i]$ là tầng của nút $i$)
 
-~~~cpp
+```cpp
 void dfs(int node, int T[MAXN], int N, int P[MAXN], int L[MAXN], int nr)  {
       int k;
 
-  //if node is situated in the first 
+  //if node is situated in the first
   //section then P[node] = 1
   //if node is situated at the beginning
   //of some section then P[node] = T[node]
-  //if none of those two cases occurs, then 
+  //if none of those two cases occurs, then
   //P[node] = P[T[node]]
       if (L[node] < nr)
           P[node] = 1;
@@ -189,11 +190,11 @@ void dfs(int node, int T[MAXN], int N, int P[MAXN], int L[MAXN], int nr)  {
      for each son k of node
          dfs(k, T, N, P, L, nr);
   }
-~~~
+```
 
 Truy vấn:
 
-~~~cpp
+```cpp
  int LCA(int T[MAXN], int P[MAXN], int L[MAXN], int x, int y)
   {
   //as long as the node in the next section of
@@ -214,11 +215,11 @@ Truy vấn:
              y = T[y];
       return x;
   }
-~~~
+```
 
 Hàm này sử dụng tối đa $2\sqrt H$ phép toán. Với cách tiếp cận này chúng ta có thuật toán $< O(N),O(\sqrt H) >$, trong trường hợp tệ nhất thì $N=H$ nên độ phức tạp tổng quát của thuật toán là $< O(N),O(\sqrt N) >$.
 
-### Thuật toán $< O(NlogN),O(logN) >$
+## Thuật toán $< O(NlogN),O(logN) >$
 
 Ứng dụng quy hoạch động chúng ta có một thuật toán nhanh hơn. Đầu tiên chúng ta tính một bảng $P[1,N][1,logN]$ với $P[i][j]$ là tổ tiên thứ $2^j$ của $i$:
 
@@ -226,7 +227,7 @@ Hàm này sử dụng tối đa $2\sqrt H$ phép toán. Với cách tiếp cận
 
 Code:
 
-~~~cpp
+```cpp
  void process3(int N, int T[MAXN], int P[MAXN][LOGMAXN])
   {
       int i, j;
@@ -246,7 +247,7 @@ Code:
              if (P[i][j - 1] != -1)
                  P[i][j] = P[P[i][j - 1]][j - 1];
   }
-~~~
+```
 
 Phương pháp này tốn $O(logN)$ cả về bộ nhớ lẫn thời gian.
 
@@ -258,42 +259,42 @@ Gọi $L[i]$ là tầng của $i$. Để tính $LCA(p,q)$ thì đầu tiên chú
 
 Code:
 
-~~~cpp
+```cpp
 
-int query(int N, int P[MAXN][LOGMAXN], int T[MAXN], 
+int query(int N, int P[MAXN][LOGMAXN], int T[MAXN],
   int L[MAXN], int p, int q)
   {
       int tmp, log, i;
-   
+
   //if p is situated on a higher level than q then we swap them
       if (L[p] < L[q])
           tmp = p, p = q, q = tmp;
-  
+
   //we compute the value of [log(L[p)]
       for (log = 1; 1 << log <= L[p]; log++);
       log--;
-   
+
   //we find the ancestor of node p situated on the same level
   //with q using the values in P
       for (i = log; i >= 0; i--)
           if (L[p] - (1 << i) >= L[q])
               p = P[p][i];
-   
+
       if (p == q)
           return p;
-   
+
   //we compute LCA(p, q) using the values in P
       for (i = log; i >= 0; i--)
           if (P[p][i] != -1 && P[p][i] != P[q][i])
               p = P[p][i], q = P[q][i];
-   
+
       return T[p];
   }
-~~~
+```
 
 Mỗi lần gọi hàm này chỉ tốn tối đa $2logH$ phép toán. Trong trường hợp tệ nhất thì $H=N$ nên độ phức tạp tổng quát của thuật toán này là $< O(NlogN),O(logN) >.
 
-## Từ LCA đến RMQ
+# Từ LCA đến RMQ
 
 Ta có thể giảm bài toán LCA lại thành bài toán RMQ trong thời gian tuyến tính, do đó mà mọi thuật toán để giải bài toán RMQ đều có thể sử dụng để giải bài toán LCA. Hãy cùng xét ví dụ sau:
 
@@ -315,7 +316,7 @@ Gỉa sử $H[u]<H[v]$. Dễ thấy việc cần làm lúc này là tìm nút c�
 
 Cũng dễ thấy là mỗi 2 phần tử liên tiếp trong $L$ đều hơn kém nhau đúng 1 đơn vị.
 
-## Từ RMQ đến LCA
+# Từ RMQ đến LCA
 
 Một cây Cartesian của một dãy $A[0,N-1]$ là một cây nhị phân $C(A)$ có gốc là phần tử nhỏ nhất trong $A$ và có vị trí $i$. Cây con trái của $C(A)$ là cây Cartesian của $A[0,i-1]$ nếu $i>0$, ngược lại thì không có. Cây con phải của $C(A)$ là cây Cartesian của $A[i+1,N-1]$.
 
@@ -397,15 +398,15 @@ Ví dụ đối với cây ở trên:
 
 Vì mỗi phần tử của $A$ đều chỉ push và pop 1 lần nên độ phức tạp thuật toán là $O(N)$.
 
-~~~cpp
+```cpp
 void computeTree(int A[MAXN], int N, int T[MAXN])  {
       int st[MAXN], i, k, top = -1;
-   
+
   //we start with an empty stack
   //at step i we insert A[i] in the stack
       for (i = 0; i < N; i++)
       {
-  //compute the position of the first element that is 
+  //compute the position of the first element that is
   //equal or smaller than A[i]
           k = top;
           while (k >= 0 && A[st[k]] > A[i])
@@ -415,18 +416,18 @@ void computeTree(int A[MAXN], int N, int T[MAXN])  {
               T[i] = st[k];
          if (k < top)
               T[st[k + 1]] = i;
-  //we insert A[i] in the stack and remove 
+  //we insert A[i] in the stack and remove
   //any bigger elements
           st[++k] = i;
           top = k;
       }
-  //the first element in the stack is the root of 
+  //the first element in the stack is the root of
   //the tree, so it has no father
       T[st[0]] = -1;
   }
-~~~
+```
 
-## Thuật toán $< O(N),O(1) >$ cho bài toán RMQ thu hẹp
+# Thuật toán $< O(N),O(1) >$ cho bài toán RMQ thu hẹp
 
 Chúng ta sẽ giải bài toán $RMQ$ cho dãy $A[0,N-1]$ với $|A[i]-A[i-1]|=1$ với mọi $i\in[1,N-1]$.
 
@@ -438,7 +439,7 @@ Nhận thấy $B$ là một dãy nhị phân, mà mỗi block có $l$ phần t�
 
 Ví dụ: với độ dài 3 sẽ có 8 tổ hợp:
 
-~~~
+```
 000(=0)
 001(=1)
 010(=2)
@@ -447,11 +448,11 @@ Ví dụ: với độ dài 3 sẽ có 8 tổ hợp:
 101(=5)
 110(=6)
 111(=7)
-~~~
+```
 
 Với $0$ ứng với $-1$, ta sẽ tính trước được cho các dãy
 
-~~~
+```
 [-1,-1,-1]
 [-1,-1,1]
 [-1,1,-1]
@@ -460,34 +461,22 @@ Với $0$ ứng với $-1$, ta sẽ tính trước được cho các dãy
 [1,-1,1]
 [1,1,-1]
 [1,1,1]
-~~~
+```
 
  Như vậy việc tính $P$ có thể được thực hiện trong $O(\sqrt N*l^2)$. Sau đó chỉ cần dựa vào đó mà tính được $RMQ$ của mỗi block trong $B$. Tuy nhiên ta cần tính trước giá trị thập phân của mỗi block trước và lưu vào một mảng $T[N/l]$. Cuối cùng để tính $RMQ_A(i,j)$ ta chỉ cần dựa vào $T$ và $P$.
 
-## Một số bài để luyện tập
+# Một số bài để luyện tập
 
-[LCA](http://www.spoj.com/problems/LCA/)
-
-[QTREE2](http://www.spoj.pl/problems/QTREE2/)
-
-[HBTLCA](http://vn.spoj.com/problems/HBTLCA/)
-
-[UPGRANET](http://vn.spoj.com/problems/UPGRANET/)
-
-[VOTREE](http://vn.spoj.com/problems/VOTREE/)
-
-[SRM 310 - Floating Median](http://www.topcoder.com/stat?c=problem_statement&pm=6551&rd=9990)
-
-[Lorenzo Von Matterhorn](http://codeforces.com/problemset/problem/697/C)
-
-[http://acm.pku.edu.cn/JudgeOnline/problem?id=1986](http://acm.pku.edu.cn/JudgeOnline/problem?id=1986)
-
-[http://acm.pku.edu.cn/JudgeOnline/problem?id=2374](http://acm.pku.edu.cn/JudgeOnline/problem?id=2374)
-
-[http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=2045](http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=2045)
-
-[http://acm.pku.edu.cn/JudgeOnline/problem?id=2763](http://acm.pku.edu.cn/JudgeOnline/problem?id=2763)
-
-[http://acm.uva.es/p/v109/10938.html](http://acm.uva.es/p/v109/10938.html)
-
-[http://acm.sgu.ru/problem.php?contest=0&problem=155](http://acm.sgu.ru/problem.php?contest=0&problem=155)
+- [LCA](http://www.spoj.com/problems/LCA/)
+- [QTREE2](http://www.spoj.pl/problems/QTREE2/)
+- [HBTLCA](http://vn.spoj.com/problems/HBTLCA/)
+- [UPGRANET](http://vn.spoj.com/problems/UPGRANET/)
+- [VOTREE](http://vn.spoj.com/problems/VOTREE/)
+- [SRM 310 - Floating Median](http://www.topcoder.com/stat?c=problem_statement&pm=6551&rd=9990)
+- [Lorenzo Von Matterhorn](http://codeforces.com/problemset/problem/697/C)
+- [http://acm.pku.edu.cn/JudgeOnline/problem?id=1986](http://acm.pku.edu.cn/JudgeOnline/problem?id=1986)
+- [http://acm.pku.edu.cn/JudgeOnline/problem?id=2374](http://acm.pku.edu.cn/JudgeOnline/problem?id=2374)
+- [http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=2045](http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=2045)
+- [http://acm.pku.edu.cn/JudgeOnline/problem?id=2763](http://acm.pku.edu.cn/JudgeOnline/problem?id=2763)
+- [http://acm.uva.es/p/v109/10938.html](http://acm.uva.es/p/v109/10938.html)
+- [http://acm.sgu.ru/problem.php?contest=0&problem=155](http://acm.sgu.ru/problem.php?contest=0&problem=155)
