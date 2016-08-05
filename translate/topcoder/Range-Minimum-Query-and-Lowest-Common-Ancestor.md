@@ -326,6 +326,8 @@ function LCA(N, P[MAXN][MAXLOGN], T[MAXN], h[MAXN], u, v):
 
 Mỗi lần gọi hàm này chỉ tốn tối đa $2logH$ phép toán. Trong trường hợp tệ nhất thì $H=N$ nên độ phức tạp tổng quát của thuật toán này là $< O(NlogN),O(logN) >$.
 
+Bài toán LCA còn có nhiều cách giải thú vị khác. Các bạn có thể tham khảo thêm trong [[bài viết này|algo/data-structures/lca]].
+
 # Từ LCA đến RMQ
 
 Ta có thể giảm bài toán LCA lại thành bài toán RMQ trong thời gian tuyến tính, do đó mà mọi thuật toán để giải bài toán RMQ đều có thể sử dụng để giải bài toán LCA. Hãy cùng xét ví dụ sau:
