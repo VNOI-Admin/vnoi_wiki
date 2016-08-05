@@ -25,7 +25,7 @@ Các hệ mã hóa đối xứng sử dụng **cùng một khóa** cho cả bên
 - giống nhau, hoặc
 - khác nhau nhưng có thể dễ dàng tìm ra được khóa còn lại nếu đã biết một khóa.
 
-Ưu điểm của các phương pháp này là đơn giản, tốc độ cao, mang lại hiệu quả tốt nếu bạn không chia sẻ khóa của mình cho ai khác ngoài người nhận. Tuy nhiên, chúng lại có các nhược điểm sau:
+Ưu điểm của các phương pháp này là đơn giản, tốc độ cao, mang lại hiệu quả tốt nếu bạn không chia sẻ khóa của mình cho người khác. Tuy nhiên, chúng lại có các nhược điểm sau:
 
 - Để có thể trao đổi thông tin bí mật với nhau, hai bên phải thống nhất với nhau trước về khóa bí mật. Bài toán đặt ra là làm sao có thể đảm bảo việc gửi khóa cho nhau là bí mật.
 - Để đảm bảo trong 1 nhóm $n$ người cần phải có 1 số lượng khóa khá lớn - $\frac{n(n-1)}{2}$ khóa. Điều này dẫn đến một bài toán về việc lưu trữ, phân phối một số lượng lớn khóa mà vẫn phải đảm bảo sự an toàn của chúng.
