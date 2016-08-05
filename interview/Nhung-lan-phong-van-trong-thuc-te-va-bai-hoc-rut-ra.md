@@ -20,19 +20,19 @@ VNG là một trong những công ty khởi nghiệp thành công vang dội tro
 
 ## Quy trình phỏng vấn
 
-* Vòng 1: Tư duy logic và lập trình cơ bản. Một bộ đề bí mật được cập nhật thường xuyên, bao gồm các câu hỏi để đánh giá khả năng suy luận và kiến thức cơ bản về tin học của ứng viên. Ở vòng này không đòi hỏi bất cứ kiến thức chuyên ngành hay kinh nghiệm làm việc gì.
+-  Vòng 1: Tư duy logic và lập trình cơ bản. Một bộ đề bí mật được cập nhật thường xuyên, bao gồm các câu hỏi để đánh giá khả năng suy luận và kiến thức cơ bản về tin học của ứng viên. Ở vòng này không đòi hỏi bất cứ kiến thức chuyên ngành hay kinh nghiệm làm việc gì.
 
-Một vài câu hỏi thú vị:
+    Một vài câu hỏi thú vị:
 
-- Có 2 vòi nước, 1 vòi nếu chảy vào bể nước thì mất 2 phút đầy 1 vòi mất 3 phút thì đầy, bể nước có 1 lỗ xả và nếu để bể nước đầy thì mất 6 phút để xả hết. Vậy nếu cho 2 vòi nước chảy cùng lúc vào bể và mở lỗ xả nước thì mất bao lâu để bể đầy?
-- Điền số tiếp theo vào dãy số 9, 15, 32, 57, ..
+    - Có 2 vòi nước, 1 vòi nếu chảy vào bể nước thì mất 2 phút đầy 1 vòi mất 3 phút thì đầy, bể nước có 1 lỗ xả và nếu để bể nước đầy thì mất 6 phút để xả hết. Vậy nếu cho 2 vòi nước chảy cùng lúc vào bể và mở lỗ xả nước thì mất bao lâu để bể đầy?
+    - Điền số tiếp theo vào dãy số 9, 15, 32, 57, ..
 
-* Vòng 2: Kiến thức về lập trình hướng đối tượng (Object Oriented Programming), Java và Android.
+- Vòng 2: Kiến thức về lập trình hướng đối tượng (Object Oriented Programming), Java và Android.
 
-* Vòng 3: Các câu hỏi cơ bản về tin học, mức độ sâu sẽ tăng dần theo từng câu hỏi. Một vài câu hỏi ví dụ:
+- Vòng 3: Các câu hỏi cơ bản về tin học, mức độ sâu sẽ tăng dần theo từng câu hỏi. Một vài câu hỏi ví dụ:
 
-- Sự khác biệt giữa GET & POST (hai phương thức trao đổi dữ liệu phổ biến trong mạng máy tính)? Từ những khác biệt đó sẽ mang lại hệ quả gì? 
-- Cho ví dụ khi nào dùng giao thức TCP, khi nào dùng giao thức UDP? Để trả lời được câu hỏi này cần hiểu sâu 2 giao thức này.
+    - Sự khác biệt giữa GET & POST (hai phương thức trao đổi dữ liệu phổ biến trong mạng máy tính)? Từ những khác biệt đó sẽ mang lại hệ quả gì? 
+    - Cho ví dụ khi nào dùng giao thức TCP, khi nào dùng giao thức UDP? Để trả lời được câu hỏi này cần hiểu sâu 2 giao thức này.
 
 Ngoài ra còn gặp gỡ, trao đổi với phó giám đốc bộ phận tuyển dụng. Mục đích là để xem xét sự phù hợp với văn hoá và con người công ty.
 
