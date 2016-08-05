@@ -10,13 +10,17 @@ Thông thường các contributor sẽ phải nộp 1 file markdown để giới
 
 Các bài viết trên VNOI có cấu trúc [hình cây](http://vnoi.info/contributor/fileview). Các bạn nhìn qua để hiểu cần cho bài viết của mình vào đâu.
 
-Để tạo bài mới, click vào New, gõ path của file có đủ dấu "/", ví dụ: "/translate/topcoder/Ten-bai-viet".
+Để tạo bài mới, click vào New, gõ path của file có đủ dấu "/", ví dụ: "/translate/topcoder/Ten-bai-viet". Chú ý bạn **KHÔNG** được dùng tiếng Việt có dấu.
 
 **Chú ý**: Path của file dùng để tạo link, do đó bạn không nên thay đổi tên bài viết sau khi bài viết đã hoàn thành. Vì vậy hãy chọn tên bài viết hợp lý.
 
 # Viết markdown
 
-Tất cả các bài viết trên VNOI được viết theo định dạng markdown. Bạn có thể xem ví dụ [[ở đây|markdown]].
+Tất cả các bài viết trên VNOI được viết theo định dạng markdown. Bạn có thể xem ví dụ [[ở đây|markdown]]. Bạn có thể click vào Edit để xem code markdown.
+
+Mình khuyến khích dùng Atom editor cho việc viết markdown.
+
+Để up ảnh, bạn có thể dùng editor trên VNOI và kéo thả ảnh vào. Chú ý rằng tên file ảnh sẽ là tên file ảnh trong máy của bạn, nên trước khi up ảnh lên, bạn nên đổi tên ảnh thành "ten_bai_viet_ten_anh" để tránh bị trùng tên với những người khác (trong trường hợp trùng tên ảnh sẽ không hiển thị đúng).
 
 # Quản lý bài viết
 
