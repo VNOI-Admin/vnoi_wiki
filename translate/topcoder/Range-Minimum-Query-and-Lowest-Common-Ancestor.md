@@ -434,26 +434,28 @@ Vì mỗi phần tử của $A$ đều chỉ push và pop 1 lần nên độ ph�
 void computeTree(int A[MAXN], int N, int T[MAXN])  {
       int st[MAXN], i, k, top = -1;
 
-  //Bắt đầu với stack rỗng
-  //Ở bước thứ i ta đẩy i và stack
-      for (i = 0; i < N; i++)
-      {
-  //Tìm vị trí của phần tử đầu tiên nhỏ hơn hoặc bằng A[i] trong stack
-          k = top;
-          while (k >= 0 && A[st[k]] > A[i])
-              k--;
-  //Chỉnh sửa cây theo mô tả ở trên
-         if (k != -1)
-              T[i] = st[k];
-         if (k < top)
-              T[st[k + 1]] = i;
-  //Đẩy i vào stack rồi xóa các phần tử lớn hơn A[i]
-          st[++k] = i;
-          top = k;
-      }
-  //Phần tử đầu tiên trongs stack là gốc cây nên nó không có cha
-      T[st[0]] = -1;
+  // Bắt đầu với stack rỗng
+  // Ở bước thứ i ta đẩy i và stack
+  for (i = 0; i < N; i++)
+  {
+    //Tìm vị trí của phần tử đầu tiên nhỏ hơn hoặc bằng A[i] trong stack
+    k = top;
+    while (k >= 0 && A[st[k]] > A[i])
+      k--;
+
+    // Chỉnh sửa cây theo mô tả ở trên
+    if (k != -1)
+      T[i] = st[k];
+    if (k < top)
+      T[st[k + 1]] = i;
+    
+    // Đẩy i vào stack rồi xóa các phần tử lớn hơn A[i]
+    st[++k] = i;
+    top = k;
   }
+  // Phần tử đầu tiên trong stack là gốc cây nên nó không có cha
+  T[st[0]] = -1;
+}
 ```
 
 # Thuật toán $< O(N),O(1) >$ cho bài toán RMQ thu hẹp
