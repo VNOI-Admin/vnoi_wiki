@@ -163,7 +163,7 @@ Mỗi truy vấn sẽ được thực hiện trong $O(logN)$ và thuật toán c
 
 # Bài toán LCA
 
-## Thuật toán $< O(1), O(N) >$
+## Thuật toán $< O(N), O(N) >$
 
 Thuật toán hồn nhiên nhất như sau:
 
