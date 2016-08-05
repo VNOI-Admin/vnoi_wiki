@@ -1,4 +1,6 @@
-Nguồn: [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/20/machine-learning-for-dummies-part-2/)
+# Machine Learning - Classification - phần 2
+
+**Bài viết chưa hoàn thiện.** **Nguồn:** [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/20/machine-learning-for-dummies-part-2/)
 
 Trong bài viết trước ([link](http://vnoi.info/contributor/translate/ml/Machine-Learning-for-Dummies-part-1)), chúng ta đã cùng tìm hiểu về **Classification**. Chúng ta cũng đã đưa ra vài ví dụ về ứng dụng của nó và cũng đã làm quen với **the Iris dataset**. Nếu có thời gian, bạn nên đọc bài viết đó để có thể hiểu cặn kẽ những nội dung trong bài viết này.
 
@@ -24,5 +26,14 @@ Tuy nhiên, mặc dù khoảng cách Euclide giữa hai điểm trên bản đ�
 
 Khoảng cách giữa hai bông hoa diên vĩ đầu tiên là:
 
+$\sqrt{(6.3 - 6.2)^2 + (2.3 - 3.4)^2 + (4.4 - 5.4)^2 + (1.3 - 2.3)^2} = 1.79$
 
+Khoảng cách giữa bông hoa đầu tiên và bông hoa thứ ba là:
 
+$\sqrt{(6.3 - 5.2)^2 + (2.3 - 3.4)^2 + (4.4 - 1.4)^2 + (1.3 - 0.2)^2} = 3.55$
+
+Giá trị đầu tiên nhỏ hơn ($1.79 < 3.55$), điều này có nghĩa là bông hoa diên vĩ đầu tiên giống bông hoa thứ hai hơn so với bông hoa thứ ba.
+
+Nhờ những bước tính toán và so sánh như trên, bạn có thể tìm ra bông hoa giống bông hoa bí ẩn nhất. Đơn giản là chúng ta chỉ cần tính khoảng cách giữa bông hoa bí ẩn với mỗi bông hoa khác, và tìm bông hoa có khoảng cách nhỏ nhất. Phương pháp tưởng chừng như đơn giản này thực ra lại được sử dụng bởi rất nhiều nhà nghiên cứu. Nó có tên là *Hàng xóm gần nhất* (*The 1-nearest neighbors solution*)
+
+![translate_ml_nearest_neighbor](http://blog.mathieu.guillame-bert.com/wp-content/uploads/2015/07/irises.png)
