@@ -122,3 +122,8 @@ Thuật toán này khá linh hoạt và có thể mở rộng ra để ứng d�
 Ta sẽ chứng minh “Đỉnh cha chung chính là nhãn của tập hợp chứa v”. Giả sử $i=LCA(u,v)$. Sau khi thực thi thủ tục `DFS(v)` xong, từ $v$ thủ tục DFS phải đi về $i$ và rẽ xuống $u$ để có thể thực hiện `DFS(u)`. Trong quá trình đi về $i$, nó sẽ hợp nhất $v$ với cha $v$, ông $v$,.. rồi với $i$. Do đó nhãn của tập chứa $v$ chính là $i$.
 
 Để thực hiện thao tác hợp nhất 2 tập hợp với thời gian ngắn, ta có thể sử dụng cấu trúc disjoint set giống như trong thuật toán Kruskal. Độ phức tạp của phương pháp này là $(M+N)log(N)$ với $M$ là số thao tác.
+
+# Các bài tập áp dụng:
+
+- [VOJ - LUBENICA](http://vn.spoj.com/problems/LUBENICA)
+- [SPOJ - LCA](http://www.spoj.com/problems/LCA/)
