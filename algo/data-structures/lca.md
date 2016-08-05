@@ -127,3 +127,6 @@ Ta sẽ chứng minh “Đỉnh cha chung chính là nhãn của tập hợp ch�
 
 - [VOJ - LUBENICA](http://vn.spoj.com/problems/LUBENICA)
 - [SPOJ - LCA](http://www.spoj.com/problems/LCA/)
+- [SPOJ - QTREE](http://www.spoj.com/problems/QTREE/)
+- [VOJ - QTREE3](http://vn.spoj.com/problems/QTREE3/)
+- [VOJ - VOTREE](http://vn.spoj.com/problems/VOTREE)
