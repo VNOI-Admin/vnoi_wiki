@@ -464,7 +464,7 @@ Chúng ta sẽ giải bài toán $RMQ$ cho dãy $A[0,N-1]$ với $|A[i]-A[i-1]|=
 
 Hãy biến đổi $A$ thành một dãy nhị phân có $N-1$ phần tử, với $B[i]=A[i]-A[i-1]$. Như vậy $A[i]=A[0]+B[1]+..+B[i]$ và $B[i]$ chỉ nhận giá trị $1$ hoặc $-1$.
 
-Chúng ta chia $A$ thành các block kích thước $l=[logN/2]$. Gọi $M[i]$ là giá trị nhỏ nhất trong block thứ $i$ và $D[i]$ là vị trí của giá trị nhỏ nhất này trong $A$. Cả $M$ và $D$ đều có $N/l$ phần tử. Ta tính $M$ bằng Sparse Table như ở trên, tốn $O(N/l\*l\*log(l))=O(N)$ về bộ nhớ và thời gian. Bây giờ việc cần làm là tính $RMQ$ giữa 2 vị trí bất kì trong một block, chúng ta lưu những giá trị này vào bảng $P[0,N/l][0,l][0,l]$.
+Chúng ta chia $A$ thành các block kích thước $l=[logN/2]$. Gọi $M[i]$ là giá trị nhỏ nhất trong block thứ $i$ và $D[i]$ là vị trí của giá trị nhỏ nhất này trong $A$. Cả $M$ và $D$ đều có $N/l$ phần tử. Sử dụng Sparse Table như ở trên cho $M$, tốn $O(N/l*log(N/l))=O(N)$ về bộ nhớ và thời gian. Bây giờ việc cần làm là tính $RMQ$ giữa 2 vị trí bất kì trong một block, chúng ta lưu những giá trị này vào bảng $P[0,N/l][0,l][0,l]$.
 
 Nhận thấy $B$ là một dãy nhị phân, mà mỗi block có $l$ phần tử. Vì số lượng dãy nhị phân độ dài $l$ là $2^l=\sqrt N$ là một số khá nhỏ nên chúng ta nghĩ đến việc tính trước tất cả các $RMQ$ cho tất cả các dãy nhị phân độ dài $l$.
 
