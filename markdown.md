@@ -25,3 +25,6 @@ Tables:
 <td>WW</td>
 </tr>
 </table>
+
+Image from /uploads
+[[/uploads/topcoder_translate_tree1.png|alt=text]]
