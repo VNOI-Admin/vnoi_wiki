@@ -2,7 +2,14 @@
 
 **Tác giả**: Khúc Anh Tuấn
 
-Đôi lời về tác giả: Khúc Anh Tuấn là HCB IOI 2006, người Việt Nam đạt max rating cao nhất trên Topcoder (max rating là hơn 3000 với màu Đỏ Target - một màu mà tại thời điểm mình viết bài này - 2016, chỉ có khoảng chưa đến 100 người trên thế giới đạt được). Khúc Anh Tuấn cũng từng đạt rank 2 Facebook Hackercup và là người Việt Nam duy nhất từng lọt vào chung kết Google Code Jam. Bài viết này được đưa lên thư viện VNOI cũ và được mình khôi phục lại sau nhiều năm thất truyền.
+Đôi lời về tác giả: Khúc Anh Tuấn được coi là huyền thoại của Competitive Programming Việt Nam với nhiều thành tích khủng:
+- HCB IOI 2006
+- Người Việt Nam duy nhất từng đạt được Đỏ Target trên Topcoder (max rating là hơn 3000, chỉ có khoảng chưa đến 100 người trên thế giới đạt được).
+- Rank 2 Facebook Hackercup
+- Người Việt Nam duy nhất từng lọt vào chung kết Google Code Jam.
+- Giữ kỷ lục thi ACM ICPC World final của Việt Nam tính đến thời điểm 2011 (rank 17 toàn cầu).
+
+Bài viết này được đưa lên thư viện VNOI cũ và được mình khôi phục lại sau nhiều năm thất truyền.
 
 Trước khi đọc bài viết này, bạn cần đọc bài viết: [[Bài toán RMQ và bài toán LCA|translate/topcoder/Range-minimum-Query-and-Lowest-Common-Ancestor]] để nắm được những khái niệm cơ bản.
 
