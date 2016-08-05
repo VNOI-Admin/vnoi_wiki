@@ -3,6 +3,7 @@
 **Tác giả**: Khúc Anh Tuấn
 
 Đôi lời về tác giả: Khúc Anh Tuấn được coi là huyền thoại của Competitive Programming Việt Nam với nhiều thành tích khủng:
+
 - HCB IOI 2006
 - Người Việt Nam duy nhất từng đạt được Đỏ Target trên Topcoder (max rating là hơn 3000, chỉ có khoảng chưa đến 100 người trên thế giới đạt được).
 - Rank 2 Facebook Hackercup
