@@ -17,3 +17,19 @@ Các bài viết trên VNOI có cấu trúc [hình cây](http://vnoi.info/contri
 # Viết markdown
 
 Tất cả các bài viết trên VNOI được viết theo định dạng markdown. Bạn có thể xem ví dụ [[ở đây|markdown]].
+
+# Quản lý bài viết
+
+Tất cả các bài viết được quản lý bằng [Trello](https://trello.com/). Do đó bạn cần có 1 account trello. Trong board VNOI articles, bạn sẽ thấy trạng thái của tất cả các bài viết. Một bài viết là một task và sẽ trải qua các trạng thái:
+
+- TODO: Chưa ai dịch
+- Doing: Đang dịch
+- Review: Đang review
+- Review 2: Đang review lần 2
+- Done: Bài viết đã hoàn thành
+
+Nếu bạn nhận dịch / viết bài nào, thì tự assign mình vào task đó, set deadline, comment link bài dịch trên VNOI. Sau đó bạn chuyển task qua cột tương ứng:
+
+- Nếu bạn nhận dịch, chuyển sang cột Doing
+- Nếu bạn dịch xong, chuyển sang cột Review
+- Nếu bạn nhận review, sau khi review xong chuyển sang cột Review 2.
