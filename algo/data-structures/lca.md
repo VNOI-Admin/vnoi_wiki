@@ -4,12 +4,12 @@
 
 Đôi lời về tác giả: Khúc Anh Tuấn là HCB IOI 2006, người Việt Nam đạt max rating cao nhất trên Topcoder (max rating là hơn 3000 với màu Đỏ Target - một màu mà tại thời điểm mình viết bài này - 2016, chỉ có khoảng chưa đến 100 người trên thế giới đạt được). Khúc Anh Tuấn cũng từng đạt rank 2 Facebook Hackercup và là người Việt Nam duy nhất từng lọt vào chung kết Google Code Jam. Bài viết này được đưa lên thư viện VNOI cũ và được mình khôi phục lại sau nhiều năm thất truyền.
 
-Trước khi đọc bài viết này, bạn cần đọc bài viết: [[Bài toán RMQ và bài toán LCA|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]] để nắm được những khái niệm cơ bản.
+Trước khi đọc bài viết này, bạn cần đọc bài viết: [[Bài toán RMQ và bài toán LCA|translate/topcoder/Range-minimum-Query-and-Lowest-Common-Ancestor]] để nắm được những khái niệm cơ bản.
 
 Để giải bài toán LCA ta có thể chuyển sang bài toán RMQ tương ứng và có thể giải bằng một số cách khác nhau. Trong bài viết này chúng ta sẽ đề cập tới một số phương pháp giải bài toán LCA một cách trực tiếp.
 
 
-# Bài toán LCA ( Least Common Ancestor ) :
+# Bài toán LCA (Least Common Ancestor):
 
 Input: 1 cây với $n$ đỉnh.
 
@@ -33,28 +33,30 @@ Từ cây đầu vào ta sử dụng thủ tục DFS để xây dựng 2 mảng:
 - $prevnum[1..n]$ với $prevnum[i]$ cho ta biết thứ tự gọi thủ tục DFS cho đỉnh $i$.
 - $postnum[1..n]$ với $postnum[i]$ cho ta biết thứ tự thoát khỏi thủ tục DFS cho đỉnh $i$.
 
-Từ 2 mảng $prevnum$ và $postnum$ ta có thể thấy điều kiện cần và đủ để $u$ là cha của $v$ là $prevnum[u] \le prevnum[v] & postnum[u] \ge postnum[v]$. Do đó thao tác chất vấn $LCA(u,v)$ thực chất là tìm một đỉnh $i$ sao cho :
+Từ 2 mảng $prevnum$ và $postnum$ ta có thể thấy điều kiện cần và đủ để $u$ là cha của $v$ là $prevnum[u] \le prevnum[v]$ và $postnum[u] \ge postnum[v]$. Do đó thao tác chất vấn $LCA(u,v)$ thực chất là tìm một đỉnh $i$ sao cho :
 
-- $prevnum[i] \le Min(prevnum[u],prevnum[v])$
-- $postnum[i] \ge Max(postnum[u],postnum[v])$
+- $prevnum[i] \le min(prevnum[u],prevnum[v])$
+- $postnum[i] \ge max(postnum[u],postnum[v])$
 - $prevnum[i]$ lớn nhất có thể (hoặc $postnum[i]$ nhỏ nhất có thể ).
 
 2 điều kiện đầu đảm bảo $i$ sẽ là cha chung của $u$ và $v$, điều kiện thứ 3 đảm bảo $i$ sẽ là đỉnh xa gốc nhất, tức $i = LCA(u,v)$.
 
-Xây dựng mảng $A[1..n]$ với $A[i]$ cho ta biết $postnum[k]$ với $k$ là đỉnh sao cho $prevnum[k]=i$. Ta hoàn toàn có thể xây dựng mảng $A$ trong thời gian $O(N)$. Như vậy ta cần tìm trong mảng con $A[1..Min(prevnum[u],prevnum[v])]$ phần tử cuối cùng sao cho giá trị của nó không nhỏ hơn $Max(postnum[u],postnum[v])$. Ta có thể sử dụng cấu trúc dữ liệu Interval Tree để làm việc này, mỗi nút của cây Interval sẽ lưu giá trị lớn nhất của một đoạn và khi thực hiện thủ tục DFS trên cây Interval ta ưu tiên đi sang cây con bên phải. Khi biết được giá trị postnum (và cả prevnum) của đỉnh cần tìm rồi ta sẽ dễ dàng biết được đỉnh đó.
+Xây dựng mảng $A[1..n]$ với $A[i]$ cho ta biết $postnum[k]$ với $k$ là đỉnh sao cho $prevnum[k]=i$. Ta hoàn toàn có thể xây dựng mảng $A$ trong thời gian $O(N)$. Như vậy ta cần tìm trong mảng con $A[1..min(prevnum[u],prevnum[v])]$ phần tử cuối cùng sao cho giá trị của nó không nhỏ hơn $max(postnum[u],postnum[v])$. Ta có thể sử dụng cấu trúc dữ liệu Interval Tree để làm việc này, mỗi nút của cây Interval sẽ lưu giá trị lớn nhất của một đoạn và khi thực hiện thủ tục DFS trên cây Interval ta ưu tiên đi sang cây con bên phải. Khi biết được giá trị postnum (và cả prevnum) của đỉnh cần tìm rồi ta sẽ dễ dàng biết được đỉnh đó.
 
 Độ phức tạp của thuật toán này cũng giống như thuật toán 1 với thời gian là $<O(Nlog(N)),O(log(N))>$ như chỉ mất $O(N)$ bộ nhớ.
 
 # Cách 3
 
-Cũng tương tự cách 2 ta khởi tạo các mảng $prevnum[1..n]$ và $postnum[1..n]$. Mảng $A[1..n]$ với $A[i]$ cho ta biết đỉnh $k$ sao cho $prevnum[k] = i$. Như vậy ta cần tìm $LCA(u,v)$ trong mảng con $A[1..Min(prevnum[u],prevnum[v])]$. Ta có thể sử dụng phương pháp chặt nhị phân kết hợp đệ quy để làm cận (khá tốt) như sau:
+Cũng tương tự cách 2 ta khởi tạo các mảng $prevnum[1..n]$ và $postnum[1..n]$. Mảng $A[1..n]$ với $A[i]$ cho ta biết đỉnh $k$ sao cho $prevnum[k] = i$. Như vậy ta cần tìm $LCA(u,v)$ trong mảng con $A[1..min(prevnum[u],prevnum[v])]$. Ta có thể sử dụng phương pháp chặt nhị phân kết hợp đệ quy để làm cận (khá tốt) như sau:
 
 - Xét thủ tục `Find_LCA(left, right, u, v : Integer)` tìm cha chung gần nhất của $u$, $v$ trong mảng con $A[left..right]$. Không mất tính tổng quát giả sử $prevnum[u]<prevnum[v]$.
+
     - Nếu $postnum[u]>postnum[v]$ thì $LCA(u,v)=u$ và đây là trường hợp dễ dàng tìm ra đáp án.
-		- Nếu $postnum[u]<postnum[v]$, gọi $mid = (left+right)/2$. Xét phần tử chính giữa đoạn $i = A[mid]$ sẽ có các khả năng sau:
-		    - $postnum[i]>postnum[v]$: $i$ sẽ là cha chung của $u$ và $v$ nhưng chưa chắc đã là $LCA(u,v)$. Hiển nhiên $prevnum[i] \le prevnum[LCA(u,v)]$ nên ta gọi đệ quy: `Find_LCA( mid, right, u, v)`.
-				- $postnum[v]>postnum[i]>postnum[u]$: $i$ là cha của $u$ nhưng không phải là cha của $v$. Vì vậy $LCA(u,v) = LCA(i,v)$, ta gọi đệ quy: `Find_LCA( left, mid, i, v)`.
-				- $postnum[i]<postnum[u]$: đỉnh $i$ là đỉnh được rẽ nhánh ra từ một nút cha nào đó của $u$, nhưng ta hoàn toàn chưa biết nút cha này nằm dưới hay trên $LCA(u,v)$. Ta có thể xử lý theo 2 cách: gọi đệ quy `Find_LCA(left,right,cha(u),cha(v))` hoặc lấy `j = Find_LCA(left,mid,i,u)` và $j$ sẽ rơi vào 2 trường hợp đầu.
+
+    - Nếu $postnum[u]<postnum[v]$, gọi $mid = (left+right)/2$. Xét phần tử chính giữa đoạn $i = A[mid]$ sẽ có các khả năng sau:
+        - $postnum[i]>postnum[v]$: $i$ sẽ là cha chung của $u$ và $v$ nhưng chưa chắc đã là $LCA(u,v)$. Hiển nhiên $prevnum[i] \le prevnum[LCA(u,v)]$ nên ta gọi đệ quy: `Find_LCA( mid, right, u, v)`.
+        - $postnum[v]>postnum[i]>postnum[u]$: $i$ là cha của $u$ nhưng không phải là cha của $v$. Vì vậy $LCA(u,v) = LCA(i,v)$, ta gọi đệ quy: `Find_LCA( left, mid, i, v)`.
+        - $postnum[i]<postnum[u]$: đỉnh $i$ là đỉnh được rẽ nhánh ra từ một nút cha nào đó của $u$, nhưng ta hoàn toàn chưa biết nút cha này nằm dưới hay trên $LCA(u,v)$. Ta có thể xử lý theo 2 cách: gọi đệ quy `Find_LCA(left,right,cha(u),cha(v))` hoặc lấy `j = Find_LCA(left,mid,i,u)` và $j$ sẽ rơi vào 2 trường hợp đầu.
 
 Thuật toán trên nếu chỉ thực hiện 2 trường hợp đầu thì độ phức tạp cho mỗi lần chất vấn là $LogN$, còn nếu chỉ thực hiện trường hợp 3 thì độ phức tạp sẽ là $N$. Qua khảo sát bằng việc chạy chương trình cho thấy thời gian thực hiện trung bình của thuật toán này ngang với các thuật toán với độ phức tạp $<O(Nlog(N)),O(log(N))>$. Thuật toán này tuy có độ phức tạp lớn nhưng lại là phương pháp tiết kiệm bộ nhớ và cài đặt dễ dàng nên đây là thuật toán có ứng dụng cao trong làm bài.
 
@@ -78,12 +80,12 @@ Những đoạn cùng màu là một cây suy biến. Nếu coi mỗi cây suy b
 - Gọi $F(n)$ là hàm cho ta chiều cao tối đa của một cây rút gọn có $n$ đỉnh. Ta sẽ chứng minh $F(n) \le log(N)+1$.
 - Với $n=1$ thì $F(1) = log(1)+1$.
 - Giả sử điều cần chứng minh đã đúng đến $n-1$.
-- Với một cây có $N$ đỉnh và nút gốc sẽ có các cây con với số đỉnh là $x_1, ..., x_k$. Giả sử $x_1 = max(x1..xk)$. Ta có $2*Max(x_2..x_k) \le Max(x_2..x_k) + x_1 \le N$
-    $\rightarrow Max(x2…xk) \le N/2$.
+- Với một cây có $N$ đỉnh và nút gốc sẽ có các cây con với số đỉnh là $x_1, ..., x_k$. Giả sử $x_1 = max(x1..xk)$. Ta có $2*max(x_2..x_k) \le max(x_2..x_k) + x_1 \le N$
+    $\rightarrow max(x2…xk) \le N/2$.
 
 - Theo cách xây dựng cây thì :
 
-    $F(N)  = Max( F(x_1), F(x_2)+1, F(x_3)+1, .., F(x_k)+1 )$
+    $F(N)  = max( F(x_1), F(x_2)+1, F(x_3)+1, .., F(x_k)+1 )$
 
     Mà:
 
