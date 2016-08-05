@@ -4,7 +4,7 @@
 
 **Thông thường trong các vòng phỏng vấn sẽ có một vòng về chuyên ngành các bạn đam mê. Mình chuyên về Android nên các vòng bên dưới là về Android**
 
-# SkedGo Internship
+## SkedGo Internship
 
 Sau phần giới thiệu bản thân, câu hỏi đầu tiên như sau:
 
@@ -14,11 +14,11 @@ Sau phần giới thiệu bản thân, câu hỏi đầu tiên như sau:
 
 Đây là một câu hỏi rất hay trong phỏng vấn vì rất khó để đưa ra câu trả lời chính xác ngay, từ đó dễ dàng kiểm tra khả năng giao tiếp, cách ứng viên phát hiện dần dần và giải quyết vấn đề. Điều người phỏng vấn mong muốn thấy khi hỏi câu này không phải là một câu trả lời đúng ngay lập tức (nếu được thì quá tốt) mà là kỹ năng giao tiếp, giải quyết vấn đề, cải tiến cách giải quyết.... để đạt được mục tiêu cuối cùng.
 
-# VNG Fresher
+## VNG Fresher
 
 VNG là một trong những công ty khởi nghiệp thành công vang dội trong ngành CNTT ở Việt Nam.
 
-## Quy trình phỏng vấn
+### Quy trình phỏng vấn
 
 -  Vòng 1: Tư duy logic và lập trình cơ bản. Một bộ đề bí mật được cập nhật thường xuyên, bao gồm các câu hỏi để đánh giá khả năng suy luận và kiến thức cơ bản về tin học của ứng viên. Ở vòng này không đòi hỏi bất cứ kiến thức chuyên ngành hay kinh nghiệm làm việc gì.
 
