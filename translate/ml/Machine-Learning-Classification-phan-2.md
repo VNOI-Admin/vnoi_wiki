@@ -37,3 +37,15 @@ Giá trị đầu tiên nhỏ hơn ($1.79 < 3.55$), điều này có nghĩa là 
 Nhờ những bước tính toán và so sánh như trên, bạn có thể tìm ra bông hoa giống bông hoa bí ẩn nhất. Đơn giản là chúng ta chỉ cần tính khoảng cách giữa bông hoa bí ẩn với mỗi bông hoa khác, và tìm bông hoa có khoảng cách nhỏ nhất. Phương pháp tưởng chừng như đơn giản này thực ra lại được sử dụng bởi rất nhiều nhà nghiên cứu. Nó có tên là *Hàng xóm gần nhất* (*The 1-nearest neighbors solution*)
 
 ![translate_ml_nearest_neighbor](http://blog.mathieu.guillame-bert.com/wp-content/uploads/2015/07/irises.png)
+
+### Giải pháp 3: k-hàng xóm gần nhất (*The k-nearest neighbors solution*)
+
+Thông thường, giải pháp *hàng xóm gần nhất* (*The 1-nearest neighbors solution*) cho kết quả tốt, nhưng trong nhiều trường hợp, vì nhiều nguyên nhân khác nhau mà giải pháp này cho kết quả thiếu chính xác. Một trong những nguyên nhân có thể là sự thiếu chính xác trong phép đo các thuộc tính. Điều này dẫn đến việc tính khoảng cách không đúng, và như vậy thuật toán không thể tìm ra lớp (**class**) đúng nhất.
+
+Các nhà nghiên cứu đã tìm ra một giải pháp đơn giản cho vấn đề này: Thay vì tìm ra bông diên vĩ giống nhất, chúng ta sẽ tìm 5. Nói cách khác, chúng ta tìm 5 bông diên vĩ có khoảng cách nhỏ nhất so với bông diên vĩ bí ẩn. Nếu cả 5 bông diên vĩ thuộc cùng một chủng loại, vấn đề trở nên rất đơn giản: chủng loại (hay **lớp**) của bông diên vĩ bí ẩn chính là chủng loại của 5 bông diên vĩ đó.
+
+Tuy nhiên, sẽ thế nào nếu 5 bông diên vĩ trên thuộc về các chủng loại khác nhau? 
+
+
+
+
