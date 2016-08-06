@@ -339,23 +339,37 @@ Một vài lưu ý nhỏ
 
 ### Cấp độ 1
 [GroceryBagger](https://community.topcoder.com/stat?c=problem_statement&pm=3450&rd=5868) – SRM 222
+
 [FanFailure](http://community.topcoder.com/stat?c=problem_statement&pm=2235&rd=5070) – SRM 195
+
 [PlayGame](https://community.topcoder.com/stat?c=problem_statement&pm=3002&rd=5863) – SRM 217
+
 [SchoolAssembly](http://community.topcoder.com/stat?c=problem_statement&pm=1119&rd=5879) – TCO04 Round 2
+
 [RockStar](http://community.topcoder.com/stat?c=problem_statement&pm=2984&rd=5862) – SRM 216
+
 [Apothecary](http://community.topcoder.com/stat?c=problem_statement&pm=2312&rd=5850) – SRM 204
+
 [Boxing](http://community.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880) – TCO04 Round 3
+
 [Unblur](http://community.topcoder.com/stat?c=problem_statement&pm=2945&rd=5884) – TCO04 Semifinal Room 3
 
 ### Cấp độ 2
 [Crossroads](https://community.topcoder.com/stat?c=problem_statement&pm=3042&rd=5863) – SRM 217
+
 [TCSocks ](http://community.topcoder.com/stat?c=problem_statement&pm=2894&rd=5853)– SRM 207
+
 [HeatDeath](https://community.topcoder.com/stat?c=problem_statement&pm=2982&rd=5881) – TCO04 Round 4
+
 [BioScore](https://community.topcoder.com/stat?c=problem_statement&pm=3038&rd=5882) – TCO04 Semifinal Room 1
+
 [Rationalization](https://community.topcoder.com/stat?c=problem_statement&pm=2347&rd=5870) – SRM 224
 
 ### Cấp độ 3
 [GoldMine](https://community.topcoder.com/stat?c=problem_statement&pm=1957&rd=4650) – SRM 169
+
 [MLBRecord](https://community.topcoder.com/stat?c=problem_statement&pm=2236&rd=5879) – TCO04 Round 2
+
 [RearrangeFurniture](https://community.topcoder.com/stat?c=problem_statement&pm=3076&rd=5866) – SRM 220
+
 [WorldPeace](https://community.topcoder.com/stat?c=problem_statement&pm=2420&rd=5850) – SRM 204
