@@ -314,3 +314,21 @@ Nếu cách tiếp cận này thật sự đúng, ta hoàn toàn có thể thấ
 
 ## Tổng kết
 
+**Tham lam** thường dễ nghĩ ra, dễ thực thi và thời gian thực thi rất nhanh. Để chúng minh rằng thuật **Tham lam** là đúng đôi khi cần phải dùng tới các kiến thức toán học chuyên sâu và thường thì việc chứng minh vô cùng khó. Ngoài ra, **Tham lam** còn thường được dùng để gian lận. Chỉ cần thiếu đi dù chỉ là một chi tiết rất nhỏ thì nó đã đủ làm đòn chí mạng cho thuật toán của bạn rồi. Nhưng khi bạn chẳng có thứ gì trong tay, thì nó quả thực là một sự cứu rỗi. Khi sử dụng quay lui hoặc quy hoạch động, nó giống như bạn đang di chuyển trên mặt đất an toàn. Còn đối với tham lam, thì nó giống với việc đi trên một bãi mìn hơn. Mọi thứ trên bề mặt có vẻ ổn, nhưng khi phần được chôn giấu dưới mặt đất có thể phát nổ ngay khi mà bạn ít ngờ tới nhất. Ngoại trừ một số thuật toán được tiêu chuẩn hóa, thì các phần lớn các bài toán được giải theo phương pháp này được gọi là *heuristics*. Thật sự nó không tồn tại một công thức chung nào cho việc áp dụng **Tham lam** vào các bài toán cả, tuy nhiên, sự phân tích các bài toán có thể cho ta một tầm nhìn sáng suốt. Những khái niệm toán học cao cấp như [matroids](http://mathworld.wolfram.com/Matroid.html) có thể đưa đến cho bạn những công thức toán học để chứng minh các lớp bài tập có thể giải bằng **Tham lam**, nhưng sau cùng thì những ý tưởng **Tham lam** cũng chỉ đến từ trực giác và kinh nghiệm của các lập trình viên. Trong một vài trường hợp, có rất nhiều giả định **Tham lam** nhưng chỉ vài trong số chúng là thực sự chính xác (xem [Bài toán "Lựa chọn hoạt động"](https://www.topcoder.com/community/data-science/data-science-tutorials/greedy-is-good/)). Mặt khác, đối với các bài toán khó, thường luôn có một cách giải tắt bằng việc khéo léo trong sử dụng **Tham lam**, giống như trường hợp của bài tập cuối cùng mà ta vừa đề cập, [WorldPeace](https://www.topcoder.com/community/data-science/data-science-tutorials/greedy-is-good/#worldpeace). Và đây chính là toàn bộ vẻ đẹp của thuật toán **Tham lam**! Không cần phải nói, nó mang đến những cơ hội thử thách vô cùng hấp dẫn ...
+
+Một vài lưu ý nhỏ
+
+* Nhưng bài tập mà có vẻ cực kỳ phức tạp (như [TCSocks](http://www.topcoder.com/stat?c=problem_statement&pm=2894&rd=5853)) có thể xem như là dấu hiệu để tiếp cận bằng phương pháp **Tham lam**.
+
+* Nhưng bài toán mà dữ liệu đầu vào rất lớn (mà kể cả thuật toán có độ phức tạp $O(n^2)$ vẫn không kịp) thường được giải bằng tham lam hơn là quay lui hoặc [quy hoạch động](http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=dynProg).
+
+* Mặc dù nó có vẻ rùng rợn, nhưng bạn nên nhìn thuật toán tham lam dưới đôi mắt của một thám tử chứ không phải là dưới cặp kính của một nhà toán học.
+
+![a](src="http://community.topcoder.com/i/education/greedyAlg4.gif")
+**Một thám tử giỏi tham lam.**
+
+![b](http://community.topcoder.com/i/education/greedyAlg5.gif)
+**Một người tham lam may mắn.**
+
+![c](http://community.topcoder.com/i/education/greedyAlg6.gif)
+**Một người tham lam không may mắn.**
