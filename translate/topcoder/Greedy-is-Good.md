@@ -93,7 +93,7 @@ Sau khi áp dụng thuật toán trên, *"Fun plan"* của Johnny sẽ như th�
 
 Vấn đề của John Smith đã được giải quyết, tuy nhiên đây chỉ là một ví dụ mà Tham lam có thể hoạt động. Một vài vấn đề thật sự khác đến từ **Topcoder** sẽ giúp bạn hiểu rõ hơn về khái niệm này. Trước khi tiếp tục, có lẽ bạn cần phải luyện tập thêm chút ít nữa với những gì mà bạn vừa đọc, bằng bài tập tương tự với *Lựa chọn hành động*, tên là [Boxing ](http://www.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880)
 
-**BioScore**
+## [**BioScore**](https://community.topcoder.com/stat?c=problem_statement&pm=3038)
 
 Đối với bài tập này, bạn sẽ được yêu cầu làm tối đa hóa số điểm trung bình của các cặp tương đồng. Từ đáp án tối ưu cần tìm, ta có thể xem nó như một gợi ý nhằm giúp ta tìm ra phương án thích hợp. Thường thì, đối với dạng bài toán này, ta sẽ sử dụng phương pháp *quy hoạch động* để giải quyết, nhưng trong một vài trường hợp thì chiến lược **Tham lam** vẫn hoàn toàn có thể được sử dụng.
 
@@ -117,7 +117,7 @@ Lại một điều kiện phổ biến khác! Với điều kiện này, khoả
 
 Bởi vì tính đối xứng, ta phải quy định cho các điểm cho các cặp như "AC" và "CA" bằng nhau. Như là một hệ quả, ta đã vô tình đếm số lần xuất hiện của chúng. Đối với ví dụ trên, ta đã có tần số của tập hợp các cặp như sau:
 
-<table align="center">
+<table>
 <tr><td>AA: 14</td> <td>CC: 4</td> <td>GG: 0</td> <td>TT: 1   </td></tr>
 <tr><td>AC+CA: 11</td> <td>AG+GA: 10</td> <td>AT+TA: 10</td> <td></td> </tr>
 <tr><td>CG+GC: 2</td> <td>TC+CT: 0</td> <td></td> <td></td></tr>
@@ -169,3 +169,76 @@ Return Best
 ```
 
 Đối với mảng lưu điểm đã cho (trong trường hợp của chúng ta là mảng **S**), ta sẽ tính kết quả cuối cùng bằng việc chỉ tính tổng của tích $F[I] * S[I] ( 1 <= I <=10)$ và chia nó cho $N * (N-1) / 2$ để thu được kết quả trung bình.
+
+## [**GoldMine**](https://community.topcoder.com/stat?c=problem_statement&pm=1957&rd=4650)
+
+Giờ ta sẽ đi tìm hiểu xem bằng cách nào một mỏ vàng có thể bị khai thác triệt để, bằng việc sử dụng phương pháp **Tham lam**. Mỗi khi ta nhận ra có sự liên quan tới lợi nhuận tối đa, thì khi đó, phương pháp **Tham lam** sẽ được sử dụng. Trong trường hợp này, ta sẽ chỉ định những người đào vàng đến các mỏ vàng sao cho tổng lợi nhuận thu được là tối đa. Phân tích nhanh, ta nhận ra rằng cần phải biết lợi nhuận thu được từ một mỏ trong tất cả các trường hợp. Và nó cũng không có nhiều trường hợp cho lắm. Với một mỏ bất kỳ, ta chỉ có từ 0 đến 6 người đào mỏ. Bảng dưới đây sẽ cho ta thấy lợi nhuận khả thi đối với hai mỏ ở ví dụ 0 trong bài:
+
+<table align="center">
+<tr> <td></td> <td>0 người</td> <td>1 người</td> <td>2 người</td> <td>3 người</td> <td>4 người</td> <td>5 người</td> <td>6 người</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$0$</td> <td>$57$</td> <td>$87$</td> <td>$87$</td> <td>$67$</td> <td>$47$</td> <td>$27$</td> </tr>
+<tr> <td>Mỏ 2</td> <td>$0$</td> <td>$52$</td> <td>$66$</td> <td>$75$</td> <td>$75$</td> <td>$66$</td> <td>$48$</td> </tr>
+</table>
+
+Bởi nhiệm vụ ta cần làm là phân công các người đào mỏ, nên ta cần phải biết được lợi nhuận mà một người đào mỏ mang đến với mỏ mà anh ta được phân công. Nếu ta chỉ có duy nhất một người đào mỏ, **lựa chọn tối ưu** chính là chính là cho anh ta vào mỏ nơi mà anh ta mang lại nhiều lợi nhuận nhất. Nhưng nếu ta có nhiều người đào mỏ, ta cần phải kiểm tra xem nếu phân công anh ở mỏ tương tự có mang lại **lợi nhuận cục bộ tối ưu** không.
+
+Trong ví dụ, ta có 4 người đào mỏ cần được phân công. Bảng dưới đây sẽ cho biết lợi nhuận thu được của mỗi mỏ với từng người đào mỏ được thêm vào.
+
+<table>
+<tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$-$</td> <td>$57$</td> <td>$30$</td> <td>$0$</td> <td>$-20$</td> <td>$-20$</td> <td>$-20$</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$-$</td> <td>$52$</td> <td>$14$</td> <td>$9$</td> <td>$  0$</td> <td>$-9 $</td> <td>$-20$</td> </tr>
+</table>
+
+Ta để ý rằng, mỏ 1 sẽ tăng thêm 57 nếu ta thêm vào 1 người đào mỏ, trong khi mỏ 2 chỉ tăng thêm 52. Thế nên, ta sẽ phân bố người đầu tiên vào mỏ 1.
+
+<table>
+<tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$57$</strong></td> <td>$30$</td> <td>$0$</td> <td>$-20$</td> <td>$-20$</td> <td>-20</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$-$</td> <td>$52$</td> <td>$14$</td> <td>$9$</td> <td>$  0$</td> <td>$-9 $</td> <td>$-20$</td> </tr>
+</table>
+
+Giờ, nếu ta thêm người đào mỏ vào mỏ 1, ta chỉ tăng lợi nhuận được thêm 30. Bởi vậy nên ta sẽ thêm người đào mỏ vào mỏ mỏ 2, lúc này lợi nhuận ta thu được sẽ tăng thêm 52.
+
+<table>
+<tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$57$</strong></td> <td>$30$</td> <td>$0$</td> <td>$-20$</td> <td>$-20$</td> <td>$-20$</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$52$</strong></td> <td>$14$</td> <td>$9$</td> <td>  $0$</td> <td>$-9 $</td> <td>$-20$</td> </tr>
+</table>
+
+Người đào mỏ thứ 3 sẽ hữu ích hơn khi làm ở mỏ 1 với lợi nhuận thu được là 30.
+
+<table>
+<tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$57$</strong></td> <td><strong>$30$</strong></td> <td>$0$</td> <td>$-20$</td> <td>$-20$</td> <td>$-20$</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$52$</strong></td> <td>$14$</td> <td>$9$</td> <td>  $0$</td> <td>$-9$ </td> <td>$-20$</td> </tr>
+</table>
+
+Với người đào mỏ thứ 4, ta có thể cho anh ta vào mỏ 1 (với lợi nhuận là 0) hoặc mỏ 2 (với lợi nhuận là 14). Dễ thấy, ta sẽ phân công anh ấy vào mỏ hai.
+
+<table>
+<tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$57$</strong></td> <td><strong>$30$</strong></td> <td>$0$</td> <td>$-20$</td> <td>$-20$</td> <td>$-20$</td> </tr>
+<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$52$</strong></td> <td><strong>$14$</strong></td> <td>$9$</td> <td>  $0$</td> <td>$-9$ </td> <td>$-20$</td> </tr>
+</table>
+
+Cuối cùng, hai người đào mỏ còn lại sẽ được phân công bằng cách cho cả hai vào làm ở mỏ 2 hoặc mỗi người làm ở một mỏ riêng. Ví dụ cho ta thấy kết quả mà ta vừa tìm được quả thực chính là kết quả tối ưu. Nhưng phương pháp **Tham lam** của chúng ta có luôn luôn hoạt động không?
+
+**Khẳng định: Ta luôn luôn thu được tổng lợi nhuân lớn nhất khi lần lượt cho từng người đào mỏ vào mỏ có lợi nhuận cao nhất ở thời điểm hiện tại**.
+
+**Chứng minh**: Gọi $A, B$ lần lượt là mỏ 1 và mỏ 2, $a1, b1, a2, b2$ được định nghĩa như sau:
+
+* $a1$ - lợi nhuận thu được khi phân công thêm một người đào mỏ vào $A$.
+
+* $a1+a2$ - lợi nhuận thu được khi phân công thêm hai người đào mỏ vào $A$.
+
+* $b1$ - lợi nhuận thu được khi phân công thêm một người đào mỏ vào $B$.
+
+* $b1+b2$ - lợi nhuận thu được khi phân công thêm hai người đào mỏ vào $B$.
+
+Thuật toán **Tham lam** của ta sẽ gia tăng lợi nhuận bằng $a1$ cho người đào mỏ đầu tiên và $(a2+b1)$ cho người đào mỏ thứ 2. Tổng lợi nhuận lúc này sẽ là $a1+max(a2, b1)$. Nếu ban đầu ta chọn $b1$ thì lợi nhuận của người đào mỏ thứ 2 thu được sẽ là $a1$ hoặc $b2$.
+
+Trong trường hợp đầu tiên, ta sẽ có $a1+b1 <= a1+max(a2, b1)$.
+
+Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần phải chứng minh $b1+b2 <= a1+max(a2, b1)$.
+
