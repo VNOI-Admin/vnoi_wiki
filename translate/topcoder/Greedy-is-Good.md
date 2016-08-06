@@ -240,5 +240,77 @@ Thuật toán **Tham lam** của ta sẽ gia tăng lợi nhuận bằng $a1$ cho
 
 Trong trường hợp đầu tiên, ta sẽ có $a1+b1 <= a1+max(a2, b1)$.
 
-Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần phải chứng minh $b1+b2 <= a1+max(a2, b1)$.
+Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần phải chứng minh $b1+b2 <= a1+max(a2, b1)$. Mà ta luôn có $b1 <= b2$ vì **lợi nhuận thu được từ việc thêm một người đào mỏ vào một mỏ luôn luôn lớn hơn hoặc bằng lợi nhuận thu được từ việc thêm một người đào mỏ nữa vào mỏ đó**.
+
+<table>
+<tr> <td>Trạng thái của mỏ vàng</td> <td>Lợi nhuận từ việc thêm 1 người</td> <td>Lợi nhuận từ việc thêm 1 người</td> </tr>
+<tr> <td>Số lượng mỏ $>$số lượng người đào+2</td> <td>$60$</td> <td>$60$</td> </tr>
+<tr> <td>Số lượng mỏ $=$ số lượng người đào+2</td> <td>$60$</td> <td>$50$</td> </tr>
+<tr> <td>Số lượng mỏ $=$ số lượng người đào+1</td> <td>$50$</td> <td>$-20$</td> </tr>
+<tr> <td>Số lượng mỏ $<$ số lượng người đào+2</td> <td>$-20$</td> <td>$-20$</td> </tr>
+</table>
+
+Vì $b1+b2 <= a1+a2 <= a1+b1 <= a1+max(a2, b1)$, **lựa chọn Tham lam** cũng chính là phương án tối ưu.
+
+Lập trình nó hoàn toàn không khó, nhưng ta cần phải xử lý thêm các trường hợp nữa (tất cả các người đào mỏ đều phải được phân công, chỉ có tối đa sáu người trong một mỏ và nếu một người đào mỏ có thể được đặt tối ưu ở nhiều mỏ, ưu tiên mỏ có chỉ số nhỏ hơn).
+
+## [**WorldPeace**](https://community.topcoder.com/stat?c=problem_statement&pm=2420&rd=5850)
+
+Những thuật toán **Tham lam** mà ta vừa kể trên đều hoạt động tốt ở mọi tình huống bởi sự đúng đắn của nó đã được ta chứng minh. Nhưng còn một lớp bài tập tối ưu hóa nữa mà thuật toán **Tham lam** có thể được áp dụng. Đây là những bài tập thuộc lớp NP - đầy đủ (như bài toán người đưa thư TSP [Traveling Salesman Problem](http://www.math.uwaterloo.ca/tsp/)), và người ta thường viết các nhánh - cận dựa trên **Tham lam** hơn là chờ đợi chương trình thực thi... Lời giải không phải lúc nào cũng là tối ưu, song đối với phần lớn mục đích, thì nó đã đủ tốt rồi. Nếu đây không phải là một bài toán lớp NP, thì nó chính là một ví dụ tuyệt vời cho việc một thuật toán **Tham lam** không chỉ có thể đánh lừa và vượt qua các test mẫu, mà nó còn có thể vượt qua cả những bộ test hệ thống được thiết kế kỹ càng. Và thuật toán này thật sự không quá khó để nghĩ ra, mà chỉ cần một vài phân tích nhanh ta có thể nhận ra để tối đa hóa tổng số lượng nhóm, **luôn luôn tối ưu để tạo thiết lập một nhóm từ k quốc gia có dân số đông nhất**. Chúng ta áp dụng phương pháp này ở từng bước và sau đó sắp xếp lại đoạn để thấy được k quốc gia tiếp theo có dân số đông nhất. Ý tưởng này sẽ được minh họa trong đoạn mã giả dưới đây:
+
+```
+Groups = 0
+Repeat
+// sắp xếp lại mảng theo thứ tự giảm dần
+       Sort (A)
+       Min= A[K]
+       If Min > 0 Groups = Groups + 1
+        For I = 1 to K
+               A[I] = A[I] - 1
+        Endfor
+Until  Min = 0
+Return Groups
+```
+
+Không may thay, mỗi quốc gia lại có tới hàng tỷ người dân, thế nên ta không thể nào thiết lập từng nhóm một được. Về mặt lý thuyết, đối với một tập hợp của k quốc gia, chúng ta sẽ tạo nhóm cho đến khi mà toàn bộ người dân của nước đó đã được phân nhóm. Và điều này sẽ được thực hiện chỉ trong 1 bước:
+
+```
+Groups = 0
+Repeat
+// sắp xếp lại mảng theo thứ tự giảm dần
+       Sort (A)
+       Min= A[K]
+       Groups = Groups + Min
+        For I = 1 to K
+               A[I] = A[I] - Min
+        Endfor
+Until  Min = 0
+Return Groups
+```
+
+Thời gian thực thi giờ không còn là vấn đề nữa, mà vấn đề giờ đây chính là thuật toán! Và khi ta thử ví dụ 0 trong bài, thuật toán của chúng ta trả về kết quả là 4 chứ không phải là 5. Nhưng kết quả trả về trong ví dụ 1, 2 và 3 thì lại đúng. Đối với ví dụ cuối cùng, thay vì tạo ra 3983180234 nhóm, ta chỉ tạo được 3983180207 nhóm mà thôi. Bằng việc chỉ sai lệch chút ít, ta có thể thấy rằng giải thuật của mình **khá tốt**, thế nên giờ ta chỉ cần cải tiến nó theo hướng này.
+
+Cho đến hiện tại, ta đã có trong tay hai thuật toán:
+* Thuật toán tham lam đầu tiên chính xác, nhưng không đủ nhanh.
+* Thuật toán tham lam thứ hai nhanh, nhưng lại không chính xác.
+
+Giờ, điều mà ta cần làm đó chính là tăng độ chính xác của thuật toán này lên nhiều nhất có thể, mà thời gian thực thi vẫn không bị quá giới hạn. Một cách cơ bản, ta đang tìm kiếm sự cân bằng giữa **thời gian thực thi và độ chính xác**. Điểm khác biệt duy nhất giữa hai thuật toán kể trên chính là số lượng nhóm mà chúng ta lựa chọn được. Chúng ta sẽ có một phương án như sau: ta sẽ lựa ra một số lượng lớn nhóm ngẫu nhiên lúc đầu, sau đó sẽ giải quyết đoạn còn lại theo cách tiếp cận an toàn hơn. Khi mà chúng ta chỉ còn lại một số lượng nhỏ người dân chưa được phân nhóm ở các quốc gia, thì lúc này nó hoàn toàn hợp lí khi ta sử dụng phương pháp vét cạn. Với biến **Allowed** được khỏi tạo trong thuật toán dưới đây, ta điều khiển số lượng nhóm mà ta mong muốn tạo tại thời điểm được cho.
+
+```
+Groups = 0
+Repeat
+// sắp xếp lại mảng theo thứ tự giảm dần
+       Sort (A)
+       Min= A[K]
+       Allowance = (Min+999) / 1000
+       Groups = Groups + Allowance
+        For I = 1 to K
+               A[I] = A[I] - Allowance
+        Endfor
+Until  Min = 0
+Return Groups 
+```
+Nếu cách tiếp cận này thật sự đúng, ta hoàn toàn có thể thấy được. Mặc dù nó có thể thoát khỏi ánh mắt sắc nhọn của Tomek cũng như là test hệ thống, nhưng rất có vẻ là nó sẽ không thể nào đưa ra kết quả quả đúng với mọi bộ test khả thi. Đây chính một ví dụ cho thấy nếu được tinh chỉnh, từ một thuật toán tham lam đơn giản (nhưng vẫn còn khiếm khuyết) cũng cũng có thể trở thành một cách "đúng". Để biết thêm về thuật toán chính xác cho bài này, xem lời giải ở [Match Editorial](http://community.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm204).
+
+## Tổng kết
 
