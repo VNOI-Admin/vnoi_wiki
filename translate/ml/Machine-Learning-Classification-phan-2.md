@@ -1,6 +1,6 @@
 # Machine Learning - Classification - phần 2
 
-**Bài viết chưa hoàn thiện.** **Nguồn:** [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/20/machine-learning-for-dummies-part-2/)
+**Nguồn:** [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/20/machine-learning-for-dummies-part-2/)
 
 Trong bài viết trước ([link](http://vnoi.info/contributor/translate/ml/Machine-Learning-for-Dummies-part-1)), chúng ta đã cùng tìm hiểu về **Classification**. Chúng ta cũng đã đưa ra vài ví dụ về ứng dụng của nó và cũng đã làm quen với **the Iris dataset**. Nếu có thời gian, bạn nên đọc bài viết đó để có thể hiểu cặn kẽ những nội dung trong bài viết này.
 
