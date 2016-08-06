@@ -8,7 +8,7 @@ Trở lại câu chuyện về hoa diên vĩ (Iris flower): Chúng ta có một 
 
 ### Giải pháp 1: Quan sát tương đồng (*The same observation solution*)
 
-Giải pháp đầu tiên mà ta thường nghĩ đến trong trường hợp này là tìm kiếm một bông hoa diên vĩ khác với độ dài và độ dày của đài hoa và cánh hoa tương đồng với bông diên vĩ bí ẩn. Nếu có, nhiều khả năng chủng loại của bông hoa này cũng tương đồng với bông hoa bí ẩn. Không may mắn thay, rất hiếm khi chúng ta tìm được hai bông hoa diên vĩ với những thông số giống hệt nhau. Trên thực tế, tìm kiếm một quan sát với các thuộc tính giống hệt hiếm khi là một giải pháp tốt, sẽ luôn có những sự khác biệt dù là rất nhỏ.
+Giải pháp đầu tiên mà ta thường nghĩ đến trong trường hợp này là tìm kiếm một bông diên vĩ khác với độ dài và độ dày của đài hoa và cánh hoa tương đồng với bông diên vĩ bí ẩn. Nếu có, nhiều khả năng chủng loại của bông hoa này cũng tương đồng với bông hoa bí ẩn. Không may mắn thay, rất hiếm khi chúng ta tìm được hai bông diên vĩ với những thông số giống hệt nhau. Trên thực tế, tìm kiếm một quan sát với các thuộc tính giống hệt hiếm khi là một giải pháp tốt, sẽ luôn có những sự khác biệt dù là rất nhỏ.
 
 ### Giải pháp 2: Hàng xóm gần nhất (*The 1-nearest neighbors solution*)
 
@@ -18,13 +18,13 @@ Tuy nhiên, nếu như có một vài bông diên vĩ thuộc các chủng loạ
 
 Giải pháp được sử dụng bởi các nhà nghiên cứu là định nghĩa *khoảng cách* giữa hai bông diên vĩ.  Khoảng cách giữa hai bông diên vĩ càng nhỏ, chúng càng *giống nhau*. Có rất nhiều cách để định nghĩa khoảng cách. Một trong những khoảng cách thường được sử dụng nhất trong Khoa học Máy tính là *khoảng cách Euclide* **(the Euclidean distance)**. Nghe có vẻ nguy hiểm, nhưng thực ra khoảng cách Euclide chính là những gì bạn vẫn thường hiểu về *khoảng cách* hay *đường chim bay*.
 
-Tuy nhiên, mặc dù khoảng cách Euclide giữa hai điểm trên bản đồ rất dễ hiểu, sẽ khó tưởng tượng hơn một chút khi bạn nói đến khoảng cách giữa hai bông hoa diên vĩ.
+Tuy nhiên, mặc dù khoảng cách Euclide giữa hai điểm trên bản đồ rất dễ hiểu, sẽ khó tưởng tượng hơn một chút khi bạn nói đến khoảng cách giữa hai bông diên vĩ.
 
 Để tính khoảng cách Euclide, bạn phải tính tổng bình phương của hiệu các thuộc tính tương đương, rồi lấy căn bậc hai của tổng đó. Hãy áp dụng công thức đó cho hai bông hoa đầu tiên được biểu diễn trong bảng sau:
 
 ![translate_ml_iris_table_2](http://blog.mathieu.guillame-bert.com/wp-content/uploads/2015/07/table.png)
 
-Khoảng cách giữa hai bông hoa diên vĩ đầu tiên là:
+Khoảng cách giữa hai bông diên vĩ đầu tiên là:
 
 $\sqrt{(6.3 - 6.2)^2 + (2.3 - 3.4)^2 + (4.4 - 5.4)^2 + (1.3 - 2.3)^2} = 1.79$
 
@@ -32,7 +32,7 @@ Khoảng cách giữa bông hoa đầu tiên và bông hoa thứ ba là:
 
 $\sqrt{(6.3 - 5.2)^2 + (2.3 - 3.4)^2 + (4.4 - 1.4)^2 + (1.3 - 0.2)^2} = 3.55$
 
-Giá trị đầu tiên nhỏ hơn ($1.79 < 3.55$), điều này có nghĩa là bông hoa diên vĩ đầu tiên giống bông hoa thứ hai hơn so với bông hoa thứ ba.
+Giá trị đầu tiên nhỏ hơn ($1.79 < 3.55$), điều này có nghĩa là bông diên vĩ đầu tiên giống bông hoa thứ hai hơn so với bông hoa thứ ba.
 
 Nhờ những bước tính toán và so sánh như trên, bạn có thể tìm ra bông hoa giống bông hoa bí ẩn nhất. Đơn giản là chúng ta chỉ cần tính khoảng cách giữa bông hoa bí ẩn với mỗi bông hoa khác, và tìm bông hoa có khoảng cách nhỏ nhất. Phương pháp tưởng chừng như đơn giản này thực ra lại được sử dụng bởi rất nhiều nhà nghiên cứu. Nó có tên là *Hàng xóm gần nhất* (*The 1-nearest neighbors solution*)
 
@@ -44,7 +44,17 @@ Thông thường, giải pháp *hàng xóm gần nhất* (*The 1-nearest neighbo
 
 Các nhà nghiên cứu đã tìm ra một giải pháp đơn giản cho vấn đề này: Thay vì tìm ra bông diên vĩ giống nhất, chúng ta sẽ tìm 5. Nói cách khác, chúng ta tìm 5 bông diên vĩ có khoảng cách nhỏ nhất so với bông diên vĩ bí ẩn. Nếu cả 5 bông diên vĩ thuộc cùng một chủng loại, vấn đề trở nên rất đơn giản: chủng loại (hay **lớp**) của bông diên vĩ bí ẩn chính là chủng loại của 5 bông diên vĩ đó.
 
-Tuy nhiên, sẽ thế nào nếu 5 bông diên vĩ trên thuộc về các chủng loại khác nhau? 
+Tuy nhiên, sẽ thế nào nếu 5 bông diên vĩ trên thuộc về các chủng loại khác nhau? Trong trường hợp này, chúng ta sẽ đếm số lượng các bông diên vĩ trong một chủng loại, và chủng loại với số bông diên vĩ lớn nhất sẽ được coi là chủng loại của bông diên vĩ bí ẩn. Ví dụ, nếu trong 5 bông diên vĩ giống nhất, có 1 bông thuộc loại Setosa, 1 thuộc Versicolour và 3 bông còn lại thuộc loại Viginica, chúng ta có thể khá chắc chắn khi kết luận rằng bông hoa bí ẩn thuộc loại Viginica (xem hình minh hoạ phía dưới).
+
+![translate_ml_k_nearest_neighbors](http://blog.mathieu.guillame-bert.com/wp-content/uploads/2015/07/irises2.png)
+
+Giải thuật trên được gọi là *5-hàng xóm gần nhất* (**5-nearest neighbors**)
+
+Có thể bạn thắc mắc tại sao chúng ta lại tìm 5 hàng xóm gần nhất thay vì 2, 10 hay 50. Chọn ra **k** tốt nhất trong giải thuật *k-hàng xóm gần nhất* là một câu hỏi rất khó trả lời vì nó phụ thuộc vào rất nhiều vấn đề. Chúng ta sẽ không đề cập chi tiết ở đây, nhưng bạn nên biết rằng, trong thực tế, các nhà nghiên cứu thường thử rất nhiều trường hợp để tìm ra phương án tốt nhất.
+
+Bài viết đến đây là hết. Hi vọng bạn đã có một hiểu biết sơ lược về thuật toán nổi tiếng *k-hàng xóm gần nhất* (hay *k-nearest neighbors*). Trong bài viết tiếp theo, tác giả sẽ giới thiệu một thuật toán mới hơn, phức tạp và rất mạnh gọi là **Random Forest**.
+
+Hẹn gặp lại các bạn trong bài viết tới!  
 
 
 
