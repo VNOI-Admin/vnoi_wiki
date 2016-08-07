@@ -390,7 +390,7 @@ Hàm update:
 			R[ID] = upd(p, v, R[ID], mid, r);
 		return ID;
 	}	
-Hàm trả lời truy vấn( trả lời $i$, đáp án sẽ là $a_{p_i}$:
+Hàm trả lời truy vấn( trả lời $i$, đáp án sẽ là $a_{p_i}$):
 
     int ask(int id, int ID, int k, int l = 0,int r = n){
     //  id là chỉ số của nút sau lần cập nhật thứ l-1 và ID sẽ là chỉ số nút sau lần cập nhật r
@@ -402,5 +402,6 @@ Hàm trả lời truy vấn( trả lời $i$, đáp án sẽ là $a_{p_i}$:
 			return ask(R[id], R[ID], k - (s[L[ID]] - s[L[id]] ), mid, r);
 			// đã có s[L[ID]] - s[L[id]] ở nút trái
 	}
+
 
 
