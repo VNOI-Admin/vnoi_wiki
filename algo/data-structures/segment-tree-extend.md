@@ -2,7 +2,7 @@
 
 Nguồn: [Codeforces](http://codeforces.com/blog/entry/15890)
 
-###**LƯU Ý**: Tất cả hàm trong bài đều theo hệ số 0 (0-indexed), bắt đầu từ 0. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r)$
+###**LƯU Ý**: Tất cả hàm trong bài đều đánh số từ 0. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r)$
 
 Ở trong bài viết này chúng ta sẽ chủ yếu nói về một số ứng dụng và cùng nhau giải quyết một số bài toán về cây phân đoạn. Để thuận tiện mình xin gọi cây phân đoạn là Segment Tree (ST) trong bài viết này. Sau đây là một số loại Segment Tree:
 
