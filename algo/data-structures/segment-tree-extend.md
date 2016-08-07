@@ -29,7 +29,8 @@ Với mỗi nút(ví dụ như nút $x$) chúng ta lưu ba biến nguyên:
     t[x] = t[2 * x] + t[2 * x + 1] + tmp
     o[x] = o[2 * x] + o[2 * x + 1] - tmp
     c[x] = c[2 * x] + c[2 * x + 1] - tmp
-   ///Và chúng ta cần làm một hàm xây cây như thế này
+```
+Và chúng ta cần làm một hàm xây cây như thế này:
 
        void build(int id = 1,int l = 0,int r = n){
         if(r - l < 2){
