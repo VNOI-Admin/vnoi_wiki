@@ -4,7 +4,7 @@ Nguồn: [Codeforces](http://codeforces.com/blog/entry/15890)
 
 [[_TOC_]]
 
-####**LƯU Ý**: Tất cả hàm trong bài đều đánh số từ 0. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r)$
+**LƯU Ý**: Tất cả hàm trong bài đều đánh số từ 0. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r)$
 
 Ở trong bài viết này chúng ta sẽ chủ yếu nói về một số ứng dụng và cùng nhau giải quyết một số bài toán về cây phân đoạn. Để thuận tiện mình xin gọi cây phân đoạn là Segment Tree (ST) trong bài viết này. Sau đây là một số loại Segment Tree:
 
@@ -67,7 +67,7 @@ Với mỗi truy vấn ta trả về ba giá trị là $t, o, c$ như đã nói 
     }
 ```
 
-#### Ví dụ 2:
+Ví dụ 2:
 
 Bài toán: [SPOJ-KQUERY](http://www.spoj.com/problems/KQUERY/)
 Tóm đề: Cho một dãy số $a_i(1\le a_i \le 10^9)$ có $N(1\le N \le 30000)$ phần tử và $Q(1\le Q \le 200000)$ truy vấn có dạng 3 số nguyên là $l_i, r_i, k_i$ $(1\le l_i\le r_i\le N, 1\le k \le 10^9)$. Yêu cầu của bài toán là đếm số lượng số $a_j (l_i\le j \le r_i)$ mà $a_j\ge k$.
@@ -144,7 +144,7 @@ Trong thủ tục chính sẽ là như sau:
 
 Đây là kĩ thuật được sử dụng trong ST để giảm độ phức tạp của cấu trúc dữ liệu đi với các truy vấn cập nhật đoạn.
 
-####Ví dụ 1:
+Ví dụ 1:
 Bài toán: [SPOJ-POSTERS]( http://www.spoj.com/problems/POSTERS/)
 Tóm đề: 
 Cho $N$ băng rôn $(1\le N \le 40000)$ có chiều cao là 1 được treo trên một chiếc bảng có chiều cao cũng là 1, băng rôn thứ $i$ phủ từ đoạn $l_i$ tới $r_i$ $(1\le l_r \lt r_i \le 10^7)$. Các băng rôn được cho theo thứ tự sắp xếp lên bảng. Yêu cầu của bài toán là phải đếm số lượng băng rôn không bị che hoàn toàn bởi các băng rôn khác sau khi đã gắn tất cả băng rôn lên.
