@@ -12,7 +12,7 @@ Nguồn: [Codeforces](http://codeforces.com/blog/entry/15890)
 
 Tại sao lại gọi là cổ điển ? Đây là dạng ST đơn giản nhất, chúng ta chỉ giải quyết truy vấn update một phần tử và truy vấn đoạn, mỗi nút lưu một loại dữ liệu cơ bản như biến số hay biến luận lý (boolean). 
 
-Ví dụ 1:
+**Ví dụ 1:**
 
 Bài toán : [380C-Codeforces](http://codeforces.com/contest/380/problem/C)
 Tóm đề: Cho một dãy ngoặc độ dài $N$ $(N\le10^6)$, cho $M$ truy vấn có dạng $l_i, r_i (1\le l_i\le r_i \le N)$. Yêu cầu của bài toán là với mỗi truy vấn tìm một chuỗi con (không cần liên tiếp) của chuỗi từ $l_i$ đến $r_i$ dài nhất mà tạo thành dãy ngoặc đúng.
@@ -22,7 +22,7 @@ Với mỗi nút(ví dụ như nút $x$) chúng ta lưu ba biến nguyên:
 - `o[x]`= Sô lượng dấu $($ sau khi đã xóa hết các phần tử thuộc dãy ngoặc đúng độ dài `t[x]` trong đoạn.
 - `c[x]`= Số lượng dấu $)$ sau khi đã xóa hết các phần tử thuộc dãy ngoặc đúng độ dài `t[x]` trong đoạn.
 
-Định lý 1 : Khi ghép hai nút con lại ta chỉ cần thao tác sau
+**Định lý 1** : Khi ghép hai nút con lại ta chỉ cần thao tác sau
 ```cpp
     tmp = min(o[2 * x], c[2 * x + 1])
     t[x] = t[2 * x] + t[2 * x + 1] + tmp
@@ -67,7 +67,7 @@ Với mỗi truy vấn ta trả về ba giá trị là $t, o, c$ như đã nói 
     }
 ```
 
-Ví dụ 2:
+**Ví dụ 2:**
 
 Bài toán: [SPOJ-KQUERY](http://www.spoj.com/problems/KQUERY/)
 Tóm đề: Cho một dãy số $a_i(1\le a_i \le 10^9)$ có $N(1\le N \le 30000)$ phần tử và $Q(1\le Q \le 200000)$ truy vấn có dạng 3 số nguyên là $l_i, r_i, k_i$ $(1\le l_i\le r_i\le N, 1\le k \le 10^9)$. Yêu cầu của bài toán là đếm số lượng số $a_j (l_i\le j \le r_i)$ mà $a_j\ge k$.
@@ -144,7 +144,7 @@ Trong thủ tục chính sẽ là như sau:
 
 Đây là kĩ thuật được sử dụng trong ST để giảm độ phức tạp của cấu trúc dữ liệu đi với các truy vấn cập nhật đoạn.
 
-Ví dụ 1:
+**Ví dụ 1:**
 Bài toán: [SPOJ-POSTERS]( http://www.spoj.com/problems/POSTERS/)
 Tóm đề: 
 Cho $N$ băng rôn $(1\le N \le 40000)$ có chiều cao là 1 được treo trên một chiếc bảng có chiều cao cũng là 1, băng rôn thứ $i$ phủ từ đoạn $l_i$ tới $r_i$ $(1\le l_r \lt r_i \le 10^7)$. Các băng rôn được cho theo thứ tự sắp xếp lên bảng. Yêu cầu của bài toán là phải đếm số lượng băng rôn không bị che hoàn toàn bởi các băng rôn khác sau khi đã gắn tất cả băng rôn lên.
@@ -197,7 +197,7 @@ Và cuối cùng là hàm lấy truy vấn:
 
 Trong loại bài toán này với mỗi nút của cây ta lưu lại một `vector` và một số biến khác.
 
-Ví du: Cách xử lý online cho bài toán **[KQUERY0](http://w...content-available-to-author-only...j.com/problems/KQUERYO/)** (bài toán yêu cầu xử lý online của bài **KQUERY**)
+**Ví du**: Cách xử lý online cho bài toán **[KQUERY0](http://w...content-available-to-author-only...j.com/problems/KQUERYO/)** (bài toán yêu cầu xử lý online của bài **KQUERY**)
 
 Nếu trên mỗi nút chúng ta có thể lưu lại danh sách các phần tử đó theo thứ tự tăng dần ta có thể dễ dàng tìm ra kết quả bằng tìm kiếm nhị phân. Vì thế với mỗi nút ta lưu lại một `vector` chứa các phần tử từ $l$ đến $r$ theo thứ tự tăng dần. Điều này có thể được thực hiện với bộ phức tạp bộ nhớ là $\mathcal{O}(N\log{N})$ do mỗi phần tử có thể ở tối đa $\log{N}$ nút. Với nút cha có ta có thể gộp hai nút con vào nút cha bằng phương pháp giống như **Merge Sort** ( lưu lại hai biến chạy và so sánh lần lượt từng phần tử ở hai mảng) để có thể xây dựng cây trong $\mathcal{O}(N\log{N})$.
 
@@ -344,7 +344,7 @@ Còn lại việc tính toán truy vấn loại 2 trở nên dễ dàng hơn:
 
 Ta có thể thấy cây phân đoạn là một ứng dụng trong mảng, vì lí do đó nếu chúng ta có thể đổi cây thành cấu trúc mảng ta có thể dễ dàng xử lý các truy vấn trên cây. Với **DFS** và đánh dấu lại các nút theo thứ tự đến các nút trong một nút con bất kì sẽ thành một đoạn liên tiếp.
 
-Bài tập ví dụ: [396C - On Changing Tree](http://codeforces.com/contest/396/problem/C)
+**Bài tập ví dụ**: [396C - On Changing Tree](http://codeforces.com/contest/396/problem/C)
 
 Gọi $h_v$ là độ cao tương ứng của nút $v$. Ta có với mỗi nút $u$ trong cây con gốc $v$ sau truy vấn một giá trị của nó sẽ tăng một lượng là $ x+(h_u-h_v)\*-k=x+k\* h_v-k\* h $. Kết quả của truy vấn 2 sẽ là $\sum_{i\in s}(k_i\*h_{v_i}+x_i)-h_u\*\sum_{i\in s}k_i$. Vì vậy ta chỉ cần tính hai giá trị là $\sum_{i\in s}(k_i\* h_{v_i}+x_i)$ và $\sum_{i\in s}k_i$. Vậy với mỗi nút ta có thể lưu lại hai giá trị là $hkx=\sum x +h*k$ và $sk=\sum k$ ( không cần cập nhật lười do chúng ta chỉ update nút đầu tiên thỏa việc nằm trong đoạn.
 
