@@ -2,7 +2,7 @@
 
 Nguồn: [Codeforces](http://codeforces.com/blog/entry/15890)
 
-[[TOC]]
+[[_TOC_]]
 
 ###**LƯU Ý**: Tất cả hàm trong bài đều đánh số từ 0. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r)$
 
