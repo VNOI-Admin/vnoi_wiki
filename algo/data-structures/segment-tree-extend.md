@@ -15,6 +15,7 @@ Tại sao lại gọi là cổ điển ? Đây là dạng ST đơn giản nhất
 **Ví dụ 1:**
 
 Bài toán : [380C-Codeforces](http://codeforces.com/contest/380/problem/C)
+
 Tóm đề: Cho một dãy ngoặc độ dài $N$ $(N\le10^6)$, cho $M$ truy vấn có dạng $l_i, r_i (1\le l_i\le r_i \le N)$. Yêu cầu của bài toán là với mỗi truy vấn tìm một chuỗi con (không cần liên tiếp) của chuỗi từ $l_i$ đến $r_i$ dài nhất mà tạo thành dãy ngoặc đúng.
 Lời giải:
 Với mỗi nút(ví dụ như nút $x$) chúng ta lưu ba biến nguyên:
