@@ -115,6 +115,7 @@ Một hàm cập nhật khi ta muốn gán lại một vị trí bằng 0:
     	s[id] = s[2 * id] + s[2 * id + 1];
     }
 ```
+
 Và cuối cùng là thực hiện truy vấn lấy tổng một đoạn:
 ```cpp
     int sum(int x,int y,int id = 1,int l = 0,int r = n){// [x, y)
@@ -126,6 +127,7 @@ Và cuối cùng là thực hiện truy vấn lấy tổng một đoạn:
 	       sum(x, y, id*2+1, mid, r) ;
 	}
 ```
+
 Trong thủ tục chính sẽ là như sau:
 ```cpp
     build();
@@ -137,6 +139,7 @@ Trong thủ tục chính sẽ là như sau:
     	ans[x] = sum(i[x], j[x] + 1); // đoạn [i[x], j[x] + 1)
     }
 ```
+
 ## Cập nhật lười (Lazy Propagation)
 
 Đây là kĩ thuật được sử dụng trong ST để giảm độ phức tạp của cấu trúc dữ liệu đi với các truy vấn cập nhật đoạn.
@@ -189,6 +192,7 @@ Và cuối cùng là hàm lấy truy vấn:
 		cnt(2*id+1, mid, r);
 	}
 ```
+
 ## Ứng dụng với cấu trúc mảng động
 
 Trong loại bài toán này với mỗi nút của cây ta lưu lại một `vector` và một số biến khác.
@@ -259,6 +263,7 @@ Và một hàm cho truy vấn 2:
 		   ask(x, y, k, 2*id+1, mid, r) ;
 	}
 ```	
+
 ##Ứng dụng với các cấu trúc dữ liệu khác 
 
 Cây phân đoạn còn có thể có thể sử dụng một cách linh hoạt với các cấu trúc dữ liệu khác như ở trên. Sử dụng một cây phân đoạn khác trên từng nút có thể giúp chúng ta truy vấn dễ dàng hơn trên mảng hai chiều. Trên đây cũng có thể là các loại cây như **Cây tiền tố(Trie)** hoặc cũng có thể là cấu trúc **Disjoint Set**. Sau đây mình xin giới thiệu một loại cây khác cũng sử dụng nhiều trong cây phân đoạn đó chính là **Cây Fenwick (Binary Indexed Tree)**:
@@ -334,6 +339,7 @@ Còn lại việc tính toán truy vấn loại 2 trở nên dễ dàng hơn:
 		   ask(x, y, k, 2*id+1, mid, r) ;
 	}
 ```
+
 ##Ứng dụng trong cây có gốc
 
 Ta có thể thấy cây phân đoạn là một ứng dụng trong mảng, vì lí do đó nếu chúng ta có thể đổi cây thành cấu trúc mảng ta có thể dễ dàng xử lý các truy vấn trên cây. Với **DFS** và đánh dấu lại các nút theo thứ tự đến các nút trong một nút con bất kì sẽ thành một đoạn liên tiếp.
