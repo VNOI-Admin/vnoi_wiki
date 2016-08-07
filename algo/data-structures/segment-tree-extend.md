@@ -82,9 +82,10 @@ Mã giả (theo hệ 0)
     for j = 0 to q-1
     	while po < n and a[p[po]] <= k[w[j]]
     		b[p[po]] = 0, po = po + 1
+```
    Vậy ta có thể viết hàm xây dựng cây như sau:
    So, build function would be like this (s[x] is the sum of b in the interval of node x) :
-
+```cpp
     void build(int id = 1,int l = 0,int r = n){
     	if(r - l < 2){
     		s[id] = 1;
@@ -300,8 +301,9 @@ Hàm sắp xếp sau khi đã đọc hết các truy vấn:
 Với mỗi truy vấn loại 1 ta làm như sau với mỗi nút x:
 ```cpp
     for(int i = a + 1;i < fen[x].size(); i += i & -i) fen[x][i] ++;
+```
 Với tất cả $v[x][a]=k$:
-
+```cpp
     void upd(int p,int k, int id = 1,int l = 0,int r = n){
 		int a = lower_bound(v[id].begin(), v[id].end(), k) - v[id].begin();
 		for(int i = a + 1; i < fen[id].size(); i += i & -i )
