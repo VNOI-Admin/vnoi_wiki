@@ -8,7 +8,7 @@ Nguồn: [Codeforces](http://codeforces.com/blog/entry/15890)
 
 Ở trong bài viết này chúng ta sẽ chủ yếu nói về một số ứng dụng và cùng nhau giải quyết một số bài toán về cây phân đoạn. Để thuận tiện mình xin gọi cây phân đoạn là Segment Tree (ST) trong bài viết này. Sau đây là một số loại Segment Tree:
 
-## Segment Tree cổ điển
+## 1. Segment Tree cổ điển
 
 Tại sao lại gọi là cổ điển ? Đây là dạng ST đơn giản nhất, chúng ta chỉ giải quyết truy vấn update một phần tử và truy vấn đoạn, mỗi nút lưu một loại dữ liệu cơ bản như biến số hay biến luận lý (boolean). 
 
@@ -140,7 +140,7 @@ Trong thủ tục chính sẽ là như sau:
     }
 ```
 
-## Cập nhật lười (Lazy Propagation)
+## 2. Cập nhật lười (Lazy Propagation)
 
 Đây là kĩ thuật được sử dụng trong ST để giảm độ phức tạp của cấu trúc dữ liệu đi với các truy vấn cập nhật đoạn.
 
@@ -193,7 +193,7 @@ Và cuối cùng là hàm lấy truy vấn:
 	}
 ```
 
-## Ứng dụng với cấu trúc mảng động
+## 3. Ứng dụng với cấu trúc mảng động
 
 Trong loại bài toán này với mỗi nút của cây ta lưu lại một `vector` và một số biến khác.
 
@@ -227,7 +227,7 @@ Và hàm truy vấn có thể như sau:
 ```
 Một ví dụ khác là : [Component Tree](codeforces.com/gym/100513/problem/C)
 
-## Ứng dụng với cấu trúc set 
+## 4. Ứng dụng với cấu trúc set 
 
 Ở cấu trúc này mỗi nút chúng ta lưu một `set`,`multiset`, `hashmap`, hoặc `unodered map` và một só biến khác.
 
@@ -264,7 +264,7 @@ Và một hàm cho truy vấn 2:
 	}
 ```	
 
-##Ứng dụng với các cấu trúc dữ liệu khác 
+##5. Ứng dụng với các cấu trúc dữ liệu khác 
 
 Cây phân đoạn còn có thể có thể sử dụng một cách linh hoạt với các cấu trúc dữ liệu khác như ở trên. Sử dụng một cây phân đoạn khác trên từng nút có thể giúp chúng ta truy vấn dễ dàng hơn trên mảng hai chiều. Trên đây cũng có thể là các loại cây như **Cây tiền tố(Trie)** hoặc cũng có thể là cấu trúc **Disjoint Set**. Sau đây mình xin giới thiệu một loại cây khác cũng sử dụng nhiều trong cây phân đoạn đó chính là **Cây Fenwick (Binary Indexed Tree)**:
 
@@ -340,7 +340,7 @@ Còn lại việc tính toán truy vấn loại 2 trở nên dễ dàng hơn:
 	}
 ```
 
-##Ứng dụng trong cây có gốc
+##6. Ứng dụng trong cây có gốc
 
 Ta có thể thấy cây phân đoạn là một ứng dụng trong mảng, vì lí do đó nếu chúng ta có thể đổi cây thành cấu trúc mảng ta có thể dễ dàng xử lý các truy vấn trên cây. Với **DFS** và đánh dấu lại các nút theo thứ tự đến các nút trong một nút con bất kì sẽ thành một đoạn liên tiếp.
 
@@ -377,7 +377,7 @@ và truy vấn :
 	}
 ```
 
-##Cây phân đoạn ổn định (Persistent Segment Trees)
+##7. Cây phân đoạn ổn định (Persistent Segment Trees)
 
 Hãy đọc bài này trước [Persistent Data Structures](http://vnoi.info/contributor/algo/data-structures/persistent-data-structures)
 Chúng ta đã nói sơ qua về loại cây này trong bài trước bây giờ hãy tìm hiểu nó kĩ hơn qua một bài toán:
