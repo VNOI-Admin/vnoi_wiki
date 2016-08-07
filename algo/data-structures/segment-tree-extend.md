@@ -370,7 +370,8 @@ và truy vấn :
 ```
 ##Cây phân đoạn ổn định (Persistent Segment Trees)
 
-Chúng ta đã nói sơ qua về loại cây này trong bài trước bây giờ hãy tìm hiểu nó kĩ hơn qua một bài toán;
+Hãy đọc bài này trước [Persistent Data Structures](http://vnoi.info/contributor/algo/data-structures/persistent-data-structures)
+Chúng ta đã nói sơ qua về loại cây này trong bài trước bây giờ hãy tìm hiểu nó kĩ hơn qua một bài toán:
 Đó chính là [MKTHNUM](http://www.spoj.com/problems/MKTHNUM/). Bài này có thể sử dụng chặt nhị phân cùng cây phân đoạn với vector để giải ra với độ phức tạp là $\mathcal{O}((m+n)\log^2n)$ nhưng hướng tiếp cận đó sẽ dễ bị quá thời gian với bài toán này. Hãy đến một cách tiếp cận nhanh hơn với độ phức tạp $\mathcal{O}((m+n)\log n)$. Đây là cách tiếp cận hiệu quả và khá hữu ích.
 
 Sắp xếp các phần tử của $a$ lại để tính được hoán vị $p_1,p_2,...,p_n$ sao cho $a_{p_1}<a_{p_2}<....<a_{p_n}$ và với mỗi $i$ thì tìm $q_i$ sao cho $p_{q_i}=i$.
