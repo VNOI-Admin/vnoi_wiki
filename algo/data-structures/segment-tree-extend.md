@@ -31,7 +31,7 @@ Với mỗi nút(ví dụ như nút $x$) chúng ta lưu ba biến nguyên:
     c[x] = c[2 * x] + c[2 * x + 1] - tmp
 ```
 Và chúng ta cần làm một hàm xây cây như thế này:
-
+```cpp
        void build(int id = 1,int l = 0,int r = n){
         if(r - l < 2){
             if(s[l] == '(')
