@@ -2,6 +2,8 @@
 
 Nguồn: [Codeforces](http://codeforces.com/blog/entry/15890)
 
+[[TOC]]
+
 ###**LƯU Ý**: Tất cả hàm trong bài đều đánh số từ 0. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r)$
 
 Ở trong bài viết này chúng ta sẽ chủ yếu nói về một số ứng dụng và cùng nhau giải quyết một số bài toán về cây phân đoạn. Để thuận tiện mình xin gọi cây phân đoạn là Segment Tree (ST) trong bài viết này. Sau đây là một số loại Segment Tree:
@@ -368,6 +370,7 @@ và truy vấn :
 			return (ans + ask(v, 2*id+1, mid, r)) % mod;
 	}
 ```
+
 ##Cây phân đoạn ổn định (Persistent Segment Trees)
 
 Hãy đọc bài này trước [Persistent Data Structures](http://vnoi.info/contributor/algo/data-structures/persistent-data-structures)
