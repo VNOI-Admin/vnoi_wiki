@@ -1,6 +1,6 @@
-Nguồn: [Codeforces](http://codeforces.com/blog/entry/15890)
-
 #Tất tần tật về Cây Phân Đoạn (Segment Tree)
+
+Nguồn: [Codeforces](http://codeforces.com/blog/entry/15890)
 
 ###**LƯU Ý**: Tất cả hàm trong bài đều theo hệ số 0 (0-indexed), bắt đầu từ 0. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r)$
 
@@ -323,7 +323,7 @@ Ta có thể thấy cây phân đoạn là một ứng dụng trong mảng, vì 
 
 Bài tập ví dụ: [396C - On Changing Tree](http://codeforces.com/contest/396/problem/C)
 
-Gọi $h_v$ là độ cao tương ứng của nút $v$. Ta có với mỗi nút $u$ trong cây con gốc $v$ sau truy vấn một giá trị của nó sẽ tăng một lượng là $x+(h_u-h_v)*-k=x+k*h_v-k*h$. Kết quả của truy vấn 2 sẽ là $\sum_{i\in s}(k_i*h_{v_i}+x_i)-h_u*\sum_{i\in s}k_i$. Vì vậy ta chỉ cần tính hai giá trị là $\sum_{i\in s}(k_i*h_{v_i}+x_i)$ và $\sum_{i\in s}k_i$. Vậy với mỗi nút ta có thể lưu lại hai giá trị là $hkx=\sum x +h*k$ và $sk=\sum k$ ( không cần cập nhật lười do chúng ta chỉ update nút đầu tiên thỏa việc nằm trong đoạn.
+Gọi $h_v$ là độ cao tương ứng của nút $v$. Ta có với mỗi nút $u$ trong cây con gốc $v$ sau truy vấn một giá trị của nó sẽ tăng một lượng là $ x+(h_u-h_v)*-k=x+k*h_v-k*h $. Kết quả của truy vấn 2 sẽ là $\sum_{i\in s}(k_i*h_{v_i}+x_i)-h_u*\sum_{i\in s}k_i$. Vì vậy ta chỉ cần tính hai giá trị là $\sum_{i\in s}(k_i*h_{v_i}+x_i)$ và $\sum_{i\in s}k_i$. Vậy với mỗi nút ta có thể lưu lại hai giá trị là $hkx=\sum x +h*k$ và $sk=\sum k$ ( không cần cập nhật lười do chúng ta chỉ update nút đầu tiên thỏa việc nằm trong đoạn.
 
 Với truy vấn cập nhật:
 
@@ -402,6 +402,5 @@ Hàm trả lời truy vấn( trả lời $i$, đáp án sẽ là $a_{p_i}$):
 			return ask(R[id], R[ID], k - (s[L[ID]] - s[L[id]] ), mid, r);
 			// đã có s[L[ID]] - s[L[id]] ở nút trái
 	}
-
 
 
