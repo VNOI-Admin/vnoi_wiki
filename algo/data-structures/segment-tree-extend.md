@@ -1,16 +1,19 @@
-#Tất tần tật về Cây Phân Đoạn (Segment Tree)
+# Tất tần tật về Cây Phân Đoạn (Segment Tree)
 
 Nguồn: [Codeforces](http://codeforces.com/blog/entry/15890)
 
 [[_TOC_]]
 
-**LƯU Ý**: Tất cả hàm trong bài đều đánh số từ 0. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r)$
+**LƯU Ý**:
+
+- Segment Tree trong 1 số tài liệu Tiếng Việt còn được dịch là Interval Tree. Tuy nhiên ở các tài liệu nước ngoài, tên gọi Segment Tree thường được dùng.
+- Tất cả hàm trong bài đều đánh số từ 0. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r)$
 
 Ở trong bài viết này chúng ta sẽ chủ yếu nói về một số ứng dụng và cùng nhau giải quyết một số bài toán về cây phân đoạn. Để thuận tiện mình xin gọi cây phân đoạn là Segment Tree (ST) trong bài viết này. Sau đây là một số loại Segment Tree:
 
 # 1. Segment Tree cổ điển
 
-Tại sao lại gọi là cổ điển ? Đây là dạng ST đơn giản nhất, chúng ta chỉ giải quyết truy vấn update một phần tử và truy vấn đoạn, mỗi nút lưu một loại dữ liệu cơ bản như biến số hay biến luận lý (boolean). 
+Tại sao lại gọi là cổ điển? Đây là dạng ST đơn giản nhất, chúng ta chỉ giải quyết truy vấn update một phần tử và truy vấn đoạn, mỗi nút lưu một loại dữ liệu cơ bản như biến số hay biến luận lý (boolean). 
 
 **Ví dụ 1:**
 
