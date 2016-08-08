@@ -8,7 +8,7 @@ Trong bài viết này tôi sẽ giới thiệu tới các bạn về chủ đ�
 # Tầm quan trọng của những lý luận
 
 ## Ví dụ 1
-Giả sử bạn được phân công viết một chương trình để xử lý một tập dữ liệu gồm nhiều bản ghi mà công ty của bạn đã thu thập. Bạn đã cài đặt hai thuật toán và kiểm tra thời gian chạy trên một vài tập dữ liệu con với số bản ghi khác nhau. Thời gian chạy được thống kê trong bảng 1. 
+Giả sử bạn được phân công viết một chương trình để xử lý một tập dữ liệu gồm nhiều bản ghi mà công ty của bạn đã thu thập. Bạn cài đặt hai thuật toán và kiểm tra chúng bằng một vài tập dữ liệu khác nhau. Thời gian chạy được thống kê trong bảng 1. 
 <table>
 <tbody>
 <tr>
@@ -42,16 +42,17 @@ Giả sử bạn được phân công viết một chương trình để xử l�
 </table>
 Bảng 1: Thời gian chạy của hai thuật toán 1, 2
 
-Từ bảng 1 ta có thể đánh giá một cách không chính thức rằng thuật toán nào tốt hơn (vì thường là ta có thể ước lượng số lượng bản ghi cần xử lý). Với một công ty thì kết luận dựa trên việc chạy thử như vậy có thể chấp nhận được. Nhưng từ góc nhìn của một người lập trình, phương án tốt hơn là có thể đánh giá thời gian chạy của hai thuật toán **trước khi** tiến hành chạy thử - như vậy chỉ cần cài đặt một lần cho thuật toán có thời gian chạy nhỏ hơn. 
+Từ bảng 1 ta có thể đánh giá một cách không chính thức rằng thuật toán nào tốt hơn (vì thường là ta có thể ước lượng số lượng bản ghi cần xử lý). Với một công ty thì kết luận dựa trên việc chạy thử như vậy có thể chấp nhận được. Nhưng với người lập trình, nó sẽ tốt hơn nếu có thể đánh giá thời gian chạy của hai thuật toán **trước khi** viết code và chạy thử - sau đó chỉ cần cài đặt thuật toán tốt hơn.
 
 Các kỳ thi lập trình cũng đòi hỏi việc đánh giá tương tự: kích cỡ của tập dữ liệu được cho trước trong đề bài. Giả sử ta đã nghĩ ra được một thuật toán. Câu hỏi cần đặt ra trước khi bắt tay vào cài đặt là: thuật toán này có đáng để cài đặt không? Liệu nó có thể chạy trên bộ test lớn nhất trong thời gian cho phép không? Nếu ta có thể nghĩ ra một vài thuật toán khác, nên chọn thuật nào để cài đặt?
 
-Các câu hỏi trên dẫn tới câu hỏi cốt lõi hơn: **Làm sao để so sánh hai thuật toán với nhau?** Quay trở lại ví dụ 1, ta có thể ước lượng rằng khi số bản ghi vượt quá 1000, thuật toán 2 sẽ chạy nhanh hơn nhiều lần thuật toán 1. Nói cách khác, xét trên toàn bộ tập dữ liệu, thuật toán 2 sẽ chạy tốt hơn trên hầu hết các trường hợp.
+Các câu hỏi trên dẫn tới câu hỏi cốt lõi hơn: **Làm sao để so sánh hai thuật toán với nhau?** Quay trở lại ví dụ 1, ta có thể ước lượng rằng khi số bản ghi vượt quá 1000, thuật toán 2 sẽ chạy nhanh hơn nhiều lần thuật toán 1. Nói cách khác, xét trên tất cả các tập dữ liệu có thể, thuật toán 2 sẽ chạy tốt hơn trong hầu hết các trường hợp.
 
-Kết luận so sánh về độ tốt giữa hai thuật toán đã được chứng minh là có thể được thiết lập trong hầu hết các trường hợp - cho trước 2 thuật toán, hoặc là một thuật gần như luôn luôn tốt hơn thuật còn lại, hoặc là cả hai chạy xấp xỉ tốt như nhau. Như vậy, chúng ta sẽ định nghĩa độ tốt của thuật toán dựa vào đánh giá độ hiệu quả chạy trên toàn bộ tập dữ liệu như trên. Đánh giá này sẽ là ý tưởng chính đằng sau các định nghĩa cụ thể mà chúng ta sẽ đề cập về sau.
+Có thể kết luận được rằng trong hầu hết các trường hợp - cho trước 2 thuật toán, hoặc là một thuật toán gần như luôn luôn tốt hơn, hoặc là cả hai xấp xỉ tốt như nhau. Như vậy, chúng ta sẽ định nghĩa độ tốt của thuật toán dựa vào đánh giá độ hiệu quả chạy trên toàn bộ tập dữ liệu như trên. Đánh giá này sẽ là ý tưởng chính đằng sau các định nghĩa cụ thể mà chúng ta sẽ đề cập về sau.
 
 ## Mẹo gộp hai thuật toán
-Nếu xem xét Ví dụ 1 kỹ hơn chúng ta sẽ thấy là có một thuật toán với thời gian chạy được thống kê ở Bảng 2:
+Nếu đối chiếu với hai thuật toán ví dụ 1, không khó để thấy rằng có một thuật toán với thời gian chạy tương tự với chúng trong bảng 2
+
 <table>
 <tbody>
 <tr>
@@ -78,9 +79,9 @@ Bảng 2: Thời gian chạy của thuật toán 3
 
 Ý tưởng của thuât toán 3: nếu số lượng bản ghi nhỏ thì ta áp dụng thuật toán 1, ngược lại áp dụng thuật toán 2.
 
-Ý tưởng tương tự thường được sử dụng trong thực tế. Một ví dụ là trong các hàm sắp xếp *sort()* trong thư viện của các ngôn ngữ lập trình thường được cài đặt theo thuật toán *QuickSort* với nhiều cải tiến, ví dụ:
+Ý tưởng tương tự thường được áp dụng vào thực tế. Một ví dụ là trong các hàm sắp xếp *sort()* được cung cấp bởi thư viện của các ngôn ngữ lập trình thường được cài đặt theo thuật toán *QuickSort* với nhiều cải tiến, ví dụ:
 
-+ Nếu số lượng phần tử quá nhỏ, chạy thuật toán sắp xếp chèn *InsertSort* (vì *InsertSort* chạy nhanh hơn *QuickSort* với tập đầu vào kích cỡ nhỏ).
++ Nếu số lượng phần tử quá nhỏ, chạy thuật toán sắp xếp chèn *InsertSort* (vì *InsertSort* chạy hơn với tập dữ liệu kích thước nhỏ).
 + Nếu vị trí phần tử chốt không tốt, chuyển sang chạy thuật toán sắp xếp trộn *MergeSort*.
 
 # Thế nào là độ hiệu quả của thuật toán?
@@ -105,7 +106,7 @@ Tuy nhiên, thế nào là là trường hợp xấu nhất? Một cách đơn g
 
 Hiểu chính xác thì "kích cỡ tập đầu vào" là đại lượng gì? Theo định nghĩa chính thống, kích cỡ tập đầu vào được viết thành một tập hữu hạn các ký tự (với ít nhất 02 'ký tự'). Trong bài này ta có thể coi tập ký tự đó là các số tự nhiên từ 0 tới 255. Như vậy "kích cỡ tập đầu vào" được tính đúng bằng số bytes của tệp chứa dữ liệu đầu vào (input file).
 
-Thường thì trong bộ dữ liệu vào sẽ có một hoặc nhiều số biểu diễn các đại lượng tỷ lệ thuận với kích cỡ của tập đầu vào. 
+Thường thì một phần của bộ dữ liệu sẽ là một số (hoặc một vài số), mà kích cỡ của tập đầu vào sẽ tỉ lệ thuận với số này.
 
 Chẳng hạn như trong ví dụ 2, ta có một số tự nhiên $N$ và một mảng với $N$ số integer. Kích cỡ theo đơn vị bytes của file đầu vào sẽ xấp xỉ $5N$ (phụ thuộc vào hệ điều hành và cấu trúc máy tính, nhưng sẽ luôn tuyến tính với $N$).
 
@@ -130,9 +131,10 @@ Dễ thấy nếu các phần tử trong mảng $A$ được sắp xếp theo ch
 
 Có thể thấy rằng việc xác định chính xác hàm $f$ cho các chương trình phức tạp hơn là khá khó khăn. Thêm vào đó, trong nhiều trường hợp dạng chính xác của hàm $f$ là không cần thiết. Trong tính toán trên giá trị $-0.5N$ có thể bỏ qua, vì khi $N$ lớn thì $0.5N$ nhỏ hơn rất nhiều so với $1.5N^2$ và không ảnh hưởng lớn tới thời gian chạy. Mệnh đề "$f(N)$ xấp xỉ bằng $1.5N^2$" cho ta tất cả thông tin mà ta cần. Tiếp theo chúng ta sẽ thấy rằng, khi so sánh thuật toán này với một thuật toán nào đó khác để giải cùng một bài toán, hằng số $1.5$ cũng không thật quan trọng.
 
-Xét hai thuật toán, một có thời gian chạy $1.5N^2$ và một có thời gian chạy $0.0001N^3$. Dễ nhận thấy rằng với $N > 1000$ thì thuật toán đầu tiên chạy nhanh hơn - khi $N$ tăng, khoảng cách về độ hiệu quả giữa hai thuật toán càng trở nên rõ ràng. Trong khi thuật toán đầu tiên có thể giải quyết bài toán với $N = 20 000$ chỉ trong thời gian tính bằng giây, thuật toán thứ hai phải mất tới vài phút trên các máy tính hiện đại.
+Xét hai thuật toán, một có thời gian chạy $N^2$ và một có thời gian chạy $0.0001N^3$. Dễ nhận thấy rằng với $N > 1000$ thì thuật toán đầu tiên chạy nhanh hơn - khi $N$ tăng, khoảng cách về độ hiệu quả giữa hai thuật toán càng trở nên rõ ràng. Trong khi thuật toán đầu tiên có thể giải quyết bài toán với $N = 20 000$ chỉ trong thời gian tính bằng giây, thuật toán thứ hai phải mất tới vài phút trên các máy tính hiện đại.
 
 Sự khác biệt như trên sẽ luôn xảy ra nếu một trong hai thuật toán có *thời gian chạy* tăng **tiệm cận nhanh hơn** so với *thời gian chạy* của thuật toán còn lại (nói cách khác, khi $N$ đủ lớn để kết quả phép tính giới hạn **lim** của tỷ lệ giữa hai đại lượng này bằng 0 hoặc $\infty$. ND: trong bài này tác giả không nói rõ việc so sánh độ phức tạp theo phép tính giới hạn, chỉ cần hiểu khái niệm **tiệm cận** có nghĩa là **kích cỡ đầu vào đủ lớn**. Như vậy **tiệm cận nhanh hơn** có nghĩa là ** nhanh hơn khi đầu vào đủ lớn**). Bất kể các hằng số nhận giá trị nào, một thuật toán có *thời gian chạy* tỷ lệ (thuận) với $N^2$ sẽ **luôn luôn hiệu quả hơn** một thuật toán khác có *thời gian chạy* tỷ lệ với $N^3$ trong **hầu hết các trường hợp của tập đầu vào**. Nhận định này chính là ý tưởng chủ đạo để xây dựng định nghĩa chính thức của các khái niệm.
+
 
 
 # Các khái niệm cơ bản
@@ -143,11 +145,11 @@ $$
 \forall N > N_0; f(N) < c.g(N)
 $$
 
-Mệnh đề trên có thể diễn dịch như sau: $f(N)$ thuộc $O(g(N))$ nếu với $c$ nào đó phần lớn đồ thị của hàm $f$ nằm dưới đồ thị của hàm $c.g$. Chú ý rằng điều này có nghĩa là độ tăng của hàm $f$ không vượt quá độ tăng của hàm $g$. (ND: ký hiệu O-lớn là ký hiệu chỉ **tập hợp của các hàm số** có độ phức tạp thời gian **lớn hơn hoặc bằng** một hàm số cho trước, vì vậy ở đây quan hệ giữa $f$ và $O(g(N))$ là *(phần tử) thuộc (tập hợp)*.)
+Mệnh đề trên có thể diễn dịch như sau: $f(N)$ thuộc $O(g(N))$ nếu với $c$ nào đó toàn bộ đồ thị của hàm $f$ nằm dưới đồ thị của hàm $c.g$. Chú ý rằng điều này có nghĩa là tốc độ tăng của hàm $f$ không vượt quá độ tăng của hàm $g$. (ND: ký hiệu O-lớn là ký hiệu chỉ **tập hợp của các hàm số**, vì vậy ở đây quan hệ giữa $f$ và $O(g(N))$ là *(phần tử) thuộc (tập hợp)*.)
 
 Thay vì viết "$f(N)$ thuộc $O(g(N))$" ta thường viết là "$f(N)$ = $O(g(N))$". Chú ý là dấu "=" không có tính đối xứng - viết "$O(g(N)) = f (N)$" là sai và không có ý nghĩa gì, đồng thời mệnh đề "$g(N) = O(f (N))$" cũng không phải luôn đúng (sẽ được chỉ ra ở phần sau của bài viết).
 
-Định nghĩa trên được biết tới là ký pháp O-lớn và được sử dụng để chỉ ra cận trên của độ tăng của một hàm số.
+Định nghĩa trên được biết tới là ký pháp O-lớn và được sử dụng để chỉ ra cận trên của tốc độ tăng của một hàm số.
 
 Xét hàm số $f (N) = 1.5N^2 – 0.5N$ trong ví dụ 2. Ta có thể phát biểu rằng $f (N) = O(N^2)$ (một trường hợp khả dĩ cho các hằng số là $c = 2$ và $N_0 = 0$). Điều này có nghĩa là hàm $f$ **không tăng (tiệm cận) nhanh hơn ** $N^2$.
 
