@@ -1,8 +1,8 @@
 #Cấu trúc dữ liệu
 
-Nguồn: [topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/data-structures/)
+**Nguồn:** [topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/data-structures/)
 
-Tác giả: [timmac](https://www.topcoder.com/members/timmac)
+**Tác giả:** [timmac](https://www.topcoder.com/members/timmac)
 
 Mặc dù máy tính đã có thể xử lý hàng triệu phép tính mỗi giây, nhưng khi một bài toán trở nên rộng lớn và phức tạp, cách tổ chức vẫn vô cùng quan trọng. Một trong những khía cạnh quan trọng nhất để giải quyết nhanh một bài toán chính là dữ liệu của bài toán đó được lưu trữ như thế nào trong bộ nhớ.
 Để minh họa điểm này, hãy tham khảo ví dụ sau: bạn đi đến thư viện địa phương, thử tìm kiếm một quyển sách với chủ đề cụ thể. Đa phần, các thư viện hiện nay đều có thể sử dụng hệ thống tra cứu điện tử. Tuy vậy, hãy xét trường hợp tệ nhất khi bạn sẽ nhận được một chỉ mục để tìm ra tên và tác giả của quyển  sách mà bạn muốn. Các cuốn sách được xếp theo lĩnh vực. Trong mỗi chủ đề, sách lại được xếp theo tên tác giả, nhờ vậy mà việc lấy và cất sách từ giá trở nên khá dễ dàng và đơn giản. 
