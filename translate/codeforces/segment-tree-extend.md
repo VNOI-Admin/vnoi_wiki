@@ -34,16 +34,16 @@ Với mỗi nút(ví dụ như nút $x$) chúng ta lưu ba biến nguyên:
 **Định lý 1** : Khi ghép hai nút con lại ta chỉ cần thao tác sau
 
 ```cpp
-    tmp = min(o[2 * x], c[2 * x + 1])
-    t[x] = t[2 * x] + t[2 * x + 1] + tmp
-    o[x] = o[2 * x] + o[2 * x + 1] - tmp
-    c[x] = c[2 * x] + c[2 * x + 1] - tmp
+tmp = min(o[2 * x], c[2 * x + 1]);
+t[x] = t[2 * x] + t[2 * x + 1] + tmp;
+o[x] = o[2 * x] + o[2 * x + 1] - tmp;
+c[x] = c[2 * x] + c[2 * x + 1] - tmp;
 ```
 
 Và chúng ta cần làm một hàm xây cây như thế này:
 
 ```cpp
-       void build(int id = 1,int l = 0,int r = n){
+     void build(int id = 1,int l = 0,int r = n){
         if(r - l < 2){
             if(s[l] == '(')
                 o[id] = 1;
@@ -99,10 +99,10 @@ Vậy ta đã sắp xếp lại thứ tự các truy vấn sao cho giá trị $k
 Mã giả (theo hệ 0)
 
 ```cpp
-    po = 0
+    po = 0;
     for j = 0 to q-1
     	while po < n and a[p[po]] <= k[w[j]]
-    		b[p[po]] = 0, po = po + 1
+    		b[p[po]] = 0, po = po + 1;
 ```
 
 Vậy ta có thể viết hàm xây dựng cây như sau:
