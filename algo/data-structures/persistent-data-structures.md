@@ -13,7 +13,7 @@ Xét bài toán ví dụ:
 - Cho một dãy $A$ gồm $N$ phần tử.
 - Có 2 loại truy vấn:
     1. Update: Gán $A_i = v$
-    2. Query: Tìm $min(A_i, ..., A_j)$ tại thời điểm sau phép gán thứ $K$.
+    2. Query: Tìm $max(A_i, ..., A_j)$ tại thời điểm sau phép gán thứ $K$.
 
 Nếu không có đoạn **tại thời điểm sau phép gán thứ K**, bài toán là 1 bài cơ bản trên **Interval Tree**. Đoạn **tại thời điểm sau phép gán thứ K** buộc chúng ta phải lưu lại các thông tin về lịch sử cập nhật CTDL - việc này được giải quyết bằng các Persistent Data Structures.
 
@@ -116,13 +116,13 @@ Giải thích:
 
 - Ban đầu, ta có một mảng it, lưu tất cả các nút sẽ được sinh ra của IT. Mỗi nút gồm có
     - Chỉ số của con trái, index của con phải (2 biến `left` và `right`)
-    - Giá trị nhỏ nhất của các số trong khoảng mà nút quản lý (ở version khi nút đó được tạo ra): biến `ln`
+    - Giá trị lớn nhất của các số trong khoảng mà nút quản lý (ở version khi nút đó được tạo ra): biến `ln`
 - Ta lưu thêm chỉ số của các nút gốc ở các version khác nhau vào một mảng `ver`
 - Hàm `update`:
     - Tạo ra các nút mới, và trỏ đến các con ở version cũ hoặc version mới, tùy theo các con có bị thay đổi hay không
     - Trả lại index của nút mới được tạo
 - Hàm `get`:
-    - Trả lại min của một đoạn được quản lý bởi nút `nodeId`
+    - Trả lại max của một đoạn được quản lý bởi nút `nodeId`
 
 ## Phân tích
 
