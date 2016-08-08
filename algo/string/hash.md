@@ -46,11 +46,11 @@ Chúng ta cần tìm ra tất cả các vị trí $i (1 \le i \le m − n + 1)$ 
 
 Đây chính là tư tưởng của thuật toán: đổi 2 xâu từ hệ cơ số 26 ra hệ cơ số 10, rồi đem so sánh ở hệ cơ số 10. Tuy nhiên, chúng ta nhận thấy rằng, khi đổi 1 xâu ra biểu diễn ở hệ cơ số 10, biểu diễn này có thể rất lớn và nằm ngoài phạm vi lưu trữ số nguyên của máy tính.
 
-Để khắc phục điều này, chúng ta chuyển sang so sánh 2 biểu diễn của 2 xâu ở hệ cơ số 10 sau khi lấy phần dư cho một số nguyên đủ lớn. Cụ thể hơn: nếu biểu diễn trong hệ thập phân của xâu $a$ là $x$ và biểu diễn trong hệ thập phân của xâu $b$ là $y$, chúng ta sẽ coi $a$ bằng $b$ ‘khi và chỉ khi’ $x \mod base = y \mod base$ trong đó $base$ là một số nguyên đủ lớn.
+Để khắc phục điều này, chúng ta chuyển sang so sánh 2 biểu diễn của 2 xâu ở hệ cơ số 10 sau khi lấy phần dư cho một số nguyên đủ lớn. Cụ thể hơn: nếu biểu diễn trong hệ thập phân của xâu $a$ là $x$ và biểu diễn trong hệ thập phân của xâu $b$ là $y$, chúng ta sẽ coi $a$ bằng $b$ _‘khi và chỉ khi’_ $x \bmod base = y \bmod base$ trong đó $base$ là một số nguyên đủ lớn.
 
-Dễ dàng nhận thấy việc so sánh $x \mod base$ với $y \mod base$ rồi kết luận $a$ có bằng với $b$ hay không là sai. $x \mod base = y \mod base$ chỉ là điều kiện cần để $a$ bằng $b$ chứ chưa phải điều  kiện đủ. Tuy nhiên, chúng ta sẽ chấp nhận lập luận sai này trong thuật toán Hash. Và coi điều kiện cần như điều kiện đủ. Trên thực tế, lập luận sai này có những lúc dẫn đến so sánh xâu không chính xác và chương trình bị chạy ra kết quả sai. Nhưng cũng thực tế cho thấy rằng, khi chọn $base$ là một số nguyên lớn, số lượng những trường hợp sai rất ít, và ta có thể coi Hash là một thuật toán chính xác.
+Dễ dàng nhận thấy việc so sánh $x \bmod base$ với $y \bmod base$ rồi kết luận $a$ có bằng với $b$ hay không là sai. $x \bmod base = y \bmod base$ chỉ là điều kiện cần để $a$ bằng $b$ chứ chưa phải điều  kiện đủ. Tuy nhiên, chúng ta sẽ chấp nhận lập luận sai này trong thuật toán Hash. Và coi điều kiện cần như điều kiện đủ. Trên thực tế, lập luận sai này có những lúc dẫn đến so sánh xâu không chính xác và chương trình bị chạy ra kết quả sai. Nhưng cũng thực tế cho thấy rằng, khi chọn $base$ là một số nguyên lớn, số lượng những trường hợp sai rất ít, và ta có thể coi Hash là một thuật toán chính xác.
 
-Để đơn giản trong việc trình bày tiếp thuật toán, chúng ta sẽ gọi biểu diễn của một xâu trong hệ thập phân sau khi lấy phần dư cho base là mã Hash của xâu đó. Nhắc lại, 2 xâu bằng nhau ‘khi và chỉ khi’ mã Hash của 2 xâu bằng nhau.
+Để đơn giản trong việc trình bày tiếp thuật toán, chúng ta sẽ gọi biểu diễn của một xâu trong hệ thập phân sau khi lấy phần dư cho $base$ là mã Hash của xâu đó. Nhắc lại, 2 xâu bằng nhau _‘khi và chỉ khi’_ mã Hash của 2 xâu bằng nhau.
 
 Trở lại bài toán ban đầu, chúng ta cần chỉ ra $P$ xuất hiện ở những vị trí nào trong $T$. Để làm được việc này, chúng ta chỉ cần duyệt qua mọi vị trí xuất phát có thể của $P$ trong $T$. Giả sử vị trí đó là $i$, chúng ta sẽ kiểm tra $T[i..i+n−1]$ có bằng với $P$ hay không. Để kiểm tra điều này, chúng ta cần tính được mã Hash của đoạn $T[i..i+n−1]$ và mã Hash của xâu $P$.
 
@@ -65,7 +65,7 @@ for (i : 1 .. n)
 Phần khó hơn của thuật toán Hash là: Tính mã Hash của một đoạn con $T[i..j]$ của xâu $T$ $(1 \le i \le j \le N)$.
 
 - Để hình dung cho đơn giản, xét ví dụ sau: Xét xâu $s$ và biểu diễn của nó dưới cơ số 26: $(4,1,2,5,1,7,8)$. Chúng ta cần lấy mã Hash của đoạn con từ phần tử thứ 3 đến phần tử thứ 6, nghĩa là cần lấy mã Hash của xâu $(2,5,1,7)$. Nhận thấy, để lấy được xâu $s[3..6]$, chỉ cần lấy số $s[1..6]$ là $(4,1,2,5,1,7)$ trừ cho số ($s[1..2]$ nhân với $26^4$) là $(4,1,0,0,0,0)$ ta sẽ thu được $(2,5,1,7)$.
-- Để cài đặt ý tưởng này, chúng ta cần khởi tạo $26^x \mod base$ với $(0 \le x \le m)$ và mã Hash của tất cả những tiền tố của $s$, cụ thể là mã Hash của những xâu $s[1..i]$ với $(1 \le i \le m)$.
+- Để cài đặt ý tưởng này, chúng ta cần khởi tạo $26^x \bmod base$ với $(0 \le x \le m)$ và mã Hash của tất cả những tiền tố của $s$, cụ thể là mã Hash của những xâu $s[1..i]$ với $(1 \le i \le m)$.
 
 ```
 pow[0] = 1
@@ -79,7 +79,7 @@ for (i : 1 .. m)
 
 ```
 
-Trong đoạn code trên, chúng ta thu được mảng $pow[i]$ (lưu lại $26^i \mod base$) và mảng $hashT[i]$ (lưu lại mã Hash của $T[1..i]$).
+Trong đoạn code trên, chúng ta thu được mảng $pow[i]$ (lưu lại $26^i \bmod base$) và mảng $hashT[i]$ (lưu lại mã Hash của $T[1..i]$).
 
 - Để lấy mã Hash của $T[i..j]$ ta viết hàm sau:
 
@@ -150,27 +150,27 @@ int main() {
 
 ## Đánh giá
 
-Độ phức tạp của thuật toán là $O(m + n)$. Nhưng điều quan trọng là: chúng ta có thể kiểm tra 2 xâu có giống nhau hay không trong O(1). Đây là điều tạo nên sự linh động cho thuật toán Hash. Ngoài sự linh động và tốc độ thực thi, chúng ta có thể thấy cài đặt thuật toán này thực sự rất đơn giản nếu so với các thuật toán xử lý xâu khác.
+Độ phức tạp của thuật toán là $O(m + n)$. Nhưng điều quan trọng là: chúng ta có thể kiểm tra 2 xâu có giống nhau hay không trong $O(1)$. Đây là điều tạo nên sự linh động cho thuật toán Hash. Ngoài sự linh động và tốc độ thực thi, chúng ta có thể thấy cài đặt thuật toán này thực sự rất đơn giản nếu so với các thuật toán xử lý xâu khác.
 
 # Ứng dụng
 
-Như đã đề cập ở trên, thuật toán này sẽ có trường hợp chạy sai. Tất nhiên, bên cạnh việc sử dụng Hash, còn có nhiều thuật toán xử lý xâu chuỗi khác, mang lại sự chính xác tuyệt đối. Tôi tạm gọi những thuật toán đó là ‘thuật toán chuẩn’. Việc cài đặt ‘thuật toán chuẩn’ có thể mang lại một tốc độ chạy chương trình cao hơn, độ chính xác của chương trình lớn hơn. Tuy nhiên, người làm bài sẽ phải trả giá là sự phức tạp khi cài đặt các ‘thuật toán chuẩn’ đó.
+Như đã đề cập ở trên, thuật toán này sẽ có trường hợp chạy sai. Tất nhiên, bên cạnh việc sử dụng Hash, còn có nhiều thuật toán xử lý xâu chuỗi khác, mang lại sự chính xác tuyệt đối. Tôi tạm gọi những thuật toán đó là _‘thuật toán chuẩn’_. Việc cài đặt _‘thuật toán chuẩn’_ có thể mang lại một tốc độ chạy chương trình cao hơn, độ chính xác của chương trình lớn hơn. Tuy nhiên, người làm bài sẽ phải trả giá là sự phức tạp khi cài đặt các _‘thuật toán chuẩn’_ đó.
 
-Sử dụng Hash không chỉ giúp người làm bài dễ dàng cài đặt hơn mà quan trọng ở chỗ: Hash có thể làm được những việc mà ‘thuật toán chuẩn’ không làm được. Sau đây, tôi sẽ xét một vài ví dụ để chứng minh điều này.
+Sử dụng Hash không chỉ giúp người làm bài dễ dàng cài đặt hơn mà quan trọng ở chỗ: Hash có thể làm được những việc mà _‘thuật toán chuẩn’_ không làm được. Sau đây, tôi sẽ xét một vài ví dụ để chứng minh điều này.
 
 ## [Longest palindrome substring](http://vn.spoj.com/problems/PALINY)
 
 Bài toán đặt ra như sau: Bạn được cho một xâu $s$ độ dài $n (n \le 50,000)$. Bạn cần tìm độ dài của xâu đối xứng dài nhất gồm các kí tự liên tiếp trong $s$. (Xâu đối xứng là xâu đọc từ 2 chiều giống nhau).
 
-- Một ‘thuật toán chuẩn’ không thể áp dụng vào bài toán này đó là thuật toán KMP. Ngoài KMP ra, có 2 ‘thuật toán chuẩn’ có thể áp dụng được. Thuật toán thứ nhất đó là sử dụng thuật toán Manacher để tính bán kính đối xứng tại tất cả vị trí trong xâu. Thuật toán thứ 2 đó là sử dụng Suffix Array và LCP (Longest Common Prefix) cho xâu được nối bởi $s$ và xâu $s$ viết theo thứ tự ngược lại. 2 thuật toán này đều không dễ, và nằm ngoài phạm vi bài viết, nên tôi chỉ nêu sơ qua mà không đi vào chi tiết.
-- Bây giờ, chúng ta sẽ xét thuật toán ‘không chuẩn’ là thuật toán Hash. Để đơn giản, chúng ta xét trường hợp độ dài của xâu đối xứng là lẻ (trường hợp chẵn xử lý hoàn toàn tương tự).
+- Một _‘thuật toán chuẩn’_ không thể áp dụng vào bài toán này đó là thuật toán KMP. Ngoài KMP ra, có 2 _‘thuật toán chuẩn’_ có thể áp dụng được. Thuật toán thứ nhất đó là sử dụng thuật toán Manacher để tính bán kính đối xứng tại tất cả vị trí trong xâu. Thuật toán thứ 2 đó là sử dụng Suffix Array và LCP (Longest Common Prefix) cho xâu được nối bởi $s$ và xâu $s$ viết theo thứ tự ngược lại. 2 thuật toán này đều không dễ, và nằm ngoài phạm vi bài viết, nên tôi chỉ nêu sơ qua mà không đi vào chi tiết.
+- Bây giờ, chúng ta sẽ xét thuật toán _‘không chuẩn’_ là thuật toán Hash. Để đơn giản, chúng ta xét trường hợp độ dài của xâu đối xứng là lẻ (trường hợp chẵn xử lý hoàn toàn tương tự).
 - Giả sử xâu đối xứng độ dài lẻ dài nhất có độ dài là $l$. Dễ thấy, trong xâu $s$ tồn tại xâu đối xứng độ dài $l−2$, $l−4$,... Tuy nhiên, xâu $s$ không tồn tài xâu đối xứng độ dài $l+2$, $l+4$, ... Như vậy, $s$ thỏa mãn tính chất chia nhị phân. Chúng ta sẽ chia nhị phân để tìm độ dài lớn nhất có thể. Với mỗi độ dài $l$, chúng ta cần kiểm tra xem trong xâu có tồn tại một xâu con là xâu đối xứng độ dài $l$ hay không. Để làm việc này, ta duyệt qua tất cả tất cả các xâu con độ dài $l$ trong $s$.
-- Bài toán còn lại là: kiểm tra xem $s[i . j]$ với $(1 \le i \le j \le m; (j−i+1) \mod 2 = 1)$ có phải là xâu đối xứng hay không.
-- Cách làm như sau. Gọi $t$ là xâu $s$ viết theo thứ tự ngược lại. Bằng thuật toán Hash, chúng ta có thể kiểm tra được một xâu con nào đó của $t$ có bằng một xâu con nào đó của $s$ hay không. Như vậy, chúng ta cần kiểm tra $s[i..k]$ có bằng $t[n−j+1..n−k+1]$ hay không với $k$ là tâm đối xứng, nói cách khác $k = (i+j)/2$. Như vậy bài toán đã được giải. Độ phức tạp cho 2 cách làm này là $O(n log(n))$.
+- Bài toán còn lại là: kiểm tra xem $s[i..j]$ với $(1 \le i \le j \le m; (j−i+1) \bmod 2 = 1)$ có phải là xâu đối xứng hay không.
+- Cách làm như sau. Gọi $t$ là xâu $s$ viết theo thứ tự ngược lại. Bằng thuật toán Hash, chúng ta có thể kiểm tra được một xâu con nào đó của $t$ có bằng một xâu con nào đó của $s$ hay không. Như vậy, chúng ta cần kiểm tra $s[i..k]$ có bằng $t[n−j+1..n−k+1]$ hay không với $k$ là tâm đối xứng, nói cách khác $k = (i+j)/2$. Như vậy bài toán đã được giải. Độ phức tạp cho cách làm này là $O(n log(n))$.
 
 ## k-th alphabetical cyclic
 
-Bài toán đặt ra như sau: Bạn được cho một dãy $a_1, a_2,... , a_n (n \le 50,000)$. Sắp xếp $n$ hoán vị vòng tròn của dãy này theo thứ tự từ điển. Cụ thể, các hoán vị vòng quanh của dãy này là $(a_1, a_2,... , a_n)$, $(a_2, a_3, ..., a_n, a_1)$, $(a_3, a_4, ..., a_n, a_1, a_2)$,... Dãy này có thứ tự từ điển nhỏ hơn dãy kia nếu số đầu tiên khác nhau của dãy này nhỏ hơn dãy kia. Yêu cầu bài toán là: In ra dãy có thứ tự từ điển lớn thứ k.
+Bài toán đặt ra như sau: Bạn được cho một dãy $a_1, a_2,... , a_n (n \le 50,000)$. Sắp xếp $n$ hoán vị vòng tròn của dãy này theo thứ tự từ điển. Cụ thể, các hoán vị vòng quanh của dãy này là $(a_1, a_2,... , a_n)$, $(a_2, a_3, ..., a_n, a_1)$, $(a_3, a_4, ..., a_n, a_1, a_2)$,... Dãy này có thứ tự từ điển nhỏ hơn dãy kia nếu số đầu tiên khác nhau của dãy này nhỏ hơn dãy kia. Yêu cầu bài toán là: In ra dãy có thứ tự từ điển lớn thứ $k$.
 
 - Bài toán này có thể được giải bằng Suffix Array, tuy nhiên cách cài đặt phức tạp và không phải trọng tâm của bài viết nên tôi sẽ không nêu ra ở đây.
 - Nếu tiếp cận một cách trực tiếp, chúng ta sẽ sinh ra tất cả các dãy hoán vị vòng quanh, rồi sau đó dùng một thuật toán sắp xếp để sắp xếp lại chúng theo thứ tự từ điển, cuối cùng chỉ việc in ra dãy thứ $k$ sau khi sắp xếp. Tuy nhiên độ phức tạp của thuật toán này là rất lớn và không thể đáp ứng được yêu cầu về thời gian. Cụ thể, cách này có độ phức tạp là $O(n^2 \* log(n))$, đây là tích của độ phức tạp của sắp xếp và độ phức tạp của mỗi phép so sánh dãy.
@@ -207,7 +207,7 @@ Giả sử $Q$ khoảng $10^5$, và bộ test có $T = 100$ test.
 - Ở trường hợp xấu nhất, ta có $Q$ truy vấn mà mỗi truy vấn là một cặp xâu khác nhau. Xác suất để ta trả lời đúng tất cả các truy vấn là: $(1 - 1 / 10^9)^Q$.
 - Xác suất để ta trả lời đúng tất cả các truy vấn của tất cả các test là: $(1 - 1 / 10^9)^{Q \* T}$.
 
-Thay số vào, xác suất để trả lời đúng tất cả các truy vấn là $0.9900$, đủ lớn để ta yên tâm qua tất cả các test, với điều kiện test không được sinh dựa trên $P$. (Chú ý nếu bạn đang thi những contest như Topcoder / Codeforces, người khác có thể đọc được $P$ của bạn và sinh test để challenge code của bạn).
+Thay số vào, xác suất để trả lời đúng tất cả các truy vấn là $0.9900$, đủ lớn để ta yên tâm qua tất cả các test, với điều kiện test không được sinh dựa trên $P$. (Chú ý nếu bạn đang thi những contest như Topcoder/Codeforces, người khác có thể đọc được $P$ của bạn và sinh test để challenge code của bạn).
 
 ## Trường hợp 2
 
@@ -223,7 +223,7 @@ Với $N = 30,000$, tích trên là $0.6376$, nghĩa là bạn có gần $0.40$ 
 Trên thực tế, khi cài đặt Hash sử dụng nhiều phép $mod$ sẽ làm chương trình chạy chậm. Vì vậy, để tăng tốc độ, người ta thường cài đặt với $base = 2^{64}$. Do đó, nếu sử dụng kiểu dữ liệu số 64-bit, ta không cần dùng phép $mod$ mà cứ để các phép tính tràn số. Kĩ thuật này được gọi là Hash tràn số. Tuy nhiên khi cài đặt như vậy có một vài chú ý:
 
 - Việc sử dụng $base$ không phải là số nguyên tố (và hơn nữa lại là 1 số cố định) khiến cho hàm Hash không đủ tốt. Nếu test được sinh ngẫu nhiên, thì nó không có vấn đề gì cả. Nhưng ở trên Codeforces, vì những người thi cùng có thể "hack" code của bạn bằng test tự sinh, nên bạn hầu như không thể AC các bài Hash với Hash tràn số. Bạn có thể đọc thêm về cách sinh test giết Hash tràn số [ở đây](http://codeforces.com/blog/entry/4898). Cách giải quyết là dùng hash tràn số kết hợp với một $base$ khác.
-- Nếu dùng Pascal, cần tắt báo tràn số, nếu không chương trình sẽ chạy bị lỗi (`$Q-`)
+- Nếu dùng Pascal, cần tắt báo tràn số (`$Q-`), nếu không chương trình sẽ chạy bị lỗi.
 
 
 
@@ -239,7 +239,7 @@ Trên thực tế, khi cài đặt Hash sử dụng nhiều phép $mod$ sẽ là
 
 ## Nhược điểm
 
-Nhược điểm của thuật toán Hash là tính chính xác. Mặc dù rất khó sinh test để có thể làm cho thuật toán chạy sai, nhưng không phải là không thể. Vì vậy, để nâng cao tính chính xác của thuật toán, người ta thường dùng nhiều modulo khác nhau để so sánh mã Hash (ví dụ như dùng 3 modulo một lúc)
+Nhược điểm của thuật toán Hash là tính chính xác. Mặc dù rất khó sinh test để có thể làm cho thuật toán chạy sai, nhưng không phải là không thể. Vì vậy, để nâng cao tính chính xác của thuật toán, người ta thường dùng nhiều modulo khác nhau để so sánh mã Hash (ví dụ như dùng 3 modulo một lúc).
 
 # Các nguồn tham khảo
 
