@@ -47,9 +47,8 @@ Từ đó, ta rút ra được một tư tưởng cài đặt thuật toán:
 - Khi thực hiện thao tác Query trên version t, ta chỉ cần thực hiện Query trên nút gốc ở version t.
 Tư tưởng này còn được gọi là **Path Copy** trong các tài liệu tiếng Anh.
 
- 
 
-## Cài đặt: 
+## Cài đặt:
 
 ```cpp
 
