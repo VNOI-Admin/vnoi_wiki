@@ -36,4 +36,6 @@ VNG là một trong những công ty khởi nghiệp thành công vang dội tro
 
 Ngoài ra còn gặp gỡ, trao đổi với phó giám đốc bộ phận tuyển dụng. Mục đích là để xem xét sự phù hợp với văn hoá và con người công ty.
 
+**Không nhận được lời mời làm việc (offer) không có nghĩa là bạn không giỏi mà nó nghĩa là bạn và công ty không phù hợp. Ví dụ như công ty khởi nghiệp (start-up) đòi hỏi nhân viên phải học hỏi thật nhanh, làm ra sản phẩm thật nhanh nhưng bạn thì chú trọng nhiều vào chất lượng của mã (code), rõ ràng bạn không phù hợp. Nhưng bạn lại phù hợp với công ty chú trọng hơn vào chất lượng, ví dụ Google, Facebook,... chẳng hạn. Phỏng vấn là đôi bên tìm hiểu lẫn nhau, xem có phù hợp với nhau không chứ không phải chỉ là công ty tìm người làm việc.**
+
 **Còn tiếp...**
