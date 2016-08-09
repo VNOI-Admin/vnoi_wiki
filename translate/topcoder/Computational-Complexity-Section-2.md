@@ -4,7 +4,7 @@ Nguồn bài: [Topcoder](https://www.topcoder.com/community/data-science/data-sc
 [...đọc phần 1](http://vnoi.info/contributor/translate/topcoder/Computational-Complexity-Section-1)
 
 # Giới thiệu
-Trong phần này của bài viết chúng ta sẽ tập trung vào việc ước lượng độ phức tạp cho các chương trình đệ quy. Về mặt bản chất việc này sẽ dẫn tới khảo sát tốc độ tăng của các hàm độ phức tạp thời gian thỏa mãn các công thức truy hồi. Nếu bạn chưa hiểu chính xác thế nào là một thuật giải đệ quy thì không cần lo lắng vì nó sẽ được giải thích trong các phần sau. Trước mắt chúng ta sẽ xem xét trường hợp đơn giản hơn - các chương trình không sử dụng đệ quy.
+Trong phần này của bài viết chúng ta sẽ tập trung vào việc ước lượng độ phức tạp cho các chương trình đệ quy. Về mặt bản chất việc này sẽ dẫn tới khảo sát độ tăng của các hàm độ phức tạp thời gian thỏa mãn các công thức truy hồi. Nếu bạn chưa hiểu chính xác thế nào là một thuật giải đệ quy thì không cần lo lắng vì nó sẽ được giải thích trong các phần sau. Trước mắt chúng ta sẽ xem xét trường hợp đơn giản hơn - các chương trình không sử dụng đệ quy.
 
 
 # Vòng lặp lồng nhau
@@ -44,9 +44,9 @@ Từ ví dụ trên người đọc đã có khả năng phân tích độ phứ
 
 # Sử dụng đệ quy để sinh các cấu hình tổ hợp
 
-Một ứng dụng phổ biến của đệ quy là cài đặt thuật toán quay lui để sinh ra tất cả các nghiệm của một bài toán. Ý tưởng chung là xây dựng một nghiệm từng bước một và khi một nhánh nghiệm đã được thử hết thì quay lại từng bước để xây dựng các nghiệm khác.
+Một ứng dụng phổ biến của đệ quy là cài đặt thuật toán quay lui để sinh ra tất cả các nghiệm của một bài toán. Ý tưởng chung là đào sâu vào từng nhánh nghiệm đến khi nhánh nghiệm này được thử hết thì quay lại bước trước đó để thử các nhánh nghiệm khác.
 
-Cách tiếp cận này không phải lúc nào cũng áp dụng được, có những bài toán mà ta không thể sinh ra tất cả các nghiệm theo cách từng nghiệm một như vậy. Tuy nhiên, trường hợp thường xảy ra là tập nghiệm của một bài toán trùng với một loại cấu hình tổ hợp nào đó. Thông thường đó là tập các hoán vị (với số phần tử cho trước), nhưng đôi lúc cũng có thể là các cấu hình khác (tổ hợp, số cách phân chia một tập hợp, ...)
+Cách tiếp cận này không phải lúc nào cũng áp dụng được, có những bài toán mà ta không thể sinh ra tất cả các nghiệm để thử từng nghiệm một như vậy. Tuy nhiên, trường hợp thường xảy ra là tập nghiệm của một bài toán trùng với một loại cấu hình tổ hợp nào đó. Thông thường đó là tập các hoán vị (với số phần tử cho trước), nhưng đôi lúc cũng có thể là các cấu hình khác (tổ hợp, số cách phân chia một tập hợp, ...)
 
 Lưu ý là ta luôn luôn có thể sinh ra tất cả các chuỗi của 0 và 1, kiểm tra từng chuỗi một (kiểm tra xem chuỗi đó có tương ứng với một nghiệm hợp lệ hay không) và lưu lại nghiệm tốt nhất. Nếu ta có thể tìm một cận trên của kích cỡ nghiệm tốt nhất, số nghiệm phải kiểm tra là hữu hạn. Tuy nhiên cách làm này không đủ nhanh và không nên dùng nó nếu có cách làm khác.
 
@@ -92,16 +92,16 @@ Từ ví dụ 2 chúng ta có thể nhầm tưởng rằng đệ quy chạy khô
 Mã giả mô tả thuật toán sắp xếp trộn *MergeSort*
 ~~~cpp
 MergeSort(mảng S) {
-  if (số phần tử của S nhỏ hơn hoặc bằng 1) return S;
+  if (số phần tử của S <= 1) return S;
   chia đôi S thành hai mảng con S1 và S2 với số phần tử gần bằng nhau;
   MergeSort(S1);
   MergeSort(S2);
-  ghép S1 và S2 đã sắp xếp để thu được S mới đã sắp xếp;
+  trộn S1 và S2 đã sắp xếp để thu được S mới đã sắp xếp;
   return S mới;
 }
 ~~~
 
-Ta thấy là chỉ cần $O(N)$ (hoặc $O(1)$, tùy vào cách cài đặt) để chia một mảng $N$ phần tử thành hai mảng con. Ghép hai mảng con ngắn hơn đã sắp xếp này có thể làm trong $ \Theta(N)$: khởi tạo mảng $S$ rỗng. Tại mỗi bước phần tử nhỏ nhất mà chưa có trong $S$ là phần tử đầu của $S1$ hoặc $S2$. Lấy phần tử này cho vào cuối của $S$ và cứ thế tiếp tục.
+Ta thấy là chỉ cần $O(N)$ (hoặc $O(1)$, tùy vào cách cài đặt) để chia một mảng $N$ phần tử thành hai mảng con. Trộn hai mảng con ngắn hơn đã sắp xếp này có thể làm trong $ \Theta(N)$: khởi tạo mảng $S$ rỗng. Tại mỗi bước phần tử nhỏ nhất mà chưa có trong $S$ là phần tử đầu của $S1$ hoặc $S2$. Lấy phần tử này cho vào cuối của $S$ và cứ thế tiếp tục.
 
 Như vậy tổng độ phức tạp cần để $MergeSort$ một mảng với $N$ phần tử là $\Theta(N)$ cộng với thời gian thực hiện hai lệnh gọi đệ quy.
 
@@ -110,17 +110,17 @@ $$
 f(N) = f(\lfloor N/2 \rfloor) + f(\lceil N/2 \rceil) + p(N)
 $$
 
-Với $p$ là hàm tuyến tính biểu thị tổng chi phí tính toán dành cho việc chia đôi mảng ban đầu và ghép hai mảng con vào kết quả cuối.
+Với $p$ là hàm tuyến tính biểu thị tổng chi phí tính toán dành cho việc chia đôi mảng ban đầu và trộn hai mảng con vào kết quả cuối.
 
 Công thức trên được gọi là công thức truy hồi. Nếu bạn không biết thuật ngữ này thì cũng không cần lo lắng. Từ "truy hồi" (recurrence) trong tiếng Latin có nghĩa là "chạy về phía sau". Vì vậy "công thức truy hồi" có nghĩa là giá trị của hàm $f$ được tính theo giá trị trước đó (đầu vào nhỏ hơn) của $f$.
 
-Để định nghĩa hoàn chỉnh một công thức truy hồi, ta cần chỉ ra giá trị của một vài trường hợp khởi tạo cơ bản - trong trường hợp này là $f(1)$. Các giá tị này (và hàm $p$) sẽ cho phép ta tính toán chính xác giá trị của hàm $f$.
+Để định nghĩa hoàn chỉnh một công thức truy hồi, ta cần chỉ ra giá trị của một vài trường hợp khởi tạo cơ bản - trong trường hợp này là $f(1)$. Các giá trị này (và hàm $p$) sẽ cho phép ta tính toán chính xác giá trị của hàm $f$.
 
 Tuy nhiên, như ta đã thấy ở phần 1, giá trị chính xác của hàm $f$ không phải là mục tiêu cần tính. Mặc dù về mặt lý thuyết ta có thể tính cụ thể biểu thức của hàm $f(N)$ theo dạng đóng, biểu thức đó có thể rất phức tạp và không thật sự cần thiết. Trong thực tế, ta chỉ quan tâm tới đánh giá $\Theta$ (hoặc cận trên $O-lớn$) của độ tăng của hàm $f$. Thông thường các đánh giá này có thể tính được một cách khá thuận lợi nếu ta nắm được các phương pháp tính thông dụng.
 
 Vì lý do trên, ta sẽ không cần tới dạng chính xác của hàm $p$ mà chỉ cần biết rằng $p(N) =  \Theta(N)$. Thêm vào đó, ta không cần giá trị khởi tạo của $p$. Ta chỉ cần biết rằng với $N$ nhỏ thì giá trị của $p$ sẽ dễ dàng tính được với độ phức tạp là hằng số.
 
-Lý do đằng sau việc đơn giản hóa $p$ như trên là do một nhận xét: việc thay đổi các giá trị khỏi tạo chỉ thay đổi nghiệm của công thức truy hồi chứ không thay đổi cận trên tiệm cận của hàm số. (Bạn có thể thử bằng cách tìm một hàm $p$ bất kỳ và tính $f(8), f(16)$ và $f(32)$ với các giá trị $f(1)$ khác nhau).
+Lý do đằng sau việc đơn giản hóa $p$ như trên là do một nhận xét: việc thay đổi các giá trị khởi tạo chỉ thay đổi nghiệm của công thức truy hồi chứ không thay đổi cận trên tiệm cận của hàm số. (Bạn có thể thử bằng cách tìm một hàm $p$ bất kỳ và tính $f(8), f(16)$ và $f(32)$ với các giá trị $f(1)$ khác nhau).
 
 Bên cạnh đó, vì đây chỉ là bài viết mang tính giới thiệu nên chúng ta sẽ không bàn đến các lý thuyết để xử lý các phép lấy phần nguyên, làm tròn lên và làm tròn xuống. Ta sẽ đơn giản bỏ qua các phép toán đó (ví dụ ta sẽ coi các phép chia luôn là chia lấy nguyên và làm tròn xuống).
 
@@ -190,7 +190,7 @@ Với một người mới bắt đầu thì phương pháp trên không hữu d
 
 Ta có thể biểu diễn các bước thực thi của một chương trình đệ quy trên một bộ đầu vào cho trước bằng một cây có gốc xác định. Mỗi đỉnh trên cây sẽ tương ứng với một bài toán con mà chương trình đang giải. Xét một đỉnh bất kỳ trên cây. Nếu giải bài toán thuộc đỉnh đó cần phải gọi đệ quy, đỉnh đó sẽ có các đỉnh con tương ứng với các bài toán nhỏ hơn nữa. Gốc của cây là bộ đầu vào, các lá tương ứng với các bài toán cơ bản có thể giải trực tiếp bằng các thuật toán thông thường (không đệ quy).
 
-Giả sử rằng ta đánh dấu mỗi đỉnh bằng một nhãn biể thị độ phức tạp nội tại cần có trên đỉnh đó (không tính tới độ phức tạp của lệnh gọi đệ quy). Rõ ràng là độ phức tạp của bài toán gốc bằng tổng tất cả các nhãn của các đỉnh.
+Giả sử ta đánh dấu mỗi đỉnh bằng một nhãn biểu thị độ phức tạp nội tại cần có trên đỉnh đó (không tính tới độ phức tạp của lệnh gọi đệ quy). Rõ ràng là độ phức tạp của bài toán gốc bằng tổng tất cả các nhãn của các đỉnh.
 
 Tương tự như các phần trên, ta chỉ quan tâm tới cận trên tiệm cận. Để tìm giá trị này ta có thể "làm tròn" mỗi nhãn để việc tính tổng dễ dàng hơn. Ta minh họa cách làm trên bằng một vài ví dụ sau:
 
@@ -303,7 +303,7 @@ Ta có kết quả ngược với ví dụ 6: khi ta càng đi sâu xuống dư�
 
 Vẫn như trên ta hướng tới việc tính tổng độ phức tạp trên cả cây. Lần này việc tính toán sẽ khó hơn vì lượng công việc phải tính nằm ở mức sâu nhất. Ta cần biết độ sâu của cây.
 
-Mức thấp nhất có bài toán với kích cỡ bằng $1$. Tổng quát, kích cỡ bài toán con ở mức $k$ là $N \over 3^k$. Giải phương trình $1 = N \over 3^k$ ta được $k = log_3N$. Lưu ý là ở đây ta viết rõ chỉ cơ số của hàm logarit vì cơ số này quan trọng trong việc phản ánh cấu trúc cây.
+Mức thấp nhất tương ứng bài toán kích cỡ bằng $1$. Tổng quát, kích cỡ bài toán con ở mức $k$ là $N \over 3^k$. Giải phương trình $1 = N \over 3^k$ ta được $k = log_3N$. Lưu ý là ở đây ta viết rõ chỉ cơ số của hàm logarit vì cơ số này quan trọng trong việc phản ánh cấu trúc cây.
 
 Như vậy cây đệ quy có $log_3N$ mức. Mỗi mức có $5$ lần số đỉnh so với mức trên nó, nên mức cuối cùng có $5^{log_3N}$ đỉnh. Tổng độ phức tạp ở mức cuối tương ứng là $c5^{log_3N}$.
 
