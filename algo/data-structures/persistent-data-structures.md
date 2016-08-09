@@ -214,5 +214,10 @@ Trên thực tế, Retroactive Data Structures còn đang dừng lại ở việ
 
 # Bài tập áp dụng
 
+- [SPOJ - COT](http://www.spoj.com/problems/COT/)
 - [SPOJ - MKTHNUM](http://www.spoj.com/problems/MKTHNUM/)
+- [Codechef - QUERY](https://www.codechef.com/problems/QUERY)
+- [Codechef - SORTING](https://www.codechef.com/problems/SORTING)
+- [Codeforces - Round 140 Div 1 - E](http://codeforces.com/problemset/problem/226/E)
+- [Codeforces - Round 265 Div 1 - E](http://codeforces.com/contest/464/problem/E)
 - [IPSC 2011 - Grid Surveillance](http://ipsc.ksp.sk/2011/real/problems/g.html)
