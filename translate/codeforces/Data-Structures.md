@@ -448,7 +448,7 @@ _Bài tập:_
 - [PATULJCI](http://www.spoj.com/problems/PATULJCI) 
 - [New Year Domino](http://codeforces.com/problemset/problem/500/E) 
 - [Copying Data](http://codeforces.com/problemset/problem/292/E)
-- [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/)C
+- [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/C)
 - [FRBSUM](http://www.codechef.com/JAN14/problems/FRBSUM)
 
 # 12. Mảng Hậu Tố (Suffix Array)
