@@ -21,7 +21,7 @@ Xét một dãy gồm 7 phần tử, Segment Tree sẽ trông như sau:
 
 ## Cài đặt
 
-Để cài đặt, ta có thể dùng một mảng 1 chiều, phần tử thứ nhất của mảng thể hiện nút gốc. Phần tử thứ $id$ sẽ có 2 con là $2*id$ (con trái) và $2*id+1$ (con phải). Người ta đã chứng minh được bộ nhớ cần dùng cho ST không quá $4*N$ phần tử.
+Để cài đặt, ta có thể dùng một mảng 1 chiều, phần tử thứ nhất của mảng thể hiện nút gốc. Phần tử thứ $id$ sẽ có 2 con là $2 \* id$ (con trái) và $2 \* id+1$ (con phải). Người ta đã chứng minh được bộ nhớ cần dùng cho ST không quá $4 \* N$ phần tử.
 
 ## Áp dụng
 
