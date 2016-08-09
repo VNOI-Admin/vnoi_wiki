@@ -412,6 +412,8 @@ int get(int id, int l, int r, int u, int v) {
 }
 ```
 
+Đến đây các bạn đã nắm được kiến thức cơ bản về Segment Tree. Bạn có thể làm thử một số bài luyện tập ở dưới.
+
 # 3. Ứng dụng với cấu trúc mảng động
 
 Trong loại bài toán này với mỗi nút của cây ta lưu lại một `vector` và một số biến khác.
@@ -641,16 +643,20 @@ Các bạn có thể đọc thêm ở: [Persistent Data Structures](algo/data-st
 # Bài tập áp dụng:
 
 - [VOJ - NKLINEUP](http://vn.spoj.com/problems/NKLINEUP)
-- [GSS1](http://www.spoj.com/problems/GSS1/)
+- [VOJ - GSS](http://vn.spoj.com/problems/GSS)
+- [VOJ - LITES](http://vn.spoj.com/problems/LITES)
+- [VOJ - DQUERY](http://vn.spoj.com/problems/DQUERY)
+- [VOJ - KQUERY](http://vn.spoj.com/problems/KQUERY)
+- [FREQUENT](http://www.spoj.com/problems/FREQUENT/)
+- [VOJ - KQUERY2](http://vn.spoj.com/problems/KQUERY2)
+- [GSS2](http://www.spoj.com/problems/GSS2/)
 - [GSS3](http://www.spoj.com/problems/GSS3/)
 - [MULTQ3](http://www.spoj.com/problems/MULTQ3)
-- [DQUERY](http://www.spoj.com/problems/DQUERY)
-- [KQUERY](http://www.spoj.com/problems/KQUERY)
 - [POSTERS](http://www.spoj.com/problems/POSTERS)
 - [PATULJCI](http://www.spoj.com/problems/PATULJCI)
 - [New Year Domino](http://codeforces.com/problemset/problem/500/E)
 - [Copying Data](http://codeforces.com/problemset/problem/292/E)
-- [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/)C
+- [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/)
 - [FRBSUM](http://www.codechef.com/JAN14/problems/FRBSUM)
 
 
