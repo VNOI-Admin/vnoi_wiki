@@ -1,84 +1,210 @@
 # Tất tần tật về Cây Phân Đoạn (Segment Tree)
 
-Nguồn: [Codeforces](http://codeforces.com/blog/entry/15890)
-
 [[_TOC_]]
 
 **LƯU Ý**:
 
-- Segment Tree trong 1 số tài liệu Tiếng Việt còn được dịch là Interval Tree. Tuy nhiên ở các tài liệu nước ngoài, tên gọi Segment Tree thường được dùng.
-- Tất cả hàm trong bài đều đánh số từ 0. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r)$
+- Segment Tree trong 1 số tài liệu Tiếng Việt còn được dịch là Interval Tree. Ở bài viết này, mình sẽ dùng tên Segment Tree (ST) - tên gọi phổ biến hơn của CTDL này.
+- Tất cả hàm trong bài đều đánh số từ 1. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r]$
 
-Ở trong bài viết này chúng ta sẽ chủ yếu nói về một số ứng dụng và cùng nhau giải quyết một số bài toán về cây phân đoạn. Để thuận tiện mình xin gọi cây phân đoạn là Segment Tree (ST) trong bài viết này. Sau đây là một số loại Segment Tree:
+# 0. Giới thiệu
+
+Segment Tree là một cấu trúc dữ liệu được sử dụng rất nhiều trong các kỳ thi, đặc biệt là trong những bài toán xử lý trên dãy số.
+
+Segment Tree là một [cây](translate/wcipeg/tree). Cụ thể hơn, nó là một cây nhị phân đầy đủ (mỗi nút là lá hoặc có đúng 2 nút con), với mỗi nút quản lý một đoạn trên dãy số. Với một dãy số gồm $N$ phần tử, nút gốc sẽ lưu thông tin về đoạn $[1, N]$, nút con trái của nó sẽ lưu thông tin về đoạn $[1, N/2]$ và nút con phải sẽ lưu thông tin về đoạn $[N/2+1, N]$. Tổng quát hơn: nếu nút $A$ lưu thông tin đoạn $[i, j]$, thì 2 con của nó: $A1$ và $A2$ sẽ lưu thông tin của các đoạn $[i, (i+j)/2]$ và đoạn $[(i+j)/2 + 1, j]$.
+
+## Ví dụ
+
+Xét một dãy gồm 7 phần tử, Segment Tree sẽ trông như sau:
+
+[[/uploads/segment_tree_structure_example.png]]
+
+## Cài đặt
+
+Để cài đặt, ta có thể dùng một mảng 1 chiều, phần tử thứ nhất của mảng thể hiện nút gốc. Phần tử thứ $id$ sẽ có 2 con là $2*id$ (con trái) và $2*id+1$ (con phải). Người ta đã chứng minh được bộ nhớ cần dùng cho ST không quá $4*N$ phần tử.
+
+## Áp dụng
+
+Để dễ hình dung, ta lấy 1 ví dụ cụ thể:
+
+- Cho dãy $N$ phần tử $(N \le 10^5)$. Ban đầu mỗi phần tử có giả trị 0.
+- Có $Q$ truy vấn $(Q \le 10^5)$. Mỗi truy vấn có 1 trong 2 loại:
+    - Gán giá trị $v$ cho phần tử ở vị trí $i$.
+    - Tìm giá trị lớn nhất cho đoạn $[i, j]$.
+
+Cách đơn giản nhất là dùng 1 mảng $A$ duy trì giá trị các phần tử. Với thao tác 1 thì ta gán $A[i] = v$. Với thao tác 2 thì ta dùng 1 vòng lặp từ $i$ đến $j$ để tìm giá trị lớn nhất. Rõ ràng cách này có độ phức tạp là $O(N*Q)$ và không thể chạy trong thời gian cho phép.
+
+Cách dùng Segment Tree như sau:
+
+- Với truy vấn loại 1, ta sẽ cập nhật thông tin của các nút trên cây ST mà đoạn nó quản lý chứa phần tử $i$.
+- Với truy vấn loại 2, ta sẽ tìm tất cả các nút trên cây ST mà đoạn nó quản lý nằm trong $[i, j]$, rồi lấy max của các nút này.
+
+Cài đặt như sau:
+
+```cpp
+// Truy vấn: A(i) = v
+// Hàm cập nhật trên cây ST, cập nhật cây con gốc id quản lý đọan [l, r)
+void update(int id, int l, int r, int i, int v) {
+    if (i < l || r < i) {
+        // i nằm ngoài đoạn [l, r], ta bỏ qua nút i
+        return ;
+    }
+    // i nằm trong đoạn [l, r], ta cần cập nhật nút id
+    ST[id] = max(ST[id], v);
+
+    // Gọi đệ quy để xử lý các nút con của nút id
+    int mid = (l + r) / 2;
+    update(id*2, l, mid, i, v);
+    update(id*2 + 1, mid+1, r, i, v);
+}
+
+// Truy vấn: tìm max đoạn [u, v]
+// Hàm tìm max các phần tử trên cây ST nằm trong cây con gốc id - quản lý đoạn [l, r]
+int get(int id, int l, int r, int u, int v) {
+    if (v < l || r < u) {
+        // Đoạn [u, v] không giao với đoạn [l, r], ta bỏ qua đoạn này
+        return -INFINITY;
+    }
+    if (u <= l && r <= v) {
+        // Đoạn [l, r] nằm hoàn toàn trong đoạn [u, v] mà ta đang truy vấn, ta trả lại
+        // thông tin lưu ở nút id
+        return ST[id];
+    }
+    int mid = (l + r) / 2;
+    // Gọi đệ quy với các con của nút id
+    return max(get(id*2, l, mid, u, v), get(id*2 + 1, mid+1, r, u, v));
+}
+```
+
+## Phân tích độ phức tạp
+
+Mỗi thao tác truy vấn trên cây ST có độ phức tạp $O(logN)$. Để chứng minh điều này, ta xét 2 loại thao tác trên cây ST:
+
+1. Truy vấn 1 phần tử trên ST (giống thao tác `update` ở trên)
+2. Truy vấn nhiều phần tử trên ST (giống thao tác `get` ở trên)
+
+Đầu tiên ta có thể chứng minh được:
+
+- Độ cao của cây ST không quá $O(logN)$.
+- Tại mỗi độ sâu của cây, không có phần tử nào nằm trong 2 nút khác nhau của cây.
+
+### Thao tác loại 1
+
+Với thao tác này, ở mỗi độ sâu của cây, ta chỉ gọi đệ quy các con của không quá 1 nút. Phân tích đoạn code trên, ta xét các trường hợp:
+
+- Phần tử cần xét không nằm trong đoạn $[l, r]$ do nút $id$ quản lý. Trường hợp này ta dừng lại, không xét tiếp.
+- Phần tử cần xét nằm trong đoạn $[l, r]$ do nút $id$ quản lý. Ta xét các con của nút `id`. Tuy nhiên chỉ có 1 con của nút `id` chứa phần tử cần xét, với con còn lại, ta sẽ dừng ngay mà không xét các con của nó nữa.
+
+Do đó độ phức tạp của thao tác này không quá $O(logN)$.
+
+
+### Thao tác loại 2
+
+Với thao này, ta cũng chứng minh tương tự, nhưng ở mỗi dộ sâu của cây, ta chỉ gọi hàm đệ quy với các con của không quá 2 nút.
+
+Ta chứng minh bằng phản chứng, giả sử ta gọi đệ quy với 3 nút khác nhau của cây ST (đánh dấu màu đỏ):
+
+[[/uploads/segment_tree_proof_time_complexity.png]]
+
+Trong trường hợp này, rõ ràng toàn bộ đoạn của nút ở giữa quản lý nằm trong đoạn đang truy vấn. Do đó ta không cần phải gọi đệ quy các con của nút ở giữa. Từ đó suy ra vô lý, nghĩa là ở mỗi độ sâu ta chỉ gọi đệ quy với không quá 2 nút.
 
 # 1. Segment Tree cổ điển
 
-Tại sao lại gọi là cổ điển? Đây là dạng ST đơn giản nhất, chúng ta chỉ giải quyết truy vấn update một phần tử và truy vấn đoạn, mỗi nút lưu một loại dữ liệu cơ bản như biến số hay biến luận lý (boolean). 
+Tại sao lại gọi là cổ điển? Đây là dạng ST đơn giản nhất, chúng ta chỉ giải quyết truy vấn update một phần tử và truy vấn đoạn, mỗi nút lưu một loại dữ liệu cơ bản như biến số hay biến luận lý (boolean).
 
 ## Ví dụ 1
 
 **Bài toán**: [380C-Codeforces](http://codeforces.com/contest/380/problem/C)
 
-**Tóm đề**:
+### Tóm tắt đề
 
 Cho một dãy ngoặc độ dài $N$ $(N\le10^6)$, cho $M$ truy vấn có dạng $l_i, r_i (1\le l_i\le r_i \le N)$. Yêu cầu của bài toán là với mỗi truy vấn tìm một chuỗi con (không cần liên tiếp) của chuỗi từ $l_i$ đến $r_i$ dài nhất mà tạo thành dãy ngoặc đúng.
 
-**Lời giải**:
+### Lời giải
 
-Với mỗi nút(ví dụ như nút $x$) chúng ta lưu ba biến nguyên:
+Với mỗi nút(ví dụ như nút $id$, quản lý đoạn $[l, r]$) chúng ta lưu ba biến nguyên:
 
-- `t[x]`= Là kết quả trong đoạn đang xét.
-- `o[x]`= Sô lượng dấu $($ sau khi đã xóa hết các phần tử thuộc dãy ngoặc đúng độ dài `t[x]` trong đoạn.
-- `c[x]`= Số lượng dấu $)$ sau khi đã xóa hết các phần tử thuộc dãy ngoặc đúng độ dài `t[x]` trong đoạn.
+- `optimal`: Là kết quả tối ưu trong đoạn $[l, r]$.
+- `open`: Sô lượng dấu `(` sau khi đã xóa hết các phần tử thuộc dãy ngoặc đúng độ dài `optimal` trong đoạn.
+- `close`: Số lượng dấu `)` sau khi đã xóa hết các phần tử thuộc dãy ngoặc đúng độ dài `optimal` trong đoạn.
 
-**Định lý 1** : Khi ghép hai nút con lại ta chỉ cần thao tác sau
-
-```cpp
-tmp = min(o[2 * x], c[2 * x + 1]);
-t[x] = t[2 * x] + t[2 * x + 1] + tmp;
-o[x] = o[2 * x] + o[2 * x + 1] - tmp;
-c[x] = c[2 * x] + c[2 * x + 1] - tmp;
-```
-
-Và chúng ta cần làm một hàm xây cây như thế này:
+Ta tạo 1 kiểu dữ liệu cho 1 nút của cây ST như sau:
 
 ```cpp
-     void build(int id = 1,int l = 0,int r = n){
-        if(r - l < 2){
-            if(s[l] == '(')
-                o[id] = 1;
-            else
-                c[id] = 1;
-            return ;
-        }
-        int mid = (l+r)/2;
-        build(2 * id,l,mid);
-        build(2 * id + 1,mid,r);
-        int tmp = min(o[2 * id],c[2 * id + 1]);
-        t[id] = t[2 * id] + t[2 * id + 1] + tmp;
-        o[id] = o[2 * id] + o[2 * id + 1] - tmp;
-        c[id] = c[2 * id] + c[2 * id + 1] - tmp;
+struct Node {
+    int optimal;
+    int open;
+    int close;
+
+    Node(int opt, int o, int c) { // Khởi tạo struct Node
+        optimal = opt;
+        open = o;
+        close = c;
     }
+};
 ```
 
-Với mỗi truy vấn ta trả về ba giá trị là $t, o, c$ như đã nói ở trên, và ta có thể làm điều này dễ dàng trong C++ bằng `pair<int,pair<int,int> >`:
+Và ta khai báo cây ST như sau:
+
+```cpp
+Node st[MAXN * 4];
+```
+
+### Định lý 1
+
+Để tính thông tin ở nút $id$ quản lý đoạn $[l, r]$, dựa trên 2 nút con $2*id$ và $2*id+1$, ta định nghĩa 1 thao tác kết hợp 2 nút của cây ST:
+
+```cpp
+Node operator + (const Node& left, const Node& right) {
+    Node res;
+    // min(số dấu "(" thừa ra ở cây con trái, và số dấu ")" thừa ra ở cây con phải)
+    int tmp = min(left.open, right.close);
+
+    // Để xây dựng kết quả tối ưu ở nút id, ta nối dãy ngoặc tối ưu ở 2 con, rồi thêm
+    // min(số "(" thừa ra ở con trái, số ")" thừa ra ở con phải).
+    res.optimal = left.optimal + right.optimal + tmp;
+
+    res.open = left.open + right.open - tmp;
+    res.close = left.close + right.close - tmp;
+
+    return res;
+}
+```
+
+Ban đầu ta có thể khởi tạo cây như sau:
+
+```cpp
+void build(int id, int l, int r) {
+    if (l == r) {
+        // Đoạn [l, r] chỉ có 1 phần tử.
+        if (s[l] == '(') st[id] = Node(0, 1, 0);
+        else st[id] = Node(0, 0, 1);
+        return ;
+    }
+    int mid = (l + r) / 2;
+    build(id * 2, l, mid);
+    build(id * 2 + 1, mid+1, r);
+
+    st[id] = st[id * 2] + st[id * 2 + 1];
+}
+```
+
+Để trả lời truy vấn, ta cũng làm tương tự như trong bài toán cơ bản:
 
 ``` cpp
-    typedef pair<int,int>pii;
-    typedef pair<int,pii>   node;
-    node segment(int x,int y,int id = 1,int l = 0,int r = n){
-        if(l >= y || x >= r)   return node(0,pii(0,0));
-        if(x <= l && r <= y)
-            return node(t[id],pii(o[id],c[id]));
-        int mid = (l+r)/2;
-        node a = segment(x,y,2 * id,l,mid), b = segment(x,y,2 * id + 1,mid,r);
-        int T, temp, O, C;
-        temp = min(a.y.x , b.y.y);
-        T = a.x + b.x + temp;
-        O = a.y.x + b.y.x - temp;
-            C = a.y.y + b.y.y - temp;
-        return node(T,pii(O,C));    
+Node query(int id, int l, int r, int u, int v) {
+    if (v < l || r < u) {
+        // Trường hợp không giao nhau
+        return Node(0, 0, 0);
     }
+    if (u <= l && r <= v) {
+        // Trường hợp [l, r] nằm hoàn toàn trong [u, v]
+        return st[id];
+    }
+
+    int mid = (l + r) / 2;
+    return query(id * 2, l, mid, u, v) + query(id * 2 + 1, mid+1, r, u, v);
+}
 ```
 
 ## Ví dụ 2
@@ -90,7 +216,7 @@ Với mỗi truy vấn ta trả về ba giá trị là $t, o, c$ như đã nói 
 - Cho một dãy số $a_i(1\le a_i \le 10^9)$ có $N(1\le N \le 30000)$ phần tử
 - Cho $Q(1\le Q \le 200000)$ truy vấn có dạng 3 số nguyên là $l_i, r_i, k_i$ $(1\le l_i\le r_i\le N, 1\le k \le 10^9)$. Yêu cầu của bài toán là đếm số lượng số $a_j (l_i\le j \le r_i)$ mà $a_j\ge k$.
 
-Giả sử chúng ta có một mảng $b$ với $b_i=1$ nếu $a_i>k$ và bằng $0$ nếu ngược lại. Thì chúng ta có thể dễ dàng trả lời truy vấn $(i, j, k)$ bằng cách lấy tổng từ $i$ đến $j$. 
+Giả sử chúng ta có một mảng $b$ với $b_i=1$ nếu $a_i>k$ và bằng $0$ nếu ngược lại. Thì chúng ta có thể dễ dàng trả lời truy vấn $(i, j, k)$ bằng cách lấy tổng từ $i$ đến $j$.
 
 Điều này hoàn toàn là có thể nếu chúng ta xử lý trước các truy vấn này. Lưu lại các truy vấn, sắp xếp chúng lại theo thứ tự tăng dần theo $k$ đây sẽ là thứ tự chúng ta sẽ trả lời truy vấn. Lúc đầu chúng ta lưu tất cả phần tử mảng $b$ là $1$ và sẽ từ từ tắt các vị trí.
 
@@ -141,7 +267,7 @@ Và cuối cùng là thực hiện truy vấn lấy tổng một đoạn:
 
 ```cpp
     int sum(int x,int y,int id = 1,int l = 0,int r = n){// [x, y)
-	if(x >= r or l >= y)	return 0;// [x, y) không giao [l,r) 
+	if(x >= r or l >= y)	return 0;// [x, y) không giao [l,r)
 	if(x <= l && r <= y)	// [l,r) là tập con [x,y)
 		return s[id];
 	int mid = (l + r)/2;
@@ -172,7 +298,7 @@ Trong thủ tục chính sẽ là như sau:
 **Bài toán**: [SPOJ-POSTERS]( http://www.spoj.com/problems/POSTERS/)
 
 **Tóm đề**:
- 
+
 Cho $N$ băng rôn $(1\le N \le 40000)$ có chiều cao là 1 được treo trên một chiếc bảng có chiều cao cũng là 1, băng rôn thứ $i$ phủ từ đoạn $l_i$ tới $r_i$ $(1\le l_r \lt r_i \le 10^7)$. Các băng rôn được cho theo thứ tự sắp xếp lên bảng. Yêu cầu của bài toán là phải đếm số lượng băng rôn không bị che hoàn toàn bởi các băng rôn khác sau khi đã gắn tất cả băng rôn lên.
 
 Chúng ta không cần lưu tất cả giá trị $[1,10^7]$. Chúng ta chỉ cần lưu lại một tập các $s_i$ mà trong đó mỗi $s_i$ xuất hiện trong ít nhất một truy vấn $l$ hoặc $r$. Sau đó ta dùng chính những giá trị này để cập nhật cây phân đoạn.
@@ -204,7 +330,7 @@ Hàm update với từng nút:
 	}
 ```
 
-Vậy với mỗi lần update ta nên gọi hàm $upd(x,y+1,i)$ với $i$ là màu cần tô. 
+Vậy với mỗi lần update ta nên gọi hàm $upd(x,y+1,i)$ với $i$ là màu cần tô.
 Và cuối cùng là hàm lấy truy vấn:
 
 ```cpp
@@ -212,7 +338,7 @@ Và cuối cùng là hàm lấy truy vấn:
 	void cnt(int id = 1,int l = 0,int r = n){
 		if(lazy[id]){
 			se.insert(lazy[id]);
-			return ; 
+			return ;
 			// không cần xét các con do cả đoạn là giống màu
 		}
 		if(r - l < 2)	return ;
@@ -260,7 +386,7 @@ Và hàm truy vấn có thể như sau:
 
 Một ví dụ khác là : [Component Tree](codeforces.com/gym/100513/problem/C)
 
-# 4. Ứng dụng với cấu trúc set 
+# 4. Ứng dụng với cấu trúc set
 
 Ở cấu trúc này mỗi nút chúng ta lưu một `set`,`multiset`, `hashmap`, hoặc `unodered map` và một só biến khác.
 
@@ -272,7 +398,7 @@ Cho $n$ vector $a_1, a_2, a_3,...,a_n$ rỗng ban đầu. Chúng ta có thể th
 
 Bài toán này chúng ta lưu lại mỗi nút của cây là một `multiset` $s$, với mỗi nút lưu số $k$ đúng $\sum_{i=l}^rcount(a_i,k)$ lần với độ phức tạp bộ nhớ chỉ $\mathcal{O}(q\log(n))$.
 
-Với mỗi truy vấn  $C$ $x$ $y$ $k$ chúng ta sẽ in ra tổng của tất cả dùng cây phân đoạn và truy vấn trên set trong mỗi đoạn thuộc đoạn $x$ đến $y$ như truy trên truy vấn cây phân đoạn bình thường. 
+Với mỗi truy vấn  $C$ $x$ $y$ $k$ chúng ta sẽ in ra tổng của tất cả dùng cây phân đoạn và truy vấn trên set trong mỗi đoạn thuộc đoạn $x$ đến $y$ như truy trên truy vấn cây phân đoạn bình thường.
 
 Chúng ta sẽ không có hàm xây cây do các vector ban đầu đang là rỗng, nhưng chúng ta sẽ có thêm hàm cộng phần tử vào như sau:
 
@@ -294,12 +420,12 @@ Và một hàm cho truy vấn 2:
 	if(x <= l && r <= y)
 		return s[id].count(k);
 	int mid = (l+r)/2;
-	return ask(x, y, k, 2 * id, l, mid) + 
+	return ask(x, y, k, 2 * id, l, mid) +
 		   ask(x, y, k, 2*id+1, mid, r) ;
 	}
-```	
+```
 
-#5. Ứng dụng với các cấu trúc dữ liệu khác 
+#5. Ứng dụng với các cấu trúc dữ liệu khác
 
 Cây phân đoạn còn có thể có thể sử dụng một cách linh hoạt với các cấu trúc dữ liệu khác như ở trên. Sử dụng một cây phân đoạn khác trên từng nút có thể giúp chúng ta truy vấn dễ dàng hơn trên mảng hai chiều. Trên đây cũng có thể là các loại cây như **Cây tiền tố(Trie)** hoặc cũng có thể là cấu trúc **Disjoint Set**. Sau đây mình xin giới thiệu một loại cây khác cũng sử dụng nhiều trong cây phân đoạn đó chính là **Cây Fenwick (Binary Indexed Tree)**:
 
@@ -310,7 +436,7 @@ Cho $n$ vectors $a_1,a_2,a_3,...,a_n$ rỗng ban đầu. Chúng ta cần thực 
 
 Với bài toán này, ta cũng lưu lại ở một nút là một `vector` $v$ chứa số $k$ khi và chỉ khi $\sum_{i=l}^rcount(a_i,j)\ne 0$ (độ phức tạp bộ nhớ sẽ là $\mathcal{O}(q\log{n})$ ) (các số theo theo thứ tự tăng dần)
 
-Đầu tiên, đọc và lưu các truy vấn lại với mỗi truy vấn loại 1 ta sẽ thêm $v$ vào tất cả vector có chứa phần tử $p$. Sau đó ta tiến hành sắp xếp các truy vấn theo phương pháp **Merge Sort** đã nói ở trên và dùng hàm `unique` để loại các phần tử trùng. 
+Đầu tiên, đọc và lưu các truy vấn lại với mỗi truy vấn loại 1 ta sẽ thêm $v$ vào tất cả vector có chứa phần tử $p$. Sau đó ta tiến hành sắp xếp các truy vấn theo phương pháp **Merge Sort** đã nói ở trên và dùng hàm `unique` để loại các phần tử trùng.
 
 Sau đó chúng ta sẽ xây dụng ở mỗi nút một cây Fenwick có độ lớn bằng độ dài vector. Sau đây là hàm thêm giá trị:
 
@@ -337,7 +463,7 @@ Hàm sắp xếp sau khi đã đọc hết các truy vấn:
 		int mid = (l+r)/2;
 		SORT(2 * id, l, mid);
 		SORT(2*id+1, mid, r);
-		merge(v[2 * id].begin(), v[2 * id].end(), v[2 * id + 1].begin(), v[2 * id +1].end(), back_inserter(v[id])); 
+		merge(v[2 * id].begin(), v[2 * id].end(), v[2 * id + 1].begin(), v[2 * id +1].end(), back_inserter(v[id]));
 		//đọc thêm http://www.cplusplus.com/reference/iterator/back_inserter/
 		v[id].resize(unique(v[id].begin(), v[id].end()) - v[id].begin());
 		fen[id] = vector<int> (v[id].size() + 1, 0);
@@ -379,7 +505,7 @@ Còn lại việc tính toán truy vấn loại 2 trở nên dễ dàng hơn:
 		return ans;
 	}
 	int mid = (l+r)/2;
-	return ask(x, y, k, 2 * id, l, mid) + 
+	return ask(x, y, k, 2 * id, l, mid) +
 		   ask(x, y, k, 2*id+1, mid, r) ;
 	}
 ```
@@ -459,7 +585,7 @@ Hàm update:
 		if(r - l < 2)
 			return ID;
 		int mid = (l+r)/2;
-		L[ID] = L[id], R[ID] = R[id]; 
+		L[ID] = L[id], R[ID] = R[id];
 		// trường hợp không cập nhật cả nút trái và phải
 		if(p < mid)
 			L[ID] = upd(p, v, L[ID], l, mid);
@@ -467,7 +593,7 @@ Hàm update:
 			R[ID] = upd(p, v, R[ID], mid, r);
 		return ID;
 	}
-```	
+```
 
 Hàm trả lời truy vấn( trả lời $i$, đáp án sẽ là $a_{p_i}$):
 
@@ -483,3 +609,24 @@ Hàm trả lời truy vấn( trả lời $i$, đáp án sẽ là $a_{p_i}$):
 			// đã có s[L[ID]] - s[L[id]] ở nút trái
 	}
 ```
+
+# Bài tập áp dụng:
+
+- [VOJ - NKLINEUP](http://vn.spoj.com/problems/NKLINEUP)
+- [GSS1](http://www.spoj.com/problems/GSS1/)
+- [GSS3](http://www.spoj.com/problems/GSS3/)
+- [MULTQ3](http://www.spoj.com/problems/MULTQ3)
+- [DQUERY](http://www.spoj.com/problems/DQUERY)
+- [KQUERY](http://www.spoj.com/problems/KQUERY)
+- [POSTERS](http://www.spoj.com/problems/POSTERS)
+- [PATULJCI](http://www.spoj.com/problems/PATULJCI)
+- [New Year Domino](http://codeforces.com/problemset/problem/500/E)
+- [Copying Data](http://codeforces.com/problemset/problem/292/E)
+- [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/)C
+- [FRBSUM](http://www.codechef.com/JAN14/problems/FRBSUM)
+
+
+# Các nguồn tham khảo:
+
+- [Codeforces](http://codeforces.com/blog/entry/15890)
+- [Một số vấn đề đáng chú ý trong môn Tin học](algo/basic/Tai-Lieu-Thuat-Toan)
