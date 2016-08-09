@@ -25,7 +25,7 @@ Xét một dãy gồm 7 phần tử, Segment Tree sẽ trông như sau:
 
 ## Áp dụng
 
-Để dễ hình dung, ta lấy 1 ví dụ cụ thể:
+Để dễ hình dung, ta lấy 1 ví dụ cụ thể, từ bài [VOJ - QMAX](http://vn.spoj.com/problems/QMAX)
 
 - Cho dãy $N$ phần tử $(N \le 10^5)$. Ban đầu mỗi phần tử có giả trị 0.
 - Có $Q$ truy vấn $(Q \le 10^5)$. Mỗi truy vấn có 1 trong 2 loại:
@@ -150,7 +150,7 @@ Và ta khai báo cây ST như sau:
 Node st[MAXN * 4];
 ```
 
-### Định lý 1
+### Định lý
 
 Để tính thông tin ở nút $id$ quản lý đoạn $[l, r]$, dựa trên 2 nút con $2*id$ và $2*id+1$, ta định nghĩa 1 thao tác kết hợp 2 nút của cây ST:
 
@@ -214,177 +214,255 @@ Node query(int id, int l, int r, int u, int v) {
 **Tóm đề**:
 
 - Cho một dãy số $a_i(1\le a_i \le 10^9)$ có $N(1\le N \le 30000)$ phần tử
-- Cho $Q(1\le Q \le 200000)$ truy vấn có dạng 3 số nguyên là $l_i, r_i, k_i$ $(1\le l_i\le r_i\le N, 1\le k \le 10^9)$. Yêu cầu của bài toán là đếm số lượng số $a_j (l_i\le j \le r_i)$ mà $a_j\ge k$.
+- Cho $Q(1\le Q \le 200,000)$ truy vấn có dạng 3 số nguyên là $l_i, r_i, k_i$ $(1\le l_i\le r_i\le N, 1\le k \le 10^9)$. Yêu cầu của bài toán là đếm số lượng số $a_j (l_i\le j \le r_i)$ mà $a_j\ge k$.
 
 Giả sử chúng ta có một mảng $b$ với $b_i=1$ nếu $a_i>k$ và bằng $0$ nếu ngược lại. Thì chúng ta có thể dễ dàng trả lời truy vấn $(i, j, k)$ bằng cách lấy tổng từ $i$ đến $j$.
 
-Điều này hoàn toàn là có thể nếu chúng ta xử lý trước các truy vấn này. Lưu lại các truy vấn, sắp xếp chúng lại theo thứ tự tăng dần theo $k$ đây sẽ là thứ tự chúng ta sẽ trả lời truy vấn. Lúc đầu chúng ta lưu tất cả phần tử mảng $b$ là $1$ và sẽ từ từ tắt các vị trí.
+Cách làm của bài này là xử lý các truy vấn theo một thứ tự khác, để ta có thể dễ dàng tính được mảng $b$:
 
-Vậy ta đã sắp xếp lại thứ tự các truy vấn sao cho giá trị $k$ tăng dần ta sẽ xử lý theo thứ tự này và đồng thời lưu lại số thứ tự các truy vấn để lưu vào một mảng $ans$.
+- Sắp xếp các truy vấn theo thứ tự tăng dần của $k$.
+- Lúc đầu mảng $b$ gồm toàn bộ các số 1.
+- Với mỗi truy vấn, ta xem trong mảng $a$ có những phần tử nào lớn hơn giá trị $k$ của truy vấn trước, và nhỏ hơn giá trị $k$ của truy vấn hiện tại, rồi đánh dấu các vị trí đó trên mảng $b$ thành 0. Để làm được việc này một cách hiệu quả, ta cũng cần sắp xếp lại mảng $a$ theo thứ tự tăng dần.
 
-Mã giả (theo hệ 0)
+Ta tạo kiểu dữ liệu cho truy vấn:
 
 ```cpp
-    po = 0;
-    for j = 0 to q-1
-    	while po < n and a[p[po]] <= k[w[j]]
-    		b[p[po]] = 0, po = po + 1;
+struct Query {
+    int k;
+    int l, r;
+};
+
+// so sánh 2 truy vấn để dùng vào việc sort.
+bool operator < (const Query& a, const Query &b) {
+    return a.k < b.k;
+}
+```
+
+Phần xử lý chính sẽ như sau:
+
+```cpp
+vector< Query > queries; // các truy vấn
+// Đọc vào các truy vấn
+readInput();
+
+// Sắp xếp các truy vấn
+sort(queries.begin(), queries.end());
+
+// Khởi tạo mảng id sao cho:
+// a[id[1]], a[id[2]], a[id[3]] là mảng a đã sắp xếp tăng dần.
+
+// Khởi tạo Segment Tree
+
+for(Query q : queries) {
+    while (a[id[i]] <= q.k) {
+        b[id[i]] = 0;
+        // Cập nhật cây Segment Tree.
+        ++i;
+    }
+}
 ```
 
 Vậy ta có thể viết hàm xây dựng cây như sau:
 
 ```cpp
-    void build(int id = 1,int l = 0,int r = n){
-    	if(r - l < 2){
-    		s[id] = 1;
-    		return ;
-    	}
-    	int mid = (l+r)/2;
-    	build(2 * id, l, mid);
-    	build(2 * id + 1, mid, r);
-    	s[id] = s[2 * id] + s[2 * id + 1];
+void build(int id, int l, int r) {
+    if (l == r) {
+        // Nút id chỉ gồm 1 phần tử
+        st[id] = 1;
+        return ;
     }
+    int mid = (l + r) / 2;
+    build(id * 2, l, mid);
+    build(id * 2, mid+1, r);
+
+    st[id] = st[id*2] + st[id*2+1];
+}
 ```
 
 Một hàm cập nhật khi ta muốn gán lại một vị trí bằng 0:
 
 ```cpp
-    void update(int p,int id = 1,int l = 0,int r = n){
-    	if(r - l < 2){
-    		s[id] = 0;
-    		return ;
-    	}
-    	int mid = (l+r)/2;
-    	if(p < mid)
-    		update(p, 2 * id, l, mid);
-    	else
-    		update(p, 2 * id + 1, mid, r);
-    	s[id] = s[2 * id] + s[2 * id + 1];
+void update(int id, int l, int r, int u) {
+    if (u < l || r < u) {
+        // u nằm ngoài đoạn [l, r]
+        return ;
     }
+    if (l == r) {
+        st[id] = 0;
+        return ;
+    }
+    int mid = (l + r) / 2;
+    update(id*2, l, mid, u);
+    update(id*2 + 1, mid+1, r, u);
+
+    st[id] = st[id*2] + st[id*2+1];
+}
 ```
 
 Và cuối cùng là thực hiện truy vấn lấy tổng một đoạn:
 
 ```cpp
-    int sum(int x,int y,int id = 1,int l = 0,int r = n){// [x, y)
-	if(x >= r or l >= y)	return 0;// [x, y) không giao [l,r)
-	if(x <= l && r <= y)	// [l,r) là tập con [x,y)
-		return s[id];
-	int mid = (l + r)/2;
-	return sum(x, y, id * 2, l, mid) +
-	       sum(x, y, id*2+1, mid, r) ;
-	}
-```
-
-Trong thủ tục chính sẽ là như sau:
-
-```cpp
-    build();
-    int po = 0;
-    for(int y = 0;y < q;++ y){
-    	int x = w[y];
-    	while(po < n && a[p[po]] <= k[x])
-    		update(p[po ++]);
-    	ans[x] = sum(i[x], j[x] + 1); // đoạn [i[x], j[x] + 1)
+int get(int id, int l, int r, int u, int v) {
+    if (v < l || r < u) {
+        // Đoạn [l, r] nằm ngoài đoạn [u, v]
+        return 0;
     }
+    if (u <= l && r <= v) {
+        // Đoạn [l, r] nằm hoàn toàn trong đoạn [u, v]
+        return st[id];
+    }
+    int mid = (l + r) / 2;
+    return get(id*2, l, mid, u, v)
+        + get(id*2+1, mid+1, r, u, v);
+}
 ```
 
-# 2. Cập nhật lười (Lazy Propagation)
+
+# 2. Lazy Propagation
 
 Đây là kĩ thuật được sử dụng trong ST để giảm độ phức tạp của cấu trúc dữ liệu đi với các truy vấn cập nhật đoạn.
 
-## Ví dụ 1
+## Bài Toán
 
-**Bài toán**: [SPOJ-POSTERS]( http://www.spoj.com/problems/POSTERS/)
+[VOJ - QMAX2](http://vn.spoj.com/problems/QMAX2)
 
-**Tóm đề**:
+## Tóm tắt đề
 
-Cho $N$ băng rôn $(1\le N \le 40000)$ có chiều cao là 1 được treo trên một chiếc bảng có chiều cao cũng là 1, băng rôn thứ $i$ phủ từ đoạn $l_i$ tới $r_i$ $(1\le l_r \lt r_i \le 10^7)$. Các băng rôn được cho theo thứ tự sắp xếp lên bảng. Yêu cầu của bài toán là phải đếm số lượng băng rôn không bị che hoàn toàn bởi các băng rôn khác sau khi đã gắn tất cả băng rôn lên.
+Cho dãy số $A$ với $N$ phần tử $(N \le 50,000)$. Bạn cần thực hiện 2 loại truy vấn:
 
-Chúng ta không cần lưu tất cả giá trị $[1,10^7]$. Chúng ta chỉ cần lưu lại một tập các $s_i$ mà trong đó mỗi $s_i$ xuất hiện trong ít nhất một truy vấn $l$ hoặc $r$. Sau đó ta dùng chính những giá trị này để cập nhật cây phân đoạn.
+1. Cộng tất cả các số trong đoạn $[l, r]$ lên giá trị $val$.
+2. In ra giá trị lớn nhất của các số trong đoạn $[l, r]$.
 
-Với mỗi nút nếu tất cả nút trong đó chung màu, ta có thể lưu nó lại theo cập nhật lười. Vậy mỗi nút chúng ta sẽ lưu lại một giá trị $lazy$ và không có hàm xây cây (nếu $lazy[i]\ne 0$ thì tất cả phần tử đoạn mà nó quản lý có cùng một màu là màu $lazy[i]$ vì màu $lazy[i]$ chưa đẩy cập nhật của nó xuống nút con)
+## Phân tích
 
-Đây là hàm đẩy cập nhật xuống nút con:
+Thao tác 2 là thao tác cơ bản trên Segment Tree, đã được ta phân tích ở bài QMAX ở trên.
+
+Với thao tác 1, truy vấn đoạn $[u, v]$. Giả sử ta gọi $F(id)$ là giá trị lớn nhất trong đoạn mà nút $id$ quản lý. Trong lúc cập nhật, muốn hàm này thực hiện với độ phức tạp không quá $O(logN)$, thì khi đến 1 nút $id$ quản lý đoạn $[l, r]$ với đoạn $[l, r]$ nằm hoàn toàn trong đoạn $[u, v]$, thì ta không được đi vào các nút con của nó nữa (nếu không độ phức tạp sẽ là $O(N)$ do ta đi vào tất cả các nút nằm trong đoạn $[u, v]$). Để giải quyết, ta dùng kĩ thuật Lazy Propagation như sau:
+
+- Lưu $T(id)$ với ý nghĩa, tất cả các phần tử trong đoạn $[l, r]$ mà nút $id$ quản lý đều được cộng thêm $T(id)$.
+- Trước khi ta cập nhật hoặc lấy 1 giá trị của 1 nút $id'$ nào đó, ta phải đảm bảo ta đã "đẩy" giá trị của mảng $T$ ở tất cả các nút tổ tiên của $id'$ xuống $id'$. Để làm được điều này, ở các hàm `get` và `update`, trước khi gọi đệ quy xuống các con $2*id$ và $2*id+1$, ta phải gán:
+    - `T[id*2] += T[id]`
+    - `T[id*2+1] += T[id]`
+    - `T[id] = 0` chú ý ta cần phải thực hiện thao tác này, nếu không mỗi phần tử của dãy sẽ bị cộng nhiều lần, do ta đẩy xuống nhiều lần.
+
+## Cài đặt
+
+Ta có kiểu dữ liệu cho 1 nút của ST như sau:
 
 ```cpp
-    void shift(int id){
-		if(lazy[id])
-			lazy[2 * is] = lazy[2 * id + 1] = lazy[id];
-		lazy[id] = 0;
-	}
-```
-Hàm update với từng nút:
-```cpp
-    void upd(int x,int y,int color, int id = 0,int l = 0,int r = n){
-    //Tô đoạn từ [l,r) bằng color
-		if(x >= r or l >= y)	return ;
-		if(x <= l && r <= y){
-			lazy[id] = color;
-			return ;
-		}
-		int mid = (l+r)/2;
-		shift(id);
-		upd(x, y, color, 2 * id, l, mid);
-		upd(x, y, color, 2*id+1, mid, r);
-	}
+struct Node {
+    int lazy; // giá trị T trong phân tích trên
+    int val; // giá trị lớn nhất.
+} nodes[MAXN * 4];
 ```
 
-Vậy với mỗi lần update ta nên gọi hàm $upd(x,y+1,i)$ với $i$ là màu cần tô.
-Và cuối cùng là hàm lấy truy vấn:
+Hàm "đẩy" giá trị $T$ xuống các con:
 
 ```cpp
-    set <int> se;
-	void cnt(int id = 1,int l = 0,int r = n){
-		if(lazy[id]){
-			se.insert(lazy[id]);
-			return ;
-			// không cần xét các con do cả đoạn là giống màu
-		}
-		if(r - l < 2)	return ;
-		int mid = (l+r)/2;
-		cnt(2 * id, l, mid);
-		cnt(2*id+1, mid, r);
-	}
+void down(int id) {
+    int t = nodes[id].lazy;
+    nodes[id*2].lazy += t;
+    nodes[id*2].val += t;
+    nodes[id*2+1].lazy += t;
+    nodes[id*2+1].val += t;
+    nodes[id].lazy = 0;
+}
+
+```
+
+Hàm cập nhật:
+
+```cpp
+void update(int id, int l, int r, int u, int v, int val) {
+    if (v < l || r < u) {
+        return ;
+    }
+    if (u <= l && r <= v) {
+        // Khi cài đặt, ta LUÔN ĐẢM BẢO giá trị của nút được cập nhật ĐỒNG THỜI với
+        // giá trị lazy propagation. Như vậy sẽ tránh sai sót.
+        nodes[id].val += val;
+        nodes[id].lazy += val;
+        return ;
+    }
+    int mid = (l + r) / 2;
+
+    down(id);
+    update(id*2, l, mid, u, v, val);
+    update(id*2+1, mid+1, r, u, v, val);
+
+    nodes[id].val = max(nodes[id*2].val, nodes[id*2+1].val);
+}
+```
+
+Hàm lấy giá trị lớn nhất:
+
+```cpp
+int get(int id, int l, int r, int u, int v) {
+    if (v < l || r < u) {
+        return -INFINITY;
+    }
+    if (u <= l && r <= v) {
+        return nodes[id].val;
+    }
+    int mid = (l + r) / 2;
+    down(id);
+
+    return max(get(id*2, l, mid, u, v),
+        get(id*2+1, mid+1, r, u, v));
+}
 ```
 
 # 3. Ứng dụng với cấu trúc mảng động
 
 Trong loại bài toán này với mỗi nút của cây ta lưu lại một `vector` và một số biến khác.
 
-**Ví du**: Cách xử lý online cho bài toán **[KQUERY0](http://w...content-available-to-author-only...j.com/problems/KQUERYO/)** (bài toán yêu cầu xử lý online của bài **KQUERY**)
+## Ví du
 
-Nếu trên mỗi nút chúng ta có thể lưu lại danh sách các phần tử đó theo thứ tự tăng dần ta có thể dễ dàng tìm ra kết quả bằng tìm kiếm nhị phân. Vì thế với mỗi nút ta lưu lại một `vector` chứa các phần tử từ $l$ đến $r$ theo thứ tự tăng dần. Điều này có thể được thực hiện với bộ phức tạp bộ nhớ là $\mathcal{O}(N\log{N})$ do mỗi phần tử có thể ở tối đa $\log{N}$ nút. Với nút cha có ta có thể gộp hai nút con vào nút cha bằng phương pháp giống như **Merge Sort** ( lưu lại hai biến chạy và so sánh lần lượt từng phần tử ở hai mảng) để có thể xây dựng cây trong $\mathcal{O}(N\log{N})$.
+[KQUERY2](http://vn.spoj.com/problems/KQUERY2).
+
+Bài này tương đối giống với bài KQUERY đã phân tích ở trên, tuy nhiên vì có thao tác cập nhật, nên ta buộc phải xử lý online.
+
+## Phân tích
+
+- Có $log{N}$ nút mà ta cần xét khi trả lời truy vấn của đoạn $[u, v]$.
+- Nếu trên mỗi nút chúng ta có thể lưu lại danh sách các phần tử đó theo thứ tự tăng dần, ta có thể dễ dàng tìm ra kết quả bằng tìm kiếm nhị phân.
+
+Vì thế với mỗi nút ta lưu lại một `vector` chứa các phần tử từ $l$ đến $r$ theo thứ tự tăng dần. Điều này có thể được thực hiện với bộ phức tạp bộ nhớ là $\mathcal{O}(N\log{N})$ do mỗi phần tử có thể ở tối đa $\log{N}$ nút. Với nút cha có ta có thể gộp hai nút con vào nút cha bằng phương pháp giống như **Merge Sort** (lưu lại hai biến chạy và so sánh lần lượt từng phần tử ở hai mảng) để có thể xây dựng cây trong $\mathcal{O}(N\log{N})$.
 
 Hàm xây cây có thể được như sau:
 
 ```cpp
-    void build(int id = 1,int l = 0,int r = n){
-	if(r - l < 2){
-		v[id].push_back(a[l]);
-		return ;
-	}
-	int mid = (l+r)/2;
-	build(2 * id, l, mid);
-	build(2*id+1, mid, r);
-	merge(v[2 * id].begin(), v[2 * id].end(), v[2 * id + 1].begin(), v[2 * id + 1].end(), back_inserter(v[id])); // read more about back_inserter in http://w...content-available-to-author-only...s.com/reference/iterator/back_inserter/
-	}
+void build(int id, int l, int r) {
+    if (l == r) {
+        // Đoạn gồm 1 phần tử. Ta dễ dàng khởi tạo nút trên ST.
+        st[id].push_back(a[l]);
+        return ;
+    }
+    int mid = (l + r) / 2;
+    build(id*2, l, mid);
+    build(id*2+1, mid+1, r);
+
+    merge(st[id*2].begin(), st[id*2].end(), st[id*2+1].begin(), st[id*2+1].end(), st[id].begin());
+}
 ```
 
-Và hàm truy vấn có thể như sau:
+Và hàm truy vấn có thể cài đặt như sau:
 
 ```cpp
-    int cnt(int x,int y,int k,int id = 1,int l = 0,int r  = n){// solve the query (x,y-1,k)
-	if(x >= r or l >= y)	return 0;
-	if(x <= l && r <= n)
-		return v[id].size() - (upper_bound(v[id].begin(), v[id].end(), k) - v[id].begin());
-	int mid = (l+r)/2;
-	return cnt(x, y, k, 2 * id, l, mid) +
-		   cnt(x, y, k, 2*id+1, mid, r) ;
-	}
+int get(int id, int l, int r, int u, int v, int k) { // Trả lời truy vấn (x, y, k)
+    if (v < l || r < u) {
+        return 0;
+    }
+    if (u <= l && r <= v) {
+        return st[id].size() - (upper_bound(st[id].begin(), st[id].end(), k) - st[id].begin());
+    }
+    int mid = (l + r) / 2;
+    return get(id*2, l, mid, u, v, k) + get(id*2+1, mid+1, r, u, v, k);
+}
 ```
 
-Một ví dụ khác là : [Component Tree](codeforces.com/gym/100513/problem/C)
+Một ví dụ khác là: [Component Tree](http://codeforces.com/gym/100513/problem/C)
+
 
 # 4. Ứng dụng với cấu trúc set
 
@@ -403,34 +481,37 @@ Với mỗi truy vấn  $C$ $x$ $y$ $k$ chúng ta sẽ in ra tổng của tất 
 Chúng ta sẽ không có hàm xây cây do các vector ban đầu đang là rỗng, nhưng chúng ta sẽ có thêm hàm cộng phần tử vào như sau:
 
 ```cpp
-    void add(int p,int k,int id = 1,int l = 0,int r = n){//	thực hiện A p k
-	s[id].insert(k);
-	if(r - l < 2)	return ;
-	int mid = (l+r)/2;
-	if(p < mid)
-		add(p, k, id * 2, l, mid);
-	else
-		add(p, k, id*2+1, mid, r);
-	}
-```
-Và một hàm cho truy vấn 2:
-```cpp
-    int ask(int x,int y,int k,int id = 1,int l = 0,int r = n){// Trả lời C x y-1 k
-	if(x >= r or l >= y)	return 0;
-	if(x <= l && r <= y)
-		return s[id].count(k);
-	int mid = (l+r)/2;
-	return ask(x, y, k, 2 * id, l, mid) +
-		   ask(x, y, k, 2*id+1, mid, r) ;
-	}
+void add(int id, int l, int r, int p, int k) {  // Thực hiện truy vấn A p k
+    s[id].insert(k);
+    if (l == r) return ;
+
+    int mid = (l + r) / 2;
+    if (p <= mid) add(id*2, l, mid, p, k);
+    else add(id*2 + 1, mid+1, r, p, k);
+}
 ```
 
-#5. Ứng dụng với các cấu trúc dữ liệu khác
+Và một hàm cho truy vấn 2:
+
+```cpp
+int ask(int id, int l, int r, int x, int y, int k) { // Trả lời C x y k
+    if (y < l || r < x) return 0;
+    if (x <= l && r <= y) {
+        return s[id].count(k);
+    }
+    int mid = (l + r) / 2;
+    return ask(id*2, l, mid, x, y, k) + ask(id*2+1, mid+1, r, x, y, k);
+}
+```
+
+# 5. Ứng dụng với các cấu trúc dữ liệu khác
 
 Cây phân đoạn còn có thể có thể sử dụng một cách linh hoạt với các cấu trúc dữ liệu khác như ở trên. Sử dụng một cây phân đoạn khác trên từng nút có thể giúp chúng ta truy vấn dễ dàng hơn trên mảng hai chiều. Trên đây cũng có thể là các loại cây như **Cây tiền tố(Trie)** hoặc cũng có thể là cấu trúc **Disjoint Set**. Sau đây mình xin giới thiệu một loại cây khác cũng sử dụng nhiều trong cây phân đoạn đó chính là **Cây Fenwick (Binary Indexed Tree)**:
 
 Như trên mỗi nút của cây sẽ là một cây **Fenwick** và có thể một số biến khác. Dưới đây là một bài toán ví dụ:
+
 Cho $n$ vectors $a_1,a_2,a_3,...,a_n$ rỗng ban đầu. Chúng ta cần thực hiện hai loại truy vấn:
+
 1. Truy vấn $A$ $p$ $k$ là thêm số $k$ vào đằng sau vector $a_p$.
 2. Truy vấn $C$ $l$ $r$ $k$ là xuất ra $\sum_{i=l}^rcount(a_i,j)$ với $j\le k$ với $count(a_i,j)$ là số lần xuất hiện $k$ trong $a_i$.
 
@@ -441,174 +522,121 @@ Với bài toán này, ta cũng lưu lại ở một nút là một `vector` $v$
 Sau đó chúng ta sẽ xây dụng ở mỗi nút một cây Fenwick có độ lớn bằng độ dài vector. Sau đây là hàm thêm giá trị:
 
 ```cpp
-    void insert(int p,int k,int id = 1,int l = 0,int r = n){//	Thực hiện A p k
-		if(r - l < 2){
-			v[id].push_back(k);
-			return ;
-		}
-		int mid = (l+r)/2;
-		if(p < mid)
-			insert(p, k, id * 2, l, mid);
-		else
-			insert(p, k, id*2+1, mid, r);
-		}
+void insert(int id, int l, int r, int p, int k) { // Thực hiện A p k
+    if (l == r) {
+        v[id].push_back(k);
+        return ;
+    }
+    int mid = (l+r) / 2;
+    if (p < mid)
+        insert(id*2, l, mid, p, k);
+    else
+        insert(id*2+1, mid+1, r, p, k);
+}
 ```
 
 Hàm sắp xếp sau khi đã đọc hết các truy vấn:
 
 ```cpp
-    void SORT(int id = 1,int l = 0,int r = n){
-		if(r - l < 2)
-			return ;
-		int mid = (l+r)/2;
-		SORT(2 * id, l, mid);
-		SORT(2*id+1, mid, r);
-		merge(v[2 * id].begin(), v[2 * id].end(), v[2 * id + 1].begin(), v[2 * id +1].end(), back_inserter(v[id]));
-		//đọc thêm http://www.cplusplus.com/reference/iterator/back_inserter/
-		v[id].resize(unique(v[id].begin(), v[id].end()) - v[id].begin());
-		fen[id] = vector<int> (v[id].size() + 1, 0);
-	}
+void sort_(int id, int l, int r) {
+    if (l == r) return ;
+    int mid = (l + r) / 2;
+    sort_(id*2, l, mid);
+    sort_(id*2+1, mid+1, r);
+
+    merge(v[2 * id].begin(), v[2 * id].end(), v[2 * id + 1].begin(), v[2 * id +1].end(), v[id].begin());
+}
 ```
 
 Với mỗi truy vấn loại 1 ta làm như sau với mỗi nút x:
 
 ```cpp
-    for(int i = a + 1;i < fen[x].size(); i += i & -i) fen[x][i] ++;
+for(int i = a + 1; i < fen[x].size(); i += i & -i)
+    fen[x][i] ++;
 ```
 
 Với tất cả $v[x][a]=k$:
 
 ```cpp
-    void upd(int p,int k, int id = 1,int l = 0,int r = n){
-		int a = lower_bound(v[id].begin(), v[id].end(), k) - v[id].begin();
-		for(int i = a + 1; i < fen[id].size(); i += i & -i )
-			fen[id][i] ++ ;
-		if(r - l < 2)	return;
-		int mid = (l+r)/2;
-		if(p < mid)
-			upd(p, k, 2 * id, l, mid);
-		else
-			upd(p, k, 2*id+1, mid, r);
-	}
+void update(int id, int l, int r, int p, int k) {
+    int a = lower_bound(v[id].begin(), v[id].end(), k) - v[id].begin();
+    for(int i = a + 1; i < fen[id].size(); i += i & -i)
+        fen[id][i]++;
+
+    if (l == r) return ;
+
+    int mid = (l + r) / 2;
+    if (p < mid)
+        update(id*2, l, mid, p, k);
+    else
+        update(id*2+1, mid+1, r, p, k);
+}
 ```
 
 Còn lại việc tính toán truy vấn loại 2 trở nên dễ dàng hơn:
 
 ```cpp
-    int ask(int x,int y,int k,int id = 1,int l = 0,int r = n){// Trả lời C x y-1 k
-	if(x >= r or l >= y)	return 0;
-	if(x <= l && r <= y){
-		int a = lower_bound(v[id].begin(), v[id].end(), k) - v[id].begin();
-		int ans = 0;
-		for(int i = a + 1; i > 0; i -= i & -i)
-			ans += fen[id][i];
-		return ans;
-	}
-	int mid = (l+r)/2;
-	return ask(x, y, k, 2 * id, l, mid) +
-		   ask(x, y, k, 2*id+1, mid, r) ;
-	}
+int ask(int id, int l, int r, int x, int y, int k) { // Trả lời C x y-1 k
+    if (y < l || r < x) return 0;
+    if (x <= l && r <= y) {
+        int a = lower_bound(v[id].begin(), v[id].end(), k) - v[id].begin();
+        int ans = 0;
+        for(int i = a + 1; i > 0; i -= i & -i)
+            ans += fen[id][i];
+        return ans;
+    }
+    int mid = (l + r) / 2;
+    return ask(id*2, l, mid, x, y, k)
+        + ask(id*2+1, mid+1, r, x, y, k);
+}
 ```
 
-#6. Ứng dụng trong cây có gốc
+# 6. Ứng dụng trong cây có gốc
 
 Ta có thể thấy cây phân đoạn là một ứng dụng trong mảng, vì lí do đó nếu chúng ta có thể đổi cây thành cấu trúc mảng ta có thể dễ dàng xử lý các truy vấn trên cây. Với **DFS** và đánh dấu lại các nút theo thứ tự đến các nút trong một nút con bất kì sẽ thành một đoạn liên tiếp.
 
 **Bài tập ví dụ**: [396C - On Changing Tree](http://codeforces.com/contest/396/problem/C)
 
-Gọi $h_v$ là độ cao tương ứng của nút $v$. Ta có với mỗi nút $u$ trong cây con gốc $v$ sau truy vấn một giá trị của nó sẽ tăng một lượng là $ x+(h_u-h_v)\*-k=x+k\* h_v-k\* h $. Kết quả của truy vấn 2 sẽ là $\sum_{i\in s}(k_i\*h_{v_i}+x_i)-h_u\*\sum_{i\in s}k_i$. Vì vậy ta chỉ cần tính hai giá trị là $\sum_{i\in s}(k_i\* h_{v_i}+x_i)$ và $\sum_{i\in s}k_i$. Vậy với mỗi nút ta có thể lưu lại hai giá trị là $hkx=\sum x +h*k$ và $sk=\sum k$ ( không cần cập nhật lười do chúng ta chỉ update nút đầu tiên thỏa việc nằm trong đoạn.
+Gọi $h_v$ là độ cao tương ứng của nút $v$. Ta có với mỗi nút $u$ trong cây con gốc $v$ sau truy vấn một giá trị của nó sẽ tăng một lượng là $ x+(h_u-h_v)\*-k=x+k\* h_v-k\* h $. Kết quả của truy vấn 2 sẽ là $\sum_{i\in s}(k_i\*h_{v_i}+x_i)-h_u\*\sum_{i\in s}k_i$. Vì vậy ta chỉ cần tính hai giá trị là $\sum_{i\in s}(k_i\* h_{v_i}+x_i)$ và $\sum_{i\in s}k_i$. Vậy với mỗi nút ta có thể lưu lại hai giá trị là $hkx=\sum x +h*k$ và $sk=\sum k$ (không cần lazy propagation do chúng ta chỉ update nút đầu tiên thỏa việc nằm trong đoạn.
 
 Với truy vấn cập nhật:
 
 ```cpp
-    void update(int x,int k,int v,int id = 1,int l = 0,int r = n){
-		if(s[v] >= r or l >= f[v])	return ;
-		if(s[v] <= l && r <= f[v]){
-			hkx[id] = (hkx[id] + x) % mod;
-			int a = (1LL * h[v] * k) % mod;
-			hkx[id] = (hkx[id] + a) % mod;
-			sk[id] = (sk[id] + k) % mod;
-			return ;
-		}
-		int mid = (l+r)/2;
-		update(x, k, v, 2 * id, l, mid);
-		update(x, k, v, 2*id+1, mid, r);
-	}
+void update(int id, int l, int r, int x, int k, int v) {
+    if (s[v] >= r || l >= f[v]) return ;
+    if (s[v] <= l && r <= f[v]) {
+        hkx[id] = (hkx[id] + x) % mod;
+  			int a = (1LL * h[v] * k) % mod;
+  			hkx[id] = (hkx[id] + a) % mod;
+  			sk[id] = (sk[id] + k) % mod;
+  			return ;
+    }
+    int mid = (l+r) / 2;
+    update(id*2, l, mid, x, k, v);
+    update(id*2+1, mid+1, r, x, k, v);
+}
 ```
 
-và truy vấn :
+Và truy vấn :
 
 ```cpp
-    int ask(int v,int id = 1,int l = 0,int r = n){
-		int a = (1LL * h[v] * sk[id]) % mod;
-		int ans = (hkx[id] + mod - a) % mod;
-		if(r - l < 2)	return ans;
-		int mid = (l+r)/2;
-		if(s[v] < mid)
-			return (ans + ask(v, 2 * id, l, mid)) % mod;
-			return (ans + ask(v, 2*id+1, mid, r)) % mod;
-	}
+int ask(int id, int l, int r, int v) {
+    int a = (1LL * h[v] * sk[id]) % mod;
+    int ans = (hkx[id] + mod - a) % mod;
+    if (l == r) return ans;
+    int mid = (l+r) / 2;
+    if(s[v] < mid)
+        return (ans + ask(2 * id, l, mid, v)) % mod;
+    return (ans + ask(2*id + 1, mid, r, v)) % mod;
+}
 ```
 
 #7. Cây phân đoạn ổn định (Persistent Segment Trees)
 
-Hãy đọc bài này trước [Persistent Data Structures](http://vnoi.info/contributor/algo/data-structures/persistent-data-structures)
+**Persistent Data Structures** là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu (CTDL).
 
-Chúng ta đã nói sơ qua về loại cây này trong bài trước bây giờ hãy tìm hiểu nó kĩ hơn qua một bài toán:
-Đó chính là [MKTHNUM](http://www.spoj.com/problems/MKTHNUM/). Bài này có thể sử dụng chặt nhị phân cùng cây phân đoạn với vector để giải ra với độ phức tạp là $\mathcal{O}((m+n)\log^2n)$ nhưng hướng tiếp cận đó sẽ dễ bị quá thời gian với bài toán này. Hãy đến một cách tiếp cận nhanh hơn với độ phức tạp $\mathcal{O}((m+n)\log n)$. Đây là cách tiếp cận hiệu quả và khá hữu ích.
+Các bạn có thể đọc thêm ở: [Persistent Data Structures](algo/data-structures/persistent-data-structures)
 
-Sắp xếp các phần tử của $a$ lại để tính được hoán vị $p_1,p_2,...,p_n$ sao cho $a_{p_1}<a_{p_2}<....<a_{p_n}$ và với mỗi $i$ thì tìm $q_i$ sao cho $p_{q_i}=i$.
-
-Chúng ta thực hiện $n$ bước biến đổi, với mỗi bước $b_{q_i}=1$(mảng $b$ lúc đầu 0 hết). Gọi $sum(l,r,k)$ là tổng mảng $b$ từ $l$ đến $r $ (bằng 0 nếu $ k=0$).
-
-Đây là hàm xây dựng cây:
-
-```cpp
-    void build(int id = ir,int l = 0,int r = n){
-		s[id] = 0;
-		if(r - l < 2)
-			return ;
-		int mid = (l+r)/2;
-		L[id] = NEXT_FREE_INDEX ++;
-		R[id] = NEXT_FREE_INDEX ++;
-		build(L[id], l, mid);
-		build(R[id], mid, r);
-		s[id] = s[L[id]] + s[R[id]];
-	}
-```
-Hàm update:
-
-```cpp
-    int upd(int p, int v,int id,int l = 0,int r = n){
-		// chỉ số phiên bản mới của nút
-		s[ID] = s[id] + 1;
-		if(r - l < 2)
-			return ID;
-		int mid = (l+r)/2;
-		L[ID] = L[id], R[ID] = R[id];
-		// trường hợp không cập nhật cả nút trái và phải
-		if(p < mid)
-			L[ID] = upd(p, v, L[ID], l, mid);
-		else
-			R[ID] = upd(p, v, R[ID], mid, r);
-		return ID;
-	}
-```
-
-Hàm trả lời truy vấn( trả lời $i$, đáp án sẽ là $a_{p_i}$):
-
-```cpp
-    int ask(int id, int ID, int k, int l = 0,int r = n){
-    //  id là chỉ số của nút sau lần cập nhật thứ l-1 và ID sẽ là chỉ số nút sau lần cập nhật r
-		if(r - l < 2)	return l;
-		int mid = (l+r)/2;
-		if(s[L[ID]] - s[L[id]] >= k)// câu trả lời ở nút con bên trái
-			return ask(L[id], L[ID], k, l, mid);
-		else
-			return ask(R[id], R[ID], k - (s[L[ID]] - s[L[id]] ), mid, r);
-			// đã có s[L[ID]] - s[L[id]] ở nút trái
-	}
-```
 
 # Bài tập áp dụng:
 
