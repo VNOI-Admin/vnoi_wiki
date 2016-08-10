@@ -152,7 +152,7 @@ Node st[MAXN * 4];
 
 ### Định lý
 
-Để tính thông tin ở nút $id$ quản lý đoạn $[l, r]$, dựa trên 2 nút con $2*id$ và $2*id+1$, ta định nghĩa 1 thao tác kết hợp 2 nút của cây ST:
+Để tính thông tin ở nút $id$ quản lý đoạn $[l, r]$, dựa trên 2 nút con $2\*id$ và $2\*id+1$, ta định nghĩa 1 thao tác kết hợp 2 nút của cây ST:
 
 ```cpp
 Node operator + (const Node& left, const Node& right) {
@@ -213,12 +213,12 @@ Node query(int id, int l, int r, int u, int v) {
 
 **Tóm đề**:
 
-- Cho một dãy số $a_i(1\le a_i \le 10^9)$ có $N(1\le N \le 30000)$ phần tử
+- Cho một dãy số $a_i(1\le a_i \le 10^9)$ có $N(1\le N \le 30,000)$ phần tử
 - Cho $Q(1\le Q \le 200,000)$ truy vấn có dạng 3 số nguyên là $l_i, r_i, k_i$ $(1\le l_i\le r_i\le N, 1\le k \le 10^9)$. Yêu cầu của bài toán là đếm số lượng số $a_j (l_i\le j \le r_i)$ mà $a_j\ge k$.
 
 Giả sử chúng ta có một mảng $b$ với $b_i=1$ nếu $a_i>k$ và bằng $0$ nếu ngược lại. Thì chúng ta có thể dễ dàng trả lời truy vấn $(i, j, k)$ bằng cách lấy tổng từ $i$ đến $j$.
 
-Cách làm của bài này là xử lý các truy vấn theo một thứ tự khác, để ta có thể dễ dàng tính được mảng $b$:
+Cách làm của bài này là xử lý các truy vấn theo một thứ tự khác, để ta có thể dễ dàng tính được mảng $b$. Kĩ năng này được gọi là **xử lý offline** (tương tự nếu ta trả lời các truy vấn theo đúng thứ tự trong input, thì được gọi là **xử lý online**):
 
 - Sắp xếp các truy vấn theo thứ tự tăng dần của $k$.
 - Lúc đầu mảng $b$ gồm toàn bộ các số 1.
@@ -320,7 +320,7 @@ int get(int id, int l, int r, int u, int v) {
 
 # 2. Lazy Propagation
 
-Đây là kĩ thuật được sử dụng trong ST để giảm độ phức tạp của cấu trúc dữ liệu đi với các truy vấn cập nhật đoạn.
+Đây là kĩ thuật được sử dụng trong ST để giảm độ phức tạp của ST với các truy vấn cập nhật đoạn.
 
 ## Bài Toán
 
@@ -345,6 +345,8 @@ Với thao tác 1, truy vấn đoạn $[u, v]$. Giả sử ta gọi $F(id)$ là 
     - `T[id*2+1] += T[id]`
     - `T[id] = 0` chú ý ta cần phải thực hiện thao tác này, nếu không mỗi phần tử của dãy sẽ bị cộng nhiều lần, do ta đẩy xuống nhiều lần.
 
+**Chú ý**: Bài QMAX2 này có cách cài đặt khác không sử dụng Lazy Propagation, tuy nhiên sẽ không được trình bày ở đây.
+
 ## Cài đặt
 
 Ta có kiểu dữ liệu cho 1 nút của ST như sau:
@@ -363,8 +365,10 @@ void down(int id) {
     int t = nodes[id].lazy;
     nodes[id*2].lazy += t;
     nodes[id*2].val += t;
+
     nodes[id*2+1].lazy += t;
     nodes[id*2+1].val += t;
+
     nodes[id].lazy = 0;
 }
 
@@ -386,7 +390,8 @@ void update(int id, int l, int r, int u, int v, int val) {
     }
     int mid = (l + r) / 2;
 
-    down(id);
+    down(id); // đẩy giá trị lazy propagation xuống các con
+
     update(id*2, l, mid, u, v, val);
     update(id*2+1, mid+1, r, u, v, val);
 
@@ -405,10 +410,12 @@ int get(int id, int l, int r, int u, int v) {
         return nodes[id].val;
     }
     int mid = (l + r) / 2;
-    down(id);
+    down(id); // đẩy giá trị lazy propagation xuống các con
 
     return max(get(id*2, l, mid, u, v),
         get(id*2+1, mid+1, r, u, v));
+    // Trong các bài toán tổng quát, giá trị ở nút id có thể bị thay đổi (do ta đẩy lazy propagation
+    // xuống các con). Khi đó, ta cần cập nhật lại thông tin của nút id dựa trên thông tin của các con.
 }
 ```
 
@@ -418,7 +425,7 @@ int get(int id, int l, int r, int u, int v) {
 
 Trong loại bài toán này với mỗi nút của cây ta lưu lại một `vector` và một số biến khác.
 
-## Ví du
+## Ví dụ
 
 [KQUERY2](http://vn.spoj.com/problems/KQUERY2).
 
@@ -427,9 +434,9 @@ Bài này tương đối giống với bài KQUERY đã phân tích ở trên, t
 ## Phân tích
 
 - Có $\log{N}$ nút mà ta cần xét khi trả lời truy vấn của đoạn $[u, v]$.
-- Nếu trên mỗi nút chúng ta có thể lưu lại danh sách các phần tử đó theo thứ tự tăng dần, ta có thể dễ dàng tìm ra kết quả bằng tìm kiếm nhị phân.
+- Nếu trên mỗi nút chúng ta có thể lưu lại danh sách các phần tử đó theo thứ tự tăng dần, ta có thể tìm ra kết quả ở mỗi nút bằng tìm kiếm nhị phân.
 
-Vì thế với mỗi nút ta lưu lại một `vector` chứa các phần tử từ $l$ đến $r$ theo thứ tự tăng dần. Điều này có thể được thực hiện với bộ phức tạp bộ nhớ là $\mathcal{O}(N\log{N})$ do mỗi phần tử có thể ở tối đa $\log{N}$ nút. Với nút cha có ta có thể gộp hai nút con vào nút cha bằng phương pháp giống như **Merge Sort** (lưu lại hai biến chạy và so sánh lần lượt từng phần tử ở hai mảng) để có thể xây dựng cây trong $\mathcal{O}(N\log{N})$.
+Vì thế với mỗi nút ta lưu lại một `vector` chứa các phần tử từ $l$ đến $r$ theo thứ tự tăng dần. Điều này có thể được thực hiện với bộ phức tạp bộ nhớ là $\mathcal{O}(N\log{N})$ do mỗi phần tử có thể ở tối đa $\mathcal{O}(\log{N})$ nút (độ sâu của cây không quá $\mathcal{O}(\log{N})$). Ở mỗi nút cha có ta có thể gộp hai nút con vào nút cha bằng phương pháp giống như **Merge Sort** (lưu lại hai biến chạy và so sánh lần lượt từng phần tử ở hai mảng) để có thể xây dựng cây trong $\mathcal{O}(N\log{N})$.
 
 Hàm xây cây có thể được như sau:
 
@@ -456,6 +463,7 @@ int get(int id, int l, int r, int u, int v, int k) { // Trả lời truy vấn (
         return 0;
     }
     if (u <= l && r <= v) {
+        // Đếm số phần tử > K bằng chặt nhị phân
         return st[id].size() - (upper_bound(st[id].begin(), st[id].end(), k) - st[id].begin());
     }
     int mid = (l + r) / 2;
@@ -463,7 +471,7 @@ int get(int id, int l, int r, int u, int v, int k) { // Trả lời truy vấn (
 }
 ```
 
-Một ví dụ khác là: [Component Tree](http://codeforces.com/gym/100513/problem/C)
+Một ví dụ khác là bài [Component Tree](http://codeforces.com/gym/100513/problem/C)
 
 
 # 4. Ứng dụng với cấu trúc set
@@ -595,11 +603,13 @@ int ask(int id, int l, int r, int x, int y, int k) { // Trả lời C x y-1 k
 
 # 6. Ứng dụng trong cây có gốc
 
-Ta có thể thấy cây phân đoạn là một ứng dụng trong mảng, vì lí do đó nếu chúng ta có thể đổi cây thành cấu trúc mảng ta có thể dễ dàng xử lý các truy vấn trên cây. Với **DFS** và đánh dấu lại các nút theo thứ tự đến các nút trong một nút con bất kì sẽ thành một đoạn liên tiếp.
+Ta có thể thấy cây phân đoạn là một ứng dụng trong mảng, vì lí do đó nếu chúng ta có thể đổi cây thành các mảng, ta có thể dễ dàng xử lý các truy vấn trên cây. Đây là tư tưởng của [Heavy Light Decomposition](algo/data-structures/heavy-light-decomposition).
 
 **Bài tập ví dụ**: [396C - On Changing Tree](http://codeforces.com/contest/396/problem/C)
 
-Gọi $h_v$ là độ cao tương ứng của nút $v$. Ta có với mỗi nút $u$ trong cây con gốc $v$ sau truy vấn một giá trị của nó sẽ tăng một lượng là $ x+(h_u-h_v)\*-k=x+k\* h_v-k\* h $. Kết quả của truy vấn 2 sẽ là $\sum_{i\in s}(k_i\*h_{v_i}+x_i)-h_u\*\sum_{i\in s}k_i$. Vì vậy ta chỉ cần tính hai giá trị là $\sum_{i\in s}(k_i\* h_{v_i}+x_i)$ và $\sum_{i\in s}k_i$. Vậy với mỗi nút ta có thể lưu lại hai giá trị là $hkx=\sum x +h*k$ và $sk=\sum k$ (không cần lazy propagation do chúng ta chỉ update nút đầu tiên thỏa việc nằm trong đoạn.
+Gọi $h_v$ là độ cao tương ứng của nút $v$.
+
+Ta có với mỗi nút $u$ trong cây con gốc $v$ sau truy vấn một giá trị của nó sẽ tăng một lượng là $x+(h_u-h_v)\*-k=x+k\* h_v-k\* h$. Kết quả của truy vấn 2 sẽ là $\sum_{i\in s}(k_i\*h_{v_i}+x_i)-h_u\*\sum_{i\in s}k_i$. Vì vậy ta chỉ cần tính hai giá trị là $\sum_{i\in s}(k_i\* h_{v_i}+x_i)$ và $\sum_{i\in s}k_i$. Vậy với mỗi nút ta có thể lưu lại hai giá trị là $hkx=\sum x +h*k$ và $sk=\sum k$ (không cần lazy propagation do chúng ta chỉ update nút đầu tiên thỏa việc nằm trong đoạn.
 
 Với truy vấn cập nhật:
 
@@ -619,7 +629,7 @@ void update(int id, int l, int r, int x, int k, int v) {
 }
 ```
 
-Và truy vấn :
+Và truy vấn:
 
 ```cpp
 int ask(int id, int l, int r, int v) {
@@ -633,7 +643,7 @@ int ask(int id, int l, int r, int v) {
 }
 ```
 
-#7. Cây phân đoạn ổn định (Persistent Segment Trees)
+# 7. Persistent Segment Trees
 
 **Persistent Data Structures** là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu (CTDL).
 
