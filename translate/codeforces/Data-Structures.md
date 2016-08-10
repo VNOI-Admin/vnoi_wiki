@@ -8,7 +8,7 @@
 
 Trong bài viết này, mình sẽ giới thiệu một cách sơ lược tới các bạn một số Cấu trúc dữ liệu hữu ích, cũng như kỹ năng sử dụng và cách cài đặt chúng.
 
-# 1. Cây
+# Cây
 
 Cây là một trong những CTDL thông dụng và hữu ích nhất. Cây là một đồ thị liên thông không có chu trình. Có nhiều dạng cây như **Cây Có Gốc (Rooted Trees)**, **Cây Có Hướng (Directed Trees)**,... 
 
