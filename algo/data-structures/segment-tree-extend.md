@@ -78,14 +78,14 @@ int get(int id, int l, int r, int u, int v) {
 
 ## Phân tích độ phức tạp
 
-Mỗi thao tác truy vấn trên cây ST có độ phức tạp $O(log{N})$. Để chứng minh điều này, ta xét 2 loại thao tác trên cây ST:
+Mỗi thao tác truy vấn trên cây ST có độ phức tạp $O(\log{N})$. Để chứng minh điều này, ta xét 2 loại thao tác trên cây ST:
 
 1. Truy vấn 1 phần tử trên ST (giống thao tác `update` ở trên)
 2. Truy vấn nhiều phần tử trên ST (giống thao tác `get` ở trên)
 
 Đầu tiên ta có thể chứng minh được:
 
-- Độ cao của cây ST không quá $O(log{N})$.
+- Độ cao của cây ST không quá $O(\log{N})$.
 - Tại mỗi độ sâu của cây, không có phần tử nào nằm trong 2 nút khác nhau của cây.
 
 ### Thao tác loại 1
@@ -95,7 +95,7 @@ Với thao tác này, ở mỗi độ sâu của cây, ta chỉ gọi đệ quy 
 - Phần tử cần xét không nằm trong đoạn $[l, r]$ do nút $id$ quản lý. Trường hợp này ta dừng lại, không xét tiếp.
 - Phần tử cần xét nằm trong đoạn $[l, r]$ do nút $id$ quản lý. Ta xét các con của nút `id`. Tuy nhiên chỉ có 1 con của nút `id` chứa phần tử cần xét và ta sẽ phải xét tiếp các con của nút này. Với con còn lại, ta sẽ dừng ngay mà không xét các con của nó nữa.
 
-Do đó độ phức tạp của thao tác này không quá $O(log{N})$.
+Do đó độ phức tạp của thao tác này không quá $O(\log{N})$.
 
 
 ### Thao tác loại 2
@@ -337,7 +337,7 @@ Cho dãy số $A$ với $N$ phần tử $(N \le 50,000)$. Bạn cần thực hi�
 
 Thao tác 2 là thao tác cơ bản trên Segment Tree, đã được ta phân tích ở bài QMAX ở trên.
 
-Với thao tác 1, truy vấn đoạn $[u, v]$. Giả sử ta gọi $F(id)$ là giá trị lớn nhất trong đoạn mà nút $id$ quản lý. Trong lúc cập nhật, muốn hàm này thực hiện với độ phức tạp không quá $O(log{N})$, thì khi đến 1 nút $id$ quản lý đoạn $[l, r]$ với đoạn $[l, r]$ nằm hoàn toàn trong đoạn $[u, v]$, thì ta không được đi vào các nút con của nó nữa (nếu không độ phức tạp sẽ là $O(N)$ do ta đi vào tất cả các nút nằm trong đoạn $[u, v]$). Để giải quyết, ta dùng kĩ thuật Lazy Propagation như sau:
+Với thao tác 1, truy vấn đoạn $[u, v]$. Giả sử ta gọi $F(id)$ là giá trị lớn nhất trong đoạn mà nút $id$ quản lý. Trong lúc cập nhật, muốn hàm này thực hiện với độ phức tạp không quá $O(\log{N})$, thì khi đến 1 nút $id$ quản lý đoạn $[l, r]$ với đoạn $[l, r]$ nằm hoàn toàn trong đoạn $[u, v]$, thì ta không được đi vào các nút con của nó nữa (nếu không độ phức tạp sẽ là $O(N)$ do ta đi vào tất cả các nút nằm trong đoạn $[u, v]$). Để giải quyết, ta dùng kĩ thuật Lazy Propagation như sau:
 
 - Lưu $T(id)$ với ý nghĩa, tất cả các phần tử trong đoạn $[l, r]$ mà nút $id$ quản lý đều được cộng thêm $T(id)$.
 - Trước khi ta cập nhật hoặc lấy 1 giá trị của 1 nút $id'$ nào đó, ta phải đảm bảo ta đã "đẩy" giá trị của mảng $T$ ở tất cả các nút tổ tiên của $id'$ xuống $id'$. Để làm được điều này, ở các hàm `get` và `update`, trước khi gọi đệ quy xuống các con $2*id$ và $2*id+1$, ta phải gán:
@@ -426,7 +426,7 @@ Bài này tương đối giống với bài KQUERY đã phân tích ở trên, t
 
 ## Phân tích
 
-- Có $log{N}$ nút mà ta cần xét khi trả lời truy vấn của đoạn $[u, v]$.
+- Có $\log{N}$ nút mà ta cần xét khi trả lời truy vấn của đoạn $[u, v]$.
 - Nếu trên mỗi nút chúng ta có thể lưu lại danh sách các phần tử đó theo thứ tự tăng dần, ta có thể dễ dàng tìm ra kết quả bằng tìm kiếm nhị phân.
 
 Vì thế với mỗi nút ta lưu lại một `vector` chứa các phần tử từ $l$ đến $r$ theo thứ tự tăng dần. Điều này có thể được thực hiện với bộ phức tạp bộ nhớ là $\mathcal{O}(N\log{N})$ do mỗi phần tử có thể ở tối đa $\log{N}$ nút. Với nút cha có ta có thể gộp hai nút con vào nút cha bằng phương pháp giống như **Merge Sort** (lưu lại hai biến chạy và so sánh lần lượt từng phần tử ở hai mảng) để có thể xây dựng cây trong $\mathcal{O}(N\log{N})$.
