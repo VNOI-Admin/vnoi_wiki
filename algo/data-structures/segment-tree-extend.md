@@ -15,13 +15,13 @@ Segment Tree là một [cây](translate/wcipeg/tree). Cụ thể hơn, nó là m
 
 ## Ví dụ
 
-Xét một dãy gồm 7 phần tử, Segment Tree sẽ trông như sau:
+Xét một dãy gồm 7 phần tử, Segment Tree sẽ quản lý các đoạn như sau:
 
 [[/uploads/segment_tree_structure_example.png]]
 
 ## Cài đặt
 
-Để cài đặt, ta có thể dùng một mảng 1 chiều, phần tử thứ nhất của mảng thể hiện nút gốc. Phần tử thứ $id$ sẽ có 2 con là $2 \* id$ (con trái) và $2 \* id+1$ (con phải). Người ta đã chứng minh được bộ nhớ cần dùng cho ST không quá $4 \* N$ phần tử.
+Để cài đặt, ta có thể dùng một mảng 1 chiều, phần tử thứ nhất của mảng thể hiện nút gốc. Phần tử thứ $id$ sẽ có 2 con là $2 \* id$ (con trái) và $2 \* id+1$ (con phải). Với cách cài đặt này, người ta đã chứng minh được bộ nhớ cần dùng cho ST không quá $4 \* N$ phần tử.
 
 ## Áp dụng
 
@@ -29,8 +29,8 @@ Xét một dãy gồm 7 phần tử, Segment Tree sẽ trông như sau:
 
 - Cho dãy $N$ phần tử $(N \le 10^5)$. Ban đầu mỗi phần tử có giả trị 0.
 - Có $Q$ truy vấn $(Q \le 10^5)$. Mỗi truy vấn có 1 trong 2 loại:
-    - Gán giá trị $v$ cho phần tử ở vị trí $i$.
-    - Tìm giá trị lớn nhất cho đoạn $[i, j]$.
+    1. Gán giá trị $v$ cho phần tử ở vị trí $i$.
+    2. Tìm giá trị lớn nhất cho đoạn $[i, j]$.
 
 Cách đơn giản nhất là dùng 1 mảng $A$ duy trì giá trị các phần tử. Với thao tác 1 thì ta gán $A[i] = v$. Với thao tác 2 thì ta dùng 1 vòng lặp từ $i$ đến $j$ để tìm giá trị lớn nhất. Rõ ràng cách này có độ phức tạp là $O(N*Q)$ và không thể chạy trong thời gian cho phép.
 
@@ -43,7 +43,7 @@ Cài đặt như sau:
 
 ```cpp
 // Truy vấn: A(i) = v
-// Hàm cập nhật trên cây ST, cập nhật cây con gốc id quản lý đọan [l, r)
+// Hàm cập nhật trên cây ST, cập nhật cây con gốc id quản lý đọan [l, r]
 void update(int id, int l, int r, int i, int v) {
     if (i < l || r < i) {
         // i nằm ngoài đoạn [l, r], ta bỏ qua nút i
@@ -78,14 +78,14 @@ int get(int id, int l, int r, int u, int v) {
 
 ## Phân tích độ phức tạp
 
-Mỗi thao tác truy vấn trên cây ST có độ phức tạp $O(logN)$. Để chứng minh điều này, ta xét 2 loại thao tác trên cây ST:
+Mỗi thao tác truy vấn trên cây ST có độ phức tạp $O(log{N})$. Để chứng minh điều này, ta xét 2 loại thao tác trên cây ST:
 
 1. Truy vấn 1 phần tử trên ST (giống thao tác `update` ở trên)
 2. Truy vấn nhiều phần tử trên ST (giống thao tác `get` ở trên)
 
 Đầu tiên ta có thể chứng minh được:
 
-- Độ cao của cây ST không quá $O(logN)$.
+- Độ cao của cây ST không quá $O(log{N})$.
 - Tại mỗi độ sâu của cây, không có phần tử nào nằm trong 2 nút khác nhau của cây.
 
 ### Thao tác loại 1
@@ -93,9 +93,9 @@ Mỗi thao tác truy vấn trên cây ST có độ phức tạp $O(logN)$. Để
 Với thao tác này, ở mỗi độ sâu của cây, ta chỉ gọi đệ quy các con của không quá 1 nút. Phân tích đoạn code trên, ta xét các trường hợp:
 
 - Phần tử cần xét không nằm trong đoạn $[l, r]$ do nút $id$ quản lý. Trường hợp này ta dừng lại, không xét tiếp.
-- Phần tử cần xét nằm trong đoạn $[l, r]$ do nút $id$ quản lý. Ta xét các con của nút `id`. Tuy nhiên chỉ có 1 con của nút `id` chứa phần tử cần xét, với con còn lại, ta sẽ dừng ngay mà không xét các con của nó nữa.
+- Phần tử cần xét nằm trong đoạn $[l, r]$ do nút $id$ quản lý. Ta xét các con của nút `id`. Tuy nhiên chỉ có 1 con của nút `id` chứa phần tử cần xét và ta sẽ phải xét tiếp các con của nút này. Với con còn lại, ta sẽ dừng ngay mà không xét các con của nó nữa.
 
-Do đó độ phức tạp của thao tác này không quá $O(logN)$.
+Do đó độ phức tạp của thao tác này không quá $O(log{N})$.
 
 
 ### Thao tác loại 2
@@ -337,7 +337,7 @@ Cho dãy số $A$ với $N$ phần tử $(N \le 50,000)$. Bạn cần thực hi�
 
 Thao tác 2 là thao tác cơ bản trên Segment Tree, đã được ta phân tích ở bài QMAX ở trên.
 
-Với thao tác 1, truy vấn đoạn $[u, v]$. Giả sử ta gọi $F(id)$ là giá trị lớn nhất trong đoạn mà nút $id$ quản lý. Trong lúc cập nhật, muốn hàm này thực hiện với độ phức tạp không quá $O(logN)$, thì khi đến 1 nút $id$ quản lý đoạn $[l, r]$ với đoạn $[l, r]$ nằm hoàn toàn trong đoạn $[u, v]$, thì ta không được đi vào các nút con của nó nữa (nếu không độ phức tạp sẽ là $O(N)$ do ta đi vào tất cả các nút nằm trong đoạn $[u, v]$). Để giải quyết, ta dùng kĩ thuật Lazy Propagation như sau:
+Với thao tác 1, truy vấn đoạn $[u, v]$. Giả sử ta gọi $F(id)$ là giá trị lớn nhất trong đoạn mà nút $id$ quản lý. Trong lúc cập nhật, muốn hàm này thực hiện với độ phức tạp không quá $O(log{N})$, thì khi đến 1 nút $id$ quản lý đoạn $[l, r]$ với đoạn $[l, r]$ nằm hoàn toàn trong đoạn $[u, v]$, thì ta không được đi vào các nút con của nó nữa (nếu không độ phức tạp sẽ là $O(N)$ do ta đi vào tất cả các nút nằm trong đoạn $[u, v]$). Để giải quyết, ta dùng kĩ thuật Lazy Propagation như sau:
 
 - Lưu $T(id)$ với ý nghĩa, tất cả các phần tử trong đoạn $[l, r]$ mà nút $id$ quản lý đều được cộng thêm $T(id)$.
 - Trước khi ta cập nhật hoặc lấy 1 giá trị của 1 nút $id'$ nào đó, ta phải đảm bảo ta đã "đẩy" giá trị của mảng $T$ ở tất cả các nút tổ tiên của $id'$ xuống $id'$. Để làm được điều này, ở các hàm `get` và `update`, trước khi gọi đệ quy xuống các con $2*id$ và $2*id+1$, ta phải gán:
@@ -412,7 +412,7 @@ int get(int id, int l, int r, int u, int v) {
 }
 ```
 
-Đến đây các bạn đã nắm được kiến thức cơ bản về Segment Tree. Bạn có thể làm thử một số bài luyện tập ở dưới.
+Đến đây các bạn đã nắm được kiến thức cơ bản về Segment Tree. Những phần tiếp theo nói về các kiến thức nâng cao - các mở rộng của ST. Bạn nên làm nhiều bài luyện tập (tham khảo ở cuối bài) trước khi nghiên cứu tiếp.
 
 # 3. Ứng dụng với cấu trúc mảng động
 
@@ -476,7 +476,7 @@ Cho $n$ vector $a_1, a_2, a_3,...,a_n$ rỗng ban đầu. Chúng ta có thể th
 1. Truy vấn $A$ $p$ $k$ là thêm số $k$ vào cuối vector $a_p$.
 2. Truy vấn $C$ $l$ $r$ $k$ là xuất ra $\sum_{i=l}^rcount(a_i,k)$, với $count(a_i,k)$ là số lần xuất hiện của số $k$ trong vector $a_i$.
 
-Bài toán này chúng ta lưu lại mỗi nút của cây là một `multiset` $s$, với mỗi nút lưu số $k$ đúng $\sum_{i=l}^rcount(a_i,k)$ lần với độ phức tạp bộ nhớ chỉ $\mathcal{O}(q\log(n))$.
+Bài toán này chúng ta lưu lại mỗi nút của cây là một `multiset` $s$, với mỗi nút lưu số $k$ đúng $\sum_{i=l}^rcount(a_i,k)$ lần với độ phức tạp bộ nhớ chỉ $\mathcal{O}(q\log{n})$.
 
 Với mỗi truy vấn  $C$ $x$ $y$ $k$ chúng ta sẽ in ra tổng của tất cả dùng cây phân đoạn và truy vấn trên set trong mỗi đoạn thuộc đoạn $x$ đến $y$ như truy trên truy vấn cây phân đoạn bình thường.
 
