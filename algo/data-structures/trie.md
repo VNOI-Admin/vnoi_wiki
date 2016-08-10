@@ -164,3 +164,7 @@ for i:=1 to n do
     end;
 
 ```
+
+# Bài tập áp dụng:
+
+- [A lot of games](http://codeforces.com/contest/456/problem/D)
