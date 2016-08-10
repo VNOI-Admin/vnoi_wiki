@@ -110,9 +110,9 @@ Bạn có thể đọc thêm về Disjoint Set ở [[bài viết này|algo/data-
 
 **Trie** là một cấu trúc dữ liệu dùng để quản lý một tập hợp các xâu. Trie cho phép:
 
-- Thêm một xâu vào tập hợp, với độ phức tạp $\matcal{O}(L)$ với $L$ là độ dài xâu cần thêm.
-- Xóa một xâu khỏi tập hợp, với độ phức tạp $\matcal{O}(L)$.
-- Kiểm tra một xâu có tồn tại trong tập hợp hay không, với độ phức tạp $\matcal{O}(L)$.
+- Thêm một xâu vào tập hợp, với độ phức tạp $\mathcal{O}(L)$ với $L$ là độ dài xâu cần thêm.
+- Xóa một xâu khỏi tập hợp, với độ phức tạp $\mathcal{O}(L)$.
+- Kiểm tra một xâu có tồn tại trong tập hợp hay không, với độ phức tạp $\mathcal{O}(L)$.
 
 Ngoài ra trên thực tế, trie cũng rất tiết kiệm bộ nhớ khi áp dụng để lưu các từ có nghĩa, vì vậy nó là một CTDL có ứng dụng rất lớn.
 
@@ -143,40 +143,12 @@ Bạn có thể đọc thêm về Heap [[ở đây|translate/wcipeg/Binary-Heap]
 
 # Sparse Table
 
-Có mảng $a_1,a_2,...,a_N$ và các truy vấn. Mỗi truy vấn cho chúng ta 2 số $L$ và $R$ ($L \le R$) và bạn phải in ra giá trị **nhỏ nhất** của $a_L,a_{L+1}...,a_R$.
+Sparse Table là cấu trúc dữ liệu được sử dụng trong [[bài toán LCA & RMQ|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]].
 
-**Cách giải** sử dụng **Sparse Table**: Với mỗi giá trị $i (1 \le i \le N)$ và với mỗi $j$ thỏa mãn $j \ge 0$ và $i + 2^j – 1 \le n$, ta lưu giá trị $min(A_i, A_{i+1}, ..., A_{i+ 2^i)}$ trong phần tử $st[i][j]$ (khởi tạo các phần tử mảng st bằng 0).
+Với cả 2 bài toán, Sparse Table cho phép:
 
-_Code:_
-
-```cpp
-for(int j = 0; j < MAX_LOG; j++)
-    for(int i = 0; i < n; i++)
-        if (i + (1 << j) - 1 < n) {
-            if (j == 0) {
-                st[i][j] = a[i];
-            }
-            else {
-                st[i][j] = min(st[i][j-1], st[i + (1 << (j-1)) - 1][j-1]);
-            }
-        }
-```
-
-Và với mỗi truy vấn, đầu tiên, tìm giá $x$ lớn nhất sao cho $2^x < r-l+1$ và xuất ra $min(st[l][x], st[r-2^x+1][x])$.
-
-Vậy, ý tưởng chính của Sparse Table là lưu lại giá trị cho mỗi đoạn độ dài $2^k$ (với mỗi $k$).
-
-Có thể dùng ý tưởng tương tự cho việc cài đặt **LCA** và các thuật toán khác.
-
-**Độ phức tạp** của sẽ là $O(nlog(n))$ và các truy vấn sẽ được xử lý với độ phức tạp $O(1)$.
-
-_Bài tập:_
-
-1. [Strip](http://codeforces.com/contest/487/problem/B)
-
-2. [GCDSSQ](http://codeforces.com/contest/475/problem/D)
-
-3. [LCM Query](http://codeforces.com/gym/100570/problem/A)
+- Khởi tạo với độ phức tạp: $\mathcal{O}(N\* \log{N})$.
+- Trả lời truy vấn với độ phức tạp $\mathcal{O}(1)$.
 
 # Segment Tree
 
