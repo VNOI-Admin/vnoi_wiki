@@ -72,3 +72,6 @@ Ngăn xếp khi không được sử dụng một cách rõ ràng thì ứng d�
 
 [Soma (SRM 198)](https://community.topcoder.com/stat?c=problem_statement&pm=2824&rd=5073) là một ví dụ tuyệt vời để tiếp cận hướng giải này.
 
+# Tài liệu tham khảo:
+
+- [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/data-structures/)
