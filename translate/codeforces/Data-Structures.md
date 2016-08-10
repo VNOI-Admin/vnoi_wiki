@@ -1,12 +1,46 @@
 # Cấu Trúc Dữ Liệu
 
-**Nguồn:** [Codeforces](http://codeforces.com/blog/entry/15729)
-
-**Tác giả:** [amd](http://codeforces.com/profile/amd)
-
 [[_TOC_]]
 
-Trong bài viết này, mình sẽ giới thiệu một cách sơ lược tới các bạn một số Cấu trúc dữ liệu hữu ích, cũng như kỹ năng sử dụng và cách cài đặt chúng.
+Mặc dù máy tính đã có thể xử lý hàng triệu phép tính mỗi giây, nhưng khi một bài toán trở phức tạp, cách tổ chức vẫn vô cùng quan trọng.
+
+Để minh họa điểm này, hãy tham khảo ví dụ sau: bạn đi đến thư viện, thử tìm kiếm một quyển sách với chủ đề nào đó. Đa số các thư viện hiện nay đều có thể sử dụng hệ thống tra cứu điện tử. Tuy vậy, hãy xét trường hợp tệ nhất khi bạn sẽ nhận được một chỉ mục để tìm ra tên và tác giả của quyển  sách mà bạn muốn. Các cuốn sách được xếp theo lĩnh vực. Trong mỗi chủ đề, sách lại được xếp theo tên tác giả, nhờ vậy mà việc lấy và cất sách từ giá trở nên khá dễ dàng và đơn giản.
+
+Bây giờ, hãy thử tưởng tượng thay vì tổ chức thành từng giá sách cụ thể, sách được chất thành từng đống ở cả hai phía của thư viện. Để tìm được quyển sách của mình, bạn sẽ phải mất hàng giờ, thậm chí rất nhiều ngày. Đấy chính là ví dụ thể hiện chính xác nhất cách một phần mềm vận hành khi dữ liệu không được lưu trữ hiệu quả và phù hợp với ứng dụng.
+
+# Mảng (array), danh sách liên kết (linked list)
+
+Mảng và danh sách liên kết là 2 cấu trúc dữ liệu nền tảng cho tất cả các loại cấu trúc dữ liệu khác. Mảng và danh sách liên kết đều được dùng khi bạn muốn lưu nhiều dữ liệu (thường có cùng kiểu dữ liệu). Bảng dưới đây so sánh các thao tác về mảng và danh sách liên kết:
+
+<table>
+<tr>
+<th></th>
+<th>Mảng</th>
+<th>Danh sách liên kết</th>
+</tr>
+<tr>
+<th>Bộ nhớ</th>
+<td>Cố định (cần biết trước số phần tử)</td>
+<td>Có thể tăng giảm tùy ý</td>
+</tr>
+<tr>
+<th>Thêm/Xóa 1 phần tử</th>
+<td>$\mathcal{O}(N)$</td>
+<td>$\mathcal{O}(1)$</td>
+</tr>
+<tr>
+<th>Truy cập phần tử</th>
+<td>$\mathcal{O}(1)$</td>
+<td>$\mathcal{O}(N)$</td>
+</tr>
+<tr>
+<th>Khác</th>
+<td>- Ít bộ nhớ hơn<br/>- Cache locality: các phần tử ở vị trí gần nhau trên bộ nhớ máy tính, nên khi truy cập các phần tử liên tiếp sẽ nhanh hơn</td>
+<td></td>
+</tr>
+</table>
+
+Bạn có thể đọc thêm về mảng và danh sách liên kết [[ở đây|]]
 
 # Cây
 
@@ -587,3 +621,8 @@ Bạn có thể đọc thêm ở: [[Thuật toán phân tách cây|algo/data-str
 Persistent Data Structures là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu.
 
 Bạn có thể  đọc thêm ở: [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
+
+# Các tài liệu tham khảo:
+
+- [Codeforces](http://codeforces.com/blog/entry/15729)
+- [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/data-structures/)
