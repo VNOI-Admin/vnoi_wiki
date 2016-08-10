@@ -167,4 +167,7 @@ for i:=1 to n do
 
 # Bài tập áp dụng:
 
+- [VOJ - NKSEV](http://vn.spoj.com/problems/NKSEV/)
+- [VOJ - SEC](http://vn.spoj.com/problems/SEC/)
+- [VOJ - CHAIN2](http://vn.spoj.com/problems/CHAIN2/)
 - [A lot of games](http://codeforces.com/contest/456/problem/D)
