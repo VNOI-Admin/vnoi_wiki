@@ -76,7 +76,7 @@ int get(int id, int l, int r, int u, int v) {
 }
 ```
 
-## Phân tích độ phức tạp
+## Phân tích thời gian chạy
 
 Mỗi thao tác truy vấn trên cây ST có độ phức tạp $O(\log{N})$. Để chứng minh điều này, ta xét 2 loại thao tác trên cây ST:
 
@@ -107,6 +107,19 @@ Ta chứng minh bằng phản chứng, giả sử ta gọi đệ quy với 3 nú
 [[/uploads/segment_tree_proof_time_complexity.png]]
 
 Trong trường hợp này, rõ ràng toàn bộ đoạn của nút ở giữa quản lý nằm trong đoạn đang truy vấn. Do đó ta không cần phải gọi đệ quy các con của nút ở giữa. Từ đó suy ra vô lý, nghĩa là ở mỗi độ sâu ta chỉ gọi đệ quy với không quá 2 nút.
+
+## Phân tích bộ nhớ
+
+Ta xét 2 trường hợp:
+
+- $N = 2^k$: Cây ST đầy đủ, ở độ sâu cuối cùng có đúng $2^k$ lá, và các độ sâu thấp hơn không có nút lá nào (và các nút này đều có đúng 2 con). Như vậy:
+    - Tầng $k$: có $2^k$ nút
+    - Tầng $k-1$: có $2^{k-1}$ nút
+    - ...
+    Tổng số nút không quá $2^{k+1}$.
+- Với $N > 2^k$ và $N < 2^{k+1}$. Số nút của cây ST không quá số nút của cây ST với $N = 2^{k+1}$.
+
+Do đó, số nút của cây cho dãy $N$ phần tử, với $N \le 2^k$ là không quá $2^{k+1}$, giá trị này xấp xỉ $4 \* N$. Bằng thực nghiệm, ta thấy dùng $4 \* N$ là đủ.
 
 # 1. Segment Tree cổ điển
 
