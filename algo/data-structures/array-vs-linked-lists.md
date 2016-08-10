@@ -1,5 +1,7 @@
 # Mảng và danh sách liên kết
 
+**Bài viết chưa hoàn thiện**
+
 # Các cấu trúc dữ liệu đơn giản
 
 Cấu trúc dữ liệu đơn giản nhất chính là các biến. Chúng nắm giữ duy nhất một giá trị, hơn nữa, phạm vi sử dụng có giới hạn. Khi nhiều giá trị cần lưu trữ, mảng được sử dụng.
