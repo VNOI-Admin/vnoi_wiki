@@ -138,7 +138,7 @@ Cho một dãy ngoặc độ dài $N$ $(N\le10^6)$, cho $M$ truy vấn có dạn
 Với mỗi nút(ví dụ như nút $id$, quản lý đoạn $[l, r]$) chúng ta lưu ba biến nguyên:
 
 - `optimal`: Là kết quả tối ưu trong đoạn $[l, r]$.
-- `open`: Sô lượng dấu `(` sau khi đã xóa hết các phần tử thuộc dãy ngoặc đúng độ dài `optimal` trong đoạn.
+- `open`: Số lượng dấu `(` sau khi đã xóa hết các phần tử thuộc dãy ngoặc đúng độ dài `optimal` trong đoạn.
 - `close`: Số lượng dấu `)` sau khi đã xóa hết các phần tử thuộc dãy ngoặc đúng độ dài `optimal` trong đoạn.
 
 Ta tạo 1 kiểu dữ liệu cho 1 nút của cây ST như sau:
@@ -353,7 +353,7 @@ Thao tác 2 là thao tác cơ bản trên Segment Tree, đã được ta phân t
 Với thao tác 1, truy vấn đoạn $[u, v]$. Giả sử ta gọi $F(id)$ là giá trị lớn nhất trong đoạn mà nút $id$ quản lý. Trong lúc cập nhật, muốn hàm này thực hiện với độ phức tạp không quá $O(\log{N})$, thì khi đến 1 nút $id$ quản lý đoạn $[l, r]$ với đoạn $[l, r]$ nằm hoàn toàn trong đoạn $[u, v]$, thì ta không được đi vào các nút con của nó nữa (nếu không độ phức tạp sẽ là $O(N)$ do ta đi vào tất cả các nút nằm trong đoạn $[u, v]$). Để giải quyết, ta dùng kĩ thuật Lazy Propagation như sau:
 
 - Lưu $T(id)$ với ý nghĩa, tất cả các phần tử trong đoạn $[l, r]$ mà nút $id$ quản lý đều được cộng thêm $T(id)$.
-- Trước khi ta cập nhật hoặc lấy 1 giá trị của 1 nút $id'$ nào đó, ta phải đảm bảo ta đã "đẩy" giá trị của mảng $T$ ở tất cả các nút tổ tiên của $id'$ xuống $id'$. Để làm được điều này, ở các hàm `get` và `update`, trước khi gọi đệ quy xuống các con $2*id$ và $2*id+1$, ta phải gán:
+- Trước khi ta cập nhật hoặc lấy 1 giá trị của 1 nút $id'$ nào đó, ta phải đảm bảo ta đã "đẩy" giá trị của mảng $T$ ở tất cả các nút tổ tiên của $id'$ xuống $id'$. Để làm được điều này, ở các hàm `get` và `update`, trước khi gọi đệ quy xuống các con $2 \* id$ và $2 \* id+1$, ta phải gán:
     - `T[id*2] += T[id]`
     - `T[id*2+1] += T[id]`
     - `T[id] = 0` chú ý ta cần phải thực hiện thao tác này, nếu không mỗi phần tử của dãy sẽ bị cộng nhiều lần, do ta đẩy xuống nhiều lần.
@@ -442,6 +442,17 @@ Trong loại bài toán này với mỗi nút của cây ta lưu lại một `ve
 
 [KQUERY2](http://vn.spoj.com/problems/KQUERY2).
 
+## Tóm tắt đề
+
+- Cho dãy $A$ với $N$ phần tử. Cần trả lời $Q$ truy vấn.
+- Có 2 loại truy vấn:
+    - Cập nhật: Gán $A_i = v$
+    - Truy vấn: đếm số phần tử lớn hơn $k$ trong đoạn $[l, r]$.
+- Giới hạn:
+    - $N \le 30,000$
+    - $A_i, v \le 10,000$
+    - $Q \le 200,000$
+
 Bài này tương đối giống với bài KQUERY đã phân tích ở trên, tuy nhiên vì có thao tác cập nhật, nên ta buộc phải xử lý online.
 
 ## Phân tích
@@ -489,7 +500,7 @@ Một ví dụ khác là bài [Component Tree](http://codeforces.com/gym/100513/
 
 # 4. Ứng dụng với cấu trúc set
 
-Ở cấu trúc này mỗi nút chúng ta lưu một `set`,`multiset`, `hashmap`, hoặc `unodered map` và một só biến khác.
+Ở cấu trúc này mỗi nút chúng ta lưu một `set`,`multiset`, `hashmap`, hoặc `unodered map` và một số biến khác.
 
 Đây là một bài toán ví dụ:
 Cho $n$ vector $a_1, a_2, a_3,...,a_n$ rỗng ban đầu. Chúng ta có thể thực hiện $m$ truy vấn trên những vector này:
