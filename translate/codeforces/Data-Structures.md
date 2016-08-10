@@ -40,13 +40,7 @@ Mảng và danh sách liên kết là 2 cấu trúc dữ liệu nền tảng cho
 </tr>
 </table>
 
-Bạn có thể đọc thêm về mảng và danh sách liên kết [[ở đây|]]
-
-# Cây
-
-Cây là một trong những CTDL thông dụng và hữu ích nhất. Cây là một đồ thị liên thông không có chu trình. Có nhiều dạng cây như **Cây Có Gốc (Rooted Trees)**, **Cây Có Hướng (Directed Trees)**,... 
-
-Bạn có thể đọc thêm về cây ở [[bài viết này|translate/wcipeg/tree]].
+Bạn có thể đọc thêm về mảng và danh sách liên kết [[ở đây|algo/data-structures/array-vs-linked-lists]]
 
 # Partial Sum
 
@@ -64,6 +58,12 @@ Có 2 dạng bài có thể giải được bằng cách áp dụng Partial Sum.
 **Ví dụ:** Cho mảng $a_1,a_2,...,a_N$. Mỗi truy vấn cho 3 số $L$, $R$, $V$. với mỗi $i (L \le i \le R)$, cộng $V$ vào $a_i$. Sau khi hoàn thành, in toàn bộ mảng ra.
 
 **Cách giải:**  Tạo một mảng $P$: $p_1,p_2,...,p_N$ với mỗi phần tử được khởi tạo với giá trị $0$. Mỗi truy vấn, tăng $p_L$ lên $V$ và trừ $p_{R+1}$ đi $V$. Sau đó, với mỗi $i$ (từ 1), $p_i += p_{i–1}.$
+
+# Cây
+
+Cây là một trong những CTDL thông dụng và hữu ích nhất. Cây là một đồ thị liên thông không có chu trình. Có nhiều dạng cây như **Cây Có Gốc (Rooted Trees)**, **Cây Có Hướng (Directed Trees)**,... 
+
+Bạn có thể đọc thêm về cây ở [[bài viết này|translate/wcipeg/tree]].
 
 # Disjoints Sets
 
