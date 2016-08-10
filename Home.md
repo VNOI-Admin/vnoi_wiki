@@ -20,7 +20,7 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 
 - Cấu trúc dữ liệu:
-    - [[Tổng quan về Cấu trúc dữ liệu|translate/codeforces/Data-Structures]]
+    - [[Tổng quan về Cấu trúc dữ liệu|algo/data-structures/data-structures-overview]]
     - [[Cây|translate/wcipeg/tree]]
     - [[Trie|algo/data-structures/trie]]
     - [[Binary Heap|translate/wcipeg/Binary-Heap]]
