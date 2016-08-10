@@ -500,6 +500,9 @@ Với $0$ ứng với $-1$, ta sẽ tính trước được cho các dãy
 
 # Một số bài để luyện tập
 
+- [CF #278 Div 1 - B](http://codeforces.com/contest/487/problem/B)
+- [Bayan 2015 Contest Warm Up - D](http://codeforces.com/contest/475/problem/D)
+- [Hello 2015 (Div.1) - A](http://codeforces.com/gym/100570/problem/A)
 - [LCA](http://www.spoj.com/problems/LCA/)
 - [QTREE2](http://www.spoj.pl/problems/QTREE2/)
 - [HBTLCA](http://vn.spoj.com/problems/HBTLCA/)
