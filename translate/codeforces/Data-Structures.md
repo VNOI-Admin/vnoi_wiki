@@ -14,7 +14,7 @@ Cây là một trong những CTDL thông dụng và hữu ích nhất. Cây là 
 
 Bạn có thể đọc thêm về cây ở [[bài viết này|translate/wcipeg/tree]].
 
-# 2. Partial Sum
+# Partial Sum
 
 Có 2 dạng bài có thể giải được bằng cách áp dụng Partial Sum.
 
@@ -31,7 +31,7 @@ Có 2 dạng bài có thể giải được bằng cách áp dụng Partial Sum.
 
 **Cách giải:**  Tạo một mảng $P$: $p_1,p_2,...,p_N$ với mỗi phần tử được khởi tạo với giá trị $0$. Mỗi truy vấn, tăng $p_L$ lên $V$ và trừ $p_{R+1}$ đi $V$. Sau đó, với mỗi $i$ (từ 1), $p_i += p_{i–1}.$
 
-# 3. Disjoints Sets
+# Disjoints Sets
 
 **Disjoint Sets** là 1 CTDL rất hữu dụng, sử dụng rất nhanh, gọn và dễ dàng. Nó được dùng làm nền tảng cho một số thuật toán, như **Kruskal’s** và **Prim’s**, 2 thuật toán tìm **cây khung** nhỏ nhất trên đồ thị.
 
@@ -109,7 +109,7 @@ _Bài tập: (Phải tham gia nhóm [ACM-OI](http://codeforces.com/group/L1Sf9F4
 - [TROY Query](http://codeforces.com/gym/100571/problem/F)
 
 
-# 4. Cây Tiền Tố (Trie)
+# Cây Tiền Tố (Trie)
 
 Trong khoa học máy tính, trie, hay cây tiền tố, là một cấu trúc dữ liệu sử dụng cây có thứ tự, dùng để lưu trữ một mảng liên kết của các xâu kí tự.
 
@@ -146,7 +146,7 @@ _Bài tập: [A lot of games](http://codeforces.com/contest/456/problem/D)_
 Bạn cũng có thể đọc thêm [[bài viết về trie|algo/data-structures/trie]]
 
 
-# 5. Heap
+# Heap
 
 **Heap** là một **cây nhị phân** (**cây có gốc** mà mỗi đỉnh có **không quá hai con**) và mỗi đỉnh mang một giá trị.
 
@@ -161,18 +161,18 @@ Bạn có thể đọc thêm về Heap [[ở đây|translate/wcipeg/Binary-Heap]
 
 **Fibonacci Heap** là một dạng heap có **độ phức tạp** bé hơn. Chúng ta không cần quan tâm Fibonacci Heap là gì vì trong thư viện **STL C++** đã có sẵn, dưới tên gọi **priority_queue**.
 
-# 6. Cây Tìm Kiếm Nhị Phân 
+# Cây Tìm Kiếm Nhị Phân 
 **Cây Tìm Kiếm Nhị Phân** (**BST Binary Search Tree**) là một cây nhị phân có tính chất: Với mỗi giá trị trên node đang xét, giá trị của mọi node trên cây con trái luôn nhỏ hơn node đang xét và giá trị của mọi node trên cây con phải luôn lớn hơn node đang xét.
 
 [[/uploads/bst1.png|bst1]]
 
-# 7. Cây Đỏ Đen (Red-Black Tree)
+# Cây Đỏ Đen (Red-Black Tree)
 Cây đỏ đen là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $O(log(N))$.
 Thư viện **STL C++** có sẵn CTDL này, dưới dạng **set**.
 
 [[/uploads/redblack1.png|redblack1]]
 
-# 8. SQRT Decomposition
+# SQRT Decomposition
 
 Giả sử, ta có một mảng $a_1,a_2,...,a_N$  và $k = \sqrt{N}$. Ta chia mảng này thành $k$ phần, mỗi phần chứa $k$ phần tử của mảng a. Với việc này, ta có thể làm nhiều việc với độ phức tạp $O(\sqrt{N})$. Thông thường sử dụng **sqrt decomposition** để xử lý truy vấn yêu cầu chỉnh sửa phần tử mảng hoặc hỏi.
 
@@ -184,7 +184,7 @@ _Bài tập:_
 
 3. Các bài toán dạng **RMQ** (**range minimum query**)
 
-# 9. Sparse Table
+# Sparse Table
 
 Có mảng $a_1,a_2,...,a_N$ và các truy vấn. Mỗi truy vấn cho chúng ta 2 số $L$ và $R$ ($L \le R$) và bạn phải in ra giá trị **nhỏ nhất** của $a_L,a_{L+1}...,a_R$. 
 
@@ -221,7 +221,7 @@ _Bài tập:_
 
 3. [LCM Query](http://codeforces.com/gym/100570/problem/A)
 
-# 10. Fenwick
+# Fenwick
 
 **Fenwick** hay ở Việt Nam được gọi là **Cây Chỉ Số Nhị Phân** (** BIT Binary Indexed Tree**) là một CTDL với $n$ node và mỗi node thứ $i$ chứa thông tin về các phần tử trong đoạn $ [i – (i & -i), i] $
 
@@ -259,7 +259,7 @@ _Bài tập:_
 
 3. [BST](http://hsin.hr/coci/archive/2008_2009/contest3_tasks.pdf)
 
-# 11. Segment Tree
+# Segment Tree
 
 Có một mảng gồm các phần tử và các truy vấn trong đoạn. Nếu có thể chia đoạn thành các đoạn nhỏ với độ phức tạp $O(logn)$ thì sẽ rất tốt.
 
@@ -451,7 +451,7 @@ _Bài tập:_
 - [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/C)
 - [FRBSUM](http://www.codechef.com/JAN14/problems/FRBSUM)
 
-# 12. Mảng Hậu Tố (Suffix Array)
+# Mảng Hậu Tố (Suffix Array)
 
 **Mảng Hậu Tố** là một CTDL giúp **sort** các **hậu tố** theo **thứ tự từ điển**.
 
@@ -575,14 +575,14 @@ namespace SuffixArray
 Source: [mukel](http://codeforces.com/profile/mukel)
 
 
-# 13. Thuật toán phân tách cây (Heavy-light decomposition)
+# Thuật toán phân tách cây (Heavy-light decomposition)
 
 **Heavy Light Decomposition** là một thuật toán được áp dụng nhiều trong những bài cần xử lý các truy vấn trên cây. Heavy-light decomposition là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
 
 Bạn có thể đọc thêm ở: [[Thuật toán phân tách cây|algo/data-structures/heavy-light-decomposition]]
 
 
-# 14. Persistent Data Structures 
+# Persistent Data Structures 
 
 Persistent Data Structures là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu.
 
