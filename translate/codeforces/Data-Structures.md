@@ -1,4 +1,4 @@
-# Cấu Trúc Dữ Liệu
+# Tổng quan về Cấu Trúc Dữ Liệu
 
 [[_TOC_]]
 
@@ -7,6 +7,8 @@ Mặc dù máy tính đã có thể xử lý hàng triệu phép tính mỗi gi�
 Để minh họa điểm này, hãy tham khảo ví dụ sau: bạn đi đến thư viện, thử tìm kiếm một quyển sách với chủ đề nào đó. Đa số các thư viện hiện nay đều có thể sử dụng hệ thống tra cứu điện tử. Tuy vậy, hãy xét trường hợp tệ nhất khi bạn sẽ nhận được một chỉ mục để tìm ra tên và tác giả của quyển  sách mà bạn muốn. Các cuốn sách được xếp theo lĩnh vực. Trong mỗi chủ đề, sách lại được xếp theo tên tác giả, nhờ vậy mà việc lấy và cất sách từ giá trở nên khá dễ dàng và đơn giản.
 
 Bây giờ, hãy thử tưởng tượng thay vì tổ chức thành từng giá sách cụ thể, sách được chất thành từng đống ở cả hai phía của thư viện. Để tìm được quyển sách của mình, bạn sẽ phải mất hàng giờ, thậm chí rất nhiều ngày. Đấy chính là ví dụ thể hiện chính xác nhất cách một phần mềm vận hành khi dữ liệu không được lưu trữ hiệu quả và phù hợp với ứng dụng.
+
+Trong bài viết này, mình điểm qua các loại cấu trúc dữ liệu từ cơ bản đến nâng cao. Để tìm hiểu chi tiết về một cấu trúc dữ liệu, các bạn có thể đọc ở link tương ứng.
 
 # Mảng (array), danh sách liên kết (linked list)
 
@@ -42,26 +44,50 @@ Mảng và danh sách liên kết là 2 cấu trúc dữ liệu nền tảng cho
 
 Bạn có thể đọc thêm về mảng và danh sách liên kết [[ở đây|algo/data-structures/array-vs-linked-lists]]
 
-# Partial Sum
+# Mảng cộng dồn (Partial Sum)
 
-Có 2 dạng bài có thể giải được bằng cách áp dụng Partial Sum.
+Mảng cộng dồn là một cách áp dụng khéo léo mảng. Có 2 dạng bài cơ bản có thể giải được bằng cách áp dụng Partial Sum.
 
-**Những bài đưa ra các truy vấn yêu cầu cho biết tổng một số phần tử.**
+## Mảng cộng dồn - Tìm tổng một đoạn liên tiếp
 
-**Ví dụ:** Cho một mảng $a_1,a_2,a_3,...,a_N$. Mỗi truy vấn cho biết 2 số $L$ và $R$, yêu cầu in ra tổng $a_L + a_{L+1} + ... + a_R$.
+**Ví dụ**
 
-**Cách giải:** Tạo một mảng $S$, với $S_i = a_1 + a_2 + ... + a_i$. Xuất ra: $S_R – S_{L-1}$.
+- Cho một mảng $a_1,a_2,a_3,...,a_N$.
+- Cần trả lời nhiều truy vấn, mỗi truy vấn cho 2 số $L$ và $R$, yêu cầu in ra tổng $a_L + a_{L+1} + ... + a_R$.
 
+**Cách làm**
 
-**Những bài yêu cầu thay đổi giá trị các phần tử trong một đoạn.**
+- Tạo một mảng $S$, với $S_i = a_1 + a_2 + ... + a_i$. Mảng $S$ được gọi là mảng cộng dồn
+- Với mỗi truy vấn, in ra: $S_R – S_{L-1}$.
 
-**Ví dụ:** Cho mảng $a_1,a_2,...,a_N$. Mỗi truy vấn cho 3 số $L$, $R$, $V$. với mỗi $i (L \le i \le R)$, cộng $V$ vào $a_i$. Sau khi hoàn thành, in toàn bộ mảng ra.
+## Mảng cộng dòn - Tăng giá trị các đoạn
 
-**Cách giải:**  Tạo một mảng $P$: $p_1,p_2,...,p_N$ với mỗi phần tử được khởi tạo với giá trị $0$. Mỗi truy vấn, tăng $p_L$ lên $V$ và trừ $p_{R+1}$ đi $V$. Sau đó, với mỗi $i$ (từ 1), $p_i += p_{i–1}.$
+**Ví dụ**
 
-# Cây
+- Cho mảng $a_1,a_2,...,a_N$.
+- Cần thực hiện nhiều truy vấn, mỗi truy vấn cho 3 số $L$, $R$, $V$. Yêu cầu: với mỗi $i (L \le i \le R)$, cộng $V$ vào $a_i$.
+- Tính mảng $a$ sau khi thực hiện tất cả các truy vấn.
 
-Cây là một trong những CTDL thông dụng và hữu ích nhất. Cây là một đồ thị liên thông không có chu trình. Có nhiều dạng cây như **Cây Có Gốc (Rooted Trees)**, **Cây Có Hướng (Directed Trees)**,... 
+**Cách làm**
+
+- Tạo một mảng $P$: $p_1,p_2,...,p_N$
+- Khởi tạo $p_i = 0$.
+- Với mỗi truy vấn, tăng $p_L$ lên $V$ và trừ $p_{R+1}$ đi $V$.
+- Cuối cùng, với mỗi $i$ (từ 1), $p_i += p_{i–1}$. Ta có $a_i = a_i + p_i$.
+
+# Cây (Tree)
+
+**Cây (tree)** là một đồ thị vô hướng liên thông không có chu trình.
+
+Cây có nhiều tính chất đặc biệt:
+
+- Cây là đồ thị liên thông
+- Cây không có chu trình
+- Số đỉnh của đồ thị lớn hơn số cạnh của đồ thị đúng 1 đơn vị
+
+Có nhiều dạng cây như **Cây Có Gốc (Rooted Trees)**, **Cây Có Hướng (Directed Trees)**,...
+
+Cây được sử dụng để cài đặt nhiều cấu trúc dữ liệu khác như Heap, Segment Tree (Interval Tree), Fenwick Tree (Binary Indexed Tree)...
 
 Bạn có thể đọc thêm về cây ở [[bài viết này|translate/wcipeg/tree]].
 
@@ -195,7 +221,7 @@ Bạn có thể đọc thêm về Heap [[ở đây|translate/wcipeg/Binary-Heap]
 
 **Fibonacci Heap** là một dạng heap có **độ phức tạp** bé hơn. Chúng ta không cần quan tâm Fibonacci Heap là gì vì trong thư viện **STL C++** đã có sẵn, dưới tên gọi **priority_queue**.
 
-# Cây Tìm Kiếm Nhị Phân 
+# Cây Tìm Kiếm Nhị Phân
 **Cây Tìm Kiếm Nhị Phân** (**BST Binary Search Tree**) là một cây nhị phân có tính chất: Với mỗi giá trị trên node đang xét, giá trị của mọi node trên cây con trái luôn nhỏ hơn node đang xét và giá trị của mọi node trên cây con phải luôn lớn hơn node đang xét.
 
 [[/uploads/bst1.png|bst1]]
@@ -220,7 +246,7 @@ _Bài tập:_
 
 # Sparse Table
 
-Có mảng $a_1,a_2,...,a_N$ và các truy vấn. Mỗi truy vấn cho chúng ta 2 số $L$ và $R$ ($L \le R$) và bạn phải in ra giá trị **nhỏ nhất** của $a_L,a_{L+1}...,a_R$. 
+Có mảng $a_1,a_2,...,a_N$ và các truy vấn. Mỗi truy vấn cho chúng ta 2 số $L$ và $R$ ($L \le R$) và bạn phải in ra giá trị **nhỏ nhất** của $a_L,a_{L+1}...,a_R$.
 
 **Cách giải** sử dụng **Sparse Table**: Với mỗi giá trị $i (1 \le i \le N)$ và với mỗi $j$ thỏa mãn $j \ge 0$ và $i + 2^j – 1 \le n$, ta lưu giá trị $min(A_i, A_{i+1}, ..., A_{i+ 2^i)}$ trong phần tử $st[i][j]$ (khởi tạo các phần tử mảng st bằng 0).
 
@@ -247,7 +273,7 @@ Có thể dùng ý tưởng tương tự cho việc cài đặt **LCA** và các
 
 **Độ phức tạp** của sẽ là $O(nlog(n))$ và các truy vấn sẽ được xử lý với độ phức tạp $O(1)$.
 
-_Bài tập:_ 
+_Bài tập:_
 
 1. [Strip](http://codeforces.com/contest/487/problem/B)
 
@@ -322,7 +348,7 @@ vector<int> s;
 void split(int x, int y, int id = 1, int l = 0, int r = n) { // id is the index of the node
     if (x >= r or l >= y) return ; // in this case, intersect of [l,r) and [x,y) is empty
     if (x <= l && r <= y) {
-        s.push_back(id); 
+        s.push_back(id);
         return ;
     }
     int mid = (l+r)/2;
@@ -478,9 +504,9 @@ _Bài tập:_
 - [MULTQ3](http://www.spoj.com/problems/MULTQ3)
 - [DQUERY](http://www.spoj.com/problems/DQUERY)
 - [KQUERY](http://www.spoj.com/problems/KQUERY)
-- [POSTERS](http://www.spoj.com/problems/POSTERS) 
-- [PATULJCI](http://www.spoj.com/problems/PATULJCI) 
-- [New Year Domino](http://codeforces.com/problemset/problem/500/E) 
+- [POSTERS](http://www.spoj.com/problems/POSTERS)
+- [PATULJCI](http://www.spoj.com/problems/PATULJCI)
+- [New Year Domino](http://codeforces.com/problemset/problem/500/E)
 - [Copying Data](http://codeforces.com/problemset/problem/292/E)
 - [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/C)
 - [FRBSUM](http://www.codechef.com/JAN14/problems/FRBSUM)
@@ -616,7 +642,7 @@ Source: [mukel](http://codeforces.com/profile/mukel)
 Bạn có thể đọc thêm ở: [[Thuật toán phân tách cây|algo/data-structures/heavy-light-decomposition]]
 
 
-# Persistent Data Structures 
+# Persistent Data Structures
 
 Persistent Data Structures là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu.
 
