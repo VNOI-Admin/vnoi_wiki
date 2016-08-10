@@ -6,7 +6,8 @@ Nguồn: [wcipeg](http://wcipeg.com/wiki/Tree)
 
 # Định nghĩa
 
-**Cây** (**tree**) là một đồ thị vô hướng liên thông không có chu trình. Tập hợp các cây không có đỉnh chung gọi là một **rừng** (**forest**).
+- **Cây** (**tree**) là một đồ thị vô hướng liên thông không có chu trình.
+- Tập hợp các cây không có đỉnh chung gọi là một **rừng** (**forest**).
 
 # Tính chất
 
