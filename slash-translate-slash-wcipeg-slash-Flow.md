@@ -34,7 +34,7 @@ Mạng thặng dư có thể chứa một số cung mà mạng ban đầu không
 
 # Bài toán luồng cực đại trên mạng (Maximum flow)
 
-Cho một mạng, chúng ta cần tìm một Admissible flows sao cho tổng luồng ra từ đỉnh phát cũng như đi vào đỉnh thu là cực đại.
+Cho một mạng, chúng ta cần tìm một luồng hợp lệ sao cho tổng luồng ra từ đỉnh phát cũng như đi vào đỉnh thu là cực đại.
 
 **Mệnh đề:** Tổng luồng ra khỏi đỉnh phát bằng tổng luồng đi vào đỉnh thu.
 
@@ -66,7 +66,7 @@ Có nhiều cách tìm đường tăng luồng. Cách đơn giản nhất là ch
 
 ## Các thuật toán preflow-push
 
-Preflow-push khác với thuật toán sử dụng đường tăng luồng ở chỗ nó không duy trì luồng hợp lệ ở mỗi bước, mà thay vào đó duy trì một preflow, mà trong đó tổng luồng vào một đỉnh có thể lớn hơn tổng luồng ra từ đỉnh đó.
+Lớp thuật toán **Preflow-push** khác với thuật toán sử dụng đường tăng luồng ở chỗ nó không duy trì luồng hợp lệ ở mỗi bước, mà thay vào đó duy trì một **preflow**, mà trong đó tổng luồng vào một đỉnh có thể lớn hơn tổng luồng ra từ đỉnh đó ($\sum_{u \in V}f(u,v) \geq \sum_{w \in V}f(v,w)$).
 
 Đầu tiên chúng ta khởi tạo một preflow mà mỗi cung đi ra từ đỉnh phát đều bão hòa ($\forall u \in V, f(s,u)=c(s,u)$).
 
@@ -84,7 +84,7 @@ Trên một đồ thị có trọng số, lát cắt $s-t$ hẹp nhất là lát
 
 Mỗi đồ thị $(V,E,s,t,w)$ tương ứng với một mạng luồng $(V,s,t,c)$, với $c(u,v)=w(u,v)$ nếu $(u,v) \in E$, ngược lại $c(u,v)=0$.
 
-**Max-flow min-cut theorem** là một kết quả nổi tiếng về quan hệ giữa luồng cực đại và lát cắt hẹp nhất. Định lý này cho thấy rằng trên một mạng luồng thì giá trị luồng cực đại bằng với giá trị của lát cắt hẹp nhất. Do đó mà ta có thể sử dụng thuật toán luồng cực đại để giải bài toán lát cắt hẹp nhất (nhưng không ngược lại).
+[**Max-flow min-cut theorem**](https://en.wikipedia.org/wiki/Max-flow_min-cut_theorem) là một kết quả nổi tiếng về quan hệ giữa luồng cực đại và lát cắt hẹp nhất. Định lý này cho thấy rằng trên một mạng luồng thì giá trị luồng cực đại bằng với giá trị của lát cắt hẹp nhất. Do đó mà ta có thể sử dụng thuật toán luồng cực đại để giải bài toán lát cắt hẹp nhất (nhưng không ngược lại).
 
 # Các biến thể của bài toán
 
