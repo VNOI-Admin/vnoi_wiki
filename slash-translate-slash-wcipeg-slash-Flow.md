@@ -1,6 +1,10 @@
+# Bài toán luồng cực đại
+
 **Nguồn:** [WCIPEG](http://wcipeg.com/wiki/Maximum_flow)
 
 [[_TOC_]]
+
+Trong bài viết này, tác giả sẽ giới thiệu với bạn 2 bài toán cơ bản: Bài toán luồng cực đại trên mạng và bài toán lát cắt hẹp nhất, cũng như mối liên hệ giữa 2 bài toán này.
 
 # Mạng luồng (Flow network)
 
