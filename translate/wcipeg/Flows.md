@@ -96,7 +96,7 @@ Nếu mỗi đỉnh $v$ của mạng có một sức chứa $c(v)$ sao cho $c(v)
 
 Tương tự, với bài toán lát cắt nhỏ nhất cho phép loại bỏ các đỉnh giống như các cạnh ta cũng giải quyết như trên.
 
-Ta cũng có thể sử dụng thuật toán luồng để giải các bài toán về cặp ghép cực đại trên đồ thị hai phía. Ta cũng tạo một đỉnh phát ảo nối với các đỉnh trái của đồ thị, và một đỉnh thu ảo nối từ các đỉnh phải. Các cung có sức chứa là 1. Gía trị của bộ ghép cực đại chính là lát cắt hẹp nhất của đồ thị.
+Ta cũng có thể sử dụng thuật toán luồng để giải các bài toán về [**cặp ghép cực đại**](https://en.wikipedia.org/wiki/Matching_(graph_theory)) trên đồ thị hai phía. Ta cũng tạo một đỉnh phát ảo nối với các đỉnh trái của đồ thị, và một đỉnh thu ảo nối từ các đỉnh phải, các cung này có trọng số là 0 (nếu cần). Tất cả các cung có sức chứa là 1. Sau đó ta sẽ tìm giá trị lát cắt hẹp nhất của đồ thị. Gía trị này chính là giá trị của bộ ghép cực đại trên đồ thị.
 
 # Một số bài để luyện tập
 
