@@ -112,5 +112,5 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
 
 * Nếu Heap không phải là một cây nhị phân mà là một cây tam phân, tứ phân, k-phân thì độ phức tạp của các thao tác sẽ thay đổi thế nào ?
 
-* **TC1** cần thêm điểu kiện tập nhãn phải là một [totally ordered set](http://wcipeg.com/wiki/Partial_order#Total_order) (2 giá trị bất kì trong tập đều có thể so sánh được và có tính chất bắc cầu $a \le b, b \le c \rightarrow a \le c$, ví dụ như tập số thực $\mathbb{R}$)
+* **TC1** cần thêm điểu kiện tập nhãn phải là một [totally ordered set](http://wcipeg.com/wiki/Partial_order#Total_order) (2 giá trị bất kì trong tập đều có thể so sánh được và có tính chất bắc cầu trong các phép so sánh, ví dụ như tập số thực $\mathbb{R}$)
 
