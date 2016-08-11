@@ -64,7 +64,7 @@ Với mỗi bước, trên mạng $G$ hiện tại, chúng ta tìm một đườ
 
 ```
 foreach (u,v) in E: f[u,v]<-0
-while find(augmenting_path):
+while exist(augmenting_path):
     (u[1],u[2],...,u[k])<-augmenting_path
     m=min(c[u[i],u[i+1]]-f[u[i],u[i+1]]) for i=1..k-1
     for i=1..k-1: 
