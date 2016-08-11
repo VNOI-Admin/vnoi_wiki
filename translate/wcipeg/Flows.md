@@ -62,6 +62,16 @@ Vậy: $\sum_{v \in V}f(s,v)=\sum_{v \in V}f(v,t)$
 
 Với mỗi bước, trên mạng $G$ hiện tại, chúng ta tìm một đường đi $s-t$ mà vẫn có thể gửi luồng qua được, đường đi này gọi là **đường tăng luồng** (**augmenting path**). Sau đó tiến hành gửi một luồng qua $G$ sao cho luồng mới vẫn hợp lệ. Thuật toán kết thúc khi không còn tìm thấy đường tăng luồng nữa.
 
+```
+foreach (u,v) in E: f[u,v]<-0
+while find(augmenting_path):
+	(u[1],u[2],...,u[k])<-augmenting_path
+    m=min(c[u[i],u[i+1]]-f[u[i],u[i+1]]) for i=1..k-1
+    for i=1..k-1: 
+    	f[u[i],u[i+1]]+=m
+        f[u[i+1],u[i]]-=m
+```
+
 Có nhiều cách tìm đường tăng luồng. Cách đơn giản nhất là chọn đường đi có ít cạnh nhất, cách này cho ta thuật toán của Edmond-Karp. Một cách hiệu quả hơn là phân tầng đồ thị theo khoảng cách tới đỉnh phát và chỉ quan tâm đến những đường đi mà các đỉnh thuộc các tâng khác nhau, đây gọi là thuật toán Dinic.
 
 ## Các thuật toán preflow-push
