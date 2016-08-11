@@ -1,3 +1,5 @@
+**Nguồn:** [WCIPEG](http://wcipeg.com/wiki/Maximum_flow)
+
 [[_TOC_]]
 
 # Mạng luồng (Flow network)
