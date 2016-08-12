@@ -17,6 +17,7 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
     - [[Những cách tiếp cận bài toán|translate/topcoder/Planning-an-Approach-to-a-Topcoder-Problem-Part-1]]
 
 - Những kiến thức nhập môn:
+    - [[Độ phức tạp tính toán|translate/topcoder/Computational-Complexity-Section-1]]
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 
 - Cấu trúc dữ liệu:
