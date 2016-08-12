@@ -40,4 +40,4 @@ Trong thực tế, dĩ nhiên các kỹ thuật phân loại không chỉ đư�
 
 Trong bài viết tiếp theo, tác giả sẽ trình bày cách giải bài toán phân loại. Chính xác hơn, tác giả sẽ trình bày hai thuật toán phân loại được sử dụng rộng rãi mà bất cứ nhà nghiên cứu về Machine Learning nào cũng biết.
 
-Hẹn gặp lại các bạn trong bài viết tiếp theo. 
+Hẹn gặp lại các bạn trong [[bài viết tiếp theo|translate/ml/Machine-Learning-Classification-phan-2].
