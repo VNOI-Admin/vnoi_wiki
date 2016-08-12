@@ -99,7 +99,7 @@ Từ ví dụ 2 chúng ta có thể nhầm tưởng rằng đệ quy chạy khô
 
 Mã giả mô tả thuật toán sắp xếp trộn *MergeSort*
 
-```cpp
+```
 MergeSort(mảng S) {
   if (số phần tử của S <= 1) return S;
   chia đôi S thành hai mảng con S1 và S2 với số phần tử gần bằng nhau;
@@ -383,8 +383,6 @@ $$
 Công thức trên giải như thế nào? Phương pháp cây Đệ Quy có thể được áp dụng trong trường hợp bất đối xứng như vậy không? Có một phiên bản tổng quát hơn của Định lý Tổng Quát áp dụng cho trường hợp như vậy hay không? Và trong các trường hợp mà định lý Tổng Quát không áp dụng được, điển hình là với công thức $f (N) = 4f (N/4) + \Theta(N log N)$, ta cần xử lý thế nào?
 
 Chúng ta sẽ không trả lời các câu hỏi trên tại đây, và tài liệu này cũng không phải là tài liệu duy nhất về chủ đề độ phức tạp thuật toán. Nếu bạn đang thắc mắc về các câu hỏi trên thì bạn đã nắm được cơ bản đủ để sử dụng trong các kỳ thi thuật toán. Nếu bạn muốn trả lời các câu hỏi trên thì có thể tìm đọc trong các sách chính thống.
-
-Cảm ơn vì đã theo dõi bài viết tới cuối. Nếu có câu hỏi, góp ý hoặc báo lỗi, bạn có thể sử dụng forum của TopCoder.
 
 # Lời người dịch
 
