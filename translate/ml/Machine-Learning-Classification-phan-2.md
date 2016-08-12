@@ -2,19 +2,19 @@
 
 **Nguồn:** [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/20/machine-learning-for-dummies-part-2/)
 
-Trong bài viết trước ([link](http://vnoi.info/contributor/translate/ml/Machine-Learning-for-Dummies-part-1)), chúng ta đã cùng tìm hiểu về **Classification**. Chúng ta cũng đã đưa ra vài ví dụ về ứng dụng của nó và cũng đã làm quen với **the Iris dataset**. Nếu có thời gian, bạn nên đọc bài viết đó để có thể hiểu cặn kẽ những nội dung trong bài viết này.
+Trong bài viết trước ([[link|translate/ml/Machine-Learning-for-Dummies-part-1]]), chúng ta đã cùng tìm hiểu về **Classification**. Chúng ta cũng đã đưa ra vài ví dụ về ứng dụng của nó và cũng đã làm quen với **the Iris dataset**. Nếu có thời gian, bạn nên đọc bài viết đó để có thể hiểu cặn kẽ những nội dung trong bài viết này.
 
 Trở lại câu chuyện về hoa diên vĩ (Iris flower): Chúng ta có một danh sách các bông hoa diên vĩ được mô tả bằng độ dài và độ dày của đài hoa và cánh hoa (**attributes**). Chúng ta cũng đã biết chủng loại của tất cả các bông hoa trừ một cái duy nhất (chúng ta sẽ gọi nó là *"bông diên vĩ bí ẩn"*) và mục tiêu cuối cùng là tìm ra chủng loại của bông diên vĩ bí ẩn này. Với bài toán này, chúng ta giả sử rằng những thuộc tính trên là đặc trưng của chủng loại.
 
-### Giải pháp 1: Quan sát tương đồng (*The same observation solution*)
+# Giải pháp 1: Quan sát tương đồng (*The same observation solution*)
 
-Giải pháp đầu tiên mà ta thường nghĩ đến trong trường hợp này là tìm kiếm một bông diên vĩ khác với độ dài và độ dày của đài hoa và cánh hoa tương đồng với bông diên vĩ bí ẩn. Nếu có, nhiều khả năng chủng loại của bông hoa này cũng tương đồng với bông hoa bí ẩn. Không may mắn thay, rất hiếm khi chúng ta tìm được hai bông diên vĩ với những thông số giống hệt nhau. Trên thực tế, tìm kiếm một quan sát với các thuộc tính giống hệt hiếm khi là một giải pháp tốt, sẽ luôn có những sự khác biệt dù là rất nhỏ.
+Giải pháp đầu tiên mà ta thường nghĩ đến trong trường hợp này là tìm kiếm một bông diên vĩ khác với độ dài và độ dày của đài hoa và cánh hoa giống với bông diên vĩ bí ẩn. Nếu có, nhiều khả năng chủng loại của bông hoa này cũng tương đồng với bông hoa bí ẩn. Không may mắn thay, rất hiếm khi chúng ta tìm được hai bông diên vĩ với những thông số giống hệt nhau. Trên thực tế, tìm kiếm một quan sát với các thuộc tính giống hệt hiếm khi là một giải pháp tốt, sẽ luôn có những sự khác biệt dù là rất nhỏ.
 
-### Giải pháp 2: Hàng xóm gần nhất (*The 1-nearest neighbors solution*)
+# Giải pháp 2: Hàng xóm gần nhất (*The 1-nearest neighbors solution*)
 
-Thay vì tìm kiếm một bông diên vĩ với các giá trị thuộc tính tương đồng, chúng ta sẽ tìm kiếm những bông hoa *gần như* tương đồng với bông hoa bí ẩn. Nếu hai bông diên vĩ có kích thước rất gần giống nhau, chúng trông sẽ rất giống nhau và vì vậy, có thể chúng thuộc cùng một chủng loại.
+Thay vì tìm kiếm một bông diên vĩ với các giá trị thuộc tính tương đồng, chúng ta sẽ tìm kiếm những bông hoa *gần giống* với bông hoa bí ẩn. Nếu hai bông diên vĩ có kích thước rất gần giống nhau, chúng trông sẽ rất giống nhau và vì vậy, có thể chúng thuộc cùng một chủng loại.
 
-Tuy nhiên, nếu như có một vài bông diên vĩ thuộc các chủng loại khác nhau nhưng đều có giá trị thuộc tính gần giống với bông diên vĩ bí ẩn, điều đó sẽ gây ra vấn đề. Vì vậy, chúng ta chỉ tìm ra bông diên vĩ *giống nhất* với bông diên vĩ bí ẩn. Điều đó có nghĩa là chúng ta phải định nghĩa chính xác thế nào là hai bông diên vĩ *giống nhau*. Chúng ta cũng phải định nghĩa thế nào là một bông diên vĩ giống bông diên vĩ này *hơn* so với một bông khác.
+Tuy nhiên, cách này sẽ không hiệu quả nếu như có một vài bông diên vĩ thuộc các chủng loại khác nhau nhưng đều có giá trị thuộc tính gần giống với bông diên vĩ bí ẩn. Vì vậy, chúng ta chỉ tìm ra bông diên vĩ *giống nhất* với bông diên vĩ bí ẩn. Điều đó có nghĩa là chúng ta phải định nghĩa chính xác thế nào là hai bông diên vĩ *giống nhau*. Chúng ta cũng phải định nghĩa thế nào là một bông diên vĩ giống bông diên vĩ này *hơn* so với một bông khác.
 
 Giải pháp được sử dụng bởi các nhà nghiên cứu là định nghĩa *khoảng cách* giữa hai bông diên vĩ.  Khoảng cách giữa hai bông diên vĩ càng nhỏ, chúng càng *giống nhau*. Có rất nhiều cách để định nghĩa khoảng cách. Một trong những khoảng cách thường được sử dụng nhất trong Khoa học Máy tính là *khoảng cách Euclide* **(the Euclidean distance)**. Nghe có vẻ nguy hiểm, nhưng thực ra khoảng cách Euclide chính là những gì bạn vẫn thường hiểu về *khoảng cách* hay *đường chim bay*.
 
@@ -38,7 +38,7 @@ Nhờ những bước tính toán và so sánh như trên, bạn có thể tìm 
 
 ![translate_ml_nearest_neighbor](http://blog.mathieu.guillame-bert.com/wp-content/uploads/2015/07/irises.png)
 
-### Giải pháp 3: k-hàng xóm gần nhất (*The k-nearest neighbors solution*)
+# Giải pháp 3: k-hàng xóm gần nhất (*The k-nearest neighbors solution*)
 
 Thông thường, giải pháp *hàng xóm gần nhất* (*The 1-nearest neighbors solution*) cho kết quả tốt, nhưng trong nhiều trường hợp, vì nhiều nguyên nhân khác nhau mà giải pháp này cho kết quả thiếu chính xác. Một trong những nguyên nhân có thể là sự thiếu chính xác trong phép đo các thuộc tính. Điều này dẫn đến việc tính khoảng cách không đúng, và như vậy thuật toán không thể tìm ra lớp (**class**) đúng nhất.
 
@@ -50,12 +50,8 @@ Tuy nhiên, sẽ thế nào nếu 5 bông diên vĩ trên thuộc về các ch�
 
 Giải thuật trên được gọi là *5-hàng xóm gần nhất* (**5-nearest neighbors**)
 
-Có thể bạn thắc mắc tại sao chúng ta lại tìm 5 hàng xóm gần nhất thay vì 2, 10 hay 50. Chọn ra **k** tốt nhất trong giải thuật *k-hàng xóm gần nhất* là một câu hỏi rất khó trả lời vì nó phụ thuộc vào rất nhiều vấn đề. Chúng ta sẽ không đề cập chi tiết ở đây, nhưng bạn nên biết rằng, trong thực tế, các nhà nghiên cứu thường thử rất nhiều trường hợp để tìm ra phương án tốt nhất.
+Có thể bạn thắc mắc tại sao chúng ta lại tìm 5 hàng xóm gần nhất thay vì 2, 10 hay 50. Chọn ra **k** tốt nhất trong giải thuật *k-hàng xóm gần nhất* là một câu hỏi rất khó trả lời vì nó phụ thuộc vào rất nhiều vấn đề. Chúng ta sẽ không giải thích chi tiết ở đây, nhưng bạn nên biết rằng, trong thực tế, các nhà nghiên cứu thường thử rất nhiều trường hợp để tìm ra phương án tốt nhất.
 
 Bài viết đến đây là hết. Hi vọng bạn đã có một hiểu biết sơ lược về thuật toán nổi tiếng *k-hàng xóm gần nhất* (hay *k-nearest neighbors*). Trong bài viết tiếp theo, tác giả sẽ giới thiệu một thuật toán mới hơn, phức tạp và rất mạnh gọi là **Random Forest**.
 
-Hẹn gặp lại các bạn trong bài viết tới!  
-
-
-
-
+Hẹn gặp lại các bạn trong bài viết tới!
