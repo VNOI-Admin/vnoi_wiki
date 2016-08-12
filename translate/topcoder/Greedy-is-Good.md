@@ -1,9 +1,13 @@
-# Tham lam thì tốt
+# Thuật toán Tham lam
+
+## Ví dụ minh họa
+
 John Smith đang gặp rắc rối! Anh ấy là một thành viên của **Topcoder** và sau khi học cách để trở thành bậc thầy trong việc đối phối với các bài toán quy hoạch động, anh ấy bắt đầu giải quyết hàng loạt các bài tập. Nhưng chiếc máy tính *"dễ bảo"* của anh bắt đầu trở chứng vào hôm nay. Vào mỗi buổi sáng như thường lệ, John thức dậy vào lúc 10 giờ sáng, uống một cốc cà phê và bắt đầu giải các bài tập trước khi thưởng thức bữa sáng. Mặc dù có thứ gì đó *"sai sai"* so với mọi hôm, nhưng dựa vào kho tàng kiến thức mà anh ấy vừa mới gặt hái được, John đã viết chương trình với một tốc độ thần thánh. Mệt mỏi với việc cấp phát ma trận vào mỗi buổi sáng, chiếc máy tính thông báo rằng: **"Segmentation fault!"**. Dù cho dạ dày còn đang rỗng, song với ý tưởng thông minh của mình, John đã vượt qua rắc rối bằng cách chèn thêm một vòng lặp. Nhưng chiếc máy tính lại gào lên: **"Time limit exceeded!"**.
 
 Thay vì tiếp tục vướng vào mớ rắc rối, John đã có một quyết định tiến bộ hơn. Quá đủ cho việc lập trình! John nói. Anh ấy quyết định sẽ có một kỳ nghỉ như là phần thưởng cho những nỗ lực của mình.
 
 Là một con người tràn trề sinh lực, John muốn dành thời gian nhiều cho cuộc đời của mình. Có quá nhiều thứ mà anh ta muốn làm, nhưng không may là anh ta không thể nào làm hết tất cả chúng được. Thế nên trong lúc ăn sáng, John đã vạch ra một *"Fun plan"* được thể hiện bằng một thời gian biểu cho từng hoạt động như sau:
+
 <table align="center">
 <tr><th>Id</th> <th>Hoạt động</th> <th>Thời gian</th></tr>
 <tr><td>1</td> <td>Sửa phòng</td> <td>Thứ 2, 22:00 đến thứ 3, 1:00</td></tr>
@@ -17,6 +21,7 @@ Là một con người tràn trề sinh lực, John muốn dành thời gian nhi
 <tr><td>9</td> <td>Tổ chức tiệc ngủ</td> <td>Thứ 7, 21:00 đến Chủ nhật, 6:00</td></tr>
 <tr><td>10</td> <td>Tham gia thử thách <i>"All you can eat"</i> và <i>"All you can drink"</i></td> <td>Thứ 7, 21:01 đến thứ 7, 23:59</td></tr>
 </table>
+
 Giờ anh ấy muốn thực hiện được tối đa các hoạt động trong thời gian biểu trên. Mặc dù một kế hoạch an toàn thì cần phải có chút lý trí vào đó, nhưng giờ thì hồn anh ấy đã đắm chìm vào kỳ nghỉ rồi.
 
 Liệu ta có thể giúp anh ấy có một kỳ nghỉ tuyệt vời? Ta hoàn toàn có thể! Đầu tiên, ta hãy đưa ra một giả định. Là một lập trình viên tỉ mỉ, một khi đã đặt ra kế hoạch, anh ấy buộc phải thực hiện nó. Thế nên, mỗi hoạt động chỉ có hai chọn lựa là có hoặc không. Và với mỗi trường hợp chọn lựa cho hoạt động thứ nhất, ta lại có thêm 2 lựa chọn cho hoạt động thứ 2. Phân tích nhanh ta sẽ thấy được rằng có $2^n$ trường hợp, và trong tình huống này thì đó sẽ là 1024 trường hợp. Với mỗi trường hợp ta sẽ kiểm tra xem nó có thỏa mãn giới hạn về thời gian hay không. Từ đây, việc cho lựa 1 phương  án có nhiều hoạt động nhất sẽ trở nên dễ dàng hơn.Với khá nhiều sự chọn lựa như thế này, John buộc phải nhờ đến sự giúp đỡ của chiếc máy tính đang mệt mỏi. Nhưng điều gì sẽ xảy ra nếu John có tới 50 hoạt động trong danh sách? Thậm chí dùng đến cả chiếc máy tính mạnh mẽ nhất thế giới thì cũng cần đến vài năm để tìm ra câu trả lời. Thế nên, phương án này khá phi thực tế.
@@ -54,7 +59,7 @@ Tổng quát lại, ta thấy được rằng mỗi đáp án của chúng ta đ
 Đoạn mã giả dưới đây diễn ta cách lựa chọn tối ưu các hoạt động bằng thuật toán tham lam mà ta vừa chứng minh phía trên:
 
 ```
-Đặt N là số hoạt động và 
+Đặt N là số hoạt động và
 {I} là hoạt động thứ I  ( 1 <= I <= N )
 
 Với mỗi {I}, xét S[I] và F[I] lần lượt là thời gian bắt đầu và kết thúc của hoạt động đó.
@@ -135,15 +140,15 @@ bốn phần tử trên đường chéo (các phần tử đại diện cho AA, 
 
 Và giờ, ta đã đến được **cốt lõi của vấn đề**. Lời giải cho cả vấn đề này chính là việc tìm được giá trị điểm tối ưu cho nhóm thứ hai. Nếu vấn đề quả thật là **lựa chọn tham lam** và **tối ưu hóa cục bộ**, ta hoàn toàn có thể lấy một phần tử ra, gắn cho nó giá trị tối ưu và thực hiện tương tự với các phần tử còn lại.
 
-**Ta có được khẳng định như sau: Nếu ta luôn luôn gán giá trị lớn nhất có thể cho phần tử xuất hiện nhiều lần nhất trong một nhóm, và cuối cùng ta sẽ thu được kết quả lớn nhất có thể cho toàn nhóm đó.** 
+**Ta có được khẳng định như sau: Nếu ta luôn luôn gán giá trị lớn nhất có thể cho phần tử xuất hiện nhiều lần nhất trong một nhóm, và cuối cùng ta sẽ thu được kết quả lớn nhất có thể cho toàn nhóm đó.**
 
 Việc đầu tiên mà ta cần làm là sắp xếp lại sáu phần tử này trong ma trận **F**. Giờ, ta sẽ thực sự tính toán các giá trị tương ứng trong S. Tổng điểm tối thiểu mà ta đạt được là $-20$, một ý nghĩ chợt lóe lên trong ta, hai giá trị đầu tiên sẽ được gắn bằng $10$ (kể cả 4 giá trị còn lại ta có gán $-10$ đi chăng nữa thì ta vẫn thu về được giá trị $-20$). Ta biến rằng số điểm cuối cùng sẽ nhỏ hơn $0$. Bởi vì ta muốn tối đa hóa số điểm của phần tử đầu tiên nên ba phần tử còn lại sẽ là $-10$ (trong trường hợp tốt nhất, điểm tổng sẽ là $-2$ và lúc đó, ta sẽ điền số điểm như sau: $[10, 10, 8, -10, -10, -10]$). Cuối cùng, giá trị của phần tử thứ ba sẽ được xác định dựa vào lựa chon của ta cho nhóm thứ nhất. Đối với giá trị lớn nhất là $10$, ta sẽ trừ đi phần nửa của tổng số điểm của nhóm thứ nhất (ta lưu ý rằng tổng nói trên buộc phải là số chẵn).
 
 Giờ thì ta cần phải chứng minh rằng phương pháp của mình là đúng. Cách chứng mình này cũng không quá phức tạp. Nhằm mục đích để tổng của **S** là một hằng số, ta chỉ có thể giảm các cặp có số lần xuất hiện nhiều hơn tăng những cặp có số lần xuất hiện ít hơn. Gọi **f1** và **f2** lần lượt là số lần xuất hiện của của hai cặp và $f1 >= f2$. Ta có $f1 * s1 + f2 * s2 = X$, với X là tổng tối đa mà ta đạt được. Bằng **giả định Tham lam** của ta, $s1 >= s2$. Vì tổng $s1+s2$ là một hằng số, tổng trên sẽ biến đổi thành $f1 * (s1-a) + f2 * (s2-a) = Y$ với a là số dương ($a > 0$). Ta tìm ra được rằng $Y-X = a * (f2-f1)$. Bởi vì $f1 >= f2$ nên khoảng cách này luôn dương. Vì Y có thể lựa chọn tùy ý, ta có thể kết thúc *lựa chọn Tham lam* ban đầu bằng việc luôn cho Y số điểm lớn nhất.
 
-Ta áp dụng thuật toán trên cho mỗi cấu hình của các phần tử trong nhóm đầu tiên và lưu lại kết quả tốt nhất. 
+Ta áp dụng thuật toán trên cho mỗi cấu hình của các phần tử trong nhóm đầu tiên và lưu lại kết quả tốt nhất.
 
-Phương pháp biểu diễn: Thay vì phải dùng tới hai ma trận **F** và **S**, **ta có thể dùng một mảng đề lưu đồng thời cả cả số lần lặp lẫn số điểm tương ứng**. 4 phần tử đầu tiên của mảng **F** sẽ thể hiện tần số của các cặp AA, CC, GG, TT. 6 phần tử tiếp theo sẽ lưu số lần lặp của các cặp có thể sinh ra và được sắp xếp giảm dần dựa vào tần số  $(F[5] >= F[6] >= F[7] >= F[8] >= F[9] >= F[10])$. **S** sẽ là một mảng có 10 phần tử mà $S[i]$ chính là số điểm mà ta phân bổ cho cặp $i$. 
+Phương pháp biểu diễn: Thay vì phải dùng tới hai ma trận **F** và **S**, **ta có thể dùng một mảng đề lưu đồng thời cả cả số lần lặp lẫn số điểm tương ứng**. 4 phần tử đầu tiên của mảng **F** sẽ thể hiện tần số của các cặp AA, CC, GG, TT. 6 phần tử tiếp theo sẽ lưu số lần lặp của các cặp có thể sinh ra và được sắp xếp giảm dần dựa vào tần số  $(F[5] >= F[6] >= F[7] >= F[8] >= F[9] >= F[10])$. **S** sẽ là một mảng có 10 phần tử mà $S[i]$ chính là số điểm mà ta phân bổ cho cặp $i$.
 
 Ý tưởng chính của thuật toán trên sẽ được minh họa trong đoạn mã giả dưới đây:
 
@@ -308,7 +313,7 @@ Repeat
                A[I] = A[I] - Allowance
         Endfor
 Until  Min = 0
-Return Groups 
+Return Groups
 ```
 Nếu cách tiếp cận này thật sự đúng, ta hoàn toàn có thể thấy được. Mặc dù nó có thể thoát khỏi ánh mắt sắc nhọn của Tomek cũng như là test hệ thống, nhưng rất có vẻ là nó sẽ không thể nào đưa ra kết quả quả đúng với mọi bộ test khả thi. Đây chính một ví dụ cho thấy nếu được tinh chỉnh, từ một thuật toán tham lam đơn giản (nhưng vẫn còn khiếm khuyết) cũng cũng có thể trở thành một cách "đúng". Để biết thêm về thuật toán chính xác cho bài này, xem lời giải ở [Match Editorial](http://community.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm204).
 
