@@ -86,21 +86,21 @@ Với mỗi bước, chúng ta thử xả luồng một số đỉnh bị quá t
 h[s]<-n,h[t]<-0,h[v]<-0 for other v
 f[e]<-c[e] for e=(s,v), f[e]<-0 for other e
 while exist v<>t, excess(v)>0
-	forall (v,w):
+    forall (v,w):
     if exist w: h[w]<h[v]:
-    	push(v, w)
+    	    push(v, w)
 	else:
-		relabel(v)
+	    relabel(v)
 
 excess(v):
-	return sum(f[u,v])-sum(f[v,w]) for all u,w
+    return sum(f[u,v])-sum(f[v,w]) for all u,w
 
 push(v,w):
-	q<-min(excess(v),c(v,w))
+    q<-min(excess(v),c(v,w))
     add q to (v,w)
 
 relabel(v):
-	h[v]<-min(h[w])+1 for all w in E
+    h[v]<-min(h[w])+1 for all w in E
 ```
 
 ## Các hướng tiếp cận khác
