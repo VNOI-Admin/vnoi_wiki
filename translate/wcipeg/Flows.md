@@ -82,6 +82,26 @@ Lớp thuật toán **Preflow-push** khác với thuật toán sử dụng đư�
 
 Với mỗi bước, chúng ta thử xả luồng một số đỉnh bị quá tải bằng cách gửi luồng sang một đỉnh kề của nó. Một số luồng cuối cùng sẽ đi về đỉnh thu, và mọi luồng không đi về đỉnh thu sẽ quay trở lại đỉnh phát.
 
+```
+h[s]<-n,h[t]<-0,h[v]<-0 for other v
+f[e]<-c[e] for e=(s,v), f[e]<-0 for other e
+while exist v<>t, excess(v)>0
+	forall (v,w):
+    if exist w: h[w]<h[v]:
+    	push(v, w)
+	else:
+		relabel(v)
+
+excess(v):
+	return sum(f[u,v])-sum(f[v,w]) for all u,v in V
+push(v,w):
+	q<-min(excess(v),c(v,w))
+    add q to (v,w)
+
+relabel(v):
+	h[v]<-min(h[w])+1 for all w in E
+```
+
 ## Các hướng tiếp cận khác
 
 Một số phương pháp tinh vi hơn đã được giới thiệu bởi King, Rao và Tarjan (1994) và Orlin (2012). Kết hợp hai phương pháp cho ta một thuật toán tổng quát có độ phức tạp $O(VE)$, tối ưu nhất cho đến giờ phút này.
