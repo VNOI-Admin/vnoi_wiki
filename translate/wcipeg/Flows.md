@@ -39,18 +39,28 @@ Cho một mạng, chúng ta cần tìm một luồng hợp lệ sao cho tổng l
 **Mệnh đề:** Tổng luồng ra khỏi đỉnh phát bằng tổng luồng đi vào đỉnh thu.
 
 **Chứng minh:** Xét luồng $f$ trên mạng $G$
+
 Ta có:
+
 $\sum_{u \in V} \sum_{v \in V} f(u,v)$
+
 $=\sum_{u \in V} \sum_{v \in V} \frac{1}{2} (f(u,v)+f(u,v))$
+
 $=\sum_{u \in V} \sum_{v \in V} \frac{1}{2} (f(u,v)-f(v,u))$
+
 $=\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(u,v)-\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(v,u)$
+
 $=\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(u,v)-\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(u,v)$
+
 $=0$
 
 Lại có:
+
 $\sum_{u \in V} \sum_{v \in V} f(u,v)$
+
 $=\sum_{u \in V \setminus \{s,t\}} \sum_{v \in V} f(u,v)+\sum_{v \in V}f(s,v)+\sum_{v \in V}f(t,v)$
-$=0+\sum_{v \in V}f(s,v)-\sum_{v \in V}f(v,t)$
+
+$=\sum_{v \in V}f(s,v)-\sum_{v \in V}f(v,t)$
 
 Vậy: $\sum_{v \in V}f(s,v)=\sum_{v \in V}f(v,t)$
 
