@@ -1,3 +1,5 @@
+# Độ phức tạp tính toán
+
 [[_TOC_]]
 
 Nguồn bài: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/computational-complexity-section-1/)
@@ -40,7 +42,7 @@ Giả sử bạn được phân công viết một chương trình để xử l�
 </tr>
 </tbody>
 </table>
-Bảng 1: Thời gian chạy của hai thuật toán 1, 2
+*Bảng 1: Thời gian chạy của hai thuật toán 1, 2*
 
 Từ bảng 1 ta có thể đánh giá một cách không chính thức rằng thuật toán nào tốt hơn (vì thường là ta có thể ước lượng số lượng bản ghi cần xử lý). Với một công ty thì kết luận dựa trên việc chạy thử như vậy có thể chấp nhận được. Nhưng với người lập trình, nó sẽ tốt hơn nếu có thể đánh giá thời gian chạy của hai thuật toán **trước khi** viết code và chạy thử - sau đó chỉ cần cài đặt thuật toán tốt hơn.
 
@@ -51,6 +53,7 @@ Các câu hỏi trên dẫn tới câu hỏi cốt lõi hơn: **Làm sao để s
 Có thể kết luận được rằng trong hầu hết các trường hợp - cho trước 2 thuật toán, hoặc là một thuật toán gần như luôn luôn tốt hơn, hoặc là cả hai xấp xỉ tốt như nhau. Như vậy, chúng ta sẽ định nghĩa độ tốt của thuật toán dựa vào đánh giá độ hiệu quả chạy trên toàn bộ tập dữ liệu như trên. Đánh giá này sẽ là ý tưởng chính đằng sau các định nghĩa cụ thể mà chúng ta sẽ đề cập về sau.
 
 ## Mẹo gộp hai thuật toán
+
 Nếu đối chiếu với hai thuật toán ví dụ 1, không khó để thấy rằng có một thuật toán với thời gian chạy tương tự với chúng trong bảng 2
 
 <table>
@@ -75,14 +78,14 @@ Nếu đối chiếu với hai thuật toán ví dụ 1, không khó để thấ
 </tr>
 </tbody>
 </table>
-Bảng 2: Thời gian chạy của thuật toán 3
+*Bảng 2: Thời gian chạy của thuật toán 3*
 
 Ý tưởng của thuât toán 3: nếu số lượng bản ghi nhỏ thì ta áp dụng thuật toán 1, ngược lại áp dụng thuật toán 2.
 
-Ý tưởng tương tự thường được áp dụng vào thực tế. Một ví dụ là trong các hàm sắp xếp *sort()* được cung cấp bởi thư viện của các ngôn ngữ lập trình thường được cài đặt theo thuật toán *QuickSort* với nhiều cải tiến, ví dụ:
+Ý tưởng tương tự thường được áp dụng vào thực tế. Một ví dụ là trong các hàm sắp xếp `sort()` được cung cấp bởi thư viện của các ngôn ngữ lập trình thường được cài đặt theo thuật toán *QuickSort* với nhiều cải tiến, ví dụ:
 
-+ Nếu số lượng phần tử quá nhỏ, chạy thuật toán sắp xếp chèn *InsertSort* (vì *InsertSort* chạy hơn với tập dữ liệu kích thước nhỏ).
-+ Nếu vị trí phần tử chốt không tốt, chuyển sang chạy thuật toán sắp xếp trộn *MergeSort*.
+- Nếu số lượng phần tử quá nhỏ, chạy thuật toán sắp xếp chèn *InsertSort* (vì *InsertSort* chạy hơn với tập dữ liệu kích thước nhỏ).
+- Nếu vị trí phần tử chốt không tốt, chuyển sang chạy thuật toán sắp xếp trộn *MergeSort*.
 
 # Thế nào là độ hiệu quả của thuật toán?
 
@@ -90,13 +93,14 @@ Bảng 2: Thời gian chạy của thuật toán 3
 
 Giả sử bạn có đoạn mã sau:
 
-~~~cpp
-for(int i = 0; i < N; i++)
-	for(int j = i + 1; j < N; j++)
-    	if(A[i] > A[j])
-        	swap( A[i], A[j] );
-~~~
-(Đây thực ra là một cách cài đặt của thuật toán *MinSort*) Giả sử chúng ta được cho một mảng dữ liệu đầu vào (mảng A và số phần tử N), ta có thể tính chính xác số bước chạy của thuật toán trên đầu vào đã cho. Ta thậm chí có thể tính chính xác số lệnh thực thi trong bộ vi xử lý nếu ta muốn(ND: chuyển đoạn mã C++ trên thành mã Assembly). Tuy nhiên, có rất nhiều giá trị mà bộ dữ liệu đầu vào có thể nhận nên việc tính toán số bước như trên với mọi khả năng đầu vào là không thể.
+```cpp
+for (int i = 0; i < N; i++)
+	for (int j = i + 1; j < N; j++)
+    	if (A[i] > A[j])
+        	swap(A[i], A[j]);
+```
+
+(Đây thực ra là một cách cài đặt của thuật toán *MinSort*) Giả sử chúng ta được cho một mảng dữ liệu đầu vào (mảng A và số phần tử N), ta có thể tính chính xác số bước chạy của thuật toán trên đầu vào đã cho. Ta thậm chí có thể tính chính xác số lệnh thực thi trong bộ vi xử lý nếu ta muốn (ND: chuyển đoạn mã C++ trên thành mã Assembly). Tuy nhiên, có rất nhiều giá trị mà bộ dữ liệu đầu vào có thể nhận nên việc tính toán số bước như trên với mọi khả năng đầu vào là không thể.
 
 Thực tế trên dẫn ta tới câu hỏi quan trọng hơn: đánh giá quan trọng nhất về độ hiệu quả mà chúng ta cần tới là gì? Thông thường thì đó là tốc độ chạy thuật toán trong **trường hợp xấu nhất** - ta cần tìm ra một đánh giá **cận trên** của tốc độ chạy thuật toán.
 
@@ -133,7 +137,7 @@ Có thể thấy rằng việc xác định chính xác hàm $f$ cho các chươ
 
 Xét hai thuật toán, một có thời gian chạy $N^2$ và một có thời gian chạy $0.0001N^3$. Dễ nhận thấy rằng với $N > 1000$ thì thuật toán đầu tiên chạy nhanh hơn - khi $N$ tăng, khoảng cách về độ hiệu quả giữa hai thuật toán càng trở nên rõ ràng. Trong khi thuật toán đầu tiên có thể giải quyết bài toán với $N = 20 000$ chỉ trong thời gian tính bằng giây, thuật toán thứ hai phải mất tới vài phút trên các máy tính hiện đại.
 
-Sự khác biệt như trên sẽ luôn xảy ra nếu một trong hai thuật toán có *thời gian chạy* tăng **tiệm cận nhanh hơn** so với *thời gian chạy* của thuật toán còn lại (nói cách khác, khi $N$ đủ lớn để kết quả phép tính giới hạn **lim** của tỷ lệ giữa hai đại lượng này bằng 0 hoặc $\infty$. ND: trong bài này tác giả không nói rõ việc so sánh độ phức tạp theo phép tính giới hạn, chỉ cần hiểu khái niệm **tiệm cận** có nghĩa là **kích cỡ đầu vào đủ lớn**. Như vậy **tiệm cận nhanh hơn** có nghĩa là ** nhanh hơn khi đầu vào đủ lớn**). Bất kể các hằng số nhận giá trị nào, một thuật toán có *thời gian chạy* tỷ lệ (thuận) với $N^2$ sẽ **luôn luôn hiệu quả hơn** một thuật toán khác có *thời gian chạy* tỷ lệ với $N^3$ trong **hầu hết các trường hợp của tập đầu vào**. Nhận định này chính là ý tưởng chủ đạo để xây dựng định nghĩa chính thức của các khái niệm.
+Sự khác biệt như trên sẽ luôn xảy ra nếu một trong hai thuật toán có *thời gian chạy* tăng **tiệm cận nhanh hơn** so với *thời gian chạy* của thuật toán còn lại (nói cách khác, khi $N$ đủ lớn để kết quả phép tính giới hạn **lim** của tỷ lệ giữa hai đại lượng này bằng 0 hoặc $\infty$. ND: trong bài này tác giả không nói rõ việc so sánh độ phức tạp theo phép tính giới hạn, chỉ cần hiểu khái niệm **tiệm cận** có nghĩa là **kích cỡ đầu vào đủ lớn**. Như vậy **tiệm cận nhanh hơn** có nghĩa là **nhanh hơn khi đầu vào đủ lớn**). Bất kể các hằng số nhận giá trị nào, một thuật toán có *thời gian chạy* tỷ lệ (thuận) với $N^2$ sẽ **luôn luôn hiệu quả hơn** một thuật toán khác có *thời gian chạy* tỷ lệ với $N^3$ trong **hầu hết các trường hợp của tập đầu vào**. Nhận định này chính là ý tưởng chủ đạo để xây dựng định nghĩa chính thức của các khái niệm.
 
 
 
@@ -151,7 +155,7 @@ Thay vì viết "$f(N)$ thuộc $O(g(N))$" ta thường viết là "$f(N)$ = $O(
 
 Định nghĩa trên được biết tới là ký pháp O-lớn và được sử dụng để chỉ ra cận trên của tốc độ tăng của một hàm số.
 
-Xét hàm số $f (N) = 1.5N^2 – 0.5N$ trong ví dụ 2. Ta có thể phát biểu rằng $f (N) = O(N^2)$ (một trường hợp khả dĩ cho các hằng số là $c = 2$ và $N_0 = 0$). Điều này có nghĩa là hàm $f$ **không tăng (tiệm cận) nhanh hơn ** $N^2$.
+Xét hàm số $f (N) = 1.5N^2 – 0.5N$ trong ví dụ 2. Ta có thể phát biểu rằng $f (N) = O(N^2)$ (một trường hợp khả dĩ cho các hằng số là $c = 2$ và $N_0 = 0$). Điều này có nghĩa là hàm $f$ **không tăng (tiệm cận) nhanh hơn** $N^2$.
 
 Lưu ý rằng *thời gian chạy* chính xác của hàm $f$ không cho ta câu trả lời cho câu hỏi "Chương trình trên chạy mất bao lâu trên máy tính?". Nhận định quan trọng rút ra từ ví dụ trên là *thời gian chạy* của hàm $f$ đó là hàm bậc hai. Nếu ta tăng gấp đôi kích cỡ đầu vào, thời gian chạy sẽ tăng xấp xỉ 4 lần thời gian chạy ban đầu, không quan trọng máy tính của ta nhanh như thế nào.
 
@@ -232,14 +236,14 @@ Thông thường khi trình bày một thuật toán, cách tốt nhất để �
 ## Ví dụ 3
 Cho một mảng A đã được sắp xếp. Xác định xem liệu có tồn tại 02 phần tử trong mảng mà cách nhau D đơn vị hay không. Xét lời giải sau
 
-~~~cpp
+```cpp
 int j = 0;
 for(int i = 0; i < N; i++) {
 	while ( (j < N-1) && (A[i] - A[j] > D) )
     	j++;
     if (A[i] - A[j] == D) return 1;
 }
-~~~
+```
 
 Thoạt nhìn ta có thể sẽ đánh giá thuật toán trên có cận $O(N^2)$ - vòng lặp trong cùng chạy $N$ lần, mỗi lần tăng biến $j$ tối đa $N$ lần. Phân tích kỹ hơn, ta thấy rằng cận trên có đánh giá tốt hơn là $O(N)$ - thật ra tổng thể số lần chạy câu lệnh $j$++ trong toàn bộ thuật toán không vượt quá $N$ lần.
 
