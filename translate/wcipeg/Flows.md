@@ -93,7 +93,8 @@ while exist v<>t, excess(v)>0
 		relabel(v)
 
 excess(v):
-	return sum(f[u,v])-sum(f[v,w]) for all u,v in V
+	return sum(f[u,v])-sum(f[v,w]) for all u,w
+
 push(v,w):
 	q<-min(excess(v),c(v,w))
     add q to (v,w)
