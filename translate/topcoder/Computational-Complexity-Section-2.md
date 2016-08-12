@@ -1,9 +1,13 @@
+# Độ phức tạp tính toán - phần 2
+
 [[_TOC_]]
+
 Nguồn bài: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/computational-complexity-section-2/)
 
 [...đọc phần 1](http://vnoi.info/contributor/translate/topcoder/Computational-Complexity-Section-1)
 
 # Giới thiệu
+
 Trong phần này của bài viết chúng ta sẽ tập trung vào việc ước lượng độ phức tạp cho các chương trình đệ quy. Về mặt bản chất việc này sẽ dẫn tới khảo sát độ tăng của các hàm độ phức tạp thời gian thỏa mãn các công thức truy hồi. Nếu bạn chưa hiểu chính xác thế nào là một thuật giải đệ quy thì không cần lo lắng vì nó sẽ được giải thích trong các phần sau. Trước mắt chúng ta sẽ xem xét trường hợp đơn giản hơn - các chương trình không sử dụng đệ quy.
 
 
@@ -11,13 +15,14 @@ Trong phần này của bài viết chúng ta sẽ tập trung vào việc ướ
 
 Để mở đầu, ta xét các chương trình đơn giản không sử dụng các lời gọi đệ quy. Với các chương trình như vậy, ba quy tắc phổ biến dễ áp dụng để tìm cận trên của độ phức tạp là:
 
-+ Tính số lần lặp tối đa của một vòng lặp
-+ Nếu các vòng lặp nối tiếp nhau thì **cộng** các cận đó với nhau
-+ Nếu các vòng lặp lồng nhau thì **nhân** các cận với nhau
+- Tính số lần lặp tối đa của một vòng lặp
+- Nếu các vòng lặp nối tiếp nhau thì **cộng** các cận đó với nhau
+- Nếu các vòng lặp lồng nhau thì **nhân** các cận với nhau
 
 ## Ví dụ 1
+
 Ước lượng độ phức tạp của đoạn mã sau:
-~~~cpp
+```cpp
 int result=0;                           //  1
 for (int i=0; i<N; i++)                 //  2
   for (int j=i; j<N; j++) {             //  3
@@ -28,19 +33,20 @@ for (int i=0; i<N; i++)                 //  2
     for (int k=0; k<2*M; k++)           //  8
       if (k%7 == 4) result++;           //  9
   }                                     // 10
-~~~
+```
 
-Rõ ràng độ phức tạp của vòng lặp $while$ ở dòng 6 là $O(N)$ - số lần lặp không vượt quá $N/3+1$ lần.
+Rõ ràng độ phức tạp của vòng lặp `while` ở dòng 6 là $O(N)$ - số lần lặp không vượt quá $N/3+1$ lần.
 
-Xét vòng lặp $for$ ở các dòng 4 - 7. Dễ thấy biến $k$ được tăng lên $M$ lần. Mỗi lần như vậy thì toàn bộ vòng lặp $while$ ở dòng 6 lại được thực thi. Như vậy tổng số độ phức tạp của đoạn lệnh từ dòng 4 tới 7 là $O(MN)$ (áp dụng quy tắc 3)
+Xét vòng lặp `for` ở các dòng 4 - 7. Dễ thấy biến $k$ được tăng lên $M$ lần. Mỗi lần như vậy thì toàn bộ vòng lặp `while` ở dòng 6 lại được thực thi. Như vậy tổng số độ phức tạp của đoạn lệnh từ dòng 4 tới 7 là $O(MN)$ (áp dụng quy tắc 3)
 
-Độ phức tạp của vòng $for$ ở các dòng 8 - 9 là $O(M)$. Như vậy tổng độ phức tạp của dòng từ 4 tới 9 là $O(MN + M) = O(MN)$ (áp dụng quy tắc 2 và loại đại lượng không đáng kể)
+Độ phức tạp của vòng `for` ở các dòng 8 - 9 là $O(M)$. Như vậy tổng độ phức tạp của dòng từ 4 tới 9 là $O(MN + M) = O(MN)$ (áp dụng quy tắc 2 và loại đại lượng không đáng kể)
 
 Toàn bộ phần mã bên trong này được thực thi $O(N^2)$ lần - mỗi lần tương ứng với một tổ hợp của biến $i$ và $j$ (dòng 2 và 3) (chú ý là chỉ có $N(N + 1)/2$ giá trị khác nhau cho bộ số $[i,j]$. Mặc dù vậy $O(N^2)$ vẫn là cận trên đúng).
 
 Từ nhận xét trên ta có tổng độ phức tạp của thuật toán trong Ví dụ 1 là $O(N^2 MN) = O(MN^3)$.
 
 Từ ví dụ trên người đọc đã có khả năng phân tích độ phức tạp của các phần mã đơn giản sử dụng phương pháp như đã trình bày. Chúng ta sẽ đi tới xem xét các chương trình có sử dụng đệ quy (tức là một hàm số mà trong thân hàm của nó sẽ gọi tới chính nó với tham số khác) và phân tích ảnh hưởng của những lời gọi đệ quy này tới độ phức tạp của chúng.
+
 
 # Sử dụng đệ quy để sinh các cấu hình tổ hợp
 
@@ -51,9 +57,10 @@ Cách tiếp cận này không phải lúc nào cũng áp dụng được, có n
 Lưu ý là ta luôn luôn có thể sinh ra tất cả các chuỗi của 0 và 1, kiểm tra từng chuỗi một (kiểm tra xem chuỗi đó có tương ứng với một nghiệm hợp lệ hay không) và lưu lại nghiệm tốt nhất. Nếu ta có thể tìm một cận trên của kích cỡ nghiệm tốt nhất, số nghiệm phải kiểm tra là hữu hạn. Tuy nhiên cách làm này không đủ nhanh và không nên dùng nó nếu có cách làm khác.
 
 ## Ví dụ 2
+
 Một thuật toán quay lui đơn giản để sinh ra tất cả các hoán vị của các số tự nhiên từ 0 tới $N-1$
 
-~~~cpp
+```cpp
 vector<int> permutation(N);
 vector<int> used(N,0);
 
@@ -78,7 +85,7 @@ int main() {
   for (int first=0; first<N; first++)
     try(0,first);
 }
-~~~
+```
 
 Trong trường hợp này, dễ thấy cận dưới chính là số lượng nghiệm khả dĩ của bài toán. Thuật toán quay lui thường được sử dụng để giải các bài toán khó - khi ta không tìm được thuật toán nào tối ưu hơn. Thường thì không gian nghiệm khá lớn và phân bố đồng đều, thuật toán có thể được cài đặt sao cho độ phức tạp gần với đánh giá cận dưới. Để tìm cận trên ta chỉ việc cộng thêm số lượng phép tính cần thiết trong thực tế.
 
@@ -89,8 +96,10 @@ Tuy vậy cách làm này thường là không khả thi do nó phải khảo s�
 Từ ví dụ 2 chúng ta có thể nhầm tưởng rằng đệ quy chạy không hiệu quả và làm cho tốc độ thực thi rất chậm. Không phải lúc nào điều này cũng đúng. Ngược lại, đệ quy có thể là một công cụ rất mạnh để thiết kế những thuật toán hiệu quả. Cách thông thường để thiết kệ một giải thuật đệ quy hiệu quả là áp dụng tư tưởng **Chia để Trị** - chia bài toán thành nhiều phần, xử lý các phần nhỏ tách biệt nhau và cuối cùng ghép các kết quả con lại để được kết quả cho bài toán lớn. Dễ thấy rằng, phần "xử lý các phần nhỏ tách biệt nhau" thường được cài đặt bằng đệ quy - tiếp tục chia phần nhỏ thành phần nhỏ hơn cho tới khi đủ nhỏ để giải trực tiếp bằng các thuật toán đơn giản.
 
 ## Ví dụ 3
+
 Mã giả mô tả thuật toán sắp xếp trộn *MergeSort*
-~~~cpp
+
+```cpp
 MergeSort(mảng S) {
   if (số phần tử của S <= 1) return S;
   chia đôi S thành hai mảng con S1 và S2 với số phần tử gần bằng nhau;
@@ -99,13 +108,14 @@ MergeSort(mảng S) {
   trộn S1 và S2 đã sắp xếp để thu được S mới đã sắp xếp;
   return S mới;
 }
-~~~
+```
 
 Ta thấy là chỉ cần $O(N)$ (hoặc $O(1)$, tùy vào cách cài đặt) để chia một mảng $N$ phần tử thành hai mảng con. Trộn hai mảng con ngắn hơn đã sắp xếp này có thể làm trong $ \Theta(N)$: khởi tạo mảng $S$ rỗng. Tại mỗi bước phần tử nhỏ nhất mà chưa có trong $S$ là phần tử đầu của $S1$ hoặc $S2$. Lấy phần tử này cho vào cuối của $S$ và cứ thế tiếp tục.
 
 Như vậy tổng độ phức tạp cần để $MergeSort$ một mảng với $N$ phần tử là $\Theta(N)$ cộng với thời gian thực hiện hai lệnh gọi đệ quy.
 
 Gọi $f(N)$ là độ phức tạp của thuật toán *MergeSort* ở trên. Theo suy luận ở trên ta có:
+
 $$
 f(N) = f(\lfloor N/2 \rfloor) + f(\lceil N/2 \rceil) + p(N)
 $$
@@ -120,13 +130,14 @@ Tuy nhiên, như ta đã thấy ở phần 1, giá trị chính xác của hàm 
 
 Vì lý do trên, ta sẽ không cần tới dạng chính xác của hàm $p$ mà chỉ cần biết rằng $p(N) =  \Theta(N)$. Thêm vào đó, ta không cần giá trị khởi tạo của $p$. Ta chỉ cần biết rằng với $N$ nhỏ thì giá trị của $p$ sẽ dễ dàng tính được với độ phức tạp là hằng số.
 
-Lý do đằng sau việc đơn giản hóa $p$ như trên là do một nhận xét: việc thay đổi các giá trị khởi tạo chỉ thay đổi nghiệm của công thức truy hồi chứ không thay đổi cận trên tiệm cận của hàm số. (Bạn có thể thử bằng cách tìm một hàm $p$ bất kỳ và tính $f(8), f(16)$ và $f(32)$ với các giá trị $f(1)$ khác nhau).
+Lý do đằng sau việc đơn giản hóa $p$ như trên là do một nhận xét: việc thay đổi các giá trị khởi tạo chỉ thay đổi nghiệm của công thức truy hồi chứ không thay đổi cận trên tiệm cận của hàm số. (Bạn có thể thử bằng cách tìm một hàm $p$ bất kỳ và tính $f(8)$, $f(16)$ và $f(32)$ với các giá trị $f(1)$ khác nhau).
 
 Bên cạnh đó, vì đây chỉ là bài viết mang tính giới thiệu nên chúng ta sẽ không bàn đến các lý thuyết để xử lý các phép lấy phần nguyên, làm tròn lên và làm tròn xuống. Ta sẽ đơn giản bỏ qua các phép toán đó (ví dụ ta sẽ coi các phép chia luôn là chia lấy nguyên và làm tròn xuống).
 
 Các bạn có kỹ năng toán tốt nên thử tự chứng minh mệnh đề sau đây: nếu $p$ là hàm đa thức (với $N$ không âm) và $q(n) = p(n+1)$ thì $q(n) = \Theta(p(n))$. Mệnh đề trên cho phép ta chứng minh (với $f$ bị chặn trên bởi một hàm đa thức) rằng vế phải của công thức truy hồi có độ tăng tiệm cận không thay đổi khi ta thay phép làm tròn xuống bởi phép làm tròn lên.
 
 Nhận định trên cho phép ta viết lại công thức truy hồi ở trên theo cách đơn giản hơn:
+
 $$
 f(N) = 2f(N/2) + \Theta(N) \space\space\space(1)
 $$
@@ -136,6 +147,7 @@ Lưu ý rằng đây không phải là một "phương trình" theo nghĩa truy�
 Trong các phần cuối cùng của bài viết này, ta sẽ bàn luận một vài phương pháp giải các "phương trình" trên. Tuy nhiên trước đó ta sẽ tìm hiểu thêm một chút về các hàm logarit.
 
 # Lưu ý về hàm logarit
+
 Tới đây bạn có thể đặt câu hỏi: tác giả viết một vài thuật toán có độ phức tạp là hàm logarit ví dụ $O(NlogN)$, vậy cơ số của hàm logarit này là bao nhiêu? Tại sao ta không sử dụng cơ số 2 để có $O(Nlog_2N)$?
 
 Câu trả lời: cơ số của hàm logarit không quan trọng, tất cả cac hàm logarit (với cơ số lớn hơn 1) đều tiệm cận bằng nhau. Lý do là hai hàm logarit khác nhau tỷ lệ với nhau:
@@ -144,13 +156,14 @@ $$
 	log_aN = \frac{log_bN}{log_ba}  		\space\space\space(2)
 $$
 
-Lưu ý là với hai cơ số $a, b > 1$ thì tỷ lệ này là hằng số $log_ba$. 
+Lưu ý là với hai cơ số $a, b > 1$ thì tỷ lệ này là hằng số $log_ba$.
 
-Nhằm mục đích viết rõ ràng và dễ đọc, ta luôn sử dụng ký hiệu chung $logN$ bên trong hàm $O-lớn$, kể cả khi các hàm logarit khác nhau được sử dụng khi tính cận của độ phức tạp. 
+Nhằm mục đích viết rõ ràng và dễ đọc, ta luôn sử dụng ký hiệu chung $logN$ bên trong hàm $O-lớn$, kể cả khi các hàm logarit khác nhau được sử dụng khi tính cận của độ phức tạp.
 
-Bên cạnh đó, ý nghĩa của cách viết $logN$ khác nhau giữa các quốc gia khác nhau. Để tránh nhầm lẫn ta quy ước như sau: $logN$ để chỉ cơ số $10$, $lnN$ để chỉ cơ số tự nhiên, $lgN$ cho cơ số $2$ và $log_bN$ cho các trường hợp chung khác. 
+Bên cạnh đó, ý nghĩa của cách viết $logN$ khác nhau giữa các quốc gia khác nhau. Để tránh nhầm lẫn ta quy ước như sau: $logN$ để chỉ cơ số $10$, $lnN$ để chỉ cơ số tự nhiên, $lgN$ cho cơ số $2$ và $log_bN$ cho các trường hợp chung khác.
 
-Tiếp theo đây ta sẽ xem xét một phài mẹo biến đổi hữu ích được dùng trong các phần sau. Gọi $a, b$ là các hằng số cho trước với $a, b > 1$. 
+Tiếp theo đây ta sẽ xem xét một phài mẹo biến đổi hữu ích được dùng trong các phần sau. Gọi $a, b$ là các hằng số cho trước với $a, b > 1$.
+
 Từ (2) ta có:
 
 $$
@@ -183,9 +196,10 @@ Nói cách khác, phép quy nạp sẽ đúng nếu $d>c$. Ta luôn luôn có th
 
 Để hoàn thiện ta cần chứng minh rằng bất đẳng thức trên đúng với một vài giá trị đầu tiên của $N$. Phép chứng minh khá phức tạp. Ý tưởng chính là nếu giá trị $d$ ta tìm được chưa đủ lớn, ta luôn có thể tăng $d$ sao cho các trường hợp đầu tiên của $N$ thỏa mãn bất đẳng thức.
 
-Lưu ý rằng trong ví dụ trên ta không thể chứng minh khi $N = 1$ với vì $lg1 = 0$. Tuy nhiên, điều này không ảnh hưởng tới tính đúng đắn của phép chứng minh trên. Kết luận: từ (1) ta có  $f (N) = O(N lg N)$. 
+Lưu ý rằng trong ví dụ trên ta không thể chứng minh khi $N = 1$ với vì $lg1 = 0$. Tuy nhiên, điều này không ảnh hưởng tới tính đúng đắn của phép chứng minh trên. Kết luận: từ (1) ta có  $f (N) = O(N lg N)$.
 
 # Phương pháp Cây Đệ Quy
+
 Với một người mới bắt đầu thì phương pháp trên không hữu dụng lắm. Để sử dụng phương pháp Thay Thế ta cần phải có một dự đoán tốt về cận trên của độ phức tạp, và để có dự đoán tốt đó ta cần có một vài thông tin, hiểu biết về hàm độ phức tạp trước. Câu hỏi là, làm thế nào để thu thập các hiểu biết này? Trước tiên ta sẽ xem xét kỹ hơn về cơ chế chạy đệ quy của nó của hàm số trên (bằng việc chạy thử từng bước đệ quy của nó).
 
 Ta có thể biểu diễn các bước thực thi của một chương trình đệ quy trên một bộ đầu vào cho trước bằng một cây có gốc xác định. Mỗi đỉnh trên cây sẽ tương ứng với một bài toán con mà chương trình đang giải. Xét một đỉnh bất kỳ trên cây. Nếu giải bài toán thuộc đỉnh đó cần phải gọi đệ quy, đỉnh đó sẽ có các đỉnh con tương ứng với các bài toán nhỏ hơn nữa. Gốc của cây là bộ đầu vào, các lá tương ứng với các bài toán cơ bản có thể giải trực tiếp bằng các thuật toán thông thường (không đệ quy).
@@ -195,6 +209,7 @@ Giả sử ta đánh dấu mỗi đỉnh bằng một nhãn biểu thị độ p
 Tương tự như các phần trên, ta chỉ quan tâm tới cận trên tiệm cận. Để tìm giá trị này ta có thể "làm tròn" mỗi nhãn để việc tính tổng dễ dàng hơn. Ta minh họa cách làm trên bằng một vài ví dụ sau:
 
 ## Ví dụ 4
+
 Cây đệ quy cho thuật toán *MergeSort* ở Ví dụ 3 với 5 phần tử.
 [[/uploads/topcoder_translate_tree1.png]]
 
@@ -203,6 +218,7 @@ Cây đệ quy cho công thức truy hồi tương ứng của *MergeSort*. Số
 [[/uploads/topcoder_translate_tree2.png]]
 
 ## Ví dụ 5
+
 Cây đệ quy trong trường hợp xấu nhất của phương trình (1):
 
 [[/uploads/topcoder_translate_tree3.png]]
@@ -211,7 +227,7 @@ Một cách xử lý phổ biến trong toán tổ hợp là tính tổng các c
 
 Câu hỏi thứ hai là: cây trên có bao nhiêu mức? Rõ ràng là lớp lá tương ứng với trường hợp cơ bản của thuật toán. Chú ý là kích cỡ mảng cần xử lý giảm một nửa khi đi từ mức trên xuống mức dưới. Vì sau $lgN$ bước ta có bài toán cơ bản với mảng có $1$ phần tử, chiều cao của cây (tổng số mức) sẽ là $\Theta(logN)$.
 
-Từ hai nhận xét trên ta thu được kết quả cuối cùng: tổng độ phức tạp cần thực hiện là 
+Từ hai nhận xét trên ta thu được kết quả cuối cùng: tổng độ phức tạp cần thực hiện là
 $ \Theta(cN log N) = \Theta(N log N)$.
 
 Nếu bạn chưa hoàn toàn tin tưởng vào kết quả vừa thu được thì có thể áp dụng phương pháp Thay Thế ở trên để kiểm tra lại. Trong phần sau ta sẽ thấy là tồn tại những định lý cụ thể để có thể chứng minh chặt chẽ kết quả thu được ở trên.
@@ -328,12 +344,12 @@ Cho $a \geq 1$ và $b > 1$ là hai hằng số nguyên dương. Gọi $p$ là m�
 $$
 f(N) = af(N/b) + p(N)
 $$
-Ta có kết quả sau: 
+Ta có kết quả sau:
 
 1. Nếu $p(N) = O(N^{(log_ba) - \varepsilon})$ với một số $ \varepsilon$ > 0 nào đó thì $f(N) = \Theta(N^{log_ba})$
 2. Nếu $p(N) = O(N^{(log_ba) - \varepsilon})$  thì $f (N) = \Theta(p(N)log N)$.
 3. Nếu $p(N) = \Omega(N^{(log_ba) - \varepsilon})$ với một số $ \varepsilon$ > 0 nào đó, và nếu $ap(N/b) \leq cp(N)$ với $c < 1$ khi $N$ đủ lớn thì $ f (N) = \Theta(p(N))$.
- 
+
 
 Trường hợp $1$ tương với **Ví dụ 7**. Hầu hết thời gian thực thi được dành cho việc gọi lệnh đệ quy và số lần gọi đệ quy là đáng kể.
 
@@ -355,7 +371,7 @@ f(N) = 7f(N/2) + \Theta(N^2)
 $$
 
 
-Sử dụng định lý Tổng Quát, ta thấy Trường hợp $1$ có thể áp dụng được. Vì vậy độ phức tạp của thuật toán Strassen là $\Theta(N^{log_27}) \approx \Theta({N^{2.807}})$. Lưu ý là thuật toán cổ điển nhân ma trận theo định nghĩa có độ phức tạp $ \Theta(N^3)$. 
+Sử dụng định lý Tổng Quát, ta thấy Trường hợp $1$ có thể áp dụng được. Vì vậy độ phức tạp của thuật toán Strassen là $\Theta(N^{log_27}) \approx \Theta({N^{2.807}})$. Lưu ý là thuật toán cổ điển nhân ma trận theo định nghĩa có độ phức tạp $ \Theta(N^3)$.
 
 ## Ví dụ 9
 Thỉnh thoảng ta có thể gặp trường hợp mà kích cỡ các bài toán con không bằng nhau. Một ví dụ là thuật toán **Trung vị của 5** để tìm phần tử lớn thứ *k* của một mảng số. Thuật toán trên được chứng minh là có độ phức tạp thỏa mãn công thức
@@ -371,4 +387,5 @@ Chúng ta sẽ không trả lời các câu hỏi trên tại đây, và tài li
 Cảm ơn vì đã theo dõi bài viết tới cuối. Nếu có câu hỏi, góp ý hoặc báo lỗi, bạn có thể sử dụng forum của TopCoder.
 
 # Lời người dịch
-Trong bài viết 2 phần này tác giả **misof** đã giới thiệu khá đầy đủ về độ phức tạp tính toán để có thể sử dụng trong các kỳ thi lập trình. Tác giả đã bỏ qua một vài điểm như xử lý phần nguyên, chứng minh độ phức tạp bằng phép tính lấy giới hạn, lời giải cho phần 1 của Ví dụ 9 (xem lời giải tại [đây](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-design-and-analysis-of-algorithms-spring-2012/lecture-notes/MIT6_046JS12_lec01.pdf)), định lý Tổng Quát mở rộng (dùng để giải phần 2 của ví dụ 9) và một vài chi tiết khác. Bạn đọc quan tâm tới các phần bị bỏ qua có thể tìm đọc cuốn **Introduction to Algorithm, 3rd edition** [link](http://bayanbox.ir/view/4177858657730907268/introduction-to-algorithms-3rd-edition.pdf) thường được biết đến với tên gọi **CLRS** (4 chữ cái đầu tên của 4 tác giả), hình như đã có bản dịch tiếng Việt. Các bạn yêu thích học trực tuyến có thể tìm khóa **Analysis and Design of Algorithms** trên trang web *mentorsnet.org* (bằng tiếng Anh), đây là khóa học của giảng viên Ấn Độ và họ có slides bài giảng rất chi tiết gồm cả toàn bộ chứng minh của định lý Tổng Quát cơ bản và mở rộng. Ngoài ra, sau khi đã thuần thục về độ phức tạp tính toán các bạn có thể tìm hiểu thêm về các khái niệm lớp $P$ và $NP, NP-Hard, NP-Complete$. Hiểu biết về $P$ và $NP$ sẽ giúp các bạn tiếp cận với một dạng bài đang trở nên phổ biến gần đây là **tham số cố định khả tính** (*fixed-parameter-tractability* hay *FPT*). Bạn có thể tìm hiểu về *FPT* qua bài viết trên blog của **Petr** tại http://petr-mitrichev.blogspot.com/2016/07/a-fixed-parameter-tractable-week.html. Tiềm năng của *FPT* theo mình nghĩ là rất lớn với ứng dụng không chỉ trong việc thi các kỳ thi thuật toán mà còn trong giải các bài toán thực tế.
+
+Trong bài viết 2 phần này tác giả **misof** đã giới thiệu khá đầy đủ về độ phức tạp tính toán để có thể sử dụng trong các kỳ thi lập trình. Tác giả đã bỏ qua một vài điểm như xử lý phần nguyên, chứng minh độ phức tạp bằng phép tính lấy giới hạn, lời giải cho phần 1 của Ví dụ 9 (xem lời giải tại [đây](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-design-and-analysis-of-algorithms-spring-2012/lecture-notes/MIT6_046JS12_lec01.pdf)), định lý Tổng Quát mở rộng (dùng để giải phần 2 của ví dụ 9) và một vài chi tiết khác. Bạn đọc quan tâm tới các phần bị bỏ qua có thể tìm đọc cuốn **Introduction to Algorithm, 3rd edition** [link](http://bayanbox.ir/view/4177858657730907268/introduction-to-algorithms-3rd-edition.pdf) thường được biết đến với tên gọi **CLRS** (4 chữ cái đầu tên của 4 tác giả), hình như đã có bản dịch tiếng Việt. Các bạn yêu thích học trực tuyến có thể tìm khóa **Analysis and Design of Algorithms** trên trang web *mentorsnet.org* (bằng tiếng Anh), đây là khóa học của giảng viên Ấn Độ và họ có slides bài giảng rất chi tiết gồm cả toàn bộ chứng minh của định lý Tổng Quát cơ bản và mở rộng. Ngoài ra, sau khi đã thuần thục về độ phức tạp tính toán các bạn có thể tìm hiểu thêm về các khái niệm lớp $P$ và $NP, NP-Hard, NP-Complete$. Hiểu biết về $P$ và $NP$ sẽ giúp các bạn tiếp cận với một dạng bài đang trở nên phổ biến gần đây là **tham số cố định khả tính** (*fixed-parameter-tractability* hay *FPT*). Bạn có thể tìm hiểu về *FPT* qua bài viết trên blog của **Petr** [ở đây](http://petr-mitrichev.blogspot.com/2016/07/a-fixed-parameter-tractable-week.html). Tiềm năng của *FPT* theo mình nghĩ là rất lớn với ứng dụng không chỉ trong việc thi các kỳ thi thuật toán mà còn trong giải các bài toán thực tế.
