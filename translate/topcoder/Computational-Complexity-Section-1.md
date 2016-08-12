@@ -10,7 +10,7 @@ Trong bài viết này tôi sẽ giới thiệu tới các bạn về chủ đ�
 # Tầm quan trọng của những lý luận
 
 ## Ví dụ 1
-Giả sử bạn được phân công viết một chương trình để xử lý một tập dữ liệu gồm nhiều bản ghi mà công ty của bạn đã thu thập. Bạn cài đặt hai thuật toán và kiểm tra chúng bằng một vài tập dữ liệu khác nhau. Thời gian chạy được thống kê trong bảng 1. 
+Giả sử bạn được phân công viết một chương trình để xử lý một tập dữ liệu gồm nhiều bản ghi mà công ty của bạn đã thu thập. Bạn cài đặt hai thuật toán và kiểm tra chúng bằng một vài tập dữ liệu khác nhau. Thời gian chạy được thống kê trong bảng 1.
 <table>
 <tbody>
 <tr>
@@ -123,7 +123,7 @@ Một trường hợp cần lưu ý là khi viết một số $N$ ta chỉ cần
 ## Tính toán độ hiệu quả của thuật toán như thế nào?
 Nhắc lại rằng cho trước một bộ dữ liệu đầu vào, ta có thể đếm số bước thực hiện các phép toán của một thuật toán bằng cách mô phỏng các bước chạy thuật toán đó trên bộ dữ liệu được cho. Giả sử ta tiến hành đếm như vậy với tất cả các bộ dữ liệu có kích thước tối đa $N$. Ký hiệu $f(N)$ là số bước cần thực hiện nhiều nhất (trường hợp xấu nhất). Hàm $f$ được gọi là **độ phức tạp thời gian**, hoặc ngắn gọn **thời gian chạy** của thuật toán.
 
-Nói cách khác, nếu ta có dữ liệu vào với kích cỡ $N$, việc thực hiện thuật toán mất tối đa $f(N)$ bước. 
+Nói cách khác, nếu ta có dữ liệu vào với kích cỡ $N$, việc thực hiện thuật toán mất tối đa $f(N)$ bước.
 
 Quay trở lai thuật toán trong ví dụ 2. Tập đầu vào xấu nhất có $N$ phần tử là tập nào? Nói cách khác, trong số các mảng có $N$ phần tử, mảng nào khiến cho thuật toán phải thực hiện nhiều bước nhất? Từ đoạn mã của thuật toán ta thấy:
 
@@ -131,7 +131,7 @@ Quay trở lai thuật toán trong ví dụ 2. Tập đầu vào xấu nhất c�
 + Bước thứ hai và thứ ba được thực hiện đúng $\frac{N(N-1)}{2}$ lần
 + Bước thứ tư được thực hiện nhiều nhất $\frac{N(N-1)}{2}$ lần
 
-Dễ thấy nếu các phần tử trong mảng $A$ được sắp xếp theo chiều *giảm dần* ngay từ đầu, bước thứ 4 sẽ luôn luôn được thực hiện. Vì vậy thuật toán sẽ chạy trong $\frac{3N(N-1)}{2} + N = 1.5N^2 - 0.5N$ bước. Vì vậy thuật toán trên có số bước tối đa là $f(N) = 1.5N^2 - 0.5N$. 
+Dễ thấy nếu các phần tử trong mảng $A$ được sắp xếp theo chiều *giảm dần* ngay từ đầu, bước thứ 4 sẽ luôn luôn được thực hiện. Vì vậy thuật toán sẽ chạy trong $\frac{3N(N-1)}{2} + N = 1.5N^2 - 0.5N$ bước. Vì vậy thuật toán trên có số bước tối đa là $f(N) = 1.5N^2 - 0.5N$.
 
 Có thể thấy rằng việc xác định chính xác hàm $f$ cho các chương trình phức tạp hơn là khá khó khăn. Thêm vào đó, trong nhiều trường hợp dạng chính xác của hàm $f$ là không cần thiết. Trong tính toán trên giá trị $-0.5N$ có thể bỏ qua, vì khi $N$ lớn thì $0.5N$ nhỏ hơn rất nhiều so với $1.5N^2$ và không ảnh hưởng lớn tới thời gian chạy. Mệnh đề "$f(N)$ xấp xỉ bằng $1.5N^2$" cho ta tất cả thông tin mà ta cần. Tiếp theo chúng ta sẽ thấy rằng, khi so sánh thuật toán này với một thuật toán nào đó khác để giải cùng một bài toán, hằng số $1.5$ cũng không thật quan trọng.
 
@@ -163,7 +163,7 @@ Việc xác định được cận trên $O(N^2)$ của $f(N)$ cũng đưa ta t�
 
 Vì vậy, chúng ta sẽ sử dụng ký pháp O-lớn để mô tả độ phức tạp *thời gian* (và đôi khi là cả *bộ nhớ*) của các thuật toán. Với thuật toán trong ví dụ 2 ta sẽ nói "Độ phức tạp thời gian của thuật toán này là $O(N^2)$" hoặc ngắn gọn hơn "Thuật toán này là $O(N^2)$".
 
-Theo cách tương tự ta sẽ định nghĩa $ \Omega$ (Omega-lớn) and $ \Theta$ (Theta-lớn). 
+Theo cách tương tự ta sẽ định nghĩa $ \Omega$ (Omega-lớn) and $ \Theta$ (Theta-lớn).
 
 Ta nói rằng $f (N)= \Omega(g(N))$ nếu $g(N) = O(f (N))$, nói cách khác nếu $f$ tăng nhanh hơn hoặc bằng $g$.
 
@@ -194,7 +194,7 @@ Khi nói về độ phức tạp thời gian/bộ nhớ của một thuật toá
 + $f (N) = O(N^k)$ : hàm đa thức
 + $f (N) = \Omega(2^N)$: hàm mũ
 
-Với các bài toán trên đồ thị, độ phức tạp $ \Theta$(N + M) được gọi là "tuyến tính theo độ lớn của đồ thị". 
+Với các bài toán trên đồ thị, độ phức tạp $ \Theta$(N + M) được gọi là "tuyến tính theo độ lớn của đồ thị".
 
 ## Xác định thời gian chạy dựa vào đánh giá cận trên
 
@@ -214,17 +214,17 @@ Trong một kỳ thi trên TopCoder, một thuật toán thực thi 1 000 000 00
 <tr>
 <td>$ \Theta(N)$ </td><td>100 000 000</td>
 </tr><tr>
-<td>$ \Theta$(N log N)$</td><td> 	40 000 000</td>
+<td>$ \Theta(N log N)$</td><td> 	40 000 000</td>
 </tr><tr>
-<td>$ \Theta$(N^2)$ </td><td>	10 000</td>
+<td>$ \Theta(N^2)$ </td><td>	10 000</td>
 </tr><tr>
-<td>$ \Theta$(N^3)$ </td><td>	500</td>
+<td>$ \Theta(N^3)$ </td><td>	500</td>
 </tr><tr>
-<td>$ \Theta$(N^4)$ </td><td>	90</td>
+<td>$ \Theta(N^4)$ </td><td>	90</td>
 </tr><tr>
-<td>$ \Theta$(2^N)$ </td><td>	20</td>
+<td>$ \Theta(2^N)$ </td><td>	20</td>
 </tr><tr>
-<td>$ \Theta$(N!)$ </td><td> 11</td>
+<td>$ \Theta(N!)$ </td><td> 11</td>
 </tr>
 </tbody>
 </table>
@@ -251,5 +251,5 @@ Mệnh đề "thuật toán trên là $O(N^2)$" vẫn là một mệnh đề đ�
 
 # Kết luận
 
-Chúng ta đã chỉ ra cách viết các cận (trên, dưới) theo độ phức tạp tính toán của thuật toán. Ta cũng đã chứng minh rằng các cận đó là các thuộc tính cơ bản và thường là hiệu quả để đánh giá các thuật toán. 
+Chúng ta đã chỉ ra cách viết các cận (trên, dưới) theo độ phức tạp tính toán của thuật toán. Ta cũng đã chứng minh rằng các cận đó là các thuộc tính cơ bản và thường là hiệu quả để đánh giá các thuật toán.
 Trong phần sau chúng ta sẽ phân tích làm thế nào để ước lượng độ phức tạp tính toán của các thuật toán. Như ta đã thấy trong Ví dụ 3 việc phân tích này có thể trở nên khá khó khăn. Một nguyên nhân khác làm cho việc phân tích khó khăn là *các thuật toán đệ quy*. Các vấn đề này sẽ được xử lý trong [[phần 2|translate/topcoder/Computational-Complexity-Section-2]] của bài viết.
