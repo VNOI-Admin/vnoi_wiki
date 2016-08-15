@@ -7,7 +7,7 @@ Bởi vì bảng chữ cái Latin có 26 chữ cái, ROT13 là *inverse* của c
 
 Để sử dụng ROT13, ta chỉ cần thay chữ cái này bằng chữ cái thứ 13 sau nó trong bảng chữ cái. Để giải mã, chúng ta cũng thay bằng chữ cái thứ 13 sau nó là trở lại được về chữ ban đầu
 
-<center>![Alt](https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/ROT13_table_with_example.svg/320px-ROT13_table_with_example.svg.png "ROT13")</center>
+![Alt](https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/ROT13_table_with_example.svg/320px-ROT13_table_with_example.svg.png "ROT13")
 
 Hay nói cách khác:
 ```
