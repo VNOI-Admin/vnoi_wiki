@@ -693,6 +693,10 @@ Các bạn có thể đọc thêm ở: [Persistent Data Structures](algo/data-st
 - [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/)
 - [FRBSUM](http://www.codechef.com/JAN14/problems/FRBSUM)
 
+# Đọc thêm:
+
+- [Cấu trúc dữ liệu đặc biệt - Đoàn Mạnh Hùng](https://drive.google.com/file/d/0BwcTB8a10LBweklLb1d6N1BPOG8/view)
+- [Cấu trúc dữ liệu đặc biệt - Nguyễn Minh Hiếu](https://drive.google.com/file/d/0BwcTB8a10LBwcUlfTHg0NFFUbW8/view)
 
 # Các nguồn tham khảo:
 
