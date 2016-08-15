@@ -33,7 +33,7 @@ Tính $L_i$: phần tử đang được xét là $A_i$. Ta tìm đến phần t�
 Bảng phương án là một mảng một chiều $L$ để lưu trữ các giá trị của hàm QHĐ $L_i$. Đoạn chương trình tính các giá trị của mảng $L$ như sau:
 
 ```pascal
-for i:= 1 to n do 
+for i:= 1 to n do
    begin
          L[i]:=1;
          for j:=1 to i–1 do
@@ -70,7 +70,7 @@ Trung tâm tính toán hiệu năng cao nhận được đơn đặt hàng của
 Tương tự như bài toán bố trí phòng họp, nếu sắp xếp các đơn đặt hàng theo thời điểm kết thúc, ta sẽ đưa được về bài toán **tìm dãy con có tổng lớn nhất**. Bài toán này là biến thể của bài toán tìm dãy con tăng dài nhất, ta có thể cài đặt bằng đoạn chương trình như sau:
 
 ```pascal
-for i:=1 to n do 
+for i:=1 to n do
   begin
           L[i]:=C[i];
           for j:=1 to i–1 do
@@ -274,7 +274,7 @@ Có 2 trường hợp xảy ra:
 
 - Nếu $X[i] = F[j]$:
     - $X_1 X_2 ... X_{i-1}$      $X_i$
-    - $F_1 F_2 ... F_{j-1}$      $X_i$ 
+    - $F_1 F_2 ... F_{j-1}$      $X_i$
     - thì ta chỉ phải biến đổi xâu $X_{i-1}$ thành xâu $Y_{j-1}$. Do đó $F[i,j]=F[i-1,j-1]$.
 - Ngược lại, ta có 3 cách biến đổi:
     - Xoá kí tự $X_i$:
@@ -322,8 +322,8 @@ Bảng phương án là một mảng 2 chiều `L[0..m,0..n]` để lưu các gi
 Đoạn chương trình cài đặt công thức QHĐ trên như sau:
 
 ```pascal
-for i:=0 to m do L[i,0]:=0; 
-for j:=0 to n do L[0,j]:=0; 
+for i:=0 to m do L[i,0]:=0;
+for j:=0 to n do L[0,j]:=0;
 
 
 for i:=1 to m do
@@ -339,7 +339,7 @@ Có một phương pháp cài đặt tốt hơn, chỉ với độ phức tạp 
 ```pascal
 for j:=0 to n do P[j]:=0;
 
-for i:=1 to m do 
+for i:=1 to m do
     begin
           L[0] := 0;
           for j:=1 to n do
@@ -347,3 +347,57 @@ for i:=1 to m do
                     else L[i,j]:=max(P[j], L[j–1]); P := L;
     end;
 ```
+
+### Bắc cầu
+
+**Bài toán**:
+
+Hai nước Alpha và Beta nằm ở hai bên bờ sông Omega, Alpha nằm ở bờ bắc và có $M$ thành phố được đánh số từ 1 đến $M$, Beta nằm ở bờ nam và có $N$ thành phố được đánh số từ 1 đến $N$ (theo vị trí từ đông sang tây). Mỗi thành phố của nước này thường có quan hệ kết nghĩa với một số thành phố của nước kia. Để tăng cường tình hữu nghị, hai nước muốn xây các cây cầu bắc qua sông, mỗi cây cầu sẽ là nhịp cầu nối 2 thành phố kết nghĩa. Với yêu cầu là các cây cầu không được cắt nhau và mỗi thành phố chỉ là đầu cầu cho nhiều nhất là một cây cầu, hãy chỉ ra cách bắc cầu được nhiều cầu nhất.
+
+**Hướng dẫn**:
+
+Gọi các thành phố của Alpha lần lượt là $A_1,A_2,..., A_M$; các thành phố của Beta là $B_1,B_2,...,B_N$. Nếu thành phố  $A_i$ và $B_j$ kết nghĩa với nhau thì coi $A_i$ "bằng” $B_j$. Để các cây cầu không cắt nhau, nếu ta đã chọn cặp thành phố $(A_i,B_j)$ để xây cầu thì cặp tiếp theo phải là cặp $(A_u,B_v)$ sao cho $u>i$ và $v>j$. Như vậy các cặp thành phố được chọn xây cầu có thể coi là một dãy con chung của hai dãy $A$ và $B$.
+
+Bài toán của chúng ta trở thành bài toán tìm dãy con chung dài nhất, ở  đây hai phần tử “bằng” nhau nếu chúng có quan hệ kết nghĩa.
+
+### Palindrome (IOI 2000)
+
+**Bài toán**:
+
+Một xâu gọi là xâu đối xứng (palindrome) nếu xâu đó đọc từ trái sang phải hay từ phải sang trái đều như nhau. Cho một xâu $S$, hãy tìm số kí tự ít nhất cần thêm vào $S$ để $S$ trở thành xâu đối xứng.
+
+**Hướng dẫn**:
+
+Bài toán này có một công thức QHĐ như sau:
+
+- Gọi $L[i,j]$ là số kí tự ít nhất cần thêm vào xâu con $S[i..j]$ của $$ để xâu đó trở thành đối xứng.
+- Đáp số của bài toán sẽ là $L[1,n]$ với $n$ là số kí tự của $S$. Ta có công thức sau để tính $L[i,j]$:
+  - $L(i,i)=0$.
+  - $L(i,j)=L(i+1,j–1)$ nếu $S_i=S_j$
+  - $L(i,j)=max(L(i+1,j), L(i,j–1))$ nếu $S_i \ne S_j$
+
+Bạn đọc dễ dàng có thể kiểm chứng công thức đó. Ta có thể cài đặt trực tiếp công thức đó bằng phương pháp đệ quy có nhớ. Tuy nhiên khi đó độ phức tạp bộ nhớ là $O(n^2)$. Có một phương pháp cài đặt tiết kiệm hơn, có thể tham khảo ở [[bài viết của Nguyễn Hoành Tiến|algo/dp/palindrome-problems]]
+
+Ta có thuật toán đơn giản hơn như sau:
+
+- Gọi $P$ là xâu đảo của $S$ và $T$ là xâu con chung dài nhất của $S$ và $P$. Khi đó các kí tự của $S$ không thuộc $T$ cũng là các kí tự cần thêm vào để $S$ trở thành đối xứng. Đáp số của bài toán sẽ là $n–k$, với $k$ là độ dài của $T$.
+- Ví dụ: `S=edbabcd`, xâu đảo của $S$ là `P=dcbabde`. Xâu con chung dài nhất của $S$ và $P$ là `T=dbabd`. Như vậy cần thêm 2 kí tự là `e` và `c` vào để $S$ trở thành xâu đối xứng.
+
+# 4. Vali (A)
+
+## 4.1. Mô hình
+
+Cho $n$ vật, vật $i$ nặng $A_i$ và có giá trị $B_i$. Hãy chọn ra một số vật để cho vào balô sao cho tổng khối lượng không vượt quá $W$ và tổng giá trị là lớn nhất. Chú ý rằng mỗi vật có thể được chọn nhiều lần.
+
+## 4.2. Công thức
+
+Gọi $L(i,j)$ là tổng giá trị lớn nhất khi được chọn $i$ vật từ 1 đến $i$ cho vào balô với tổng khối lượng không vượt quá $j$. $L(n,W)$ sẽ là đáp số của bài toán (là giá trị lớn nhất có được nếu chọn $n$ vật và tổng khối lượng không vượt quá $W$).
+
+Công thức tính $L(i,t)$ như sau:
+
+- $L(i, 0) = 0$
+- $L(0, j) = 0$
+- $L(i,j) = L(i-1,j)$ nếu $t<A_i$
+- $L(i,t) = max(L(i,j),  L(i-1,j-A_i) + B_i)$ nếu $t \ge A_i$
+
+Trong đó: $L(i–1,j)$ là giá trị có được nếu không đưa vật $i$ vào balô, $L(i-1,j–A_i) + B_i$  là giá trị có được nếu chọn vật $i$.
