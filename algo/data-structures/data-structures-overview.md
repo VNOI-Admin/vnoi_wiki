@@ -148,7 +148,7 @@ Cả 2 thao tác đều có độ phức tạp $\mathcal{O}(1)$.
 Deque được sử dụng trong một số thuật toán như:
 
 - BFS 01
-- [[Tìm Min/Max trên đoạn tịnh tiến|algo/data-structures/data-structures-overview]].
+- [[Tìm Min/Max trên đoạn tịnh tiến|algo/data-structures/deque-min-max]].
 
 Trong C++ STL, có sẵn kiểu dữ liệu `deque`.
 
