@@ -2,7 +2,7 @@
 
 **Nguồn bài**: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/greedy-is-good/)
 
-## Ví dụ minh họa
+# Ví dụ minh họa
 
 John Smith đang gặp rắc rối! Anh ấy là một thành viên của **Topcoder** và sau khi học cách để trở thành bậc thầy trong việc đối phối với các bài toán quy hoạch động, anh ấy bắt đầu giải quyết hàng loạt các bài tập. Nhưng chiếc máy tính *"dễ bảo"* của anh bắt đầu trở chứng vào hôm nay. Vào mỗi buổi sáng như thường lệ, John thức dậy vào lúc 10 giờ sáng, uống một cốc cà phê và bắt đầu giải các bài tập trước khi thưởng thức bữa sáng. Mặc dù có thứ gì đó *"sai sai"* so với mọi hôm, nhưng dựa vào kho tàng kiến thức mà anh ấy vừa mới gặt hái được, John đã viết chương trình với một tốc độ thần thánh. Mệt mỏi với việc cấp phát ma trận vào mỗi buổi sáng, chiếc máy tính thông báo rằng: **"Segmentation fault!"**. Dù cho dạ dày còn đang rỗng, song với ý tưởng thông minh của mình, John đã vượt qua rắc rối bằng cách chèn thêm một vòng lặp. Nhưng chiếc máy tính lại gào lên: **"Time limit exceeded!"**.
 
@@ -65,7 +65,7 @@ Tổng quát lại, ta thấy được rằng mỗi đáp án của chúng ta đ
 
 ```
 Đặt N là số hoạt động và
-{I} là hoạt động thứ I  ( 1 <= I <= N )
+{I} là hoạt động thứ I  (1 <= I <= N)
 
 Với mỗi {I}, xét S[I] và F[I] lần lượt là thời gian bắt đầu và kết thúc của hoạt động đó.
 Sắp xếp lại các hoạt động theo thứ tự tăng dần của thời gian kết thúc.
@@ -97,9 +97,9 @@ Sau khi áp dụng thuật toán trên, *"Fun plan"* của Johnny sẽ như th�
 * Hai ngày tiếp theo để nghỉ ngơi.
 * Và vào ngày cuối cùng, lấy một ít điểm rating từ **Topcoder**, tắm rửa, tận hưởng bữa ăn *"sâu bọ"* và những ly rượu hảo hạng.
 
-Vấn đề của John Smith đã được giải quyết, tuy nhiên đây chỉ là một ví dụ mà Tham lam có thể hoạt động. Một vài vấn đề thật sự khác đến từ **Topcoder** sẽ giúp bạn hiểu rõ hơn về khái niệm này. Trước khi tiếp tục, có lẽ bạn cần phải luyện tập thêm chút ít nữa với những gì mà bạn vừa đọc, bằng bài tập tương tự với *Lựa chọn hành động*, tên là [Boxing ](http://www.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880)
+Vấn đề của John Smith đã được giải quyết, tuy nhiên đây chỉ là một ví dụ mà Tham lam có thể hoạt động. Một vài vấn đề thật sự khác đến từ **Topcoder** sẽ giúp bạn hiểu rõ hơn về khái niệm này. Trước khi tiếp tục, có lẽ bạn cần phải luyện tập thêm chút ít nữa với những gì mà bạn vừa đọc, bằng bài tập tương tự với *Lựa chọn hành động*, tên là [Boxing](http://www.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880)
 
-## [**BioScore**](https://community.topcoder.com/stat?c=problem_statement&pm=3038)
+# [**BioScore**](https://community.topcoder.com/stat?c=problem_statement&pm=3038)
 
 Đối với bài tập này, bạn sẽ được yêu cầu làm tối đa hóa số điểm trung bình của các cặp tương đồng. Từ đáp án tối ưu cần tìm, ta có thể xem nó như một gợi ý nhằm giúp ta tìm ra phương án thích hợp. Thường thì, đối với dạng bài toán này, ta sẽ sử dụng phương pháp *quy hoạch động* để giải quyết, nhưng trong một vài trường hợp thì chiến lược **Tham lam** vẫn hoàn toàn có thể được sử dụng.
 
@@ -107,7 +107,7 @@ Việc đầu tiên mà ta cần làm là *xây dựng một ma trận cho biế
 
 ![Ví dụ](http://community.topcoder.com/i/education/greedyAlg3.gif)
 
-Ở góc phải - dưới của hình minh họa trên, ta có thể thấy kết quả của ma trận tần số đối với bộ đã cho. Tạm gọi nó là F. Giờ việc mà ta cần làm là tìm ra một ma trận S khác sao cho tổng của các tích số của 16 loại *axit nucleic* **$F[i, j]*S[i, j]$** $(1 <= i, j <= 4)$ là lớn nhất.
+Ở góc phải - dưới của hình minh họa trên, ta có thể thấy kết quả của ma trận tần số đối với bộ đã cho. Tạm gọi nó là F. Giờ việc mà ta cần làm là tìm ra một ma trận S khác sao cho tổng của các tích số của 16 loại *axit nucleic* **$F[i, j]*S[i, j]$** $(1 \le i, j \le 4)$ là lớn nhất.
 
 Giờ ta xét từng điều kiện cho ma trận cần tìm:
 
@@ -174,9 +174,9 @@ Endfor
 Return Best
 ```
 
-Đối với mảng lưu điểm đã cho (trong trường hợp của chúng ta là mảng **S**), ta sẽ tính kết quả cuối cùng bằng việc chỉ tính tổng của tích $F[I] * S[I] ( 1 <= I <=10)$ và chia nó cho $N * (N-1) / 2$ để thu được kết quả trung bình.
+Đối với mảng lưu điểm đã cho (trong trường hợp của chúng ta là mảng **S**), ta sẽ tính kết quả cuối cùng bằng việc chỉ tính tổng của tích $F[I] * S[I] (1 \le I \le 10)$ và chia nó cho $N * (N-1) / 2$ để thu được kết quả trung bình.
 
-## [**GoldMine**](https://community.topcoder.com/stat?c=problem_statement&pm=1957&rd=4650)
+# [**GoldMine**](https://community.topcoder.com/stat?c=problem_statement&pm=1957&rd=4650)
 
 Giờ ta sẽ đi tìm hiểu xem bằng cách nào một mỏ vàng có thể bị khai thác triệt để, bằng việc sử dụng phương pháp **Tham lam**. Mỗi khi ta nhận ra có sự liên quan tới lợi nhuận tối đa, thì khi đó, phương pháp **Tham lam** sẽ được sử dụng. Trong trường hợp này, ta sẽ chỉ định những người đào vàng đến các mỏ vàng sao cho tổng lợi nhuận thu được là tối đa. Phân tích nhanh, ta nhận ra rằng cần phải biết lợi nhuận thu được từ một mỏ trong tất cả các trường hợp. Và nó cũng không có nhiều trường hợp cho lắm. Với một mỏ bất kỳ, ta chỉ có từ 0 đến 6 người đào mỏ. Bảng dưới đây sẽ cho ta thấy lợi nhuận khả thi đối với hai mỏ ở ví dụ 0 trong bài:
 
@@ -244,9 +244,9 @@ Cuối cùng, hai người đào mỏ còn lại sẽ được phân công bằn
 
 Thuật toán **Tham lam** của ta sẽ gia tăng lợi nhuận bằng $a1$ cho người đào mỏ đầu tiên và $(a2+b1)$ cho người đào mỏ thứ 2. Tổng lợi nhuận lúc này sẽ là $a1+max(a2, b1)$. Nếu ban đầu ta chọn $b1$ thì lợi nhuận của người đào mỏ thứ 2 thu được sẽ là $a1$ hoặc $b2$.
 
-Trong trường hợp đầu tiên, ta sẽ có $a1+b1 <= a1+max(a2, b1)$.
+Trong trường hợp đầu tiên, ta sẽ có $a1+b1 \le a1+max(a2, b1)$.
 
-Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần phải chứng minh $b1+b2 <= a1+max(a2, b1)$. Mà ta luôn có $b1 <= b2$ vì **lợi nhuận thu được từ việc thêm một người đào mỏ vào một mỏ luôn luôn lớn hơn hoặc bằng lợi nhuận thu được từ việc thêm một người đào mỏ nữa vào mỏ đó**.
+Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần phải chứng minh $b1+b2 \le a1+max(a2, b1)$. Mà ta luôn có $b1 \le b2$ vì **lợi nhuận thu được từ việc thêm một người đào mỏ vào một mỏ luôn luôn lớn hơn hoặc bằng lợi nhuận thu được từ việc thêm một người đào mỏ nữa vào mỏ đó**.
 
 <table>
 <tr> <td>Trạng thái của mỏ vàng</td> <td>Lợi nhuận từ việc thêm 1 người</td> <td>Lợi nhuận từ việc thêm 1 người</td> </tr>
@@ -256,7 +256,7 @@ Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần
 <tr> <td>Số lượng mỏ $<$ số lượng người đào+2</td> <td>$-20$</td> <td>$-20$</td> </tr>
 </table>
 
-Vì $b1+b2 <= a1+a2 <= a1+b1 <= a1+max(a2, b1)$, **lựa chọn Tham lam** cũng chính là phương án tối ưu.
+Vì $b1+b2 \le a1+a2 \le a1+b1 \le a1+max(a2, b1)$, **lựa chọn Tham lam** cũng chính là phương án tối ưu.
 
 Lập trình nó hoàn toàn không khó, nhưng ta cần phải xử lý thêm các trường hợp nữa (tất cả các người đào mỏ đều phải được phân công, chỉ có tối đa sáu người trong một mỏ và nếu một người đào mỏ có thể được đặt tối ưu ở nhiều mỏ, ưu tiên mỏ có chỉ số nhỏ hơn).
 
