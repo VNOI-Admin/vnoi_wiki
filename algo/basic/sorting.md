@@ -114,156 +114,183 @@ Bạn có thể vào [VisuAlgo](http://visualgo.net/sorting).
 
 # Sắp xếp trộn (Merge sort)
 
-Sắp xếp trộn hoạt động như đệ quy. Đầu tiên chia nửa dữ liệu, và sắp xếp từng cái riêng biệt nhau. Sau đó phần tử đầu tiên một trong hai phần đó sẽ được so sánh. Các phần tử tiếp theo thực hiện tương tự cho tới khi được một danh sách hoàn chỉnh.
+## Ý tưởng
 
-**Code:**
+Sắp xếp trộn hoạt động kiểu đệ quy:
+
+- Đầu tiên chia dữ liệu thành 2 phần, và sắp xếp từng phần.
+- Sau đó gộp 2 phần lại với nhau. Để gộp 2 phần, ta làm như sau:
+	- Tạo một dãy $A$ mới để chứa các phần tử đã sắp xếp.
+	- So sánh 2 phần tử đầu tiên của 2 phần. Phần tử nhỏ hơn ta cho vào $A$ và xóa khỏi phần tương ứng.
+	- Tiếp tục như vậy đến khi ta cho hết các phần tử vào dãy $A$.
+
+## Ưu điểm
+
+- Chạy nhanh, độ phức tạp $\mathcal{O}(N*logN)$.
+- Ổn định
+
+## Nhược điểm
+
+- Cần dùng thêm bộ nhớ để lưu mảng A.
+
+## Code
 
 ```cpp
-int[] mergeSort (int[] data) {
-   if (data.Length == 1)
-      return data;
-   int middle = data.Length / 2;
-   int[] left = mergeSort(subArray(data, 0, middle - 1));
-   int[] right = mergeSort(subArray(data, middle, data.Length - 1));
-   int[] result = new int[data.Length];
-   int dPtr = 0;
-   int lPtr = 0;
-   int rPtr = 0;
-   while (dPtr < data.Length) {
-      if (lPtr == left.Length) {
-         result[dPtr] = right[rPtr];
-         rPtr++;         
-      } else if (rPtr == right.Length) {
-         result[dPtr] = left[lPtr];
-         lPtr++;
-      } else if (left[lPtr] < right[rPtr]) {
-         result[dPtr] = left[lPtr];
-         lPtr++;
-      } else {
-         result[dPtr] = right[rPtr];
-         rPtr++;         
-      }
-      dPtr++;
-   }
-   return result;
+int a[MAXN]; // mảng trung gian cho việc sắp xếp
+
+// Sắp xếp các phần tử có chỉ số từ left đến right của mảng data.
+void mergeSort(int data[MAXN], int left, int right) {
+	if (data.length == 1) {
+		// Dãy chỉ gồm 1 phần tử, ta không cần sắp xếp.
+		return ;
+	}
+	int mid = (left + right) / 2;
+	// Sắp xếp 2 phần
+	mergeSort(data, left, mid);
+	mergeSort(data, mid+1, right);
+
+	// Trộn 2 phần đã sắp xếp lại
+	int i = left, j = mid + 1; // phần tử đang xét của mỗi nửa
+	int cur = 0; // chỉ số trên mảng a
+
+	while (i <= mid || j <= right) { // chừng nào còn 1 phần chưa hết phần tử.
+		if (i > mid) {
+			// bên trái không còn phần tử nào
+			a[cur++] = data[j++];
+		} else if (j > right) {
+			// bên phải không còn phần tử nào
+			a[cur++] = data[i++];
+		} else if (data[i] < data[j]) {
+			// phần tử bên trái nhỏ hơn
+			a[cur++] = data[i++];
+		} else {
+			a[cur++] = data[j++];
+		}
+	}
+
+	// copy mảng a về mảng data
+	for (int i = 0; i < cur; i++)
+		data[left + i] = a[i];
 }
 ```
 
-Mỗi lần gọi đệ quy mất $O(n)$, và tổng cộng cần $O(log{n})$ như vậy, do đó độ phức tạp thuật toán là $O(n*log{n})$. Thuật toán này có thể được cải thiện để sắp xếp một danh sách gần như đúng thứ tự. Sau khi đã sắp xếp từng nửa danh sách, nếu phần tử cao nhất của phần này nhỏ hơn phần tử nhỏ nhất của phần kia, thủ tục trộn không cần thiết nữa. (Ví dụ là phần Java API là phần cải tiến thuật toán này). Dữ liệu, qua từng lời đệ quy, sẽ như thế này:
+## Minh họa
 
-```
-{18, 6, 9, 1, 4, 15, 12, 5, 6, 7, 11}
-{18, 6, 9, 1, 4} {15, 12, 5, 6, 7, 11}
-{18, 6} {9, 1, 4} {15, 12, 5} {6, 7, 11}
-{18} {6} {9} {1, 4} {15} {12, 5} {6} {7, 11}
-{18} {6} {9} {1} {4} {15} {12} {5} {6} {7} {11}
-{18} {6} {9} {1, 4} {15} {5, 12} {6} {7, 11}
-{6, 18} {1, 4, 9} {5, 12, 15} {6, 7, 11}
-{1, 4, 6, 9, 18} {5, 6, 7, 11, 12, 15}
-{1, 4, 5, 6, 6, 7, 9, 11, 12, 15, 18}
-```
+Bạn có thể vào [VisuAlgo](http://visualgo.net/sorting).
 
-Ngoài việc hiệu quả, sắp xếp trộn còn có thể giúp giải các bài toán khác, chẳng hạn như xác định "danh sách đã sắp xếp".
+- Chọn **Merge** ở thanh menu bên trên.
+- Ấn vào nút `Create` ở phía dưới trang để tạo một dãy mới
+- Ấn vào `Sort`, rồi `Go` để chạy thuật toán.
 
-# Sắp xếp vun đống
 
-Trong sắp xếp vun đống, ta tạo một cấu trúc heap từ dữ liệu. Cấu trúc heap là cấu trúc lưu dữ liệu sao cho phần tử nhỏ nhất (hoặc lớn nhất) luôn ở nút gốc. (Heap còn được gọi là hàng đợi ưu tiên, xem qua [Data Structures](http://community.topcoder.com/tc?module=Static&d1=tutorials&d2=dataStructures)). Để thực hiện, dữ liệu được đưa vào heap và nút gốc được thay thế liên tục. Từ khi nút gốc là phần tử nhỏ nhất, kết quả là một danh sách đã sắp xếp. Nếu bạn đã có code Heap haowjc bạn dùng Java PriorityQueue (điểm mới trong bản 1.5), code thuật toán này khá ngắn.
+# Sắp xếp vun đống (HeapSort)
 
-**Code:**
+## Ý tưởng
 
-```cpp
-Heap h = new Heap();
-for (int i = 0; i < data.Length; i++)
-   h.Add(data[i]);
-int[] result = new int[data.Length];
-for (int i = 0; i < data.Length; i++)
-   data[i] = h.RemoveLowest();
-```
+Ta lưu mảng vào CTDL [[Heap|translate/wcipeg/Binary-Heap]].
 
-Độ phức tạp thuật toán này là giới hạn trên của $O(n*log{n})$. Ngoài ra, thuật toán này yêu cầu thêm bộ nhớ là kích cỡ của dữ liệu. Sắp xếp vun đống có điểm yếu là không ổn định, và khó hiểu hơn các thuật toán sắp xếp cơ bản.
+Ở mỗi bước, ta lấy ra phần tử nhỏ nhất trong heap, cho vào mảng đã sắp xếp.
 
-# Sắp xếp nhanh
+## Ưu điểm
 
-Như tên gọi, đây là một thuật toán rất hiệu quả. Cấu trúc đằng sau nó là cách mà con người thường hay sắp xếp. Đầu tiên chia thành hai nhóm, nhóm các phần tử "lớn" và nhóm các phần tử "nhỏ". Sau đó, gọi đệ quy hai nhóm.
+- Cài đặt đơn giản nếu đã có sẵn thư viện Heap.
+- Chạy nhanh, độ phức tạp $\mathcal{O}(N*logN)$.
 
-**Code:**
+## Nhược điểm
+
+- Không ổn định
+
+## Code
 
 ```cpp
-Array quickSort(Array data) {
-   if (Array.Length <= 1)
-      return;
-   middle = Array[Array.Length / 2];
-   Array left = new Array();
-   Array right = new Array();
-   for (int i = 0; i < Array.Length; i++)
-      if (i != Array.Length / 2) {
-         if (Array[i] <= middle)
-            left.Add(Array[i]);
-         else
-            right.Add(Array[i]);
-      }
-   return concatenate(quickSort(left), middle, quickSort(right));
+Heap h = Heap();
+for (int i = 0; i < n; i++) {
+	// thêm phần tử vào heap
+	h.push(data[i]);
+}
+int a[MAXN];
+for (int i = 0; i < n; i++) {
+	// lấy phần tử nhỏ nhất và cho vào mảng đã sắp xếp
+	a[i] = h.pop();
 }
 ```
 
-Thách thức trong sắp xếp nhanh là xác định phần tử khóa làm mốc chia thành hai nhóm. Độ phức tạp thuật toán này phụ thuộc vào chọn phần tử đó chính xác như thế nào. Trong trường hợp tốt nhất, độ phức tạp là $O(n*log{n})$, và xấu nhất đối với hai tập có cùng một phần tử là $O(n^{2})$. Dữ liệu sẽ thay đổi như sau:
+# Sắp xếp nhanh (QuickSort)
 
+## Ý tưởng
+
+- Chia dãy thành 2 phần, một phần "lớn" và một phần "nhỏ".
+	- Chọn một khóa **pivot**
+	- Những phần tử lớn hơn **pivot** chia vào phần lớn
+	- Những phần tử nhỏ hơn hoặc bằng **pivot** chia vào phần nhỏ.
+- Gọi đệ quy để sắp xếp 2 phần.
+
+## Ưu điểm
+
+- Chạy nhanh (nhanh nhất trong các thuật toán sắp xếp dựa trên việc só sánh các phần tử). Do đó quicksort được sử dụng trong nhiều thư viện của các ngôn ngữ như Java, C++ (hàm `sort` của C++ dùng Intro sort, là kết hợp của Quicksort và Insertion Sort).
+
+## Nhược điểm
+
+- Tùy thuộc vào cách chia thành 2 phần, nếu chia không tốt, độ phức tạp trong trường hợp xấu nhất có thể là $\mathcal{O}(N^2)$. Để thuật toán chạy với độ phức tạp $\mathcal{O}(N*logN)$, cần chọn pivot ngẫu nhiên.
+- Không ổn định.
+
+## Code
+
+```cpp
+void quickSort(int a[], int left, int right) {
+	int i = left, j = right;
+	int pivot = a[left + rand() % (right - left)];
+	// chia dãy thành 2 phần
+	while (i <= j) {
+		while (a[i] < pivot) ++i;
+		while (a[j] > pivot) --j;
+
+		if (i <= j) {
+			swap(a[i], a[j]);
+			++i;
+			--j;
+		}
+	}
+	// Gọi đệ quy để sắp xếp các nửa
+	if (left < j) quickSort(a, left, j);
+	if (i < right) quickSort(a, i, right);
+}
 ```
-{18, 6, 9, 1, 4, 15, 12, 5, 6, 7, 11}
-{6, 9, 1, 4, 12, 5, 6, 7, 11} {15} {18}
-{6, 9, 1, 4, 5, 6, 7, 11} {12} {15} {18}
-{1, 4} {5} {6, 9, 6, 7, 11} {12} {15} {18}
-{1} {4} {5} {6} {6} {9, 7, 11} {12} {15} {18}
-{1} {4} {5} {6} {6} {7} {9, 11} {12} {15} {18}
-{1} {4} {5} {6} {6} {7} {9} {11} {12} {15} {18}
-```
 
-Nếu biết rõ các phần tử cần sắp xếp thuộc phần nào nhất định, bạn có thể cải thiện thuật toán bằng cách chọn phần tử khóa chia dữ liệu thành hai tập chính xác nhất có thể. Cải tiến chung là chọn phần tử khóa chú ý đến giới hạn các phần tử hoặc random.
+## Minh họa
 
-# Sắp xếp cơ số
+Bạn có thể vào [VisuAlgo](http://visualgo.net/sorting).
 
-Thuật toán này được thiết kế sao cho vẫn sắp xếp nhưng không so sánh trực tiếp các phần tử. Đầu tiên, thuật toán sẽ lấy các chữ số cuối (hoặc nhiều chữ số, các bit), và đưa các phần tử vào các nhóm. Nếu ta lấy 4 bit một lúc, ta cần 16 nhóm. Sau đó ta đưa các nhóm lại với nhau, và được danh sách sắp xếp theo chữ số cuối của các phần tử. Quá trình này lặp đi lặp lại với chữ số át cuối cho tới khi tất cả vị trí chữ số đã sắp xếp.
+- Chọn **Quick** ở thanh menu bên trên.
+- Ấn vào nút `Create` ở phía dưới trang để tạo một dãy mới
+- Ấn vào `Sort`, rồi `Go` để chạy thuật toán.
 
-Lấy ví dụ, hãy xem qua một dãy các số sắp xếp bằng cách lấy 1 bit. Lưu ý rằng, chúng ta tốn 4 bước để có được kết quả, và mỗi bước ta dùng đúng 2 nhóm:
 
-```
-{6, 9, 1, 4, 15, 12, 5, 6, 7, 11}
-{6, 4, 12, 6} {9, 1, 15, 5, 7, 11}
-{4, 12, 9, 1, 5} {6, 6, 15, 7, 11}
-{9, 1, 11} {4, 12, 5, 6, 6, 15, 7}
-{1, 4, 5, 6, 6, 7} {9, 11, 12, 15}
-```
+# Sắp xếp cơ số (RadixSort)
 
-Lấy 2 bit, chúng ta cần 2 bước và 4 nhóm:
+## Ý tưởng
 
-```
-{6, 9, 1, 4, 15, 12, 5, 6, 7, 11}
-{4, 12} {9, 1, 5} {6, 6} {15, 7, 11}
-{1} {4, 5, 6, 6, 7} {9, 11} {12, 15}
-```
+Khác với tất cả các thuật toán nêu trên, RadixSort không sử dụng việc so sánh 2 phần tử.
 
-Lấy 4 bit và chỉ cần 1 bước, cùng 16 nhóm:
+- Đầu tiên, thuật toán sẽ chia các phần tử thành các nhóm, dựa trên chữ số cuối cùng (hoặc dựa theo bit cuối cùng, hoặc vài bit cuối cùng).
+- Sau đó ta đưa các nhóm lại với nhau, và được danh sách sắp xếp theo chữ số cuối của các phần tử. Quá trình này lặp đi lặp lại với chữ số át cuối cho tới khi tất cả vị trí chữ số đã sắp xếp.
 
-```
-{6, 9, 1, 4, 15, 12, 5, 6, 7, 11}
-{1} {} {} {4} {5} {6, 6} {7} {} {9} {} {11} {12} {} {} {15}
-```
+## Ưu điểm
 
-Chú ý rằng, với ví dụ cuối, ta có nhiều nhóm rỗng. Điều này giải thích rằng, ta có bao nhiêu bit ta có thể chọn hơn trước khi dùng đến giới hạn bộ nhớ. Thời gian thực hiện giống như số các xô càng lớn đưa thành một danh sách có thể đôi lúc phải xem xét.
+- Có thể chạy nhanh hơn các thuật toán sắp xếp sử dụng so sánh. Ví dụ nếu ta sắp xếp các số nguyên 32 bit, và chia nhóm theo 1 bit, thì độ phức tạp là $\mathcal{O}(N)$.
 
-Bởi vì hiệu quả sắp xếp cơ số khác với sắp xếp so sánh bình thường, nó có thể có hiệu quả cao hơn nữa. Độ phức tạp là $O(n*{k})$ với k là kích cỡ của khóa. (số nguyên 32 bit, nếu lấy 4 bit, k=8). Điểm yếu cơ bản là một vài dữ liệu rất dài (như chuỗi), hoặc khó dùng thuật toán này (chẳng hạn kiểu negative floating-point là một ví dụ).
+## Nhược điểm
 
-# Các thư viện dùng để sắp xếp
+- Không thể sắp xếp số thực.
 
-Ngày nay, đại đa số các ngôn ngữ lập trình đã bao gồm nhiều thư viện cung cáp các thuật toán tốt cho chúng ta. Như .NET framework, Java API, và C++ STL, tất cả đều đã có sẵn thuật toán sắp xếp. Và tốt nhất là cấu trúc cơ bản của nó giống nhau từ ngôn ngữ này đến ngôn ngữ khác.
+## Minh họa
 
-Với các kiểu dữ liệu điển hình như scalars, floats, chuỗi, mọi thứ cần dùng để sắp xếp đã có sẵn. Nhưng nếu ta có dữ liệu cần thuật toán sắp xếp phức tạp hơn? Rất may, lập trình hướng đối tượng đã cho ta các thư viện kinh điển để giải quyết việc này.
+Bạn có thể vào [VisuAlgo](http://visualgo.net/sorting).
 
-Trong cả Java và C# (cũng như VB), có giao diện gọi là Comparable (IComparable in .NET). Bằng việc chạy giao diện IComparable trên một class đã khai báo, bạn thêm hàm ***int CompareTo (object other)***, hàm này sẽ trả về một kết quả, kết quả đó sẽ <=0, hoặc là một số dương lớn hơn tham số. Thư viện chứa hàm sort sẽ chạy tốt trên kiểu dữ liệu mới.
+- Chọn **Radix** ở thanh menu bên trên.
+- Ấn vào nút `Create` ở phía dưới trang để tạo một dãy mới
+- Ấn vào `Sort`, rồi `Go` để chạy thuật toán.
 
-Ngoài ra, có một giao diện khác gọi là Comparator (IComparer in .NET), mà đã định nghĩa một hàm riêng biệt ***int Compare (object obj1, object obj2)***, nó sẽ trả về một giá trị chỉ ra kết quả của việc so sánh hai tham số.
-
-Hạnh phúc nhất của các hàm sắp xếp được cung cấp trong thư viện là nó cứu ta rất nhiều thời gian khỏi việc code, đỡ rối hơn, không cần phải khó khăn nỗ lực. Tuy nhiên, dù tất cả mọi việc đã được chuẩn bị sẵn, biết được hoạt động của nó vẫn rất hay.
 
 # Nguồn tham khảo
 
