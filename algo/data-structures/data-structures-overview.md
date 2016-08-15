@@ -2,13 +2,15 @@
 
 [[_TOC_]]
 
-Mặc dù máy tính đã có thể xử lý hàng triệu phép tính mỗi giây, nhưng khi một bài toán trở phức tạp, cách tổ chức vẫn vô cùng quan trọng.
+Mặc dù máy tính đã có thể xử lý hàng triệu phép tính mỗi giây, nhưng khi một bài toán trở phức tạp, cách tổ chức dữ liệu vẫn vô cùng quan trọng.
 
-Để minh họa điểm này, hãy tham khảo ví dụ sau: bạn đi đến thư viện, thử tìm kiếm một quyển sách với chủ đề nào đó. Đa số các thư viện hiện nay đều có thể sử dụng hệ thống tra cứu điện tử. Tuy vậy, hãy xét trường hợp tệ nhất khi bạn sẽ nhận được một chỉ mục để tìm ra tên và tác giả của quyển  sách mà bạn muốn. Các cuốn sách được xếp theo lĩnh vực. Trong mỗi chủ đề, sách lại được xếp theo tên tác giả, nhờ vậy mà việc lấy và cất sách từ giá trở nên khá dễ dàng và đơn giản.
+Để minh họa điểm này, hãy tham khảo ví dụ sau: bạn đi đến thư viện, thử tìm kiếm một quyển sách với chủ đề nào đó. Các cuốn sách được xếp theo lĩnh vực. Trong mỗi chủ đề, sách lại được xếp theo tên tác giả, nhờ vậy mà việc lấy và cất sách từ giá trở nên khá dễ dàng và đơn giản.
 
-Bây giờ, hãy thử tưởng tượng thay vì tổ chức thành từng giá sách cụ thể, sách được chất thành từng đống ở cả hai phía của thư viện. Để tìm được quyển sách của mình, bạn sẽ phải mất hàng giờ, thậm chí rất nhiều ngày. Đấy chính là ví dụ thể hiện chính xác nhất cách một phần mềm vận hành khi dữ liệu không được lưu trữ hiệu quả và phù hợp với ứng dụng.
+Bây giờ, hãy thử tưởng tượng thay vì tổ chức thành từng giá sách cụ thể, sách được chất thành từng đống ở khắp thư viện. Để tìm được quyển sách của mình, bạn sẽ phải mất hàng giờ, thậm chí rất nhiều ngày.
 
-Trong bài viết này, mình điểm qua các loại cấu trúc dữ liệu từ cơ bản đến nâng cao. Để tìm hiểu chi tiết về một cấu trúc dữ liệu, các bạn có thể đọc ở link tương ứng.
+Tương tự, một phần mềm không thể vận hành hiệu quả khi dữ liệu không được lưu trữ một cách phù hợp với ứng dụng.
+
+Trong bài viết này, chúng ta sẽ cùng nhau điểm qua các loại cấu trúc dữ liệu từ cơ bản đến nâng cao. Để tìm hiểu chi tiết về một cấu trúc dữ liệu, các bạn có thể đọc ở link tương ứng.
 
 # Mảng (array), danh sách liên kết (linked list)
 
@@ -106,18 +108,6 @@ Disjoint set cho phép ta thực hiện 2 thao tác trên với độ phức t�
 
 Bạn có thể đọc thêm về Disjoint Set ở [[bài viết này|algo/data-structures/disjoint-set]].
 
-# Cây Tiền Tố (Trie)
-
-**Trie** là một cấu trúc dữ liệu dùng để quản lý một tập hợp các xâu. Trie cho phép:
-
-- Thêm một xâu vào tập hợp, với độ phức tạp $\mathcal{O}(L)$ với $L$ là độ dài xâu cần thêm.
-- Xóa một xâu khỏi tập hợp, với độ phức tạp $\mathcal{O}(L)$.
-- Kiểm tra một xâu có tồn tại trong tập hợp hay không, với độ phức tạp $\mathcal{O}(L)$.
-
-Ngoài ra trên thực tế, trie cũng rất tiết kiệm bộ nhớ khi áp dụng để lưu các từ có nghĩa, vì vậy nó là một CTDL có ứng dụng rất lớn.
-
-Bạn có thể đọc thêm [[bài viết về trie|algo/data-structures/trie]].
-
 # Priority Queue - Heap
 
 Heap là một cấu trúc dữ liệu cho phép thực hiện các thao tác:
@@ -170,6 +160,18 @@ Cũng giống như Segment Tree, Fenwick tree (còn được gọi là Binary In
     - Không tổng quát bằng Segment Tree. Tất cả những bài giải được bằng Fenwick tree đều có thể giải được bằng Segment Tree. Nhưng chiều ngược lại không đúng.
 
 Bạn có thể đọc thêm về Fenwick Tree [[ở đây|algo/data-structures/fenwick]].
+
+# Cây Tiền Tố (Trie)
+
+**Trie** là một cấu trúc dữ liệu dùng để quản lý một tập hợp các xâu. Trie cho phép:
+
+- Thêm một xâu vào tập hợp, với độ phức tạp $\mathcal{O}(L)$ với $L$ là độ dài xâu cần thêm.
+- Xóa một xâu khỏi tập hợp, với độ phức tạp $\mathcal{O}(L)$.
+- Kiểm tra một xâu có tồn tại trong tập hợp hay không, với độ phức tạp $\mathcal{O}(L)$.
+
+Ngoài ra trên thực tế, trie cũng rất tiết kiệm bộ nhớ khi áp dụng để lưu các từ có nghĩa, vì vậy nó là một CTDL có ứng dụng rất lớn.
+
+Bạn có thể đọc thêm [[bài viết về trie|algo/data-structures/trie]].
 
 # Mảng Hậu Tố (Suffix Array)
 
