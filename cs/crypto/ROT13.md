@@ -22,7 +22,8 @@ Gur Dhvpx Oebja Sbk Whzcf Bire Gur Ynml Qbt
 
 ##Các biến thể
 
-ROT5 cũng được sử dụng y hệt như ROT13 trong bảng chữ số (0 đến 9). Ngoài ra ROT13 và ROT5 còn được sử dụng trong cùng một văn bản.
+ROT5 cũng được sử dụng y hệt như ROT13 trong bảng chữ số (0 đến 9). 
+Ngoài ra ROT13 và ROT5 còn được sử dụng trong cùng một văn bản.
 Mở rộng ROT13, ta còn có ROT47. ROT47 áp dụng đối với chữ cái trong bảng mã ASCII. Ví dụ:
 ```
 The Quick Brown Fox Jumps Over The Lazy Dog.
