@@ -57,6 +57,7 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
 - Machine Learning
     - [[Machine Learning 101: Làm quen|cs/ml/machine-learning-101]]
     - [[Classification - Phần 1|translate/ml/Machine-Learning-Classification-phan-1]]
+    - [[Classification - Phần 2|translate/ml/Machine-Learning-Classification-phan-2]]
 - Xử lý ảnh
     - [[Seam Carving|cs/imageprocessing/Seam-Carving]]
 - Cryptography
