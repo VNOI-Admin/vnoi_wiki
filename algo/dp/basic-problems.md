@@ -1,5 +1,7 @@
 # Một số bài toán quy hoạch động điển hình
 
+[[_TOC_]]
+
 # 1. Dãy con đơn điệu dài nhất
 
 ## 1.1. Mô hình
