@@ -237,3 +237,64 @@ Nếu `L[n, S] = 1` thì câu trả lời của bài toán là có.
 Khi cài đặt, có thể dùng một mảng 2 chiều (lưu toàn bộ bảng phương án) hoặc 2 mảng một chiều (để lưu dòng $i$ và dòng $i–1$). Chú ý là chỉ số theo $t$ của các mảng phải có cả phần âm (tức là từ $–T$ đến $T$, với $T$ là tổng của $n$ số), vì trong bài này chúng ta dùng cả dấu `-` nên có thể tạo ra các tổng âm.
 
 Bài này có một biến thể là đặt dấu sao cho kết quả là một số chia hết cho $k$. Ta có thuật giải tương tự bài toán trên bằng cách thay các phép cộng, trừ bằng các phép cộng và trừ theo modulo $k$ và dùng mảng đánh dấu với các giá trị từ 0 đến $k–1$ (là các số dư có thể có khi chia cho $k$). Đáp số của bài toán là $L[n,0]$.
+
+### Expression
+
+**Bài toán**:
+
+Cho $n$ số nguyên. Hãy chia chúng thành 2 nhóm sao cho tích của tổng 2 nhóm là lớn nhất.
+
+**Hướng dẫn**:
+
+Gọi $T$ là tổng $n$ số nguyên đó. Giả sử ta chia dãy thành 2 nhóm, gọi $S$ là tổng của một nhóm, tổng nhóm còn lại là $T–S$ và tích của tổng 2 nhóm là $S*(T–S)$. Bằng phương pháp đánh dấu ta xác định được mọi số $S$ là tổng của một nhóm (như bài Market) và tìm số $S$ sao cho $S*(T–S)$ đạt max.
+
+# 3. Biến đổi xâu
+
+## 3.1. Mô hình
+
+Cho 2 xâu $X$, $F$. Xâu gốc có $n$ kí tự $X_1 X_2 ... X_n$, xâu đích có $m$ kí tự $F_1 F_2 ... F_m$. Có 3 phép biến đổi:
+
+- Chèn 1 kí tự vào sau kí tự thứ $i$: `I i C`
+- Thay thế kí tự ở vị trí thứ $i$ bằng kí tự $C$: `R i C`
+- Xoá kí tự ở vị trí thứ $i$: `D i`
+
+Hãy tìm số ít nhất các phép biến đổi để biến xâu $X$ thành xâu $F$.
+
+## 3.2. Hướng dẫn
+
+Hàm mục tiêu: $f$: số phép biến đổi.
+
+Dễ thấy số phép biến đổi phụ thuộc vào vị trí $i$ đang xét của xâu $X$ và vị trí $j$ đang xét của xâu $F$. Do vậy để cài đặt cho bảng phương án ta sẽ dùng mảng 2 chiều.
+
+Gọi $L[i,j]$ là số phép biến đổi ít nhất để biến xâu $X_i$ gồm $i$ kí tự phần đầu của $X$ ($X_i = X[1..i]$) thành xâu $F_j$ gồm $j$ kí tự phần đầu của $F$ ($F_j = F[1..j]$).
+
+Dễ thấy $F[0,j]=j$ và $F[i,0]=i$.
+
+Có 2 trường hợp xảy ra:
+
+- Nếu $X[i] = F[j]$:
+    - $X_1 X_2 ... X_{i-1}$      $X_i$
+    - $F_1 F_2 ... F_{j-1}$      $X_i$ 
+    - thì ta chỉ phải biến đổi xâu $X_{i-1}$ thành xâu $Y_{j-1}$. Do đó $F[i,j]=F[i-1,j-1]$.
+- Ngược lại, ta có 3 cách biến đổi:
+    - Xoá kí tự $X_i$:
+        - $X_1 X_2 ... X_{i-1}$
+        - $F_1 F_2 ... F_{j-1}$      $F_j$
+        - Xâu $X_{i-1}$ thành $F_j$. Khi đó $F[i,j]=F[i-1,j]+1$. (Cộng 1 là do ta đã dùng 1 phép xóa)
+    - Thay thế $X_i$ bởi $F_j$:
+        - $X_1 X_2 ... X_{i-1}$      $F_j$
+        - $F_1 F_2 ... F_{j-1}$      $F_j$
+        - Xâu $X_{i-1}$ thành $F_{j-1}$. Khi đó $F[i,j]=F[i-1,j-1]+1$.
+    - Chèn $F_j$ vào sau $X_i$:
+        - $X_1 X_2 ... X_{i}$      $F_j$
+        - $F_1 F_2 ... F_{j-1}$      $F_j$
+        - Xâu $X_i$ thành $Y_{j-1}$. Khi đó $F(i,j)=F(i,j-1)+1$
+
+Tổng kết lại, ta có công thức QHĐ:
+
+- `F[0,j]=j`
+- `F[i,0]=i`
+- `F[i,j] =F[i−1,j−1]` nếu $X_i = Y_j$.
+- `F[i,j] = min(F[i−1,j], F[i,j−1], F[i−1,j−1]) + 1` nếu $X_i \ne X_j$.
+
+Bài này ta có thể tiết kiệm biến hơn bằng cách dùng 2 mảng 1 chiều tính lẫn nhau và một mảng đánh dấu 2 chiều để truy vết.
