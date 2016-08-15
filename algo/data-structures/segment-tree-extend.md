@@ -674,6 +674,17 @@ int ask(int id, int l, int r, int v) {
 Các bạn có thể đọc thêm ở: [Persistent Data Structures](algo/data-structures/persistent-data-structures)
 
 
+# 8. IT đoạn thẳng
+
+**Bài toán**
+
+Cho một tập hợp chứa các đường thẳng có dạng $ax + b$, mỗi đường thẳng được biểu diễn bằng một cặp số $(a, b)$. Cần thực hiện hai truy vấn:
+
+1. Thêm một đường thẳng vào tập hợp.
+2. Trả lời xem tại hoành độ $q$, điểm nào thuộc ít nhất một đường thẳng trong tập có tung độ lớn nhất. Nói cách khác, đường thẳng $(a, b)$ nào có $aq + b$ lớn nhất.
+
+Để giải bài toán này, hai cách phổ biến là ứng dụng [[bao lồi|translate/wcipeg/Convex-Hull-Trick]] và sử dụng cây [[Interval Tree lưu đoạn thẳng|algo/data-structures/interval-tree-tap-doan-thang]]
+
 # Bài tập áp dụng:
 
 - [VOJ - NKLINEUP](http://vn.spoj.com/problems/NKLINEUP)
