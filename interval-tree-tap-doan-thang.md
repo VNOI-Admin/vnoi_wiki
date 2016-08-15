@@ -177,6 +177,18 @@ Bài toán tìm max, min của $ax + b$ thường đi kèm với thuật toán q
 
 Ngoài ra, có một số bài toán yêu cầu tìm max, min trên tập đoạn thẳng. Đây là những bài toán IT đoạn thẳng gần như là cách làm duy nhất.
 
+# Câu hỏi cho bạn đọc
+
+1. Trong trường hợp nào thì một node không có thông tin gì cả?
+2. Trong các trường hợp 4 và 6 của phần **Update**, tại sao phải gán lại `val` cho `it[node]`?
+3. Giả sử thay vì truy vấn theo điểm, ta cần truy vấn theo đoạn. Sử dụng cây IT ở trên, khi đoạn cần truy vấn chứa hoàn toàn khoảng một node quản lý, ta có thể trả về luôn phương trình đường thẳng lưu ở node đó được không ? Tại sao?
+
+## Trả lời
+
+1. Các đoạn thẳng không phủ kín nút đó.
+2. Vì `mid` nằm bên trái cây.
+3. Không, vì đường thẳng ở một nút chỉ cao nhất với một vài điểm từ `low[node]` tới `high[node]` chứ không phải là cao nhất trên cả đoạn đó.
+
 # Bài tập áp dụng
 
 ## Một số bài tập "quy hoạch động bao lồi" truyền thống:
