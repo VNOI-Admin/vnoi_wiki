@@ -21,18 +21,7 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
     - [[Sắp xếp|algo/basic/sorting]]
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 
-- Cấu trúc dữ liệu:
-    - [[Tổng quan về Cấu trúc dữ liệu|algo/data-structures/data-structures-overview]]
-    - [[Cây|translate/wcipeg/tree]]
-    - [[Trie|algo/data-structures/trie]]
-    - [[Binary Heap|translate/wcipeg/Binary-Heap]]
-    - [[Segment Tree|algo/data-structures/segment-tree-extend]]
-    - [[Heavy Light Decomposition - Thuật toán phân tách cây|algo/data-structures/heavy-light-decomposition]]
-    - [[RMQ & LCA|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]]
-    - [[Các cách giải bài toán LCA|algo/data-structures/lca]]
-    - [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
-    - [[Mo's algorithm|algo/data-structures/mo-algorithm]]
-    - [[IT đoạn thẳng|algo/data-structures/interval-tree-tap-doan-thang]]
+- [[Cấu trúc dữ liệu|algo/data-structures/data-structures-overview]]
 
 - Xử lý xâu:
     - [[Thuật toán KMP|translate/wcipeg/kmp]]
