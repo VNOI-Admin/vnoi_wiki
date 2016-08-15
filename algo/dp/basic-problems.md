@@ -298,3 +298,52 @@ Tổng kết lại, ta có công thức QHĐ:
 - `F[i,j] = min(F[i−1,j], F[i,j−1], F[i−1,j−1]) + 1` nếu $X_i \ne X_j$.
 
 Bài này ta có thể tiết kiệm biến hơn bằng cách dùng 2 mảng 1 chiều tính lẫn nhau và một mảng đánh dấu 2 chiều để truy vết.
+
+## 3.3. Một số bài toán khác
+
+### Xâu con chung dài nhất
+
+**Bài toán**:
+
+Cho 2 xâu $X$, $Y$. Hãy tìm xâu con của $X$ và của $Y$ có độ dài lớn nhất.
+
+**Công thức QHĐ**:
+
+Gọi $L[i,j]$ là độ dài xâu con chung dài nhất của xâu $X_i$ gồm $i$ kí tự phần đầu của $X$ ($X_i = X[1..i]$) và xâu $Y_j$ gồm $j$ kí tự phần đầu của $Y$ ($Y_j = Y[1..j]$). Ta có công thức quy hoạch động như sau:
+
+- `L[0,j] = L[i,0] = 0`
+- `L[i,j] = L[i−1,j−1] + 1` nếu $X_i = Y_j$
+- `L[i,j] = max(L(i−1,j), L[i,j−1])` nếu $X_i \ne  Y_j$.
+
+**Cài đặt**:
+
+Bảng phương án là một mảng 2 chiều `L[0..m,0..n]` để lưu các giá trị của hàm QHĐ $L[i,j]$.
+
+Đoạn chương trình cài đặt công thức QHĐ trên như sau:
+
+```pascal
+for i:=0 to m do L[i,0]:=0; 
+for j:=0 to n do L[0,j]:=0; 
+
+
+for i:=1 to m do
+    for j:=1 to n do
+           if X[i]=Y[j] then L[i,j]:=L[i–1,j–1]+1
+           else L[i,j]:=max(L[i–1,j],L[i,j–1]]);
+```
+
+Như vậy độ phức tạp bộ nhớ của bài toán là $O(n^2)$, độ phức tạp thời gian là $O(n^2)$.
+
+Có một phương pháp cài đặt tốt hơn, chỉ với độ phức tạp bộ nhớ $O(n)$ dựa trên nhận xét sau: để tính ô $L[i,j]$ của bảng phương án, ta chỉ cần 3 ô $L[i–1,j–1]$, $L[i–1,j]$ và $L[i,j–1]$. Tức là để tính dòng $L[i]$ thì chỉ cần dòng $L[i–1]$. Do đó ta chỉ cần 2 mảng 1 chiều để lưu dòng vừa tính (P) và dòng đang tính (L) mà thôi. Cách cài đặt mới như sau:
+
+```pascal
+for j:=0 to n do P[j]:=0;
+
+for i:=1 to m do 
+    begin
+          L[0] := 0;
+          for j:=1 to n do
+               if X[i]=Y[j] then L[i,j]:=P[j–1]+1
+                    else L[i,j]:=max(P[j], L[j–1]); P := L;
+    end;
+```
