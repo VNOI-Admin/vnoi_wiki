@@ -135,7 +135,7 @@ Các khối đá đều có dạng hình hộp chữ nhật và được đặc 
 
 Hãy chỉ ra cách để xây dựng được một cái tháp sao cho số khối đá được dùng là nhiều nhất.
 
-# Vali
+# Vali (B)
 
 ## 2.1. Mô hình
 
@@ -153,4 +153,87 @@ Tính $L[i,j]$: vật đang xét là $a_i$ với trọng lượng của vali kh�
 - Nếu chọn $A_i$ đưa vào vali, trọng lượng vali trước đó phải không quá $j - A_i$. Vì mỗi vật chỉ được chọn 1 lần nên giá trị lớn nhất của vali lúc đó là $L[i-1, j- A_i] + B_i$.
 - Nếu không chọn $A_i$, trọng lượng của vali là như cũ (như lúc trước khi chọn $A_i$): $L[i-1,j]$.
 
-Tóm lại ta có $L[i,j] = \max{ L[i-1,j - A_i ] + B_i, L[i-1,j] }$.
+Tóm lại ta có $L[i,j] = max( L[i-1,j - A_i ] + B_i, L[i-1,j] )$.
+
+## 2.3. Cài đặt
+
+```pascal
+For i:=1 to n do
+    For j:=1 to W do
+          If   b[i]<=j then L[i,j]:=max(L[ i-1,j-A[i] ] + B[i], L[i-1,j])
+          else L[i,j]:=L[i-1,j];
+
+```
+
+## 2.4. Một số bài toán khác
+
+### Dãy con có tổng bằng S
+
+**Bài toán**:
+
+Cho dãy $A_1,A_2,..., A_N$. Tìm một dãy con của dãy đó có tổng bằng $S$.
+
+**Hướng dẫn**:
+
+Đặt $L[i,t]=1$ nếu có thể tạo ra tổng $t$ từ một dãy con của dãy gồm các phần tử $A_1,A_2,...,A_i$. Ngược lại thì $L[i,t]=0$. Nếu $L[n,S]=1$ thì đáp án của bài toán trên là “có”.
+
+Ta có thể tính $L[i,t]$ theo công thức: $L[i,t]=1$ nếu $L[i–1,t]=1$ hoặc $L[i–1,t–a[i]]=1$.
+
+**Cài đặt**:
+
+Nếu áp dụng luôn công thức trên thì ta cần dùng bảng phương án hai chiều. Ta có thể nhận xét rằng để tính dòng thứ $i$, ta chỉ cần dòng $i–1$. Bảng phương án khi đó chỉ cần 1 mảng 1 chiều $L[0..S]$ và được tính như sau:
+
+```pascal
+L[t]:=0; L[0]:=1;
+
+for i := 1 to n do
+    for t := S downto a[i] do
+          if (L[t]=0) and (L[t–a[i]]=1) then L[t]:=1;
+```
+
+Dễ thấy độ phức tạp bộ nhớ của cách cài đặt trên là $O(m)$, độ phức tạp thời gian là $O(n \* m)$, với $m$ là tổng của $n$ số. Hãy tự kiểm tra xem tại sao vòng for thứ 2 lại là `for downto` chứ không phải là `for to`.
+
+### Chia kẹo
+
+**Bài toán**:
+
+Cho $n$ gói kẹo, gói thứ $i$ có $a_i$ viên. Hãy chia các gói thành 2 phần sao cho chênh lệch giữa 2 phần là ít nhất.
+
+**Hướng dẫn**:
+
+Gọi $T$ là tổng số kẹo của $n$ gói. Chúng ta cần tìm số $S$ lớn nhất thoả mãn:
+
+- $S \le T/2$.
+- Có một dãy con của dãy $a$ có tổng bằng $S$.
+
+Khi đó sẽ có cách chia với chênh lệch 2 phần là $T–2S$ là nhỏ nhất và dãy con có tổng bằng $S$ ở trên gồm các phần tử là các gói kẹo thuộc phần thứ nhất. Phần thứ hai là các gói kẹo còn lại.
+
+### Market (Olympic Balkan 2000)
+
+**Bài toán**:
+
+Người đánh cá Clement bắt được $n$ con cá, khối lượng mỗi con là $a_i$, đem bán ngoài chợ. Ở chợ cá, người ta không mua cá theo từng con mà mua theo một lượng nào đó. Chẳng hạn 3 kg, 5kg...
+
+Ví dụ: có 3 con cá, khối lượng lần lượt là: 3, 2, 4. Mua lượng 6kg sẽ phải lấy con cá thứ 2 và và thứ 3. Mua lượng 3 kg thì lấy con thứ nhất. Không thể mua lượng 8 kg. Nếu bạn là người đầu tiên mua cá, có bao nhiêu lượng bạn có thể chọn?
+
+**Hướng dẫn**
+
+Thực chất bài toán là tìm các số $S$ mà có một dãy con của dãy $a$ có tổng bằng $S$. Ta có thể dùng phương pháp đánh dấu của bài chia kẹo ở trên rồi đếm các giá trị $t$ mà $L[t]=1$.
+
+### Điền dấu
+
+**Bài toán**:
+
+Cho $n$ số tự nhiên $A_1,A_2, ...,A_N$. Ban đầu các số được đặt liên tiếp theo đúng thứ tự cách nhau bởi dấu "?": `A1 ? A2 ? ... ? AN`. Cho trước số nguyên $S$, có cách nào thay các dấu `?` bằng dấu `+` hay dấu `−` để được một biểu thức số học cho giá trị là $S$ không?
+
+**Hướng dẫn**:
+
+Đặt $L[i,t]=1$ nếu có thể điền dấu vào $i$ số đầu tiên và cho kết quả bằng $t$. Ta có công thức sau để tính $L$:
+- `L[1, a[1]] = 1`
+- `L[i, t] = 1` nếu `L[i – 1, t + a[i]] = 1` hoặc `L[i – 1, t – a[i]] = 1`.
+
+Nếu `L[n, S] = 1` thì câu trả lời của bài toán là có.
+
+Khi cài đặt, có thể dùng một mảng 2 chiều (lưu toàn bộ bảng phương án) hoặc 2 mảng một chiều (để lưu dòng $i$ và dòng $i–1$). Chú ý là chỉ số theo $t$ của các mảng phải có cả phần âm (tức là từ $–T$ đến $T$, với $T$ là tổng của $n$ số), vì trong bài này chúng ta dùng cả dấu `-` nên có thể tạo ra các tổng âm.
+
+Bài này có một biến thể là đặt dấu sao cho kết quả là một số chia hết cho $k$. Ta có thuật giải tương tự bài toán trên bằng cách thay các phép cộng, trừ bằng các phép cộng và trừ theo modulo $k$ và dùng mảng đánh dấu với các giá trị từ 0 đến $k–1$ (là các số dư có thể có khi chia cho $k$). Đáp số của bài toán là $L[n,0]$.
