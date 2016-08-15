@@ -36,7 +36,7 @@ Bảng phương án là một mảng một chiều $L$ để lưu trữ các gi�
 for i:= 1 to n do
    begin
          L[i]:=1;
-         for j:=1 to i–1 do
+         for j:=1 to i-1 do
               if (A[j]<=A[i]) and (L[i]<L[j]+1) then L[i]:=L[j]+1;
    end;
 ```
@@ -73,7 +73,7 @@ Tương tự như bài toán bố trí phòng họp, nếu sắp xếp các đơ
 for i:=1 to n do
   begin
           L[i]:=C[i];
-          for j:=1 to i–1 do
+          for j:=1 to i-1 do
                if (B[j]<=A[i]) and (L[i]<L[j]+C[i]) then L[i]:=L[j]+C[i];
   end;
 ```
@@ -99,16 +99,16 @@ Việc kiểm tra điểm $M$ có nằm trong tam giác $ABC$ không có thể d
 Cho dãy $A_1, A_2,..., A_N$. Hãy tìm dãy con đổi dấu dài nhất của dãy đó. Dãy con con đổi dấu $A_{i1},A_{i2},..., A_{ik}$ phải thoả mãn các điều kiện sau:
 
 - $A_{i1} < A_{i2} > A_{i3} <...$ hoặc $A_{i1} > A_{i2} < A_{i3} >...$
-- Các chỉ số phải cách nhau ít nhất $L$: $i_2 – i_1 \ge L$, $i_3 – i_2 \ge L$, ...
-- Chênh lệch giữa 2 phần tử liên tiếp nhỏ hơn $U$: $|A_{i1} – A_{i2}| \le U$, $|A_{i2} – A_{i3}| \le U$, ...
+- Các chỉ số phải cách nhau ít nhất $L$: $i_2 - i_1 \ge L$, $i_3 - i_2 \ge L$, ...
+- Chênh lệch giữa 2 phần tử liên tiếp nhỏ hơn $U$: $|A_{i1} - A_{i2}| \le U$, $|A_{i2} - A_{i3}| \le U$, ...
 
 **Hướng dẫn**:
 
 Gọi $L_i$ là số phần tử của dãy con đổi dấu có phần tử cuối cùng là $A_i$ và phần tử cuối cùng lớn hơn phần tử đứng trước. Tương tự, $P_i$ là số phần tử của dãy con đổi dấu có phần tử cuối cùng là $A_i$ và phần tử cuối cùng nhỏ hơn phần tử đứng trước.
 
 Ta dễ dàng suy ra:
-- $L_i = max(1, P_j + 1)$, với mọi $j$ thỏa mãn: $j \le i–L$ và $A_i – U \le A_j < A_i$.
-- $P_i = max(1, L_j + 1)$, với mọi $j$ thỏa mãn: $j \le i–L$ và $A_i < A_j \le A_i + U$.
+- $L_i = max(1, P_j + 1)$, với mọi $j$ thỏa mãn: $j \le i-L$ và $A_i - U \le A_j < A_i$.
+- $P_i = max(1, L_j + 1)$, với mọi $j$ thỏa mãn: $j \le i-L$ và $A_i < A_j \le A_i + U$.
 
 ### Dãy số WAVIO
 
@@ -177,18 +177,18 @@ Cho dãy $A_1,A_2,..., A_N$. Tìm một dãy con của dãy đó có tổng bằ
 
 Đặt $L[i,t]=1$ nếu có thể tạo ra tổng $t$ từ một dãy con của dãy gồm các phần tử $A_1,A_2,...,A_i$. Ngược lại thì $L[i,t]=0$. Nếu $L[n,S]=1$ thì đáp án của bài toán trên là “có”.
 
-Ta có thể tính $L[i,t]$ theo công thức: $L[i,t]=1$ nếu $L[i–1,t]=1$ hoặc $L[i–1,t–a[i]]=1$.
+Ta có thể tính $L[i,t]$ theo công thức: $L[i,t]=1$ nếu $L[i-1,t]=1$ hoặc $L[i-1,t-a[i]]=1$.
 
 **Cài đặt**:
 
-Nếu áp dụng luôn công thức trên thì ta cần dùng bảng phương án hai chiều. Ta có thể nhận xét rằng để tính dòng thứ $i$, ta chỉ cần dòng $i–1$. Bảng phương án khi đó chỉ cần 1 mảng 1 chiều $L[0..S]$ và được tính như sau:
+Nếu áp dụng luôn công thức trên thì ta cần dùng bảng phương án hai chiều. Ta có thể nhận xét rằng để tính dòng thứ $i$, ta chỉ cần dòng $i-1$. Bảng phương án khi đó chỉ cần 1 mảng 1 chiều $L[0..S]$ và được tính như sau:
 
 ```pascal
 L[t]:=0; L[0]:=1;
 
 for i := 1 to n do
     for t := S downto a[i] do
-          if (L[t]=0) and (L[t–a[i]]=1) then L[t]:=1;
+          if (L[t]=0) and (L[t-a[i]]=1) then L[t]:=1;
 ```
 
 Dễ thấy độ phức tạp bộ nhớ của cách cài đặt trên là $O(m)$, độ phức tạp thời gian là $O(n \* m)$, với $m$ là tổng của $n$ số. Hãy tự kiểm tra xem tại sao vòng for thứ 2 lại là `for downto` chứ không phải là `for to`.
@@ -206,7 +206,7 @@ Gọi $T$ là tổng số kẹo của $n$ gói. Chúng ta cần tìm số $S$ l�
 - $S \le T/2$.
 - Có một dãy con của dãy $a$ có tổng bằng $S$.
 
-Khi đó sẽ có cách chia với chênh lệch 2 phần là $T–2S$ là nhỏ nhất và dãy con có tổng bằng $S$ ở trên gồm các phần tử là các gói kẹo thuộc phần thứ nhất. Phần thứ hai là các gói kẹo còn lại.
+Khi đó sẽ có cách chia với chênh lệch 2 phần là $T-2S$ là nhỏ nhất và dãy con có tổng bằng $S$ ở trên gồm các phần tử là các gói kẹo thuộc phần thứ nhất. Phần thứ hai là các gói kẹo còn lại.
 
 ### Market (Olympic Balkan 2000)
 
@@ -230,13 +230,13 @@ Cho $n$ số tự nhiên $A_1,A_2, ...,A_N$. Ban đầu các số được đặ
 
 Đặt $L[i,t]=1$ nếu có thể điền dấu vào $i$ số đầu tiên và cho kết quả bằng $t$. Ta có công thức sau để tính $L$:
 - `L[1, a[1]] = 1`
-- `L[i, t] = 1` nếu `L[i – 1, t + a[i]] = 1` hoặc `L[i – 1, t – a[i]] = 1`.
+- `L[i, t] = 1` nếu `L[i - 1, t + a[i]] = 1` hoặc `L[i - 1, t - a[i]] = 1`.
 
 Nếu `L[n, S] = 1` thì câu trả lời của bài toán là có.
 
-Khi cài đặt, có thể dùng một mảng 2 chiều (lưu toàn bộ bảng phương án) hoặc 2 mảng một chiều (để lưu dòng $i$ và dòng $i–1$). Chú ý là chỉ số theo $t$ của các mảng phải có cả phần âm (tức là từ $–T$ đến $T$, với $T$ là tổng của $n$ số), vì trong bài này chúng ta dùng cả dấu `-` nên có thể tạo ra các tổng âm.
+Khi cài đặt, có thể dùng một mảng 2 chiều (lưu toàn bộ bảng phương án) hoặc 2 mảng một chiều (để lưu dòng $i$ và dòng $i-1$). Chú ý là chỉ số theo $t$ của các mảng phải có cả phần âm (tức là từ $-T$ đến $T$, với $T$ là tổng của $n$ số), vì trong bài này chúng ta dùng cả dấu `-` nên có thể tạo ra các tổng âm.
 
-Bài này có một biến thể là đặt dấu sao cho kết quả là một số chia hết cho $k$. Ta có thuật giải tương tự bài toán trên bằng cách thay các phép cộng, trừ bằng các phép cộng và trừ theo modulo $k$ và dùng mảng đánh dấu với các giá trị từ 0 đến $k–1$ (là các số dư có thể có khi chia cho $k$). Đáp số của bài toán là $L[n,0]$.
+Bài này có một biến thể là đặt dấu sao cho kết quả là một số chia hết cho $k$. Ta có thuật giải tương tự bài toán trên bằng cách thay các phép cộng, trừ bằng các phép cộng và trừ theo modulo $k$ và dùng mảng đánh dấu với các giá trị từ 0 đến $k-1$ (là các số dư có thể có khi chia cho $k$). Đáp số của bài toán là $L[n,0]$.
 
 ### Expression
 
@@ -246,7 +246,7 @@ Cho $n$ số nguyên. Hãy chia chúng thành 2 nhóm sao cho tích của tổng
 
 **Hướng dẫn**:
 
-Gọi $T$ là tổng $n$ số nguyên đó. Giả sử ta chia dãy thành 2 nhóm, gọi $S$ là tổng của một nhóm, tổng nhóm còn lại là $T–S$ và tích của tổng 2 nhóm là $S*(T–S)$. Bằng phương pháp đánh dấu ta xác định được mọi số $S$ là tổng của một nhóm (như bài Market) và tìm số $S$ sao cho $S*(T–S)$ đạt max.
+Gọi $T$ là tổng $n$ số nguyên đó. Giả sử ta chia dãy thành 2 nhóm, gọi $S$ là tổng của một nhóm, tổng nhóm còn lại là $T-S$ và tích của tổng 2 nhóm là $S*(T-S)$. Bằng phương pháp đánh dấu ta xác định được mọi số $S$ là tổng của một nhóm (như bài Market) và tìm số $S$ sao cho $S*(T-S)$ đạt max.
 
 # 3. Biến đổi xâu
 
@@ -328,13 +328,13 @@ for j:=0 to n do L[0,j]:=0;
 
 for i:=1 to m do
     for j:=1 to n do
-           if X[i]=Y[j] then L[i,j]:=L[i–1,j–1]+1
-           else L[i,j]:=max(L[i–1,j],L[i,j–1]]);
+           if X[i]=Y[j] then L[i,j]:=L[i-1,j-1]+1
+           else L[i,j]:=max(L[i-1,j],L[i,j-1]]);
 ```
 
 Như vậy độ phức tạp bộ nhớ của bài toán là $O(n^2)$, độ phức tạp thời gian là $O(n^2)$.
 
-Có một phương pháp cài đặt tốt hơn, chỉ với độ phức tạp bộ nhớ $O(n)$ dựa trên nhận xét sau: để tính ô $L[i,j]$ của bảng phương án, ta chỉ cần 3 ô $L[i–1,j–1]$, $L[i–1,j]$ và $L[i,j–1]$. Tức là để tính dòng $L[i]$ thì chỉ cần dòng $L[i–1]$. Do đó ta chỉ cần 2 mảng 1 chiều để lưu dòng vừa tính (P) và dòng đang tính (L) mà thôi. Cách cài đặt mới như sau:
+Có một phương pháp cài đặt tốt hơn, chỉ với độ phức tạp bộ nhớ $O(n)$ dựa trên nhận xét sau: để tính ô $L[i,j]$ của bảng phương án, ta chỉ cần 3 ô $L[i-1,j-1]$, $L[i-1,j]$ và $L[i,j-1]$. Tức là để tính dòng $L[i]$ thì chỉ cần dòng $L[i-1]$. Do đó ta chỉ cần 2 mảng 1 chiều để lưu dòng vừa tính (P) và dòng đang tính (L) mà thôi. Cách cài đặt mới như sau:
 
 ```pascal
 for j:=0 to n do P[j]:=0;
@@ -343,8 +343,8 @@ for i:=1 to m do
     begin
           L[0] := 0;
           for j:=1 to n do
-               if X[i]=Y[j] then L[i,j]:=P[j–1]+1
-                    else L[i,j]:=max(P[j], L[j–1]); P := L;
+               if X[i]=Y[j] then L[i,j]:=P[j-1]+1
+                    else L[i,j]:=max(P[j], L[j-1]); P := L;
     end;
 ```
 
@@ -373,14 +373,14 @@ Bài toán này có một công thức QHĐ như sau:
 - Gọi $L[i,j]$ là số kí tự ít nhất cần thêm vào xâu con $S[i..j]$ của $$ để xâu đó trở thành đối xứng.
 - Đáp số của bài toán sẽ là $L[1,n]$ với $n$ là số kí tự của $S$. Ta có công thức sau để tính $L[i,j]$:
   - $L(i,i)=0$.
-  - $L(i,j)=L(i+1,j–1)$ nếu $S_i=S_j$
-  - $L(i,j)=max(L(i+1,j), L(i,j–1))$ nếu $S_i \ne S_j$
+  - $L(i,j)=L(i+1,j-1)$ nếu $S_i=S_j$
+  - $L(i,j)=max(L(i+1,j), L(i,j-1))$ nếu $S_i \ne S_j$
 
 Bạn đọc dễ dàng có thể kiểm chứng công thức đó. Ta có thể cài đặt trực tiếp công thức đó bằng phương pháp đệ quy có nhớ. Tuy nhiên khi đó độ phức tạp bộ nhớ là $O(n^2)$. Có một phương pháp cài đặt tiết kiệm hơn, có thể tham khảo ở [[bài viết của Nguyễn Hoành Tiến|algo/dp/palindrome-problems]]
 
 Ta có thuật toán đơn giản hơn như sau:
 
-- Gọi $P$ là xâu đảo của $S$ và $T$ là xâu con chung dài nhất của $S$ và $P$. Khi đó các kí tự của $S$ không thuộc $T$ cũng là các kí tự cần thêm vào để $S$ trở thành đối xứng. Đáp số của bài toán sẽ là $n–k$, với $k$ là độ dài của $T$.
+- Gọi $P$ là xâu đảo của $S$ và $T$ là xâu con chung dài nhất của $S$ và $P$. Khi đó các kí tự của $S$ không thuộc $T$ cũng là các kí tự cần thêm vào để $S$ trở thành đối xứng. Đáp số của bài toán sẽ là $n-k$, với $k$ là độ dài của $T$.
 - Ví dụ: `S=edbabcd`, xâu đảo của $S$ là `P=dcbabde`. Xâu con chung dài nhất của $S$ và $P$ là `T=dbabd`. Như vậy cần thêm 2 kí tự là `e` và `c` vào để $S$ trở thành xâu đối xứng.
 
 # 4. Vali (A)
@@ -400,4 +400,152 @@ Công thức tính $L(i,t)$ như sau:
 - $L(i,j) = L(i-1,j)$ nếu $t<A_i$
 - $L(i,t) = max(L(i,j),  L(i-1,j-A_i) + B_i)$ nếu $t \ge A_i$
 
-Trong đó: $L(i–1,j)$ là giá trị có được nếu không đưa vật $i$ vào balô, $L(i-1,j–A_i) + B_i$  là giá trị có được nếu chọn vật $i$.
+Trong đó: $L(i-1,j)$ là giá trị có được nếu không đưa vật $i$ vào balô, $L(i-1,j-A_i) + B_i$  là giá trị có được nếu chọn vật $i$.
+
+## 4.3. Cài đặt
+
+Ta có thể dùng một mảng 2 chiều để lưu bảng phương án, tuy nhiên dựa trên nhận xét rằng để tính dòng $i$ của bảng phương án chỉ cần dòng $i-1$, ta chỉ cần dùng 2 mảng một chiều $P$ và $L$ có chỉ số từ 0 đến $m$ để lưu 2 dòng đó. Đoạn chương trình con tính bảng phương án như sau.
+
+```pascal
+L[t] := 0; {với mọi t}
+for i := 1 to n do
+   begin
+         P:=L;
+         for t := 0 to m do
+             if t<a[i] then L[t]:=P[t]
+             else L[t] := max(P[t],P[t-a[i]]);
+   end;
+```
+
+Nếu để ý kĩ bạn sẽ thấy rằng đoạn trình trên chỉ viết giống công thức QHĐ chứ chưa tối ưu. Chẳng hạn đã có lệnh gán `P:=L`, sau đó lại có gán `L[t]:=P[t]` với các giá trị `t<a[i]` là không cần thiết. Bạn đọc có thể tự cải tiến để chương trình tối ưu hơn.
+
+Độ phức tạp bộ nhớ là $O(m)$ và độ phức tạp thời gian là $O(m \* n)$.
+
+## 4.4. Một số bài toán khác
+
+### Farmer (IOI 2004)
+
+**Bài toán**
+
+Một người có $N$ mảnh đất và $M$ dải đất. Các mảnh đất có thể coi là một tứ giác và các dải đất thì coi như một đường thẳng. Dọc theo các dải đất ông ta trồng các cây bách, dải đất thứ $i$ có $A_i$ cây bách. Ông ta cũng trồng các cây bách trên viền của các mảnh đất, mảnh đất thứ $j$ có $B_j$ cây bách. Cả ở trên các mảnh đất và dải đất, xen giữa 2 cây bách ông ta trồng một cây ôliu. Ông ta cho con trai được chọn các mảnh đất và dải đất tuỳ ý với điều kiện tổng số cây bách không vượt quá $Q$. Người con trai phải chọn thế nào để có nhiều cây ôliu (loài cây mà anh ta thích) nhất.
+
+**Hướng dẫn**
+
+Dễ thấy mảnh đất thứ $i$ có $A_i$ cây ôliu và dải đất thứ $j$ có $B_j-1$ cây ôliu. Coi các mảnh đất và dải đất là các “đồ vật”, đồ vật thứ $k$ có khối lượng $W_k$ và giá trị $V_k$ (nếu $k$ là mảnh đất $i$ thì $W_k=V_k=A_i$, nếu $k$ là dải đất $j$ thì $W_k=B_j$, $V_k=B_j-1$). Ta cần chọn các “đồ vật”, sao cho tổng “khối lượng” của chúng không vượt $Q$ và tổng “giá trị” là lớn nhất. Đây chính là bài toán xếp balô đã trình bày ở trên.
+
+### Đổi tiền
+
+**Bài toán**
+
+Ở đất nước Omega người ta chỉ tiêu tiền xu. Có $N$ loại tiền xu, loại thứ $i$ có mệnh giá là $A_i$ đồng. Một người khách du lịch đến Omega du lịch với số tiền $M$ đồng. Ông ta muốn đổi số tiền đó ra tiền xu Omega để tiện tiêu dùng. Ông ta cũng muốn số đồng tiền đổi được là ít nhất (cho túi tiền đỡ nặng khi đi đây đi đó). Bạn hãy giúp ông ta tìm cách đổi tiền.
+
+**Hướng dẫn**
+
+Bài toán này khá giống bài toán xếp balô (“khối lượng” là mệnh giá, “giá trị” là 1), chỉ có một số thay đổi nhỏ: số đồng xu mỗi loại được chọn tuỳ ý (trong bài toán xếp balô mỗi đồ vật chỉ được chọn 1 lần) và tổng giá trị yêu cầu là nhỏ nhất.
+
+Do đó ta cũng xây dựng hàm QHĐ một cách tương tự: Gọi $L[i,t]$ là số đồng xu ít nhất nếu đổi $t$ đồng ra $i$ loại tiền xu (từ 1 đến $i$). Công thức tính $L[i,t]$ như sau:
+
+- $L[i,0]=0$
+- $L[0,t]= \inf$ với $t>0$.
+- $L[i,t]=L[i-1,t]$ nếu $t<A_i$.
+- $L[i,t]=min(L[i-1,t], L[i,t-Ai]+1)$ nếu $t \ge A_i$.
+
+Công thức này khác công thức của bài xếp balô ở chỗ: dùng hàm **min** chứ không phải hàm **max** (vì cần tìm cách chọn ít hơn) và nếu chọn đồng xu thứ $i$ thì $L[i,t]=L[i,t-A_i]+1$ (vì ta vẫn còn được chọn đồng xu thứ $i$ đó nữa), khác với khi xếp balô là: nếu chọn đồ vật thứ $i$ thì $L[i,t]=L[i-1,t-A_i])+B_i$ vì đồ vật $i$ chỉ được chọn một lần.
+
+# 5. Nhân ma trận
+
+## 5.1. Mô hình
+
+Nhân một ma trận kích thước $m \* n$ với một ma trận $n \* p$, số phép nhân phải thực hiện là $m \* n \* p$. Mặt khác phép nhân các ma trận có tính kết hợp, tức là: $(A \* B) \* C = A \* (B \* C)$
+
+Do đó khi tính tích nhiều ma trận, ta có thể thực hiện theo các trình tự khác nhau, mỗi trình tự tính sẽ quyết định số phép nhân cần thực hiện.
+
+Cho $N$ ma trận $A_1, A_2, ..., A_N$, ma trận $A$ có kích thước là $d_{i-1} \* d_i$. Hãy xác định trình tự nhân ma trận $A_1 \* A_2 \* ... \* A_N$ sao cho số phép nhân cần thực hiện là ít nhất.
+
+## 5.2. Công thức
+
+Gọi $F(i,j)$ là số phép nhân để tính tích các ma trận từ $A_i$ đến $A_j$ $(A_i \* A_{i+1} \* ... \* A_j)$.
+
+- $F[i,i]=0$.
+- $F[i,i+1]=d_{i-1} \* d_i \* d_{i+1}$
+- $F[i,j] = min(F[i,k]+F[k+1,j] + d_{i-1} \* d_i \* d_{i+1}$ với $k=i+1,i+2,...,j-1$
+
+Công thức hơi phức tạp nên tôi xin giải thích như sau:
+
+- $F[i,i]=0$ là hiển nhiên.
+- $F[i,i+1]$ là số phép nhân khi nhân $A_i$ và $A_{i+1}$. $A_i$ có kích thước $d_{i-1} \* d_i$, $A_{i+1}$ có kích thước $d_i \* d_{i+1}$, do đó $F[i,i+1]=d_{i-1} \* d_i \* d_{i+1}$
+- Với $j>i+1$ thì ta thấy có thể tính $A_i \* A_{i+1} \* ... \* A_j$ bằng cách chọn một vị trí $k$ nào đó để đặt ngoặc theo trình tự: $A_i \* A_{i+1} \* ... \* A_j = (A_i..A_k) \* (A_{k+1}..A_j)$
+
+Ma trận kết quả của phép nhân $(A_i..A_k)$ có kích thước $d_{i-1} \* d_i$, ma trận kết quả của phép nhân $(A_{k+1}..A_j)$ có kích thước $d_k \* d_j$. Với cách đặt đó ta sẽ mất $F[i,k]$ phép nhân để có kết quả trong dấu ngoặc thứ nhất, mất thêm $F[k+1,j]$ phép nhân để có kết quả trong dấu ngoặc thứ hai, và cuối cùng mất $d_{i-1} \* d_k \* d_j$ để nhân 2 ma trận kết quả đó. Từ đó tổng số phép nhân của cách đặt đó là: $F[i,k] + F[k+1,j] + d_{i-1} \* d_k \* d_j$.
+
+Ta chọn vị trí $k$ cho số phép nhân ít nhất.
+
+## 5.3. Cài đặt
+
+Bảng phương án là một mảng 2 chiều $F$ để lưu $F[i,j]$. Chú ý khi cài đặt là để tính được $F[i,j]$, ta phải tính $F[i,k]$ và $F[k+1,j]$ trước. Phương pháp đơn giản để làm điều đó là phương pháp đệ quy có nhớ.
+
+Tuy nhiên dựa vào nhận xét là trong công thức QHĐ: $j-i$ lớn hơn $k-i$ và $j-k$, ta có thể tính theo trình tự khác: tính các phần tử $F[i,j]$ với $j-i$ từ nhỏ đến lớn (không phải là tính các giá trị $F[i,j]$ với $i$, $j$ từ nhỏ đến lớn như vẫn làm). Với cách đó, khi tính đến $F[i,j]$ thì ta đã có $F[i,k]$ và $F[k+1,j]$.
+
+Đoạn chương trình tính bảng phương án như sau:
+
+```pascal
+for i:=1 to n do F[i,i]:=0;
+
+for i:=1 to n-1 do F[i,i+1] := d[i-1]*d[i]*d[i+1];
+
+for m:=2 to n-1 do
+
+    begin
+
+         for i:=1 to n-m do
+
+              begin
+
+                    j:=i+m;
+
+                    F[i,j]:=oo;
+
+                    for k:=i+1 to j-1 do F[i,j]:=min(F[i,j], F[i,k]+F[k+1,j]+d[i-1]*d[k]*d[j]);
+
+              end;
+end;
+```
+
+Với cách cài đặt trên, độ phức tạp bộ nhớ là $O(n^2)$, độ phức tạp thời gian là $O(n^3)$.
+
+## 5.4. Một số bài toán khác
+
+### Chia đa giác
+
+**Bài toán**
+
+Cho một đa giác lồi $N$ đỉnh. Bằng các đường chéo không cắt nhau, ta có thể chia đa giác thành $N-2$ tam giác. Hãy xác định cách chia có tổng các đường chéo ngắn nhất.
+
+**Hướng dẫn**
+
+Để đơn giản ta coi mọi đoạn thẳng nối 2 đỉnh đều là “đường chéo” (nếu nối 2 đỉnh trùng nhau hoặc 2 đỉnh liên tiếp thì có độ dài bằng 0).
+
+Gọi $F(i,j)$ là tổng độ dài các đường chéo khi chia đa giác gồm các đỉnh từ $i$ đến $j$ thành các tam giác. Nếu $j<i+3$ thì đa giác đó có ít hơn 4 đỉnh, không cần phải chia nên $F(i,j)=0$. Ngược lại ta xét cách chia đa giác đó bằng cách chọn một đỉnh $k$ nằm giữa $i$, $j$ và nối $i$, $j$ với $k$. Khi đó $F[i,j]=F[i,k]+F[k,j]+d[i,k]+d[k,j]$ với $d(i,k)$ là độ dài đường chéo $(i,k)$.
+
+Tóm lại công thức QHĐ như sau:
+
+- $F[i,j]=0$ với $j<i+3$.
+- $F[i,j]=min(F[i,k]+F[k,j]+d[i,k]+d[k,j])$ với $k=i+1,...j-1$. $F[1,n]$ là tổng đường chéo của cách chia tối ưu.
+
+### Biểu thức số học (IOI 1999)
+
+**Bài toán**
+
+Cho biểu thức $A_1 \cdot A_2 \cdot ... \cdot A_N$, trong đó $A_i$ là các số thực không âm và $\cdot$ là một phép toán `+` hoặc `*` cho trước. Hãy đặt các dấu ngoặc để biểu thức thu được có kết quả lớn nhất.
+
+**Hướng dẫn**
+
+Gọi $F[i,j]$ là giá trị lớn nhất có thể có của biểu thức $A_i \cdot A_{i+1} \cdot ... \cdot A_j$. Dễ thấy nếu $i=j$ thì $F[i,j]=A_i$, nếu $j=i+1$ thì $F[i,j]=A_i \cdot A_j$. Nếu $j>i+1$ thì có thể tính biểu thức $A_i \cdot A_{i+1} \cdot ... \cdot A_j$ bằng cách chia thành 2 nhóm: $(A_i \cdot A_{i+1} \cdot ... \cdot A_k) \cdot (A_{k+1} \cdot ... \cdot A_j)$, Khi đó $F[i,j]=F[i,k] \cdot F[k+1,j]$.
+
+Tóm lại, công thức QHĐ là:
+
+- $F[i,i]=A_i$
+- $F[i,i+1]=A_i \cdot A_{i+1}$
+- $F[i,j]=max(F[i,k] \cdot F[k+1,j])$ với $k=i+1,i+2,..j–1$.
+
+(Chú là là các hạng tử của dãy đều không âm và các phép toán là `+` hoặc `*` nên $F[i,k]$ và $F[k+1,j]$ đạt max thì $F[i,k] \cdot F[k+1,j]$ cũng đạt max).
