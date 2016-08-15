@@ -40,6 +40,7 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
 
 - Quy hoạch động:
     - [[Nhập môn Quy hoạch động|translate/topcoder/dynamic-programming]]
+    - [[Một vài bài tập về Palindrome|algo/dp/palindrome-problems]]
     - [[Kĩ thuật bao lồi|translate/wcipeg/Convex-Hull-Trick]]
 - [[Tham lam|translate/topcoder/Greedy-is-Good]]
 
