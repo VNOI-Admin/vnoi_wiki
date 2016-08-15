@@ -146,14 +146,14 @@ Có $n$ đồ vật, vật thứ $i$ có trọng lượng $A_i$ và giá trị $
 Hàm mục tiêu: $f$: tổng giá trị của vali.
 
 Nhận xét: giá trị của vali phụ thuộc vào 2 yếu tố: có bao nhiêu vật đang được xét và trọng lượng của các vật. Do đó bảng phương án sẽ là bảng 2 chiều:
-    - $L[i,j]$: tổng giá trị lớn nhất của vali khi xét từ vật 1 .. vật $i$ và trọng lượng của vali chưa vượt quá $j$. Chú ý rằng khi xét đến $L[i,j]$ thì các giá trị trên bảng phương án đều đã được tối ưu.
+    - $L(i,j)$: tổng giá trị lớn nhất của vali khi xét từ vật 1 .. vật $i$ và trọng lượng của vali chưa vượt quá $j$. Chú ý rằng khi xét đến $L[i,j]$ thì các giá trị trên bảng phương án đều đã được tối ưu.
 
-Tính $L[i,j]$: vật đang xét là $a_i$ với trọng lượng của vali không được quá $j$. Có 2 khả năng xảy ra:
+Tính $L(i,j)$: vật đang xét là $a_i$ với trọng lượng của vali không được quá $j$. Có 2 khả năng xảy ra:
 
-- Nếu chọn $A_i$ đưa vào vali, trọng lượng vali trước đó phải không quá $j - A_i$. Vì mỗi vật chỉ được chọn 1 lần nên giá trị lớn nhất của vali lúc đó là $L[i-1, j- A_i] + B_i$.
-- Nếu không chọn $A_i$, trọng lượng của vali là như cũ (như lúc trước khi chọn $A_i$): $L[i-1,j]$.
+- Nếu chọn $A_i$ đưa vào vali, trọng lượng vali trước đó phải không quá $j - A_i$. Vì mỗi vật chỉ được chọn 1 lần nên giá trị lớn nhất của vali lúc đó là $L(i-1, j - A_i) + B_i$.
+- Nếu không chọn $A_i$, trọng lượng của vali là như cũ (như lúc trước khi chọn $A_i$): $L(i-1,j)$.
 
-Tóm lại ta có $L[i,j] = max( L[i-1,j - A_i ] + B_i, L[i-1,j] )$.
+Tóm lại ta có $L[i,j] = max(L(i-1, j - A_i) + B_i, L(i-1, j))$.
 
 ## 2.3. Cài đặt
 
@@ -546,6 +546,105 @@ Tóm lại, công thức QHĐ là:
 
 - $F[i,i]=A_i$
 - $F[i,i+1]=A_i \cdot A_{i+1}$
-- $F[i,j]=max(F[i,k] \cdot F[k+1,j])$ với $k=i+1,i+2,..j–1$.
+- $F[i,j]=max(F[i,k] \cdot F[k+1,j])$ với $k=i+1,i+2,..j-1$.
 
 (Chú là là các hạng tử của dãy đều không âm và các phép toán là `+` hoặc `*` nên $F[i,k]$ và $F[k+1,j]$ đạt max thì $F[i,k] \cdot F[k+1,j]$ cũng đạt max).
+
+# 6. Ghép cặp
+
+## 6.1. Mô hình
+
+Có $n$ lọ hoa sắp thẳng hàng và $k$ bó hoa được đánh số thứ tự từ nhỏ đến lớn. Cần cắm $k$ bó hoa trên vào $n$ lọ sao cho hoa có số thứ tự nhỏ phải đứng trước hoa có số thứ tự lớn. Giá trị thẩm mỹ tương ứng khi cắm hoa $i$ vào lọ thứ $j$ là $v(i,j)$. Hãy tìm 1 cách cắm sao cho tổng giá trị thẫm mỹ là lớn nhất. Chú ý rằng mỗi bó hoa chỉ được cắm vào 1 lọ và mỗi lọ cũng chỉ cắm được 1 bó hoa.
+
+## 6.2. Công thức
+
+Nhận xét rằng bài toán nêu trên là một bài toán ghép cặp có yêu cầu về thứ tự nên ta có thể giải quyết bằng phương pháp QHĐ.
+
+Hàm mục tiêu: $f$: tổng giá trị thẩm mỹ của cách cắm.
+
+Giá trị thẩm mỹ phụ thuộc vào các hoa và các lọ đang được xét nên ta sẽ dùng mảng 2 chiều để lưu bảng phương án.
+
+$L(i,j)$: tổng giá trị thẩm mỹ lớn nhất khi xét đến hoa $i$ và lọ $j$. Khi tính $L(i,j)$ hoa đang xét sẽ là hoa $i$ và lọ $j$.
+
+- Nếu $i = j$. Chỉ có một cách cắm $L[i,i]:= V[1,1]+V[2,2]+...+V[i,i]$
+- Nếu $i>j$. Không có cách cắm hợp lý
+- Nếu $i<j$. Có 2 trường hợp xảy ra:
+  - Cắm hoa $i$ vào lọ $j$. Tổng giá trị thẩm mỹ là $L[i-1,j-1]+V(i,j)$. (Bằng tổng giá trị trước khi cắm cộng với giá trị thẩm mỹ khi cắm hoa $i$ vào lọ $j$)
+  - Không cắm hoa $i$ vào lọ $j$ (có thể cắm vào lọ trước $j$), giá trị thẫm mỹ của cách cắm là như cũ: $L[i,j-1]$
+
+## 6.3. Cài đặt
+
+```pascal
+L[i,j]:= -maxint;
+
+For i:=1 to k do
+    For j:=i to n do
+         If i = j then L[i,j]:=sum(i)
+         else if i<j then L[i,j]:=max(L[i-1,j-1]+v[i,j],L[i,j-1]);
+```
+
+## 6.4. Một số bài toán khác
+
+### Câu lạc bộ
+
+**Bài toán**
+
+Có $n$ phòng học chuyên đề và $k$ nhóm học được đánh số thứ tự từ nhỏ đến lớn. Cần xếp $k$ nhóm trên vào $n$ phòng học sao cho nhóm có số hiệu nhỏ được xếp vào phòng có số hiệu nhỏ, nhóm có số hiệu lớn phải được xếp vào phòng có số hiệu lớn. Với mỗi phòng có chứ học sinh, các ghế thừa phải được chuyển ra hết, nếu thiếu ghế thì lấy vào cho đủ ghế. Biết phòng $i$ có $A_i$ ghế, nhóm $j$ có $B_j$ học sinh. Hãy chọn 1 phương án bố trí sao cho tổng số lần chuyển ghế ra và vào là ít nhất.
+
+**Hướng dẫn**
+
+Khi xếp nhóm $i$ vào phòng $j$ thì số lần chuyển ghế chính là độ chênh lệch giữa số ghế trong phòng $i$ và số học sinh trong nhóm. Đặt $V[i,j]:=|A_i - B_j|$
+
+### Mua giày (Đề QG bảng B năm 2003)
+
+**Bài toán**
+
+Trong hiệu có $n$ đôi giày, đôi giày $i$ có kích thước $H_i$. Có $k$ người cần mua giày, người $i$ cần mua đôi giày kích thước $S_i$. Khi người $i$ chọn mua đôi giày $j$ thì độ lệch sẽ là $|H_i-S_j|$. Hãy tìm cách chọn mua giày cho $k$ người trên sao cho tổng độ lệch là ít nhất. Biết rằng mỗi người chỉ mua 1 đôi giày và 1 đôi giày cũng chỉ có một người mua.
+
+**Hướng dẫn**
+
+Lập công thức giải như bài Câu lạc bộ. Chú ý chứng minh tính đúng đắn của bổ đề heuristic sau: Cho 2 dãy tăng dần các số dương $A_1, A_2, ..., A_N$, $B_1, B_2, ..., B_N$. Gọi $C_1, C_2, ..., C_N$ là một hoán vị bất kỳ của dãy $B$. Khi đó: $|A_1-B_1| + |A_2-B_2| + ... + |A_N-B_N| \le |A_1-C_1| + |A_2 - C_2| + ... + |A_N-C_N|$
+
+# 7. Di chuyển
+
+## 7.1. Mô hình
+
+Cho bảng $A$ gồm $M \* N$ ô. Từ ô $(i,j)$ có thể di chuyển sang 3 ô $(i+1,j)$, $(i+1,j-1)$ và $(i+1,j+1)$. Hãy xác định một lộ trình đi từ hàng 1 đến hàng $M$ sao cho tổng các ô đi qua là lớn nhất.
+
+## 7.2. Công thức
+
+Gọi $F(i,j)$ là giá trị lớn nhất có được khi di chuyển đến ô $(i,j)$. Có 3 ô có thể đi đến ô $(i,j)$ là $(i-1,j)$, $(i-1,j-1)$ và $(i-1,j+1)$. Do đó ta có công thức QHĐ như sau:
+
+- $F[1,j]=A[1,j]$
+- $F[i,j]=max(F[i-1,j],F([i-1,j-1],F[i-1,j+1])+A[i,j]$ với $i>1$
+
+## 7.3. Cài đặt
+
+Bảng phương án là bảng 2 chiều $F[0..m,0..n]$. (Tất cả các ô trên biên đều cho giá trị bằng 0).
+
+Quá trình tính như sau:
+
+```pascal
+for i:=1 to m do
+     for j := 1 to n do
+          F[i,j]=max[F[i-1,j],F[i-1,j-1],F[i-1,j+1]]+A[i,j];
+
+```
+
+Cách cài đặt này cho độ phức tạp bộ nhớ và thời gian đều là $O(n^2)$. Ta có thể tiết kiệm không gian nhớ bằng cách tính trực tiếp trên mảng $A$.
+
+## 7.4. Một số bài toán khác
+
+### Tam giác (IOI 1994)
+
+**Bài toán**
+
+Cho một tam giác gồm các số nguyên không âm. Hãy tính tổng lớn nhất các số trên đường đi từ đỉnh tam giác xuống một điểm nào đó ở đáy tam giác nào đó. Tại mỗi ô ta chỉ có đi thẳng xuống, sang ô bên trái hoặc bên phải.
+
+**Hướng dẫn**
+
+Mô tả các phần tử của tam giác số như một ma trận, $A[i,j]$ là phần tử thứ $j$ trên dòng $i$ (với $1 \le i \le N$ và $1 \le j \le i$). Có 2 ô có thể di chưyển đến ô $(i,j)$ là ô $(i-1,j-1)$ và ô $(i-1,j)$. Gọi $F(i,j)$ là tổng lớn nhất có thể có khi đi đến ô $(i,j)$ ta có:
+
+- $F[1,1]=A[1,1]$
+- $F[i,1]=F[i-1,1]+A[i,1]$
+- $F[i,j]=max( F[i-1,j-1],F[i-1,j] ) + A[i,j]$
