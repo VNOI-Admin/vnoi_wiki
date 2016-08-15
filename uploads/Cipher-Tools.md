@@ -9,7 +9,7 @@ Hôm nay tôi sẽ gửi đến các bạn một vài công cụ mã hóa đối
 
 <table>
 	<tr>
-		<td><a href="http://vnoi.info/contributor/cs/crypto/ROT13">ROT13</a></td>
+		<td><a href="http://vnoi.info/contributor/cs/crypto/cipher/ROT13">ROT13</a></td>
 		<td>Một thuật mã hóa nổi tiếng bằng việc thay đổi mỗi chữ cái bằng chữ thứ 13 sau nó trong bảng alphabet</td>
 	</tr>
 </table>
