@@ -161,11 +161,11 @@ Bài này phức tạp hơn bài trên, cách làm thì vẫn là QHĐ.
 Đoạn chương trình như sau:
 
 ```pascal
-F[0] := 0;
+F[0] := INFINITY;
 
 for i := 1 to n do
        for j := i-1 downto 0 do
-             if (đoạn j+1..i là palindrome) then F[i] := max( F[i], F[j]+1 );
+             if (isPalindrome(j+1, i)) then F[i] := min(F[i], F[j]+1);
 
 ```
 
