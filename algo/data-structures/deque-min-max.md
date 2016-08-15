@@ -142,3 +142,4 @@ Một vài bài tập khác sử dụng Kĩ thuật tịnh tiến Deque
 - [VOJ - KDIFF](http://vnoi.info/problems/show/KDIFF/)
 - [VOJ - BLAND](http://vnoi.info/problems/show/BLAND/)
 - [VOJ - C11CIR](http://vnoi.info/problems/show/C11CIR/)
+- [VOJ - VMQUABEO](http://vnoi.info/problems/show/VMQUABEO/)
