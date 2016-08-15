@@ -462,7 +462,7 @@ void computeTree(int A[MAXN], int N, int T[MAXN])  {
 
 # Thuật toán $< O(N),O(1) >$ cho bài toán RMQ thu hẹp
 
-Chúng ta sẽ giải bài toán $RMQ$ cho dãy $A[0,N-1]$ với $|A[i]-A[i-1]|=1$ với mọi $i\in[1,N-1]$.
+Bài toán $RMQ$ phát sinh khi giải bài toán LCA chỉ là trường hợp đặc biệt của bài toán RMQ tổng quát, do ta có điều kiện $|A[i]-A[i-1]|=1$ với mọi $i\in[1,N-1]$ (lý do là 2 phần tử liên tiếp có quan hệ cha con với nhau). Ta gọi bài toán $RMQ$ này là bài toán RMQ thu hẹp. Trong 1 số tài liệu còn được gọi là bài toán $\pm 1 RMQ$. Trong mục này, ta sẽ nghiên cứu một thuật toán có độ phức tạp tốt hơn cho bài toán RMQ thu hẹp.
 
 Hãy biến đổi $A$ thành một dãy nhị phân có $N-1$ phần tử, với $B[i]=A[i]-A[i-1]$. Như vậy $A[i]=A[0]+B[1]+..+B[i]$ và $B[i]$ chỉ nhận giá trị $1$ hoặc $-1$.
 
@@ -496,7 +496,7 @@ Với $0$ ứng với $-1$, ta sẽ tính trước được cho các dãy
 [1,1,1]
 ```
 
- Như vậy việc tính $P$ có thể được thực hiện trong $O(\sqrt N*l^2)$. Sau đó chỉ cần dựa vào đó mà tính được $RMQ$ của mỗi block trong $B$. Tuy nhiên ta cần tính trước giá trị thập phân của mỗi block trước và lưu vào một mảng $T[N/l]$. Cuối cùng để tính $RMQ_A(i,j)$ ta chỉ cần dựa vào $T$ và $P$.
+Như vậy việc tính $P$ có thể được thực hiện trong $O(\sqrt N*l^2)$. Sau đó chỉ cần dựa vào đó mà tính được $RMQ$ của mỗi block trong $B$. Tuy nhiên ta cần tính trước giá trị thập phân của mỗi block trước và lưu vào một mảng $T[N/l]$. Cuối cùng để tính $RMQ_A(i,j)$ ta chỉ cần dựa vào $T$ và $P$.
 
 # Một số bài để luyện tập
 
