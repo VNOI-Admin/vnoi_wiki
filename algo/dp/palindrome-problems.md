@@ -279,6 +279,6 @@ Ta có công thức:
 
 Bài này được ra từ thời năm 2000, khi đó bộ nhớ cho phép rất nhỏ. Muốn chương trình chạy với $n = 500$ thì cần rút gọn $F$ thành ba mảng một chiều. Muốn truy vết, bạn phải dùng mảng bit hoặc dùng dữ liệu động.
 
-Bài tập luyện tập:
+# Bài tập luyện tập:
 
 - [SPOJ - PALIN](http://www.spoj.com/problems/PALIN/)
