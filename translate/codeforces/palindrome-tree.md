@@ -75,13 +75,13 @@ Ngoài sử dụng cây Palindrome bạn có thể sử dụng Hash để giải
 # Bài tập
 
 ## Các bài trên Timus
-[Timus - Palindromes and Super Abilities](https://acm.timus.ru/problem.aspx?num=1960)
+[Timus - Palindromes and Super Abilities](http://acm.timus.ru/problem.aspx?num=1960)
 
-Timus - 31 Palindromes
+[Timus - 31 Palindromes](http://acm.timus.ru/problem.aspx?space=1&num=2044)
 
-Timus - Richness of words
+[Timus - Richness of words](http://acm.timus.ru/problem.aspx?num=2045)
 
-Timus - Richness of binary words
+[Timus - Richness of binary words](http://acm.timus.ru/problem.aspx?space=1&num=2037)
 
 ## Các bài trên Codeforces
 
