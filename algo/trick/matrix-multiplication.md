@@ -268,3 +268,8 @@ Gọi $X_1, X_2, ..., X_m$ là các ma trận tương ứng với các phép bi�
 Như vậy, $Y = S \* X^t \* X_1 \* X_2 \* ... \* X_r$ là ma trận thể hiện số lượng vi khuẩn tại thời điểm $M \* t + r$.
 
 Như vậy, thuật toán đến đây đã rõ. Ta phân tích $T = M \* t + r$, nhờ đó, ta có thể giải quyết bài toán trong $\mathcal{O}(N^3 \* M)$ cho bước tính ma trận $X$ và $\mathcal{O}(N^3 \* (\log{T/M} + M)$ cho bước tính $Y$. Bài toán được giải quyết.
+
+# Bài tập áp dụng
+
+- [VOJ - PA06ANT](http://vn.spoj.com/problems/PA06ANT/)
+- [VOJ - CONNECTE](http://vn.spoj.com/problems/CONNECTE)
