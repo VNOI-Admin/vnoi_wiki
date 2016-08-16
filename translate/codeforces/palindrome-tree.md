@@ -95,8 +95,8 @@ Ngoài sử dụng cây Palindrome bạn có thể sử dụng Hash để giải
 
 ## Các bài trên các trang khác
 
-Đếm số lượng xâu con liên tiếp là palindrome
+[Đếm số lượng xâu con liên tiếp là palindrome](http://informatics.mccme.ru/moodle/mod/statements/view.php?chapterid=1750)
 
-e-olimp - Palindromic factory
+[e-olimp - Palindromic factory](https://www.e-olymp.com/en/problems/2468)
 
-Codechef - PALPROB
+[Codechef - Palindromeness](https://www.codechef.com/problems/PALPROB)
