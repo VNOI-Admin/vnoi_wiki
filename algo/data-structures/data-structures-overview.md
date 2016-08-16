@@ -192,6 +192,8 @@ Với dãy số độ dài $N$, Segment Tree cho phép thực hiện các thao t
 
 Bạn có thể đọc thêm về Segment Tree [[ở đây|algo/data-structures/segment-tree-extend]].
 
+Segment Tree cũng có một mở rộng với nhiều ứng dụng quan trọng là [[Segment Tree trên tập đoạn thẳng|algo/data-structures/interval-tree-tap-doan-thang]].
+
 # Fenwick
 
 Cũng giống như Segment Tree, Fenwick tree (còn được gọi là Binary Indexed Tree) là cấu trúc dữ liệu cho phép thực hiện các truy vấn trên một dãy số:
