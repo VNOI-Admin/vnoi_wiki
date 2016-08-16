@@ -30,8 +30,11 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
     - [[Một vài bài tập về Palindrome|algo/dp/palindrome-problems]]
     - [[Một số bài toán QHD điển hình|algo/dp/basic-problems]]
     - [[Kĩ thuật bao lồi|translate/wcipeg/Convex-Hull-Trick]]
+
 - [[Tham lam|translate/topcoder/Greedy-is-Good]]
 
+- Kĩ thuật khác
+    - [[Nhân ma trận|algo/trick/matrix-multiplication]]
 
 ### Ngôn ngữ lập trình:
 
