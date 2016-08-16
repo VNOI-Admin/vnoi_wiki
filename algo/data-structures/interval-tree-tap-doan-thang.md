@@ -13,7 +13,7 @@ Cho một tập hợp chứa các đường thẳng có dạng $ax + b$, mỗi �
 
 Để giải bài toán này, hai cách phổ biến là ứng dụng [[bao lồi|translate/wcipeg/Convex-Hull-Trick]] và sử dụng cây Interval Tree lưu đoạn thẳng. Sau đây là những ưu điểm và nhược điểm của IT đoạn thẳng so với bao lồi.
 
-## Ưu điểm:
+## Ưu điểm
 
 1. Ứng dụng được với đoạn thẳng chứ không chỉ đường thẳng. Đây là ưu điểm lớn nhất của IT đoạn thẳng so với bao lồi, khi tập hợp cần xử lí là tập đoạn thẳng chứ không phải đường thẳng (tức là đường thẳng $ax + b$ chỉ tồn tại khi $x$ thuộc một khoảng $(l, h)$ nhất định), bao lồi sẽ không thể làm được.
 2. Thực hiện thao tác thêm đường thẳng (đoạn thẳng) một cách dễ dàng. Bao lồi gặp nhược điểm lớn khi thêm đường thẳng mà hệ số góc $a$ không tăng dần hoặc giảm dần. Mặc dù không phải là không thể làm được, nhưng bao lồi khi đó phải biểu diễn bằng cấu trúc khác không phải stack, gây khó khăn lớn khi code.
@@ -179,7 +179,7 @@ Ngoài ra, có một số bài toán yêu cầu tìm max, min trên tập đoạ
 
 # Bài tập áp dụng
 
-## Một số bài tập "quy hoạch động bao lồi" truyền thống:
+## Một số bài tập "quy hoạch động bao lồi" truyền thống
 
 - [VOJ - VMPIZZA](http://vn.spoj.com/problems/VMPIZZA/)
 - [CF 189 - Div 1 - C](http://codeforces.com/contest/319/problem/C)
