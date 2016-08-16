@@ -4,28 +4,15 @@
 
 **Người dịch**: Trần Kim Thạch
 
-Thuật toán Knuth-Morris-Pratt (KMP) là một thuật toán với thời gian chạy tuyến tính nhằm giải quyết bài toán tìm kiếm một chuỗi: Cho một xâu $T$ và xâu $S$. Tìm tất cả các lần xuất hiện của xâu $S$ trong xâu $T$.
+Trước khi đọc bài này, bạn có thể đọc về các thuật ngữ trong xử lý xâu cũng như về bài toán so khớp chuỗi [[ở đây|algo/string/basic]]
 
-Ví dụ:
-
-```
-S = abc
-T = abcabcabc
-
-Các lần xuất hiện: 1, 4, 7.
-```
-
-Bài toán này còn được gọi là tìm kiếm **cây kim** (**needle**) trong **đống rơm** (**haystack**), vì nó xuất hiện trong thực tế khi ta cần tìm một xâu rất nhỏ trong một lượng dữ liệu rất lớn (ví dụ Google cần tìm từ khóa trong hàng tỉ tỉ trang web).
+Thuật toán Knuth-Morris-Pratt (KMP) là một thuật toán với thời gian chạy tuyến tính nhằm giải quyết bài toán so khớp chuỗi.
 
 Thuật toán được xây dựng dựa vào quan sát rằng một xâu con chung của $S$ và $T$ sẽ đưa ra được thông tin $S$ có khớp với các vị trí sau của $T$ hay không. Bởi vì xâu con chung này đồng nghĩa với một phần của $T$ đã khớp với một phần của $S$, nên bằng việc khởi tạo trước một số thông tin với xâu $S$, ta sẽ thu được những kết luận về $T$ (nhờ xâu con chung) mà không cần quay ngược và so sánh lại những ký tự đã khớp.
 
 Cụ thể hơn, ta muốn tính toán trước cách xâu $S$ tự khớp với chính nó. Nhờ vậy thuật toán sẽ *không quay nhìn lại* và chỉ duyệt qua $T$ một lần duy nhất.
 
 Cùng với quá trình tiền xử lí tuyến tính $O(|T|)$ (với $|T|$ là độ dài xâu $T$), thuật toán có thời gian chạy tuyến tính.
-
-## Định nghĩa
-
-Trước khi đọc bài này, bạn có thể đọc về các thuật ngữ trong xử lý xâu [[ở đây|algo/string/basic]]
 
 ## Cảm hứng
 
