@@ -271,5 +271,11 @@ Như vậy, thuật toán đến đây đã rõ. Ta phân tích $T = M \* t + r$
 
 # Bài tập áp dụng
 
+- [HackerEarth - PK and interesting language](https://www.hackerearth.com/problem/algorithm/pk-and-interesting-language/description/)
+- [HackerEarth - Long walks from Office to Home Sweet Home](https://www.hackerearth.com/problem/algorithm/long-walks-from-office-to-home-sweet-home-1/)
+- [HackerEarth - Tiles](https://www.hackerearth.com/problem/algorithm/tiles/)
+- [HackerEarth - ABCD Strings](https://www.hackerearth.com/problem/algorithm/abcd-strings/description/)
+- [HackerEarth - Mehta and the difficult task](https://www.hackerearth.com/problem/algorithm/mehta-and-the-difficult-task-3/)
+- [HackerEarth - Mehta and the Evil Strings](https://www.hackerearth.com/problem/algorithm/mehta-and-the-evil-strings/)
 - [VOJ - PA06ANT](http://vn.spoj.com/problems/PA06ANT/)
 - [VOJ - CONNECTE](http://vn.spoj.com/problems/CONNECTE)
