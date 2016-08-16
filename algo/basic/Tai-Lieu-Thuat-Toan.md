@@ -38,12 +38,6 @@ Cuốn sách giới thiệu về phương pháp giảm độ phức tạp cho m�
 
 [Link Download](https://www.dropbox.com/s/7riqokgn9ceqpi6/DpSpeedup.pdf?dl=0)
 
-**6. LCA - bangcht**
-
-Giới thiệu về thuật toán LCA
-
-[Link Download](https://www.dropbox.com/s/5dqgf6dtnawdehc/LCA_bangcht_doc.pdf?dl=0)
-
-**7. KC-BOOK3**
+**6. KC-BOOK3**
 
 [Link download](http://www.mediafire.com/download/x0kwqv8sv7xxhpg/252136344-KCBOOK3.pdf)
