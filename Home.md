@@ -36,6 +36,7 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
 - Kĩ thuật khác
     - [[Nhân ma trận|algo/trick/matrix-multiplication]]
     - [[Khử nhân ma trận|algo/trick/counting-without-matrix-multiplication]]
+    - [[Mo's algorithm|algo/data-structures/mo-algorithm]]
 
 ### Ngôn ngữ lập trình:
 
