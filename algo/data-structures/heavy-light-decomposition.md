@@ -4,7 +4,7 @@ Tác giả: Nguyễn Đình Trí Cường
 
 [[_TOC_]]
 
-Heavy-light decomposition (HLD) là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
+Heavy-light decomposition (HLD) là kĩ thuật phân tách một [[cây|translate/wcipeg/tree]] thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
 
 # Thuật toán phân tách cây
 
