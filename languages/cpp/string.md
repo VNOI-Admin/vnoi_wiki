@@ -311,6 +311,8 @@ cac
 ban
 ```
 
+Chú ý rằng, cách này cũng có thể dễ áp dụng nếu bạn muốn chuyển số thành xâu (hoặc ngược lại), tách 1 xâu thành nhiều số.
+
 Nếu không muốn sử dụng `stringstream`, các bạn cũng có thể tự xây dựng hàm tách xâu như sau:
 
 ```cpp
