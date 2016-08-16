@@ -70,7 +70,7 @@ Code giải bài này bằng cây Palindrome đã có ở trên. Bài toán này
 
 ## Số lần xuất hiện của palindrome trong xâu
 
-Ngoài sử dụng cây Palindrome bạn có thể sử dụng [Hash](algo/string/hash) để giải bài này.
+Ngoài sử dụng cây Palindrome bạn có thể sử dụng [Hash](http://vnoi.info/wiki/algo/string/hash) để giải bài này.
 
 # Bài tập
 
