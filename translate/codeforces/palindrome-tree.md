@@ -85,13 +85,13 @@ Ngoài sử dụng cây Palindrome bạn có thể sử dụng Hash để giải
 
 ## Các bài trên Codeforces
 
-CERC 14 - Bài G
+[CERC 14 - Bài G - Virus synthesis](http://codeforces.com/gym/100543/attachments/download/2854/20142015-acmicpc-central-europe-regional-contest-cerc-14-en.pdf)
 
-Codeforces Beta Round #17 - Bài E - Palisection
+[Codeforces Beta Round #17 - Bài E - Palisection](http://codeforces.com/problemset/problem/17/E)
 
 ## Các bài trên SPOJ
 
-SPOJ - Number of Palindromes
+[SPOJ - Number of Palindromes](http://www.spoj.com/problems/NUMOFPAL/)
 
 ## Các bài trên các trang khác
 
