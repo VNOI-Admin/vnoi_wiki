@@ -8,7 +8,7 @@
 
 ## Hoàn cảnh
 
-Một lớp những bài toán rất được quan tâm trong khoa học máy tính nói chung và lập trình thi cử nói riêng, đó là xử lý xâu chuỗi. Trong lớp bài toán này, người ta thường rất hay phải đối mặt với một bài toán: tìm kiếm xâu chuỗi.
+Một lớp những bài toán rất được quan tâm trong khoa học máy tính nói chung và lập trình thi cử nói riêng, đó là [[xử lý xâu chuỗi|algo/string/basic]]. Trong lớp bài toán này, người ta thường rất hay phải đối mặt với một bài toán: tìm kiếm xâu chuỗi.
 
 ## Phát biểu bài toán
 
