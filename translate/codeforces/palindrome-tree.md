@@ -52,7 +52,7 @@ Bây giờ ta xét đến các liên kết hậu tố nối từ nút $xAx$. N�
 
 Vậy ta đã có được thuật toán xây dựng cây Palindrome. Xử lí từng chữ cái một, lưu trữ palindrome hậu tố lớn nhất $t$ của tiền tố đã xử lí (khởi tạo $t$ là xâu rỗng). Khi xử lí thêm chữ $x$, ta phải đi qua các liên kết hậu tố xuất phát từ $t$, cho đến khi ta tìm được palindrome $A$ thích hợp. Xâu $xAx$ sẽ trở thành sẽ trở thành hậu tố palindrome lớn nhất và trở thành nút duy nhất có thể chèn vào cây. Để tạo thêm các liên kết hậu tố ta phải đi theo các liên kết hậu tố cho đến khi tìm thấy xâu palindrome $B$, có thể thêm được hai chữ $x$ ở hai bên, rồi ta thêm liên kết hậu tố từ nút chứa xâu $xAx$ đến xâu $xBx$.
 
-Để biết thêm thông tin chi tiết, bạn có thể tham khảo code. (bạn không cần chú ý đến biến $num$ vì nó được cho thêm vào để giải bài toán cụ thể). Bạn có thể thấy code không quá dài cũng như việc cài đặt rất đơn giản.
+Để biết thêm thông tin chi tiết, bạn có thể tham khảo [code](https://github.com/ADJA/algos/blob/master/Strings/PalindromeTree.cpp). (bạn không cần chú ý đến biến $num$ vì nó được cho thêm vào để giải bài toán cụ thể). Bạn có thể thấy code không quá dài cũng như việc cài đặt rất đơn giản.
 
 # Độ phức tạp
 Xét quá trình xây dựng cây Palindrome cho một xâu độ dài $n$. Ta thấy rằng khi ta xử lí từng chữ cái một, đầu của liên kết hậu tố palindrome lớn nhất của tiền tố được xử lí luôn di chuyển sang bên phải. Do đó, độ phức tạp của việc xây dựng cây Palindrome là $O(n)$.
@@ -75,7 +75,7 @@ Ngoài sử dụng cây Palindrome bạn có thể sử dụng Hash để giải
 # Bài tập
 
 ## Các bài trên Timus
-Timus - Palindromes and Super Abilities
+[Timus - Palindromes and Super Abilities](acm.timus.ru/problem.aspx?num=1960)
 
 Timus - 31 Palindromes
 
