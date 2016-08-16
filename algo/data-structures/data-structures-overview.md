@@ -10,9 +10,15 @@ Bây giờ, hãy thử tưởng tượng thay vì tổ chức thành từng giá
 
 Tương tự, một phần mềm không thể vận hành hiệu quả khi dữ liệu không được lưu trữ một cách phù hợp với ứng dụng.
 
-Trong bài viết này, chúng ta sẽ cùng nhau điểm qua các loại cấu trúc dữ liệu từ cơ bản đến nâng cao. Để tìm hiểu chi tiết về một cấu trúc dữ liệu, các bạn có thể đọc ở link tương ứng.
+Trong bài viết này, chúng ta sẽ cùng nhau điểm qua các loại cấu trúc dữ liệu từ cơ bản đến nâng cao. Để tìm hiểu chi tiết về một cấu trúc dữ liệu, các bạn có thể đọc ở link tương ứng. Các CTDL được chia thành các loại:
 
-# Mảng (array), danh sách liên kết (linked list)
+- **CTDL lưu trữ**: thường có các thao tác như thêm 1 phần tử, xóa 1 phần tử. Có thể có thêm các thao tác như tìm kiếm 1 phần tử.
+- **CTDL truy vấn**: thường dùng cho các bài toán mà bạn phải duy trì một tập hợp các số và thực hiện 1 số truy vấn trên đó.
+- **CTDL xâu**: dùng cho các bài tập [[xử lý xâu|algo/string/basic]].
+
+# 1. CTDL Lưu trữ
+
+## 1.1. Mảng (array), danh sách liên kết (linked list)
 
 Mảng và danh sách liên kết là 2 cấu trúc dữ liệu nền tảng cho tất cả các loại cấu trúc dữ liệu khác. Mảng và danh sách liên kết đều được dùng khi bạn muốn lưu nhiều dữ liệu (thường có cùng kiểu dữ liệu). Bảng dưới đây so sánh các thao tác về mảng và danh sách liên kết:
 
@@ -46,71 +52,9 @@ Mảng và danh sách liên kết là 2 cấu trúc dữ liệu nền tảng cho
 
 Bạn có thể đọc thêm về mảng và danh sách liên kết [[ở đây|algo/data-structures/array-vs-linked-lists]]
 
-# Mảng cộng dồn (Partial Sum)
+## 1.2. Stack, Queue, Deque
 
-Mảng cộng dồn là một cách áp dụng khéo léo mảng. Có 2 dạng bài cơ bản có thể giải được bằng cách áp dụng Partial Sum.
-
-## Mảng cộng dồn - Tìm tổng một đoạn liên tiếp
-
-**Ví dụ**
-
-- Cho một mảng $a_1,a_2,a_3,...,a_N$.
-- Cần trả lời nhiều truy vấn, mỗi truy vấn cho 2 số $L$ và $R$, yêu cầu in ra tổng $a_L + a_{L+1} + ... + a_R$.
-
-**Cách làm**
-
-- Tạo một mảng $S$, với $S_i = a_1 + a_2 + ... + a_i$. Mảng $S$ được gọi là mảng cộng dồn
-- Với mỗi truy vấn, in ra: $S_R – S_{L-1}$.
-
-## Mảng cộng dòn - Tăng giá trị các đoạn
-
-**Ví dụ**
-
-- Cho mảng $a_1,a_2,...,a_N$.
-- Cần thực hiện nhiều truy vấn, mỗi truy vấn cho 3 số $L$, $R$, $V$. Yêu cầu: với mỗi $i (L \le i \le R)$, cộng $V$ vào $a_i$.
-- Tính mảng $a$ sau khi thực hiện tất cả các truy vấn.
-
-**Cách làm**
-
-- Tạo một mảng $P$: $p_1,p_2,...,p_N$
-- Khởi tạo $p_i = 0$.
-- Với mỗi truy vấn, tăng $p_L$ lên $V$ và trừ $p_{R+1}$ đi $V$.
-- Cuối cùng, với mỗi $i$ (từ 1), $p_i += p_{i–1}$. Ta có $a_i = a_i + p_i$.
-
-# Cây (Tree)
-
-**Cây (tree)** là một đồ thị vô hướng liên thông không có chu trình.
-
-Cây có nhiều tính chất đặc biệt:
-
-- Cây là đồ thị liên thông
-- Cây không có chu trình
-- Số đỉnh của đồ thị lớn hơn số cạnh của đồ thị đúng 1 đơn vị
-
-Có nhiều dạng cây như **Cây Có Gốc (Rooted Trees)**, **Cây Có Hướng (Directed Trees)**,...
-
-Cây được sử dụng để cài đặt nhiều cấu trúc dữ liệu khác như Heap, Segment Tree (Interval Tree), Fenwick Tree (Binary Indexed Tree)...
-
-Bạn có thể đọc thêm về cây ở [[bài viết này|translate/wcipeg/tree]].
-
-# Disjoint Sets
-
-**Disjoint Sets** là cấu trúc dữ liệu được sử dụng trong thuật toán **Kruskal** và thuật toán **Prim** - 2 thuật toán tìm cây khung nhỏ nhất của đồ thị. Như tên gọi của nó, Disjoint Set được dùng để quản lý các tập hợp không giao nhau.
-
-**Bài toán**
-
-Cho đồ thị có $N$ đỉnh. Ta cần thực hiện 2 loại truy vấn:
-
-- Nối 2 đỉnh $i$ và $j$
-- Kiểm tra 2 đỉnh $i$ và $j$ có thuộc cùng thành phần liên thông hay không.
-
-Disjoint set cho phép ta thực hiện 2 thao tác trên với độ phức tạp $\mathcal{O}(\log{N})$.
-
-Bạn có thể đọc thêm về Disjoint Set ở [[bài viết này|algo/data-structures/disjoint-set]].
-
-# Stack, Queue, Deque
-
-## Stack
+### 1.2.1. Stack
 
 Stack là CTDL cho phép thực hiện các thao tác:
 
@@ -123,7 +67,7 @@ Stack có cài đặt đơn giản và được sử dụng trong nhiều thuậ
 
 Trong C++ STL, có sẵn kiểu dữ liệu `stack`.
 
-## Queue
+### 1.2.2. Queue
 
 Queue là CTDL cho phép thực hiện các thao tác:
 
@@ -136,7 +80,7 @@ Queue có cài đặt đơn giản và được sử dụng trong BFS.
 
 Trong C++ STL, có sẵn kiểu dữ liệu `queue`.
 
-## Deque
+### 1.2.3. Deque
 
 Deque (Double Ended Queue), là CTDL tổng quát hơn của Stack và Queue. Nó cho phép:
 
@@ -152,7 +96,7 @@ Deque được sử dụng trong một số thuật toán như:
 
 Trong C++ STL, có sẵn kiểu dữ liệu `deque`.
 
-# Priority Queue - Heap
+## 1.3. Priority Queue - Heap
 
 Heap là một cấu trúc dữ liệu cho phép thực hiện các thao tác:
 
@@ -165,9 +109,9 @@ Bạn có thể đọc thêm về Heap [[ở đây|translate/wcipeg/Binary-Heap]
 
 **Fibonacci Heap** là một dạng heap có **độ phức tạp** bé hơn. Trong **C++**, CTDL **priority_queue** được cài đặt bằng Fibonacci Heap.
 
-# Cây Tìm Kiếm Nhị Phân
+## 1.4. Cây Tìm Kiếm Nhị Phân
 
-**Cây Tìm Kiếm Nhị Phân** (**BST Binary Search Tree**) là một cây nhị phân có tính chất: Với mỗi giá trị trên node đang xét, giá trị của mọi node trên cây con trái luôn nhỏ hơn node đang xét và giá trị của mọi node trên cây con phải luôn lớn hơn node đang xét.
+**Cây Tìm Kiếm Nhị Phân** (**BST Binary Search Tree**) là một [[cây nhị phân|translate/wcipeg/tree]] có tính chất: Với mỗi giá trị trên đỉnh đang xét, giá trị của mọi đỉnh trên cây con trái luôn nhỏ hơn đỉnh đang xét và giá trị của mọi đỉnh trên cây con phải luôn lớn hơn đỉnh đang xét.
 
 [[/uploads/bst1.png|bst1]]
 
@@ -175,7 +119,55 @@ Bạn có thể đọc thêm về Heap [[ở đây|translate/wcipeg/Binary-Heap]
 
 [[/uploads/redblack1.png|redblack1]]
 
-# Sparse Table
+# 2. CTDL Truy vấn
+
+## 2.1. Mảng cộng dồn (Partial Sum)
+
+Mảng cộng dồn là một cách áp dụng khéo léo mảng. Có 2 dạng bài cơ bản có thể giải được bằng cách áp dụng Partial Sum.
+
+### 2.1.1. Mảng cộng dồn - Tìm tổng một đoạn liên tiếp
+
+**Ví dụ**
+
+- Cho một mảng $a_1,a_2,a_3,...,a_N$.
+- Cần trả lời nhiều truy vấn, mỗi truy vấn cho 2 số $L$ và $R$, yêu cầu in ra tổng $a_L + a_{L+1} + ... + a_R$.
+
+**Cách làm**
+
+- Tạo một mảng $S$, với $S_i = a_1 + a_2 + ... + a_i$. Mảng $S$ được gọi là mảng cộng dồn
+- Với mỗi truy vấn, in ra: $S_R – S_{L-1}$.
+
+### 2.1.2. Mảng cộng dòn - Tăng giá trị các đoạn
+
+**Ví dụ**
+
+- Cho mảng $a_1,a_2,...,a_N$.
+- Cần thực hiện nhiều truy vấn, mỗi truy vấn cho 3 số $L$, $R$, $V$. Yêu cầu: với mỗi $i (L \le i \le R)$, cộng $V$ vào $a_i$.
+- Tính mảng $a$ sau khi thực hiện tất cả các truy vấn.
+
+**Cách làm**
+
+- Tạo một mảng $P$: $p_1,p_2,...,p_N$
+- Khởi tạo $p_i = 0$.
+- Với mỗi truy vấn, tăng $p_L$ lên $V$ và trừ $p_{R+1}$ đi $V$.
+- Cuối cùng, với mỗi $i$ (từ 1), $p_i += p_{i–1}$. Ta có $a_i = a_i + p_i$.
+
+## 2.2. Disjoint Sets
+
+**Disjoint Sets** là cấu trúc dữ liệu được sử dụng trong thuật toán **Kruskal** và thuật toán **Prim** - 2 thuật toán tìm cây khung nhỏ nhất của đồ thị. Như tên gọi của nó, Disjoint Set được dùng để quản lý các tập hợp không giao nhau.
+
+**Bài toán**
+
+Cho đồ thị có $N$ đỉnh. Ta cần thực hiện 2 loại truy vấn:
+
+- Nối 2 đỉnh $i$ và $j$
+- Kiểm tra 2 đỉnh $i$ và $j$ có thuộc cùng thành phần liên thông hay không.
+
+Disjoint set cho phép ta thực hiện 2 thao tác trên với độ phức tạp $\mathcal{O}(\log{N})$.
+
+Bạn có thể đọc thêm về Disjoint Set ở [[bài viết này|algo/data-structures/disjoint-set]].
+
+## 2.3. Sparse Table
 
 Sparse Table là cấu trúc dữ liệu được sử dụng trong [[bài toán LCA & RMQ|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]].
 
@@ -184,7 +176,7 @@ Với cả 2 bài toán, Sparse Table cho phép:
 - Khởi tạo với độ phức tạp: $\mathcal{O}(N\* \log{N})$.
 - Trả lời truy vấn với độ phức tạp $\mathcal{O}(1)$.
 
-# Segment Tree
+## 2.4. Segment Tree
 
 Segment Tree, còn được gọi là Interval Tree trong nhiều tài liệu tiếng Việt, là cấu trúc dữ liệu cho phép thực hiện các truy vấn trên một dãy số. Segment Tree rất linh động và có thể áp dụng với nhiều loại truy vấn khác nhau, nên nó xuất hiện rất nhiều trong các kỳ thi.
 
@@ -194,7 +186,7 @@ Bạn có thể đọc thêm về Segment Tree [[ở đây|algo/data-structures/
 
 Segment Tree cũng có một mở rộng với nhiều ứng dụng quan trọng là [[Segment Tree trên tập đoạn thẳng|algo/data-structures/interval-tree-tap-doan-thang]].
 
-# Fenwick Tree
+## 2.5. Fenwick
 
 Cũng giống như Segment Tree, Fenwick tree (còn được gọi là Binary Indexed Tree) là cấu trúc dữ liệu cho phép thực hiện các truy vấn trên một dãy số:
 
@@ -207,13 +199,22 @@ Cũng giống như Segment Tree, Fenwick tree (còn được gọi là Binary In
 
 Bạn có thể đọc thêm về Fenwick Tree [[ở đây|algo/data-structures/fenwick]].
 
-# Heavy-light decomposition
+## 2.6. Heavy-light decomposition
 
 **Heavy Light Decomposition** là một thuật toán được áp dụng nhiều trong những bài cần xử lý các truy vấn trên cây. Heavy-light decomposition là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
 
 Bạn có thể đọc thêm ở: [[Thuật toán phân tách cây|algo/data-structures/heavy-light-decomposition]]
 
-# Cây Tiền Tố (Trie)
+## 2.7. Persistent Data Structures
+
+Persistent Data Structures là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu.
+
+Bạn có thể  đọc thêm ở: [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
+
+
+# 3. CTDL xâu
+
+## 3.1. Cây Tiền Tố (Trie)
 
 **Trie** là một cấu trúc dữ liệu dùng để quản lý một tập hợp các xâu. Trie cho phép:
 
@@ -225,27 +226,25 @@ Ngoài ra trên thực tế, trie cũng rất tiết kiệm bộ nhớ khi áp d
 
 Bạn có thể đọc thêm [[bài viết về trie|algo/data-structures/trie]].
 
-# Mảng Hậu Tố (Suffix Array)
+## 3.2. Aho Corasick
+
+Bài viết sẽ được cập nhật sau
+
+## 3.3. Mảng Hậu Tố (Suffix Array)
 
 Suffix Array là một CTDL giúp sắp xếp các hậu tố của một xâu theo thứ tự từ điển. CTDL này thường được sử dụng trong các bài toán xử lý xâu.
 
 Bạn có thể đọc thêm về Suffix Array [[ở đây|algo/data-structures/suffix-array]].
 
-# Suffix Automaton
+## 3.4. Suffix Automaton
 
 Bài viết sẽ được cập nhật sau.
 
-# Palindrome Tree
+## 3.5.  Palindrome Tree
 
 Palindrome tree (còn được gọi là Eertree), là một CTDL mới được phổ biến vào năm 2014 nhờ bài thuyết trình của [Mikhail Rubinchik](http://codeforces.com/profile/MikhailRubinchik).
 
 Như tên gọi của nó, Palindrome tree là một CTDL giúp giải quyết các bài toán về Palindrome. Bạn có thể đọc thêm [[ở đây|translate/codeforces/palindrome-tree]]
-
-# Persistent Data Structures
-
-Persistent Data Structures là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu.
-
-Bạn có thể  đọc thêm ở: [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
 
 # Các tài liệu tham khảo:
 
