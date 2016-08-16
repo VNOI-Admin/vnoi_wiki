@@ -25,9 +25,7 @@ Cùng với quá trình tiền xử lí tuyến tính $O(|T|)$ (với $|T|$ là 
 
 ## Định nghĩa
 
-- Một xâu $X$ là xâu con của một xâu $Y$ nếu $X$ là một chuỗi các ký tự liên tiếp của $Y$. Ví dụ: `ab` và `bc` là 2 xâu con của `abcd`. Nhưng `ac` thì không phải là xâu con của `abcd`.
-- Một xâu $X$ là tiền tố của một xâu $Y$ nếu $X$ là xâu con của $Y$ và $X$ xuất hiện ở đầu của xâu $Y$. Ví dụ: `ab` là tiền tố của `abcd`, nhưng `bc` **không** phải là tiền tố của `abcd`.
-- Một xâu $X$ là hậu tố của một xâu $Y$ nếu $X$ là xâu con của $Y$ và $X$ xuất hiện ở cuối của xâu $Y$. Ví dụ: `cd` là hậu tố của `abcd`, nhưng `bc` **không** phải là hậu tố của `abcd`.
+Trước khi đọc bài này, bạn có thể đọc về các thuật ngữ trong xử lý xâu [[ở đây|algo/string/basic]]
 
 ## Cảm hứng
 
