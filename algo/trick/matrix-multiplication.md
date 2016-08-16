@@ -16,7 +16,7 @@ Trước hết, tôi xin nhắc lại tóm tắt khái niệm về phép nhân m
 - Kết quả phép nhân ma trận $A$ và $B$ là ma trận $C$ kích thước $M \* P$, với mỗi phần tử của ma trận $C$ được tính theo công thức:
   $C(i,j) = \sum{A(i,k) \* B(k,j)}$
 
-Để thực hiện phép nhân ma trận trên máy tính, ta có thể thực hiện thuật toán với độ phức tạp $O(M \* N \* P)$ như sau:
+Để thực hiện phép nhân ma trận trên máy tính, ta có thể thực hiện thuật toán với độ phức tạp $\mathcal{O}(M \* N \* P)$ như sau:
 
 ```pascal
 for i:=1 to M do
@@ -28,7 +28,7 @@ begin
 end;
 ```
 
-Đối với phép nhân các ma trận vuông kích thước $N \* N$, có thuật toán nhân ma trận Strassen với độ phức tạp $O(N^{\log{7}})$ theo tư tưởng chia nhỏ ma trận (tương tự cách nhân nhanh 2 số lớn)). Tuy nhiên cài đặt rất phức tạp và trên thực tế với giá trị $N$ thường gặp, cách này không chạy nhanh hơn nhân ma trận thông thường $O(N^3)$.
+Đối với phép nhân các ma trận vuông kích thước $N \* N$, có thuật toán nhân ma trận Strassen với độ phức tạp $\mathcal{O}(N^{\log{7}})$ theo tư tưởng chia nhỏ ma trận (tương tự cách nhân nhanh 2 số lớn)). Tuy nhiên cài đặt rất phức tạp và trên thực tế với giá trị $N$ thường gặp, cách này không chạy nhanh hơn nhân ma trận thông thường $\mathcal{O}(N^3)$.
 
 Cần chú ý thêm là phép nhân ma trận không có tính giao hoán (do có thể thực hiện nhân 2 ma trận $A$ kích thước $M \* N$ và ma trận $B$ kích thước $N \* P$ nhưng không thể thực hiện phép nhân $B \* A$ nếu $P \ne M$). Tuy nhiên, nhân ma trận lại có tính kết hợp:
 
@@ -163,70 +163,110 @@ Xét ma trận $A$ là ma trận kề của đồ thị đã cho. Ta có:
 
 Như vậy, nếu ta thay phép nhân và phép cộng trong việc nhân ma trận thông thường lần lượt bởi phép cộng và phép lấy min, ta thu được một phép ”nhân ma trận” mới, tạm dùng ký hiệu `x`, thì:
 
+```
 C1 = A
-C2 = C1 * C1 = A * C1
-C3 = C1 * C2 = A * C2
-C4 = C1 * C3 = A * C3
+C2 = C1 x C1 = A x C1
+C3 = C1 x C2 = A x C2
+C4 = C1 x C3 = A x C3
 ...
-Ck = C1 * C(k-1) = A * C(k-1)
-Do đó, C(k) = A^(k)
+Ck = C1 x C(k-1) = A x C(k-1)
+```
+
+Do đó, $C(k) = A^k$
 
 Như vậy, bài toán được đưa về bài toán tính lũy thừa của một ma trận, ta hoàn toàn có thể giải tương tự các ví dụ trước. Cài đặt phép nhân ma trận mới này hoàn toàn không phức tạp hơn cài đặt phép nhân ma trận thông thường. Việc cài đặt xin nhường lại cho bạn đọc.
 
-Ví dụ 4
-Tóm tắt đề:
+# Ví dụ 4
 
-Người ta mới tìm ra một loại vi khuẩn mới. Chúng sống thành N bầy (N ≤ 100), đánh số từ 0 đến N-1. Ban đầu, mỗi bầy này chỉ có một con vi khuẩn. Tuy nhiên, mỗi giây, số lượng vi khuẩn trong các bầy lại có sự thay đổi. Ví dụ: một bầy có thể bị chết đi, số lượng vi khuẩn trong một bầy có thể tăng lên, hoặc một bầy có thể di chuyển vị trí. Các thay đổi này tuân theo một số quy luật cho trước. Tại mỗi giây chỉ xảy ra một quy luật. Các quy luật này được thực hiện nối tiếp nhau và theo chu kỳ. Có nghĩa là, nếu đánh số các quy luật từ 0 đến M-1, tại giây thứ S thì quy luật được áp dụng sẽ là (S-1) mod M (M ≤ 1000)
+[VOJ - THBAC](http://vn.spoj.com/problems/THBAC/)
 
-Nhiệm vụ của bạn là tìm xem, với một bộ các quy luật cho trước, sau T đơn vị thời gian (T ≤ 1018), mỗi bầy có bao nhiêu vi khuẩn.
+**Bài toán**
+
+Người ta mới tìm ra một loại vi khuẩn mới. Chúng sống thành $N$ bầy $(N \le 100)$, đánh số từ 0 đến $N-1$. Ban đầu, mỗi bầy này chỉ có một con vi khuẩn. Tuy nhiên, mỗi giây, số lượng vi khuẩn trong các bầy lại có sự thay đổi. Ví dụ:
+
+- một bầy có thể bị chết đi
+- số lượng vi khuẩn trong một bầy có thể tăng lên
+- một bầy có thể di chuyển vị trí.
+
+Các thay đổi này tuân theo một số quy luật cho trước. Tại mỗi giây chỉ xảy ra đúng một quy luật. Các quy luật này được thực hiện nối tiếp nhau và theo chu kỳ. Có nghĩa là, nếu đánh số các quy luật từ 0 đến $M-1$, tại giây thứ $S$ thì quy luật được áp dụng sẽ là $(S-1) mod M$ $(M \le 1000)$
+
+Nhiệm vụ của bạn là tìm xem, với một bộ các quy luật cho trước, sau $T$ đơn vị thời gian $(T \le 10^{18})$, mỗi bầy có bao nhiêu vi khuẩn.
 
 Các loại quy luật có thể có:
 
-A i 0: Tất cả các vi khuẩn thuộc bầy i chết.
-B i k: Số vi khuẩn trong bầy i tăng lên k lần
-C i j: số vi khuẩn bầy thứ i tăng lên một số lượng = số vi khuẩn bầy j
-D i j: Các vi khuẩn thuộc bầy j di chuyển toàn bộ sang bầy i
-E i j: Các vi khuẩn thuộc bầy i và bầy j đổi vị trí cho nhau
-F 0 0: Vị trí các vi khuẩn di chuyển trên vòng tròn.
-Phân tích:
-Cách làm đơn giản nhất là chúng ta mô phỏng lại số lượng vi khuẩn trong mỗi bầy qua từng đơn vị thời gian. Cách làm này có độ phức tạp O(T*N*(độ phức tạp xử lý số lớn)) và không thể chạy được với những test lớn.
+- `A i 0`: Tất cả các vi khuẩn thuộc bầy $i$ chết.
+- `B i k`: Số vi khuẩn trong bầy $i$ tăng lên $k$ lần.
+- `C i j`: số vi khuẩn bầy thứ $i$ tăng lên một số lượng bằng với số vi khuẩn bầy $j$.
+- `D i j`: Các vi khuẩn thuộc bầy $j$ di chuyển toàn bộ sang bầy $i$.
+- `E i j`: Các vi khuẩn thuộc bầy $i$ và bầy $j$ đổi vị trí cho nhau.
+- `F 0 0`: Vị trí các vi khuẩn di chuyển trên vòng tròn.
+
+**Phân tích**
+
+Cách làm đơn giản nhất là chúng ta mô phỏng lại số lượng vi khuẩn trong mỗi bầy qua từng đơn vị thời gian. Cách làm này có độ phức tạp $\mathcal{O}(T \* N \* k)$ với $\mathcal{O}(k)$ là độ phức tạp cho xử lý số lớn. Cách này không thể chạy được với $T$ lớn.
 
 Ta hình dung số lượng vi khuẩn trong mỗi bầy trong một đơn vị thời gian là một dãy số. Như vậy, mỗi quy luật cho trước thực chất là một phép biến đổi từ một dãy số thành một dãy số mới, và ta hoàn toàn có thể thực hiện biến đổi này bằng một phép nhân ma trận.
 
-Cụ thể hơn, ta coi số lượng vi khuẩn trong N bầy tại một thời điểm xác định là một ma trận 1xN, và mỗi phép biến đổi là một ma trận NxN. Khi áp dụng mỗi phép biến đổi, ta nhân hai ma trận nói trên với nhau.
+Cụ thể hơn, ta coi số lượng vi khuẩn trong $N$ bầy tại một thời điểm xác định là một ma trận $1 \* N$, và mỗi phép biến đổi là một ma trận $N \* N$. Khi áp dụng mỗi phép biến đổi, ta nhân hai ma trận nói trên với nhau.
 
-Bây giờ, xét trường hợp N = 4, tôi xin lần lượt mô tả các ma trận tương ứng với các phép biến đổi:
+Bây giờ, xét trường hợp $N = 4$, tôi xin lần lượt mô tả các ma trận tương ứng với các phép biến đổi:
 
-A 2 0
-1 0 0 0
-0 1 0 0
-0 0 0 0
-0 0 0 1
-B 2 6
-1 0 0 0
-0 1 0 0
-0 0 6 0
-0 0 0 1
-C 1 3
-1 0 0 0
-0 1 0 0
-0 0 1 0
-0 1 0 1
-D 1 3
-1 0 0 0
-0 1 0 0
-0 0 1 0
-0 1 0 0
-E 1 3
-1 0 0 0
-0 0 0 1
-0 0 1 0
-0 1 0 0
-F 0 0
-0 1 0 0
-0 0 1 0
-0 0 0 1
-1 0 0 0
-Cũng như các bài toán trước, ta sẽ cố gắng áp dụng việc tính toán lũy thừa, kết hợp với phép nhân ma trận để giảm độ phức tạp từ T xuống logT. Tuy nhiên, có thể thấy việc sử dụng phép lũy thừa trong bài toán này phần nào phức tạp hơn bởi các ma trận được cho không giống nhau. Để giải quyết vấn đề này, ta làm như sau:
+- Biến đổi: `A 2 0`
+  ```
+  1 0 0 0
+  0 1 0 0
+  0 0 0 0
+  0 0 0 1
+  ```
 
-Gọi X1, X2, ..., Xm là các ma trận tương ứng với các phép biến đổi được cho. Đặt X = X1 * X2 * ... * Xm. Đặt S = [1 1 ... 1] (dãy số lượng vi khuẩn tại thời điểm đầu tiên). Như vậy, Y = S * X^t * X1 * X2 * ... * Xr là ma trận thể hiện số lượng vi khuẩn tại thời điểm M*t + r. Như vậy, thuật toán đến đây đã rõ. Ta phân tích T = M*t + r, nhờ đó, ta có thể giải quyết bài toán trong O(N3 * M) cho bước tính ma trận X, O(N3*(log(T/M)+M) cho bước tính Y. Bài toán được giải quyết.
+- Biến đổi: `B 2 6`
+  ```
+  1 0 0 0
+  0 1 0 0
+  0 0 6 0
+  0 0 0 1
+  ```
+
+- Biến đổi: `C 1 3`
+  ```
+  1 0 0 0
+  0 1 0 0
+  0 0 1 0
+  0 1 0 1
+  ```
+
+- Biến đổi: `D 1 3`
+  ```
+  1 0 0 0
+  0 1 0 0
+  0 0 1 0
+  0 1 0 0
+  ```
+
+- Biến đổi: `E 1 3`
+  ```
+  1 0 0 0
+  0 0 0 1
+  0 0 1 0
+  0 1 0 0
+  ```
+
+- Biến đổi: `F 0 0`
+  ```
+  0 1 0 0
+  0 0 1 0
+  0 0 0 1
+  1 0 0 0
+  ```
+
+Cũng như các bài toán trước, ta sẽ cố gắng áp dụng việc tính toán lũy thừa, kết hợp với phép nhân ma trận để giảm độ phức tạp từ $T$ xuống $\log{T}$. Tuy nhiên, có thể thấy việc sử dụng phép lũy thừa trong bài toán này phần nào phức tạp hơn bởi các ma trận được cho không giống nhau. Để giải quyết vấn đề này, ta làm như sau:
+
+Gọi $X_1, X_2, ..., X_m$ là các ma trận tương ứng với các phép biến đổi được cho.
+
+Đặt $X = X_1 \* X_2 \* ... \* X_m$.
+
+Đặt $S = [1, 1, ..., 1]$ (dãy số lượng vi khuẩn tại thời điểm đầu tiên).
+
+Như vậy, $Y = S \* X^t \* X_1 \* X_2 \* ... \* X_r$ là ma trận thể hiện số lượng vi khuẩn tại thời điểm $M \* t + r$.
+
+Như vậy, thuật toán đến đây đã rõ. Ta phân tích $T = M \* t + r$, nhờ đó, ta có thể giải quyết bài toán trong $\mathcal{O}(N^3 \* M)$ cho bước tính ma trận $X$ và $\mathcal{O}(N^3 \* (\log{T/M} + M)$ cho bước tính $Y$. Bài toán được giải quyết.
