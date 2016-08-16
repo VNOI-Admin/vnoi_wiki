@@ -115,9 +115,20 @@ Bạn có thể đọc thêm về Heap [[ở đây|translate/wcipeg/Binary-Heap]
 
 [[/uploads/bst1.png|bst1]]
 
-**Cây Đỏ Đen** (Red-Black Tree) là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $O(log(N))$. CTDL **set** trong **C++** được cài đặt bằng cây đỏ đen.
+Cây tìm kiếm nhị phân cho phép thực hiện các thao tác:
 
-[[/uploads/redblack1.png|redblack1]]
+- Thêm 1 phần tử.
+- Xóa 1 phần tử.
+- Kiểm tra 1 phần tử có tồn tại hay không.
+- Tìm phần tử đầu tiên lớn hơn hoặc bằng 1 giá trị $x$ cho trước.
+
+Trong trường hợp dữ liệu ngẫu nhiên, các thao tác trên có độ phức tạp trung bình là $\mathcal{O}(\log{N})$. Tuy nhiên trong trường hợp xấu nhất, cây tìm kiếm nhị phân bị suy biến (thành 1 *"đường thẳng"*), thì độ phức tạp mỗi thao tác là $\mathcal{O}(N)$.
+
+Để khắc phục điều này, có rất nhiều CTDL cải tiến từ cây tìm kiếm nhị phân, thường được gọi là các cây nhị phân cân bằng. Khi đó, các thao tác trên có thể được thực hiện với độ phức tạp $\mathcal{O}(\log{N})$. Ví dụ:
+
+- **Cây Đỏ Đen** (Red-Black Tree) là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $O(log(N))$. CTDL **set** trong **C++** được cài đặt bằng cây đỏ đen.
+  [[/uploads/redblack1.png|redblack1]]
+- **Splay tree**, **Skip list**, **Treap** thường được dùng trong các kỳ thi bởi cài đặt đơn giản.
 
 # 2. CTDL Truy vấn
 
@@ -191,6 +202,7 @@ Segment Tree cũng có một mở rộng với nhiều ứng dụng quan trọng
 Cũng giống như Segment Tree, Fenwick tree (còn được gọi là Binary Indexed Tree) là cấu trúc dữ liệu cho phép thực hiện các truy vấn trên một dãy số:
 
 - Ưu điểm:
+    - Độ phức tạp mỗi thao tác cũng là $\mathcal{O}(\log{N})$.
     - Hằng số tự nhiên thấp hơn Segment Tree, nên chạy nhanh hơn.
     - Dùng ít bộ nhớ hơn.
     - Dễ cài đặt hơn Segment Tree
