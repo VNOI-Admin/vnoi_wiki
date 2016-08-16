@@ -183,7 +183,7 @@ Ngoài ra, có một số bài toán yêu cầu tìm max, min trên tập đoạ
 
 1. Trong trường hợp nào thì một nút không có thông tin gì cả?
 
-2. Trong các trường hợp 4 và 6 của phần [Update](#update), tại sao phải gán lại val cho it[node]?
+2. Trong các trường hợp 4 và 6 của phần [Update](#update), tại sao phải gán lại `val` cho `it[node]`?
 
 3. Giả sử thay vì truy vấn theo điểm, ta truy vấn theo khoảng, tức là trả lời xem tại tất cả các điểm trong một khoảng nào đó, đoạn thẳng nào đạt chiều cao lớn nhất / nhỏ nhất. Giả sử khoảng này nằm hoàn toàn trong phạm vi quản lí của một nút nào đó, liệu ta có thể trả luôn kết quả là đoạn thẳng lưu trong nút đó không? Vì sao?
 
