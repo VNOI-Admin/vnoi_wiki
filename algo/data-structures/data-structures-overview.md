@@ -223,6 +223,10 @@ Suffix Array là một CTDL giúp sắp xếp các hậu tố của một xâu t
 
 Bạn có thể đọc thêm về Suffix Array [[ở đây|algo/data-structures/suffix-array]].
 
+# Suffix Automaton
+
+Bài viết sẽ được cập nhật sau
+
 # Persistent Data Structures
 
 Persistent Data Structures là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu.
