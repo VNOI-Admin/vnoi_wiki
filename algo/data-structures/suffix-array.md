@@ -121,13 +121,6 @@ namespace SuffixArray
 
 Source: [mukel](http://codeforces.com/profile/mukel)
 
-
-# Thuật toán phân tách cây (Heavy-light decomposition)
-
-**Heavy Light Decomposition** là một thuật toán được áp dụng nhiều trong những bài cần xử lý các truy vấn trên cây. Heavy-light decomposition là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
-
-Bạn có thể đọc thêm ở: [[Thuật toán phân tách cây|algo/data-structures/heavy-light-decomposition]]
-
 # Tài liệu tham khảo:
 
 - [Codeforces](http://codeforces.com/blog/entry/15729)
