@@ -4,6 +4,8 @@
 
 **Người dịch**: Trần Kim Thạch
 
+# Giới thiệu
+
 Trước khi đọc bài này, bạn có thể đọc về các thuật ngữ trong xử lý xâu cũng như về bài toán so khớp chuỗi [[ở đây|algo/string/basic]]
 
 Thuật toán Knuth-Morris-Pratt (KMP) là một thuật toán với thời gian chạy tuyến tính nhằm giải quyết bài toán so khớp chuỗi.
