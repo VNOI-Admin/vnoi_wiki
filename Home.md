@@ -35,7 +35,7 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
 
 ### Ngôn ngữ lập trình:
 
-- [[Xử lý xâu|languages/cpp/string]]
+- [[Xử lý xâu trong C++|languages/cpp/string]]
 - [[Sử dụng regex|translate/topcoder/Using-Regular-Expression]]
 
 ### Kinh nghiệm phỏng vấn
