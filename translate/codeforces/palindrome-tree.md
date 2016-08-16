@@ -75,7 +75,7 @@ Ngoài sử dụng cây Palindrome bạn có thể sử dụng Hash để giải
 # Bài tập
 
 ## Các bài trên Timus
-[Timus - Palindromes and Super Abilities](acm.timus.ru/problem.aspx?num=1960)
+[Timus - Palindromes and Super Abilities](https://acm.timus.ru/problem.aspx?num=1960)
 
 Timus - 31 Palindromes
 
