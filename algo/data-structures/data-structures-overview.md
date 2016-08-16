@@ -225,7 +225,13 @@ Bạn có thể đọc thêm về Suffix Array [[ở đây|algo/data-structures/
 
 # Suffix Automaton
 
-Bài viết sẽ được cập nhật sau
+Bài viết sẽ được cập nhật sau.
+
+# Palindrome Tree
+
+Palindrome tree (còn được gọi là Eertree), là một CTDL mới được phổ biến vào năm 2014 nhờ bài thuyết trình của [Mikhail Rubinchik](http://codeforces.com/profile/MikhailRubinchik).
+
+Như tên gọi của nó, Palindrome tree là một CTDL giúp giải quyết các bài toán về Palindrome. Bạn có thể đọc thêm [[ở đây|translate/codeforces/palindrome-tree]]
 
 # Persistent Data Structures
 
