@@ -241,13 +241,18 @@ Trên thực tế, khi cài đặt Hash sử dụng nhiều phép $mod$ sẽ là
 
 Nhược điểm của thuật toán Hash là tính chính xác. Mặc dù rất khó sinh test để có thể làm cho thuật toán chạy sai, nhưng không phải là không thể. Vì vậy, để nâng cao tính chính xác của thuật toán, người ta thường dùng nhiều modulo khác nhau để so sánh mã Hash (ví dụ như dùng 3 modulo một lúc).
 
+# Bài tập áp dụng
+
+- [VOJ - SUBSTR](http://vnoi.info/problems/show/SUBSTR/)
+- [VOJ - PALINY](http://vnoi.info/problems/show/PALINY/)
+- [VOJ - DTKSUB](http://vnoi.info/problems/show/DTKSUB/)
+- [VOJ - DTCSTR](http://vn.spoj.com/problems/DTCSTR/)
+- [VOJ - TWOOPERS](http://vn.spoj.com/problems/TWOOPERS/)
+- [SGU 426](http://acm.sgu.ru/problem.php?contest=0&problem=426)
+
 # Các nguồn tham khảo
 
 - [Wikipedia - String Searching Algorithm](http://en.wikipedia.org/wiki/String_searching_algorithm)
 - [Wikipedia - KMP](http://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)
 - [Wikipedia - Rabin Karp](http://en.wikipedia.org/wiki/Rabin-Karp_string_search_algorithm)
-- [VOJ - SUBSTR](http://vnoi.info/problems/show/SUBSTR/)
-- [VOJ - PALINY](http://vnoi.info/problems/show/PALINY/)
-- [SGU 426](http://acm.sgu.ru/problem.php?contest=0&problem=426)
-- [VOJ - DTKSUB](http://vnoi.info/problems/show/DTKSUB/)
 - [Wikipedia - Alphabetical Order](http://en.wikipedia.org/wiki/Alphabetical_order)
