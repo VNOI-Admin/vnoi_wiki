@@ -248,6 +248,7 @@ Nhược điểm của thuật toán Hash là tính chính xác. Mặc dù rất
 - [VOJ - DTKSUB](http://vnoi.info/problems/show/DTKSUB/)
 - [VOJ - DTCSTR](http://vn.spoj.com/problems/DTCSTR/)
 - [VOJ - TWOOPERS](http://vn.spoj.com/problems/TWOOPERS/)
+- [VOJ - VOSTR](http://vn.spoj.com/problems/VOSTR/)
 - [SGU 426](http://acm.sgu.ru/problem.php?contest=0&problem=426)
 
 # Các nguồn tham khảo
