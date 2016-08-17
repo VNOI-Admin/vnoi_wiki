@@ -133,75 +133,115 @@ Sau khi áp dụng thuật toán trên, *"Fun plan"* của Johnny sẽ như th�
 - Tắm rửa
 - Tham gia thử thách "All you can eat" và "All you can drink"
 
-Vấn đề của John Smith đã được giải quyết, tuy nhiên đây chỉ là một ví dụ mà Tham lam có thể hoạt động. Một vài vấn đề thật sự khác đến từ **Topcoder** sẽ giúp bạn hiểu rõ hơn về khái niệm này. Trước khi tiếp tục, có lẽ bạn cần phải luyện tập thêm chút ít nữa với những gì mà bạn vừa đọc, bằng bài tập tương tự với *Lựa chọn hành động*, tên là [Boxing](http://www.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880)
+Vấn đề của John Smith đã được giải quyết, tuy nhiên đây chỉ là một ví dụ mà Tham lam có thể hoạt động.
+
+Bài tập tương tự: [Boxing](http://www.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880)
+
 
 # [**BioScore**](https://community.topcoder.com/stat?c=problem_statement&pm=3038)
 
-Đối với bài tập này, bạn sẽ được yêu cầu làm tối đa hóa số điểm trung bình của các cặp tương đồng. Từ đáp án tối ưu cần tìm, ta có thể xem nó như một gợi ý nhằm giúp ta tìm ra phương án thích hợp. Thường thì, đối với dạng bài toán này, ta sẽ sử dụng phương pháp *quy hoạch động* để giải quyết, nhưng trong một vài trường hợp thì chiến lược **Tham lam** vẫn hoàn toàn có thể được sử dụng.
+**Bài toán**
 
-Việc đầu tiên mà ta cần làm là *xây dựng một ma trận cho biết số lần lặp* (**ma trận tần số**). Đây là một công việc khá nhẹ nhàng khi mà ta chỉ cần ghép từng cặp ký tự ở hai chuỗi tạo thành một *axit nucleic* rồi đếm số lần xuất hiện của chúng (AA, AC, AG, AT, CA, CC, CG, CT, GA, GC, GG, GT, TA, TC, TG, TT). Từng loại *axit nucleic* sẽ được xem như một phần tử trong ma trận và giá trị của nó chính là số lần xuất hiện của nó. Ví dụ, hãy xét bộ `{"ACTAGAGAC", "AAAAAAAAA", "TAGTCATAC", "GCAGCATTC"}` được sử dụng ở ví dụ thứ 2.
+- Cho $N$ dãy ký tự dài bằng nhau. Mỗi dãy gồm 4 loại ký tự: `A`, `C`, `T`, `G`.
+- Độ tương đồng của 2 dãy là tổng điểm của các cặp ký tự của cùng vị trí. Ví dụ, độ tương đồng của `ACTA` và `GATC` là: `score(A,G) + score(C,A) + score(T,T) + score(A,C)`.
+
+Tìm cách xây dựng bảng $S$ (`score`) sao cho độ tương đồng của tất cả các cặp 2 xâu trong $N$ xâu là lớn nhất, biết rằng bảng $S$ phải thỏa mãn các tính chất:
+
+- Các giá trị từ -10 đến 10
+- Đối xứng: $S(x, y) = S(y, x)$.
+- Đường chéo dương: $S(x, x) > 0$.
+- Tổng các số trong $S$ phải bằng 0.
+
+**Phân tích**
+
+Việc đầu tiên mà ta cần làm là xây dựng một ma trận cho biết *số lần lặp* (**ma trận tần số**) của từng cặp 2 ký tự. Đây là một công việc khá nhẹ nhàng khi mà ta chỉ cần ghép từng cặp ký tự ở hai chuỗi tạo rồi đếm số lần xuất hiện của chúng (`AA`, `AC`, `AG`, `AT`, `CA`, `CC`, `CG`, `CT`, `GA`, `GC`, `GG`, `GT`, `TA`, `TC`, `TG`, `TT`). Từng cặp ký tự sẽ được xem như một phần tử trong ma trận và giá trị của nó chính là số lần xuất hiện của nó.
+
+Ví dụ, hãy xét bộ `{"ACTAGAGAC", "AAAAAAAAA", "TAGTCATAC", "GCAGCATTC"}` được sử dụng ở ví dụ thứ 2.
 
 ![Ví dụ](http://community.topcoder.com/i/education/greedyAlg3.gif)
 
-Ở góc phải - dưới của hình minh họa trên, ta có thể thấy kết quả của ma trận tần số đối với bộ đã cho. Tạm gọi nó là F. Giờ việc mà ta cần làm là tìm ra một ma trận S khác sao cho tổng của các tích số của 16 loại *axit nucleic* $F[i, j] \* S[i, j]$ $(1 \le i, j \le 4)$ là lớn nhất.
+Ở góc phải - dưới của hình minh họa trên, ta có thể thấy kết quả của ma trận tần số đối với bộ đã cho. Tạm gọi nó là $F$. Giờ việc mà ta cần làm là tìm ra một ma trận $S$ sao cho tổng của các tích: $F[i, j] \* S[i, j]$ với $(1 \le i, j \le 4)$ là lớn nhất.
 
 Giờ ta xét từng điều kiện cho ma trận cần tìm:
 
 **1) Tổng của 16 phần tử bằng $0$:**
 
-Đây là một điều kiện khá phổ biến. Bởi tất cả các phần tử của **F** đều dương (em nghĩ là không âm chứ?), nên các điểm cuối cùng có xu hướng tăng khi ta tăng phần tử của **S**. Nhưng bởi vì tống của chúng phải bằng $0$, thế nên khi ta tăng giá trị 1 phần tử lên thì ta sẽ phải giảm đi giá trị của 1 phần tử khác. Thử thách ở điều kiện này chính là phải tìm ra một sự phân bố tối ưu.
+Rõ ràng, nếu ta không giới hạn tổng của các phần tử, thì ta có thể đạt được tổng bằng vô cùng, nếu gán tất cả các phần tử của $S$ là vô cùng. Nhưng bởi vì tống của chúng phải bằng $0$, thế nên khi ta tăng giá trị 1 phần tử lên thì ta sẽ phải giảm đi giá trị của 1 phần tử khác. Thử thách ở điều kiện này chính là phải tìm ra một sự phân bố tối ưu.
 
 **2) Giá trị mỗi phần tử chỉ nằm trong khoảng từ -10 đến 10 ($S[i, j] \in [-10, 10]$)**
 
-Lại một điều kiện phổ biến khác! Với điều kiện này, khoảng tìm kiếm của chúng ta đã được thu hẹp đi rất nhiều, song vẫn còn khá nhiều lựa chọn cho ta.
+Tương tự, nếu không có điều kiện này, kết quả có thể lên đến vô cùng, nếu ta có 1 cặp không xuất hiện, gán $S$ tương ứng là âm vô cùng, còn các phần tử còn lại trong mảng là dương vô cùng.
 
-**3) Mỗi phần tử đối xứng phải có giá trị bằng nhau ($score(x, y) = score(y, x)$)**
+**3) Mỗi phần tử đối xứng phải có giá trị bằng nhau ($S(x, y) = S(y, x)$)**
 
-Bởi vì tính đối xứng, ta phải quy định cho các điểm cho các cặp như "AC" và "CA" bằng nhau. Như là một hệ quả, ta đã vô tình đếm số lần xuất hiện của chúng. Đối với ví dụ trên, ta đã có tần số của tập hợp các cặp như sau:
+Bởi vì tính đối xứng, ta phải quy định cho các điểm cho các cặp như `AC` và `CA` bằng nhau. Do tính đối xứng này, ta cập nhật lại mảng tần số xuất hiện để tính cả các cặp đối xứng. Đối với ví dụ trên, ta có bảng tần số mới như sau:
 
 <table>
-<tr><td>AA: 14</td> <td>CC: 4</td> <td>GG: 0</td> <td>TT: 1   </td></tr>
-<tr><td>AC+CA: 11</td> <td>AG+GA: 10</td> <td>AT+TA: 10</td> <td></td> </tr>
-<tr><td>CG+GC: 2</td> <td>TC+CT: 0</td> <td></td> <td></td></tr>
-<tr><td>GT+TG: 3</td> <td></td> <td></td> <td></td></tr>
+<tr><td>AA: 14</td> <td>AC+CA: 11</td> <td>AG+GA: 10</td> <td>AT+TA: 10</td></tr>
+<tr><td></td> <td>CC: 4</td> <td>CG+GC: 2</td> <td>TC+CT: 0</td> </tr>
+<tr><td></td> <td></td> <td>GG: 0</td> <td>GT+TG: 3</td></tr>
+<tr><td></td> <td></td> <td></td> <td>TT: 1</td></tr>
 </table>
 
-Từ trực giác ta có thể thấy ngay đến phương án như sau: đã sẽ gán điểm số càng cao đối với cặp xuất hiện càng nhiều lần. Tuy nhiên, ta lại bị ràng buộc rằng tổng các phần tử phải bằng 0, một vấn đề khác lại nảy sinh. Những cặp như AA, CC, GG, TT chỉ xuất hiện một lần trong ma trận nên số điểm của chúng sẽ ít hơn so với tổng điểm.
+Từ trực giác ta có thể thấy ngay đến phương án như sau: đã sẽ gán điểm số càng cao đối với cặp xuất hiện càng nhiều lần.
 
-**4) Các phần tử trên đường chéo phải dương ($score(x, x) > 0$)**
+**4) Các phần tử trên đường chéo phải dương ($S(x, x) > 0$)**
 
-Sự khác biệt giữa các phần tử trên đường chéo và các phần tử còn lại ngày càng lớn. Nhìn chung, ta có hai loại phần tử:
-bốn phần tử trên đường chéo (các phần tử đại diện cho AA, CC, GG, TT) và sáu phần tử không nằm trên đường chéo (các phần tử đại diện cho AC + CA, AG + GA, AT + TA, CG + GC, CT + TC, GT +TG). Mỗi nhóm trên sẽ có các cấu hình khác nhau, tùy thuộc vào cách mà ta đặt giá trị cho chúng.
+Do tính chất này, ta phải xét riêng hai loại phần tử:
 
-Đơn giản hóa vấn đề, **với mỗi cấu hình ta đặt nhóm thứ nhất, ta sẽ tìm ra đáp án tối ưu cho nhóm thứ hai**. Bởi vì tất cả các phần tử ở nhóm thứ hai đều có chung tính chất, ta sẽ sử dụng **phương pháp Tham lam** để tìm kết quả tối ưu cho nhóm thứ hai. Nhưng vì mỗi giá trị ở nhóm thứ nhất đều có thể chọn trong khoảng $[1, 10]$, nên giá trị tổng mà ta tìm kiếm ở nhóm hai cần phải được tính toán lại. Không khó để nhận ra tổng của nhóm thứ nhất có thể là bất kỳ số nào trong khoảng $[4, 40]$. Như một hệ quả, dựa vào việc ta chọn tổng ở nhóm một, ta có thể suy ra được tổng của nhóm hai sẽ trong khoảng $[-20, -2]$ (*chúng ta không được quên rằng nhóm hai đối xứng, xuất hiện hai lần trong ma trận nên giá trị phải nhân đôi lên*).
+- 4 phần tử trên đường chéo (các phần tử đại diện cho `AA`, `CC`, `GG`, `TT`)
+- 6 phần tử không nằm trên đường chéo (các phần tử đại diện cho `AC + CA`, `AG + GA`, `AT + TA`, `CG + GC`, `CT + TC`, `GT +TG`).
 
-Và giờ, ta đã đến được **cốt lõi của vấn đề**. Lời giải cho cả vấn đề này chính là việc tìm được giá trị điểm tối ưu cho nhóm thứ hai. Nếu vấn đề quả thật là **lựa chọn tham lam** và **tối ưu hóa cục bộ**, ta hoàn toàn có thể lấy một phần tử ra, gắn cho nó giá trị tối ưu và thực hiện tương tự với các phần tử còn lại.
+Ta xét tất cả các trường hợp chọn các phần tử của nhóm thứ nhất. Có $10^4 = 10,000$ trường hợp khác nhau. Với mỗi trường hợp của nhóm thứ nhất, ta sẽ tìm đáp án tối ưu cho nhóm thứ 2.
 
-**Ta có được khẳng định như sau: Nếu ta luôn luôn gán giá trị lớn nhất có thể cho phần tử xuất hiện nhiều lần nhất trong một nhóm, và cuối cùng ta sẽ thu được kết quả lớn nhất có thể cho toàn nhóm đó.**
+- Với mỗi trường hợp, ta có tổng các phần tử của nhóm thứ nhất nằm trong khoảng $[4, 40]$, nên tổng các phần tử của nhóm thứ 2 nằm trong khoảng $[-20, -2] *(chú ý rằng nhóm thứ 2 đối xứng, mỗi phần tử xuất hiện 2 lần trong ma trận S, nên ta phải nhân đôi)*
+- Vì các phần tử của nhóm 2 có chung tính chất, ta sử dụng Tham lam để tìm kết quả tối ưu cho nhóm thứ 2.
 
-Việc đầu tiên mà ta cần làm là sắp xếp lại sáu phần tử này trong ma trận **F**. Giờ, ta sẽ thực sự tính toán các giá trị tương ứng trong S. Tổng điểm tối thiểu mà ta đạt được là $-20$, một ý nghĩ chợt lóe lên trong ta, hai giá trị đầu tiên sẽ được gắn bằng $10$ (kể cả 4 giá trị còn lại ta có gán $-10$ đi chăng nữa thì ta vẫn thu về được giá trị $-20$). Ta biến rằng số điểm cuối cùng sẽ nhỏ hơn $0$. Bởi vì ta muốn tối đa hóa số điểm của phần tử đầu tiên nên ba phần tử còn lại sẽ là $-10$ (trong trường hợp tốt nhất, điểm tổng sẽ là $-2$ và lúc đó, ta sẽ điền số điểm như sau: $[10, 10, 8, -10, -10, -10]$). Cuối cùng, giá trị của phần tử thứ ba sẽ được xác định dựa vào lựa chon của ta cho nhóm thứ nhất. Đối với giá trị lớn nhất là $10$, ta sẽ trừ đi phần nửa của tổng số điểm của nhóm thứ nhất (ta lưu ý rằng tổng nói trên buộc phải là số chẵn).
+Nhắc lại tư tưởng của Tham lam: tại mỗi bước, ta chọn một lựa chọn tối ưu cục bộ. Trong trường hợp này nghĩa là ta xét lần lượt từng phần tử, với mỗi phần tử, gán cho nó giá trị tối ưu.
 
-Giờ thì ta cần phải chứng minh rằng phương pháp của mình là đúng. Cách chứng mình này cũng không quá phức tạp. Nhằm mục đích để tổng của **S** là một hằng số, ta chỉ có thể giảm các cặp có số lần xuất hiện nhiều hơn tăng những cặp có số lần xuất hiện ít hơn. Gọi **f1** và **f2** lần lượt là số lần xuất hiện của của hai cặp và $f1 \ge f2$. Ta có $f1 * s1 + f2 * s2 = X$, với X là tổng tối đa mà ta đạt được. Bằng **giả định Tham lam** của ta, $s1 \ge s2$. Vì tổng $s1+s2$ là một hằng số, tổng trên sẽ biến đổi thành $f1 * (s1-a) + f2 * (s2-a) = Y$ với a là số dương ($a > 0$). Ta tìm ra được rằng $Y-X = a * (f2-f1)$. Bởi vì $f1 \ge f2$ nên khoảng cách này luôn dương. Vì Y có thể lựa chọn tùy ý, ta có thể kết thúc *lựa chọn Tham lam* ban đầu bằng việc luôn cho Y số điểm lớn nhất.
+Nhận xét:
 
-Ta áp dụng thuật toán trên cho mỗi cấu hình của các phần tử trong nhóm đầu tiên và lưu lại kết quả tốt nhất.
+> Nếu ta xét lần lượt các phần tử theo thứ tự giảm dần, ở mỗi bước ta gán giá trị lớn nhất có thể cho phần tử đó, thì kết quả thu được sẽ tối ưu.
 
-Phương pháp biểu diễn: Thay vì phải dùng tới hai ma trận **F** và **S**, **ta có thể dùng một mảng đề lưu đồng thời cả cả số lần lặp lẫn số điểm tương ứng**. 4 phần tử đầu tiên của mảng **F** sẽ thể hiện tần số của các cặp AA, CC, GG, TT. 6 phần tử tiếp theo sẽ lưu số lần lặp của các cặp có thể sinh ra và được sắp xếp giảm dần dựa vào tần số  $(F[5] \ge F[6] \ge F[7] \ge F[8] \ge F[9] \ge F[10])$. **S** sẽ là một mảng có 10 phần tử mà $S[i]$ chính là số điểm mà ta phân bổ cho cặp $i$.
+Do đó, cách làm là:
+
+- Sắp xếp 6 phần tử của nhóm 2 theo thứ tự giảm dần (theo ma trận $F$).
+- Hai giá trị đầu tiên sẽ được gán bằng $10$ (vì trường hợp xấu nhất ta cần tổng bằng -20, thì ta vẫn có thể gán 4 giá trị còn lại là -10).
+- Ta biết rằng số điểm cuối cùng sẽ nhỏ hơn $0$. Bởi vì ta muốn tối đa hóa số điểm của phần tử thứ 3, nên ba phần tử còn lại sẽ luôn là $-10$:
+  - Trong trường hợp tốt nhất, tổng bằng -2, ta thu được: $[10, 10, 8, -10, -10, -10]$.
+  - Trong trường hợp xấu nhất, tổng bằng -20, ta thu được: $[10, 10, -10, -10, -10, -10]$.
+  - Ta có thể thu được tất cả các tổng từ -20 đến -2 bằng việc thay đổi giá trị của phần tử thứ 3 từ 8 đến -10.
+
+Giờ ta cần chứng minh rằng phương pháp của mình là đúng.
+
+- Vì ta xét hết tất cả các trường hợp của nhóm 1, nên ta chỉ cần chứng minh cách chọn các phần tử của nhóm 2 là tối ưu.
+- Vì tổng các phần tử của nhóm 2 cố định, nên nếu ta tăng 1 phần tử, thì phải giảm 1 phần tử khác.
+- Gọi $f_1$ và $f_2$ là số lần xuất hiện của 2 số bất kỳ của nhóm 2. Ta có:
+  - $f_1 \* s_1 + f_2 \* s_2 = X$.
+- Không làm mất tính tổng quát, giả sử $f_1 \ge f_2$. Do cách tham, ta có $s_1 \ge s_2$. Ta cũng có $s_1$ là lớn nhất có thể, nên ta không thể tăng $s_1$.
+- Giả sử cách làm của ta không tối ưu, nghĩa là ta có một cách chọn 1 số $a$ sao cho:
+  - $f_1 \* (s_1 - a) + f_2 \* (s_2 + a) = Y$ với $a$ là số dương.
+  - Ta có $Y-X = a * (f2-f1)$. Bởi vì $f1 \ge f2$ nên $Y-X$ luôn âm.
+
+Do vậy, cách làm của ta là tối ưu.
+
+**Cài đặt**
 
 Ý tưởng chính của thuật toán trên sẽ được minh họa trong đoạn mã giả dưới đây:
 
 ```
 Best = -Infinity
-For S [1] = 1 to 10
-  For S [2] = 1 to 10
-    For S [3] = 1 to 10
-      For S [4] = 1 to 10
-        If (S [1] + S [2] + S [3] + S [4]) mod 2 = 0
-            S [5] = S[6] = 10
-            S [7] = 10 - (S [1] + S [2] + S [3] + S[4]) / 2
-            S [8] = S [9] = S [10] = -10)
-          //  biến Best sẽ lưu lại giá trị trung bình lớn nhất
-          Best = max (Best , score (F,S))
-          //  kết quả tốt nhất thu được đến lúc này
+For S[1] = 1 to 10
+  For S[2] = 1 to 10
+    For S[3] = 1 to 10
+      For S[4] = 1 to 10
+        If (S[1] + S[2] + S[3] + S[4]) mod 2 = 0)
+          S[5] = S[6] = 10
+          S[7] = 10 - (S[1] + S[2] + S[3] + S[4]) / 2
+          S[8] = S[9] = S[10] = -10)
+
+          // biến Best sẽ lưu lại giá trị trung bình lớn nhất tìm được
+          Best = max (Best, score (F, S))
         Endif
       Endfor
     Endfor
@@ -210,7 +250,8 @@ Endfor
 Return Best
 ```
 
-Đối với mảng lưu điểm đã cho (trong trường hợp của chúng ta là mảng $S$), ta sẽ tính kết quả cuối cùng bằng việc chỉ tính tổng của tích $F[I] \* S[I] (1 \le I \le 10)$ và chia nó cho $N \* (N-1) / 2$ để thu được kết quả trung bình.
+Đối với mảng lưu điểm đã cho (trong trường hợp của chúng ta là mảng $S$), ta sẽ tính kết quả cuối cùng bằng việc chỉ tính tổng của tích $F[I] \* S[I] (1 \le I \le 10)$.
+
 
 # [**GoldMine**](https://community.topcoder.com/stat?c=problem_statement&pm=1957&rd=4650)
 
