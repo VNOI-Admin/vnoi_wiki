@@ -42,6 +42,9 @@ Nếu bạn muốn đóng góp, có thể [[làm theo hướng dẫn|contributor
     - [[Khử nhân ma trận|algo/trick/counting-without-matrix-multiplication]]
     - [[Mo's algorithm|algo/data-structures/mo-algorithm]]
 
+- Kĩ năng thi cử
+    - [[Viết trình chấm|algo/skill/viet-trinh-cham]]
+
 ### Ngôn ngữ lập trình:
 
 - [[Xử lý xâu trong C++|languages/cpp/string]]
