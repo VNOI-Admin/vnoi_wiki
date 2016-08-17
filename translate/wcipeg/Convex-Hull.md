@@ -37,7 +37,7 @@ Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất n
 
 1. Xét 3 điểm $H_2, H_1, H_h$. Gọi $\vec{u}=\overrightarrow{H_h H_1}$ và $\vec{v}=\overrightarrow{H_1 H_2}$. Nếu $\vec{u} \times \vec{v} <0$ thì $H_1$ phải bị loại khỏi bao.
 
-2. Xét 3 điểm $H_1, H_h, H_{h-1}$. Gọi $\vec{u}=\overrightarrow{H_{h-1} H_h}$ và $\vec{v}=\overrightarrow{H_h H_1}. Nếu $\vec{u} \times \vec{v} <0$ thì $H_h$ phải bị loại khỏi bao.
+2. Xét 3 điểm $H_1, H_h, H_{h-1}$. Gọi $\vec{u}=\overrightarrow{H_{h-1} H_h}$ và $\vec{v}=\overrightarrow{H_h H_1}$. Nếu $\vec{u} \times \vec{v} <0$ thì $H_h$ phải bị loại khỏi bao.
 
 3. Nếu không có điểm nào bị loại khỏi bao, ta đã tìm được bao lồi thật sự $H$ với các điểm được liệt kê theo thứ tự ngược chiều kim đồng hồ, nếu không thì ta quay lại bước 1.
 
