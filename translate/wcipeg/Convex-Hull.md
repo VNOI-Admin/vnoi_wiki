@@ -41,5 +41,5 @@ Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất n
 
 3. Nếu không có điểm nào bị loại khỏi bao, ta đã tìm được bao lồi thật sự $H$ với các điểm được liệt kê theo thứ tự ngược chiều kim đồng hồ, nếu không thì ta quay lại bước 1.
 
-Để đảm bảo ta có thể loại bỏ điểm $H_1$ với độ phức tạp $O(1)$ (tức là điểm $H_2$ cũ trở thành điểm $H_1$ mới,...)
+Để đảm bảo ta có thể loại bỏ điểm $H_1$ với độ phức tạp $O(1)$ (tức là điểm $H_2$ cũ trở thành điểm $H_1$ mới,...), ta nên dùng cấu trúc dữ liệu hàng đợi hai đầu (deque) hoặc danh sách liên kết (linked list).
  
