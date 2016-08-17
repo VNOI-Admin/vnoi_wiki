@@ -4,11 +4,11 @@
 
 **Đôi lời về tác giả**:
 
-Nguyễn Tiến Trung Kiên là cựu học sinh Chuyên Tổng Hợp, với 1 HCĐ IOI năm 2014 và 1 HCB IOI năm 2015. Kiên còn  nổi tiếng với [blog chứa code nhiều thuật toán](https://sites.google.com/site/kc97ble/) và series Free contest.
+Nguyễn Tiến Trung Kiên là cựu học sinh Chuyên Tổng Hợp, với 1 HCĐ IOI năm 2014 và 1 HCB IOI năm 2015. Kiên còn  nổi tiếng với [blog chứa code nhiều thuật toán](https://sites.google.com/site/kc97ble/) và series [Free contest](https://www.facebook.com/kcxxble).
 
 # Giới thiệu
 
-[[Nhân ma trận|algo/trick/matrix-multiplication]] thật sự hữu dụng. Có nhiều bài toán khi $n$ nhỏ, ta dùng DP để giải. Nhưng khi $n$ lớn (khoảng $10^9$), ta phải dùng nhân ma trận để giảm độ phức tạp. Trong quá trình code nhân ma trận, việc sinh ra ma trận gốc không phải lúc nào cũng đơn giản. Tôi đã tìm ra một phương pháp tốt để giải những bài toán này mà không cần nhân ma trận.
+[[Nhân ma trận|algo/trick/matrix-multiplication]] thật sự hữu dụng. Có nhiều bài toán khi $n$ nhỏ, ta dùng **DP** (** Dynamic Programming - Quy Hoạch Động **) để giải. Nhưng khi $n$ lớn (khoảng $10^9$), ta phải dùng nhân ma trận để giảm **độ phức tạp**. Trong quá trình code nhân ma trận, việc sinh ra ma trận gốc không phải lúc nào cũng đơn giản. Tôi đã tìm ra một phương pháp tốt để giải những bài toán này mà không cần nhân ma trận.
 
 Khi dùng phương pháp này, ta không cần phải sinh ma trận gốc và không cần cài phép toán nhân hai ma trận $A \* B$ và luỹ thừa ma trận $A^k$. Tuy nhiên, phương pháp này chỉ dùng được trong các bài toán đếm, nghĩa là nó không thể hoàn toàn thay thế nhân ma trận.
 
@@ -20,7 +20,7 @@ Khi dùng phương pháp này, ta không cần phải sinh ma trận gốc và k
 
 Ví dụ, khi $n = 4$ và $L = 1$, thì `()()` là dãy ngoặc đúng duy nhất thoả mãn, còn `(())`, `((()`, và `))((` thì không thoả mãn.
 
-Nếu dùng phương pháp quy hoạch động, ta sẽ tìm ra công thức $f(n, h) = f(n - 1, h - 1) + f(n - 1, h + 1)$ trong đó $f(n, h)$ là số dãy mà phần còn lại cần xây dựng có độ dài $n$ và độ cao hiện tại là $h$. Mục tiêu của chúng ta là tính $f(n, 0)$. Tất nhiên độ phức tạp của hàm $f$ là quá lớn.
+Nếu dùng phương pháp **Quy Hoạch Động**, ta sẽ tìm ra công thức $f(n, h) = f(n - 1, h - 1) + f(n - 1, h + 1)$ trong đó $f(n, h)$ là số dãy mà phần còn lại cần xây dựng có độ dài $n$ và độ cao hiện tại là $h$. Mục tiêu của chúng ta là tính $f(n, 0)$. Tất nhiên độ phức tạp của hàm $f$ là quá lớn.
 
 Bây giờ, gọi $f(n, h, h_0)$ là số dãy độ dài $n$ bắt đầu từ độ cao $h$ và kết thúc tại độ cao $h_0$.
 
