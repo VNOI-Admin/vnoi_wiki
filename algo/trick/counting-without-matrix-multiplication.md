@@ -1,6 +1,6 @@
 # Khử nhân ma trận
 
-**Tác giả**: Nguyễn Tiến Trung Kiên
+**Tác giả**: [Nguyễn Tiến Trung Kiên](http://news.zing.vn/thay-giao-sinh-nam-1997-cua-cac-cao-thu-hsg-quoc-gia-post480645.html)
 
 **Đôi lời về tác giả**:
 
