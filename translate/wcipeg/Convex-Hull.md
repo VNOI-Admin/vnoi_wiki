@@ -74,8 +74,24 @@ Các thuật toán trên hoạt động tốt trong trường hợp lí tưởng
 
   - Nếu ta chỉ cần tính chu vi hoặc diện tích của bao lồi, thuật toán Graham và thuật toán chuỗi đơn điệu sẽ không gặp vấn đề gì.
 
-  - Nếu ta phải in ra các đỉnh của bao lồi, có ba thứ tự in các đỉnh mà đề bài có thể hỏi: cùng chiều kim đồng hồ, ngược chiều kim đồng hồ, hoặc theo thứ tự xuất hiện trong dữ liệu vào. Rõ ràng hai thứ tự in các đỉnh đầu tiên không có ý nghĩa gì khi có các điểm trùng nhau. Nếu đề bài yêu cầu in các đỉnh theo thứ tự xuất hiện trong dữ liệu vào, đề bài có thể yêu cầu in ra đỉnh đầu tiên xuất hiện trong dữ liệu vào nếu các đỉnh trùng nhau, hoặc in ra tất cả các đỉnh. Hãy đọc đề bài thật kĩ. Trong mọi trường hợp, ta đều có thể dễ dàng xử lí kết quả để phù hợp với yêu cầu bài toán, và ta nên làm như vậy vì kết hợp xử lí kết quả với thuật toán tìm bao lồi không những khó hơn mà có thể tạo ra sai sót không đáng có
+  - Nếu ta phải in ra các đỉnh của bao lồi, có ba thứ tự in các đỉnh mà đề bài có thể hỏi: cùng chiều kim đồng hồ, ngược chiều kim đồng hồ, hoặc theo thứ tự xuất hiện trong dữ liệu vào. Rõ ràng hai thứ tự in các đỉnh đầu tiên không có ý nghĩa gì khi có các điểm trùng nhau. Nếu đề bài yêu cầu in các đỉnh theo thứ tự xuất hiện trong dữ liệu vào, đề bài có thể yêu cầu in ra đỉnh đầu tiên xuất hiện trong dữ liệu vào nếu các đỉnh trùng nhau, hoặc in ra tất cả các đỉnh. Hãy đọc đề bài thật kĩ. Trong mọi trường hợp, ta đều có thể dễ dàng xử lí kết quả sau khi chạy thuật toán tìm bao lồi để phù hợp với yêu cầu bài toán, và ta nên làm như vậy vì kết hợp xử lí kết quả với thuật toán tìm bao lồi không những khó hơn mà có thể tạo ra sai sót không đáng có
 
 - Nếu có các bộ ba điểm thẳng hàng
 
   - Ta cần biết đề bài yêu cầu bao lồi có số lượng đỉnh tối đa hay tối thiểu, từ đó, ta suy ra ta có nên cho thêm các điểm thuộc cạnh của bao lồi hay không. Nếu chỉ có các bộ ba điểm thẳng hàng mà không có các điểm trùng nhau, ta có thể sửa dấu $<$ thành dấu $\leq$ trong thuật toán Graham và thuật toán chuỗi đơn điệu nếu bài toán yêu cầu bao lồi có số lượng đỉnh tối đa. Còn trong thuật toán bọc gói, ta sẽ chọn điểm ở xa nhất hoặc điểm ở gần nhất nếu có hai điểm cùng có số đo góc nhỏ nhất tùy vào yêu cầu bài toán.
+  
+  - Thứ tự các đỉnh không phải là vấn đề, trừ khi đề bài yêu cầu in ra thứ tự các đỉnh của bao lồi có số đỉnh lớn nhất, trong đó các đỉnh thuộc cùng một cạnh được sắp xếp theo thứ tự xuất hiện trong dữ liệu vào. Khi đó, xử lí kết quả sau khi tìm bao lồi là lựa chọn tốt nhất.
+
+- Trường hợp xấu nhất trên lí thuyết là khi diện tích bao lồi bằng 0. Có hai trường hợp như vậy, và ta có thể dễ dàng xử lí hai trường hợp đó: tất cả các điểm đều trùng nhau, hoặc tất cả điểm đều thẳng hàng.
+  
+  - Thuật toán chuỗi đơn điệu vẫn hoạt động bình thường nếu ta chỉ cần biết diện tích hoặc chu vi bao lồi.
+
+  - Nếu ta cần in ra các đỉnh của bao lồi, ta không nên chỉnh sửa thuật toán mà nên xét riêng hai trường hợp trên.
+
+# Ứng dụng
+
+Ngoại trừ các ứng dụng hiển nhiên, tìm bao lồi còn giúp ta giải các bài toán sau:
+
+- Cặp điểm xa nhất
+
+- 
