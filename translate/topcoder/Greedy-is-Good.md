@@ -86,9 +86,11 @@ Tổng quát lại, ta đã thử 3 cách khác nhau, và mỗi cách đều có
 - Cách 2: Chọn hoạt động có $R_i - L_i$ nhỏ nhất
 - Cách 3: Chọn hoạt động giao với ít hoạt động khác nhất.
 
-Có vẻ như chúng ta đang đối mặt với một vấn đề hóc búa. Nhưng thật ra, vấn đề này vẫn có một cách giải quyết đẹp đẽ, và không hề phức tạp. Nếu ta xem xét các hình trên một cách kỹ lưỡng hơn nữa, ta sẽ thấy được rằng hoạt động màu xanh nằm ở góc trái dưới là là hoạt động duy nhất hoàn thành trước đường vẽ dọc màu đỏ. Vậy, nếu lựa chọn 1 hoạt động đơn lẻ, ta sẽ chọn hoạt động kết thúc sớm nhất (có $R_i$ nhỏ nhất), tại thời điểm **t1**, lúc đó toàn bộ khoảng thời gian còn lại sẽ trống để ta có thể chọn các hoạt động khác. Nếu chúng ta chọn bất kỳ hoạt động nào khác, thì khoảng thời gian còn lại sẽ ngắn đi. Điều này là hiển nhiên, bởi vì khi ta kết thúc với bất kỳ một hoạt động nào khác thì luôn luôn **t2** > **t1**. Trong trường hợp đầu tiên, ta sẽ có toàn bộ thời gian từ **t1** đến khi kết thúc và bao gồm luôn khoảng từ **t2** đến kết thúc. Bởi vậy mà nó cũng không có khuyết điểm trong việc lựa chọn hoạt động kết thúc sớm. Và nó còn có một ưu điểm đó là ta hoàn toàn có thể chèn thêm một hoạt đồng bất kỳ vào giữa **t1** và **t2** và kết thúc trước khi hoạt động của **t2** bắt đầu.
+Có vẻ như chúng ta đang đối mặt với một vấn đề hóc búa. Nhưng thật ra, vấn đề này vẫn có một cách giải quyết đẹp đẽ, và không hề phức tạp. Nếu ta xem xét hình trên một cách kỹ lưỡng hơn nữa, ta sẽ thấy được rằng hoạt động màu xanh nằm ở góc trái dưới là là hoạt động duy nhất hoàn thành trước đường vẽ dọc màu đỏ. Vậy, nếu lựa chọn 1 hoạt động đơn lẻ, ta sẽ chọn hoạt động kết thúc sớm nhất (có $R_i$ nhỏ nhất). Gọi thời điểm hoàn thành hoạt động đó là $t_1$, thì khoảng thời gian sau $t_1$ sẽ trống để ta có thể chọn các hoạt động khác. Nếu chúng ta chọn bất kỳ hoạt động nào khác, thì khoảng thời gian còn lại sẽ ngắn đi. Điều này là hiển nhiên, bởi vì khi ta kết thúc với bất kỳ một hoạt động nào khác thì luôn luôn $t_2$ > $t_1$. Trong trường hợp đầu tiên, ta sẽ có toàn bộ thời gian từ $t_1$ đến khi kết thúc và bao gồm luôn khoảng từ $t_2$ đến kết thúc. Bởi vậy mà nó cũng không có khuyết điểm trong việc lựa chọn hoạt động kết thúc sớm. Và nó còn có một ưu điểm đó là ta hoàn toàn có thể chèn thêm một hoạt đồng bất kỳ vào giữa $t_1$ và $t_2$ và kết thúc trước khi hoạt động của $t_2$ bắt đầu.
 
-Được biết tới với tên gọi **"Lựa chọn hoạt động"**, đây là bài toán cơ sở sử dụng **"Phương pháp Tham lam"**. Giống như là một gã tham lam luôn muốn chiếm lấy nhiều nhất, thường xuyên nhất mà hắn ta có thể, trong trường hợp này, ở mỗi bước ta sẽ chọn lựa một hoạt động kết thúc đầu tiên và mỗi lần đều không có hoạt động đang trong tiến trình. Và có một sự thật đó là ta luôn luôn áp dụng phương pháp tham lam cho mỗi bước trong cuộc đời của mình. Khi ta đi mua sắm hoặc đi xe hơi, ta đều luôn lựa chọn phương án tốt nhất tại thời điểm hiện tại. Thật ra, phương pháp tham lam có 2 công thức chung:
+Trên đây là ý tưởng để chứng minh thuật toán này đúng. Ta có thể từ đó để chứng minh chặt chẽ là cách làm này đúng.
+
+Được biết tới với tên gọi **"Lựa chọn hoạt động"** (**Activity Selection**), đây là bài toán cơ sở sử dụng **"Phương pháp Tham lam"**. Giống như là một gã tham lam luôn muốn chiếm lấy nhiều nhất, thường xuyên nhất mà hắn ta có thể, trong trường hợp này, ở mỗi bước ta sẽ chọn lựa một hoạt động kết thúc đầu tiên và mỗi lần đều không có hoạt động đang trong tiến trình. Và có một sự thật đó là ta luôn luôn áp dụng phương pháp tham lam cho mỗi bước trong cuộc đời của mình. Khi ta đi mua sắm hoặc đi xe hơi, ta đều luôn lựa chọn phương án tốt nhất tại thời điểm hiện tại. Thật ra, phương pháp tham lam có 2 công thức chung:
 
 - Tính lựa chọn tối ưu: Từ những kết quả tối ưu cục bộ ta có thể đi đến kết quả tối ưu toàn cục mà không cần phải xem xét lại các kết quả.
 - Tính tối ưu từ bài toán nhỏ: Kết quả tối ưu có được xác định bằng các kết quả tối ưu từ bài toán nhỏ hơn.
@@ -137,11 +139,11 @@ Vấn đề của John Smith đã được giải quyết, tuy nhiên đây ch�
 
 Đối với bài tập này, bạn sẽ được yêu cầu làm tối đa hóa số điểm trung bình của các cặp tương đồng. Từ đáp án tối ưu cần tìm, ta có thể xem nó như một gợi ý nhằm giúp ta tìm ra phương án thích hợp. Thường thì, đối với dạng bài toán này, ta sẽ sử dụng phương pháp *quy hoạch động* để giải quyết, nhưng trong một vài trường hợp thì chiến lược **Tham lam** vẫn hoàn toàn có thể được sử dụng.
 
-Việc đầu tiên mà ta cần làm là *xây dựng một ma trận cho biết số lần lặp* (**ma trận tần số**). Đây là một công việc khá nhẹ nhàng khi mà ta chỉ cần ghép từng cặp ký tự ở hai chuỗi tạo thành một *axit nucleic* rồi đếm số lần xuất hiện của chúng (AA, AC, AG, AT, CA, CC, CG, CT, GA, GC, GG, GT, TA, TC, TG, TT). Từng loại *axit nucleic* sẽ được xem như một phần tử trong ma trận và giá trị của nó chính là số lần xuất hiện của nó. Ví dụ, hãy xét bộ {"ACTAGAGAC", "AAAAAAAAA", "TAGTCATAC", "GCAGCATTC"} được sử dụng ở ví dụ thứ 2.
+Việc đầu tiên mà ta cần làm là *xây dựng một ma trận cho biết số lần lặp* (**ma trận tần số**). Đây là một công việc khá nhẹ nhàng khi mà ta chỉ cần ghép từng cặp ký tự ở hai chuỗi tạo thành một *axit nucleic* rồi đếm số lần xuất hiện của chúng (AA, AC, AG, AT, CA, CC, CG, CT, GA, GC, GG, GT, TA, TC, TG, TT). Từng loại *axit nucleic* sẽ được xem như một phần tử trong ma trận và giá trị của nó chính là số lần xuất hiện của nó. Ví dụ, hãy xét bộ `{"ACTAGAGAC", "AAAAAAAAA", "TAGTCATAC", "GCAGCATTC"}` được sử dụng ở ví dụ thứ 2.
 
 ![Ví dụ](http://community.topcoder.com/i/education/greedyAlg3.gif)
 
-Ở góc phải - dưới của hình minh họa trên, ta có thể thấy kết quả của ma trận tần số đối với bộ đã cho. Tạm gọi nó là F. Giờ việc mà ta cần làm là tìm ra một ma trận S khác sao cho tổng của các tích số của 16 loại *axit nucleic* **$F[i, j]*S[i, j]$** $(1 \le i, j \le 4)$ là lớn nhất.
+Ở góc phải - dưới của hình minh họa trên, ta có thể thấy kết quả của ma trận tần số đối với bộ đã cho. Tạm gọi nó là F. Giờ việc mà ta cần làm là tìm ra một ma trận S khác sao cho tổng của các tích số của 16 loại *axit nucleic* $F[i, j] \* S[i, j]$ $(1 \le i, j \le 4)$ là lớn nhất.
 
 Giờ ta xét từng điều kiện cho ma trận cần tìm:
 
@@ -190,25 +192,25 @@ Phương pháp biểu diễn: Thay vì phải dùng tới hai ma trận **F** v�
 ```
 Best = -Infinity
 For S [1] = 1 to 10
-      For S [2] = 1 to 10
-            For S [3] = 1 to 10
-                  For S [4] = 1 to 10
-                        If  (S [1] + S [2] + S [3] + S [4]) mod 2 = 0
-                             S [5] = S[6] = 10
-                             S [7] = 10 - (S [1] + S [2] + S [3] + S[4]) / 2
-                             S [8] = S [9] = S [10] = -10
-//  biến Best sẽ lưu lại giá trị trung bình lớn nhất
-                             Best = max (Best , score (F,S))
-//  kết quả tốt nhất thu được đến lúc này
-                       Endif
-                 Endfor
-           Endfor
+  For S [2] = 1 to 10
+    For S [3] = 1 to 10
+      For S [4] = 1 to 10
+        If (S [1] + S [2] + S [3] + S [4]) mod 2 = 0
+            S [5] = S[6] = 10
+            S [7] = 10 - (S [1] + S [2] + S [3] + S[4]) / 2
+            S [8] = S [9] = S [10] = -10)
+          //  biến Best sẽ lưu lại giá trị trung bình lớn nhất
+          Best = max (Best , score (F,S))
+          //  kết quả tốt nhất thu được đến lúc này
+        Endif
       Endfor
+    Endfor
+  Endfor
 Endfor
 Return Best
 ```
 
-Đối với mảng lưu điểm đã cho (trong trường hợp của chúng ta là mảng **S**), ta sẽ tính kết quả cuối cùng bằng việc chỉ tính tổng của tích $F[I] * S[I] (1 \le I \le 10)$ và chia nó cho $N * (N-1) / 2$ để thu được kết quả trung bình.
+Đối với mảng lưu điểm đã cho (trong trường hợp của chúng ta là mảng $S$), ta sẽ tính kết quả cuối cùng bằng việc chỉ tính tổng của tích $F[I] \* S[I] (1 \le I \le 10)$ và chia nó cho $N \* (N-1) / 2$ để thu được kết quả trung bình.
 
 # [**GoldMine**](https://community.topcoder.com/stat?c=problem_statement&pm=1957&rd=4650)
 
@@ -301,13 +303,14 @@ Những thuật toán **Tham lam** mà ta vừa kể trên đều hoạt động
 ```
 Groups = 0
 Repeat
-// sắp xếp lại mảng theo thứ tự giảm dần
-       Sort (A)
-       Min= A[K]
-       If Min > 0 Groups = Groups + 1
-        For I = 1 to K
-               A[I] = A[I] - 1
-        Endfor
+  // sắp xếp lại mảng theo thứ tự giảm dần
+  Sort (A)
+  Min = A[K]
+  If Min > 0
+      Groups = Groups + 1
+  For I = 1 to K
+    A[I] = A[I] - 1
+  Endfor
 Until  Min = 0
 Return Groups
 ```
@@ -317,14 +320,14 @@ Không may thay, mỗi quốc gia lại có tới hàng tỷ người dân, th�
 ```
 Groups = 0
 Repeat
-// sắp xếp lại mảng theo thứ tự giảm dần
-       Sort (A)
-       Min= A[K]
-       Groups = Groups + Min
-        For I = 1 to K
-               A[I] = A[I] - Min
-        Endfor
-Until  Min = 0
+  // sắp xếp lại mảng theo thứ tự giảm dần
+  Sort (A)
+  Min= A[K]
+  Groups = Groups + Min
+  For I = 1 to K
+    A[I] = A[I] - Min
+  Endfor
+Until Min = 0
 Return Groups
 ```
 
@@ -340,16 +343,17 @@ Giờ, điều mà ta cần làm đó chính là tăng độ chính xác của t
 Groups = 0
 Repeat
 // sắp xếp lại mảng theo thứ tự giảm dần
-       Sort (A)
-       Min= A[K]
-       Allowance = (Min+999) / 1000
-       Groups = Groups + Allowance
-        For I = 1 to K
-               A[I] = A[I] - Allowance
-        Endfor
-Until  Min = 0
+  Sort (A)
+  Min = A[K]
+  Allowance = (Min+999) / 1000
+  Groups = Groups + Allowance
+  For I = 1 to K
+    A[I] = A[I] - Allowance
+  Endfor
+Until Min = 0
 Return Groups
 ```
+
 Nếu cách tiếp cận này thật sự đúng, ta hoàn toàn có thể thấy được. Mặc dù nó có thể thoát khỏi ánh mắt sắc nhọn của Tomek cũng như là test hệ thống, nhưng rất có vẻ là nó sẽ không thể nào đưa ra kết quả quả đúng với mọi bộ test khả thi. Đây chính một ví dụ cho thấy nếu được tinh chỉnh, từ một thuật toán tham lam đơn giản (nhưng vẫn còn khiếm khuyết) cũng cũng có thể trở thành một cách "đúng". Để biết thêm về thuật toán chính xác cho bài này, xem lời giải ở [Match Editorial](http://community.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm204).
 
 ## Tổng kết
