@@ -47,3 +47,7 @@ Nếu bạn nhận dịch / viết bài nào, thì tự assign mình vào task �
 - Nếu bạn nhận dịch, chuyển sang cột Doing
 - Nếu bạn dịch xong, chuyển sang cột Review
 - Nếu bạn nhận review, sau khi review xong chuyển sang cột Review 2.
+
+Tip:
+
+- Ấn `q` để chỉ hiện những task của mình.
