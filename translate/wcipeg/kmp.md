@@ -289,3 +289,4 @@ for i ∈ [1..n]
 
 - [VOJ - SUBSTR](http://vn.spoj.com/problems/SUBSTR).
     - [Code C++](http://ideone.com/4E11f6)
+- [VOJ - TWOOPERS](http://vn.spoj.com/problems/TWOOPERS/)
