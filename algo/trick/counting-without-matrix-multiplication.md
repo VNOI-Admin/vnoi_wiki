@@ -2,6 +2,10 @@
 
 **Tác giả**: Nguyễn Tiến Trung Kiên
 
+Đôi lời về tác giả:
+
+Nguyễn Tiến Trung Kiên là cựu học sinh Chuyên Tổng Hợp, với 1 HCĐ IOI năm 2014 và 1 HCB IOI năm 2015. Kiên còn  nổi tiếng với [blog chứa code nhiều thuật toán](https://sites.google.com/site/kc97ble/) và series Free contest.
+
 [[Nhân ma trận|algo/trick/matrix-multiplication]] thật sự hữu dụng. Có nhiều bài toán khi $n$ nhỏ, ta dùng DP để giải. Nhưng khi $n$ lớn (khoảng $10^9$), ta phải dùng nhân ma trận để giảm độ phức tạp. Trong quá trình code nhân ma trận, việc sinh ra ma trận gốc không phải lúc nào cũng đơn giản. Tôi đã tìm ra một phương pháp tốt để giải những bài toán này mà không cần nhân ma trận.
 
 Khi dùng phương pháp này, ta không cần phải sinh ma trận gốc và không cần cài phép toán nhân hai ma trận $A \* B$ và luỹ thừa ma trận $A^k$. Tuy nhiên, phương pháp này chỉ dùng được trong các bài toán đếm, nghĩa là nó không thể hoàn toàn thay thế nhân ma trận.
