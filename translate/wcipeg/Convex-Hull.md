@@ -69,6 +69,9 @@ Các thuật toán trên hoạt động tốt trong trường hợp lí tưởng
 - Đọc kĩ đề bài để biết được dữ liệu vào có bị suy biến hay không, nếu có thì rơi vào trường hợp nào. (Lưu ý rằng không phải đề bài nào cũng nói rõ rằng dữ liệu bị suy biến).
 
 - Nếu tồn tại các điểm trùng nhau
+
   - Thuật toán bọc gói sẽ thực hiện phép chia cho số không. Ta cần tránh điều này để thuật toán chạy đúng.
+
   - Nếu ta chỉ cần tính chu vi hoặc diện tích của bao lồi, thuật toán Graham và thuật toán chuỗi đơn điệu sẽ không gặp vấn đề gì.
+
   - Nếu ta phải in ra các đỉnh của bao lồi, có ba thứ tự in các đỉnh mà đề bài có thể hỏi: cùng chiều kim đồng hồ, ngược chiều kim đồng hồ, hoặc theo thứ tự xuất hiện trong dữ liệu vào. Rõ ràng hai thứ tự in các đỉnh đầu tiên không có ý nghĩa gì khi có các điểm trùng nhau. Nếu đề bài yêu cầu in các đỉnh theo thứ tự xuất hiện trong dữ liệu vào, đề bài có thể yêu cầu in ra đỉnh đầu tiên xuất hiện trong dữ liệu vào nếu các đỉnh trùng nhau, hoặc in ra tất cả các đỉnh. Hãy đọc đề bài thật kĩ. Trong mọi trường hợp, ta đều có thể dễ dàng xử lí kết quả để phù hợp với yêu cầu bài toán, và ta nên làm như vậy vì kết hợp xử lí kết quả với thuật toán tìm bao lồi không những khó hơn mà có thể tạo ra sai sót không đáng có
