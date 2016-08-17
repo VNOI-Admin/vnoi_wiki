@@ -146,7 +146,9 @@ Bảng băm hoạt động dựa trên hàm Hash: Hash là quá trình khởi t�
 Trong trường hợp hàm Hash hoạt động tốt, mỗi bucket có rất ít phần tử, độ phức tạp của các thao tác trên Hash table như sau:
 
 - Tìm 1 khóa: $\mathcal{O}(1)$.
-- Thêm / xóa 1 khóa: 
+- Thêm / xóa 1 khóa: $\mathcal{O}(1)$.
+
+Bạn có thể đọc thêm về Hash table [[ở đây|algo/data-structures/hash-table]]
 
 # 2. CTDL Truy vấn
 
