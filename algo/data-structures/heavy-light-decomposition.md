@@ -158,6 +158,7 @@ Như vậy độ phức tạp của một thao tác cập nhật hoặc truy v�
 
 # Bài tập áp dụng
 
+- HLD có thể áp dụng để giải [[bài toán LCA|algo/data-structures/lca]]
 - [QTREE](http://vn.spoj.com/problems/QTREE)
 - [QTREE3](http://vn.spoj.com/problems/QTREE3/)
 - [QTREEX](http://vn.spoj.com/problems/QTREEX)
