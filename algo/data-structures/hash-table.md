@@ -57,6 +57,49 @@ Trong hình minh họa:
 - Để cài đặt được cách này, Load factor phải nhỏ hơn 1.
 - Khi tìm kiếm 1 phần tử, ta phải kiểm tra tất cả các bucket bắt đầu từ bucket của giá trị Hash, đến khi bucket trống (ví dụ ta tìm Sandra Dee thì phải tìm bucket 152, 153; tìm Ted Baker thì phải tìm bucket 152, 153, 154. Nếu ta tìm 1 người khác có giá trị Hash là 152, thì phải tìm cả bucket 152, 153, 154 và 155 (chỉ khi bucket 155 trống, ta mới chắc chắn người đó không có trong Hash table).
 
+# Cài đặt
+
+Dưới đây là cài đặt Hash table đơn giản, hỗ trợ thao tác thêm và tìm kiếm. Hash table này sử dụng separate chaining, và dùng vector thay cho linked list để đơn giản.
+
+```cpp
+const int P = 1e6 + 3;
+
+struct HashTable {
+    vector< pair<int,int> > h[P];
+
+public:
+    void insert(int key, int value) {
+        int hkey = getHash(key);
+        for (auto p : h[hkey]) {
+            if (p.first == key) {
+                // key da ton tai trong Hash table, ta bo qua
+                return;
+            }
+        }
+        // Them (key, value) vao hash table
+        h[hkey].emplace_back(key, value);
+    }
+
+    int find(int key) {
+        int hkey = getHash(key);
+        for(auto p : h[hkey]) {
+            if (p.first == key) {
+                // ton tai key trong Hash table, return value
+                return p.value;
+            }
+        }
+        // Khong tim thay
+        return 0;
+    }
+
+private:
+    int getHash(int key) {
+        // Cho 1 key, tra lai Hash value la key % P
+        return key % P;
+    }
+};
+```
+
 # Kết luận
 
 Trong phát triển ứng dụng, bảng hash thuận tiện để lưu trữ dữ liệu tham khảo, chẳng hạn như chữ viết tắt tên đầy đủ của các tổ chức. Trong giải quyết bài toán, bảng hash thật sự hữu ích để tiếp cận hướng giải quyết chia để trị cho bài toán cái túi (knapsack-type).
