@@ -6,7 +6,7 @@ Bài viết gốc: [Using Regular Expressions - đăng bởi Dan[Popovici] & mar
 
 # Giới thiệu
 
-Một **regex** (*regular expression*) là một chuỗi ký tự đặc biệt dùng để mô tả một **mẫu tìm kiếm** (**search pattern**). Hẳn là nhiều bạn đã nhìn thấy hoặc dùng regex trong các câu lệnh như `ls *\.txt` (hoặc `dir *\.txt`) để liệt kê ra tất cả các file có đuôi txt. Regex rất hữu dụng không chỉ trong việc tìm kiếm trên xâu (*pattern matching*) mà còn trong việc xử lý văn bản. Trong các kỳ SRMs thì regex có thể cực kỳ hữu ích. Vài dòng code sử dụng regex trong các bài toán xử lý text có thể khiến việc lập trình trở nên dễ thở hơn nhiều.
+Một **regex** (*regular expression*) là một chuỗi ký tự đặc biệt dùng để mô tả một **mẫu tìm kiếm** (**search pattern**). Hẳn là nhiều bạn đã nhìn thấy hoặc dùng regex trong các câu lệnh như `ls *.txt` (hoặc `dir *.txt`) để liệt kê ra tất cả các file có đuôi txt. Regex rất hữu dụng không chỉ trong việc tìm kiếm trên xâu (*pattern matching*) mà còn trong việc xử lý văn bản. Trong các kỳ SRMs thì regex có thể cực kỳ hữu ích. Vài dòng code sử dụng regex trong các bài toán xử lý text có thể khiến việc lập trình trở nên dễ thở hơn nhiều.
 
 
 # Mô tả regex
@@ -26,7 +26,7 @@ Một nhánh bao gồm một hoặc nhiều mảnh nối vào với nhau. Nó s�
 
 Một mảnh là một nguyên tử (atom) có thể được theo sau bởi một trong các ký tự sau `*`, `+`, `?`, hoặc biên (*bound*):
 
-- Một nguyên tử được theo sau bởi `\*` sẽ khớp với chuỗi nào có 0 hoặc nhiều hơn phần khớp với nguyên tử đó.
+- Một nguyên tử được theo sau bởi `*` sẽ khớp với chuỗi nào có 0 hoặc nhiều hơn phần khớp với nguyên tử đó.
 - Một nguyên tử được theo sau bởi `+` sẽ khớp với chuỗi nào có 1 hoặc nhiều hơn phần khớp với nguyên tử đó.
 - Một nguyên tử được theo sau bởi `?` sẽ khớp với chuỗi nào có 0 hoặc 1 phần khớp với nguyên tử đó.  
 
@@ -34,7 +34,7 @@ Regex sau sẽ khớp với chuỗi nào có chữ "top" và "coder" nối tiế
 
 ```
 Regex: (top|coder)+
-INPUT: This regex matches topcoder and also codertop.
+INPUT: This regex matches topcoder, codertop, toptop, toptoptop, codercoder...
 Tìm thấy "topcoder" bắt đầu ở vị trí 19 và kết thúc ở vị trí 27.
 Tìm thấy "codertop" bắt đầu ở vị trí 37 vả kết thúc ở vị trí 45.
 ```
@@ -113,6 +113,10 @@ Mô tả trên là mô tả sơ qua về regex cơ bản. Một regex được v
 
 
 # Sử dụng regex
+
+## Debug regex
+
+Trong các ngôn ngữ lập trình khác nhau, thường regex có thể khác nhau đôi chút. Để kiểm tra 1 đoạn regex trong 1 ngôn ngữ có ý nghĩa gì, các bạn có thể lên search "debug regex online", có khá nhiều trang phù hợp.
 
 ## Trong Java
 
@@ -318,4 +322,3 @@ public class CheatCode {
 3. [[http://docs.freebsd.org/info/regex/regex.info.Programming_with_Regex.html|http://docs.freebsd.org/info/regex/regex.info.Programming_with_Regex.html]]
 4. [[http://www.regular-expressions.info/|http://www.regular-expressions.info/]]
 5. [[http://java.sun.com/docs/books/tutorial/extra/regex/|http://java.sun.com/docs/books/tutorial/extra/regex/]]
-
