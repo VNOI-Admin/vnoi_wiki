@@ -2,7 +2,9 @@
 
 ## Giới thiệu
 
-VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học đến với tất cả mọi người. Bạn có thể đọc bài giới thiệu của bọn mình [[ở đây|about]]
+VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học đến với tất cả mọi người. Bạn có thể đọc bài giới thiệu của bọn mình [[ở đây|about]].
+
+Nếu bạn muốn đóng góp, có thể [[làm theo hướng dẫn|contributor-tutorial]]
 
 ## Các chủ đề
 
@@ -22,6 +24,8 @@ VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học �
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 
 - [[Cấu trúc dữ liệu|algo/data-structures/data-structures-overview]]
+    - [[Bài toán RMQ & bài toán LCA|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]]
+    - [[Các phương pháp giải bài toán LCA|algo/data-structures/lca]]
 
 - [[Xử lý xâu|algo/string/basic]]
 
