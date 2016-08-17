@@ -1,3 +1,5 @@
+Nguồn: [wcipeg](http://wcipeg.com/wiki/Convex_hull)
+
 Trong hình học tính toán, bao lồi của một tập điểm là tập lồi nhỏ nhất (theo diện tích, thể tích, ...) mà tất cả các điểm đều nằm trong tập đó.
 
 # Giải thích trực quan về bao lồi trên mặt phẳng
