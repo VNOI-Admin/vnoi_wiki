@@ -26,28 +26,48 @@ Là một con người tràn trề sinh lực, John muốn dành thời gian nhi
 
 Giờ anh ấy muốn thực hiện được tối đa các hoạt động trong thời gian biểu trên. Mặc dù để lên kế hoạch hiệu quả thì cần phải có chút lý trí, nhưng giờ thì hồn anh ấy đã đắm chìm vào kỳ nghỉ rồi.
 
-Liệu ta có thể giúp anh ấy có một kỳ nghỉ tuyệt vời? Ta hoàn toàn có thể! Đầu tiên, ta hãy đưa ra một giả định. Là một lập trình viên tỉ mỉ, một khi đã đặt ra kế hoạch, anh ấy buộc phải thực hiện nó. Thế nên, mỗi hoạt động chỉ có hai chọn lựa là có hoặc không. Và với mỗi trường hợp chọn lựa cho hoạt động thứ nhất, ta lại có thêm 2 lựa chọn cho hoạt động thứ 2. Phân tích nhanh ta sẽ thấy được rằng có $2^n$ trường hợp, và trong tình huống này thì đó sẽ là $2^{10} = 1024$ trường hợp. Với mỗi trường hợp ta sẽ kiểm tra xem nó có thỏa mãn giới hạn về thời gian hay không. Từ đây, việc cho lựa 1 phương án có nhiều hoạt động nhất sẽ trở nên dễ dàng hơn. Với khá nhiều sự chọn lựa như thế này, John buộc phải nhờ đến sự giúp đỡ của chiếc máy tính đang mệt mỏi. Nhưng điều gì sẽ xảy ra nếu John có tới 50 hoạt động trong danh sách? Thậm chí dùng đến cả siêu máy tính nhanh nhất thế giới thì cũng cần đến vài năm để tìm ra câu trả lời. Thế nên, phương án này khá phi thực tế.
+# Phát biểu bài toán
 
-Chúng ta hãy cùng tìm cách đơn giản hóa vấn đề. Một phương án tốt có lẽ là thực hiện công việc ngay khi thời cơ đến: Nếu ta có hai hoạt động và chúng bị trùng về thời gian, ta sẽ ưu tiên lựa chọn hoạt động xảy ra trước nhằm tiết kiệm thời gian. Ví dụ trong trường hợp anh ta bắt đầu buổi tối đầu tiên bằng việc sửa chữa phòng. Buổi sáng, anh ấy sẽ bắt một chuyến bay. Và chưa đầy một ngày nhưng anh ấy đã thực hiện được 2 hoạt động. Thật tuyệt vời! Nhưng thật ra, đó chỉ là **lựa chọn tốt nhất** lúc này thôi. Và bây giờ thì ta có gì, 5 ngày ăn chơi ở Hawaii và cho đến tận tối thứ 7 thì anh ấy vẫn chỉ thực hiện được 2 hoạt động. Hãy nghĩ xem trong 5 ngày đó anh ta đã có thể thực hiện được những gì. Mặc dù đơn giản và thực thi rất nhanh, song rất không may là thuật toán này lại không chính xác.
+Liệu ta có thể giúp anh ấy có một kỳ nghỉ tuyệt vời? Ta hoàn toàn có thể! Đầu tiên, ta cần phải trình bày lại bài toán:
 
-Ta vẫn không cần phải xét tất cả các trường hợp, hãy thử một mánh khóe khác. Giờ ta sẽ bỏ những hoạt động tiêu tốn nhiều thời gian như đi du lịch Hawaii bằng cách lựa chọn những hoạt động tốn ít thời gian nhất và kiểm tra xem nó có hợp lí với những hoạt động đã chọn trước đó chưa rồi tiếp tục quá trình. Theo như thời gian biểu ở trên thì hoạt động đầu tiện được chọn lựa sẽ là tắm. Với thời gian chỉ 15 phút, đây chính là **lựa chọn cục bộ tối ưu**. và giờ điều mà ta cần biết đó là có thể giữ được **tối ưu cục bộ** khi mà những hoạt động thích hợp khác được chọn lựa. Thời gian biểu của John sẽ như sau:
+- John có $N$ hoạt động. Hoạt động $i$ bắt đầu vào thời gian $L_i$ và kết thúc vào thời gian $R_i$.
+- John có thể thực hiện cả hoạt động $i$ và hoạt động $j$, nếu 2 khoảng thời gian $[L_i, R_i]$ và $[L_j, R_j]$ không giao nhau.
+- Là một lập trình viên tỉ mỉ, một khi đã đặt ra kế hoạch, anh ấy buộc phải thực hiện nó.
 
-* Đi tắm (15 phút).
-* Tham gia vào kỳ thi SRM trên Topcoder (2 tiếng).
-* Tham gia thử thách *"All you can eat"* và *"All you can drink"* (2 tiếng 58 phút).
-* Sửa phòng (3 tiếng).
-* Tham nhạc buổi hòa nhạc Rock (4 tiếng).
-* Chơi bắn súng nước sơn (6 tiếng).
+Mỗi hoạt động chỉ có hai chọn lựa là có hoặc không. Với mỗi trường hợp chọn lựa cho hoạt động thứ nhất, ta lại có thêm 2 lựa chọn cho hoạt động thứ 2. Phân tích nhanh ta sẽ thấy được rằng có $2^n$ trường hợp, và trong tình huống này thì sẽ có $2^{10} = 1024$ trường hợp. Với mỗi trường hợp ta sẽ kiểm tra xem có thể thực hiện được các hoạt động đó không: có 2 cặp hoạt động nào bị trùng thời gian hay không. Sau khi xét hết các phương án, ta dễ dàng tìm ra 1 phương án có nhiều hoạt động nhất. Với khá nhiều sự chọn lựa như thế này, John buộc phải nhờ đến sự giúp đỡ của chiếc máy tính đang mệt mỏi. Nhưng điều gì sẽ xảy ra nếu John có tới 50 hoạt động trong danh sách? Thậm chí dùng đến cả siêu máy tính nhanh nhất thế giới thì cũng cần đến vài năm để tìm ra câu trả lời. Thế nên, phương án này khá phi thực tế.
 
-Trong 10 hành động, ta đã lựa ra được 6 hành động (hoàn toàn không tệ). Giờ thì thuật toán của ta đã chậm lại nhưng nó trở nên đáng tin cậy hơn nếu đây là lựa chọn tốt nhất mà ta có thể thực hiện. Và quả thực, đáp án chính là 6. John rất hài lòng về sự hỗ trợ của chúng ta, nhưng sau khi trở về từ kỳ nghỉ với kế hoạch thông minh này, John đã phải đối mặt với những rắc rối nghiêm trọng khác:
+
+# Tiếp cận 1
+
+Chúng ta cần tìm một cách tiếp cận mới. Một phương án tốt có lẽ là thực hiện công việc ngay khi thời cơ đến: Nếu ta có hai hoạt động và chúng bị trùng về thời gian, ta sẽ ưu tiên lựa chọn hoạt động bắt đầu trước nhằm tiết kiệm thời gian (nghĩa là hoạt động có $L_i$ nhỏ hơn). Nếu áp dụng cách này vào 10 hoạt động trên thì:
+
+- John bắt đầu buổi tối T2 bằng việc *Sửa phòng*.
+- Buổi sáng T3, anh ấy sẽ lên máy bay đi *Du lịch Hawaii*.
+
+Và chưa đầy một ngày nhưng anh ấy đã thực hiện được 2 hoạt động. Thật tuyệt vời! Nhưng thật ra, đó chỉ là **lựa chọn tốt nhất** lúc này thôi. Và bây giờ thì ta có gì, 5 ngày ăn chơi ở Hawaii và cho đến tận tối thứ 7 thì anh ấy vẫn chỉ thực hiện được 2 hoạt động. Hãy nghĩ xem trong 5 ngày đó anh ta đã có thể thực hiện được những gì. Mặc dù đơn giản và thực thi rất nhanh, song rất không may là thuật toán này lại không chính xác.
+
+# Tiếp cận 2
+
+Hãy thử một mánh khóe khác. Giờ ta sẽ bỏ những hoạt động tiêu tốn nhiều thời gian như đi *Du lịch Hawaii* bằng cách lựa chọn những hoạt động tốn ít thời gian nhất và kiểm tra xem nó có hợp lí với những hoạt động đã chọn trước đó chưa rồi tiếp tục quá trình. Theo như thời gian biểu ở trên thì hoạt động đầu tiện được chọn lựa sẽ là tắm. Với thời gian chỉ 15 phút, đây chính là **lựa chọn tối ưu cục bộ** (**local best**). Và giờ điều mà ta cần biết đó là có thể giữ được **tối ưu cục bộ** khi mà những hoạt động thích hợp khác được chọn lựa. Thời gian biểu của John sẽ như sau:
+
+- *Tắm rửa* (15 phút, tối T7, 20:30 - 20:45).
+- *Tham gia kỳ thi SRM trên Topcoder* (2 tiếng, T7, 12:00 - 14:00).
+- *Tham gia thử thách "All you can eat" và "All you can drink"* (2 tiếng 58 phút, T7, 21:01 - 23:59).
+- *Sửa phòng* (3 tiếng, T2, 22:00 - T3, 1:00).
+- *Thạm dự nhạc hội Rock* (4 tiếng, T3, 19:00 - 23:00).
+- *Chơi trò bắn súng nước sơn* (6 tiếng, T5, 10:00 - 16:00).
+
+Trong 10 hành động, ta đã lựa ra được 6 hành động, không tệ chút nào! Giờ thì thuật toán của ta vẫn chạy rất nhanh và đáng tin cậy hơn chút. Và quả thực, đáp án chính xác trong trường hợp này là 6. John rất hài lòng về sự hỗ trợ của chúng ta, nhưng sau khi trở về từ kỳ nghỉ với kế hoạch thông minh này, John đã phải đối mặt với những rắc rối nghiêm trọng khác:
 
 <div align="center">
 	<img src="http://community.topcoder.com/i/education/greedyAlg1.gif" alt="" border="0">
 </div>
 
-Áp dụng thuật toán của ta, John đã tham gia một cuộc hẹn hò chóng vánh, để rồi anh ấy đã bỏ lỡ cả bài thi trong trường lẫn trận đấu bóng rổ của đội anh ấy yêu thích. Là một **Topcoder**, chúng ta cần phải viết ra một chương trình hoàn toàn có thể tin cậy trong vấn đề này. Chỉ cần một trường hợp duy nhất chúng ta không giải quyết được sẽ dẫn tới một thất bại toàn diện.
+Áp dụng thuật toán của ta, John đã tham gia một cuộc hẹn hò chóng vánh (màu đỏ), để rồi anh ấy đã bỏ lỡ cả bài thi trong trường (màu xanh da trời) lẫn trận đấu bóng rổ của đội anh ấy yêu thích (màu xanh lá). Là một **Topcoder**, chúng ta cần phải viết ra một chương trình hoàn toàn chính xác, chứ không phải chỉ đúng trong 1 số trường hợp. Chỉ cần một trường hợp duy nhất chúng ta không giải quyết được sẽ dẫn tới một thất bại toàn diện.
 
-Những gì mà chúng ta thường làm trong tình huống này là phân tích điều gì đã gây ra lỗi ở lựa chọn đầu tiên và các hành động phù hợp để tránh nó trong tương lai. Giờ ta hãy xét lại kịch bản đầu tiên. Cuộc hẹn hò trùng thời gian với cả việc làm bài thi lẫn trận đấu bóng rổ, trong khi cả trận đấu bóng rổ lẫn làm bài thi chỉ trùng lặp với một minhg cuộc hẹn hò. Vậy thì ý tưởng cũng tự sinh ra từ vấn đề này. Tại sao ta không chọn hoạt động ít bị trùng lặp nhất so với những hoạt động còn lại ? Nghe có vẻ hợp lí - giờ thì một thứ đã đúng hơn rồi đấy ! Giờ ta sẽ thử chứng minh rằng phương pháp này hoàn toàn đúng đắn. Giờ giả sử ta đã lựa chọn hoạt động X, ta se thử kiểm tra xem ta có thể lựa chọn hoạt động A và B (những hoạt động bị trùng lặp với X) thay vì X được hay không. Và A, B cũng không được trùng lặp nhau, nếu không ta cũng không thể tối ưu hóa kết quả. Bây giờ, ta sẽ quay về trường hợp trước đó (X trùng với 2 hoạt động, A và B trùng với 1 hoạt động). Trong trường hợp này, ta sẽ chọn A và B ngay từ đầu tiên. Một trong những cách để phản bác lại giả thiết này chính là cho hoạt động A và B trùng lặp với nhiều hoạt động hơn nữa chứ không chỉ hoạt động X. Nghe nó có vẻ không trực quan cho lắm, nhưng (thật không may) ta vẫn có thể xây dựng trường hợp đó như sau:
+# Tiếp cận 3
+
+Những gì mà chúng ta thường làm trong tình huống này là phân tích điều gì đã gây ra lỗi ở cách làm trước và tránh lặp lại nó trong tương lai. Hãy xem xét lại trường hợp sai. Cuộc hẹn hò trùng thời gian với cả việc làm bài thi lẫn trận đấu bóng rổ, trong khi cả trận đấu bóng rổ lẫn làm bài thi chỉ trùng lặp với một mình cuộc hẹn hò. Vậy thì ý tưởng cũng tự sinh ra từ vấn đề này. Tại sao ta không chọn hoạt động ít bị trùng lặp nhất so với những hoạt động còn lại? Nghe có vẻ hợp lí! Giờ ta sẽ thử chứng minh rằng phương pháp này hoàn toàn đúng đắn. Giờ giả sử ta đã lựa chọn hoạt động X, ta sẽ thử kiểm tra xem ta có thể lựa chọn hoạt động A và B (những hoạt động bị trùng lặp với X) thay vì X được hay không. Và A, B cũng không được trùng lặp nhau, nếu không ta cũng không thể tối ưu hóa kết quả. Bây giờ, ta sẽ quay về trường hợp trước đó (X trùng với 2 hoạt động, A và B trùng với 1 hoạt động). Trong trường hợp này, ta sẽ chọn A và B ngay từ đầu tiên. Một trong những cách để phản bác lại giả thiết này chính là cho hoạt động A và B trùng lặp với nhiều hoạt động hơn nữa chứ không chỉ hoạt động X. Nghe nó có vẻ không trực quan cho lắm, nhưng (thật không may) ta vẫn có thể xây dựng trường hợp đó như sau:
 
 <div align="center">
 	<img src="http://community.topcoder.com/i/education/greedyAlg2.gif" alt="" border="0">
@@ -91,11 +111,11 @@ Return A
 
 Sau khi áp dụng thuật toán trên, *"Fun plan"* của Johnny sẽ như thế này:
 
-* Xóa hết mọi lỗi và đi tắm.
-* Thứ 3 để đánh cờ và chiến thắng.
-* Cả ngày để chơi Starcraft, có vẻ vui đây.
-* Hai ngày tiếp theo để nghỉ ngơi.
-* Và vào ngày cuối cùng, lấy một ít điểm rating từ **Topcoder**, tắm rửa, tận hưởng bữa ăn *"sâu bọ"* và những ly rượu hảo hạng.
+- Xóa hết mọi lỗi và đi tắm.
+- Thứ 3 để đánh cờ và chiến thắng.
+- Cả ngày để chơi Starcraft, có vẻ vui đây.
+- Hai ngày tiếp theo để nghỉ ngơi.
+- Và vào ngày cuối cùng, lấy một ít điểm rating từ **Topcoder**, tắm rửa, tận hưởng bữa ăn *"sâu bọ"* và những ly rượu hảo hạng.
 
 Vấn đề của John Smith đã được giải quyết, tuy nhiên đây chỉ là một ví dụ mà Tham lam có thể hoạt động. Một vài vấn đề thật sự khác đến từ **Topcoder** sẽ giúp bạn hiểu rõ hơn về khái niệm này. Trước khi tiếp tục, có lẽ bạn cần phải luyện tập thêm chút ít nữa với những gì mà bạn vừa đọc, bằng bài tập tương tự với *Lựa chọn hành động*, tên là [Boxing](http://www.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880)
 
@@ -344,38 +364,27 @@ Một vài lưu ý nhỏ
 ## Bài tập mở rộng
 
 ### Cấp độ 1
-[GroceryBagger](https://community.topcoder.com/stat?c=problem_statement&pm=3450&rd=5868) – SRM 222
 
-[FanFailure](http://community.topcoder.com/stat?c=problem_statement&pm=2235&rd=5070) – SRM 195
-
-[PlayGame](https://community.topcoder.com/stat?c=problem_statement&pm=3002&rd=5863) – SRM 217
-
-[SchoolAssembly](http://community.topcoder.com/stat?c=problem_statement&pm=1119&rd=5879) – TCO04 Round 2
-
-[RockStar](http://community.topcoder.com/stat?c=problem_statement&pm=2984&rd=5862) – SRM 216
-
-[Apothecary](http://community.topcoder.com/stat?c=problem_statement&pm=2312&rd=5850) – SRM 204
-
-[Boxing](http://community.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880) – TCO04 Round 3
-
-[Unblur](http://community.topcoder.com/stat?c=problem_statement&pm=2945&rd=5884) – TCO04 Semifinal Room 3
+- [GroceryBagger](https://community.topcoder.com/stat?c=problem_statement&pm=3450&rd=5868) – SRM 222
+- [FanFailure](http://community.topcoder.com/stat?c=problem_statement&pm=2235&rd=5070) – SRM 195
+- [PlayGame](https://community.topcoder.com/stat?c=problem_statement&pm=3002&rd=5863) – SRM 217
+- [SchoolAssembly](http://community.topcoder.com/stat?c=problem_statement&pm=1119&rd=5879) – TCO04 Round 2
+- [RockStar](http://community.topcoder.com/stat?c=problem_statement&pm=2984&rd=5862) – SRM 216
+- [Apothecary](http://community.topcoder.com/stat?c=problem_statement&pm=2312&rd=5850) – SRM 204
+- [Boxing](http://community.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880) – TCO04 Round 3
+- [Unblur](http://community.topcoder.com/stat?c=problem_statement&pm=2945&rd=5884) – TCO04 Semifinal Room 3
 
 ### Cấp độ 2
-[Crossroads](https://community.topcoder.com/stat?c=problem_statement&pm=3042&rd=5863) – SRM 217
 
-[TCSocks ](http://community.topcoder.com/stat?c=problem_statement&pm=2894&rd=5853)– SRM 207
-
-[HeatDeath](https://community.topcoder.com/stat?c=problem_statement&pm=2982&rd=5881) – TCO04 Round 4
-
-[BioScore](https://community.topcoder.com/stat?c=problem_statement&pm=3038&rd=5882) – TCO04 Semifinal Room 1
-
-[Rationalization](https://community.topcoder.com/stat?c=problem_statement&pm=2347&rd=5870) – SRM 224
+- [Crossroads](https://community.topcoder.com/stat?c=problem_statement&pm=3042&rd=5863) – SRM 217
+- [TCSocks ](http://community.topcoder.com/stat?c=problem_statement&pm=2894&rd=5853)– SRM 207
+- [HeatDeath](https://community.topcoder.com/stat?c=problem_statement&pm=2982&rd=5881) – TCO04 Round 4
+- [BioScore](https://community.topcoder.com/stat?c=problem_statement&pm=3038&rd=5882) – TCO04 Semifinal Room 1
+- [Rationalization](https://community.topcoder.com/stat?c=problem_statement&pm=2347&rd=5870) – SRM 224
 
 ### Cấp độ 3
-[GoldMine](https://community.topcoder.com/stat?c=problem_statement&pm=1957&rd=4650) – SRM 169
 
-[MLBRecord](https://community.topcoder.com/stat?c=problem_statement&pm=2236&rd=5879) – TCO04 Round 2
-
-[RearrangeFurniture](https://community.topcoder.com/stat?c=problem_statement&pm=3076&rd=5866) – SRM 220
-
-[WorldPeace](https://community.topcoder.com/stat?c=problem_statement&pm=2420&rd=5850) – SRM 204
+- [GoldMine](https://community.topcoder.com/stat?c=problem_statement&pm=1957&rd=4650) – SRM 169
+- [MLBRecord](https://community.topcoder.com/stat?c=problem_statement&pm=2236&rd=5879) – TCO04 Round 2
+- [RearrangeFurniture](https://community.topcoder.com/stat?c=problem_statement&pm=3076&rd=5866) – SRM 220
+- [WorldPeace](https://community.topcoder.com/stat?c=problem_statement&pm=2420&rd=5850) – SRM 204
