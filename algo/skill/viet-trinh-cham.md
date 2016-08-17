@@ -132,13 +132,10 @@ int main()
         ofstream inp((NAME + ".inp").c_str());
         // Code phần sinh test ở đây
         inp.close();
-        // Nếu dùng linux thì thay bằng:
-        // system(("./" + NAME).c_str());
-        // system(("./" + NAME + "_trau").c_str());
+        // Nếu dùng Linux thì "./" + Tên chương trình
         system((NAME + ".exe").c_str());
         system((NAME + "_trau.exe").c_str());
-        // Nếu dùng linux thì thay bằng:
-        // if(system(("diff " + NAME + ".out " + NAME + ".ans").c_str()) != 0)
+        // Nếu dùng linux thì thay fc bằng diff
         if(system(("fc " + NAME + ".out " + NAME + ".ans").c_str()) != 0)
         {
             cout << "Test " << iTest << ": WRONG!\n";
@@ -171,7 +168,7 @@ begin
         Exec(NAM + '_sinhtest.exe', '');
         Exec(NAM + '.exe', '');
         Exec(NAM + '_trau.exe', '');
-	   Exec('fc', NAM + '.out ' + NAM + '.ans');
+	    Exec('fc', NAM + '.out ' + NAM + '.ans');
         if DosExitCode <> 0 then
         begin
             writeln('Test ', iTest, ': WRONG!');
