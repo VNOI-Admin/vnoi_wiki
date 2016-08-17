@@ -36,7 +36,7 @@ Mảng và danh sách liên kết là 2 cấu trúc dữ liệu nền tảng cho
 <tr>
 <th>Thêm/Xóa 1 phần tử</th>
 <td>$\mathcal{O}(N)$</td>
-<td>$\mathcal{O}(1)$</td>
+<td>$\mathcal{O}(1)$, giả sử biết con trỏ tới phần tử đó</td>
 </tr>
 <tr>
 <th>Truy cập phần tử</th>
