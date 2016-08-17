@@ -100,6 +100,7 @@ Ngoài ra, ta cũng có thể lưu thêm con trỏ trỏ vào phần tử cuối
 - Thêm / xóa 1 phần tử mới vào đầu / cuối: $\mathcal{O}(1)$
 - Truy cập 1 phần tử ở vị trí bất kỳ: $\mathcal{O}(N)$.
 
+
 # Tài liệu tham khảo
 
 - [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/data-structures/)
