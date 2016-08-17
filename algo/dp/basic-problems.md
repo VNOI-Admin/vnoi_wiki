@@ -13,7 +13,7 @@ Cho dãy $A_1,A_2,..., A_n$. Hãy tìm một dãy con tăng có nhiều phần t
 - Các phần tử trong dãy kết quả chỉ xuất hiện 1 lần. Vì vậy phương pháp làm là ta sẽ dùng vòng `For` duyệt qua các phần tử $A$ trong dãy, khác với các bài toán của mô hình 4 (đặc trưng là bài toán đổi tiền), các phần tử trong dãy có thể được chọn nhiều lần nên ta thực hiện bằng phương pháp cho giá trị cần quy đổi tăng dần từng đơn vị.
 - Thứ tự của các phần tử được chọn phải được giữ nguyên so với dãy ban đầu.
 
-Đặc trưng này có thể mất đi trong một số bài toán khác tùy vào yêu cầu cụ thể. Chẳng hạn bài: Tam giác bao nhau (xem ở dưới).
+Đặc trưng này có thể mất đi trong một số bài toán khác tùy vào yêu cầu cụ thể. Chẳng hạn bài: [Tam giác bao nhau](http://vnoi.info/contributor/algo/dp/basic-problems#1-dãy-con-đơn-điệu-dài-nhất_1-4-một-số-bài-toán-khác_dãy-tam-giác-bao-nhau).
 
 ## 1.2. Công thức QHĐ
 
@@ -98,7 +98,7 @@ Việc kiểm tra điểm $M$ có nằm trong tam giác $ABC$ không có thể d
 
 **Bài toán**:
 
-Cho dãy $A_1, A_2,..., A_N$. Hãy tìm dãy con đổi dấu dài nhất của dãy đó. Dãy con con đổi dấu $A_{i1},A_{i2},..., A_{ik}$ phải thoả mãn các điều kiện sau:
+Cho dãy $A_1, A_2,..., A_N$. Hãy tìm dãy con đổi dấu dài nhất của dãy đó. Dãy con đổi dấu $A_{i1},A_{i2},..., A_{ik}$ phải thoả mãn các điều kiện sau:
 
 - $A_{i1} < A_{i2} > A_{i3} <...$ hoặc $A_{i1} > A_{i2} < A_{i3} >...$
 - Các chỉ số phải cách nhau ít nhất $L$: $i_2 - i_1 \ge L$, $i_3 - i_2 \ge L$, ...
@@ -137,7 +137,7 @@ Các khối đá đều có dạng hình hộp chữ nhật và được đặc 
 
 Hãy chỉ ra cách để xây dựng được một cái tháp sao cho số khối đá được dùng là nhiều nhất.
 
-# Vali (B)
+# 2. Vali (B)
 
 ## 2.1. Mô hình
 
@@ -270,34 +270,34 @@ Dễ thấy số phép biến đổi phụ thuộc vào vị trí $i$ đang xét
 
 Gọi $L[i,j]$ là số phép biến đổi ít nhất để biến xâu $X_i$ gồm $i$ kí tự phần đầu của $X$ ($X_i = X[1..i]$) thành xâu $F_j$ gồm $j$ kí tự phần đầu của $F$ ($F_j = F[1..j]$).
 
-Dễ thấy $F[0,j]=j$ và $F[i,0]=i$.
+Dễ thấy $L[0,j]=j$ và $L[i,0]=i$.
 
 Có 2 trường hợp xảy ra:
 
 - Nếu $X[i] = F[j]$:
     - $X_1 X_2 ... X_{i-1}$      $X_i$
     - $F_1 F_2 ... F_{j-1}$      $X_i$
-    - thì ta chỉ phải biến đổi xâu $X_{i-1}$ thành xâu $Y_{j-1}$. Do đó $F[i,j]=F[i-1,j-1]$.
+    - thì ta chỉ phải biến đổi xâu $X_{i-1}$ thành xâu $F_{j-1}$. Do đó $L[i,j]=L[i-1,j-1]$.
 - Ngược lại, ta có 3 cách biến đổi:
     - Xoá kí tự $X_i$:
         - $X_1 X_2 ... X_{i-1}$
         - $F_1 F_2 ... F_{j-1}$      $F_j$
-        - Xâu $X_{i-1}$ thành $F_j$. Khi đó $F[i,j]=F[i-1,j]+1$. (Cộng 1 là do ta đã dùng 1 phép xóa)
+        - Xâu $X_{i-1}$ thành $F_j$. Khi đó $L[i,j]=L[i-1,j]+1$. (Cộng 1 là do ta đã dùng 1 phép xóa)
     - Thay thế $X_i$ bởi $F_j$:
         - $X_1 X_2 ... X_{i-1}$      $F_j$
         - $F_1 F_2 ... F_{j-1}$      $F_j$
-        - Xâu $X_{i-1}$ thành $F_{j-1}$. Khi đó $F[i,j]=F[i-1,j-1]+1$.
+        - Xâu $X_{i-1}$ thành $F_{j-1}$. Khi đó $L[i,j]=L[i-1,j-1]+1$.
     - Chèn $F_j$ vào sau $X_i$:
         - $X_1 X_2 ... X_{i}$      $F_j$
         - $F_1 F_2 ... F_{j-1}$      $F_j$
-        - Xâu $X_i$ thành $Y_{j-1}$. Khi đó $F(i,j)=F(i,j-1)+1$
+        - Xâu $X_i$ thành $F_{j-1}$. Khi đó $L[i,j]=L[i,j-1]+1$
 
 Tổng kết lại, ta có công thức QHĐ:
 
-- `F[0,j]=j`
-- `F[i,0]=i`
-- `F[i,j] =F[i−1,j−1]` nếu $X_i = Y_j$.
-- `F[i,j] = min(F[i−1,j], F[i,j−1], F[i−1,j−1]) + 1` nếu $X_i \ne X_j$.
+- `L[0,j]=j`
+- `L[i,0]=i`
+- `L[i,j] =L[i−1,j−1]` nếu $X_i = Y_j$.
+- `L[i,j] = min(L[i−1,j], L[i,j−1], L[i−1,j−1]) + 1` nếu $X_i \ne F_j$.
 
 Bài này ta có thể tiết kiệm biến hơn bằng cách dùng 2 mảng 1 chiều tính lẫn nhau và một mảng đánh dấu 2 chiều để truy vết.
 
@@ -307,7 +307,7 @@ Bài này ta có thể tiết kiệm biến hơn bằng cách dùng 2 mảng 1 c
 
 **Bài toán**:
 
-Cho 2 xâu $X$, $Y$. Hãy tìm xâu con của $X$ và của $Y$ có độ dài lớn nhất.
+Cho 2 xâu $X$, $Y$. Hãy tìm xâu con của $X$ và của $Y$ có độ dài lớn nhất. Biết xâu con của một xâu thu được khi xóa một số kí tự thuộc xâu đó (hoặc không xóa kí tự nào).
 
 **Công thức QHĐ**:
 
@@ -315,7 +315,7 @@ Gọi $L[i,j]$ là độ dài xâu con chung dài nhất của xâu $X_i$ gồm 
 
 - `L[0,j] = L[i,0] = 0`
 - `L[i,j] = L[i−1,j−1] + 1` nếu $X_i = Y_j$
-- `L[i,j] = max(L(i−1,j), L[i,j−1])` nếu $X_i \ne  Y_j$.
+- `L[i,j] = max(L[i−1,j], L[i,j−1])` nếu $X_i \ne  Y_j$.
 
 **Cài đặt**:
 
@@ -346,7 +346,8 @@ for i:=1 to m do
           L[0] := 0;
           for j:=1 to n do
                if X[i]=Y[j] then L[i,j]:=P[j-1]+1
-                    else L[i,j]:=max(P[j], L[j-1]); P := L;
+                    else L[i,j]:=max(P[j], L[j-1]);
+          P := L;
     end;
 ```
 
@@ -372,7 +373,7 @@ Một xâu gọi là xâu đối xứng (palindrome) nếu xâu đó đọc từ
 
 Bài toán này có một công thức QHĐ như sau:
 
-- Gọi $L[i,j]$ là số kí tự ít nhất cần thêm vào xâu con $S[i..j]$ của $$ để xâu đó trở thành đối xứng.
+- Gọi $L[i,j]$ là số kí tự ít nhất cần thêm vào xâu con $S[i..j]$ của $S$ để xâu đó trở thành đối xứng.
 - Đáp số của bài toán sẽ là $L[1,n]$ với $n$ là số kí tự của $S$. Ta có công thức sau để tính $L[i,j]$:
   - $L(i,i)=0$.
   - $L(i,j)=L(i+1,j-1)$ nếu $S_i=S_j$
@@ -398,11 +399,11 @@ Gọi $L(i,j)$ là tổng giá trị lớn nhất khi được chọn $i$ vật 
 Công thức tính $L(i,t)$ như sau:
 
 - $L(i, 0) = 0$
-- $L(0, j) = 0$
-- $L(i,j) = L(i-1,j)$ nếu $t<A_i$
-- $L(i,t) = max(L(i,j),  L(i-1,j-A_i) + B_i)$ nếu $t \ge A_i$
+- $L(0, t) = 0$
+- $L(i,t) = L(i-1,t)$ nếu $t<A_i$
+- $L(i,t) = max(L(i-1,t),  L(i,t-A_i) + B_i)$ nếu $t \ge A_i$
 
-Trong đó: $L(i-1,j)$ là giá trị có được nếu không đưa vật $i$ vào balô, $L(i-1,j-A_i) + B_i$  là giá trị có được nếu chọn vật $i$.
+Trong đó: $L(i-1,t)$ là giá trị có được nếu không đưa vật $i$ vào balô, $L(i,t-A_i) + B_i$  là giá trị có được nếu chọn vật $i$.
 
 ## 4.3. Cài đặt
 
@@ -415,12 +416,11 @@ for i := 1 to n do
          P:=L;
          for t := 0 to m do
              if t<a[i] then L[t]:=P[t]
-             else L[t] := max(P[t],P[t-a[i]]);
+             else L[t] := max(P[t],L[t-a[i]]+b[i]);
    end;
 ```
 
 Nếu để ý kĩ bạn sẽ thấy rằng đoạn trình trên chỉ viết giống công thức QHĐ chứ chưa tối ưu. Chẳng hạn đã có lệnh gán `P:=L`, sau đó lại có gán `L[t]:=P[t]` với các giá trị `t<a[i]` là không cần thiết. Bạn đọc có thể tự cải tiến để chương trình tối ưu hơn.
-
 Độ phức tạp bộ nhớ là $O(m)$ và độ phức tạp thời gian là $O(m \* n)$.
 
 ## 4.4. Một số bài toán khác
@@ -449,8 +449,8 @@ Do đó ta cũng xây dựng hàm QHĐ một cách tương tự: Gọi $L[i,t]$ 
 
 - $L[i,0]=0$
 - $L[0,t]= \inf$ với $t>0$.
-- $L[i,t]=L[i-1,t]$ nếu $t<A_i$.
-- $L[i,t]=min(L[i-1,t], L[i,t-Ai]+1)$ nếu $t \ge A_i$.
+- $L[i,t]=L[i-1,t]$ nếu $t<A[i]$.
+- $L[i,t]=min(L[i-1,t], L[i,t-A[i]]+1)$ nếu $t \ge A_i$.
 
 Công thức này khác công thức của bài xếp balô ở chỗ: dùng hàm **min** chứ không phải hàm **max** (vì cần tìm cách chọn ít hơn) và nếu chọn đồng xu thứ $i$ thì $L[i,t]=L[i,t-A_i]+1$ (vì ta vẫn còn được chọn đồng xu thứ $i$ đó nữa), khác với khi xếp balô là: nếu chọn đồ vật thứ $i$ thì $L[i,t]=L[i-1,t-A_i])+B_i$ vì đồ vật $i$ chỉ được chọn một lần.
 
@@ -629,7 +629,7 @@ Quá trình tính như sau:
 ```pascal
 for i:=1 to m do
      for j := 1 to n do
-          F[i,j]=max[F[i-1,j],F[i-1,j-1],F[i-1,j+1]]+A[i,j];
+          F[i,j]=max(F[i-1,j],F[i-1,j-1],F[i-1,j+1]]+A[i,j]);
 
 ```
 
