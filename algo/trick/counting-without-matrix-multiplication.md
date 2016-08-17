@@ -6,6 +6,8 @@
 
 Nguyễn Tiến Trung Kiên là cựu học sinh Chuyên Tổng Hợp, với 1 HCĐ IOI năm 2014 và 1 HCB IOI năm 2015. Kiên còn  nổi tiếng với [blog chứa code nhiều thuật toán](https://sites.google.com/site/kc97ble/) và series [Free contest](https://www.facebook.com/kcxxble).
 
+[[_TOC_]]
+
 # Giới thiệu
 
 [[Nhân ma trận|algo/trick/matrix-multiplication]] thật sự hữu dụng. Có nhiều bài toán khi $n$ nhỏ, ta dùng **DP** (**Dynamic Programming - Quy Hoạch Động**) để giải. Nhưng khi $n$ lớn (khoảng $10^9$), ta phải dùng nhân ma trận để giảm **độ phức tạp**. Trong quá trình code nhân ma trận, việc sinh ra ma trận gốc không phải lúc nào cũng đơn giản. Tôi đã tìm ra một phương pháp tốt để giải những bài toán này mà không cần nhân ma trận.
@@ -20,9 +22,16 @@ Khi dùng phương pháp này, ta không cần phải sinh ma trận gốc và k
 
 Ví dụ, khi $n = 4$ và $L = 1$, thì `()()` là dãy ngoặc đúng duy nhất thoả mãn, còn `(())`, `((()`, và `))((` thì không thoả mãn.
 
-Nếu dùng phương pháp **Quy Hoạch Động**, ta sẽ tìm ra công thức $f(n, h) = f(n - 1, h - 1) + f(n - 1, h + 1)$ trong đó $f(n, h)$ là số dãy mà phần còn lại cần xây dựng có độ dài $n$ và độ cao hiện tại là $h$. Mục tiêu của chúng ta là tính $f(n, 0)$. Tất nhiên độ phức tạp của hàm $f$ là quá lớn.
+Bài toán này có thể giải bằng phương pháp **Quy hoạch động** như sau:
 
-Bây giờ, gọi $f(n, h, h_0)$ là số dãy độ dài $n$ bắt đầu từ độ cao $h$ và kết thúc tại độ cao $h_0$.
+- Nhận xét: Nếu ta đi qua lần lượt từng ký tự của dãy ngoặc và duy trì một biến `sum`: Khi gặp `(` ta tăng `sum` lên 1 đơn vị. Khi gặp `)` ta giảm `sum` đi 1 đơn vị. 1 dãy ngoặc là dãy ngoặc đúng nếu thỏa mãn 2 điều kiện sau:
+  - Không có thời điểm nào `sum` nhỏ hơn 0
+  - Đến cuối cùng, `sum` bằng 0.
+- Đồng thời, nếu làm như trên, độ sâu của dãy ngoặc chính là giá trị tối đã của `sum` trong quá trình trên.
+
+Từ nhận xét trên, ta tìm ra công thức $f(n, h) = f(n - 1, h - 1) + f(n - 1, h + 1)$ trong đó $f(n, h)$ là số dãy mà phần còn lại cần xây dựng có độ dài $n$ và tổng hiện tại (sum) là $h$. Mục tiêu của chúng ta là tính $f(n, 0)$. Tất nhiên độ phức tạp của hàm $f$ là quá lớn.
+
+Bây giờ, gọi $f(n, h, h_0)$ là số dãy độ dài $n$ bắt đầu từ tổng $h$ và kết thúc tại tổng $h_0$.
 
 Xét các trường hợp:
 
