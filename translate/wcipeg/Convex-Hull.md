@@ -49,3 +49,11 @@ Về độ phức tạp của thuật toán, ta thấy bước sắp xếp các 
 
 ## Thuật toán chuỗi đơn điệu
 Thuật toán chuỗi đơn điệu vừa dễ cài đặt (tuy dù nó hơi khó hiểu), vừa là thuật toán nhanh nhất trong số 3 thuật toán được giới thiệu ở đây. Thuật toán dựa trên việc tìm hai chuỗi đơn điệu của bao lồi: chuỗi trên và chuỗi dưới. Ta thấy điểm ở xa về phía bên phải nhất (từ đây gọi là điểm phải nhất) và điểm ở xa về phía bên trái nhất (từ đây gọi là điểm trái nhất) trong dữ liệu vào luôn là hai đỉnh của bao lồi. Phần bao lồi theo chiều kim đồng hồ tính từ điểm trái nhất và ngược chiều kim đồng hồ tính từ điểm phải nhất gọi là chuỗi trên, phần còn lại của bao lồi gọi là chuỗi dưới. Ta sẽ tìm chuỗi trên và chuỗi dưới độc lập với nhau.
+
+Bước đầu tiên là sắp xếp các điểm được cho theo thứ tự tăng dần theo hoành độ. Nếu hai điểm có cùng hoành độ, điểm có tung độ nhỏ hơn sẽ đứng trước. Gọi $H$ là bao lồi tạm thời và độ lớn của bao là $h$, sao cho điểm đầu của bao là $H_1$ và điểm cuối là $H_h$. Với mỗi điểm được xét:
+
+1. Thêm điểm này vào $H$.
+
+2. Nếu $h<3$, xét tiếp điểm tiếp theo.
+
+3. Gọi $\vec{u}=\overrightarrow{H_{h_2}H_{h_1}}$ và $\vec{v}=\overrightarrow{H_{h-1}H_h}$.
