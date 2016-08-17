@@ -70,7 +70,7 @@ Chương trình này có nhiệm vụ duyệt N lần, với N là số test c�
 
 [Link code](http://ideone.com/PGDQEN/)
 
-Vì đây là code C++ nên tác giả kết hợp trình sinh test với trình so test để cho hàm random chạy không bị trùng. Code sinh test từ dòng 33 đến dòng 59. Ở đây, ta duyệt 100 lần ứng với 100 test, mỗi lần duyệt ta sinh ngẫu nhiên ra file input `vmellip.inp`. Sau đó, ta lần lượt chạy hai chương trình ở trên: `system("vmellip.exe")` và `system("vmellip_trau.exe")` (lời giải 2 đặt tên là `vmellip_trau`). Sau đó ta sử dụng lệnh `system("fc vmellip.out vmellip.ans"`), có nhiệm vụ so hai file text `vmellip.out` và `vmellip.ans` với nhau. Nếu hai file hoàn toàn khớp nhau, lệnh `system` sẽ trả về exit code là 0, còn không sẽ trả về exit code là 1.
+Vì đây là code C++ nên tác giả kết hợp trình sinh test với trình so test để cho hàm random chạy không bị trùng. Code sinh test từ dòng 11 đến dòng 37. Ở đây, ta duyệt 100 lần ứng với 100 test, mỗi lần duyệt ta sinh ngẫu nhiên ra file input `vmellip.inp`. Sau đó, ta lần lượt chạy hai chương trình ở trên: `system("vmellip.exe")` và `system("vmellip_trau.exe")` (lời giải 2 đặt tên là `vmellip_trau`). Sau đó ta sử dụng lệnh `system("fc vmellip.out vmellip.ans"`), có nhiệm vụ so hai file text `vmellip.out` và `vmellip.ans` với nhau. Nếu hai file hoàn toàn khớp nhau, lệnh `system` sẽ trả về exit code là 0, còn không sẽ trả về exit code là 1.
 
 Chạy thử chương trình này, ta có thể sinh được một test sai như sau:
 
