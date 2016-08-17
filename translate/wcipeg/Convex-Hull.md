@@ -42,4 +42,5 @@ Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất n
 3. Nếu không có điểm nào bị loại khỏi bao, ta đã tìm được bao lồi thật sự $H$ với các điểm được liệt kê theo thứ tự ngược chiều kim đồng hồ, nếu không thì ta quay lại bước 1.
 
 Để đảm bảo ta có thể loại bỏ điểm $H_1$ với độ phức tạp $O(1)$ (tức là điểm $H_2$ cũ trở thành điểm $H_1$ mới,...), ta nên dùng cấu trúc dữ liệu [hàng đợi hai đầu](http://vnoi.info/contributor/algo/data-structures/data-structures-overview#1-ctdl-l%C6%B0u-tr%E1%BB%AF_1-2-stack-queue-deque) (deque) hoặc [danh sách liên kết](http://vnoi.info/contributor/algo/data-structures/data-structures-overview#1-ctdl-l%C6%B0u-tr%E1%BB%AF_1-1-m%E1%BA%A3ng-array-danh-s%C3%A1ch-li%C3%AAn-k%E1%BA%BFt-linked-list) (linked list).
- 
+
+Về độ phức tạp của thuật toán, ta thấy bước sắp xếp các điểm có độ phức tạp $O(n \log{n})$. Mỗi điểm được cho vào bao nhiều nhất một lần nên tổng độ phức tạp của các bước thêm điểm là $O(n)$, và mỗi điểm bị loại ra khỏi bao nhiều nhất một lần nên tổng độ phức tạp của các bước xóa điểm là $O(n)$, do đó độ phức tạp của bước xét các điểm là $O(n)$. Vậy, độ phức tạp của thuật toán Graham là $O(n \log{n})$, phù hợp cho hầu hết các bài toán. 
