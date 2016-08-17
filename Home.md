@@ -4,8 +4,6 @@
 
 VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học đến với tất cả mọi người. Bạn có thể đọc bài giới thiệu của bọn mình [[ở đây|about]].
 
-Nếu bạn muốn đóng góp, có thể [[làm theo hướng dẫn|contributor-tutorial]]
-
 ## Các chủ đề
 
 ### Thuật toán
@@ -22,6 +20,9 @@ Nếu bạn muốn đóng góp, có thể [[làm theo hướng dẫn|contributor
     - [[Độ phức tạp tính toán|translate/topcoder/Computational-Complexity-Section-1]]
     - [[Sắp xếp|algo/basic/sorting]]
     - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
+
+- Kĩ năng thi cử
+    - [[Viết trình chấm|algo/skill/viet-trinh-cham]]
 
 - [[Cấu trúc dữ liệu|algo/data-structures/data-structures-overview]]
     - [[Bài toán RMQ & bài toán LCA|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]]
@@ -41,9 +42,6 @@ Nếu bạn muốn đóng góp, có thể [[làm theo hướng dẫn|contributor
     - [[Nhân ma trận|algo/trick/matrix-multiplication]]
     - [[Khử nhân ma trận|algo/trick/counting-without-matrix-multiplication]]
     - [[Mo's algorithm|algo/data-structures/mo-algorithm]]
-
-- Kĩ năng thi cử
-    - [[Viết trình chấm|algo/skill/viet-trinh-cham]]
 
 ### Ngôn ngữ lập trình:
 
