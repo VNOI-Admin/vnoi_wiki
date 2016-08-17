@@ -135,6 +135,19 @@ Trong trường hợp dữ liệu ngẫu nhiên, các thao tác trên có độ 
   [[/uploads/redblack1.png|redblack1]]
 - **Splay tree**, **Skip list**, **Treap** thường được dùng trong các kỳ thi bởi cài đặt đơn giản.
 
+## 1.5. Bảng băm (Hash Tables)
+
+Bảng băm là một CTDL thường được sử dụng như một từ điển: mỗi phần tử trong bảng băm là một cặp (khóa, giá trị). Nếu so sánh với mảng, khóa được xem như chỉ số của mảng, còn giá trị giống như giá trị mà ta lưu tại chỉ số tương ứng. Bảng băm không như các loại từ điển thông thường - ta có thể tìm được giá trị thông qua khóa của nó.
+
+Bảng băm hoạt động dựa trên hàm Hash: Hash là quá trình khởi tạo một giá trị khóa (thường là 32 bit hoặc 64 bit) từ một phần dữ liệu. Nó có thể là $n$ bit đầu tiên của dữ liệu, $n$ bit cuối cùng, giá trị mod cho một số nguyên tố nào đó. Dựa theo giá trị hash, dữ liệu được chia vào các **bucket**:
+
+[[/uploads/data_structures_hash_table_hash_function.png]]
+
+Trong trường hợp hàm Hash hoạt động tốt, mỗi bucket có rất ít phần tử, độ phức tạp của các thao tác trên Hash table như sau:
+
+- Tìm 1 khóa: $\mathcal{O}(1)$.
+- Thêm / xóa 1 khóa: 
+
 # 2. CTDL Truy vấn
 
 ## 2.1. Mảng cộng dồn (Partial Sum)
