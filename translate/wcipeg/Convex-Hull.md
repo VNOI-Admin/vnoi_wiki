@@ -56,4 +56,4 @@ Bước đầu tiên là sắp xếp các điểm được cho theo thứ tự t
 
 2. Nếu $h<3$, xét tiếp điểm tiếp theo.
 
-3. Gọi $\vec{u}=\overrightarrow{H_{h_2}H_{h_1}}$ và $\vec{v}=\overrightarrow{H_{h-1}H_h}$.
+3. Gọi $\vec{u}=\overrightarrow{H_{h_2}H_{h_1}}$ và $\vec{v}=\overrightarrow{H_{h-1}H_h}$. Lần này, do ta đang di chuyển theo chiều kim đồng hồ để tìm chuỗi trên, ta kiểm tra xem $\vec{u} \times \vec{v}$ có nhỏ hơn 0 hay không. Nếu có, ta xét tiếp điểm tiếp theo. Nếu không, ta loại bỏ $H_{h-1}$ và quay lại bước 2. 
