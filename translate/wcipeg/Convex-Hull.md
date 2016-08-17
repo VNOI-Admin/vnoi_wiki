@@ -32,4 +32,14 @@ Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất n
 2. Nếu $h<3$, xét tiếp điểm tiếp theo.
 
 3. Xét 3 điểm $H_h,H_{h-1}$ và $H_{h-2}$. Có thể sau khi cho thêm điểm $H_h$, ta biết được điểm $H_{h-1}$ chắc chắn không nằm trong bao. Gọi $\vec{u}=\overrightarrow{ H_{h-2} H_{h-1} }$ và $\vec{v}=\overrightarrow{H_{h-1} H_h}$. Nếu khi đi theo hướng $\vec{v}$ rồi đi theo hướng $\vec{u}$ là ta đã bẻ góc ngược chiều kim đồng hồ, hay $\vec{u} \times \vec{v}>0$, thì cả ba điểm đều tạm thuộc bao, và ta xét tiếp điểm tiếp theo. Nhưng nếu $\vec{u} \times \vec{v}<0$, thì góc $\widehat{H_{h-2} H_{h-1} H_{h} }$ sẽ tạo ra đa giác lõm và điểm $H_{h-1}$ phải bị loại bỏ, có nghĩa là $H_{h-1}$ được đặt là $H_{h}$ và $h$ giảm đi 1. Sau đó quay lại bước 2 cho đến khi xét hết các điểm.
+
+Đến lúc này ta đã có một tập điểm $H_1, H_2,..., H_h$ sắp xếp ngược chiều kim đồng hồ. Vấn đề lầ ta chưa chắc điểm $H_1$ đã thuộc bao hay không (chú ý rằng điểm $H_1$ không thể bị loại bỏ trong các bước trên). Ngoài ra, vì bao lồi là một đường khép kín chứ không phải là một đường gấp khúc nên cũng có khả năng điểm $H_h$ không thuộc bao (điểm $H_h$ cũng không thể bị loại bỏ trong các bước trên). Cách mà chúng ta loại bỏ điểm không thuộc bao là xét 3 điểm liên tiếp trong bao, và ta cũng phải làm tương tự với hai điểm $H_1$ và $H_h$.
+
+1. Xét 3 điểm $H_2, H_1, H_h$. Gọi $\vec{u}=\overrightarrow{H_h H_1} và $\vec{v}=\overrightarrow{H_1 H_2}$. Nếu $\vec{u} \times \vec{v} <0$ thì $H_1$ phải bị loại khỏi bao.
+
+2. Xét 3 điểm $H_1, H_h, H_{h-1}$. Gọi $\vec{u}=\overrightarrow{H_{h-1} H_h}$ và $\vec{v}=\overrightarrow{H_h H_1}. Nếu $\vec{u} \times \vec{v} <0$ thì $H_h$ phải bị loại khỏi bao.
+
+3. Nếu không có điểm nào bị loại khỏi bao, ta đã tìm được bao lồi thật sự $H$ với các điểm được liệt kê theo thứ tự ngược chiều kim đồng hồ, nếu không thì ta quay lại bước 1.
+
+Để đảm bảo ta có thể loại bỏ điểm $H_1$ với độ phức tạp $O(1)$ (tức là điểm $H_2$ cũ trở thành điểm $H_1$ mới,...)
  
