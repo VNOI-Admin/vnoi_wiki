@@ -26,7 +26,7 @@ Là một con người tràn trề sinh lực, John muốn dành thời gian nhi
 
 Giờ anh ấy muốn thực hiện được tối đa các hoạt động trong thời gian biểu trên. Mặc dù để lên kế hoạch hiệu quả thì cần phải có chút lý trí, nhưng giờ thì hồn anh ấy đã đắm chìm vào kỳ nghỉ rồi.
 
-# Phát biểu bài toán
+## Phát biểu bài toán
 
 Liệu ta có thể giúp anh ấy có một kỳ nghỉ tuyệt vời? Ta hoàn toàn có thể! Đầu tiên, ta cần phải trình bày lại bài toán:
 
@@ -37,7 +37,7 @@ Liệu ta có thể giúp anh ấy có một kỳ nghỉ tuyệt vời? Ta hoàn
 Mỗi hoạt động chỉ có hai chọn lựa là có hoặc không. Với mỗi trường hợp chọn lựa cho hoạt động thứ nhất, ta lại có thêm 2 lựa chọn cho hoạt động thứ 2. Phân tích nhanh ta sẽ thấy được rằng có $2^n$ trường hợp, và trong tình huống này thì sẽ có $2^{10} = 1024$ trường hợp. Với mỗi trường hợp ta sẽ kiểm tra xem có thể thực hiện được các hoạt động đó không: có 2 cặp hoạt động nào bị trùng thời gian hay không. Sau khi xét hết các phương án, ta dễ dàng tìm ra 1 phương án có nhiều hoạt động nhất. Với khá nhiều sự chọn lựa như thế này, John buộc phải nhờ đến sự giúp đỡ của chiếc máy tính đang mệt mỏi. Nhưng điều gì sẽ xảy ra nếu John có tới 50 hoạt động trong danh sách? Thậm chí dùng đến cả siêu máy tính nhanh nhất thế giới thì cũng cần đến vài năm để tìm ra câu trả lời. Thế nên, phương án này khá phi thực tế.
 
 
-# Tiếp cận 1
+## Tiếp cận 1
 
 Chúng ta cần tìm một cách tiếp cận mới. Một phương án tốt có lẽ là thực hiện công việc ngay khi thời cơ đến: Nếu ta có hai hoạt động và chúng bị trùng về thời gian, ta sẽ ưu tiên lựa chọn hoạt động bắt đầu trước nhằm tiết kiệm thời gian (nghĩa là hoạt động có $L_i$ nhỏ hơn). Nếu áp dụng cách này vào 10 hoạt động trên thì:
 
@@ -46,9 +46,9 @@ Chúng ta cần tìm một cách tiếp cận mới. Một phương án tốt c�
 
 Và chưa đầy một ngày nhưng anh ấy đã thực hiện được 2 hoạt động. Thật tuyệt vời! Nhưng thật ra, đó chỉ là **lựa chọn tốt nhất** lúc này thôi. Và bây giờ thì ta có gì, 5 ngày ăn chơi ở Hawaii và cho đến tận tối thứ 7 thì anh ấy vẫn chỉ thực hiện được 2 hoạt động. Hãy nghĩ xem trong 5 ngày đó anh ta đã có thể thực hiện được những gì. Mặc dù đơn giản và thực thi rất nhanh, song rất không may là thuật toán này lại không chính xác.
 
-# Tiếp cận 2
+## Tiếp cận 2
 
-Hãy thử một mánh khóe khác. Giờ ta sẽ bỏ những hoạt động tiêu tốn nhiều thời gian như đi *Du lịch Hawaii* bằng cách lựa chọn những hoạt động tốn ít thời gian nhất và kiểm tra xem nó có hợp lí với những hoạt động đã chọn trước đó chưa rồi tiếp tục quá trình. Theo như thời gian biểu ở trên thì hoạt động đầu tiện được chọn lựa sẽ là tắm. Với thời gian chỉ 15 phút, đây chính là **lựa chọn tối ưu cục bộ** (**local best**). Và giờ điều mà ta cần biết đó là có thể giữ được **tối ưu cục bộ** khi mà những hoạt động thích hợp khác được chọn lựa. Thời gian biểu của John sẽ như sau:
+Hãy thử một mánh khóe khác. Giờ ta sẽ bỏ những hoạt động tiêu tốn nhiều thời gian như đi *Du lịch Hawaii* bằng cách lựa chọn những hoạt động tốn ít thời gian nhất (nghĩa là có $R_i - L_i$ nhỏ nhất) và kiểm tra xem nó có hợp lí với những hoạt động đã chọn trước đó chưa rồi tiếp tục quá trình. Theo như thời gian biểu ở trên thì hoạt động đầu tiện được chọn lựa sẽ là tắm. Với thời gian chỉ 15 phút, đây chính là **lựa chọn tối ưu cục bộ** (**local best**). Và giờ điều mà ta cần biết đó là có thể giữ được **tối ưu cục bộ** khi mà những hoạt động thích hợp khác được chọn lựa. Thời gian biểu của John sẽ như sau:
 
 - *Tắm rửa* (15 phút, tối T7, 20:30 - 20:45).
 - *Tham gia kỳ thi SRM trên Topcoder* (2 tiếng, T7, 12:00 - 14:00).
@@ -65,9 +65,11 @@ Trong 10 hành động, ta đã lựa ra được 6 hành động, không tệ c
 
 Áp dụng thuật toán của ta, John đã tham gia một cuộc hẹn hò chóng vánh (màu đỏ), để rồi anh ấy đã bỏ lỡ cả bài thi trong trường (màu xanh da trời) lẫn trận đấu bóng rổ của đội anh ấy yêu thích (màu xanh lá). Là một **Topcoder**, chúng ta cần phải viết ra một chương trình hoàn toàn chính xác, chứ không phải chỉ đúng trong 1 số trường hợp. Chỉ cần một trường hợp duy nhất chúng ta không giải quyết được sẽ dẫn tới một thất bại toàn diện.
 
-# Tiếp cận 3
+## Tiếp cận 3
 
-Những gì mà chúng ta thường làm trong tình huống này là phân tích điều gì đã gây ra lỗi ở cách làm trước và tránh lặp lại nó trong tương lai. Hãy xem xét lại trường hợp sai. Cuộc hẹn hò trùng thời gian với cả việc làm bài thi lẫn trận đấu bóng rổ, trong khi cả trận đấu bóng rổ lẫn làm bài thi chỉ trùng lặp với một mình cuộc hẹn hò. Vậy thì ý tưởng cũng tự sinh ra từ vấn đề này. Tại sao ta không chọn hoạt động ít bị trùng lặp nhất so với những hoạt động còn lại? Nghe có vẻ hợp lí! Giờ ta sẽ thử chứng minh rằng phương pháp này hoàn toàn đúng đắn. Giờ giả sử ta đã lựa chọn hoạt động X, ta sẽ thử kiểm tra xem ta có thể lựa chọn hoạt động A và B (những hoạt động bị trùng lặp với X) thay vì X được hay không. Và A, B cũng không được trùng lặp nhau, nếu không ta cũng không thể tối ưu hóa kết quả. Bây giờ, ta sẽ quay về trường hợp trước đó (X trùng với 2 hoạt động, A và B trùng với 1 hoạt động). Trong trường hợp này, ta sẽ chọn A và B ngay từ đầu tiên. Một trong những cách để phản bác lại giả thiết này chính là cho hoạt động A và B trùng lặp với nhiều hoạt động hơn nữa chứ không chỉ hoạt động X. Nghe nó có vẻ không trực quan cho lắm, nhưng (thật không may) ta vẫn có thể xây dựng trường hợp đó như sau:
+Những gì mà chúng ta thường làm trong tình huống này là phân tích điều gì đã gây ra lỗi ở cách làm trước để tránh lặp lại nó trong tương lai. Hãy xem xét lại trường hợp sai. Cuộc hẹn hò trùng thời gian với cả việc làm bài thi lẫn trận đấu bóng rổ, trong khi cả trận đấu bóng rổ lẫn làm bài thi chỉ trùng lặp với một mình cuộc hẹn hò. Vậy thì ý tưởng cũng tự sinh ra từ vấn đề này. Tại sao ta không chọn hoạt động ít bị trùng lặp nhất so với những hoạt động còn lại? Nghe có vẻ hợp lí!
+
+Để đảm bảo rằng phương pháp này hoàn toàn đúng đắn, lần này ta hãy thử chứng minh. Giờ giả sử ta đã lựa chọn hoạt động X, ta sẽ thử kiểm tra xem ta có thể lựa chọn hoạt động A và B (những hoạt động bị trùng lặp với X) thay vì X được hay không. Và A, B cũng không được trùng lặp nhau, nếu không ta cũng không thể tối ưu hóa kết quả. Bây giờ, ta sẽ quay về trường hợp trước đó (X trùng với 2 hoạt động, A và B trùng với 1 hoạt động). Trong trường hợp này, ta sẽ chọn A và B ngay từ đầu tiên. Một trong những cách để phản bác lại giả thiết này chính là cho hoạt động A và B trùng lặp với nhiều hoạt động hơn nữa chứ không chỉ hoạt động X. Nghe nó có vẻ không trực quan cho lắm, nhưng (thật không may) ta vẫn có thể xây dựng trường hợp đó như sau:
 
 <div align="center">
 	<img src="http://community.topcoder.com/i/education/greedyAlg2.gif" alt="" border="0">
@@ -75,11 +77,21 @@ Những gì mà chúng ta thường làm trong tình huống này là phân tíc
 
 Nhưng hoạt động được biểu diễn bằng gạch màu xanh chính là những lựa chọn tối ưu trong thời gian biểu trên. Nhưng hoạt động tô màu đỏ trùng lặp với 2 hoạt động nên nó sẽ được chọn trước. Vẫn còn 4 hoạt động thích hợp khác trước hoạt động đỏ, nhưng chúng đều bị trùng lặp lẫn nhau, thế nên ta chỉ có thể lựa chọn thêm 1 hoạt động. Điều tương tự cũng xảy ra đối với 4 hoạt động sau hoạt động màu đỏ, nhưng ta vẫn chỉ có thể chọn 1. Vậy tổng cộng theo phương pháp này, ta vẫn chỉ có thể chọn 3 hoạt động, trong khi kết quả tối ưu là 4.
 
-Tổng quát lại, ta thấy được rằng mỗi đáp án của chúng ta đều tồn tại một thiếu sót. Có vẻ như chúng ta đang đối mặt với một vấn đề hóc búa. Nhưng thật ra, vấn đề này vẫn có một cách giải quyết đẹp đẽ, và không hề phức tạp. Nếu ta xem xét các hình trên một cách kỹ lưỡng hơn nữa, ta sẽ thấy được rằng hoạt động màu xanh nằm ở góc trái dưới là là hoạt động duy nhất hoàn thành trước *"timeline"* được biểu diễn bằng đường vẽ dọc màu đỏ. Vậy, nếu lựa chọn 1 hoạt động đơn lẻ, ta sẽ chọn hoạt động kết thúc đầu tiên (tại thời điểm **t1**), lúc đó toàn bộ khoảng thời gian còn lại sẽ trống để ta có thể chọn các hoạt động khác. Nếu chúng ta chọn bất kỳ hoạt động nào khác, thì khoảng thời gian còn lại sẽ ngắn đi. Điều này là hiển nhiên, bởi vì khi ta kết thúc với bất kỳ một hoạt động nào khác thì luôn luôn **t2** > **t1**. Trong trường hợp đầu tiên, ta sẽ có toàn bộ thời gian từ **t1** đến khi kết thúc và bao gồm luôn khoảng từ **t2** đến kết thúc. Bởi vậy mà nó cũng không có khuyết điểm trong việc lựa chọn hoạt động kết thúc sớm. Và nó còn có một ưu điểm đó là ta hoàn toàn có thể chèn thêm một hoạt đồng bất kỳ vào giữa **t1** và **t2** và kết thúc trước khi hoạt động của **t2** bắt đầu.
+
+## Tiếp cận 4
+
+Tổng quát lại, ta đã thử 3 cách khác nhau, và mỗi cách đều có thiếu sót:
+
+- Cách 1: Chọn hoạt động có $L_i$ nhỏ nhất
+- Cách 2: Chọn hoạt động có $R_i - L_i$ nhỏ nhất
+- Cách 3: Chọn hoạt động giao với ít hoạt động khác nhất.
+
+Có vẻ như chúng ta đang đối mặt với một vấn đề hóc búa. Nhưng thật ra, vấn đề này vẫn có một cách giải quyết đẹp đẽ, và không hề phức tạp. Nếu ta xem xét các hình trên một cách kỹ lưỡng hơn nữa, ta sẽ thấy được rằng hoạt động màu xanh nằm ở góc trái dưới là là hoạt động duy nhất hoàn thành trước đường vẽ dọc màu đỏ. Vậy, nếu lựa chọn 1 hoạt động đơn lẻ, ta sẽ chọn hoạt động kết thúc sớm nhất (có $R_i$ nhỏ nhất), tại thời điểm **t1**, lúc đó toàn bộ khoảng thời gian còn lại sẽ trống để ta có thể chọn các hoạt động khác. Nếu chúng ta chọn bất kỳ hoạt động nào khác, thì khoảng thời gian còn lại sẽ ngắn đi. Điều này là hiển nhiên, bởi vì khi ta kết thúc với bất kỳ một hoạt động nào khác thì luôn luôn **t2** > **t1**. Trong trường hợp đầu tiên, ta sẽ có toàn bộ thời gian từ **t1** đến khi kết thúc và bao gồm luôn khoảng từ **t2** đến kết thúc. Bởi vậy mà nó cũng không có khuyết điểm trong việc lựa chọn hoạt động kết thúc sớm. Và nó còn có một ưu điểm đó là ta hoàn toàn có thể chèn thêm một hoạt đồng bất kỳ vào giữa **t1** và **t2** và kết thúc trước khi hoạt động của **t2** bắt đầu.
 
 Được biết tới với tên gọi **"Lựa chọn hoạt động"**, đây là bài toán cơ sở sử dụng **"Phương pháp Tham lam"**. Giống như là một gã tham lam luôn muốn chiếm lấy nhiều nhất, thường xuyên nhất mà hắn ta có thể, trong trường hợp này, ở mỗi bước ta sẽ chọn lựa một hoạt động kết thúc đầu tiên và mỗi lần đều không có hoạt động đang trong tiến trình. Và có một sự thật đó là ta luôn luôn áp dụng phương pháp tham lam cho mỗi bước trong cuộc đời của mình. Khi ta đi mua sắm hoặc đi xe hơi, ta đều luôn lựa chọn phương án tốt nhất tại thời điểm hiện tại. Thật ra, phương pháp tham lam có 2 công thức chung:
-* Tính lựa chọn tối ưu: Từ những kết quả tối ưu cục bộ ta có thể đi đến kết quả tối ưu toàn cục mà không cần phải xem xét lại các kết quả.
-* Tính tối ưu từ bài toán nhỏ: Kết quả tối ưu có được xác định bằng các kết quả tối ưu từ bài toán nhỏ hơn.
+
+- Tính lựa chọn tối ưu: Từ những kết quả tối ưu cục bộ ta có thể đi đến kết quả tối ưu toàn cục mà không cần phải xem xét lại các kết quả.
+- Tính tối ưu từ bài toán nhỏ: Kết quả tối ưu có được xác định bằng các kết quả tối ưu từ bài toán nhỏ hơn.
 
 Đoạn mã giả dưới đây diễn ta cách lựa chọn tối ưu các hoạt động bằng thuật toán tham lam mà ta vừa chứng minh phía trên:
 
@@ -96,14 +108,15 @@ A = {1}
 //  J là hoạt động cuối cùng được chọn
 J = 1
 For I = 2  to N
-// ta có thể chọn I nếu nó là hoạt động cuối cùng
-// việc chọn lựa đã hoàn thành
-      If S [I] >= F [J]
-// lựa chọn hoạt động 'I'
-                A = A + {I}
-// hoạt động 'I' giờ trở thành hoạt động cuối cùng được lựa chọn
-                J = I
-      Endif
+  // ta có thể chọn I nếu nó là hoạt động cuối cùng
+  // việc chọn lựa đã hoàn thành
+  If S [I] >= F [J]
+    // lựa chọn hoạt động 'I'
+    A = A + {I}
+
+    // hoạt động 'I' giờ trở thành hoạt động cuối cùng được lựa chọn
+    J = I
+  Endif
 Endfor
 
 Return A
@@ -111,11 +124,12 @@ Return A
 
 Sau khi áp dụng thuật toán trên, *"Fun plan"* của Johnny sẽ như thế này:
 
-- Xóa hết mọi lỗi và đi tắm.
-- Thứ 3 để đánh cờ và chiến thắng.
-- Cả ngày để chơi Starcraft, có vẻ vui đây.
-- Hai ngày tiếp theo để nghỉ ngơi.
-- Và vào ngày cuối cùng, lấy một ít điểm rating từ **Topcoder**, tắm rửa, tận hưởng bữa ăn *"sâu bọ"* và những ly rượu hảo hạng.
+- Sửa phòng
+- Vô địch cuộc thi cờ vua
+- Chiến thắng cuộc thi Starcraft
+- Tham gia kỳ thi SRM trên Topcoder
+- Tắm rửa
+- Tham gia thử thách "All you can eat" và "All you can drink"
 
 Vấn đề của John Smith đã được giải quyết, tuy nhiên đây chỉ là một ví dụ mà Tham lam có thể hoạt động. Một vài vấn đề thật sự khác đến từ **Topcoder** sẽ giúp bạn hiểu rõ hơn về khái niệm này. Trước khi tiếp tục, có lẽ bạn cần phải luyện tập thêm chút ít nữa với những gì mà bạn vừa đọc, bằng bài tập tương tự với *Lựa chọn hành động*, tên là [Boxing](http://www.topcoder.com/stat?c=problem_statement&pm=2977&rd=5880)
 
