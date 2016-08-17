@@ -169,7 +169,7 @@ for i := 1 to n do
 
 ```
 
-Hai vòng for lồng nhau mất $O(N^​2)$, phần kiểm tra đoạn $j+1..i$ là palindrome hay không mất O(N), vậy độ phức tạp thuật toán là $O(N^3)$. Sẽ không được khả thi nếu $N = 1000$. Để giảm độ phức tạp thuật toán, ta sử dụng mảng $L[i, j]$ có ý nghĩa tương tự như mảng $F[i, j]$ ở bài 1. QHĐ lập mảng $L[i, j]$ mất $O(N^2)$. Tổng cộng là $O(N^2)$ vì mỗi lần kiểm tra chỉ mất $O(1)$.
+Hai vòng for lồng nhau mất $O(N^2)$, phần kiểm tra đoạn $j+1..i$ là palindrome hay không mất O(N), vậy độ phức tạp thuật toán là $O(N^3)$. Sẽ không được khả thi nếu $N = 1000$. Để giảm độ phức tạp thuật toán, ta sử dụng mảng $L[i, j]$ có ý nghĩa tương tự như mảng $F[i, j]$ ở bài 1. QHĐ lập mảng $L[i, j]$ mất $O(N^2)$. Tổng cộng là $O(N^2)$ vì mỗi lần kiểm tra chỉ mất $O(1)$.
 
 Một cách khác sử dụng ít bộ nhớ hơn là dùng hai mảng một chiều $L_i$ và $C_i$ có ý nghĩa:
 
