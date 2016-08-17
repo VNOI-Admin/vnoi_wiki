@@ -60,4 +60,18 @@ Bước đầu tiên là sắp xếp các điểm được cho theo thứ tự t
 
 Sau khi xét hết các điểm, $H$ sẽ chứa toàn bộ các điểm ở chuỗi trên. Sau đó, ta tìm chuỗi dưới bằng cách tương tự, chỉ khác là ta xét các điểm theo thứ tự ngược lại (tức là ta xét điểm trái nhất trước). Lưu ý không thêm điểm phải nhất hai lần. Khi thuật toán kết thúc, $H$ sẽ chứa tất cả các đỉnh của bao lồi, với điểm đầu được lặp lại ở cuối.
 
-Thuật toán này cũng có độ phức tạp $O(n \log{n})$. Thuật toán chuỗi đơn điệu được khuyên dùng ở mọi bài toán tìm bao lồi, do nó đơn giản hơn thuật toán Graham và nhanh hơn một chút (do ta không phải tính góc). 
+Thuật toán này cũng có độ phức tạp $O(n \log{n})$. Thuật toán chuỗi đơn điệu được khuyên dùng ở mọi bài toán tìm bao lồi, do nó đơn giản hơn thuật toán Graham và nhanh hơn một chút (do ta không phải tính góc).
+
+## Xử lí trường hợp suy biến
+
+Các thuật toán trên hoạt động tốt trong trường hợp lí tưởng, tức là không có hai điểm nào trùng nhau và không có ba điểm nào thẳng hàng. Tuy nhiên, trong hầu hết các bài toán, ta sẽ phải xử lí các điểm trùng nhau và các bộ ba điểm thẳng hàng. Biện luận tất cả các trường hợp sẽ là một công việc khó nhằn và nhàm chán. Vì vậy, hãy ghi nhớ những điều sau:
+
+- Đọc kĩ đề bài để biết được dữ liệu vào có bị suy biến hay không, nếu có thì rơi vào trường hợp nào. (Lưu ý rằng không phải đề bài nào cũng nói rõ rằng dữ liệu bị suy biến).
+
+- Nếu tồn tại các điểm trùng nhau
+
+..* Thuật toán bọc gói sẽ thực hiện phép chia cho số không. Ta cần tránh điều này để thuật toán chạy đúng.
+
+..* Nếu ta chỉ cần tính chu vi hoặc diện tích của bao lồi, thuật toán Graham và thuật toán chuỗi đơn điệu sẽ không gặp vấn đề gì.
+
+..* Nếu ta phải in ra các đỉnh của bao lồi, có ba thứ tự in các đỉnh mà đề bài có thể hỏi: cùng chiều kim đồng hồ, ngược chiều kim đồng hồ, hoặc theo thứ tự xuất hiện trong dữ liệu vào. Rõ ràng hai thứ tự in các đỉnh đầu tiên không có ý nghĩa gì khi có các điểm trùng nhau. Nếu đề bài yêu cầu in các đỉnh theo thứ tự xuất hiện trong dữ liệu vào, đề bài có thể yêu cầu in ra đỉnh đầu tiên xuất hiện trong dữ liệu vào nếu các đỉnh trùng nhau, hoặc in ra tất cả các đỉnh. Hãy đọc đề bài thật kĩ. Trong mọi trường hợp, ta đều có thể dễ dàng xử lí kết quả để phù hợp với yêu cầu bài toán, và ta nên làm như vậy vì kết hợp xử lí kết quả với thuật toán tìm bao lồi không những khó hơn mà có thể tạo ra sai sót không đáng có
