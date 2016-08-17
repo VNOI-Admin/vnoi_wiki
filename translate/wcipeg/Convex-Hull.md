@@ -56,4 +56,8 @@ Bước đầu tiên là sắp xếp các điểm được cho theo thứ tự t
 
 2. Nếu $h<3$, xét tiếp điểm tiếp theo.
 
-3. Gọi $\vec{u}=\overrightarrow{H_{h_2}H_{h_1}}$ và $\vec{v}=\overrightarrow{H_{h-1}H_h}$. Lần này, do ta đang di chuyển theo chiều kim đồng hồ để tìm chuỗi trên, ta kiểm tra xem $\vec{u} \times \vec{v}$ có nhỏ hơn 0 hay không. Nếu có, ta xét tiếp điểm tiếp theo. Nếu không, ta loại bỏ $H_{h-1}$ và quay lại bước 2. 
+3. Gọi $\vec{u}=\overrightarrow{H_{h_2}H_{h_1}}$ và $\vec{v}=\overrightarrow{H_{h-1}H_h}$. Lần này, do ta đang di chuyển theo chiều kim đồng hồ để tìm chuỗi trên, ta kiểm tra xem $\vec{u} \times \vec{v}$ có nhỏ hơn 0 hay không. Nếu có, ta xét tiếp điểm tiếp theo. Nếu không, ta loại bỏ $H_{h-1}$ và quay lại bước 2.
+
+Sau khi xét hết các điểm, $H$ sẽ chứa toàn bộ các điểm ở chuỗi trên. Sau đó, ta tìm chuỗi dưới bằng cách tương tự, chỉ khác là ta xét các điểm theo thứ tự ngược lại (tức là ta xét điểm trái nhất trước). Lưu ý không thêm điểm phải nhất hai lần. Khi thuật toán kết thúc, $H$ sẽ chứa tất cả các đỉnh của bao lồi, với điểm đầu được lặp lại ở cuối.
+
+Thuật toán này cũng có độ phức tạp $O(n \log{n})$. Thuật toán chuỗi đơn điệu được khuyên dùng ở mọi bài toán tìm bao lồi, do nó đơn giản hơn thuật toán Graham và nhanh hơn một chút (do ta không phải tính góc). 
