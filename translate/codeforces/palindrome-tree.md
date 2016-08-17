@@ -1,5 +1,5 @@
 # Palindrome tree
-**Nguồn:** [http://arxiv.org/pdf/1506.04862v1.pdf](http://arxiv.org/pdf/1506.04862v1.pdf)
+**Nguồn:** [http://adilet.org/blog/25-09-14/](http://adilet.org/blog/25-09-14/)
 
 Cây Palindrome (hay còn được gọi là Eertree), được phát minh bởi [Mikhail Rubinchik](http://codeforces.com/profile/MikhailRubinchik), là một loại cấu trúc dữ liệu được sử dụng để giải một số bài toán liên quan đến Palindrome.
 
