@@ -67,7 +67,7 @@ Từ **(1)** ta có: `A[L[i] – 1] < A[i]`, nên `L[i] - 1` không bị loại 
 
 Vậy, ta xác định được $L$ của một phần tử bất kỳ ngay khi đưa phần tử đó vào Deque.
 
-Bên cạnh đó, gọi $t$ là vị trí các phần tử của $A$ bị loại khỏi Deque trong quá trình cập nhật Deque. $t$ bị loại khỏi Deque tại thời điểm $i$, chứng tỏ $i$ là số đầu tiên xuất hiện trong Deque mà $A[i] < A[t]$ (vì nếu tồn tại một số $k$ thỏa mãn $t < k < i$ mà $A[k] < A[t]$ thì $t$ đã bị loại tại thời điểm $k$). Từ **(2)** suy ra $Rơ[t] + 1$ chính là $i$, hay $R[t] = i - 1$.
+Bên cạnh đó, gọi $t$ là vị trí các phần tử của $A$ bị loại khỏi Deque trong quá trình cập nhật Deque. $t$ bị loại khỏi Deque tại thời điểm $i$, chứng tỏ $i$ là số đầu tiên xuất hiện trong Deque mà $A[i] < A[t]$ (vì nếu tồn tại một số $k$ thỏa mãn $t < k < i$ mà $A[k] < A[t]$ thì $t$ đã bị loại tại thời điểm $k$). Từ **(2)** suy ra $R[t] + 1$ chính là $i$, hay $R[t] = i - 1$.
 
 Vậy, ta cũng xác định được $R$ của một phần tử bất kỳ ngay khi loại phần tử đó ra khỏi Deque.
 
