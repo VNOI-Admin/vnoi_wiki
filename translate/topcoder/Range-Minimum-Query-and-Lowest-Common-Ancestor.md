@@ -468,37 +468,25 @@ Bài toán $RMQ$ phát sinh khi giải bài toán LCA chỉ là trường hợp 
 
 Hãy biến đổi $A$ thành một dãy nhị phân có $N-1$ phần tử, với $B[i]=A[i]-A[i-1]$. Như vậy $A[i]=A[0]+B[1]+..+B[i]$ và $B[i]$ chỉ nhận giá trị $1$ hoặc $-1$.
 
-Chúng ta chia $A$ thành các block kích thước $l=[log(N)/2]$. Gọi $M[i]$ là giá trị nhỏ nhất trong block thứ $i$ và $D[i]$ là vị trí của giá trị nhỏ nhất này trong $A$. Cả $M$ và $D$ đều có $N/l$ phần tử. Sử dụng Sparse Table như ở trên cho $M$, tốn $O(N/l*log(N/l))=O(N)$ về bộ nhớ và thời gian. Bây giờ việc cần làm là tính $RMQ$ giữa 2 vị trí bất kì trong một block, chúng ta lưu những giá trị này vào bảng $P[0,N/l][0,l][0,l]$.
+Chúng ta chia $A$ thành các block kích thước $l=[log(N)/2]$. Gọi $M[i]$ là giá trị nhỏ nhất trong block thứ $i$ và $D[i]$ là vị trí của giá trị nhỏ nhất này trong $A$. Cả $M$ và $D$ đều có $N/l$ phần tử. Tính Sparse Table cho $M$, tốn $O(N/l*log(N/l))=O(N)$ về bộ nhớ và thời gian.
 
-Nhận thấy $B$ là một dãy nhị phân, mà mỗi block có $l$ phần tử. Vì số lượng dãy nhị phân độ dài $l$ là $2^l=\sqrt N$ là một số khá nhỏ nên chúng ta nghĩ đến việc tính trước tất cả các $RMQ$ cho tất cả các dãy nhị phân độ dài $l$.
+Dùng sparse table cho mảng $M$, ta tính được giá trị nhỏ nhất của 1 vài block trong $O(1)$. Nhưng ta vẫn cần tính $RMQ$ giữa 2 vị trí bất kì trong cùng một block. Để làm được điều này, nhận thấy $B$ là một dãy nhị phân, mà mỗi block có $l$ phần tử. Vì số lượng dãy nhị phân độ dài $l$ là $2^l=\sqrt N$ là một số khá nhỏ nên chúng ta có thể tính được mảng $P[\sqrt(N)][l][l]$, với $P(b, i, j)$ là giá trị nhỏ nhất trong các bit từ $i$ đến $j$ của dãy nhị phân $b$. Dễ dàng khởi tạo $P$ bằng quy hoạch động trong cả thời gian và bộ nhớ $O(\sqrt N*l^2)$. Chú ý rằng, ta cũng cần biết giá trị $b$ trong $O(1)$ với mỗi block của mảng $A$. Do đó, ta cần khởi tạo mảng $T$ với $N/l$ phần tử, mỗi phần tử cho biết giá trị $b$ của block tương ứng.
 
-Ví dụ: với độ dài 3 sẽ có 8 tổ hợp:
+Kết hợp mảng $T$, $P$ với Sparse table cho mảng $M$, ta có thể trả lời truy vấn $RMQ_A(i, j)$ trong $O(1)$. Ta có 2 trường hợp:
 
-```
-000(=0)
-001(=1)
-010(=2)
-011(=3)
-100(=4)
-101(=5)
-110(=6)
-111(=7)
-```
+1. $i$ và $j$ thuộc cùng block.
+  - Ta dùng mảng $T$ để biết dãy nhị phân $b$ ở block chứa $i$ và $j$.
+  - Tính $u$ và $v$ là vị trí của $i$ và $j$ trong block.
+  - Kết quả chính là $P(b, u, v)$.
+2. $i$ và $j$ thuộc 2 block khác nhau: kết quả sẽ là giá trị nhỏ nhất của 3 giá trị:
+  - Giá trị nhỏ nhất của các phần tử trong block chứa $i$ và nằm bên phải $i$:
+    - Dùng mảng $T$ để biết được giá trị của dãy nhị phân của block chứa $i$ là $b$.
+    - Tính chỉ số của $i$ trong block chứa $i$ là $u$.
+    - Kết quả chính là $P(b, i, l)$.
+  - Giá trị nhỏ nhất của các phần tử trong block chứa $j$ và nằm bên trái $j$: làm tương tự trường hợp trên
+  - Giá trị nhỏ nhất của các phần tử thuộc các block nằm giữa block chứa $i$ và block chứa $j$. Dùng Sparse table cho $M$, ta dễ dàng tính
+  được giá trị này trong $O(1)$.
 
-Với $0$ ứng với $-1$, ta sẽ tính trước được cho các dãy
-
-```
-[-1,-1,-1]
-[-1,-1,1]
-[-1,1,-1]
-[-1,1,1]
-[1,-1,-1]
-[1,-1,1]
-[1,1,-1]
-[1,1,1]
-```
-
-Như vậy việc tính $P$ có thể được thực hiện trong $O(\sqrt N*l^2)$. Sau đó chỉ cần dựa vào đó mà tính được $RMQ$ của mỗi block trong $B$. Tuy nhiên ta cần tính trước giá trị thập phân của mỗi block trước và lưu vào một mảng $T[N/l]$. Cuối cùng để tính $RMQ_A(i,j)$ ta chỉ cần dựa vào $T$ và $P$.
 
 # Một số bài để luyện tập
 
