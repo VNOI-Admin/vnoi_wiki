@@ -50,7 +50,7 @@ Với mỗi lần tìm điểm tiếp theo, ta cần duyệt qua tất cả các
 
 Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất nhỏ hơn thuật toán bọc gói, song thuật toán Graham lại phức tạp hơn.
 
-- Đầu tiên, ta xác định một điểm (không nhất thiết phải có trong dữ liệu vào) mà chắc chắn thuộc bao lồi. Thông thường, khi cài đặt người ta chọn điểm có tung độ nhỏ nhất (nếu có nhiều điểm như vậy thì chọn điểm trái nhất). Gọi điểm này là điểm $O$.
+- Đầu tiên, ta xác định một điểm mà chắc chắn thuộc bao lồi. Thông thường, khi cài đặt người ta chọn điểm có tung độ nhỏ nhất (nếu có nhiều điểm như vậy thì chọn điểm trái nhất). Gọi điểm này là điểm $O$.
 - Chọn hệ trục tọa độ có gốc là điểm vừa chọn, đổi các tọa độ các điểm còn lại theo hệ trục tọa độ mới (chú ý lúc cài đặt thường ta không đổi trục tọa độ, nhưng khi tính góc hoặc sắp xếp ở bước tiếp theo cần chú ý tránh nhầm lẫn).
 - Tiếp theo, ta sắp xếp các điểm $P$ còn lại theo thứ tự tăng dần của góc tạo bởi $\vec{OP}$ và $\vec{OI}$ với $I$ là một điểm nằm trên trục hoành và $\vec{OI}$ cùng hướng với chiều dương của trục hoành.
 - Ta xét các điểm theo thứ tự ta vừa sắp xếp, với mỗi điểm ta sửa lại bao lồi $H$. Gọi điểm đầu tiên được cho vào bao lồi $H$ là $H_1$, điểm cuối cùng là $H_h$ (ban đầu $h = 0$). Khi xét mỗi điểm ta làm như sau:
@@ -65,68 +65,110 @@ Hình minh họa:
 - Ta đang xây dựng bao lồi, đến vị trí $h = 4$
 - Góc $\widehat{H_{h−2}H_{h−1}H_h}$ lõm, nên ta cần bỏ điểm $H_3$ khỏi bao lồi
 
-Đến lúc này ta đã có một tập điểm $H_1,H_2,...,H_h$ sắp xếp ngược chiều kim đồng hồ. Vấn đề là ta chưa chắc điểm $H_1$ đã thuộc bao hay không (chú ý rằng điểm $H_1$ không thể bị loại bỏ trong các bước trên). Ngoài ra, vì bao lồi là một đường khép kín chứ không phải là một đường gấp khúc nên cũng có khả năng điểm $H_h$ không thuộc bao (điểm $H_h$ cũng không thể bị loại bỏ trong các bước trên). Cách mà chúng ta loại bỏ điểm không thuộc bao là xét 3 điểm liên tiếp trong bao, và ta cũng phải làm tương tự với hai điểm $H_1$ và $H_h$.
+Sau quá trình trên, ta đã có một bao lồi $H_1,H_2,...,H_h$ sắp xếp ngược chiều kim đồng hồ.
 
-1.  Xét 3 điểm $H_2,H_1,H_h$. Gọi $\vec{u}=\overrightarrow{H_hH_1}$ và $\vec{v}=\overrightarrow{H_1H_2}$. Nếu $\vec{u} \times \vec{v} <0$ thì $H_1$ phải bị loại khỏi bao.
-
-2. Xét 3 điểm $H_1,H_h,H_{h−1}$. Gọi $\vec{u}=\overrightarrow{H_{h-1}H_h}$ và $\vec{v}=\overrightarrow{H_hH_1}$. Nếu $\vec{u} \times \vec{v} < 0$ thì $H_h$ phải bị loại khỏi bao.
-
-3. Nếu không có điểm nào bị loại khỏi bao, ta đã tìm được bao lồi thật sự $H$ với các điểm được liệt kê theo thứ tự ngược chiều kim đồng hồ, nếu không thì ta quay lại bước 1.
-
-Để đảm bảo ta có thể loại bỏ điểm $H_1$ với độ phức tạp $O(1)$ (tức là điểm $H_2$ cũ trở thành điểm $H_1$
-mới,...), ta nên dùng cấu trúc dữ liệu [hàng đợi hai đầu](http://vnoi.info/wiki/algo/data-structures/data-structures-overview#1-ctdl-l%C6%B0u-tr%E1%BB%AF_1-2-stack-queue-deque) (deque) hoặc [danh sách liên kết](http://vnoi.info/wiki/algo/data-structures/data-structures-overview#1-ctdl-l%C6%B0u-tr%E1%BB%AF_1-1-m%E1%BA%A3ng-array-danh-s%C3%A1ch-li%C3%AAn-k%E1%BA%BFt-linked-list) (linked list).
+Để đảm bảo ta loại bỏ điểm và thêm điểm với độ phức tạp $O(1)$, ta có thể dùng cấu trúc dữ liệu [stack](http://vnoi.info/wiki/algo/data-structures/data-structures-overview#1-ctdl-l%C6%B0u-tr%E1%BB%AF_1-2-stack-queue-deque).
 
 Về độ phức tạp của thuật toán, ta thấy bước sắp xếp các điểm có độ phức tạp $O(n \log{n})$. Mỗi điểm được cho vào bao nhiều nhất một lần nên tổng độ phức tạp của các bước thêm điểm là $O(n)$, và mỗi điểm bị loại ra khỏi bao nhiều nhất một lần nên tổng độ phức tạp của các bước xóa điểm là $O(n)$, do đó độ phức tạp của bước xét các điểm là $O(n)$. Vậy, độ phức tạp của thuật toán Graham là $O(n \log{n})$, phù hợp cho hầu hết các bài toán.
 
 ### Cài đặt
 
-```cpp
-struct pt {
-	double x, y;
-};
+```pascal
+type
+  Point = record  // Kiểu dữ liệu điểm
+    x,y: real;
+    ind: integer; // chỉ số trong mảng ban đầu
+  end;
 
-bool cmp (pt a, pt b) {
-	return a.x < b.x || a.x == b.x && a.y < b.y;
-}
+var
+  n: integer; // số điểm
+  a, b: array[1..maxn] of Point; // a: mảng input, b: bao lồi
 
-bool cw (pt a, pt b, pt c) {
-	return a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y) < 0;
-}
+Procedure Swap(var p1, p2: Point); // Hàm đổi chỗ 2 điểm
+Var
+  temp: Point;
+Begin
+  temp:=p1; p1:=p2; p2:=temp;
+End;
 
-bool ccw (pt a, pt b, pt c) {
-	return a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y) > 0;
-}
+Function CCW(p1,p2,p3:Point):integer; // Xem từ p1 --> p2 --> p3 là rẽ trái (1), đi thẳng (0) hay rẽ phải (-1)
+Var
+  t, a1, a2, b1, b2: real;
+Begin
+  a1 := p2.x - p1.x;
+  b1 := p2.y - p1.y;
+  a2 := p3.x - p2.x;
+  b2 := p3.y - p2.y;
+  t  := a1*b2 - a2*b1;
+  If abs(t) < esp then CCW:=0
+  else if t<0 then CCW:=-1
+  else CCW:=1;
+End;
 
-void convex_hull (vector<pt> & a) {
-	if (a.size() == 1)  return;
-	sort (a.begin(), a.end(), &cmp);
-	pt p1 = a[0],  p2 = a.back();
-	vector<pt> up, down;
-	up.push_back (p1);
-	down.push_back (p1);
-	for (size_t i=1; i<a.size(); ++i) {
-		if (i==a.size()-1 || cw (p1, a[i], p2)) {
-			while (up.size()>=2 && !cw (up[up.size()-2], up[up.size()-1], a[i]))
-				up.pop_back();
-			up.push_back (a[i]);
-		}
-		if (i==a.size()-1 || ccw (p1, a[i], p2)) {
-			while (down.size()>=2 && !ccw (down[down.size()-2], down[down.size()-1], a[i]))
-				down.pop_back();
-			down.push_back (a[i]);
-		}
-	}
-	a.clear();
-	for (size_t i=0; i<up.size(); ++i)
-		a.push_back (up[i]);
-	for (size_t i=down.size()-2; i>0; --i)
-		a.push_back (down[i]);
-}
+Function Lower(p1, p2: Point):boolean; // So sánh để sắp xếp các điểm theo góc
+Var
+  c: integer;
+Begin
+  c := CCW(a[1], p1, p2);
+  Lower:=false;
+  If (c > 0) then Lower:=true
+  else If (c = 0) and ((p1.x<p2.x) or ((p1.x=p2.x) and (p1.y<p2.y)))
+       then Lower:=true;
+End;
+
+Procedure QuickSort; // Sắp xếp các điểm của mảng a theo góc
+  Procedure Sort(l, r: integer);
+  Var
+    i, j: integer;
+    x: Point;
+  Begin
+    i := l; j := r; x := a[(l+r) div 2];
+    repeat
+      while lower(a[i], x) do inc(i);
+      while lower(x, a[j]) do dec(j);
+      if i <= j then
+        begin
+          Swap(a[i], a[j]);
+          inc(i); dec(j);
+        end;
+    until i>j;
+    if i<r then Sort(i, r);
+    if l<j then Sort(l, j);
+  End;
+Begin
+  If n>2 then Sort(2, n);
+End;
+
+Procedure Graham;
+Var
+  i, c: integer;
+Begin
+  // Tìm điểm có tung độ nhỏ nhất
+  c := 1;
+  For i := 2 to n do
+    If (a[i].y < a[c].y) or ((a[i].y = a[c].y) and (a[i].x < a[c].x)) then
+      c := i;
+  // Đổi chỗ điểm tung độ nhỏ nhất về a[1]
+  Swap(a[c], a[1]);
+
+  m := 2; b[1] := a[1]; b[2] := a[2];
+  b[1].ind := 1; b[2].ind := 2;
+  For i := 3 to n do
+    begin
+      // Loại bỏ b[m] nếu ta xác định được nó không thuộc bao lồi
+      while (m > 1) and (CCW(b[m-1], b[m], a[i]) = -1) do dec(m);
+
+      // Thêm điểm a[i] vào bao lồi
+      inc(m);
+      b[m] := a[i];
+      b[m].ind := i;
+    end;
+End;
 ```
 
 ## Thuật toán chuỗi đơn điệu
 
-Thuật toán chuỗi đơn điệu vừa dễ cài đặt (tuy dù nó hơi khó hiểu), vừa là thuật toán nhanh nhất trong số 3 thuật toán được giới thiệu ở đây. Thuật toán dựa trên việc tìm hai chuỗi đơn điệu của bao lồi: chuỗi trên và chuỗi dưới. Ta thấy điểm ở xa về phía bên phải nhất (từ đây gọi là điểm phải nhất) và điểm ở xa về phía bên trái nhất (từ đây gọi là điểm trái nhất) trong dữ liệu vào luôn là hai đỉnh của bao lồi. Phần bao lồi theo chiều kim đồng hồ tính từ điểm trái nhất và ngược chiều kim đồng hồ tính từ điểm phải nhất gọi là chuỗi trên, phần còn lại của bao lồi gọi là chuỗi dưới. Ta sẽ tìm chuỗi trên và chuỗi dưới độc lập với nhau.
+Thuật toán **chuỗi đơn điệu** (**Monotone chain**) vừa dễ cài đặt, vừa là thuật toán nhanh nhất trong số 3 thuật toán được giới thiệu ở đây. Thuật toán dựa trên việc tìm hai chuỗi đơn điệu của bao lồi: chuỗi trên và chuỗi dưới. Ta thấy điểm ở xa về phía bên phải nhất (từ đây gọi là điểm phải nhất) và điểm ở xa về phía bên trái nhất (từ đây gọi là điểm trái nhất) trong dữ liệu vào luôn là hai đỉnh của bao lồi. Phần bao lồi theo chiều kim đồng hồ tính từ điểm trái nhất và ngược chiều kim đồng hồ tính từ điểm phải nhất gọi là chuỗi trên, phần còn lại của bao lồi gọi là chuỗi dưới. Ta sẽ tìm chuỗi trên và chuỗi dưới độc lập với nhau.
 
 Bước đầu tiên là sắp xếp các điểm được cho theo thứ tự tăng dần theo hoành độ. Nếu hai điểm có cùng hoành độ, điểm có tung độ nhỏ hơn sẽ đứng trước. Gọi $H$ là bao lồi tạm thời và độ lớn của bao là $h$, sao cho điểm đầu của bao là $H_1$ và điểm cuối là $H_h$. Với mỗi điểm được xét:
 
