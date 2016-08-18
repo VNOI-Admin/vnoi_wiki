@@ -40,6 +40,9 @@ Bạn muốn đóng góp? Hãy làm theo [[hướng dẫn ở đây|contributor-
 
 - [[Tham lam|translate/topcoder/Greedy-is-Good]]
 
+- Hình học
+    - [[Bao lồi|translate/wcipeg/Convex-Hull]]
+
 - Kĩ thuật khác
     - [[Nhân ma trận|algo/trick/matrix-multiplication]]
     - [[Khử nhân ma trận|algo/trick/counting-without-matrix-multiplication]]
