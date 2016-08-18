@@ -48,13 +48,22 @@ Với mỗi lần tìm điểm tiếp theo, ta cần duyệt qua tất cả các
 
 ## Thuật toán Graham
 
-Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất nhỏ hơn thuật toán bọc gói, song thuật toán Graham lại phức tạp hơn. Đầu tiên, một điểm (không nhất thiết phải có trong dữ liệu vào) mà chắc chắn thuộc vào bao được xác định. Tìm giá trị trung bình của hoành độ và tung độ các điểm trong dữ liệu là một cách để tìm tọa độ của một điểm như vậy. Sau đó ta chọn hệ trục tọa độ có gốc là điểm vừa chọn, sau đó đổi tọa độ các điểm còn lại theo hệ trục tọa độ mới (trong khi cài đặt thực tế ta sẽ không làm như vậy). Tiếp theo, ta sắp xếp các điểm $P$ còn lại theo thứ tự tăng dần của góc tạo bởi $\vec{OP}$ và $\vec{OI}$ với $I$ là một điểm nằm trên trục hoành và $\vec{OI}$ cùng hướng với chiều dương của trục hoành. Do lúc này ta không biết điểm nào sẽ là đỉnh của bao lồi nên ta đặt $h=0$. Ta xét các điểm theo thứ tự ta vừa sắp xếp, với mỗi điểm ta sửa lại bao lồi $H$. Gọi điểm đầu tiên được cho vào bao lồi $H$ là $H_1$, điểm cuối cùng là $H_h$. Khi xét mỗi điểm ta làm như sau:
+Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất nhỏ hơn thuật toán bọc gói, song thuật toán Graham lại phức tạp hơn.
 
-1. Thêm điểm $P$ vào cuối bao lồi $H$. Tức là ta tăng $h$ lên 1 và đặt $H_h=P$.
+- Đầu tiên, ta xác định một điểm (không nhất thiết phải có trong dữ liệu vào) mà chắc chắn thuộc bao lồi. Thông thường, khi cài đặt người ta chọn điểm có tung độ nhỏ nhất (nếu có nhiều điểm như vậy thì chọn điểm trái nhất). Gọi điểm này là điểm $O$.
+- Chọn hệ trục tọa độ có gốc là điểm vừa chọn, đổi các tọa độ các điểm còn lại theo hệ trục tọa độ mới (chú ý lúc cài đặt thường ta không đổi trục tọa độ, nhưng khi tính góc hoặc sắp xếp ở bước tiếp theo cần chú ý tránh nhầm lẫn).
+- Tiếp theo, ta sắp xếp các điểm $P$ còn lại theo thứ tự tăng dần của góc tạo bởi $\vec{OP}$ và $\vec{OI}$ với $I$ là một điểm nằm trên trục hoành và $\vec{OI}$ cùng hướng với chiều dương của trục hoành.
+- Ta xét các điểm theo thứ tự ta vừa sắp xếp, với mỗi điểm ta sửa lại bao lồi $H$. Gọi điểm đầu tiên được cho vào bao lồi $H$ là $H_1$, điểm cuối cùng là $H_h$ (ban đầu $h = 0$). Khi xét mỗi điểm ta làm như sau:
+  1. Thêm điểm $P$ vào cuối bao lồi $H$. Tức là ta tăng $h$ lên 1 và đặt $H_h=P$.
+  2. Nếu $h<3$, xét tiếp điểm tiếp theo, ngược lại làm bước 3.
+  3. Xét 3 điểm $H_h,H_{h−1}$ và $H_{h−2}$. Có thể sau khi cho thêm điểm $H_h$, ta biết được điểm $H_{h−1}$ chắc chắn không nằm trong bao. Gọi $\vec{u} =\overrightarrow{H_{h−2}H_{h−1}}$ và $\vec{v} =\overrightarrow{H_{h−1}H_h}$. Nếu khi đi theo hướng $\vec{v}$ rồi đi theo hướng $\vec{u}$  là ta đã bẻ góc ngược chiều kim đồng hồ, hay $\vec{u} \times \vec{v} > 0$, thì cả ba điểm đều tạm thuộc bao, và ta xét tiếp điểm tiếp theo. Nhưng nếu $\vec{u} \times \vec{v} < 0$, thì góc $\widehat{H_{h−2}H_{h−1}H_h}$ sẽ tạo ra đa giác lõm và điểm $H_{h−1}$ phải bị loại bỏ, có nghĩa là $H_{h−1}$ được đặt là $H_h$ và $h$ giảm đi 1. Sau đó quay lại bước 2 cho đến khi xét hết các điểm.
 
-2. Nếu $h<3$, xét tiếp điểm tiếp theo.
+[[/uploads/algo_geometry_convex_hull_graham.png]]
 
-3. Xét 3 điểm $H_h,H_{h−1}$ và $H_{h−2}$. Có thể sau khi cho thêm điểm $H_h$, ta biết được điểm $H_{h−1}$ chắc chắn không nằm trong bao. Gọi $\vec{u} =\overrightarrow{H_{h−2}H_{h−1}}$ và $\vec{v} =\overrightarrow{H_{h−1}H_h}$. Nếu khi đi theo hướng $\vec{v}$ rồi đi theo hướng $\vec{u}$  là ta đã bẻ góc ngược chiều kim đồng hồ, hay $\vec{u} \times \vec{v} > 0$, thì cả ba điểm đều tạm thuộc bao, và ta xét tiếp điểm tiếp theo. Nhưng nếu $\vec{u} \times \vec{v} < 0$, thì góc $\widehat{H_{h−2}H_{h−1}H_h}$ sẽ tạo ra đa giác lõm và điểm $H_{h−1}$ phải bị loại bỏ, có nghĩa là $H_{h−1}$ được đặt là $H_h$ và $h$ giảm đi 1. Sau đó quay lại bước 2 cho đến khi xét hết các điểm.
+Hình minh họa:
+
+- Ta đang xây dựng bao lồi, đến vị trí $h = 4$
+- Góc $\widehat{H_{h−2}H_{h−1}H_h}$ lõm, nên ta cần bỏ điểm $H_3$ khỏi bao lồi
 
 Đến lúc này ta đã có một tập điểm $H_1,H_2,...,H_h$ sắp xếp ngược chiều kim đồng hồ. Vấn đề là ta chưa chắc điểm $H_1$ đã thuộc bao hay không (chú ý rằng điểm $H_1$ không thể bị loại bỏ trong các bước trên). Ngoài ra, vì bao lồi là một đường khép kín chứ không phải là một đường gấp khúc nên cũng có khả năng điểm $H_h$ không thuộc bao (điểm $H_h$ cũng không thể bị loại bỏ trong các bước trên). Cách mà chúng ta loại bỏ điểm không thuộc bao là xét 3 điểm liên tiếp trong bao, và ta cũng phải làm tương tự với hai điểm $H_1$ và $H_h$.
 
@@ -176,3 +185,4 @@ Ta có thể tìm bao lồi trong không gian với độ phức tạp $O(n \log
 - [Kattis - convexhull](https://open.kattis.com/problems/convexhull)
 - [VOJ - MILITARY](http://vn.spoj.com/problems/MILITARY/)
 - [VOJ - HEADQRT](http://vn.spoj.com/problems/HEADQRT/)
+- [USACO - Cow Curling](http://usaco.org/index.php?page=viewproblem2&cpid=382)
