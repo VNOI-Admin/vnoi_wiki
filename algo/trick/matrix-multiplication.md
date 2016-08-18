@@ -1,3 +1,5 @@
+[[_TOC_]]
+
 # Nhân ma trận
 
 **Tác giả**: Nguyễn *RR* Thành Trung
@@ -268,6 +270,35 @@ Gọi $X_1, X_2, ..., X_m$ là các ma trận tương ứng với các phép bi�
 Như vậy, $Y = S \* X^t \* X_1 \* X_2 \* ... \* X_r$ là ma trận thể hiện số lượng vi khuẩn tại thời điểm $M \* t + r$.
 
 Như vậy, thuật toán đến đây đã rõ. Ta phân tích $T = M \* t + r$, nhờ đó, ta có thể giải quyết bài toán trong $\mathcal{O}(N^3 \* M)$ cho bước tính ma trận $X$ và $\mathcal{O}(N^3 \* (\log{T/M} + M)$ cho bước tính $Y$. Bài toán được giải quyết.
+
+# Phép toán kết hợp và độ phức tạp tính toán
+
+## Nhân tổ hợp dãy ma trận
+Trong phần [Mở Đầu](http://vnoi.info/contributor/preview#mở-đầu) ta đã có thuật toán nhân hai ma trận $A$ kích cỡ $M * N$ và $B$ kích cỡ $N * P$ cần độ phức tạp $O(M * N * P)$. Giả sử ta có thêm ma trận $C$ có kích cỡ $P * Q$ và ta cần tính tích $A * B * C$. Xét hai cách thực hiện phép nhân này:
+
+- *Cách 1*: $(A * B) * C$ thực hiện nhân $A$ và $B$ rồi nhân với $C$ cần độ phức tạp $O(M * N * P) + O(M * P * Q) = O(M * P * (N + Q))$
+- *Cách 2*: $A * (B * C)$ thực hiện nhân $B$ và $C$ rồi nhân với $A$ cần độ phức tạp $O(N * P * Q) + O(M * N * Q) = O(N * Q * (M + P))$
+
+Như vậy là hai cách thực hiện khác nhau cần hai độ phức tạp khác nhau. Chọn $M = N = 500, P = 1000, Q = 2$, cách 1 sẽ cần tới $500 * 1000 * (500 + 2) = 251 * 10^6$ phép tính, trong khi cách 2 chỉ cần $500 * 2 * (500 + 1000) = 1.5 * 10^6$ phép tính, nghĩa là cách 1 chậm hơn cách 2 tới gần 200 lần.
+
+Khi độ dài của dãy ma trận tăng lên, sự khác biệt có thể còn lớn hơn nữa. Ví dụ trên đã cho thấy rằng trong một số trường hợp thứ tự thực hiện phép nhân ma trận có ý nghĩa rất lớn đối với việc tìm lời giải của các bài toán.
+
+Trong thực tế, bài toán xác định thứ tự nhân ma trận hiệu quả nhất là một bài toán rất phổ biến, bạn có thể tìm đọc chi tiết thêm ở [Mục 3.5 Phép Nhân Tổ Hợp dãy Ma Trận trong ebook của thầy Lê Minh Hoàng](http://cntt.epu.edu.vn/images/book_LeMinhHoang.pdf).
+
+## Giải thuật Freivalds kiểm tra tích hai ma trận
+[Giải thuật Freivalds](https://courses.cs.washington.edu/courses/cse525/13sp/scribe/lec1.pdf) là một ví dụ điển hình về việc áp dụng thứ tự thực hiện phép nhân ma trận để giảm độ phức tạp tính toán của phép nhân một dãy ma trận. Bài toán đặt ra là cho ba ma trận vuông $A, B, C$ có kích cỡ $N * N$ với $N \le 1000$. Ta cần kiểm tra xem $C$ có phải là tích của $A$ và $B$, nói cách khác ta cần kiểm tra $A*B = C$ có phải là mệnh đề đúng hay không (đây chính là bài [VMATRIX - VNOI Marathon 2014](http://vn.spoj.com/problems/VMATRIX/)).
+
+**Phân tích**
+
+Cách làm thông thường là nhân trực tiếp hai ma trận $A, B$ rồi so sánh kết quả với $C$. Như phân tích trong phần [Mở Đầu](http://vnoi.info/contributor/preview#mở-đầu) độ phức tạp của cách làm này là $O(N^3)$, với $N = 1000$ thì cách làm này không đủ nhanh. Giải thuật Freivalds thực hiện việc kiểm tra thông qua thuật toán xác suất kiểu Monte Carlo với $k$ lần thử cho xác suất kết luận sai là xấp xỉ $1 / 2^k$, mỗi lần thử có độ phức tạp $O(N^2)$. Các bước cơ bản của một phép thử Freivalds như sau:
+
+1. Sinh ngẫu nhiên một ma trận $v$ kích cỡ $N * 1$ với các phần tử chỉ nhận giá trị $0$ hoặc $1$.
+2. Tính hiệu $P = A * B * v - C * v$. Dễ thấy rằng $P$ là ma trận kích cỡ $N * 1$.
+3. Trả về `True` nếu $P$ chỉ gồm phần tử $0$ (bằng với vector $0$) và `False` nếu ngược lại. 
+
+Ta thực hiện $k$ lần thử, nếu gặp phép thử trả về `False` thì ta kết luận là $A * B \neq C$. Ngược lại nếu sau $k$ phép thử mà luôn thấy `True` thì ta kết luận $A * B = C$. Vì xác suất lỗi giảm theo hàm mũ của $K$ nên thông thường chỉ cần chọn $k$ vừa đủ là sẽ thu được xác suất đúng rất cao ($k = 5$ với bài **VMATRIX** ở trên). Một nhận xét quan trọng khác là cận trên của đánh giá xác suất kiểm tra lỗi không phụ thuộc vào kích cỡ $N$ của ma trận được cho mà chỉ phụ thuộc vào số lần thực hiện phép thử.
+
+Xét bước thứ 2, ta thấy rằng phép thử Freivalds chỉ có ý nghĩa nếu như ta có thể thực hiện phép nhân $A * B * v$ trong thời gian $O(N^2)$ (vì phép nhân $C * v$ đã đạt sẵn $O(N^2)$ rồi). Thay vì thực hiện tuần tự từ trái qua phải sẽ cần $O(N^3)$, ta thực hiện theo thứ tự $A * (B * v)$. Vì kết quả của phép nhân $B$ và $v$ là một ma trận $N * 1$ nên độ phức tạp tổng cộng sẽ là $O(N^2)$. Trên tất cả các phép thử, độ phức tạp là $O(k * N^2)$. 
 
 # Bài tập áp dụng
 
