@@ -48,6 +48,8 @@ Nếu bạn nhận dịch / viết bài nào, thì tự assign mình vào task �
 - Nếu bạn dịch xong, chuyển sang cột Review
 - Nếu bạn nhận review, sau khi review xong chuyển sang cột Review 2.
 
+Thông thường, bạn nên dịch 1 vài bài trước khi review, để có thể nắm được những điểm cần chú ý khi dịch / review.
+
 **Tip**:
 
 - Ấn `q` để chỉ hiện những task của mình.
