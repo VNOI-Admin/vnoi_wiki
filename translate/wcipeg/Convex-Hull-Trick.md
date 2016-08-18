@@ -5,7 +5,7 @@
 **Người dịch**: Phan Minh Hoàng
 
 
-**Kĩ thuật bao lồi** là kĩ thuật (hoặc là cấu trúc dữ liệu) dùng để xác định hiệu quả, có tiền xử lý, cực trị của một tập các hàm tuyến tính tại một giá trị của biến độc lập. Mặc dù tên gọi giống nhưng kĩ thuật này lại khá khác biệt so với thuật toán bao lồi của hình học tính toán.
+**Kĩ thuật bao lồi** là kĩ thuật (hoặc là cấu trúc dữ liệu) dùng để xác định hiệu quả, có tiền xử lý, cực trị của một tập các hàm tuyến tính tại một giá trị của biến độc lập. Mặc dù tên gọi giống nhưng kĩ thuật này lại khá khác biệt so với [[thuật toán bao lồi|translate/wcipeg/Convex-Hull]] của hình học tính toán.
 
 Ngoài ra có một kĩ thuật liên quan đến kĩ thuật bao lồi là [[IT đoạn thẳng|algo/data-structures/interval-tree-tap-doan-thang]]
 
