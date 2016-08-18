@@ -2,7 +2,9 @@
 
 ## Giới thiệu
 
-VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học đến với tất cả mọi người. Bạn có thể đọc bài giới thiệu của bọn mình [[ở đây|about]].
+Thư viện VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học đến với tất cả mọi người. Bạn có thể đọc bài giới thiệu của bọn mình [[ở đây|about]].
+
+Bạn muốn đóng góp? Hãy làm theo [[hướng dẫn ở đây|contributor-tutorial]]
 
 ## Các chủ đề
 
