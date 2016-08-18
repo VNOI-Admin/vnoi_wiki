@@ -126,13 +126,13 @@ Cũng như trong ví dụ 1, ta xét các lớp số:
 - Lớp 1: $c_1, c_2, ..., c_N$
 - Lớp 2: $c_2, c_3, ..., c_{N+1}$
 - ...
-- Lớp $i$: $c_i, c_{i+1}, ..., c_{i+N-1}
+- Lớp $i$: $c_i, c_{i+1}, ..., c_{i+N-1}$
 
 Ta cũng sẽ áp dụng phép nhân ma trận để biến đổi từ lớp $i$ sang lớp $i+1$ như sau:
 
 ![](https://sites.google.com/site/ngthanhtrung23/_/rsrc/1401391791677/algorithm/matrix-multiplication/p2.PNG?height=256&width=320)
 
-Để xây dựng ma trận vuông như trên, ta thực hiện tương tự như trong ví dụ trước: Phân tích $a_{i+1}$ đến $a_{i+N}$ dưới dạng $a_i$, ..., a_{i+N-1}$:
+Để xây dựng ma trận vuông như trên, ta thực hiện tương tự như trong ví dụ trước: Phân tích $a_{i+1}$ đến $a_{i+N}$ dưới dạng $a_i, ..., a_{i+N-1}$:
 
 - $a_{i+1} = 0 * a_i + 1 * a_{i+1} + ... + 0 * a_{i+N-1}$ nên hàng 1 là $0, 1, 0, ...., 0$
 - ...
@@ -186,7 +186,7 @@ Người ta mới tìm ra một loại vi khuẩn mới. Chúng sống thành $N
 - số lượng vi khuẩn trong một bầy có thể tăng lên
 - một bầy có thể di chuyển vị trí.
 
-Các thay đổi này tuân theo một số quy luật cho trước. Tại mỗi giây chỉ xảy ra đúng một quy luật. Các quy luật này được thực hiện nối tiếp nhau và theo chu kỳ. Có nghĩa là, nếu đánh số các quy luật từ 0 đến $M-1$, tại giây thứ $S$ thì quy luật được áp dụng sẽ là $(S-1) mod M$ $(M \le 1000)$
+Các thay đổi này tuân theo một số quy luật cho trước. Tại mỗi giây chỉ xảy ra đúng một quy luật. Các quy luật này được thực hiện nối tiếp nhau và theo chu kỳ. Có nghĩa là, nếu đánh số các quy luật từ 0 đến $M-1$, tại giây thứ $S$ thì quy luật được áp dụng sẽ là $(S-1) \space mod \space M$ $(M \le 1000)$
 
 Nhiệm vụ của bạn là tìm xem, với một bộ các quy luật cho trước, sau $T$ đơn vị thời gian $(T \le 10^{18})$, mỗi bầy có bao nhiêu vi khuẩn.
 
