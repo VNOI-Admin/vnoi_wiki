@@ -184,57 +184,57 @@ Thuật toán này cũng có độ phức tạp $O(n \log{n})$. Thuật toán ch
 
 ```cpp
 struct pt { // Kiểu điểm
-	double x, y;
+  double x, y;
 };
 
 bool cmp (pt a, pt b) { // So sánh theo tọa độ x, trong trường hợp bằng nhau so sánh theo y
-	return a.x < b.x || a.x == b.x && a.y < b.y;
+  return a.x < b.x || a.x == b.x && a.y < b.y;
 }
 
 bool cw (pt a, pt b, pt c) { // a -> b -> c đi theo thứ tự xuôi chiều kim đồng hồ
-	return a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y) < 0;
+  return a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y) < 0;
 }
 
 bool ccw (pt a, pt b, pt c) { // a -> b -> c đi theo thứ tự ngược chiều kim đồng hồ
-	return a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y) > 0;
+  return a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y) > 0;
 }
 
 void convex_hull (vector<pt> & a) {
-	if (a.size() == 1) { // chỉ có 1 điểm
+  if (a.size() == 1) { // chỉ có 1 điểm
     return;
   }
 
   // Sắp xếp các điểm theo tọa độ x, nếu bằng nhau sắp xếp theo y
-	sort (a.begin(), a.end(), &cmp);
+  sort (a.begin(), a.end(), &cmp);
 
-	pt p1 = a[0],  p2 = a.back();
+  pt p1 = a[0],  p2 = a.back();
 
-	vector<pt> up, down; // chuỗi trên và chuỗi dưới
-	up.push_back (p1);
-	down.push_back (p1);
+  vector<pt> up, down; // chuỗi trên và chuỗi dưới
+  up.push_back (p1);
+  down.push_back (p1);
 
-	for (size_t i=1; i<a.size(); ++i) { // xét lần lượt các điểm
+  for (size_t i=1; i<a.size(); ++i) { // xét lần lượt các điểm
     // Thêm vào chuỗi trên
-		if (i==a.size()-1 || cw (p1, a[i], p2)) {
-			while (up.size()>=2 && !cw (up[up.size()-2], up[up.size()-1], a[i]))
-				up.pop_back();
-			up.push_back (a[i]);
-		}
+    if (i==a.size()-1 || cw (p1, a[i], p2)) {
+      while (up.size()>=2 && !cw (up[up.size()-2], up[up.size()-1], a[i]))
+        up.pop_back();
+      up.push_back (a[i]);
+    }
 
     // Thêm vào chuỗi dưới
-		if (i==a.size()-1 || ccw (p1, a[i], p2)) {
-			while (down.size()>=2 && !ccw (down[down.size()-2], down[down.size()-1], a[i]))
-				down.pop_back();
-			down.push_back (a[i]);
-		}
-	}
+    if (i==a.size()-1 || ccw (p1, a[i], p2)) {
+      while (down.size()>=2 && !ccw (down[down.size()-2], down[down.size()-1], a[i]))
+        down.pop_back();
+      down.push_back (a[i]);
+    }
+  }
 
   // Gộp 2 chuỗi trên và dưới để lấy bao lồi
-	a.clear();
-	for (size_t i=0; i<up.size(); ++i)
-		a.push_back (up[i]);
-	for (size_t i=down.size()-2; i>0; --i)
-		a.push_back (down[i]);
+  a.clear();
+  for (size_t i=0; i<up.size(); ++i)
+    a.push_back (up[i]);
+  for (size_t i=down.size()-2; i>0; --i)
+    a.push_back (down[i]);
 }
 ```
 
@@ -266,7 +266,7 @@ Ngoại trừ các ứng dụng hiển nhiên, tìm bao lồi còn giúp ta gi�
 
 # Bao lồi trong không gian
 
-Tìm bao lồi trong không gian ba chiều thực sự là một bài toán khó. Bài toán này chắc chắn sẽ không bao giờ được ra trong IOI, và học sinh trung học không cần phải đi sâu vào vấn đề này. Tuy nhiên, có một thuật toán $O(n^2)$ khá là đơn giản: đầu tiên, ta tìm hình chiếu của các điểm trên mặt phẳng $xy$, và tìm một các chắc chắn thuộc bao bằng cách lấy một điểm có tung độ lớn nhất rồi tìm điểm kia bằng cách chạy vòng lặp của thuật toán bọc gói một lần. Đây là phần đầu tiên của bao lồi. Sau đó, xét cạnh vừa tìm được, tìm một điểm thứ ba để tạo thành một mặt tam giác của bao lồi. Ta chọn điểm thứ ba bằng cách tìm điểm để tất cả các điểm khác nằm ở phía bên phải của mặt tam giác đó (giống như thuật toán bọc gói, ta tìm cạnh để tất cả các điểm khác đều nằm về phía bên phải cạnh đó). Bây giờ ta đã có ba cạnh trong bao lồi, ta chọn ngẫu nhiên một trong ba cạnh đó, rồi tìm tiếp một tam giác với cạnh này, rồi tiếp tục cho đến khi không còn cạnh nào nữa (Khi ta tìm thêm một mặt tam giác, ta phải thêm hai cạnh vào bao, tuy vậy hai cạnh này phải chưa có trong bao, nếu không ta phải đi tìm hai cạnh khác). Có tổng cộng $O(n)$ mặt, và mỗi lần duyệt các điểm ta mất thời gian $O(n)$ vì ta phải duyệt tất cả các điểm còn lại, do đó độ phức tạp của thuật toán là $O(n^2)$. (Nếu bạn nghĩ bạn có thể cài đặt được thuật toán này, hãy nộp bài tại [SPOJ - CH3D](http://www.spoj.com/problems/CH3D/)). Ta có thể tăng tốc độ thuật toán này bằng các loại bỏ các điểm chắc chắn không phải đỉnh của bao, bằng cách tìm các điểm cực theo các trục tọa độ, rồi loại bỏ các điểm nằm trong bát diện mà các đỉnh đấy tạo ra.
+Tim bao lồi trong không gian ba chiều thực sự là một bài toán khó. Bài toán này chắc chắn sẽ không bao giờ được ra trong IOI, và học sinh trung học không cần phải đi sâu vào vấn đề này. Tuy nhiên, có một thuật toán $O(n^2)$ khá là đơn giản: đầu tiên, ta tìm hình chiếu của các điểm trên mặt phẳng $xy$, và tìm một các chắc chắn thuộc bao bằng cách lấy một điểm có tung độ lớn nhất rồi tìm điểm kia bằng cách chạy vòng lặp của thuật toán bọc gói một lần. Đây là phần đầu tiên của bao lồi. Sau đó, xét cạnh vừa tìm được, tìm một điểm thứ ba để tạo thành một mặt tam giác của bao lồi. Ta chọn điểm thứ ba bằng cách tìm điểm để tất cả các điểm khác nằm ở phía bên phải của mặt tam giác đó (giống như thuật toán bọc gói, ta tìm cạnh để tất cả các điểm khác đều nằm về phía bên phải cạnh đó). Bây giờ ta đã có ba cạnh trong bao lồi, ta chọn ngẫu nhiên một trong ba cạnh đó, rồi tìm tiếp một tam giác với cạnh này, rồi tiếp tục cho đến khi không còn cạnh nào nữa (Khi ta tìm thêm một mặt tam giác, ta phải thêm hai cạnh vào bao, tuy vậy hai cạnh này phải chưa có trong bao, nếu không ta phải đi tìm hai cạnh khác). Có tổng cộng $O(n)$ mặt, và mỗi lần duyệt các điểm ta mất thời gian $O(n)$ vì ta phải duyệt tất cả các điểm còn lại, do đó độ phức tạp của thuật toán là $O(n^2)$. (Nếu bạn nghĩ bạn có thể cài đặt được thuật toán này, hãy nộp bài tại [CH3D@SPOJ](http://www.spoj.com/problems/CH3D/)). Ta có thể tăng tốc độ thuật toán này bằng các loại bỏ các điểm chắc chắn không phải đỉnh của bao, bằng cách tìm các điểm cực theo các trục tọa độ, rồi loại bỏ các điểm nằm trong bát diện mà các đỉnh đấy tạo ra.
 
 Ta có thể tìm bao lồi trong không gian với độ phức tạp $O(n \log{n})$ bằng phương pháp chia để trị, tuy nhiên việc cài đặt thuật toán này là vô cùng khó.
 
