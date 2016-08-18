@@ -294,8 +294,8 @@ Bước khởi tạo này tốn $O(NlogN)$ bộ nhớ lẫn thời gian.
 Cách tìm LCA giống hệt như thuật toán $<O(1), O(N)>$, nhưng để tăng tốc, thay vì nhảy lên cha ở mỗi bước, thì ta dùng mảng $P$ để nhảy, từ đó thu được độ phức tạp $O(logN)$ cho mỗi bước. Cụ thể:
 
 - Gọi $h(u)$ là độ cao của nút $u$. Để tính $LCA(u, v)$, giả sử $h(u) > h(v)$, đầu tiên ta tìm $u'$ là tổ tiên của $u$ và có $h(u') = h(v)$:
-  - Rõ ràng, ta cần nhảy từ $u$ lên cha thứ $h(u) - h(v)$. Ta chuyển $h(u) - h(v)$ sang hệ 2. Duyệt $j$ từ $log{h(u)}$ xuống $0$, nếu tổ tiên thứ $2^j$ của $u$ không cao hơn $v$ thì ta cho $p$ nhảy lên tổ tiên thứ $2^j$ của nó.
-- Sau khi $u$ và $v$ đã ở cùng tầng, ta sẽ tính $LCA(u, v)$: cũng như trên, ta sẽ duyệt $j$ từ $log{h(u)}$ xuống $0$, nếu tổ tiên thứ $2^j$ của $u$ và $v$ khác nhau thì chắc chắn $LCA(u, v)$ sẽ ở cao hơn, khi đó ta sẽ cho cả $u$ và $v$ nhảy lên tổ tiên thứ $2^j$ của nó. Cuối cùng thì $u$ và $v$ sẽ có cùng cha, vậy nên khi đó $LCA(u, v) = T[u] = T[v]$.
+  - Rõ ràng, ta cần nhảy từ $u$ lên cha thứ $h(u) - h(v)$. Ta chuyển $h(u) - h(v)$ sang hệ 2. Duyệt $j$ từ $log(h(u))$ xuống $0$, nếu tổ tiên thứ $2^j$ của $u$ không cao hơn $v$ thì ta cho $p$ nhảy lên tổ tiên thứ $2^j$ của nó.
+- Sau khi $u$ và $v$ đã ở cùng tầng, ta sẽ tính $LCA(u, v)$: cũng như trên, ta sẽ duyệt $j$ từ $log(h(u))$ xuống $0$, nếu tổ tiên thứ $2^j$ của $u$ và $v$ khác nhau thì chắc chắn $LCA(u, v)$ sẽ ở cao hơn, khi đó ta sẽ cho cả $u$ và $v$ nhảy lên tổ tiên thứ $2^j$ của nó. Cuối cùng thì $u$ và $v$ sẽ có cùng cha, vậy nên khi đó $LCA(u, v) = T[u] = T[v]$.
 
 Code:
 
