@@ -11,6 +11,8 @@ Trong bài viết này, tác giả sẽ giới thiệu với bạn 2 bài toán 
 
 Gỉa sử thuật toán có thời gian tiền xử lý là $f(n)$ và thời gian trả lời 1 truy vấn là $g(n)$. Ta ký hiệu độ phức tạp tổng quát của thuật toán là $< f(n),g(n) >$.
 
+Trong bài này, khi viết $\log{N}$, chúng ta hiểu là log cơ số 2 của $N$.
+
 ## Bài toán Range Minimum Query (RMQ)
 
 Cho mảng $A[0,N-1]$. Bạn cần trả lời $Q$ truy vấn. Mỗi truy vấn gồm 2 số $i$, $j$ và bạn cần đưa ra vị trí của phần tử có giá trị nhỏ nhất trong đoạn từ $i$ đến $j$ của mảng $A$, ký hiệu là $RMQ_A(i,j)$.
@@ -19,7 +21,7 @@ Cho mảng $A[0,N-1]$. Bạn cần trả lời $Q$ truy vấn. Mỗi truy vấn 
 
 ## Bài toán Lowest Common Ancestor (LCA)
 
-Cho cây có gốc $T$ và 2 nút $u$ và $v$ của cây. Bạn cần trả lời $Q$ truy vấn. Mỗi truy vấn gồm 2 số $i$, $j$ và bạn cần tìm nút xa gốc nhất mà là tổ tiên của cả 2 nút $u$ và $v$, ký hiệu là $LCA_T(u,v)$.
+Cho cây có gốc $T$. Bạn cần trả lời $Q$ truy vấn. Mỗi truy vấn gồm 2 số $u$, $v$ và bạn cần tìm nút xa gốc nhất mà là tổ tiên của cả 2 nút $u$ và $v$, ký hiệu là $LCA_T(u,v)$.
 
 ![](http://community.topcoder.com/i/education/lca/LCA_001.gif)
 
@@ -53,7 +55,7 @@ Có thể thấy thuật toán này khá chậm và tốn bộ nhớ $O(N^2)$ n�
 
 ## Thuật toán $< O(N),O(\sqrt N) >$
 
-Ta có thể chia mảng thành $\sqrt N$ phần. Ta sử dụng một vector $M[0, \sqrt N]$ để lưu giá trị mỗi phần. $M$ có thể dễ dàng tính được trong $O(N)$:
+Ta có thể chia mảng thành $\sqrt N$ phần. Ta sử dụng một mảng $M[0, \sqrt N]$ để lưu giá trị mỗi phần. $M$ có thể dễ dàng tính được trong $O(N)$:
 
 ![](http://community.topcoder.com/i/education/lca/RMQ_002.gif)
 
@@ -92,7 +94,7 @@ void process2(int M[MAXN][LOGMAXN], int A[MAXN], int N)
 }
 ```
 
-Để tính $RMQ_A(i,j)$ ta dựa vào 2 đoạn con độ dài $2^k$ phủ hết $[i,j]$, với $k=log(j-i+1)$:
+Để tính $RMQ_A(i,j)$ ta dựa vào 2 đoạn con độ dài $2^k$ phủ hết $[i,j]$, với $k= \lfloor log(j-i+1) \rfloor$:
 
 ![](http://community.topcoder.com/i/education/lca/RMQ_005.gif)
 
@@ -165,7 +167,7 @@ Mỗi truy vấn sẽ được thực hiện trong $O(logN)$ và thuật toán c
 
 ## Thuật toán $< O(N), O(N) >$
 
-Thuật toán hồn nhiên nhất như sau:
+Thuật toán đơn giản nhất như sau:
 
 - Đặt $h(u)$ là độ cao của đỉnh $u$.
 - Để trả lời truy vấn $u$, $v$. Không làm mất tính tổng quát, giả sử $h(u) > h(v)$.
@@ -330,7 +332,7 @@ Bài toán LCA còn có nhiều cách giải thú vị khác. Các bạn có th�
 
 # Từ LCA đến RMQ
 
-Ta có thể giảm bài toán LCA lại thành bài toán RMQ trong thời gian tuyến tính, do đó mà mọi thuật toán để giải bài toán RMQ đều có thể sử dụng để giải bài toán LCA. Hãy cùng xét ví dụ sau:
+Ta có thể biến đổi bài toán LCA thành bài toán RMQ trong thời gian tuyến tính, do đó mà mọi thuật toán để giải bài toán RMQ đều có thể sử dụng để giải bài toán LCA. Hãy cùng xét ví dụ sau:
 
 ![](http://community.topcoder.com/i/education/lca/LCA_006.gif)
 
@@ -395,7 +397,7 @@ Ví dụ đối với cây ở trên:
 <tr >
 <td >3</td>
 <td >3</td>
-<td >A[3]</script></span> hiện đang là phần tử nhỏ nhất cho nên mọi phần tử của stack bị pop ra và 3 trở thành gốc cây. Con trái của 3 là 0</td>
+<td >A[3]</script></span> hiện đang là phần tử nhỏ nhất cho nên mọi phần tử của stack bị lấy ra ra và 3 trở thành gốc cây. Con trái của 3 là 0</td>
 </tr>
 <tr>
 <td >4</td>
@@ -430,7 +432,7 @@ Ví dụ đối với cây ở trên:
 </tbody>
 </table>
 
-Vì mỗi phần tử của $A$ đều chỉ push và pop 1 lần nên độ phức tạp thuật toán là $O(N)$.
+Vì mỗi phần tử của $A$ đều chỉ đẩy vào và lấy ra 1 lần nên độ phức tạp thuật toán là $O(N)$.
 
 ```cpp
 void computeTree(int A[MAXN], int N, int T[MAXN])  {
@@ -450,7 +452,7 @@ void computeTree(int A[MAXN], int N, int T[MAXN])  {
       T[i] = st[k];
     if (k < top)
       T[st[k + 1]] = i;
-    
+
     // Đẩy i vào stack rồi xóa các phần tử lớn hơn A[i]
     st[++k] = i;
     top = k;
@@ -466,7 +468,7 @@ Bài toán $RMQ$ phát sinh khi giải bài toán LCA chỉ là trường hợp 
 
 Hãy biến đổi $A$ thành một dãy nhị phân có $N-1$ phần tử, với $B[i]=A[i]-A[i-1]$. Như vậy $A[i]=A[0]+B[1]+..+B[i]$ và $B[i]$ chỉ nhận giá trị $1$ hoặc $-1$.
 
-Chúng ta chia $A$ thành các block kích thước $l=[logN/2]$. Gọi $M[i]$ là giá trị nhỏ nhất trong block thứ $i$ và $D[i]$ là vị trí của giá trị nhỏ nhất này trong $A$. Cả $M$ và $D$ đều có $N/l$ phần tử. Sử dụng Sparse Table như ở trên cho $M$, tốn $O(N/l*log(N/l))=O(N)$ về bộ nhớ và thời gian. Bây giờ việc cần làm là tính $RMQ$ giữa 2 vị trí bất kì trong một block, chúng ta lưu những giá trị này vào bảng $P[0,N/l][0,l][0,l]$.
+Chúng ta chia $A$ thành các block kích thước $l=[log(N)/2]$. Gọi $M[i]$ là giá trị nhỏ nhất trong block thứ $i$ và $D[i]$ là vị trí của giá trị nhỏ nhất này trong $A$. Cả $M$ và $D$ đều có $N/l$ phần tử. Sử dụng Sparse Table như ở trên cho $M$, tốn $O(N/l*log(N/l))=O(N)$ về bộ nhớ và thời gian. Bây giờ việc cần làm là tính $RMQ$ giữa 2 vị trí bất kì trong một block, chúng ta lưu những giá trị này vào bảng $P[0,N/l][0,l][0,l]$.
 
 Nhận thấy $B$ là một dãy nhị phân, mà mỗi block có $l$ phần tử. Vì số lượng dãy nhị phân độ dài $l$ là $2^l=\sqrt N$ là một số khá nhỏ nên chúng ta nghĩ đến việc tính trước tất cả các $RMQ$ cho tất cả các dãy nhị phân độ dài $l$.
 
