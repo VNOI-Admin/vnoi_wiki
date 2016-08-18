@@ -1,10 +1,19 @@
+# Bao lồi (Convex Hull)
+
 Nguồn: [wcipeg](http://wcipeg.com/wiki/Convex_hull)
 
-Trong hình học tính toán, bao lồi của một tập điểm là tập lồi nhỏ nhất (theo diện tích, thể tích, ...) mà tất cả các điểm đều nằm trong tập đó.
+[[_TOC_]]
+
+Trong **hình học tính toán** (**computational geometry**), **bao lồi** (**convex hull**) của một tập điểm là tập lồi nhỏ nhất (theo diện tích, thể tích, ...) mà tất cả các điểm đều nằm trong tập đó.
+
+[[/uploads/algo_geometry_convex_hull_illustration.gif]]
+
 
 # Giải thích trực quan về bao lồi trên mặt phẳng
 
 - Nếu ta coi các điểm trong một tập hợp là các cái đinh đóng trên một tấm gỗ, bao lồi của tập điểm đó có viền ngoài tạo bởi sợi dây chun mắc vào các cái đinh sau khi bị kéo căng về các phía.
+
+[[/uploads/algo_geometry_convex_hull_nail.png]]
 
 - Nếu ta coi các điểm trong một tập hợp là các con cừu trên đồng cỏ, bao lồi của tập điểm đó có viền ngoài là hàng rào có độ dài nhỏ nhất bao quanh tất cả các con cừu
 
@@ -12,15 +21,26 @@ Trong hình học tính toán, bao lồi của một tập điểm là tập l�
 
 - Nếu ta coi các điểm trong một tập hợp là các cái cây, chu vi của bao lồi là độ dài tối thiểu của dải ruy băng bao quanh tất cả các cây đó.
 
+
 # Thuật toán tìm bao lồi trên mặt phẳng
 
 Bài toán tìm bao lồi của một tập điểm trên mặt phẳng là một trong những bài toán được nghiên cứu nhiều nhất trong hình học tính toán và có rất nhiều thuật toán để giải bài toán này. Sau đây là ba thuật toán phổ biến nhất, được giới thiệu theo thứ tự tăng dần về độ khó.
 
 ## Thuật toán bọc gói
 
-Thuật toán bọc gói hay còn gọi là thuật toán Jarvis march là một trong những thuật toán tìm bao lồi đơn giản và dễ hiểu nhất. Tên thuật toán xuất phát từ sự tương tự của thuật toán với việc đi bộ xung quanh các điểm và cầm theo một dải băng gói quà.
+**Thuật toán bọc gói** (**Gift wrapping algorithm**) hay còn gọi là thuật toán **Jarvis march** là một trong những thuật toán tìm bao lồi đơn giản và dễ hiểu nhất. Tên thuật toán xuất phát từ sự tương tự của thuật toán với việc đi bộ xung quanh các điểm và cầm theo một dải băng gói quà.
 
-Bước đầu tiên của thuật toán là chọn một điểm chắc chắn nằm trong bao lồi, ví dụ, điểm có tung độ lớn nhất. Bắt đầu từ điểm này, ta sẽ lần lượt đi đến các điểm khác cho đến khi quay trở lại điểm ta chọn lúc đầu. Sau đó, ta nhìn về phía bên phải điểm ta vừa chọn. Tại mỗi thời điểm ta sẽ lưu lại vi trí điểm $P$ mà ta đang chọn và vector $\vec{v}$ chỉ hướng ta đang nhìn. Tiếp theo, thuật toán sẽ lặp lại liên tục các bước sau cho đến khi tìm được bao lồi. Ta quay mặt theo chiều kim đồng hồ cho đến khi ta nhìn thấy một điểm, gọi điểm đó là $Q$. Rồi ta cầm theo dải băng và đi đến điểm $Q$. Khi ta đến điểm đấy, $\vec{v}$ trở thành $\vec{PQ}$ và $P$ trở thành $Q$. Khi thuật toán kết thúc, ta đã đi đến tất cả các đỉnh của bao lồi theo chiều kim đồng hồ.
+- Bước đầu tiên của thuật toán là chọn một điểm chắc chắn nằm trong bao lồi, ví dụ, điểm có tung độ lớn nhất (nếu có nhiều điểm cùng có tung độ lớn nhất thì có thể chọn điểm tung độ lớn nhất và hoành độ lớn nhất).
+- Xuất phát từ điểm này, mục tiêu của ta là sẽ lần lượt đi đến các điểm khác cho đến khi quay trở lại điểm ta chọn lúc đầu.
+- Ban đầu, ta nhìn về phía bên phải. Khi đi đến các điểm khác, ta sẽ lưu lại:
+  - Điểm $P$ mà ta đang chọn
+  - vector $\vec{v}$ chỉ hướng ta đang nhìn.
+- Tiếp theo, thuật toán sẽ lặp lại liên tục các bước sau cho đến khi tìm được bao lồi.
+  - Ta quay mặt theo chiều kim đồng hồ cho đến khi ta nhìn thấy một điểm, gọi điểm đó là $Q$.
+  - Rồi ta cầm theo dải băng và đi đến điểm $Q$. Khi ta đến điểm đấy, ta thay:
+    - $\vec{v}$ thành $\vec{PQ}$
+    - $P$ thành $Q$.
+- Thuật toán kết thúc, khi ta quay trở về điểm ban đầu. Lúc này ta đã đi đến tất cả các đỉnh của bao lồi theo chiều kim đồng hồ.
 
 Để xác định điểm ta nhìn thấy đầu tiên khi ta quay mặt theo chiều kim đồng hồ, ta duyệt tất cả các điểm $R$ trong tập, ngoại trừ điểm $P$. Với mỗi điểm, ta xét vector $\vec{u}=\vec{PR}$; $\vec{u}$ tạo với $\vec{v}$  một góc $\theta$ nhỏ nhất sẽ tương ứng với điểm $Q$ (dễ dàng chứng minh được điều này). Để tìm $\theta$ nhỏ nhất, ta tìm $\cos{\theta}$ lớn nhất, mà ta lại dễ dàng tính được $\cos{\theta}$ bằng công thức $\frac{\vec{u}.\vec{v}}{|\vec{u}||\vec{v}|}$.
 
@@ -49,7 +69,54 @@ mới,...), ta nên dùng cấu trúc dữ liệu [hàng đợi hai đầu](http
 
 Về độ phức tạp của thuật toán, ta thấy bước sắp xếp các điểm có độ phức tạp $O(n \log{n})$. Mỗi điểm được cho vào bao nhiều nhất một lần nên tổng độ phức tạp của các bước thêm điểm là $O(n)$, và mỗi điểm bị loại ra khỏi bao nhiều nhất một lần nên tổng độ phức tạp của các bước xóa điểm là $O(n)$, do đó độ phức tạp của bước xét các điểm là $O(n)$. Vậy, độ phức tạp của thuật toán Graham là $O(n \log{n})$, phù hợp cho hầu hết các bài toán.
 
+### Cài đặt
+
+```cpp
+struct pt {
+	double x, y;
+};
+
+bool cmp (pt a, pt b) {
+	return a.x < b.x || a.x == b.x && a.y < b.y;
+}
+
+bool cw (pt a, pt b, pt c) {
+	return a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y) < 0;
+}
+
+bool ccw (pt a, pt b, pt c) {
+	return a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y) > 0;
+}
+
+void convex_hull (vector<pt> & a) {
+	if (a.size() == 1)  return;
+	sort (a.begin(), a.end(), &cmp);
+	pt p1 = a[0],  p2 = a.back();
+	vector<pt> up, down;
+	up.push_back (p1);
+	down.push_back (p1);
+	for (size_t i=1; i<a.size(); ++i) {
+		if (i==a.size()-1 || cw (p1, a[i], p2)) {
+			while (up.size()>=2 && !cw (up[up.size()-2], up[up.size()-1], a[i]))
+				up.pop_back();
+			up.push_back (a[i]);
+		}
+		if (i==a.size()-1 || ccw (p1, a[i], p2)) {
+			while (down.size()>=2 && !ccw (down[down.size()-2], down[down.size()-1], a[i]))
+				down.pop_back();
+			down.push_back (a[i]);
+		}
+	}
+	a.clear();
+	for (size_t i=0; i<up.size(); ++i)
+		a.push_back (up[i]);
+	for (size_t i=down.size()-2; i>0; --i)
+		a.push_back (down[i]);
+}
+```
+
 ## Thuật toán chuỗi đơn điệu
+
 Thuật toán chuỗi đơn điệu vừa dễ cài đặt (tuy dù nó hơi khó hiểu), vừa là thuật toán nhanh nhất trong số 3 thuật toán được giới thiệu ở đây. Thuật toán dựa trên việc tìm hai chuỗi đơn điệu của bao lồi: chuỗi trên và chuỗi dưới. Ta thấy điểm ở xa về phía bên phải nhất (từ đây gọi là điểm phải nhất) và điểm ở xa về phía bên trái nhất (từ đây gọi là điểm trái nhất) trong dữ liệu vào luôn là hai đỉnh của bao lồi. Phần bao lồi theo chiều kim đồng hồ tính từ điểm trái nhất và ngược chiều kim đồng hồ tính từ điểm phải nhất gọi là chuỗi trên, phần còn lại của bao lồi gọi là chuỗi dưới. Ta sẽ tìm chuỗi trên và chuỗi dưới độc lập với nhau.
 
 Bước đầu tiên là sắp xếp các điểm được cho theo thứ tự tăng dần theo hoành độ. Nếu hai điểm có cùng hoành độ, điểm có tung độ nhỏ hơn sẽ đứng trước. Gọi $H$ là bao lồi tạm thời và độ lớn của bao là $h$, sao cho điểm đầu của bao là $H_1$ và điểm cuối là $H_h$. Với mỗi điểm được xét:
@@ -81,11 +148,11 @@ Các thuật toán trên hoạt động tốt trong trường hợp lí tưởng
 - Nếu có các bộ ba điểm thẳng hàng
 
   - Ta cần biết đề bài yêu cầu bao lồi có số lượng đỉnh tối đa hay tối thiểu, từ đó, ta suy ra ta có nên cho thêm các điểm thuộc cạnh của bao lồi hay không. Nếu chỉ có các bộ ba điểm thẳng hàng mà không có các điểm trùng nhau, ta có thể sửa dấu $<$ thành dấu $\leq$ trong thuật toán Graham và thuật toán chuỗi đơn điệu nếu bài toán yêu cầu bao lồi có số lượng đỉnh tối đa. Còn trong thuật toán bọc gói, ta sẽ chọn điểm ở xa nhất hoặc điểm ở gần nhất nếu có hai điểm cùng có số đo góc nhỏ nhất tùy vào yêu cầu bài toán.
-  
+
   - Thứ tự các đỉnh không phải là vấn đề, trừ khi đề bài yêu cầu in ra thứ tự các đỉnh của bao lồi có số đỉnh lớn nhất, trong đó các đỉnh thuộc cùng một cạnh được sắp xếp theo thứ tự xuất hiện trong dữ liệu vào. Khi đó, xử lí kết quả sau khi tìm bao lồi là lựa chọn tốt nhất.
 
 - Trường hợp xấu nhất trên lí thuyết là khi diện tích bao lồi bằng 0. Có hai trường hợp như vậy, và ta có thể dễ dàng xử lí hai trường hợp đó: tất cả các điểm đều trùng nhau, hoặc tất cả điểm đều thẳng hàng.
-  
+
   - Thuật toán chuỗi đơn điệu vẫn hoạt động bình thường nếu ta chỉ cần biết diện tích hoặc chu vi bao lồi.
 
   - Nếu ta cần in ra các đỉnh của bao lồi, ta không nên chỉnh sửa thuật toán mà nên xét riêng hai trường hợp trên.
@@ -100,6 +167,12 @@ Ngoại trừ các ứng dụng hiển nhiên, tìm bao lồi còn giúp ta gi�
 
 # Bao lồi trong không gian
 
-Tim bao lồi trong không gian ba chiều thực sự là một bài toán khó. Bài toán này chắc chắn sẽ không bao giờ được ra trong IOI, và học sinh trung học không cần phải đi sâu vào vấn đề này. Tuy nhiên, có một thuật toán $O(n^2)$ khá là đơn giản: đầu tiên, ta tìm hình chiếu của các điểm trên mặt phẳng $xy$, và tìm một các chắc chắn thuộc bao bằng cách lấy một điểm có tung độ lớn nhất rồi tìm điểm kia bằng cách chạy vòng lặp của thuật toán bọc gói một lần. Đây là phần đầu tiên của bao lồi. Sau đó, xét cạnh vừa tìm được, tìm một điểm thứ ba để tạo thành một mặt tam giác của bao lồi. Ta chọn điểm thứ ba bằng cách tìm điểm để tất cả các điểm khác nằm ở phía bên phải của mặt tam giác đó (giống như thuật toán bọc gói, ta tìm cạnh để tất cả các điểm khác đều nằm về phía bên phải cạnh đó). Bây giờ ta đã có ba cạnh trong bao lồi, ta chọn ngẫu nhiên một trong ba cạnh đó, rồi tìm tiếp một tam giác với cạnh này, rồi tiếp tục cho đến khi không còn cạnh nào nữa (Khi ta tìm thêm một mặt tam giác, ta phải thêm hai cạnh vào bao, tuy vậy hai cạnh này phải chưa có trong bao, nếu không ta phải đi tìm hai cạnh khác). Có tổng cộng $O(n)$ mặt, và mỗi lần duyệt các điểm ta mất thời gian $O(n)$ vì ta phải duyệt tất cả các điểm còn lại, do đó độ phức tạp của thuật toán là $O(n^2)$. (Nếu bạn nghĩ bạn có thể cài đặt được thuật toán này, hãy nộp bài tại [CH3D@SPOJ](http://www.spoj.com/problems/CH3D/)). Ta có thể tăng tốc độ thuật toán này bằng các loại bỏ các điểm chắc chắn không phải đỉnh của bao, bằng cách tìm các điểm cực theo các trục tọa độ, rồi loại bỏ các điểm nằm trong bát diện mà các đỉnh đấy tạo ra. 
+Tim bao lồi trong không gian ba chiều thực sự là một bài toán khó. Bài toán này chắc chắn sẽ không bao giờ được ra trong IOI, và học sinh trung học không cần phải đi sâu vào vấn đề này. Tuy nhiên, có một thuật toán $O(n^2)$ khá là đơn giản: đầu tiên, ta tìm hình chiếu của các điểm trên mặt phẳng $xy$, và tìm một các chắc chắn thuộc bao bằng cách lấy một điểm có tung độ lớn nhất rồi tìm điểm kia bằng cách chạy vòng lặp của thuật toán bọc gói một lần. Đây là phần đầu tiên của bao lồi. Sau đó, xét cạnh vừa tìm được, tìm một điểm thứ ba để tạo thành một mặt tam giác của bao lồi. Ta chọn điểm thứ ba bằng cách tìm điểm để tất cả các điểm khác nằm ở phía bên phải của mặt tam giác đó (giống như thuật toán bọc gói, ta tìm cạnh để tất cả các điểm khác đều nằm về phía bên phải cạnh đó). Bây giờ ta đã có ba cạnh trong bao lồi, ta chọn ngẫu nhiên một trong ba cạnh đó, rồi tìm tiếp một tam giác với cạnh này, rồi tiếp tục cho đến khi không còn cạnh nào nữa (Khi ta tìm thêm một mặt tam giác, ta phải thêm hai cạnh vào bao, tuy vậy hai cạnh này phải chưa có trong bao, nếu không ta phải đi tìm hai cạnh khác). Có tổng cộng $O(n)$ mặt, và mỗi lần duyệt các điểm ta mất thời gian $O(n)$ vì ta phải duyệt tất cả các điểm còn lại, do đó độ phức tạp của thuật toán là $O(n^2)$. (Nếu bạn nghĩ bạn có thể cài đặt được thuật toán này, hãy nộp bài tại [CH3D@SPOJ](http://www.spoj.com/problems/CH3D/)). Ta có thể tăng tốc độ thuật toán này bằng các loại bỏ các điểm chắc chắn không phải đỉnh của bao, bằng cách tìm các điểm cực theo các trục tọa độ, rồi loại bỏ các điểm nằm trong bát diện mà các đỉnh đấy tạo ra.
 
 Ta có thể tìm bao lồi trong không gian với độ phức tạp $O(n \log{n})$ bằng phương pháp chia để trị, tuy nhiên việc cài đặt thuật toán này là vô cùng khó.
+
+# Bài tập áp dụng
+
+- [Kattis - convexhull](https://open.kattis.com/problems/convexhull)
+- [VOJ - MILITARY](http://vn.spoj.com/problems/MILITARY/)
+- [VOJ - HEADQRT](http://vn.spoj.com/problems/HEADQRT/)
