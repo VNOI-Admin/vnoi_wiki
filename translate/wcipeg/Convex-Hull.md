@@ -166,6 +166,8 @@ Begin
 End;
 ```
 
+Bạn cũng có thể tham khảo thêm cài đặt C++ [ở đây](https://sites.google.com/site/kc97ble/arithmetic/graham-cpp-2/graham-cpp)
+
 ## Thuật toán chuỗi đơn điệu
 
 Thuật toán **chuỗi đơn điệu** (**Monotone chain**) vừa dễ cài đặt, vừa là thuật toán nhanh nhất trong số 3 thuật toán được giới thiệu trong bài viết này. Thuật toán dựa trên việc tìm hai chuỗi đơn điệu của bao lồi: chuỗi trên và chuỗi dưới. Ta thấy điểm ở xa về phía bên phải nhất (từ đây gọi là điểm phải nhất) và điểm ở xa về phía bên trái nhất (từ đây gọi là điểm trái nhất) trong dữ liệu vào luôn là hai đỉnh của bao lồi. Phần bao lồi theo chiều kim đồng hồ tính từ điểm trái nhất và ngược chiều kim đồng hồ tính từ điểm phải nhất gọi là chuỗi trên, phần còn lại của bao lồi gọi là chuỗi dưới. Ta sẽ tìm chuỗi trên và chuỗi dưới độc lập với nhau.
@@ -237,6 +239,8 @@ void convex_hull (vector<pt> & a) {
     a.push_back (down[i]);
 }
 ```
+
+Bạn cũng có thể tham khảo thêm cài đặt C++ [ở đây](https://sites.google.com/site/kc97ble/arithmetic/monotonechain-cpp)
 
 ## Xử lí trường hợp suy biến
 
