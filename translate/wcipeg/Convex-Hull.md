@@ -52,7 +52,7 @@ Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất n
 
 - Đầu tiên, ta xác định một điểm mà chắc chắn thuộc bao lồi. Thông thường, khi cài đặt người ta chọn điểm có tung độ nhỏ nhất (nếu có nhiều điểm như vậy thì chọn điểm trái nhất). Gọi điểm này là điểm $O$.
 - Chọn hệ trục tọa độ có gốc là điểm vừa chọn, đổi các tọa độ các điểm còn lại theo hệ trục tọa độ mới (chú ý lúc cài đặt thường ta không đổi trục tọa độ, nhưng khi tính góc hoặc sắp xếp ở bước tiếp theo cần chú ý tránh nhầm lẫn).
-- Tiếp theo, ta sắp xếp các điểm $P$ còn lại theo thứ tự tăng dần của góc tạo bởi $\vec{OP}$ và $\vec{OI}$ với $I$ là một điểm nằm trên trục hoành và $\vec{OI}$ cùng hướng với chiều dương của trục hoành.
+- Tiếp theo, ta sắp xếp các điểm còn lại theo thứ tự tăng dần của góc tạo bởi trục hoành theo chiều dương và $\vec{OI}$ với $I$ là một trong các điểm còn lại.
 - Ta xét các điểm theo thứ tự ta vừa sắp xếp, với mỗi điểm ta sửa lại bao lồi $H$. Gọi điểm đầu tiên được cho vào bao lồi $H$ là $H_1$, điểm cuối cùng là $H_h$ (ban đầu $h = 0$). Khi xét mỗi điểm ta làm như sau:
   1. Thêm điểm $P$ vào cuối bao lồi $H$. Tức là ta tăng $h$ lên 1 và đặt $H_h=P$.
   2. Nếu $h<3$, xét tiếp điểm tiếp theo, ngược lại làm bước 3.
