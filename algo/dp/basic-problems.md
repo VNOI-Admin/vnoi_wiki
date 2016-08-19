@@ -444,7 +444,7 @@ Nếu để ý kĩ bạn sẽ thấy rằng đoạn trình trên chỉ viết gi
 
 **Hướng dẫn**
 
-Bài toán này khá giống bài toán xếp balô (“khối lượng” là mệnh giá, “giá trị” là 1), chỉ có một số thay đổi nhỏ: số đồng xu mỗi loại được chọn tuỳ ý (trong bài toán xếp balô mỗi đồ vật chỉ được chọn 1 lần) và tổng giá trị yêu cầu là nhỏ nhất.
+Bài toán này khá giống bài toán xếp balô (“khối lượng” là mệnh giá, “giá trị” là 1), chỉ có một thay đổi nhỏ: tổng giá trị yêu cầu là nhỏ nhất.
 
 Do đó ta cũng xây dựng hàm QHĐ một cách tương tự: Gọi $L[i,t]$ là số đồng xu ít nhất nếu đổi $t$ đồng ra $i$ loại tiền xu (từ 1 đến $i$). Công thức tính $L[i,t]$ như sau:
 
@@ -453,7 +453,7 @@ Do đó ta cũng xây dựng hàm QHĐ một cách tương tự: Gọi $L[i,t]$ 
 - $L[i,t]=L[i-1,t]$ nếu $t<A[i]$.
 - $L[i,t]=min(L[i-1,t], L[i,t-A[i]]+1)$ nếu $t \ge A_i$.
 
-Công thức này khác công thức của bài xếp balô ở chỗ: dùng hàm **min** chứ không phải hàm **max** (vì cần tìm cách chọn ít hơn) và nếu chọn đồng xu thứ $i$ thì $L[i,t]=L[i,t-A_i]+1$ (vì ta vẫn còn được chọn đồng xu thứ $i$ đó nữa), khác với khi xếp balô là: nếu chọn đồ vật thứ $i$ thì $L[i,t]=L[i-1,t-A_i])+B_i$ vì đồ vật $i$ chỉ được chọn một lần.
+Công thức này khác công thức của bài xếp balô ở chỗ: dùng hàm **min** chứ không phải hàm **max** (vì cần tìm cách chọn ít hơn).
 
 # 5. Nhân ma trận
 
@@ -492,25 +492,21 @@ Tuy nhiên dựa vào nhận xét là trong công thức QHĐ: $j-i$ lớn hơn 
 Đoạn chương trình tính bảng phương án như sau:
 
 ```pascal
-for i:=1 to n do F[i,i]:=0;
+for i:=1 to n do
+  F[i,i]:=0;
 
-for i:=1 to n-1 do F[i,i+1] := d[i-1]*d[i]*d[i+1];
+for i:=1 to n-1 do
+  F[i,i+1] := d[i-1]*d[i]*d[i+1];
 
 for m:=2 to n-1 do
-
-    begin
-
-         for i:=1 to n-m do
-
-              begin
-
-                    j:=i+m;
-
-                    F[i,j]:=oo;
-
-                    for k:=i+1 to j-1 do F[i,j]:=min(F[i,j], F[i,k]+F[k+1,j]+d[i-1]*d[k]*d[j]);
-
-              end;
+  begin
+    for i:=1 to n-m do
+      begin
+        j:=i+m;
+        F[i,j]:=oo;
+        for k:=i+1 to j-1 do
+          F[i,j]:=min(F[i,j], F[i,k]+F[k+1,j]+d[i-1]*d[k]*d[j]);
+      end;
 end;
 ```
 
