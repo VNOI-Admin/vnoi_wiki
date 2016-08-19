@@ -2,7 +2,7 @@
 
 [[_TOC_]]
 
-**Tác giả**: Nguyễn *RR* Thành Trung
+**Tác giả**: Nguyễn *RR* Thành Trung, Nguyễn Mạnh Quân
 
 # Mở đầu
 
