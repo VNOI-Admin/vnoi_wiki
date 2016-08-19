@@ -362,7 +362,7 @@ Lưu ý điều kiện thêm vào ở trường hợp $3$. Để trường hợp
 
 ## Ví dụ 8
 
-Gọi $f(N)$ là thời gian mà thuật toán ** Nhân ma trận Strassen** cần để nhân hai ma trận vuông kích cỡ $N$ x $N$. Đây là một thuật toán đệ quy, thực hiện $7$ lời gọi hàm đệ quy, mỗi hàm nhân hai ma trận có kích cỡ $N/2$ x $N/2$ và sau đó tổng hợp kết quả trong $\Theta(N^2)$.
+Gọi $f(N)$ là thời gian mà thuật toán nhân ma trận **Strassen** cần để nhân hai ma trận vuông kích cỡ $N$ x $N$. Đây là một thuật toán đệ quy, thực hiện $7$ lời gọi hàm đệ quy, mỗi hàm nhân hai ma trận có kích cỡ $N/2$ x $N/2$ và sau đó tổng hợp kết quả trong $\Theta(N^2)$.
 
 Ta có công thức truy hồi sau:
 
