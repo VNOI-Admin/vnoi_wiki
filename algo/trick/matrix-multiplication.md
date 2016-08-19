@@ -296,7 +296,7 @@ Cách làm thông thường là nhân trực tiếp hai ma trận $A, B$ rồi s
 2. Tính hiệu $P = A * B * v - C * v$. Dễ thấy rằng $P$ là ma trận kích cỡ $N * 1$.
 3. Trả về `True` nếu $P$ chỉ gồm phần tử $0$ (bằng với vector $0$) và `False` nếu ngược lại. 
 
-Ta thực hiện $k$ lần thử, nếu gặp phép thử trả về `False` thì ta kết luận là $A * B \neq C$. Ngược lại nếu sau $k$ phép thử mà luôn thấy `True` thì ta kết luận $A * B = C$. Vì xác suất lỗi giảm theo hàm mũ của $K$ nên thông thường chỉ cần chọn $k$ vừa đủ là sẽ thu được xác suất đúng rất cao ($k = 5$ với bài **VMATRIX** ở trên). Một nhận xét quan trọng khác là cận trên của đánh giá xác suất kiểm tra lỗi không phụ thuộc vào kích cỡ $N$ của ma trận được cho mà chỉ phụ thuộc vào số lần thực hiện phép thử.
+Ta thực hiện $k$ lần thử, nếu gặp phép thử trả về `False` thì ta kết luận là $A * B \neq C$. Ngược lại nếu sau $k$ phép thử mà luôn thấy `True` thì ta kết luận $A * B = C$. Vì xác suất lỗi giảm theo hàm mũ của $k$ nên thông thường chỉ cần chọn $k$ vừa đủ là sẽ thu được xác suất đúng rất cao ($k = 5$ với bài **VMATRIX** ở trên). Một nhận xét quan trọng khác là cận trên của đánh giá xác suất kiểm tra lỗi không phụ thuộc vào kích cỡ $N$ của ma trận được cho mà chỉ phụ thuộc vào số lần thực hiện phép thử.
 
 Xét bước thứ 2, ta thấy rằng phép thử Freivalds chỉ có ý nghĩa nếu như ta có thể thực hiện phép nhân $A * B * v$ trong thời gian $O(N^2)$ (vì phép nhân $C * v$ đã đạt sẵn $O(N^2)$ rồi). Thay vì thực hiện tuần tự từ trái qua phải sẽ cần $O(N^3)$, ta thực hiện theo thứ tự $A * (B * v)$. Vì kết quả của phép nhân $B$ và $v$ là một ma trận $N * 1$ nên độ phức tạp tổng cộng sẽ là $O(N^2)$. Trên tất cả các phép thử, độ phức tạp là $O(k * N^2)$. 
 
