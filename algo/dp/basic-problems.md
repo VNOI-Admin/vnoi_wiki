@@ -13,7 +13,7 @@ Cho dãy $A_1,A_2,..., A_n$. Hãy tìm một dãy con tăng có nhiều phần t
 - Các phần tử trong dãy kết quả chỉ xuất hiện 1 lần. Vì vậy phương pháp làm là ta sẽ dùng vòng `For` duyệt qua các phần tử $A$ trong dãy, khác với các bài toán của mô hình 4 (đặc trưng là bài toán đổi tiền), các phần tử trong dãy có thể được chọn nhiều lần nên ta thực hiện bằng phương pháp cho giá trị cần quy đổi tăng dần từng đơn vị.
 - Thứ tự của các phần tử được chọn phải được giữ nguyên so với dãy ban đầu.
 
-Đặc trưng này có thể mất đi trong một số bài toán khác tùy vào yêu cầu cụ thể. Chẳng hạn bài: [Tam giác bao nhau](http://vnoi.info/contributor/algo/dp/basic-problems#1-dãy-con-đơn-điệu-dài-nhất_1-4-một-số-bài-toán-khác_dãy-tam-giác-bao-nhau).
+Đặc trưng này có thể mất đi trong một số bài toán khác tùy vào yêu cầu cụ thể. Chẳng hạn bài: [Tam giác bao nhau](#1-dãy-con-đơn-điệu-dài-nhất_1-4-một-số-bài-toán-khác_dãy-tam-giác-bao-nhau).
 
 ## 1.2. Công thức QHĐ
 
