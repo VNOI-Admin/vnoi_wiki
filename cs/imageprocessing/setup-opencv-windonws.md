@@ -60,46 +60,46 @@ Nhấn Alt + F7 để vào phần Properties của Project. Chọn Thẻ Linker,
 Chuyển đến thẻ Input, mục Additional Dependencies ta nhập các file sau:
 
 >opencv_calib3d300d.lib
-opencv_core300d.lib
-opencv_features2d300d.lib
-opencv_flann300d.lib
-opencv_hal300d.lib
-opencv_highgui300d.lib
-opencv_imgcodecs300d.lib
-opencv_imgproc300d.lib
-opencv_ml300d.lib
-opencv_objdetect300d.lib
-opencv_photo300d.lib
-opencv_shape300d.lib
-opencv_stitching300d.lib
-opencv_superres300d.lib
-opencv_ts300d.lib
-opencv_video300d.lib
-opencv_videoio300d.lib
-opencv_videostab300d.lib
+>opencv_core300d.lib
+>opencv_features2d300d.lib
+>opencv_flann300d.lib
+>opencv_hal300d.lib
+>opencv_highgui300d.lib
+>opencv_imgcodecs300d.lib
+>opencv_imgproc300d.lib
+>opencv_ml300d.lib
+>opencv_objdetect300d.lib
+>opencv_photo300d.lib
+>opencv_shape300d.lib
+>opencv_stitching300d.lib
+>opencv_superres300d.lib
+>opencv_ts300d.lib
+>opencv_video300d.lib
+>opencv_videoio300d.lib
+>opencv_videostab300d.lib
 
 Sau khi cấu hình xong, ta chuyển qua target là Release và thực hiện giống hệt như vậy. Tuy nhiên đường dẫn lần này sẽ là sources\build\lib\Release.
 
 Phần Additional Dependencies sẽ là:
 
 >opencv_calib3d300.lib
-opencv_core300.lib
-opencv_features2d300.lib
-opencv_flann300.lib
-opencv_hal300.lib
-opencv_highgui300.lib
-opencv_imgcodecs300.lib
-opencv_imgproc300.lib
-opencv_ml300.lib
-opencv_objdetect300.lib
-opencv_photo300.lib
-opencv_shape300.lib
-opencv_stitching300.lib
-opencv_superres300.lib
-opencv_ts300.lib
-opencv_video300.lib
-opencv_videoio300.lib
-opencv_videostab300.lib
+>opencv_core300.lib
+>opencv_features2d300.lib
+>opencv_flann300.lib
+>opencv_hal300.lib
+>opencv_highgui300.lib
+>opencv_imgcodecs300.lib
+>opencv_imgproc300.lib
+>opencv_ml300.lib
+>opencv_objdetect300.lib
+>opencv_photo300.lib
+>opencv_shape300.lib
+>opencv_stitching300.lib
+>opencv_superres300.lib
+>opencv_ts300.lib
+>opencv_video300.lib
+>opencv_videoio300.lib
+>opencv_videostab300.lib
 
 ##Cấu hình thư viện cho quá trình thực thi
 
@@ -143,7 +143,7 @@ Sau khi biên dịch xong thư viện ta mở Command Line và trỏ đến thư
 
 Gõ lệnh sau:
 >dir Debug\*d.lib /B >..\DependenciesDebug.txt
-dir Release\*.lib /B >..\DependenciesRelease.txt
+>dir Release\*.lib /B >..\DependenciesRelease.txt
 
 Sau khi gõ xong thì trong thư mục build sẽ xuất hiện 2 file text là DependenciesDebug và DependenciesRelease chứa danh sách tât cả các file libs. Mỗi lần sử dụng chỉ cần mở file lên và chép vào.
 
@@ -180,5 +180,5 @@ Ta sẽ tạo một Property Sheet mới (Click chuột phải vào từng mục
 Vì đã set OPENCV_DIR là thư mục của OpenCV nên ta có thể thay đổi đường dẫn của các config thành
 
 >%OPENCV_DIR%\build\include
-%OPENCV_DIR%\source\build\lib\Debug
-%OPENCV_DIR%\source\build\lib\Release
+>%OPENCV_DIR%\source\build\lib\Debug
+>%OPENCV_DIR%\source\build\lib\Release
