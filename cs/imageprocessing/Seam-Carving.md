@@ -22,6 +22,10 @@ Nếu như ảnh có 3 kênh màu thì ta lấy tổng giá trị năng lượng
 
 $dI(i, j)/dx = I(i+1)-I(i-1)/dx$ với $dx = 1$.
 
+Tương tự cho $dI(i, j)/dy$:
+
+$dI(i, j)/dy = I(j+1)-I(j-1)/dy$ với $dy = 1$.
+
 ```matlab
 function res = energyRGB(I)
 % Input: Ảnh màu (3 kênh màu)
@@ -45,7 +49,7 @@ Năng lượng thu được:
 
 ## Seam
 
-Nếu chúng ta xóa đi các điểm ảnh có nặng lượng thấp nhất ở các vị trí ngẫu nhiên, ta sẽ ra một hình ảnh méo mó. Nếu chúng ta xóa theo cột hoặc hàng với năng lượng tối thiểu, ta sẽ nhận được một bức ảnh hoàn chỉnh được thu nhỏ kích thước lại. Ở đây cột j nghĩa là tập hợp {(i, j) với j cố định} và một hàng i nghĩa là tập hợp {(i, j) với i cố định}.
+Nếu chúng ta xóa đi các điểm ảnh có nặng lượng thấp nhất ở các vị trí ngẫu nhiên, ta sẽ ra một hình ảnh méo mó. Nếu chúng ta xóa theo cột hoặc hàng với năng lượng tối thiểu, ta sẽ nhận được một bức ảnh hoàn chỉnh được thu nhỏ kích thước lại. Ở đây cột j nghĩa là tập hợp *{(i, j) với j cố định}* và một hàng i nghĩa là tập hợp *{(i, j) với i cố định}*.
 
 Thuật toán Seam Carving xóa các hàng và cột tổng quát (được gọi là đường seam). Cụ thể hơn, gọi $I$ là một bức ảnh có kích thước $n \* m$, một đường seam dọc là $(s^x)i = (i, x(i))s.t.\forall i, |x(i) - x(i - 1)| \leq 1$ trong đó $x[1..n] \to [1..m]$. Nói một cách dễ hiểu hơn, một đường seam dọc (**vertical seam**) là một đường đi từ biên trên của bức ảnh xuống biên dưới của bức ảnh với độ dài đường đi bằng chiều cao của bức ảnh, và với mỗi phần vị trí $(i, j)$ của đường seam, ta có thể đi tiếp đến các phần tử $(i + 1, j - 1)$, $(i + 1, j)$, $(i + 1, j + 1)$. Tương tự ta cũng có thể định nghĩa cho đường seam ngang (**horizontal seam**). Ví dụ về các đường màu đen là các đường seam trong hình dưới đây.
 
@@ -60,7 +64,7 @@ Chúng ta sẽ tìm kiếm một đường seam sao cho có tổng giá trị n�
 
 2. Ở biên dưới của ảnh, ta tìm điểm đường seam tối ưu (tổng giá trị năng lượng thấp nhất thông qua bảng phương án $M$) và đi ngược về để tìm đường đi tối ưu.
 
-**Lưu ý**: trong đoạn code dưới đây trả về một ma trận $n \* m$ chỉ gồm 0 và 1 với các điểm ảnh trên đường đi seam sẽ có giá trị là 0 và ngược lại.
+**Lưu ý**: trong đoạn code dưới đây trả về một ma trận $n \* m$ chỉ gồm 0 và 1 với các điểm ảnh trên đường đi seam sẽ có giá trị là 0 và ngược lại. Để tìm đường seam ngang, ta chỉ cần chuyển vị ma trận năng lượng lại.
 
 ```matlab
 function [optSeamMask, seamEnergy] = findOptSeam(energy)
@@ -70,7 +74,7 @@ function [optSeamMask, seamEnergy] = findOptSeam(energy)
 % Để tìm đường seam ngang tối ưu, cho Input là ma trận chuyển vị
 
     % Tính mảng quy hoạch động M cho các đường seam dọc
-    M = padarray(energy, [0 1], realmax('double')); % Thêm 1 cột 0 ở đầu để tránh xử lý biên
+    M = padarray(energy, [0 1], realmax('double')); % M = mảng energy thêm 2 cột có giá trị cực đại ở đầu và cuối để tránh xử lý biên
 
     sz = size(M);
     for i = 2 : sz(1)
@@ -103,8 +107,6 @@ function [optSeamMask, seamEnergy] = findOptSeam(energy)
 end
 ```
 
-Để tìm đường seam ngang, ta chỉ cần chuyển vị ma trận năng lượng lại.
-
 ## Tìm phương án tối ưu để xóa đường seam
 
 Bây giờ ta có thể tính toán ra được đường seam và sử dụng đoạn code dưới đây, ta có thể loại bỏ đường seam ra khỏi bức ảnh.
@@ -133,13 +135,14 @@ function imageReduced = reduceImageByMaskHorizontal(image, seamMask)
 end
 ```
 
-Đây là một thuật toán hiệu quả để làm giám kích thước ảnh theo một chiều - chỉ cần việc tìm và xóa các đường seam nhiều lần như bạn cần. Nhưng nếu làm giảm kích thước theo cả hai chiều, ta cần phải làm như thế nào? Làm sao để quyết định rằng ở mỗi lần lắp đưa ra quyết định là xóa theo dòng hay cột sẽ tốt hơn? Vấn đề này một lần nữa được giải quyết bằng quy hoạch động. Ta gọi $T(i, j)$ là giá trị năng lượng thấp nhất khi ta loại bỏ i đường seam theo chiều dọc và j đường seam theo chiều ngang. Ta sử dụng thêm một mảng $transBitMask(i, j)$ lưu trữ đường đi đến $T(i, j)$ theo chiều dọc (1) hay ngang (0). Nhìn một đoạn code giả dưới đây để có thể dễ hình dung.
+Đây là một thuật toán hiệu quả để làm giám kích thước ảnh theo một chiều - chỉ cần việc tìm và xóa các đường seam nhiều lần như bạn cần. Nhưng nếu làm giảm kích thước theo cả hai chiều, ta cần phải làm như thế nào? Làm sao để quyết định rằng ở mỗi lần lắp đưa ra quyết định là xóa theo dòng hay cột sẽ tốt hơn? Vấn đề này một lần nữa được giải quyết bằng quy hoạch động. Ta gọi $T(i, j)$ là giá trị năng lượng thấp nhất khi ta loại bỏ i đường seam theo chiều dọc và j đường seam theo chiều ngang.  Cụ thể: $T(i, j) = min(T(i, j-1) + E(seamVertical), T(i-1,j) + E(seamHorizontal))$. Trong đó $E(seamVertical)$ là giá trị nhỏ nhất (tối ưu) đường seam dọc loại bỏ đi, $E(seamHorizontal)$ là giá trị nhỏ nhất (tối ưu) đường seam ngang loại bỏ đi.
+Ta sử dụng thêm một mảng $transBitMask(i, j)$ lưu truy vết đường đi cho bản phương án $T(i, j)$ .  $transBitMask(i, j) = 1$ bỏ đi đường seam dọc, $transBitMask(i, j) = 0$  bỏ đi đường seam ngang. Nhìn một đoạn code giả dưới đây để có thể dễ hình dung.
 
 ```
 1) T(0, 0) = 0;
 2) Khởi tạo T:
    for all j {
-       T(0, j) = T(0, j - 1) + E(seamVertical);
+       T(0, j) = T(0, j - 1) + E(seamVertical); 
    }
    for all i {
        T(i, 0) = T(j - 1, 0) + E(seamHorizontal);
@@ -175,7 +178,7 @@ end
 5) Truy vết theo T và TBM.
 ```
 
-Đoạn code bằng matlab
+Đoạn code bằng matlab. Chú ý ở pseduocode dùng zerobased index, do matlab sử dụng onebased index nên cần phải đẩy index lên 1 đơn vị.
 
 ```matlab
 function [T, transBitMask] = findTransportMatrix(sizeReduction, image)
