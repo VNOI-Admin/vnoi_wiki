@@ -208,7 +208,7 @@ double probability (int N, int nestings, int target) {
   for (I = 0; I < N ; I++)
     A[I] = (double) 1 / N;
 
-  for (K = 2; K ≤ nestings; K++) {
+  for (K = 2; K <= nestings; K++) {
     for (I = 0; I < N; I++)
       B[I] = 0;
 
