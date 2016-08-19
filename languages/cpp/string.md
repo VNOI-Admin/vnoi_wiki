@@ -1,5 +1,7 @@
 # Xâu trong C++
 
+Bài viết sưu tầm trên mạng.
+
 # 0. Kiểu chuỗi của C và hạn chế
 
 Khi mới học C, chắc các bạn đều rất bối rối khi làm việc với xâu ký tự, việc sử dụng con trỏ lưu xâu ký tự rất phức tạp, dễ gây lỗi khiến nhiều người cho rằng nó không bằng xâu ký tự trong Pascal.
