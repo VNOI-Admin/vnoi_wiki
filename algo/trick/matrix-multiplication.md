@@ -1,6 +1,6 @@
-[[_TOC_]]
-
 # Nhân ma trận
+
+[[_TOC_]]
 
 **Tác giả**: Nguyễn *RR* Thành Trung
 
