@@ -285,6 +285,7 @@ while (attempt < Max)
  attempt ++;
 }
 ```
+
 ## Bài tập rèn luyện
 
 ND: Mình không chép lại danh sách bài tập trong bài viết gốc ở topcoder do sau này tác giả có thể chỉnh sửa hay bổ sung. Các bạn xem cuối [bài viết gốc trên topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/understanding-probabilities/) để luyện tập thêm.
