@@ -4,7 +4,7 @@
 
 # Bài toán
 
-Cho một dãy số $A$ gồm $N$ phần tử. Cần thực hiện $Q$ truy vấn, mỗi truy vấn $(i, j)$ yêu cầu tìm $mode(Ai, ..., Aj)$. (Mode của một tập hợp là giá trị xuất hiện nhiều lần nhất trong tập hợp đó). Giới hạn: $N, Q, A_i \le 10^5$.
+Cho một dãy số $A$ gồm $N$ phần tử. Cần thực hiện $Q$ truy vấn, mỗi truy vấn $(i, j)$ yêu cầu tìm $mode(A_i, ..., A_j)$. (Mode của một tập hợp là giá trị xuất hiện nhiều lần nhất trong tập hợp đó). Giới hạn: $N, Q, A_i \le 10^5$.
 
 Khi đọc đề một bài toán truy vấn kiểu này, có lẽ CTDL đầu tiên mà các bạn nghĩ đến là Interval Tree. Nhưng có điều gì đó không ổn trong bài này: Khi có thông tin của 2 nút con $[l, mid]$ và $[mid+1, r]$, rất khó để tìm được bất kỳ thông tin hữu ích nào của $[l, r]$.
 
@@ -30,15 +30,15 @@ function mode(l, r):
 
 Dễ thấy, thuật toán duyệt này có độ phức tạp $O(N \* Q)$. Có 2 lý do chính khiến thuật toán này chạy chậm:
 
-1. Khởi tạo mảng count mỗi lần mất $O(N)$
-2. Với mỗi truy vấn, phải tính lại count từ đầu
+1. Khởi tạo mảng count mỗi lần mất $O(N)$.
+2. Với mỗi truy vấn, phải tính lại mảng count từ đầu.
 
 Ta có thể cải tiến được như sau:
 
 Sau khi trả lời truy vấn $[l_1, r_1]$, để trả lời truy vấn $[l_2, r_2]$, bạn chỉ cần thay đổi mảng đếm một cách phù hợp. Cụ thể:
 
-- Nếu $l_2 > l_1$, giảm số lần xuất hiện của $A(l_1), ..., A(l_2-1)$
-- Nếu $l_2 < l_1$, tăng số lần xuất hiện của $A(l_2), ..., A(l_1-1)$
+- Nếu $l_2 > l_1$, giảm số lần xuất hiện của $A_{l_1}, ..., A_{l_2-1}$
+- Nếu $l_2 < l_1$, tăng số lần xuất hiện của $A_{l_2}, ..., A_{l_1-1}$
 - Tương tự với $r_1$ và $r_2$.
 
 Để cập nhật số lần xuất hiện lớn nhất thì có thể dùng thêm set.
@@ -47,13 +47,15 @@ Như vậy, độ phức tạp của ta là tổng $|l_i - l_{i-1}| + |r_i - r_{
 
 # Thuật toán Mo
 
-Thuật toán Mo là một cách sắp xếp lại các truy vấn, sao cho tổng $|l_i - l_{i-1}| + |r_i - r_{i-1}|$ không quá $O(N \* sqrt(N) + Q \* sqrt(N))$.
+Thuật toán Mo là một cách sắp xếp lại các truy vấn, sao cho tổng $|l_i - l_{i-1}| + |r_i - r_{i-1}|$ không quá $O(N \* \sqrt{N} + Q \* \sqrt{N})$.
+
+Thứ tự các truy vấn được định nghĩa qua hàm so sánh dưới đây.
 
 ```
 S = sqrt(N);
 bool cmp(Query A, Query B) // so sánh 2 truy vấn
 {
-  if (A.l / S ！= B.l / S) {
+  if (A.l / S != B.l / S) {
     return A.l / S < B.l / S;
   }
   return A.r < B.r
@@ -63,9 +65,9 @@ bool cmp(Query A, Query B) // so sánh 2 truy vấn
 
 **Giải thích**:
 
-- Ta chia dãy thành các block (nhóm) độ dài $S = \sqrt{N}$
-- Nếu đầu trái của truy vấn nằm ở 2 block khác nhau, ta sắp xếp theo đầu trái
-- Ngược lại (đầu trái của truy vấn nằm ở cùng 1 block), ta sắp xếp theo đầu phải
+- Ta chia dãy thành các block (nhóm) độ dài $S = \sqrt{N}$.
+- Nếu đầu trái của truy vấn nằm ở 2 block khác nhau, ta sắp xếp theo đầu trái.
+- Ngược lại (đầu trái của truy vấn nằm ở cùng 1 block), ta sắp xếp theo đầu phải.
 
 **Chứng minh**:
 
@@ -73,10 +75,10 @@ Mo's algorithm có độ phức tạp là $O(N \* \sqrt{N} + Q \* \sqrt{N})$. Đ
 
 - Di chuyển $l_1 \rightarrow l_2$:
     - Nếu $l_1$ và $l_2$ cùng block: Với mỗi thao tác, độ phức tạp không quá $\sqrt{N}$. Do đó, độ phức tạp trong trường hợp này của cả $Q$ thao tác là $O(Q \* \sqrt{N})$.
-    - Nếu $l_1$ và $l_2$ khác block: Vì ta ưu tiên sort theo block chứa $l$, nên trường hợp này chỉ xảy ra không quá $\sqrt{N}$ lần. Ở trường hợp này, ta mất độ phức tạp tối đa là $O(N)$, nên với tất cả các thao tác, độ phức tạp là $O(N \* \sqrt{N})$.
+    - Nếu $l_1$ và $l_2$ khác block: Vì ta ưu tiên sort theo block chứa $l$, nên trường hợp này xảy ra không quá $\sqrt{N}$ lần. Ở trường hợp này, ta mất độ phức tạp tối đa là $O(N)$, nên với tất cả các thao tác, độ phức tạp là $O(N \* \sqrt{N})$.
 - Di chuyển $r_1 \rightarrow r_2$:
-    - Nếu $l_1$ và $l_2$ cùng block: Vì ta sort tăng theo $r$, nên với mỗi block của $l$, ta chỉ mất độ phức tạp tổng là $O(N)$. Do có $\sqrt{N}$ block khác nhau của $l$, nên tổng độ phức tạp trong trường hợp này là $O(N \* \sqrt{N})$.
-    - Nếu $l_1$ và $l_2$ khác block: Như trên đã phân tích, ta chỉ có $\sqrt{N}$ lần đổi block, môi lần đổi block ta mất độ phức tạp $O(N)$ để di chuyển $r$. Do đó tổng độ phức tạp của trường hợp này là $O(N \* \sqrt{N})$.
+    - Nếu $l_1$ và $l_2$ cùng block: Vì trong cùng một block $r$ được sắp xếp tăng dần, nên với mỗi block của $l$, ta chỉ mất độ phức tạp tổng là $O(N)$. Do có $\sqrt{N}$ block khác nhau của $l$, nên tổng độ phức tạp trong trường hợp này là $O(N \* \sqrt{N})$.
+    - Nếu $l_1$ và $l_2$ khác block: Như trên đã phân tích, ta chỉ có $\sqrt{N}$ lần đổi block, mỗi lần đổi block ta mất độ phức tạp $O(N)$ để di chuyển $r$. Do đó tổng độ phức tạp của trường hợp này là $O(N \* \sqrt{N})$.
 
 Vậy, độ phức tạp là $O(N \* \sqrt{N} + Q \* \sqrt{N})$.
 
@@ -84,10 +86,10 @@ Vậy, độ phức tạp là $O(N \* \sqrt{N} + Q \* \sqrt{N})$.
 
 Sử dụng Mo's Algorithm, bạn đã có thể thu được một thuật toán hoàn chỉnh cho bài này với độ phức tạp $O(N \* \sqrt{N} + Q \* \sqrt{N})$:
 
-- Sort tất cả các truy vấn theo Mo's Algorithm
+- Sort tất cả các truy vấn theo Mo's Algorithm.
 - Gọi $S(N)$ là một mảng gồm $N$ set (có thể cài bằng hash table (bảng băm)). $S(i)$ chứa tất cả các số xuất hiện đúng $i$ lần.
-- Gọi $A(val)$ = số lần xuất hiện của val
-- Đặt $max$ là chỉ số lớn nhất của mảng $S$ mà $S(max)$ khác rỗng
+- Gọi $A(val)$ = số lần xuất hiện của val.
+- Đặt $max$ là chỉ số lớn nhất của mảng $S$ mà $S(max)$ khác rỗng.
 - Ta sẽ thêm và xóa một số trong O(1) như sau:
     - Thêm 1 số $v$:
         - Xóa $v$ khỏi $S(A(v))$.
@@ -107,9 +109,9 @@ Vì tổng các thao tác thêm và xóa khi áp dụng Mo's Algorithm không qu
 
 Với mục đích làm bài toán khó hơn, ta xét trường hợp mà CTDL của ta chỉ cho phép thực hiện đúng 2 thao tác:
 
-- Insert: Thêm 1 phần tử vào CTDL, thao tác này có độ phức tạp là $O(logN)$ hoặc $O(1)$
-- Snapshot: Lưu lại trạng thái hiện tại của CTDL. Thao tác này có độ phức tạp $O(N)$.
-- Rollback: Hồi phục lại trạng thái của CTDL ở lần Snapshot cuối. Thao tác này cũng có độ phức tạp là $O(N)$.
+- **Insert**: Thêm 1 phần tử vào CTDL, thao tác này có độ phức tạp là $O(logN)$ hoặc $O(1)$.
+- **Snapshot**: Lưu lại trạng thái hiện tại của CTDL. Thao tác này có độ phức tạp $O(N)$.
+- **Rollback**: Hồi phục lại trạng thái của CTDL ở lần Snapshot cuối. Thao tác này cũng có độ phức tạp là $O(N)$.
 
 Một ví dụ của CTDL loại này là Disjoint set, và việc xử lý truy vấn xuất hiện trong bài toán Codechef - GERALD07.
 
