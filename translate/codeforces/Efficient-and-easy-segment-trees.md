@@ -1,3 +1,5 @@
+[[_TOC_]] 
+
 # **Cây phân đoạn đơn giản và hiệu quả (Efficient and easy segment trees)**
 
 Hầu hết các bạn tham gia vào các cuộc thi lập trình đều khá quen thuộc với cây phân đoạn, chẳng hạn qua một số bài viết http://codeforces.com/blog/entry/15890, http://e-maxx.ru/algo/segment_tree (tiếng Nga). Nếu chưa, bạn nên xem bài viết này trước, để so sánh cách thực hiện và chọn được cách tốt nhất cho mình.
