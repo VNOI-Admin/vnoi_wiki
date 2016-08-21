@@ -27,6 +27,6 @@
 ## Bài tập ví dụ: POST2-VOJ
 
 # Bài tập luyện tập
-[VOJ POST2](http://vn.spoj.com/problems/POST2/)
-[FFT problems on Codeforces](http://codeforces.com/problemset/tags/fft)
-[FFT problems by a2oj.com](https://a2oj.com/Category.jsp?ID=42)
+- [VOJ POST2](http://vn.spoj.com/problems/POST2/)
+- [FFT problems on Codeforces](http://codeforces.com/problemset/tags/fft)
+- [FFT problems by a2oj.com](https://a2oj.com/Category.jsp?ID=42)
