@@ -6,7 +6,7 @@
 
 Hầu hết các bạn tham gia vào các cuộc thi lập trình đều khá quen thuộc với cây phân đoạn, chẳng hạn qua [bài viết này](algo/data-structures/segment-tree-extend). Nếu chưa, bạn nên xem bài viết này trước, để so sánh cách thực hiện và chọn được cách tốt nhất cho mình.
 
-# Cây phân đoạn cập nhật từng phần tử riêng lẻ (Segment tree with single element modifications)
+# Cập nhật từng phần tử riêng lẻ (single element modifications)
 
 Cây phân đoạn được sử dụng khi chúng ta có một mảng $A$, thực hiện các chỉnh sửa và truy vấn trên các đoạn liên tiếp. Ví dụ: ta có một mảng $A$ với $10^5$ phần tử và cần thực hiện $Q$ thao tác, mỗi thao tác thuộc 1 trong 2 loại:
 
@@ -19,7 +19,12 @@ Ta cài đặt Segment Tree bằng một cây nhị phân hoàn chỉnh có dạ
 
 ![](http://i.imgur.com/GGBmcEP.png)
 
-*Chỉ số nút*: tương ứng với một đoạn $[l, r)$ (chứa biên trái, không chứa biên phải). Tại hàng cuối lưu các phần tử của mảng (đánh số từ 0) là các lá của cây. Giả sử độ dài của nó là lũy thừa của 2 (như 16 trong ví dụ) thì ta được cây nhị phân hoàn chỉnh. Khi đi từ dưới lên ta ghép cặp nút có chỉ số $(2\*i,2\*i+1)$ và tổng hợp giá trị của chúng thành giá trị của nút cha có chỉ số $i$. Bằng cách này, khi tính tổng đoạn $\[3,11)$, ta chỉ cần cộng giá trị tại các nút 19,5,12 và 26 (các nút được in đậm) mà không cần phải cộng cả 8 giá trị trong đoạn. Cùng xem qua cách cài đặt (C++) dưới đây:
+Trong hình vẽ trên:
+
+- Ta dùng ký hiệu *Chỉ số nút*: đoạn $[l, r)$ (ký hiệu đoạn chứa biên $l$ và không chứa biên $r$).
+- Tại hàng cuối lưu các phần tử của mảng (đánh số từ 0) là các lá của cây.
+
+Giả sử độ dài của mảng là lũy thừa của 2 (như 16 trong ví dụ) thì ta được cây nhị phân hoàn chỉnh. Khi đi từ dưới lên ta ghép cặp nút có chỉ số $(2\*i,2\*i+1)$ và tổng hợp giá trị của chúng thành giá trị của nút cha có chỉ số $i$. Bằng cách này, khi tính tổng đoạn $\[3,11)$, ta chỉ cần cộng giá trị tại các nút 19,5,12 và 26 (các nút được in đậm) mà không cần phải cộng cả 8 giá trị trong đoạn. Cùng xem qua cách cài đặt (C++) dưới đây:
 
 ```cpp
 const int N = 1e5;  // giới hạn của mảng
@@ -27,11 +32,13 @@ int n;  // kích thước mảng
 int t[2 * N];
 
 void build() {  // khởi tạo cây
-  for (int i = n - 1; i > 0; --i) t[i] = t[i<<1] + t[i<<1|1];
+  for (int i = n - 1; i > 0; --i)
+    t[i] = t[i<<1] + t[i<<1|1];
 }
 
 void modify(int p, int value) {  // gán giá trị tại vị trí p
-  for (t[p += n] = value; p > 1; p >>= 1) t[p>>1] = t[p] + t[p^1];
+  for (t[p += n] = value; p > 1; p >>= 1)
+    t[p>>1] = t[p] + t[p^1];
 }
 
 int query(int l, int r) {  // tính tổng đoạn [l, r)
@@ -54,13 +61,18 @@ int main() {
 ```
 
 Ở trên là một ví dụ đầy đủ các thao tác. Các hàm phức tạp được tóm tắt lại trong 5 mục dưới đây.
+
 Cùng tìm hiểu cách chương trình hoạt động một cách rất hiệu quả
 
 1. Ta có thể thấy được trong hình, các lá được lưu tại những nút liên tiếp với chỉ số bắt đầu từ $n$, phần tử thứ $i$ tương ứng nút có chỉ số là $i+n$. Do đó chúng ta có thể lưu mảng ban đầu trực tiếp vào cây đúng vị trí của từng phần tử.
-2. Trước khi thực hiện các truy vấn ta cần khởi tạo cây với độ phức tạp là $O(n)$. Vì nút cha luôn có chỉ số nhỏ hơn các con của nó nên ta chỉ cần duyệt qua các nút theo thứ tự giảm dần. Phép biến đổi bit trong *build()* tương ứng với phép tính ```t[i] = t[2*i] + t[2*i+1]```.
-3. Thay đổi giá trị của một phần tử cũng khá đơn giản tốn thời gian tỉ lệ với độ cao của cây, độ phức tạp là $O(\log(n))$. Ta chỉ cần cập nhật giá trị tại các nút cha của nút đó. Do đó chỉ cần đi lên cây biết rằng cha của nút $p$ là nút $p/2$ (hay ```p>>1```). Phép ```p^1``` biến đổi $2\*i$ thành $2\*i+1$ hay ngược lại, đó là nút con còn lại của nút $p$.
-4. Tính tổng tốn độ phức tạp là $O(log(n))$. Để hiểu rõ hơn tính logic của thuật toán bạn có thể thử với ví dụ đoạn $\[3,11)$ và thấy rằng kết quả là tổng của các nút 19, 26, 12 và 5 (theo thứ tự).
-Ý tưởng chung là như sau: Nếu $l$ - biên trái của đoạn - lẻ (xét `l&1`) thì $l$ là nút con phải của cha nó, cũng có nghĩa là đoạn cần truy vấn chứa nút $l$ nhưng không chứa cha nó. Do đó ta cộng `t[l]` vào kết quả và nhảy đến nút bên phải của cha nút $l$: $l=(l+1)/2$. Nếu $l$ chẵn, nó là con bên trái của cha nó và đoạn cần truy vẫn cũng chứa cha nó  (trừ khi đoạn bị giới hạn bởi biên phải), nên ta nhảy đến cha của nút $l$: $l=l/2$. Tương tự cho biên phải. Ta dừng khi 2 biên cắt nhau.
+2. Trước khi thực hiện các truy vấn ta cần khởi tạo cây với độ phức tạp là $O(n)$. Vì nút cha luôn có chỉ số nhỏ hơn các con của nó nên ta chỉ cần duyệt qua các nút theo thứ tự giảm dần. Phép biến đổi bit trong *build()* tương ứng với phép tính `t[i] = t[2*i] + t[2*i+1]`. (Trong code trên dùng xử lý bit: `t[i] = t[i<<1] + t[i<<1|1]`).
+3. Thay đổi giá trị của một phần tử cũng khá đơn giản tốn thời gian tỉ lệ với độ cao của cây, độ phức tạp là $O(\log(n))$. Ta chỉ cần cập nhật giá trị tại các nút cha của nút đó. Do đó chỉ cần đi lên cây biết rằng cha của nút $p$ là nút $p/2$ (hay `p>>1`). Phép `p^1` biến đổi $2\*i$ thành $2\*i+1$ hay ngược lại, đó là nút con còn lại của nút $p$.
+4. Tính tổng tốn độ phức tạp là $O(log(n))$. Để hiểu rõ hơn tính logic của thuật toán bạn có thể thử với ví dụ đoạn $\[3,11)$ và thấy rằng kết quả là tổng của các nút 19, 26, 12 và 5 (theo thứ tự). Ý tưởng chung là như sau:
+  - Nếu $l$ (biên trái của đoạn) là lẻ (`if l&1`) thì $l$ là nút con phải của cha nó, cũng có nghĩa là đoạn cần truy vấn chứa nút $l$ nhưng không chứa cha nó. Do đó ta cộng `t[l]` vào kết quả và nhảy đến nút bên phải của cha nút $l$: $l=(l+1)/2$.
+  - Nếu $l$ chẵn, nó là con bên trái của cha nó và đoạn cần truy vẫn cũng chứa cha nó  (trừ khi đoạn bị giới hạn bởi biên phải), nên ta nhảy đến cha của nút $l$: $l=l/2$.
+  - Tương tự cho biên phải.
+  - Ta dừng khi 2 biên chạm nhau.
+
 Đoạn code hoạt động hiệu quả mà không cần đệ quy hay các phép tính khác như tìm điểm chính giữa của đoạn. Ta chỉ cần duyệt qua và tính tổng các nút trong đoạn truy vấn.
 
 ## Mảng kích thước bất kì (Arbitrary sized array)
@@ -79,15 +91,38 @@ Bạn có thể bỏ qua đoạn giải thích này và xem code để thấy t�
 
 ![](http://imgur.com/cwKpYH1.png)
 
-Nó không phải là một cây đơn lẻ nữa, nhưng là tập các cây nhị phân bao gồm: nút $2$ và độ cao 4, nút $12$ độ cao 2, nút $13$ có độ cao 1. Các nút có dấu  gạch không bao giờ được sử dụng để truy vấn nên không quan trọng giá trị được lưu tại các nút đó. Các lá có độ cao khác nhau nhưng ta có thể sửa lại bằng cách cắt cây  ngay trước nút $13$ và chuyển phần phía  bên phải sang bên trái. Cấu trúc mới được tạo ra giống như một phần của một cây nhị phân lớn hơn vẫn liên hệ với các thao tác chúng ta thực hiện, do đó vẫn đưa ra kết quả đúng.
+Nó không phải là một cây đơn lẻ nữa, nhưng là tập các cây nhị phân bao gồm:
 
-Bỏ qua những giải thích rườm rà trên, chúng ta thử xét với đoạn $[0,7)$. Ta có $l=13$, $r=20$, `l&1 => cộng t[13]` và biên đổi thành $l=7$, $r=10$. Lặp lại `l&1 => cộng t[7]`, biên đổi thành $l=4$, $r=5$, và các nút đã ở cùng một độ cao. Bây giờ thì ta có `r&1 => cộng t[4 = --r]`, biên đổi thành $l=2$, $r=2$, dừng lại.
+- Cây có gốc ở vị trí 2 với độ cao 4
+- Cây có gốc ở vị trí 12 với độ cao 2
+- Cây có gốc ở vị trí 13 với độ cao 1.
+
+Các vị trí có dấu gạch không bao giờ được sử dụng để truy vấn nên giá trị được lưu tại các nút đó không quan trọng.
+
+Các lá có độ cao khác nhau nhưng ta có thể sửa lại bằng cách cắt cây ngay trước vị trí $13$ và chuyển phần phía bên phải sang bên trái. Khi đó, ta thu được cấu trúc mới có dạng giống như cây nhị phân đầy đủ (nếu chỉ quan tâm đến những thao tác ta cần thực hiện). Vì vậy độ phức tạp tương đương với độ phức tạp trên một cây nhị phân đầy đủ.
+
+Chúng ta thử xét với đoạn $[0,7)$: Ta có $l=13$, $r=20$
+
+- Ở lần lặp đầu:
+  - `l&1`, nên ta cộng `t[13]` vào kết quả
+  - Gán $l=7$
+  - Gán $r=10$.
+- Ở lần lặp thứ 2:
+  - `l&1`, nên ta cộng `t[7]` vào kết quả
+  - Gán $l=4$
+  - Gán $r=5$
+  - Lúc này các nút đã ở cùng một độ cao.
+- Ở lần lặp thứ 3:
+  - `r&1` => cộng `t[4]` (`--r = 4`)
+  - Gán $l=2$, $r=2$ và dừng lại.
 
 ## Chỉnh sửa trên đoạn, truy cập từng các phần tử lẻ (Modification on interval, single element access)
 
 Một số người gặp khó khăn và nghĩ một cách phức tạp khi đảo các thao tác, ví dụ như:
+
 1. cộng một giá trị vào tất cả phần tử trong đoạn
 2. tính giá trị của một phần tử bất kì
+
 Tất cả những gì chúng ta phải làm trong trường hợp này là đổi đoạn code *modify*  và *query* như sau:
 
 ```cpp
@@ -100,11 +135,13 @@ void modify(int l, int r, int value) {
 
 int query(int p) {
   int res = 0;
-  for (p += n; p > 0; p >>= 1) res += t[p];
+  for (p += n; p > 0; p >>= 1)
+    res += t[p];
   return res;
 }
 ```
-Nếu tại một thời điểm nào đó sau khi thực hiện một số chỉnh sửa, ta muốn tính giá trị từng phần tử của dãy, ta có thể đẩy các thao tác chỉnh sửa xuống các nút lá bằng đoạn code dưới đây. Sau khi thực hiện ta chỉ cần duyệt qua các phần tử được đánh số bắt đầu từ $n$. Bằng cách này chúng ta đã giảm độ phức tạp từ $\mathcal{O}(n\log{n})$ còn $\mathcal{O}(n)$ khi sử dụng *build* thay vì $n$ thao tác chỉnh sửa.
+
+Nếu sau khi thực hiện tất cả các thao tác chỉnh sửa, ta muốn tính giá trị từng phần tử của dãy, ta có thể đẩy các thao tác chỉnh sửa xuống các nút lá bằng đoạn code dưới đây. Sau khi thực hiện ta chỉ cần duyệt qua các phần tử được đánh số bắt đầu từ $n$. Bằng cách này chúng ta đã giảm độ phức tạp từ $\mathcal{O}(n\log{n})$ còn $\mathcal{O}(n)$ khi sử dụng *build* thay vì $n$ thao tác chỉnh sửa.
 
 ```cpp
 void push() {
@@ -116,38 +153,42 @@ void push() {
 }
 ```
 
-Chú ý,  đoạn code trên chỉ sử dụng trong trường hợp thứ tự các thao tác chỉnh sửa trên từng phần tử đơn lẻ không ảnh hưởng đến kết quả. Một ví dụ là phép thay gán giá trị cho phần tử không thỏa điều kiện trên. Phần này sẽ được trình bày rõ hơn dưới lazy propagation.
+**Chú ý**: Đoạn code trên không thể dùng được trong trường hợp thứ tự các thao tác chỉnh sửa trên 1 phần tử ảnh hưởng đến kết quả. Ví dụ: phép gán giá trị cho 1 đoạn phần tử. Phần này sẽ được trình bày ở phần lazy propagation.
 
 ## Hàm kết hợp không có tính giao hoán (Non-commutative combiner functions)
 
-Chúng ta thử xét phép kết hợp đơn giản nhất là phép cộng. Phép cộng có tính giao hoán nghĩa là thứ tự thực hiện các phép tính không quan trọng, ta có $a+b=b+a$. Hàm lấy *max* và *min* cũng có tính chất tương tự, chỉ thay thế các phép ```+``` bằng một trong hai hàm trên và ta sẽ có kết quả. Nhưng chú ý phải khởi tạo các giá trị ban đầu thành vô cực thay vì 0.
-Tuy nhiên, có một số trường hợp mà phép kết hợp không có tính giao hoán, ví dụ như trong bài [380C - Sereja and Brackets](http://codeforces.com/contest/380/problem/C), lời giải tại [http://codeforces.com/blog/entry/10363](http://codeforces.com/blog/entry/10363). May mắn là cách làm của ta có thể hỗ trợ phép kết hợp trong bài trên. Ta định nghĩa cấu trúc ```S``` và *combine* cho bài. Trong thủ tục *build*, ta chỉ cần thay thế phép ```+``` bằng hàm kết hợp. Trong *modify*, ta cần đảm bảo thứ tự đúng của các nút con, biết rằng các nút con trái có chỉ số chẵn. Khi truy vấn kết quả, ta lưu ý là các nút tương ứng với nút biên trái sẽ dịch từ trái sang phải, trong khi biên phải dịch từ phải sang trái. Đoạn code như sau:
+Chúng ta thử xét phép kết hợp đơn giản nhất là phép cộng. Phép cộng có tính giao hoán nghĩa là thứ tự thực hiện các phép tính không quan trọng, ta có $a+b=b+a$. Hàm lấy *max* và *min* cũng có tính chất tương tự, chỉ thay thế các phép `+` bằng một trong hai hàm trên và ta sẽ có kết quả. Nhưng chú ý phải khởi tạo các giá trị ban đầu thành vô cực thay vì 0.
+
+Tuy nhiên, có một số trường hợp mà phép kết hợp không có tính giao hoán, ví dụ như trong bài [380C - Codeforces](http://codeforces.com/contest/380/problem/C), xem phân tích ở [Bài viết về Segment Tree](http://vnoi.info/wiki/algo/data-structures/segment-tree-extend#1-segment-tree-cổ-điển_ví-dụ-1). May mắn là cách làm của ta vẫn có thể hỗ trợ phép kết hợp trong bài trên. Ta định nghĩa cấu trúc `Node` và toán tử `+` như trong bài viết trên. Trong thủ tục *build* ta dùng toán tử `+` mới định nghĩa này. Trong *modify*, ta cần đảm bảo thứ tự đúng của các nút con, biết rằng các nút con trái có chỉ số chẵn. Khi truy vấn kết quả, ta lưu ý là các nút tương ứng với nút biên trái sẽ dịch từ trái sang phải, trong khi biên phải dịch từ phải sang trái. Đoạn code như sau:
 
 ```cpp
-void modify(int p, const S& value) {
-  for (t[p += n] = value; p >>= 1; ) t[p] = combine(t[p<<1], t[p<<1|1]);
+void modify(int p, const Node& value) {
+  for (t[p += n] = value; p >>= 1;)
+    t[p] = t[p<<1] + t[p<<1|1];
 }
 
-S query(int l, int r) {
-  S resl, resr;
+Node query(int l, int r) {
+  Node resl, resr;
   for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-    if (l&1) resl = combine(resl, t[l++]);
-    if (r&1) resr = combine(t[--r], resr);
+    if (l&1) resl = resl + t[l++];
+    if (r&1) resr = t[--r] + resr;
   }
-  return combine(resl, resr);
+  return resl + resr;
 }
 ```
 
 # Cập nhật đoạn (Lazy propagation)
 
 Tiếp theo, chúng ta tìm hiểu về một kĩ thuật dùng để thực hiện cả truy vấn trên đoạn và chỉnh sửa trên đoạn. Đầu tiên ta cần nhiều biến hơn:
-```
+
+```cpp
 int h = sizeof(int) * 8 - __builtin_clz(n);
 int d[N];
 ```
-$h$ là độ cao của cây và là bit cao nhất trong $n$. ```d[i]``` là thao tác được lưu lại để truyền cho các nút con của nút $i$ khi cần thiết (xem ví dụ để hiểu rõ hơn). Kích thước của mảng là ```N``` vì ta không cần lưu thông tin này tại các nút lá (do các nút lá không có con). Do đó ta cần tất cả là $3\*n$ bộ nhớ sử dụng.
 
-Ở trên ta nói ```t[i]``` là giá trị tương ứng với đoạn của nó. Nhưng bây giờ điều này không hoàn toàn đúng - trước hết ta phải thực hiện các thao tác được lưu lại trên đường đi từ nút $i$ đến gốc của cây (tổ tiên của nút $i$). Ta giả sử là giá trị tại ```t[i]``` đã bao gồm ```d[i]``` nên đường đi bắt đầu từ cha trực tiếp của $i$.
+$h$ là độ cao của cây và là bit cao nhất trong $n$. `d[i]` là thao tác được lưu lại để truyền cho các nút con của nút $i$ khi cần thiết (xem ví dụ để hiểu rõ hơn). Kích thước của mảng là $N$ vì ta không cần lưu thông tin này tại các nút lá (do các nút lá không có con). Do đó ta cần tất cả là $3\*n$ bộ nhớ sử dụng.
+
+Ở trên ta nói `t[i]` là giá trị tương ứng với đoạn của nó. Nhưng bây giờ điều này không hoàn toàn đúng - trước hết ta phải thực hiện các thao tác được lưu lại trên đường đi từ nút $i$ đến gốc của cây (tổ tiên của nút $i$). Ta giả sử là giá trị tại ```t[i]``` đã bao gồm ```d[i]``` nên đường đi bắt đầu từ cha trực tiếp của $i$.
 
 Quay trở lại ví dụ đầu tiên với đoạn $[3,11)$, nhưng bây giờ ta sẽ chỉnh sửa tất giá trị của tất cả phần tử trong đoạn. Để làm điều này, ta sẽ chỉnh sửa ```t[i]``` và ```d[i]``` tại các nút 19,5,12 và 26. Sau đó, khi cần tìm giá trị ở một nút, ví dụ như nút 22, ta cần phải truyền các chỉnh sửa từ nút 5 xuống. Chú ý rằng những thay đổi có thể ảnh hưởng đến các giá trị ```t[i]``` trên cây như sau: nút 19 ảnh hưởng đến nút 9,4,2 và 1; nút 5 ảnh hưởng đến nút 2 và 1. Lập luận tiếp theo rất quan trọng đến độ phức tạp của các thao tác chỉnh sửa:
 
@@ -343,6 +384,7 @@ Gọi *modify* trên $[4,13)$:
 2. $l=10, r=14$, gọi *calc(14)* - nút đầu tiên về bên phải của đoạn hiện tại chính là cha của nút được biến đổi cuối cùng;
 3. $l=5, r=7$, gọi *calc(7)* và tiếp đó là *apply(5)* và *apply(6)*;
 4. $l=3, r=3$, vòng lặp đầu tiên kết thúc.
+
 Bây giờ bạn có thể hiểu lý do thực hiện ```--l```, vì ta vẫn cần phải tính giá trị mới tại các nút 2, 3 và 1. Điều kiện kết thúc là `r>0` bởi vì có thể $l=1, r=1$ sau vòng lặp đầu tiên, do đó ta cần phải cập nhật cho gốc, nhưng `--l` dẫn đến $l=0$.
 
 So sánh với cách thực hiện cũ, ta đã giảm được những lần gọi không cần thiết *calc(10)*, *calc(5)* và lặp *calc(1)*.
