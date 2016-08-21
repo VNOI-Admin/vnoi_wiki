@@ -2,9 +2,9 @@
 
 # Biến, con trỏ
 
-Cấu trúc dữ liệu đơn giản nhất chính là các biến. Chúng nắm giữ duy nhất một giá trị, hơn nữa, phạm vi sử dụng có giới hạn. Khi nhiều giá trị cần lưu trữ, [mảng](#mảng-arrays) được sử dụng.
+Cấu trúc dữ liệu đơn giản nhất chính là các biến (variable). Chúng nắm giữ duy nhất một giá trị, hơn nữa, phạm vi sử dụng có giới hạn. Khi nhiều giá trị cần lưu trữ, [mảng](#mảng-arrays) (arrays) được sử dụng.
 
-Một khái niệm hơi khó hơn mặc dù không kém phần căn bản là con trỏ. Con trỏ thay vì giữ một giá trị, nó lại giữ một địa chỉ vùng nhớ:
+Một khái niệm hơi khó hơn mặc dù không kém phần căn bản là con trỏ (pointer). Con trỏ thay vì giữ một giá trị, nó lại giữ một địa chỉ vùng nhớ:
 
 [[/uploads/data_structures_basic_pointer.png]]
 
