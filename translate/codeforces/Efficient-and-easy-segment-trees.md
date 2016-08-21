@@ -179,22 +179,30 @@ Node query(int l, int r) {
 
 # Cập nhật đoạn (Lazy propagation)
 
-Tiếp theo, chúng ta tìm hiểu về một kĩ thuật dùng để thực hiện cả truy vấn trên đoạn và chỉnh sửa trên đoạn. Đầu tiên ta cần nhiều biến hơn:
+Tiếp theo, chúng ta tìm hiểu về một kĩ thuật dùng để thực hiện cả truy vấn trên đoạn và chỉnh sửa trên đoạn. Đầu tiên ta cần định nghĩa thêm biến:
 
 ```cpp
 int h = sizeof(int) * 8 - __builtin_clz(n);
 int d[N];
 ```
 
-$h$ là độ cao của cây và là bit cao nhất trong $n$. `d[i]` là thao tác được lưu lại để truyền cho các nút con của nút $i$ khi cần thiết (xem ví dụ để hiểu rõ hơn). Kích thước của mảng là $N$ vì ta không cần lưu thông tin này tại các nút lá (do các nút lá không có con). Do đó ta cần tất cả là $3\*n$ bộ nhớ sử dụng.
+$h$ là độ cao của cây và là bit cao nhất trong $n$. `d[i]` là thao tác được lưu lại để truyền cho các nút con của nút $i$ khi cần thiết (xem ví dụ để hiểu rõ hơn, hoặc đọc thêm [[Lazy Propagation trong bài viết về Segment Tree|http://vnoi.info/wiki/algo/data-structures/segment-tree-extend#2-lazy-propagation]]). Kích thước của mảng là $N$ vì ta không cần lưu thông tin này tại các nút lá (do các nút lá không có con). Do đó ta cần tất cả là $3\*N$ bộ nhớ sử dụng.
 
-Ở trên ta nói `t[i]` là giá trị tương ứng với đoạn của nó. Nhưng bây giờ điều này không hoàn toàn đúng - trước hết ta phải thực hiện các thao tác được lưu lại trên đường đi từ nút $i$ đến gốc của cây (tổ tiên của nút $i$). Ta giả sử là giá trị tại ```t[i]``` đã bao gồm ```d[i]``` nên đường đi bắt đầu từ cha trực tiếp của $i$.
+Ở trên ta nói `t[i]` là giá trị tương ứng với đoạn của nó. Nhưng bây giờ điều này không hoàn toàn đúng:
 
-Quay trở lại ví dụ đầu tiên với đoạn $[3,11)$, nhưng bây giờ ta sẽ chỉnh sửa tất giá trị của tất cả phần tử trong đoạn. Để làm điều này, ta sẽ chỉnh sửa ```t[i]``` và ```d[i]``` tại các nút 19,5,12 và 26. Sau đó, khi cần tìm giá trị ở một nút, ví dụ như nút 22, ta cần phải truyền các chỉnh sửa từ nút 5 xuống. Chú ý rằng những thay đổi có thể ảnh hưởng đến các giá trị ```t[i]``` trên cây như sau: nút 19 ảnh hưởng đến nút 9,4,2 và 1; nút 5 ảnh hưởng đến nút 2 và 1. Lập luận tiếp theo rất quan trọng đến độ phức tạp của các thao tác chỉnh sửa:
+- Ta phải thực hiện các thao tác được lưu lại vào `d[i]` trên đường đi từ nút $i$ đến gốc của cây (tổ tiên của nút $i$).
+- Khi cài đặt, ta giả sử là giá trị tại `t[i]` đã bao gồm `d[i]`, nên đường đi bắt đầu từ cha của $i$.
 
-**Chỉnh sửa trên đoạn $[l,r)$ chỉ ảnh hưởng giá trị ```t[i]``` của các nút cha của nút lá ở biên: ```l+n``` và ```r+n-1``` (ngoại trừ các giá trị lưu chính đoạn của nó - những giá trị duyệt đến trong vòng lặp *for*).**
+Quay trở lại ví dụ đầu tiên với đoạn $[3,11)$, nhưng bây giờ ta sẽ chỉnh sửa tất giá trị của tất cả phần tử trong đoạn. Để làm điều này, ta sẽ chỉnh sửa `t[i]` và `d[i]` tại các nút: 19, 5, 12 và 26.
 
-Chứng minh như sau: Khi duyệt biên trái, các nút ta chỉnh sửa trong vòng lặp luôn là con phải của cha nó. Do đó tất cả các chỉnh sửa trước đó đều là trên cây con của nút trái của nút cha. Cách khác ta có thể duyệt nút cha thay vì cả hai con của nó. Điều này có nghĩa là cha trực tiếp hiện tại cũng là cha của lá ```l+n```. Chứng minh tương tự cho biên phải.
+Sau đó, khi cần tìm giá trị ở một nút, ví dụ như nút 22, ta cần phải truyền các chỉnh sửa từ nút 5 xuống. Chú ý rằng những thay đổi có thể ảnh hưởng đến các giá trị `t[i]` trên cây như sau: nút 19 ảnh hưởng đến nút 9, 4, 2 và 1; nút 5 ảnh hưởng đến nút 2 và 1. Lập luận tiếp theo rất quan trọng đến độ phức tạp của các thao tác chỉnh sửa:
+
+**Chỉnh sửa trên đoạn $[l,r)$ chỉ ảnh hưởng giá trị `t[i]` của các nút cha của nút lá ở biên: `l+n` và `r+n-1` (ngoại trừ các giá trị lưu chính đoạn của nó - những giá trị duyệt đến trong vòng lặp *for*).**
+
+**Chứng minh**
+
+- Khi duyệt biên trái, các nút ta chỉnh sửa trong vòng lặp luôn là con phải của cha nó. Do đó tất cả các chỉnh sửa trước đó đều là trên cây con của nút trái của nút cha. Nói cách khác ta có thể duyệt nút cha thay vì cả hai con của nó. Điều này có nghĩa là cha trực tiếp hiện tại cũng là cha của lá `l+n`.
+- Chứng minh tương tự cho biên phải.
 
 Mời các bạn cùng xem qua những ví dụ cụ thể.
 
@@ -205,11 +213,15 @@ Mời các bạn cùng xem qua những ví dụ cụ thể.
 ```cpp
 void apply(int p, int value) {
   t[p] += value;
-  if (p < n) d[p] += value;
+  if (p < n)
+    d[p] += value;
 }
 
 void build(int p) {
-  while (p > 1) p >>= 1, t[p] = max(t[p<<1], t[p<<1|1]) + d[p];
+  while (p > 1) {
+    p >>= 1;
+    t[p] = max(t[p<<1], t[p<<1|1]) + d[p];
+  }
 }
 
 void push(int p) {
@@ -255,7 +267,7 @@ Tìm hiểu lần lượt từng thủ tục một. Ba thủ tục đầu tiên 
 
 Tiếp theo là những thủ tục chính:
 
-1. Như đã giải thích ở trên,  ta thực hiện các thay đổi vòng lặp quen thuộc để cập nhật tất cả và thêm một việc là gọi hàm *build*.
+1. Như đã giải thích ở trên, ta thực hiện các thay đổi vòng lặp quen thuộc để cập nhật tất cả và thêm một việc là gọi hàm *build*.
 2. Để trả lời truy vấn, ta cũng sử dụng vòng lặp như cũ, tuy nhiên trước đó cần phải đẩy các thay đổi đến những nút sẽ được sử dụng. Tương tự như *build*, như vậy là đủ để đẩy các thay đổi từ các nút cha của những nút lá ở biên.
 
 Dễ dàng nhận thấy tất cả các thao tác trên tốn độ phức tạp $O(log(n))$.
@@ -287,10 +299,10 @@ void apply(int p, int value, int k) {
 
 Đây là những hàm đơn giản có độ phức tạp $O(1)$ dùng để tính giá trị tại nút $p$ và thực hiện một thay đổi cho nút. Có 2 điều cần giải thích:
 
-1. Giả sử rằng có 1 giá trị mà không bao giờ dùng trong các thay đổi, trong trường hợp này là $0$. Trong trường hợp không có giá trị nào thỏa, ta có thể tạo thêm một mảng đánh dấu và kiểm tra thay vì kiểm tra ```d[p] == 0```.
+1. Ta kiểm tra `d[p] == 0` vì 0 là một giá trị mà không bao giờ được dùng trong các thay đổi. Trong trường hợp không có giá trị nào như vậy, ta buộc phải dùng thêm mảng đánh dấu.
 2. Ta có thêm một tham số $k$, chứa độ dài của đoạn thuộc nút $p$. Tham số $k$ sẽ được giữ nguyên ý nghĩa trong cả đoạn code. Có thể nhận thấy ta không thể tính tổng nếu không có tham số này. Ta có thể tính trước giá trị $k$ cho tất cả các nút hay suy ra từ chỉ số của nút trên đường đi, nhưng ta sẽ tìm hiểu một cách khác không cần phải sử dụng thêm bộ nhớ hay tính toán.
 
-Tiếp theo ta cần chỉnh sử lại *build* và *push*. Lưu ý rằng ta đang có 2 phiên bản: một được giới thiệu trước duyệt qua toàn bộ cây trong $O(n)$, một được sử dụng trong ví dụ trước mà chỉ duyệt các nút cha của một nút là trong $O(log(n))$.  Ta có thể dễ dàng tích hợp thêm các chức năng mới vào cùng một thủ tục.
+Tiếp theo ta cần chỉnh sử lại *build* và *push*. Lưu ý rằng ta đang có 2 phiên bản: một được giới thiệu trước duyệt qua toàn bộ cây trong $O(n)$, một được sử dụng trong ví dụ trước mà chỉ duyệt các nút cha của một nút là trong $O(log(n))$. Ta có thể dễ dàng tích hợp thêm các chức năng mới vào cùng một thủ tục.
 
 ```cpp
 void build(int l, int r) {
@@ -320,7 +332,7 @@ push(l, r);
 build(l, r);
 ```
 
-Cùng tìm hiểu cách  hoạt động. Trước tiên, chú ý là ta đã thay đổi thành đoạn $[l,r)$ thành $[l,r]$ khi thực hiện ```r+=n-1``` để tính chính xác các nút cha. Do ta duyệt cây theo từng tầng, nên có thể dễ dàng duy trì độ dài của đoạn hiện tại, luôn luôn là lũy thừa của $2$. *build* đi từ dưới lên trên, do đó ban đầu khởi tạo $k=2$ (không phải 1 vì ta không tính tại nút lá nhưng bắt đầu từ cha trực tiếp của nó) và nhân đôi $k$ tại mỗi tầng. *push* đi từ trên xuống dưới, do đó giá trị ban đầu của $k$ phụ thuộc vào độ cao của cây và bị chia $2$ sau mỗi tầng.
+Cùng tìm hiểu cách  hoạt động. Trước tiên, chú ý là ta đã thay đổi thành đoạn $[l,r)$ thành $[l,r]$ khi thực hiện `r+=n-1` để tính chính xác các nút cha. Do ta duyệt cây theo từng tầng, nên có thể dễ dàng duy trì độ dài của đoạn hiện tại, luôn luôn là lũy thừa của $2$. *build* đi từ dưới lên trên, do đó ban đầu khởi tạo $k=2$ (không phải 1 vì ta không tính tại nút lá nhưng bắt đầu từ cha trực tiếp của nó) và nhân đôi $k$ tại mỗi tầng. *push* đi từ trên xuống dưới, do đó giá trị ban đầu của $k$ phụ thuộc vào độ cao của cây và bị chia $2$ sau mỗi tầng.
 
 Các thủ tục chính không thay đổi nhiều so với ví dụ trước, nhưng *modify* có 2 điều đáng chú ý:
 
@@ -375,8 +387,9 @@ void modify(int l, int r, int value) {
 }
 ```
 
-Biến boolean dùng để đánh dấu xem ta đã thực hiện biến đổi nào ở bên trái và ở bên phải. Xem một ví dụ: [image link](http://imgur.com/CG6aftV)
-[[http://i.imgur.com/CG6aftV.png]]
+Biến boolean dùng để đánh dấu xem ta đã thực hiện biến đổi nào ở bên trái và ở bên phải. Xem một ví dụ:
+
+![](http://i.imgur.com/CG6aftV.png)
 
 Gọi *modify* trên $[4,13)$:
 
@@ -385,6 +398,6 @@ Gọi *modify* trên $[4,13)$:
 3. $l=5, r=7$, gọi *calc(7)* và tiếp đó là *apply(5)* và *apply(6)*;
 4. $l=3, r=3$, vòng lặp đầu tiên kết thúc.
 
-Bây giờ bạn có thể hiểu lý do thực hiện ```--l```, vì ta vẫn cần phải tính giá trị mới tại các nút 2, 3 và 1. Điều kiện kết thúc là `r>0` bởi vì có thể $l=1, r=1$ sau vòng lặp đầu tiên, do đó ta cần phải cập nhật cho gốc, nhưng `--l` dẫn đến $l=0$.
+Bây giờ bạn có thể hiểu lý do thực hiện `--l`, vì ta vẫn cần phải tính giá trị mới tại các nút 2, 3 và 1. Điều kiện kết thúc là `r>0` bởi vì có thể $l=1, r=1$ sau vòng lặp đầu tiên, do đó ta cần phải cập nhật cho gốc, nhưng `--l` dẫn đến $l=0$.
 
 So sánh với cách thực hiện cũ, ta đã giảm được những lần gọi không cần thiết *calc(10)*, *calc(5)* và lặp *calc(1)*.
