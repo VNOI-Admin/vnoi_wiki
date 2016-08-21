@@ -6,7 +6,7 @@
 
 - Segment Tree trong 1 số tài liệu Tiếng Việt còn được dịch là Interval Tree. Ở bài viết này, mình sẽ dùng tên Segment Tree (ST) - tên gọi phổ biến hơn của CTDL này.
 - Tất cả hàm trong bài đều đánh số từ 1. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r]$
-- Segment Tree còn có [một cách cài đặt khác sử dụng ít bộ nhớ hơn](translate/codeforces/Efficient-and-easy-segment-trees) (tối đa $2*N$ phần tử), tuy nhiên theo cá nhân mình không dễ hiểu bằng cách cài đặt trong bài viết này.
+- Segment Tree còn có [[một cách cài đặt khác sử dụng ít bộ nhớ hơn|translate/codeforces/Efficient-and-easy-segment-trees]] (tối đa $2*N$ phần tử), tuy nhiên theo cá nhân mình không dễ hiểu bằng cách cài đặt trong bài viết này.
 
 # 0. Giới thiệu
 
