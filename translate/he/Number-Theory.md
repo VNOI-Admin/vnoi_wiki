@@ -250,3 +250,19 @@ Khi $i=5$, vòng lặp trong lặp $\frac{N}{5}$ lần.
 #Đồng dư thức với lũy thừa
 
 Xét bài toán tính $a^b\%c$, với $\%$ là dấu đồng dư thức và $b$ có thể rất lớn (ví dụ $b \leq 10^{18}$).
+
+## Thuật toán "ngây thơ"
+
+$a^b$ có thể viết là $a.a.a.a...$ với $b$ chữ $a$. Do đó ta có thể nhân $b$ lần $a$ để có được kết quả.
+
+```cpp
+long long exponentiation(long long a, long long b, long long c) {
+        long long ans = 1;
+        for(int i = 1;i <= b;i++) {
+            ans *= a;                             //multiplying a, b times.
+            ans %= c;
+        }
+    return ans;
+ }
+```
+Trong mỗi lần lặp, biến $ans$ chứa kết quả được nhân với $a$. Ngoài ra, ta cần đảm bảo $a$ sẽ không vượt quá $c$ trong các lần lặp, vì thế ta lấy phần dư khi chia $ans$ cho $c$ (`ans = ans % c`). Ta làm được vậy là nhờ tính chất $(x.y) \% n = ((x \% n).(y \% n)) \% n$. 
