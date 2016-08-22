@@ -318,3 +318,13 @@ Giả sử ta có $a=2,b=5,c=5$, khi đó kết quả là $pow(2,5,5)$
 Vậy ta có $2^5\%5=2$. 
 
 Độ phức tạp của thuật toán: $O(\log_{2}{b})$
+
+# Bài tập áp dụng
+
+## Các bài tập về đồng dư thức
+
+[Hackerearth - The Magical Shop](https://www.hackerearth.com/problem/algorithm/the-magical-shop/)
+
+[Hackerearth - Chandu and his Interns](https://www.hackerearth.com/problem/algorithm/chandu-and-his-interns/)
+
+[Hackerearth - The Confused Monk](https://www.hackerearth.com/problem/algorithm/the-confused-monk/)
