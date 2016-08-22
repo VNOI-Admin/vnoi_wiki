@@ -27,6 +27,10 @@ Một cấu trúc như trên được gọi là max binary heap vì nhãn ở g�
 
 Binary Heap được dùng để cài đặt [priority queue](https://en.wikipedia.org/wiki/Priority_queue) (trong C++, java...) hay dùng để tăng tốc các thuật toán như [Dijkstra](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm), [Prim](https://en.wikipedia.org/wiki/Prim%27s_algorithm)..
 
+## 1.2. Cài đặt
+
+- Trong C++, bạn có thể sử dụng CTDL `priority_queue` hoặc `set`, vì vậy việc tự cài đặt lại là không cần thiết.
+- Với Pascal, bạn có thể tìm hiểu cách cài đặt trong [[quyển sách của thầy Lê Minh Hoàng|algo/basic/Tai-Lieu-Thuat-Toan]]
 
 # 2. Các thao tác trên Binary Heap
 
