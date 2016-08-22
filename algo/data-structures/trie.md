@@ -24,7 +24,7 @@ Tuy nhiên, như các bạn có thể thấy, đối với một số nút, ch�
 
 - Tiết kiệm bộ nhớ: Khi số lượng khóa lớn và các khóa có độ dài nhỏ, thông thường trie tiết kiệm bộ nhớ hơn do các phần đầu giống nhau của các khoá chỉ được lưu 1 lần. Ưu điểm này có ứng dụng rất lớn, chẳng hạn trong từ điển.
 
-- Thao tác tìm kiếm: O(m) với m là độ dài khóa. Với binary search tree (cân bằng): là O(logN). Khi số lượng khóa cần tìm lớn và độ dài mỗi khóa tương đối nhỏ, logN xấp xỉ m, và như các bạn đã biết, để cài được binary search tree cân bằng không phải là một việc đơn giản. Hơn nữa, các thao tác trên trie rất đơn giản và thường chạy nhanh hơn trên thực tế.
+- Thao tác tìm kiếm: O($m$) với $m$ là độ dài khóa. Với **Binary search tree** (cân bằng): là O($logN$). Khi số lượng khóa cần tìm lớn và độ dài mỗi khóa tương đối nhỏ, $logN$ xấp xỉ $m$, và như các bạn đã biết, để cài được **Binary search tree** cân bằng không phải là một việc đơn giản. Hơn nữa, các thao tác trên trie rất đơn giản và thường chạy nhanh hơn trên thực tế.
 
 - Dựa vào tính chất của cây trie, có thể thực hiện một số liên quan đến thứ tự từ điển như sắp xếp, tìm một khóa có thứ tự từ điển nhỏ nhất và lớn hơn một khóa cho trước...; và một số thao tác liên quan đến tiền tố, hậu tố.
 
@@ -97,7 +97,7 @@ Chuỗi từ có độ dài $n$ là một dãy các từ $w_1, w_2, ..., w_n$ sa
 
 Một trong những cách giải khá đơn giản đối với bài này là sử dụng trie:
 
-Lưu tất cả các từ lại vào trie. Đối với mỗi nút trên cây, ta tính f là độ dài chuỗi từ dài nhất bắt đầu ở nút đó.
+Lưu tất cả các từ lại vào trie. Đối với mỗi nút trên cây, ta tính $f$ là độ dài chuỗi từ dài nhất bắt đầu ở nút đó.
 
 ### Cài đặt một số phần quan trọng
 
@@ -136,7 +136,7 @@ end;
 
 **Nguồn**: Croatian OI 2006
 
-Một xâu $S độ dài không quá 300,000 cần được tách thành các đoạn con sao cho mỗi đoạn con thuộc một tập gồm không quá 400 từ cho trước, mỗi từ có độ dài không quá 100, không có 2 từ nào giống nhau.
+Một xâu $S$ độ dài không quá $300,000$ cần được tách thành các đoạn con sao cho mỗi đoạn con thuộc một tập gồm không quá $400$ từ cho trước, mỗi từ có độ dài không quá $100$, không có $2$ từ nào giống nhau.
 
 Viết chương trình xác định số cách tách một từ cho trước.
 
