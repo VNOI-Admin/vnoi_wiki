@@ -192,3 +192,17 @@ void checkprime(int N) {
 ```
 
 Độ phức tạp của thuật toán: Độ phức tạp của thuật toán là $O(\sqrt{N})$ do ta phải duyệt từ 1 đến $\sqrt{N}$.
+
+## Sàng Eratosthenes
+
+Sàng Eratosthenes dùng để tìm các số nguyên tố nhỏ hơn hoặc bằng số nguyên $N$ nào đó. Nó còn có thể được sử dụng để kiểm tra một số nguyên nhỏ hơn hoặc bằng $N$ hay không.
+
+Nguyên lí hoạt động của sàng là vào mỗi lần duyệt, ta chọn một số nguyên tố và loại ra khỏi sàng tất cả các bội của số nguyên tố đó mà lớn hơn số đó. Sau khi duyệt xong, các số còn lại trong sàng đều là số nguyên tố.
+
+Mã giả:
+
+- Đánh dấu tất cả các số đều là số nguyên tố.
+
+- Với mỗi số nguyên tố nhỏ hơn $\sqrt{N}$
+
+..- Đánh dấu các bội lớn hơn nó là số nguyên tố.
