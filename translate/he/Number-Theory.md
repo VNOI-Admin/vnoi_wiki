@@ -246,3 +246,7 @@ Khi $i=5$, vòng lặp trong lặp $\frac{N}{5}$ lần.
 .
 
 Độ phức tạp tổng: $N.(\frac{1}{2}+\frac{1}{3}+\frac{1}{5}+...)=O(N\log{\log{N}})$.
+
+#Đồng dư thức với lũy thừa
+
+Xét bài toán tính $a^b\%c$, với $\%$ là dấu đồng dư thức và $b$ có thể rất lớn (ví dụ $b \leq 10^{18}$).
