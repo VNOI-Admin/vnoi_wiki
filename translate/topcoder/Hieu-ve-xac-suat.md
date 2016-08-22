@@ -249,6 +249,23 @@ Tương đương, ta có
 
 $P(A \cap B) = P(A|B) P(B)$
 
+### Tóm tắt đề bài 
+
+Tóm tắt đề bài
+- Theo di truyền học ở động vật, mỗi cặp gen sẽ biểu thị một tính trạng. Mỗi gen có hai dạng cơ bản là trội hoặc lặn. Nếu trong cặp gen có gen trội thì tính trạng của gen trội này sẽ được biểu thị, ngược lại, trường hợp cả hai đều là gen lặn thì tính trạng của gen lặn này sẽ được thể hiện ra ngoài.
+- Ngoài ra, một số gen còn có tính phụ thuộc. Nếu một gen phụ thuộc vào một en khác thì gen thứ nhất chỉ có thể hiện tính trội nếu gen nó phụ thuộc vào cũng thể hiện tính trội và tương tự với thể hiện tính lặn. Bên cạnh đó, có những gen không phụ thuộc vào bất cứ gen nào khác và sẽ thể hiện như mô tả trong đoạn đầu. Đảm bảo không có trường hợp một gen phụ thuộc vào chính nó hay chuỗi phụ thuộc tạo thành một vòng (ví dụ I phụ thuộc J, J phụ thuộc K, K phụ thuộc I).
+Cho n cặp gen của bố mẹ và một số thông tin về chúng. Với mỗi cặp gen, bố/mẹ sẽ cho con của chúng một trong hai gen. Ví dụ như mẹ có hai chuỗi gen là ‘ABC’ và ‘abc’ thì trong cặp đầu, con mẹ có thể cho con con ‘a’ hoặc ‘A’, trong cặp hai là ‘b’ hoặc ‘B’ và cứ thế. Tương tự con bố sẽ cho con con mỗi gen trong từng cặp như vậy. Sau cùng, con con sẽ có N cặp gen từ bố và mẹ. Mỗi cặp đóng góp vào một giá trị gọi là chất lượng con giống (đánh giá dựa trên những tính trạng mong  muốn). Nếu cặp thứ i thể hiện tính trội ta cộng troi[i] vào giá trị chất lượng, còn lặn thì cộng lan[i] vào 
+- Trong bài tập này nhiệm vụ của bạn là dự đoán về chất lượng của một con giống.
+- Bạn sẽ được cung cấp 2 chuỗi gen thể hiện N (<=50) cặp gen của mẹ, 2 chuỗi gen thể hiện N cặp gen của bố, 3 mảng N số nguyên thể hiện tính phụ thuộc, troi[i], va lan[i]. 
+- Từ những dữ liệu trên, bạn cần xuất ra dự đoán về giá trị chất lượng của con giống. 
+- (ND: dự đoán được tính bằng lấy tổng của tất cả tính các giá trị có thể xảy ra với xác suất xảy ra
+Ví dụ
+Giá trị chất lượng con giống : xác suất để đạt giá trị này
+   - 17 : 0.5625
+   - 13 : 0.1875
+   - 9   : 0.25
+
+Vậy dự đoán giá trị chất lượng con giống sẽ là 17*0.5625+13*0.1875+9*.25 = 14.25)
 
 ### Phân tích
 
