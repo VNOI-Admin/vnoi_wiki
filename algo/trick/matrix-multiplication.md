@@ -108,7 +108,7 @@ begin
 end;
 ```
 
-# Ví dụ 2:
+# Ví dụ 2
 
 Bây giờ chúng ta sẽ cùng xem xét một ví dụ tổng quát hơn của ví dụ 1.
 
