@@ -138,3 +138,5 @@ Giá trị của các biến $d,x,y$ trong hàm `extendedEuclid()` sẽ lần l�
 
 5. $d=2 , x= 2, y = -1 - (16/10).2 = -3$
 
+Độ phức tạp: Độ phức tạp của thuật toán Euclid mở rộng là $O(\log{max(A,B)})$.
+
