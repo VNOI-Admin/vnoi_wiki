@@ -126,7 +126,7 @@ Coefficient x and y are: 2 and -3
 
 Ban đầu, thuật toán Euclid mở rộng sẽ chạy như thuật toán Euclid cho đến khi ta có $GCD(A,B)$ hoặc cho đến khi $B$ bằng 0 và khi đó thuật toán sẽ đặt $x=1$ và $y=0$. Vì $B=0$ và $GCD(A,B)$ là $A$ trong thời điểm hiện tại nên phương trình $Ax+By=0$ trở thành $A.1+0.0=A$.
 
-Vậy giá trị của các biến $d,x,y$ trong hàm extendedEuclid() sẽ lần lượt là:
+Giá trị của các biến $d,x,y$ trong hàm `extendedEuclid()` sẽ lần lượt trở thành:
 
 1. $d=2, x = 1, y = 0$.
 
