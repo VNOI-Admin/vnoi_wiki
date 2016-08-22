@@ -1,6 +1,6 @@
 # Luồng cực đại trên mạng - maxflow network
 
-[[TOC]]
+[[_TOC_]]
 
 # 0. Kiến thức cần biết
 
