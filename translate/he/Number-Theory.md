@@ -316,3 +316,5 @@ Giả sử ta có $a=2,b=5,c=5$, khi đó kết quả là $pow(2,5,5)$
 7. Quay lại hàm $pow(2,5,5)$: hàm này trả về giá trị $(2.4^2)\%5=32\%5=2$.
 
 Vậy ta có $2^5\%5=2$. 
+
+Độ phức tạp của thuật toán: $O(\log_{2}{b})$
