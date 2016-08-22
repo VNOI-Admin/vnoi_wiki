@@ -1,3 +1,4 @@
+[[_TOC_]]
 # 0. Kiến thức cần biết
 # 1. Ứng dụng
 # 2. Phát biểu bài toán
