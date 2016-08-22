@@ -251,9 +251,7 @@ $P(A \cap B) = P(A|B) P(B)$
 
 ### Tóm tắt đề bài 
 
-Tóm tắt đề bài
-
- Theo di truyền học ở động vật, mỗi cặp gen sẽ biểu thị một tính trạng. Mỗi gen có hai dạng cơ bản là trội hoặc lặn. Nếu trong cặp gen có gen trội thì tính trạng của gen trội này sẽ được biểu thị, ngược lại, trường hợp cả hai đều là gen lặn thì tính trạng của gen lặn này sẽ được thể hiện ra ngoài.
+Theo di truyền học ở động vật, mỗi cặp gen sẽ biểu thị một tính trạng. Mỗi gen có hai dạng cơ bản là trội hoặc lặn. Nếu trong cặp gen có gen trội thì tính trạng của gen trội này sẽ được biểu thị, ngược lại, trường hợp cả hai đều là gen lặn thì tính trạng của gen lặn này sẽ được thể hiện ra ngoài.
 
 Ngoài ra, một số gen còn có tính phụ thuộc. Nếu một gen phụ thuộc vào một gen khác thì gen thứ nhất chỉ có thể hiện tính trội nếu gen nó phụ thuộc vào cũng thể hiện tính trội và tương tự với thể hiện tính lặn. Bên cạnh đó, có những gen không phụ thuộc vào bất cứ gen nào khác và sẽ thể hiện như mô tả trong đoạn đầu. Đảm bảo không có trường hợp một gen phụ thuộc vào chính nó hay chuỗi phụ thuộc tạo thành một vòng (ví dụ I phụ thuộc J, J phụ thuộc K, K phụ thuộc I).
 
@@ -266,12 +264,13 @@ Bạn sẽ được cung cấp 2 chuỗi gen thể hiện N (<=50) cặp gen c�
 Từ những dữ liệu trên, bạn cần xuất ra dự đoán về giá trị chất lượng của con giống. 
 
 (ND: dự đoán được tính bằng lấy tổng của tất cả tính các giá trị có thể xảy ra với xác suất xảy ra. Ví dụ
-Giá trị chất lượng con giống : xác suất để đạt giá trị này
+
+- Giá trị chất lượng con giống : xác suất để đạt giá trị này
    - 17 : 0.5625
    - 13 : 0.1875
    - 9   : 0.25
 
-Vậy dự đoán giá trị chất lượng con giống sẽ là 17*0.5625+13*0.1875+9*.25 = 14.25)
+Vậy dự đoán giá trị chất lượng con giống sẽ là 17*0.5625 + 13*0.1875 + 9*0.25 = 14.25)
 
 ### Phân tích
 
