@@ -205,4 +205,4 @@ Mã giả:
 
 - Với mỗi số nguyên tố nhỏ hơn $\sqrt{N}$
 
-..- Đánh dấu các bội lớn hơn nó là số nguyên tố.
+   - Đánh dấu các bội lớn hơn nó là số nguyên tố.
