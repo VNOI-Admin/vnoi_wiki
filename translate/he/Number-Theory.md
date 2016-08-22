@@ -138,5 +138,31 @@ Giá trị của các biến $d,x,y$ trong hàm `extendedEuclid()` sẽ lần l�
 
 5. $d=2 , x= 2, y = -1 - (16/10).2 = -3$
 
-Độ phức tạp: Độ phức tạp của thuật toán Euclid mở rộng là $O(\log{max(A,B)})$.
+Độ phức tạp của thuật toán: Độ phức tạp của thuật toán Euclid mở rộng là $O(\log{max(A,B)})$.
 
+# Số nguyên tố
+
+Số nguyên tố là số nguyên lớn hơn 1 và có đúng 2 ước là 1 và chính nó.
+
+Hợp số là số nguyên lớn hơn 1 và có nhiều hơn 2 ước.
+
+Ví dụ, 5 là số nguyên tố vì 5 chỉ chia hết cho 1 và 5. Tuy nhiên, 6 là hợp số vì 6 chia hết cho 1, 2, 3 và 6.
+
+Có rất nhiều phương pháp để kiểm tra một số nguyên có phải là số nguyên tố hay không.
+
+## Thuật toán "ngây thơ"
+
+Ta sẽ duyệt hết tất cả các số từ 1 đến $N$ và đếm số ước của $N$. Nếu số ước của $N$ là 2 thì $N$ là số nguyên tố, nếu không thì $N$ không là số nguyên tố.
+
+```cpp
+void checkprime(int N){
+    int count = 0;
+    for( int i = 1;i <= N;++i )
+        if( N % i == 0 )
+            count++;
+    if(count == 2)
+        cout << N << “ is a prime number.” << endl;
+    else
+        cout << N << “ is not a prime number.” << endl;
+}
+```
