@@ -197,6 +197,8 @@ void checkprime(int N) {
 
 Sàng Eratosthenes dùng để tìm các số nguyên tố nhỏ hơn hoặc bằng số nguyên $N$ nào đó. Nó còn có thể được sử dụng để kiểm tra một số nguyên nhỏ hơn hoặc bằng $N$ hay không.
 
+[[https://upload.wikimedia.org/wikipedia/commons/b/b8/Animation_Sieb_des_Eratosthenes_%28vi%29.gif|alt=text]]
+
 Nguyên lí hoạt động của sàng là vào mỗi lần duyệt, ta chọn một số nguyên tố và loại ra khỏi sàng tất cả các bội của số nguyên tố đó mà lớn hơn số đó. Sau khi duyệt xong, các số còn lại trong sàng đều là số nguyên tố.
 
 Mã giả:
@@ -206,3 +208,23 @@ Mã giả:
 - Với mỗi số nguyên tố nhỏ hơn $\sqrt{N}$
 
    - Đánh dấu các bội lớn hơn nó là số nguyên tố.
+
+```cpp
+void sieve(int N) {
+    bool isPrime[N+1];
+    for(int i = 0; i <= N;++i) {
+        isPrime[i] = true;
+    }
+    isPrime[0] = false;
+    isPrime[1] = false;
+    for(int i = 2; i * i <= N; ++i) {
+         if(isPrime[i] == true) {
+             // Mark all the multiples of i as composite numbers
+             for(int j = i * i; j <= N ;j += i)
+                 isPrime[j] = false;
+        }
+    }
+}
+```
+
+Code trên được dùng để tìm các số nguyên tố nhỏ hơn hoặc bằng $N$.
