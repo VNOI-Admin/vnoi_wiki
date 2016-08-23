@@ -53,7 +53,7 @@ Có rất nhiều bài tập liên quan đến xâu đối xứng. Các bạn c�
     - Suffix Tree
     - Aho Corasick
 
-Gọi chung như vậy vì các CTDL này có thể dùng thay thế nhau để giải quyết cùng một lớp bài toán liên quan đến các suffix của cây.
+    Gọi chung như vậy vì các CTDL này có thể dùng thay thế nhau để giải quyết cùng một lớp bài toán liên quan đến các suffix của cây.
 
 ## Các bài Ad-hoc
 
