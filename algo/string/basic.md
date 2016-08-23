@@ -44,14 +44,14 @@ Có rất nhiều bài tập liên quan đến xâu đối xứng. Các bạn c�
 - [[Hash|algo/string/hash]]
 - [[Palindrome Tree|translate/codeforces/palindrome-tree]]
 
-## Suffix Structures
+## Cấu trúc dữ liệu
 
-Có một lớp CTDL được gọi chung là Suffix Structures gồm:
-
-- [[Suffix Array|algo/data-structures/suffix-array]]
-- Suffix Automaton
-- Suffix Tree
-- Aho Corasick
+- [[Trie|algo/data-structures/trie]] là CTDL cơ bản nhất trong xử lý xâu. Nó giúp giải quyết các bài toán về tìm kiếm xâu.
+- Lớp CTDL được gọi chung là Suffix Structures gồm:
+    - [[Suffix Array|algo/data-structures/suffix-array]]
+    - Suffix Automaton
+    - Suffix Tree
+    - Aho Corasick
 
 Gọi chung như vậy vì các CTDL này có thể dùng thay thế nhau để giải quyết cùng một lớp bài toán liên quan đến các suffix của cây.
 
