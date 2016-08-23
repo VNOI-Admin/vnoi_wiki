@@ -421,7 +421,9 @@ Một vài tính chất cơ bản của phép hợp:
 
 - $A \subset B$ khi và chỉ khi $A \cap B = A$.
 
+### Phép lấy phần bù
 
+Ta có thể thực hiên phép trừ với hai tập hợp. Phần bù của $A$ trong $B$ (hay còn được gọi là hiệu của $A$ với $B$), kí hiệu là $A \backslash B$.
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
