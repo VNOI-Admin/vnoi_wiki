@@ -433,6 +433,8 @@ Ví dụ:
 
 - {1;2;3;4} $\backslash$ {1;3} = {2;4}. 
 
+- Nếu $U$ là tập hợp các số nguyên, $E$ là tập hợp các số nguyên chẵn, $O$ là tập hợp các số nguyên lẻ, khi đó $U \backslash E = E' = O$.
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
