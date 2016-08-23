@@ -511,7 +511,11 @@ $P_n = n!$.
 
 ### Hoán vị lặp
 
-Hoán vị trong đó mỗi phần tử xuất
+Hoán vị trong đó mỗi phần tử xuất hiện ít nhất một lần được gọi là hoán vị lặp.
+
+Số hoán vị lặp của $n$ phần tử thuộc $k$ loại, mà các phần tử loại $i$ ($1 \leq i \leq k$) xuất hiện $n_i$ lần được kí hiệu là $P(n_1,n_2,...,n_k)$ và được tính bằng công thức
+
+$P(n_1,n_2,...,n_k) = \frac{n!}{n_1!n_2!...n_k!}$
 
 
 # Bài tập áp dụng
