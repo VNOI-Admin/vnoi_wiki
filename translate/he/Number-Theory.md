@@ -337,7 +337,13 @@ Tập hợp các hình đa giác được biểu diễn trong biểu đồ Venn.
 
 ## Tập con
 
-Nếu mọi phần tử thuộc tập $A$ cũng thuộc tập hợp $B$, thì tập $A$ là tập con của tập $B$, được kí hiệu là $A \subset B$.
+Nếu mọi phần tử thuộc tập $A$ cũng thuộc tập hợp $B$, thì tập $A$ là tập con của tập $B$, kí hiệu là $A \subset B$.
+
+Tương tự, ta có thể viết $B \supset A$, đọc là $B$ là tập cha của tập $A$.
+
+Quan hệ cha-con giữa các tập hợp còn được gọi là quan hệ chứa nhau hay quan hệ bao hàm.
+
+Nếu $A$ là tập con của tập $B$ nhưng không bằng tập $B$, thì $A$ được gọi là tập con không tầm thường của tập $B$, kí hiệu là $A \subsetneq B$, hay $B \supsetneq A$ (đọc là $B$ là tập cha không tầm thường của tập $A$).
 
 # Bài tập áp dụng
 
