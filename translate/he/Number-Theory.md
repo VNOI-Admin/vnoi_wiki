@@ -19,7 +19,7 @@ Tính chất:
 
 $(a+b)\%c = a\%c + b\%c$
 
-$(a*b)\%c = ((a\%c).(b\%c))\%c$
+$(a.b)\%c = ((a\%c).(b\%c))\%c$
 
 Ví dụ:
 
@@ -320,6 +320,16 @@ Giả sử ta có $a=2,b=5,c=5$, khi đó kết quả là $pow(2,5,5)$
 Vậy ta có $2^5\%5=2$. 
 
 Độ phức tạp của thuật toán: $O(\log_{2}{b})$
+
+# Lí thuyết tập hợp
+
+## Tập hợp là gì?
+
+Trong toán học, tập hợp là một nhóm các phần tử, mỗi phần tử phân biệt với nhau.
+
+Ví dụ, 2, 4, 6 được coi là các phần tử phân biệt khi ta xét từng số một, nhưng khi chúng ta nhóm ba số ấy thì ta được một tập hợp gồm ba phần tử được kí hiệu là $\textbraceleft 2,4,6 \textbraceright$.
+
+
 
 # Bài tập áp dụng
 
