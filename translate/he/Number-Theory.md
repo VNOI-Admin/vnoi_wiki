@@ -459,6 +459,19 @@ Một vài tính chất cơ bản của phép lấy hiệu
 
 - $U' = \varnothing$ và $\varnothing' = U$.
 
+# Các kiến thức cơ bản về Tổ hợp
+
+Kí hiệu $|A|$ là số phần tử của tập $A$ (hay còn được gọi là lực lượng của tập $A$).
+
+Một vài quy tắc về tổ hợp cần nhớ:
+
+1. Quy tắc nhân:
+Gỉa sử một công việc nào đó bao gồm hai công đoạn $A$ và $B$. Công đoạn $A$ có thể làm theo $n$ cách. Với mỗi cách thực hiện công đoạn $A$ thì công đoạn $B$ có thể làm theo $m$ cách. Khi đó, công việc có thể thực hiện theo $nm$ cách.
+
+2. Quy tắc cộng: 
+
+
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
