@@ -103,7 +103,7 @@ Chứng minh:
 
 - $(2) \rightarrow (3)$: nếu giả sử không tồn tại lát cắt hẹp nhất ta có thể tìm được đường tăng luồng
 
-- $(3) \rightarrow (1)$: Ta có thể thấy luôn $f^{\*} = f(X, Y) \le c(X, Y)$, do đó $f^{\*}$ là luồng cực đại vì nếu tồn tại một luồng $ff^{\*} \g f^{\*} $ sẽ vô lý với nhận xét trong mục lát cắt $s-t$ 3.5.1 .
+- $(3) \rightarrow (1)$: Ta có thể thấy luôn $f^{\*} = f(X, Y) \le c(X, Y)$, do đó $f^{\*}$ là luồng cực đại vì nếu tồn tại một luồng $ff^{\*} > f^{\*} $ sẽ vô lý với nhận xét trong mục lát cắt $s-t$ 3.5.1 .
 
 ## 3.6 Các thuật toán tìm đường mở
 
