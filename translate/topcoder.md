@@ -16,7 +16,7 @@ Cho một mạng (network) có dạng một đồ thị vô hướng $G=(E,V)$ (
  - Một đỉnh phát $s$ (source)
  - Và một đỉnh thu $t$ (sink)
 
-**Yêu cầu**: với mỗi kênh truyền tải $e=(u,v) ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]≤c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho với mọi $u ∈ V/\\{s,t\\}$ tổng $f(v,u)=f(u,w)$ v,w thuộc tập V$(tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f*=Tổng f(s,v) v thuộc V$ là lớn nhất.
+**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v] ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]≤c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w∈V} f[u,w]$ với mọi $u ∈ V/\\{s,t\\}$ (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f*=Tổng f(s,v) v thuộc V$ là lớn nhất.
 
 hình dưới đây biểu diễn một luồng cực đại trên mạng và mỗi cạnh của nó được gán nhãn là $f[u,v]/c[u,v]$ (giá trị dòng chảy và sức chứa của kênh)
 
@@ -24,12 +24,19 @@ hình dưới đây biểu diễn một luồng cực đại trên mạng và m�
 
 # 3. cách giải bài toán
 
-Trước hết để giải được bài toán ta biết hai khái niệm mạng thằng dư (residual network) và đường tăng luồng (augment path)
+Trước hết để giải được bài toán ta biết hai khái niệm mạng thặng dư (residual network) và đường tăng luồng (augment path)
 
 ## 3.1 mạng thặng dư - residual network
 
 Mạng thặng dư G'(E',V') của mạng G(E,V) cho biết sức chứa còn lại trên mạng G(E,V) khi đã gửi một số luồng f* qua nó và được xây dựng như sau:
-tập đỉnh V'= V và mỗi cạnh e(u,v) thuộc E có giá trị luồng là f[u,v] và sức chứa c[u,v] tương ứng với 2 cạnh e'(u,v)(cạnh xuôi) có f'[u,v]=f[u,v],c'[u,v]=c[u,v] và e'(v,u)(cạnh ngược) có f'[v,u]=-f[u,v] và c'[v,u]=0 (Có thể thấy tập cạnh xuôi trên G' chính là tập cạnh của G). Hình dưới đây sẽ diễn tả một đồ thị G và mạng thặng dư G' của nó
+
+- Tập đỉnh V'= V
+- Mỗi cạnh e(u,v) thuộc E có giá trị luồng là f[u,v] và sức chứa c[u,v] tương ứng với 2 cạnh:
+
+    - e'(u,v)(cạnh xuôi) có f'[u,v]=f[u,v],c'[u,v]=c[u,v]
+    - Và e'(v,u)(cạnh ngược) có f'[v,u]=-f[u,v] và c'[v,u]=0 
+
+(Có thể thấy tập cạnh xuôi trên G' chính là tập cạnh của G). Hình dưới đây sẽ diễn tả một đồ thị G và mạng thặng dư G' của nó
 
 
 ![alt text](http://community.topcoder.com/i/education/maxFlow02.gif "Luồng cực đại figure 2a")
@@ -38,7 +45,7 @@ tập đỉnh V'= V và mỗi cạnh e(u,v) thuộc E có giá trị luồng là
 
 ## 3.2 đường tăng luồng - augment path
 
-Đường tăng luồng là một đường đi đơn từ đỉnh phát $s$ đến đỉnh thu $t$ trong mạng thặng dư G' mà kênh trên đường đi chưa bị bão hòa ( f'[u,v] < c'[u,v], một kênh e'(u,v) được gọi là bão hòa nếu f'(u,v)=c'(u,v)).
+Đường tăng luồng là một đường đi đơn từ đỉnh phát $s$ (source) đến đỉnh thu $t$ (sink) trong mạng thặng dư G' mà kênh trên đường đi chưa bị bão hòa ( $f'[u,v] < c'[u,v]$, một kênh $e'(u,v)$ được gọi là bão hòa nếu $f'(u,v)=c'(u,v)$).
 
 ## 3.3 ví dụ
 
@@ -61,7 +68,7 @@ bước (1): Tạo mạng thặng dư G' tương ứng cho mạng G ban đầu
 bước (2): tìm một đường tăng luồng trên mạng thặng dư G'
   - nếu không tồn tại đường tăng luồng ta kết thúc thuật toán
   - nếu tồn một đường tăng luồng ta thực hiện tăng luồng trên mạng thặng dư và cập nhật mạng thặng dư và quay trở lại (2)
-Khi thuật toán kết thức giá trị tổng f(x,V') của các cạnh xuôi chính là giá trị luồng cực đại cần tìm.
+Khi thuật toán kết thúc $tổng f[x,V']$ của các cạnh xuôi chính là giá trị luồng cực đại cần tìm.
 
 Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BDF(breath first search) để tìm đường mở và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* (f*) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-O(E)* và bằng $O(|f*|.E)$. Để hiểu rõ hơn về thuật toán và cách chứng minh bạn có thể đọc tiếp các phần sau
 
@@ -69,7 +76,7 @@ Khi thuật toán kết thức giá trị tổng f(x,V') của các cạnh xuôi
 
 ### 3.5.1 Lát cắt s-t
 
-Lát cắt là một các phân hoạch tập các đỉnh V trong mạng G thành 2 tập X và Y thỏa mãn đỉnh phát (đỉnh s) thuộc X và đỉnh thu (đỉnh t) thuộc Y. Ta có f(X, Y) = Tổng f(u,v) (u thuộc X và v thuộc Y). Ta có c(X, Y) = tổng c(u,v) (u thuộc X và v thuộc Y) ta có thể chứng mình được 2 điều sau:
+Lát cắt là một các phân hoạch tập các đỉnh V trong mạng G thành 2 tập X và Y thỏa mãn đỉnh phát s thuộc X và đỉnh thu t thuộc Y. Ta có f(X, Y) = $f(u,v)$ ($u$ thuộc X và $v$ thuộc Y). Ta có c(X, Y) = tổng c[u,v] (u thuộc X và v thuộc Y) ta có thể chứng mình được 2 điều sau:
     - f(X, Y) <= c(X, Y)
     - Giá trị luồng f* = f(X,Y)
 
@@ -82,10 +89,12 @@ lát cắt hẹp nhất là lát cắt có f(X, Y) = c(X, Y). Từ khái niệm 
 ta có thể chứng minh 3 nhận định sau là tương đương:
 
 - (1) f là luồng cực đại trên mạng
-- (2) Mạng thặng dư G không có đường tăng luồng
-- (3) tồn tại (X,Y) là lát cắt hẹp nhất
 
-Chứng minh: 
+- (2) Mạng thặng dư G' không có đường tăng luồng
+
+- (3) tồn tại lát cắt s-t hẹp nhất trên G'
+
+Chứng minh:
 
 - (1) => (2): vì nếu tồn tại đường tăng luồng thì (1) sai
 
