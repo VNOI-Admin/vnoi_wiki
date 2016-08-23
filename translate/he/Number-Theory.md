@@ -450,6 +450,7 @@ Một vài tính chất cơ bản của phép lấy hiệu
 - $A \backslash B = A \cap B'$.
 
 - $U' = \varnothing$ và $\varnothing' = U$.
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
