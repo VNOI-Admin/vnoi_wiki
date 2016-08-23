@@ -281,7 +281,7 @@ Ta biết rằng $a^b$ có thể được viết dưới dạng:
 
 $a^b=(a^{\frac{b}{2}})^2$ nếu $b$ chia hết cho 2.
 
-$a^b=a.(a^{\frac{b}{2}})^2$ nếu $b$ không chia hết cho 2.
+$a^b=a.(a^{[\frac{b}{2}]})^2$ nếu $b$ không chia hết cho 2.
 
 $a^b=1$ nếu $b=0$.
 
@@ -356,6 +356,42 @@ Tập rỗng (kí hiệu $\varnothing$) là tập con của tất că các tập
 - $\varnothing \subset A$.
 
 - $A \subset A$.
+
+![](https://d320jcjashajb2.cloudfront.net/media/uploads/668b06c.png)
+
+$A$ là tập con của tập $B$.
+
+## Các phép toán với tập hợp
+
+Có nhiều phép toán có khả năng xây dựng một tập hợp mới dựa trên các tập hợp đã cho.
+
+## Phép hợp
+
+Hai tập hợp có thể được ghép vào nhau. Hợp của hai tập hợp $A$ và $B$, kí hiệu là $A \cup B$, là một tập hợp gồm các phần tử thuộc tập $A$ hoặc thuộc tập $B$.
+
+Ví dụ:
+
+- {1;2} $\cup$ {1;2} = {1;2}
+
+- {1;2} $\cup$ {2;3} = {1;2;3}
+
+- {1;2;3} $\cup$ {3;4;5} = {1;2;3;4;5}
+
+![](https://d320jcjashajb2.cloudfront.net/media/uploads/94410aa.PNG)
+
+Hợp của hai tập hợp $A$ và $B$, kí hiệu là $A \cup B$.
+
+Một vài tính chất cơ bản của phép hợp:
+
+- $A \cup B = B \cup A$.
+
+- $(A \cup B) \cup C = A \cup (B \cup C)$.
+
+- $A \subset (A \cup B)$.
+
+- $A \cup A = A$.
+
+- $A \subset B$ khi và chỉ khi $A \cup B = B$.
 
 
 # Bài tập áp dụng
