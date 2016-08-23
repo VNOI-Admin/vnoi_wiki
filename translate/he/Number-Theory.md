@@ -481,9 +481,9 @@ Lí do ta phải cộng trừ giao của một số tập hợp vì nếu ta kh�
 
 Các quy tắc trên cũng đúng khi ta có ba hay nhiều tập hợp.
 
-# Các kiến thức cơ bản về Chỉnh hợp
+## Các kiến thức cơ bản về Chỉnh hợp và Hoán vị
 
-## Chỉnh hợp không lặp
+### Chỉnh hợp không lặp
 
 Cho tập hợp $A$ gồm $n$ phần tử. Mỗi bộ gồm $k$ ($0 \leq k \leq n$) phần tử được sắp thứ tự của tập hợp $A$ được gọi là một chỉnh hợp chập $k$ của $n$ phần tử thuộc $A$.
 
@@ -493,11 +493,23 @@ Mỗi danh sách có xếp thứ tự 5 cầu thủ được gọi là một ch�
 
 Kí hiệu số chỉnh hợp chập $k$ của $n$ phần tử là $A_n^k$.
 
-Số chỉnh hợp chập $k$ của $n$ được tính bởi công thức
+Số chỉnh hợp chập $k$ của $n$ phần tử được tính bởi công thức
 
 $A_n^k = n(n-1)...(n-k+1) = \frac{n!}{(n-k)!}$.
 
-với $n!=1.2.3...n$.
+với $n!=1.2.3...n$ và $0! = 1$.
+
+### Hoán vị không lặp
+
+Mỗi một chỉnh hợp chập $n$ của $n$ phần tử là một hoán vị của $n$ phần tử đó.
+
+Kí hiệu số hoán vị của $n$ phần tử là $P_n$.
+
+Số hoán vị của $n$ được tính bởi công thức:
+
+$P_n = n!$.
+
+
 
 
 # Bài tập áp dụng
