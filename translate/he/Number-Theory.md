@@ -474,7 +474,7 @@ Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp g�
 
 Trong trường hợp tổng quát, ta có:
 
-
+$|\wcup_{i=1}^n A_i|$
 
 # Bài tập áp dụng
 
