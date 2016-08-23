@@ -470,7 +470,7 @@ Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp g�
 
 2. Quy tắc cộng: Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn một phần tử thuộc tập $A$ hoặc thuộc tập $B$ là $|A|+|B|$ nếu hai tập $A$ và $B$ rời nhau.
 
-3. Công thức bao hàm - loại trừ (còn được gọi là Quy tắc cộng mở rộng): $|A \cup B| = |A| + |B| - |A \cap B|$.
+3. Quy tắc cộng mở rộng: $|A \cup B| = |A| + |B| - |A \cap B|$.
 
 Trong trường hợp tổng quát, ta có:
 
@@ -479,7 +479,25 @@ $ (-1)^n|A_1 \cap A_2 \cap ... \cap A_n|$
 
 Lí do ta phải cộng trừ giao của một số tập hợp vì nếu ta không làm như vậy, ta có thể đếm nhiều lần các phần tử xuất hiện tại nhiều tập hợp khác nhau.
 
+Các quy tắc trên cũng đúng khi ta có ba hay nhiều tập hợp.
 
+# Các kiến thức cơ bản về Chỉnh hợp
+
+## Chỉnh hợp không lặp
+
+Cho tập hợp $A$ gồm $n$ phần tử. Mỗi bộ gồm $k$ ($0 \leq k \leq n$) phần tử được sắp thứ tự của tập hợp $A$ được gọi là một chỉnh hợp chập $k$ của $n$ phần tử thuộc $A$.
+
+Ví dụ: Trong trận chung kết bóng đá phải phân định thắng thua bằng đá luân lưu 11 mét. Huấn luyện viên của mỗi đội cần trình với trọng tài một danh sách sắp thứ tự 5 cầu thủ trong số 11 cầu thủ để đá luân lưu 5 quả 11 mét.
+
+Mỗi danh sách có xếp thứ tự 5 cầu thủ được gọi là một chỉnh hợp chập 5 của 11 cầu thủ.
+
+Kí hiệu số chỉnh hợp chập $k$ của $n$ phần tử là $A_n^k$.
+
+Số chỉnh hợp chập $k$ của $n$ được tính bởi công thức
+
+$A_n^k = n(n-1)...(n-k+1) = \frac{n!}{(n-k)!}$.
+
+với $n!=1.2.3...n$.
 
 
 # Bài tập áp dụng
