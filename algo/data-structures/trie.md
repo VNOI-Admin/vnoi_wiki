@@ -24,7 +24,7 @@ Tuy nhiên, như các bạn có thể thấy, đối với một số nút, ch�
 
 - Tiết kiệm bộ nhớ: Khi số lượng khóa lớn và các khóa có độ dài nhỏ, thông thường trie tiết kiệm bộ nhớ hơn do các phần đầu giống nhau của các khoá chỉ được lưu 1 lần. Ưu điểm này có ứng dụng rất lớn, chẳng hạn trong từ điển.
 
-- Thao tác tìm kiếm: O($m$) với $m$ là độ dài khóa. Với **Binary search tree** (cân bằng): là O($logN$). Khi số lượng khóa cần tìm lớn và độ dài mỗi khóa tương đối nhỏ, $logN$ xấp xỉ $m$, và như các bạn đã biết, để cài được **Binary search tree** cân bằng không phải là một việc đơn giản. Hơn nữa, các thao tác trên trie rất đơn giản và thường chạy nhanh hơn trên thực tế.
+- Thao tác tìm kiếm: $O(m)$ với $m$ là độ dài khóa. Với **Binary search tree** (cân bằng): là $O(logN)$. Khi số lượng khóa cần tìm lớn và độ dài mỗi khóa tương đối nhỏ, $logN$ xấp xỉ $m$, và như các bạn đã biết, để cài được **Binary search tree** cân bằng không phải là một việc đơn giản. Hơn nữa, các thao tác trên trie rất đơn giản và thường chạy nhanh hơn trên thực tế.
 
 - Dựa vào tính chất của cây trie, có thể thực hiện một số liên quan đến thứ tự từ điển như sắp xếp, tìm một khóa có thứ tự từ điển nhỏ nhất và lớn hơn một khóa cho trước...; và một số thao tác liên quan đến tiền tố, hậu tố.
 
