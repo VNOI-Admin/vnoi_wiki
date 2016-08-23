@@ -5,7 +5,9 @@ Nguồn: [Understanding Probabilities - Topcoder](https://www.topcoder.com/commu
 
 Xác suất là một nhánh của Toán học có rất nhiều ứng dụng trong thực tế, chẳng hạn như trong phân tích giá cả thị trường, chuẩn bị chiến lược trong thi đấu thể thao, dự báo thời tiết.. Bạn có thể đọc thêm về ứng dụng của xác suất trên [[Quora|https://www.quora.com/What-are-the-real-life-applications-of-probability-in-math]].
 
-Đa số các bài toán về xác suất đều được lấy ví dụ từ thực tế. Ví dụ: Kỳ thi sắp đến, có 20 chủ đề cần học và bạn chỉ có đủ thời gian để học 15 chủ đề. Nếu trong bài kiểm tra chỉ có 2 câu hỏi (mỗi câu hỏi về 1 chủ đề), thì xác suất bạn có thể trả lời đc cả 2 câu là bao nhiêu?
+Đa số các bài toán về xác suất đều được lấy ví dụ từ thực tế. Ví dụ:
+
+> Kỳ thi sắp đến, có 20 chủ đề cần học và bạn chỉ có đủ thời gian để học 15 chủ đề. Nếu trong bài kiểm tra chỉ có 2 câu hỏi (mỗi câu hỏi về 1 chủ đề), thì xác suất bạn có thể trả lời đc cả 2 câu là bao nhiêu?
 
 Không khó để nhận ra bài tập nào cần dùng kiến thức về xác suất nhưng giải được chúng là một câu chuyện hoàn toàn khác. Biết cách để tiếp cận những bài toán như vậy là một lợi thế lớn trong các cuộc thi lập trình, và bài viết dưới đây sẽ trang bị những kiến thức nền tảng cho bạn.
 
@@ -23,7 +25,7 @@ Chúng ta cùng xem xét ví dụ dưới đây:
 - Tung hai đồng xu
   - Không gian mẫu $S = { (0, 0), (0, 1), (1, 0), (1, 1) }$ với 0 thể hiện đồng xu sấp và 1 thể hiện đồng xu ngửa.
 
-Ta định nghĩa một **biến cố** (**event**) là một tập hợp các kết quả của một thí nghiệm. Do đó, một biến cố là một tập con của không gian mẫu $S$. Nếu chúng ta đặt biến cố là $E$, thì chúng ta có thể nói rằng $E \subseteq S$. Nếu một biến cố chỉ bao gồm một kết quả duy nhất trong không gian  mẫu, ta vẫn có thể gọi chúng là biến cố. Biến cố bao gồm nhiều hơn một kết quả được gọi là **biến cố kép*** (**compound event**), ví dụ như trong thí nghiệm tung 2 đồng xu ở trên.
+Ta định nghĩa một **biến cố** (**event**) là một tập hợp các kết quả của một thí nghiệm. Do đó, một biến cố là một tập con của không gian mẫu $S$. Nếu chúng ta đặt biến cố là $E$, thì chúng ta có thể nói rằng $E \subseteq S$. Nếu một biến cố chỉ bao gồm một kết quả duy nhất trong không gian  mẫu, ta vẫn có thể gọi chúng là biến cố. Biến cố bao gồm nhiều hơn một kết quả được gọi là **biến cố kép** (**compound event**), ví dụ như trong thí nghiệm tung 2 đồng xu ở trên.
 
 Cái chúng ta quan tâm nhất là xác suất để một biến cố nhất định xảy ra, $P(E)$. Theo định nghĩa, $P(E)$ là một số thực trong khoảng từ $0$ đến $1$, trong đó $0$ là biến cố không có khả năng xảy ra và $1$ là biến cố chắc chắn xảy ra (hay là toàn bộ không gian mẫu).
 
@@ -138,7 +140,7 @@ Những công thức trên được ứng dụng rất nhiều, cần nắm ch�
 
 ## [BirthdayOdds](http://community.topcoder.com/stat?c=problem_statement&pm=1848&rd=4675)
 
-Một ví dụ điển hình để mô tả nội dung xác suất được bàn luận ở phần trên là [**Birthday Paradox**](https://en.wikipedia.org/wiki/Birthday_problem). Người ta đã chứng minh được nếu có ít nhất 23 người trong một căn phòng, hơn 50% xác suất để 2 người bất kì trong số họ sẽ có cùng một ngày sinh nhật. Nó được gọi là nghịch lý về ngày sinh vì nó trái ngược với cảm giác thông thường. Bây giờ, một bài toán đặt ra là tìm số người nhỏ nhất để xác suất có ít nhất người trong số họ cùng ngày sinh nhật là lớn hơn x %. Việc đầu tiên có thể nghĩ đến là giải bài toán ngược: "xác suất để $N$ người ngẫu nhiên có ngày sinh khác nhau?" dễ hơn. Chiến thuật là bắt đầu với một cái phòng rỗng và lần lượt thêm từng người một vào, so sánh ngày sinh của người đó với tất cả những người đã có trong phòng.
+Một ví dụ điển hình để mô tả nội dung xác suất được bàn luận ở phần trên là [**Birthday Paradox**](https://en.wikipedia.org/wiki/Birthday_problem). Người ta đã chứng minh được nếu có ít nhất 23 người trong một căn phòng, xác suất để 2 người bất kì trong số họ có cùng một ngày sinh nhật là lớn hơn 0.5. Nó được gọi là nghịch lý về ngày sinh vì nó trái ngược với cảm giác thông thường. Bây giờ, một bài toán đặt ra là tìm số người nhỏ nhất để xác suất có ít nhất người trong số họ cùng ngày sinh nhật là lớn hơn x %. Việc đầu tiên có thể nghĩ đến là giải bài toán ngược: "xác suất để $N$ người ngẫu nhiên có ngày sinh khác nhau?" dễ hơn. Chiến thuật là bắt đầu với một cái phòng rỗng và lần lượt thêm từng người một vào, so sánh ngày sinh của người đó với tất cả những người đã có trong phòng.
 
 ```cpp
 int minPeople (int minOdds, int days) {
@@ -162,9 +164,7 @@ int minPeople (int minOdds, int days) {
 
 # Tính xác suất từng bước một
 
-Trong phần dưới đây, chúng ta sẽ tiếp tục thảo luận một vài bài tập trên Topcoder mà trong đó:
-
-> Xác suất của một biến cố bị ảnh hưởng bởi biến cố khác.
+Trong phần dưới đây, chúng ta sẽ tiếp tục thảo luận một vài bài tập trên Topcoder mà trong đó: **Xác suất của một biến cố bị ảnh hưởng bởi biến cố khác**.
 
 Chúng ta có thể hình dung nó như một đồ thị mà trong đó:
 
@@ -239,7 +239,7 @@ Bài tập tương tự:
 
 Ở bài này có khái niệm về **xác suất có điều kiện** (*conditional probability*):
 
-> Xác suất có điều kiện là xác suất của một biến cố A nào đó, biết rằng một biến cố B khác xảy ra.
+> Xác suất có điều kiện là xác suất của một biến cố A nào đó, biết rằng một biến cố B khác đã xảy ra.
 
 Ký hiệu $P(A|B)$, và đọc là "xác suất của A, biết B". Nếu $A$ và $B$ là các biến cố, và $P(B) > 0$, thì xác suất có điều kiện của $A$ nếu biết $B$ là:
 
@@ -251,26 +251,26 @@ $P(A \cap B) = P(A|B) P(B)$
 
 ### Tóm tắt đề bài 
 
-Theo di truyền học ở động vật, mỗi cặp gen sẽ biểu thị một tính trạng. Mỗi gen có hai dạng cơ bản là trội hoặc lặn. Nếu trong cặp gen có gen trội thì tính trạng của gen trội này sẽ được biểu thị, ngược lại, trường hợp cả hai đều là gen lặn thì tính trạng của gen lặn này sẽ được thể hiện ra ngoài.
+Theo di truyền học ở động vật, mỗi cặp gen sẽ biểu thị một tính trạng. Mỗi gen có hai dạng cơ bản là trội hoặc lặn. Nếu trong cặp gen có gen trội thì tính trạng của gen trội này sẽ được thể hiện ra ngoài, ngược lại, trường hợp cả hai đều là gen lặn thì tính trạng của gen lặn này sẽ được thể hiện ra ngoài.
 
 Ngoài ra, một số gen còn có tính phụ thuộc. Nếu một gen phụ thuộc vào một gen khác thì gen thứ nhất chỉ có thể hiện tính trội nếu gen nó phụ thuộc vào cũng thể hiện tính trội và tương tự với thể hiện tính lặn. Bên cạnh đó, có những gen không phụ thuộc vào bất cứ gen nào khác và sẽ thể hiện như mô tả trong đoạn đầu. Đảm bảo không có trường hợp một gen phụ thuộc vào chính nó hay chuỗi phụ thuộc tạo thành một vòng (ví dụ I phụ thuộc J, J phụ thuộc K, K phụ thuộc I).
 
-Cho n cặp gen của bố mẹ và một số thông tin về chúng. Với mỗi cặp gen, bố/mẹ sẽ cho con của chúng một trong hai gen. Ví dụ như mẹ có hai chuỗi gen là ‘ABC’ và ‘abc’ thì trong cặp đầu, con mẹ có thể cho con con ‘a’ hoặc ‘A’, trong cặp hai là ‘b’ hoặc ‘B’ và cứ thế. Tương tự con bố sẽ cho con con mỗi gen trong từng cặp như vậy. Sau cùng, con con sẽ có N cặp gen từ bố và mẹ. Mỗi cặp đóng góp vào một giá trị gọi là chất lượng con giống (đánh giá dựa trên những tính trạng mong  muốn). Nếu cặp thứ i thể hiện tính trội ta cộng troi[i] vào giá trị chất lượng, còn lặn thì cộng lan[i] vào 
+Cho $n$ cặp gen của bố mẹ và một số thông tin về chúng. Với mỗi cặp gen, bố/mẹ sẽ cho con của chúng một trong hai gen. Ví dụ như mẹ có hai chuỗi gen là ‘ABC’ và ‘abc’ thì trong cặp đầu, con mẹ có thể cho con con ‘a’ hoặc ‘A’, trong cặp hai là ‘b’ hoặc ‘B’ và cứ thế. Tương tự con bố sẽ cho con con mỗi gen trong từng cặp như vậy. Sau cùng, con con sẽ có $n$ cặp gen từ bố và mẹ. Mỗi cặp đóng góp vào một giá trị gọi là chất lượng con giống (đánh giá dựa trên những tính trạng mong  muốn). Nếu cặp thứ $i$ thể hiện tính trội ta cộng `troi[i]` vào giá trị chất lượng, còn lặn thì cộng `lan[i]` vào 
 
 Trong bài tập này nhiệm vụ của bạn là dự đoán về chất lượng của một con giống.
 
-Bạn sẽ được cung cấp 2 chuỗi gen thể hiện N (<=50) cặp gen của mẹ, 2 chuỗi gen thể hiện N cặp gen của bố, 3 mảng N số nguyên thể hiện tính phụ thuộc, troi[i], va lan[i]. 
+Bạn sẽ được cung cấp 2 chuỗi gen thể hiện $n$ $(n \le 50)$ cặp gen của mẹ, 2 chuỗi gen thể hiện $n$ cặp gen của bố, 2 mảng $n$ số nguyên thể hiện tính phụ thuộc, `troi[i]`, va `lan[i]`. 
 
 Từ những dữ liệu trên, bạn cần xuất ra dự đoán về giá trị chất lượng của con giống. 
 
 (ND: dự đoán được tính bằng lấy tổng của tất cả tính các giá trị có thể xảy ra với xác suất xảy ra. Ví dụ
 
-- Giá trị chất lượng con giống : xác suất để đạt giá trị này
+- Giá trị chất lượng con giống: xác suất để đạt giá trị này
    - 17 : 0.5625
    - 13 : 0.1875
    - 9   : 0.25
 
-Vậy dự đoán giá trị chất lượng con giống sẽ là 17*0.5625 + 13*0.1875 + 9*0.25 = 14.25)
+Vậy dự đoán giá trị chất lượng con giống sẽ là $17*0.5625 + 13*0.1875 + 9*0.25 = 14.25$)
 
 ### Phân tích
 
