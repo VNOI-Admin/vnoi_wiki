@@ -477,6 +477,11 @@ Trong trường hợp tổng quát, ta có:
 $|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i| - \sum_{i \ne j} |A_i \cap A_j| + |A_1 \cap A_2 \cap A_3| + |A_1 \cap A_2 \cap A_4| + ... + |A_{n-2} \cap A_{n-1} \cap A_n| - ... -$
 $ (-1)^n|A_1 \cap A_2 \cap ... \cap A_n|$
 
+Lí do ta phải cộng trừ giao của một số tập hợp vì nếu ta không làm như vậy, ta có thể đếm nhiều lần các phần tử xuất hiện tại nhiều tập hợp khác nhau.
+
+
+
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
