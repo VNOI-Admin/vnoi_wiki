@@ -16,7 +16,7 @@ Cho một mạng (network) có dạng một đồ thị vô hướng $G=(E,V)$ (
  - Một đỉnh phát $s$ (source)
  - Và một đỉnh thu $t$ (sink)
 
-**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v] ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]≤c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w∈V} f[u,w]$ \foralli\ $u ∈ V/\\{s,t\\}$ (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f*=Tổng f(s,v) v thuộc V$ là lớn nhất.
+**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v] ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]≤c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w∈V} f[u,w]$ ($\forall u ∈ V/\\{s,t\\}$) (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f^{\*}=f(s,V)=\sum_{v∈V} f[s,v]$ là lớn nhất ( $f(s,V)$ là tổng luồng đi ra từ $s$).
 
 hình dưới đây biểu diễn một luồng cực đại trên mạng và mỗi cạnh của nó được gán nhãn là $f[u,v]/c[u,v]$ (giá trị dòng chảy và sức chứa của kênh)
 
@@ -28,15 +28,15 @@ Trước hết để giải được bài toán ta biết hai khái niệm mạn
 
 ## 3.1 mạng thặng dư - residual network
 
-Mạng thặng dư G'(E',V') của mạng G(E,V) cho biết sức chứa còn lại trên mạng G(E,V) khi đã gửi một số luồng f* qua nó và được xây dựng như sau:
+Mạng thặng dư $G'(E',V')$ của mạng $G(E,V)$ cho biết sức chứa còn lại trên mạng $G(E,V)$ khi đã gửi một số luồng $f^{\*}$ qua nó và được xây dựng như sau:
 
-- Tập đỉnh V'= V
-- Mỗi cạnh e(u,v) thuộc E có giá trị luồng là f[u,v] và sức chứa c[u,v] tương ứng với 2 cạnh:
+- Tập đỉnh $V'= V$
+- Mỗi cạnh $e(u,v) ∈ E$ có giá trị luồng là $f[u,v]$ và sức chứa $c[u,v]$ tương ứng với 2 cạnh trong $E'$:
 
-    - e'(u,v)(cạnh xuôi) có f'[u,v]=f[u,v],c'[u,v]=c[u,v]
-    - Và e'(v,u)(cạnh ngược) có f'[v,u]=-f[u,v] và c'[v,u]=0 
+    - $e'(u,v)$(cạnh xuôi) có $f'[u,v]=f[u,v]$,$c'[u,v]=c[u,v]$
+    - Và $e'(v,u)$(cạnh ngược) có $f'[v,u]=-f[u,v]$ và $c'[v,u]=0$
 
-(Có thể thấy tập cạnh xuôi trên G' chính là tập cạnh của G). Hình dưới đây sẽ diễn tả một đồ thị G và mạng thặng dư G' của nó
+(Có thể thấy tập cạnh xuôi trên $G'$ chính là tập cạnh của $G$). Hình dưới đây sẽ diễn tả một đồ thị G và mạng thặng dư $G$' của nó
 
 
 ![Luồng cực đại figure 2a](https://c1.staticflickr.com/9/8133/29176141625_2a832999aa.jpg "Luồng cực đại figure 2a")
@@ -45,40 +45,43 @@ Mạng thặng dư G'(E',V') của mạng G(E,V) cho biết sức chứa còn l�
 
 ## 3.2 đường tăng luồng - augment path
 
-Đường tăng luồng là một đường đi đơn từ đỉnh phát $s$ (source) đến đỉnh thu $t$ (sink) trong mạng thặng dư G' mà kênh trên đường đi chưa bị bão hòa ( $f'[u,v] < c'[u,v]$, một kênh $e'(u,v)$ được gọi là bão hòa nếu $f'(u,v)=c'(u,v)$).
+Đường tăng luồng là một đường đi đơn từ đỉnh phát $s$ (source) đến đỉnh thu $t$ (sink) trong mạng thặng dư $G'$ mà kênh trên đường đi chưa bị bão hòa ( $f'[u,v] < c'[u,v]$, một kênh $e'(u,v)$ được gọi là bão hòa nếu $f'(u,v)=c'(u,v)$).
 
 ## 3.3 ví dụ
 
-bằng việc xem xét đường tăng luồng s_A_C_t trên mạng thặng dư $?$ chúng ta có thể tăng luồng lên 1 vì s_A và A_C có thể cho một luồng có giá trị là 3 nhưng C_t chỉ có thể cho một luồng 1 đi qua, do đó ta sẽ lấy giá trị nhỏ nhất trên đường đi để thực hiện tăng giá trị luồng. Sau khi tăng luồng lên một ta có hình như sau:
+bằng việc xem xét đường tăng luồng s_A_C_t trên mạng thặng dư $G'$ chúng ta có thể tăng luồng lên 1 vì s_A và A_C có thể cho một luồng có giá trị là 3 nhưng C_t chỉ có thể cho một luồng 1 đi qua, do đó ta sẽ lấy giá trị nhỏ nhất trên đường đi để thực hiện tăng giá trị luồng. Sau khi tăng luồng lên một ta có hình như sau:
 
 ![Luồng cực đại figure 3a](https://c1.staticflickr.com/9/8401/29142628656_53bf72b382.jpg "Luồng cực đại figure 3a")
 
-sau khi tăng luồng ta được một mạng mới với tổng giá trị luồng là 2 nhưng trong ví dụ 1.a ta thấy tổng luồng là 3 do đó luồng như trên vẫn có thể tăng luồng thêm nữa. Vậy một câu hỏi là ta sẽ tăng luồng như thế nào? hãy nhìn vào mạng thặng dư 3.b của đồ thị 3.a dưới đây
+sau khi tăng luồng ta được một mạng mới với tổng giá trị luồng là 2 nhưng trong ví dụ **1.a** ta thấy tổng luồng là 3 do đó luồng như trên vẫn có thể tăng luồng thêm nữa. Vậy một câu hỏi là ta sẽ tăng luồng như thế nào? hãy nhìn vào mạng thặng dư **3.b** của đồ thị **3.a** dưới đây
 
 ![Luồng cực đại figure 3b](https://c1.staticflickr.com/9/8318/28556848573_4f55d6f901.jpg "Luồng cực đại figure 3b")
 
-Ta có thể thấy từ s đến t tồn tại một đường đi đơn (đường tăng luồn): s_A_C_B_D_E_t, ta sẽ sử dụng đường đi này để tăng các giá trị trên đường đi này một lượng bằng sức chứa nhỏ nhất (sức chứa của C_B nhỏ nhất và bằng 1), hình 1.b dưới đây là mạng thặng dư tương ứng của 3.a sau khi được tăng luồng
+Ta có thể thấy từ $s$ đến $t$ tồn tại một đường đi đơn (đường tăng luồn): s_A_C_B_D_E_t, ta sẽ sử dụng đường đi này để tăng các giá trị trên đường đi này một lượng bằng sức chứa nhỏ nhất (sức chứa của C_B nhỏ nhất và bằng 1), hình **1.b** dưới đây là mạng thặng dư tương ứng của **3.a** sau khi được tăng luồng
 
 ![Luồng cực đại figure 1b](https://c1.staticflickr.com/9/8264/28556848583_283a1d1b68.jpg "Luồng cực đại figure 1b")
 
 ## 3.4 thuật toán
 
 Từ ví dụ trên ta có thể đi đến thuật toán như sau:
-bước (1): Tạo mạng thặng dư G' tương ứng cho mạng G ban đầu
-bước (2): tìm một đường tăng luồng trên mạng thặng dư G'
+bước $(1)$: Tạo mạng thặng dư $G'$ tương ứng cho mạng $G$ ban đầu
+bước $(2)$: tìm một đường tăng luồng trên mạng thặng dư $G'$
   - nếu không tồn tại đường tăng luồng ta kết thúc thuật toán
-  - nếu tồn một đường tăng luồng ta thực hiện tăng luồng trên mạng thặng dư và cập nhật mạng thặng dư và quay trở lại (2)
-Khi thuật toán kết thúc $tổng f[x,V']$ của các cạnh xuôi chính là giá trị luồng cực đại cần tìm.
+  - nếu tồn một đường tăng luồng ta thực hiện tăng luồng trên mạng thặng dư và cập nhật mạng thặng dư và quay trở lại $(2)$
+Khi thuật toán kết thúc $f(s,V')$ (là tổng luồng ra từ s trên mạng thặng dư G') chính là giá trị luồng cực đại cần tìm.
 
-Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BDF(breath first search) để tìm đường mở và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* (f*) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-O(E)* và bằng $O(|f*|.E)$. Để hiểu rõ hơn về thuật toán và cách chứng minh bạn có thể đọc tiếp các phần sau
+Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BDF(breath first search) để tìm đường mở và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{\*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(|f^{\*}|.E)$. Để hiểu rõ hơn về thuật toán và cách chứng minh bạn có thể đọc tiếp các phần sau
 
 ## 3.5 tính đúng dắn
 
-### 3.5.1 Lát cắt s-t
+### 3.5.1 Lát cắt $s-t$
 
-Lát cắt là một các phân hoạch tập các đỉnh V trong mạng G thành 2 tập X và Y thỏa mãn đỉnh phát s thuộc X và đỉnh thu t thuộc Y. Ta có f(X, Y) = $f(u,v)$ ($u$ thuộc X và $v$ thuộc Y). Ta có c(X, Y) = tổng c[u,v] (u thuộc X và v thuộc Y) ta có thể chứng mình được 2 điều sau:
-    - f(X, Y) <= c(X, Y)
-    - Giá trị luồng f* = f(X,Y)
+Lát cắt là một các phân hoạch tập các đỉnh $V'$ trong mạng thặng dư $G'$ thành 2 tập $X$ và $Y$ thỏa mãn đỉnh phát $s$ thuộc $X$ và đỉnh thu $t$ thuộc $Y$. Ta có giá trị luồng của lát cắt là $f(X, Y)$ và $c(X, Y)$ (trong đó $f(X,Y)=\sum_{u \in X}\sum_{v \in Y} f'[u,v]$ và $c(X,Y)=\sum_{u \in X}\sum_{v \in Y} c'[u,v]$) ta có thể chứng mình được 2 điều sau:
+
+
+- $f(X, Y) \le c(X, Y)$
+
+- Giá trị luồng $f^{\*} = f(X,Y)$
 
 ### 3.5.2 Lát cắt s-t hẹp nhất
 
@@ -88,19 +91,19 @@ lát cắt hẹp nhất là lát cắt có f(X, Y) = c(X, Y). Từ khái niệm 
 
 ta có thể chứng minh 3 nhận định sau là tương đương:
 
-- (1) f là luồng cực đại trên mạng
+- $(1)$ $f$ là luồng cực đại trên mạng
 
-- (2) Mạng thặng dư G' không có đường tăng luồng
+- $(2)$ Mạng thặng dư $G'$ không có đường tăng luồng
 
-- (3) tồn tại lát cắt s-t hẹp nhất trên G'
+- $(3$) tồn tại lát cắt $s-t$ hẹp nhất trên $G'$
 
 Chứng minh:
 
-- (1) => (2): vì nếu tồn tại đường tăng luồng thì (1) sai
+- $(1) \rightarrow (2)$: vì nếu tồn tại đường tăng luồng thì (1) sai
 
-- (2) => (3): nếu giả sử không tồn tại lát cắt hẹp nhất ta có thể tìm được đường tăng luồng
+- $(2) \rightarrow (3)$: nếu giả sử không tồn tại lát cắt hẹp nhất ta có thể tìm được đường tăng luồng
 
-- (3) => (1): Ta có thể thấy luôn f* = f(X, Y) <= c(X, Y), do đó f* là luồng cực đại vì nếu tồn tại một luồng ff* lớn hớn f* sẽ vô lý với nhận xét trong mục lát cắt s-t 3.5.1
+- $(3) \rightarrow (1)$: Ta có thể thấy luôn $f^{\*} = f(X, Y) \le c(X, Y)$, do đó $f^{\*}$ là luồng cực đại vì nếu tồn tại một luồng $ff^{\*} \g f^{\*} $ sẽ vô lý với nhận xét trong mục lát cắt $s-t$ 3.5.1 .
 
 ## 3.6 Các thuật toán tìm đường mở
 
