@@ -365,7 +365,7 @@ $A$ là tập con của tập $B$.
 
 Có nhiều phép toán có khả năng xây dựng một tập hợp mới dựa trên các tập hợp đã cho.
 
-## Phép hợp
+### Phép hợp
 
 Hai tập hợp có thể được ghép vào nhau. Hợp của hai tập hợp $A$ và $B$, kí hiệu là $A \cup B$, là một tập hợp gồm các phần tử thuộc tập $A$ hoặc thuộc tập $B$.
 
@@ -392,6 +392,34 @@ Một vài tính chất cơ bản của phép hợp:
 - $A \cup A = A$.
 
 - $A \subset B$ khi và chỉ khi $A \cup B = B$.
+
+### Phép giao
+
+Một tập hợp mới có thể được xây dựng từ các phẩn tử mà cả hai tập đều có. Giao cuả hai tập hợp $A$ và $B$, kí hiệu $A \cap B$, là tập hợp các phần tử cùng thuộc tập $A$ và tập $B$. Nếu $A \cap B = \varnothing$, tập $A$ và tập $B$ là hai tập rời nhau.
+
+Ví dụ:
+
+- {1;2} $\cap$ {1;2} = {1;2}.
+
+- {1;2} $\cap$ {2;3} = {2}.
+
+![](https://d320jcjashajb2.cloudfront.net/media/uploads/618200f.png)
+
+Giao của hai tập hợp $A$ và $B$, kí hiệu là $A \cap B$.
+
+Một vài tính chất cơ bản của phép hợp:
+
+- $A \cap B = B \cap A$.
+
+- $(A \cap B) \cap C = A \cap (B \cap C)$.
+
+- $A \cap B \subset A$.
+
+- $A \cap A = A$.
+
+- $A \cap \varnothing = \varnothing$.
+
+- $A \subset B$ khi và chỉ khi $A \cap B = A$.
 
 
 # Bài tập áp dụng
