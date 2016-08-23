@@ -16,11 +16,11 @@ Cho một mạng (network) có dạng một đồ thị vô hướng $G=(E,V)$ (
  - Một đỉnh phát $s$ (source)
  - Và một đỉnh thu $t$ (sink)
 
-**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v] ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]≤c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w∈V} f[u,w]$ với mọi $u ∈ V/\\{s,t\\}$ (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f*=Tổng f(s,v) v thuộc V$ là lớn nhất.
+**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v] ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]≤c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w∈V} f[u,w]$ \foralli\ $u ∈ V/\\{s,t\\}$ (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f*=Tổng f(s,v) v thuộc V$ là lớn nhất.
 
 hình dưới đây biểu diễn một luồng cực đại trên mạng và mỗi cạnh của nó được gán nhãn là $f[u,v]/c[u,v]$ (giá trị dòng chảy và sức chứa của kênh)
 
-![alt text](http://community.topcoder.com/i/education/maxFlow01.gif "Luồng cực đại figure 1.a")
+![Luồng cực đại figure 1.a](https://c1.staticflickr.com/9/8203/28888587790_462bb588c9.jpg "Luồng cực đại figure 1.a")
 
 # 3. cách giải bài toán
 
@@ -39,9 +39,9 @@ Mạng thặng dư G'(E',V') của mạng G(E,V) cho biết sức chứa còn l�
 (Có thể thấy tập cạnh xuôi trên G' chính là tập cạnh của G). Hình dưới đây sẽ diễn tả một đồ thị G và mạng thặng dư G' của nó
 
 
-![alt text](http://community.topcoder.com/i/education/maxFlow02.gif "Luồng cực đại figure 2a")
+![Luồng cực đại figure 2a](https://c1.staticflickr.com/9/8133/29176141625_2a832999aa.jpg "Luồng cực đại figure 2a")
 
-![alt text](http://community.topcoder.com/i/education/maxFlow03.gif "Luồng cực đại figure 2b")
+![Luồng cực đại figure 2b](https://c1.staticflickr.com/9/8333/29070238302_c937d5ce54.jpg "Luồng cực đại figure 2b")
 
 ## 3.2 đường tăng luồng - augment path
 
@@ -51,15 +51,15 @@ Mạng thặng dư G'(E',V') của mạng G(E,V) cho biết sức chứa còn l�
 
 bằng việc xem xét đường tăng luồng s_A_C_t trên mạng thặng dư $?$ chúng ta có thể tăng luồng lên 1 vì s_A và A_C có thể cho một luồng có giá trị là 3 nhưng C_t chỉ có thể cho một luồng 1 đi qua, do đó ta sẽ lấy giá trị nhỏ nhất trên đường đi để thực hiện tăng giá trị luồng. Sau khi tăng luồng lên một ta có hình như sau:
 
-![alt text](http://community.topcoder.com/i/education/maxFlow04.gif "Luồng cực đại figure 3a")
+![Luồng cực đại figure 3a](https://c1.staticflickr.com/9/8401/29142628656_53bf72b382.jpg "Luồng cực đại figure 3a")
 
 sau khi tăng luồng ta được một mạng mới với tổng giá trị luồng là 2 nhưng trong ví dụ 1.a ta thấy tổng luồng là 3 do đó luồng như trên vẫn có thể tăng luồng thêm nữa. Vậy một câu hỏi là ta sẽ tăng luồng như thế nào? hãy nhìn vào mạng thặng dư 3.b của đồ thị 3.a dưới đây
 
-![alt text](http://community.topcoder.com/i/education/maxFlow05.gif "Luồng cực đại figure 3b")
+![Luồng cực đại figure 3b](https://c1.staticflickr.com/9/8318/28556848573_4f55d6f901.jpg "Luồng cực đại figure 3b")
 
 Ta có thể thấy từ s đến t tồn tại một đường đi đơn (đường tăng luồn): s_A_C_B_D_E_t, ta sẽ sử dụng đường đi này để tăng các giá trị trên đường đi này một lượng bằng sức chứa nhỏ nhất (sức chứa của C_B nhỏ nhất và bằng 1), hình 1.b dưới đây là mạng thặng dư tương ứng của 3.a sau khi được tăng luồng
 
-![alt text](http://community.topcoder.com/i/education/maxFlow06.gif "Luồng cực đại figure 1b")
+![Luồng cực đại figure 1b](https://c1.staticflickr.com/9/8264/28556848583_283a1d1b68.jpg "Luồng cực đại figure 1b")
 
 ## 3.4 thuật toán
 
