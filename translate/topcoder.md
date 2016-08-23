@@ -2,23 +2,29 @@
 
 [[_TOC_]]
 
+
 # 0. Kiến thức cần biết
+
 
 # 1. Ứng dụng
 
 # 2. Phát biểu bài toán
 
-Cho một mạng (network) có dạng một đồ thị vô hướng $G=(E,V)$ (V là tập đỉnh, E là tập cạnh) mỗi cạnh trên đồ thị $e=(u,v) thuộc E$ như một kênh chuyển tải nước giữa 2 đỉnh riêng biệt u, v trong đồ thị và có sức chứa là $c(e)=c[u,v]$. Trong mạng lưới có một đỉnh phát $s$ và một đỉnh thu $t$
+Cho một mạng (network) có dạng một đồ thị vô hướng $G=(E,V)$ ($V$ là tập đỉnh, $E$ là tập cạnh) có:
 
-**Yêu cầu**: với mỗi kênh truyền tải (e=(u,v) thuộc E) từ u đến v cần xác định giá trị $f[u,v] (f[u,v] <= c[u,v])$ được gọi là luồng (flow) trên kênh e sao cho với mọi $u thuộc tập V/{s,t}$ tổng $f(v,u)=f(u,w)$ v,w thuộc tập V/{s,t}$(tổng luồng đi vào u bằng tổng luồng đi ra). Hơn thế nữa ta cần tìm các giá trị f sao tổng luồng ra $f(s,v) v thuộc V$ là lớn nhất.
+ - $e=(u,v) ∈ E$ như một kênh chuyển tải nước giữa 2 đỉnh riêng biệt $u$, $v$ trong đồ thị và có sức chứa là $c(e)=c[u,v]$ (hay là giá trị luồng tối đa có có thể qua $e$)
+ - Một đỉnh phát $s$ (source)
+ - Và một đỉnh thu $t$ (sink)
 
-hình dưới đây biểu diễn một luồng cực đại trên mạng và mỗi cạnh của nó được gán nhãn là $f/c$ (giá trị dòng chảy và sức chứa của kênh)
+**Yêu cầu**: với mỗi kênh truyền tải $e=(u,v) ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]≤c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho với mọi $u ∈ V/\\{s,t\\}$ tổng $f(v,u)=f(u,w)$ v,w thuộc tập V$(tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f*=Tổng f(s,v) v thuộc V$ là lớn nhất.
+
+hình dưới đây biểu diễn một luồng cực đại trên mạng và mỗi cạnh của nó được gán nhãn là $f[u,v]/c[u,v]$ (giá trị dòng chảy và sức chứa của kênh)
 
 ![alt text](http://community.topcoder.com/i/education/maxFlow01.gif "Luồng cực đại figure 1.a")
 
 # 3. cách giải bài toán
 
-Trước hết để giải được bài toán ta biết hai khái hiệm mạng thằng dư (residual network) và đường tăng luồng (augment path)
+Trước hết để giải được bài toán ta biết hai khái niệm mạng thằng dư (residual network) và đường tăng luồng (augment path)
 
 ## 3.1 mạng thặng dư - residual network
 
@@ -73,14 +79,19 @@ lát cắt hẹp nhất là lát cắt có f(X, Y) = c(X, Y). Từ khái niệm 
 
 ### 3.5.3 chứng minh
 
-ta có thể chứng minh 3 nhận định sau là tương đương
-(1) f là luồng cực đại trên mạng
-(2) Mạng thặng dư G không có đường tăng luồng
-(3) tồn tại (X,Y) là lát cắt hẹp nhất
+ta có thể chứng minh 3 nhận định sau là tương đương:
 
-(1) => (2): vì nếu tồn tại đường tăng luồng thì (1) sai
-(2) => (3): nếu giả sử không tồn tại lát cắt hẹp nhất ta có thể tìm được đường tăng luồng
-(3) => (1): Ta có thể thấy luôn f* = f(X, Y) <= c(X, Y), do đó f* là luồng cực đại vì nếu tồn tại một luồng ff* lớn hớn f* sẽ vô lý với nhận xét trong mục lát cắt s-t 3.5.1
+- (1) f là luồng cực đại trên mạng
+- (2) Mạng thặng dư G không có đường tăng luồng
+- (3) tồn tại (X,Y) là lát cắt hẹp nhất
+
+Chứng minh: 
+
+- (1) => (2): vì nếu tồn tại đường tăng luồng thì (1) sai
+
+- (2) => (3): nếu giả sử không tồn tại lát cắt hẹp nhất ta có thể tìm được đường tăng luồng
+
+- (3) => (1): Ta có thể thấy luôn f* = f(X, Y) <= c(X, Y), do đó f* là luồng cực đại vì nếu tồn tại một luồng ff* lớn hớn f* sẽ vô lý với nhận xét trong mục lát cắt s-t 3.5.1
 
 ## 3.6 Các thuật toán tìm đường mở
 
