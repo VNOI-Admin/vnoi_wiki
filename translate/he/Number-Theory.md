@@ -474,7 +474,8 @@ Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp g�
 
 Trong trường hợp tổng quát, ta có:
 
-$|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i| - \sum_{i \ne j} |A_i \cap A_j| + |A_1 \cap A_2 \cap A_3| + |A_1 \cap A_2 \cap A_4| + ... + |A_{n-2} \cap A_{n-1} \cap A_n| - ... - \\ (-1)^n|A_1 \cap A_2 \cap ... \cap A_n|$
+$|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i| - \sum_{i \ne j} |A_i \cap A_j| + |A_1 \cap A_2 \cap A_3| + |A_1 \cap A_2 \cap A_4| + ... + |A_{n-2} \cap A_{n-1} \cap A_n| - ... -$
+$ (-1)^n|A_1 \cap A_2 \cap ... \cap A_n|$
 
 # Bài tập áp dụng
 
