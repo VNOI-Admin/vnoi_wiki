@@ -468,7 +468,11 @@ Một vài quy tắc về tổ hợp cần nhớ:
 1. Quy tắc nhân:
 Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp gồm một phần tử thuộc tập $A$ và một phần tử thuộc tập $B$ là $|A|.|B|$
 
-2. Quy tắc cộng: 
+2. Quy tắc cộng: Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn một phần tử thuộc tập $A$ hoặc thuộc tập $B$ là $|A|+|B|$ nếu hai tập $A$ và $B$ rời nhau.
+
+3. Công thức bao hàm - loại trừ (còn được gọi là Quy tắc cộng mở rộng): $|A \cup B| = |A| + |B| - |A \cap B|$.
+
+Trong trường hợp tổng quát, ta có:
 
 
 
