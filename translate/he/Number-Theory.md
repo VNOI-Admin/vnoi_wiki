@@ -466,7 +466,7 @@ Kí hiệu $|A|$ là số phần tử của tập $A$ (hay còn được gọi l
 Một vài quy tắc về tổ hợp cần nhớ:
 
 1. Quy tắc nhân:
-Gỉa sử một công việc nào đó bao gồm hai công đoạn $A$ và $B$. Công đoạn $A$ có thể làm theo $n$ cách. Với mỗi cách thực hiện công đoạn $A$ thì công đoạn $B$ có thể làm theo $m$ cách. Khi đó, công việc có thể thực hiện theo $nm$ cách.
+Giả sử một công việc nào đó bao gồm hai công đoạn $A$ và $B$. Công đoạn $A$ có thể làm theo $n$ cách. Với mỗi cách thực hiện công đoạn $A$ thì công đoạn $B$ có thể làm theo $m$ cách. Khi đó, công việc có thể thực hiện theo $nm$ cách.
 
 2. Quy tắc cộng: 
 
