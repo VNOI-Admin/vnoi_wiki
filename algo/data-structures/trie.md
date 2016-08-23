@@ -136,7 +136,7 @@ end;
 
 **Nguồn**: Croatian OI 2006
 
-Một xâu $S$ độ dài không quá $300,000$ cần được tách thành các đoạn con sao cho mỗi đoạn con thuộc một tập gồm không quá 400 từ cho trước, mỗi từ có độ dài không quá $100$, không có 2 từ nào giống nhau.
+Một xâu $S$ độ dài không quá $300,000$ cần được tách thành các đoạn con sao cho mỗi đoạn con thuộc một tập gồm không quá 400 từ cho trước, mỗi từ có độ dài không quá 100, không có 2 từ nào giống nhau.
 
 Viết chương trình xác định số cách tách một từ cho trước.
 
