@@ -345,6 +345,19 @@ Quan hệ cha-con giữa các tập hợp còn được gọi là quan hệ ch�
 
 Nếu $A$ là tập con của tập $B$ nhưng không bằng tập $B$, thì $A$ được gọi là tập con không tầm thường của tập $B$, kí hiệu là $A \subsetneq B$, hay $B \supsetneq A$ (đọc là $B$ là tập cha không tầm thường của tập $A$).
 
+Ví dụ:
+
+- {1;3} $\subset$ {1;2;3;4}
+
+- {1;2;3;4} $\subset$ {1;2;3;4}
+
+Tập rỗng (kí hiệu $\varnothing$) là tập con của tất că các tập và tất cả các tập là tập con của chính nó:
+
+- $\varnothing \subset A$.
+
+- $A \subset A$.
+
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
