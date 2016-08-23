@@ -421,9 +421,18 @@ Một vài tính chất cơ bản của phép hợp:
 
 - $A \subset B$ khi và chỉ khi $A \cap B = A$.
 
-### Phép lấy phần bù
+### Phép lấy hiệu
 
-Ta có thể thực hiên phép trừ với hai tập hợp. Phần bù của $A$ trong $B$ (hay còn được gọi là hiệu của $A$ với $B$), kí hiệu là $A \backslash B$.
+Ta có thể thực hiên phép trừ với hai tập hợp. Hiệu của hai tập hợp $A$ và $B$, kí hiệu là $A \backslash B$, là tập hợp bao gồm tất cả các phần tử thuộc $A$ nhưng không thuộc $B$. Lưu ý rằng ta có thể trừ phần tử mà không thuộc tập hợp, ví dụ như bỏ phần tử 'xanh' khỏi tập hợp {1;2;3}, khi đó tập hợp {1;2;3} không bị thay đổi.
+
+Trong một số trường hợp tập $A$ được coi là tập con của một tập $U$ lớn hơn. Trong trường hợp đó, $U \backslash A$ được gọi là phần bù hoàn toàn (absolute complement) của tập $A$, và được kí hiệu là $A'$.
+
+Ví dụ:
+
+- {1;2} $\backslash$ {1;2} = $\varnothing$.
+
+- {1;2;3;4} $\backslash$ {1;3} = {2;4}. 
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
