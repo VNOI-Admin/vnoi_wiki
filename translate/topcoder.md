@@ -1,4 +1,4 @@
-# Luồng cực đại trên mạng - maxflow network
+# maxflow network
 
 [[_TOC_]]
 
