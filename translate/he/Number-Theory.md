@@ -435,6 +435,14 @@ Ví dụ:
 
 - Nếu $U$ là tập hợp các số nguyên, $E$ là tập hợp các số nguyên chẵn, $O$ là tập hợp các số nguyên lẻ, khi đó $U \backslash E = E' = O$.
 
+![](https://d320jcjashajb2.cloudfront.net/media/uploads/6669f13.png)
+
+Hiệu của hai tập hợp $A$ và $B$.
+
+![](https://d320jcjashajb2.cloudfront.net/media/uploads/7fe7571.png)
+
+Phần bù của $A$ trong $U$.
+
 Một vài tính chất cơ bản của phép lấy hiệu
 
 - $A \backslash B \ne B \backslash A$ với $A \ne B$.
