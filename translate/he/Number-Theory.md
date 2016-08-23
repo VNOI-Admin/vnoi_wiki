@@ -327,9 +327,17 @@ Vậy ta có $2^5\%5=2$.
 
 Trong toán học, tập hợp là một nhóm các phần tử, mỗi phần tử phân biệt với nhau.
 
-Ví dụ, 2, 4, 6 được coi là các phần tử phân biệt khi ta xét từng số một, nhưng khi chúng ta nhóm ba số ấy thì ta được một tập hợp gồm ba phần tử được kí hiệu là $\textbraceleft 2,4,6 \textbraceright$.
+Ví dụ, 2, 4, 6 được coi là các phần tử phân biệt khi ta xét từng số một, nhưng khi chúng ta nhóm ba số ấy thì ta được một tập hợp gồm ba phần tử được kí hiệu là {2;4;6}.
 
+Tập hợp là một trong những khái niệm cơ bản trong Toán học.
 
+![](https://d320jcjashajb2.cloudfront.net/media/uploads/0fed95c.png)
+
+Tập hợp các hình đa giác được biểu diễn trong biểu đồ Venn.
+
+## Tập con
+
+Nếu mọi phần tử thuộc tập $A$ cũng thuộc tập hợp $B$, thì tập $A$ là tập con của tập $B$, được kí hiệu là $A \subset B$.
 
 # Bài tập áp dụng
 
