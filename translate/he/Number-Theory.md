@@ -509,7 +509,9 @@ Số hoán vị của $n$ được tính bởi công thức:
 
 $P_n = n!$.
 
+### Hoán vị lặp
 
+Hoán vị trong đó mỗi phần tử xuất
 
 
 # Bài tập áp dụng
