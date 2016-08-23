@@ -435,6 +435,21 @@ Ví dụ:
 
 - Nếu $U$ là tập hợp các số nguyên, $E$ là tập hợp các số nguyên chẵn, $O$ là tập hợp các số nguyên lẻ, khi đó $U \backslash E = E' = O$.
 
+Một vài tính chất cơ bản của phép lấy hiệu
+
+- $A \backslash B \ne B \backslash A$ với $A \ne B$.
+
+- $A \cup A' = U$.
+
+- $A \cap A' = \varnothing$.
+
+- $(A')' = A$.
+
+- $A \backslash A = \varnothing$.
+
+- $A \backslash B = A \cap B'$.
+
+- $U' = \varnothing$ và $\varnothing' = U$.
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
