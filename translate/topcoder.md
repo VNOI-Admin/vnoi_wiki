@@ -129,6 +129,7 @@ Chứng minh:
 - [SPOJ - FASTFLOW](http://vn.spoj.com/problems/FASTFLOW/)
 - [SPOJ - ASSIGN1](http://vn.spoj.com/problems/ASSIGN1/)
 - [SPOJ - KWAY](http://vn.spoj.com/problems/KWAY/)
+- [SPOJ - STNODE](http://vn.spoj.com/problems/STNODE/)
 - [codeforces - flows](http://codeforces.com/problemset/tags/flows)
 
 # 6. Nguồn tham khảo
