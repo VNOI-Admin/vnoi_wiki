@@ -537,6 +537,8 @@ Một tính chất thú vị về số tổ hợp có lặp: $\overline{C^k_n}$ 
 
 ## Vector nhị phân
 
+Vector nhị phân là kiểu dữ liệu <bitset> trong C++ STL.
+
 Ngoài ra, các tính chất về tổ hợp của vector nhị phân cũng rất quan trọng. Sau đây là một số tính chất hay được sử dụng của vector nhị phân.
 
 1. Số lượng vector nhị phân độ dài $n$ là $2^n$.
@@ -545,7 +547,7 @@ Ngoài ra, các tính chất về tổ hợp của vector nhị phân cũng rấ
 
 3. Số lượng cặp vector nhị phân $(a;b)$ (có quan tâm đến thứ tự) thỏa mãn điều kiện khoảng cách giữa $a$ và $b$ là $k$ là $\binom{n}{k}.2^n$.
 
-Khoảng cách giữa hai vector nhị phân $a$ và $b$ là số lượng giá trị $i$ nguyên dương thỏa mãn $a_i \ne b_i$
+Khoảng cách giữa hai vector nhị phân $a$ và $b$ là số lượng giá trị $i$ nguyên không âm thỏa mãn $a_i \ne b_i$
 
 # Bài tập áp dụng
 
