@@ -263,8 +263,9 @@ Có $N$ mỏ vàng, mỗi mỏ vàng chứa được tối đa $6$ công nhân. 
 
   - Nếu mỏ vàng có số công nhân bằng với trữ lượng của nó, công ty sẽ thu được $50$$ cho với mỗi công nhân.
 
-  - Nếu mỏ vàng có số công nhân nhiều hơn trữ lượng của nó, công ty sẽ được $50$$ nhân với trữ lượng của mỏ và mất đi $20$'$' với mỗi công nhân bị thừa ra.
+  - Nếu mỏ vàng có số công nhân nhiều hơn trữ lượng của nó, công ty sẽ được số tiền bằng với trữ lượng mỏ nhân cho $50$$.
 
+  - Với mỗi công nhân thừa ra so với sản lượng mỏ, công ty sẽ bị mất đi $20$$.
 **Phân tích**
 
 Giờ ta sẽ đi tìm hiểu xem bằng cách nào một mỏ vàng có thể bị khai thác triệt để, bằng việc sử dụng phương pháp Tham lam. Mỗi khi ta nhận ra có sự liên quan tới lợi nhuận tối đa, thì khi đó, phương pháp Tham lam sẽ được sử dụng. Trong trường hợp này, ta sẽ chỉ định những người đào vàng đến các mỏ vàng sao cho tổng lợi nhuận thu được là tối đa. Phân tích nhanh, ta nhận ra rằng cần phải biết lợi nhuận thu được từ một mỏ trong tất cả các trường hợp. Và nó cũng không có nhiều trường hợp cho lắm. Với một mỏ bất kỳ, ta chỉ có từ 0 đến 6 người đào mỏ. Bảng dưới đây sẽ cho ta thấy lợi nhuận khả thi đối với hai mỏ ở ví dụ 0 trong bài:
