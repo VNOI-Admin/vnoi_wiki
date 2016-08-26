@@ -12,11 +12,11 @@
 
 Cho một mạng (network) có dạng một đồ thị vô hướng $G=(E,V)$ ($V$ là tập đỉnh, $E$ là tập cạnh) có:
 
- - $e=(u,v) ∈ E$ như một kênh chuyển tải nước giữa 2 đỉnh riêng biệt $u$, $v$ trong đồ thị và có sức chứa là $c(e)=c[u,v]$ (hay là giá trị luồng tối đa có có thể qua $e$)
+ - $e=(u,v) \in E$ như một kênh chuyển tải nước giữa 2 đỉnh riêng biệt $u$, $v$ trong đồ thị và có sức chứa là $c(e)=c[u,v]$ (hay là giá trị luồng tối đa có có thể qua $e$)
  - Một đỉnh phát $s$ (source)
  - Và một đỉnh thu $t$ (sink)
 
-**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v] ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]≤c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w∈V} f[u,w]$ ($\forall u ∈ V/\\{s,t\\}$) (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f^{\*}=f(s,V)=\sum_{v∈V} f[s,v]$ là lớn nhất ( $f(s,V)$ là tổng luồng đi ra từ $s$).
+**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v] ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]\le c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w\in V} f[u,w]$ ($\forall u\in V/\\{s,t\\}$) (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f^{\*}=f(s,V)=\sum_{v\in V} f[s,v]$ là lớn nhất ( $f(s,V)$ là tổng luồng đi ra từ $s$).
 
 hình dưới đây biểu diễn một luồng cực đại trên mạng và mỗi cạnh của nó được gán nhãn là $f[u,v]/c[u,v]$ (giá trị dòng chảy và sức chứa của kênh)
 
