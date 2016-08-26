@@ -62,7 +62,7 @@ bằng việc xem xét đường tăng luồng s_A_C_t trên mạng thặng dư 
 
 ![Luồng cực đại figure 3a](https://c1.staticflickr.com/9/8401/29142628656_53bf72b382.jpg "Luồng cực đại figure 3a")
 
-sau khi tăng luồng ta được một mạng mới với tổng giá trị luồng là 2 nhưng trong ví dụ **1.a** ta thấy tổng luồng là 3 do đó luồng như trên vẫn có thể tăng luồng thêm nữa. Vậy một câu hỏi là ta sẽ tăng luồng như thế nào? hãy nhìn vào mạng thặng dư **3.b** của đồ thị **3.a** dưới đây, trong hình dưới mối cạnh của G' sẽ được gán nhãn bằng c'[u,v] - f'[u,v]
+sau khi tăng luồng ta được một mạng mới với tổng giá trị luồng là 2 nhưng trong ví dụ **1.a** ta thấy tổng luồng là 3 do đó luồng như trên vẫn có thể tăng luồng thêm nữa. Vậy một câu hỏi là ta sẽ tăng luồng như thế nào? hãy nhìn vào mạng thặng dư **3.b** của đồ thị **3.a** dưới đây, trong hình dưới mối cạnh của $G'$ sẽ được gán nhãn bằng $c'[u,v] - f'[u,v]$
 
 ![Luồng cực đại figure 3b](https://c1.staticflickr.com/9/8318/28556848573_4f55d6f901.jpg "Luồng cực đại figure 3b")
 
