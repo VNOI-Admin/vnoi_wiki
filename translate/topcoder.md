@@ -123,7 +123,15 @@ Chứng minh:
 
 # 4. Bài toán liên quan
 
-# 5. Nguồn tham khảo
+# 5. Một số bài để luyện tập
+
+- [SPOJ - NKFLOW](http://vn.spoj.com/problems/NKFLOW/)
+- [SPOJ - FASTFLOW](http://vn.spoj.com/problems/FASTFLOW/)
+- [SPOJ - ASSIGN1](http://vn.spoj.com/problems/ASSIGN1/)
+- [SPOJ - KWAY](http://vn.spoj.com/problems/KWAY/)
+- [codeforces - flows](http://codeforces.com/problemset/tags/flows)
+
+# 6. Nguồn tham khảo
 
 - **[Lý thuyết đồ thị](http://www.hnue.edu.vn/Portals/0/TeachingSubject/hongntcntt/07b6e3d3-6727-489d-a0c5-c81f5f24daa1ly-thuyet-do-thi---le-minh-hoang.pdf) - DSAP Textbook** của thầy **_Lê Minh Hoàng_ - Đại học sư phạm Hà Nội**
 
