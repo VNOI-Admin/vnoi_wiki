@@ -145,4 +145,5 @@ Ta cũng có thể sử dụng thuật toán luồng để giải các bài toá
 - [SPOJ - FASTFLOW](http://vn.spoj.com/problems/FASTFLOW/)
 - [SPOJ - ASSIGN1](http://vn.spoj.com/problems/ASSIGN1/)
 - [SPOJ - KWAY](http://vn.spoj.com/problems/KWAY/)
+- [SPOJ - STNODE](http://vn.spoj.com/problems/STNODE/)
 - [codeforces - flows](http://codeforces.com/problemset/tags/flows)
