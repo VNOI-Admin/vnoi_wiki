@@ -517,7 +517,15 @@ Số hoán vị lặp của $n$ phần tử thuộc $k$ loại, mà các phần 
 
 $P(n_1,n_2,...,n_k) = \frac{n!}{n_1!n_2!...n_k!}$
 
+## Các đối tượng tổ hợp
 
+Một song ánh là tương ứng một-một giữa hai tập hợp, ví dụ tập hợp những người chồng và tập hợp những người vợ (một chồng chỉ có một vợ, và một vợ chỉ có đúng một chồng). Do đó, nếu bạn biết được lực lượng của một tập hợp, bạn có thể biết được lực lượng của tập kia. Để khai thác được tính chất của song ánh, ta cần phải tính được số lượng đối tượng trong nhiều loại tập hợp khác nhau, để từ đó ta có thể tính được số lượng đối tượng trong các tập hợp khác có quan hệ song ánh với các tập hợp đó.
+
+### Tổ hợp không lặp
+
+Trong tổ hợp, ta thường phải chọn một tập các phần tử nào đó và không quan tâm đến thứ tự của chúng. Số lượng tập con $k$ phần tử của một tập $n$ phần tử là:
+
+$\binom{n}{k} = C^k_n = \frac{n!}{k!(n-k)!}$
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
