@@ -125,6 +125,6 @@ Chứng minh:
 
 # 5. Nguồn tham khảo
 
-- **[Lý thuyết đồ thị](http://www.hnue.edu.vn/Portals/0/TeachingSubject/hongntcntt/07b6e3d3-6727-489d-a0c5-c81f5f24daa1ly-thuyet-do-thi---le-minh-hoang.pdf)-Dsap Textbook** của thầy Lê Minh Hoàng-Đại học sư phạm Hà Nội
+- **[Lý thuyết đồ thị](http://www.hnue.edu.vn/Portals/0/TeachingSubject/hongntcntt/07b6e3d3-6727-489d-a0c5-c81f5f24daa1ly-thuyet-do-thi---le-minh-hoang.pdf) - DSAP Textbook** của thầy **_Lê Minh Hoàng_ - Đại học sư phạm Hà Nội**
 
-- [topcoder - maximum flow section 1](https://www.topcoder.com/community/data-science/data-science-tutorials/maximum-flow-section-1/)
+- [Topcoder - maximum flow section 1](https://www.topcoder.com/community/data-science/data-science-tutorials/maximum-flow-section-1/)
