@@ -535,6 +535,18 @@ $\overline{C^k_n} = \binom{n+k-1}{k} = \frac{(n+k-1)!}{k!(n-1)!}$
 
 Một tính chất thú vị về số tổ hợp có lặp: $\overline{C^k_n}$ là số nghiệm nguyên không âm của phương trình: $x_1+x_2+...+x_n = k$ với $k$ là hằng số nguyên dương.
 
+## Vector nhị phân
+
+Ngoài ra, các tính chất về tổ hợp của vector nhị phân cũng rất quan trọng. Sau đây là một số tính chất hay được sử dụng của vector nhị phân.
+
+1. Số lượng vector nhị phân độ dài $n$ là $2^n$.
+
+2. Số lượng vector nhị phân độ dài $n$ có $k$ số 1 là $\binom{n}{k}$, vì ta chọn $k$ vị trí có số 1 trong $n$ vị trí.
+
+3. Số lượng cặp vector nhị phân $(a;b)$ (có quan tâm đến thứ tự) thỏa mãn điều kiện khoảng cách giữa $a$ và $b$ là $k$ là $\binom{n}{k}.2^n$.
+
+Khoảng cách giữa hai vector nhị phân $a$ và $b$ là số lượng giá trị $i$ nguyên dương thỏa mãn $a_i \ne b_i$
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
