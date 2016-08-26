@@ -5,18 +5,27 @@
 
 # 0. Kiến thức cần biết
 
+Để có thể hiểu được bài viết bạn đọc cần biết các khái niệm về [lý thuyết đồ thị](https://vi.wikipedia.org/wiki/L%C3%BD_thuy%E1%BA%BFt_%C4%91%E1%BB%93_th%E1%BB%8B)
 
 # 1. Ứng dụng
+
+- Chính tên bài toán đã cho thấy một ứng dụng của nó đó là tính lượng nước có thể vận chuyển giữa hai địa điểm(điểm phát và điểm thu) trong hệ thống
+
+- Ứng dụng thứ 2 đó là tính toán lưu lượng giao thông của hệ thống đường trong thành phố
+
+Trên đây là 2 ứng dụng dễ thấy của bài toán rất mong được góp ý để làm phong phú nội dung của mục này
 
 # 2. Phát biểu bài toán
 
 Cho một mạng (network) có dạng một đồ thị vô hướng $G=(E,V)$ ($V$ là tập đỉnh, $E$ là tập cạnh) có:
 
- - $e=(u,v) \in E$ như một kênh chuyển tải nước giữa 2 đỉnh riêng biệt $u$, $v$ trong đồ thị và có sức chứa là $c(e)=c[u,v]$ (hay là giá trị luồng tối đa có có thể qua $e$)
+ - $e=(u,v) \in E$ như một kênh chuyển tải nước từ $u$ đến $v$ có sức chứa(capacity) $c(e)=c[u,v]$ (hay là giá trị luồng tối đa có có thể qua $e$)
  - Một đỉnh phát $s$ (source)
  - Và một đỉnh thu $t$ (sink)
 
-**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v] ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]\le c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w\in V} f[u,w]$ ($\forall u\in V/\\{s,t\\}$) (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f^{\*}=f(s,V)=\sum_{v\in V} f[s,v]$ là lớn nhất ( $f(s,V)$ là tổng luồng đi ra từ $s$).
+**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v] ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]\le c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w\in V} f[u,w]$ ($\forall u\in V/\\{s,t\\}$) (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f(s,V)=\sum_{v\in V} f[s,v]$ là lớn nhất.
+
+**Lưu ý**: ở đây $f(s, V)$($=\sum_{u\in V} f[s,u]$) là một hàm trong khi $f[s,u]$ là một giá trị
 
 hình dưới đây biểu diễn một luồng cực đại trên mạng và mỗi cạnh của nó được gán nhãn là $f[u,v]/c[u,v]$ (giá trị dòng chảy và sức chứa của kênh)
 
@@ -53,7 +62,7 @@ bằng việc xem xét đường tăng luồng s_A_C_t trên mạng thặng dư 
 
 ![Luồng cực đại figure 3a](https://c1.staticflickr.com/9/8401/29142628656_53bf72b382.jpg "Luồng cực đại figure 3a")
 
-sau khi tăng luồng ta được một mạng mới với tổng giá trị luồng là 2 nhưng trong ví dụ **1.a** ta thấy tổng luồng là 3 do đó luồng như trên vẫn có thể tăng luồng thêm nữa. Vậy một câu hỏi là ta sẽ tăng luồng như thế nào? hãy nhìn vào mạng thặng dư **3.b** của đồ thị **3.a** dưới đây
+sau khi tăng luồng ta được một mạng mới với tổng giá trị luồng là 2 nhưng trong ví dụ **1.a** ta thấy tổng luồng là 3 do đó luồng như trên vẫn có thể tăng luồng thêm nữa. Vậy một câu hỏi là ta sẽ tăng luồng như thế nào? hãy nhìn vào mạng thặng dư **3.b** của đồ thị **3.a** dưới đây, trong hình dưới mối cạnh của G' sẽ được gán nhãn bằng c'[u,v] - f'[u,v]
 
 ![Luồng cực đại figure 3b](https://c1.staticflickr.com/9/8318/28556848573_4f55d6f901.jpg "Luồng cực đại figure 3b")
 
@@ -64,15 +73,21 @@ Ta có thể thấy từ $s$ đến $t$ tồn tại một đường đi đơn (�
 ## 3.4 thuật toán
 
 Từ ví dụ trên ta có thể đi đến thuật toán như sau:
-bước $(1)$: Tạo mạng thặng dư $G'$ tương ứng cho mạng $G$ ban đầu
-bước $(2)$: tìm một đường tăng luồng trên mạng thặng dư $G'$
-  - nếu không tồn tại đường tăng luồng ta kết thúc thuật toán
-  - nếu tồn một đường tăng luồng ta thực hiện tăng luồng trên mạng thặng dư và cập nhật mạng thặng dư và quay trở lại $(2)$
-Khi thuật toán kết thúc $f(s,V')$ (là tổng luồng ra từ s trên mạng thặng dư G') chính là giá trị luồng cực đại cần tìm.
 
-Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BDF(breath first search) để tìm đường mở và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{\*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(|f^{\*}|.E)$. Để hiểu rõ hơn về thuật toán và cách chứng minh bạn có thể đọc tiếp các phần sau
+$bước (1)$: Tạo mạng thặng dư $G'$ tương ứng cho mạng $G$ ban đầu
+
+$bước (2)$: tìm một đường tăng luồng trên mạng thặng dư $G'$
+
+  - nếu không tồn tại đường tăng luồng $\rightarrow$ kết thúc thuật toán
+
+  - nếu tồn một đường tăng luồng $\rightarrow$ thực hiện tăng luồng trên mạng thặng dư và quay trở lại $bước (2)$
+Khi thuật toán kết thúc $f(s,V')$ chính là giá trị luồng cực đại cần tìm.
+
+Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BDF(breath first search) để tìm đường tăng luồng và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{\*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(|f^{\*}|.E)$. Để hiểu rõ hơn về thuật toán và cách chứng minh bạn có thể đọc tiếp các phần sau
 
 ## 3.5 tính đúng dắn
+
+Để có thể chứng minh được thuật toán trước hết ta cần biết 2 khái niệm lát cắt $s-t$ và lát cắt $s-t$ hẹp nhất trên mạng thặng dư G'
 
 ### 3.5.1 Lát cắt $s-t$
 
@@ -81,7 +96,7 @@ Lát cắt là một các phân hoạch tập các đỉnh $V'$ trong mạng th�
 
 - $f(X, Y) \le c(X, Y)$
 
-- Giá trị luồng $f^{\*} = f(X,Y)$
+- Giá trị luồng $f(s,V') = f(X,Y)$
 
 ### 3.5.2 Lát cắt s-t hẹp nhất
 
@@ -91,7 +106,7 @@ lát cắt hẹp nhất là lát cắt có f(X, Y) = c(X, Y). Từ khái niệm 
 
 ta có thể chứng minh 3 nhận định sau là tương đương:
 
-- $(1)$ $f$ là luồng cực đại trên mạng
+- $(1)$ $f^{*}$ là luồng cực đại trên mạng
 
 - $(2)$ Mạng thặng dư $G'$ không có đường tăng luồng
 
@@ -99,12 +114,17 @@ ta có thể chứng minh 3 nhận định sau là tương đương:
 
 Chứng minh:
 
-- $(1) \rightarrow (2)$: vì nếu tồn tại đường tăng luồng thì (1) sai
+- $(1) \rightarrow (2)$: vì nếu tồn tại đường tăng luồng thì ta có thể tăng luồng để được một luồng mới lớn hơn $\rightarrow$ trái với $(1)$
+- $(2) \rightarrow (3)$: nếu giả sử không tồn tại lát cắt hẹp nhất ta có thể tìm được đường tăng luồng $\rightarrow$ $(2)$ sai (phần này có thể coi như một bài tập cho bạn đọc)
 
-- $(2) \rightarrow (3)$: nếu giả sử không tồn tại lát cắt hẹp nhất ta có thể tìm được đường tăng luồng
+- $(3) \rightarrow (1)$: Ta có thể thấy $f(s,V') = f(X, Y) \le c(X, Y)$, do đó $f(s,V')$ là luồng cực đại vì nếu tồn tại một luồng $f^{\*} > f(s,V')$ sẽ vô lý với nhận xét trong mục lát cắt $s-t$ 3.5.1 .
 
-- $(3) \rightarrow (1)$: Ta có thể thấy luôn $f^{\*} = f(X, Y) \le c(X, Y)$, do đó $f^{\*}$ là luồng cực đại vì nếu tồn tại một luồng $ff^{\*} > f^{\*} $ sẽ vô lý với nhận xét trong mục lát cắt $s-t$ 3.5.1 .
-
-## 3.6 Các thuật toán tìm đường mở
+## 3.6 Các thuật toán tìm đường tăng luồng
 
 # 4. Bài toán liên quan
+
+# 5. Nguồn tham khảo
+
+- **[Lý thuyết đồ thị](http://www.hnue.edu.vn/Portals/0/TeachingSubject/hongntcntt/07b6e3d3-6727-489d-a0c5-c81f5f24daa1ly-thuyet-do-thi---le-minh-hoang.pdf)-Dsap Textbook** của thầy Lê Minh Hoàng-Đại học sư phạm Hà Nội
+
+- [topcoder - maximum flow section 1](https://www.topcoder.com/community/data-science/data-science-tutorials/maximum-flow-section-1/)
