@@ -263,12 +263,13 @@ Có $N$ mỏ vàng, mỗi mỏ vàng chứa được tối đa $6$ công nhân. 
 
   - Nếu mỏ vàng có số công nhân bằng với trữ lượng của nó, công ty sẽ thu được $50$$ cho với mỗi công nhân.
 
-  - Nếu mỏ vàng có số công nhân nhiều hơn trữ lượng của nó, công ty sẽ được số tiền bằng với trữ lượng mỏ nhân cho $50$$.
+  - Nếu mỏ vàng có số công nhân nhiều hơn trữ lượng của nó, công ty sẽ được số tiền là $50$ nhân cho trữ lượng mỏ. Với mỗi công nhân bị thừa ra so với sản lượng mỏ, công ty sẽ bị mất đi $20$$.
 
-  - Với mỗi công nhân thừa ra so với sản lượng mỏ, công ty sẽ bị mất đi $20$$.
+Dù cho có bị mất tiền đi chăng nữa thì công ty cũng buộc phải phân công đủ các công nhân vào các mỏ.
+
 **Phân tích**
 
-Giờ ta sẽ đi tìm hiểu xem bằng cách nào một mỏ vàng có thể bị khai thác triệt để, bằng việc sử dụng phương pháp Tham lam. Mỗi khi ta nhận ra có sự liên quan tới lợi nhuận tối đa, thì khi đó, phương pháp Tham lam sẽ được sử dụng. Trong trường hợp này, ta sẽ chỉ định những người đào vàng đến các mỏ vàng sao cho tổng lợi nhuận thu được là tối đa. Phân tích nhanh, ta nhận ra rằng cần phải biết lợi nhuận thu được từ một mỏ trong tất cả các trường hợp. Và nó cũng không có nhiều trường hợp cho lắm. Với một mỏ bất kỳ, ta chỉ có từ 0 đến 6 người đào mỏ. Bảng dưới đây sẽ cho ta thấy lợi nhuận khả thi đối với hai mỏ ở ví dụ 0 trong bài:
+Giờ ta sẽ đi tìm hiểu xem bằng cách nào một mỏ vàng có thể bị khai thác triệt để, bằng việc sử dụng phương pháp Tham lam. Mỗi khi ta được yêu cầu tìm lợi nhuận tối đa, thì rất cỏ thể, phương pháp Tham lam sẽ được sử dụng. Trong trường hợp này, ta sẽ chỉ định những người đào vàng đến các mỏ vàng sao cho tổng lợi nhuận thu được là tối đa. Phân tích nhanh, ta nhận ra rằng cần phải biết lợi nhuận thu được từ một mỏ trong tất cả các trường hợp. Và nó cũng không có nhiều trường hợp cho lắm. Với một mỏ bất kỳ, ta chỉ có từ 0 đến 6 người đào mỏ. Bảng dưới đây sẽ cho ta thấy lợi nhuận khả thi đối với hai mỏ ở ví dụ 0 trong bài:
 
 <table align="center">
 <tr> <td></td> <td>0 người</td> <td>1 người</td> <td>2 người</td> <td>3 người</td> <td>4 người</td> <td>5 người</td> <td>6 người</td> </tr>
