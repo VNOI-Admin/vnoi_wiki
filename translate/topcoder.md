@@ -23,7 +23,7 @@ Cho một mạng (network) có dạng một đồ thị vô hướng $G=(E,V)$ (
  - Một đỉnh phát $s$ (source)
  - Và một đỉnh thu $t$ (sink)
 
-**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v] ∈ E$ cần xác định giá trị $f[u,v] (f[u,v]\le c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w\in V} f[u,w]$ ($\forall u\in V/\\{s,t\\}$) (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f(s,V)=\sum_{v\in V} f[s,v]$ là lớn nhất.
+**Yêu cầu**: với mỗi kênh truyền tải $e=[u,v]\in E$ cần xác định giá trị $f[u,v] (f[u,v]\le c[u,v])$ được gọi là luồng (flow) trên kênh $e$, sao cho $\sum_{v∈V} f[v,u]=\sum_{w\in V} f[u,w]$ ($\forall u\in V/\\{s,t\\}$) (tổng luồng đi vào bằng tổng luồng đi ra). Hơn thế nữa $f(s,V)=\sum_{v\in V} f[s,v]$ là lớn nhất.
 
 **Lưu ý**: ở đây $f(s, V)$($=\sum_{u\in V} f[s,u]$) là một hàm trong khi $f[s,u]$ là một giá trị
 
