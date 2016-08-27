@@ -55,7 +55,7 @@ Bạn có thể nộp bài thử ở [VNOI - LATGACH4](http://vn.spoj.com/proble
 
 **Phân tích**
 
-Hiển nhiên cách làm thông thường là tính lần lượt các $F(j)$. Tuy nhiên, cách làm này hoàn toàn không hiện quả với $N$ lên đến $10^9$, và ta cần một cách tiếp cận khác.
+Hiển nhiên cách làm thông thường là tính lần lượt các $F(j)$. Tuy nhiên, cách làm này hoàn toàn không hiệu quả với $N$ lên đến $10^9$, và ta cần một cách tiếp cận khác.
 
 Ta xét các lớp số:
 
