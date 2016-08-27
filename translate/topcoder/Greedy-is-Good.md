@@ -279,7 +279,7 @@ Bằng việc sử dụng phương pháp tham lam, ta sẽ phân tích xem cách
 
 Nếu ta chỉ có duy nhất một công nhân, **lựa chọn tối ưu** chính là cho anh ta vào mỏ nơi mà anh ta mang lại nhiều lợi nhuận nhất. Nhưng nếu ta có nhiều công nhân, ta cần phải kiểm tra xem nếu phân công anh ở mỏ tương tự có mang lại **lợi nhuận cục bộ tối ưu** không.
 
-Trong ví dụ, ta có 4 người đào mỏ cần được phân công. Bảng dưới đây sẽ cho biết lợi nhuận thu được của mỗi mỏ với từng người đào mỏ được thêm vào.
+Trong ví dụ, ta có 4 công nhân cần được phân công. Bảng dưới đây sẽ cho biết lợi nhuận thu được của mỗi mỏ với từng công nhân được thêm vào.
 
 <table>
 <tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
@@ -311,7 +311,7 @@ Công nhân thứ 3 sẽ có ích hơn khi làm ở mỏ 1 với lợi nhuận t
 <tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$52$</strong></td> <td>$14$</td> <td>$9$</td> <td>  $0$</td> <td>$-9$ </td> <td>$-20$</td> </tr>
 </table>
 
-Với người đào mỏ thứ 4, ta có thể cho anh ta vào mỏ 1 (với lợi nhuận là 0) hoặc mỏ 2 (với lợi nhuận là 14). Dễ thấy, ta sẽ phân công anh ấy vào mỏ hai.
+Với công nhân thứ 4, ta có thể cho anh ta vào mỏ 1 (với lợi nhuận là 0) hoặc mỏ 2 (với lợi nhuận là 14). Dĩ nhiên, ta sẽ phân công anh ấy vào mỏ hai.
 
 <table>
 <tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
@@ -319,25 +319,25 @@ Với người đào mỏ thứ 4, ta có thể cho anh ta vào mỏ 1 (với l�
 <tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$52$</strong></td> <td><strong>$14$</strong></td> <td>$9$</td> <td>  $0$</td> <td>$-9$ </td> <td>$-20$</td> </tr>
 </table>
 
-Cuối cùng, hai người đào mỏ còn lại sẽ được phân công bằng cách cho cả hai vào làm ở mỏ 2 hoặc mỗi người làm ở một mỏ riêng. Ví dụ cho ta thấy kết quả mà ta vừa tìm được quả thực chính là kết quả tối ưu. Nhưng phương pháp Tham lam của chúng ta có luôn luôn hoạt động không?
+Cuối cùng, hai công nhân còn lại sẽ được phân công bằng cách cho cả hai vào làm ở mỏ 2 hoặc mỗi người làm ở một mỏ riêng. Ví dụ cho ta thấy kết quả mà ta vừa tìm được chính là kết quả tối ưu. Nhưng câu hỏi đặt ra là liệu phương pháp này có luôn đúng hay không?
 
-**Khẳng định: Ta luôn luôn thu được tổng lợi nhuân lớn nhất khi lần lượt cho từng người đào mỏ vào mỏ có lợi nhuận cao nhất ở thời điểm hiện tại**.
+**Khẳng định: Ta luôn luôn thu được tổng lợi nhuân lớn nhất khi lần lượt cho từng công nhân vào mỏ có lợi nhuận cao nhất ở thời điểm hiện tại**.
 
 **Chứng minh**: Gọi $A, B$ lần lượt là mỏ 1 và mỏ 2, $a1, b1, a2, b2$ được định nghĩa như sau:
 
-* $a1$ - lợi nhuận thu được khi phân công thêm một người đào mỏ vào $A$.
+* $a1$ - lợi nhuận thu được khi phân công thêm một công nhân vào $A$.
 
-* $a1+a2$ - lợi nhuận thu được khi phân công thêm hai người đào mỏ vào $A$.
+* $a1+a2$ - lợi nhuận thu được khi phân công thêm hai công nhân vào $A$.
 
-* $b1$ - lợi nhuận thu được khi phân công thêm một người đào mỏ vào $B$.
+* $b1$ - lợi nhuận thu được khi phân công thêm một công nhân vào $B$.
 
-* $b1+b2$ - lợi nhuận thu được khi phân công thêm hai người đào mỏ vào $B$.
+* $b1+b2$ - lợi nhuận thu được khi phân công thêm hai công nhân vào $B$.
 
-Thuật toán Tham lam của ta sẽ gia tăng lợi nhuận bằng $a1$ cho người đào mỏ đầu tiên và $(a2+b1)$ cho người đào mỏ thứ 2. Tổng lợi nhuận lúc này sẽ là $a1+max(a2, b1)$. Nếu ban đầu ta chọn $b1$ thì lợi nhuận của người đào mỏ thứ 2 thu được sẽ là $a1$ hoặc $b2$.
+Thuật toán Tham lam của ta sẽ gia tăng lợi nhuận bằng $a1$ cho công nhân đầu tiên và $(a2+b1)$ cho công nhân thứ 2. Tổng lợi nhuận lúc này sẽ là $a1+max(a2, b1)$. Nếu ban đầu ta chọn $b1$ thì lợi nhuận của công nhân thứ 2 thu được sẽ là $a1$ hoặc $b2$.
 
 Trong trường hợp đầu tiên, ta sẽ có $a1+b1 \le a1+max(a2, b1)$.
 
-Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần phải chứng minh $b1+b2 \le a1+max(a2, b1)$. Mà ta luôn có $b1 \le b2$ vì **lợi nhuận thu được từ việc thêm một người đào mỏ vào một mỏ luôn luôn lớn hơn hoặc bằng lợi nhuận thu được từ việc thêm một người đào mỏ nữa vào mỏ đó**.
+Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần phải chứng minh $b1+b2 \le a1+max(a2, b1)$. Mà ta luôn có $b1 \le b2$ vì **lợi nhuận thu được từ việc thêm một công nhân vào một mỏ luôn luôn lớn hơn hoặc bằng lợi nhuận thu được từ việc thêm một công nhân nữa vào mỏ đó**.
 
 <table>
 <tr> <td>Trạng thái của mỏ vàng</td> <td>Lợi nhuận từ việc thêm 1 người</td> <td>Lợi nhuận từ việc thêm 1 người</td> </tr>
@@ -349,11 +349,11 @@ Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần
 
 Vì $b1+b2 \le a1+a2 \le a1+b1 \le a1+max(a2, b1)$, **lựa chọn Tham lam** cũng chính là phương án tối ưu.
 
-Lập trình nó hoàn toàn không khó, nhưng ta cần phải xử lý thêm các trường hợp nữa (tất cả các người đào mỏ đều phải được phân công, chỉ có tối đa sáu người trong một mỏ và nếu một người đào mỏ có thể được đặt tối ưu ở nhiều mỏ, ưu tiên mỏ có chỉ số nhỏ hơn).
+Cài đặt thuật toán này hoàn toàn không khó, tuy nhiên ta cần phải xử lý thêm một vài trường hợp nữa (tất cả các công nhân đều phải được phân công, chỉ có tối đa sáu người trong một mỏ và nếu một công nhân có thể được đặt tối ưu ở nhiều mỏ, ưu tiên mỏ có chỉ số nhỏ hơn).
 
 ## [**WorldPeace**](https://community.topcoder.com/stat?c=problem_statement&pm=2420&rd=5850)
 
-Những thuật toán Tham lam mà ta vừa kể trên đều hoạt động tốt ở mọi tình huống bởi sự đúng đắn của nó đã được ta chứng minh. Nhưng còn một lớp bài tập tối ưu hóa nữa mà thuật toán Tham lam có thể được áp dụng. Đây là những bài tập thuộc lớp NP - đầy đủ (như bài toán người đưa thư TSP [Traveling Salesman Problem](http://www.math.uwaterloo.ca/tsp/)), và người ta thường viết các nhánh - cận dựa trên Tham lam hơn là chờ đợi chương trình thực thi... Lời giải không phải lúc nào cũng là tối ưu, song đối với phần lớn mục đích, thì nó đã đủ tốt rồi. Nếu đây không phải là một bài toán lớp NP, thì nó chính là một ví dụ tuyệt vời cho việc một thuật toán Tham lam không chỉ có thể đánh lừa và vượt qua các test mẫu, mà nó còn có thể vượt qua cả những bộ test hệ thống được thiết kế kỹ càng. Và thuật toán này thật sự không quá khó để nghĩ ra, mà chỉ cần một vài phân tích nhanh ta có thể nhận ra để tối đa hóa tổng số lượng nhóm, **luôn luôn tối ưu để tạo thiết lập một nhóm từ k quốc gia có dân số đông nhất**. Chúng ta áp dụng phương pháp này ở từng bước và sau đó sắp xếp lại đoạn để thấy được k quốc gia tiếp theo có dân số đông nhất. Ý tưởng này sẽ được minh họa trong đoạn mã giả dưới đây:
+Những thuật toán Tham lam đều hoạt động tốt ở mọi tình huống bởi ta đã chứng minh được tính đúng đắn của nó. Nhưng còn một lớp bài toán tối ưu hóa nữa mà thuật toán Tham lam có thể được áp dụng. Đây là những bài tập thuộc lớp NP - đầy đủ (như bài toán người đưa thư TSP [Traveling Salesman Problem](http://www.math.uwaterloo.ca/tsp/)), đối với dạng bài toán này, ta thường sẽ sử dụng phượng pháp nhánh cận để giải quyết vấn đề hơn là chờ đợi chương trình thực thi... Lời giải không phải lúc nào cũng là tối ưu, song trong phần lớn trường hợp, nó đã đủ tốt rồi. Với một bài toán không thuộc lớp NP như thế này, đây chính là ví dụ tuyệt vời cho việc một thuật toán Tham lam không chỉ có thể đánh lừa và vượt qua các test mẫu, mà nó còn có thể vượt qua cả những bộ test hệ thống được thiết kế kỹ càng. Thuật toán này không quá khó để nghĩ ra, mà chỉ cần một vài phân tích nhanh ta có thể nhận ra, để tối đa hóa tổng số lượng nhóm, **luôn luôn tối ưu để tạo thiết lập một nhóm từ k quốc gia có dân số đông nhất**. Chúng ta áp dụng phương pháp này ở từng bước và sau đó sắp xếp lại đoạn để thấy được k quốc gia tiếp theo có dân số đông nhất. Ý tưởng này sẽ được minh họa trong đoạn mã giả dưới đây:
 
 ```
 Groups = 0
