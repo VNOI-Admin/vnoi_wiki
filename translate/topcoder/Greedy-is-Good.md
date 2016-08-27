@@ -386,7 +386,7 @@ Until Min = 0
 Return Groups
 ```
 
-Thời gian thực thi giờ không còn là vấn đề nữa, mà vấn đề giờ đây chính là thuật toán! Và khi ta thử ví dụ 0 trong bài, thuật toán của chúng ta trả về kết quả là 4 chứ không phải là 5. Nhưng kết quả trả về trong ví dụ 1, 2 và 3 thì lại đúng. Đối với ví dụ cuối cùng, thay vì tạo ra 3983180234 nhóm, ta chỉ tạo được 3983180207 nhóm mà thôi. Bằng việc chỉ sai lệch chút ít, ta có thể thấy rằng giải thuật của mình **khá tốt**, thế nên giờ ta chỉ cần cải tiến nó theo hướng này.
+Thời gian thực thi giờ không còn là vấn đề nữa, mà vấn đề giờ đây chính là tính đúng đẵn của thuật toán! Khi ta thử ví dụ 0 trong bài, thuật toán của chúng ta trả về kết quả là 4 chứ không phải là 5. Nhưng kết quả trả về trong ví dụ 1, 2 và 3 thì đúng. Trong với ví dụ cuối cùng, thay vì tạo ra 3983180234 nhóm, ta chỉ tạo được 3983180207 nhóm mà thôi. Bằng việc chỉ kết quả có sai lệch không đáng kể, ta có thể thấy rằng giải thuật của mình **khá tốt**. Thế nên giờ ta chỉ cần cải tiến nó theo hướng này.
 
 Cho đến hiện tại, ta đã có trong tay hai thuật toán:
 * Thuật toán tham lam đầu tiên chính xác, nhưng không đủ nhanh.
@@ -409,7 +409,7 @@ Until Min = 0
 Return Groups
 ```
 
-Nếu cách tiếp cận này thật sự đúng, ta hoàn toàn có thể thấy được. Mặc dù nó có thể thoát khỏi ánh mắt sắc nhọn của Tomek cũng như là test hệ thống, nhưng rất có vẻ là nó sẽ không thể nào đưa ra kết quả quả đúng với mọi bộ test khả thi. Đây chính một ví dụ cho thấy nếu được tinh chỉnh, từ một thuật toán tham lam đơn giản (nhưng vẫn còn khiếm khuyết) cũng cũng có thể trở thành một cách "đúng". Để biết thêm về thuật toán chính xác cho bài này, xem lời giải ở [Match Editorial](http://community.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm204).
+Nếu cách tiếp cận này thật sự đúng, ta hoàn toàn có thể nhận ra được. Mặc dù nó có thể thoát khỏi ánh mắt sắc nhọn của Tomek cũng như là test hệ thống, nhưng có vẻ là nó sẽ không thể nào đưa ra kết quả quả đúng với mọi bộ test khả thi. Đây chính một ví dụ cho thấy nếu được tinh chỉnh, từ một thuật toán tham lam đơn giản (nhưng vẫn còn khiếm khuyết) cũng cũng có thể trở thành một giải thuật "đúng". Để biết thêm về thuật toán chính xác cho bài này, xem lời giải ở [Match Editorial](http://community.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm204).
 
 ## Tổng kết
 
