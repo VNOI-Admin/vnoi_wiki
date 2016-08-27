@@ -269,7 +269,7 @@ Dù cho có bị mất tiền đi chăng nữa thì công ty cũng buộc phải
 
 **Phân tích**
 
-Bằng việc sử dụng phương pháp tham lam, ta sẽ phân tích xem cách một mỏ vàng bị khai thác triệt. Kinh nghiệm cho thấy, tối với dạng bài như tìm kiếm giá trị tối đa, thì rất có thể phương pháp tham lam sẽ giải quyết được vấn đề. Trong trường hợp này, mục tiêu của ta là chỉ định những công nhân đến các mỏ vàng sao cho tổng lợi nhuận thu được là tối đa. Phân tích nhanh, ta thấy rằng cần phải biết lợi nhuận thu được từ các mỏ vàng trong tất cả các trường hợp (chỉ có 6 trường hợp). Với một mỏ bất kỳ, ta chỉ có từ 0 đến 6 công nhân. Bảng dưới đây sẽ cho ta thấy lợi nhuận khả thi đối với hai mỏ ở ví dụ 0 trong bài:
+Bằng việc sử dụng phương pháp tham lam, ta sẽ phân tích xem cách một mỏ vàng bị khai thác triệt. Kinh nghiệm cho thấy, đối với dạng bài như tìm kiếm giá trị tối đa, thường ta có thể giải quyết bằng Tham lam. Trong trường hợp này, mục tiêu của ta là chỉ định những công nhân đến các mỏ vàng sao cho tổng lợi nhuận thu được là tối đa. Phân tích nhanh, ta thấy rằng cần phải biết lợi nhuận thu được từ các mỏ vàng trong tất cả các trường hợp (chỉ có 7 trường hợp - từ 0 đến 6 công nhân). Bảng dưới đây sẽ cho ta thấy lợi nhuận khả thi đối với hai mỏ ở ví dụ 0 trong bài:
 
 <table align="center">
 <tr> <td></td> <td>0 người</td> <td>1 người</td> <td>2 người</td> <td>3 người</td> <td>4 người</td> <td>5 người</td> <td>6 người</td> </tr>
@@ -277,7 +277,7 @@ Bằng việc sử dụng phương pháp tham lam, ta sẽ phân tích xem cách
 <tr> <td>Mỏ 2</td> <td>$0$</td> <td>$52$</td> <td>$66$</td> <td>$75$</td> <td>$75$</td> <td>$66$</td> <td>$48$</td> </tr>
 </table>
 
-Nếu ta chỉ có duy nhất một người đào mỏ, **lựa chọn tối ưu** chính là chính là cho anh ta vào mỏ nơi mà anh ta mang lại nhiều lợi nhuận nhất. Nhưng nếu ta có nhiều người đào mỏ, ta cần phải kiểm tra xem nếu phân công anh ở mỏ tương tự có mang lại **lợi nhuận cục bộ tối ưu** không.
+Nếu ta chỉ có duy nhất một công nhân, **lựa chọn tối ưu** chính là cho anh ta vào mỏ nơi mà anh ta mang lại nhiều lợi nhuận nhất. Nhưng nếu ta có nhiều công nhân, ta cần phải kiểm tra xem nếu phân công anh ở mỏ tương tự có mang lại **lợi nhuận cục bộ tối ưu** không.
 
 Trong ví dụ, ta có 4 người đào mỏ cần được phân công. Bảng dưới đây sẽ cho biết lợi nhuận thu được của mỗi mỏ với từng người đào mỏ được thêm vào.
 
@@ -287,7 +287,7 @@ Trong ví dụ, ta có 4 người đào mỏ cần được phân công. Bảng 
 <tr> <td>Mỏ 1</td> <td>$-$</td> <td>$52$</td> <td>$14$</td> <td>$9$</td> <td>$  0$</td> <td>$-9 $</td> <td>$-20$</td> </tr>
 </table>
 
-Ta để ý rằng, mỏ 1 sẽ tăng thêm 57 nếu ta thêm vào 1 người đào mỏ, trong khi mỏ 2 chỉ tăng thêm 52. Thế nên, ta sẽ phân bố người đầu tiên vào mỏ 1.
+Ta để ý rằng, mỏ 1 sẽ tăng thêm 57 nếu ta thêm vào một công nhân, trong khi mỏ 2 chỉ tăng thêm 52. Thế nên, ta sẽ phân bố người đầu tiên vào mỏ 1.
 
 <table>
 <tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
@@ -295,7 +295,7 @@ Ta để ý rằng, mỏ 1 sẽ tăng thêm 57 nếu ta thêm vào 1 người đ
 <tr> <td>Mỏ 1</td> <td>$-$</td> <td>$52$</td> <td>$14$</td> <td>$9$</td> <td>$  0$</td> <td>$-9 $</td> <td>$-20$</td> </tr>
 </table>
 
-Giờ, nếu ta thêm người đào mỏ vào mỏ 1, ta chỉ tăng lợi nhuận được thêm 30. Bởi vậy nên ta sẽ thêm người đào mỏ vào mỏ mỏ 2, lúc này lợi nhuận ta thu được sẽ tăng thêm 52.
+Giờ, nếu ta thêm công nhân vào mỏ 1, ta chỉ tăng lợi nhuận được thêm 30. Bởi vậy nên ta sẽ thêm công nhân vào mỏ 2, lúc này lợi nhuận ta thu được sẽ tăng thêm 52.
 
 <table>
 <tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
@@ -303,7 +303,7 @@ Giờ, nếu ta thêm người đào mỏ vào mỏ 1, ta chỉ tăng lợi nhu�
 <tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$52$</strong></td> <td>$14$</td> <td>$9$</td> <td>  $0$</td> <td>$-9 $</td> <td>$-20$</td> </tr>
 </table>
 
-Người đào mỏ thứ 3 sẽ hữu ích hơn khi làm ở mỏ 1 với lợi nhuận thu được là 30.
+Công nhân thứ 3 sẽ có ích hơn khi làm ở mỏ 1 với lợi nhuận thu được là 30.
 
 <table>
 <tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
