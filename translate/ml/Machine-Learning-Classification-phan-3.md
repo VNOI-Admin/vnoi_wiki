@@ -1,6 +1,6 @@
 # Machine Learning - Classification - phần 3
 
-**Nguồn:** [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/20/machine-learning-for-dummies-part-2/)
+**Nguồn:** [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/23/machine-learning-for-dummies-part-3/)
 **Bài viết chưa hoàn thiện**
 
 Trong hai bài viết trước ([[phần 1|translate/ml/Machine-Learning-Classification-phan-1]]) và ([[phần 2|translate/ml/Machine-Learning-Classification-phan-2]]), chúng ta đã cùng tìm hiểu về **Classification**. Chúng ta cũng đã làm quen với một thuật toán rất nổi tiếng gọi là **k-nearest neighbors**. Nếu có thời gian, bạn nên đọc các bài viết đó để có thể hiểu cặn kẽ những nội dung trong bài viết này, bài viết cuối cùng trong chuỗi bài giới thiệu về **Classification**.
@@ -12,4 +12,11 @@ Một trong những lí do khiến *Random Forest* hiệu quả hơn so với *k
 *Random Forest* là một thành viên trong họ thuật toán **decision tree** (cây quyết định). Vậy cây quyết định là gì? Một cây quyết định là một cách đơn giản để biểu diễn một giao thức ????. Nói cách khác, cây quyết định biểu diễn một kế hoạch, trả lời câu hỏi phải làm gì trong một hoàn cảnh nhất định. Ví dụ, cây quyết định được sử dụng trong tổng đài điện thoại để quyết định xem tổng đài viên sẽ trả lời như thế nào dựa trên phản hồi của khách hàng. Nó cũng được sử dụng trong hệ điều hành của bất kì cỗ máy nào mà bạn có thể tưởng tượng (tàu ngầm, bom nguyên tử,...) hay đơn giản, cây quyết định được các bác sĩ sử dụng để chẩn đoán.
 
 Hãy trở lại câu chuyện của chúng ta với một ví dụ đơn giản. Hình ảnh phía dưới minh hoạ một cây quyết định để xác định chủng loại của một con vật. Để đơn giản, chúng ta sẽ chỉ xét một vài chủng loại động vật mà thôi. Giả sử ta có một con vật, hãy thử dùng cây quyết định này để tìm ra chủng loại của nó.
+
+Đường đi bắt đầu từ câu hỏi đầu tiên ở phía trên của cây (bên dưới vòng tròn đỏ). Trả lời câu hỏi đó, và đi tiếp xuống các nút phía dưới của cây tuỳ thuộc vào câu trả lời (có/không với câu hỏi đầu tiên). Lặp lại hành động đó cho đến khi đi tới nút lá (các út màu xanh lá cây). Khi đó, bạn sẽ có câu trả lời.
+
+![translate_ml_decision_tree](http://blog.mathieu.guillame-bert.com/wp-content/uploads/2015/07/exampledt.png)
+
+(chú thích trên hình bị sai: 50cm thay vì 50kg)
+Ví dụ, bạn bắt gặp một con vật mà bạn không biết nó thuộc chủng loại gì. Câu hỏi đầu tiên là: "Nó có lông không?". Giả sử nó có lông, chúng ta đi tiếp sang nhánh bên phải. Câu hỏi tiếp theo là: "Nó cao bao nhiêu?". Giả sử con vật của chúng ta chỉ cao 30cm. Điều này có nghĩa là chúng ta sẽ đi theo nhánh bên trái. Khi đó, vì chúng ta đã đi đến nút lá, chúng ta biết rằng con vật mà mình đang xét chính là con gà.
 
