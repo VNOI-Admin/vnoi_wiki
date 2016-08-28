@@ -353,6 +353,11 @@ Cài đặt thuật toán này hoàn toàn không khó, tuy nhiên ta cần ph�
 
 ## [**WorldPeace**](https://community.topcoder.com/stat?c=problem_statement&pm=2420&rd=5850)
 
+**Bài toán:**
+Cho **n** đất nước, mỗi nước có dân số của họ. Hãy chia thành thành các nhóm có **k** người không có cùng quốc tịch. Hãy cho biết số lượng nhóm tối đa có thể đạt được.
+
+**Phân tích:**
+
 Những thuật toán Tham lam đều hoạt động tốt ở mọi tình huống bởi ta đã chứng minh được tính đúng đắn của nó. Nhưng còn một lớp bài toán tối ưu hóa nữa mà thuật toán Tham lam có thể được áp dụng. Đây là những bài tập thuộc lớp NP - đầy đủ (như bài toán người đưa thư TSP [Traveling Salesman Problem](http://www.math.uwaterloo.ca/tsp/)), đối với dạng bài toán này, ta thường sẽ sử dụng phượng pháp nhánh cận để giải quyết vấn đề hơn là chờ đợi chương trình thực thi... Lời giải không phải lúc nào cũng là tối ưu, song trong phần lớn trường hợp, nó đã đủ tốt rồi. Với một bài toán không thuộc lớp NP như thế này, đây chính là ví dụ tuyệt vời cho việc một thuật toán Tham lam không chỉ có thể đánh lừa và vượt qua các test mẫu, mà nó còn có thể vượt qua cả những bộ test hệ thống được thiết kế kỹ càng. Thuật toán này không quá khó để nghĩ ra, mà chỉ cần một vài phân tích nhanh ta có thể nhận ra, để tối đa hóa tổng số lượng nhóm, **luôn luôn tối ưu để tạo thiết lập một nhóm từ k quốc gia có dân số đông nhất**. Chúng ta áp dụng phương pháp này ở từng bước và sau đó sắp xếp lại đoạn để thấy được k quốc gia tiếp theo có dân số đông nhất. Ý tưởng này sẽ được minh họa trong đoạn mã giả dưới đây:
 
 ```
@@ -386,7 +391,7 @@ Until Min = 0
 Return Groups
 ```
 
-Thời gian thực thi giờ không còn là vấn đề nữa, mà vấn đề giờ đây chính là tính đúng đẵn của thuật toán! Khi ta thử ví dụ 0 trong bài, thuật toán của chúng ta trả về kết quả là 4 chứ không phải là 5. Nhưng kết quả trả về trong ví dụ 1, 2 và 3 thì đúng. Trong với ví dụ cuối cùng, thay vì tạo ra 3983180234 nhóm, ta chỉ tạo được 3983180207 nhóm mà thôi. Bằng việc chỉ kết quả có sai lệch không đáng kể, ta có thể thấy rằng giải thuật của mình **khá tốt**. Thế nên giờ ta chỉ cần cải tiến nó theo hướng này.
+Thời gian thực thi giờ không còn là vấn đề nữa, mà vấn đề giờ đây chính là tính đúng đắn của thuật toán! Khi ta thử ví dụ 0 trong bài, thuật toán của chúng ta trả về kết quả là 4 chứ không phải là 5. Nhưng kết quả trả về trong ví dụ 1, 2 và 3 thì đúng. Trong với ví dụ cuối cùng, thay vì tạo ra 3983180234 nhóm, ta chỉ tạo được 3983180207 nhóm mà thôi. Bằng việc chỉ kết quả có sai lệch không đáng kể, ta có thể thấy rằng giải thuật của mình **khá tốt**. Thế nên giờ ta chỉ cần cải tiến nó theo hướng này.
 
 Cho đến hiện tại, ta đã có trong tay hai thuật toán:
 * Thuật toán tham lam đầu tiên chính xác, nhưng không đủ nhanh.
