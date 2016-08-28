@@ -20,12 +20,12 @@ Code đơn giản như sau:
 ```cpp
 function mode(l, r):
   // Khởi tạo mảng count = toàn 0
-  res = -1
+  res = -1;
   for i = l .. r:
-    count[A[i]] += 1
+    count[A[i]] += 1;
     if res == -1 or count[A[i]] > count[res]:
-      res = A[i]
-  return res
+      res = A[i];
+  return res;
 ```
 
 Dễ thấy, thuật toán duyệt này có độ phức tạp $O(N \* Q)$. Có 2 lý do chính khiến thuật toán này chạy chậm:
@@ -58,7 +58,7 @@ bool cmp(Query A, Query B) // so sánh 2 truy vấn
   if (A.l / S != B.l / S) {
     return A.l / S < B.l / S;
   }
-  return A.r < B.r
+  return A.r < B.r;
 }
 
 ```
@@ -122,35 +122,35 @@ Cách làm vẫn là áp dụng Mo's algorithm, tuy nhiên vì không thể xóa
 Chi tiết cài đặt:
 
 ```cpp
-   rt = sqrt(n)
-   init()  // this initializes our data structure (clears it)
-   snapshot()
+   rt = sqrt(n);
+   init();  // this initializes our data structure (clears it)
+   snapshot();
    for all queries q
        if q.r - q.l + 1 <= rt + 1 // we process light queries
            for j := q.l to q.r
-               insert(j)
-           store answer for query q
-           rollback()
-   last_bucket = -1
+               insert(j);
+           store answer for query q;
+           rollback();
+   last_bucket = -1;
    for all queries q 
-       if q.r - q.l + 1 <= rt + 1: continue
-       bucket = q.l / rt
+       if q.r - q.l + 1 <= rt + 1: continue;
+       bucket = q.l / rt;
 
        if bucket != last_bucket
-           init()
-           l = (bucket + 1) * rt // right border of the bucket
-           r = q.r
+           init();
+           l = (bucket + 1) * rt; // right border of the bucket
+           r = q.r;
            for j := l to r
-               insert(j)
-       last_bucket = bucket
+               insert(j);
+       last_bucket = bucket;
 
        while r < q.r 
-           insert(++r)
-       snapshot()
+           insert(++r);
+       snapshot();
        for j := q.l to l - 1
-           insert(j)
-       store answer for query q
-       rollback()
+           insert(j);
+       store answer for query q;
+       rollback();
 ```
 
 # Bài tập áp dụng
