@@ -110,7 +110,7 @@ def find_augment_from_to(int source, int sink):
     dfs(source, sink)
     return visited[sink]
 
-void increase_flow(int minCapacity, int source, int sink)
+def increase_flow(int minCapacity, int source, int sink)
     """
         brief: thủ tục tăng luồng lên một giá trị minCapacity theo đường tăng luồng từ source đên sink
     """
