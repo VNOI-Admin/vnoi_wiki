@@ -70,7 +70,7 @@ Ta có thể thấy từ $s$ đến $t$ tồn tại một đường đi đơn (�
 
 ![Luồng cực đại figure 1b](https://c1.staticflickr.com/9/8264/28556848583_283a1d1b68.jpg "Luồng cực đại figure 1b")
 
-## 3.4 thuật toán
+## 3.4 Thuật toán Ford–Fulkerson
 
 Từ ví dụ trên ta có thể đi đến thuật toán như sau:
 
@@ -83,7 +83,64 @@ $bước (2)$: tìm một đường tăng luồng trên mạng thặng dư $G'$
   - nếu tồn một đường tăng luồng $\rightarrow$ thực hiện tăng luồng trên mạng thặng dư và quay trở lại $bước (2)$
 Khi thuật toán kết thúc $f(s,V')$ chính là giá trị luồng cực đại cần tìm.
 
-Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BDF(breath first search) để tìm đường tăng luồng và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{\*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(|f^{\*}|.E)$. Để hiểu rõ hơn về thuật toán và cách chứng minh bạn có thể đọc tiếp các phần sau
+Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BDF(breath first search) để tìm đường tăng luồng và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{\*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(|f^{\*}|.E)$. Sau đâu là code của thuật toán trên:
+
+**Lưu ý:** Trong các thuật toán dưới đây ta sẽ gọi trace[u] là điển đi đến được u trong đường tăng luồng, nếu không có đỉnh nào đến được u trace[u] sẽ có giá trị là $-1$
+
+```python
+def dfs(int u, sink):
+    # đánh dấu u đã được thăm
+    visited[u] = True
+
+    # duyệt hết các đỉnh v có thể đến được từ u hay thỏa mãn điều kiện c[u][v] - f[u][v] > 0
+    for( v in VertecesCanComeFromU ):
+        if !visited[v]:
+            trace[v] = u
+
+def find_augment_from_to(int source, int sink):
+    """
+        brief: hàm này sẽ tìm một đường tăng luồng từ source đến sink
+        return: 
+            - Nếu có một đường tăng luồng trả về True
+            - Nếu không có đường tăng luồng nào trả về False
+    """
+    # khởi tạo mảng đánh dấu visited ( false nếu chưa thăm, true nếu đã thăm)
+    fill(all(visited), False)
+    # dùng thuật toán dfs tìm đường tăng luồng
+    dfs(source, sink)
+    return visited[sink]
+
+void increase_flow(int minCapacity, int source, int sink)
+    """
+        brief: thủ tục tăng luồng lên một giá trị minCapacity theo đường tăng luồng từ source đên sink
+    """
+    # khởi tạo minCapacity vô cùng lớn
+    minCapacity = inf
+
+    # tìm giá trị lớn nhất có thể tăng cho đường tăng luồng tìm được
+    u = sink
+    while u != source:
+        from = trace[u]
+        minCapacity = min(minCapacity, c[from][u]-f[from][u])
+        u = from
+
+    # tăng luồng
+    while sink != source:
+        from = trace[sink]
+        f[from][sink] += minCapacity
+        f[sink][from] -= minCapacity
+        sink = from
+
+while true:
+    # Nếu không có đường tăng luồng nào
+    if !find_augment_from_to(s, t)
+        break while
+    # Nếu không tăng luồng thêm minCapacity theo đường tăng luồng
+    increase_flow(s, t)
+```
+
+
+Để hiểu rõ hơn về thuật toán và cách chứng minh bạn có thể đọc tiếp các phần sau:
 
 ## 3.5 tính đúng dắn
 
@@ -100,7 +157,7 @@ Lát cắt là một các phân hoạch tập các đỉnh $V'$ trong mạng th�
 
 ### 3.5.2 Lát cắt s-t hẹp nhất
 
-lát cắt hẹp nhất là lát cắt có f(X, Y) = c(X, Y). Từ khái niệm lát cắt và lát cắt nhỏ nhất ta có thể dẫn đến cách chứng minh sau
+lát cắt hẹp nhất là lát cắt có f(X,Y) là nhỏ nhất (hay f(X, Y) = c(X, Y)). Từ khái niệm lát cắt và lát cắt nhỏ nhất ta có thể dẫn đến cách chứng minh sau
 
 ### 3.5.3 chứng minh
 
@@ -120,6 +177,87 @@ Chứng minh:
 - $(3) \rightarrow (1)$: Ta có thể thấy $f(s,V') = f(X, Y) \le c(X, Y)$, do đó $f(s,V')$ là luồng cực đại vì nếu tồn tại một luồng $f^{\*} > f(s,V')$ sẽ vô lý với nhận xét trong mục lát cắt $s-t$ 3.5.1 .
 
 ## 3.6 Các thuật toán tìm đường tăng luồng
+
+Như đã nói $O(|f^{\*}|.E)$ là độ phức tạp của thuật toán Ford-Fulkerson nó phụ thuộc 2 yếu tố là tìm đường tăng luồng $O(E)$ và số lần tăng luồng $f^{\*}$ do đó ta có thể tối ưu 1 trong 2 hoặc cả 2 nếu muốn thuật toán chạy nhanh hơn. Trong mục này ta sẽ tìm hiểu cách để có thể giảm được số lần tăng luồng $f^{\*}$ điều này phụ thuộc nhiều vào việc chọn đường tăng luồng nào để tăng, các phương pháp dưới đây đều có độ phức tạp là $O(|f^{\*}|.E)$ nhưng đa số các trường hợp sẽ có độ tốt tăng dần theo thứ tự trình bày sau:
+
+### 3.6.1 Sử dụng thuật toán thuật toán tìm kiếm theo chiều sâu(Deep First Search-DFS)
+
+Thuật toán này có ưu điểm là dễ dàng cài đặt nhưng thông thường số lần tăng luồng là khá lớn. Code đã được trình bày ở cuối mục 3.4
+
+### 3.6.2 Sử dụng thuật toán tìm kiếm theo chiều rộng(Breadth First Search-BFS)
+
+```python
+def bfs(int source, int sink):
+    # khởi tạo mảng đánh dấu visited ( false nếu chưa thăm, true nếu đã thăm)
+    fill(all(visited), False)
+
+    # đẩy source vào queue
+    queue.push(source)
+    # đánh dấu source
+    visited[source] = True
+
+    while queue.not_empty():
+        u = queue.pop()
+
+        # duyệt hết các đỉnh v có thể đến được từ u hay thỏa mãn điều kiện c[u][v] - f[u][v] > 0
+        for( v in VertecesCanComeFromU ):
+            if !visited[v]:
+                queue.push(v)
+                visited[v] = True
+                trace[v] = u
+    
+int find_augment_from_to(int source, int sink):
+    """
+        brief: hàm này sẽ tìm một đường tăng luồng từ source đến sink
+        return: 
+            - Nếu có một đường tăng luồng trả về True
+            - Nếu không có đường tăng luồng nào trả về False
+    """
+    # Dùng thuật toán bfs tìm đường tằng luồng từ source đến sink
+    bfs(source, sink)
+
+    return visited[sink]
+```
+
+### 3.6.3 Sử dụng thuật toán tìm kiếm ưu tiên(Priority First Search-PFS)
+
+Thuật toán này tìm ra đường mở có thể tăng luồng lớn nhất trong tất cả các đường mở và khá giống với thuật toán Dijkstra tìm đường đi ngắn nhất vì cùng sử dụng hàng đợi ưu tiên priority_queue
+
+```python
+def pfs(int source, int sink):
+    # khởi tạo mảng đánh dấu visited ( false nếu chưa thăm, true nếu đã thăm)
+    fill(all(visited), False)
+    # 
+    fill(all(minCapacity), 0)
+
+    # đẩy source vào priority_queue pq với giá trị luồng cực đại là vô cùng lớn
+    pq.push([source, inf])
+
+    while queue.not_empty():
+        uAndMinCapacity = queue.pop()
+        minC = uAndMinCapacity[1]
+        u = uAndCapacity[0]
+
+        visited[u] = True
+
+        # duyệt hết các đỉnh v có thể đến được từ u hay thỏa mãn điều kiện c[u][v] - f[u][v] > 0
+        for( v in VertecesCanComeFromU ):
+            if !visited[v] && min(minC, c[u][v]-f[u][v]) > minCapacity[v]:
+                queue.push([v, min(minC, c[u][v]-f[u][v]))
+                trace[v] = u
+    
+int find_augment_from_to(int source, int sink):
+    """
+        brief: hàm này sẽ tìm một đường tăng luồng từ source đến sink
+        return: 
+            - Nếu có một đường tăng luồng trả về True
+            - Nếu không có đường tăng luồng nào trả về False
+    """
+    # Dùng thuật toán bfs tìm đường tằng luồng từ source đến sink
+    pfs(source, sink)
+
+    return visited[sink]
+```
 
 # 4. Bài toán liên quan
 
