@@ -131,9 +131,9 @@ def increase_flow(int minCapacity, int source, int sink)
         f[sink][from] -= minCapacity
         sink = from
 
-# Nếu không có đường tăng luồng nào
+# Trong khi vẫn tồn tại đường tăng luồng
 while find_augment_from_to(s,t):
-    # Nếu không tăng luồng thêm minCapacity theo đường tăng luồng
+    # tăng luồng
     increase_flow(s, t)
 ```
 
