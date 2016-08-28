@@ -241,7 +241,8 @@ def pfs(int source, int sink):
         # duyệt hết các đỉnh v có thể đến được từ u hay thỏa mãn điều kiện c[u][v] - f[u][v] > 0
         for( v in VertecesCanComeFromU ):
             if !visited[v] && min(minC, c[u][v]-f[u][v]) > minCapacity[v]:
-                queue.push([v, min(minC, c[u][v]-f[u][v]))
+                minCapacity[v] = c[u][v]-f[u][v]
+                queue.push([v, minCapacity[v]])
                 trace[v] = u
     
 def find_augment_from_to(int source, int sink):
