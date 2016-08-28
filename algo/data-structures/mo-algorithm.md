@@ -61,7 +61,7 @@ bool cmp(Query A, Query B) // so sánh 2 truy vấn
   return A.r < B.r
 }
 
-```cpp
+```
 
 **Giải thích**:
 
