@@ -206,7 +206,7 @@ def bfs(int source, int sink):
                 visited[v] = True
                 trace[v] = u
     
-int find_augment_from_to(int source, int sink):
+def find_augment_from_to(int source, int sink):
     """
         brief: hàm này sẽ tìm một đường tăng luồng từ source đến sink
         return: 
@@ -246,7 +246,7 @@ def pfs(int source, int sink):
                 queue.push([v, min(minC, c[u][v]-f[u][v]))
                 trace[v] = u
     
-int find_augment_from_to(int source, int sink):
+def find_augment_from_to(int source, int sink):
     """
         brief: hàm này sẽ tìm một đường tăng luồng từ source đến sink
         return: 
