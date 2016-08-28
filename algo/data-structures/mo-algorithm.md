@@ -43,7 +43,7 @@ Sau khi trả lời truy vấn $[l_1, r_1]$, để trả lời truy vấn $[l_2,
 
 Để cập nhật số lần xuất hiện lớn nhất thì có thể dùng thêm set.
 
-Như vậy, độ phức tạp của ta là tổng $|l_i - l_{i-1}| + |r_i - r_{i-1}|$, nhân thêm log để đếm và tìm phần tử lớn nhất của mảng đếm.
+Như vậy, độ phức tạp của ta là tổng $|l_i - l_{i-1}| + |r_i - r_{i-1}|$, nhân thêm $\mathcal{O}(log)$ để đếm và tìm phần tử lớn nhất của mảng đếm.
 
 # Thuật toán Mo
 
