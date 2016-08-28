@@ -17,7 +17,7 @@ Chúng ta xuất phát từ thuật toán duyệt hồn nhiên như sau:
 
 Code đơn giản như sau:
 
-```
+```cpp
 function mode(l, r):
   // Khởi tạo mảng count = toàn 0
   res = -1
@@ -51,7 +51,7 @@ Thuật toán Mo là một cách sắp xếp lại các truy vấn, sao cho tổ
 
 Thứ tự các truy vấn được định nghĩa qua hàm so sánh dưới đây.
 
-```
+```cpp
 S = sqrt(N);
 bool cmp(Query A, Query B) // so sánh 2 truy vấn
 {
@@ -61,7 +61,7 @@ bool cmp(Query A, Query B) // so sánh 2 truy vấn
   return A.r < B.r
 }
 
-```
+```cpp
 
 **Giải thích**:
 
@@ -121,7 +121,7 @@ Cách làm vẫn là áp dụng Mo's algorithm, tuy nhiên vì không thể xóa
 
 Chi tiết cài đặt:
 
-```
+```cpp
    rt = sqrt(n)
    init()  // this initializes our data structure (clears it)
    snapshot()
