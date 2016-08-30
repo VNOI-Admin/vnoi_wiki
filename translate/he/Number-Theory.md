@@ -605,6 +605,10 @@ Số Euler $\big \langle^n_k \big \rangle$ là số lượng hoán vị các s�
 
 ![$\big \langle^n_k \big \rangle = k\big \langle^{n-1}_k \big \rangle + (n-k+1) \big \langle^{n-1}_{k-1} \big \rangle$](https://d320jcjashajb2.cloudfront.net/media/uploads/93df5ba.gif)
 
+### Bài toán phân vùng một số nguyên
+
+Một phân vùng của số nguyên $n$ là một tập hợp có thứ tự gồm các số nguyên dương có tổng là $n$, trong đó mỗi số có thể xuất hiện nhiều lần. Ví dụ, có 7 cách phân vùng số 5: $(5), (4, 1), (3, 2), (3, 1, 1), (2, 1, 1 , 1), (1, 1, 1, 1, 1)$
+
 
 # Bài tập áp dụng
 
