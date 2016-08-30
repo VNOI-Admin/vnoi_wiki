@@ -565,6 +565,12 @@ Ta thường dễ dàng tìm được hệ thức truy hồi để giải các b
 
 ## Hệ số nhị thức
 
+Hệ số nhị thức $\binom{n}{k}$ được sử dụng để đếm số cách chọn $k$ vật trong số $n$ vật.
+
+### Đếm số đường đi trên lưới.
+
+Có bao nhiêu cách để đi từ góc trái trên của một bảng $n * m$ ô đến góc phải dưới của ô đó, nếu ta chỉ được phép đi về bên phải hoặc đi xuống dưới. Ta thấy mọi đường đi hợp lệ có $n+m$ bước, và hai đường đi khác nhau nếu và chỉ nếu chúng có một bước đi xuống dưới khác nhau, vậy ta có $\binom{n+m}{n}$ cách đi.
+ 
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
