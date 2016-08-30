@@ -577,7 +577,7 @@ Tính hệ số nhị thức có thể gây tràn số ở các bước trung gi
 
 ### Dãy số Catalan
 
-Định nghĩa: $C_n=\sum_{k=0}^{n-1} C_kC_{n-1-k}=\frac{1}{n+1}\binom{2n}{n}
+Định nghĩa: $C_n=\sum_{k=0}^{n-1} C_kC_{n-1-k}=\frac{1}{n+1}\binom{2n}{n}$
 
 Các ứng dụng của dãy số Catalan:
 
