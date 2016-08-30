@@ -8,19 +8,19 @@ Trong bài này chúng ta sẽ tìm hiểu về thuật toán nhân nhanh hai đ
 
 # Vài nét lịch sử
 
-Phép biến đổi Fourier (*Fourier Transform*) là một trong số những phát kiến toán học đặc sắc có lịch sử hào hùng, gắn liền với những phát kiến khoa học và chiến tranh quân sự ở thế kỷ 19 và 20. Joseph Fourier (1768-1830) là một nhà khoa học làm việc trong đội quân thám hiểm Ai Cập của Napoleon từ năm 1798. Sau khi cách mạng Pháp kết thúc năm 1799, Fourier trở về Pháp và tham gia xây dựng lại đất nước trong vai trò một giáo sư của đại học École Polytechnique. Trong quá trình làm việc với các công trình xây dựng cầu đường và đóng tàu, ông đặc biệt quan tâm tới bài toán mô tả quá trình truyền dẫn nhiệt trong kim loại, điều dẫn tới sự ra đời của phép biến đổi Fourier liên tục vào năm 1807 trong một báo cáo của ông tại viện hoàng gia Paris. Trong đó, ông mô tả mọi hàm số, kể cả các hàm số không liên tục đều có thể được biểu diễn dưới dạng tổng của một số vô hạn các hàm số lượng giác. Phát biểu này của Fourier gây chấn động và ấn tượng tới mức nhà toán học Pháp cùng thời là Lagrange cho rằng việc nghĩ ra phát kiến này là "gần như không thể" (*nothing short of impossible*) [1]. Trong hơn một trăm năm sau đó phép biến đổi Fourier trở thành một đối tượng nghiên cứu phổ và liện tục được phát triển, hoàn thiện bởi vô số các tên tuổi lớn của toán lý thuyết [2].
+Phép biến đổi Fourier (*Fourier Transform*) là một trong số những phát kiến toán học đặc sắc có lịch sử hào hùng, gắn liền với những phát kiến khoa học và chiến tranh quân sự ở thế kỷ 19 và 20. **Joseph Fourier** (1768-1830) là một nhà khoa học làm việc trong đội quân thám hiểm Ai Cập của Napoleon từ năm 1798. Sau khi cách mạng Pháp kết thúc năm 1799, Fourier trở về Pháp và tham gia xây dựng lại đất nước trong vai trò một giáo sư của đại học École Polytechnique. Trong quá trình làm việc với các công trình xây dựng cầu đường và đóng tàu, ông đặc biệt quan tâm tới bài toán mô tả quá trình truyền dẫn nhiệt trong kim loại, điều dẫn tới sự ra đời của phép biến đổi Fourier liên tục vào năm 1807 trong một báo cáo của ông tại viện hoàng gia Paris. Trong đó, ông mô tả mọi hàm số, kể cả các hàm số không liên tục đều có thể được biểu diễn dưới dạng tổng của một số vô hạn các hàm số lượng giác. Phát biểu này của Fourier gây chấn động và ấn tượng tới mức nhà toán học Pháp cùng thời là **Lagrange** cho rằng việc nghĩ ra phát kiến này là "gần như không thể" (*nothing short of impossible*) [1]. Trong hơn một trăm năm sau đó phép biến đổi Fourier trở thành một đối tượng nghiên cứu phổ và liện tục được phát triển, hoàn thiện bởi vô số các tên tuổi lớn của toán lý thuyết [2].
 
-Trong khi phiên bản nguyên thủy có lịch sử hoành tráng như vậy, phép biến đổi Fourier nhanh, dù được cho là ra đời trước, lại được quan tâm chậm hơn nhiều. Người ta cho rằng những ý tưởng đầu tiên về biến đổi Fourier nhanh được phát triển bởi nhà toán học Đức Carl Friedrich Gauss (1777 - 1855) vào năm 1805 khi ông cố gắng xác định quỹ đạo của các thiên thạch [3], nhưng ông không công bố kết quả của mình. Mối liên hệ giữa Gauss và phép biến đổi Fourier nhanh chỉ được phát hiện khi các công trình của ông được tập hợp và công bố vào năm 1866. Mặc dù vậy, vào thời đó không có ai quan tâm tới công trình này vì lý thuyết độ phức tạp tính toán chưa phát triển (mãi tới năm 1936 Turing mới phát triển mô hình tính toán đầu tiên, và phải tới năm 1965 thì lịch sử ngành nghiên cứu về độ phức tạp tính toán mới bắt đầu với công trình của Hartmanis và Stearns [4]). Cũng trong năm 1965 hai nhà toán học trong Ban cố vấn khoa học của tổng thống Mỹ Kenedy là James Cooley và John Tukey đã sáng tạo lại phép biến đổi nhanh Fourier trong một nỗ lực nhằm phát hiện các vụ thử hạt nhân của chính quyền Xô Viết [3]. Kể từ thời điểm đó phép biến đổi nhanh Fourier mới chính thức được quan tâm và nghiên cứu ứng dụng trong rất nhiều các lĩnh vực nghiên cứu khác nhau của vật lý, sinh học, điện tử, y tế, điều khiển học...
+Trong khi phiên bản nguyên thủy có lịch sử hoành tráng như vậy, phép biến đổi Fourier nhanh, dù được cho là ra đời trước, lại được quan tâm chậm hơn nhiều. Người ta cho rằng những ý tưởng đầu tiên về biến đổi Fourier nhanh được phát triển bởi nhà toán học Đức **Carl Friedrich Gauss** (1777 - 1855) vào năm 1805 khi ông cố gắng xác định quỹ đạo của các thiên thạch [3], nhưng ông không công bố kết quả của mình. Mối liên hệ giữa Gauss và phép biến đổi Fourier nhanh chỉ được phát hiện khi các công trình của ông được tập hợp và công bố vào năm 1866. Mặc dù vậy, vào thời đó không có ai quan tâm tới công trình này vì lý thuyết độ phức tạp tính toán chưa phát triển (mãi tới năm 1936 **Alan Turing** mới phát triển mô hình tính toán đầu tiên, và phải tới năm 1965 thì lịch sử ngành nghiên cứu về độ phức tạp tính toán mới bắt đầu với công trình của **Hartmanis** và **Stearns** [4]). Cũng trong năm 1965 hai nhà toán học trong Ban cố vấn khoa học của tổng thống Mỹ Kenedy là **James Cooley** và **John Tukey** đã sáng tạo lại phép biến đổi nhanh Fourier trong một nỗ lực nhằm phát hiện các vụ thử hạt nhân của chính quyền Xô Viết [3]. Kể từ thời điểm đó phép biến đổi nhanh Fourier mới chính thức được quan tâm và nghiên cứu ứng dụng trong rất nhiều các lĩnh vực nghiên cứu khác nhau của vật lý, sinh học, điện tử, y tế, điều khiển học...
 
 # Phép nhân hai đa thức
 
 Cho hai đa thức $p(x), q(x)$ có bậc $n, m$ như sau:
 
 $$
-p(x) = a_0 + a_1 x + a_x x^2 + ... + a_n x^n
+p(x) = a_0 + a_1 x + a_2 x^2 + ... + a_n x^n
 $$
 $$
-q(x) = b_0 + b_1 x + b_x x^2 + ... + b_m x^m
+q(x) = b_0 + b_1 x + b_2 x^2 + ... + b_m x^m
 $$
 
 Ta cần tìm tích $c(x)$ của hai đa thức trên, có dạng:
@@ -36,7 +36,36 @@ $$
 
 Cách làm theo định nghĩa là ta nhân mỗi hệ số của $p(x)$ với tất cả các hệ số của $q(x)$ rồi cộng các hệ số của cùng tổng số mũ. Vì hai đa thức có $n$ và $m$ hệ số nên cách làm này có độ phức tạp là $O(nm)$. Khi $n$ và $m$ tương đối lớn cỡ $10^3$ hoặc $10^4$ trở lên thì độ phức tạp này là quá lớn để chạy trên máy tính, đặc biệt là các máy tính nhúng đòi hỏi tốc độ tính toán nhanh. Phép biến đổi FFT giúp thực hiện phép nhân nói trên trong độ phức tạp $O(N*logN)$ trong đó $N$ là lũy thừa của $2$ nhỏ nhất lớn hơn $n$ và $m$.
  
-# Hai cách biểu diễn đa thức và ma trận Vandermonde
+# Biểu diễn đa thức qua ma trận Vandermonde
+
+Xét đa thức $p(x) = a_0 + a_1 x + a_2 x^2 + ... + a_n x^n$ với bậc $n$ và các hệ số phức $a_i \in \mathbb{C}$. Tính giá trị của đa thức này tại $n + 1$ điểm $z_0, z_1, ... z_n$. Biểu thức tính $n+1$ giá trị của $p(x)$ có thể biểu diễn qua dạng ma trận như sau: 
+
+$$ 
+\begin{bmatrix} 
+a & b \newline 
+c & d
+\end{bmatrix} 
+$$
+
+$$
+\begin{bmatrix}
+    z_0       & z_1 & z_2 & \dots & z_n \\
+    x_{21}       & x_{22} & x_{23} & \dots & x_{2n} \\
+    \hdotsfor{5} \\
+    x_{a0}       & x_{d2} & x_{d3} & \dots & x_{dn}
+\end{bmatrix}
+\begin{bmatrix}
+    p(a_0) \newline p(a_1) \newline \vdots  \newline p(a_n)
+\end{bmatrix}
+=
+\begin{bmatrix}
+    p(z_0) \newline p(z_1) \newline \vdots  \newline p(z_n)
+\end{bmatrix}
+$$
+Ta có định lý sau:
+
+**Định lý 2:** Đa thức $p(x)$ được xác định duy nhất bởi giá trị của nó $p(z_0), p(z_1), ... p(z_n)$ với $n+1$ giá trị $z_0, z_1, ... z_n$ phân biệt.
+
 
 # Nghiệm nguyên thủy
 
