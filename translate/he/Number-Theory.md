@@ -601,7 +601,7 @@ Ví dụ: $n=4$
 
 ### Số Euler
 
-Số Euler $\Bigg \langle^n_k \Bigg \rangle$.
+Số Euler $\big \langle^n_k \big \rangle$.
 
 # Bài tập áp dụng
 
