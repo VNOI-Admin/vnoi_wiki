@@ -653,14 +653,19 @@ Ví dụ bạn gieo một con súc sắc và một đồng xu. Xác suất nhậ
 
 ![](https://d320jcjashajb2.cloudfront.net/media/uploads/869de1c.gif)
 
-Nếu hai biến cố $A$ và $B$ độc lập với nhau, không biến cố nào ảnh hưởng đến biến cố nào, khi đó ta có thể viết: $P(A \cap B) = P(A).P(B)$.
+Nếu hai biến cố $A$ và $B$ độc lập với nhau, không biến cố nào ảnh hưởng đến biến cố nào, khi đó ta có thể viết: $P(AB) = P(A).P(B)$.
 
 ## Xác suất có điều kiện
 
 Xác suất có điều kiện là xác suất của một biến cố $B$ nào đó, biết rằng một biến cố $A$ khác xảy ra. Kí hiệu là $P(B|A)$, đọc là xác suất của $B$, biết $A$.
 
-Sử dụng toán học, ta định nghĩa $P(B|A) = \frac{P(A \cap B)}{P(A)}$.
- 
+Sử dụng toán học, ta định nghĩa $P(B|A) = \frac{P(AB)}{P(A)}$.
+
+
+## Các quy tắc tính xác suất
+
+
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
