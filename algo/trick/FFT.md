@@ -38,34 +38,42 @@ Cách làm theo định nghĩa là ta nhân mỗi hệ số của $p(x)$ với t
  
 # Biểu diễn đa thức qua ma trận Vandermonde
 
-Xét đa thức $p(x) = a_0 + a_1 x + a_2 x^2 + ... + a_n x^n$ với bậc $n$ và các hệ số phức $a_i \in \mathbb{C}$. Tính giá trị của đa thức này tại $n + 1$ điểm $z_0, z_1, ... z_n$. Biểu thức tính $n+1$ giá trị của $p(x)$ có thể biểu diễn qua dạng ma trận như sau: 
-
-$$ 
-\begin{bmatrix} 
-a & b \newline 
-c & d
-\end{bmatrix} 
-$$
+Xét đa thức $p(x) = a_0 + a_1 x + a_2 x^2 + ... + a_n x^n$ với bậc $n$ và các hệ số phức $a_i \in \mathbb{C}$. Biểu thức tính $n+1$ giá trị của $p(x)$ tại $n + 1$ điểm $z_0, z_1, ... z_n$ có thể biểu diễn qua phép nhân ma trận như sau: 
 
 $$
 \begin{bmatrix}
-    z_0       & z_1 & z_2 & \dots & z_n \\
-    x_{21}       & x_{22} & x_{23} & \dots & x_{2n} \\
-    \hdotsfor{5} \\
-    x_{a0}       & x_{d2} & x_{d3} & \dots & x_{dn}
+    1       & z_0^1 & z_0^2 & \dots & z_0^n \newline
+       1      & z_1 & z_1^2 & \dots & z_1^n \newline
+    \ldots & \ldots & \ldots & \ldots & \ldots\newline
+       1       & z_n^1 & z_n^2 & \dots & z_n^n
 \end{bmatrix}
 \begin{bmatrix}
-    p(a_0) \newline p(a_1) \newline \vdots  \newline p(a_n)
+    a_0 \newline a_1 \newline \vdots  \newline a_n
 \end{bmatrix}
 =
 \begin{bmatrix}
     p(z_0) \newline p(z_1) \newline \vdots  \newline p(z_n)
-\end{bmatrix}
+\end{bmatrix} \space (1)
 $$
-Ta có định lý sau:
+
+Ma trận $V$ kích cỡ $(n+1)*(n+1)$ của $z_{0:n}$ ở trên được gọi là ma trận Vandermonde. 
+Ta có các định lý sau:
+
+**Định lý 1:** Định thức của ma trận Vandermonde là 
+$$det(V) = \prod_{0 \leq i < j \leq n}(z_j - z_i)$$
+
+**Chứng minh (sơ lược):** 
+Với mỗi hàng $i = 0, 1, ...n-1$ ta liên tục thay hàng $j = i+1, i+2, ...n$ bằng hiệu của các hệ số của hàng $j$ trừ đi hàng $i$. Đây là phép biến đổi cơ bản nên giá trị định thức cần tính không đổi. Lấy nhân tử chung $z_j - z_i$ ở tất cả các hàng ra ngoài và xét tiếp hàng $i+1$. Sau khi xét xong $i = n-1$ ta được một ma trận chéo có đường chéo chỉ gồm $z_{ii} = 1$. Vì vậy định thức cần tính là tích của tất cả các nhân tử chung bỏ ra ngoài ở các bước trước đó.
+
+Phép chứng minh bằng quy nạp có thể xem thêm tại [đây](https://proofwiki.org/wiki/Vandermonde_Determinant)
 
 **Định lý 2:** Đa thức $p(x)$ được xác định duy nhất bởi giá trị của nó $p(z_0), p(z_1), ... p(z_n)$ với $n+1$ giá trị $z_0, z_1, ... z_n$ phân biệt.
 
+**Chứng minh (sơ lược):** 
+
+Coi phương trình $(1)$ là một hệ phương trình $n+1$ ẩn với bộ nghiệm $a_0, a_1, ...a_n$. Để đa thức $p(x)$ xác định và duy nhất thì định thức của ma trận $V$ ở trên phải khác $0$. Theo **Định lý 1** ta có điều phải chứng minh.
+
+Từ định lý 2 ta thấy rằng thay vì lưu $n+1$ hệ số $a_i$, ta chỉ cần lưu $2*(n+1)$ giá trị $z_i$ và $p(z_i)$ là đủ. Cách biểu diễn bằng giá trị này có lợi thế là giá trị của đa thức tạo bởi tích hai đa thức có bậc $n$ được tính trong $O(1)$: $c(x) = p(x)q(x)$ trong đó $x$ là một số cho trước.
 
 # Nghiệm nguyên thủy
 
