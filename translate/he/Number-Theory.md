@@ -537,7 +537,7 @@ Một tính chất thú vị về số tổ hợp có lặp: $\overline{C^k_n}$ 
 
 ## Vector nhị phân
 
-Vector nhị phân là kiểu dữ liệu \<bitset\> trong C++ STL.
+Vector nhị phân là kiểu dữ liệu ``<bitset>`` trong C++ STL.
 
 Ngoài ra, các tính chất về tổ hợp của vector nhị phân cũng rất quan trọng. Sau đây là một số tính chất hay được sử dụng của vector nhị phân.
 
