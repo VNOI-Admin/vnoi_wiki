@@ -13,21 +13,18 @@ Không khó để nhận ra bài tập nào cần dùng kiến thức về xác 
 
 # Cơ bản
 
-Ta hình dung làm việc với xác suất như tiến hành một cuộc thí nghiệm:
-
-- **Kết quả** (*outcome*) là kết quả của cuộc thí nghiệm hoặc những trường hợp có bao gồm sự không chắc chắn.
-- Tập hợp của tất cả những kết quả có thể của thí nghiệm được gọi là **không gian mẫu** (*sample space*), thường được kí hiệu bởi $S$. Mỗi kết quả có thể xảy ra được biểu diễn bởi một và chỉ một điểm trong không gian mẫu.
+Ta hình dung làm việc với xác suất như tiến hành một cuộc thí nghiệm. Tập hợp của tất cả những kết quả (outcome) có thể xảy ra của thí nghiệm được gọi là **không gian mẫu** (*sample space*), thường được kí hiệu bởi $S$. Mỗi kết quả có thể xảy ra được biểu diễn bởi một và chỉ một điểm trong không gian mẫu.
 
 Chúng ta cùng xem xét ví dụ dưới đây:
 
-- Tung cục xúc sắc một lần
+- Tung xúc sắc một lần
   - Không gian mẫu $S = {1,2,3,4,5,6} $
 - Tung hai đồng xu
   - Không gian mẫu $S = { (0, 0), (0, 1), (1, 0), (1, 1) }$ với 0 thể hiện đồng xu sấp và 1 thể hiện đồng xu ngửa.
 
-Ta định nghĩa một **biến cố** (**event**) là một tập hợp các kết quả của một thí nghiệm. Do đó, một biến cố là một tập con của không gian mẫu $S$. Nếu chúng ta đặt biến cố là $E$, thì chúng ta có thể nói rằng $E \subseteq S$. Nếu một biến cố chỉ bao gồm một kết quả duy nhất trong không gian  mẫu, ta vẫn có thể gọi chúng là biến cố. Biến cố bao gồm nhiều hơn một kết quả được gọi là **biến cố kép** (**compound event**), ví dụ như trong thí nghiệm tung 2 đồng xu ở trên.
+Ta định nghĩa một **biến cố** (**event**) là một tập hợp các kết quả của một thí nghiệm. Do đó, một biến cố là một tập con của không gian mẫu $S$. Nếu ta đặt biến cố là $E$, thì $E \subseteq S$. Một biến cố có thể chỉ bao gồm một kết quả duy nhất trong không gian mẫu. Biến cố bao gồm nhiều hơn một kết quả được gọi là **biến cố phức hợp** (**compound event**), ví dụ như trong thí nghiệm tung 2 đồng xu ở trên.
 
-Cái chúng ta quan tâm nhất là xác suất để một biến cố nhất định xảy ra, $P(E)$. Theo định nghĩa, $P(E)$ là một số thực trong khoảng từ $0$ đến $1$, trong đó $0$ là biến cố không có khả năng xảy ra và $1$ là biến cố chắc chắn xảy ra (hay là toàn bộ không gian mẫu).
+Cái chúng ta quan tâm nhất là xác suất để một biến cố nhất định xảy ra, $P(E)$. Theo định nghĩa, $P(E)$ là một số thực trong khoảng từ $0$ đến $1$, trong đó $0$ thể hiện biến cố không có khả năng xảy ra và $1$ thể hiện biến cố chắc chắn xảy ra (hay là toàn bộ không gian mẫu).
 
 [[/uploads/translate_topcoder_undertstandprobabilities_1.gif]]
 
@@ -39,7 +36,7 @@ Như đã đề cập, mỗi kết quả khả thi được biểu diễn bởi 
 
 $P(E) = \frac{\left | E \right |}{\left | S \right |}$
 
-Nói cách khác, ta có thể tính xác suất để một biến cố xảy ra bằng cách chia **số khả năng đúng** (theo biến cố $E$) cho **tổng số kết quả có thể xảy ra** (theo không gian mẫu $S$). Để diễn tả mối quan hệ giữa các biến cố, bạn có thể dùng các quy ước từ lý thuyết về tập hợp. Xét trường hợp tung con xúc sắc một lần. Như trên, ta có $S = \{1,2,3,4,5,6\}$. Xem xét những biến cố dưới đây:
+Nói cách khác, ta có thể tính xác suất để một biến cố xảy ra bằng cách chia **số kết quả thuộc biến cố $E$** cho **tổng số kết quả có thể xảy ra** (theo không gian mẫu $S$). Để diễn tả mối quan hệ giữa các biến cố, bạn có thể dùng các quy ước từ lý thuyết về tập hợp. Xét trường hợp tung con xúc sắc một lần. Như trên, ta có $S = \{1,2,3,4,5,6\}$. Xem xét những biến cố dưới đây:
 
 - Biến cố $A$: *điểm > 3*: ${4,5,6}$
 - Biến cố $B$: *điểm là số lẻ*: ${1,3,5}$
@@ -55,7 +52,7 @@ Xác suất:
 - $P(A’) = 1 – P(A) = 1 – 1/2 = 1/2 $
 - $P(C) = 0$
 
-Bước đầu tiên khi giải một bài toán về xác suất là xác định được không gian mẫu. Tiếp theo, bạn sẽ phải xác định số lượng của biến cố thỏa mãn. Đây là cách tiếp cận cơ bản, nhưng khi áp dụng, nó có thể thay đổi tùy vào từng bài tập.
+Bước đầu tiên khi giải một bài toán về xác suất là xác định được không gian mẫu. Tiếp theo, bạn sẽ phải xác định số lượng phần tử của biến cố thỏa mãn. Đây là cách tiếp cận cơ bản, nhưng khi áp dụng, nó có thể thay đổi tùy vào từng bài tập.
 
 ## Ví dụ
 
@@ -67,7 +64,7 @@ Trong một cuộc thi, bạn đang đấu với 2 người nữa để tiến v
 
 Bạn biết điểm hiện tại của cả 3 người (số nguyên không quá $10^4$), và giá trị tiền cược của 2 người kia.
 
-Hỏi bạn nên cược bao nhiêu để xác suất thằng là lớn nhất.
+Hỏi bạn nên cược bao nhiêu để xác suất thắng là lớn nhất.
 
 **Phân tích**
 
@@ -87,7 +84,7 @@ S = {
 }
 ```
 
-Đề bài yêu cầu bạn tìm số tiền cược để tối đa số kết quả bạn thắng. Để đếm được số kết quả ưa thích cho từng số tiến cược, ta cần xác định xem là cả ba người chơi sẽ kết thúc với bao nhiêu điểm trong 8 trường hợp có thể xảy ra. Ý tưởng được thể hiện trong code dưới đây
+Đề bài yêu cầu bạn tìm số tiền cược để tối đa số kết quả mà trong đó bạn thắng. Để đếm được số kết quả như vậy cho từng số tiến cược, ta cần xác định xem cả ba người chơi sẽ kết thúc với bao nhiêu điểm trong 8 trường hợp có thể xảy ra. Ý tưởng được thể hiện trong code dưới đây
 
 ```cpp
 int wager (vector  scores, int wager1, int wager2)
@@ -117,7 +114,7 @@ Một bài thú vị khác là [PipeCuts (SRM 233, Div 1 – Easy)](http://commu
 
 ## Biến cố độc lập
 
-Xét $n$ biến cố độc lập (*independent events*): $ E_1, E_2, ..., E_n$ . Hai câu hỏi thường gặp sẽ là
+Xét $n$ biến cố độc lập (*independent events*): $ E_1, E_2, ..., E_n$ . Hai câu hỏi thường gặp là:
 
 1. Xác suất để tất cả biến cố xảy ra?: $P(all)$
 2. Xác suất để ít nhất một biến cố trong số chúng xảy ra? $P(any)$
@@ -140,7 +137,9 @@ Những công thức trên được ứng dụng rất nhiều, cần nắm ch�
 
 ## [BirthdayOdds](http://community.topcoder.com/stat?c=problem_statement&pm=1848&rd=4675)
 
-Một ví dụ điển hình để mô tả nội dung xác suất được bàn luận ở phần trên là [**Birthday Paradox**](https://en.wikipedia.org/wiki/Birthday_problem). Người ta đã chứng minh được nếu có ít nhất 23 người trong một căn phòng, xác suất để 2 người bất kì trong số họ có cùng một ngày sinh nhật là lớn hơn 0.5. Nó được gọi là nghịch lý về ngày sinh vì nó trái ngược với cảm giác thông thường. Bây giờ, một bài toán đặt ra là tìm số người nhỏ nhất để xác suất có ít nhất người trong số họ cùng ngày sinh nhật là lớn hơn x %. Việc đầu tiên có thể nghĩ đến là giải bài toán ngược: "xác suất để $N$ người ngẫu nhiên có ngày sinh khác nhau?" dễ hơn. Chiến thuật là bắt đầu với một cái phòng rỗng và lần lượt thêm từng người một vào, so sánh ngày sinh của người đó với tất cả những người đã có trong phòng.
+Một ví dụ điển hình để mô tả nội dung xác suất được bàn luận ở phần trên là  **Nghịch lí về ngày sinh** ([**Birthday Paradox**](https://en.wikipedia.org/wiki/Birthday_problem)): Nếu có ít nhất 23 người trong một căn phòng, xác suất để 2 người bất kì trong số họ có cùng ngày sinh là lớn hơn 0.5. Thoạt nhìn, kết quả này có vẻ trái ngược với trực giác thông thường nhưng nó hoàn toàn có thể được chứng minh bằng toán học. 
+
+Bây giờ, một bài toán đặt ra là tìm số người nhỏ nhất để xác suất có ít nhất 2 người trong số họ cùng ngày sinh nhật là lớn hơn x %. Đôi khi trong các bài toán xác suất, cách tiếp cận dễ dàng hơn là thử giải bài toán ngược: "Tìm xác suất để $N$ người ngẫu nhiên có ngày sinh khác nhau?". Chiến thuật là bắt đầu với một cái phòng rỗng và lần lượt thêm từng người một vào và so sánh ngày sinh của người đó với tất cả những người đã có trong phòng.
 
 ```cpp
 int minPeople (int minOdds, int days) {
@@ -160,7 +159,7 @@ int minPeople (int minOdds, int days) {
 }
 ```
 
-Đôi khi các bài toán về xác suất có thể phức tạp. Như chúng ta đã thấy, 'Birthday Paradox' tạo cảm giác mâu thuẫn với suy nghĩ thông thường của ta. Nhưng nó lại có thể chứng minh tính đúng đắn nhờ vào các các công thức. Công thức có thể hỗ trợ, nhưng để trở nên thành thạo về xác suất bạn cần thêm một vũ khí nữa: "cảm nhận về Toán học". Vũ khí này có được một phần là nhờ bẩm sinh, và một phần học được thông qua luyện tập. Làm [bài kiểm tra](http://teacherlink.org/content/math/interactive/probability/interactivequiz/question1/home.html) này để kiểm tra cảm giác số học của bạn cũng như đối mặt với những hiểu lầm về xác suất.
+Các bài toán về xác suất có thể rất phức tạp và nhiều khi kết quả tạo cảm giác mâu thuẫn với những nhận đinh thông thường của chúng ta (Ví dụ như **Nghịch lí về ngày sinh** ở trên hoặc một ví dụ khác là  [Bài toán Monty Hall](https://en.wikipedia.org/wiki/Monty_Hall_problem)). Để có thể giải nhưng bài toán như vậy một cách thành thạo, ngoài việc nắm chắc các công thức toán học, các bạn cũng cần luyện tập cho mình một lối tư duy, trực giác toán học nhạy bén để tránh đưa ra những nhận định sai lầm về bài toán. Các bạn có thể làm bài [kiểm tra](http://teacherlink.org/content/math/interactive/probability/interactivequiz/question1/home.html) để đánh giá trực giác toán học của mình.
 
 # Tính xác suất từng bước một
 
