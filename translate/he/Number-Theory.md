@@ -571,7 +571,24 @@ Hệ số nhị thức $\binom{n}{k}$ được sử dụng để đếm số cá
 
 Có bao nhiêu cách để đi từ góc trái trên của một bảng $n * m$ ô đến góc phải dưới của ô đó, nếu ta chỉ được phép đi về bên phải hoặc đi xuống dưới. Ta thấy mọi đường đi hợp lệ có $n+m$ bước, và hai đường đi khác nhau nếu và chỉ nếu chúng có một bước đi xuống dưới khác nhau, vậy ta có $\binom{n+m}{n}$ cách đi.
 
-Tính hệ số nhị thức có thể gây tràn số ở các bước trung gian, vì vậy ta nên tính hệ số nhị thức bằng cồng thức: $\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}$
+Tính hệ số nhị thức có thể gây tràn số ở các bước trung gian, vì vậy ta nên tính hệ số nhị thức bằng công thức: $\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}$
+
+## Một vài dãy số đếm khác
+
+### Dãy số Catalan
+
+Định nghĩa: $C_n=\sum_{k=0}^{n-1} C_kC_{n-1-k}=\frac{1}{n+1}\binom{2n}{n}
+
+Các ứng dụng của dãy số Catalan:
+
+- Cho một đa giác đều $n$ đỉnh, số cách chia $n$ đỉnh đó vào các tập hợp sau cho các đa giác tạo bởi các đỉnh thuộc mỗi tập hợp không cắt nhau là $C_n$.
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Noncrossing_partitions_5.svg/220px-Noncrossing_partitions_5.svg.png)
+
+Hình ảnh trên cho ví dụ các cách chia khi ta có 5 đỉnh. $C_5 = 42$ cách chia đầu là các cách chia hợp lệ, 10 cách chia sau là các cách chia không hợp lệ.
+
+- $C_n$ là số các từ Dyck có độ dài $2n$. 
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
