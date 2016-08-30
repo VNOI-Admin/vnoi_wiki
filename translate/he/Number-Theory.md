@@ -653,6 +653,8 @@ Ví dụ bạn gieo một con súc sắc và một đồng xu. Xác suất nhậ
 
 ![](https://d320jcjashajb2.cloudfront.net/media/uploads/869de1c.gif)
 
+Nếu hai biến cố $A$ và $B$ độc lập với nhau, không biến cố nào ảnh hưởng đến biến cố nào, khi đó ta có thể viết: $P(A \cup B) = P(A).P(B)$.
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
