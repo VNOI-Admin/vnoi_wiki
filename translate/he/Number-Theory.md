@@ -581,11 +581,11 @@ Tính hệ số nhị thức có thể gây tràn số ở các bước trung gi
 
 Các ứng dụng của dãy số Catalan:
 
-- Cho một đa giác đều $n$ đỉnh, số cách chia $n$ đỉnh đó vào các tập hợp sau cho các đa giác tạo bởi các đỉnh thuộc mỗi tập hợp không cắt nhau là $C_n$.
+- Cho một đa giác lồi $n+2$ đỉnh, ta chia đa giác thành các tam giác bằng cách vẽ các đường chéo không cắt nhau trong đa giác. $C_n$ là số cách chia như vậy.
 
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Noncrossing_partitions_5.svg/220px-Noncrossing_partitions_5.svg.png)
+Ví dụ: $n=4$
 
-Hình ảnh trên cho ví dụ các cách chia khi ta có 5 đỉnh. $C_5 = 42$ cách chia đầu là các cách chia hợp lệ, 10 cách chia sau là các cách chia không hợp lệ.
+![Screenshot from 2016-08-30 11-02-47.png](http://2.pik.vn/2016093ab8c9-0ac4-41b6-ab90-d6403d7ff648.png)
 
 - $C_n$ là số các từ Dyck có độ dài $2n$. Từ Dyck là từ gồm $n$ chữ X và $n$ chữ Y sao cho với mọi tiền tố của từ đó, số lượng chữ X không ít hơn số lượng chữ Y. Ví dụ, $C_3 = 5$ từ sau đây là từ Dyck độ dài 6: XXXYYY, XYXXYY, XYXYXY, XXYYXY, XXYXYY.
 
