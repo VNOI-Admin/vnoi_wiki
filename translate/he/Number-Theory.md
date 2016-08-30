@@ -605,9 +605,29 @@ Số Euler $\big \langle^n_k \big \rangle$ là số lượng hoán vị các s�
 
 ![$\big \langle^n_k \big \rangle = k\big \langle^{n-1}_k \big \rangle + (n-k+1) \big \langle^{n-1}_{k-1} \big \rangle$](https://d320jcjashajb2.cloudfront.net/media/uploads/93df5ba.gif)
 
-### Bài toán phân vùng một số nguyên
+### Bài toán phân tích một số nguyên 
 
-Một phân vùng của số nguyên $n$ là một tập hợp có thứ tự gồm các số nguyên dương có tổng là $n$, trong đó mỗi số có thể xuất hiện nhiều lần. Ví dụ, có 7 cách phân vùng số 5: $(5), (4, 1), (3, 2), (3, 1, 1), (2, 1, 1 , 1), (1, 1, 1, 1, 1)$
+Ta xét bài toán sau:
+
+Cho một số nguyên $n$. Hãy cho biết có bao nhiêu cách phân tích số $n$ thành tổng của dãy các số nguyên dương, các cách phân tích là hoán vị của nhau chỉ tính là một cách.
+
+Ví dụ: $n=5$ có 7 cách phân tích:
+
+1. $5 = 1+1+1+1+1$
+
+2. $5 = 1+1+1+2$
+
+3. $5=1+1+3$
+
+4. $5=1+2+2$
+
+5. $5=1+4$
+
+6. $5=2+3$
+
+7. $5=5$
+
+Cách dễ nhất để đếm số cách phân tích số $n$ là định nghĩa hàm $f(n,k)$ là số cách phân tích số $n$ thành tổng của các số nguyên dương nhỏ hơn hoặc bằng $k$. Các cách phân tích số $n$ thành tổng cách số nguyên dương nhỏ hơn hoặc bằng $k$ có thể chia làm hai loại: chứa số $k$ trong phép phân tích và không chứa số $k$ trong phép phân tích, vì thế ta có $f(n,k)=f(n-k,k)+f(n,k-1)$. Ngoài ra, ta còn dễ dàng có được $f(1,1)=1$ và $f(n,k)=0$ với $k>n$. 
 
 
 # Bài tập áp dụng
