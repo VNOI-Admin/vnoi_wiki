@@ -587,7 +587,19 @@ Các ứng dụng của dãy số Catalan:
 
 Hình ảnh trên cho ví dụ các cách chia khi ta có 5 đỉnh. $C_5 = 42$ cách chia đầu là các cách chia hợp lệ, 10 cách chia sau là các cách chia không hợp lệ.
 
-- $C_n$ là số các từ Dyck có độ dài $2n$. 
+- $C_n$ là số các từ Dyck có độ dài $2n$. Từ Dyck là từ gồm $n$ chữ X và $n$ chữ Y sao cho với mọi tiền tố của từ đó, số lượng chữ X không ít hơn số lượng chữ Y. Ví dụ, $C_3 = 5$ từ sau đây là từ Dyck độ dài 6: XXXYYY, XYXXYY, XYXYXY, XXYYXY, XXYXYY.
+
+- Thay mỗi chữ X trong từ Dyck thành dấu mở ngoặc đơn, mỗi chữ Y thành dấu đóng ngoặc đơn, khi đó mỗi từ Dyck trở thành một dãy ngoặc hợp lệ. Vậy $C_n$ còn đếm số dãy ngoặc hợp lệ gồm $n$ cặp ngoặc: ((())), ()(()), ()()(), (())(), (()()).
+
+- $C_n$ còn là số cách đặt ngoặc cho một biểu thức gồm $n+1$ thừa số. Ví dụ với $n=3$, ta có 5 cách đặt ngoặc cho 4 thừa số: $((ab)c)d, (a(bc))d, (ab)(cd), a((bc)d), a(b(cd))$.
+
+- $C_n$ còn là số cây nhị phân đầy đủ có $n$ là (một cây nhị phân được gọi là đầy đủ nếu mọi nút của nó có hai nút con hoặc không có nút con nào). 
+
+![](https://upload.wikimedia.org/wikipedia/commons/0/01/Catalan_number_binary_tree_example.png)
+
+[Và còn nhiều ứng dụng khác...](https://en.wikipedia.org/wiki/Catalan_number#Applications_in_combinatorics)
+
+
 
 # Bài tập áp dụng
 
