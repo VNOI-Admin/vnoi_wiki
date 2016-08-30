@@ -602,8 +602,10 @@ Ví dụ: $n=4$
 ### Số Euler
 
 Số Euler $\big \langle^n_k \big \rangle$ là số lượng hoán vị các số từ 1 đến $n$ mà có đúng $k$ phần tử lớn hơn phần tử đứng trước nó. Hệ thức truy hồi tính số Euler được lập bằng cách xét mỗi hoán vị $p$ của 1,2,...,$n-1$. Có $n$ vị trí để thêm số $n$ vào hoán vị, và một cách thêm số $n$ có thể làm tăng số phần tử lớn hơn phần tử đứng trước nó của $p$, hoặc bảo toàn số phần tử lớn hơn phần tử đứng trước nó. Vì vậy, 
-$\big \langle^n_k \big \rangle$
-$\big \langle^n_k \big \rangle = k \big \langle^{n-1}_k \big \rangle + (n-k+1) \big \langle^{n-1}_{k-1} \big \rangle$ 
+$\big \langle^n_k \big \rangle = k\big \langle^{n-1}_k \big \rangle + (n-k+1) \big \langle^{n-1}_{k-1} \big \rangle$
+
+
+Testing: $x_1+x_2+x_3=x_4$.
 
 # Bài tập áp dụng
 
