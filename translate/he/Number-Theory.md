@@ -549,6 +549,13 @@ Ngoài ra, các tính chất về tổ hợp của vector nhị phân cũng rấ
 
 Khoảng cách giữa hai vector nhị phân $a$ và $b$ là số lượng giá trị $i$ nguyên không âm thỏa mãn $a_i \ne b_i$
 
+## Hệ thức truy hồi
+
+Hệ thức truy hồi là công cụ hỗ trợ đắc lực trong các bài toán đếm. Truy hồi còn giúp ta định nghĩa được nhiều cấu trúc như cây, danh sách, công thức quy hoạch động hay các thuật toán "chia để trị", nên truy hồi được sử dụng rất nhiều trong tin học.
+
+Hệ thức truy hồi là một phương trình dùng để xác định dãy số bằng cách dùng các số hạng trước để định nghĩa số hạng sau. Nó rất hữu dụng vì nhiều dãy số có thể dễ dàng được định nghĩa bằng hệ thức truy hồi:
+
+- Hàm đa thức: $a_n=a_{n-1}+1, a_1=1 \rightarrow a_n=n$.
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
