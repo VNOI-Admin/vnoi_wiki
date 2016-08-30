@@ -570,7 +570,8 @@ Hệ số nhị thức $\binom{n}{k}$ được sử dụng để đếm số cá
 ### Đếm số đường đi trên lưới.
 
 Có bao nhiêu cách để đi từ góc trái trên của một bảng $n * m$ ô đến góc phải dưới của ô đó, nếu ta chỉ được phép đi về bên phải hoặc đi xuống dưới. Ta thấy mọi đường đi hợp lệ có $n+m$ bước, và hai đường đi khác nhau nếu và chỉ nếu chúng có một bước đi xuống dưới khác nhau, vậy ta có $\binom{n+m}{n}$ cách đi.
- 
+
+Tính hệ số nhị thức có thể gây tràn số ở các bước trung gian, vì vậy ta nên tính hệ số nhị thức bằng cồng thức: $\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}$
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
