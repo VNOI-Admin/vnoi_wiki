@@ -561,6 +561,10 @@ Hệ thức truy hồi là một phương trình dùng để xác định dãy s
 
 - Giai thừa: $a_n=n.a_{n-1}, a_1 = 1 \rightarrow a_n=n!$.
 
+Ta thường dễ dàng tìm được hệ thức truy hồi để giải các bài toán đếm. Giải hệ thức truy hồi để có được dạng công thức cần tìm là cả một nghệ thuật, tuy vậy ta có thể sử dụng trực tiếp hệ thức truy hồi để giải một số bài toán đơn giản.
+
+## Hệ số nhị thức
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
