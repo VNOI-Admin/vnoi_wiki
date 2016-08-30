@@ -585,7 +585,7 @@ Các ứng dụng của dãy số Catalan:
 
 Ví dụ: $n=4$
 
-![Screenshot from 2016-08-30 11-02-47.png](http://2.pik.vn/2016093ab8c9-0ac4-41b6-ab90-d6403d7ff648.png)
+[![Screenshotfrom2016-08-3011-02-47.png](http://www.upsieutoc.com/images/2016/08/30/Screenshotfrom2016-08-3011-02-47.png)](http://www.upsieutoc.com/image/5zZ8)
 
 - $C_n$ là số các từ Dyck có độ dài $2n$. Từ Dyck là từ gồm $n$ chữ X và $n$ chữ Y sao cho với mọi tiền tố của từ đó, số lượng chữ X không ít hơn số lượng chữ Y. Ví dụ, $C_3 = 5$ từ sau đây là từ Dyck độ dài 6: XXXYYY, XYXXYY, XYXYXY, XXYYXY, XXYXYY.
 
