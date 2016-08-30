@@ -645,6 +645,14 @@ Thứ mà ta quan tâm nhất là xác suất xảy ra của một biến cố, 
 
 Như đã nói ở trước, mỗi kết qủa được biểu diễn bằng đúng một điểm trong không gian mẫu. Vì thế ta có công thức: $P(A) = \frac{|\Omega_A|}{|\Omega|}$.
 
+## Biến cố độc lập
+
+Hai biến cố được gọi là độc lập với nhau nếu việc xảy ra hay không xảy ra của biến cố này không làm ảnh hưởng tới xác suất xảy ra của biến cố kia.
+
+Ví dụ bạn gieo một con súc sắc và một đồng xu. Xác suất nhận được một số nào đó từ con súc sắc không làm ảnh hưởng đến xác suất đồng xu lật sấp hay lật ngửa. Do đó biến cố gieo con súc sắc được 6 điểm và biến cố đồng xu lật ngửa là hai biến cố độc lập với nhau.
+
+![](https://d320jcjashajb2.cloudfront.net/media/uploads/869de1c.gif)
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
