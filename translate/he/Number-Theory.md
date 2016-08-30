@@ -599,7 +599,9 @@ Ví dụ: $n=4$
 
 [Và còn nhiều ứng dụng khác...](https://en.wikipedia.org/wiki/Catalan_number#Applications_in_combinatorics)
 
+### Số Euler
 
+Số Euler $\Bigg \langle^n_k \Bigg \rangle$.
 
 # Bài tập áp dụng
 
