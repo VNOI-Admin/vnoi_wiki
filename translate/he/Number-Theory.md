@@ -664,6 +664,10 @@ Sử dụng toán học, ta định nghĩa $P(B|A) = \frac{P(AB)}{P(A)}$.
 
 ## Các quy tắc tính xác suất
 
+Khi ta phải làm việc với nhiều biến cố, có một vài quy tắc ta phải tuân theo khi tính xác suất của các biến cố này. Các quy tắc này đều phụ thuộc rất lớn vào việc các biến cố này có độc lập với nhau hay không. Đầu tiên, cho ba biến cố $A, B, C$, biến cố $S :$ "$A$ hoặc $B$ hoặc $C$ xảy ra" được kí hiệu là $A \cup B \cup C$, có xác suất $P(S) = P(A \cup B \cup C)$.
+
+### Quy tắc nhân xác suất ($AB$)
+$AB$ có nghĩa là giao của hai biến cố $A$ và $B$, và trong xác suất, $AB$ là biến cố "Cả $A$ và $B$ cùng xảy ra". 
 
 
 # Bài tập áp dụng
