@@ -737,7 +737,9 @@ Một bài toán có thể có nhiều lời giải, một số lời giải tro
 
 # Các kiến thức nâng cao về công thức bao hàm - loại trừ
 
-Công thức bao hàm - loại trừ được mô tả như sau: 
+## Phát biểu công thức
+
+Công thức bao hàm - loại trừ được phát biểu như sau: 
 
 Để tính lực lượng của hợp của nhiều tập hợp, ta tính tổng lực lượng các tập hợp đó, rồi trừ đi lực lượng của giao của các cặp hai tập hợp khác nhau, rồi cộng lực lượng của giao các bộ ba tập hợp khác nhau, rồi trừ đi lực lượng của các bộ bốn tập hợp, và cứ thế cho đến khi ta xét đến giao của tất cả các tập hợp.
 
@@ -764,7 +766,47 @@ $| A \cup B \cup C | = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |C \cap A| + 
 
 Tương tự, ta có thể lập công thức với $n$ tập hợp.
 
+## Công thức dành cho xác suất
 
+Nếu ta có $n$ biến cố $A_1, A_2,...,A_n$, $P(A_i)$ là xác suất của biến cố $A_i$, xác suất của biến cố hợp của chúng (nghĩa là biến cố "có ít nhất một trong số $n$ biến cố $A_1, A_2, ..., A_n$ xảy ra") là
+
+$P(\bigcup_{i=1}^n A_i) = $ $\sum_{i=1}^n$ $ P(A_i) - $$\sum_{i \ne j}$$ P(A_i A_j) + P(A_1 A_2 A_3) + P(A_1 A_2 A_4) +... + P(A_{n-2} A_{n-1} A_n) $$- ... -$ $(-1)^n.P(A_1 A_2 ... A_n)$
+
+Nếu gọi $B$ là tập hợp các tập hợp $A_i$, công thức này cũng có thể viết gọn như sau:
+
+$P(\bigcup_{i=1}^n A_i) = \sum_{C \subset B} (-1)^{|C|-1}. P(\bigcap_{e \in C} e)$
+
+## Chứng minh công thức bao hàm - loại trừ
+
+Để thuật tiện trong chứng minh, ta sử dụng công thức viết gọn sau:
+
+$|\bigcup_{i=1}^n A_i| = \sum_{C \subset B} (-1)^{|C|-1} | \bigcap_{e \in C} e |$
+
+với $B$ là tập hợp các tập hợp $A_i$.
+
+Ta cần chứng minh một phần tử bất kì thuộc ít nhất một tập $A_i$, sẽ chỉ được đếm một lần trong công thức.
+
+Xét một phần tử $x$ bất kì thuộc $k \geq 1$ tập hợp $A_i$. Ta thấy
+
+Trong công thức, khi $|C| = 1$, $x$ được đếm thêm $k$ lần.
+
+Trong công thức, khi $|C| = 2$, $x$ được đếm bớt đi $\binom{k}{2}$ lần bởi $x$ bị đếm bớt đi khi ta xét một cặp 2 tập hợp khác nhau trong số $k$ tập hợp chứa phần tử $x$.
+
+Trong công thức, khi $|C| = 3$, $x$ được đếm thêm $\binom{k}{3}$ lần.
+
+...
+
+Trong công thức, khi $|C| = k$, $x$ được đếm $\binom{k}{k}$ lần. Nếu $k$ lẻ thì $x$ được đếm thêm, nếu $k$ chẵn thì $x$ được đếm bớt.
+
+Trong công thức, khi $|C| > k$, $x$ không được đếm.
+
+Vì vậy, số lần $x$ được đếm là $T = \binom{k}{1} - \binom{k}{2} + \binom{k}{3} - ... + (-1)^{i-1}.\binom{k}{i} + ... + (-1)^{k-1}.\binom{k}{k}$.
+
+Để tính $T$, ta khai triển $(1-x)^k$ bằng nhị thức Niu-tơn:
+
+$(1-x)^k = \binom{k}{0} - \binom{k}{1}.x + \binom{k}{2}.x^2 - \binom{k}{3}.x^3 + ... + (-1)^k.\binom{k}{k}.x^k$.
+
+Ta thấy với $x=1$, $(1-x)^k = T-1$, do đó $T = (1-1)^k+1 = 1$ hay điều phải chứng minh. 
 
 # Bài tập áp dụng
 
