@@ -20,3 +20,5 @@ Hãy trở lại câu chuyện của chúng ta với một ví dụ đơn giản
 (chú thích trên hình bị sai: 50cm thay vì 50kg)
 Ví dụ, bạn bắt gặp một con vật mà bạn không biết nó thuộc chủng loại gì. Câu hỏi đầu tiên là: "Nó có lông không?". Giả sử nó có lông, chúng ta đi tiếp sang nhánh bên phải. Câu hỏi tiếp theo là: "Nó cao bao nhiêu?". Giả sử con vật của chúng ta chỉ cao 30cm. Điều này có nghĩa là chúng ta sẽ đi theo nhánh bên trái. Khi đó, vì chúng ta đã đi đến nút lá, chúng ta biết rằng con vật mà mình đang xét chính là con gà.
 
+Bây giờ chắc bạn đã hiểu phần nào về cây quyết định, hãy trở lại với thuật toán *Random Forest*: 
+
