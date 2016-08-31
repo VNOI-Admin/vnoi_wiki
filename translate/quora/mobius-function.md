@@ -1,5 +1,7 @@
 # Hàm Mobius
 
+[Nguồn](https://www.quora.com/profile/Surya-Kiran/Posts/A-Dance-with-Mobius-Function)
+
 [[_TOC_]]
 
 Trong bài viết này mình sẽ giới thiệu với các bạn một chủ đề vô cùng thú vị trong số học - Hàm nghịch đảo Mobius, cũng như cách ứng dụng để giải quyết một số bài toán.
