@@ -723,6 +723,20 @@ Công thức của định lí Bayes như sau: $P(A|B) = \frac{P(A).P(B|A)}{P(B)
 
 Cho $n$ biến cố $A_1, A_2, ..., A_n$, khi đó nếu $P(B) = \sum_{i=1}^n P(B|A_i)P(A_i)$ thì $P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^n P(B|A_j)P(A_j)}$.
 
+## Thuật toán ngẫu nhiên
+
+Ta gọi thuật toán ngẫu nhiên là thuật toán sử dụng các số ngẫu nhiên để quyết định trong lúc chạy. Không giống thuật toán tất định mà với một bộ dữ liệu nhật định, thuật toán luôn ra một kết quả và chạy trong cùng một lượng thời gian, thuật toán ngẫu nhiên chạy ra kết quả khác nhau ở những lần chạy khác nhau. Ta thường chia thuật toán ngẫu nhiên ra làm hai loại:
+
+- Thuật toán Monte Carlo: Có thể ra kết quả sai - chúng ta sẽ tính xác suất ra kết quả sai để quyết định có dùng nó hay không.
+
+- Thuật toán Las Vegas: Luôn chạy ra kết quả đúng, nhưng thời gian chạy sẽ khác nhau với cùng một bộ dữ liệu.
+
+Mục tiêu của việc xây dựng các thuật toán ngẫu nhiên là giảm thời gian cài đặt thuật toán và đội khi tạo ra những lời giải ngắn gọn hơn trong bài toán. Thuât toán ngẫu nhiên còn có khả năng giải các bài toán cực khó. Vì vậy, các thuật toán ngẫu nhiên đã trở thành một vấn đề được nhiều nhà khoa học nghiên cứu và đã được ứng dụng để giải nhiều bài toán khác nhau.
+
+Một bài toán có thể có nhiều lời giải, một số lời giải trong số đó là tối ưu. Phương pháp làm cổ điển là xét từng phần tử một, theo thứ tự trong dữ liệu vào. Tuy nhiên, ta không thể chắc chắn các phần tử thuận lợi được phân bố đều trong dữ liệu vào. Vì vậy, thuật toán định tất có thể không tìm ra lời giải trong thời gian đủ nhanh. Lợi thế của thuật toán ngẫu nhiên là không có thứ tự duyệt các phần tử cố định và trong mọi trường hợp, thuật toán ngẫu nhiên có thể hoạt động tốt hơn.
+
+
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
