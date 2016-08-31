@@ -1,6 +1,6 @@
 # Hàm Mobius
 
-[Nguồn](https://www.quora.com/profile/Surya-Kiran/Posts/A-Dance-with-Mobius-Function)
+Nguồn: [Quora](https://www.quora.com/profile/Surya-Kiran/Posts/A-Dance-with-Mobius-Function)
 
 [[_TOC_]]
 
