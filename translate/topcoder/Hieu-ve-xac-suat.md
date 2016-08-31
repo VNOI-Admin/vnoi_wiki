@@ -350,7 +350,7 @@ Ta gọi những thuật toán ngẫu nhiên là những thuật toán sử dụ
 
 Tham khảo [tài liệu](http://www.ews.uiuc.edu/~kumar/lectures/lecture.10.3.pdf) từ College of Engineering at UIUC để xem cách các thuật toán này hoạt động.
 
-Mục tiêu chính của thuật toán ngẫu nhiêu là để xây dựng một thuật toán nhanh hơn, cũng có thể đơn giản hơn. Khả năng đơn giản hóa một vấn đề chính là một lợi ích của thuật toán ngẫu nhiên. Nên không lấy làm lạ khi các thuật toán như vậy được đưa ra nghiên cứu rộng rãi và được ứng dụng để giải quyết các vấn đề một cách đơn giản hơn.
+Mục tiêu chính của thuật toán ngẫu nhiêu là để tìm kiếm một hướng tiếp cận đơn giản hơn cho những bài toán phức tạp hoặc không có lời giải. Những thuật toán ngẫu nhiên không đảm bảo sẽ luôn tìm được kết quả tối ưu nhất, nhưng chúng có thể tìm được một kết quả đủ tốt trong một giới hạn về thời gian và bộ nhớ "chấp nhận được". 
 
 Một câu hỏi thú vị được đưa ra là liệu những thuật toán như vậy có ích trong các kì thi lập trình hay không. Khi bạn không nghĩ ra một cách nào để giải, hướng đi hợp lý là thử cài một cách random. Độ tốt của việc random phụ thuộc nhiều vào tính chất của bài toán, và khi có kinh nghiệm cũng như cảm nhận Toán học tốt, bạn có thể đoán được là random có thể chạy đúng được với bài toán hay không. Tham khảo [QueenInterference](http://community.topcoder.com/stat?c=problem_statement&pm=2935&rd=585)
 
