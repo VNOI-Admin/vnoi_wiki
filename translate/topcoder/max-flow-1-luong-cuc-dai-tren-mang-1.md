@@ -1,5 +1,7 @@
 # Luồng cực đại trên mạng - Maxflow network
 
+**Biên soạn:** Đỗ Việt Anh
+
 [[_TOC_]]
 
 
@@ -259,6 +261,40 @@ def find_augment_from_to(int source, int sink):
 ```
 
 # 4. Bài toán liên quan
+
+## Mạng với nhiều điểm phát và nhiều điểm thu
+
+Cho một mạng gồm $n$ đỉnh với $p$ điểm phát $A_{1}, A_{2},..,A_{p}$ và q điểm thu $B_{1}, B_{2},...,B_{p}$. Mỗi cung của mạng được gán khả năng thông qua là số
+nguyên. Các đỉnh phát chỉ có cung đi ra và các đỉnh thu chỉ có cung đi vào. Một luồng trên mạng này là một phép gán cho mỗi cung một số thực gọi là luồng trên cung đó không vượt quá khả năng thông qua và thoả mãn với mỗi đỉnh không phải đỉnh phát hay đỉnh thu thì tổng luồng đi vào bằng tổng luồng đi ra. Giá trị luồng bằng tổng luồng đi ra từ các đỉnh phát = tổng luồng đi vào các đỉnh thu. Hãy tìm luồng cực đại trên mạng.
+
+## Cặp ghép cực đại trên đồ thị 2 phía
+
+Một lớp học khiêu vũ có N bạn nam $B_{1},B_{2},...,B_{N}$ và M bạn nữ $G_{1},G_{2},...,G_{M}$ ở buổi học đầu tiên các bạn nam được yêu cầu mời một bạn nữ làm bạn nhảy cùng trong cả khóa học theo khảo sát chúng ta biết được bảng giá trị like[i][j], like[i][j]=True nếu bạn nữ Gj chấp nhận lời đề nghị từ bạn nam Bi và like[i][j]=False ngược lại nếu bạn gái Gj không chấp nhận lời mời từ bạn nam Bi. Bạn hãy xác định số cặp nhảy nhiều nhất có thể của lớp học.
+
+## Tập đại diện
+
+ Một lớp học có n bạn nam, n bạn nữ. Cho m món quà lưu niệm, (n ≤ m). Mỗi bạn có sở thích về một số món quà nào đó. Hãy tìm cách phân cho mỗi bạn nam tặng một món quà cho một bạn nữ thoả mãn:
+
+- Mỗi bạn nam chỉ tặng quà cho đúng một bạn nữ
+
+- Mỗi bạn nữ chỉ nhận quà của đúng một bạn nam
+
+- Bạn nam nào cũng đi tặng quà và bạn nữ nào cũng được nhận quà, món quà đó phải hợp sở thích của cả hai người.
+
+- Món quà nào đã được một bạn nam chọn thì bạn nam khác không được chọn nữa
+
+## Mạng với khả năng thông qua của các đỉnh và các cạnh
+
+Cho một mạng với đỉnh phát A và đỉnh thu B. Mỗi cung (u, v) được gán khả năng thông qua c[u, v]. Mỗi đỉnh v khác với A và B được gán khả năng thông qua d[v]. Một luồng trên mạng được định nghĩa như trước và thêm điều kiện:
+
+- tổng luồng đi vào đỉnh v không được vượt quá khả năng thông qua d[v] của đỉnh đó.
+ 
+Hãy tìm luồng cực đại trên mạng.
+
+## Lát cắt hẹp nhất: 
+
+Cho một đồ thị liên thông gồm n đỉnh và m cạnh, hãy tìm cách bỏ đi một số ít nhất các cạnh để làm cho đồ thị mất đi tính liên thông
+
 
 # 5. Một số bài để luyện tập
 
