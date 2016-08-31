@@ -1,6 +1,7 @@
 # Luồng cực đại trên mạng - Maxflow network
 
 **Biên soạn:** Đỗ Việt Anh
+**Email:** dovietanh.95@gmail.com
 
 [[_TOC_]]
 
