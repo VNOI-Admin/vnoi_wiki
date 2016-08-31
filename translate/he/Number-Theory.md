@@ -470,7 +470,7 @@ Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp g�
 
 2. Quy tắc cộng: Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn một phần tử thuộc tập $A$ hoặc thuộc tập $B$ là $|A|+|B|$ nếu hai tập $A$ và $B$ rời nhau.
 
-3. Quy tắc cộng mở rộng: $|A \cup B| = |A| + |B| - |A \cap B|$.
+3. Quy tắc cộng mở rộng (còn gọi là công thức bao hàm - loại trừ): $|A \cup B| = |A| + |B| - |A \cap B|$.
 
 Trong trường hợp tổng quát, ta có:
 
@@ -731,9 +731,38 @@ Ta gọi thuật toán ngẫu nhiên là thuật toán sử dụng các số ng�
 
 - Thuật toán Las Vegas: Luôn chạy ra kết quả đúng, nhưng thời gian chạy sẽ khác nhau với cùng một bộ dữ liệu.
 
-Mục tiêu của việc xây dựng các thuật toán ngẫu nhiên là giảm thời gian cài đặt thuật toán và đội khi tạo ra những lời giải ngắn gọn hơn trong bài toán. Thuât toán ngẫu nhiên còn có khả năng giải các bài toán cực khó. Vì vậy, các thuật toán ngẫu nhiên đã trở thành một vấn đề được nhiều nhà khoa học nghiên cứu và đã được ứng dụng để giải nhiều bài toán khác nhau.
+Mục tiêu của việc xây dựng các thuật toán ngẫu nhiên là giảm thời gian cài đặt thuật toán và đôi khi tạo ra những lời giải ngắn gọn hơn trong bài toán. Thuât toán ngẫu nhiên còn có khả năng giải các bài toán cực khó. Vì vậy, các thuật toán ngẫu nhiên đã trở thành một vấn đề được nhiều nhà khoa học nghiên cứu và đã được ứng dụng để giải nhiều bài toán khác nhau.
 
 Một bài toán có thể có nhiều lời giải, một số lời giải trong số đó là tối ưu. Phương pháp làm cổ điển là xét từng phần tử một, theo thứ tự trong dữ liệu vào. Tuy nhiên, ta không thể chắc chắn các phần tử thuận lợi được phân bố đều trong dữ liệu vào. Vì vậy, thuật toán định tất có thể không tìm ra lời giải trong thời gian đủ nhanh. Lợi thế của thuật toán ngẫu nhiên là không có thứ tự duyệt các phần tử cố định và trong mọi trường hợp, thuật toán ngẫu nhiên có thể hoạt động tốt hơn.
+
+# Các kiến thức nâng cao về công thức bao hàm - loại trừ
+
+Công thức bao hàm - loại trừ được mô tả như sau: 
+
+Để tính lực lượng của hợp của nhiều tập hợp, ta tính tổng lực lượng các tập hợp đó, rồi trừ đi lực lượng của giao của các cặp hai tập hợp khác nhau, rồi cộng lực lượng của giao các bộ ba tập hợp khác nhau, rồi trừ đi lực lượng của các bộ bốn tập hợp, và cứ thế cho đến khi ta xét đến giao của tất cả các tập hợp.
+
+## Công thức dành cho tập hợp
+
+Công thức bao hàm - loại trừ có dạng như sau:
+
+$|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i| - \sum_{i \ne j} |A_i \cap A_j| + |A_1 \cap A_2 \cap A_3| + |A_1 \cap A_2 \cap A_4| + ... + |A_{n-2} \cap A_{n-1} \cap A_n| - ... -$
+$ (-1)^n|A_1 \cap A_2 \cap ... \cap A_n|$
+
+Ta có thể viết công thức này một cách gọn hơn bằng cách tính tổng của các tập con. Gọi $B$ là tập hợp các tập hợp $A_i$. Khi đó công thức bao hàm - loại trừ có dạng:
+
+$|\bigcup_{i=1}^n A_i| = \sum_{C \subset B} (-1)^{|C|-1} | \bigcap_{e \in C} e |$
+
+## Lập công thức bằng biểu đồ Venn
+
+Ta có biểu đồ sau biểu diễn ba tập hợp $A$, $B$ và $C$.
+
+![](https://d320jcjashajb2.cloudfront.net/media/uploads/b8f49cc.png)
+
+Khi đó ta thấy lực lượng của $A \cup B \cup C$ bằng lực lượng của $A$, $B$, $C$ trừ đi lực lượng của $A \cap B$, $B \cap C$, $C \cap A$ rồi cộng thêm lực lượng của $A \cap B \cap C$.
+
+$| A \cup B \cup C | = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |C \cap A| + |A \cap B \cap C|$
+
+Tương tự, ta có thể lập công thức với $n$ tập hợp.
 
 
 
