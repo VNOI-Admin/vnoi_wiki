@@ -168,9 +168,9 @@ Trong phần dưới đây, chúng ta sẽ tiếp tục thảo luận một vài
 Chúng ta có thể hình dung nó như một đồ thị mà trong đó:
 
 - Mỗi nút là một biến cố
-- Mỗi cạnh thể hiện sự phụ thuộc giữa các nút.
+- Mỗi cạnh thể hiện sự phụ thuộc giữa các biến cố.
 
-So sánh này hơi gượng ép, nhưng cách chúng ta tính toán xác suất cho các biến cố rất giống cách chúng ta đi qua các đỉnh của đồ thị: Ta bắt đầu ở gốc - là trạng thái ban đầu và có xác suất là 1. Sau đó, ta xem xét các cạnh kề để đến các khả năng khác nhau kèm theo các xác suất tương ứng.
+So sánh này hơi gượng ép, nhưng cách chúng ta tính toán xác suất cho các biến cố rất giống cách chúng ta duyệt qua các đỉnh của đồ thị: Ta bắt đầu ở gốc - là trạng thái ban đầu và có xác suất là 1. Sau đó, ta xem xét các cạnh kề để đến các khả năng khác nhau kèm theo các xác suất tương ứng.
 
 ## [Nested Randomness](http://community.topcoder.com/stat?c=problem_statement&pm=3510&rd=6527)
 
@@ -238,7 +238,7 @@ Bài tập tương tự:
 
 Ở bài này có khái niệm về **xác suất có điều kiện** (*conditional probability*):
 
-> Xác suất có điều kiện là xác suất của một biến cố A nào đó, biết rằng một biến cố B khác đã xảy ra.
+> Xác suất có điều kiện là xác suất để một biến cố A nào đó xảy ra, biết rằng một biến cố B khác đã xảy ra.
 
 Ký hiệu $P(A|B)$, và đọc là "xác suất của A, biết B". Nếu $A$ và $B$ là các biến cố, và $P(B) > 0$, thì xác suất có điều kiện của $A$ nếu biết $B$ là:
 
