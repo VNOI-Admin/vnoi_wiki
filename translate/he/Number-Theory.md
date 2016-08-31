@@ -721,7 +721,7 @@ Công thức của định lí Bayes như sau: $P(A|B) = \frac{P(A).P(B|A)}{P(B)
 
 ### Dạng mở rộng
 
-
+Cho $n$ biến cố $A_1, A_2, ..., A_n$, khi đó nếu $P(B) = \sum_{i=1}^n P(B|A_i)P(A_i)$ thì $P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum{j=1}^n P(B|A_j)P(A_j)}$.
 
 # Bài tập áp dụng
 
