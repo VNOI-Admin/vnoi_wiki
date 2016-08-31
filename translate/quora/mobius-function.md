@@ -164,4 +164,4 @@ Ta đưa đề bài này về bài toán: tính $G=\sum_{i=1}^{n}\sum_{j=i+1}^{n
 
 - [[http://www.spoj.com/problems/GCDEX2/]]
 
-Nếu các bạn muốn tìm hiểu sâu hơn thì có thể tham khảo [[http://mathcircle.berkeley.edu/original/Multiplicative.pdf]]
+Nếu các bạn muốn tìm hiểu sâu và đầy đủ hơn về các bài toán liên quan thì có thể tham khảo [[http://mathcircle.berkeley.edu/original/Multiplicative.pdf]]
