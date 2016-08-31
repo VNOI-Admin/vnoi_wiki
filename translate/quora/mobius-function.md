@@ -78,9 +78,11 @@ $f(n)=\sum_{d|n}{S_f(d)\*\mu (n/d)}$ - đây gọi là [Công thức nghịch đ
 
 # Ứng dụng
 
-## Tổng GCD
+## GCDEX
 
-**Bài toán:** Tính $G=\sum_{i=1}^{n} \sum_{j=i+1}^{n}gcd(i,j)$ (1).
+[Đề bài](http://www.spoj.com/problems/GCDEX/)
+
+Tính $G=\sum_{i=1}^{n} \sum_{j=i+1}^{n}gcd(i,j)$ (1).
 
 Dễ thấy cách tiếp cận đơn giản nhất cho bài toán này là duyệt tất cả các cặp $(i,j)$. Độ phức tạp của thuật toán này là $O(k\*n^2)$, với $k$ là số phép toán tối đa khi tính $gcd$. Chúng ta sẽ đi tìm một lời giải tối ưu hơn sử dụng những kiến thức ở trên.
 
