@@ -252,28 +252,29 @@ $P(A \cap B) = P(A|B) P(B)$
 
 Theo di truyền học ở động vật, mỗi cặp gen sẽ biểu thị một tính trạng. Mỗi gen có hai dạng cơ bản là trội hoặc lặn. Nếu trong cặp gen có gen trội thì tính trạng của gen trội này sẽ được thể hiện ra ngoài, ngược lại, trường hợp cả hai đều là gen lặn thì tính trạng của gen lặn này sẽ được thể hiện ra ngoài.
 
-Ngoài ra, một số gen còn có tính phụ thuộc. Nếu một gen phụ thuộc vào một gen khác thì gen thứ nhất chỉ có thể hiện tính trội nếu gen nó phụ thuộc vào cũng thể hiện tính trội và tương tự với thể hiện tính lặn. Bên cạnh đó, có những gen không phụ thuộc vào bất cứ gen nào khác và sẽ thể hiện như mô tả trong đoạn đầu. Đảm bảo không có trường hợp một gen phụ thuộc vào chính nó hay chuỗi phụ thuộc tạo thành một vòng (ví dụ I phụ thuộc J, J phụ thuộc K, K phụ thuộc I).
+Ngoài ra, một số gen còn có tính phụ thuộc. Nếu một gen phụ thuộc vào một gen khác thì gen đó chỉ có thể  thể hiện tính trội nếu gen nó phụ thuộc vào cũng thể hiện tính trội. Bên cạnh đó, có những gen không phụ thuộc vào bất cứ gen nào khác và tính trạng của nó sẽ được thể hiện như trong đoạn đầu. Đảm bảo không có trường hợp một gen phụ thuộc vào chính nó hay chuỗi phụ thuộc tạo thành một vòng (ví dụ I phụ thuộc J, J phụ thuộc K, K phụ thuộc I).
 
-Cho $n$ cặp gen của bố mẹ và một số thông tin về chúng. Với mỗi cặp gen, bố/mẹ sẽ cho con của chúng một trong hai gen. Ví dụ như mẹ có hai chuỗi gen là ‘ABC’ và ‘abc’ thì trong cặp đầu, con mẹ có thể cho con con ‘a’ hoặc ‘A’, trong cặp hai là ‘b’ hoặc ‘B’ và cứ thế. Tương tự con bố sẽ cho con con mỗi gen trong từng cặp như vậy. Sau cùng, con con sẽ có $n$ cặp gen từ bố và mẹ. Mỗi cặp đóng góp vào một giá trị gọi là chất lượng con giống (đánh giá dựa trên những tính trạng mong  muốn). Nếu cặp thứ $i$ thể hiện tính trội ta cộng `troi[i]` vào giá trị chất lượng, còn lặn thì cộng `lan[i]` vào 
+Cho $n$ cặp gen của cá thể bố mẹ và một số thông tin về chúng. Với mỗi cặp gen, cá thể bố/mẹ sẽ cho con của chúng một trong hai gen. Ví dụ như cá thể mẹ có hai chuỗi gen là ‘ABC’ và ‘abc’ thì với cặp gen đầu tiên, cá thể mẹ có thể cho cá thể con gen ‘a’ hoặc ‘A’, với cặp thứ hai là ‘b’ hoặc ‘B’ và cứ thế. Tương tự cá thể bố sẽ cho cá thể con một gen trong từng cặp như vậy. Sau cùng, cá thể con sẽ nhận được $n$ cặp gen từ bố và mẹ. 
+Chất lượng con giống của cá thể con được đánh giá dựa vào tính trạng thể hiện ở mỗi cặp gen. Nếu cặp gen thứ $i$ thể hiện tính trạng trội, chất lượng con giống sẽ được cộng thêm `troi[i]`, còn nếu là tính trạng lặn thì sẽ cộng thêm `lan[i]`.
 
-Trong bài tập này nhiệm vụ của bạn là dự đoán về chất lượng của một con giống.
+Nhiệm vụ của bạn là tính giá trị kì vọng của chất lượng con giống.
 
-Bạn sẽ được cung cấp 2 chuỗi gen thể hiện $n$ $(n \le 50)$ cặp gen của mẹ, 2 chuỗi gen thể hiện $n$ cặp gen của bố, 2 mảng $n$ số nguyên thể hiện tính phụ thuộc, `troi[i]`, va `lan[i]`. 
+Bạn sẽ được cung cấp 2 chuỗi gen thể hiện $n$ $(n \le 50)$ cặp gen của cá thể mẹ; 2 chuỗi gen thể hiện $n$ cặp gen của cá thể bố; 1 mảng $n$ số nguyên thể hiện quan hệ phụ thuộc giữa các gen, 2 mảng $n$ số nguyên `troi[i]` va `lan[i]` là giá trị công thêm cho chất lượng con giống gen thứ $i$ thể hiện tính trạng trội / lăn. 
 
-Từ những dữ liệu trên, bạn cần xuất ra dự đoán về giá trị chất lượng của con giống. 
+Từ những dữ liệu trên, bạn cần xuất ra giá trị kì vọng cần tìm.
 
-(ND: dự đoán được tính bằng lấy tổng của tất cả tính các giá trị có thể xảy ra với xác suất xảy ra. Ví dụ
+(ND: Giá trị kì vọng được tính bằng cách lấy tổng của tất cả tích các giá trị có thể xảy ra với xác suất để xảy ra giá trị đó. Ví dụ:
 
 - Giá trị chất lượng con giống: xác suất để đạt giá trị này
    - 17 : 0.5625
    - 13 : 0.1875
    - 9   : 0.25
 
-Vậy dự đoán giá trị chất lượng con giống sẽ là $17 \* 0.5625 + 13 \* 0.1875 + 9 \* 0.25 = 14.25$)
+Vậy giá trị kì vọng của chất lượng con giống sẽ là $17 \* 0.5625 + 13 \* 0.1875 + 9 \* 0.25 = 14.25$)
 
 ### Phân tích
 
-Bạn được yêu cầu dự đoán về chất lượng của một con vật, dựa trên mã gen mà chúng nhận từ bố mẹ. Dựa vào mô tả đề bài, có hai trường hợp có thể xảy ra: một gen không phụ thuộc vào gen khác, hoặc gen này có phụ thuộc.
+Dựa vào mô tả đề bài, có hai trường hợp có thể xảy ra: một gen không phụ thuộc vào gen khác, hoặc gen này có phụ thuộc.
 
 Trường hợp thứ nhất, gọi $p$ là xác suất mà gen này là gen trội. Có 4 trường hợp:
 
@@ -282,7 +283,7 @@ Trường hợp thứ nhất, gọi $p$ là xác suất mà gen này là gen tr�
 - Mỗi bố hoặc mẹ có một gen trội và người còn lại có duy nhất một gen lặn ($p = 0.25$)
 - Cả hai bố mẹ có hai gen lặn ($p = 0$)
 
-Giờ ta sẽ xem trường hợp khi một gen phụ thuộc vào một gen khác. Điều này làm bài toán trở nên phức tạp hơn do gen “bố mẹ” có thể lại phụ thuộc vào một gen khác và cứ thế... Để xác định được xác suất mà một gen phụ thộc là gen trội, ta sẽ kiểm tra biến cố mỗi gen trong chuỗi (bắt  đầu gen đang xé) là gen trội. Để gen hiện tại là gen trội, ta cần tất các biến cố như vậy xảy ra. Để thực hiện được điều này, ta lấy tích của xác suất của từng biến cố một trên chuỗi. Thuật toán thực hiện một cách đệ quy, và đây code hoàn chỉnh cho bài tập này:
+Trường hợp thứ hai, gen này có phụ thuộc vào một gen khác. Điều này làm bài toán trở nên phức tạp hơn do gen bị phụ thuộc có thể lại phụ thuộc vào một gen khác nữa và cứ thế... Do đó, để xác định được xác suất mà một gen phụ thộc là gen trội, ta cần xét xác suất để mỗi gen trong chuỗi phụ thuộc (bắt đầu từ gen đang xét) đều là gen trội. Xác suất để gen đang xét là gen trội sẽ bằng tích của tất cả các xác suất đó. Thuật toán thực hiện một cách đệ quy, và đây code hoàn chỉnh cho bài tập này:
 
 ```cpp
 int n, d[200];
@@ -342,12 +343,12 @@ Bài tương tự: [ProbabilityTree](http://community.topcoder.com/stat?c=proble
 
 # Thuật toán ngẫu nhiên
 
-Ta gọi những thuật toán ngẫu nhiên là những thuật toán mà nó dùng số được sinh ra một cách ngẫu nhiên để đưa ra quyết định trong quá trình chạy. Không giống như những thuật toán đã xác định trước, với mỗi dữ liệu vào xác định thì sẽ cho ra duy nhất một kết quả ra cũng như thời gian chạy, thuật toán ngẫu nhiên sẽ biểu hiện khác nhau trong mỗi lần chạy. Cơ bản, ta sẽ phân biện hai loại của thuật toán ngẫu nhiên:
+Ta gọi những thuật toán ngẫu nhiên là những thuật toán sử dụng hàm ngẫu nhiên để đưa ra quyết định trong quá trình chạy. Không giống như những thuật toán đã xác định trước, với mỗi dữ liệu vào xác định thì sẽ cho ra duy nhất một kết quả ra cũng như thời gian chạy, thuật toán ngẫu nhiên có thể biểu hiện khác nhau trong mỗi lần chạy. Về cơ bản, ta sẽ phân biệt hai loại của thuật toán ngẫu nhiên:
 
-1. Thuật toán Monte Carlo: có thể vài lần đưa ra kết quả sai - tuy nhiên xác suất của sai sót là chấp nhật được.
+1. Thuật toán Monte Carlo: có thể đưa ra kết quả sai - tuy nhiên xác suất của sai sót là chấp nhật được.
 2. Thuật toán Las Vegas: luôn cho kết quả đúng, và điểm khác biệt giữa các lần chạy với cùng một dữ liệu vào là thời gian chạy - ta sẽ nghiên cứu và sự phân phối theo xác suất của thời gian chạy.
 
-Tham khảo [tài liệu](http://www.ews.uiuc.edu/~kumar/lectures/lecture.10.3.pdf) từ College of Engineering at UIUC để xem các các thuật toán này hoạt động.
+Tham khảo [tài liệu](http://www.ews.uiuc.edu/~kumar/lectures/lecture.10.3.pdf) từ College of Engineering at UIUC để xem cách các thuật toán này hoạt động.
 
 Mục tiêu chính của thuật toán ngẫu nhiêu là để xây dựng một thuật toán nhanh hơn, cũng có thể đơn giản hơn. Khả năng đơn giản hóa một vấn đề chính là một lợi ích của thuật toán ngẫu nhiên. Nên không lấy làm lạ khi các thuật toán như vậy được đưa ra nghiên cứu rộng rãi và được ứng dụng để giải quyết các vấn đề một cách đơn giản hơn.
 
