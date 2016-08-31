@@ -271,6 +271,6 @@ def find_augment_from_to(int source, int sink):
 
 # 6. Nguồn tham khảo
 
-- **[Lý thuyết đồ thị](http://www.hnue.edu.vn/Portals/0/TeachingSubject/hongntcntt/07b6e3d3-6727-489d-a0c5-c81f5f24daa1ly-thuyet-do-thi---le-minh-hoang.pdf)\{:target="_blank"\} - DSAP Textbook** của thầy **_Lê Minh Hoàng_ - Đại học sư phạm Hà Nội**
+- **<a href="http://www.hnue.edu.vn/Portals/0/TeachingSubject/hongntcntt/07b6e3d3-6727-489d-a0c5-c81f5f24daa1ly-thuyet-do-thi---le-minh-hoang.pdf" target="_blank">Lý thuyết đồ thị</a> - DSAP Textbook** của thầy **_Lê Minh Hoàng_ - Đại học sư phạm Hà Nội**
 
-- [Topcoder - maximum flow section 1](https://www.topcoder.com/community/data-science/data-science-tutorials/maximum-flow-section-1/){:target="_blank"}
+- <a href="https://www.topcoder.com/community/data-science/data-science-tutorials/maximum-flow-section-1/" target="_blank">Topcoder - maximum flow section 1</a>
