@@ -573,6 +573,84 @@ Có bao nhiêu cách để đi từ góc trái trên của một bảng $n * m$ 
 
 Tính hệ số nhị thức có thể gây tràn số ở các bước trung gian, vì vậy ta nên tính hệ số nhị thức bằng công thức: $\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}$
 
+```cpp
+//Computing Binomial Coefficients i.e. N choose R using dynamic programming!
+/*
+using the recurrent formula	nCr=(n-1)C(r)+(n-1)C(r-1)
+we can use dynamic programming type approach to precompute all the binomial coefficients in O(n^2) and answer queries in O(1)
+use this method when n<=5000 only.
+also use this method when nCr%non-prime is required.
+*/
+//by Tanmay Chaudhari
+#ifdef _MSC_VER
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+//#pragma comment(linker, "/STACK:66777216")
+#include <bits/stdc++.h>
+using namespace std;
+
+#define si(a)				scanf("%d",&a)
+#define sl(a)				scanf("%lld",&a)
+#define pi(a)				printf("%d\n",a)
+#define pl(a)				printf("%lld\n",a)
+
+typedef long long			ll;
+typedef vector<int>			vi;
+typedef pair<int, int>		ii;
+typedef vector<vi>			vvi;
+typedef vector<ii>			vii;
+
+#define SET(a,b)			memset(a,b,sizeof(a))	
+#define forall(i,a,b)		for(int i=a; i<b; i++)
+#define forrev(i,a,b)		for(int i=a; i>=b; i--)
+#define forr(it,container)  for(auto it=container.begin(); it!=container.end(); it++)
+#define w(t)				int t;si(t);while(t--)
+
+#define TRACE
+
+#ifdef TRACE
+#define trace1(x)                cerr << #x << ": " << x << endl;
+#define trace2(x, y)             cerr << #x << ": " << x << " | " << #y << ": " << y << endl;
+#define trace3(x, y, z)          cerr << #x << ": " << x << " | " << #y << ": " << y << " | " << #z << ": " << z << endl;
+#define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl;
+#define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl;
+#define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl;
+
+#else
+
+#define trace1(x)
+#define trace2(x, y)
+#define trace3(x, y, z)
+#define trace4(a, b, c, d)	
+#define trace5(a, b, c, d, e)
+#define trace6(a, b, c, d, e, f)
+
+#endif
+
+const int MOD = 1e9 + 7;
+ll ncr[5005][5005];
+
+void precompute()
+{
+	int k;
+	for (int i = 0; i < 5001; i++)
+	{
+		ncr[i][0] = ncr[i][i] = 1;
+		k = i >> 1;
+		for (int j = 1; j < k + 1; j++)
+			ncr[i][j] = ncr[i][i - j] = (ncr[i - 1][j] + ncr[i - 1][j - 1]) % MOD;
+	}
+}
+
+int main()
+{
+	//freopen("input.txt","r",stdin);
+	//freopen("output.txt","w",stdout);
+	precompute();
+	pl(ncr[4892][231]);
+	return 0;
+}
+```
 ## Một vài dãy số đếm khác
 
 ### Dãy số Catalan
