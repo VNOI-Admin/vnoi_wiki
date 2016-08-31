@@ -117,7 +117,7 @@ def increase_flow(int minCapacity, int source, int sink)
     # khởi tạo minCapacity vô cùng lớn
     minCapacity = inf
 
-    # tìm giá trị lớn nhất có thể tăng cho đường tăng luồng tìm được
+    # lấy khả năng thông qua nhỏ nhất trên đường tăng luồng để tăng luồng
     u = sink
     while u != source:
         previousVertex = trace[u]
