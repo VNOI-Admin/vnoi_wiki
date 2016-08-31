@@ -2,15 +2,19 @@
 
 [[_TOC_]]
 
+Trong bài viết này mình sẽ giới thiệu với các bạn một chủ đề vô cùng thú vị trong số học - Hàm nghịch đảo Mobius, cũng như cách ứng dụng để giải quyết một số bài toán.
+
 # Các định nghĩa
+
+Trước khi bắt đầu, các bạn hãy ghi nhớ một số định nghĩa sau đây để việc tiếp thu những kiến thức ở dưới được dễ dàng hơn.
 
 Một hàm $f(n): N \rightarrow C$ được coi là hàm nhân tính nếu với mọi cặp số nguyên tố cùng nhau $n, m \in N$ ta có $f(mn)=f(m)f(n)$
 
-Một số $n$ phân tích ra thừa số nguyên tố sẽ có dạng $n={p_1}^{a_1}\*{p_2}^{a_2}\*{p_3}^{a_3}\*...\*{p_r}^{a_r}$
+Một số $n$ phân tích ra thừa số nguyên tố sẽ có dạng $n={p_1}^{a_1}\*{p_2}^{a_2}\*{p_3}^{a_3}\*...\*{p_r}^{a_r}$,. với $p_i$ là ước nguyên tố của $n$.
 
 Ký hiệu $a|b$ có nghĩa là $a$ là ước của $b$, hay $b$ chia hết cho $a$
 
-Hàm định danh **Dirichlet** $e(n)$:
+**Hàm định danh Dirichlet** $e(n)$ (Dirichlet identity function):
 
 - $e(n)=1$ với $n=1$
 
@@ -20,26 +24,28 @@ $I(n)=1$ với mọi $n \in N$
 
 $id(n)=n$ với mọi $n \in N$
 
-Hàm **Mobius** $\mu(n)$:
+**Hàm Mobius** $\mu(n)$:
 
 - $\mu(1)=1$
 
 - $\mu(n)=0$ nếu tồn tại $a_i>1$
 
-- $\mu(n)=(-1)^r$ nếu $n={p_1}\*{p_2}\*{p_3}\*...\*{p_r}$, hay $a_i \leq 1$
+- $\mu(n)=(-1)^r$ nếu $n={p_1}\*{p_2}\*{p_3}\*...\*{p_r}$, hay $a_i = 1$ với mọi $i$
 
 - Để tính được $\mu (n)$ ta có thể sử dụng [Sàng](http://codeforces.com/blog/entry/8989).
 
 Vỡi mỗi $f(n)$, ta gọi hàm tổng $S_f(n)$ là tổng các $f(d)$ với $d$ là ước của $n$: $S_f(n)=\sum_{d|n}{f(d)}$
 
-**Phi hàm Euler** $\phi(n)$: là số lượng các số tự nhiên nhỏ hơn hoặc bằng $n$ và nguyên tố cùng nhau với $n$ (hay số lượng các số $d: 1 \leq d \leq n,gcd(d,n)=1$).
+**Phi hàm Euler** $\phi(n) (Euler totient function)$: số lượng các số tự nhiên nhỏ hơn hoặc bằng $n$ và nguyên tố cùng nhau với $n$ (hay số lượng các số $d: 1 \leq d \leq n,gcd(d,n)=1$).
 
-# Công thức nghịch đảo Mobius
+# Công thức nghịch đảo Mobius (Möbius inversion formula)
 
 Ta định nghĩa Dirichlet Convolution là một phép toán với 2 hàm $f(n)$ và $g(n)$:
 
 $f \circ g(n)=\sum_{d_1\*d_2=n}{f(d_1)\*g(d_2)}$
+
 hay
+
 $f \circ g(n)=\sum_{d|n}{f(d)\*g(n/d)}$
 
 Có thễ dễ dàng chứng minh phép toán này có tính giao hoán và kết hợp:
@@ -64,15 +70,15 @@ $S_f \circ \mu(n)=(f \circ I)\circ \mu (n)=f\circ (I\circ\mu)(n)=f\circ e(n)=f(n
 
 hay
 
-$f(n)=\sum_{d|n}{S_f(d)\*\mu (n/d)}$ - đây gọi là [Công thức nghịch đảo Mobius](https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
+$f(n)=\sum_{d|n}{S_f(d)\*\mu (n/d)}$ - đây gọi là [Công thức nghịch đảo Mobius (https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
 
 # Ứng dụng
 
-## Ví dụ
+## Tổng GCD
 
 **Bài toán:** Tính $G=\sum_{i=1}^{n} \sum_{j=i+1}^{n}gcd(i,j)$ (1).
 
-Dễ thấy cách tiếp cận đơn giản cho bài toán này là duyệt tất cả các cặp $(i,j)$. Độ phức tạp của thuật toán này là $O(k\*n^2)$, với $k$ là số phép toán tối đa khi tính $gcd$. Chúng ta sẽ đi tìm một lời giải tối ưu hơn sử dụng những kiến thức ở trên.
+Dễ thấy cách tiếp cận đơn giản nhất cho bài toán này là duyệt tất cả các cặp $(i,j)$. Độ phức tạp của thuật toán này là $O(k\*n^2)$, với $k$ là số phép toán tối đa khi tính $gcd$. Chúng ta sẽ đi tìm một lời giải tối ưu hơn sử dụng những kiến thức ở trên.
 
 1. Nhận xét rằng $1 \leq gcd(i,j) \leq n$ với mọi $1 \leq i < j \leq n$.
 
@@ -88,7 +94,7 @@ Dễ thấy cách tiếp cận đơn giản cho bài toán này là duyệt tấ
 
 3. Giờ chúng ta sẽ tìm cách phân tích $h(n)$ thành hàm tổng của hàm $f(n)$ nào đó, tức là $h(n)=S_f(n)=\sum_{d|n}f(d)$.
 
-	Ứng dụng công thức nghịch đảo Mobius, ta có thể tìm được $f(n)=\sum_{d|n}{h(d)\*\mu (n/d)}$. Một kết quả rất đẹp trong bài toán này là $f(n)=\phi(n)$, việc chứng minh xin nhường bạn đọc.
+	Ứng dụng công thức nghịch đảo Mobius, bạn có thể tìm được $f(n)=\sum_{d|n}{h(d)\*\mu (n/d)}$. Một kết quả rất đẹp trong bài toán này là $f(n)=\phi(n)$, việc chứng minh mình xin nhường bạn đọc.
 
 	Khi đã biết được $h(n)$ và $\mu(n)$, ta có thể tính $f(n)$ bằng sàng như sau:
 
@@ -114,7 +120,7 @@ for (int i = 1; i <= N; i++) {
 
 	Dễ dàng chứng minh là chỉ có $\sqrt n$ giá trị $n/d$ nên ta có thể duyệt từng giá trị của $n/d$ và cộng $n/d\*(n/d-1)/2\*\sum_{k:n/k=n/d}f(k)$ vào kết quả. Bằng tổng tiền tố các bạn có thể truy vấn được $\sum_{k:n/k=n/d}f(k)$ trong $O(1)$ và $G$ trong $O(\sqrt n)$.
 
-Như vậy thuật toán trên có độ phức tạp $O(n\*logn+\sqrt n \*T)$ với $T$ là số test.
+Như vậy thuật toán trên có độ phức tạp $O(N\*logN+\sqrt N \*T)$ với $T$ là số test.
 
 ## Bài toán tổng quát
 
@@ -157,3 +163,5 @@ Ta đưa đề bài này về bài toán: tính $G=\sum_{i=1}^{n}\sum_{j=i+1}^{n
 - [[http://www.spoj.com/problems/LCMSUM/]]
 
 - [[http://www.spoj.com/problems/GCDEX2/]]
+
+Nếu các bạn muốn tìm hiểu sâu hơn thì có thể tham khảo [[http://mathcircle.berkeley.edu/original/Multiplicative.pdf]]
