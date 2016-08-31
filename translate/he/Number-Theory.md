@@ -1046,3 +1046,15 @@ int solve (int n, int r) {
 [Hackerearth - Chandu and his Interns](https://www.hackerearth.com/problem/algorithm/chandu-and-his-interns/)
 
 [Hackerearth - The Confused Monk](https://www.hackerearth.com/problem/algorithm/the-confused-monk/)
+
+## Các bài tập về tổ hợp
+
+[Hackerearth - Utkarsh and Jumps](https://www.hackerearth.com/problem/algorithm/utkarsh-and-jumps/)
+
+[Hackerearth - Ankit and Race Team](https://www.hackerearth.com/problem/algorithm/ankit-and-race-team-10/description/)
+
+[Hackerearth - Tic Tac Toe](https://www.hackerearth.com/problem/algorithm/tic-tac-toe/)
+
+[Hackerearth - Roy and Little Mario](https://www.hackerearth.com/problem/algorithm/roy-and-little-mario-4/description/)
+
+[Hackerearth - So Random](https://www.hackerearth.com/problem/algorithm/so-random/)
