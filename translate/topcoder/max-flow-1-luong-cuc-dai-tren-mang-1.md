@@ -120,16 +120,16 @@ def increase_flow(int minCapacity, int source, int sink)
     # tìm giá trị lớn nhất có thể tăng cho đường tăng luồng tìm được
     u = sink
     while u != source:
-        from = trace[u]
-        minCapacity = min(minCapacity, c[from][u]-f[from][u])
-        u = from
+        previousVertex = trace[u]
+        minCapacity = min(minCapacity, c[previousVertex][u]-f[previousVertex][u])
+        u = previousVertex
 
     # tăng luồng
     while sink != source:
-        from = trace[sink]
-        f[from][sink] += minCapacity
-        f[sink][from] -= minCapacity
-        sink = from
+        previousVertex = trace[sink]
+        f[previousVertex][sink] += minCapacity
+        f[sink][previousVertex] -= minCapacity
+        sink = previousVertex
 
 # Trong khi vẫn tồn tại đường tăng luồng
 while find_augment_from_to(s,t):
