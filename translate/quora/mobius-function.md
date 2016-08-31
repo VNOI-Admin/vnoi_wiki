@@ -36,7 +36,7 @@ $id(n)=n$ với mọi $n \in N$
 
 Vỡi mỗi $f(n)$, ta gọi hàm tổng $S_f(n)$ là tổng các $f(d)$ với $d$ là ước của $n$: $S_f(n)=\sum_{d|n}{f(d)}$
 
-**Phi hàm Euler** $\phi(n) (Euler totient function)$: số lượng các số tự nhiên nhỏ hơn hoặc bằng $n$ và nguyên tố cùng nhau với $n$ (hay số lượng các số $d: 1 \leq d \leq n,gcd(d,n)=1$).
+**Phi hàm Euler** $\phi(n)$ (Euler totient function): số lượng các số tự nhiên nhỏ hơn hoặc bằng $n$ và nguyên tố cùng nhau với $n$ (hay số lượng các số $d: 1 \leq d \leq n,gcd(d,n)=1$).
 
 # Công thức nghịch đảo Mobius (Möbius inversion formula)
 
