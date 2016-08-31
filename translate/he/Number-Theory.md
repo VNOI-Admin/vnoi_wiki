@@ -667,8 +667,15 @@ Sử dụng toán học, ta định nghĩa $P(B|A) = \frac{P(AB)}{P(A)}$.
 Khi ta phải làm việc với nhiều biến cố, có một vài quy tắc ta phải tuân theo khi tính xác suất của các biến cố này. Các quy tắc này đều phụ thuộc rất lớn vào việc các biến cố này có độc lập với nhau hay không. Đầu tiên, cho ba biến cố $A, B, C$, biến cố $S :$ "$A$ hoặc $B$ hoặc $C$ xảy ra" được kí hiệu là $A \cup B \cup C$, có xác suất $P(S) = P(A \cup B \cup C)$.
 
 ### Quy tắc nhân xác suất ($AB$)
-$AB$ có nghĩa là giao của hai biến cố $A$ và $B$, và trong xác suất, $AB$ là biến cố "Cả $A$ và $B$ cùng xảy ra". 
+$AB$ có nghĩa là giao của hai biến cố $A$ và $B$, và trong xác suất, $AB$ là biến cố "Cả $A$ và $B$ cùng xảy ra". Khi ta sử dụng từ "và", ta nghĩ đến phép nhân, vì vậy "$A$ và $B$" có thể được viết dưới dạng $A \times B$ và $A.B$.
 
+Nếu $A$ và $B$ là hai biến cố phụ thuộc, xác suất của biến cố $AB$ được tính bằng công thức: $P(AB) = P(A \cup B) - (P(\text{chỉ } A) + P(\text{chỉ } B))$ 
+
+Nếu $A$ và $B$ là hai biến cố phụ thuộc, xác suất của biến cố $AB$ được tính bằng công thức: $P(AB) = P(A).P(B)$.
+
+Do đó, xác suất có điều kiện của hai biến cố độc lập có thể được tính bằng công thức: $P(B|A) = \frac{P(AB)}{P(A)} \Leftrightarrow P(B|A) = \frac{P(A).P(B)}{P(A)} \Leftrightarrow P(B|A) = P(B)$.
+
+Công thức trên phù hợp với định nghĩa xác suất có điều kiện, biến cố $A$ có xảy ra hay không không làm ảnh hưởng đến xác suất xảy ra biến cố $B$, do đó xác suất biến cố $B$ xảy ra biết biến cố $A$ xảy ra bằng xác suất xảy ra biến cố $B$.
 
 # Bài tập áp dụng
 
