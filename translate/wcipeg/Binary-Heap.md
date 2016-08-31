@@ -2,7 +2,10 @@
 
 **Biên soạn:** Đỗ Việt Anh (lion_it)
 
+**Email:** dovietanh.95@gmail.com
+
 **Nguồn:** [wcipeg.com/wiki](http://wcipeg.com/wiki/Binary_heap)
+
 [[_TOC_]]
 
 # 0. Kiến thức cần biết trước
