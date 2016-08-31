@@ -182,9 +182,11 @@ Như đã nói $O(|f^{\*}|.E)$ là độ phức tạp của thuật toán Ford-F
 
 ### 3.6.1 Sử dụng thuật toán thuật toán tìm kiếm theo chiều sâu(Deep First Search-DFS)
 
-Thuật toán này có ưu điểm là dễ dàng cài đặt nhưng thông thường số lần tăng luồng là khá lớn. Code đã được trình bày ở cuối mục 3.4
+Thuật toán này có ưu điểm là dễ dàng cài đặt nhưng thông thường số lần tăng luồng là khá lớn. Code đã được trình bày ở cuối mục 3.4. Mặc dù cài đặt có đơn giản nhưng sẽ có thời gian chạy thực tế lớn hơn thuật toán BFS dưới đây.
 
 ### 3.6.2 Sử dụng thuật toán tìm kiếm theo chiều rộng(Breadth First Search-BFS)
+
+mặc dù dùng bfs để tìm đường mở có độ phức tạp lý thuyết bằng với khi tìm đường tăng luồng bằng dfs nhưng thuật toán này trong thực tế lại nhanh hơn nhiều độ phức tạp lý thuyết.
 
 ```python
 def bfs(int source, int sink):
@@ -221,7 +223,7 @@ def find_augment_from_to(int source, int sink):
 
 ### 3.6.3 Sử dụng thuật toán tìm kiếm ưu tiên(Priority First Search-PFS)
 
-Thuật toán này tìm ra đường mở có thể tăng luồng lớn nhất trong tất cả các đường mở và khá giống với thuật toán Dijkstra tìm đường đi ngắn nhất vì cùng sử dụng hàng đợi ưu tiên priority_queue
+Thuật toán này tìm ra đường mở có thể tăng luồng lớn nhất trong tất cả các đường mở và khá giống với thuật toán Dijkstra tìm đường đi ngắn nhất vì cùng sử dụng hàng đợi ưu tiên priority_queue, nó được chứng minh có độ phức tạp là $E * logU$ với U là khả năng thông qua lớn nhất và độ phức tạp của hàng đợi ưu tiên (priority_queue) là $E*logE$ nhưng cũng như khi dùng bfs để tìm đường mở pfs cũng chạy nhanh hơn lý thuyết rất nhiều
 
 ```python
 def pfs(int source, int sink):
