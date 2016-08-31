@@ -677,6 +677,52 @@ Do đó, xác suất có điều kiện của hai biến cố độc lập có t
 
 Công thức trên phù hợp với định nghĩa xác suất có điều kiện, biến cố $A$ có xảy ra hay không không làm ảnh hưởng đến xác suất xảy ra biến cố $B$, do đó xác suất biến cố $B$ xảy ra biết biến cố $A$ xảy ra bằng xác suất xảy ra biến cố $B$.
 
+### Quy tắc cộng xác suất ($A \cup B$)
+
+Trong xác suất, ta liên tưởng phép cộng như từ "hoặc". Gọi biến cố $A \cup B$ là biến cố "$A$ hoặc $B$ xảy ra", xác suất của biến cố $A \cup B$ được tính bằng công thức: $P(A \cup B) = P(A) + P(B) - P(AB)$ do $|A \cup B| = |A| + |B| - |A \cap B|$.
+
+Nhưng hãy nhớ lại phần lí thuyết tập hợp và cách chúng ta định nghĩa không gian mẫu ở trên, gọi $C = (A \cap B)'$, khi đó ta có $P(A \cup B) = 1 - P(C)$.
+
+## Biến cố xung khắc
+
+Hai biến cố được gọi là xung khắc hoặc rời nhau nếu không có một kết quả nào của phép thử làm chúng cùng lúc xảy ra. Nếu $A$ và $B$ là hai biến cố xung khắc, thì $A \cap B = \varnothing $
+
+Nếu ba biến cố $A$, $B$, $C$ xung khắc với nhau, ta cũng có $A \cap B \cap C = \varnothing$.
+
+![](https://d320jcjashajb2.cloudfront.net/media/uploads/eba740d.gif)
+
+## Quy tắc tính xác suất của các biến cố xung khắc
+
+### Quy tắc nhân xác suất
+
+Từ định nghĩa các biến cố xung khắc, dễ dàng có được $P(AB) = 0$.
+
+### Quy tắc cộng xác suất
+
+Như chúng ta đã định nghĩa ở trên, công thức cộng xác suất hai biến cố xung khắc có dạng: $P(A \cup B) = P(A) + P(B)$.
+
+### Quy tắc trừ xác suất
+
+Từ quy tắc cộng, ta suy ra được quy tắc trừ hai biến cố xung khắc: $P(A \cup B)' = 1 - P(A) - P(B)$.
+
+## Xác suất có điều kiện của hai biến cố xung khắc
+
+Ta đã định nghĩa xác suất có điều kiện bằng công thức sau: $P(B|A) = \frac{P(AB)}{P(A)}$
+
+Mà với hai biến cố xung khắc $A$ và $B$, ta lại có: $P(AB) = 0$
+
+Do đó $P(B|A) = \frac{0}{P(A)} = 0$.
+
+## Định lí Bayes
+
+Trong xác suất và thống kê, định lí Bayes mô tả xác suất của một biến cố dựa trên các biến cố có liên quan đến biến cố đó.
+
+Công thức của định lí Bayes như sau: $P(A|B) = \frac{P(A).P(B|A)}{P(B)}$, với $A$, $B$ là hai biến cố, $P(A)$, $P(B)$ là xác suất của hai biến cố, $P(A|B)$ là xác suất có điều kiện: xác suất của $A$ biết $B$ xảy ra, $P(B|A)$ là xác suất của $B$ biết $A$ xảy ra.
+
+### Dạng mở rộng
+
+
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
