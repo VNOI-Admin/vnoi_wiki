@@ -990,6 +990,53 @@ $(1-x)^k = \binom{k}{0} - \binom{k}{1}.x + \binom{k}{2}.x^2 - \binom{k}{3}.x^3 +
 
 Ta thấy với $x=1$, $(1-x)^k = T-1$, do đó $T = (1-1)^k+1 = 1$ hay điều phải chứng minh. 
 
+## Ứng dụng: Đếm số số nguyên tố cùng nhau với một số cho trước trong một đoạn
+
+Đây là một bài toán dễ dựa trên công thức bao hàm - loại trừ.
+
+Cho hai số nguyên $n$ và $r$, đếm số số nguyên tố cùng nhau với $n$ trong đoạn $[1;r]$.
+
+Thuật toán: Tìm phần bù: Đếm số số không nguyên tố cùng nhau với $n$.
+
+Xét các ước nguyên tố của $n$, đánh số chúng từ 1 đến $k$.
+
+Ta có thể tính số số trong đoạn $[1;r]$ chia hết cho $p_i$ bằng công thức $[\frac{r}{p_i}]$.
+
+Tuy vậy, nếu ta chỉ tính tổng tất cả các số này, ta sẽ ra kết qủa sai. Đó là do một số số có thể chia hết cho nhiều $p_i$. Vì vậy ta cần sử dụng đến công thức bao hàm - loại trừ.
+
+```cpp
+int solve (int n, int r) {
+ vector<int> p;
+	for (int i=2; i*i<=n; ++i)
+		if (n % i == 0) {
+ p.push_back (i);
+			while (n % i == 0)
+ n /= i;
+		}
+	if (n > 1)
+ p.push_back (n);
+ 
+	int sum = 0;
+	for (int msk=1; msk<(1<<p.size()); ++msk) {
+		int mult = 1,
+ bits = 0;
+		for (int i=0; i<(int)p.size(); ++i)
+			if (msk & (1<<i)) {
+				++bits;
+ mult *= p[i];
+			}
+ 
+		int cur = r / mult;
+		if (bits % 2 == 1)
+ sum += cur;
+		else
+ sum -= cur;
+	}
+ 
+	return r - sum;
+}
+```  
+
 # Bài tập áp dụng
 
 ## Các bài tập về đồng dư thức
