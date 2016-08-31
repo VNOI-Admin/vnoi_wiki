@@ -10,7 +10,7 @@ Trước khi bắt đầu, các bạn hãy ghi nhớ một số định nghĩa s
 
 Một hàm $f(n): N \rightarrow C$ được coi là hàm nhân tính nếu với mọi cặp số nguyên tố cùng nhau $n, m \in N$ ta có $f(mn)=f(m)f(n)$
 
-Một số $n$ phân tích ra thừa số nguyên tố sẽ có dạng $n={p_1}^{a_1}\*{p_2}^{a_2}\*{p_3}^{a_3}\*...\*{p_r}^{a_r}$,. với $p_i$ là ước nguyên tố của $n$.
+Một số $n$ phân tích ra thừa số nguyên tố sẽ có dạng $n={p_1}^{a_1}\*{p_2}^{a_2}\*{p_3}^{a_3}\*...\*{p_r}^{a_r}$, với $p_i$ là ước nguyên tố của $n$.
 
 Ký hiệu $a|b$ có nghĩa là $a$ là ước của $b$, hay $b$ chia hết cho $a$
 
@@ -70,7 +70,7 @@ $S_f \circ \mu(n)=(f \circ I)\circ \mu (n)=f\circ (I\circ\mu)(n)=f\circ e(n)=f(n
 
 hay
 
-$f(n)=\sum_{d|n}{S_f(d)\*\mu (n/d)}$ - đây gọi là [Công thức nghịch đảo Mobius (https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
+$f(n)=\sum_{d|n}{S_f(d)\*\mu (n/d)}$ - đây gọi là [Công thức nghịch đảo Mobius](https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
 
 # Ứng dụng
 
