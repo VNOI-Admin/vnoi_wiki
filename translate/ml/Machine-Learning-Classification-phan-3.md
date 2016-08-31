@@ -20,5 +20,11 @@ Hãy trở lại câu chuyện của chúng ta với một ví dụ đơn giản
 (chú thích trên hình bị sai: 50cm thay vì 50kg)
 Ví dụ, bạn bắt gặp một con vật mà bạn không biết nó thuộc chủng loại gì. Câu hỏi đầu tiên là: "Nó có lông không?". Giả sử nó có lông, chúng ta đi tiếp sang nhánh bên phải. Câu hỏi tiếp theo là: "Nó cao bao nhiêu?". Giả sử con vật của chúng ta chỉ cao 30cm. Điều này có nghĩa là chúng ta sẽ đi theo nhánh bên trái. Khi đó, vì chúng ta đã đi đến nút lá, chúng ta biết rằng con vật mà mình đang xét chính là con gà.
 
-Bây giờ chắc bạn đã hiểu phần nào về cây quyết định, hãy trở lại với thuật toán *Random Forest*: 
+Bây giờ chắc bạn đã hiểu phần nào về cây quyết định, hãy trở lại với thuật toán *Random Forest*: Ý tưởng phía sau *Random Forest* khá đơn giản. Thuật toán này sinh một số cây quyết định (thường là vài trăm) và sử dụng chúng. Các câu hỏi của cây quyết định sẽ là câu hỏi về các thuộc tính. Ví dụ: "Cánh hoa có dài hơn 1.7cm hay không?". Câu giá trị ở nút lá sẽ là các lớp (*class*). Sử dụng hàng trăm cây quyết định là bất khả thi với con người, nhưng máy tính có thể làm việc này tương đối dễ dàng.
+
+Đến lúc này chúng ta đã tìm hiểu cách sử dụng một cây quyết định, nhưng vấn đề là làm thế nào để tạo ra nó.
+
+Có hai giải pháp. Cách thứ nhất là hỏi chuyên gia (ví dụ như một nhà nhân chủng học với bài toán phân biệt chủng loại của con vật). Nghe có vẻ hấp dẫn, nhưng không phải khi nào bạn cũng có thể tiếp cận được với chuyên gia trong bài toán của mình. Hơn nữa, bạn có thể sẽ ngạc nhiên rằng ngay cả những chuyên gia giỏi nhất cũng gặp khó khăn trong việc viết ra những kiến thức của mình. Ngay cả khi bạn tìm được một chuyên gia có khả năng đó thì chắc chắn sẽ có những thứ mà họ không biết tới. Ví dụ, nhà nhân chủng học của chúng ta có thể quên mất rằng con đà điểu có thể nhỏ hơn 50kg.
+
+Thay vì sử dụng chuyên gia, các nhà nghiên cứu sử dụng phương án thứ hai: tạo ra một thuật toán tự sinh cây quyết định. Điều kiện duy nhất là phải có vài ví dụ để máy tính có thể tham chiếu. Trong *Iris dataset*, những ví dụ này chính là những bông hoa mà chúng ta đã biết chủng loại. 
 
