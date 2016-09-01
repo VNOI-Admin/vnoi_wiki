@@ -12,6 +12,8 @@ Phép biến đổi Fourier (*Fourier Transform*) là một trong số những p
 
 Trong khi phiên bản nguyên thủy có lịch sử hoành tráng như vậy, phép biến đổi Fourier nhanh, dù được cho là ra đời trước, lại được quan tâm chậm hơn nhiều. Người ta cho rằng những ý tưởng đầu tiên về biến đổi Fourier nhanh được phát triển bởi nhà toán học Đức **Carl Friedrich Gauss** (1777 - 1855) vào năm 1805 khi ông cố gắng xác định quỹ đạo của các thiên thạch [3], nhưng ông không công bố kết quả của mình. Mối liên hệ giữa Gauss và phép biến đổi Fourier nhanh chỉ được phát hiện khi các công trình của ông được tập hợp và công bố vào năm 1866. Mặc dù vậy, vào thời đó không có ai quan tâm tới công trình này vì lý thuyết độ phức tạp tính toán chưa phát triển (mãi tới năm 1936 **Alan Turing** mới phát triển mô hình tính toán đầu tiên, và phải tới năm 1965 thì lịch sử ngành nghiên cứu về độ phức tạp tính toán mới bắt đầu với công trình của **Hartmanis** và **Stearns** [4]). Cũng trong năm 1965 hai nhà toán học trong ban cố vấn khoa học của tổng thống Mỹ Kennedy là **James Cooley** và **John Tukey** đã tự tìm ra phép biến đổi nhanh Fourier trong khi thiết kế hệ thống phát hiện các vụ thử hạt nhân của chính quyền Xô Viết [3]. Kể từ thời điểm đó phép biến đổi nhanh Fourier mới chính thức được quan tâm và nghiên cứu ứng dụng trong rất nhiều các lĩnh vực nghiên cứu khác nhau của vật lý, sinh học, điện tử, y tế, điều khiển học...
 
+Nghiên cứu chỉ ra rằng mắt và tai người, động vật có "cài đặt" sẵn thuật toán biến đổi Fourier để giúp chúng ta nhìn và nghe, vì vậy nó được GS **Ronald Coifman** của đại học Yale gọi là *Phương pháp phân tích dữ liệu của tự nhiên* ("Nature's way of analyzing data") [1].
+
 # Phép nhân hai đa thức
 
 Cho hai đa thức $p(x), q(x)$ có bậc $d, e$ như sau:
@@ -301,6 +303,70 @@ void inverse_fft_slow(int n, vb& a)
 
 **Khử đệ quy:**
 
+Để khử đệ quy thì ta cần phân tích mối liên hệ giữa các lời gọi đệ quy và xem các phần tử được tính theo thứ tự nào. Hình vẽ sau đây minh họa trường hợp $n = 8$:
+
+[[/uploads/fft_tree.png|alt=RecursionTree]]
+
+Màu đỏ là các nhóm chẵn và màu xanh là các nhóm lẻ. Các bạn hãy dựa vào tính chẵn lẻ và để ý các số nhị phân $0, 1$ trong hình vẽ để tự viết chương trình FFT khử đệ quy hoặc giải thích tính đúng đắn của đoạn mã sau (đây là hàm FFT đã được dùng để giải bài POST2)
+
+```cpp
+#define PI acos(-1)
+const int NBIT = 18;
+int revBit(int nbit, int mask)
+{
+    int i, j;
+    for(i = 0, j = nbit - 1; i <= j; ++i, --j)
+    {
+        if( (mask >> i & 1) != (mask >> j & 1) )
+        {
+            mask ^= 1<<i;
+            mask ^= 1<<j;
+        }
+    }
+    return mask;
+}
+
+void fft(int n, vb& a)
+{
+    if(n == 1)
+        return;
+
+    int i, j, k;
+    for(i = 0; i < n; ++i)
+    {
+        j = revBit(NBIT, i);
+        if(i < j) swap(a[i], a[j]);
+    }
+    vb anext(n);
+
+    for(int step = 1; step < n; step <<= 1)
+    {
+        double ang = PI / step ; //2*PI/(step * 2);
+        base w (1),  wn (cos(ang), sin(ang));
+
+        for(i = 0; i < step; ++i)
+        {
+            W[i] = w;
+            w *= wn;
+        }
+
+        int start_even = 0;
+        int start_odd  = start_even + step;
+        while(start_even < n)
+        {
+            for(i = 0; i < step; ++i)
+            {
+                anext[start_even + i]        = a[start_even + i] + W[i] * a[start_odd + i];
+                anext[start_even + i + step] = a[start_even + i] - W[i] * a[start_odd + i];
+            }
+            start_even += 2*step;
+            start_odd   = start_even + step;
+        }
+        for(i = 0; i < n; ++i)
+            a[i] = anext[i];
+    }
+}
+```
 
 # Bài tập luyện tập
 - [VOJ POST2](http://vn.spoj.com/problems/POST2/)
