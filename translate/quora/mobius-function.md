@@ -6,6 +6,8 @@ Nguồn: [Quora](https://www.quora.com/profile/Surya-Kiran/Posts/A-Dance-with-Mo
 
 Trong bài viết này mình sẽ giới thiệu với các bạn một chủ đề vô cùng thú vị trong số học - Hàm nghịch đảo Mobius, cũng như cách ứng dụng để giải quyết một số bài toán.
 
+Một lời khuyên dành cho bạn đọc là các bạn nên tự chứng minh những công thức được đề cập để hiểu rõ hơn bản chất bài toán.
+
 # Các định nghĩa
 
 Trước khi bắt đầu, các bạn hãy ghi nhớ một số định nghĩa sau đây để việc tiếp thu những kiến thức ở dưới được dễ dàng hơn.
