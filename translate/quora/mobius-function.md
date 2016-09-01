@@ -12,7 +12,7 @@ Một lời khuyên dành cho bạn đọc là các bạn nên tự chứng minh
 
 Trước khi bắt đầu, các bạn hãy ghi nhớ một số định nghĩa sau đây để việc tiếp thu những kiến thức ở dưới được dễ dàng hơn.
 
-Một hàm $f(n): N \rightarrow C$ được coi là hàm nhân tính nếu với mọi cặp số nguyên tố cùng nhau $n, m \in N$ ta có $f(mn)=f(m)f(n)$
+Một hàm $f(n): N \rightarrow C$ được coi là **hàm nhân tính** ([Multiplicative Function](https://crypto.stanford.edu/pbc/notes/numbertheory/mult.html))  nếu với mọi cặp số nguyên tố cùng nhau $n, m \in N$ ta có $f(mn)=f(m)f(n)$
 
 Một số $n$ phân tích ra thừa số nguyên tố sẽ có dạng $n={p_1}^{a_1}\*{p_2}^{a_2}\*{p_3}^{a_3}\*...\*{p_r}^{a_r}$, với $p_i$ là ước nguyên tố của $n$.
 
