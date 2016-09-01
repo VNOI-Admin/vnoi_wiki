@@ -8,7 +8,7 @@ Trong bài này chúng ta sẽ tìm hiểu về thuật toán nhân nhanh hai đ
 
 # Vài nét lịch sử
 
-Phép biến đổi Fourier (*Fourier Transform*) là một trong số những phát kiến toán học đặc sắc có lịch sử hào hùng, gắn liền với những phát kiến khoa học và chiến tranh quân sự ở thế kỷ 19 và 20. **Joseph Fourier** (1768-1830) là một nhà khoa học làm việc trong đội quân thám hiểm Ai Cập của Napoleon từ năm 1798. Sau khi cách mạng Pháp kết thúc năm 1799, Fourier trở về Pháp và tham gia xây dựng lại đất nước trong vai trò một giáo sư của đại học École Polytechnique. Trong quá trình làm việc với các công trình xây dựng cầu đường và đóng tàu, ông đặc biệt quan tâm tới bài toán mô tả quá trình truyền dẫn nhiệt trong kim loại, điều dẫn tới sự ra đời của phép biến đổi Fourier liên tục vào năm 1807 trong một báo cáo của ông tại viện hoàng gia Paris. Trong đó, ông mô tả mọi hàm số, kể cả các hàm số không liên tục đều có thể được biểu diễn dưới dạng tổng của một số vô hạn các hàm số lượng giác. Phát biểu này của Fourier gây chấn động và ấn tượng tới mức nhà toán học Pháp cùng thời là **Lagrange** cho rằng việc nghĩ ra phát kiến này là *gần như không thể* ("nothing short of impossible") [1]. Trong hơn một trăm năm sau đó phép biến đổi Fourier trở thành một đối tượng nghiên cứu phổ và liện tục được phát triển, hoàn thiện bởi vô số các tên tuổi lớn của toán lý thuyết [2].
+Phép biến đổi Fourier (*Fourier Transform*) là một trong số những phát kiến toán học đặc sắc có lịch sử hào hùng, gắn liền với những phát kiến khoa học và chiến tranh quân sự ở thế kỷ 19 và 20. **Joseph Fourier** (1768-1830) là một nhà khoa học làm việc trong đội quân thám hiểm Ai Cập của Napoleon từ năm 1798. Sau khi cách mạng Pháp kết thúc năm 1799, Fourier trở về Pháp và tham gia xây dựng lại đất nước trong vai trò một giáo sư của đại học École Polytechnique. Trong quá trình làm việc với các công trình xây dựng cầu đường và đóng tàu, ông đặc biệt quan tâm tới bài toán mô tả quá trình truyền dẫn nhiệt trong kim loại, điều dẫn tới sự ra đời của phép biến đổi Fourier liên tục vào năm 1807 trong một báo cáo của ông tại viện hoàng gia Paris. Trong đó, ông mô tả mọi hàm số, kể cả các hàm số không liên tục đều có thể được biểu diễn dưới dạng tổng của một số vô hạn các hàm số lượng giác. Phát biểu này của Fourier gây chấn động và ấn tượng tới mức nhà toán học Pháp cùng thời là **Lagrange** cho rằng việc nghĩ ra phát kiến này là *gần như không thể* ("nothing short of impossible") [1]. Trong hơn một trăm năm sau đó phép biến đổi Fourier trở thành một đối tượng nghiên cứu phổ biến và liện tục được phát triển, hoàn thiện bởi vô số các tên tuổi lớn của toán lý thuyết [2].
 
 Trong khi phiên bản nguyên thủy có lịch sử hoành tráng như vậy, phép biến đổi Fourier nhanh, dù được cho là ra đời trước, lại được quan tâm chậm hơn nhiều. Người ta cho rằng những ý tưởng đầu tiên về biến đổi Fourier nhanh được phát triển bởi nhà toán học Đức **Carl Friedrich Gauss** (1777 - 1855) vào năm 1805 khi ông cố gắng xác định quỹ đạo của các thiên thạch [3], nhưng ông không công bố kết quả của mình. Mối liên hệ giữa Gauss và phép biến đổi Fourier nhanh chỉ được phát hiện khi các công trình của ông được tập hợp và công bố vào năm 1866. Mặc dù vậy, vào thời đó không có ai quan tâm tới công trình này vì lý thuyết độ phức tạp tính toán chưa phát triển (mãi tới năm 1936 **Alan Turing** mới phát triển mô hình tính toán đầu tiên, và phải tới năm 1965 thì lịch sử ngành nghiên cứu về độ phức tạp tính toán mới bắt đầu với công trình của **Hartmanis** và **Stearns** [4]). Cũng trong năm 1965 hai nhà toán học trong ban cố vấn khoa học của tổng thống Mỹ Kennedy là **James Cooley** và **John Tukey** đã tự tìm ra phép biến đổi nhanh Fourier trong khi thiết kế hệ thống phát hiện các vụ thử hạt nhân của chính quyền Xô Viết [3]. Kể từ thời điểm đó phép biến đổi nhanh Fourier mới chính thức được quan tâm và nghiên cứu ứng dụng trong rất nhiều các lĩnh vực nghiên cứu khác nhau của vật lý, sinh học, điện tử, y tế, điều khiển học...
 
@@ -139,10 +139,14 @@ $$
 K_{III}[i,j] = K_{I}[i,j] \qquad \forall i, j = 0, 1, ...n/2 - 1
 $$
 $$
-K_{II}[i, j] = w_n^{-i} K_I[i,j] \qquad \forall i, j = 0, 1, ...n/2 - 1
+K_{IV}[i, j] = -w_n^i K_I[i,j] \qquad \forall i, j = 0, 1, ...n/2 - 1
 $$
 
 **Chứng minh:** các bạn tự chứng minh hoặc xem slide số 23 trong tài liệu của trường DH Aalto ở phần tài liệu tham khảo.
+
+**Tính chất 3:** ma trận nghịch đảo $V^{-1}$ cũng có thể chia thành $4$ phần bằng nhau với các phần $II, III, IV$ tính được qua phần $I$ giống như **Tính chất 2**.
+
+**Hệ quả:**: Phép biến đổi Fourier ngược (*inverse Fourier transform*) có cùng độ phức tạp với phép biển đổi Fourier.
 
 # Phép biến đổi Fourier nhanh
 
@@ -165,27 +169,144 @@ Ta quan sát là công thức tính nửa trên và nửa dưới của vector c
 Từ tính chất đặc biệt của ma trận $K$, ta có công thức truy hồi để biến đổi một vector cột $X$ thành vector cột $Y$ như sau:
 
 $$
-fft(x_{i=0, 1, 2,...n/2 - 1}) = fft(x_{i=0, 2, 4, ...x_{n-2}}) + w_n^i fft(x_{i=1, 3, 5...n-1})
+FFT(x_{i=0, 1, 2,...n/2 - 1}) = FFT(x_{i=0, 2, 4, ...x_{n-2}}) + w_n^i FFT(x_{i=1, 3, 5...n-1})
+$$
+$$
+FFT(x_{i=n/2, n/2+1, n/2+2,...n-1}) = FFT(x_{i=0, 2, 4, ...x_{n-2}}) - w_n^i FFT(x_{i=1, 3, 5...n-1})
 $$
 
-$$
-fft(x_{i=n/2, n/2+1, n/2+2,...n-1}) = fft(x_{i=0, 2, 4, ...x_{n-2}}) - w_n^i fft(x_{i=1, 3, 5...n-1})
-$$
+## Thuật toán nhân hai đa thức
+
+Đến đây ta đã có thể hoàn thiện chương trình nhân 2 đa thức $p(x), q(x)$ và lưu kết quả thành $h(x)$:
+```
+function NhânĐaThức( p(x), q(x), n ) 
+
+// Lưu ý: n là số hệ số của đa thức kết quả
+// Nếu p(x) có bậc d và q(x) có bậc e thì n = d + e + 1
+
+fp[] = FFT(p(x), n) // biến đổi Fourier cho p(x) và lưu các giá trị vào mảng fp
+fq[] = FFT(q(x), n) // biến đổi Fourier cho q(x) và lưu các giá trị vào mảng fq
+
+for(i = 0; i < n; ++i)
+   fh[i] = fp[i] * fq[i]; // nhân tương ứng các giá trị của fp và fq, lưu vào mảng fh
+
+h(x) = FFT_ngược(fh) // biến đổi Fourier ngược và lưu vào kết quả
+
+end function
+```
 
 # Lưu ý về kỹ thuật cài đặt
 
+Vì FFT đòi hỏi phải sử dụng số phức và (trong nhiều trường hợp) khử đệ quy nên có thể gây khó khăn cho các bạn chưa quen, phần này sẽ hướng dẫn sơ lược về cách cài đặt sử dụng `C++`.
+
+## Khai báo
+
+Để sử dụng số phức trong `C++` ta cần khai báo thư viện `complex`:
+
+```cpp
+#include <complex>
+```
+Vì `C++` cài đặt `complex` là một lớp (`class`) gồm 2 trường thực (`real()`) và ảo (`imag()`) nên khi sử dụng ta cần chỉ định kiểu dữ liệu cho hai trường này. Hai kiểu dữ liệu thông dụng là `double` hoặc `long double`:
+
+```cpp
+typedef complex<double> base;
+typedef vector<base> vb;
+```
+
+Sau khi được định nghĩa bằng lệnh `typedef` thì để khai báo biến và vector kiểu phức, ta chỉ cần viết `base x` và `vb v` là được.
+
+Một số phiên bản cài đặt tự định nghĩa lớp số ảo bằng một `struct` hoặc `class`. Nếu lớp tự viết này không có chức năng đặc biệt nào thì việc này là không cần thiết vì bản thân `<complex>` đã là một lớp rồi. Bạn có thể xem qua file thư viện trong thư mục cài đặt trình biên dịch, ví dụ với CodeBlocks thì đường dẫn có dạng `CodeBlocks\MinGW\lib\gcc\mingw32\4.7.1\include\c++\complex` (file ko có phần mở rộng).
+
 ## Chuẩn hóa bậc đa thức
 
-## Đệ quy
+Trong các phần trên ta đã giả sử rằng $n$ là lũy thừa của $2$. Để đảm bảo tính đối xứng và thuận tiện khi cài đặt, nếu đề bài không cho trước $n$ bậc của đa thức là lũy thừa của $2$ thì ta cần chuẩn hóa thành số lũy thừa nhỏ nhất mà lớn hơn $n$. Chẳng hạn với $n = 10^5$ thì giá trị chuẩn hóa là $2^{17} = 131072$ vì $2^{16} = 65536 < 10^5$. Các hệ số của bậc cao hơn giá trị $n$ ban đầu gán bằng $0$.
 
-## Khử đệ quy
+## Đệ quy và Khử đệ quy 
 
-## Bài tập ví dụ: POST2-VOJ
+**Đệ quy:**
+
+Xét một đoạn mã `C++` cài đặt hàm FFT sử dụng đệ quy như sau:
+
+```cpp
+void fft_slow(int n, vb& a) // biến đổi fft của vector a, lưu kết quả vào chính nó
+{
+    if(n == 1)
+    {
+        return;
+    }
+    int i, j, k;
+
+    // Bước 1. Khai báo kết quả fft chẵn và lẻ
+    vb a_even(n / 2), a_odd (n / 2); 
+
+    // Bước 2. Tách hàng chẵn và hàng lẻ
+    for(i = j = 0; i < n; i += 2)
+    {
+        a_even[j] = a[i];
+        a_odd[j]  = a[i+1];
+        ++j;
+    }
+
+    // Bước 3. Biến đổi FFT với các hàng chẵn, lẻ
+    fft_slow(n / 2, a_even);
+    fft_slow(n / 2, a_odd);
+
+   // Bước 4: Ghép hoàn chỉnh kết quả
+    double ang = 2*PI/n;
+    base w (1),  wn (cos(ang), sin(ang));
+
+    for(i = 0; i < n / 2; ++i)
+    {
+        a[i]         = a_even[i] + w * a_odd[i];
+        a[i + n / 2] = a_even[i] - w * a_odd[i];
+        w *= wn;
+    }
+}
+```
+
+Có nhiều nguyên nhân làm cho FFT đệ quy chạy chậm, như trong **Bước 1** thì khai báo hai vector kích cỡ $n/2$ lớn như vậy và lại khai báo liên tục ở các mức đệ quy. Bản thân chương trình đệ quy cũng chạy chậm vì chương trình phải lưu rất nhiều con trỏ stack và liên tục giải phóng bộ nhớ của biến cục bộ ở mỗi mức đệ quy. Nhìn chung đệ quy chỉ có ý nghĩa như trong thuật toán Quy Hoạch Động khi ta muốn tìm kết quả của một công thức truy hồi mà chỉ duyệt qua những trạng thái liên quan trực tiếp tới kết quả. Trong FFT ta luôn phải thăm hết các ma trận con nên cài đặt FFT bằng đệ quy không có lợi về tốc độ thực hiện.
+
+Để cho đầy đủ thì ta cũng có hàm biến đổi FFT ngược như sau:
+
+```cpp
+void inverse_fft_slow(int n, vb& a)
+{
+    if(n == 1)
+    {
+        return;
+    }
+    int i, j, k;
+    vb a_even, a_odd;
+    for(i = 0; i < n; ++i)
+    {
+        if(i & 1) a_odd.push_back(a[i]);
+        else      a_even.push_back(a[i]);
+    }
+    inverse_fft_slow(n / 2, a_even);
+    inverse_fft_slow(n / 2, a_odd);
+
+    double ang = -2*PI/n;
+    base w (1),  wn (cos(ang), sin(ang));
+
+    for(i = 0; i < n/ 2; ++i)
+    {
+        a[i]         = a_even[i] + w * a_odd[i];
+        a[i]         /= 2;
+        a[i + n / 2] = a_even[i] - w * a_odd[i];
+        a[i + n / 2] /= 2;
+        w *= wn;
+    }
+}
+```
+
+**Khử đệ quy:**
+
 
 # Bài tập luyện tập
 - [VOJ POST2](http://vn.spoj.com/problems/POST2/)
 - [FFT problems on Codeforces](http://codeforces.com/problemset/tags/fft)
 - [FFT problems by a2oj.com](https://a2oj.com/Category.jsp?ID=42)
+- [SumOfArrays - Topcoder SRM 603](https://community.topcoder.com/stat?c=problem_statement&pm=12910&rd=15836) và [Hướng dẫn giải](https://apps.topcoder.com/wiki/display/tc/SRM+603)
 
 # Tài liệu tham khảo
 - [1] Rohit Thummalapalli. Fourier Transform: Nature’s Way of Analyzing Data. *Yale Scientific*, 2010. [Link](http://www.yalescientific.org/2010/12/fourier-transform-natures-way-of-analyzing-data/)
