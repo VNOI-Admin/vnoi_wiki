@@ -1,5 +1,7 @@
 # Hàm Mobius
 
+[Bài viết chưa hoàn thiện...]
+
 Nguồn: [Quora](https://www.quora.com/profile/Surya-Kiran/Posts/A-Dance-with-Mobius-Function)
 
 [[_TOC_]]
