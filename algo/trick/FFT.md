@@ -8,9 +8,9 @@ Trong bài này chúng ta sẽ tìm hiểu về thuật toán nhân nhanh hai đ
 
 # Vài nét lịch sử
 
-Phép biến đổi Fourier (*Fourier Transform*) là một trong số những phát kiến toán học đặc sắc có lịch sử hào hùng, gắn liền với những phát kiến khoa học và chiến tranh quân sự ở thế kỷ 19 và 20. **Joseph Fourier** (1768-1830) là một nhà khoa học làm việc trong đội quân thám hiểm Ai Cập của Napoleon từ năm 1798. Sau khi cách mạng Pháp kết thúc năm 1799, Fourier trở về Pháp và tham gia xây dựng lại đất nước trong vai trò một giáo sư của đại học École Polytechnique. Trong quá trình làm việc với các công trình xây dựng cầu đường và đóng tàu, ông đặc biệt quan tâm tới bài toán mô tả quá trình truyền dẫn nhiệt trong kim loại, điều dẫn tới sự ra đời của phép biến đổi Fourier liên tục vào năm 1807 trong một báo cáo của ông tại viện hoàng gia Paris. Trong đó, ông mô tả mọi hàm số, kể cả các hàm số không liên tục đều có thể được biểu diễn dưới dạng tổng của một số vô hạn các hàm số lượng giác. Phát biểu này của Fourier gây chấn động và ấn tượng tới mức nhà toán học Pháp cùng thời là **Lagrange** cho rằng việc nghĩ ra phát kiến này là *gần như không thể* ("nothing short of impossible") [1]. Trong hơn một trăm năm sau đó phép biến đổi Fourier trở thành một đối tượng nghiên cứu phổ biến và liện tục được phát triển, hoàn thiện bởi vô số các tên tuổi lớn của toán lý thuyết [2].
+Phép biến đổi Fourier (*Fourier Transform*) là một trong số những phát kiến toán học đặc sắc có lịch sử hào hùng, gắn liền với những phát kiến khoa học và chiến tranh quân sự ở thế kỷ 19 và 20. **Joseph Fourier** (1768-1830) là một nhà khoa học làm việc trong đội quân thám hiểm Ai Cập của Napoleon từ năm 1798. Sau khi cách mạng Pháp kết thúc năm 1799, Fourier trở về Pháp và tham gia xây dựng lại đất nước trong vai trò một giáo sư của đại học École Polytechnique. Trong quá trình làm việc với các công trình xây dựng cầu đường và đóng tàu, ông đặc biệt quan tâm tới bài toán mô tả quá trình truyền dẫn nhiệt trong kim loại, điều dẫn tới sự ra đời của phép biến đổi Fourier liên tục vào năm 1807 trong một báo cáo của ông tại viện hoàng gia Paris. Trong đó, ông mô tả mọi hàm số, kể cả các hàm số không liên tục đều có thể được biểu diễn dưới dạng tổng của một số vô hạn các hàm số lượng giác. Phát biểu này của Fourier gây chấn động và ấn tượng tới mức nhà toán học Pháp cùng thời là **Lagrange** cho rằng việc nghĩ ra phát kiến này là *gần như không thể* ("nothing short of impossible") [1]. Trong hơn một trăm năm sau đó phép biến đổi Fourier trở thành một đối tượng nghiên cứu phổ biến và liên tục được phát triển, hoàn thiện bởi vô số các tên tuổi lớn của toán lý thuyết [2].
 
-Trong khi phiên bản nguyên thủy có lịch sử hoành tráng như vậy, phép biến đổi Fourier nhanh, dù được cho là ra đời trước, lại được quan tâm chậm hơn nhiều. Người ta cho rằng những ý tưởng đầu tiên về biến đổi Fourier nhanh được phát triển bởi nhà toán học Đức **Carl Friedrich Gauss** (1777 - 1855) vào năm 1805 khi ông cố gắng xác định quỹ đạo của các thiên thạch [3], nhưng ông không công bố kết quả của mình. Mối liên hệ giữa Gauss và phép biến đổi Fourier nhanh chỉ được phát hiện khi các công trình của ông được tập hợp và công bố vào năm 1866. Mặc dù vậy, vào thời đó không có ai quan tâm tới công trình này vì lý thuyết độ phức tạp tính toán chưa phát triển (mãi tới năm 1936 **Alan Turing** mới phát triển mô hình tính toán đầu tiên, và phải tới năm 1965 thì lịch sử ngành nghiên cứu về độ phức tạp tính toán mới bắt đầu với công trình của **Hartmanis** và **Stearns** [4]). Cũng trong năm 1965 hai nhà toán học trong ban cố vấn khoa học của tổng thống Mỹ Kennedy là **James Cooley** và **John Tukey** đã tự tìm ra phép biến đổi nhanh Fourier trong khi thiết kế hệ thống phát hiện các vụ thử hạt nhân của chính quyền Xô Viết [3]. Kể từ thời điểm đó phép biến đổi nhanh Fourier mới chính thức được quan tâm và nghiên cứu ứng dụng trong rất nhiều các lĩnh vực nghiên cứu khác nhau của vật lý, sinh học, điện tử, y tế, điều khiển học...
+Trong khi phiên bản nguyên thủy có lịch sử hoành tráng như vậy, phép biến đổi Fourier nhanh, dù được cho là ra đời trước, lại được quan tâm chậm hơn nhiều. Người ta cho rằng những ý tưởng đầu tiên về biến đổi Fourier nhanh được phát triển bởi nhà toán học Đức **Carl Friedrich Gauss** (1777 - 1855) vào năm 1805 khi ông cố gắng xác định quỹ đạo của các thiên thạch [3], nhưng khi đó ông không công bố kết quả của mình. Mối liên hệ giữa Gauss và phép biến đổi Fourier nhanh chỉ được phát hiện khi các công trình của ông được tập hợp và công bố vào năm 1866. Mặc dù vậy, vào thời đó không có ai quan tâm tới công trình này vì lý thuyết độ phức tạp tính toán chưa phát triển (mãi tới năm 1936 **Alan Turing** mới phát triển mô hình tính toán đầu tiên, và phải tới năm 1965 thì lịch sử ngành nghiên cứu về độ phức tạp tính toán mới bắt đầu với công trình của **Hartmanis** và **Stearns** [4]). Cũng trong năm 1965 hai nhà toán học trong ban cố vấn khoa học của tổng thống Mỹ Kennedy là **James Cooley** và **John Tukey** đã tự tìm ra phép biến đổi nhanh Fourier trong khi thiết kế hệ thống phát hiện các vụ thử hạt nhân của chính quyền Xô Viết [3]. Kể từ thời điểm đó phép biến đổi nhanh Fourier mới chính thức được quan tâm và nghiên cứu ứng dụng trong rất nhiều các lĩnh vực nghiên cứu khác nhau của vật lý, sinh học, điện tử, y tế, điều khiển học...
 
 Nghiên cứu chỉ ra rằng mắt và tai người, động vật có "cài đặt" sẵn thuật toán biến đổi Fourier để giúp chúng ta nhìn và nghe, vì vậy nó được GS **Ronald Coifman** của đại học Yale gọi là *Phương pháp phân tích dữ liệu của tự nhiên* ("Nature's way of analyzing data") [1].
 
@@ -50,7 +50,7 @@ $$
     1       & z_0^1 & z_0^2 & \dots & z_0^{n-1} \newline
        1      & z_1 & z_1^2 & \dots & z_1^{n-1} \newline
     \ldots & \ldots & \ldots & \ldots & \ldots\newline
-       1       & z_n^1 & z_n^2 & \dots & z_{n-1}^{n-1}
+       1       & z_{n-1}^1 & z_{n-1}^2 & \dots & z_{n-1}^{n-1}
 \end{bmatrix}
 \begin{bmatrix}
     a_0 \newline a_1 \newline \vdots  \newline a_{n-1}
@@ -68,7 +68,7 @@ Ta có các định lý sau:
 $$det(V) = \prod_{0 \leq i < j \leq n-1}(z_j - z_i)$$
 
 **Chứng minh (sơ lược):** 
-Với mỗi hàng $i = 0, 1, ...n-2$ ta liên tục thay hàng $j = i+1, i+2, ...n-1$ bằng hiệu của các hệ số của hàng $j$ trừ đi hàng $i$. Đây là phép biến đổi cơ bản nên giá trị định thức cần tính không đổi. Lấy nhân tử chung $z_j - z_i$ ở tất cả các hàng ra ngoài và xét tiếp hàng $i+1$. Sau khi xét xong $i = n-2$ ta được một ma trận chéo có đường chéo chỉ gồm $z_{ii} = 1$, định thức của ma trận này hiển nhiên bằng 1. Vì vậy định thức cần tính là tích của tất cả các nhân tử chung bỏ ra ngoài ở các bước trước đó.
+Với mỗi hàng $i = 0, 1, ...n-2$ của định thức ta liên tục thay hàng $j = i+1, i+2, ...n-1$ bằng hiệu của các hệ số của hàng $j$ trừ đi hàng $i$. Đây là phép biến đổi cơ bản (*elementary operation*) nên giá trị định thức cần tính không đổi. Lấy nhân tử chung $z_j - z_i$ ở tất cả các hàng ra ngoài và xét tiếp hàng $i+1$. Sau khi xét xong $i = n-2$ ta được một ma trận chéo có đường chéo chỉ gồm $z_{ii} = 1$, định thức của ma trận này hiển nhiên bằng 1. Vì vậy định thức cần tính là tích của tất cả các nhân tử chung bỏ ra ngoài ở các bước trước đó.
 
 Phép chứng minh bằng quy nạp có thể xem thêm tại [đây](https://proofwiki.org/wiki/Vandermonde_Determinant)
 
@@ -80,14 +80,14 @@ Coi phương trình $(1)$ là một hệ phương trình $n$ ẩn với bộ ngh
 
 **Hệ quả:** khi $V$ khả nghịch, hệ số $a_0, a_1, ...a_{n-1}$ được xác định thông qua tích của ma trận nghịch đảo $V^{-1}$ của $V$ và $p(z_0), p(z_1), ...p(z_{n-1})$.
 
-Từ định lý 2 ta thấy rằng thay vì lưu $n$ hệ số $a_i$, ta có thể lưu $n$ cặp giá trị $z_i, p(z_i)$. Cách biểu diễn bằng giá trị này có lợi thế là giá trị của đa thức tạo bởi tích hai đa thức được tính trong $O(1)$: $c(x) = p(x)q(x)$ trong đó $x$ là một số cho trước.
+Từ định lý 2 ta thấy rằng thay vì lưu một đa thức bằng $n$ hệ số $a_i$, ta có thể lưu nó dưới dạng $n$ cặp giá trị $z_i, p(z_i)$. Cách biểu diễn bằng giá trị này có lợi thế là giá trị của đa thức tạo bởi tích hai đa thức được tính trong $O(1)$: $c(z_i) = p(z_i)q(z_i)$ với $z_$ đã biết.
 
 # Nghiệm nguyên thủy
 
-Ở trên ta đã thấy là các số $z_i$ ở trên có thể chọn tùy ý miễn sao giá trị của chúng là đôi một khác nhau thì đa thức $p(x)$ là xác định và duy nhất. Ý tưởng của thuật toán FFT là chọn các giá trị $z_i$ nào đó để chuyển đổi hai đa thức cần nhân sang miền giá trị, tiến hành phép nhân trong miền giá trị này, tính ma trận nghịch đảo và chuyển đổi ngược lại từ miền giá trị sang miền hệ số. Các giá trị $z$ được chọn phải đặc biệt để hai phép tính trên (**biến đổi xuôi** và **biến đổi ngược**) có độ phức tạp nhỏ. Những giá trị đặc biệt của $z$ này được gọi là **nghiệm nguyên thủy** thỏa mãn:
+Ở trên ta đã thấy là các số $z_i$ có thể chọn tùy ý miễn sao giá trị của chúng là đôi một khác nhau thì đa thức $p(x)$ là xác định và duy nhất. Ý tưởng của thuật toán FFT là chọn các giá trị $z_i$ nào đó để chuyển đổi hai đa thức cần nhân sang miền giá trị, tiến hành phép nhân trong miền giá trị này, tính ma trận nghịch đảo và chuyển đổi ngược lại từ miền giá trị sang miền hệ số. Các giá trị $z$ được chọn phải đặc biệt để hai phép tính trên (**biến đổi xuôi** và **biến đổi ngược**) có độ phức tạp nhỏ. Những giá trị đặc biệt của $z$ này được gọi là **nghiệm nguyên thủy** thỏa mãn:
 
 $$
-z^n = 1 \qquad z \in \mathbb{C} (2)
+z^n = 1 \qquad z \in \mathbb{C} \qquad (2)
 $$
 
 với $n$ như đã quy ước và cũng là số nghiệm của phương trình $(2)$ mà ta cần. Công thức Euler xác định nghiệm thứ $k$ của phương trình $(2)$ là
@@ -106,17 +106,25 @@ Dễ thấy là nghiệm nguyên thủy thứ $k$ có thể được tính trong
 
 ## Một số tính chất đặc biệt của ma trận Vandermonde nghiệm nguyên thủy
 
-**Tính chất 1:** Ma trận nghịch đảo $V^-1$ được tính bằng cách nghịch đảo lũy thừa các hạng tử trong $V$ rồi chia cho $n$. Cụ thể, hạng tử $V^{-1}[i,j] = {V[i,j]^{-1} / n}$ với $i, j = 0, 1,...n-1$ là chỉ số hàng và cột của ma trận. 
+**Tính chất 1:** Ma trận nghịch đảo $V^{-1}$ được tính bằng cách nghịch đảo lũy thừa các hạng tử trong $V$ rồi chia cho $n$. Cụ thể, hạng tử $V^{-1}[i,j] = {V[i,j]^{-1} \over n}$ với $i, j = 0, 1,...n-1$ là chỉ số hàng và cột của ma trận. 
 
 **Chứng minh (sơ lược):** gọi $B$ là ma trận kích cỡ $n * n$ tạo bởi
 
 $$
-B[i, j] = V[i,j]^{-1} \forall i, j = 0, 1,...n-1
+B[i, j] = V[i,j]^{-1} \qquad \forall i, j = 0, 1,...n-1
 $$
 
-ta sẽ có $B * V = V * B = n * I$, trong đó $I$ là ma trận đơn vị.
+Ta sẽ chứng minh tích $P = B * V = V * B = n * I$, trong đó $I$ là ma trận đơn vị.
 
-Các bạn có thể xem chi tiết chứng minh trong slide số 17 trong tài liệu của trường DH Aalto ở phần tài liệu tham khảo.
+Xét phép nhân hàng $i$ của ma trận $V$ và cột $k$ của ma trận $B$, ta có:
+$$
+P[i, k] = \sum_{j=0}^{n-1}w_n^{ij}w_n^{-jk} = \sum_{j=0}^{n-1}w_n^{j(i-k)}
+$$
+
+- Nếu $i = k:$ $P[i, k] = P[i, i] = \sum_{j=0}^{n-1}w_n^0 = n \qquad \forall i = 0, 1, ...n-1$.
+- Nếu $i \neq k:$ $P[i, k] = \sum_{j=0}^{n-1}{w_n^{i-k}}^j = {1 - {w_n^{i-k}}^n \over {1-w_n^{i-k}}} = 0$
+
+Vậy $P = nI$ hay là $V * B/n = B/n * V = I$, vậy $B = V^{-1}$.
 
 **Hệ quả:** Độ phức tạp tính toán cho $V^{-1}$ bằng với độ phức tạp tính $V$.
 
@@ -130,7 +138,7 @@ Các bạn có thể xem chi tiết chứng minh trong slide số 17 trong tài 
 [[/uploads/img4.png|alt=DivideAndConquer]]
 (*Image Courtesy of Aalto University*)
 
-Nói cách khác, ta tạo một ma trận mới $K$ bằng cách chuyển tất cả các cột có chỉ số chẵn của ma trận $V$ lên trước, các cột có chỉ số lẻ về sau, giữ nguyên thứ tự tương đối của các cột cùng chỉ số chẵn hoặc cùng chỉ số lẻ. Ở ma trận $K$ này cột $n-2$ của $V$ nằm ngay trước cột $1$ của $V$. Bốn phần $I, II, III, IV$ được tạo bởi cắt đều ma trận $V'$ thành 4 phần bằng nhau.
+Nói cách khác, ta tạo một ma trận mới $K$ bằng cách chuyển tất cả các cột có chỉ số chẵn của ma trận $V$ lên trước, các cột có chỉ số lẻ về sau, giữ nguyên thứ tự tương đối của các cột cùng chỉ số chẵn hoặc cùng chỉ số lẻ. Ở ma trận $K$ này cột $n-2$ của $V$ nằm ngay trước cột $1$ của $V$. Bốn phần $I, II, III, IV$ được tạo bởi cắt đều ma trận $K$ thành 4 phần bằng nhau.
 
 Ký hiệu $K_I, K_{II}, K_{III}, K_{IV}$ là bốn ma trận con của $K$. Tất cả các phần tử trong phần $II, III, IV$ đều có thể tính được từ phần $I$ theo công thức sau:
 
@@ -148,7 +156,7 @@ $$
 
 **Tính chất 3:** ma trận nghịch đảo $V^{-1}$ cũng có thể chia thành $4$ phần bằng nhau với các phần $II, III, IV$ tính được qua phần $I$ giống như **Tính chất 2**.
 
-**Hệ quả:**: Phép biến đổi Fourier ngược (*inverse Fourier transform*) có cùng độ phức tạp với phép biển đổi Fourier.
+**Hệ quả:** Phép biến đổi Fourier ngược (*inverse Fourier transform*) có cùng độ phức tạp với phép biển đổi Fourier.
 
 # Phép biến đổi Fourier nhanh
 
@@ -156,7 +164,7 @@ Trong phần trên ta đã thấy vai trò của ma trận Vandermonde $V$ là b
 
 **Định lý 3:** Tồn tại thuật toán biến đổi Fourier rời rạc có độ phức tạp là $O(nlog_2n)$. 
 
-**Chứng minh:** Sử dụng lại ký hiệu trong hình vẽ ở phần trên, ta gọi $X$ là vector cần biến đổi Fourier và $Y$ là vector kết quả tương ứng. Thay vì sử dụng ma trận $V$ để nhân với $X$, ta sử dụng ma trận $K$ là kết quả của phép biến đổi như trong **Định lý 2** để nhân với $X$. Lưu ý là vì $V$ đã đổi thứ tự cột nên $X$ cũng phải đổi thứ tự hàng: tất cả các hàng có chỉ số chẵn của $X$ được chuyển lên trên và các hàng chỉ số lẻ chuyển xuống dưới. Hình minh họa với $n = 4$:
+**Chứng minh:** Sử dụng lại ký hiệu trong hình vẽ ở phần trên, ta gọi $X$ là vector cần biến đổi Fourier và $Y$ là vector kết quả tương ứng. Thay vì sử dụng ma trận $V$ để nhân với $X$, ta sử dụng ma trận $K$ là kết quả của phép biến đổi như trong **Định lý 2** để nhân với $X$. Lưu ý là vì $V$ đã đổi thứ tự cột nên $X$ cũng phải đổi thứ tự hàng: tất cả các hàng có chỉ số chẵn của $X$ được chuyển lên trên và các hàng chỉ số lẻ chuyển xuống dưới. Hình minh họa với $n = 4$ và $4$ nghiệm để thay vào ma trận Vandermonde là $1, i, -1, -i$:
 
 [[/uploads/img5.png|alt=nis4]]
 (*Image Courtesy of Aalto University*)
@@ -312,6 +320,9 @@ Màu đỏ là các nhóm chẵn và màu xanh là các nhóm lẻ. Các bạn h
 ```cpp
 #define PI acos(-1)
 const int NBIT = 18;
+const int N = 1<<18;
+base W[N];
+
 int revBit(int nbit, int mask)
 {
     int i, j;
@@ -367,6 +378,8 @@ void fft(int n, vb& a)
     }
 }
 ```
+
+Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc độ thực thi, có thể xem thêm trong trang của **emaxx** phần tài liệu tham khảo. 
 
 # Bài tập luyện tập
 - [VOJ POST2](http://vn.spoj.com/problems/POST2/)
