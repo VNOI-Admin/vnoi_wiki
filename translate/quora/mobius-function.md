@@ -38,11 +38,24 @@ $id(n)=n$ với mọi $n \in N$
 
 - $\mu(n)=(-1)^r$ nếu $n={p_1}\*{p_2}\*{p_3}\*...\*{p_r}$, hay $a_i = 1$ với mọi $i$
 
-- Để tính được $\mu (n)$ ta có thể sử dụng [Sàng](http://codeforces.com/blog/entry/8989).
+- Có thể chứng minh được rằng $\mu(n)=\sum_{d|n,d < n}\mu(d)$ với $n>1$ và tính được $\mu(n)$ bằng cách sử dụng [Sàng](http://codeforces.com/blog/entry/8989):
+	```cpp
+mu[1] = 1;
+for (int i = 1; i <= N; i++)
+    for (int j = 2*i; j <= N; j += i)
+        mu[j] -= mu[i];
+	```
 
 Vỡi mỗi $f(n)$, ta gọi hàm tổng $S_f(n)$ là tổng các $f(d)$ với $d$ là ước của $n$: $S_f(n)=\sum_{d|n}{f(d)}$
 
-**Phi hàm Euler** $\phi(n)$ (Euler totient function): số lượng các số tự nhiên nhỏ hơn hoặc bằng $n$ và nguyên tố cùng nhau với $n$ (hay số lượng các số $d: 1 \leq d \leq n,gcd(d,n)=1$).
+**Phi hàm Euler** $\phi(n)$ ([Euler totient function](https://vi.wikipedia.org/wiki/Phi_h%C3%A0m_Euler)): số lượng các số tự nhiên nhỏ hơn hoặc bằng $n$ và nguyên tố cùng nhau với $n$ (hay số lượng các số $d: 1 \leq d \leq n,gcd(d,n)=1$). Các bạn cũng có thể sử dụng sàng để tính $phi(n)$:
+```cpp
+for (int i = 1; i <= N; i++) phi[i] = i;
+for (int i = 2; i <= N; i++)
+    if (phi[i] == i)
+       for (int j = i; j <= N; j += i) 
+           phi[j] -= phi[j]/i;
+```
 
 # Công thức nghịch đảo Mobius (Möbius inversion formula)
 
@@ -107,11 +120,9 @@ Dễ thấy cách tiếp cận đơn giản nhất cho bài toán này là duy�
 	Khi đã biết được $h(n)$ và $\mu(n)$, ta có thể tính $f(n)$ bằng sàng như sau:
 
 	```cpp
-for (int i = 1; i <= N; i++) { 
-    for (int j = i; j <= N; j += i) {
+for (int i = 1; i <= N; i++)
+    for (int j = i; j <= N; j += i)
         f[j] += h[i] * mu[j/i];
-    } 
-}
 	```
 
 	Đoạn code trên chạy trong thời gian $O(NlogN)$ vì với mỗi $i$ vòng lặp trong sẽ chạy $N/i$ lần (số bội của $i$), và $O(\sum_{i=1}^{N}N/i)=O(NlogN)$.
@@ -126,7 +137,14 @@ for (int i = 1; i <= N; i++) {
 
 	Vậy (4) trở thành $G=\sum_{d=1}^{n}f(d)\*n/d\*(n/d-1)/2$.
 
-	Dễ dàng chứng minh là chỉ có $\sqrt n$ giá trị $n/d$ nên ta có thể duyệt từng giá trị của $n/d$ và cộng $n/d\*(n/d-1)/2\*\sum_{k:n/k=n/d}f(k)$ vào kết quả. Bằng tổng tiền tố các bạn có thể truy vấn được $\sum_{k:n/k=n/d}f(k)$ trong $O(1)$ và $G$ trong $O(\sqrt n)$.
+	Dễ dàng chứng minh là chỉ có $\sqrt n$ giá trị $n/d$ nên ta có thể duyệt từng giá trị của $n/d$ và cộng $n/d\*(n/d-1)/2\*\sum_{k:n/k=n/d}f(k)$ vào kết quả. Bằng tổng tiền tố các bạn có thể truy vấn được $\sum_{k:n/k=n/d}f(k)$ trong $O(1)$ và $G$ trong $O(\sqrt n)$:
+
+	```cpp
+for (int i = 1,j; i <= n; i = j + 1) {
+    j = n / (n/i); //vị trí j xa i nhất mà n/i=n/j
+    res += n/i*(n/i - 1)/2 * (Sf[j] - Sf[i-1]);
+}
+	```
 
 Như vậy thuật toán trên có độ phức tạp $O(N\*logN+\sqrt N \*T)$ với $T$ là số test.
 
