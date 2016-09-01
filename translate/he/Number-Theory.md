@@ -1196,3 +1196,13 @@ int solve (int n, int r) {
 [Hackerearth - Roy and Little Mario](https://www.hackerearth.com/problem/algorithm/roy-and-little-mario-4/description/)
 
 [Hackerearth - So Random](https://www.hackerearth.com/problem/algorithm/so-random/)
+
+# Các tài liệu tham khảo
+
+- Các bài viết về Số học trên Hackerearth: [Bài I](https://www.hackerearth.com/notes/number-theory-1/), [Bài II](https://www.hackerearth.com/notes/number-theory-ii/), [Bài III](https://www.hackerearth.com/notes/number-theory-iii/)
+
+- Quyển "Một số vấn đề Số học chọn lọc" và "Chuyên đề chọn lọc Tổ hợp và Toán rời rạc", chủ biên Vũ Đình Mậu.
+
+- Sách giáo khoa "Đại số và Giải tích 11" của NXB Giáo dục.
+
+- Một số bài viết trên Wikipedia.
