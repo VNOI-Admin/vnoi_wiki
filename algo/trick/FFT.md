@@ -321,9 +321,10 @@ Màu đỏ là các nhóm chẵn và màu xanh là các nhóm lẻ. Các bạn h
 ```cpp
 #define PI acos(-1)
 const int NBIT = 18;
-const int N = 1<<18;
-base W[N];
+const int N = 1<<18; // chuẩn hóa bậc của đa thức là 18
+base W[N]; // mảng lưu các nghiệm nguyên thủy
 
+// Hàm reverse bit: Đảo ngược nbit đầu tiên trong mã nhị phân của số mask
 int revBit(int nbit, int mask)
 {
     int i, j;
@@ -338,30 +339,40 @@ int revBit(int nbit, int mask)
     return mask;
 }
 
+// Biến đổi FFT của mảng a
 void fft(int n, vb& a)
 {
     if(n == 1)
         return;
 
     int i, j, k;
+
+    // Đi từ dưới lên trên của cây đệ quy: Hàng cuối cùng giá trị bằng với mảng được cho ban đầu nhưng hóa đổi vị trí
+    // theo số có biểu diễn nhị phân ngược với chỉ số
     for(i = 0; i < n; ++i)
     {
         j = revBit(NBIT, i);
         if(i < j) swap(a[i], a[j]);
     }
-    vb anext(n);
+    vb anext(n); // hàng tiếp theo
 
+    // chiều cao cây bằng Log(n)
+    // biến "step" lưu số phần tử nằm trong một nhóm chẵn hoặc lẻ
     for(int step = 1; step < n; step <<= 1)
     {
         double ang = PI / step ; //2*PI/(step * 2);
         base w (1),  wn (cos(ang), sin(ang));
 
+        // Lưu trước mảng nghiệm nguyên thủy
         for(i = 0; i < step; ++i)
         {
             W[i] = w;
             w *= wn;
         }
 
+       // Cứ một nhóm chẵn và một nhóm lẻ cạnh nhau thì tạo thành kết quả cho hàng ở trên
+       // Duyệt qua tất cả các nhóm chẵn và nhóm lẻ cạnh nó
+       // even = chẵn, odd = lẻ
         int start_even = 0;
         int start_odd  = start_even + step;
         while(start_even < n)
