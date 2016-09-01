@@ -359,9 +359,68 @@ int phi(int n) {
 }
 ```
 
-Độ phức tạp của thuật toán: $O(\sqrt{n})$. Để tăng tốc cho thuật toán này, hãy đọc phần tiếp theo.
+Độ phức tạp của thuật toán: $O(\sqrt{N})$. Để tăng tốc cho thuật toán này, hãy đọc các phần tiếp theo.
 
+# Chỉnh sửa sàng Eratosthenes để phân tích ra thừa số nguyên tố nhanh hơn
 
+Cách cài đặt:
+
+Đầu tiên hãy xem xét thuật toán phân tích ra thừa số nguyên tố trong $O(\sqrt{N})$.
+
+```cpp
+vector<int> factorize(int n) {
+    vector<int> res;
+    for (int i = 2; i * i <= n; ++i) {
+        while (n % i == 0) {
+            res.push_back(i);
+            n /= i;
+        }
+    }
+    if (n != 1) {
+        res.push_back(n);
+    }
+    return res;
+}
+```
+
+Tại mỗi bước ta phải tìm số nguyên tố nhỏ nhất mà $N$ chia hết cho số đó. Do đó, ta phải biến đổi sàng Eratosthenes để tìm được số mình mong muốn trong $O(1)$.
+
+```cpp
+int minPrime[n + 1];
+for (int i = 2; i * i <= n; ++i) {
+    if (minPrime[i] == 0) { //if i is prime
+        for (int j = i * i; j <= n; j += i) {
+            if (minPrime[j] == 0) {
+                minPrime[j] = i;
+            }
+        }
+    }
+}
+for (int i = 2; i <= n; ++i) {
+    if (minPrime[i] == 0) {
+        minPrime[i] = i;
+    }
+}
+```
+
+Bây giờ ta có thể phân tích một số ra thừa số nguyên tố trong $O(\log{N})$.
+
+```cpp
+vector<int> factorize(int n) {
+    vector<int> res;
+    while (n != 1) {
+        res.push_back(minPrime[n]);
+        n /= minPrime[n];
+    }
+    return res;
+}
+```
+
+Điều kiện sử dụng phương pháp này là ta phải tạo được mảng có độ dài $N$
+
+Phương pháp này rất hữu ích khi ta phải phân tich nhiều số nhỏ ra thừa số nguyên tố. Ta không cần thiết phải sử dụng phương pháp này trong mọi bài toán liên quan đến phân tích một số ra thừa số nguyên tố. Ngoài ra, ta không thể sử dụng phương pháp này nếu $N$ bằng $10^9$ hay $10^12$. Khi đó, ta chỉ có thể sử dụng thuật toán $O(\sqrt{N})$.
+
+Tính chất thú vị: Nếu $N=p_1^{q_1}.p_2^{q_2}....p_k^{q_k}$ thì $N$ có $(q_1+1).(q_2+1).....(q_k+1)$ ước phân biệt.
 
 # Lí thuyết tập hợp
 
