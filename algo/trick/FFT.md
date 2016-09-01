@@ -135,7 +135,7 @@ Vậy $P = nI$ hay là $V * B/n = B/n * V = I$, vậy $B = V^{-1}$.
 - Phần $III$ gồm các phần tử có chỉ số hàng $n/2, n/2+1,...n-1$ và chỉ số cột là lẻ  $0, 2, 4, ...n-2$.
 - Phần $IV$ gồm các phần tử có chỉ số hàng  $n/2, n/2+1,...n-1$ và chỉ số cột là lẻ  $1, 3, 5, ...n-1$.
 
-[[/uploads/img4.png|alt=DivideAndConquer]]
+<img src='/wiki/uploads/img4.png' height="250" width="500"/>
 (*Image Courtesy of Aalto University*)
 
 Nói cách khác, ta tạo một ma trận mới $K$ bằng cách chuyển tất cả các cột có chỉ số chẵn của ma trận $V$ lên trước, các cột có chỉ số lẻ về sau, giữ nguyên thứ tự tương đối của các cột cùng chỉ số chẵn hoặc cùng chỉ số lẻ. Ở ma trận $K$ này cột $n-2$ của $V$ nằm ngay trước cột $1$ của $V$. Bốn phần $I, II, III, IV$ được tạo bởi cắt đều ma trận $K$ thành 4 phần bằng nhau.
@@ -166,12 +166,13 @@ Trong phần trên ta đã thấy vai trò của ma trận Vandermonde $V$ là b
 
 **Chứng minh:** Sử dụng lại ký hiệu trong hình vẽ ở phần trên, ta gọi $X$ là vector cần biến đổi Fourier và $Y$ là vector kết quả tương ứng. Thay vì sử dụng ma trận $V$ để nhân với $X$, ta sử dụng ma trận $K$ là kết quả của phép biến đổi như trong **Định lý 2** để nhân với $X$. Lưu ý là vì $V$ đã đổi thứ tự cột nên $X$ cũng phải đổi thứ tự hàng: tất cả các hàng có chỉ số chẵn của $X$ được chuyển lên trên và các hàng chỉ số lẻ chuyển xuống dưới. Hình minh họa với $n = 4$ và $4$ nghiệm để thay vào ma trận Vandermonde là $1, i, -1, -i$:
 
-[[/uploads/img5.png|alt=nis4]]
-(*Image Courtesy of Aalto University*)
+<img src='/wiki/uploads/img5.png' height="250" width="400"/>
+(*Image Courtesy: Aalto University*)
 
 Tách vector kết quả $Y$ thành hai phần theo $n/2$, ta được:
 
-[[/uploads/img6.png|alt=recursion]]
+<img src='/wiki/uploads/img6.png' height="300" width="500"/>
+(*Image Courtesy: Aalto University*)
 
 Ta quan sát là công thức tính nửa trên và nửa dưới của vector cột kết quả $Y$ sử dụng chung hai hạng tử và chỉ khác nhau về dấu của hạng tử thứ hai. Nói cách khác, chỉ cần tính được hai hạng tử tạo thành kết quả của vector kích cỡ $n/2$ là ta thu được kết quả của cả vector kích cỡ $n$ trong $O(n)$. Theo định lý tổng quát, độ phức tạp của cả quá trình là $O(nlog_2n)$
 
