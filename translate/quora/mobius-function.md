@@ -154,7 +154,7 @@ Các bước tính toán gần như giống với bài toán trên.
 
 ## Coprime Triples
 
-[Đề bài](https://www.codechef.com/LTIME13/problems/COPRIME3)
+[Đề bài](https://www.codechef.com/problems/COPRIME3)
 
 Cho dãy số $a_1,a_2,...,a_n$. Tìm số bộ ba $(i,j,k)$ ($1 \leq i < j < k \leq n$) có $gcd(a_i,a_j,a_k)=1$. $n \leq 10^5$ và $a_i \leq 10^6$
 
