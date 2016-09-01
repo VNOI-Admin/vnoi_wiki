@@ -3,7 +3,7 @@
 [[_TOC_]]
 
 # Giới thiệu
-Các bài toán trong lập trình thi đấu mà liên quan đến Toán học thường sẽ rơi vào hai mảng là số học và hình học. Nếu bạn biết nhiều về số học, bạn sẽ có khả năng giải quyết nhiều bài toán khó và một nền tảng tốt để giải quyết nhiều bài toán khác.
+Các bài toán trong **lập trình thi đấu (competitive programming)** mà liên quan đến Toán học thường sẽ rơi vào hai mảng là **số học (number theory)** và hình học. Nếu bạn biết nhiều về số học, bạn sẽ có khả năng giải quyết nhiều bài toán khó và một nền tảng tốt để giải quyết nhiều bài toán khác.
 
 Các bài toán trong lập trình thi đấu thường đòi hỏi bạn một cái nhìn sâu sắc, vì vậy chỉ biết một số vấn đề về số học là không đủ. Mọi bài toán đều đều yêu cầu bạn phải biết một lượng kiến thức toán nhất định. Ví dụ, một số bài toán yêu cầu bạn phải giải một hệ nhiều phương trình hay tính xấp xỉ nghiệm của nhiều phương trình khác nhau.
 
@@ -37,11 +37,11 @@ và cũng bằng $((5\%2).(3\%2))\%2=(1.1)\%2=1$.
 
 # Ước chung lớn nhất
 
-Ước chung lớn nhất (GCD) của hai hay nhiều số là số nguyên dương lớn nhất mà là ước chung của tất cả các số đó.
+**Ước chung lớn nhất (GCD, viết tắt của từ Greatest Common Divisor)** của hai hay nhiều số là số nguyên dương lớn nhất mà là **ước chung (common divisor)** của tất cả các số đó.
 
 Ví dụ: GCD của 6 và 10 là 2 vì 2 là số nguyên dương lớn nhất mà là ước chung của 6 và 10.
 
-## Thuật toán "ngây thơ"
+## Thuật toán "ngây thơ" (Naive Approach)
 
 Ta có thể duyệt tất cả các số từ $min(A,B)$ đến 1 và kiểm tra xem số đang xét có phải là ước của của $A$ và $B$ hay không. Nếu đúng như vậy thì số đang xét sẽ là GCD của $A$ và $B$.
 
@@ -87,7 +87,7 @@ Vì $B=0$ nên $GCD(2,0)$ sẽ trả về giá trị 2.
 
 Độ phức tạp của thuật toán: $O(\log{max(A,B)})$.
 
-## Thuật toán Euclid mở rộng
+## Thuật toán Euclid mở rộng (Extended Euclid Algorithm)
 
 Đây là một thuật toán mở rộng của thuật toán Euclid ở trên. $GCD(A,B)$ có một tính chất rất đặc biệt: Nó luôn có thể được biểu diễn dưới dạng phương trình $Ax+By=GCD(A,B)$.
 
@@ -142,11 +142,11 @@ Giá trị của các biến $d,x,y$ trong hàm `extendedEuclid()` sẽ lần l�
 
 Độ phức tạp của thuật toán: Độ phức tạp của thuật toán Euclid mở rộng là $O(\log{max(A,B)})$.
 
-# Số nguyên tố
+# Số nguyên tố (Prime Numbers)
 
 Số nguyên tố là số nguyên lớn hơn 1 và có đúng 2 ước là 1 và chính nó.
 
-Hợp số là số nguyên lớn hơn 1 và có nhiều hơn 2 ước.
+**Hợp số (Composite numbers)** là số nguyên lớn hơn 1 và có nhiều hơn 2 ước.
 
 Ví dụ, 5 là số nguyên tố vì 5 chỉ chia hết cho 1 và 5. Tuy nhiên, 6 là hợp số vì 6 chia hết cho 1, 2, 3 và 6.
 
@@ -195,7 +195,7 @@ void checkprime(int N) {
 
 Độ phức tạp của thuật toán: Độ phức tạp của thuật toán là $O(\sqrt{N})$ do ta phải duyệt từ 1 đến $\sqrt{N}$.
 
-## Sàng Eratosthenes
+## Sàng Eratosthenes (Sieve of Eratosthenes)
 
 Sàng Eratosthenes dùng để tìm các số nguyên tố nhỏ hơn hoặc bằng số nguyên $N$ nào đó. Nó còn có thể được sử dụng để kiểm tra một số nguyên nhỏ hơn hoặc bằng $N$ hay không.
 
@@ -203,7 +203,7 @@ Sàng Eratosthenes dùng để tìm các số nguyên tố nhỏ hơn hoặc b�
 
 Nguyên lí hoạt động của sàng là vào mỗi lần duyệt, ta chọn một số nguyên tố và loại ra khỏi sàng tất cả các bội của số nguyên tố đó mà lớn hơn số đó. Sau khi duyệt xong, các số còn lại trong sàng đều là số nguyên tố.
 
-Mã giả:
+**Mã giả (Pseudo Code)**:
 
 - Đánh dấu tất cả các số đều là số nguyên tố.
 
@@ -249,7 +249,7 @@ Khi $i=5$, vòng lặp trong lặp $\frac{N}{5}$ lần.
 
 Độ phức tạp tổng: $N.(\frac{1}{2}+\frac{1}{3}+\frac{1}{5}+...)=O(N\log{\log{N}})$.
 
-#Đồng dư thức với lũy thừa
+#Đồng dư thức với lũy thừa (Modular Exponentiation)
 
 Xét bài toán tính $a^b\%c$, với $\%$ là dấu đồng dư thức và $b$ có thể rất lớn (ví dụ $b \leq 10^{18}$).
 
@@ -275,7 +275,7 @@ Vì vậy trong code trên ta tính $(ans.a)\%c$ bằng cách tính $((ans\%c).(
 
 ## Thuật toán "chia để trị"
 
-Dễ dàng nhận thấy thuật toán trên không hiệu quả, vì thế ta cần tìm thuật toán hiệu quả hơn. Ta có thể giải bài toán này với độ phức tạp $O(\log_{2}{b})$ bằng kĩ thuật lũy thừa bằng cách bình phương. Kĩ thuật này chỉ cần $O(\log_{2}{b})$ lần bình phương và $O(\log_{2}{b})$ phép nhân để ra kết quả. Rõ ràng cách giải này hiệu quả hơn nhiều lần so với thuật toán "ngây thơ".
+Dễ dàng nhận thấy thuật toán trên không hiệu quả, vì thế ta cần tìm thuật toán hiệu quả hơn. Ta có thể giải bài toán này với độ phức tạp $O(\log_{2}{b})$ bằng kĩ thuật **lũy thừa bằng cách bình phương (exponentiation by squaring)**. Kĩ thuật này chỉ cần $O(\log_{2}{b})$ lần bình phương và $O(\log_{2}{b})$ phép nhân để ra kết quả. Rõ ràng cách giải này hiệu quả hơn nhiều lần so với thuật toán "ngây thơ".
 
 Ta biết rằng $a^b$ có thể được viết dưới dạng:
 
