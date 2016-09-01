@@ -68,3 +68,6 @@ $$
     p(z_0) \newline p(z_1) \newline \vdots  \newline p(z_n)
 \end{bmatrix} \space (1)
 $$
+
+Resize image
+<img src="/wiki/uploads/topcoder_translate_tree1.png" width="200">
