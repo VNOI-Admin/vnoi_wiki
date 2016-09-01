@@ -64,8 +64,6 @@ $S_{\phi}(n)=\sum_{d|n}{\phi(d)}=id(n)$
 
 $S_{\mu}(n)=\sum_{d|n}{\mu(d)}=I\circ \mu (n)=\mu \circ I(n)= e(n)$
 
-Hai biểu thức trên bạn đọc nên tự chứng minh.
-
 $f \circ e(n)=\sum_{d|n}{f(n/d)\*e(d)}=f(n)$
 
 Từ đó suy ra:
