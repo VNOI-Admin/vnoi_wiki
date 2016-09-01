@@ -56,7 +56,7 @@ int GCD(int A, int B) {
 }
 ```
 
-Độ phức tạp của thuật toán: $O(min(A,B))$.
+**Độ phức tạp của thuật toán:** $O(min(A,B))$.
 
 ## Thuật toán Euclid
 
@@ -85,7 +85,7 @@ $GCD(4, 2) = GCD(2, 4 \% 2) = GCD(2, 0)$
 
 Vì $B=0$ nên $GCD(2,0)$ sẽ trả về giá trị 2.
 
-Độ phức tạp của thuật toán: $O(\log{max(A,B)})$.
+**Độ phức tạp của thuật toán:** $O(\log{max(A,B)})$.
 
 ## Thuật toán Euclid mở rộng (Extended Euclid Algorithm)
 
@@ -140,7 +140,7 @@ Giá trị của các biến $d,x,y$ trong hàm `extendedEuclid()` sẽ lần l�
 
 5. $d=2 , x= 2, y = -1 - (16/10).2 = -3$
 
-Độ phức tạp của thuật toán: Độ phức tạp của thuật toán Euclid mở rộng là $O(\log{max(A,B)})$.
+**Độ phức tạp của thuật toán:** Độ phức tạp của thuật toán Euclid mở rộng là $O(\log{max(A,B)})$.
 
 # Số nguyên tố (Prime Numbers)
 
@@ -169,9 +169,9 @@ void checkprime(int N){
 }
 ```
 
-Độ phức tạp của thuật toán: Độ phức tạp của thuật toán là $O(N)$ do ta phải duyệt hết các số từ 1 đến $N$.
+**Độ phức tạp của thuật toán:** Độ phức tạp của thuật toán là $O(N)$ do ta phải duyệt hết các số từ 1 đến $N$.
 
-Một thuật toán tốt hơn:
+**Một thuật toán tốt hơn:**
 
 Xét hai số nguyên dương $N$ và $D$ thỏa mãn $N$ chia hết cho $D$ và $D$ nhỏ hơn $\sqrt{N}$. Khi đó $\frac{N}{D}$ phải lớn hơn $\sqrt{N}$. $N$ cũng chia hết cho $\frac{N}{D}$. Vì thế, nếu $N$ có ước nhỏ hơn $\sqrt{N}$ thì $N$ cũng có ước lớn hơn $\sqrt{N}$. Do đó, ta chỉ cần duyệt đến $\sqrt{N}$.
 
@@ -231,7 +231,7 @@ void sieve(int N) {
 
 Code trên được dùng để tìm các số nguyên tố nhỏ hơn hoặc bằng $N$.
 
-Độ phức tạp của thuật toán:
+**Độ phức tạp của thuật toán:**
 
 Số lần lặp của vòng lặp trong là:
 
@@ -271,7 +271,7 @@ Trong mỗi lần lặp, biến $ans$ chứa kết quả được nhân với $a
 
 Vì vậy trong code trên ta tính $(ans.a)\%c$ bằng cách tính $((ans\%c).(a\%c))\%c$.
 
-Độ phức tạp của thuật toán: $O(b)$.
+**Độ phức tạp của thuật toán:** $O(b)$.
 
 ## Thuật toán "chia để trị"
 
@@ -319,15 +319,15 @@ Giả sử ta có $a=2,b=5,c=5$, khi đó kết quả là $pow(2,5,5)$
 
 Vậy ta có $2^5\%5=2$. 
 
-Độ phức tạp của thuật toán: $O(\log_{2}{b})$
+**Độ phức tạp của thuật toán:** $O(\log_{2}{b})$
 
-# Phi hàm Euler
+# Phi hàm Euler (Euler's totient function)
 
-Định nghĩa: $\phi(N)$ là số số nguyên tố cùng nhau với $N$ trong đoạn từ 1 đến $N$.
+**Định nghĩa:** $\phi(N)$ là số số nguyên tố cùng nhau với $N$ trong đoạn từ 1 đến $N$.
 
-Cách tính:
+**Cách tính:**
 
-Ta đã biết phân tích một số ra thừa số nguyên tố là biểu diễn số đó dưới dạng tích của các số nguyên tố. Dễ dàng chứng minh rằng cách biểu diễn là duy nhất. Ví dụ:
+Ta đã biết **phân tích một số ra thừa số nguyên tố (factorization)** là biểu diễn số đó dưới dạng tích của các số nguyên tố. Dễ dàng chứng minh rằng cách biểu diễn là duy nhất. Ví dụ:
 
 - $8 = 2^3$.
 
@@ -359,7 +359,7 @@ int phi(int n) {
 }
 ```
 
-Độ phức tạp của thuật toán: $O(\sqrt{N})$. Để tăng tốc cho thuật toán này, hãy đọc các phần tiếp theo.
+**Độ phức tạp của thuật toán:** $O(\sqrt{N})$. Để tăng tốc cho thuật toán này, hãy đọc các phần tiếp theo.
 
 # Chỉnh sửa sàng Eratosthenes để phân tích ra thừa số nguyên tố nhanh hơn
 
@@ -420,7 +420,7 @@ vector<int> factorize(int n) {
 
 Phương pháp này rất hữu ích khi ta phải phân tich nhiều số nhỏ ra thừa số nguyên tố. Ta không cần thiết phải sử dụng phương pháp này trong mọi bài toán liên quan đến phân tích một số ra thừa số nguyên tố. Ngoài ra, ta không thể sử dụng phương pháp này nếu $N$ bằng $10^9$ hay $10^12$. Khi đó, ta chỉ có thể sử dụng thuật toán $O(\sqrt{N})$.
 
-Tính chất thú vị: Nếu $N=p_1^{q_1}.p_2^{q_2}...p_k^{q_k}$ với $p_1,p_2,...,p_k$ là các số nguyên tố thì $N$ có $(q_1+1).(q_2+1)...(q_k+1)$ ước phân biệt.
+**Tính chất thú vị:** Nếu $N=p_1^{q_1}.p_2^{q_2}...p_k^{q_k}$ với $p_1,p_2,...,p_k$ là các số nguyên tố thì $N$ có $(q_1+1).(q_2+1)...(q_k+1)$ ước phân biệt.
 
 # Sàng Eratosthenes trên đoạn
 
@@ -428,7 +428,7 @@ Tính chất thú vị: Nếu $N=p_1^{q_1}.p_2^{q_2}...p_k^{q_k}$ với $p_1,p_2
 
 Điều kiện sử dụng phương pháp này là bạn có thể tạo mảng độ dài $R-L+1$ phần tử.
 
-Cài đặt:
+**Cài đặt:**
 
 ```cpp
 bool isPrime[r - l + 1]; //filled by true
@@ -446,7 +446,7 @@ for (long long i = max(l, 2); i <= r; ++i) {
 
 Độ phức tạp của thuật toán là $O(\sqrt{R}*k)$ với $k$ là hằng số.
 
-Lưu ý: Nếu bạn chỉ cần kiểm tra tính nguyên tố của một hay một vài số thì ta không nhất thiết phải xây dựng sàng. Ta có thể sử dụng hàm sau để kiểm tra tính nguyên tố của một số.
+**Lưu ý:** Nếu bạn chỉ cần kiểm tra tính nguyên tố của một hay một vài số thì ta không nhất thiết phải xây dựng sàng. Ta có thể sử dụng hàm sau để kiểm tra tính nguyên tố của một số.
 
 ```cpp
 bool isPrime(int n) {
