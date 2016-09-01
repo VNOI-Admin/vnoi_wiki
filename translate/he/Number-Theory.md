@@ -193,7 +193,7 @@ void checkprime(int N) {
 }
 ```
 
-Độ phức tạp của thuật toán: Độ phức tạp của thuật toán là $O(\sqrt{N})$ do ta phải duyệt từ 1 đến $\sqrt{N}$.
+**Độ phức tạp của thuật toán:** Độ phức tạp của thuật toán là $O(\sqrt{N})$ do ta phải duyệt từ 1 đến $\sqrt{N}$.
 
 ## Sàng Eratosthenes (Sieve of Eratosthenes)
 
@@ -459,9 +459,9 @@ bool isPrime(int n) {
 }
 ```
 
-# Lí thuyết tập hợp
+# Lí thuyết tập hợp (Set Theory)
 
-## Tập hợp là gì?
+## Tập hợp (Set) là gì?
 
 Trong toán học, tập hợp là một nhóm các phần tử, mỗi phần tử phân biệt với nhau.
 
@@ -473,15 +473,15 @@ Tập hợp là một trong những khái niệm cơ bản trong Toán học.
 
 Tập hợp các hình đa giác được biểu diễn trong biểu đồ Venn.
 
-## Tập con
+## Tập con (Subset)
 
-Nếu mọi phần tử thuộc tập $A$ cũng thuộc tập hợp $B$, thì tập $A$ là tập con của tập $B$, kí hiệu là $A \subset B$.
+Nếu mọi phần tử thuộc tập $A$ cũng thuộc tập hợp $B$, thì tập $A$ là **tập con** của tập $B$, kí hiệu là $A \subset B$.
 
-Tương tự, ta có thể viết $B \supset A$, đọc là $B$ là tập cha của tập $A$.
+Tương tự, ta có thể viết $B \supset A$, đọc là $B$ là **tập cha (superset)** của tập $A$.
 
-Quan hệ cha-con giữa các tập hợp còn được gọi là quan hệ chứa nhau hay quan hệ bao hàm.
+Quan hệ cha-con giữa các tập hợp còn được gọi là **quan hệ chứa nhau (containment)** hay **quan hệ bao hàm (inclusion)**.
 
-Nếu $A$ là tập con của tập $B$ nhưng không bằng tập $B$, thì $A$ được gọi là tập con không tầm thường của tập $B$, kí hiệu là $A \subsetneq B$, hay $B \supsetneq A$ (đọc là $B$ là tập cha không tầm thường của tập $A$).
+Nếu $A$ là tập con của tập $B$ nhưng không bằng tập $B$, thì $A$ được gọi là **tập con không tầm thường (proper subset)** của tập $B$, kí hiệu là $A \subsetneq B$, hay $B \supsetneq A$ (đọc là $B$ là **tập cha không tầm thường (proper superset)** của tập $A$).
 
 Ví dụ:
 
@@ -489,7 +489,7 @@ Ví dụ:
 
 - {1;2;3;4} $\subset$ {1;2;3;4}
 
-Tập rỗng (kí hiệu $\varnothing$) là tập con của tất că các tập và tất cả các tập là tập con của chính nó:
+**Tập rỗng (empty set, kí hiệu $\varnothing$)** là tập con của tất că các tập và tất cả các tập là tập con của chính nó:
 
 - $\varnothing \subset A$.
 
@@ -503,7 +503,7 @@ $A$ là tập con của tập $B$.
 
 Có nhiều phép toán có khả năng xây dựng một tập hợp mới dựa trên các tập hợp đã cho.
 
-### Phép hợp
+### Phép hợp (Union)
 
 Hai tập hợp có thể được ghép vào nhau. Hợp của hai tập hợp $A$ và $B$, kí hiệu là $A \cup B$, là một tập hợp gồm các phần tử thuộc tập $A$ hoặc thuộc tập $B$.
 
@@ -531,9 +531,9 @@ Một vài tính chất cơ bản của phép hợp:
 
 - $A \subset B$ khi và chỉ khi $A \cup B = B$.
 
-### Phép giao
+### Phép giao (Intersection)
 
-Một tập hợp mới có thể được xây dựng từ các phẩn tử mà cả hai tập đều có. Giao cuả hai tập hợp $A$ và $B$, kí hiệu $A \cap B$, là tập hợp các phần tử cùng thuộc tập $A$ và tập $B$. Nếu $A \cap B = \varnothing$, tập $A$ và tập $B$ là hai tập rời nhau.
+Một tập hợp mới có thể được xây dựng từ các phẩn tử mà cả hai tập đều có. Giao cuả hai tập hợp $A$ và $B$, kí hiệu $A \cap B$, là tập hợp các phần tử cùng thuộc tập $A$ và tập $B$. Nếu $A \cap B = \varnothing$, tập $A$ và tập $B$ là hai **tập rời nhau (disjoint)**.
 
 Ví dụ:
 
@@ -559,11 +559,11 @@ Một vài tính chất cơ bản của phép hợp:
 
 - $A \subset B$ khi và chỉ khi $A \cap B = A$.
 
-### Phép lấy hiệu
+### Phép lấy hiệu (Relative complement)
 
 Ta có thể thực hiên phép trừ với hai tập hợp. Hiệu của hai tập hợp $A$ và $B$, kí hiệu là $A \backslash B$, là tập hợp bao gồm tất cả các phần tử thuộc $A$ nhưng không thuộc $B$. Lưu ý rằng ta có thể trừ phần tử mà không thuộc tập hợp, ví dụ như bỏ phần tử 'xanh' khỏi tập hợp {1;2;3}, khi đó tập hợp {1;2;3} không bị thay đổi.
 
-Trong một số trường hợp tập $A$ được coi là tập con của một tập $U$ lớn hơn. Trong trường hợp đó, $U \backslash A$ được gọi là phần bù hoàn toàn (absolute complement) của tập $A$, và được kí hiệu là $A'$.
+Trong một số trường hợp tập $A$ được coi là tập con của một tập $U$ lớn hơn. Trong trường hợp đó, $U \backslash A$ được gọi là **phần bù hoàn toàn (absolute complement)** của tập $A$, và được kí hiệu là $A'$.
 
 Ví dụ:
 
@@ -597,18 +597,18 @@ Một vài tính chất cơ bản của phép lấy hiệu
 
 - $U' = \varnothing$ và $\varnothing' = U$.
 
-# Các kiến thức cơ bản về Tổ hợp
+# Các kiến thức cơ bản về Tổ hợp (Combinatorics)
 
 Kí hiệu $|A|$ là số phần tử của tập $A$ (hay còn được gọi là lực lượng của tập $A$).
 
 Một vài quy tắc về tổ hợp cần nhớ:
 
-1. Quy tắc nhân:
+1. **Quy tắc nhân (The Rule of Product):**
 Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp gồm một phần tử thuộc tập $A$ và một phần tử thuộc tập $B$ là $|A|.|B|$
 
-2. Quy tắc cộng: Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn một phần tử thuộc tập $A$ hoặc thuộc tập $B$ là $|A|+|B|$ nếu hai tập $A$ và $B$ rời nhau.
+2. **Quy tắc cộng (The Rule of Sum):** Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn một phần tử thuộc tập $A$ hoặc thuộc tập $B$ là $|A|+|B|$ nếu hai tập $A$ và $B$ rời nhau.
 
-3. Quy tắc cộng mở rộng (còn gọi là công thức bao hàm - loại trừ): $|A \cup B| = |A| + |B| - |A \cap B|$.
+3. **Quy tắc cộng mở rộng (sieve principle)** (còn gọi là **công thức bao hàm - loại trừ (Inclusion-Exclusion Formula)**): $|A \cup B| = |A| + |B| - |A \cap B|$.
 
 Trong trường hợp tổng quát, ta có:
 
@@ -619,9 +619,9 @@ Lí do ta phải cộng trừ giao của một số tập hợp vì nếu ta kh�
 
 Các quy tắc trên cũng đúng khi ta có ba hay nhiều tập hợp.
 
-## Các kiến thức cơ bản về Chỉnh hợp và Hoán vị
+## Các kiến thức cơ bản về Chỉnh hợp và Hoán vị (Permutation)
 
-### Chỉnh hợp không lặp
+### Chỉnh hợp không lặp (Permutation of Distinct Objects)
 
 Cho tập hợp $A$ gồm $n$ phần tử. Mỗi bộ gồm $k$ ($0 \leq k \leq n$) phần tử được sắp thứ tự của tập hợp $A$ được gọi là một chỉnh hợp chập $k$ của $n$ phần tử thuộc $A$.
 
@@ -647,7 +647,7 @@ Số hoán vị của $n$ được tính bởi công thức:
 
 $P_n = n!$.
 
-### Hoán vị lặp
+### Hoán vị lặp (Permutation with Repetition)
 
 Hoán vị trong đó mỗi phần tử xuất hiện ít nhất một lần được gọi là hoán vị lặp.
 
@@ -655,17 +655,17 @@ Số hoán vị lặp của $n$ phần tử thuộc $k$ loại, mà các phần 
 
 $P(n_1,n_2,...,n_k) = \frac{n!}{n_1!n_2!...n_k!}$
 
-## Các đối tượng tổ hợp
+## Các đối tượng tổ hợp (Combinatorial Objects)
 
-Một song ánh là tương ứng một-một giữa hai tập hợp, ví dụ tập hợp những người chồng và tập hợp những người vợ (một chồng chỉ có một vợ, và một vợ chỉ có đúng một chồng). Do đó, nếu bạn biết được lực lượng của một tập hợp, bạn có thể biết được lực lượng của tập kia. Ta có thể sử dụng tính chất này trong nhiều bài toán Tổ hợp, đặc biệt là các bài toán đếm, nhưng trước tiên, ta phải biết tính lực lượng của một tập các đối tượng tổ hợp.
+Một **song ánh (bijection)** là tương ứng một-một giữa hai tập hợp, ví dụ tập hợp những người chồng và tập hợp những người vợ (một chồng chỉ có một vợ, và một vợ chỉ có đúng một chồng). Do đó, nếu bạn biết được lực lượng của một tập hợp, bạn có thể biết được lực lượng của tập kia. Ta có thể sử dụng tính chất này trong nhiều bài toán Tổ hợp, đặc biệt là các bài toán đếm, nhưng trước tiên, ta phải biết tính lực lượng của một tập các đối tượng tổ hợp.
 
-### Tổ hợp không lặp
+### Tổ hợp không lặp (Combinations without repetition)
 
 Trong tổ hợp, ta thường phải chọn một tập các phần tử nào đó và không quan tâm đến thứ tự của chúng. Số lượng tập con $k$ phần tử của một tập $n$ phần tử (còn gọi là số tổ hợp chập $k$ của $n$ phần tử) là:
 
 $\binom{n}{k} = C^k_n = \frac{n!}{k!(n-k)!}$
 
-### Tổ hợp có lặp
+### Tổ hợp có lặp (Combinations with repetition)
 
 Giả sử ta cần chọn $k$ phần tử từ một tập $n$ phần tử, không quan trọng thứ tự và một phần tử có thể được chọn nhiều lần. Khi đó, số cách chọn là số tổ hợp lặp chập $k$ của $n$ phần tử và có giá trị là:
 
@@ -673,7 +673,7 @@ $\overline{C^k_n} = \binom{n+k-1}{k} = \frac{(n+k-1)!}{k!(n-1)!}$
 
 Một tính chất thú vị về số tổ hợp có lặp: $\overline{C^k_n}$ là số nghiệm nguyên không âm của phương trình: $x_1+x_2+...+x_n = k$ với $k$ là hằng số nguyên dương.
 
-## Vector nhị phân
+## Vector nhị phân (Binary Vectors)
 
 Vector nhị phân là kiểu dữ liệu ``<bitset>`` trong C++ STL.
 
@@ -687,25 +687,25 @@ Ngoài ra, các tính chất về tổ hợp của vector nhị phân cũng rấ
 
 Khoảng cách giữa hai vector nhị phân $a$ và $b$ là số lượng giá trị $i$ nguyên không âm thỏa mãn $a_i \ne b_i$
 
-## Hệ thức truy hồi
+## Hệ thức truy hồi (Recurrence Relations)
 
 Hệ thức truy hồi là công cụ hỗ trợ đắc lực trong các bài toán đếm. Truy hồi còn giúp ta định nghĩa được nhiều cấu trúc như cây, danh sách, công thức quy hoạch động hay các thuật toán "chia để trị", nên truy hồi được sử dụng rất nhiều trong tin học.
 
 Hệ thức truy hồi là một phương trình dùng để xác định dãy số hoặc hàm số bằng cách dùng các số hạng trước để định nghĩa số hạng sau. Nó rất hữu dụng vì nhiều dãy số có thể dễ dàng được định nghĩa bằng hệ thức truy hồi:
 
-- Hàm đa thức: $a_n=a_{n-1}+1, a_1=1 \rightarrow a_n=n$.
+- **Hàm đa thức (Polynomials)**: $a_n=a_{n-1}+1, a_1=1 \rightarrow a_n=n$.
 
-- Hàm mũ: $a_n=2a_{n-1}, a_1=2 \rightarrow a_n=2^n$.
+- **Hàm mũ (Exponentials)**: $a_n=2a_{n-1}, a_1=2 \rightarrow a_n=2^n$.
 
 - Giai thừa: $a_n=n.a_{n-1}, a_1 = 1 \rightarrow a_n=n!$.
 
 Ta thường dễ dàng tìm được hệ thức truy hồi để giải các bài toán đếm. Giải hệ thức truy hồi để có được dạng công thức cần tìm là cả một nghệ thuật, tuy vậy ta có thể sử dụng trực tiếp hệ thức truy hồi để giải một số bài toán đơn giản.
 
-## Hệ số nhị thức
+## Hệ số nhị thức (Binomial Coefficients)
 
 Hệ số nhị thức $\binom{n}{k}$ được sử dụng để đếm số cách chọn $k$ vật trong số $n$ vật.
 
-### Đếm số đường đi trên lưới.
+### Đếm số đường đi trên lưới (Paths Across a Grid)
 
 Có bao nhiêu cách để đi từ góc trái trên của một bảng $n * m$ ô đến góc phải dưới của ô đó, nếu ta chỉ được phép đi về bên phải hoặc đi xuống dưới. Ta thấy mọi đường đi hợp lệ có $n+m$ bước, và hai đường đi khác nhau nếu và chỉ nếu chúng có một bước đi xuống dưới khác nhau, vậy ta có $\binom{n+m}{n}$ cách đi.
 
@@ -893,7 +893,7 @@ int main()
 }
 ```
 
-## Một vài dãy số đếm khác
+## Một vài dãy số đếm khác (Counting Sequences)
 
 ### Dãy số Catalan
 
@@ -919,13 +919,13 @@ Ví dụ: $n=4$
 
 [Và còn nhiều ứng dụng khác...](https://en.wikipedia.org/wiki/Catalan_number#Applications_in_combinatorics)
 
-### Số Euler
+### Số Euler 
 
 Số Euler $\big \langle^n_k \big \rangle$ là số lượng hoán vị các số từ 1 đến $n$ mà có đúng $k$ phần tử lớn hơn phần tử đứng trước nó. Hệ thức truy hồi tính số Euler được lập bằng cách xét mỗi hoán vị $p$ của 1,2,...,$n-1$. Có $n$ vị trí để thêm số $n$ vào hoán vị, và một cách thêm số $n$ có thể làm tăng số phần tử lớn hơn phần tử đứng trước nó của $p$, hoặc bảo toàn số phần tử lớn hơn phần tử đứng trước nó. Vì vậy, 
 
 ![$\big \langle^n_k \big \rangle = k\big \langle^{n-1}_k \big \rangle + (n-k+1) \big \langle^{n-1}_{k-1} \big \rangle$](https://d320jcjashajb2.cloudfront.net/media/uploads/93df5ba.gif)
 
-### Bài toán phân tích một số nguyên 
+### Bài toán phân tích một số nguyên (Integer Partitions) 
 
 Ta xét bài toán sau:
 
