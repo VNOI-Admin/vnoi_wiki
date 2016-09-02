@@ -38,3 +38,5 @@ Hình ảnh phía dưới minh hoạ 4 bước để tạo một cây quyết đ
 
 Sau khi thuật toán xây dựng xong các cây quyết định, những cây này sẽ được sử dụng để trả lời câu hỏi (hay phân loại). Trong bài toán về hoa diên vĩ, thuật toán sẽ trả lời câu hỏi: "Chủng loại của bông hoa bí ẩn là gì?".
 
+
+
