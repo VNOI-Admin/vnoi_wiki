@@ -140,11 +140,11 @@ for (int i = 1; i <= N; i++)
 	```cpp
 for (int i = 1,j; i <= n; i = j + 1) {
     j = n / (n/i); //vị trí j xa i nhất mà n/i=n/j
-    res += n/i*(n/i - 1)/2 * (Sf[j] - Sf[i-1]);
+    res += n/i*(n/i - 1)/2 * (Sf[j] - Sf[i-1]);//Sf[i]=f[1]+f[2]+f[3]+...+f[i]
 }
 	```
 
-Như vậy thuật toán trên có độ phức tạp $O(N\*logN+\sqrt N \*T)$ với $T$ là số test.
+Như vậy thuật toán trên có độ phức tạp $O(NlogN+\sqrt N \*T)$ với $T$ là số test.
 
 ## Bài toán tổng quát
 
