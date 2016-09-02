@@ -94,6 +94,7 @@ Bạn có thể bỏ qua đoạn giải thích này và xem code để thấy t�
 Nó không phải là một cây đơn lẻ nữa, nhưng là tập các cây nhị phân bao gồm:
 
 - Cây có gốc ở vị trí 2 với độ cao 4
+- Cây có gốc ở vị trí 7 với độ cao 2
 - Cây có gốc ở vị trí 12 với độ cao 2
 - Cây có gốc ở vị trí 13 với độ cao 1.
 
