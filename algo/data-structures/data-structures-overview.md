@@ -168,7 +168,7 @@ Mảng cộng dồn là một cách áp dụng khéo léo mảng. Có 2 dạng b
 - Tạo một mảng $S$, với $S_i = a_1 + a_2 + ... + a_i$. Mảng $S$ được gọi là mảng cộng dồn
 - Với mỗi truy vấn, in ra: $S_R – S_{L-1}$.
 
-### 2.1.2. Mảng cộng dòn - Tăng giá trị các đoạn
+### 2.1.2. Mảng cộng dồn - Tăng giá trị các đoạn
 
 **Ví dụ**
 
