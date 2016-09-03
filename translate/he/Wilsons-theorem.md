@@ -1,5 +1,7 @@
 # Định lý Wilson
 
+Nguồn: [hackerearth](https://www.hackerearth.com/notes/lucas-theorem-wilsons-theorem/)
+
 # Định lý
 
 Số tự nhiên $n>1$ là số nguyên tố khi và chỉ khi $(n-1)!\equiv n-1 (mod \ n)$.
