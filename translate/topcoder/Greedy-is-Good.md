@@ -321,7 +321,7 @@ Với công nhân thứ 4, ta có thể cho anh ta vào mỏ 1 (với lợi nhu�
 
 Cuối cùng, hai công nhân còn lại sẽ được phân công bằng cách cho cả hai vào làm ở mỏ 2 hoặc mỗi người làm ở một mỏ riêng. Ví dụ cho ta thấy kết quả mà ta vừa tìm được chính là kết quả tối ưu. Nhưng câu hỏi đặt ra là liệu phương pháp này có luôn đúng hay không?
 
-**Khẳng định: Ta luôn luôn thu được tổng lợi nhuân lớn nhất khi lần lượt cho từng công nhân vào mỏ có lợi nhuận cao nhất ở thời điểm hiện tại**.
+**Khẳng định: Ta luôn luôn thu được tổng lợi nhuận lớn nhất khi lần lượt cho từng công nhân vào mỏ có lợi nhuận cao nhất ở thời điểm hiện tại**.
 
 **Chứng minh**: Gọi $A, B$ lần lượt là mỏ 1 và mỏ 2, $a1, b1, a2, b2$ được định nghĩa như sau:
 
