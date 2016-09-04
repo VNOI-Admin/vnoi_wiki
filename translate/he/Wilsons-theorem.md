@@ -1,10 +1,12 @@
+[[_TOC_]]
+
 # Định lý Wilson
 
 Nguồn: [hackerearth](https://www.hackerearth.com/notes/lucas-theorem-wilsons-theorem/)
 
 # Định lý
 
-Số tự nhiên $n>1$ là số nguyên tố khi và chỉ khi $(n-1)!\equiv n-1 (mod \ n)$.
+Số tự nhiên $n>1$ là số nguyên tố khi và chỉ khi $(n-1)!\equiv n-1\ (mod \ n)$.
 
 # Ví dụ
 
@@ -40,21 +42,39 @@ Số tự nhiên $n>1$ là số nguyên tố khi và chỉ khi $(n-1)!\equiv n-1
 
 # Chứng minh
 
-Mệnh đề đúng với $n=2$ và $n=3$. Ta giả sử $n>3$:
+Mệnh đề đúng với $n=2$ và $n=3$. Ta giả sử $n>3$.
 
-- $n$ là hợp số
+- **Chiều thuận:** nếu $n$ là số nguyên tố thì $(n-1)!\equiv n-1 \ (mod \ n)$
 
-	$\Leftrightarrow$ tồn tại ước của $n$ trong khoảng $(1;n)$
+Khi $n$ là số nguyên tố thì $gcd(a,n)=1$ với mọi $a < n$. Theo định lý Euler ta có:
+$$
+a * a^{n-2} = a^{n-1} \equiv 1 \ mod\ n
+$$
+Đặt $b = a^{n-2} \bmod n$. Với mỗi $a$ thì $b$ là duy nhất và $b < n$ để $a*b\ (mod \ n) \ =1$, mặt khác $a=b$ khi và chỉ khi $a=1$ hoặc $a=n-1$ nên ta có thể tạo ra $(n-2) \over 2$ cặp số $a, b$ phân biệt như vậy. Nhân tất cả các cặp với nhau ta được
 
-	$\Leftrightarrow \ gcd((n-1)!,n)>1$ do $(n-1)!=1.2.3...(n-1)$
+$2.3.4...(n-2) \ mod \ n = 1$ 
 
-	$\Leftrightarrow \ gcd((n-1)! \ mod \ n,n)>1$
+$\Rightarrow \ 1.2.3..(n-1)\ mod \ n = n-1$
 
-	Nếu $(n-1)! \ mod \ n \ = n-1$ thì $gcd((n-1)! \ mod \ n,n)=gcd(n-1,n)=1$ (vô lý).
+$\Rightarrow (n-1)!\equiv n-1\ (mod \ n)$
 
-- Nếu $n$ là số nguyên tố thì $gcd(a,n)=1$ với mọi $a$ tự nhiên nhỏ hơn $n$, và theo lý thuyết số thì luôn tồn tại số $b$ duy nhất sao cho $ab \ mod \ n \ =1$, mặt khác $a=b$ khi và chỉ khi $a=1$ hoặc $a=n-1$ nên ta có:
+- **Chiều ngược:** nếu $(n-1)!\equiv n-1 \ (mod \ n)$ thì $n$ là số nguyên tố
 
-	$2.3.4...(n-2) \ mod \ n =1 \ \Rightarrow \ 1.2.3..(n-1)=(n-1)! \ mod \ n = n-1$
+Nếu $n$ là hợp số
+
+$\Leftrightarrow$ tồn tại ước của $n$ trong khoảng $(2;n)$
+
+$\Leftrightarrow \ gcd((n-1)!,n)>1$ do $(n-1)!=1.2.3...(n-1)$
+
+$\Leftrightarrow \ gcd((n-1)! \bmod n,n) > 1$
+
+$\Leftrightarrow \ gcd(n-1,n) > 1$ (vô lý).
+
+Vậy $n$ phải là số nguyên tố.
+
+- **Áp dụng**
+
+Định lý Wilson cho ta cách tính nhanh $(n-1)!\ mod \ n$ khi $n$ là số nguyên tố.
 
 # Luyện tập
 
