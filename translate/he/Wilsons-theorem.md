@@ -62,13 +62,13 @@ $\Rightarrow (n-1)!\equiv n-1\ (mod \ n)$
 
 Nếu $n$ là hợp số
 
-$\Leftrightarrow$ tồn tại ước của $n$ trong khoảng $(2;n)$
+$\Rightarrow$ tồn tại ước của $n$ trong khoảng $(2;n)$
 
-$\Leftrightarrow \ gcd((n-1)!,n)>1$ do $(n-1)!=1.2.3...(n-1)$
+$\Rightarrow \ gcd((n-1)!,n)>1$ do $(n-1)!=1.2.3...(n-1)$
 
-$\Leftrightarrow \ gcd((n-1)! \bmod n,n) > 1$
+$\Rightarrow \ gcd((n-1)! \bmod n,n) > 1$
 
-$\Leftrightarrow \ gcd(n-1,n) > 1$ (vô lý).
+$\Rightarrow \ gcd(n-1,n) > 1$ (vô lý).
 
 Vậy $n$ phải là số nguyên tố.
 
@@ -78,4 +78,4 @@ Vậy $n$ phải là số nguyên tố.
 
 # Luyện tập
 
-- [[https://www.hackerearth.com/problem/algorithm/factorial-again-1/]]
+- [Factorial Again - HackerEarth](https://www.hackerearth.com/problem/algorithm/factorial-again-1/)
