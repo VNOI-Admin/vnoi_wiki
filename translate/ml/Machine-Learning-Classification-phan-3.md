@@ -1,7 +1,6 @@
 # Machine Learning - Classification - phần 3
 
 **Nguồn:** [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/23/machine-learning-for-dummies-part-3/)
-**Bài viết chưa hoàn thiện**
 
 Trong hai bài viết trước ([[phần 1|translate/ml/Machine-Learning-Classification-phan-1]]) và ([[phần 2|translate/ml/Machine-Learning-Classification-phan-2]]), chúng ta đã cùng tìm hiểu về **Classification**. Chúng ta cũng đã làm quen với một thuật toán rất nổi tiếng gọi là **k-nearest neighbors**. Nếu có thời gian, bạn nên đọc các bài viết đó để có thể hiểu cặn kẽ những nội dung trong bài viết này, bài viết cuối cùng trong chuỗi bài giới thiệu về **Classification**.
 
@@ -9,7 +8,7 @@ Thuật toán *k-nearest neighbors* mà chúng ta tìm hiểu ở bài viết tr
 
 Một trong những lí do khiến *Random Forest* hiệu quả hơn so với *k-nearest neigbors* là bởi vì, với *k-nearest neighbors*, tất cả các thuộc tính đều có mức độ quan trọng như nhau. Mặt khác, *Random Forest* có khả năng tìm ra thuộc tính nào quan trọng hơn so với những thuộc tính khác. Trên thực tế, nó còn có thể chỉ ra rằng một số thuộc tính là hoàn toàn vô dụng.
 
-*Random Forest* là một thành viên trong họ thuật toán **decision tree** (cây quyết định). Vậy cây quyết định là gì? Một cây quyết định là một cách đơn giản để biểu diễn một giao thức ????. Nói cách khác, cây quyết định biểu diễn một kế hoạch, trả lời câu hỏi phải làm gì trong một hoàn cảnh nhất định. Ví dụ, cây quyết định được sử dụng trong tổng đài điện thoại để quyết định xem tổng đài viên sẽ trả lời như thế nào dựa trên phản hồi của khách hàng. Nó cũng được sử dụng trong hệ điều hành của bất kì cỗ máy nào mà bạn có thể tưởng tượng (tàu ngầm, bom nguyên tử,...) hay đơn giản, cây quyết định được các bác sĩ sử dụng để chẩn đoán.
+*Random Forest* là một thành viên trong họ thuật toán **decision tree** (cây quyết định). Vậy cây quyết định là gì? Một cây quyết định là một cách đơn giản để biểu diễn một giao thức (**protocol**). Nói cách khác, cây quyết định biểu diễn một kế hoạch, trả lời câu hỏi phải làm gì trong một hoàn cảnh nhất định. Ví dụ, cây quyết định được sử dụng trong tổng đài điện thoại để quyết định xem tổng đài viên sẽ trả lời như thế nào dựa trên phản hồi của khách hàng. Nó cũng được sử dụng trong hệ điều hành của bất kì cỗ máy nào mà bạn có thể tưởng tượng (tàu ngầm, bom nguyên tử,...) hay đơn giản, cây quyết định được các bác sĩ sử dụng để chẩn đoán.
 
 Hãy trở lại câu chuyện của chúng ta với một ví dụ đơn giản. Hình ảnh phía dưới minh hoạ một cây quyết định để xác định chủng loại của một con vật. Để đơn giản, chúng ta sẽ chỉ xét một vài chủng loại động vật mà thôi. Giả sử ta có một con vật, hãy thử dùng cây quyết định này để tìm ra chủng loại của nó.
 
@@ -38,5 +37,20 @@ Hình ảnh phía dưới minh hoạ 4 bước để tạo một cây quyết đ
 
 Sau khi thuật toán xây dựng xong các cây quyết định, những cây này sẽ được sử dụng để trả lời câu hỏi (hay phân loại). Trong bài toán về hoa diên vĩ, thuật toán sẽ trả lời câu hỏi: "Chủng loại của bông hoa bí ẩn là gì?".
 
+Nếu bạn theo dõi sát sao bài viết này, có thể bạn sẽ thấy một chút mâu thuẫn: chúng tôi nói với bạn rằng thuật toán *Random Forest* xây dựng nhiều cây quyết định. Tuy nhiên, chúng tôi mới chỉ giải thích cách dựng một cây quyết định mà thôi.
+
+**Random Forest** coi mỗi cây quyết định như một *cử tri* bỏ phiếu độc lập (như một cuộc bầu cử thực sự). Ở cuối cuộc bầu cử, câu trả lời nhận được nhiều bầu chọn nhất từ các cây quyết định sẽ được lựa chọn.
+
+Tuy nhiên, vẫn còn một vấn đề: Nếu như tất cả các cây được dựng theo cùng một cách, chúng sẽ cho những câu trả lời giống nhau. Như vậy chẳng khác gì chúng ta chỉ sử dụng một cây quyết định duy nhất cả. Ở đây, *Random Forest* có một cách làm rất hay: Để chắc chắn rằng không phải tất cả các cây quyết định cho cùng câu trả lời, thuật toán *Random Forest* chọn ngẫu nhiên các quan sát (observations). Chính xác hơn, *Random Forest* sẽ xoá một số quan sát và lặp lại một số khác một cách ngẫu nhiên. Xét toàn cục, những quan sát này vẫn rất gần với tập các quan sát ban đầu, nhưng những thay đổi nhỏ sẽ đảm bảo rằng mỗi cây quyết định sẽ có một chút khác biệt. Quá trình này gọi là **bootstrapping**
+
+Thêm vào đó, để thực sự chắc chắn các cây quyết định là khác nhau, thuật toán *Random Forest* sẽ ngẫu nhiên bỏ qua một số câu hỏi khi xây dựng cây quyết định. Trong trường hợp này, nếu câu hỏi tốt nhất không được chọn, một câu hỏi kế tiếp sẽ được lựa chọn để dựng cây. Quá trình này được gọi là **attribute sampling**
+
+Chúng tôi cá rằng các bạn rất thắc mắc tại sao người ta lại tạo ra một thuật toán phức tạp như vậy: ngẫu nhiên thay đổi các quan sát và bỏ qua một số câu hỏi. Câu trả lời rất đơn giản: Có thể các mẫu thử mà chúng ta đang sử dụng chưa hoàn hảo. Ví dụ, có thể mẫu thử của chúng ta chỉ có những con mèo có lông đuôi. Trong trường hợp này những con mèo thuộc loài sphynx (mèo không lông) có thể được phân loại là con chuột. Tuy nhiên, nếu câu hỏi về đuôi không được hỏi (bởi vì sự thay đổi ngẫu nhiên), thuật toán có thể sử dụng câu hỏi các câu hỏi khác (ví dụ: Con vật đó có kích thước như thế nào?). Việc có nhiều câu hỏi đa dạng (có thể không hoàn hảo) là một ý tưởng không tồi: nó có thể là cứu tinh khi thuật toán tham chiếu đến một quan sát mà nó chưa từng thấy trước đây.
+
+Và đó là tất cả những gì bạn cần biết về *Random Forest*.
+
+Đây là bài viết cuối cùng trong chuỗi ba bài viết về **Classification** trong *Machine Learning*. Hi vọng bạn đã có được những hiểu biết ban đầu về bài toán phân loại, và quen thuộc với các khái niệm *quan sát* (observations) hay *thuộc tính* (attributes). Chúng tôi cũng đã trình bày hai thuật toán phân loại nổi tiếng, **k-nearest neighbors** và **Random Forest**, hi vọng bạn đã hiểu được phần nào về cách thức mà các thuật toán này hoạt động.
+
+Hẹn gặp lại các bạn ở trong những bài viết tới!
 
 
