@@ -183,6 +183,7 @@ Chúng ta thực hiện các bước như sau:
 - Tính $C_N^K \ mod \ m_1$, $C_N^K \ mod \ m_2$,...$C_N^K \ mod \ m_r$
 
 - Sử dụng [Định lý Thặng dư Trung Hoa](https://en.wikipedia.org/wiki/Chinese_remainder_theorem) để khôi phục $C_N^K \ mod \ M$
+
 # Luyện tập
 
 - [Xông đất ngày tết - SPOJ](http://vn.spoj.com/problems/C11TCT/)
