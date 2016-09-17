@@ -28,6 +28,7 @@ Thuật ngữ **deque** là cách gọn ngắn tắt của _double-ended queue_ 
 # Cài đặt
 
 ## Cài đặt bằng mảng
+Khi sử dụng mảng để biển diễn deque, thì giá trị của deque sẽ được lưu giữ chỉ số liên tiếp trong mảng.
 
 ## Cài đặt bằng danh sách liên kết
 
