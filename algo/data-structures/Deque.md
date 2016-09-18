@@ -97,3 +97,22 @@ cấu trúc deque
 
 
 ## Lớp **deque** trong STD C++
+Trong STD C++, lớp `deque` nằm trong tiêu đề `<deque>`, là một _cấu trúc dữ liệu_ có khả năng chứa mọi kiểu dữ liệu (**cố định**), và kiểu dữ liệu này xem được xem như một thông số mẫu. Do đó, ví dụ như `deque<char>` là một hàng đợi hai đầu chứa các ký tự. Cấu trúc dữ liệu này cho phép sử dụng các hàm sau: (lưu ý rằng `T` là kiểu dữ liệu mà hàng đợi đó lưu trữ)
+
+- `void push_front(const T& x)`: thêm x vào đầu **deque**.
+- `void push_back(const T& x)`: thêm x vào cuối **deque**.
+- `void pop_front()`: xóa phần tử đầu khỏi **deque**.
+- `void pop_back()`: xóa phần tử cuối khỏi **deque**.
+- `T& front()`: trả về giá trị đầu **deque**.
+- `T& back()`: trả về giá trị cuối **deque**.
+- `size_type size()`: trả về số lượng phần tử hiện tại trong **deque**.
+- `bool empty()`: trả về giá trị `true` nếu **deque** rỗng và ngược lại, `false` nếu **deque** có phần tử.
+- `void clear()`: xóa toàn bộ phần tử trong **deque**.
+
+Ngoài ra, không giống như cấu trúc dữ liệu STD `queue` và `stack`, cấu trúc dữ liệu `deque` lưu địa chỉ của các phần tử một cách ngẫu nhiên: do đó, D[0] sẽ đại diện cho phần tử đứng đầu D, và tương tự như thế với các phần tử tiếp theo.
+
+Cấu trúc dữ liệu `deque` nên dùng bất cứ khi nào mà nó có thể chứ đủ các phần tử cần thiết; bởi sử dụng nó sẽ nhanh và ít lỗi hơn so với việc bạn tự cài đặt lại. Trong khi đó, hầu như bạn không bao giờ phải đối mặt với một vấn đề gì mà STD `deque` vẫn không chạy đủ nhanh.
+
+Lưu ý rằng thao tác `pop` được định nghĩa trong cấu trúc dữ liệu `deque` chỉ xóa đi phần tử đó nhưng không trả về giá trị của nó. Để lấy được giá trị của nó rồi xóa, ta sẽ thực hiện cả hai thao tác gọi `front` hoặc `back` và sau đó thì `pop_front` hoặc `pop_back`.
+
+Các cấu trúc dữ liệu STD `queue` và `stack, trừ khi bị ghi đè lên các đối số, thì chỉ là một phần của cấu trúc dữ liệu `deque` thôi. Bởi vì các tính chất của `stack` và `queue` chỉ là một phần của `deque`, nên ta có thể dễ dàng tạo ra nó bằng cách giới hạn những thao tác `deque`.
