@@ -115,4 +115,4 @@ cấu trúc deque
 
 - Lưu ý rằng thao tác `pop` được định nghĩa trong cấu trúc dữ liệu `deque` chỉ xóa đi phần tử đó nhưng không trả về giá trị của nó. Để lấy được giá trị của nó rồi xóa, ta sẽ thực hiện cả hai thao tác gọi `front` hoặc `back` và sau đó thì `pop_front` hoặc `pop_back`.
 
-- Các cấu trúc dữ liệu STD `queue` và `stack, trừ khi bị ghi đè lên các đối số, thì chỉ là một phần của cấu trúc dữ liệu `deque` thôi. Bởi vì các tính chất của `stack` và `queue` chỉ là một phần của `deque`, nên ta có thể dễ dàng tạo ra nó bằng cách giới hạn những thao tác `deque`.
+- Các cấu trúc dữ liệu STD `queue` và `stack`, trừ khi bị ghi đè lên các đối số, thì chỉ là một phần của cấu trúc dữ liệu `deque` thôi. Bởi vì các tính chất của `stack` và `queue` chỉ là một phần của `deque`, nên ta có thể dễ dàng tạo ra nó bằng cách giới hạn những thao tác `deque`.
