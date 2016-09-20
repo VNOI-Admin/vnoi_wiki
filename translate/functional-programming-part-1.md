@@ -18,7 +18,7 @@ Sẽ có rất nhiều thứ mà bạn đã và đang sử dụng khi lập trì
 
 Giống như khi bạn lái xe ô tô, bạn có thể sử dụng số lùi trong một vài trường hợp. Nhưng nếu bạn đang điều khiển máy bay hay tàu vũ trụ, sẽ không có số lùi nào cho bạn cả. Có thể bạn sẽ nghĩ: *Trời! Làm thế quái nào để lái nếu như không có số lùi chứ?*. Thì ra, máy bay hay tàu vũ trụ không cần số lùi vì chúng có thể di chuyển trong không gian ba chiều. Một khi bạn hiểu được điều này, bạn sẽ chẳng bao giờ nhớ đến số lùi nữa. Thực tế, một ngày nào đó bạn sẽ nghĩ rằng chiếc ô tô mà bạn vẫn quen lái hạn chế đến mức nào.
 
-**Học Functional Programming sẽ mất thời gian. Vì vậy, hãy kiên nhẫn**
+> Học Functional Programming sẽ mất thời gian. Vì vậy, hãy kiên nhẫn
 
 Trong chuỗi bài viết này, tác giả sẽ trình bày những khái niệm, ý tưởng cơ bản nhất của *Functional Programming* để giúp các bạn có một nền tảng vững chắc trước khi bắt đầu thực sự với một **Functional Language** nào đó. Nếu bạn đã bước vào con đường này, những bài viết này sẽ giúp bạn củng cố thêm hiểu biết của mình.
 
@@ -84,13 +84,15 @@ updateDatabaseTable(sqlCmd);
 sendAjaxRequest(ajaxRequest);
 openSocket(ipAddress);
 ```
+Tất cả những hàm trên đều có cái được gọi là *tác dụng phụ* (**Side Effects**). Khi bạn gọi những hàm này, chúng thay đổi files, bảng trong cơ sở dữ liệu, gửi dữ liệu đến một máy chủ hay gọi đến hệ điều hành để lấy socket. Chúng không đơn thuần thao tác trên các tham số truyền vào và trả về một giá trị nào đó. Vì vậy, bạn không thể dự đoán chắc chắn rằng những hàm này sẽ trả về giá trị gì, kể cả với một đầu vào cho trước.
 
+> Hàm thuần khiết KHÔNG có side effects (tác dụng phụ)
 
+Trong các ngôn ngữ lập trình thông dụng như Javascript, Java hay C#, side effects có mặt khắp mọi nơi. Điều này khiến việc debug rất khó khăn vì giá trị của một biến có thể thay đổi ở bất cứ đâu trong chương trình của bạn. Khi bạn gặp một lỗi gây ra bởi việc một biến nào đó bị thay đổi sai giá trị hay sai thời điểm, bạn sẽ tìm kiếm ở đâu? Mọi nơi ư? Điều này chẳng tốt chút nào.
 
+Tới đây, có thể bạn sẽ thắc mắc: "Làm thế quái nào để làm việc gì đó với chỉ những hàm thuần khiết?".
 
-
-
-
+Trong Functional Programming, bạn không chỉ viết các hàm thuần khiết. Functional Programming không thể loại trừ hết các side effects mà chỉ có thể cô lập chúng. Vì chương trình phải tương tác với thế giới bên ngoài, nên một phần nào đó của chương trình phải là không thuần khiết (impure). Mục tiêu của Functional Programming là giảm thiểu tối đa lượng mã nguồn không thuần khiết và tách biệt chúng ra khỏi phần còn lại của chương trình.
 
 
 
