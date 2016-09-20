@@ -26,6 +26,71 @@ Bạn không nên vội vàng. Hãy dành thời gian đọc thật kĩ từng k
 
 ### Purity
 
+Khi một functional programmer nói về **Purity (tính thuần khiết)**, họ đang nói về những **Pure Function*** (hàm thuần khiết).
+
+Pure functions là những hàm rất đơn giản. Chúng có một đặc điểm: chỉ thực hiện thao tác trên những tham số được truyền vào:
+```
+var z = 10;
+function add(x, y) {
+    return x + y;
+}
+```
+Hàm `add` KHÔNG tác động đến biến `z`. Nó không đọc giá trị từ `z` và cũng không cập nhật giá trị của `z`. Nó chỉ đọc giá trị của `x` và `y`, những đầu vào của nó và trả về kết quả phép cộng giữa hai giá trị đó.
+
+Đó là một ví dụ về *pure function*, hay *hàm thuần khiết*. Nếu hàm `add` tác động vào `z`, nó sẽ không là *pure function* nữa.
+
+Chúng ta cùng xem xét một hàm khác:
+```
+function justTen() {
+    return 10;
+}
+```
+
+Nếu hàm `justTen` là thuần khiết, nó chỉ có thể trả về một hằng số. Tại sao? Đơn giản vì nó không có tham số nào cả. Vì thế, để thoả mãn điều kiện của hàm thuần khiết, nó không thể tham chiếu đến bất kì một biến nào. Lựa chọn duy nhất của nó là trả về một hằng số.
+
+Một hàm như vậy không nhận một tham số nào và không làm việc gì ngoài trả về một hằng số chắc chắn sẽ không có ích. Sẽ tốt hơn nếu định nghĩa `justTen` là một hằng số.
+
+> Các hàm thuần khiết hữu ích phải nhận ít nhất một tham số.
+
+Xem xét tiếp hàm sau đây:
+```
+function addNoReturn(x, y) {
+    var z = x + y
+}
+```
+Hãy để ý đến cách hàm này hoạt động: Nó nhận hai tham số `x` và `y`, thực hiện phép cộng giữa chúng và gán giá trị của kết quả vào biến `z` nhưng không trả về gì cả.
+
+Đây cũng là một hàm thuần khiết vì nó chỉ tác động vào các tham số của nó. Nhưng vì hàm này không trả về gì cả, nên nó trở nên vô dụng.
+
+> Một hàm thuần khiết hữu ích phải trả về một giá trị nào đó.
+
+Hãy cùng xem xét lại hàm `add` ở trên:
+```
+function add(x, y) {
+    return x + y;
+}
+console.log(add(1, 2)); // prints 3
+console.log(add(1, 2)); // still prints 3
+console.log(add(1, 2)); // WILL ALWAYS print 3
+```
+Ta có thể thấy rằng `add(1, 2)` luôn luôn bằng 3. Không quá ngạc nhiên, nhưng thực ra lí do duy nhất là vì `add` là một hàm thuần khiết. Nếu hàm `add` sử dụng giá trị từ bên ngoài, ta sẽ không bao giờ dự đoán được chắc chắn hành vi của nó.
+
+> Hàm thuần khiết luôn luôn trả về cùng một đầu ra với cùng một đầu vào.
+
+Vì hàm thuần khiết không thể thay đổi giá trị của biến bên ngoài, tất cả những hàm sau được coi là không thuần khiết (**impure**)
+```
+writeFile(fileName);
+updateDatabaseTable(sqlCmd);
+sendAjaxRequest(ajaxRequest);
+openSocket(ipAddress);
+```
+
+
+
+
+
+
+
 
 
 
