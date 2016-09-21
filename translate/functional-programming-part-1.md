@@ -24,7 +24,7 @@ Trong chuỗi bài viết này, tác giả sẽ trình bày những khái niệm
 
 Bạn không nên vội vàng. Hãy dành thời gian đọc thật kĩ từng khái niệm và đọc hiểu phần mã nguồn. Thậm chí bạn có thể dừng đọc sau mỗi phần để hiểu thật kĩ càng trước khi sang phần mới. Điều quan trọng nhất là bạn phải hiểu (**understand**).
 
-### Purity
+### Purity (tính thuần khiết)
 
 Khi một functional programmer nói về **Purity (tính thuần khiết)**, họ đang nói về những **Pure Function*** (hàm thuần khiết).
 
@@ -93,6 +93,53 @@ Trong các ngôn ngữ lập trình thông dụng như Javascript, Java hay C#, 
 Tới đây, có thể bạn sẽ thắc mắc: "Làm thế quái nào để làm việc gì đó với chỉ những hàm thuần khiết?".
 
 Trong Functional Programming, bạn không chỉ viết các hàm thuần khiết. Functional Programming không thể loại trừ hết các side effects mà chỉ có thể cô lập chúng. Vì chương trình phải tương tác với thế giới bên ngoài, nên một phần nào đó của chương trình phải là không thuần khiết (impure). Mục tiêu của Functional Programming là giảm thiểu tối đa lượng mã nguồn không thuần khiết và tách biệt chúng ra khỏi phần còn lại của chương trình.
+
+### Immutability (tính bất biến)
+![translate_fp_immutability](https://cdn-images-1.medium.com/max/1600/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg)
+
+Bạn có nhớ khi lần đầu nhìn thấy những dòng code như thế này:
+```
+var x = 1;
+x = x + 1;
+```
+
+Và có ai đó nói với bạn rằng bạn phải quên tất cả mọi thứ bạn học được trong môn Toán? Trong Toán học, `x` không bao giờ bằng `x+1`. 
+
+Trong các ngôn ngữ lập trình thông dụng, điều đó là có thể và có nghĩa là bạn lấy giá trị hiện tại của `x`, công thêm `1` và gán kết quả trở lại biến `x`. 
+
+Nhưng với functional programming, `x = x + 1` là sai quy tắc. Nên nếu bạn đã trót quên những gì bạn học được từ môn Toán, thì bây giờ bạn phải nhớ lại đấy.
+
+> KHÔNG có biến (variables) trong Functional ProgrammingProgramming
+
+Các giá trị được lưu vẫn được gọi là biến nhưng thực ra chúng là hằng số. Điều đó nghĩa là một khi `x` nhận một giá trị nào đó, `x` sẽ giữ giá trị đó cho đến hết vòng đời của nó trong chương trình. Phần lớn biến trong chương trình là biến địa phương (local variables), nên vòng đời của chúng tương đối ngắn. Nhưng một khi nó tồn tại, giá trị của nó không bao giờ thay đổi.
+
+Sau đây là một ví dụ về một hằng biến (constant variable) trong Elm, một ngôn ngữ lập trình theo nguyên tắc Functional Programming được sử dụng phổ biến trong lĩnh vực phát triển Web:
+
+```
+addOneToSum y z =
+    let
+        x = 1
+    in
+        x + y + z
+```
+
+Trong ví dụ trên, `addOneToSum` là một hàm nhận 2 tham số `y` và `z`. Trong khối `let`, `x` được gán giá trị 1 và giữ nguyên giá trị nó cho đến hết vòng đời của nó. Vòng đời của nó kết thúc khi chương trình thoát khỏi hàm `addOneToSum` hay đúng hơn là sau khi khối `let` được thực hiện. Trong khối `in`, phép cộng được thực hiện bao gồm cả giá trị được định nghĩa trong khối `block` (`x`). Giá trị trả về là `x + y + z` hay chính xác hơn là `1 + y + z` vì `x = 1`.
+
+Một lần nữa, chắc bạn sẽ phải thốt lên: "Làm thế quái nào để lập trình mà không dùng biến cơ chứ?"
+
+Hãy nghĩ đến những trường hợp mà bạn muốn thay đổi giá trị của biến. Có hai trường hợp phổ biến mà bạn có thể nghĩ đến: thay đổi đa biến (ví dụ gán lại giá trị của một biến bất kì) hay thay đổi đơn biến (ví dụ như biến chạy trong vòng lặp).
+
+Functional Programming giải quyết trường hợp đầu tiên bằng cách tạo ra một bản sao chép (copy) của những bản ghi (record) có giá trị thay đổi. Nó thực hiện điều đó một cách hiệu quả mà không phải sao chép toàn bộ bản ghi, bằng cách sử dụng những cấu trúc dữ liệu cho phép điều đó.
+
+Trường hợp thứ hai cũng được giải quyết hoàn toàn tương tự, bằng cách tạo một bản sao chép của nó. Và bằng cách **không sử dụng vòng lặp**
+
+Tất nhiên, điều đó không có nghĩa là chúng ta không thể sử dụng vòng lặp, chỉ đơn giản là Functional Programming không có những cấu trúc lặp như `for, while, do, repeat`,...
+
+> Functional Programming sử dụng đệ quy để thực hiện vòng lặp.
+
+
+
+
 
 
 
