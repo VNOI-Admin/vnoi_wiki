@@ -26,7 +26,7 @@ Bạn không nên vội vàng. Hãy dành thời gian đọc thật kĩ từng k
 
 ### Purity (tính thuần khiết)
 
-Khi một functional programmer nói về **Purity (tính thuần khiết)**, họ đang nói về những **Pure Function*** (hàm thuần khiết).
+Khi một functional programmer nói về **Purity (tính thuần khiết)**, họ đang nói về những **Pure Function** (hàm thuần khiết).
 
 Pure functions là những hàm rất đơn giản. Chúng có một đặc điểm: chỉ thực hiện thao tác trên những tham số được truyền vào:
 ```
@@ -137,8 +137,60 @@ Tất nhiên, điều đó không có nghĩa là chúng ta không thể sử d�
 
 > Functional Programming sử dụng đệ quy để thực hiện vòng lặp.
 
+Đoạn code sau minh hoạ hai cách để thực hiện vòng lặp trong Javascript:
 
+```
+// simple loop construct
+var acc = 0;
+for (var i = 1; i <= 10; ++i)
+    acc += i;
+console.log(acc); // prints 55
+// without loop construct or variables (recursion)
+function sumRange(start, end, acc) {
+    if (start > end)
+        return acc;
+    return sumRange(start + 1, end, acc + start)
+}
+console.log(sumRange(1, 10, 0)); // prints 55
+```
 
+Hãy để ý cách tiếp cận thứ hai. Ở đây, hàm đệ quy cho kết quả giống như vòng lặp bằng cách gọi đến chính nó với một giá trị mới của `start` (`start + 1`) và một giá trị cộng dồn mới (`acc + start`). Nó không thay đổi giá trị của biến. Thay vào đó, nó sử dụng giá trị mới được tính từ những giá trị cũ của biến.
+
+Tuy nhiên, bạn hiếm khi nhìn thấy đoạn code kiểu này trong Javascript. Một phần là bởi cú pháp của Javascript tương đối lộn xộn, phần khác là tư duy thông thường của bạn không nghĩ đến đệ quy.
+
+Trong ngôn ngữ lập trình Elm, điều dó được thực hiện một cách dễ đọc và dễ hiểu hơn:
+
+```
+sumRange start end acc =
+    if start > end then
+        acc
+    else
+        sumRange (start + 1) end (acc + start) 
+```
+
+Hãy xem cách hoạt động của hàm `sumRange`:
+```
+sumRange 1 10 0 =      -- sumRange (1 + 1)  10 (0 + 1)
+sumRange 2 10 1 =      -- sumRange (2 + 1)  10 (1 + 2)
+sumRange 3 10 3 =      -- sumRange (3 + 1)  10 (3 + 3)
+sumRange 4 10 6 =      -- sumRange (4 + 1)  10 (6 + 4)
+sumRange 5 10 10 =     -- sumRange (5 + 1)  10 (10 + 5)
+sumRange 6 10 15 =     -- sumRange (6 + 1)  10 (15 + 6)
+sumRange 7 10 21 =     -- sumRange (7 + 1)  10 (21 + 7)
+sumRange 8 10 28 =     -- sumRange (8 + 1)  10 (28 + 8)
+sumRange 9 10 36 =     -- sumRange (9 + 1)  10 (36 + 9)
+sumRange 10 10 45 =    -- sumRange (10 + 1) 10 (45 + 10)
+sumRange 11 10 55 =    -- 11 > 10 => 55
+55
+```
+
+Có thể bạn sẽ nghĩ rằng vòng lặp `for` dễ hiểu hơn so với cách làm này. Điều này tuỳ thuộc vào mức độ quen thuộc của bạn với những kiểu tư duy khác nhau. Nhưng những vòng lặp không sử dụng đệ quy yêu cầu sự khả biến (**mutability**) và điều này không tốt cho chương trình của bạn. Một lợi thế rõ ràng của kiểu đệ quy là trong chương trình của bạn, bạn chỉ có quyền đọc các giá trị của biến mà thôi (read access only). Điều này có nghĩa là không có bất kỳ người nào, kể cả bạn, có thể thay đổi giá trị của biến. Và như thế, sẽ không có lỗi nào phát sinh từ việc thay đổi giá trị của biến. 
+
+Hơn nữa, nếu chương trình của bạn chạy đa luồng, không có luồng nào có thể thay đổi giá trị của một biến, dẫn tới việc đọc giá trị sai của luồng khác. Giá trị của một biến là không đổi và nếu một luồng muốn thay đổi giá trị đó, nó sẽ phải tạo một bản sao của biến.
+
+> Sự bất biến (immutability) khiến code trở nên đơn giản và an toàn hơn.
+
+**(Còn tiếp)**
 
 
 
