@@ -1,7 +1,5 @@
 # Functional Programming - Phần 1
 
-**Bài viết chưa hoàn thiện**
-
 **Nguồn**: [Medium - So you want to be a functional programmer (part 1)](https://medium.com/@cscalfani/so-you-want-to-be-a-functional-programmer-part-1-1f15e387e536#.70yyalovu)
 
 ![translate_fp_revolution](https://cdn-images-1.medium.com/max/1600/1*AM83LP9sGGjIul3c5hIsWg.png)
@@ -186,7 +184,7 @@ sumRange 11 10 55 =    -- 11 > 10 => 55
 
 Có thể bạn sẽ nghĩ rằng vòng lặp `for` dễ hiểu hơn so với cách làm này. Điều này tuỳ thuộc vào mức độ quen thuộc của bạn với những kiểu tư duy khác nhau. Nhưng những vòng lặp không sử dụng đệ quy yêu cầu sự khả biến (**mutability**) và điều này không tốt cho chương trình của bạn. Một lợi thế rõ ràng của kiểu đệ quy là trong chương trình của bạn, bạn chỉ có quyền đọc các giá trị của biến mà thôi (read access only). Điều này có nghĩa là không có bất kỳ người nào, kể cả bạn, có thể thay đổi giá trị của biến. Và như thế, sẽ không có lỗi nào phát sinh từ việc thay đổi giá trị của biến. 
 
-Hơn nữa, nếu chương trình của bạn chạy đa luồng, không có luồng nào có thể thay đổi giá trị của một biến, dẫn tới việc đọc giá trị sai của luồng khác. Giá trị của một biến là không đổi và nếu một luồng muốn thay đổi giá trị đó, nó sẽ phải tạo một bản sao của biến.
+Hơn nữa, nếu chương trình của bạn chạy đa luồng, không có luồng nào có thể thay đổi giá trị của một biến, dẫn tới việc luồng khác đọc sai giá trị của biến. Giá trị của một biến là không đổi và nếu một luồng muốn thay đổi giá trị đó, nó sẽ phải tạo một bản sao của biến.
 
 > Sự bất biến (immutability) khiến code trở nên đơn giản và an toàn hơn.
 
