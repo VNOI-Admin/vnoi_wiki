@@ -217,9 +217,9 @@ Phát biểu chính xác:
 
 Nếu $X1$, $X2$, ..., $Xk$ là các random variable có cùng không gian mẫu:
 
-$E(X1*a1 + X2*a2 + ... + Xk*ak) = a1*E(X1) + a2*E(X2) + ... + ak*E(Xk)$.
+$E(X1 \* a1 + X2 \* a2 + ... + Xk \* ak) = a1 \* E(X1) + a2 \* E(X2) + ... + ak \* E(Xk)$.
 
-Chú ý rằng các variable không cần độc lập.
+Chú ý rằng các biến không cần độc lập.
 
 
 # Tính xác suất từng bước một
