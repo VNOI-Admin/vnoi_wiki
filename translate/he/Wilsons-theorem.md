@@ -20,7 +20,7 @@ Số tự nhiên $n>1$ là số nguyên tố khi và chỉ khi $(n-1)!\equiv n-1
 
 	$(n-1)!\ =24$
 
-	$(n-1)!\ mod\ n\ =4$
+	$(n-1)!\ mod\ n\ =4 = n-1$, do $n$ là số nguyên tố.
 
 - Với $n=6$:
 
@@ -32,7 +32,7 @@ Số tự nhiên $n>1$ là số nguyên tố khi và chỉ khi $(n-1)!\equiv n-1
 
 	$(n-1)!\ =3628800$
 
-	$(n-1)!\ mod\ n\ =10$
+	$(n-1)!\ mod\ n\ =10 = n-1$, do $n$ là số nguyên tố.
 
 - Với $n=12$:
 
