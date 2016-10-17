@@ -1,6 +1,6 @@
-[[_TOC_]]
-
 # Định lý Wilson
+
+[[_TOC_]]
 
 Nguồn: [hackerearth](https://www.hackerearth.com/notes/lucas-theorem-wilsons-theorem/)
 
