@@ -48,6 +48,9 @@ Bạn muốn đóng góp? Hãy làm theo [[hướng dẫn ở đây|contributor-
     - [[Khử nhân ma trận|algo/trick/counting-without-matrix-multiplication]]
     - [[Mo's algorithm|algo/data-structures/mo-algorithm]]
 
+- Số học
+    - [[Định lý Wilson|translate/he/Wilsons-theorem]]
+
 ### Ngôn ngữ lập trình:
 
 - [[Xử lý xâu trong C++|languages/cpp/string]]
