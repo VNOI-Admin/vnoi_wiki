@@ -207,7 +207,7 @@ Xét riêng từng xúc sắc:
 - Đặt $E(X1)$ là expected value của giá trị xúc sắc 1
 - Đặt $E(X2)$ là expected value của giá trị xúc sắc 2
 
-`E(X1) = E(X2) = (1/6) * 1 + (1/6) * 2 + ... + (1/6) * 6 = 3.5`.
+`E(X1) = E(X2) = (1/6) \* 1 + (1/6) \* 2 + ... + (1/6) \* 6 = 3.5`.
 
 Linearity of Expectation cho ta công thức sau:
 
