@@ -137,7 +137,7 @@ Những công thức trên được ứng dụng rất nhiều, cần nắm ch�
 
 ## [BirthdayOdds](http://community.topcoder.com/stat?c=problem_statement&pm=1848&rd=4675)
 
-Một ví dụ điển hình để mô tả nội dung xác suất được bàn luận ở phần trên là  **Nghịch lí về ngày sinh** ([**Birthday Paradox**](https://en.wikipedia.org/wiki/Birthday_problem)): Nếu có ít nhất 23 người trong một căn phòng, xác suất để 2 người bất kì trong số họ có cùng ngày sinh là lớn hơn 0.5. Thoạt nhìn, kết quả này có vẻ trái ngược với trực giác thông thường nhưng nó hoàn toàn có thể được chứng minh bằng toán học. 
+Một ví dụ điển hình để mô tả nội dung xác suất được bàn luận ở phần trên là  **Nghịch lí về ngày sinh** ([**Birthday Paradox**](https://en.wikipedia.org/wiki/Birthday_problem)): Nếu có ít nhất 23 người trong một căn phòng, xác suất để 2 người bất kì trong số họ có cùng ngày sinh là lớn hơn 0.5. Thoạt nhìn, kết quả này có vẻ trái ngược với trực giác thông thường nhưng nó hoàn toàn có thể được chứng minh bằng toán học.
 
 Bây giờ, một bài toán đặt ra là tìm số người nhỏ nhất để xác suất có ít nhất 2 người trong số họ cùng ngày sinh nhật là lớn hơn x %. Đôi khi trong các bài toán xác suất, cách tiếp cận dễ dàng hơn là thử giải bài toán ngược: "Tìm xác suất để $N$ người ngẫu nhiên có ngày sinh khác nhau?". Chiến thuật là bắt đầu với một cái phòng rỗng và lần lượt thêm từng người một vào và so sánh ngày sinh của người đó với tất cả những người đã có trong phòng.
 
@@ -160,6 +160,67 @@ int minPeople (int minOdds, int days) {
 ```
 
 Các bài toán về xác suất có thể rất phức tạp và nhiều khi kết quả tạo cảm giác mâu thuẫn với những nhận đinh thông thường của chúng ta (Ví dụ như **Nghịch lí về ngày sinh** ở trên hoặc một ví dụ khác là  [Bài toán Monty Hall](https://en.wikipedia.org/wiki/Monty_Hall_problem)). Để có thể giải nhưng bài toán như vậy một cách thành thạo, ngoài việc nắm chắc các công thức toán học, các bạn cũng cần luyện tập cho mình một lối tư duy, trực giác toán học nhạy bén để tránh đưa ra những nhận định sai lầm về bài toán. Các bạn có thể làm bài [kiểm tra](http://teacherlink.org/content/math/interactive/probability/interactivequiz/question1/home.html) để đánh giá trực giác toán học của mình.
+
+# Các kiến thức nâng cao
+
+## Biến ngẫu nhiên (Random variable)
+
+**Random Variable** là một biến mà giá trị của nó là kết quả của một lần thí nghiệm. Ví dụ:
+
+- $X1$ là giá trị của xúc sắc.
+- $X2$ là 2 lần giá trị xúc sắc (có thể viết $2 * X1$)
+- $X3$ là bình phương giá trị xúc sắc
+- ...
+
+## Giá trị kỳ vọng (Expected value):
+
+Với $X$ là 1 random variable, $E(X)$ là giá trị trung bình của X, nếu ta thực hiện thí nghiệm vô số lần. Ta cũng có thể hình dung như giá trị trung bình có trọng số.
+
+Ví dụ:
+
+Có 2 lớp học:
+
+- lớp A có 40 học sinh và điểm trung bình là 5
+- lớp B có 30 học sinh và điểm trung bình là 6
+
+Điểm trung bình của tất cả học sinh là:
+
+`(5 * 40 + 6 * 30) / (40 + 30) = 5 * (40 / 70) + 6 * (30 / 70)`
+
+Các trọng số $40 / 70$ và $30 / 70$ được nhân thêm do số lượng trường hợp điểm 5 và 6 khác nhau.
+
+Công thức tổng quát:
+
+`E(X) = prob(X = 1) * 1 + prob(X = 2) * 2 + ...`
+
+## Linearity of Expectation
+
+Linearity of Expectation là 1 kĩ năng rất quan trọng nhất khi làm các bài về Expected value.
+
+Ví dụ:
+
+- Tung 2 xúc sắc
+- Tính Expected value của tổng giá trị 2 xúc sắc.
+
+Xét riêng từng xúc sắc:
+
+- Đặt $E(X1)$ là expected value của giá trị xúc sắc 1
+- Đặt $E(X2)$ là expected value của giá trị xúc sắc 2
+
+`E(X1) = E(X2) = (1/6) * 1 + (1/6) * 2 + ... + (1/6) * 6 = 3.5`.
+
+Linearity of Expectation cho ta công thức sau:
+
+$E(X1 + X2) = E(X1) + E(X2) = 7$.
+
+Phát biểu chính xác:
+
+Nếu $X1$, $X2$, ..., $Xk$ là các random variable có cùng không gian mẫu:
+
+$E(X1*a1 + X2*a2 + ... + Xk*ak) = a1*E(X1) + a2*E(X2) + ... + ak*E(Xk)$.
+
+Chú ý rằng các variable không cần độc lập.
+
 
 # Tính xác suất từng bước một
 
@@ -248,18 +309,18 @@ Tương đương, ta có
 
 $P(A \cap B) = P(A|B) P(B)$
 
-### Tóm tắt đề bài 
+### Tóm tắt đề bài
 
 Theo di truyền học ở động vật, mỗi cặp gen sẽ biểu thị một tính trạng. Mỗi gen có hai dạng cơ bản là trội hoặc lặn. Nếu trong cặp gen có gen trội thì tính trạng của gen trội này sẽ được thể hiện ra ngoài, ngược lại, trường hợp cả hai đều là gen lặn thì tính trạng của gen lặn này sẽ được thể hiện ra ngoài.
 
 Ngoài ra, một số gen còn có tính phụ thuộc. Nếu một gen phụ thuộc vào một gen khác thì gen đó chỉ có thể  thể hiện tính trội nếu gen nó phụ thuộc vào cũng thể hiện tính trội. Bên cạnh đó, có những gen không phụ thuộc vào bất cứ gen nào khác và tính trạng của nó sẽ được thể hiện như trong đoạn đầu. Đảm bảo không có trường hợp một gen phụ thuộc vào chính nó hay chuỗi phụ thuộc tạo thành một vòng (ví dụ I phụ thuộc J, J phụ thuộc K, K phụ thuộc I).
 
-Cho $n$ cặp gen của cá thể bố mẹ và một số thông tin về chúng. Với mỗi cặp gen, cá thể bố/mẹ sẽ cho con của chúng một trong hai gen. Ví dụ như cá thể mẹ có hai chuỗi gen là ‘ABC’ và ‘abc’ thì với cặp gen đầu tiên, cá thể mẹ có thể cho cá thể con gen ‘a’ hoặc ‘A’, với cặp thứ hai là ‘b’ hoặc ‘B’ và cứ thế. Tương tự cá thể bố sẽ cho cá thể con một gen trong từng cặp như vậy. Sau cùng, cá thể con sẽ nhận được $n$ cặp gen từ bố và mẹ. 
+Cho $n$ cặp gen của cá thể bố mẹ và một số thông tin về chúng. Với mỗi cặp gen, cá thể bố/mẹ sẽ cho con của chúng một trong hai gen. Ví dụ như cá thể mẹ có hai chuỗi gen là ‘ABC’ và ‘abc’ thì với cặp gen đầu tiên, cá thể mẹ có thể cho cá thể con gen ‘a’ hoặc ‘A’, với cặp thứ hai là ‘b’ hoặc ‘B’ và cứ thế. Tương tự cá thể bố sẽ cho cá thể con một gen trong từng cặp như vậy. Sau cùng, cá thể con sẽ nhận được $n$ cặp gen từ bố và mẹ.
 Chất lượng con giống của cá thể con được đánh giá dựa vào tính trạng thể hiện ở mỗi cặp gen. Nếu cặp gen thứ $i$ thể hiện tính trạng trội, chất lượng con giống sẽ được cộng thêm `troi[i]`, còn nếu là tính trạng lặn thì sẽ cộng thêm `lan[i]`.
 
 Nhiệm vụ của bạn là tính giá trị kì vọng của chất lượng con giống.
 
-Bạn sẽ được cung cấp 2 chuỗi gen thể hiện $n$ $(n \le 50)$ cặp gen của cá thể mẹ; 2 chuỗi gen thể hiện $n$ cặp gen của cá thể bố; 1 mảng $n$ số nguyên thể hiện quan hệ phụ thuộc giữa các gen, 2 mảng $n$ số nguyên `troi[i]` va `lan[i]` là giá trị công thêm cho chất lượng con giống gen thứ $i$ thể hiện tính trạng trội / lăn. 
+Bạn sẽ được cung cấp 2 chuỗi gen thể hiện $n$ $(n \le 50)$ cặp gen của cá thể mẹ; 2 chuỗi gen thể hiện $n$ cặp gen của cá thể bố; 1 mảng $n$ số nguyên thể hiện quan hệ phụ thuộc giữa các gen, 2 mảng $n$ số nguyên `troi[i]` va `lan[i]` là giá trị công thêm cho chất lượng con giống gen thứ $i$ thể hiện tính trạng trội / lăn.
 
 Từ những dữ liệu trên, bạn cần xuất ra giá trị kì vọng cần tìm.
 
@@ -350,7 +411,7 @@ Ta gọi những thuật toán ngẫu nhiên là những thuật toán sử dụ
 
 Tham khảo [tài liệu](http://www.ews.uiuc.edu/~kumar/lectures/lecture.10.3.pdf) từ College of Engineering at UIUC để xem cách các thuật toán này hoạt động.
 
-Mục tiêu chính của thuật toán ngẫu nhiêu là để tìm kiếm một hướng tiếp cận đơn giản hơn cho những bài toán phức tạp hoặc không có lời giải. Những thuật toán ngẫu nhiên không đảm bảo sẽ luôn tìm được kết quả tối ưu nhất, nhưng chúng có thể tìm được một kết quả đủ tốt trong một giới hạn về thời gian và bộ nhớ "chấp nhận được". 
+Mục tiêu chính của thuật toán ngẫu nhiêu là để tìm kiếm một hướng tiếp cận đơn giản hơn cho những bài toán phức tạp hoặc không có lời giải. Những thuật toán ngẫu nhiên không đảm bảo sẽ luôn tìm được kết quả tối ưu nhất, nhưng chúng có thể tìm được một kết quả đủ tốt trong một giới hạn về thời gian và bộ nhớ "chấp nhận được".
 
 Một câu hỏi thú vị được đưa ra là liệu những thuật toán như vậy có ích trong các kì thi lập trình hay không. Khi bạn không nghĩ ra một cách nào để giải, hướng đi hợp lý là thử cài một cách random. Độ tốt của việc random phụ thuộc nhiều vào tính chất của bài toán, và khi có kinh nghiệm cũng như cảm nhận Toán học tốt, bạn có thể đoán được là random có thể chạy đúng được với bài toán hay không. Tham khảo [QueenInterference](http://community.topcoder.com/stat?c=problem_statement&pm=2935&rd=585)
 
