@@ -8,13 +8,13 @@ Kĩ thuật sử dụng Deque tìm Min/Max trên đoạn tịnh tiến xuất hi
 
 # Bài toán
 
-Cho dãy số nguyên không âm $A$ có $N$ phần tử $(N \le 10^6)$. Ta cần tính $L$ và $R$ là 2 dãy số được tính từ dãy $A$ với định nghĩa như sau:
+Cho dãy số nguyên không âm $A$ có $N$ phần tử $(N \le 10^6)$. Ta cần xây dựng 2 mảng $L$ và $R$ có $N$ phần tử, được định nghĩa như sau:
 
 - $1 \le L_i \le i \le R_i \le N$.
 - $A_i = \min{ A[L_i], A[L_i + 1], ..., A[R_i]}$.
 - $R_i - L_i$ là lớn nhất (nói cách khác là số phần tử trong đoạn $[L_i, R_i]$ là lớn nhất).
 
-Nói một cách đơn giản hơn: Với mỗi phần tử $i$ của mảng $A$, ta cần tìm đoạn $[l, r]$ dài nhất, sao cho $i \in [l, r]$ và $A_i = \min{A_l, ..., A_r}$. Với $N$ nhỏ, ta có thể giải quyết bài toán một cách đơn giản bằng cách: Với mỗi $i$, ta kiểm tra các phần tử xung quanh $i$ để mở rộng phạm vi $l$, $r$. Cụ thể:
+Nói một cách đơn giản hơn: Với mỗi phần tử $i$ của mảng $A$, ta cần tìm đoạn $[L_i, R_i]$ dài nhất, sao cho $i \in [L_i, R_i]$ và $A_i = \min{A_{L_i}, ..., A_{R_i}}$. Với $N$ nhỏ, ta có thể giải quyết bài toán một cách đơn giản như sau: Với mỗi $i$, ta kiểm tra các phần tử xung quanh $i$ để mở rộng phạm vi $L_i$, $R_i$. Cụ thể:
 
 ```cpp
 for (int i = 1; i <= n; i++) {
@@ -28,12 +28,12 @@ for (int i = 1; i <= n; i++) {
 }
 ```
 
-Nhận xét:
+Cách làm trâu bò này có độ phức tạp là $\mathcal{O}(N)$. Ta có thể cải tiến dựa vào các nhận xét sau:
 
 - `L[i] - 1` bằng 0 hoặc là số lớn nhất mà `L[i] - 1 < i` và `A[L[i] - 1] < A[i]` **(1)**
 - `R[i] + 1` bằng 0 hoặc là số nhỏ nhất mà `R[i] + 1 > i` và `A[R[i] + 1] < A[i]` **(2)**
 
-Từ nhận xét này, ta xây dựng Deque bằng cách "lọc" lại dãy như sau: Trong quá trình duyệt dãy $A$, luôn đưa $i$ vào cuối Deque hiện tại, nhưng loại bỏ tất cả các vị trí $j$ đã được đưa vào trong Deque mà $A[j] \ge A[i]$. Như vậy, tại mọi thời điểm $i$, ta luôn có danh sách các vị trí trên Deque tạo thành dãy các số tăng dần trên $A$.
+Từ nhận xét này, ta xây dựng Deque bằng cách "lọc" lại dãy như sau: Trong quá trình duyệt dãy $A$, luôn đưa $i$ vào cuối Deque hiện tại, nhưng loại bỏ tất cả các vị trí $j$ đã được đưa vào trong Deque mà $A[j] \ge A[i]$. Như vậy, tại mọi thời điểm $i$, ta luôn có danh sách các vị trí trên Deque mà các giá trị tương ứng trên mảng $A$ là tăng dần.
 
 **Ví dụ**
 
@@ -48,7 +48,7 @@ i = 5: Deque = [1, 5]
 i = 6: Deque = [1, 5, 6]
 ```
 
-Code:
+**Code**
 
 ```cpp
 for (int i = 1; i <= n; ++i){
@@ -61,7 +61,7 @@ Theo cách hoạt động của Deque, ta có:
 
 Giả sử tại bước $i$, đã xác định được $i$ ở vị trí top trong Deque. Khi đó: `L[i] = Deque[top - 1] + 1`
 
-Chứng minh:
+**Chứng minh**
 
 Từ **(1)** ta có: `A[L[i] – 1] < A[i]`, nên `L[i] - 1` không bị loại khỏi Deque trong quá trình cập nhật lại Deque. Mặt khác, cũng từ **(1)** ta có `L[i] - 1` lớn nhất, mọi số $j \in [L[i], i-1]$ đều đã bị loại khỏi Deque do $A[j] \ge A[i]$, nên $L[i] - 1$ sẽ đứng liền sát $i$ trong Deque. Ta đưa $i$ vào vị trí cuối (top) của Deque, nên $L[i] - 1$ chính bằng $Deque[top - 1]$, hay $L[i] = Deque[top - 1] + 1$.
 
@@ -114,22 +114,40 @@ Bài tập tương tự: [VOJ - MINK](http://vnoi.info/problems/show/MINK)
 
 **Tóm tắt đề**
 
-Cho bảng số {0, 1} kích thước $m \* n$. Tìm diện tích hình chữ nhật lớn nhất chỉ gồm các số 1 có cạnh song song với bảng.
+Cho bảng số $A$ chỉ gồm các phần tử {0, 1} kích thước $m \* n$. Tìm diện tích hình chữ nhật lớn nhất chỉ gồm các số 1 có cạnh song song với bảng.
 
 **Lời Giải**
 
-Trên dòng $k$, ta xét đoạn các cột $[i, j]$ gồm các số 1 liên tiếp. Xét mỗi cột $t \in [i, j]$, ta gọi $H[t]$ là số dòng của đoạn liên tiếp dài nhất chỉ có số 1 kết thúc tại dòng $k$.
+Xét hàng $i$. Với mỗi ô $[i, j]$ có giá trị 1, ta xét các ô ngay bên trên nó: $[i-1, j]$, $[i-2, j]$, ..., $[1, j]$. Giả sử ô đầu tiên bằng 0 là $[k, j]$. Nói cách khác, tất cả các ô $[i, j]$, $[i-1, j]$, ..., $[k+1, j]$ đều bằng 1. Ta đặt $H[i,j] = k+1$.
 
-![](https://langocthuyan.files.wordpress.com/2014/08/screenshot-2014-08-12-08-28-33.png?w=300&h=170)
+Nếu $[i, j]$ có giá trị 0, ta đặt $H[i,j] = 0$.
 
-Khi đó: Hình chữ nhật có thể tạo bởi đoạn $[i,j]$ chính là hình có cạnh dài $(j – i + 1)$ và chiều cao bằng $\min{H_t}$. Diện tích hình chữ nhật này là (j – i + 1) * min{H[t]}.
+Ví dụ:
 
-Với mỗi dòng trên hình chữ nhật, ta làm tương tự bài KAGAIN: xét hết tất cả $m$ trường hợp có $H_t$ là min, tìm đoạn $[i, j]$ dài nhất để có được hình chữ nhật lớn nhất. Để tiện tính toán, ta chuẩn bị trước $H[t]$, thay vì là mảng một chiều ứng với cột t và tính lại với mỗi dòng $k$, ta mở rộng lưu trữ $H[k][t]$ với ý nghĩa tương tự. Tính bảng $H$ bằng quy hoạch động đơn giản:
+```
+A =
+0 1 0 1
+1 1 0 0
+0 1 0 1
+0 1 1 1
 
-- $H[k][t] = 0$ nếu $A[k][t] = 0$,
-- Ngược lại $H[k][t] = H[k – 1][t] + 1$.
+H =
+0 1 0 1
+1 2 0 0
+0 3 0 1
+0 4 1 2
+```
 
-Việc chuẩn bị bảng $H$ cũng như tìm hình chữ nhật là $\mathcal{O}(n^2)$, nên ta giải quyết bài tập này với $\mathcal{O}(n^2)$.
+Ta có thể tính bảng $H$ bằng quy hoạch động với độ phức tạp $\mathcal{O}(n^2)$ như sau:
+
+- $H[i][j] = 0$ nếu $A[i][j] = 0$,
+- Ngược lại $H[i][j] = H[i – 1][j] + 1$.
+
+Tiếp đó, ta thấy rằng: Hình chữ nhật có cạnh đáy nằm ở hàng $i$, cột trái ở $j1$, cột phải ở $j2$ có độ cao tối đa là $\min{H_{i, j1}, .., H_{i, j2}}$. Và diện tích của hình chữ nhật này là: $(j - i + 1) \* \min{H_{i, j1}, ..., H_{i, j2}}$. Đến đây, ta làm tương tự bài KAGAIN: giả sử hình chữ nhật có cạnh đáy nằm ở hàng $i$, và có $H_{i, j}$ là min, tìm đoạn $[j1, j2]$ dài nhất để có được hình chữ nhật lớn nhất.
+
+Áp dụng cách làm như bài KAGAIN, ta có thuật toán với độ phức tạp $\mathcal{O}(n^2)$ cho bước này.
+
+Do đó, ta giải quyết được bài tập này với $\mathcal{O}(n^2)$. Chú ý đây là độ phức tạp tối ưu do phần đọc ma trận $A$ đã mất $\mathcal{O}(n^2)$ rồi.
 
 Bài tập tương tự:
 
