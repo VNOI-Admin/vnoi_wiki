@@ -1,9 +1,9 @@
 # Ngăn xếp #
-----------
+
 **Nguồn: [Wcipeg](https://www.topcoder.com/member-profile/timmac)**
 
 # Giới thiệu
-----------
+
 **Ngăn xếp (stack)** là cấu trúc dữ liệu chứa 0 hoặc nhiều phần tử có cùng kiểu dữ liệu. Ngăn xếp hỗ trợ hai thao tác cơ bản sau:
 
 - *Thêm* một phần tử vào *đầu stack* **(Push)**
@@ -23,13 +23,10 @@ Thao tác *peek* có thể xem như *pop* phần tử đầu stack và lại *pu
 [[_TOC_]]
 
 # Thuật ngữ
-----------
+
 Thuật ngữ *ngăn xếp* **(stack)**  dựa trên cuộc sống (một chồng sách, một chồng giấy,..). Trong khoa học máy tính, đôi khi đầu và cuối không quan trọng. Thay vào đó, từng phần tử lần lượt thêm vào stack. Phần tử thêm vào mới nhất sẽ nằm ở *đầu stack*, và phần tử cũ nhất (lấy ra cuối cùng) sẽ nằm ở *cuối stack*. Một phần tử được gọi cũ hơn phần tử khác nếu nó được *pop* sớm hơn và tương tự. *Push* là thêm phần tử, và ngược lại *pop* là xóa đi phàn tử.
 
 # Cài đặt
-
-----------
-
 
 ## Call stack
 Quá trình chạy của chương trình có thể gọi là *call stack*. Mỗi phần tử trong stack này lưu trữ tổng thể trạng thái các biến hay hàm. Khi một thủ tục gọi thủ tục khác, việc này xảy ra và đưa vào stack, khi thoát ra thì phần tử đó được xóa khỏi stack. Ví dụ, nếu thủ tục `main` gọi thủ tục `fox`, mà thủ tục này gọi tiếp chính nó, trong lúc chạy, stack này sẽ chứa quá trình chạy của `main`, `fox` và `fox`. Mỗi quá trình này chứa các đối số liên qua đến hai thủ tục, cũng như các biến toàn cục liên quan. Ở đây, phần tử trong *call stack* sẽ chứa đối số của thủ tục sâu hơn. *Call stack* được thực hiện ngầm gần như trong tất cả ngôn ngữ lập trình.
