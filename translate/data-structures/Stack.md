@@ -1,6 +1,6 @@
 # Ngăn xếp #
 
-**Nguồn: [Wcipeg](https://www.topcoder.com/member-profile/timmac)**
+**Nguồn: [Wcipeg](http://wcipeg.com/wiki/Stack)**
 
 # Giới thiệu
 
