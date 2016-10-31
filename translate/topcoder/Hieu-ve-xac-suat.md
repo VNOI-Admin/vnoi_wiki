@@ -406,7 +406,7 @@ Bài tương tự: [ProbabilityTree](http://community.topcoder.com/stat?c=proble
 
 Ta gọi những thuật toán ngẫu nhiên là những thuật toán sử dụng hàm ngẫu nhiên để đưa ra quyết định trong quá trình chạy. Không giống như những thuật toán đã xác định trước, với mỗi dữ liệu vào xác định thì sẽ cho ra duy nhất một kết quả ra cũng như thời gian chạy, thuật toán ngẫu nhiên có thể biểu hiện khác nhau trong mỗi lần chạy. Về cơ bản, ta sẽ phân biệt hai loại của thuật toán ngẫu nhiên:
 
-1. Thuật toán Monte Carlo: có thể đưa ra kết quả sai - tuy nhiên xác suất của sai sót là chấp nhật được.
+1. Thuật toán Monte Carlo: có thể đưa ra kết quả sai - tuy nhiên xác suất của sai sót là chấp nhận được.
 2. Thuật toán Las Vegas: luôn cho kết quả đúng, và điểm khác biệt giữa các lần chạy với cùng một dữ liệu vào là thời gian chạy - ta sẽ nghiên cứu và sự phân phối theo xác suất của thời gian chạy.
 
 Tham khảo [tài liệu](http://www.ews.uiuc.edu/~kumar/lectures/lecture.10.3.pdf) từ College of Engineering at UIUC để xem cách các thuật toán này hoạt động.
