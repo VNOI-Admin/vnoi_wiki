@@ -101,7 +101,7 @@ var
     temp:matrix;
 begin
     if n=1 then exit(a);
-    temp:=cal(n div 2);
+    temp:=power(n div 2);
     temp:=temp*temp;
     if n mod 2=1 then temp:=temp*a;
     exit(temp);
