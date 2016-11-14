@@ -105,7 +105,7 @@ Do đó độ phức tạp của thao tác này không quá $O(\log{N})$.
 
 ### Thao tác loại 2
 
-Với thao này, ta cũng chứng minh tương tự, nhưng ở mỗi dộ sâu của cây, ta chỉ gọi hàm đệ quy với các con của không quá 2 nút.
+Với thao này, ta cũng chứng minh tương tự, nhưng ở mỗi độ sâu của cây, ta chỉ gọi hàm đệ quy với các con của không quá 2 nút.
 
 Ta chứng minh bằng phản chứng, giả sử ta gọi đệ quy với 3 nút khác nhau của cây ST (đánh dấu màu đỏ):
 
