@@ -84,7 +84,7 @@ Nếu đối chiếu với hai thuật toán ví dụ 1, không khó để thấ
 
 Ý tưởng tương tự thường được áp dụng vào thực tế. Một ví dụ là trong các hàm sắp xếp `sort()` được cung cấp bởi thư viện của các ngôn ngữ lập trình thường được cài đặt theo thuật toán *QuickSort* với nhiều cải tiến, ví dụ:
 
-- Nếu số lượng phần tử quá nhỏ, chạy thuật toán sắp xếp chèn *InsertSort* (vì *InsertSort* chạy hơn với tập dữ liệu kích thước nhỏ).
+- Nếu số lượng phần tử quá nhỏ, chạy thuật toán sắp xếp chèn *InsertSort* (vì *InsertSort* chạy nhanh hơn với tập dữ liệu kích thước nhỏ).
 - Nếu vị trí phần tử chốt không tốt, chuyển sang chạy thuật toán sắp xếp trộn *MergeSort*.
 
 # Thế nào là độ hiệu quả của thuật toán?
