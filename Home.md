@@ -54,6 +54,11 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://ww
     - [[Xác suất|translate/topcoder/Hieu-ve-xac-suat]]
     - [[Định lý Wilson|translate/he/Wilsons-theorem]]
 
+### Các kỳ thi
+
+- ACM ICPC Regional Nha Trang 2016:
+    - [[Đề bài|https://drive.google.com/file/d/0B5XsVAuisVfpVG1lbDBRYWlmb1k/view]]
+
 ### Ngôn ngữ lập trình:
 
 - [[Xử lý xâu trong C++|languages/cpp/string]]
