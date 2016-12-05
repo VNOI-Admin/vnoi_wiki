@@ -6,6 +6,8 @@ Thư viện VNOI được xây dựng với mục đích chia sẻ kiến thức
 
 Bạn muốn đóng góp? Hãy làm theo [[hướng dẫn ở đây|contributor-tutorial]]
 
+Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://www.facebook.com/groups/163215593699283/).
+
 ## Các chủ đề
 
 ### Thuật toán
