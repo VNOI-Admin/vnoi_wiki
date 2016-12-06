@@ -56,8 +56,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://ww
 
 ### Các kỳ thi
 
-- ACM ICPC Regional Nha Trang 2016:
-    - [[Đề bài|https://drive.google.com/file/d/0B5XsVAuisVfpVG1lbDBRYWlmb1k/view]]
+- [ACM ICPC Regional Vietnam](http://acmicpc-vietnam.github.io/)
 
 ### Ngôn ngữ lập trình:
 
