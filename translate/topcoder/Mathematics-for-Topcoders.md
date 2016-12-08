@@ -269,8 +269,8 @@ Một công thức đáng nhớ khác đó chính là công thức [Euler](https
 
 ```
     V - E + F = 2, với:
-        V = số cạnh của khối
-        E = số đỉnh của khối
+        V = số đỉnh của khối
+        E = số cạnh của khối
         F = số mặt của khối
 ```
 
