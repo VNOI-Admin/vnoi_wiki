@@ -92,3 +92,45 @@ Có một kinh nghiệm nhỏ để giúp các bạn tránh việc khơ�
 - Các biến, mảng cần khởi tạo nên để là biến toàn cục. Đối với các bạn code C++, các biến toàn cục cần được để ở cùng một chỗ
 - Khi đọc code, bạn điểm danh từng biến, với mỗi biến, bạn tìm lệnh khởi tạo của biến đó trong code, sau đó mới kiểm tra đến biến tiếp theo…
 - Thay vì viêc khởi tạo theo kiểu “For i := 1 -> N a[i] = 0”, nên dùng fillChar hoặc memset.
+
+# 1 vài góp ý sau kỳ thi VO17 - RR
+
+Nguồn: [Facebook VNOI](https://www.facebook.com/groups/163215593699283/permalink/1338438256177005/)
+
+## 1
+
+Khi đi thi các bạn cần chú ý tránh những code có thể dẫn đến Compile Error:
+
+- pas: không thêm uses crt;
+- C++:
+    - Nắm rõ những hàm mình hay dùng ở những thư viện nào, ví dụ hàm memset thuộc cstring. Thông thường thì mình luôn include cả 1 đống cstdio, cstdlib, cstring, cmath.
+    - Biết rõ những biến nào có thể bị trùng với biến của thư viện, ví dụ y1, next.. (bạn có thể xem code [I_love_Tanya_Romanova](http://codeforces.com/profile/I_love_Tanya_Romanova) có define tất cả những biến hay dùng mà trùng thư viện nào đó để tránh trùng tên biến. Ngoài ra cách khác là cho tất cả mọi thứ vào 1 namespace:
+
+```cpp
+namespace A {
+  int y1, next;
+  void solve() {
+    cout << "OK" << endl;
+    y1 = next = 1;
+    cout << y1 << ' ' << next << endl;
+  }
+};
+int main() { A::solve(); }
+```
+
+## 2
+
+Bài 2 ngày 1 (VO17TV) có 1 số bạn dùng Suffix array. Cách này đúng nhưng cài đặt phức tạp hơn rất nhiều so với dùng hash. Khi đi thi mỗi lựa chọn sai lầm về thuật toán kiểu này sẽ làm bạn tiêu tốn rất nhiều thời gian, và thường không sửa chữa kịp.
+
+Vì vậy khi nghĩ ra bất kỳ thuật toán nào, bạn nên tiếp tục suy nghĩ xem có cách nào đơn giản hơn không. Chỉ bắt đầu code khi thật sự chắc chắn không có cách nào tốt hơn.
+
+## 3
+
+Có chiến thuật rõ ràng cho 1 bài. Với những bài cài đặt phức tạp như bài VO17BACH, bạn cần có chiến thuật rõ ràng ngay từ đầu là debug như thế nào.
+
+Ví dụ:
+
+- Đầu tiên code duyệt
+- Sau khi duyệt + sort, in tất cả ra rồi kiểm tra bằng mắt với 1 giá trị N tương đối lớn (e.g. 100)
+- Cài đặt subtask 2 hoặc 3
+- Dùng subtask 1, viết thêm trình sinh test tự động để kiểm tra độ chính xác với 1 số lượng test tương đối lớn (10^4 - 10^5 test).
