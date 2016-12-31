@@ -39,6 +39,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://ww
     - [[Nhập môn Quy hoạch động|translate/topcoder/dynamic-programming]]
     - [[Một vài bài tập về Palindrome|algo/dp/palindrome-problems]]
     - [[Một số bài toán QHD điển hình|algo/dp/basic-problems]]
+    - [[Phân tích về QHD - Thầy Lê Minh Hoàng|algo/dp/thac-mac-ve-qhd]]
     - [[Kĩ thuật bao lồi|translate/wcipeg/Convex-Hull-Trick]]
 
 - [[Tham lam|translate/topcoder/Greedy-is-Good]]
