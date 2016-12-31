@@ -27,6 +27,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://ww
 
 - Kĩ năng thi cử
     - [[Viết trình chấm|algo/skill/viet-trinh-cham]]
+    - [[Tổng hợp lời khuyên cho các kỳ thi|algo/skill/Ki-nang-thi-cu]]
 
 - [[Cấu trúc dữ liệu|algo/data-structures/data-structures-overview]]
     - [[Bài toán RMQ & bài toán LCA|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]]
