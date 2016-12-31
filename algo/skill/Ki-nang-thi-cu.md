@@ -66,3 +66,29 @@ Ví dụ, nếu có một thuật toán $O(Nlog^2N)$ và bài toán có giới h
 Tuy nhiên, cách đánh giá trên khá phiến diện, vì nhiều lý do: Hàm đánh giá độ phức tạp không thể hiện chính xác thời gian chạy (không tính hằng số), cách cài đặt và tốc độ của mỗi máy chấm một khác. Tệ hại hơn, nếu không biết trước timelimit, thì cũng còn chẳng biết đánh giá ra làm sao. Tuy nhiên, theo mình nghĩ, nếu một thuật toán có độ phức tạp tầm 3e8 trở xuống có thể coi là chấp nhận được. Chấp nhận được ở đây không có nghĩa là thuật toán đó là đủ hiệu quả để đạt điểm tối đa, mà có nghĩa là, bạn nên bắt tay vào việc code thuật toán đó thay vì cố gắng tối ưu thêm. Đôi khi, việc tối ưu thuật toán từ NlogN xuống N hay Nlog^2N xuống NlogN là không đơn giản, tốn nhiều thời gian và đôi khi sự tăng độ khó trong cài đặt sẽ khiến bạn thiếu thời gian làm bài. Chưa kể, những thuật toán có độ phức tạp khoảng tầm 3e8 trở xuống thường chỉ bị TLE một vài test, chứ không phải cả subtask, nên không làm thay đổi quá nhiều điểm số.
 
 Ví dụ, bài MINROAD 2014, hồi đấy mình nghĩ ra một thuật toán O(Nlog^2N), với giới hạn N <= 3e5. Mình ngồi code luôn bài đấy, mà không nghĩ để tối ưu xuống O(NlogN). Về sau, mình phát hiện ra mình là người duy nhất code thuật đó, tất cả mọi người khác trong đội đều làm O(NlogN) hay O(N). Mình nghĩ quyết định lúc đó khá hợp lý, bởi hồi đấy mình code khá chậm và rất tệ, nên cần ưu tiên việc code và kiểm tra hơn và chấp nhận không được điểm tối đa bài đó.
+
+### 4. Về các bài multitest
+
+Nguồn: [Facebook VNOI](https://www.facebook.com/groups/163215593699283/permalink/1338258636194967/)
+
+Sau một ngày gián đoạn, hôm nay chuyên mục "mỗi ngày một lời khuyên xin phép đc tiếp tục.
+
+Những bài toán có đặc tính multitest là những bài mà trong đó một file input chứa nhiều bộ dữ liệu. Các bộ dữ liệu (test) này luôn độc lập với nhau, và luôn được chương trình của chúng ta xử lý theo kiểu tuần tự, nghĩa là đọc từng bộ dữ liệu, xử lý, in ra output, rồi mới đọc bộ dữ liệu tiếp theo.
+Có ba lý do chính dẫn tới kiểu input này:
+
+- Người ra đề muốn giới hạn độ phức tạp của thuật toán tới mức rất nhỏ (Ví dụ: O(logN) với N <= 1e8).
+- Bài toán có output dạng YES/NO, đặt nhiều test trong một file input sẽ vô hiệu hoá việc “output bừa” của thí sinh.
+- Một số hệ thống chấm bài giới hạn số lượng file input được đặt vào.
+
+Trừ trường hợp đầu tiên, khi đó, số lượng test trong một file input sẽ rất lớn (1e3, 1e4, …), và được chỉ rõ trong đề bài, còn hai trường hợp còn lại, số lượng test thường khá nhỏ (và đa số các test trong file input không phải test max), số lượng test có thể không được nhắc đến trong đề, và thuật giải bài toán sẽ y hệt như khi trong file input chỉ có một test.
+
+Trong kỳ thi quốc gia, đa số các bài multitest đều thuộc hai nguyên nhân dưới. Bởi thế, trong quá trình tìm kiếm thuật toán, bạn không cần quan tâm đến số lượng test có trong một file input.
+
+Tuy nhiên, trong khi code, bạn lại cần rất chú ý đến vấn đề multitest, bởi trước khi xử lý một test, bạn cần khởi tạo lại biến, mảng,... để xoá dấu vết của bộ test cũ.
+
+Khi có multitest, việc code bug hoặc quên khởi tạo sẽ tạo hậu quả rất nghiêm trọng (90% là bạn sẽ được 0 điểm). Do đó bạn cần ưu tiên sinh test và kiểm tra kĩ những bài này. Tuy nhiên, việc sinh test trong những bài này lại có lợi thế, bởi khi bạn sinh một file input gồm nhiều test, số test bạn test được lớn hơn rất nhiều.
+Có một kinh nghiệm nhỏ để giúp các bạn tránh việc khởi tạo thiếu mảng: 
+
+- Các biến, mảng cần khởi tạo nên để là biến toàn cục. Đối với các bạn code C++, các biến toàn cục cần được để ở cùng một chỗ
+- Khi đọc code, bạn điểm danh từng biến, với mỗi biến, bạn tìm lệnh khởi tạo của biến đó trong code, sau đó mới kiểm tra đến biến tiếp theo…
+- Thay vì viêc khởi tạo theo kiểu “For i := 1 -> N a[i] = 0”, nên dùng fillChar hoặc memset.
