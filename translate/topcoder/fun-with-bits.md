@@ -60,7 +60,7 @@ Những thứ quan trọng nhất trong thao tác bit là những toán tử tr�
 
 Toán tử bit trên số nguyên cũng thực hiên giống vậy, chỉ khác một thứ là thay vì chuyển các tham số về true hoặc false, thì các toán tử bit được thực hiện trên các bit của các tham số. Do đó, nếu `A` là `1010` và `B` là `1100`, thì 
 ```
-A & B = 1000$
+A & B = 1000
 A | B = 1110
 A ^ B = 0110
 ~A = 11110101 (số chữ số 1 phụ thuộc vào kiểu dữ liệu của A)
