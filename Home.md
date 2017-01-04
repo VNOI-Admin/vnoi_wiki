@@ -34,6 +34,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://ww
     - [[Các phương pháp giải bài toán LCA|algo/data-structures/lca]]
 
 - [[Xử lý xâu|algo/string/basic]]
+    - [[Hash|algo/string/hash]]
 
 - Quy hoạch động:
     - [[Nhập môn Quy hoạch động|translate/topcoder/dynamic-programming]]
