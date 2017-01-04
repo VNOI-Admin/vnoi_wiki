@@ -241,7 +241,7 @@ Khi cài đặt Hash, ta cần chọn:
 - Hệ cơ số
 - MOD
 
-Với những trang web mà người khác có thể đọc code bạn rồi tìm test sai (như Codeforces, Topcoder), nếu Hash tràn số hoặc MOD là 1 số nguyên biết trước, có thể sinh test để làm code bạn sai. Với những kỳ thi như HSG QG, IOI, ACM, và các Online Judge, thông thường sẽ không có những test như vậy. Như vậy, khi chọn $MOD$ và hệ cơ số ta làm như sau:
+Với những trang web mà người khác có thể đọc code bạn rồi tìm test sai (như Codeforces, Topcoder), nếu Hash tràn số hoặc MOD là 1 số nguyên biết trước, có thể sinh test để làm code bạn sai. Với những kỳ thi như HSG QG, IOI, ACM, và các Online Judge, thông thường sẽ không có những test như vậy. Tóm lại, khi chọn $MOD$ và hệ cơ số ta làm như sau:
 
 - Chọn hệ cơ số là số nguyên tố lớn hơn số lượng ký tự (ví dụ 31, 71).
 - Chọn $MOD$ đủ lớn theo nguyên tắc đã phân tích ở phần "Đánh giá độ chính xác".
