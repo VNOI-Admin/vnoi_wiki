@@ -46,11 +46,11 @@ Chúng ta cần tìm ra tất cả các vị trí $i (1 \le i \le m − n + 1)$ 
 
 Đây chính là tư tưởng của thuật toán: đổi 2 xâu từ hệ cơ số 26 ra hệ cơ số 10, rồi đem so sánh ở hệ cơ số 10. Tuy nhiên, chúng ta nhận thấy rằng, khi đổi 1 xâu ra biểu diễn ở hệ cơ số 10, biểu diễn này có thể rất lớn và nằm ngoài phạm vi lưu trữ số nguyên của máy tính.
 
-Để khắc phục điều này, chúng ta chuyển sang so sánh 2 biểu diễn của 2 xâu ở hệ cơ số 10 sau khi lấy phần dư cho một số nguyên đủ lớn. Cụ thể hơn: nếu biểu diễn trong hệ thập phân của xâu $a$ là $x$ và biểu diễn trong hệ thập phân của xâu $b$ là $y$, chúng ta sẽ coi $a$ bằng $b$ _‘khi và chỉ khi’_ $x \bmod base = y \bmod base$ trong đó $base$ là một số nguyên đủ lớn.
+Để khắc phục điều này, chúng ta chuyển sang so sánh 2 biểu diễn của 2 xâu ở hệ cơ số 10 sau khi lấy phần dư cho một số nguyên đủ lớn. Cụ thể hơn: nếu biểu diễn trong hệ thập phân của xâu $a$ là $x$ và biểu diễn trong hệ thập phân của xâu $b$ là $y$, chúng ta sẽ coi $a$ bằng $b$ _‘khi và chỉ khi’_ $x \bmod MOD = y \bmod MOD$ trong đó $MOD$ là một số nguyên đủ lớn.
 
-Dễ dàng nhận thấy việc so sánh $x \bmod base$ với $y \bmod base$ rồi kết luận $a$ có bằng với $b$ hay không là sai. $x \bmod base = y \bmod base$ chỉ là điều kiện cần để $a$ bằng $b$ chứ chưa phải điều  kiện đủ. Tuy nhiên, chúng ta sẽ chấp nhận lập luận sai này trong thuật toán Hash. Và coi điều kiện cần như điều kiện đủ. Trên thực tế, lập luận sai này có những lúc dẫn đến so sánh xâu không chính xác và chương trình bị chạy ra kết quả sai. Nhưng cũng thực tế cho thấy rằng, khi chọn $base$ là một số nguyên lớn, số lượng những trường hợp sai rất ít, và ta có thể coi Hash là một thuật toán chính xác.
+Dễ dàng nhận thấy việc so sánh $x \bmod MOD$ với $y \bmod MOD$ rồi kết luận $a$ có bằng với $b$ hay không là sai. $x \bmod MOD = y \bmod MOD$ chỉ là điều kiện cần để $a$ bằng $b$ chứ chưa phải điều  kiện đủ. Tuy nhiên, chúng ta sẽ chấp nhận lập luận sai này trong thuật toán Hash. Và coi điều kiện cần như điều kiện đủ. Trên thực tế, lập luận sai này có những lúc dẫn đến so sánh xâu không chính xác và chương trình bị chạy ra kết quả sai. Nhưng cũng thực tế cho thấy rằng, khi chọn $MOD$ là một số nguyên lớn, số lượng những trường hợp sai rất ít, và ta có thể coi Hash là một thuật toán chính xác.
 
-Để đơn giản trong việc trình bày tiếp thuật toán, chúng ta sẽ gọi biểu diễn của một xâu trong hệ thập phân sau khi lấy phần dư cho $base$ là mã Hash của xâu đó. Nhắc lại, 2 xâu bằng nhau _‘khi và chỉ khi’_ mã Hash của 2 xâu bằng nhau.
+Để đơn giản trong việc trình bày tiếp thuật toán, chúng ta sẽ gọi biểu diễn của một xâu trong hệ thập phân sau khi lấy phần dư cho $MOD$ là mã Hash của xâu đó. Nhắc lại, 2 xâu bằng nhau _‘khi và chỉ khi’_ mã Hash của 2 xâu bằng nhau.
 
 Trở lại bài toán ban đầu, chúng ta cần chỉ ra $P$ xuất hiện ở những vị trí nào trong $T$. Để làm được việc này, chúng ta chỉ cần duyệt qua mọi vị trí xuất phát có thể của $P$ trong $T$. Giả sử vị trí đó là $i$, chúng ta sẽ kiểm tra $T[i..i+n−1]$ có bằng với $P$ hay không. Để kiểm tra điều này, chúng ta cần tính được mã Hash của đoạn $T[i..i+n−1]$ và mã Hash của xâu $P$.
 
@@ -59,33 +59,33 @@ Trở lại bài toán ban đầu, chúng ta cần chỉ ra $P$ xuất hiện �
 ```
 hashP = 0
 for (i : 1 .. n)
-      hashP = (hashP * 26 + P[i] - 'a') mod base
+      hashP = (hashP * 26 + P[i] - 'a') mod MOD
 ```
 
 Phần khó hơn của thuật toán Hash là: Tính mã Hash của một đoạn con $T[i..j]$ của xâu $T$ $(1 \le i \le j \le N)$.
 
 - Để hình dung cho đơn giản, xét ví dụ sau: Xét xâu $s$ và biểu diễn của nó dưới cơ số 26: $(4,1,2,5,1,7,8)$. Chúng ta cần lấy mã Hash của đoạn con từ phần tử thứ 3 đến phần tử thứ 6, nghĩa là cần lấy mã Hash của xâu $(2,5,1,7)$. Nhận thấy, để lấy được xâu $s[3..6]$, chỉ cần lấy số $s[1..6]$ là $(4,1,2,5,1,7)$ trừ cho số ($s[1..2]$ nhân với $26^4$) là $(4,1,0,0,0,0)$ ta sẽ thu được $(2,5,1,7)$.
-- Để cài đặt ý tưởng này, chúng ta cần khởi tạo $26^x \bmod base$ với $(0 \le x \le m)$ và mã Hash của tất cả những tiền tố của $s$, cụ thể là mã Hash của những xâu $s[1..i]$ với $(1 \le i \le m)$.
+- Để cài đặt ý tưởng này, chúng ta cần khởi tạo $26^x \bmod MOD$ với $(0 \le x \le m)$ và mã Hash của tất cả những tiền tố của $s$, cụ thể là mã Hash của những xâu $s[1..i]$ với $(1 \le i \le m)$.
 
 ```
 pow[0] = 1
 for (i : 1 .. m)
-       pow[i] = (pow[i-1] * 26) mod base
+       pow[i] = (pow[i-1] * 26) mod MOD
 
 
 hashT[0] = 0
 for (i : 1 .. m)
-       hashT[i] = (hashT[i-1] * 26 + T[i] - 'a') mod base
+       hashT[i] = (hashT[i-1] * 26 + T[i] - 'a') mod MOD
 
 ```
 
-Trong đoạn code trên, chúng ta thu được mảng $pow[i]$ (lưu lại $26^i \bmod base$) và mảng $hashT[i]$ (lưu lại mã Hash của $T[1..i]$).
+Trong đoạn code trên, chúng ta thu được mảng $pow[i]$ (lưu lại $26^i \bmod MOD$) và mảng $hashT[i]$ (lưu lại mã Hash của $T[1..i]$).
 
 - Để lấy mã Hash của $T[i..j]$ ta viết hàm sau:
 
 ```
 function getHashT(i, j):
-       return (hashT[j] - hashT[i - 1] * pow[j - i + 1] + base * base) mod base
+       return (hashT[j] - hashT[i - 1] * pow[j - i + 1] + MOD * MOD) mod MOD
 
 ```
 
@@ -104,7 +104,7 @@ Chương trình sau, tôi viết bằng ngôn ngữ C++, là lời giải cho b�
 ```cpp
 typedef long long ll;
 
-const ll base=1000000003;
+const ll MOD=1000000003;
 const ll maxn=1000111;
 
 using namespace std;
@@ -113,7 +113,7 @@ ll POW[maxn], hashT[maxn];
 
 
 ll getHashT(int i,int j) {
-    return (hashT[j] - hashT[i - 1] * POW[j - i + 1] + base * base) % base;
+    return (hashT[j] - hashT[i - 1] * POW[j - i + 1] + MOD * MOD) % MOD;
 }
 
 
@@ -130,16 +130,16 @@ int main() {
 
     // Precalculate 26^i
     for(i = 1; i <= m; i++)
-    	POW[i] = (POW[i - 1] * 26) % base;
+    	POW[i] = (POW[i - 1] * 26) % MOD;
 
     // Calculate hash value of T[1..i]
     for(i = 1; i <= m; i++)
-    	hashT[i] = (hashT[i - 1] * 26 + T[i] - 'a') % base;
+    	hashT[i] = (hashT[i - 1] * 26 + T[i] - 'a') % MOD;
 
     // Calculate hash value of P
     ll hashP=0;
     for(i = 1; i <= n; i++)
-    	hashP = (hashP * 26 + P[i] - 'a') % base;
+    	hashP = (hashP * 26 + P[i] - 'a') % MOD;
 
     // Finding substrings of T equal to string P
     for(i = 1; i <= m - n + 1; i++)
@@ -197,7 +197,7 @@ Thông thường, khi sử dụng Hash, ta thường gặp phải 2 trường h�
 1. Trả lời $Q$ truy vấn, mỗi truy vấn có dạng kiểm tra 2 đoạn con của 2 xâu có bằng nhau hay không
 2. Cho $N$ xâu, kiểm tra tất cả các xâu có phân biệt hay không.
 
-Giả sử ta chọn $base$ là một số nguyên tố khoảng $10^9$, và giả sử dữ liệu được sinh ngẫu nhiên và hàm hash của chúng ta đủ tốt để Hash của các xâu được phân bố đều và ngẫu nhiên.
+Giả sử ta chọn $MOD$ là một số nguyên tố khoảng $10^9$, và giả sử dữ liệu được sinh ngẫu nhiên và hàm hash của chúng ta đủ tốt để Hash của các xâu được phân bố đều và ngẫu nhiên.
 
 ## Trường hợp 1
 
@@ -215,14 +215,14 @@ Theo [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem), ta dễ
 
 $(1 - 1 / 10^9) \* (1 - 2 / 10^9) \* (1 - 3 / 10^9) \* ... (1 - N / 10^9)$.
 
-Với $N = 30,000$, tích trên là $0.6376$, nghĩa là bạn có gần $0.40$ xác suất trả lời sai. Do vậy, bạn bắt buộc phải dùng nhiều $base$ khác nhau.
+Với $N = 30,000$, tích trên là $0.6376$, nghĩa là bạn có gần $0.40$ xác suất trả lời sai. Do vậy, bạn bắt buộc phải dùng nhiều $MOD$ khác nhau.
 
 
 # Hash tràn số
 
-Trên thực tế, khi cài đặt Hash sử dụng nhiều phép $mod$ sẽ làm chương trình chạy chậm. Vì vậy, để tăng tốc độ, người ta thường cài đặt với $base = 2^{64}$. Do đó, nếu sử dụng kiểu dữ liệu số 64-bit, ta không cần dùng phép $mod$ mà cứ để các phép tính tràn số. Kĩ thuật này được gọi là Hash tràn số. Tuy nhiên khi cài đặt như vậy có một vài chú ý:
+Trên thực tế, khi cài đặt Hash sử dụng nhiều phép $mod$ sẽ làm chương trình chạy chậm. Vì vậy, để tăng tốc độ, người ta thường cài đặt với $MOD = 2^{64}$. Do đó, nếu sử dụng kiểu dữ liệu số 64-bit, ta không cần dùng phép $mod$ mà cứ để các phép tính tràn số. Kĩ thuật này được gọi là Hash tràn số. Tuy nhiên khi cài đặt như vậy có một vài chú ý:
 
-- Việc sử dụng $base$ không phải là số nguyên tố (và hơn nữa lại là 1 số cố định) khiến cho hàm Hash không đủ tốt. Nếu test được sinh ngẫu nhiên, thì nó không có vấn đề gì cả. Nhưng ở trên Codeforces, vì những người thi cùng có thể "hack" code của bạn bằng test tự sinh, nên bạn hầu như không thể AC các bài Hash với Hash tràn số. Bạn có thể đọc thêm về cách sinh test giết Hash tràn số [ở đây](http://codeforces.com/blog/entry/4898). Cách giải quyết là dùng hash tràn số kết hợp với một $MOD$ khác.
+- Việc sử dụng $MOD$ không phải là số nguyên tố (và hơn nữa lại là 1 số cố định) khiến cho hàm Hash không đủ tốt. Nếu test được sinh ngẫu nhiên, thì nó không có vấn đề gì cả. Nhưng ở trên Codeforces, vì những người thi cùng có thể "hack" code của bạn bằng test tự sinh, nên bạn hầu như không thể AC các bài Hash với Hash tràn số. Bạn có thể đọc thêm về cách sinh test giết Hash tràn số [ở đây](http://codeforces.com/blog/entry/4898). Cách giải quyết là dùng hash tràn số kết hợp với một $MOD$ khác.
 - Nếu dùng Pascal, cần tắt báo tràn số (`$Q-`), nếu không chương trình sẽ chạy bị lỗi.
 
 
