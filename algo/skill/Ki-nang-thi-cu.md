@@ -67,6 +67,26 @@ Tuy nhiên, cách đánh giá trên khá phiến diện, vì nhiều lý do: Hà
 
 Ví dụ, bài MINROAD 2014, hồi đấy mình nghĩ ra một thuật toán O(Nlog^2N), với giới hạn N <= 3e5. Mình ngồi code luôn bài đấy, mà không nghĩ để tối ưu xuống O(NlogN). Về sau, mình phát hiện ra mình là người duy nhất code thuật đó, tất cả mọi người khác trong đội đều làm O(NlogN) hay O(N). Mình nghĩ quyết định lúc đó khá hợp lý, bởi hồi đấy mình code khá chậm và rất tệ, nên cần ưu tiên việc code và kiểm tra hơn và chấp nhận không được điểm tối đa bài đó.
 
+### 5. Không sử dụng các thuật toán "lạ" trong kỳ thi VOI.
+
+Nguồn: [Facebook VNOI](https://www.facebook.com/groups/163215593699283/permalink/1341529935867837/)
+
+Gần đây, theo khảo sát của một số tổ chức giấu tên, xuất hiện tình trạng nhiều thí sinh của kì thi VOI thích khoe hàng trong phòng thi. Đặc điểm chung, những thí sinh này thường inbox tâm sự riêng với GS. PVH về ham muốn được thể hiện những thuật toán hàng khủng như thuật toán Lehman, Suffix Array, DFS khử đệ quy bằng stack,... Qua điều tra sơ bộ, chúng tôi đã xác định được ba nguyên nhân chính dẫn tới căn bệnh nghiện show hàng này như sau:
+
+- Đã hoặc đang sử dụng ma túy đá, cơ thể thường xuyên ở trong tình trạng phê, ngáo, dẫn đến mất kiểm soát hành vi, lệch lạc trong suy nghĩ,
+- Có tiền sử về các bệnh liên quan đến não, bị mất não hoặc thường xuyên bỏ quên não ở ngoài phòng thi.
+- Ăn thức ăn không đảm bảo vệ sinh, chứa nhiều Progesterone, là chất kích thích cực mạnh làm tăng ham muốn tham dự kì thi tuyển sinh vào đại học.
+
+Căn bệnh này đang có xu hướng lây lan nhanh trong giới học sinh giỏi tin của các trường chuyên, và diễn biến rất phức tạp. Vì vậy, mình khuyến cáo các bậc phụ huynh cần theo dõi con em mình chặt chẽ, hạn chế cho trẻ tiếp xúc với ma túy, thực phẩm bẩn, nhắc trẻ mang theo não thường xuyên. Nếu thấy con có biểu hiện lạ, cần đưa đến trung tâm GS. PVH gần nhất để được chữa trị kịp thời.
+
+Xin cảm ơn.
+
+Mình nghĩ có lẽ không cần nhắc các bạn vấn đề này, nhưng gần đây có mấy bạn rất hổ báo vào inbox mình hỏi về thuật toán Leman jj đó liên quan đế số nguyên tố. Mình thú thật là mình ứ biết cái thuật toán này là gì, và có lẽ nó khó có thể xuất hiện trong kỳ thi tới.
+
+Tất nhiên, không có bất kỳ giới hạn kiến thức nào trong kì thi này. Nhưng mình vẫn muốn nhắc lại rằng, với những thuật toán dù biết nhưng cài đặt không thành thạo, không dùng thường xuyên, hoặc rất phức tạp (KMP, Suffix Array, Dinitz, DFS khử đệ quy, ...) thì bạn không nên cài đặt trong phòng thi. Nếu cài sai, bạn sẽ trong trạng thái tiến thoái lưỡng nan: Debug thì mất quá nhiều thời gian, xóa hết thì phí công code.
+
+Nhớ rằng, VOI không là chỗ thích hợp cho việc phô trương sức mạnh, hãy cẩn thận và chắc chắn để đảm bảo những sự cố thương tâm không xảy ra.
+
 ### 4. Về các bài multitest
 
 Nguồn: [Facebook VNOI](https://www.facebook.com/groups/163215593699283/permalink/1338258636194967/)
@@ -92,6 +112,80 @@ Có một kinh nghiệm nhỏ để giúp các bạn tránh việc khơ�
 - Các biến, mảng cần khởi tạo nên để là biến toàn cục. Đối với các bạn code C++, các biến toàn cục cần được để ở cùng một chỗ
 - Khi đọc code, bạn điểm danh từng biến, với mỗi biến, bạn tìm lệnh khởi tạo của biến đó trong code, sau đó mới kiểm tra đến biến tiếp theo…
 - Thay vì viêc khởi tạo theo kiểu “For i := 1 -> N a[i] = 0”, nên dùng fillChar hoặc memset.
+
+### 3. Điều chỉnh đồng hồ máy thi cho đúng với thời gian thực
+
+Nguồn: [Facebook VNOI](https://www.facebook.com/groups/163215593699283/permalink/1340150249339139/)
+
+Đây là một kĩ năng nhỏ nhưng quan trọng, trong khi làm bài, bạn luôn phải để ý lượng thời gian còn lại, để xem mình nên nghĩ tiếp một bài hay k, hay bắt đầu việc code trâu luôn, hoặc là bạn có thể đi wc thêm bao nhiêu lần nữa,... Hoặc đơn thuần bạn cần biết là sắp hết giờ r để cảm thấy tăng huyết áp, sợ hãi và k làm nổi cái j nữa :v
+Tưởng tượng, 8h bắt đầu thi, máy tính bạn chỉ 7h. Đến khi máy tính chỉ 9h45, bạn yên tâm còn 75p, quá thừa để AC cả 3 bài, và bắt đầu chìm vào giấc ngủ. Thế nhưng, 15p sau thình lình gv gọi bạn dậy và bạn chợt nhận ra tương lai sụp đổ, cuộc đời bế tắc. Do đó, việc kiểm soát thời gian là vô cùng quan trọng.
+Một trong những lỗi về chiến lược mà kể cả những ng đã thi nhiều lần mà vẫn mắc, đó là quá cay cú đi tìm lời giải cho một bài toán, kết quả là không còn thời gian chạy trâu các bài còn lại. Nên nhớ rằng, đôi khi sub cuối bài 2 khó hơn rất nhiều, nhưng lại ít điểm hơn sub 1 bài 3, do đó trước khi bắt đầu nghĩ một bài, bạn cần đặt gia hạn mức thời gian nghĩ bài đó.
+
+### 2. Sử dụng thư viện thay thế bits/stdc++.h
+
+Với các bạn code C++, việc #include<bitch/stdc++.h> vô cùng tiện lợi, nó giúp bạn khỏi bận tâm về việc include mọi thư viện khác. Tuy nhiên, cách đây ba năm, mọi bản G++ tích hợp sẵn trong Themis đều quá cũ, việc sử dụng thư viện này chắc chắn dẫn tới lỗi biên dịch. Cách đây hai năm, việc sử dụng thư viện này vẫn được coi là điều cấm kỵ trong kì thi học sinh giỏi quốc gia. Ngày nay, do các bản Themis đã được cập nhật, việc sử dụng thư viện trên đã được chấp nhận. Do vậy, theo quan điểm cá nhân, #include<bits/stdc++.h> không phải là lựa chọn mạo hiểm. Tuy nhiên, không một quy định nào nói rõ phiên bản Themis nào sẽ được sử dụng, nên cũng không lấy gì đảm bảo rằng #include<bits/stdc++.h> không phải là tai họa. Bởi vậy, các bạn nên nhớ tên các thư viện sau đây để include thay thế cho thư viện huyền thoại kia.
+
+Trong hai ngày tới, hãy code một số bài đơn giản để thay đổi thói quen include, sẽ không vất vả đâu :)
+Ghi chú:
+
+1. Với các bạn cảm thấy lo lắng, hãy vứt bỏ <bits/stdc++.h>. Nó cũng như việc bạn vứt bỏ một gánh nặng tâm lý trong kỳ thi đáng sợ này.
+2. Các bạn được khuyến khích include TẤT CẢ các thư viện sau đây. Với những địa điểm thi cài phiên bản G++ 5.0 trở lên, VIỆC INCLUDE THIẾU KHÔNG GẶP LỖI KHI CODE TRÊN MÁY, NHƯNG VẪN BỊ LỖI KHI CHẤM BẰNG THEMIS. Các bạn cần đặc biệt lưu ý trong trường hợp này.
+3. Trong khi test máy vào ngày khai mạc (ngày mai), các bạn nên include thử hết các thư viện trên để đảm bảo bộ dịch trên máy thi không gặp vấn đề.
+
+Danh sách các thư viện hay dùng:
+
+1. Thư viện cơ bản của C: cstdio, cstring, cstdlib, cassert (nếu bạn sử dụng hàm assert),...
+2. Thư viện STL của C++ hay dùng: algorithm (chứa hàm sort, chặt nhị phân,..), iostream (kh sử dụng cin, cout), iomanip,...
+3. Các thư viện cấu trúc dữ liệu STL: vector, queue, stack, set, map, string,...
+Các bạn thấy thư viện nào hay dùng mà chưa được liệt kê trong bài viết này, hãy để lại comment để mình bổ sung nhé :)
+
+### 1. Một số kinh nghiệm nho nhỏ khác:
+Kỳ thi quốc gia đã đến thật gần. Các bạn đã bỏ ra rất nhiều công sức, tâm huyết và niềm tin vào những tháng học đôij tuyển rồi phải không :) để có những bước chuẩn bị hoàn hảo cuối cùng, hãy tham khảo bài viết dưới đây.
+(NOTE: Post này chỉ nhằm mục đích giải trí. Bạn nào cảm thấy quá căng thẳng hoặc có tính mê tín thì có thể k đọc nữa.)
+
+a/ Lựa chọn thức ăn phù hợp:
+
+Ăn gì trong những ngày thi là một câu hỏi khó. Bạn sẽ phải gạch tên rất nhiều những món ăn khoái khẩu của mình để có một kì thi suôn sẻ:
+
+- Không ăn trứng, ngỗng, chuối, thịt bò, mực..., nhứng thứ biểu tượng cho sự đen đủi.
+- Không ăn xôi đỗ với chả, Truyền thuyết kể rằng. một thí sinh đã bị fail VOI vì ăn món xôi "chả đỗ" bổ béo này trước khi đi thi.
+
+b/ Không nghe các bài hát mang nội dung "nhạy cảm".
+
+Nếu như ăn chuối là điều cấm kị vì nó khiến đề thi của bạn bị chuối, thì cũng như vậy, những bài hát có những từ ngữ xấu cũng nên bị loại bỏ trong giờ phút căng thẳng này.
+Ví dụ, nghe những bài hát có chữ "trôi" hay chữ "lạc" sẽ khiến bạn làm bài lạc đề, kiến thức bị trôi nổi giữa đời, vì thế bạn nên tránh xa những bài như vậy.
+
+(Đùa tí, các bạn nóng nảy vl. Đừng phẫn nộ mình sau khi đọc đến dòng này nhé)
+
+c/ Không tắm trước khi thi.
+
+Nhiều người không gội đầu trước khi thi vò lo sợ kiến thức trên đầu sẽ bị rửa trôi.Thực tế, kiến thức còn được lưu trữ ở nhiều nơi bí ẩn khác trong cơ thể. do đó, bạn không nên tắm nếu thuật toán được lưu trên da, ghét hay gàu. Ngoài ra, nếu bạn lưu ở bộ phận tích trữ khác, bạn nên kìm nén, nhịn không được phép xả ra ngoài trước khi thi xong.
+
+d/ Chọn chỗ ngồi hợp phong thủy
+
+Phong thủy mang ý nghĩa rất quan trọng với con người. Trước khi làm những việc lớn, như xây nhà, lấy vợ, người ta đều phải xem phong thủy. Thi HSGQG cũng vậy, vì nó ảnh hưởng rất lớn đến tương lai bạn, bạn cũng nên chọn chỗ ngồi, kê bàn ghế theo hướng hợp với phong thủy của mình để có được chất lượng bài thi cao hơn.
+
+e/ Chọn thời gian thi phù hợp.
+
+Giờ hoàng đạo luôn đem lại sự suôn sẻ và những điều tốt lành. Vì vậy, các bạn hãy lựa chọn thời gian thi vào những giờ hoàng đạo để làm bài tốt hơn.
+Ngày 5/1, các giờ hoàng đạo bao gồm Sửu (1h - 3h), Ngọ (11h - 13h), Mùi (13h - 15h), Tuất (19h - 21h) và Hợi (21h - 23h).
+
+Nếu có thể, hãy làm bài thi quốc gia vào những khoảng thời gian này, sẽ có lợi cho bạn hơn.
+Trong ngày mai, mình sẽ cố gắng liệt kê thêm những kinh nghiệm khác để chia sẻ với các bạn. Chúc các bạn nghỉ ngơi thoải mái và có một buổi khai mạc rực rỡ :)
+
+### 0. Nghỉ ngơi thư giãn thoải mái.
+
+Giờ k phải là lúc lo âu căng thẳng hay xám hối vì sự lười nhác của bạn nữa. Hãy nghỉ ngơi, thư giản thoải mái, làm những gì khiến bạn sung sướng nhất trong ngày cuối cùng này.
+
+Chuyên mục của chúng tôi cũng xin được kết thúc tại đây. Rất cám ơn sự chú ý theo dõi và ủng hộ nhiệt tình của các bạn giành cho mình. Hy vọng rằng, qua series bài viết này, bạn tìm ra được cho mình những bài học bổ ích và sẽ áp dụng được chúng một cách hợp lý cho hai ngày sắp tới.
+
+Chắc chắn, sang năm mình sẽ mở ra những chuyên mục hay hơn nữa :D
+
+Cuối cùng, xin chúc các bạn gặp nhiều may mắn, và mọi thứ suôn sẻ trong hay ngày thi sắp tới. Ai ai cũng đạt được ước nguyện của mình.
+
+À quên, chúc 5 bạn NDT, GTTV, DXB, NPD và TQA ngày mai vui vẻ :) Ahihi
+
+
 
 # 1 vài góp ý sau kỳ thi VO17 - RR
 
