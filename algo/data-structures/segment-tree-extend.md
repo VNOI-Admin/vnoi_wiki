@@ -676,7 +676,7 @@ int ask(int id, int l, int r, int v) {
 
 **Persistent Data Structures** là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu (CTDL).
 
-Các bạn có thể đọc thêm ở: [Persistent Data Structures](algo/data-structures/persistent-data-structures)
+Các bạn có thể đọc thêm ở: [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
 
 
 # 8. IT đoạn thẳng
