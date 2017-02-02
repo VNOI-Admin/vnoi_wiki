@@ -8,8 +8,8 @@ Bài viết này thể hiện quan điểm cá nhân của mình, có thể khô
 
 # 0. Quy trình phỏng vấn Google
 
-1. **Gửi resume cho Google**: hồ sơ của các bạn sẽ được kiểm duyệt và đánh giá, sau đó những resume nào tốt sẽ được chọn vào vòng phỏng vấn. Vòng này vốn có tỉ lệ đậu rất thấp, hầu hết hồ sơ của các bạn sẽ bị rớt từ vòng này. Cách gửi resume:
-    - Vào trang [Google Careers](https://careers.google.com/), tìm vị trí phù hợp rồi gửi resume.
+1. **Gửi resume cho Google**: hồ sơ của các bạn sẽ được kiểm duyệt và đánh giá, sau đó những resume nào tốt sẽ được chọn vào vòng phỏng vấn. Vòng này vốn có tỉ lệ đậu rất thấp, hầu hết hồ sơ của các bạn sẽ bị rớt từ vòng này. 2 cách gửi resume:
+    - Vào trang [Google Careers](https://careers.google.com/), tìm vị trí phù hợp rồi gửi resume, hoặc
     - Tìm người refer là nhân viên Google và gửi resume trực tiếp cho người đó.
 2. **Phỏng vấn**:
     - Với intern, các bạn sẽ có 2 vòng phỏng vấn online 45 phút với các lập trình viên Google. Nếu Google chưa đánh giá được trình độ các bạn sau 2 vòng thì sẽ tiến hành phỏng vấn thêm 1 vòng nữa. Kết quả phỏng vấn sẽ được báo sau vài tuần.
