@@ -143,7 +143,7 @@ Vậy $P = nI$ hay là $V * B/n = B/n * V = I$, vậy $B = V^{-1}$.
 
 - Phần $I$ gồm các phần tử có chỉ số hàng   $0, 1,...n/2 - 1$ và chỉ số cột là chẵn $0, 2, 4, ...n-2$.
 - Phần $II$ gồm các phần tử có chỉ số hàng  $0, 1,...n/2 - 1$ và chỉ số cột là lẻ   $1, 3, 5, ...n-1$.
-- Phần $III$ gồm các phần tử có chỉ số hàng $n/2, n/2+1,...n-1$ và chỉ số cột là lẻ  $0, 2, 4, ...n-2$.
+- Phần $III$ gồm các phần tử có chỉ số hàng $n/2, n/2+1,...n-1$ và chỉ số cột là chẵn  $0, 2, 4, ...n-2$.
 - Phần $IV$ gồm các phần tử có chỉ số hàng  $n/2, n/2+1,...n-1$ và chỉ số cột là lẻ  $1, 3, 5, ...n-1$.
 
 <img src='/wiki/uploads/img4.png' height="250" width="500"/>
