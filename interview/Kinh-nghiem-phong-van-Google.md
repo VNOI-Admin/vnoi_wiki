@@ -144,7 +144,7 @@ Một số chú ý trong quá trình phỏng vấn:
 - Bạn có thể trình bày một thuật toán tối ưu, và khi code xin phép code cách đơn giản hơn. Nói rõ với người phỏng vấn là bạn không tự tin code được thuật toán tối ưu.
 - Khi code, sử dụng tên biến rõ ràng, dễ hiểu. Hạn chế đặt tên biến gồm 1 ký tự.
 
-Mình sẽ lấy ví dụ về mặt cài đặt bằng bài toán tìm xâu con đối xứng dài nhất ở phần 1:
+Mình sẽ lấy ví dụ về mặt cài đặt bằng bài toán tìm xâu con đối xứng dài nhất với độ phức tạp $\mathcal{O}(N^2)$ ở phần 1:
 
 ```cpp
 int expand(const string& s, int left, int right) {
