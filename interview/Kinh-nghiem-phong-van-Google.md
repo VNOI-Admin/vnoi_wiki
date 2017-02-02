@@ -65,7 +65,9 @@ Bạn không cần giỏi tiếng Anh nhưng cần nắm rõ từ chuyên môn (
 - Để trả lời tốt các câu design, các bạn nên Google để tìm đọc thêm nhiều. Bạn cần có nhiều kinh nghiệm thực tế để trả lời những câu này, do đó mình sẽ không đi sâu vào phần này.
 - Bạn cũng có thể bị hỏi 1 số câu cơ bản, ví dụ như pointer, memory allocation. Nếu bạn dùng Java cũng có thể bị hỏi những câu về JVM, garbage collection.
 
-# 2. Làm resume (hồ sơ)
+# 2. Nộp Resume
+
+## 2.1. Soạn Resume
 
 Resume là một phần rất quan trọng trong quá trình phỏng vấn. Một resume không chỉ cần thể hiện rõ trình độ và kinh nghiệm của bạn mà còn cần được trình bày kĩ lưỡng và cẩn thận. Có rất nhiều lý do:
 
@@ -111,9 +113,9 @@ Nhận xét của mình:
     - Những interest chung chung không thật sự cần thiết. Nên thay bằng những kinh nghiệm và kết quả cụ thể.
     - Có thể đưa những ý như "Solving hard problems required using algorithms." vào phần Summary, ví dụ như "Good problem solving skills and algorithm knowledge".
 
-# 3. Kiếm người refer
+## 2.2. Kiếm người refer
 
-Một nhân viên Google bất kỳ có thể refer (giới thiệu) bạn với công ty. Nếu người refer có tâm sẽ giúp bạn có khả năng đỗ cao hơn. Để chứng minh điều này mình xin kể lại chuyện có thật: 
+Một nhân viên Google bất kỳ có thể refer (giới thiệu) bạn với công ty. Nếu người refer có tâm sẽ giúp bạn có khả năng đỗ cao hơn. Để chứng minh điều này mình xin kể lại chuyện có thật:
 
 Ở vòng đầu tiên, resume của bạn sẽ được duyệt bởi recruiter. Những người này không phải là Software Engineer nên có lúc sẽ không đánh giá đúng được trình độ của bạn, do đó quá trình duyệt Resume sẽ có rủi ro nhất định. Trong những bạn mình refer, có hai bạn rất khá nhưng trượt vòng resume (đã nhận được email từ chối của Google). Tuy nhiên sau đó mình đã liên hệ trực tiếp với recruiter, viết 2 email rất dài để chứng minh 2 bạn đó rất giỏi. Kết quả cả 2 bạn đều được đi tiếp đến vòng phỏng vấn và 1 bạn sẽ đi thực tập ở Google vào hè tới. Ví dụ này cũng cho thấy quá trình duyệt resume cũng có rủi ro, và tài năng thật sự có thể bị bỏ qua.
 
@@ -127,7 +129,7 @@ Với một người chỉ biết bạn sơ sơ, tất nhiên họ sẽ không c
 
 Vậy tìm người refer ở đâu? Cách tốt nhất là hãy tìm hiểu xem trường của bạn hoặc những trường xung quanh có ai đã đi thực tập ở Google. Nếu bạn là dân ACM thực thụ, cũng có thể [liên hệ mình](https://fb.com/Nguyen.RR).
 
-# 4. Phỏng vấn
+# 3. Phỏng vấn
 
 Với phỏng vấn intern, sẽ gồm khoảng 2 vòng phỏng vấn qua điện thoại. (sẽ có thể có thêm phụ thuộc vào kết quả của 2 vòng đó).
 
@@ -185,7 +187,7 @@ Một vài chú ý trong code trên:
 - Tránh lặp lại code. Ví dụ phần xét xâu đối xứng độ dài chẵn và lẻ có code giống nhau thì tách thành hàm riêng.
 - Khi phỏng vấn, mình cũng vừa code vừa comment như vậy. Trong quá trình code mình hầu như không nói chuyện với interviewer mà chỉ viết comment. Nếu có nói thì mình cũng chỉ đọc lại comment.
 
-# 5. Host matching
+# 4. Host matching
 
 Như đã trình bày ở phần đầu bài viết, vòng cuối cùng bạn phải vượt qua là "Host matching". Mục đích của phần này là để các team tìm người phù hợp. Do đó bạn sẽ được phỏng vấn với người thuộc team đó, và bị hỏi gì cũng phụ thuộc chủ yếu vào team. Có team sẽ hỏi thuật toán, code, có team sẽ chỉ hỏi chung chung về sở thích của bạn hoặc có team sẽ chỉ giới thiệu về những cái họ làm rồi nhận luôn chứ không cần hỏi gì thêm.
 
