@@ -447,7 +447,7 @@ void inverse_fft(int n, vb& a)
 }
 ```
 
-Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc độ thực thi, có thể xem thêm trong trang của **emaxx** phần tài liệu tham khảo. Cũng trong trang của emaxx có thể tìm thấy cách cài đặt gộp hai hàm fft và inverse_fft lại làm một sử dụng một biến bool invert làm cho code ngắn gọn hơn.
+Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc độ thực thi, có thể xem thêm trong trang của **emaxx** phần tài liệu tham khảo. Cũng trong trang của **emaxx** có thể tìm thấy cách cài đặt gộp hai hàm `fft` và `inverse_fft` lại làm một sử dụng một biến bool invert làm cho code ngắn gọn hơn.
 
 # Bài tập luyện tập
 - [VOJ POST2](http://vn.spoj.com/problems/POST2/)
