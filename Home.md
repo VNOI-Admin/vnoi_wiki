@@ -70,6 +70,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://ww
 
 - [[Những kinh nghiệm chung khi phỏng vấn|interview/general-experience]]
 - [[Những lần phỏng vấn và những kinh nghiệm rút ra|interview/Nhung-lan-phong-van-trong-thuc-te-va-bai-hoc-rut-ra]]
+- [[Kinh nghiệm phỏng vấn Google|interview/google]]
 
 ### Các chủ đề trong khoa học máy tính
 
