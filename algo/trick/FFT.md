@@ -37,13 +37,13 @@ c_{j} = \sum_{i=0}^j a_ib_{j-i} \qquad j = 0, 1, ..., d+e
 $$
 
 Cách làm theo định nghĩa là ta nhân mỗi hệ số của $p(x)$ với tất cả các hệ số của $q(x)$ rồi cộng các hệ số của cùng tổng số mũ. Vì hai đa thức có $d+1$ và $e+1$ hệ số nên cách làm này có độ phức tạp là $O((d+1)(e+1)) = O(de)$. Khi $d$ và $e$ tương đối lớn cỡ $10^3$ hoặc $10^4$ trở lên thì độ phức tạp này là quá lớn để chạy trên máy tính, đặc biệt là các máy tính nhúng đòi hỏi tốc độ tính toán nhanh. Phép biến đổi FFT giúp thực hiện phép nhân nói trên trong độ phức tạp $O(N*logN)$ trong đó $N$ là lũy thừa của $2$ nhỏ nhất lớn hơn $d$ và $e$.
- 
-# Biểu diễn đa thức qua ma trận Vandermonde
 
+
+# Biểu diễn đa thức qua ma trận Vandermonde
 
 *Kể từ phần này trở về sau, ta quy ước $n$ là số hệ số của đa thức (bậc $n-1$) và $n$ là một lũy thừa của 2 ($n = 2, 4, 8, 16, 32, 64...$).*
 
-Xét đa thức $p(x) = a_0 + a_1 x + a_2 x^2 + ... + a_{n-1} x^{n-1}$ với bậc $n-1$ và các hệ số phức $a_i \in \mathbb{C}$. Biểu thức tính $n$ giá trị của $p(x)$ tại $n$ điểm $z_0, z_1, ... z_{n-1}$ có thể biểu diễn qua phép nhân ma trận như sau: 
+Xét đa thức $p(x) = a_0 + a_1 x + a_2 x^2 + ... + a_{n-1} x^{n-1}$ với bậc $n-1$ và các hệ số phức $a_i \in \mathbb{C}$. Biểu thức tính $n$ giá trị của $p(x)$ tại $n$ điểm $z_0, z_1, ... z_{n-1}$ có thể biểu diễn qua phép nhân ma trận như sau:
 
 $$
 \begin{bmatrix}
@@ -61,30 +61,41 @@ $$
 \end{bmatrix} \space (1)
 $$
 
-Ma trận vuông $V$ kích cỡ $n*n$ của $z_{0:{n-1}}$ ở trên được gọi là ma trận Vandermonde. 
+Ma trận vuông $V$ kích cỡ $n*n$ của $z_{0:{n-1}}$ ở trên được gọi là ma trận Vandermonde.
 Ta có các định lý sau:
 
-**Định lý 1:** Định thức của ma trận Vandermonde là 
+**Định lý 1:** Định thức của ma trận Vandermonde là
 $$det(V) = \prod_{0 \leq i < j \leq n-1}(z_j - z_i)$$
 
-**Chứng minh (sơ lược):** 
+**Chứng minh (sơ lược):**
 Với mỗi hàng $i = 0, 1, ...n-2$ của định thức ta liên tục thay hàng $j = i+1, i+2, ...n-1$ bằng hiệu của các hệ số của hàng $j$ trừ đi hàng $i$. Đây là phép biến đổi cơ bản (*elementary operation*) nên giá trị định thức cần tính không đổi. Lấy nhân tử chung $z_j - z_i$ ở tất cả các hàng ra ngoài và xét tiếp hàng $i+1$. Sau khi xét xong $i = n-2$ ta được một ma trận chéo có đường chéo chỉ gồm $z_{ii} = 1$, định thức của ma trận này hiển nhiên bằng 1. Vì vậy định thức cần tính là tích của tất cả các nhân tử chung bỏ ra ngoài ở các bước trước đó.
 
 Phép chứng minh bằng quy nạp có thể xem thêm tại [đây](https://proofwiki.org/wiki/Vandermonde_Determinant)
 
 **Định lý 2:** Đa thức $p(x)$ được xác định duy nhất bởi các giá trị của nó $p(z_0), p(z_1), ... p(z_{n-1})$ khi $n$ giá trị $z_0, z_1, ... z_{n-1}$ phân biệt. Ta gọi đây là *phép biến đổi ngược*.
 
-**Chứng minh:** 
+**Chứng minh:**
 
 Coi phương trình $(1)$ là một hệ phương trình $n$ ẩn với bộ nghiệm $a_0, a_1, ...a_{n-1}$. Để đa thức $p(x)$ xác định và duy nhất thì định thức của ma trận $V$ ở trên phải khác $0$. Theo **Định lý 1** ta có điều phải chứng minh.
 
 **Hệ quả:** khi $V$ khả nghịch, hệ số $a_0, a_1, ...a_{n-1}$ được xác định thông qua tích của ma trận nghịch đảo $V^{-1}$ của $V$ và $p(z_0), p(z_1), ...p(z_{n-1})$.
 
-Từ định lý 2 ta thấy rằng thay vì lưu một đa thức bằng $n$ hệ số $a_i$, ta có thể lưu nó dưới dạng $n$ cặp giá trị $z_i, p(z_i)$. Cách biểu diễn bằng giá trị này có lợi thế là giá trị của đa thức tạo bởi tích hai đa thức được tính trong $O(1)$: $c(z_i) = p(z_i)q(z_i)$ với $z_$ đã biết.
+Từ định lý 2, ta thấy rằng 1 đa thức bất kỳ có 2 cách biểu diễn:
+
+1. Dùng $n$ hệ số $a_i$
+2. Dùng $n$ cặp giá trị $z_i, p(z_i)$.
+
+Đây chính là nền tảng của việc tính nhanh tích của 2 đa thức sử dụng FFT:
+
+1. Chọn 1 dãy $z_i$ gồm $N$ phần tử. $z_i$ có thể chọn tuỳ ý miễn sao giá trị của chúng là đôi một khác nhau để các đa thức $p(x)$, $q(x)$ và $c(x)$ là xác định và duy nhất.
+2. Chuyển 2 đa thức $p(x)$ và $q(x)$ sang cách biểu diễn 2. (dùng FFT)
+3. Tính tích của 2 đa thức trong cách biểu diễn 2 trong $O(N)$. Điều này cực kỳ đơn giản, vì khi ta đã cố định dãy $z_i$, ta có thể tính tất cả $c(z_i) = p(z_i) q(z_i)$ trong $O(N)$.
+4. Chuyển đa thức $c(x)$ về cách biểu diễn 1 (dùng FFT).
+
 
 # Nghiệm nguyên thủy
 
-Ở trên ta đã thấy là các số $z_i$ có thể chọn tùy ý miễn sao giá trị của chúng là đôi một khác nhau thì đa thức $p(x)$ là xác định và duy nhất. Ý tưởng của thuật toán FFT là chọn các giá trị $z_i$ nào đó để chuyển đổi hai đa thức cần nhân sang miền giá trị, tiến hành phép nhân trong miền giá trị này, tính ma trận nghịch đảo và chuyển đổi ngược lại từ miền giá trị sang miền hệ số. Các giá trị $z$ được chọn phải đặc biệt để hai phép tính trên (**biến đổi xuôi** và **biến đổi ngược**) có độ phức tạp nhỏ. Những giá trị đặc biệt của $z$ này được gọi là **nghiệm nguyên thủy** thỏa mãn:
+Như đã phân tích ở trên, ta cần chọn dãy $z_i$ sao cho việc biến đổi đa thức giữa 2 cách biểu diễn có thể thực hiện một cách hiệu quả. Nếu ta chọn $z_i$ là các **nghiệm nguyên thủy** thoả mãn:
 
 $$
 z^n = 1 \qquad z \in \mathbb{C} \qquad (2)
@@ -106,7 +117,7 @@ Dễ thấy là nghiệm nguyên thủy thứ $k$ có thể được tính trong
 
 ## Một số tính chất đặc biệt của ma trận Vandermonde nghiệm nguyên thủy
 
-**Tính chất 1:** Ma trận nghịch đảo $V^{-1}$ được tính bằng cách nghịch đảo lũy thừa các hạng tử trong $V$ rồi chia cho $n$. Cụ thể, hạng tử $V^{-1}[i,j] = {V[i,j]^{-1} \over n}$ với $i, j = 0, 1,...n-1$ là chỉ số hàng và cột của ma trận. 
+**Tính chất 1:** Ma trận nghịch đảo $V^{-1}$ được tính theo công thức: $V^{-1}[i,j] = {V[i,j]^{-1} \over n}$ với $i, j = 0, 1,...n-1$ là chỉ số hàng và cột của ma trận.
 
 **Chứng minh (sơ lược):** gọi $B$ là ma trận kích cỡ $n * n$ tạo bởi
 
@@ -162,7 +173,7 @@ $$
 
 Trong phần trên ta đã thấy vai trò của ma trận Vandermonde $V$ là biến đổi một vector cột $a_0, a_1, ...a_{n-1}$ thành một vector cột khác cùng kích cỡ $p(z_0), p(z_1), ...p(z_{n-1})$. Phép biến đổi này được gọi là "Biến đổi Fourier rời rạc" (*Discrete Fourier Transform*). Lưu ý là mặc dù hai khái niệm "Biến đổi Fourier rời rạc" (*DFT*) và "Phép biến đổi Fourier nhanh" (*FFT*) là khác nhau nhưng vì khi cài đặt DFT người ta luôn sử dụng FFT nên hai khái niệm này được coi như đồng nhất.
 
-**Định lý 3:** Tồn tại thuật toán biến đổi Fourier rời rạc có độ phức tạp là $O(nlog_2n)$. 
+**Định lý 3:** Tồn tại thuật toán biến đổi Fourier rời rạc có độ phức tạp là $O(nlog_2n)$.
 
 **Chứng minh:** Sử dụng lại ký hiệu trong hình vẽ ở phần trên, ta gọi $X$ là vector cần biến đổi Fourier và $Y$ là vector kết quả tương ứng. Thay vì sử dụng ma trận $V$ để nhân với $X$, ta sử dụng ma trận $K$ là kết quả của phép biến đổi như trong **Định lý 2** để nhân với $X$. Lưu ý là vì $V$ đã đổi thứ tự cột nên $X$ cũng phải đổi thứ tự hàng: tất cả các hàng có chỉ số chẵn của $X$ được chuyển lên trên và các hàng chỉ số lẻ chuyển xuống dưới. Hình minh họa với $n = 4$ và $4$ nghiệm để thay vào ma trận Vandermonde là $1, i, -1, -i$:
 
@@ -190,7 +201,7 @@ $$
 
 Đến đây ta đã có thể hoàn thiện chương trình nhân 2 đa thức $p(x), q(x)$ và lưu kết quả thành $h(x)$:
 ```
-function NhânĐaThức( p(x), q(x), n ) 
+function NhânĐaThức( p(x), q(x), n )
 
 // Lưu ý: n là số hệ số của đa thức kết quả
 // Nếu p(x) có bậc d và q(x) có bậc e thì n = d + e + 1
@@ -232,7 +243,7 @@ Một số phiên bản cài đặt tự định nghĩa lớp số ảo bằng m
 
 Trong các phần trên ta đã giả sử rằng $n$ là lũy thừa của $2$. Để đảm bảo tính đối xứng và thuận tiện khi cài đặt, nếu đề bài không cho trước $n$ bậc của đa thức là lũy thừa của $2$ thì ta cần chuẩn hóa thành số lũy thừa nhỏ nhất mà lớn hơn $n$. Chẳng hạn với $n = 10^5$ thì giá trị chuẩn hóa là $2^{17} = 131072$ vì $2^{16} = 65536 < 10^5$. Các hệ số của bậc cao hơn giá trị $n$ ban đầu gán bằng $0$.
 
-## Đệ quy và Khử đệ quy 
+## Đệ quy và Khử đệ quy
 
 **Đệ quy:**
 
@@ -248,7 +259,7 @@ void fft_slow(int n, vb& a) // biến đổi fft của vector a, lưu kết qu�
     int i, j, k;
 
     // Bước 1. Khai báo kết quả fft chẵn và lẻ
-    vb a_even(n / 2), a_odd (n / 2); 
+    vb a_even(n / 2), a_odd (n / 2);
 
     // Bước 2. Tách hàng chẵn và hàng lẻ
     for(i = j = 0; i < n; i += 2)
@@ -391,7 +402,7 @@ void fft(int n, vb& a)
 }
 ```
 
-Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc độ thực thi, có thể xem thêm trong trang của **emaxx** phần tài liệu tham khảo. 
+Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc độ thực thi, có thể xem thêm trong trang của **emaxx** phần tài liệu tham khảo.
 
 # Bài tập luyện tập
 - [VOJ POST2](http://vn.spoj.com/problems/POST2/)
@@ -401,11 +412,11 @@ Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc 
 
 # Tài liệu tham khảo
 - [1] Rohit Thummalapalli. Fourier Transform: Nature’s Way of Analyzing Data. *Yale Scientific*, 2010. [Link](http://www.yalescientific.org/2010/12/fourier-transform-natures-way-of-analyzing-data/)
-- [2] Alejandro Dominguez. Highlights in the History of the Fourier Transform. IEEE Pulse, 2016. [Link](http://pulse.embs.org/january-2016/highlights-in-the-history-of-the-fourier-transform/) 
+- [2] Alejandro Dominguez. Highlights in the History of the Fourier Transform. IEEE Pulse, 2016. [Link](http://pulse.embs.org/january-2016/highlights-in-the-history-of-the-fourier-transform/)
 - [3] Stefan Woerner. Fast Fourier Transform. *Numerical Analysis Seminar*, Swiss Federal Institute of Technology Zurich, 2008. [Link](http://www2.math.ethz.ch/education/bachelor/seminars/fs2008/nas/woerner.pdf)
 - [4] Fortnow and Homer. A Short History of Computational Complexity. *Bulletin of the European
 Association for Theoretical Computer Science 80*, June 2003. [Link](http://people.cs.uchicago.edu/~fortnow/beatcs/column80.pdf)
 - [Bài toán nhân đa thức, phép biến đổi Fourier nhanh trên csstudyfun.wordpress.com (có chứng minh các tính chất được đề cập trong bài](https://csstudyfun.wordpress.com/2009/01/12/bai-toan-nhan-da-thuc-phep-bien-doi-fourier-nhanh-fast-fourier-transform-fft/)
-- [Bài giảng của trường DH Aalto, Phần Lan](https://drive.google.com/open?id=0BxCwa-q7x3eWT3ZfakNHMWVveTg) 
+- [Bài giảng của trường DH Aalto, Phần Lan](https://drive.google.com/open?id=0BxCwa-q7x3eWT3ZfakNHMWVveTg)
 - [Code cài đặt của e-maxx](http://e-maxx.ru/algo/fft_multiply)
 - ["Tutorial on FFT — The tough made simple." trên Codeforces](http://codeforces.com/blog/entry/43499)
