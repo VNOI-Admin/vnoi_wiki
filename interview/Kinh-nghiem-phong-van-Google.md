@@ -45,7 +45,7 @@ Lời giải bài này các bạn có thể tìm thấy trên [[VNOI wiki|algo/d
 
 ## 1.2. Tiếng Anh
 
-Quá trình phỏng vấn của Google rất coi trọng khả năng trình bày ý tưởng. Điều này đơn giản là vì nếu không có khả năng giao tiếp tốt, bạn không thể trở thành Software Engineer giỏi. Khi phỏng vấn, mình được phỏng vấn bởi các Software Engineer ở các khu vực khác nhau: Trung Quốc, Ấn độ, Singapore, châu  u.. Tiếng Anh của bạn cần khá tốt để có thể nghe hiểu được các accent tiếng Anh khác nhau.
+Quá trình phỏng vấn của Google rất coi trọng khả năng trình bày ý tưởng. Điều này đơn giản là vì nếu không có khả năng giao tiếp tốt, bạn không thể trở thành Software Engineer giỏi. Khi phỏng vấn, mình được phỏng vấn bởi các Software Engineer ở các khu vực khác nhau: Trung Quốc, Ấn độ, Singapore, châu Âu.. Tiếng Anh của bạn cần khá tốt để có thể nghe hiểu được các accent tiếng Anh khác nhau.
 
 Việc trình bày thuật toán một cách dễ hiểu cũng rất quan trọng. Trước khi bắt đầu code, bạn cần giải thích thuật toán của mình rõ ràng mạch lạc, để người phỏng vấn có thể hiểu được. Sau đó, nếu cảm thấy thuật toán của bạn chưa đủ tốt, người phỏng vấn sẽ tiếp tục thảo luận thêm với bạn hoặc đưa ra gợi ý cho bạn làm tốt hơn.
 
