@@ -64,7 +64,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://ww
 ### Ngôn ngữ lập trình:
 
 - [[Xử lý xâu trong C++|languages/cpp/string]]
-- [[Sử dụng regex|translate/topcoder/Using-Regular-Expression]]
+- [[Sử dụng regex|interview/Kinh-nghiem-phong-van-Google]]
 
 ### Kinh nghiệm phỏng vấn
 
