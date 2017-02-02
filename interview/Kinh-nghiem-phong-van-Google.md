@@ -43,7 +43,7 @@ Với các bạn không thi ACM ICPC hoặc OI, hoặc bạn đã bỏ thi sau n
 
 > Một xâu được gọi là xâu đối xứng nếu nó đọc từ trái qua phải cũng giống như từ phải qua trái. Ví dụ: "abcba", "a", "abba" là các xâu đối xứng. "abc" không phải là xâu đối xứng. Cho xâu S. Tìm xâu con gồm các ký tự liên tiếp của S, có độ dài lớn nhất và là xâu đối xứng.
 
-Lời giải bài này các bạn có thể tìm thấy trên [[VNOI wiki|algo/dp/palindrome-problems]]. Với các bạn dân ACM khi gặp bài này, nên tránh những thuật toán như [[Hash|algo/string/hash]], vì có thể người phỏng vấn sẽ thắc mắc những vấn đề như đánh giá độ chính xác.
+Lời giải bài này các bạn có thể tìm thấy trên [[VNOI wiki|algo/dp/palindrome-problems]]. Với các bạn dân ACM khi gặp bài này, nên tránh những thuật toán như [[Hash|algo/string/hash]], vì có thể người phỏng vấn sẽ thắc mắc những vấn đề như đánh giá độ chính xác. Bạn cũng nên tránh thuật toán không phổ biến như Manacher.
 
 ## 1.2. Tiếng Anh
 
