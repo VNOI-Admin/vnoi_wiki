@@ -401,8 +401,53 @@ void fft(int n, vb& a)
     }
 }
 ```
+FFT ngược (khử đệ quy)
+```cpp
+void inverse_fft(int n, vb& a)
+{
+    if(n == 1)
+        return;
 
-Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc độ thực thi, có thể xem thêm trong trang của **emaxx** phần tài liệu tham khảo.
+    int i, j, k;
+    for(i = 0; i < n; ++i)
+    {
+        j = revBit(NBIT, i);
+        if(i < j) swap(a[i], a[j]);
+    }
+    vb anext(n);
+
+    for(int step = 1; step < n; step <<= 1)
+    {
+        double ang = -PI / step ; //2*PI/(step * 2);
+        base w (1),  wn (cos(ang), sin(ang));
+
+        for(i = 0; i < step; ++i)
+        {
+            W[i] = w;
+            w *= wn;
+        }
+
+        int start_even = 0;
+        int start_odd  = start_even + step;
+        while(start_even < n)
+        {
+            for(i = 0; i < step; ++i)
+            {
+                anext[start_even + i]        = a[start_even + i] + W[i] * a[start_odd + i];
+                anext[start_even + i + step] = a[start_even + i] - W[i] * a[start_odd + i];
+            }
+            start_even += 2*step;
+            start_odd   = start_even + step;
+        }
+        for(i = 0; i < n; ++i)
+            a[i] = anext[i];
+    }
+    for(i = 0; i < n; ++i)
+        a[i] /= n;
+}
+```
+
+Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc độ thực thi, có thể xem thêm trong trang của **emaxx** phần tài liệu tham khảo. Cũng trong trang của emaxx có thể tìm thấy cách cài đặt gộp hai hàm fft và inverse_fft lại làm một sử dụng một biến bool invert làm cho code ngắn gọn hơn.
 
 # Bài tập luyện tập
 - [VOJ POST2](http://vn.spoj.com/problems/POST2/)
