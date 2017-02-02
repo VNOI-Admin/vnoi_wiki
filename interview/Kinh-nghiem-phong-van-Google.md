@@ -8,7 +8,7 @@ Bài viết này thể hiện quan điểm cá nhân của mình, có thể khô
 
 1. **Gửi resume cho Google**: hồ sơ của các bạn sẽ được kiểm duyệt và đánh giá, sau đó những resume nào tốt sẽ được chọn vào vòng phỏng vấn. Vòng này vốn có tỉ lệ đậu rất thấp, hầu hết hồ sơ của các bạn sẽ bị rớt từ vòng này.
 2. **Phỏng vấn**:
-    - Với intern, các bạn sẽ có 2 vòng phỏng vấn online 45 phút với các lập trình viên Google. Nếu Google chưa đánh giá được trình độ các bạn sau 2 vòng thì sẽ tiến hành phỏng vấn thêm 1 vòng nữa. Kết quả phỏng vấn sẽ được báo sau tầm 2 tuần.
+    - Với intern, các bạn sẽ có 2 vòng phỏng vấn online 45 phút với các lập trình viên Google. Nếu Google chưa đánh giá được trình độ các bạn sau 2 vòng thì sẽ tiến hành phỏng vấn thêm 1 vòng nữa. Kết quả phỏng vấn sẽ được báo sau vài tuần.
     - Với phỏng vấn full time, bạn sẽ phải trải qua nhiều vòng hơn (thường là 1 vòng qua điện thoại và 5 vòng trực tiếp).
     - Thời gian phỏng vấn các bạn có thể tự thỏa thuận với Google.
 
