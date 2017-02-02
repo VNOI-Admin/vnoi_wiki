@@ -1,6 +1,6 @@
-[[_TOC_]]
-
 # FFT
+
+[[_TOC_]]
 
 Tác giả: ngmq
 
