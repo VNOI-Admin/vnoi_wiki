@@ -20,13 +20,31 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 ## Cấu trúc dữ liệu
 
 - [[Tổng quan về cấu trúc dữ liệu|algo/data-structures/data-structures-overview]]
+- [[Mảng và danh sách liên kết|algo/data-structures/array-vs-linked-lists]]
+- [[Deque và tìm min max trên đoạn tịnh tiến|algo/data-structures/deque-min-max]]
+- [[Heap|translate/wcipeg/Binary-Heap]]
+- [[Bảng băm (Hash table)|algo/data-structures/hash-table]]
+- [[Disjoint Set|algo/data-structures/disjoint-set]]
+- [[Segment Tree (Interval Tree)|algo/data-structures/segment-tree-extend]]
+- [[Segment Tree (Interval Tree) trên tập đoạn thẳng|algo/data-structures/interval-tree-tap-doan-thang]]
+- [[Fenwick Tree (Binary Indexed Tree)|algo/data-structures/fenwick]]
+- [[Heavy Light Decomposition|algo/data-structures/heavy-light-decomposition]]
+- [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
 - [[Bài toán RMQ & bài toán LCA|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]]
 - [[Các phương pháp giải bài toán LCA|algo/data-structures/lca]]
+- [[Trie|algo/data-structures/trie]]
+- [[Suffix Array|algo/data-structures/suffix-array]]
+- [[Palindrome Tree|translate/codeforces/palindrome-tree]]
 
 ## Xử lý xâu
 
 - [[Tổng quan|algo/string/basic]]
+- [[KMP|translate/wcipeg/kmp]]
+- [[Z-Algorithm|translate/codeforces/z-algo]]
+- [[Trie|algo/data-structures/trie]]
 - [[Hash|algo/string/hash]]
+- [[Suffix Array|algo/data-structures/suffix-array]]
+- [[Palindrome Tree|translate/codeforces/palindrome-tree]]
 
 ## Quy hoạch động
 - [[Nhập môn Quy hoạch động|translate/topcoder/dynamic-programming]]
