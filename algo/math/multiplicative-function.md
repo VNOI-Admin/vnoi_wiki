@@ -1,6 +1,6 @@
 # Hàm nhân tính
 
-Tác giả: RR
+**Tác giả**: RR
 
 [[_TOC_]]
 
@@ -15,7 +15,7 @@ Với mọi cặp số nguyên tố cùng nhau $n, m \in N$ ta có $f(mn)=f(m)f(
 
 # Ví dụ
 
-## Hàm số ước
+## Số ước
 
 Đặt $f(n)$ là số ước của $n$. Ta có:
 
@@ -119,3 +119,45 @@ int main() {
 }
 
 ```
+
+# Dirichlet Convolution
+
+Việc chứng minh trực tiếp một hàm là hàm nhân tính như ví dụ trên không hề đơn giản. Chẳng hạn, bạn hãy thử chứng minh hàm $f(n)$ là hàm nhân tính, với $f(n)$ là tổng các ước của số $n$. Dĩ nhiên bạn có thể chứng minh trâu bò bằng cách viết ra một đống công thức, tuy nhiên ở mục này mình sẽ hướng dẫn các bạn một phương pháp kỳ diệu hơn.
+
+Với 2 hàm $f$ và $g$ là hàm nhân tính, ta có một hàm nhân tính mới $f \* g$:
+
+$$
+(f \* g)(n) = \sum_{d_1\*d_2=n}{f(d_1)\*g(d_2)}
+$$
+
+Một cách biểu diễn khác là:
+
+$$
+(f \* g)(n) = \sum_{d | n}{f(d)\*g(n/d)}
+$$
+
+Các bạn chú ý kí hiệu $d | n$ nghĩa là $n$ chia hết cho $d$.
+
+Để hiểu thêm về công thức trên, ta xét vài ví dụ:
+
+## Ví dụ 1
+
+Xét hàm $f(n) = 1$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
+
+$$
+(f \* g)(n) = \sum_{d | n}{f(d) * g(n/d)} = \sum_{d | n}{1}
+$$
+
+Như vậy $(f \* g)(n)$ là số ước của số $n$ và là hàm nhân tính.
+
+## Ví dụ 2
+
+Xét hàm $f(n) = n$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
+
+$$
+(f \* g)(n) = \sum_{d | n}{f(d) * g(n/d)} = \sum_{d | n}{d}
+$$
+
+Như vậy $(f \* g)(n)$ là tổng các ước của $n$ và là hàm nhân tính.
+
+Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum_{d | n}{d^k}$ là hàm nhân tính.
