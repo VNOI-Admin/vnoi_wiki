@@ -401,9 +401,11 @@ void fft(int n, vb& a)
     }
 }
 ```
-FFT ngược (khử đệ quy)
+
+Sau đây là cài đặt cho cả FFT xuôi và ngược. Biến `invert = true` cho FFT ngược.
+
 ```cpp
-void inverse_fft(int n, vb& a)
+void fft(int n, vb& a, bool invert)
 {
     if(n == 1)
         return;
@@ -418,7 +420,9 @@ void inverse_fft(int n, vb& a)
 
     for(int step = 1; step < n; step <<= 1)
     {
-        double ang = -PI / step ; //2*PI/(step * 2);
+        double ang = PI / step;
+        if (invert) ang = -ang;
+
         base w (1),  wn (cos(ang), sin(ang));
 
         for(i = 0; i < step; ++i)
@@ -442,20 +446,26 @@ void inverse_fft(int n, vb& a)
         for(i = 0; i < n; ++i)
             a[i] = anext[i];
     }
-    for(i = 0; i < n; ++i)
-        a[i] /= n;
+    if (invert) {
+        for(i = 0; i < n; ++i)
+            a[i] /= n;
+    }
 }
 ```
 
 Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc độ thực thi, có thể xem thêm trong trang của **emaxx** phần tài liệu tham khảo. Cũng trong trang của **emaxx** có thể tìm thấy cách cài đặt gộp hai hàm `fft` và `inverse_fft` lại làm một sử dụng một biến bool invert làm cho code ngắn gọn hơn.
 
+
 # Bài tập luyện tập
+
 - [VOJ POST2](http://vn.spoj.com/problems/POST2/)
 - [FFT problems on Codeforces](http://codeforces.com/problemset/tags/fft)
 - [FFT problems by a2oj.com](https://a2oj.com/Category.jsp?ID=42)
 - [SumOfArrays - Topcoder SRM 603](https://community.topcoder.com/stat?c=problem_statement&pm=12910&rd=15836) và [Hướng dẫn giải](https://apps.topcoder.com/wiki/display/tc/SRM+603)
 
+
 # Tài liệu tham khảo
+
 - [1] Rohit Thummalapalli. Fourier Transform: Nature’s Way of Analyzing Data. *Yale Scientific*, 2010. [Link](http://www.yalescientific.org/2010/12/fourier-transform-natures-way-of-analyzing-data/)
 - [2] Alejandro Dominguez. Highlights in the History of the Fourier Transform. IEEE Pulse, 2016. [Link](http://pulse.embs.org/january-2016/highlights-in-the-history-of-the-fourier-transform/)
 - [3] Stefan Woerner. Fast Fourier Transform. *Numerical Analysis Seminar*, Swiss Federal Institute of Technology Zurich, 2008. [Link](http://www2.math.ethz.ch/education/bachelor/seminars/fs2008/nas/woerner.pdf)
