@@ -120,6 +120,7 @@ int main() {
 
 ```
 
+
 # Dirichlet Convolution
 
 Việc chứng minh trực tiếp một hàm là hàm nhân tính như ví dụ trên không hề đơn giản. Chẳng hạn, bạn hãy thử chứng minh hàm $f(n)$ là hàm nhân tính, với $f(n)$ là tổng các ước của số $n$. Dĩ nhiên bạn có thể chứng minh trâu bò bằng cách viết ra một đống công thức, tuy nhiên ở mục này mình sẽ hướng dẫn các bạn một phương pháp kỳ diệu hơn.
@@ -161,3 +162,31 @@ $$
 Như vậy $(f \* g)(n)$ là tổng các ước của $n$ và là hàm nhân tính.
 
 Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum_{d | n}{d^k}$ là hàm nhân tính.
+
+
+# Tổng kết
+
+Như vậy, nếu bạn chứng minh được một hàm $f$ là hàm nhân tính, và tìm được công thức $O(1)$ cho $f(p^k)$ thì sẽ dễ dàng tính được tất cả các giá trị $f(i), i \le N$ trong $O(N*logN)$.
+
+Mình xin đưa ra một danh sách những hàm nhân tính thường gặp:
+
+- $f(n) = 1$
+- $id(n) = n$
+- $id_k(n) = n^k$
+- $gcd(n, k)$ với k là hằng số
+- $phi(n)$: số số nguyên tố cùng nhau với $n$ và nhỏ hơn hoặc bằng $n$ (Phi hàm Euler)
+- $mobius(n)$: Hàm mobius thường được dùng trong các bài toán đếm sử dụng nguyên lý bù trừ:
+  - Nếu $n$ là số chính phương, $mobius(n) = 0$.
+  - Nếu $n$ có lẻ ước nguyên tố, $mobius(n) = -1$.
+  - Nếu $n$ có chẵn ước nguyên tố, $mobius(n) = 1$. Chú ý $mobius(1) = 1$.
+- $f(n) = \sum{d |n}{d}$ là tổng các ước của $n$.
+- $f_k(n) = \sum{d | n}{d^k}$ với $k$ là hằng số.
+
+# Bài luyện tập
+
+- [CF #391 - E](http://codeforces.com/contest/757/problem/E)
+
+
+# Reference
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Multiplicative_function)
