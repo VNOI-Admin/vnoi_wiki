@@ -13,7 +13,7 @@ Một hàm $f(n), n \in N$ được coi là **hàm nhân tính** ([Multiplicativ
 Với mọi cặp số nguyên tố cùng nhau $n, m \in N$ ta có $f(mn)=f(m)f(n)$.
 
 
-## 1.1. Ví dụ
+**Ví dụ**
 
 Xét hàm $f(n)$ là số ước của $n$. Ta có:
 
@@ -40,21 +40,6 @@ Ta có thể chứng minh hàm $f$ là hàm nhân tính như sau:
 
 Do đó, $f(m \* n) = f(m) \* f(n)$.
 
-## 1.2. Các hàm nhân tính thường gặp
-
-Ở phần này mình sẽ liệt kê một số hàm nhân tính thường gặp. Ở mục 3, mình sẽ cho các bạn thêm công cụ để chứng minh một hàm là hàm nhân tính.
-
-- $f(n) = 1$, hàm $f$ luôn bằng 1 với tất cả các giá trị của $n$.
-- $id(n) = n$
-- $id_k(n) = n^k$
-- $gcd(n, k)$ với k là hằng số
-- $phi(n)$: số số nguyên tố cùng nhau với $n$ và nhỏ hơn hoặc bằng $n$ (Phi hàm Euler)
-- $mobius(n)$: Hàm mobius thường được dùng trong các bài toán đếm sử dụng nguyên lý bù trừ:
-  - Nếu $n$ là số chính phương, $mobius(n) = 0$.
-  - Nếu $n$ có lẻ ước nguyên tố, $mobius(n) = -1$.
-  - Nếu $n$ có chẵn ước nguyên tố, $mobius(n) = 1$. Chú ý $mobius(1) = 1$.
-- $f(n) = \sum_{d |n}{d}$ là tổng các ước của $n$.
-- $f_k(n) = \sum_{d | n}{d^k}$ với $k$ là hằng số.
 
 
 # 2. Ứng dụng
@@ -198,6 +183,23 @@ $$
 Như vậy $(f \* g)(n)$ là tổng các ước của $n$ và là hàm nhân tính.
 
 Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum_{d | n}{d^k}$ là hàm nhân tính.
+
+## 3.3. Các hàm nhân tính thường gặp
+
+Sau đây là các hàm nhân tính thường gặp. Bạn có thể thử chứng minh những hàm này là hàm nhân tính dựa theo định nghĩa hoặc Dirichlet Convolution. Việc nắm được những hàm này sẽ giúp thuận lợi hơn trong việc gỉai những bài liên quan đến hàm nhân tính.
+
+- $f(n) = 1$, hàm $f$ luôn bằng 1 với tất cả các giá trị của $n$.
+- $id(n) = n$
+- $id_k(n) = n^k$
+- $gcd(n, k)$ với k là hằng số
+- $phi(n)$: số số nguyên tố cùng nhau với $n$ và nhỏ hơn hoặc bằng $n$ (Phi hàm Euler)
+- $mobius(n)$: Hàm mobius thường được dùng trong các bài toán đếm sử dụng nguyên lý bù trừ:
+  - Nếu $n$ là số chính phương, $mobius(n) = 0$.
+  - Nếu $n$ có lẻ ước nguyên tố, $mobius(n) = -1$.
+  - Nếu $n$ có chẵn ước nguyên tố, $mobius(n) = 1$. Chú ý $mobius(1) = 1$.
+- $f(n) = \sum_{d |n}{d}$ là tổng các ước của $n$.
+- $f_k(n) = \sum_{d | n}{d^k}$ với $k$ là hằng số.
+
 
 
 # 4. Tổng kết
