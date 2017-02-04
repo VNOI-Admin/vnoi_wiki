@@ -151,12 +151,15 @@ Xét $a$ và $b$ nguyên tố cùng nhau. Mỗi ước $d$ của $ab$ có thể 
 
 Do đó:
 
-$$
-(f \* g)(ab) = \sum_{r|a, s|b}{f(rs) g(ab/rs)}
-             = \sum_{r|a, s|b}{f(r) f(s) g(a/r) g(b/s)}
-             = \sum_{r|a}{f(r) g(a/r)} \sum_{s|b}{f(s) g(b/s)}
-             = (f \* g)(a) (f \* g)(b)
-$$
+$(f \* g)(ab)$
+
+$= \sum_{r|a, s|b}{f(rs) g(ab/rs)}$
+
+$ = \sum_{r|a, s|b}{f(r) f(s) g(a/r) g(b/s)}$
+
+$ = \sum_{r|a}{f(r) g(a/r)} \sum_{s|b}{f(s) g(b/s)}$
+
+$ = (f \* g)(a) (f \* g)(b)$
 
 Như vậy, $(f \* g)$ cũng là hàm nhân tính.
 
