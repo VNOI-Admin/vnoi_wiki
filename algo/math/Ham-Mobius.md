@@ -74,3 +74,5 @@ Khi ta thêm hoặc xoá 1 số $x$ khỏi tập S:
 - Với kết quả, chỉ có các $f(k) * mu(k)$ với $k$ là ước của $x$ bị thay đổi. Do đó ta cũng có thể cập nhật kết quả với độ phức tạp tỉ lệ với số ước của $n$.
 
 Do đó, ta thu được thuật toán với độ phức tạp $O(Q*x)$ với $x$ là số ước tối đa của 1 số trong mảng $A$.
+
+Các bạn có thể tham khảo cài đặt [ở đây](http://codeforces.com/contest/547/submission/11299564)
