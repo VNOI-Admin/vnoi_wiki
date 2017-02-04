@@ -66,6 +66,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Toán học trong Tin học|translate/topcoder/Mathematics-for-Topcoders]]
 - [[Xác suất|translate/topcoder/Hieu-ve-xac-suat]]
 - [[Định lý Wilson|translate/he/Wilsons-theorem]]
+- [[Hàm nhân tính (Multiplicative Function)|algo/math/multiplicative-function]]
 - [[Nhân nhanh đa thức - FFT|algo/trick/FFT]]
 
 ## Kỹ năng khác
