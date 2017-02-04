@@ -214,6 +214,7 @@ Bạn cũng nên nắm được những hàm nhân tính thường gặp, từ �
 
 ## Bài luyện tập
 
+- [VOJ - GCDSUM](http://vn.spoj.com/problems/GCDSUM/)
 - [CF #391 - E](http://codeforces.com/contest/757/problem/E)
 
 
