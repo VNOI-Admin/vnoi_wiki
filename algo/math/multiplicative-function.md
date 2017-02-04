@@ -28,6 +28,8 @@ f(7) = 2
 f(8) = 4
 f(9) = 3
 f(10) = 4 = f(2) * f(5)
+f(12) = 6 = f(3) * f(4)
+f(18) = 6 = f(2) * f(9)
 ```
 
 Ta có thể chứng minh hàm $f$ là hàm nhân tính như sau:
