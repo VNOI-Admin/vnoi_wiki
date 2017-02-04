@@ -53,8 +53,8 @@ Do đó, $f(m \* n) = f(m) \* f(n)$.
   - Nếu $n$ là số chính phương, $mobius(n) = 0$.
   - Nếu $n$ có lẻ ước nguyên tố, $mobius(n) = -1$.
   - Nếu $n$ có chẵn ước nguyên tố, $mobius(n) = 1$. Chú ý $mobius(1) = 1$.
-- $f(n) = \sum{d |n}{d}$ là tổng các ước của $n$.
-- $f_k(n) = \sum{d | n}{d^k}$ với $k$ là hằng số.
+- $f(n) = \sum_{d |n}{d}$ là tổng các ước của $n$.
+- $f_k(n) = \sum_{d | n}{d^k}$ với $k$ là hằng số.
 
 
 # 2. Ứng dụng
