@@ -7,17 +7,15 @@
 Trong bài viết này, mình sẽ giới thiệu về hàm nhân tính cũng như ứng dụng của nó trong Competitive Programming (lập trình thi đấu).
 
 
-# Định nghĩa
+# 1. Định nghĩa
 
 Một hàm $f(n), n \in N$ được coi là **hàm nhân tính** ([Multiplicative Function](https://crypto.stanford.edu/pbc/notes/numbertheory/mult.html)) nếu:
 Với mọi cặp số nguyên tố cùng nhau $n, m \in N$ ta có $f(mn)=f(m)f(n)$.
 
 
-# Ví dụ
+## 1.1. Ví dụ
 
-## Số ước
-
-Đặt $f(n)$ là số ước của $n$. Ta có:
+Xét hàm $f(n)$ là số ước của $n$. Ta có:
 
 ```
 f(1) = 1
@@ -25,12 +23,39 @@ f(2) = 2
 f(3) = 2
 f(4) = 3
 f(5) = 2
-f(6) = 4
+f(6) = 4 = f(2) * f(3)
 f(7) = 2
 f(8) = 4
 f(9) = 3
-f(10) = 4
+f(10) = 4 = f(2) * f(5)
 ```
+
+Ta có thể chứng minh hàm $f$ là hàm nhân tính như sau:
+
+- Xét $m$ và $n$ nguyên tố cùng nhau.
+- Xét $a$ là một ước của $m$ và $b$ là một ước của $n$. Như vậy $a \* b$ là một ước của $m \* n$.
+- Với 2 cặp ước khác nhau: $(a1, b1)$ và $(a2, b2)$, ta có thể chứng minh $a1 \* b1$ khác $a2 \* b2$ do $m$ và $n$ nguyên tố cùng nhau.
+
+Do đó, $f(m \* n) = f(m) \* f(n)$.
+
+## 1.2. Các hàm nhân tính thường gặp
+
+Ở phần này mình sẽ liệt kê một số hàm nhân tính thường gặp. Ở mục 3, mình sẽ cho các bạn thêm công cụ để chứng minh một hàm là hàm nhân tính.
+
+- $f(n) = 1$, hàm $f$ luôn bằng 1 với tất cả các giá trị của $n$.
+- $id(n) = n$
+- $id_k(n) = n^k$
+- $gcd(n, k)$ với k là hằng số
+- $phi(n)$: số số nguyên tố cùng nhau với $n$ và nhỏ hơn hoặc bằng $n$ (Phi hàm Euler)
+- $mobius(n)$: Hàm mobius thường được dùng trong các bài toán đếm sử dụng nguyên lý bù trừ:
+  - Nếu $n$ là số chính phương, $mobius(n) = 0$.
+  - Nếu $n$ có lẻ ước nguyên tố, $mobius(n) = -1$.
+  - Nếu $n$ có chẵn ước nguyên tố, $mobius(n) = 1$. Chú ý $mobius(1) = 1$.
+- $f(n) = \sum{d |n}{d}$ là tổng các ước của $n$.
+- $f_k(n) = \sum{d | n}{d^k}$ với $k$ là hằng số.
+
+
+# 2. Ứng dụng
 
 Giờ ta xét bài toán sau:
 
@@ -45,23 +70,17 @@ Giờ ta xét bài toán sau:
 Nếu bạn chưa biết sàng có thể đọc [[ở đây|translate/topcoder/Mathematics-for-Topcoders]].
 
 
-### Bước 1
+## 2.1. Bước 1
 
-Ta có thể chứng minh hàm $f$ là hàm nhân tính như sau:
-
-- Xét $m$ và $n$ nguyên tố cùng nhau.
-- Xét $a$ là một ước của $m$ và $b$ là một ước của $n$. Như vậy $a \* b$ là một ước của $m \* n$.
-- Với 2 cặp ước khác nhau: $(a1, b1)$ và $(a2, b2)$, ta có thể chứng minh $a1 \* b1$ khác $a2 \* b2$ do $m$ và $n$ nguyên tố cùng nhau.
-
-Do đó, $f(m \* n) = f(m) \* f(n)$.
+Như đã chứng minh ở phần trước, $f$ là hàm nhân tính.
 
 
-### Bước 2
+## 2.2. Bước 2
 
 Với một số nguyên tố $p$, ta có $f(p^k) = k + 1$, do các ước của $p^k$ là $1, p, p^2, ..., p^k$.
 
 
-### Bước 3
+## 2.2. Bước 3
 
 Đầu tiên, ta dùng sàng để:
 
@@ -121,9 +140,9 @@ int main() {
 ```
 
 
-# Dirichlet Convolution
+# 3. Dirichlet Convolution
 
-Việc chứng minh trực tiếp một hàm là hàm nhân tính như ví dụ trên không hề đơn giản. Chẳng hạn, bạn hãy thử chứng minh hàm $f(n)$ là hàm nhân tính, với $f(n)$ là tổng các ước của số $n$. Dĩ nhiên bạn có thể chứng minh trâu bò bằng cách viết ra một đống công thức, tuy nhiên ở mục này mình sẽ hướng dẫn các bạn một phương pháp kỳ diệu hơn.
+Việc chứng minh trực tiếp một hàm là hàm nhân tính như ví dụ về hàm số ước ở trên không hề đơn giản. Chẳng hạn, bạn hãy thử chứng minh hàm $f(n)$ là hàm nhân tính với $f(n)$ là tổng các ước của số $n$. Dĩ nhiên bạn có thể chứng minh trâu bò bằng cách viết ra một đống công thức, tuy nhiên ở mục này mình sẽ hướng dẫn các bạn một phương pháp kỳ diệu hơn.
 
 Với 2 hàm $f$ và $g$ là hàm nhân tính, ta có một hàm nhân tính mới $f \* g$:
 
@@ -156,7 +175,7 @@ Như vậy, $(f \* g)$ cũng là hàm nhân tính.
 
 Để hiểu thêm về Dirichlet Convolution, ta xét vài ví dụ:
 
-## Ví dụ 1
+## 3.1. Ví dụ 1
 
 Xét hàm $f(n) = 1$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
 
@@ -166,7 +185,7 @@ $$
 
 Như vậy $(f \* g)(n)$ là số ước của số $n$ và là hàm nhân tính.
 
-## Ví dụ 2
+## 3.2. Ví dụ 2
 
 Xét hàm $f(n) = n$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
 
@@ -179,25 +198,14 @@ Như vậy $(f \* g)(n)$ là tổng các ước của $n$ và là hàm nhân tí
 Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum_{d | n}{d^k}$ là hàm nhân tính.
 
 
-# Tổng kết
+# 4. Tổng kết
 
 Như vậy, nếu bạn chứng minh được một hàm $f$ là hàm nhân tính, và tìm được công thức $O(1)$ cho $f(p^k)$ thì sẽ dễ dàng tính được tất cả các giá trị $f(i), i \le N$ trong $O(N*logN)$.
 
-Mình xin đưa ra một danh sách những hàm nhân tính thường gặp:
+Bạn cũng nên nắm được những hàm nhân tính thường gặp, từ đó giúp nhận dạng bài toán dễ dàng hơn.
 
-- $f(n) = 1$
-- $id(n) = n$
-- $id_k(n) = n^k$
-- $gcd(n, k)$ với k là hằng số
-- $phi(n)$: số số nguyên tố cùng nhau với $n$ và nhỏ hơn hoặc bằng $n$ (Phi hàm Euler)
-- $mobius(n)$: Hàm mobius thường được dùng trong các bài toán đếm sử dụng nguyên lý bù trừ:
-  - Nếu $n$ là số chính phương, $mobius(n) = 0$.
-  - Nếu $n$ có lẻ ước nguyên tố, $mobius(n) = -1$.
-  - Nếu $n$ có chẵn ước nguyên tố, $mobius(n) = 1$. Chú ý $mobius(1) = 1$.
-- $f(n) = \sum{d |n}{d}$ là tổng các ước của $n$.
-- $f_k(n) = \sum{d | n}{d^k}$ với $k$ là hằng số.
 
-# Bài luyện tập
+## Bài luyện tập
 
 - [CF #391 - E](http://codeforces.com/contest/757/problem/E)
 
