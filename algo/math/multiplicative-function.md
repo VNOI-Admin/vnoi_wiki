@@ -170,13 +170,13 @@ Như vậy, nếu bạn chứng minh được một hàm $f$ là hàm nhân tín
 
 Mình xin đưa ra một danh sách những hàm nhân tính thường gặp:
 
-- $f(n) = 1$
+- $I(n) = 1$
 - $id(n) = n$
 - $id_k(n) = n^k$
 - $gcd(n, k)$ với k là hằng số
 - $phi(n)$: số số nguyên tố cùng nhau với $n$ và nhỏ hơn hoặc bằng $n$ (Phi hàm Euler)
 - $mobius(n)$: Hàm mobius thường được dùng trong các bài toán đếm sử dụng nguyên lý bù trừ:
-  - Nếu $n$ là số chính phương, $mobius(n) = 0$.
+  - Nếu $n$ có ước là số chính phương khác 1, $mobius(n) = 0$.
   - Nếu $n$ có lẻ ước nguyên tố, $mobius(n) = -1$.
   - Nếu $n$ có chẵn ước nguyên tố, $mobius(n) = 1$. Chú ý $mobius(1) = 1$.
 - $f(n) = \sum_{d |n}{d}$ là tổng các ước của $n$.
