@@ -67,3 +67,10 @@ Theo phân tích ở trên,
 $res = f(1) - f(2) - f(3) - f(5) - ... + f(2\*3) + f(2\*5) + f(2\*7) + ... - f(2\*3\*5) - f(2\*3\*7) - ...$
 
 $res = sum(f(i) * mu(i))$
+
+Khi ta thêm hoặc xoá 1 số $x$ khỏi tập S:
+
+- Với mảng $cnt$, chỉ có những $cnt(k)$ với $k$ là ước của $x$ bị thay đổi. Do đó ta dễ dàng cập nhật $cnt$ với độ phức tạp tỉ lệ với số ước của $n$.
+- Với kết quả, chỉ có các $f(k) * mu(k)$ với $k$ là ước của $x$ bị thay đổi. Do đó ta cũng có thể cập nhật kết quả với độ phức tạp tỉ lệ với số ước của $n$.
+
+Do đó, ta thu được thuật toán với độ phức tạp $O(Q*x)$ với $x$ là số ước tối đa của 1 số trong mảng $A$.
