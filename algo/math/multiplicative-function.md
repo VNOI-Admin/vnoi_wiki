@@ -139,7 +139,22 @@ $$
 
 Các bạn chú ý kí hiệu $d | n$ nghĩa là $n$ chia hết cho $d$.
 
-Để hiểu thêm về công thức trên, ta xét vài ví dụ:
+**Chứng minh**
+
+Xét $a$ và $b$ nguyên tố cùng nhau. Mỗi ước $d$ của $ab$ có thể phân tích duy nhất dưới dạng $d = rs$ trong đó $r | a$ và $s | b$, do $gcd(a, b) = 1$.
+
+Do đó:
+
+$$
+(f \* g)(ab) = \sum_{r|a, s|b}{f(rs) g(ab/rs)}
+             = \sum_{r|a, s|b}{f(r) f(s) g(a/r) g(b/s)}
+             = \sum_{r|a}{f(r) g(a/r)} \sum_{s|b}{f(s) g(b/s)}
+             = (f \* g)(a) (f \* g)(b)
+$$
+
+Như vậy, $(f \* g)$ cũng là hàm nhân tính.
+
+Để hiểu thêm về Dirichlet Convolution, ta xét vài ví dụ:
 
 ## Ví dụ 1
 
@@ -170,17 +185,17 @@ Như vậy, nếu bạn chứng minh được một hàm $f$ là hàm nhân tín
 
 Mình xin đưa ra một danh sách những hàm nhân tính thường gặp:
 
-- $I(n) = 1$
+- $f(n) = 1$
 - $id(n) = n$
 - $id_k(n) = n^k$
 - $gcd(n, k)$ với k là hằng số
 - $phi(n)$: số số nguyên tố cùng nhau với $n$ và nhỏ hơn hoặc bằng $n$ (Phi hàm Euler)
 - $mobius(n)$: Hàm mobius thường được dùng trong các bài toán đếm sử dụng nguyên lý bù trừ:
-  - Nếu $n$ có ước là số chính phương khác 1, $mobius(n) = 0$.
+  - Nếu $n$ là số chính phương, $mobius(n) = 0$.
   - Nếu $n$ có lẻ ước nguyên tố, $mobius(n) = -1$.
   - Nếu $n$ có chẵn ước nguyên tố, $mobius(n) = 1$. Chú ý $mobius(1) = 1$.
-- $f(n) = \sum_{d |n}{d}$ là tổng các ước của $n$.
-- $f_k(n) = \sum_{d | n}{d^k}$ với $k$ là hằng số.
+- $f(n) = \sum{d |n}{d}$ là tổng các ước của $n$.
+- $f_k(n) = \sum{d | n}{d^k}$ với $k$ là hằng số.
 
 # Bài luyện tập
 
