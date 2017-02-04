@@ -191,7 +191,7 @@ Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum_{d | n}{d
 
 Sau đây là các hàm nhân tính thường gặp. Bạn có thể thử chứng minh những hàm này là hàm nhân tính dựa theo định nghĩa hoặc Dirichlet Convolution. Việc nắm được những hàm này sẽ giúp thuận lợi hơn trong việc gỉai những bài liên quan đến hàm nhân tính.
 
-- $f(n) = 1$, hàm $f$ luôn bằng 1 với tất cả các giá trị của $n$.
+- $I(n) = 1$, hàm $f$ luôn bằng 1 với tất cả các giá trị của $n$.
 - $id(n) = n$
 - $id_k(n) = n^k$
 - $gcd(n, k)$ với k là hằng số
