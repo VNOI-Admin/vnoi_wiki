@@ -93,7 +93,7 @@ Truy cập giá trị (Test bit)
 
 #  Tách từng bit
 
-Trong phần này, chúng ta sẽ bàn đến việc tìm vị trí của bit 1 cao nhất (bit 1 nằm xa nhất về bên trái) và thấp nhất (bit 1 nằm xa nhất về bên phải) trong mộ số. Đây là những phép toán cơ bản để tách một tập hợp ra thành những phần tử.
+Trong phần này, chúng ta sẽ bàn đến việc tìm vị trí của bit 1 cao nhất (bit 1 nằm xa nhất về bên trái) và thấp nhất (bit 1 nằm xa nhất về bên phải) trong một số. Đây là những phép toán cơ bản để tách một tập hợp ra thành những phần tử.
 
 Tìm bit 1 thấp nhất khá là đơn giản, chỉ cần kết hợp đúng đắn giữa toán tử bit và phép toán số học. Giả sử chúng ta muốn tìm bit 1 thấp nhất của số x (x khác 0). Nếu chúng ta trừ 1 từ x thì bit này được xoá, nhưng tất cả các bit một khác vẫn còn. Do đó, `x & ~(x - 1)` chỉ chứa duy nhất bit 1 thấp nhất của x. Tuy nhiên, cách này chỉ cho chúng ta biết giá trị của bit đó, không phải là vị trí.
 
@@ -132,7 +132,7 @@ Có một số lỗi mà mọi người thường mắc phải khi sử dụng c
 Có một số mẹo hay có thể sử dụng với thao tác bit.
 Những mẹo này khá hay để đem đi chém gió với bạn bè, nhưng thông thường hiệu quả cũng không cải thiện lắm ở thực tế.
 
-**Đảo các bit trong một số nguyên**
+**Đảo thứ tự các bit trong một số nguyên**
 ```
 x = ((x & 0xaaaaaaaa) >> 1) | ((x & 0x55555555) << 1);
 x = ((x & 0xcccccccc) >> 2) | ((x & 0x33333333) << 2);
