@@ -7,7 +7,7 @@
 
 Đây là bài viết đầu tiên của tôi trên blog Codeforces! Tôi dự định sẽ dùng nơi này để viết về những thuật toán mới mà mình học được, những bài toán mà tôi cho là thú vị, hay những sai lầm ngớ ngẩn mà tôi mắc phải trong các kì thị.
 
-Chủ đề của ngày hôm nay sẽ là Z Algorithm, là thứ mà tôi học được sau khi không thể giải [Problem B ở Beta Round 93](http://codeforces.com/contest/126/problem/B). Có vài lời giải khác cho bài toán này như *tìm kiếm nhị phân + hashing*, nhưng lời giải mà chúng ta bàn ở đây là khá đẹp. Không chần chừ nữa, đầu tiên là một miêu tả về thuật toán và cách mà nó hoạt động; khá là đơn giản nhưng hiệu quả (như tất cả những thuật toán tốt khác vậy).
+Bài viết này sẽ bàn về Z Algorithm, là thứ mà tôi học được sau khi không thể giải được [Problem B ở Beta Round 93](http://codeforces.com/contest/126/problem/B). Có nhiều lời giải khác cho bài toán này như kết hợp tìm kiếm nhị phân và hash, nhưng lời giải mà chúng ta bàn ở đây là khá đẹp. Không chần chừ nữa, đầu tiên là một miêu tả về thuật toán và cách mà nó hoạt động; khá là đơn giản nhưng hiệu quả (như tất cả những thuật toán tốt khác vậy).
 
 ## Thuật toán
 
