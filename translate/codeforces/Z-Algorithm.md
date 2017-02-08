@@ -15,11 +15,11 @@ Cho một xâu $S$ có độ dài $n$, Z Algorithm tạo ra một mảng $Z$ tro
 
 Thuật toán hoạt động như sau: Trong lúc ta duyệt qua các ký tự trong xâu (chỉ số $i$ từ $1$ tới $n-1$), ta duy trì một đoạn $[L,R]$ là đoạn có $R$ lớn nhất sao cho $1 \leq L \leq i \leq R$ và $S[L...R]$ là một xâu con tiền tố (nếu không tồn tại đoạn thỏa điều kiện, ta gán $L=R=-1$). Với $i=1$, ta có thể dễ dàng tính $L$ và $R$ bằng cách so sánh $S[0...]$ với $S[1...]$. Ta cũng sẽ có được $Z[1]$ sau bước này.
 
-Giả sử ta đã xây dựng được đoạn $[L,R]$ và hàm Z đến $i-1$. Ta sẽ tính $Z[i]$ và cập nhật đoạn $[L,R]$ mới như sau:
-- Nếu $i>R$, dễ thấy không tồn tại xâu con tiền tố của $S$ bắt đầu trước $i$ và chứa $S[i]$. Nếu tồn tại xâu con như trên, theo định nghĩa, ta phải có $R \geq i$. Do vậy, ta "reset" và tính một đoạn $[L,R]$ mới bằng cách so sánh $S[0...]$ với $S[i...]$ và cùng lúc đó tính giá trị của $Z[i] = R-L+1$.
-- Ngược lại, nếu $i \leq R$, gọi $k=i-L$. Ta biết rằng $Z[i] \geq min(Z[k],R-i+1)$ vì $S[i...]$ khớp $S[k...]$ ít nhất $R-i+1$ kí tự (chúng thuộc đoạn $[L,R]$ mà ta biết chắc là một xâu con tiền tố). Xét hai trường hợp:
-  + Nếu $Z[k]<R-i+1$ thì không có xâu con tiền tố dài hơn nào bắt đầu tại $S[i]$ (nếu không $Z[k]$ sẽ lớn hơn). Do đó, ta có $Z[i]=Z[k]$ và $[L,R]$ được giữ nguyên.
-  + Nếu $Z[k] \geq  R-i+1$ thì có thể $S[i...]$ khớp với $S[0...]$ nhiều hơn $R-i+1$ kí tự (tức là vượt quá vị trí $R$). Do vậy ta cần cập nhật $[L,R]$ bằng cách đặt $L=i$ và đối chiếu từ $S[i+1]$ trở đi để tính $R$ mới. Nhắc lại, ta cũng tính được $Z[i]$ ở bước này.
+Giả sử ta đã xây dựng được đoạn $[L,R]$ và hàm Z đến $i-1$. Ta sẽ tính $Z[i]$ và cập nhật đoạn $[L,R]$ mới như sau:\\
+- Nếu $i>R$, dễ thấy không tồn tại xâu con tiền tố của $S$ bắt đầu trước $i$ và chứa $S[i]$. Nếu tồn tại xâu con như trên, theo định nghĩa, ta phải có $R \geq i$. Do vậy, ta "reset" và tính một đoạn $[L,R]$ mới bằng cách so sánh $S[0...]$ với $S[i...]$ và cùng lúc đó tính giá trị của $Z[i] = R-L+1$.\\
+- Ngược lại, nếu $i \leq R$, gọi $k=i-L$. Ta biết rằng $Z[i] \geq min(Z[k],R-i+1)$ vì $S[i...]$ khớp $S[k...]$ ít nhất $R-i+1$ kí tự (chúng thuộc đoạn $[L,R]$ mà ta biết chắc là một xâu con tiền tố). Xét hai trường hợp:\\
+  + Nếu $Z[k]<R-i+1$, có thể thấy không có xâu con tiền tố nào dài hơn $Z[k]$ bắt đầu tại $S[i]$ (nếu không $Z[k]$ sẽ lớn hơn). Do đó, ta có $Z[i]=Z[k]$ và $[L,R]$ được giữ nguyên.\\
+  + Nếu $Z[k] \geq  R-i+1$, $S[i...]$ có thể khớp với $S[0...]$ nhiều hơn $R-i+1$ kí tự (tức là vượt quá vị trí $R$). Do vậy ta cần cập nhật $[L,R]$ bằng cách đặt $L=i$ và đối chiếu từ $S[i+1]$ trở đi để tính $R$ mới. Nhắc lại, ta cũng tính được $Z[i]$ ở bước này.\\
 
 ## Phân tích
 
