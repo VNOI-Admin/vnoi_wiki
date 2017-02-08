@@ -40,7 +40,6 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 
 - [[Tổng quan|algo/string/basic]]
 - [[KMP|translate/wcipeg/kmp]]
-- [[Z-Algorithm|translate/codeforces/z-algo]]
 - [[Trie|algo/data-structures/trie]]
 - [[Hash|algo/string/hash]]
 - [[Suffix Array|algo/data-structures/suffix-array]]
