@@ -150,10 +150,10 @@ int s = (1 << k) - 1;
 while (!(s & 1 << N)) 
 {
 	//làm gì đó với s
-	int lo = s & -(s - 1);   //bit 1 thấp nhất
-	int lz = (s + lo) & -s;  //bit 0 thấp nhất trên lo
+	int lo = s & ~(s - 1);   //bit 1 thấp nhất
+	int lz = (s + lo) & ~s;  //bit 0 thấp nhất trên lo
 	s |= lz;                       //thêm lz vào tập hợp
-	s &= -(lz - 1);             //reset bit phía dưới lz
+	s &= ~(lz - 1);             //reset bit phía dưới lz
 	s |= (lz / lo / 2) - 1;     //đặt lại đúng số bit ở cuối
 }
 ```
