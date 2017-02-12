@@ -12,25 +12,25 @@ Google từ khóa Lê Yên Thanh, bạn sẽ tìm thấy hàng trăm bài báo l
 
 ## Trả lời nhanh
 
-### 1. Được biết anh nổi tiếng với nick Codeforces I_have_many_girlfriends. Vậy anh có thể cho hỏi bí kíp tán gái không?
+**1. Được biết anh nổi tiếng với nick Codeforces I_have_many_girlfriends. Vậy anh có thể cho hỏi bí kíp tán gái không?**
 
 Tán gái và coding là 2 phạm trù không liên quan nhau, em muốn học thì inbox anh riêng nhé :))
 
-### 2. Anh có thể chia sẻ cảm giác làm người nổi tiếng? Anh có thấy thích thú khi status, ảnh của mình được nhiều likes không?
+**2. Anh có thể chia sẻ cảm giác làm người nổi tiếng? Anh có thấy thích thú khi status, ảnh của mình được nhiều likes không?**
 
 Anh thấy cũng không có gì khác biệt, anh vẫn cư xử bình thường vậy thôi, ai chơi thân sẽ thấy anh rất bựa là khác. Status với ảnh của mình được nhiều người quan tâm thì tất nhiên là thích rồi :D
 
-### 3. Em nghe đồn năm lớp 10 anh đã bắt đầu học giáo trình của MIT, thực hư thế nào?
+**3. Em nghe đồn năm lớp 10 anh đã bắt đầu học giáo trình của MIT, thực hư thế nào?**
 
 Giáo trình MIT là giáo trình gì cơ :)) lúc đó anh chỉ biết giáo trình DSAP thôi
 
-### 4. Anh hãy nhận xét về sắc đẹp của anh RR.
+**4. Anh hãy nhận xét về sắc đẹp của anh RR.**
 
 Em kiếm chị HY mà hỏi :3
 
 ## Câu hỏi "nghiêm túc"
 
-### 1. Anh hãy chia sẻ kinh nghiệm học code và cày quốc thuật toán của mình? Anh cân bằng việc học code với những thứ khác trong cuộc sống như thế nào?
+**1. Anh hãy chia sẻ kinh nghiệm học code và cày quốc thuật toán của mình? Anh cân bằng việc học code với những thứ khác trong cuộc sống như thế nào?**
 
 Thời còn THPT anh chỉ dành 2 tiếng để học thuật toán mỗi tối (thường là từ 8h-10h). Do lịch học ở trường anh khá dày, trường anh ko ưu tiên cho đội tuyển nhiều, HSG QG vẫn phải hoàn thành các môn khác một cách bình thường. Do đó anh chỉ có bấy nhiêu thời gian để học, trừ lúc hè hoặc cuối tuần thì mới học được nhiều hơn.
 
@@ -40,7 +40,7 @@ Thời còn THPT anh chỉ dành 2 tiếng để học thuật toán mỗi tối
 
 Còn về việc học tiếng Anh thì chỉ đơn giản là nhờ anh tập đọc các tài liệu tiếng Anh, tham gia các kì thi tiếng Anh. Dần thì vốn từ của anh cũng được nâng cao lên nhiều, có khả năng đọc hiểu khá tốt. Các trang mà anh cày lúc trước là vnoi.info, usaco.org, spoj.pl, acm.timus.ru, codeforces.com, topcoder.com, codechef.com,... Thường thì khi học 1 chủ đề nào đó xong anh sẽ cố làm thật nhiều bài liên quan trên các trang này, để có thể mở sâu hơn về cái vừa học.
 
-### 2. Anh học ở An Giang, trong giới Tin học có thể coi là trường làng so với những trường chuyên lớn ở Hà Nội và HCM. Anh có cảm thấy việc ở trong một môi trường nhỏ ảnh hưởng đến cơ hội học tập của mình so với những người ở môi trường lớn? Theo anh, việc tìm một môi trường lớn để học và làm việc có quan trọng bằng việc tự nỗ lực bản thân?
+**2. Anh học ở An Giang, trong giới Tin học có thể coi là trường làng so với những trường chuyên lớn ở Hà Nội và HCM. Anh có cảm thấy việc ở trong một môi trường nhỏ ảnh hưởng đến cơ hội học tập của mình so với những người ở môi trường lớn? Theo anh, việc tìm một môi trường lớn để học và làm việc có quan trọng bằng việc tự nỗ lực bản thân?**
 
 Cái quan trọng không phải là học ở đâu, mà là mình học như thế nào. Anh không bao giờ nghĩ là học ở các trường lớn sẽ lợi thế hơn so với các trường nhỏ. Một học sinh ở Hà Nội hay HCM được giải cao cũng phải bỏ ra sự nỗ lực rất lớn chứ không phải chỉ đơn thuần là do ngôi trường mình học.
 
@@ -50,19 +50,19 @@ Còn anh học ở 1 tỉnh vốn không mạnh về tin học, HSG Tin học gi
 
 Tuy là học một mình cũng được nhưng nếu được đi chung với những người giỏi lúc nào cũng sẽ giúp cho mình trưởng thành hơn em ạ. *“Muốn đi nhanh thì đi một mình, nhưng lớn lên rồi, muốn đi xa được thì phải đi cùng nhau, cùng với những người giỏi giống như mình”* :D
 
-### 3. Em nghe nói năm lớp 12 anh được đánh giá là giỏi nhất trong số các thí sinh vòng 2, được giải nhất vòng 1. Đáng tiếc anh lại không được thi IOI năm đó. Anh có bao giờ cảm thấy tiếc về điều này không? Ngoài ra, anh còn điều gì khác trong cuộc đời anh cảm thấy tiếc nuối?
+**3. Em nghe nói năm lớp 12 anh được đánh giá là giỏi nhất trong số các thí sinh vòng 2, được giải nhất vòng 1. Đáng tiếc anh lại không được thi IOI năm đó. Anh có bao giờ cảm thấy tiếc về điều này không? Ngoài ra, anh còn điều gì khác trong cuộc đời anh cảm thấy tiếc nuối?**
 
 Cái gì cũng có nguyên nhân của nó em ạ, có thể lúc thi vòng 2 anh không đạt được phong độ như vòng 1. Anh cũng thấy tiếc nhưng nghĩ lại thấy giờ cũng không có gì phải ân hận cả. Quan trọng là sau thất bại đó anh không từ bỏ và vẫn cố gắng theo đuổi đam mê suốt khoảng thời gian đại học tiếp theo và đã đạt lại được một số thành công nhất định như hiện nay.
 
 Điều quan trọng là dù có thất bại cũng không bao giờ từ bỏ. Đôi khi trong cuộc sống ngoài việc học em sẽ còn gặp những việc khó khăn khác làm ta trùng bước. Anh cũng từng gặp những khó khăn như thế và giờ nghĩ lại nếu lúc đó chỉ cần anh bỏ cuộc thôi thì có lẽ tương lai sẽ thay đổi hoàn toàn so với bây giờ rồi. Tuy là anh không bỏ cuộc nhưng cũng đã để những khó khăn đó làm mình hơi trì trệ 1 tí, và cũng ảnh hưởng không nhỏ đến tương lai hiện giờ, đó là điều mà anh cảm thấy tiếc nuối vì đã đôi lúc nản chí và muốn bỏ hết theo đúng nghĩa đen :D May mà anh đã không làm vậy
 
-### 4. Các kiến thức mà anh đã tích lũy được từ VNOI có tầm quan trọng như thế nào trong công việc hiện tại của anh?
+**4. Các kiến thức mà anh đã tích lũy được từ VNOI có tầm quan trọng như thế nào trong công việc hiện tại của anh?**
 
 Có lẽ đó là những kiến thức về thuật toán. VNOI là một trong những nơi có tầm ảnh hưởng lớn nhất tới những gì mà anh đạt được hiện nay, có thể nói đó là nơi anh bắt đầu con đường học tập thuật toán của mình. Nhờ nó mà anh không chỉ giỏi về thuật toán mà điều quan trọng là còn phát triển được về tư duy giải quyết vấn đề (problem solving). Đó là một trong những kĩ năng quan trọng nhất mà những công ty lớn như Google, Facebook mong muốn, và nó cũng rất quan trọng cho em trong bất kể việc gì mà em làm trong tương lai sau này.
 
 Nếu bây giờ em học thuật toán mà vẫn thấy chưa có tác dụng, thi HSG Tin vẫn chưa thấy trúng tủ bài nào, thì hãy cứ tiếp tục học tập tại VNOI và những trang thuật toán khác. Chắc chắn sẽ có ngày em nhận ra mình đang giỏi lên và có khả năng giải được các bài toán mà trước đây em không thể giải được. Về xa hơn khi làm việc thì sẽ có lúc những kiến thức thuật toán em học sẽ giúp em giải quyết được các bài toán trong công việc mà em không thể ngờ tới.
 
-### 5. Em là một học sinh lớp 10 muốn sau này được làm ở Google, Facebook giống anh. Theo anh kĩ năng, tính cách nào là quan trọng nhất để em có thể được như anh?
+**5. Em là một học sinh lớp 10 muốn sau này được làm ở Google, Facebook giống anh. Theo anh kĩ năng, tính cách nào là quan trọng nhất để em có thể được như anh?**
 
 3 cái quan trọng nhất mà em cần đạt được đó là:
 
@@ -89,7 +89,7 @@ Kiến thức tổng quan về máy tính như em phải hiểu HĐH nó hoạt 
 
     Có một người bạn nói với anh rằng trong công ty thường có 2 loại người: winner và loser. Winner là những người có thể không giỏi chuyên môn cho lắm nhưng biết cách ăn nói và được sự ủng hộ của mọi người. Họ sẽ không ngừng học hỏi dù không giỏi bằng người khác, sẽ không ngừng cố gắng để thăng tiến hơn trong công ty rồi sẽ có ngày họ thành những người rất giỏi. Loser là những người có thể rất giỏi về kiến thức lúc mới vào làm nhưng không có khả năng giao tiếp, xa lánh mọi người, ai giao gì làm nấy và không có khả năng teamwork. Những người như vậy dù giỏi nhưng sẽ mãi là loser, chỉ làm những thứ vớ vẩn, không thể nào thành công được. Rồi sẽ có ngày họ bị người khác vượt mặt. Đó là câu chuyện tham khảo thôi, các em có tin hay không thì tùy :3
 
-### 6. Anh cảm thấy công việc và môi trường làm việc ở Google như thế nào so với những nơi khác, đặc biệt là ở Việt Nam?
+**6. Anh cảm thấy công việc và môi trường làm việc ở Google như thế nào so với những nơi khác, đặc biệt là ở Việt Nam?**
 
 Tất nhiên ở Google là một trong những nơi tốt nhất để làm việc. Anh chưa làm hết tất cả các nơi ở Việt Nam nên cũng không thể đưa ra so sánh với các công ty ở Việt Nam được. Mặc dù vậy thì cũng tùy người, có thể có những người thích làm việc, đam mê với công việc thì làm ở đâu cũng được, miễn là họ được làm những cái mà họ thích và không phải vướng bận gì tới việc cơm áo gạo tiền. Ở Việt Nam thì cũng không thiếu những nơi như vậy.
 
