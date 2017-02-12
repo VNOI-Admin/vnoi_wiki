@@ -94,6 +94,10 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Những lần phỏng vấn và những kinh nghiệm rút ra|interview/Nhung-lan-phong-van-trong-thuc-te-va-bai-hoc-rut-ra]]
 - [[Kinh nghiệm phỏng vấn Google|interview/Kinh-nghiem-phong-van-Google]]
 
+## VNOI Interview
+
+- [[Phỏng vấn Lê Yên Thanh|vnoi-interview/yen-thanh]]
+
 
 
 
