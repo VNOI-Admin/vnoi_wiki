@@ -67,19 +67,26 @@ Từ **(1)** ta có: `A[L[i] – 1] < A[i]`, nên `L[i] - 1` không bị loại 
 
 Vậy, ta xác định được $L$ của một phần tử bất kỳ ngay khi đưa phần tử đó vào Deque.
 
-Bên cạnh đó, gọi $t$ là vị trí các phần tử của $A$ bị loại khỏi Deque trong quá trình cập nhật Deque. $t$ bị loại khỏi Deque tại thời điểm $i$, chứng tỏ $i$ là số đầu tiên xuất hiện trong Deque mà $A[i] < A[t]$ (vì nếu tồn tại một số $k$ thỏa mãn $t < k < i$ mà $A[k] < A[t]$ thì $t$ đã bị loại tại thời điểm $k$). Từ **(2)** suy ra $R[t] + 1$ chính là $i$, hay $R[t] = i - 1$.
-
-Vậy, ta cũng xác định được $R$ của một phần tử bất kỳ ngay khi loại phần tử đó ra khỏi Deque.
+Bên cạnh đó, gọi $t$ là vị trí các phần tử của $A$ bị loại khỏi Deque trong quá trình cập nhật Deque. $t$ bị loại khỏi Deque tại thời điểm $i$, chứng tỏ $i$ là số đầu tiên xuất hiện trong Deque mà $A[i] < A[t]$ (vì nếu tồn tại một số $k$ thỏa mãn $t < k < i$ mà $A[k] < A[t]$ thì $t$ đã bị loại tại thời điểm $k$).
 
 ```cpp
 D[0] = 0;
 for (int i = 1; i <= n; ++i){
-    while (top > 0 && a[D[top]] >= a[i])
-         R[D[top--]] = i – 1;
+    while (top > 0 && a[D[top]] >= a[i]) --top;
     L[i] = D[top] + 1;
     D[++top] = i;
 }
-while (top > 0) R[D[top--]] = n;
+```
+
+Để tính mảng $R$, ta làm ngược lại:
+
+```cpp
+D[0] = n+1;
+for (int i = n; i >= 1; --i) {
+    while (top > 0 && a[D[top]] >= a[i]) --top;
+    R[i] = D[top] - 1;
+    D[++top] = i;
+}
 ```
 
 Độ phức tạp của đoạn chương trình trên có thể đánh giá như sau: Với mỗi số trong dãy $A$, ta chỉ đưa vào Deque 1 lần duy nhất và cũng chỉ lấy ra khỏi Deque 1 lần duy nhất. Do vậy chi phí thực hiện chỉ là $2*N$, hay độ phức tạp của chương trình là $\mathcal{O}(n)$.
