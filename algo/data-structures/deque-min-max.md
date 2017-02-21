@@ -28,7 +28,7 @@ for (int i = 1; i <= n; i++) {
 }
 ```
 
-Cách làm trâu bò này có độ phức tạp là $\mathcal{O}(N)$. Ta có thể cải tiến dựa vào các nhận xét sau:
+Cách làm trâu bò này có độ phức tạp là $\mathcal{O}($N^2$)$. Ta có thể cải tiến dựa vào các nhận xét sau:
 
 - `L[i] - 1` bằng 0 hoặc là số lớn nhất mà `L[i] - 1 < i` và `A[L[i] - 1] < A[i]` **(1)**
 - `R[i] + 1` bằng 0 hoặc là số nhỏ nhất mà `R[i] + 1 > i` và `A[R[i] + 1] < A[i]` **(2)**
