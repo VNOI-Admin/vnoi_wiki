@@ -28,10 +28,10 @@ for (int i = 1; i <= n; i++) {
 }
 ```
 
-Cách làm trâu bò này có độ phức tạp là $\mathcal{O}($N^2$)$. Ta có thể cải tiến dựa vào các nhận xét sau:
+Cách làm trâu bò này có độ phức tạp là $\mathcal{O}(N^2)$. Ta có thể cải tiến dựa vào các nhận xét sau:
 
 - `L[i] - 1` bằng 0 hoặc là số lớn nhất mà `L[i] - 1 < i` và `A[L[i] - 1] < A[i]` **(1)**
-- `R[i] + 1` bằng 0 hoặc là số nhỏ nhất mà `R[i] + 1 > i` và `A[R[i] + 1] < A[i]` **(2)**
+- `R[i] + 1` bằng n+1 hoặc là số nhỏ nhất mà `R[i] + 1 > i` và `A[R[i] + 1] < A[i]` **(2)**
 
 Từ nhận xét này, ta xây dựng Deque bằng cách "lọc" lại dãy như sau: Trong quá trình duyệt dãy $A$, luôn đưa $i$ vào cuối Deque hiện tại, nhưng loại bỏ tất cả các vị trí $j$ đã được đưa vào trong Deque mà $A[j] \ge A[i]$. Như vậy, tại mọi thời điểm $i$, ta luôn có danh sách các vị trí trên Deque mà các giá trị tương ứng trên mảng $A$ là tăng dần.
 
