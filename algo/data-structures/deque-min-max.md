@@ -156,6 +156,17 @@ Tiếp đó, ta thấy rằng: Hình chữ nhật có cạnh đáy nằm ở hà
 
 Do đó, ta giải quyết được bài tập này với $\mathcal{O}(n^2)$. Chú ý đây là độ phức tạp tối ưu do phần đọc ma trận $A$ đã mất $\mathcal{O}(n^2)$ rồi.
 
+##Áp dụng 3 
+[VOJ-MINK](http://vnoi.info/problems/show/MINK/)
+
+**Tóm tắt đề**
+
+Với mỗi $1<=i<=n-k+1$ tính $min({a_{i}..a_{i+k-1}})$
+
+**Lời giải**
+
+Ta thấy rằng khi dùng deque tương tự bài KAGAIN thì ở mỗi vị trí i , $D[1]$ là $min(a_{1}..a_{i})$. Vậy phần còn lại là loại đi các phần từ ở vị trí nhỏ hơn $i-k+1$. 
+
 Bài tập tương tự:
 
 - [VOJ - CREC01](http://vnoi.info/problems/show/CREC01/)
