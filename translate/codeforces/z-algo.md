@@ -10,9 +10,7 @@ Trước khi đọc bài này, các bạn có thể đọc bài [[Xử lý xâu|
 
 # Bài toán
 
-Cho một chuỗi $S$ có độ dài $n$, thuật toán Z Function tạo ra một mảng $Z$ mà tại mỗi vị trí $i$, ta có $Z_i$ là độ dài chuỗi con dài nhất là tiền tố của $S$ bắt đầu tại vị trí $S_i$, hay nói một cách khác $Z_i$ là một số nguyên $k$ lớn nhất mà $S_j=S_{i + j}$ với mọi $0 \le j < k$.
-
-Trường hợp $S_i \ne S_0$ thì $Z_i = 0$.
+Cho một chuỗi $S$ có độ dài $n$, thuật toán Z Function tạo ra một mảng $Z$ mà tại mỗi vị trí $i$, ta có $Z_i$ là độ dài chuỗi con dài nhất là tiền tố của $S$ bắt đầu tại vị trí $S_i$, hay nói một cách khác $Z_i$ là một số nguyên $k$ lớn nhất mà $S_j=S_{i + j}$ với mọi $0 \le j < k$. Trường hợp $S_i \ne S_0$ thì $Z_i = 0$.
 
 # Thuật toán
 
