@@ -44,6 +44,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Hash|algo/string/hash]]
 - [[Suffix Array|algo/data-structures/suffix-array]]
 - [[Palindrome Tree|translate/codeforces/palindrome-tree]]
+- [[Z Algorithm|translate/codeforces/z-algo]]
 
 ## Quy hoạch động
 - [[Nhập môn Quy hoạch động|translate/topcoder/dynamic-programming]]
