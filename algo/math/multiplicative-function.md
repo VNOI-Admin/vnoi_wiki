@@ -214,13 +214,15 @@ Bạn cũng nên nắm được những hàm nhân tính thường gặp, từ �
 
 ## Bài luyện tập
 
-### [VOJ - GCDSUM](http://vn.spoj.com/problems/GCDSUM/)
+- [VOJ - GCDSUM](http://vn.spoj.com/problems/GCDSUM/)
 
 Gợi ý: Xét $f(n) = \sum_{1 \le i \le n}{gcd(n, i)}$.
 
-### [CF #391 - E](http://codeforces.com/contest/757/problem/E)
+- [CF #391 - E](http://codeforces.com/contest/757/problem/E)
 
 Gợi ý: Tìm cách bỏ phép cộng trong công thức của $f_r(n)$.
+
+- [CF #400 - E](http://codeforces.com/contest/776/problem/E)
 
 
 # Reference
