@@ -163,7 +163,7 @@ Với mỗi $1<=i<=n-k+1$ tính $min({a_{i}..a_{i+k-1}})$
 
 **Lời giải**
 
-Ta thấy rằng khi dùng deque tương tự bài KAGAIN thì ở mỗi vị trí i , $D[1]$ là $min(a_{1}..a_{i})$. Vậy phần còn lại là loại đi các phần từ đầu deque có vị trí nhỏ hơn $i-k+1$. Sau đó, phần tử đầu deque sẽ là câu trả lời.  
+Ta thấy rằng khi dùng deque tương tự bài KAGAIN thì ở mỗi vị trí $i$ , $D[1]$ là $min(a_{1}..a_{i})$. Vậy phần còn lại là loại đi các phần từ đầu deque có vị trí nhỏ hơn $i-k+1$. Sau đó, phần tử đầu deque sẽ là câu trả lời.  
 
 Bài tập tương tự:
 
