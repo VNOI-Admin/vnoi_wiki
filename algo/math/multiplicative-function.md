@@ -42,7 +42,7 @@ Do đó, $f(m \* n) = f(m) \* f(n)$.
 
 
 
-# 2. Ứng dụng
+# 2. Ứng dụng 1
 
 Giờ ta xét bài toán sau:
 
@@ -126,8 +126,50 @@ int main() {
 
 ```
 
+# 3. Ứng dụng 2
 
-# 3. Dirichlet Convolution
+Ta xét bài toán sau:
+
+> Cho số N không quá 10^12. Tính f(N)
+
+Chú ý ở bài toán trước ta cần tính nhiều giá trị của $f(N)$ với $N$ nhỏ, còn trong bài này ta chỉ cần tính duy nhất 1 giá trị của $f(N)$ với $N$ lớn.
+
+Cũng như trên, ta sẽ làm theo 3 bước chính:
+
+1. Chứng minh $f$ là hàm nhân tính.
+2. Tìm công thức cho $f(p^k)$ với p là số nguyên tố.
+3. Phân tích $N$ thành thừa số nguyê tố để tính $f(N)$ trong $O(sqrt(N))$.
+
+Vì 2 bước đầu giống hệt phần trước nên mình sẽ không nhắc lại.
+
+Ở bước 3, bạn chỉ cần xét tất cả các số từ 1 đến $sqrt(N)$, từ đó phân tích được thành thừa số nguyên tố. Code như sau:
+
+```cpp
+int n;
+int res = 1;  // kết quả
+for (int i = 2; i*i <= n; i++) {
+  if (n % i == 0) {
+    // i là ước nguyên tố của n
+    // (nếu i không nguyên tố, và có ước p, thì ở bước trước đó,
+    // ta đã chia n cho p đến khi n không chia hết cho p).
+    int u = 1, k = 0;
+    // u = i^k là luỹ thừa lớn nhất của i mà là ước của n.
+    while (n % i == 0) {
+      n /= i;
+      u = u * i;
+      k += 1;
+    }
+    res = res * (k + 1);
+  }
+}
+
+if (n > 1) {  // giá trị hiện tại của n là số nguyên tố
+  res = res * 2;
+}
+```
+
+
+# 4. Dirichlet Convolution
 
 Việc chứng minh trực tiếp một hàm là hàm nhân tính như ví dụ về hàm số ước ở trên không hề đơn giản. Chẳng hạn, bạn hãy thử chứng minh hàm $f(n)$ là hàm nhân tính với $f(n)$ là tổng các ước của số $n$. Dĩ nhiên bạn có thể chứng minh trâu bò bằng cách viết ra một đống công thức, tuy nhiên ở mục này mình sẽ hướng dẫn các bạn một phương pháp kỳ diệu hơn.
 
@@ -165,7 +207,7 @@ Như vậy, $(f \* g)$ cũng là hàm nhân tính.
 
 Để hiểu thêm về Dirichlet Convolution, ta xét vài ví dụ:
 
-## 3.1. Ví dụ 1
+## 4.1. Ví dụ 1
 
 Xét hàm $f(n) = 1$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
 
@@ -175,7 +217,7 @@ $$
 
 Như vậy $(f \* g)(n)$ là số ước của số $n$ và là hàm nhân tính.
 
-## 3.2. Ví dụ 2
+## 4.2. Ví dụ 2
 
 Xét hàm $f(n) = n$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
 
@@ -187,7 +229,7 @@ Như vậy $(f \* g)(n)$ là tổng các ước của $n$ và là hàm nhân tí
 
 Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum_{d | n}{d^k}$ là hàm nhân tính.
 
-## 3.3. Các hàm nhân tính thường gặp
+## 4.3. Các hàm nhân tính thường gặp
 
 Sau đây là các hàm nhân tính thường gặp. Bạn có thể thử chứng minh những hàm này là hàm nhân tính dựa theo định nghĩa hoặc Dirichlet Convolution. Việc nắm được những hàm này sẽ giúp thuận lợi hơn trong việc gỉai những bài liên quan đến hàm nhân tính.
 
@@ -205,7 +247,7 @@ Sau đây là các hàm nhân tính thường gặp. Bạn có thể thử chứ
 
 
 
-# 4. Tổng kết
+# 5. Tổng kết
 
 Như vậy, nếu bạn chứng minh được một hàm $f$ là hàm nhân tính, và tìm được công thức $O(1)$ cho $f(p^k)$ thì sẽ dễ dàng tính được tất cả các giá trị $f(i), i \le N$ trong $O(N*logN)$.
 
