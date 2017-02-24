@@ -113,8 +113,6 @@ Yêu cầu: Cho biết $SM$ lớn nhất có thể trong dãy $A$.
 
 Xây dựng mảng $L$, $R$ và cập nhật kết quả bằng $(R[i] – L[i]+1) * A[i]$.
 
-Bài tập tương tự: [VOJ - MINK](http://vnoi.info/problems/show/MINK)
-
 ## Áp dụng 2
 
 [VOJ - QBRECT](http://vnoi.info/problems/show/QBRECT/)
@@ -165,7 +163,7 @@ Với mỗi $1<=i<=n-k+1$ tính $min({a_{i}..a_{i+k-1}})$
 
 **Lời giải**
 
-Ta thấy rằng khi dùng deque tương tự bài KAGAIN thì ở mỗi vị trí i , $D[1]$ là $min(a_{1}..a_{i})$. Vậy phần còn lại là loại đi các phần từ ở vị trí nhỏ hơn $i-k+1$. 
+Ta thấy rằng khi dùng deque tương tự bài KAGAIN thì ở mỗi vị trí i , $D[1]$ là $min(a_{1}..a_{i})$. Vậy phần còn lại là loại đi các phần từ đầu deque có vị trí nhỏ hơn $i-k+1$. Sau đó, phần tử đầu deque sẽ là câu trả lời.  
 
 Bài tập tương tự:
 
