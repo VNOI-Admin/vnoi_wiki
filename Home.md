@@ -98,6 +98,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 ## VNOI Interview
 
 - [[Phỏng vấn Lê Yên Thanh|vnoi-interview/yen-thanh]]
+- [[Phỏng vấn Nguyễn Xuân Khánh|vnoi-interview/xuan-khanh]]
 
 
 
