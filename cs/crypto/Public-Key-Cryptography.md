@@ -71,7 +71,7 @@ Nguyên lý cơ bản của RSA dựa trên nhận định là có thể tìm đ
 
 $(m^e)^d \equiv m \pmod n \quad \forall m$
 
-và dù cho có biết cả $e$, $d$ hay cả $m$ thì cũng rất khó để tìm ra $d$.
+và dù cho có biết cả $e$, $n$ hay cả $m$ thì cũng rất khó để tìm ra $d$.
 
 Tiếp theo chúng ta sẽ đi sâu vào từng công đoạn của 1 hệ mã, bao gồm việc mã hóa, giải mã và sinh khóa.
 
