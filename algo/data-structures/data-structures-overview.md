@@ -193,7 +193,8 @@ Giải thích công thức trên:
 
 [[/uploads/2DPartialSum_small.png]]
 
-$đỏ = xanh da trời + vàng - tím + xanh lá$
+đỏ = xanh da trời + vàng - tím + xanh lá
+
 $f(i, j) = f(i-1, j) + f(i, j-1) - f(i-1, j-1) + A(i, j)$
 
 ## 2.2. Disjoint Sets
