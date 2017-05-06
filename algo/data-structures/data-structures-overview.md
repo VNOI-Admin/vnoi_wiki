@@ -183,6 +183,16 @@ Mảng cộng dồn là một cách áp dụng khéo léo mảng. Có 2 dạng b
 - Với mỗi truy vấn, tăng $p_L$ lên $V$ và trừ $p_{R+1}$ đi $V$.
 - Cuối cùng, với mỗi $i$ (từ 1), $p_i += p_{i–1}$. Ta có $a_i = a_i + p_i$.
 
+### 2.1.3. Mảng cộng dồn trên bảng 2 chiều:
+
+Trên bảng 2 chiều $A$, ta đặt $f(i, j)$ là tổng các ô trong hình chữ nhật có 2 đỉnh đối diện là $(1, 1)$ và $(i, j)$.
+
+Khi đó, ta có: $f(i, j) = f(i-1, j) + f(i, j-1) - f(i-1, j-1) + A(i, j)$.
+
+Giải thích công thức trên:
+
+[[/uploads/Screen Shot 2017-05-06 at 4.59.05 PM.png]]
+
 ## 2.2. Disjoint Sets
 
 **Disjoint Sets** là cấu trúc dữ liệu được sử dụng trong thuật toán **Kruskal** và thuật toán **Prim** - 2 thuật toán tìm cây khung nhỏ nhất của đồ thị. Như tên gọi của nó, Disjoint Set được dùng để quản lý các tập hợp không giao nhau.
