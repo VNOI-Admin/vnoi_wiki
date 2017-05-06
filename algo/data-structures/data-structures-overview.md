@@ -191,7 +191,7 @@ Khi đó, ta có: $f(i, j) = f(i-1, j) + f(i, j-1) - f(i-1, j-1) + A(i, j)$.
 
 Giải thích công thức trên:
 
-[[/uploads/2DPartialSum.png]]
+[[/uploads/2DPartialSum_small.png]]
 
 ## 2.2. Disjoint Sets
 
