@@ -193,6 +193,9 @@ Giải thích công thức trên:
 
 [[/uploads/2DPartialSum_small.png]]
 
+$đỏ = xanh da trời + vàng - tím + xanh lá$
+$f(i, j) = f(i-1, j) + f(i, j-1) - f(i-1, j-1) + A(i, j)$
+
 ## 2.2. Disjoint Sets
 
 **Disjoint Sets** là cấu trúc dữ liệu được sử dụng trong thuật toán **Kruskal** và thuật toán **Prim** - 2 thuật toán tìm cây khung nhỏ nhất của đồ thị. Như tên gọi của nó, Disjoint Set được dùng để quản lý các tập hợp không giao nhau.
