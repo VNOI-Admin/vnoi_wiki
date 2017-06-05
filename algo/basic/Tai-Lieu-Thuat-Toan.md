@@ -41,3 +41,8 @@ Cuốn sách giới thiệu về phương pháp giảm độ phức tạp cho m�
 **6. KC-BOOK3**
 
 [Link download](http://www.mediafire.com/download/x0kwqv8sv7xxhpg/252136344-KCBOOK3.pdf)
+
+**7. Bản dịch Introduction to Algorithm**
+[Link download](https://drive.google.com/file/d/0B2B4YFwy4LhWWl9NV2pyQno1S0U/view)
+
+(Cảm ơn bạn Nguyễn Văn Khởi đã chia sẻ link).
