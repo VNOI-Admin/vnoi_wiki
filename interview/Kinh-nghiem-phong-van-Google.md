@@ -30,7 +30,7 @@ Với dân ACM ICPC hoặc OI chuyên nghiệp, các câu hỏi phỏng vấn đ
 - Không dùng những kiến thức phức tạp và không phổ biến như Splay Tree, Suffix Array, Max Flow...
 - Chú ý 1 số thuật toán có tên gọi khác với tên gọi phổ biến ở Việt Nam, ví dụ như Interval Tree = Segment Tree, Binary Indexed Tree = Fenwick Tree.
 - Tìm thuật toán thật đơn giản. Các bài phỏng vấn được làm trong thời gian ngắn, vì vậy hãy chọn cách tiếp cận đơn giản nhất. Nếu người phỏng vấn chưa hài lòng họ sẽ hỏi cách tốt hơn.
-- Nắm rõ những thuật toán cơ bản dùng bộ nhớ động và con trỏ như Linked list, Tree. Các bạn cũng có thể luyện thêm trên [leetcode](https://www.leetcode.com).
+- Nắm rõ những thuật toán cơ bản dùng bộ nhớ động và con trỏ như Linked list, Tree. Các bạn cũng có thể luyện thêm trên [leetcode](https://www.leetcode.com), [CareerCup](https://www.careercup.com/), [TechieDelight](http://www.techiedelight.com/list-of-problems/).
 
 Với các bạn không thi ACM ICPC hoặc OI, hoặc bạn đã bỏ thi sau nhiều năm, các bạn có thể lên mạng làm thử 1 số bài gần với những bài được dùng trong phỏng vấn, ví dụ trang [leetcode](https://www.leetcode.com). Với mỗi bài, có thể luyện tập như sau:
 
