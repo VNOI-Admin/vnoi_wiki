@@ -46,13 +46,12 @@ Ví dụ: GCD của 6 và 10 là 2 vì 2 là số nguyên dương lớn nhất m
 Ta có thể duyệt tất cả các số từ $min(A,B)$ đến 1 và kiểm tra xem số đang xét có phải là ước của của $A$ và $B$ hay không. Nếu đúng như vậy thì số đang xét sẽ là GCD của $A$ và $B$.
 
 ```cpp
-int GCD(int A, int B) {
-    int m = min(A, B), gcd;
-    for(int i = m; i > 0; --i)
-        if(A % i == 0 && B % i == 0) {
-            gcd = i;
-            return gcd;
+int gcd(int A, int B) {
+    for (int i = min(A, B); i > 0; --i)
+        if (A % i == 0 && B % i == 0) {
+            return i;
         }
+    // không bao giờ chạy đến đây vì khi i = 1 thì cả A và B luôn chia hết cho i
 }
 ```
 
@@ -63,11 +62,9 @@ int GCD(int A, int B) {
 Thuật toán Euclid dựa trên tính chất sau của ước chung lớn nhất $GCD(A,B)=GCD(B,A\%B)$. Thuật toán sẽ quy nạp cho đến khi $A\%B=0$.
 
 ```cpp
-int GCD(int A, int B) {
-    if(B==0)
-        return A;
-    else
-        return GCD(B, A % B);
+int gcd(int A, int B) {
+    if (B == 0) return A;
+    else return gcd(B, A % B);
 }
 ```
 
@@ -94,11 +91,9 @@ Vì $B=0$ nên $GCD(2,0)$ sẽ trả về giá trị 2.
 Thuật toán sẽ cho ta biết một cặp giá trị $(x;y)$ thỏa mãn phương trình này và nhờ đó giúp ta tính Modular Multiplicative Inverse. $x$ và $y$ có thể có giá trị bằng không hoặc âm. Chương trình sau đọc hai số $A$ và $B$ và in ra $GCD(A,B)$ cũng như một cặp số $(x;y)$ thỏa mãn phương trình.
 
 ```cpp
-#include < iostream >
-
 int d, x, y;
 void extendedEuclid(int A, int B) {
-    if(B == 0) {
+    if (B == 0) {
         d = A;
         x = 1;
         y = 0;
@@ -111,19 +106,19 @@ void extendedEuclid(int A, int B) {
     }
 }
 
-int main( ) {
-extendedEuclid(16, 10);
-cout << "The GCD of 16 and 10 is " << d << endl;
-cout << "Coefficient x and y are: " << x <<  "and " << y << endl;
-return 0;
+int main() {
+    extendedEuclid(16, 10);
+    cout << "gcd(16, 10) = " << d << endl;
+    cout << "x, y: " << x <<  ", " << y << endl;
+    return 0;
 }
 ```
 
 Kết quả
 
 ```
-The GCD of 16 and 10 is 2
-Coefficient x and y are: 2 and -3
+gcd(16, 10) = 2
+x, y: 2, -3
 ``` 
 
 Ban đầu, thuật toán Euclid mở rộng sẽ chạy như thuật toán Euclid cho đến khi ta có $GCD(A,B)$ hoặc cho đến khi $B$ bằng 0 và khi đó thuật toán sẽ đặt $x=1$ và $y=0$. Vì $B=0$ và $GCD(A,B)$ là $A$ trong thời điểm hiện tại nên phương trình $Ax+By=0$ trở thành $A.1+0.0=A$.
@@ -157,15 +152,13 @@ Có rất nhiều phương pháp để kiểm tra một số nguyên có phải 
 Ta sẽ duyệt hết tất cả các số từ 1 đến $N$ và đếm số ước của $N$. Nếu số ước của $N$ là 2 thì $N$ là số nguyên tố, nếu không thì $N$ không là số nguyên tố.
 
 ```cpp
-void checkprime(int N){
-    int count = 0;
-    for( int i = 1;i <= N;++i )
-        if( N % i == 0 )
-            count++;
-    if(count == 2)
-        cout << N << “ is a prime number.” << endl;
-    else
-        cout << N << “ is not a prime number.” << endl;
+bool isPrime(int n) {
+    for (int i = 2; i < n; i++)
+        if (n % i == 0) {
+            // n chia hết cho số khác 1 và chính nó.
+            return false;
+        }
+    return n > 1;
 }
 ```
 
