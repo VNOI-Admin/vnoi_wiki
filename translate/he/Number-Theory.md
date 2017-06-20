@@ -541,7 +541,7 @@ Ví dụ:
 
 - {1;2} $\cap$ {2;3} = {2}.
 
-![](https://d320jcjashajb2.cloudfront.net/media/uploads/618200f.png)
+[[/uploads/number-theory-set-intersection.png]]
 
 Giao của hai tập hợp $A$ và $B$, kí hiệu là $A \cap B$.
 
@@ -573,11 +573,11 @@ Ví dụ:
 
 - Nếu $U$ là tập hợp các số nguyên, $E$ là tập hợp các số nguyên chẵn, $O$ là tập hợp các số nguyên lẻ, khi đó $U \backslash E = E' = O$.
 
-![](https://d320jcjashajb2.cloudfront.net/media/uploads/6669f13.png)
+[[/uploads/number-theory-set-diff-1.png]]
 
 Hiệu của hai tập hợp $A$ và $B$.
 
-![](https://d320jcjashajb2.cloudfront.net/media/uploads/7fe7571.png)
+[[/uploads/number-theory-set-diff-2.png]]
 
 Phần bù của $A$ trong $U$.
 
