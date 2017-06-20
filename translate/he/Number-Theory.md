@@ -113,8 +113,8 @@ void extendedEuclid(int A, int B) {
 
 int main( ) {
 extendedEuclid(16, 10);
-cout << ”The GCD of 16 and 10 is ” << d << endl;
-cout << ”Coefficient x and y are: ”<< x <<  “and  “ << y << endl;
+cout << "The GCD of 16 and 10 is " << d << endl;
+cout << "Coefficient x and y are: " << x <<  "and " << y << endl;
 return 0;
 }
 ```
@@ -469,7 +469,7 @@ Ví dụ, 2, 4, 6 được coi là các phần tử phân biệt khi ta xét t�
 
 Tập hợp là một trong những khái niệm cơ bản trong Toán học.
 
-![](https://d320jcjashajb2.cloudfront.net/media/uploads/0fed95c.png)
+[[/uploads/number-theory-set-1.png]]
 
 Tập hợp các hình đa giác được biểu diễn trong biểu đồ Venn.
 
@@ -495,7 +495,7 @@ Ví dụ:
 
 - $A \subset A$.
 
-![](https://d320jcjashajb2.cloudfront.net/media/uploads/668b06c.png)
+[[/uploads/number-theory-set-2.png]]
 
 $A$ là tập con của tập $B$.
 
@@ -515,7 +515,7 @@ Ví dụ:
 
 - {1;2;3} $\cup$ {3;4;5} = {1;2;3;4;5}
 
-![](https://d320jcjashajb2.cloudfront.net/media/uploads/94410aa.PNG)
+[[/uploads/number-theory-set-3.png]]
 
 Hợp của hai tập hợp $A$ và $B$, kí hiệu là $A \cup B$.
 
