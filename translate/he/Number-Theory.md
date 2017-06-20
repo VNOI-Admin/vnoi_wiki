@@ -169,20 +169,10 @@ bool isPrime(int n) {
 Xét hai số nguyên dương $N$ và $D$ thỏa mãn $N$ chia hết cho $D$ và $D$ nhỏ hơn $\sqrt{N}$. Khi đó $\frac{N}{D}$ phải lớn hơn $\sqrt{N}$. $N$ cũng chia hết cho $\frac{N}{D}$. Vì thế, nếu $N$ có ước nhỏ hơn $\sqrt{N}$ thì $N$ cũng có ước lớn hơn $\sqrt{N}$. Do đó, ta chỉ cần duyệt đến $\sqrt{N}$.
 
 ```cpp
-void checkprime(int N) {
-    int count = 0;
-    for( int i = 1;i * i <=N;++i ) {
-         if( N % i == 0) {
-         if( i * i == N )
-                     count++;
-                 else                                                     // i < sqrt(N) and (N / i) > sqrt(N)
-                     count += 2;
-      }
-    }
-    if(count == 2)
-        cout << N << “ is a prime number.” << endl;
-    else
-        cout << N << “ is not a prime number.” << endl;
+bool isPrime(int n) {
+    for (int i = 2; i*i <= n; i++)
+        if (n % i == 0) return false;
+    return n > 1;
 }
 ```
 
@@ -215,7 +205,7 @@ void sieve(int N) {
     for(int i = 2; i * i <= N; ++i) {
          if(isPrime[i] == true) {
              // Mark all the multiples of i as composite numbers
-             for(int j = i * i; j <= N ;j += i)
+             for(int j = i * i; j <= N; j += i)
                  isPrime[j] = false;
         }
     }
@@ -251,12 +241,12 @@ Xét bài toán tính $a^b\%c$, với $\%$ là dấu đồng dư thức và $b$ 
 $a^b$ có thể viết là $a.a.a.a...$ với $b$ chữ $a$. Do đó ta có thể nhân $b$ lần $a$ để có được kết quả.
 
 ```cpp
-long long exponentiation(long long a, long long b, long long c) {
-        long long ans = 1;
-        for(int i = 1;i <= b;i++) {
-            ans *= a;                             //multiplying a, b times.
-            ans %= c;
-        }
+long long power(long long a, long long b, long long c) {
+    long long ans = 1;
+    for(int i = 1; i <= b; i++) {
+        ans *= a;
+        ans %= c;
+    }
     return ans;
  }
 ```
@@ -279,21 +269,20 @@ $a^b=a.(a^{[\frac{b}{2}]})^2$ nếu $b$ không chia hết cho 2.
 $a^b=1$ nếu $b=0$.
 
 ```cpp
-int sqr(int x)
-{
-	return x*x;
+int sqr(int x) {
+    return x*x;
 }
-int pow(int a,int b,int c)
-{
-	if (b==0)
-		return 1%c; // c co the bang 1.
-	else
-	if (b%2==0)
-		return sqr(pow(a,b/2))%c; // tranh goi pow(a,b/2) 2 lan -> TLE
-	else
-		return a*(sqr(pow(a,b/2))%c)%c;
+
+int pow(int a, int b, int MOD) {
+    if (b == 0) return 1 % MOD;
+    else
+        if (b % 2 == 0)
+            return sqr(pow(a, b/2)) % MOD;
+        else
+            return a * (sqr(pow(a, b/2)) % c) % MOD;
 }
 ```
+
 Giả sử ta có $a=2,b=5,c=5$, khi đó kết quả là $pow(2,5,5)$
 
 1. Do $b$ lẻ, nên hàm $pow(2,5,5)$ gọi hàm $pow(2,2,5)$ để tính $2.pow(2,2,5)$
