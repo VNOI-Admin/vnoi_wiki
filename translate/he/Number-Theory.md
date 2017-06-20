@@ -900,7 +900,7 @@ Hai biến cố được gọi là xung khắc hoặc rời nhau nếu không c�
 
 Nếu ba biến cố $A$, $B$, $C$ xung khắc với nhau, ta cũng có $A \cap B \cap C = \varnothing$.
 
-[[/uploads/number-theory-mutually-exclusive.png]]
+[[/uploads/number-theory-mutually-exclusive-img.png]]
 
 ## Quy tắc tính xác suất của các biến cố xung khắc
 
