@@ -720,53 +720,11 @@ use this method when n<=5000 only.
 also use this method when nCr%non-prime is required.
 */
 //by Tanmay Chaudhari
-#ifdef _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
-#endif
-//#pragma comment(linker, "/STACK:66777216")
 #include <bits/stdc++.h>
 using namespace std;
 
-#define si(a)				scanf("%d",&a)
-#define sl(a)				scanf("%lld",&a)
-#define pi(a)				printf("%d\n",a)
-#define pl(a)				printf("%lld\n",a)
-
-typedef long long			ll;
-typedef vector<int>			vi;
-typedef pair<int, int>		ii;
-typedef vector<vi>			vvi;
-typedef vector<ii>			vii;
-
-#define SET(a,b)			memset(a,b,sizeof(a))	
-#define forall(i,a,b)		for(int i=a; i<b; i++)
-#define forrev(i,a,b)		for(int i=a; i>=b; i--)
-#define forr(it,container)  for(auto it=container.begin(); it!=container.end(); it++)
-#define w(t)				int t;si(t);while(t--)
-
-#define TRACE
-
-#ifdef TRACE
-#define trace1(x)                cerr << #x << ": " << x << endl;
-#define trace2(x, y)             cerr << #x << ": " << x << " | " << #y << ": " << y << endl;
-#define trace3(x, y, z)          cerr << #x << ": " << x << " | " << #y << ": " << y << " | " << #z << ": " << z << endl;
-#define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl;
-#define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl;
-#define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl;
-
-#else
-
-#define trace1(x)
-#define trace2(x, y)
-#define trace3(x, y, z)
-#define trace4(a, b, c, d)	
-#define trace5(a, b, c, d, e)
-#define trace6(a, b, c, d, e, f)
-
-#endif
-
 const int MOD = 1e9 + 7;
-ll ncr[5005][5005];
+long long ncr[5005][5005];
 
 void precompute()
 {
@@ -782,10 +740,8 @@ void precompute()
 
 int main()
 {
-	//freopen("input.txt","r",stdin);
-	//freopen("output.txt","w",stdout);
 	precompute();
-	pl(ncr[4892][231]);
+	cout << ncr[4892][231] << endl;
 	return 0;
 }
 ```
@@ -798,53 +754,12 @@ Chương trình trên chỉ tính được $\binom{n}{k}$ với $n$ nhỏ. Bạn
 	use this for large value of N and whem (NchooseR)%prime is used;
 */
 //by Tanmay Chaudhari
-#ifdef _MSC_VER
-#define _CRT_SECURE_NO_WARNINGS
-#endif
-//#pragma comment(linker, "/STACK:66777216")
 #include <bits/stdc++.h>
 using namespace std;
 
-#define si(a)				scanf("%d",&a)
-#define sl(a)				scanf("%lld",&a)
-#define pi(a)				printf("%d\n",a)
-#define pl(a)				printf("%lld\n",a)
-
-typedef long long			LL;
-typedef vector<int>			vi;
-typedef pair<int, int>		ii;
-typedef vector<vi>			vvi;
-typedef vector<ii>			vii;
-
-#define SET(a,b)			memset(a,b,sizeof(a))	
-#define forall(i,a,b)		for(int i=a; i<b; i++)
-#define forrev(i,a,b)		for(int i=a; i>=b; i--)
-#define forr(it,container)  for(auto it=container.begin(); it!=container.end(); it++)
-#define w(t)				int t;si(t);while(t--)
-
-#define TRACE
-
-#ifdef TRACE
-#define trace1(x)                cerr << #x << ": " << x << endl;
-#define trace2(x, y)             cerr << #x << ": " << x << " | " << #y << ": " << y << endl;
-#define trace3(x, y, z)          cerr << #x << ": " << x << " | " << #y << ": " << y << " | " << #z << ": " << z << endl;
-#define trace4(a, b, c, d)       cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << endl;
-#define trace5(a, b, c, d, e)    cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << endl;
-#define trace6(a, b, c, d, e, f) cerr << #a << ": " << a << " | " << #b << ": " << b << " | " << #c << ": " << c << " | " << #d << ": " << d << " | " << #e << ": " << e << " | " << #f << ": " << f << endl;
-
-#else
-
-#define trace1(x)
-#define trace2(x, y)
-#define trace3(x, y, z)
-#define trace4(a, b, c, d)	
-#define trace5(a, b, c, d, e)
-#define trace6(a, b, c, d, e, f)
-
-#endif
-
 const int MOD = 1e9 + 7;
 #define N 2123456
+#define LL long long
 
 LL fac[N], ifac[N];
 
@@ -885,10 +800,8 @@ LL com(int n, int r){
 
 int main()
 {
-	//freopen("input.txt","r",stdin);
-	//freopen("output.txt","w",stdout);
 	precompute();
-	pl(com(4892,231));
+	cout << com(4892,231) << endl;
 	return 0;
 }
 ```
@@ -902,10 +815,6 @@ int main()
 Các ứng dụng của dãy số Catalan:
 
 - Cho một đa giác lồi $n+2$ đỉnh, ta chia đa giác thành các tam giác bằng cách vẽ các đường chéo không cắt nhau trong đa giác. $C_n$ là số cách chia như vậy.
-
-Ví dụ: $n=4$
-
-[![Screenshotfrom2016-08-3011-02-47.png](http://www.upsieutoc.com/images/2016/08/30/Screenshotfrom2016-08-3011-02-47.png)](http://www.upsieutoc.com/image/5zZ8)
 
 - $C_n$ là số các từ Dyck có độ dài $2n$. Từ Dyck là từ gồm $n$ chữ X và $n$ chữ Y sao cho với mọi tiền tố của từ đó, số lượng chữ X không ít hơn số lượng chữ Y. Ví dụ, $C_3 = 5$ từ sau đây là từ Dyck độ dài 6: XXXYYY, XYXXYY, XYXYXY, XXYYXY, XXYXYY.
 
@@ -923,7 +832,7 @@ Ví dụ: $n=4$
 
 Số Euler $\big \langle^n_k \big \rangle$ là số lượng hoán vị các số từ 1 đến $n$ mà có đúng $k$ phần tử lớn hơn phần tử đứng trước nó. Hệ thức truy hồi tính số Euler được lập bằng cách xét mỗi hoán vị $p$ của 1,2,...,$n-1$. Có $n$ vị trí để thêm số $n$ vào hoán vị, và một cách thêm số $n$ có thể làm tăng số phần tử lớn hơn phần tử đứng trước nó của $p$, hoặc bảo toàn số phần tử lớn hơn phần tử đứng trước nó. Vì vậy, 
 
-![$\big \langle^n_k \big \rangle = k\big \langle^{n-1}_k \big \rangle + (n-k+1) \big \langle^{n-1}_{k-1} \big \rangle$](https://d320jcjashajb2.cloudfront.net/media/uploads/93df5ba.gif)
+[[/uploads/number-theory-euler-number.gif]]
 
 ### Bài toán phân tích một số nguyên (Integer Partitions) 
 
@@ -971,7 +880,7 @@ Hai biến cố được gọi là độc lập với nhau nếu việc xảy ra
 
 Ví dụ bạn gieo một con súc sắc và một đồng xu. Xác suất nhận được một số nào đó từ con súc sắc không làm ảnh hưởng đến xác suất đồng xu lật sấp hay lật ngửa. Do đó biến cố gieo con súc sắc được 6 điểm và biến cố đồng xu lật ngửa là hai biến cố độc lập với nhau.
 
-![](https://d320jcjashajb2.cloudfront.net/media/uploads/869de1c.gif)
+[[/uploads/number-theory-prob-1.gif]]
 
 Nếu hai biến cố $A$ và $B$ độc lập với nhau, không biến cố nào ảnh hưởng đến biến cố nào, khi đó ta có thể viết: $P(AB) = P(A).P(B)$.
 
@@ -1009,7 +918,7 @@ Hai biến cố được gọi là xung khắc hoặc rời nhau nếu không c�
 
 Nếu ba biến cố $A$, $B$, $C$ xung khắc với nhau, ta cũng có $A \cap B \cap C = \varnothing$.
 
-![](https://d320jcjashajb2.cloudfront.net/media/uploads/eba740d.gif)
+[[/uploads/number-theory-mutually-exclusive.gif]]
 
 ## Quy tắc tính xác suất của các biến cố xung khắc
 
@@ -1078,7 +987,7 @@ $|\bigcup_{i=1}^n A_i| = \sum_{C \subset B} (-1)^{|C|-1} | \bigcap_{e \in C} e |
 
 Ta có biểu đồ sau biểu diễn ba tập hợp $A$, $B$ và $C$.
 
-![](https://d320jcjashajb2.cloudfront.net/media/uploads/b8f49cc.png)
+[[/uploads/number-theory-venn-diagram.png]]
 
 Khi đó ta thấy lực lượng của $A \cup B \cup C$ bằng lực lượng của $A$, $B$, $C$ trừ đi lực lượng của $A \cap B$, $B \cap C$, $C \cap A$ rồi cộng thêm lực lượng của $A \cap B \cap C$.
 
