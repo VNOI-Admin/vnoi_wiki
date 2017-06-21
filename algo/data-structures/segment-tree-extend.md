@@ -26,7 +26,7 @@ Xét một dãy gồm 7 phần tử, Segment Tree sẽ quản lý các đoạn n
 
 ## Áp dụng
 
-Để dễ hình dung, ta lấy 1 ví dụ cụ thể, từ bài [VOJ - QMAX](http://vn.spoj.com/problems/QMAX)
+Để dễ hình dung, ta lấy 1 ví dụ cụ thể:
 
 - Cho dãy $N$ phần tử $(N \le 10^5)$. Ban đầu mỗi phần tử có giả trị 0.
 - Có $Q$ truy vấn $(Q \le 10^5)$. Mỗi truy vấn có 1 trong 2 loại:
@@ -353,7 +353,7 @@ Cho dãy số $A$ với $N$ phần tử $(N \le 50,000)$. Bạn cần thực hi�
 
 ## Phân tích
 
-Thao tác 2 là thao tác cơ bản trên Segment Tree, đã được ta phân tích ở bài QMAX ở trên.
+Thao tác 2 là thao tác cơ bản trên Segment Tree, đã được ta phân tích ở bài toán đầu tiên.
 
 Với thao tác 1, truy vấn đoạn $[u, v]$. Giả sử ta gọi $F(id)$ là giá trị lớn nhất trong đoạn mà nút $id$ quản lý. Trong lúc cập nhật, muốn hàm này thực hiện với độ phức tạp không quá $O(\log{N})$, thì khi đến 1 nút $id$ quản lý đoạn $[l, r]$ với đoạn $[l, r]$ nằm hoàn toàn trong đoạn $[u, v]$, thì ta không được đi vào các nút con của nó nữa (nếu không độ phức tạp sẽ là $O(N)$ do ta đi vào tất cả các nút nằm trong đoạn $[u, v]$). Để giải quyết, ta dùng kĩ thuật Lazy Propagation như sau:
 
@@ -692,6 +692,7 @@ Cho một tập hợp chứa các đường thẳng có dạng $ax + b$, mỗi �
 
 # Bài tập áp dụng:
 
+- [VOJ - QMAX](http://vn.spoj.com/problems/QMAX)
 - [VOJ - NKLINEUP](http://vn.spoj.com/problems/NKLINEUP)
 - [VOJ - GSS](http://vn.spoj.com/problems/GSS)
 - [VOJ - LITES](http://vn.spoj.com/problems/LITES)
