@@ -1,4 +1,4 @@
-# Pascal - Vì sao?
+# Hoài niệm về Pascal - Lê Minh Hoàng
 
 Nhân chuyện thảo luận về việc IOI 2019 sẽ dừng cho phép làm bài bằng Pascal, thầy Lê Minh Hoàng đã có chia sẻ rất ý nghĩa về việc tại sao Pascal lại được giảng dạy ở Việt Nam. Để những chia sẻ của thầy không bị thất lạc mất, mình sẽ lưu lại vào đây :).
 
