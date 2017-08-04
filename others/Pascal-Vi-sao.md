@@ -2,24 +2,24 @@
 
 Nhân chuyện thảo luận về việc IOI 2019 sẽ dừng cho phép làm bài bằng Pascal, thầy Lê Minh Hoàng đã có chia sẻ rất ý nghĩa về việc tại sao Pascal lại được giảng dạy ở Việt Nam. Để những chia sẻ của thầy không bị thất lạc mất, mình sẽ lưu lại vào đây :).
 
-# Đầu tiên: Tại sao VN lại học Pascal?
+## Đầu tiên: Tại sao VN lại học Pascal?
 
 Bây giờ có nhiều bạn chửi bới tùm lum, thậm chí cho đây là [món quà cay độc của Bộ GDDT](http://www.ddth.com/showthread.php/95997-Pascal-M%C3%B3n-qu%C3%A0-cay-%C4%91%E1%BB%99c-c%E1%BB%A7a-B%E1%BB%99-GD%C4%90T).
 
 Không phải mình bênh Bộ GD, nhưng các bạn đó không hiểu một vấn đề lịch sử: Từ những năm 1970s, 1980s là khi tin học bắt đầu vào VN, Pascal là ngôn ngữ chính của tạp chí công nghệ PC Magazine, Turbo Pascal vẫn là best IDE, phần mềm hiệu suất cao đa số viết bằng Pascal, sách vở về thuật toán, cấu trúc dữ liệu đều dùng Pascal. Vậy ngoài Pascal ra còn có thể chọn gì khác?. Những gì Kernighan viết trong "Why Pascal Is Not My Favorite Programming Language" không hề đúng với Pascal Extension của Turbo và ObjPas sau này. Trong khi ngôn ngữ C lúc đó bị đập be bét. Lý do duy nhất nó tồn tại là vì Unix được mở mã và C được học để mổ xẻ cấu trúc Hệ điều hành mà thôi, còn cái kiểu viết C: `++(**p)***--q` thì dù bạn thành kiến cách mấy, Pascal vẫn không bao giờ cho phép viết cái code tối như thế này. Người ta nói Pascal trong sáng hơn chính là khi so sánh với C, chứ không phải so với Python hay Java là những thứ mới đâu.
 
 
-# Thứ hai: Tại sao VN lại chậm chuyển sang C++?
+## Thứ hai: Tại sao VN lại chậm chuyển sang C++?
 
 C++ ra đời từ những năm 1980s, một ngôn ngữ sẽ cần khoảng thời gian hơn chục năm để quảng bá và kiểm chứng thực tế trước khi khẳng định nó có thể tồn tại lâu dài ít ra là trong một lĩnh vực nào đó. Đến khi họ đã kiểm chứng xong và triển khai diện rộng, sách vở tài liệu đầy đủ, cộng đồng hoạt động tích cực,... thì Việt Nam chưa có internet, nói gì đến các hình thức thương mại điện tử để mà mua sách, phần mềm, ... Ở bậc phổ thông thì kỳ thi quốc tế vẫn phổ biến Pascal cho tới đầu những năm 2000. Ở ngoài xã hội, tạp chí PC World VN ra rả các bài nói về Visual Basic, Foxpro, ... là những thứ mà các công ty tin học dùng để làm các phần mềm quản lý nhân sự,... Chẳng có bài nào nói về C++ cả. Thậm chí nhiều người đều cho là C++ là một extension của C chứ không phải là một ngôn ngữ mới nữa kia. 4 năm học khoa Toán của mình khi ra trường, CNTT có những bước phát triển nhưng là phát triển sai hướng. Mình có cảm giác là nếu như MS đánh mất vị trí #1, mọi thứ của Việt Nam sẽ reset lại như khi mình tốt nghiệp PT.
 
 
-# Thứ ba: Tại sao mình phải ngừng dạy Pascal?
+## Thứ ba: Tại sao mình phải ngừng dạy Pascal?
 
 Pascal, Object Pascal đối với mình vẫn là ngôn ngữ hay. Thật đáng tiếc vì nó không còn sự hỗ trợ từ những ông lớn nên không được chuẩn hóa, mở rộng về ngôn ngữ cũng như thư viện hỗ trợ. Chính cái cộng đồng phát triển Free Pascal đã giết nó bằng cách đưa ra những phiên bản mới đầy lỗi, dịch sai, chậm sửa. Lẽ ra phát triển theo hướng công cụ học tập thi cử, hoàn thiện thư viện FCL-STL,... thì lại đi phát triển thêm một đống tool làm software chẳng để làm gì vì người làm chuyên nghiệp có Delphi rồi. Ngay cả mình là người code ObjPas khá giỏi mà nhiều lúc rất ức chế với mấy cái lỗi của nó, ngay cả bộ cài đặt làm cũng không nên hình.
 
 
-# Thứ tư, mình khảo sát chuyện dạy C++ như thế nào?
+## Thứ tư, mình khảo sát chuyện dạy C++ như thế nào?
 
 Vào khoảng 2008-2009, có nhiều thầy khuyên và các bạn mình đề xuất chuyển sang dạy C++ ở phổ thông ở Chuyên Sư Phạm (CSP). Mình bắt đầu lộ trình dù rất nhiều bạn phê phán rất gay gắt và đề nghị chuyển ngay lập tức. Nhưng mình nắm hơi nhiều sinh mạng trong tay, không thể liều được.
 
@@ -40,7 +40,7 @@ Vào khoảng 2008-2009, có nhiều thầy khuyên và các bạn mình đề x
     - "Dạy pointers và OOP làm gì, dạy chúng nó không hiểu mà đi thi đâu có cần". Dạy là dạy mà thi là thi, C++ vứt đi 2 thứ đó sẽ đến lúc có bài không thể giải quyết được thì biết kêu ai giờ. Mình vẫn luôn kêu ca là SGK lớp 8 dưới áp lực giảm tải vứt đi luôn lệnh REPEAT và FOR của Pascal là một sai lầm. Khó bước đầu thì mới dễ về sau, có phải vòng lặp nào viết kiểu WHILE cũng thuận với tư duy lập trình đâu.
 
 
-# Thứ năm, mình triển khai dạy C++ (as first language) như thế nào?
+## Thứ năm, mình triển khai dạy C++ (as first language) như thế nào?
 
 Nói chuyện này đúng là số, chém gió tí thì gọi là thiên thời.
 
@@ -51,7 +51,7 @@ Cái may thứ hai là năm 2012. UET được giao chỉnh sửa quy chế thi 
 Còn lại là việc nội bộ, cả bộ môn lao vào cày, học, viết giáo trình thậm chí phải thi như thật cùng bọn học sinh xem thế nào. Mình không thi được thì đi dạy thằng đi thi cũng khó. Cựu học sinh cũng phải xắn tay vào nữa.
 
 
-# Cuối cùng, tại sao cứ phải Pascal/C/C++ mà không phải thứ nào khác phổ biến hơn?
+## Cuối cùng, tại sao cứ phải Pascal/C/C++ mà không phải thứ nào khác phổ biến hơn?
 
 Bạn có thể học một ngôn ngữ dễ hơn để làm quen với việc lập trình (Scratch, Python,...), cũng có thể dùng một ngôn ngữ khác thiết kế phần mềm (Java, Basic,...). Nhưng khi bạn muốn tìm hiểu sâu về thuật toán cũng như muốn đánh giá chính xác hiệu suất thuật toán, những ngôn ngữ đó hoàn toàn không phù hợp. Trong giai đoạn học thuật toán, ngôn ngữ lập trình, chương trình dịch, công cụ lập trình là cực kỳ quan trọng. Bởi vì bạn sẽ phải tư duy trên ngôn ngữ đó, bạn còn phải hiểu bản chất thế nào là một đoạn code tốt, thế nào là một đoạn code tồi về mặt hiệu suất. Bạn cũng không thể học các thuật toán chia để trị nếu dùng một ngôn ngữ lập trình không cho phép đệ quy, không thể đánh giá đúng hiệu suất của một thuật toán trên thực tế (đong đếm đến từng nano giây), khi mà thời gian thực hiện chương trình mất phần lớn vào công đoạn thông dịch hay kích hoạt máy ảo.
 
