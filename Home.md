@@ -77,7 +77,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Fun with bits|translate/topcoder/fun-with-bits]]
 
 
-# Chia sẻ kinh nghiệm
+# Chia sẻ
 
 ## Về cách học Tin học
 
@@ -100,6 +100,10 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Phỏng vấn Lê Yên Thanh|vnoi-interview/yen-thanh]]
 - [[Phỏng vấn Nguyễn Xuân Khánh|vnoi-interview/xuan-khanh]]
 
+
+## Khác
+
+- [[Hoài niệm về Pascal - thầy Lê Minh Hoàng|others/Pascal-Vi-sao]]
 
 
 
