@@ -46,7 +46,7 @@ Nói chuyện này đúng là số, chém gió tí thì gọi là thiên thời.
 
 Cái may thứ nhất là năm 2011. Mình và thầy Đông nhận được dự án của Bộ GD viết hệ thống chấm tự động trên Windows. Mình đặt mục tiêu viết một bộ chấm ổn định, chạy không cần cấu hình cao, dịch CPP như PAS, dù ít chức năng cũng được. Mã nguồn kernel sau khi nghiệm thu Bộ giữ bản quyền, mình thì build và cập nhật bản end-user cho các nơi dùng Free. Vậy là thiên hạ khỏi băn khoăn việc dùng CPP thiệt thòi khi chấm.
 
-Cái may thứ hai là năm 2012. UET được giao chỉnh sửa quy chế thi QG và phụ trách việc huấn luyện ĐTQG. Thầy Đàm, thầy Nghĩa, anh Việt Hà và Son Bao Pham... gọi mình với Hồ Đắc Phương đi họp, nhân lúc đó ấn luôn Code Blocks vào và thế là cái họa DevCPP với GCC cũ rích coi như được loại bỏ. Chương trình sẽ được dịch theo phiên bản mới nhất tính từ lúc triển khai kỳ thi.
+Cái may thứ hai là năm 2012. UET được giao chỉnh sửa quy chế thi QG và phụ trách việc huấn luyện ĐTQG. Thầy Đàm, thầy Nghĩa, anh Việt Hà và Phạm Bảo Sơn... gọi mình với Hồ Đắc Phương đi họp, nhân lúc đó ấn luôn Code Blocks vào và thế là cái họa DevCPP với GCC cũ rích coi như được loại bỏ. Chương trình sẽ được dịch theo phiên bản mới nhất tính từ lúc triển khai kỳ thi.
 
 Còn lại là việc nội bộ, cả bộ môn lao vào cày, học, viết giáo trình thậm chí phải thi như thật cùng bọn học sinh xem thế nào. Mình không thi được thì đi dạy thằng đi thi cũng khó. Cựu học sinh cũng phải xắn tay vào nữa.
 
@@ -62,3 +62,12 @@ Tất cả những thứ đó bất kỳ đơn vị nào muốn chuyển đổi 
 Ngay cả việc IOI có lộ trình bỏ Pascal, mình không biết gì hết vì mình không đi theo đoàn từ năm 2011 do lý do tài chính. Năm 2011 thằng Korokevich vô địch IOI bằng Pascal, chẳng ai nói gì về lộ trình này. Những năm sau cũng không thấy ai về nói hoặc một thông tư chính thức từ phía Bộ GDDT. Tất cả những xu hướng kiến thức hay thể thức mình đều phải đoán từ mấy bài tham luận của tạp chí Olympiads in Informatics.
 
 Nói như thế tức là mình đã sử dụng hết quyền trong phạm vi có thể rồi, việc còn lại là ở cấp vĩ mô hơn nữa kia.
+
+
+*Chú thích*: 1 vài nhân vật xuất hiện trong bài:
+
+- Thầy Đông: thầy Đỗ Đức Đông.
+- anh Việt Hà: thầy Nguyễn Việt Hà, HCĐ IOI lần thứ 2 năm 1990, hiệu trường ĐH Công Nghệ (UET).
+- Phạm Bảo Sơn: thầy Phạm Bảo Sơn, HCB IOI năm 1994 và 1994, hiệu phó trường ĐH Công Nghệ (UET).
+
+Các comment này được lấy từ comment của thầy Hoàng ở post của anh Trương Xuân Nam, HCB IOI 1994.
