@@ -44,7 +44,7 @@ Vào khoảng 2008-2009, có nhiều thầy khuyên và các bạn mình đề x
 
 Nói chuyện này đúng là số, chém gió tí thì gọi là thiên thời.
 
-Cái may thứ nhất là năm 2011. Mình và Do Phuc nhận được dự án của Bộ GD viết hệ thống chấm tự động trên Windows. Mình đặt mục tiêu viết một bộ chấm ổn định, chạy không cần cấu hình cao, dịch CPP như PAS, dù ít chức năng cũng được. Mã nguồn kernel sau khi nghiệm thu Bộ giữ bản quyền, mình thì build và cập nhật bản end-user cho các nơi dùng Free. Vậy là thiên hạ khỏi băn khoăn việc dùng CPP thiệt thòi khi chấm.
+Cái may thứ nhất là năm 2011. Mình và thầy Đông nhận được dự án của Bộ GD viết hệ thống chấm tự động trên Windows. Mình đặt mục tiêu viết một bộ chấm ổn định, chạy không cần cấu hình cao, dịch CPP như PAS, dù ít chức năng cũng được. Mã nguồn kernel sau khi nghiệm thu Bộ giữ bản quyền, mình thì build và cập nhật bản end-user cho các nơi dùng Free. Vậy là thiên hạ khỏi băn khoăn việc dùng CPP thiệt thòi khi chấm.
 
 Cái may thứ hai là năm 2012. UET được giao chỉnh sửa quy chế thi QG và phụ trách việc huấn luyện ĐTQG. Thầy Đàm, thầy Nghĩa, anh Việt Hà và Son Bao Pham... gọi mình với Hồ Đắc Phương đi họp, nhân lúc đó ấn luôn Code Blocks vào và thế là cái họa DevCPP với GCC cũ rích coi như được loại bỏ. Chương trình sẽ được dịch theo phiên bản mới nhất tính từ lúc triển khai kỳ thi.
 
