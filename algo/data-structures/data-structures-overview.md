@@ -152,9 +152,9 @@ Bạn có thể đọc thêm về Hash table [[ở đây|algo/data-structures/ha
 
 # 2. CTDL Truy vấn
 
-## 2.1. Mảng cộng dồn (Partial Sum)
+## 2.1. Mảng cộng dồn (Prefix Sum)
 
-Mảng cộng dồn là một cách áp dụng khéo léo mảng. Có 2 dạng bài cơ bản có thể giải được bằng cách áp dụng Partial Sum.
+Mảng cộng dồn là một cách áp dụng khéo léo mảng. Có 2 dạng bài cơ bản có thể giải được bằng cách áp dụng Prefix Sum.
 
 ### 2.1.1. Mảng cộng dồn - Tìm tổng một đoạn liên tiếp
 
