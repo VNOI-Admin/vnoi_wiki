@@ -186,7 +186,7 @@ void SkipLists::insert(int value) {
     if(temp != tail && temp->value == value) {
         return;
     }
-    // Tạo inserted_column là cột chứa value để chèn vào Skip_lists
+    // Tạo inserted_column là cột chứa value để chèn vào SkipLists
     Column *inserted_column = new Column;
     inserted_column->value = value;
     inserted_column->cells.push_back((Cell){NULL, NULL});
