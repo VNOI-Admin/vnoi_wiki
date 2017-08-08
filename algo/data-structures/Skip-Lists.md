@@ -16,6 +16,6 @@ May mắn thay, dân competitive programmers đã tìm ra cách sử dụng Skip
 
 Hãy lập trình một cấu trúc dữ liệu S có thể thực hiện các thao tác sau:
 
-1. Chèn một phần tử x vào S.
-2. Xóa một phần tử x khỏi S.
-3. Cho một phần tử x, tìm một phần tử gần x nhất trong S.
+1. Chèn một phần tử $x$ vào $S$.
+2. Xóa một phần tử $x$ khỏi $S$.
+3. Cho một phần tử $x$, tìm một phần tử gần $x$ nhất trong $S$.
