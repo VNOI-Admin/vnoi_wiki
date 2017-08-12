@@ -515,7 +515,7 @@ int main() {
 
 Chú ý rằng ta không thể đảm bảo rằng $P(g,mid)$ chia đôi đoạn $[optL, optR]$, thực tế một vài hàm solve() sẽ chạy chậm hơn nhiều hàm solve() khác.
 
-Tuy nhiên ta có thể chứng minh được, xét về tổng thế thuật toán này chạy đủ nhanh. Mỗi lần ta chia đôi đoạn $[L, R]$, nên ta sẽ đảm bảo có tối đa $O(log(L))$ tầng đệ quy, như vậy với mỗi hàng g, ta chỉ mất $O(L \* logL)$ để tính. Toàn bộ thuật toán có độ phức tạp là $O(GLlogL)$.
+Tuy nhiên ta có thể chứng minh được, xét về tổng thế thuật toán này chạy đủ nhanh. Mỗi lần ta chia đôi đoạn $[L, R]$, nên ta sẽ đảm bảo có tối đa $O(log(L))$ tầng đệ quy, như vậy với mỗi hàng g, ta chỉ mất $O(L \* logL)$ để tính. Toàn bộ thuật toán có độ phức tạp là $O(G \* L \* logL)$.
 
 [[/uploads/dp_optimization_img2.png]]
 
