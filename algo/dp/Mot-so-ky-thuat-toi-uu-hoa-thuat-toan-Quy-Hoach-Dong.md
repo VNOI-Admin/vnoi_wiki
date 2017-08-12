@@ -447,7 +447,7 @@ int main() {
 
 ```
 
-Chú ý là ta sử dụng mảng sum[] tiền xử lí $O(L)$ để có thể truy vấn tổng một đoạn (dùng ở hàm cost()) trong $O(1)$. Như vậy độ phức tạp của thuật toán này là $O(G*L*L)$.
+Chú ý là ta sử dụng mảng sum[] tiền xử lí $O(L)$ để có thể truy vấn tổng một đoạn (dùng ở hàm cost()) trong $O(1)$. Như vậy độ phức tạp của thuật toán này là $O(G \*L \* L)$.
 
 **Thuật toán tối ưu hơn**
 
@@ -461,8 +461,11 @@ Ta sẽ không chứng minh điều này ở đây, độc giả có thể tự 
 
 **Chia để trị**
 
-Để ý rằng để tính $F(g, i)$, ta chỉ cần quan tâm tới hàng trước $<F(g-1)>$ của ma trận:
-$F(g-1, 0), F(g-1, 1), ... , F(g-1, L)$. Như vậy, ta có thể tính hàng $F(g)$ theo thứ tự bất kỳ.
+Để ý rằng để tính $F(g, i)$, ta chỉ cần quan tâm tới hàng trước $F(g-1)$ của ma trận:
+
+$F(g-1, 0), F(g-1, 1), ... , F(g-1, L)$.
+
+Như vậy, ta có thể tính hàng $F(g)$ theo thứ tự bất kỳ.
 
 Ý tưởng là với hàng $g$, trước hết ta tính $F(g, mid)$ và $P(g, mid)$ với $mid=L/2$, sau đó sử dụng tính chất nêu trên $P(g, i) \le P(g, mid)$ với $i < mid$ và $P(g, i) \ge P(g, mid)$ với $i > mid$ để đi gọi đệ quy đi tính hai nửa còn lại.
 
