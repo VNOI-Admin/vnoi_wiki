@@ -52,6 +52,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Một vài bài tập về Palindrome|algo/dp/palindrome-problems]]
 - [[Một số bài toán QHD điển hình|algo/dp/basic-problems]]
 - [[Phân tích về QHD - Thầy Lê Minh Hoàng|algo/dp/thac-mac-ve-qhd]]
+- [[Một số kĩ thuật tối ưu hoá QHĐ|algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong]]
 - [[Kĩ thuật bao lồi|translate/wcipeg/Convex-Hull-Trick]]
 
 ## Tham lam
