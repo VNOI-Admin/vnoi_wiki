@@ -35,6 +35,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Trie|algo/data-structures/trie]]
 - [[Suffix Array|algo/data-structures/suffix-array]]
 - [[Palindrome Tree|translate/codeforces/palindrome-tree]]
+- [[Skip List|algo/data-structures/Skip-Lists]]
 
 ## Xử lý xâu
 
