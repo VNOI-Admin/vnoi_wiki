@@ -133,7 +133,7 @@ Trong trường hợp dữ liệu ngẫu nhiên, các thao tác trên có độ 
 
 - **Cây Đỏ Đen** (Red-Black Tree) là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $O(log(N))$. CTDL **set** trong **C++** được cài đặt bằng cây đỏ đen.
   [[/uploads/redblack1.png|redblack1]]
-- **Splay tree**, **Skip list**, **Treap** thường được dùng trong các kỳ thi bởi cài đặt đơn giản.
+- **Splay tree**, [[Skip list|algo/data-structures/Skip-Lists]], **Treap** thường được dùng trong các kỳ thi bởi cài đặt đơn giản.
 
 ## 1.5. Bảng băm (Hash Tables)
 
