@@ -63,7 +63,7 @@ Như vậy ta có thể tính các giá trị QHĐ như sau:
 
 - Ban đầu khởi tạo các giá trị $dp(i, j) = \infty$, $dp(0, 0) = 0$.
 - For $i$ và $j$ tăng dần, với mỗi giá trị $dp(i, j)$ khác vô cùng:
-    - Cập nhật $dp(i+1, j)$ theo $dp(i, j).
+    - Cập nhật $dp(i+1, j)$ theo $dp(i, j)$.
     - Gọi $k$ là vị trí xuất hiện tiếp theo của $B_{i+1}$ trong xâu $A$ bắt đầu từ vị trí $dp(i, j)$, tức là $k = nextPos(dp(i, j), B_{i+1})$.
     - Nếu tồn tại $k$, cập nhật $dp(i+1, j+1)$ theo $k$.
 
