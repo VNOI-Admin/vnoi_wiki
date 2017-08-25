@@ -14,7 +14,7 @@ Vừa qua, đoàn IOI Việt Nam đã xuất sắc đem về cho Việt Nam nh�
  
 Được tham dự một kì IOI là mơ ước của bất cứ bạn nào trong giới CP nơi có thể được thi đấu các thần tượng như Yuta Takaya (Rank 1 IOI, rank 1 IMO 2017, Codeforces: yutaka1999 ), Xiao Mao (Rank 1 Chọn đội tuyển Trung Quốc, Legendary Grandmaster Codeforces: matthew99) và có cơ hội giải những bài toán cực đỉnh. VNOI Wiki đã rất may mắn có cơ hội phỏng vấn 4 bạn khủng trên với hi vọng đem đến cho các bạn cái nhìn từ các IOI-er về các kì thi lập trình cũng như cách ôn luyện của các bạn để trở nên khủng như  bây giờ.
 
-
+<iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fvnoi.wiki%2Fphotos%2Fa.368059053549420.1073741828.363983450623647%2F461969087491749%2F%3Ftype%3D3&width=500" width="500" height="461" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 
 Câu hỏi chung
 =======================
