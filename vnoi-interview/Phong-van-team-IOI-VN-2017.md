@@ -112,7 +112,7 @@ Mỗi lần cảm thấy mệt mỏi, lười biếng, mình thường tạm ng�
 
 **Quang**: Như đã nói ở trên, mình dự định trở thành một nhà phát triển phần mềm (developer), và làm việc cho công ty Google. Sau khi đã có đủ kinh nghiệm, mình sẽ quay về Việt Nam và mở một công ty phần mềm riêng. Còn việc có gấu hay không thì tùy duyên số.
 
-**Lâm** : Câu này của Lâm nên Lâm ko muốn trả lời.
+**Lâm** :  Giờ mình chỉ biết là cứ cày tiếng Anh đã. Sau đó thì mịt mù, chưa có định hướng gì.
 
 ##### 9. Theo các anh nghĩ thì trình độ của những người từng đạt huy chương IOI sau khi tốt nghiệp ĐH có hơn trình độ của những người không phải dân competitive programming nhưng chăm chỉ, cần cù, chịu khó tìm hiểu sau khi tốt nghiệp ĐH không, và nếu hơn thì những người từng đạt huy chương sẽ hơn được những điểm gì ạ? 
 **Tuấn**:  Theo thầy Đông phân tích, thì mỗi người đều có trình độ tư duy nhất định, mức độ nhất định. Cần cù, chăm chỉ sẽ khiến ta đạt được mức độ đấy, khai phá được tiềm năng của bản thân. Và khi đã đến giới hạn rồi thì lên nữa sẽ rất khó, thế nên cần cù, chăm chỉ làm những thứ vượt quá khả năng của mình vẫn có thể nâng trình độ lên được. Những lời này thầy Đông đã nói với đội APIO 2016, và mình cảm thấy nó rất đúng.
