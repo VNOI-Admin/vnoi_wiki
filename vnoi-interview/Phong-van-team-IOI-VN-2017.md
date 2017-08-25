@@ -1,3 +1,4 @@
+#Phỏng vấn team IOI Việt Nam 2017
 Vừa qua, đoàn IOI Việt Nam đã xuất sắc đem về cho Việt Nam những kết quả rực rỡ trong kì thi IOI 2017 tại Tehran. Sau đây là 4 khuôn mặt chắc chắn quen thuộc với mọi người trong cộng đồng CP Việt Nam:
 
  + Phạm Cao Nguyên đến từ trường Chuyên Tổng Hợp Hà Nội với thành tích vô cùng ấn tượng, 4 giải tầm quốc tế với 2 Huy chương APIO và 2 Huy chương IOI. Trong đó ấn tượng nhất là tấm huy chương vàng IOI năm 2016. Bạn cũng có công đóng góp rất nhiều trong nền tin học Việt Nam trong đó bạn chính là tác giả của web interface cho Themis.
