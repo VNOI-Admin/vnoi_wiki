@@ -30,3 +30,7 @@ Cuốn sách này được viết bởi các cựu học sinh trường chuyên 
 [Link download](https://drive.google.com/file/d/0B2B4YFwy4LhWWl9NV2pyQno1S0U/view)
 
 (Cảm ơn bạn Nguyễn Văn Khởi đã chia sẻ link).
+
+**5. KC Book**
+
+- [Quyển 1](https://drive.google.com/file/d/0B6O77opfHxDDV1lxdF9jWHVUZDA/view?usp=sharing)
