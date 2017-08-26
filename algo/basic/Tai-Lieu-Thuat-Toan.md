@@ -5,7 +5,7 @@
 
 Chắc hẳn những bạn học chuyên tin đều biết đến cuốn sách này, bởi nó như là một cuốn sách giáo khoa cho chuyên tin với các kiến thức cơ bản từ quay lui, sắp xếp đến quy hoạch động, đồ thị.
 
-[Link Download](https://www.dropbox.com/s/e7buuj7qt0lg0r1/Thuat%20toan%20-%20Le%20Minh%20Hoang.pdf?dl=0)
+[Link Download](https://drive.google.com/file/d/0BwcTB8a10LBwV1J3T2xDTGhQNmM/view?usp=sharing)
 
 **2. Tài liệu giáo khoa chuyên tin**
 
