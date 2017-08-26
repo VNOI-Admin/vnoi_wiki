@@ -101,7 +101,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 
 - [[Phỏng vấn Lê Yên Thanh|vnoi-interview/yen-thanh]]
 - [[Phỏng vấn Nguyễn Xuân Khánh|vnoi-interview/xuan-khanh]]
-
+- [[Phỏng vấn Team IOI Việt Nam 2017|vnoi-interview/Phong-van-team-IOI-VN-2017]]
 
 ## Khác
 
