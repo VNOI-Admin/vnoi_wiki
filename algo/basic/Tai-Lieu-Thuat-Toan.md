@@ -15,34 +15,17 @@ Phần ba chứa các kiến thức nâng cao hơn, đó là hình học và lý
 
 Link Download:
 
- - [Tập 1](https://www.dropbox.com/s/5q75x48fjinp3i2/Tai_lieu_giao_khoa_chuyen_tin_1.pdf?dl=0)
- - [Tập 2](https://www.dropbox.com/s/rbipskk2fk6y98q/Tai_lieu_giao_khoa_chuyen_tin_2.pdf?dl=0)
- - [Tập 3 - phần 1](https://www.dropbox.com/s/wie005d42ae7qi2/Chuyen%20tin%203%20-%20Tap%201.pdf?dl=0)
- - [Tập 3 - phần 2](https://www.dropbox.com/s/6qqd61ii3858b7p/Chuyen%20tin%203%20-%20Tap%202.pdf?dl=0)
+ - [Tập 1](https://drive.google.com/file/d/0BwcTB8a10LBweWxNcExnVzF5dG8/view?usp=sharing)
+ - [Tập 2](https://drive.google.com/file/d/0BwcTB8a10LBwY2kzV0dTMEhYb0E/view?usp=sharing)
+ - [Tập 3 - phần 2](https://drive.google.com/file/d/0BwcTB8a10LBwdjVOeE10b0tIZ00/view?usp=sharing)
 
-**3. KC-BOOK**
-
-Đây là một cuốn sách cực kỳ hay về Quy hoạch động. Bạn có thể luyện tập hơn 40 bài quy hoạch động (có gợi ý lời giải) để có phản xạ tư duy mỗi khi gặp các bài QHĐ. Ngoài ra sách còn một số bài tập và gợi ý các dạng bài: duyệt, xử lý bit và phân đôi tập hợp
-
-[Link Download](https://www.dropbox.com/s/gxs9w2ladktqksx/KC-BOOK.pdf?dl=0)
-
-**4. Một số vấn đề đáng chú ý trong môn tin học**
+**3. Một số vấn đề đáng chú ý trong môn tin học**
 
 Cuốn sách này được viết bởi các cựu học sinh trường chuyên Phan Bội Châu - Nghệ An. Nó chứa các kiến thức tuyệt hay mà tài liệu giáo khoa chuyên tin hay giải thuật và lập trình đều không có như: duyệt ưu tiên, thuật toán tìm kiếm chuỗi KMP, quy hoạch động trạng thái, quy hoạch động vị trí cấu hình, quy hoạch động trên cây, tô màu đồ thị, thuật toán Dijkstra với đỉnh ảo, Interval Tree, Binary Index Tree, ...
 
-[Link Download](https://www.dropbox.com/s/as1yujdy5ewufke/Mot%20so%20van%20de%20dang%20chu%20y.PDF?dl=0)
+[Link Download](https://drive.google.com/file/d/0BwcTB8a10LBwZHh0c3p0M2NqZ1E/view?usp=sharing)
 
-**5. DP-SpeedUp - admin Ngô Minh Đức**
-
-Cuốn sách giới thiệu về phương pháp giảm độ phức tạp cho một số bài Quy hoạch động (được viết bằng tiếng Anh)
-
-[Link Download](https://www.dropbox.com/s/7riqokgn9ceqpi6/DpSpeedup.pdf?dl=0)
-
-**6. KC-BOOK3**
-
-[Link download](http://www.mediafire.com/download/x0kwqv8sv7xxhpg/252136344-KCBOOK3.pdf)
-
-**7. Bản dịch Introduction to Algorithm**
+**4. Bản dịch Introduction to Algorithm**
 
 [Link download](https://drive.google.com/file/d/0B2B4YFwy4LhWWl9NV2pyQno1S0U/view)
 
