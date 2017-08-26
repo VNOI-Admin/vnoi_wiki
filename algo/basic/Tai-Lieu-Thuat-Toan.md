@@ -17,6 +17,7 @@ Link Download:
 
  - [Tập 1](https://drive.google.com/file/d/0BwcTB8a10LBweWxNcExnVzF5dG8/view?usp=sharing)
  - [Tập 2](https://drive.google.com/file/d/0BwcTB8a10LBwY2kzV0dTMEhYb0E/view?usp=sharing)
+ - [Tập 3 - phần 2](https://drive.google.com/file/d/0BwcTB8a10LBwTFBGREdfbnNFYXM/view?usp=sharing)
  - [Tập 3 - phần 2](https://drive.google.com/file/d/0BwcTB8a10LBwdjVOeE10b0tIZ00/view?usp=sharing)
 
 **3. Một số vấn đề đáng chú ý trong môn tin học**
@@ -34,3 +35,4 @@ Cuốn sách này được viết bởi các cựu học sinh trường chuyên 
 **5. KC Book**
 
 - [Quyển 1](https://drive.google.com/file/d/0B6O77opfHxDDV1lxdF9jWHVUZDA/view?usp=sharing)
+- [Quyển 3](https://drive.google.com/file/d/0BwcTB8a10LBwSmZFdGhSY1lMNVU/view?usp=sharing)
