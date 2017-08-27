@@ -36,6 +36,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Suffix Array|algo/data-structures/suffix-array]]
 - [[Palindrome Tree|translate/codeforces/palindrome-tree]]
 - [[Skip List|algo/data-structures/Skip-Lists]]
+- [Range Tree - thầy Lê Minh Hoàng](https://drive.google.com/file/d/0BwcTB8a10LBwbjB2elVmdzg1XzQ/view?usp=sharing)
 
 ## Xử lý xâu
 
@@ -46,6 +47,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Suffix Array|algo/data-structures/suffix-array]]
 - [[Palindrome Tree|translate/codeforces/palindrome-tree]]
 - [[Z Algorithm|translate/codeforces/z-algo]]
+- [Suffix Tree](https://drive.google.com/file/d/0BwcTB8a10LBwYUwwNVYzbmZiZnM/view?usp=sharing)
 
 ## Quy hoạch động
 - [[Nhập môn Quy hoạch động|translate/topcoder/dynamic-programming]]
