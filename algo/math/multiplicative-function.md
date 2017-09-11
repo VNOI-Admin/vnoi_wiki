@@ -35,11 +35,13 @@ f(18) = 6 = f(2) * f(9)
 Ta có thể chứng minh hàm $f$ là hàm nhân tính như sau:
 
 - Xét $m$ và $n$ nguyên tố cùng nhau.
-- Xét $a$ là một ước của $m$ và $b$ là một ước của $n$. Như vậy $a \* b$ là một ước của $m \* n$.
-- Với 2 cặp ước khác nhau: $(a1, b1)$ và $(a2, b2)$, ta có thể chứng minh $a1 \* b1$ khác $a2 \* b2$ do $m$ và $n$ nguyên tố cùng nhau.
+- Để chứng minh $f(m \* n) = f(m) \* f(n)$, ta cần chứng minh 2 chiều:
+    1. Mỗi ước của $m * n$ ứng với 1 cặp $(a, b)$ với $a$ là ước của $m$ và $b$ là ước của $n$.
+        - Điều này đúng do mỗi ước của $m \* n$ ta luôn tách được thành tích của 2 số $a \* b$ với $a$ là ước của $m$ và $b$ là ước của $n$.
+    2. Mỗi cặp $(a, b)$ với $a$ là ước của $m$ và $b$ là ước của $n$ ứng với 1 ước của $m \* n$.
+        - Điều này đúng do với mỗi cặp $(a, b)$ thì $a \* b$ là ước của $m \* n$.
 
-Do đó, $f(m \* n) = f(m) \* f(n)$.
-
+Như vậy, $f(m \* n) = f(m) \* f(n)$.
 
 
 # 2. Ứng dụng 1
