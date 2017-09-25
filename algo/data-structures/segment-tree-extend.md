@@ -128,7 +128,7 @@ Do đó, số nút của cây cho dãy $N$ phần tử, với $N \le 2^k$ là kh
 
 # 1. Segment Tree cổ điển
 
-Tại sao lại gọi là cổ điển? Đây là dạng ST đơn giản nhất, chúng ta chỉ giải quyết truy vấn update một phần tử và truy vấn đoạn, mỗi nút lưu một loại dữ liệu cơ bản như biến số hay biến luận lý (boolean).
+Tại sao lại gọi là cổ điển? Đây là dạng ST đơn giản nhất, chúng ta chỉ giải quyết truy vấn update một phần tử và truy vấn đoạn, mỗi nút lưu một loại dữ liệu cơ bản như số nguyên, boolean, ...
 
 ## Ví dụ 1
 
@@ -180,7 +180,7 @@ Node operator + (const Node& left, const Node& right) {
 
     // Để xây dựng kết quả tối ưu ở nút id, ta nối dãy ngoặc tối ưu ở 2 con, rồi thêm
     // min(số "(" thừa ra ở con trái, số ")" thừa ra ở con phải).
-    res.optimal = left.optimal + right.optimal - tmp;
+    res.optimal = left.optimal + right.optimal + tmp;
 
     res.open = left.open + right.open - tmp;
     res.close = left.close + right.close - tmp;
