@@ -183,7 +183,7 @@ end.
 
 Giả sử bạn có 2 code khác nhau, đã dịch ra 2 file executable là `prog1` và `prog2`. Bạn viết thêm 1 trình chấm và dịch ra file `gen`, `gen` nhận 1 argument là randomized seed (VD với C++ bạn dùng `srand(atoi(argv[1]))`):
 
-```
+```sh
 # Sinh 100 test
 for((i=1;i<=100;i++)); do
   # Sinh input với seed $i và lưu vào in_tmp
