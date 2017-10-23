@@ -55,7 +55,11 @@ $$
 \begin{bmatrix}
     a_0 \newline a_1 \newline \vdots  \newline a_{n-1}
 \end{bmatrix}
-=
+$$
+
+$=$
+
+$$
 \begin{bmatrix}
     p(z_0) \newline p(z_1) \newline \vdots  \newline p(z_{n-1})
 \end{bmatrix} \space (1)
