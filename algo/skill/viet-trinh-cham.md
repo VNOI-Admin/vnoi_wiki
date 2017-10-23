@@ -179,6 +179,21 @@ begin
 end.
 ```
 
+## Template dùng Shell script
+
+Giả sử bạn có 2 code khác nhau, đã dịch ra 2 file executable là `prog1` và `prog2`. Bạn viết thêm 1 trình chấm và dịch ra file `gen`, `gen` nhận 1 argument là randomized seed (VD với C++ bạn dùng `srand(atoi(argv[1]))`):
+
+```
+# Sinh 100 test
+for((i=1;i<=100;i++)); do
+  # Sinh input với seed $i và lưu vào in_tmp
+  ./gen $i > in_tmp
+  # So sánh output của 2 code, nếu output khác nhau thì dừng lại.
+  # Khi đó ta có file in_tmp chính là input mà 2 code chạy ra kết quả khác nhau.
+  diff <(./prog1 < in_tmp) <(./prog2 < in_tmp) || break
+done
+```
+
 # Luyện tập viết trình chấm
 
 Để viết trình chấm thành thạo, hãy thử viết trình chấm với tất cả các bài mà bạn luyện tập, cho đến khi không còn ngại viết trình chấm nữa thì lúc đó bạn sẽ thành công. Hãy đặt ra mục tiêu là một sub AC với tất cả các bài mình làm với sự hỗ trợ của trình chấm. Một khi đã thành thạo tuyệt kĩ này, bạn sẽ dễ dàng chinh phục những kì thi chấm offline và không bao giờ phải lo lắng làm sai nữa.
