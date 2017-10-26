@@ -345,7 +345,7 @@ int get(int id, int l, int r, int u, int v) {
 Giả sử ta cần cập nhật đoạn $[u, v]$. Dễ thấy ta không thể nào cập nhật tất cả các nút trên Segment Tree (do tổng số nút nằm trong đoạn $[u, v]$ có thể lên đến $O(N)$). Do đó, trong quá trình cập nhật, ta chỉ thay đổi giá trị ở các nút quản lý các đoạn to nhất nằm trong $[u, v]$. Ví dụ với $N = 7$, cây Segment tree như hình minh hoạ ở đầu bài. Giả sử bạn cần cập nhật $[1, 6]$:
 
 - Bạn chỉ cập nhật giá trị ở các nút quản lý các đoạn $[1, 4]$ và $[5, 6]$.
-- Giá trị của các nút quản lý các đoạn $[1, 2]$, $[3, 4]$, $[1, 1]$, $[2, 2]$, $[5, 5]$, ... sẽ không đúng. Ta sẽ chỉ cập nhật lại giá trị của các nút này khi thật sự cần thiết.
+- Giá trị của các nút quản lý các đoạn $[1, 2]$, $[3, 4]$, $[1, 1]$, $[2, 2]$, $[5, 5]$, ... sẽ không đúng. Ta sẽ chỉ cập nhật lại giá trị của các nút này khi thật sự cần thiết (Do đó kĩ thuật này được gọi là lazy - lười biếng).
 
 Cụ thể, chúng ta cùng xem bài toán sau:
 
