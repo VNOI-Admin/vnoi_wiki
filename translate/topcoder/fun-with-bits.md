@@ -117,6 +117,14 @@ Một ưu điểm lớn của thao tác bit là việc duyệt qua tất cả c�
 
 Việc duyệt qua tất cả các tập con của một tập con khác cũng rất dễ dàng (được biểu diễn bằng một dãy bit), nếu bạn không quan tâm đến thứ tự duyệt ngược lại (hoặc có thể lưu các tập hợp vào một danh sách và đi ngược lại). Mẹo được sử dụng cũng giống như việc tìm bit 1 thấp nhất vậy. Nếu chúng ta trừ đi 1 từ tập con, thì phần tử đại diện bởi bit 1 đó sẽ được xoá, và mỗi phần tử 0 phía bên phải nó đều trở thành 1. Tuy nhiên, chúng ta chỉ muốn các phần tử được chọn là những phần tử có trong tập cha. Nên bước lặp chỉ cần thay thế ngắn gọn bằng `i = (i - 1) & superset`.
 
+## Cài đặt:
+
+```cpp
+// xét tất cả các tập con khác rỗng của S
+for (int i = S; i > 0; i = (i - 1) & S); {
+}
+```
+
 # Chỉ cần một bit sai cũng 0 điểm
 
 Có một số lỗi mà mọi người thường mắc phải khi sử dụng các thao tác bit. Chú ý cẩn thận với code của bạn. 
