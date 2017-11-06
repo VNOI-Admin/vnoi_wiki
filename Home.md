@@ -76,6 +76,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 ## Tối ưu hoá
 
 - [[Tìm kiếm tam phân - Ternary Search|translate/emaxx/Tim-kiem-tam-phan-Ternary-Search]]
+- [[Local Search|algo/search/Local-Search]]
 
 
 ## Kỹ năng khác
