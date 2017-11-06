@@ -1,4 +1,4 @@
-## # Tìm kiếm tam phân - Ternary Search
+# Tìm kiếm tam phân - Ternary Search
 
 [[_TOC_]]
 
