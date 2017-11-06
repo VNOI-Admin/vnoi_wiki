@@ -79,6 +79,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Khử nhân ma trận|algo/trick/counting-without-matrix-multiplication]]
 - [[Mo's algorithm|algo/data-structures/mo-algorithm]]
 - [[Fun with bits|translate/topcoder/fun-with-bits]]
+- [[Tìm kiếm tam phân - Ternary Search|translate/emaxx/Tim-kiem-tam-phan-Ternary-Search]]
 
 
 # Chia sẻ
