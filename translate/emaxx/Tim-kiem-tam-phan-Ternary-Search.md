@@ -15,13 +15,14 @@ Cho một hàm F(x) chỉ có một cực trị duy nhất (unimodal). Có hai d
 
 1. Phần đầu tăng chặt, đạt đến giá trị lớn nhất, sau đó giảm chặt. (concave)
 
-[[/uploads/ternary_search_concave_func.png]]
+<img src="http://vnoi.info/contributor/uploads/ternary_search_concave_func.png" width="200px" height="200px" />
 
 Một hàm số thoả mãn tính chất này nếu tất cả các đoạn thẳng nối 2 điểm của đồ thị hàm số, nằm "bên dưới" của đồ thị.
 
 2. Phần đầu giảm chặt, đạt đến giá trị nhỏ nhất, sau đó tăng chặt. (convex)
 
-[[/uploads/ternary_search_convex_func.png]]
+<img src="http://vnoi.info/contributor/uploads/ternary_search_convex_func.png" width="200px" height="200px" />
+
 
 Một hàm số thoả mãn tính chất này nếu tất cả các đoạn thẳng nối 2 điểm của đồ thị hàm số, đều nằm "bên trên" của đồ thị.
 
