@@ -115,6 +115,7 @@ Hình vẽ trên mô tả cách làm của local search: Xuất phát từ đi�
 # Bài tập áp dụng:
 
 - [ACM ICPC National Vietnam 2017 - Bài E](https://open.kattis.com/contests/vietnam-national17-open/problems/europeantrip)
+    - [Lời giải chi tiết](https://docs.google.com/document/d/1cDQEaf_YabpefiG7PiQZErHbr7AJIFjt7IIiDv9n4N4/edit)
 - [SPOJ - PANEL](http://www.spoj.com/problems/PANEL/)
 - [IPSC 2013 - Invisible cats](http://ipsc.ksp.sk/2013/real/problems/i.html)
 - [https://www.facebook.com/note.php?note_id=10150106829298920](https://www.facebook.com/note.php?note_id=10150106829298920)
