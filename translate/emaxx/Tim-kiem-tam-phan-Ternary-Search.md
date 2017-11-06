@@ -64,7 +64,7 @@ Do đó, dựa vào việc so sánh $F$ ở hai điểm m1, m2 ta có thể thay
 
 Thì sau mỗi lần, độ lớn của đoạn $[l, r]$ giảm xuống còn $2/3$ lần.
 
-Nếu ta lặp đi lặp lại K lần, thì độ lớn của [l, r] sẽ chỉ còn $(2 / 3) ^ K$. Ví dụ với $l = -10^9, r = 10^9$, ta lặp lại $K = 100$ lần, thì đoạn [l, r] thu về chỉ còn độ dài là $(2 / 3.0) ^ 100 * (2*10^9) < 5 * 10^{-9}$, đủ chính xác với hầu hết mọi bài toán.
+Nếu ta lặp đi lặp lại K lần, thì độ lớn của [l, r] sẽ chỉ còn $(2 / 3) ^ K$. Ví dụ với $l = -10^9, r = 10^9$, ta lặp lại $K = 100$ lần, thì đoạn [l, r] thu về chỉ còn độ dài là $(2 / 3.0) ^ {100} * (2*10^9) < 5 * 10^{-9}$, đủ chính xác với hầu hết mọi bài toán.
 
 Độ phức tạp thuật toán là $O(logT)$ với T là độ chính xác mà ta cần thực hiện.
 
