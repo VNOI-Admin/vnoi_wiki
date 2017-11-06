@@ -73,13 +73,17 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb
 - [[Hàm nhân tính (Multiplicative Function)|algo/math/multiplicative-function]]
 - [[Nhân nhanh đa thức - FFT|algo/trick/FFT]]
 
+## Tối ưu hoá
+
+- [[Tìm kiếm tam phân - Ternary Search|translate/emaxx/Tim-kiem-tam-phan-Ternary-Search]]
+
+
 ## Kỹ năng khác
 
 - [[Nhân ma trận|algo/trick/matrix-multiplication]]
 - [[Khử nhân ma trận|algo/trick/counting-without-matrix-multiplication]]
 - [[Mo's algorithm|algo/data-structures/mo-algorithm]]
 - [[Fun with bits|translate/topcoder/fun-with-bits]]
-- [[Tìm kiếm tam phân - Ternary Search|translate/emaxx/Tim-kiem-tam-phan-Ternary-Search]]
 
 
 # Chia sẻ
