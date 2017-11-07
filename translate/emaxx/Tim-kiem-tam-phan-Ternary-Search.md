@@ -94,7 +94,7 @@ double max_f(double left, double right) {
 
 # Mở rộng
 
-Tìm kiếm tam phân cũng có thể dùng để giải các bài toán trên 2D với hàm dạng $f(x, y)$ nếu hàm f là hàm lồi. Ví dụ bài [E trong đề ACM ICPC Vietnam National Round 2017](https://open.kattis.com/contests/vietnam-national17-open/problems/europeantrip). Bạn có thể tham khảo lời giải [ở đây](https://docs.google.com/document/d/1cDQEaf_YabpefiG7PiQZErHbr7AJIFjt7IIiDv9n4N4/edit#).
+Tìm kiếm tam phân cũng có thể dùng để giải các bài toán trên 2D với hàm dạng $f(x, y)$ nếu hàm f là hàm lồi. Ví dụ bài [E trong đề ACM ICPC Vietnam National Round 2017](https://open.kattis.com/contests/vietnam-national17-open/problems/europeantrip).(https://docs.google.com/document/d/1cDQEaf_YabpefiG7PiQZErHbr7AJIFjt7IIiDv9n4N4/edit#).
 
 
 # Bài tập tự luyện 
