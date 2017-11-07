@@ -4,7 +4,7 @@
 
 Thư viện VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học đến với tất cả mọi người. Bạn có thể đọc bài giới thiệu của bọn mình [[ở đây|about]].
 
-Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://fb.com/vnoi.wiki/).
+Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://www.facebook.com/groups/163215593699283/).
 
 # Thuật toán
 
