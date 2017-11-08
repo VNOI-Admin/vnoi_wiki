@@ -6,13 +6,13 @@ Thư viện VNOI được xây dựng với mục đích chia sẻ kiến thức
 
 Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://www.facebook.com/groups/163215593699283/).
 
-Ở trang chủ này, các bài viết về thuật toán được đánh dấu về độ khó từ ☆ đến ☆☆☆☆☆ với ý nghĩa:
+Ở trang chủ này, các bài viết về thuật toán được đánh dấu về độ khó từ 1* đến 5* với ý nghĩa:
 
-- ☆: Cơ bản.
-- ☆★: Kiến thức cần biết để thi HSG QG, ACM ICPC.
-- ☆★☆: Kiến thức nâng cao, dành cho các bạn có mục tiêu đạt giải cao trong HSG QG.
-- ☆★☆★: Kiến thức rất khó
-- ☆★☆★☆: Kiến thức rất chuyên sâu về 1 vấn đề nào đó, chỉ áp dụng được với rất ít bài khó.
+- 1*: Cơ bản.
+- 2*: Kiến thức cần biết để thi HSG QG, ACM ICPC.
+- 3*: Kiến thức nâng cao, dành cho các bạn có mục tiêu đạt giải cao trong HSG QG.
+- 4*: Kiến thức rất khó
+- 5*: Kiến thức rất chuyên sâu về 1 vấn đề nào đó, chỉ áp dụng được với rất ít bài khó.
 
 Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đồ thị, do phần này những quyển sách như sách thầy Lê Minh Hoàng, Tài liệu giáo khoa chuyên tin (download ở [[Một số tài liệu hay về Thuật Toán|algo/basic/Tai-Lieu-Thuat-Toan]]) đã viết rất chi tiết.
 
@@ -24,76 +24,76 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Một số tài liệu hay về Thuật Toán|algo/basic/Tai-Lieu-Thuat-Toan]]
 - [[Nghệ thuật giải bài|translate/topcoder/How-to-Find-a-Solution]]
 - [[Những cách tiếp cận bài toán|translate/topcoder/Planning-an-Approach-to-a-Topcoder-Problem-Part-1]]
-- [[Độ phức tạp tính toán ☆|translate/topcoder/Computational-Complexity-Section-1]]
-- [[Sắp xếp ☆|algo/basic/sorting]]
+- [[Độ phức tạp tính toán 1*|translate/topcoder/Computational-Complexity-Section-1]]
+- [[Sắp xếp 1*|algo/basic/sorting]]
 
 ## Cấu trúc dữ liệu
 
-- [[Tổng quan về cấu trúc dữ liệu ☆★|algo/data-structures/data-structures-overview]]
-- [[Mảng và danh sách liên kết ☆|algo/data-structures/array-vs-linked-lists]]
-- [[Deque và tìm min max trên đoạn tịnh tiến ☆★|algo/data-structures/deque-min-max]]
-- [[Heap ☆★|translate/wcipeg/Binary-Heap]]
-- [[Bảng băm (Hash table) ☆★|algo/data-structures/hash-table]]
-- [[Disjoint Set ☆★|algo/data-structures/disjoint-set]]
-- [[Segment Tree (Interval Tree) ☆★|algo/data-structures/segment-tree-extend]]
-- [[Segment Tree (Interval Tree) trên tập đoạn thẳng ☆★☆★|algo/data-structures/interval-tree-tap-doan-thang]]
-- [[Fenwick Tree (Binary Indexed Tree) ☆★|algo/data-structures/fenwick]]
-- [[Heavy Light Decomposition ☆★☆|algo/data-structures/heavy-light-decomposition]]
-- [[Persistent Data Structures ☆★☆|algo/data-structures/persistent-data-structures]]
-- [[Bài toán RMQ & bài toán LCA ☆★|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]]
-- [[Các phương pháp giải bài toán LCA ☆★☆|algo/data-structures/lca]]
-- [[Trie ☆★|algo/data-structures/trie]]
-- [[Suffix Array ☆★☆★|algo/data-structures/suffix-array]]
-- [[Palindrome Tree ☆★☆★|translate/codeforces/palindrome-tree]]
-- [[Skip List ☆★☆|algo/data-structures/Skip-Lists]]
-- [Range Tree - thầy Lê Minh Hoàng ☆★☆](https://drive.google.com/file/d/0BwcTB8a10LBwbjB2elVmdzg1XzQ/view?usp=sharing)
+- [[Tổng quan về cấu trúc dữ liệu 2*|algo/data-structures/data-structures-overview]]
+- [[Mảng và danh sách liên kết 1*|algo/data-structures/array-vs-linked-lists]]
+- [[Deque và tìm min max trên đoạn tịnh tiến 2*|algo/data-structures/deque-min-max]]
+- [[Heap 2*|translate/wcipeg/Binary-Heap]]
+- [[Bảng băm (Hash table) 2*|algo/data-structures/hash-table]]
+- [[Disjoint Set 2*|algo/data-structures/disjoint-set]]
+- [[Segment Tree (Interval Tree) 2*|algo/data-structures/segment-tree-extend]]
+- [[Segment Tree (Interval Tree) trên tập đoạn thẳng 4*|algo/data-structures/interval-tree-tap-doan-thang]]
+- [[Fenwick Tree (Binary Indexed Tree) 2*|algo/data-structures/fenwick]]
+- [[Heavy Light Decomposition 3*|algo/data-structures/heavy-light-decomposition]]
+- [[Persistent Data Structures 3*|algo/data-structures/persistent-data-structures]]
+- [[Bài toán RMQ & bài toán LCA 2*|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]]
+- [[Các phương pháp giải bài toán LCA 3*|algo/data-structures/lca]]
+- [[Trie 2*|algo/data-structures/trie]]
+- [[Suffix Array 4*|algo/data-structures/suffix-array]]
+- [[Palindrome Tree 4*|translate/codeforces/palindrome-tree]]
+- [[Skip List 3*|algo/data-structures/Skip-Lists]]
+- [Range Tree - thầy Lê Minh Hoàng 3*](https://drive.google.com/file/d/0BwcTB8a10LBwbjB2elVmdzg1XzQ/view?usp=sharing)
 
 ## Xử lý xâu
 
-- [[Tổng quan ☆★|algo/string/basic]]
-- [[KMP ☆★|translate/wcipeg/kmp]]
-- [[Trie ☆★|algo/data-structures/trie]]
-- [[Hash ☆★|algo/string/hash]]
-- [[Suffix Array ☆★☆★|algo/data-structures/suffix-array]]
-- [[Palindrome Tree ☆★☆★|translate/codeforces/palindrome-tree]]
-- [[Z Algorithm ☆★☆|translate/codeforces/z-algo]]
-- [Suffix Tree - thầy Lê Minh Hoàng ☆★☆★](https://drive.google.com/file/d/0BwcTB8a10LBwYUwwNVYzbmZiZnM/view?usp=sharing)
+- [[Tổng quan 2*|algo/string/basic]]
+- [[KMP 2*|translate/wcipeg/kmp]]
+- [[Trie 2*|algo/data-structures/trie]]
+- [[Hash 2*|algo/string/hash]]
+- [[Suffix Array 4*|algo/data-structures/suffix-array]]
+- [[Palindrome Tree 4*|translate/codeforces/palindrome-tree]]
+- [[Z Algorithm 3*|translate/codeforces/z-algo]]
+- [Suffix Tree - thầy Lê Minh Hoàng 4*](https://drive.google.com/file/d/0BwcTB8a10LBwYUwwNVYzbmZiZnM/view?usp=sharing)
 
 ## Quy hoạch động
-- [[Nhập môn Quy hoạch động ☆★|translate/topcoder/dynamic-programming]]
-- [[Một vài bài tập về Palindrome ☆★|algo/dp/palindrome-problems]]
-- [[Một số bài toán QHD điển hình ☆★|algo/dp/basic-problems]]
+- [[Nhập môn Quy hoạch động 2*|translate/topcoder/dynamic-programming]]
+- [[Một vài bài tập về Palindrome 2*|algo/dp/palindrome-problems]]
+- [[Một số bài toán QHD điển hình 2*|algo/dp/basic-problems]]
 - [[Phân tích về QHD - Thầy Lê Minh Hoàng|algo/dp/thac-mac-ve-qhd]]
-- [[Một số kĩ thuật tối ưu hoá QHĐ ☆★☆|algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong]]
-- [[Kĩ thuật bao lồi ☆★☆|translate/wcipeg/Convex-Hull-Trick]]
+- [[Một số kĩ thuật tối ưu hoá QHĐ 3*|algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong]]
+- [[Kĩ thuật bao lồi 3*|translate/wcipeg/Convex-Hull-Trick]]
 
 ## Tham lam
 
-- [[Tham lam ☆★|translate/topcoder/Greedy-is-Good]]
+- [[Tham lam 2*|translate/topcoder/Greedy-is-Good]]
 
 ## Hình học
 
-- [[Bao lồi ☆★☆|translate/wcipeg/Convex-Hull]]
+- [[Bao lồi 3*|translate/wcipeg/Convex-Hull]]
 
 ## Toán học
 
-- [[Toán học trong Tin học ☆★|translate/topcoder/Mathematics-for-Topcoders]]
-- [[Xác suất ☆★|translate/topcoder/Hieu-ve-xac-suat]]
-- [[Định lý Wilson ☆★☆|translate/he/Wilsons-theorem]]
-- [[Hàm nhân tính (Multiplicative Function) ☆★☆★|algo/math/multiplicative-function]]
-- [[Nhân nhanh đa thức - FFT ☆★☆★|algo/trick/FFT]]
+- [[Toán học trong Tin học 2*|translate/topcoder/Mathematics-for-Topcoders]]
+- [[Xác suất 2*|translate/topcoder/Hieu-ve-xac-suat]]
+- [[Định lý Wilson 3*|translate/he/Wilsons-theorem]]
+- [[Hàm nhân tính (Multiplicative Function) 4*|algo/math/multiplicative-function]]
+- [[Nhân nhanh đa thức - FFT 4*|algo/trick/FFT]]
 
 ## Tối ưu hoá
 
-- [[Tìm kiếm tam phân - Ternary Search ☆★☆|translate/emaxx/Tim-kiem-tam-phan-Ternary-Search]]
-- [[Local Search ☆★☆|algo/search/Local-Search]]
+- [[Tìm kiếm tam phân - Ternary Search 3*|translate/emaxx/Tim-kiem-tam-phan-Ternary-Search]]
+- [[Local Search 3*|algo/search/Local-Search]]
 
 
 ## Kỹ năng khác
 
-- [[Nhân ma trận ☆★☆|algo/trick/matrix-multiplication]]
-- [[Khử nhân ma trận ☆★☆|algo/trick/counting-without-matrix-multiplication]]
-- [[Mo's algorithm ☆★☆|algo/data-structures/mo-algorithm]]
+- [[Nhân ma trận 3*|algo/trick/matrix-multiplication]]
+- [[Khử nhân ma trận 3*|algo/trick/counting-without-matrix-multiplication]]
+- [[Mo's algorithm 3*|algo/data-structures/mo-algorithm]]
 - [[Fun with bits|translate/topcoder/fun-with-bits]]
 
 
