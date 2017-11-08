@@ -6,7 +6,7 @@ Thư viện VNOI được xây dựng với mục đích chia sẻ kiến thức
 
 Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://www.facebook.com/groups/163215593699283/).
 
-Ở trang chủ này, các bài viết về thuật toán được đánh dấu về độ khó từ (1*) đến (5*) với ý nghĩa:
+Ở trang chủ này, các bài viết về thuật toán được đánh dấu về độ khó từ (1\*) đến (5\*) với ý nghĩa:
 
 - (1*): Cơ bản.
 - (2*): Kiến thức cần biết để thi HSG QG, ACM ICPC.
