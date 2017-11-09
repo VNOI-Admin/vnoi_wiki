@@ -75,7 +75,7 @@ Từ 3 nhận xét trên ta sẽ tìm cách đưa $S_i - L, S_i - R, S_{j-1}$ v�
 
 
 
-*   Độ phức tạp: $O(3*n*log(3*n))$.
+*   Độ phức tạp: $O(3 * n * log(3 * n))$.
 *   Ngoài cách này ra, ta còn 1 cách dùng _Phương pháp chia để trị_, sẽ có trong các tài liệu sắp tới.
 
 Code tham khảo (pascal):
