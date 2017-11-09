@@ -159,9 +159,9 @@ _Công thức:_
 *   `fmax[i] = max(fmax[i], fmax[j] + 1)` với `j < i` và `S[i] - S[j] <= m`.
 *   `fmin[i] = min(fmin[i], fmin[j] + 1)` với `j < i` và `S[i] - S[j] <= m`.
 
-Nhận thấy độ phức tạp đây là $O(n^2*log(2*10^9))$ không thể đáp ứng được thời gian yêu cầu là 1s nhưng ở trường hợp quá bí ý tưởng đây không phải giải pháp tồi giúp lấy được một ít điểm lẻ.
+Nhận thấy độ phức tạp đây là $O(n^2 * log(2 * 10^9))$ không thể đáp ứng được thời gian yêu cầu là 1s nhưng ở trường hợp quá bí ý tưởng đây không phải giải pháp tồi giúp lấy được một ít điểm lẻ.
 
-Để nhanh được chỉ có cách là cải tiến sao cho tính mảng Quy hoạch động được nhanh, ở đây ta để ý quan hệ $S_i - S_j \le m$ chỉ cần biến đổi thành $S_i - m \le S_j$ → giải pháp đã phần nào sáng sủa hơn và nếu tinh ý thì đây chỉ là bài toán 1 chiều, "một nửa" của **ví dụ 1** ở trên thôi → Bây giờ ta chỉ cần rời rạc hóa nó đi thay vì 3*n, ta có mảng 2*n lưu các giá trị $S_i$ và $S_i - m$, ta sẽ tính dựa vào 1 cây Binary Indexed Tree cho đơn giản thay vì đếm như bài trên, vấn đề ở đây chỉ là tìm max min, và update max, min.
+Để nhanh được chỉ có cách là cải tiến sao cho tính mảng Quy hoạch động được nhanh, ở đây ta để ý quan hệ $S_i - S_j \le m$ chỉ cần biến đổi thành $S_i - m \le S_j$ → giải pháp đã phần nào sáng sủa hơn và nếu tinh ý thì đây chỉ là bài toán 1 chiều, "một nửa" của **ví dụ 1** ở trên thôi → Bây giờ ta chỉ cần rời rạc hóa nó đi thay vì $3 * n$, ta có mảng $2 * n$ lưu các giá trị $S_i$ và $S_i - m$, ta sẽ tính dựa vào 1 cây Binary Indexed Tree cho đơn giản thay vì đếm như bài trên, vấn đề ở đây chỉ là tìm max min, và update max, min.
 
 
 
