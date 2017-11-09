@@ -36,6 +36,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Bảng băm (Hash table) (2*)|algo/data-structures/hash-table]]
 - [[Disjoint Set (2*)|algo/data-structures/disjoint-set]]
 - [[Segment Tree (Interval Tree) (2*)|algo/data-structures/segment-tree-extend]]
+- [[Mo Algorithm|algo/data-structures/mo-algorithm]]
 - [[Segment Tree (Interval Tree) trên tập đoạn thẳng (4*)|algo/data-structures/interval-tree-tap-doan-thang]]
 - [[Fenwick Tree (Binary Indexed Tree) (2*)|algo/data-structures/fenwick]]
 - [[Heavy Light Decomposition (3*)|algo/data-structures/heavy-light-decomposition]]
