@@ -92,7 +92,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 ## Kỹ năng khác
 
-- [[Rời rạc hoá (1*)|algo/trick/Roi-rac-hoa-va-ung-dung]]
+- [[Rời rạc hoá (nén số) (1*)|algo/trick/Roi-rac-hoa-va-ung-dung]]
 - [[Nhân ma trận (3*)|algo/trick/matrix-multiplication]]
 - [[Khử nhân ma trận (3*)|algo/trick/counting-without-matrix-multiplication]]
 - [[Mo's algorithm (3*)|algo/data-structures/mo-algorithm]]
