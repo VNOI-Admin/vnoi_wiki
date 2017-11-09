@@ -279,6 +279,7 @@ Ta có thể tìm bao lồi trong không gian với độ phức tạp $O(n \log
 # Bài tập áp dụng
 
 - [Kattis - convexhull](https://open.kattis.com/problems/convexhull)
+- [ACM ICPC Vietnam National 2017 - K](https://open.kattis.com/contests/vietnam-national17-open/problems/parade)
 - [VOJ - MILITARY](http://vn.spoj.com/problems/MILITARY/)
 - [VOJ - HEADQRT](http://vn.spoj.com/problems/HEADQRT/)
 - [VOJ - KMIX](http://vn.spoj.com/problems/KMIX/)
