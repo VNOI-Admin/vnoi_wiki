@@ -302,11 +302,11 @@ Cho một đồ thị liên thông gồm n đỉnh và m cạnh, hãy tìm cách
 
 # 5. Một số bài để luyện tập
 
-- [SPOJ - NKFLOW](http://vn.spoj.com/problems/NKFLOW/)
-- [SPOJ - FASTFLOW](http://vn.spoj.com/problems/FASTFLOW/)
-- [SPOJ - ASSIGN1](http://vn.spoj.com/problems/ASSIGN1/)
-- [SPOJ - KWAY](http://vn.spoj.com/problems/KWAY/)
-- [SPOJ - STNODE](http://vn.spoj.com/problems/STNODE/)
+- [SPOJ - NKFLOW](http://vnoi.info/problems/show/NKFLOW/)
+- [SPOJ - FASTFLOW](http://vnoi.info/problems/show/FASTFLOW/)
+- [SPOJ - ASSIGN1](http://vnoi.info/problems/show/ASSIGN1/)
+- [SPOJ - KWAY](http://vnoi.info/problems/show/KWAY/)
+- [SPOJ - STNODE](http://vnoi.info/problems/show/STNODE/)
 - [codeforces - flows](http://codeforces.com/problemset/tags/flows)
 
 # 6. Nguồn tham khảo

@@ -99,7 +99,7 @@ for (i : 1 .. m - n +1)
 
 ## Mã chương trình
 
-Chương trình sau, tôi viết bằng ngôn ngữ C++, là lời giải cho bài [SUBSTR](http://vn.spoj.com/problems/SUBSTR):
+Chương trình sau, tôi viết bằng ngôn ngữ C++, là lời giải cho bài [SUBSTR](http://vnoi.info/problems/show/SUBSTR):
 
 ```cpp
 typedef long long ll;
@@ -158,7 +158,7 @@ Như đã đề cập ở trên, thuật toán này sẽ có trường hợp ch�
 
 Sử dụng Hash không chỉ giúp người làm bài dễ dàng cài đặt hơn mà quan trọng ở chỗ: Hash có thể làm được những việc mà _‘thuật toán chuẩn’_ không làm được. Sau đây, tôi sẽ xét một vài ví dụ để chứng minh điều này.
 
-## [Longest palindrome substring](http://vn.spoj.com/problems/PALINY)
+## [Longest palindrome substring](http://vnoi.info/problems/show/PALINY)
 
 Bài toán đặt ra như sau: Bạn được cho một xâu $s$ độ dài $n (n \le 50,000)$. Bạn cần tìm độ dài của xâu đối xứng dài nhất gồm các kí tự liên tiếp trong $s$. (Xâu đối xứng là xâu đọc từ 2 chiều giống nhau).
 
@@ -261,9 +261,9 @@ Nhược điểm của thuật toán Hash là tính chính xác. Mặc dù rất
 - [VOJ - SUBSTR](http://vnoi.info/problems/show/SUBSTR/)
 - [VOJ - PALINY](http://vnoi.info/problems/show/PALINY/)
 - [VOJ - DTKSUB](http://vnoi.info/problems/show/DTKSUB/)
-- [VOJ - DTCSTR](http://vn.spoj.com/problems/DTCSTR/)
-- [VOJ - TWOOPERS](http://vn.spoj.com/problems/TWOOPERS/)
-- [VOJ - VOSTR](http://vn.spoj.com/problems/VOSTR/)
+- [VOJ - DTCSTR](http://vnoi.info/problems/show/DTCSTR/)
+- [VOJ - TWOOPERS](http://vnoi.info/problems/show/TWOOPERS/)
+- [VOJ - VOSTR](http://vnoi.info/problems/show/VOSTR/)
 - [SGU 426](http://acm.sgu.ru/problem.php?contest=0&problem=426)
 
 # Các nguồn tham khảo

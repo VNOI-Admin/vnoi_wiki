@@ -12,7 +12,7 @@ Bài toán này là NP, không có thuật toán tối ưu với độ phức t�
 
 Khi gặp bài NP, ta chỉ có thể tìm cách đưa ra một kết quả càng tối ưu càng tốt. Một số phương pháp thường dùng là [[tham lam|translate/topcoder/Greedy-is-Good]] hoặc local search - sẽ được nói trong bài viết này.
 
-Bạn có thể nộp thử bài này ở [VOJ](http://vn.spoj.com/problems/TORCH/).
+Bạn có thể nộp thử bài này ở [VOJ](http://vnoi.info/problems/show/TORCH/).
 
 # Tham Lam
 

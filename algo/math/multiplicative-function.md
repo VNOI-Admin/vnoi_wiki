@@ -258,7 +258,7 @@ Bạn cũng nên nắm được những hàm nhân tính thường gặp, từ �
 
 ## Bài luyện tập
 
-- [VOJ - GCDSUM](http://vn.spoj.com/problems/GCDSUM/)
+- [VOJ - GCDSUM](http://vnoi.info/problems/show/GCDSUM/)
 
 Gợi ý: Xét $f(n) = \sum_{1 \le i \le n}{gcd(n, i)}$.
 

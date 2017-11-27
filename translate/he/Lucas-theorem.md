@@ -186,4 +186,4 @@ Chúng ta thực hiện các bước như sau:
 
 # Luyện tập
 
-- [Xông đất ngày tết - SPOJ](http://vn.spoj.com/problems/C11TCT/)
+- [Xông đất ngày tết - SPOJ](http://vnoi.info/problems/show/C11TCT/)

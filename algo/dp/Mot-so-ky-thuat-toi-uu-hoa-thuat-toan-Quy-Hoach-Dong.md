@@ -117,7 +117,7 @@ int main() {
 
 ## Bài tập ví dụ: Computer (VNOI Marathon 2010)
 
-Problem Link: [COMPUTER - VOJ](http://vn.spoj.com/problems/COMPUTER/).
+Problem Link: [COMPUTER - VOJ](http://vnoi.info/problems/show/COMPUTER/).
 
 ### Đề bài
 
@@ -241,7 +241,7 @@ int main() {
 
 ## Bài luyện tập
 
-- [VOJ - BINPACK](http://vn.spoj.com/problems/BINPACK/)
+- [VOJ - BINPACK](http://vnoi.info/problems/show/BINPACK/)
 
 
 # 2. Chia để trị

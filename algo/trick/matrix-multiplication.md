@@ -51,7 +51,7 @@ F(i) = F(i-1) + F(i-2), i >= 2
 
 Yêu cầu: Cho $N$ $(N \le 10^9)$, tính $F(N)$.
 
-Bạn có thể nộp bài thử ở [VNOI - LATGACH4](http://vn.spoj.com/problems/LATGACH4).
+Bạn có thể nộp bài thử ở [VNOI - LATGACH4](http://vnoi.info/problems/show/LATGACH4).
 
 **Phân tích**
 
@@ -178,7 +178,7 @@ Như vậy, bài toán được đưa về bài toán tính lũy thừa của m�
 
 # Ví dụ 4
 
-[VOJ - THBAC](http://vn.spoj.com/problems/THBAC/)
+[VOJ - THBAC](http://vnoi.info/problems/show/THBAC/)
 
 **Bài toán**
 
@@ -286,7 +286,7 @@ Khi độ dài của dãy ma trận tăng lên, sự khác biệt có thể còn
 Trong thực tế, bài toán xác định thứ tự nhân ma trận hiệu quả nhất là một bài toán rất phổ biến, bạn có thể tìm đọc chi tiết thêm ở [Mục 3.5 Phép Nhân Tổ Hợp dãy Ma Trận trong ebook của thầy Lê Minh Hoàng](http://cntt.epu.edu.vn/images/book_LeMinhHoang.pdf).
 
 ## Giải thuật Freivalds kiểm tra tích hai ma trận
-[Giải thuật Freivalds](https://courses.cs.washington.edu/courses/cse525/13sp/scribe/lec1.pdf) là một ví dụ điển hình về việc áp dụng thứ tự thực hiện phép nhân ma trận để giảm độ phức tạp tính toán của phép nhân một dãy ma trận. Bài toán đặt ra là cho ba ma trận vuông $A, B, C$ có kích cỡ $N * N$ với $N \le 1000$. Ta cần kiểm tra xem $C$ có phải là tích của $A$ và $B$, nói cách khác ta cần kiểm tra $A*B = C$ có phải là mệnh đề đúng hay không (đây chính là bài [VMATRIX - VNOI Marathon 2014](http://vn.spoj.com/problems/VMATRIX/)).
+[Giải thuật Freivalds](https://courses.cs.washington.edu/courses/cse525/13sp/scribe/lec1.pdf) là một ví dụ điển hình về việc áp dụng thứ tự thực hiện phép nhân ma trận để giảm độ phức tạp tính toán của phép nhân một dãy ma trận. Bài toán đặt ra là cho ba ma trận vuông $A, B, C$ có kích cỡ $N * N$ với $N \le 1000$. Ta cần kiểm tra xem $C$ có phải là tích của $A$ và $B$, nói cách khác ta cần kiểm tra $A*B = C$ có phải là mệnh đề đúng hay không (đây chính là bài [VMATRIX - VNOI Marathon 2014](http://vnoi.info/problems/show/VMATRIX/)).
 
 **Phân tích**
 
@@ -308,5 +308,5 @@ Xét bước thứ 2, ta thấy rằng phép thử Freivalds chỉ có ý nghĩa
 - [HackerEarth - ABCD Strings](https://www.hackerearth.com/problem/algorithm/abcd-strings/description/)
 - [HackerEarth - Mehta and the difficult task](https://www.hackerearth.com/problem/algorithm/mehta-and-the-difficult-task-3/)
 - [HackerEarth - Mehta and the Evil Strings](https://www.hackerearth.com/problem/algorithm/mehta-and-the-evil-strings/)
-- [VOJ - PA06ANT](http://vn.spoj.com/problems/PA06ANT/)
-- [VOJ - CONNECTE](http://vn.spoj.com/problems/CONNECTE)
+- [VOJ - PA06ANT](http://vnoi.info/problems/show/PA06ANT/)
+- [VOJ - CONNECTE](http://vnoi.info/problems/show/CONNECTE)
