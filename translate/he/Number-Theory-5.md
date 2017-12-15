@@ -347,7 +347,7 @@ int main()
 }
 ```
 
-## Một vài dãy số đếm khác (Counting Sequences)
+## Một vài dãy số cơ bản (Counting Sequences)
 
 ### Dãy số Catalan
 
