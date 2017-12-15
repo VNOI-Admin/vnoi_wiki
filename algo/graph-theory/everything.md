@@ -42,6 +42,7 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
   - [Code cặp ghép không trọng số C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Matching/Matching.h)
   - [Code Cặp ghép có trọng số C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Matching/HungarianLMH.h)
   - [Bài tập](http://vnoi.info/problems/list/?tag=42&page=1)
+  - [Bài E - ACM ICPC Vietnam Regional 2017](https://open.kattis.com/problems/engaging)
 
 - 2-SAT:
   - [2-SAT - Phạm Lê Quang](https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing)
