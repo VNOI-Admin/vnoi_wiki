@@ -522,6 +522,22 @@ Tuy nhiên ta có thể chứng minh được, xét về tổng thế thuật to
 
 [[/uploads/dp_optimization_img2.png]]
 
+## Điều kiện để Chia để trị đúng
+
+### Điều kiện theo best
+
+Như ở bài Hai nhà máy CEOI 2004:
+
+Nếu $best(i) \le best(i+1)$, ta có thể sử dụng chia để trị.
+
+### Điều kiện theo cost
+
+Nếu hàm cost thoả mãn quadrangle inequalities:
+
+$cost(a, d) + cost(b, c) \ge cost(a, c) + cost(b, d)$ với mọi $a < b < c < d$,
+
+ta cũng có thể sử dụng QHĐ chia để trị.
+
 ### Bài luyện tập
 
 - [Hackerrank - Mining](https://www.hackerrank.com/contests/world-codesprint-5/challenges/mining)
