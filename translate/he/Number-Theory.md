@@ -1,6 +1,6 @@
 # Số học
 
-[_TOC_]
+[[_TOC_]]
 
 # Phi hàm Euler (Euler's totient function)
 
