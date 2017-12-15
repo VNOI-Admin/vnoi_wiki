@@ -29,16 +29,19 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
   - [Bài tập](http://vnoi.info/problems/list/?tag=40&page=1)
 
 - Chu trình Euler:
+  - [Code C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Misc/EulerPath.h)
   - [Bài tập](http://vnoi.info/problems/list/?tag=38&page=1)
 
 - Luồng cực đại:
   - [Bài tập](http://vnoi.info/problems/list/?tag=41&page=1)
 
 - Cặp ghép:
+  - [Code Cặp ghép có trọng số C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Matching/HungarianLMH.h)
   - [Bài tập](http://vnoi.info/problems/list/?tag=42&page=1)
 
 - 2-SAT:
   - [2-SAT - Phạm Lê Quang](https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing)
+  - [Code C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Misc/2sat.cpp)
   - [Bài tập](http://vnoi.info/problems/list/?tag=70&page=1)
 
 - LCA:
