@@ -47,7 +47,7 @@ int pow(int a, int b, int MOD) {
         if (b % 2 == 0)
             return sqr(pow(a, b/2)) % MOD;
         else
-            return a * (sqr(pow(a, b/2)) % c) % MOD;
+            return a * (sqr(pow(a, b/2)) % MOD) % MOD;
 }
 ```
 
