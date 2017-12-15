@@ -2,6 +2,8 @@
 
 [[_TOC_]]
 
+Bạn có thể đọc phần 1 về Modulo & GCD [[ở đây|translate/he/So-hoc-Phan-1-Modulo-gcd]].
+
 
 # Số nguyên tố (Prime Numbers)
 
