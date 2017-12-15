@@ -62,6 +62,26 @@ Nhân cả 2 vế với $a^{-1}$, ta được:
 
 Như vậy, ta có thể dùng thuật toán [[Tính a^b % c bằng chia để trị|translate/he/Number-Theory-3]] để tính nghịch đảo modulo với độ phức tạp $O(\log{m})$.
 
+# Tính tất cả nghịch đảo modulo m
+
+Trong trường hợp $m$ là số nguyên tố, ta cũng có thể tính tất cả nghịch đảo modulo của toàn bộ $[1, m-1]$ với độ phức tạp $O(m)$ như sau:
+
+```cpp
+r[1] = 1;
+for(int i = 2; i < m; ++i)
+    r[i] = (m - (m/i) * r[m%i] % m) % m;
+```
+
+**Chứng minh:**
+
+$m \mod i = m - floor(m/i) \* i$
+
+$m \mod i \equiv -floor(m/i) \* i \pmod{m}$
+
+Nhân cả 2 vế với nghịch đảo modulo của $i$ và nghịch đảo modulo của $m \mod i$:
+
+$r[i] \equiv -floor(m/i) \* r \* (m \mod i) \pmod{m}$
+
 # Các bài luyện tập
 
 *   [UVa 11904 - One Unit Machine](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3055)
