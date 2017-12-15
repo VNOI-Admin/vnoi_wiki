@@ -68,6 +68,9 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Một số kĩ thuật tối ưu hoá QHĐ (3*)|algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong]]
 - [[Kĩ thuật bao lồi (3*)|translate/wcipeg/Convex-Hull-Trick]]
 
+## Đồ thị
+- [Bài toán 2-SAT (3*)](https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing)
+
 ## Tham lam
 
 - [[Tham lam (2*)|translate/topcoder/Greedy-is-Good]]
