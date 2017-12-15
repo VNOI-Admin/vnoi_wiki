@@ -41,3 +41,7 @@ int phi(int n) {
 ```
 
 **Độ phức tạp của thuật toán:** $O(\sqrt{N})$.
+
+# Hàm Nhân tính
+
+Để tính Phi hàm Euler nhanh hơn, các bạn cần biết về [[Hàm Nhân Tính|algo/math/multiplicative-function]].
