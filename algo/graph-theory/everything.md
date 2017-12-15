@@ -15,6 +15,7 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
   - [cowboycoder - BFS](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-tim-kiem-theo-chieu-rong-tren-do-thi-breadth-first-search-bfs)
   - [cowboycoder - DFS](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-3-tim-kiem-theo-chieu-sau-tren-do-thi-depth-first-search-dfs)
   - [cowboycoder - Topo sort](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-5-dag-va-sap-xep-topo-tren-do-thi)
+  - [vietcodes - Thành phần song liên thông](https://vietcodes.github.io/algo/biconnect)
   - [Code tìm khớp cầu C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BridgeArticulation.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BridgeArticulation.cpp)
   - [Code tìm thành phần liên thông mạnh C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/StronglyConnected.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/StronglyConnected.cpp)
   - [Code tìm thành phần song liên thông C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BiconnectedComponent.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BiconnectedComponent.cpp);
@@ -22,6 +23,7 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
 
 - Tìm đường đi ngắn nhất: Dijkstra, Floyd, Ford-Bellman:
   - [cowboycoder - Dijkstra](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-4-duong-di-ngan-nhat-tren-do-thi-va-thuat-toan-dijkstra)
+  - [vietcodes - Dijkstra cải tiến](https://vietcodes.github.io/algo/improved-dijkstra)
   - [Bài tập](http://vnoi.info/problems/list/?tag=39&page=1)
 
 - Cây khung nhỏ nhất:
