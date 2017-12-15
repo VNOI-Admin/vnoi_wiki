@@ -72,6 +72,10 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 - [[Tham lam (2*)|translate/topcoder/Greedy-is-Good]]
 
+## Số học
+
+- [[Số học 1 - Modulo và gcd (1*)|translate/he/So-hoc-Phan-1-Modulo-gcd]].
+
 ## Hình học
 
 - [[Bao lồi (3*)|translate/wcipeg/Convex-Hull]]
