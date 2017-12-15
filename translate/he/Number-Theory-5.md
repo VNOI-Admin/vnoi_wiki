@@ -9,7 +9,7 @@
 
 Trong toán học, tập hợp là một nhóm các phần tử, mỗi phần tử phân biệt với nhau.
 
-Ví dụ, 2, 4, 6 được coi là các phần tử phân biệt khi ta xét từng số một, nhưng khi chúng ta nhóm ba số ấy thì ta được một tập hợp gồm ba phần tử được kí hiệu là $\{2,4,6\}$.
+Ví dụ, 2, 4, 6 được coi là các phần tử phân biệt khi ta xét từng số một, nhưng khi chúng ta nhóm ba số ấy thì ta được một tập hợp gồm ba phần tử được kí hiệu là $\left 2,4,6 \right$.
 
 Tập hợp là một trong những khái niệm cơ bản trong Toán học.
 
