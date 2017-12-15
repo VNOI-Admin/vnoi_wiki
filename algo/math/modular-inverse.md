@@ -74,13 +74,13 @@ for(int i = 2; i < m; ++i)
 
 **Chứng minh:**
 
-$m \mod i = m - floor(m/i) \* i$
+$m \% i = m - floor(m/i) \* i$
 
-$m \mod i \equiv -floor(m/i) \* i \pmod{m}$
+$m \% i \equiv -floor(m/i) \* i \pmod{m}$
 
 Nhân cả 2 vế với nghịch đảo modulo của $i$ và nghịch đảo modulo của $m \mod i$:
 
-$r[i] \equiv -floor(m/i) \* r[m \mod i] \pmod{m}$
+$r[i] \equiv -floor(m/i) \* r[m \% i] \pmod{m}$
 
 # Các bài luyện tập
 
