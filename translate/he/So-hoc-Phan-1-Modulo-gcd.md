@@ -1,4 +1,4 @@
-# Số học
+# Số học 1 - Modulo & gcd
 
 [[_TOC_]]
 
