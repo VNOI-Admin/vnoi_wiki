@@ -75,7 +75,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 ## Số học
 
 - [[Số học 1 - Modulo và gcd (1*)|translate/he/So-hoc-Phan-1-Modulo-gcd]].
-- [[Số học 2 - Số nguyên tố, Sàng Eratosthenes (1*)|translate/he/translate/he/Number-Theory-2]].
+- [[Số học 2 - Số nguyên tố, Sàng Eratosthenes (1*)|translate/he/Number-Theory-2]].
 - [[Số học 3 - Tính (a^b) % c|translate/he/Number-Theory-3]].
 
 ## Hình học
