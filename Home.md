@@ -79,6 +79,8 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Số học 3 - Tính (a^b) % c (1*)|translate/he/Number-Theory-3]].
 - [[Số học 4 - Phi hàm Euler (2*)|translate/he/Number-Theory-4]].
 - [[Số học 5 - Các kiến thức cơ bản về Tổ hợp (Combinatorics) (2*)|translate/he/Number-Theory-5]].
+- [[Số học 6 - Xác suất (Probabilities) (2*)|translate/he/Number-Theory-6]].
+- [[Số học 7 - Bao hàm - Loại trừ (Inclusion-Exclusion) (2*)|translate/he/Number-Theory-7]].
 
 ## Hình học
 
