@@ -153,6 +153,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 - [[Xử lý xâu trong C++|languages/cpp/string]]
 - [[Sử dụng regex|translate/topcoder/Using-Regular-Expression]]
+- [C++ STL](https://drive.google.com/file/d/1iqlQ1TmgGy_CKwZ0_9KPfu_ZHsnrT3Tu/view?usp=sharing)
 
 ## Machine Learning
 
