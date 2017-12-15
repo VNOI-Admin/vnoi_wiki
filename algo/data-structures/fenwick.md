@@ -30,7 +30,6 @@ Mảng bắt buộc phải là 1-based, không thể chạy với 0-based.
 
 # Bài tập
 
-- [Inversions](http://acm.sgu.ru/problem.php?contest=0&problem=180)
 - [Pashmak and Parmida’s problem](http://codeforces.com/contest/459/problem/D)
 - [BST](http://hsin.hr/coci/archive/2008_2009/contest3_tasks.pdf)
 
