@@ -78,7 +78,7 @@ $m \% i = m - floor(m/i) \* i$
 
 $m \% i \equiv -floor(m/i) \* i \pmod{m}$
 
-Nhân cả 2 vế với nghịch đảo modulo của $i$ và nghịch đảo modulo của $m \mod i$:
+Nhân cả 2 vế với nghịch đảo modulo của $i$ và nghịch đảo modulo của $m \% i$:
 
 $r[i] \equiv -floor(m/i) \* r[m \% i] \pmod{m}$
 
