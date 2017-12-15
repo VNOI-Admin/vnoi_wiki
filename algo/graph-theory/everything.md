@@ -33,9 +33,11 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
   - [Bài tập](http://vnoi.info/problems/list/?tag=38&page=1)
 
 - Luồng cực đại:
+  - [Code luồng Dinic C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/MaxFlow/MaxFlowDinic.h)
   - [Bài tập](http://vnoi.info/problems/list/?tag=41&page=1)
 
 - Cặp ghép:
+  - [Code cặp ghép không trọng số C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Matching/Matching.h)
   - [Code Cặp ghép có trọng số C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/Matching/HungarianLMH.h)
   - [Bài tập](http://vnoi.info/problems/list/?tag=42&page=1)
 
