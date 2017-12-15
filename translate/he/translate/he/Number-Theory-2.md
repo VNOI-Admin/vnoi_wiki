@@ -87,17 +87,10 @@ Code trên được dùng để tìm các số nguyên tố nhỏ hơn hoặc b�
 
 Số lần lặp của vòng lặp trong là:
 
-Khi $i=2$, vòng lặp trong lặp $\frac{N}{2}$ lần.
-
-Khi $i=3$, vòng lặp trong lặp $\frac{N}{3}$ lần.
-
-Khi $i=5$, vòng lặp trong lặp $\frac{N}{5}$ lần.
-
-.
-
-.
-
-.
+- Khi $i=2$, vòng lặp trong lặp $\frac{N}{2}$ lần.
+- Khi $i=3$, vòng lặp trong lặp $\frac{N}{3}$ lần.
+- Khi $i=5$, vòng lặp trong lặp $\frac{N}{5}$ lần.
+- ...
 
 Độ phức tạp tổng: $N.(\frac{1}{2}+\frac{1}{3}+\frac{1}{5}+...)=O(N\log{N})$.
 
