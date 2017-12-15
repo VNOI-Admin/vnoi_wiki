@@ -47,4 +47,5 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
   - [Bài tập](http://vnoi.info/problems/list/?tag=70&page=1)
 
 - LCA:
+  - [Code C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/DataStructure/LCA_RMQ.h)
   - [Bài tập](http://vnoi.info/problems/list/?tag=77&page=1)
