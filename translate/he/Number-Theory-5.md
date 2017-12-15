@@ -9,7 +9,7 @@
 
 Trong toán học, tập hợp là một nhóm các phần tử, mỗi phần tử phân biệt với nhau.
 
-Ví dụ, 2, 4, 6 được coi là các phần tử phân biệt khi ta xét từng số một, nhưng khi chúng ta nhóm ba số ấy thì ta được một tập hợp gồm ba phần tử được kí hiệu là {2;4;6}.
+Ví dụ, 2, 4, 6 được coi là các phần tử phân biệt khi ta xét từng số một, nhưng khi chúng ta nhóm ba số ấy thì ta được một tập hợp gồm ba phần tử được kí hiệu là ${2,4,6}$.
 
 Tập hợp là một trong những khái niệm cơ bản trong Toán học.
 
@@ -29,9 +29,9 @@ Nếu $A$ là tập con của tập $B$ nhưng không bằng tập $B$, thì $A$
 
 Ví dụ:
 
-- {1;3} $\subset$ {1;2;3;4}
+- ${1,3} \subset {1,2,3,4}$
 
-- {1;2;3;4} $\subset$ {1;2;3;4}
+- ${1,2,3,4} \subset {1,2,3,4}$
 
 **Tập rỗng (empty set, kí hiệu $\varnothing$)** là tập con của tất că các tập và tất cả các tập là tập con của chính nó:
 
@@ -53,11 +53,9 @@ Hai tập hợp có thể được ghép vào nhau. Hợp của hai tập hợp 
 
 Ví dụ:
 
-- {1;2} $\cup$ {1;2} = {1;2}
-
-- {1;2} $\cup$ {2;3} = {1;2;3}
-
-- {1;2;3} $\cup$ {3;4;5} = {1;2;3;4;5}
+- ${1,2} \cup {1,2} = {1,2}$
+- ${1,2} \cup {2,3} = {1,2,3}$
+- ${1,2,3} \cup {3,4,5} = {1,2,3,4,5}$
 
 [[/uploads/number-theory-set-3.png]]
 
