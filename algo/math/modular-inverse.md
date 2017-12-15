@@ -80,7 +80,7 @@ $m \mod i \equiv -floor(m/i) \* i \pmod{m}$
 
 Nhân cả 2 vế với nghịch đảo modulo của $i$ và nghịch đảo modulo của $m \mod i$:
 
-$r[i] \equiv -floor(m/i) \* r \* (m \mod i) \pmod{m}$
+$r[i] \equiv -floor(m/i) \* r[m \mod i] \pmod{m}$
 
 # Các bài luyện tập
 
