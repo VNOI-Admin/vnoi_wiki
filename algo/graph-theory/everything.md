@@ -19,7 +19,8 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
   - [Code tìm khớp cầu C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BridgeArticulation.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BridgeArticulation.cpp)
   - [Code tìm thành phần liên thông mạnh C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/StronglyConnected.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/StronglyConnected.cpp)
   - [Code tìm thành phần song liên thông C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BiconnectedComponent.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BiconnectedComponent.cpp);
-  - [Bài tập](http://vnoi.info/problems/list/?tag=37&page=1)
+  - [Bài tập trên VOJ](http://vnoi.info/problems/list/?tag=37&page=1)
+  - [Bài H - ACM ICPC Vietnam Regional 2017](https://open.kattis.com/problems/heightpreservation)
 
 - Tìm đường đi ngắn nhất: Dijkstra, Floyd, Ford-Bellman:
   - [cowboycoder - Dijkstra](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-4-duong-di-ngan-nhat-tren-do-thi-va-thuat-toan-dijkstra)
