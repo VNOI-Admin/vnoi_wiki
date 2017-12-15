@@ -53,9 +53,9 @@ Hai tập hợp có thể được ghép vào nhau. Hợp của hai tập hợp 
 
 Ví dụ:
 
-- ${1,2} \cup {1,2} = {1,2}$
-- ${1,2} \cup {2,3} = {1,2,3}$
-- ${1,2,3} \cup {3,4,5} = {1,2,3,4,5}$
+- {1,2} $\cup$ {1,2} = {1,2}
+- {1,2} $\cup$ {2,3} = {1,2,3}
+- {1,2,3} $\cup$ {3,4,5} = {1,2,3,4,5}
 
 [[/uploads/number-theory-set-3.png]]
 
@@ -79,9 +79,8 @@ Một tập hợp mới có thể được xây dựng từ các phẩn tử mà
 
 Ví dụ:
 
-- {1;2} $\cap$ {1;2} = {1;2}.
-
-- {1;2} $\cap$ {2;3} = {2}.
+- {1,2} $\cap$ {1,2} = {1,2}.
+- {1,2} $\cap$ {2,3} = {2}.
 
 [[/uploads/number-theory-set-intersection.png]]
 
@@ -103,15 +102,15 @@ Một vài tính chất cơ bản của phép hợp:
 
 ### Phép lấy hiệu (Relative complement)
 
-Ta có thể thực hiên phép trừ với hai tập hợp. Hiệu của hai tập hợp $A$ và $B$, kí hiệu là $A \backslash B$, là tập hợp bao gồm tất cả các phần tử thuộc $A$ nhưng không thuộc $B$. Lưu ý rằng ta có thể trừ phần tử mà không thuộc tập hợp, ví dụ như bỏ phần tử 'xanh' khỏi tập hợp {1;2;3}, khi đó tập hợp {1;2;3} không bị thay đổi.
+Ta có thể thực hiên phép trừ với hai tập hợp. Hiệu của hai tập hợp $A$ và $B$, kí hiệu là $A \backslash B$, là tập hợp bao gồm tất cả các phần tử thuộc $A$ nhưng không thuộc $B$. Lưu ý rằng ta có thể trừ phần tử mà không thuộc tập hợp, ví dụ như bỏ phần tử 'xanh' khỏi tập hợp {1,2,3}, khi đó tập hợp {1,2,3} không bị thay đổi.
 
 Trong một số trường hợp tập $A$ được coi là tập con của một tập $U$ lớn hơn. Trong trường hợp đó, $U \backslash A$ được gọi là **phần bù hoàn toàn (absolute complement)** của tập $A$, và được kí hiệu là $A'$.
 
 Ví dụ:
 
-- {1;2} $\backslash$ {1;2} = $\varnothing$.
+- {1,2} $\backslash$ {1,2} = $\varnothing$.
 
-- {1;2;3;4} $\backslash$ {1;3} = {2;4}. 
+- {1,2,3,4} $\backslash$ {1,3} = {2,4}.
 
 - Nếu $U$ là tập hợp các số nguyên, $E$ là tập hợp các số nguyên chẵn, $O$ là tập hợp các số nguyên lẻ, khi đó $U \backslash E = E' = O$.
 
