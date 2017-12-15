@@ -61,3 +61,11 @@ Nhân cả 2 vế với $a^{-1}$, ta được:
 - Với $m$ nguyên tố, $a^{m-2} \equiv a^{-1} \pmod{m}$.
 
 Như vậy, ta có thể dùng thuật toán [[Tính a^b % c bằng chia để trị|translate/he/Number-Theory-3]] để tính nghịch đảo modulo với độ phức tạp $O(\log{m})$.
+
+# Các bài luyện tập
+
+*   [UVa 11904 - One Unit Machine](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3055)
+*   [Hackerrank - Longest Increasing Subsequence Arrays](https://www.hackerrank.com/contests/world-codesprint-5/challenges/longest-increasing-subsequence-arrays)
+*   [Codeforces 300C - Beautiful Numbers](http://codeforces.com/problemset/problem/300/C)
+*   [Codeforces 622F - The Sum of the k-th Powers](http://codeforces.com/problemset/problem/622/F)
+*   [Codeforces 717A - Festival Organization](http://codeforces.com/problemset/problem/717/A)
