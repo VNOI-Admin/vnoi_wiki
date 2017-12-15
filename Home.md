@@ -69,6 +69,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Kĩ thuật bao lồi (3*)|translate/wcipeg/Convex-Hull-Trick]]
 
 ## Đồ thị
+- [[Các chủ đề cơ bản về đồ thị (2*)|algo/graph-theory/everything]]
 - [Bài toán 2-SAT (3*)](https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing)
 
 ## Tham lam
