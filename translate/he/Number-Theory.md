@@ -1,9 +1,9 @@
-# Số học
+# Số học 7 - Bao hàm - Loại trừ (Inclusion-Exclusion)
 
 [[_TOC_]]
 
 
-# Các kiến thức nâng cao về công thức bao hàm - loại trừ (Principle of Inclusion-Exclusion)
+# Bao hàm - loại trừ (Inclusion-Exclusion)
 
 ## Phát biểu công thức
 
@@ -122,26 +122,3 @@ int solve (int n, int r) {
 	return r - sum;
 }
 ```  
-
-# Bài tập áp dụng
-
-## Các bài tập về đồng dư thức
-
-[Hackerearth - The Magical Shop](https://www.hackerearth.com/problem/algorithm/the-magical-shop/)
-
-[Hackerearth - Chandu and his Interns](https://www.hackerearth.com/problem/algorithm/chandu-and-his-interns/)
-
-[Hackerearth - The Confused Monk](https://www.hackerearth.com/problem/algorithm/the-confused-monk/)
-
-## Các bài tập về tổ hợp
-
-
-# Các tài liệu tham khảo
-
-- Các bài viết về Số học trên Hackerearth: [Bài I](https://www.hackerearth.com/notes/number-theory-1/), [Bài II](https://www.hackerearth.com/notes/number-theory-ii/), [Bài III](https://www.hackerearth.com/notes/number-theory-iii/)
-
-- Quyển "Một số vấn đề Số học chọn lọc" và "Chuyên đề chọn lọc Tổ hợp và Toán rời rạc", chủ biên Vũ Đình Mậu.
-
-- Sách giáo khoa "Đại số và Giải tích 11" của NXB Giáo dục.
-
-- Một số bài viết trên Wikipedia.
