@@ -101,7 +101,7 @@ Khi $i=5$, vòng lặp trong lặp $\frac{N}{5}$ lần.
 
 Độ phức tạp tổng: $N.(\frac{1}{2}+\frac{1}{3}+\frac{1}{5}+...)=O(N\log{N})$.
 
-# Chỉnh sửa sàng Eratosthenes để phân tích ra thừa số nguyên tố nhanh hơn
+# Phân tích thừa số nguyên tố với sàng Eratosthenes
 
 Cách cài đặt:
 
