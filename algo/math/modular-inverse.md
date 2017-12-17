@@ -54,7 +54,7 @@ Khi $gcd(a, m) = 1$, theo định lý Euler, ta có:
 
 $a^{phi(m)} \equiv 1 \pmod{m}$.
 
-Với hàm Euler đã được giải thích ở bài viết [[Số học 4|translate/he/Number-Theory-4]].
+Với Phi hàm Euler đã được giải thích ở bài viết [[Số học 4|translate/he/Number-Theory-4]].
 
 Trong trường hợp $m$ là số nguyên tố, $phi(m) = m - 1$, nên ta có:
 
