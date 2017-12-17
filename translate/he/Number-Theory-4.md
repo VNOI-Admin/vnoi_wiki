@@ -45,3 +45,7 @@ int phi(int n) {
 # Hàm Nhân tính
 
 Để tính Phi hàm Euler nhanh hơn, các bạn cần biết về [[Hàm Nhân Tính|algo/math/multiplicative-function]].
+
+# Bài tập áp dụng:
+
+- [VOJ - VOSPOW](http://vnoi.info/problems/VOSPOW)
