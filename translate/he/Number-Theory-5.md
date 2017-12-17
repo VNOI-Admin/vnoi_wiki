@@ -1,5 +1,9 @@
 # Số học 5 - Các kiến thức cơ bản về Tổ hợp (Combinatorics)
 
+Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-ii/)
+
+Người dịch: Bùi Việt Dũng
+
 [[_TOC_]]
 
 
