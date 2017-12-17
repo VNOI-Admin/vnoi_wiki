@@ -191,3 +191,7 @@ bool isPrime(int n) {
     return true;
 }
 ```
+
+# Bài tập áp dụng:
+
+- [SPOJ - PRIME1](http://www.spoj.com/problems/PRIME1/)
