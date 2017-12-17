@@ -1,5 +1,9 @@
 # Số học 7 - Bao hàm - Loại trừ (Inclusion-Exclusion)
 
+Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-ii/)
+
+Người dịch: Bùi Việt Dũng
+
 [[_TOC_]]
 
 
