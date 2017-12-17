@@ -1,5 +1,9 @@
 # Số học 6 - Xác suất (Probabilities)
 
+Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-ii/)
+
+Người dịch: Bùi Việt Dũng
+
 [[_TOC_]]
 
 
