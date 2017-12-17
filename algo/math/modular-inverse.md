@@ -1,5 +1,8 @@
 # Số học 4.5 - Nghịch đảo modulo
 
+Nguồn: [e-maxx](https://e-maxx-eng.appspot.com/algebra/module-inverse.html)
+Người dịch: Nguyễn Thành Trung (RR)
+
 [[_TOC_]]
 
 # Định nghĩa:
