@@ -1,6 +1,6 @@
 # Số học 4 - Phi hàm Euler
 
-Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-1/) và 1 số bài viết trên Wikipedia
+Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-iii/) và 1 số bài viết trên Wikipedia
 
 Người dịch: Bùi Việt Dũng
 
