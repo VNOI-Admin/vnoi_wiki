@@ -540,5 +540,5 @@ ta cũng có thể sử dụng QHĐ chia để trị.
 
 ### Bài luyện tập
 
-- [ACM ICPC Vietnam Regional 2017](https://open.kattis.com/problems/famouspagoda)
+- [F - ACM ICPC Vietnam Regional 2017](https://open.kattis.com/problems/famouspagoda)
 - [Hackerrank - Mining](https://www.hackerrank.com/contests/world-codesprint-5/challenges/mining)
