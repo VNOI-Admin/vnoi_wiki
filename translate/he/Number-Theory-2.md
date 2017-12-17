@@ -1,5 +1,9 @@
 # Số học 2 - Số nguyên tố, Sàng Eratosthenes
 
+Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-1/) và 1 số bài viết trên Wikipedia
+
+Người dịch: Bùi Việt Dũng
+
 [[_TOC_]]
 
 Bạn có thể đọc phần 1 về Modulo & GCD [[ở đây|translate/he/So-hoc-Phan-1-Modulo-gcd]].
