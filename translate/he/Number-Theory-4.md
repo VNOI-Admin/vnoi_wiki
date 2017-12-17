@@ -53,3 +53,4 @@ int phi(int n) {
 # Bài tập áp dụng:
 
 - [VOJ - VOSPOW](http://vnoi.info/problems/VOSPOW)
+- [VOJ - GCDSUM](http://vnoi.info/problems/GCDSUM/)
