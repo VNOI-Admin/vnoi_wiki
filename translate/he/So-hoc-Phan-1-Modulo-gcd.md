@@ -1,6 +1,7 @@
 # Số học 1 - Modulo & gcd
 
 Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-1/) và 1 số bài viết trên Wikipedia
+
 Người dịch: Bùi Việt Dũng
 
 [[_TOC_]]
