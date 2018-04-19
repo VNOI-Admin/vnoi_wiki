@@ -19,6 +19,8 @@ Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và ch
   - Lê Quang Tuấn: [HCV IOI 2017, HCĐ IOI 2016](http://stats.ioinformatics.org/people/6055), CF: [alexa0704](http://codeforces.com/profile/alexa0704)
   - Nguyễn Đinh Quang Minh: CF: [MofK](http://codeforces.com/profile/MofK)
 
+Cao Nguyên và Quang Tuấn đã từng có [[bài phỏng vấn trên VNOI wiki|vnoi-interview/Phong-van-team-IOI-VN-2017]]
+
 2. 2016 - National University of Singapore (NUS), team RRwatameda - rank 15:
   - Nguyễn Tấn Sỹ Nguyên: [HCB IOI 2011](http://stats.ioinformatics.org/people/2226), CF: [flashmt](http://codeforces.com/profile/flashmt)
   - Nguyễn Hùng Tâm: [HCB IMO 2012](https://www.imo-official.org/participant_r.aspx?id=21580)
