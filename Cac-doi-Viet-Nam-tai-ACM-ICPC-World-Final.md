@@ -25,6 +25,7 @@ Trong phần này mình chỉ liệt kê các đội gồm 3 người VN.
 3. 2011 - Nanyang Technological University (NTU), team NTU Ares - rank 17:
   - Khúc Anh Tuấn: [HCB IOI 2006](http://stats.ioinformatics.org/people/2361), CF: [ktuan](http://codeforces.com/profile/ktuan), TC: [ktuan](https://www.topcoder.com/members/ktuan/details/?track=DATA_SCIENCE&subTrack=SRM) - đỏ target duy nhất của VN, Rank 2 Facebook Hackercup 2011, 2 lần chung kết GCJ.
   - Phạm Quang Vũ: CF: [ConanKudo](http://codeforces.com/profile/ConanKudo), #17 ACM WF 2012
+  - Đoàn Tuấn Anh.
 
 4. 2016 - ĐH Công Nghệ (UET - VNU) - rank 29:
   - Phạm Văn Hạnh: [HCV IOI 2015](http://stats.ioinformatics.org/people/5815), CF: [skyvn97](http://codeforces.com/profile/skyvn97)
