@@ -10,9 +10,9 @@ Mỗi team gồm 3 người, giải 10-12 bài trong vòng 5h.
 
 Các đội Việt Nam muốn được thi Regional ở Việt Nam cần phải vượt qua vòng National.
 
-# Kết quả các đội Việt Nam tại ACM ICPC World Final
+# Các đội Việt Nam tại ACM ICPC World Final
 
-Trong phần này mình chỉ liệt kê các đội gồm 3 người VN.
+Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và chỉ liệt kê các đội đã vào top 30.
 
 1. 2018 - ĐH Công Nghệ (UET - VNU), team unsigned - rank 15:
   - Phạm Cao Nguyên: [HCV IOI 2016, HCĐ IOI 2017](http://stats.ioinformatics.org/people/6056), CF: [natsukagami](http://codeforces.com/profile/natsukagami)
