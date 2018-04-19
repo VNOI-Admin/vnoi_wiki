@@ -12,14 +12,13 @@ Các đội Việt Nam muốn được thi Regional ở Việt Nam cần phải 
 
 # Các đội Việt Nam tại ACM ICPC World Final
 
-Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và chỉ liệt kê các đội đã vào top 30.
+Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và chỉ liệt kê các đội đã vào top 50.
 
 1. 2018 - ĐH Công Nghệ (UET - VNU), team unsigned - rank 15:
   - Phạm Cao Nguyên: [HCV IOI 2016, HCĐ IOI 2017](http://stats.ioinformatics.org/people/6056), CF: [natsukagami](http://codeforces.com/profile/natsukagami)
   - Lê Quang Tuấn: [HCV IOI 2017, HCĐ IOI 2016](http://stats.ioinformatics.org/people/6055), CF: [alexa0704](http://codeforces.com/profile/alexa0704)
   - Nguyễn Đinh Quang Minh: CF: [MofK](http://codeforces.com/profile/MofK)
-
-Cao Nguyên và Quang Tuấn đã từng có [[bài phỏng vấn trên VNOI wiki|vnoi-interview/Phong-van-team-IOI-VN-2017]]
+  - Cao Nguyên và Quang Tuấn đã từng có [[bài phỏng vấn trên VNOI wiki|vnoi-interview/Phong-van-team-IOI-VN-2017]]
 
 2. 2016 - National University of Singapore (NUS), team RRwatameda - rank 15:
   - Nguyễn Tấn Sỹ Nguyên: [HCB IOI 2011](http://stats.ioinformatics.org/people/2226), CF: [flashmt](http://codeforces.com/profile/flashmt)
@@ -35,3 +34,8 @@ Cao Nguyên và Quang Tuấn đã từng có [[bài phỏng vấn trên VNOI wik
   - Phạm Văn Hạnh: [HCV IOI 2015](http://stats.ioinformatics.org/people/5815), CF: [skyvn97](http://codeforces.com/profile/skyvn97)
   - Nguyễn Tiến Trung Kiên: [HCB IOI 2015, HCĐ IOI 2014](http://stats.ioinformatics.org/people/5245), CF: [kien_coi_1997](http://codeforces.com/profile/kien_coi_1997)
   - Đỗ Ngọc Khánh: CF: [dnk](http://codeforces.com/profile/dnk)
+
+5. 2017 - ĐH Công Nghệ (UET - VNU) - rank 39:
+  - Phạm Văn Hạnh: [HCV IOI 2015](http://stats.ioinformatics.org/people/5815), CF: [skyvn97](http://codeforces.com/profile/skyvn97)
+  - Phan Đức Nhật Minh: [HCV IOI 2016, HCB IOI 2015](http://stats.ioinformatics.org/people/5816), CF: [minh141198](http://codeforces.com/profile/minh141198)
+  - Nguyễn Đức Duy: CF: [duyboy135](http://codeforces.com/profile/duyboy135)
