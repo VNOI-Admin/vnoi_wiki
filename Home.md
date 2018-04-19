@@ -147,6 +147,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 # Các kỳ thi
 
 - [ACM ICPC Regional Vietnam](http://acmicpc-vietnam.github.io/)
+- [[Việt Nam tại ACM ICPC World Final|Cac-doi-Viet-Nam-tai-ACM-ICPC-World-Final]]
 
 
 # Các chủ đề trong Khoa học máy tính
