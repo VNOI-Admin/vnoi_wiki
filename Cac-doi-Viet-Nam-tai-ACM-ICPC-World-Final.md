@@ -1,4 +1,6 @@
-## Giới thiệu
+# Các đội Việt Nam tại ACM ICPC World Final
+
+# Giới thiệu
 
 [ACM ICPC](https://en.wikipedia.org/wiki/ACM_International_Collegiate_Programming_Contest) là kỳ thi lập trình lớn nhất thế giới dành cho sinh viên. Năm 2017 có gần 50,000 thí sinh từ hơn 3000 trường ĐH, đến từ 111 quốc gia  và vùng lãnh thổ tham dự.
 
@@ -8,7 +10,7 @@ Mỗi team gồm 3 người, giải 10-12 bài trong vòng 5h.
 
 Các đội Việt Nam muốn được thi Regional ở Việt Nam cần phải vượt qua vòng National.
 
-## Kết quả các đội Việt Nam tại ACM ICPC World Final
+# Kết quả các đội Việt Nam tại ACM ICPC World Final
 
 Trong phần này mình chỉ liệt kê các đội gồm 3 người VN.
 
