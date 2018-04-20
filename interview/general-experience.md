@@ -10,7 +10,7 @@ Tác giả: Đinh Hoàng Phong
 - Nếu bạn còn đang là sinh viên thì nên ghi rõ trường bạn đang học và điểm trung bình tới thời điểm gần nhất.
 - Khi bạn viết resume xong, hãy đưa thử một người khác đọc và hỏi họ xem, nếu họ là nhà tuyển dụng, họ có chú ý đến bạn hay không, từ đó bạn hãy lắng nghe những gì họ nói và sửa đổi để hoàn thiện resume của mình hơn
 
-Ví dụ: [một resume được trình bày rõ ràng](http://www.clarkson.edu/writingcenter/images/Senior_CS_Resume.jpg)
+Ví dụ: [một resume được trình bày rõ ràng](https://drive.google.com/file/d/0BwcTB8a10LBwdXdxOWoyRjdVNWc/view)
 
 ## Những bước cơ bản để nộp hồ sơ và thu hút nhà tuyển dụng
 
