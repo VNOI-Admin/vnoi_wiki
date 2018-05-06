@@ -59,7 +59,8 @@ Ví dụ:
 $\phi(6) = 6 \* (1 - 1/2) \* (1 - 1/3) = 2$
 
 Cài đặt:
-```
+
+```cpp
 int eulerPhi(int n) { // = n (1-1/p1) ... (1-1/pn)
     if (n == 0) return 0;
     int ans = n;
