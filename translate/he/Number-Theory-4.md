@@ -58,6 +58,22 @@ Ví dụ:
 
 $\phi(6) = 6 \* (1 - 1/2) \* (1 - 1/3) = 2$
 
+Cài đặt:
+```
+int eulerPhi(int n) { // = n (1-1/p1) ... (1-1/pn)
+    if (n == 0) return 0;
+    int ans = n;
+    for (int x = 2; x*x <= n; ++x) {
+        if (n % x == 0) {
+            ans -= ans / x;
+            while (n % x == 0) n /= x;
+        }
+    }
+    if (n > 1) ans -= ans / n;
+    return ans;
+}
+```
+
 # Hàm Nhân tính
 
 Để tính Phi hàm Euler nhanh hơn, các bạn cần biết về [[Hàm Nhân Tính|algo/math/multiplicative-function]].
