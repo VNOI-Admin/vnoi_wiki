@@ -75,6 +75,8 @@ int eulerPhi(int n) { // = n (1-1/p1) ... (1-1/pn)
 }
 ```
 
+Trong trường hợp đặc biệt, $N = p^{k}, \phi(N) = p^{k-1} \* (p-1)$.
+
 # Hàm Nhân tính
 
 Để tính Phi hàm Euler nhanh hơn, các bạn cần biết về [[Hàm Nhân Tính|algo/math/multiplicative-function]].
