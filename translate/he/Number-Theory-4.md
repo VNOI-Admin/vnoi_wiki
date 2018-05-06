@@ -46,6 +46,18 @@ int phi(int n) {
 
 **Độ phức tạp của thuật toán:** $O(\sqrt{N})$.
 
+# Công thức
+
+Một công thức thường gặp để tính phi:
+
+$\phi(N) = n \* \prod_{p|n}(1 - 1/p) $
+
+(p là các ước nguyên tố của n).
+
+Ví dụ:
+
+$\phi(6) = 6 \* (1 - 1/2) \* (1 - 1/3) = 2$
+
 # Hàm Nhân tính
 
 Để tính Phi hàm Euler nhanh hơn, các bạn cần biết về [[Hàm Nhân Tính|algo/math/multiplicative-function]].
