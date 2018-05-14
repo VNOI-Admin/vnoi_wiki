@@ -44,14 +44,14 @@ Chúng ta cần tìm ra tất cả các vị trí $i (1 \le i \le m − n + 1)$ 
 
 ## Mô tả thuật toán
 
-Để đơn giản, giả sử rằng $\Sigma = {a, b, ..., z}$ (nói cách khác, $\Sigma$ chỉ gồm các chữ cái in thường). Để biểu diễn một xâu, thay vì dùng chữ cái, chúng ta sẽ chuyển sang biểu diễn dạng số. Ví dụ: xâu `aczd` được viết dưới dạng số là một dãy gồm 4 số: `(1,3,26,4)`. Như vậy, một xâu được biểu diễn dưới dạng một số ở hệ cơ số `base` với $base > 26$. Từ đây suy ra, 2 xâu bằng nhau khi và chỉ khi biểu diễn của 2 xâu ở hệ cơ số 10 giống nhau.
+Để đơn giản, giả sử rằng $\Sigma = {a, b, ..., z}$ (nói cách khác, $\Sigma$ chỉ gồm các chữ cái in thường). Để biểu diễn một xâu, thay vì dùng chữ cái, chúng ta sẽ chuyển sang biểu diễn dạng số. Ví dụ: xâu `aczd` được viết dưới dạng số là một dãy gồm 4 số: `(1,3,26,4)`. Như vậy, một xâu được biểu diễn dưới dạng một số ở hệ cơ số $base$ với $base > 26$. Từ đây suy ra, 2 xâu bằng nhau khi và chỉ khi biểu diễn của 2 xâu ở hệ cơ số 10 giống nhau.
 
 **Lưu ý**:
 
-1. Ở đây mình đổi chữ 'a' thành số 1 chứ không phải số 0. Đây là chi tiết vô cùng quan trọng, để tránh 2 xâu: 'abc' và 'bc' bằng nhau khi đổi ra số. Bạn có thể đọc thêm chi tiết ở phần [Chi tiết cài đặt](#chi-tiết-cài-đặt).
-2. Thông thường ta chọn `base` là một số nguyên tố. Mình sẽ giải thích thêm trong phần [Chi tiết cài đặt](#chi-tiết-cài-đặt).
+1. Ở đây mình đổi chữ `a` thành số 1 chứ không phải số 0. Đây là chi tiết vô cùng quan trọng, để tránh 2 xâu: `abc` và `bc` bằng nhau khi đổi ra số. Bạn có thể đọc thêm chi tiết ở phần [Chi tiết cài đặt](#chi-tiết-cài-đặt).
+2. Thông thường ta chọn $base$ là một số nguyên tố. Mình sẽ giải thích thêm trong phần [Chi tiết cài đặt](#chi-tiết-cài-đặt).
 
-Đây chính là tư tưởng của thuật toán: đổi 2 xâu từ hệ cơ số `base` ra hệ cơ số 10, rồi đem so sánh ở hệ cơ số 10. Tuy nhiên, chúng ta nhận thấy rằng, khi đổi 1 xâu ra biểu diễn ở hệ cơ số 10, biểu diễn này có thể rất lớn và nằm ngoài phạm vi lưu trữ số nguyên của máy tính.
+Đây chính là tư tưởng của thuật toán: đổi 2 xâu từ hệ cơ số $base$ ra hệ cơ số 10, rồi đem so sánh ở hệ cơ số 10. Tuy nhiên, chúng ta nhận thấy rằng, khi đổi 1 xâu ra biểu diễn ở hệ cơ số 10, biểu diễn này có thể rất lớn và nằm ngoài phạm vi lưu trữ số nguyên của máy tính.
 
 Để khắc phục điều này, chúng ta chuyển sang so sánh 2 biểu diễn của 2 xâu ở hệ cơ số 10 sau khi lấy phần dư cho một số nguyên đủ lớn. Cụ thể hơn: nếu biểu diễn trong hệ thập phân của xâu $a$ là $x$ và biểu diễn trong hệ thập phân của xâu $b$ là $y$, chúng ta sẽ coi $a$ bằng $b$ _‘khi và chỉ khi’_ $x \bmod MOD = y \bmod MOD$ trong đó $MOD$ là một số nguyên đủ lớn.
 
@@ -74,7 +74,7 @@ for (i : 1 .. n)
 
 Phần khó hơn của thuật toán Hash là: Tính mã Hash của một đoạn con $T[i..j]$ của xâu $T$ $(1 \le i \le j \le N)$.
 
-- Để hình dung cho đơn giản, xét ví dụ sau: Xét xâu $s$ và biểu diễn của nó dưới cơ số `base`: $(4,1,2,5,1,7,8)$. Chúng ta cần lấy mã Hash của đoạn con từ phần tử thứ 3 đến phần tử thứ 6, nghĩa là cần lấy mã Hash của xâu $(2,5,1,7)$. Nhận thấy, để lấy được xâu $s[3..6]$, chỉ cần lấy số $s[1..6]$ là $(4,1,2,5,1,7)$ trừ cho số ($s[1..2]$ nhân với $base^4$) là $(4,1,0,0,0,0)$ ta sẽ thu được $(2,5,1,7)$.
+- Để hình dung cho đơn giản, xét ví dụ sau: Xét xâu $s$ và biểu diễn của nó dưới cơ số $base$: $(4,1,2,5,1,7,8)$. Chúng ta cần lấy mã Hash của đoạn con từ phần tử thứ 3 đến phần tử thứ 6, nghĩa là cần lấy mã Hash của xâu $(2,5,1,7)$. Nhận thấy, để lấy được xâu $s[3..6]$, chỉ cần lấy số $s[1..6]$ là $(4,1,2,5,1,7)$ trừ cho số ($s[1..2]$ nhân với $base^4$) là $(4,1,0,0,0,0)$ ta sẽ thu được $(2,5,1,7)$.
 - Để cài đặt ý tưởng này, chúng ta cần khởi tạo $base^x \bmod MOD$ với $(0 \le x \le m)$ và mã Hash của tất cả những tiền tố của $s$, cụ thể là mã Hash của những xâu $s[1..i]$ với $(1 \le i \le m)$.
 
 ```
@@ -171,8 +171,8 @@ Trong thuật toán hash, có hai yếu tố cần quan tâm là hệ cơ số (
 
 Ý tưởng của thuật toán Hash là dựa trên một ngộ nhận sai lầm nhưng xảy ra sai sót với xác suất vô cùng nhỏ: $a mod M = b <=> a = b$. Để xác suất xảy ra sai là $1/M$ cho một truy vấn, các bạn cần chọn hệ cơ số và modulo thỏa mãn đồng thời:
 
-- `base` là số nguyên tố lớn hơn các chữ cái của xâu `S`.
-- `MOD` là số nguyên tố.
+- $base$ là số nguyên tố lớn hơn các chữ cái của xâu `S`.
+- $MOD$ là số nguyên tố.
 
 Phần chứng minh sai số bạn có thể đọc thêm trong [blog rng_58](http://rng-58.blogspot.sg/2017/02/hashing-and-probability-of-collision.html), tuy nhiên phần chứng minh rất phức tạp nên mình sẽ không trình bày ở đây.
 
@@ -186,7 +186,7 @@ Nếu bạn chọn hệ cơ số > 256, bạn chỉ cần dùng mã ASCII của 
 
 ## 3. Chọn modulo
 
-Nếu bạn không hiểu rõ về cách đánh giá độ chính xác của thuật Hash (trình bày ở mục [Đánh giá độ chính xác](#Đánh-giá-độ-chính-xác)), bạn chỉ cần chọn 3-4 số nguyên tố khác nhau làm `MOD`. Bạn có thể tham khảo [code của Phạm Văn Hạnh](http://codeforces.com/contest/727/submission/21451704). Tuy nhiên các bạn cũng nên lưu ý là dùng nhiều `MOD` quá cũng làm chương trình chạy chậm đi.
+Nếu bạn không hiểu rõ về cách đánh giá độ chính xác của thuật Hash (trình bày ở mục [Đánh giá độ chính xác](#Đánh-giá-độ-chính-xác)), bạn chỉ cần chọn 3-4 số nguyên tố khác nhau làm $MOD$. Bạn có thể tham khảo [code của Phạm Văn Hạnh](http://codeforces.com/contest/727/submission/21451704). Tuy nhiên các bạn cũng nên lưu ý là dùng nhiều $MOD$ quá cũng làm chương trình chạy chậm đi.
 
 ## 4. Hash tràn số và Hash có MOD
 
