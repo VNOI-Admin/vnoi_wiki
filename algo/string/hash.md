@@ -169,7 +169,7 @@ Trong thuật toán hash, có hai yếu tố cần quan tâm là hệ cơ số (
 
 ## 1. Chọn số nguyên tố cho hệ cơ số và modulo
 
-Ý tưởng của thuật toán Hash là dựa trên một ngộ nhận sai lầm nhưng xảy ra sai sót với xác suất vô cùng nhỏ: $a \bmod M = b <=> a = b$. Để xác suất xảy ra sai là $1/M$ cho một truy vấn, các bạn cần chọn hệ cơ số và modulo thỏa mãn đồng thời:
+Ý tưởng của thuật toán Hash là dựa trên một ngộ nhận sai lầm nhưng xảy ra sai sót với xác suất vô cùng nhỏ: $a \bmod M = b \bmod M <=> a = b$. Để xác suất xảy ra sai là $1/M$ cho một truy vấn, các bạn cần chọn hệ cơ số và modulo thỏa mãn đồng thời:
 
 - $base$ là số nguyên tố lớn hơn các chữ cái của xâu `S`.
 - $MOD$ là số nguyên tố.
