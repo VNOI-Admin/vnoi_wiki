@@ -77,7 +77,7 @@ begin
             if p^.c[s[i]]=nil then exit(false);
             p:=p^.c[s[i]];
         end;
-    exit(true);
+    exit(p^.count>0);
 end;
 ```
 
