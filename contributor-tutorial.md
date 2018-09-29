@@ -1,11 +1,5 @@
 # Hướng dẫn cho contributor
 
-# Đăng ký làm contributor
-
-Để đăng ký làm contributor, các bạn có thể gửi tin nhắn cho [RR](https://www.facebook.com/Nguyen.RR), nói rõ muốn làm VNOI Contributor. Sau đấy các bạn sẽ được add vào group Facebook "VNOI Contributor" và có thể làm tiếp theo hướng dẫn.
-
-Thông thường các contributor sẽ phải nộp 1 file markdown để giới thiệu bản thân và làm quen với việc viết markdown.
-
 # Tạo bài viết mới
 
 Các bài viết trên VNOI có cấu trúc [hình cây](http://vnoi.info/contributor/fileview). Các bạn nhìn qua để hiểu cần cho bài viết của mình vào đâu.
@@ -31,25 +25,3 @@ Một vài chú ý:
 - Để đặt tên bài viết, thêm 1 dòng `# Tiêu đề` ở đầu bài viết.
 - Các heading luôn dùng từ heading 1: `#`, không nhảy cóc. Như vậy thì Table of content mới hiện đúng.
 - Công thức toán cho vào dấu `$$`. Các biến, đoạn code ngắn cho vào trong 2 dấu *`*.
-
-# Quản lý bài viết
-
-Tất cả các bài viết được quản lý bằng [Trello](https://trello.com/). Do đó bạn cần có 1 account trello. Trong board VNOI articles, bạn sẽ thấy trạng thái của tất cả các bài viết. Một bài viết là một task và sẽ trải qua các trạng thái:
-
-- TODO: Chưa ai dịch
-- Doing: Đang dịch
-- Review: Đang review
-- Review 2: Đang review lần 2
-- Done: Bài viết đã hoàn thành
-
-Nếu bạn nhận dịch / viết bài nào, thì tự assign mình vào task đó, set deadline, comment link bài dịch trên VNOI. Sau đó bạn chuyển task qua cột tương ứng:
-
-- Nếu bạn nhận dịch, chuyển sang cột Doing
-- Nếu bạn dịch xong, chuyển sang cột Review
-- Nếu bạn nhận review, sau khi review xong chuyển sang cột Review 2.
-
-Thông thường, bạn nên dịch 1 vài bài trước khi review, để có thể nắm được những điểm cần chú ý khi dịch / review.
-
-**Tip**:
-
-- Ấn `q` để chỉ hiện những task của mình.
