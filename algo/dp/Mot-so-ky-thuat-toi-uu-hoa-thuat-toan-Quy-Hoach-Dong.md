@@ -10,9 +10,10 @@ Quy hoạch động (QHĐ) là một lớp thuật toán rất quan trọng và 
 
 Nhiều khi trong trạng thái QHĐ có một thành phần nào đấy với khoảng giá trị quá lớn, trong khi kết quả của hàm lại có khoảng giá trị nhỏ. Trong một vài trường hợp, ta có thể đảo nhãn để giảm số trạng thái.
 
-## Bài tập ví dụ: Longest Common Subsequence (LCS)
+## Bài tập ví dụ
+### Longest Common Subsequence (LCS)
 
-### Đề bài
+#### Đề bài
 Cho xâu A độ dài m, xâu B độ dài n. Hãy tìm độ dài xâu con chung dài nhất của hai xâu, chú ý là xâu con chung có thể không liên tiếp.
 
 **Giới hạn**
@@ -31,7 +32,7 @@ LCS = ABC
 Kết quả = 3
 ```
 
-### Lời giải
+#### Lời giải
 
 **Thuật toán đơn giản**
 
@@ -115,11 +116,11 @@ int main() {
 }
 ```
 
-## Bài tập ví dụ: Computer (VNOI Marathon 2010)
+### Computer (VNOI Marathon 2010)
 
 Problem Link: [COMPUTER - VOJ](http://vnoi.info/problems/show/COMPUTER/).
 
-### Đề bài
+#### Đề bài
 
 Công ty phần mềm XYZ mới mua x máy tính để bàn và y máy tính xách tay. Giá một máy tính để bàn là a đồng còn giá một máy tính xách tay là b đồng. Để tránh sự thắc mắc giữa các phòng bàn, Tổng giám đốc đã đưa ra cách phân bố các máy tính này về n phòng ban như sau:
 
@@ -153,7 +154,7 @@ Output
 1300
 ```
 
-### Lời giải
+#### Lời giải
 
 Trước hết ta sẽ chặt nhị phân kết quả bài toán. Với mỗi giá trị chặt nhị phân, ta cần kiểm tra xem có tồn tại phương án thỏa mãn hay không.
 
@@ -175,7 +176,7 @@ Nhận xét rằng ta không cần quan tâm tới thứ tự về mức độ q
 
 Ta có trạng thái QHĐ là $F(i, x, y, value) = true$ nếu có thể phân bổ máy tính cho i phòng ban, đã dùng x máy tính để bàn và y máy tính xách tay, đã gom được tổng giá trị v cho phòng thứ $i+1$. Cách làm này số trạng thái vẫn như trước nhưng ta đã có thể chuyển trạng thái trong $O(1)$. Cụ thể từ $F(i, x, y, value)$ ta chuyển đến $F(i, x+1, y, value+a)$ hoặc $F(i, x, y+1, value+b)$, chú ý là chỉ có thể dùng thêm máy xách tay nếu $x<X$ và dùng thêm máy để bàn nếu $y<Y$, đồng thời nếu giá trị value đủ lớn hơn hoặc bằng v thì ta chuyển sang trạng thái $F(i+1, x, y, 0)$ luôn.
 
-### Đổi biến
+**Đổi biến**
 
 Ở bài này, ta có thể dễ dàng đổi biến value ra làm hàm mục tiêu. Nhưng không chỉ có vậy, ta có thể đẩy cả i ra ngoài! Cụ thể, $F(x, y)$ = một cặp số $(i, value)$ lần lượt là số phòng phân bố được và số tiền gom được. Hàm mục tiêu của $F(x, y)$ là một cặp số hoàn toàn có thể so sánh được, trong đó giá trị đầu (i) được ưu tiên so sánh trước.
 
@@ -248,11 +249,12 @@ int main() {
 
 Đây là kỹ thuật khá hiếm gặp, tuy nhiên lại cực kỳ mạnh.
 
-## Hai nhà máy [CEOI 2004](http://www.oi.edu.pl/old/ceoi2004/)
+## Bài tập ví dụ
+### Hai nhà máy [CEOI 2004](http://www.oi.edu.pl/old/ceoi2004/)
 
-### Đề bài
+#### Đề bài
 
-Có n cây cổ thụ được trồng trên một con đường từ đỉnh đổi đến chân đồi. Chính phủ địa phương quyết định cắt bỏ chúng. Để tránh hoang phí, mỗi cái cây cần được chuyển đến một nhà máy cưa.
+Có $n$ cây cổ thụ được trồng trên một con đường từ đỉnh đổi đến chân đồi. Chính phủ địa phương quyết định cắt bỏ chúng. Để tránh hoang phí, mỗi cái cây cần được chuyển đến một nhà máy cưa.
 	
 Cây chỉ có thể được vận chuyển theo một chiều duy nhất: hướng về chân đồi. Có một nhà máy cưa ở cuối con đường. Hai nhà máy cưa có thể được xây dựng dọc theo con đường. Hãy xác định vị trí tối ưu để xây dựng chúng, để cực tiểu hóa chi phí vận chuyển. Chi phí vận chuyển 1kg gỗ đi 1 mét là 1 cent.
 
@@ -266,9 +268,9 @@ Viết chương trình:
 
 **Input**
 
-Dòng đầu tiên chứa số n - số lượng cây $(2 \le n \le 20,000)$. Các cây được đánh số 1, 2, ..., n, theo chiều từ đỉnh đồi đến chân đồi.
+Dòng đầu tiên chứa số $n$ - số lượng cây $(2 \le n \le 20,000)$. Các cây được đánh số $1, 2, ..., n$, theo chiều từ đỉnh đồi đến chân đồi.
 
-n dòng tiếp theo mỗi dòng chứa hai số nguyên dương cách nhau bởi dấu cách. Dòng thứ $i + 1$ chứa $w_i$ - khối lượng tính theo kg của cái cây thử i và $d_i$ - khoảng cách tính theo mét giữa cây thứ i và cây $i + 1$, $1 \le w_i \le 10000, 0 \le d_i \le 10000$. Số cuối cùng, $d_n$ là khoảng cách từ cây thứ n đến chân đồi.
+$n$ dòng tiếp theo mỗi dòng chứa hai số nguyên dương cách nhau bởi dấu cách. Dòng thứ $i + 1$ chứa $w_i$ - khối lượng tính theo kg của cái cây thử i và $d_i$ - khoảng cách tính theo mét giữa cây thứ i và cây $i + 1$, $1 \le w_i \le 10000, 0 \le d_i \le 10000$. Số cuối cùng, $d_n$ là khoảng cách từ cây thứ n đến chân đồi.
 Dữ liệu vào đảm bảo kết quả của bài toán không vượt quá $2 * 10^9$ cent.
 
 **Output**
@@ -302,7 +304,7 @@ Hình vẽ trên minh họa cho test ví dụ. Các hình tròn được tô đe
 
 $1 * (2+1) + 2 * 1 + 1 * (1 + 2) + 3 * 2 + 2 * (1 + 2 + 1) + 1 * (2 + 1) + 1 * 1 = 26$.
 
-### Lời giải
+#### Lời giải
 
 Trước hết ta sẽ giải quyết vấn đề tính chi phí vận chuyển nếu biết vị trí của hai nhà máy đặt thêm.
 
@@ -348,18 +350,16 @@ void solve(int L, int R, int from, int to) {
 
 Đánh giá độ phức tạp thuật toán: vì mỗi lần gọi để quy khoảng $[L,R]$ được chia đôi, nên sẽ có $O(logN)$ tầng, mỗi tầng vòng for chỉ chạy qua $O(N)$ phần tử, vì vậy độ phức tạp của thuật toán là $O(NlogN)$.
 
-## Bài ví dụ: SEQPART
-
-Link: [Hackerrank](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
-
-Cho dãy L số C[1..L], cần chia dãy này thành G đoạn liên tiếp. Với phần tử thứ i, ta định nghĩa chi phí của nó là tích của C[i] và số lượng số nằm cùng đoạn liên tiếp với nó. Chi phí của dãy số ứng với một cách phân hoạch là tổng các chi phí của các phần tử.
+### SEQPART - [Hackerrank](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
+#### Đề bài
+Cho dãy $L$ số $C[1..L]$, cần chia dãy này thành $G$ đoạn liên tiếp. Với phần tử thứ $i$, ta định nghĩa chi phí của nó là tích của $C[i]$ và số lượng số nằm cùng đoạn liên tiếp với nó. Chi phí của dãy số ứng với một cách phân hoạch là tổng các chi phí của các phần tử.
 
 Hãy xác định cách phân hoạch dãy số để chi phí là nhỏ nhất.
 
 **Input**
 
-- Dòng đầu tiên chứa 2 số L và G.
-- L dòng tiếp theo, chứa giá trị của dãy C.
+- Dòng đầu tiên chứa 2 số $L$ và $G$.
+- $L$ dòng tiếp theo, chứa giá trị của dãy $C$.
 
 **Output**
 
@@ -391,9 +391,9 @@ Output
 
 Chi phí là $11 * 3 + 11 * 3 + 11 * 3 + 24 * 2 + 26 * 2 + 100 * 1 = 299$.
 
-### Lời giải
+#### Lời giải
 
-Đây là dạng bài toán phân hoạch dãy số có thể dễ dàng giải bài QHĐ. Gọi $F(g, i)$ là chi phí nhỏ nhất nếu ta phân hoạch i phần tử đầu tiên thành g nhóm, khi đó kết quả bài toán sẽ là $F(G, L)$.
+Đây là dạng bài toán phân hoạch dãy số có thể dễ dàng giải bài QHĐ. Gọi $F(g, i)$ là chi phí nhỏ nhất nếu ta phân hoạch $i$ phần tử đầu tiên thành $g$ nhóm, khi đó kết quả bài toán sẽ là $F(G, L)$.
 
 Để tìm công thức truy hồi cho hàm $F(g, i)$, ta sẽ quan tâm đến nhóm cuối cùng. Coi phần tử 0 là phần tử cầm canh ở trước phần tử thứ nhất, thì người cuối cùng không thuộc nhóm cuối có chỉ số trong đoạn $[0, i]$. Giả sử đó là người với chỉ số k, thì chi phí của cách phân hoạch sẽ là $F(g-1, k) + Cost(k+1, i)$, với $Cost(i, j)$ là chi phí nếu phân $j-i+1$ người có chỉ số $[i, j]$ vào một nhóm. Như vậy:
 
@@ -447,7 +447,7 @@ int main() {
 
 ```
 
-Chú ý là ta sử dụng mảng sum[] tiền xử lí $O(L)$ để có thể truy vấn tổng một đoạn (dùng ở hàm cost()) trong $O(1)$. Như vậy độ phức tạp của thuật toán này là $O(G \*L \* L)$.
+Chú ý là ta sử dụng mảng $sum[]$ tiền xử lí $O(L)$ để có thể truy vấn tổng một đoạn (dùng ở hàm $cost()$) trong $O(1)$. Như vậy độ phức tạp của thuật toán này là $O(G \*L \* L)$.
 
 **Thuật toán tối ưu hơn**
 
@@ -516,21 +516,21 @@ int main() {
 
 ```
 
-Chú ý rằng ta không thể đảm bảo rằng $P(g,mid)$ chia đôi đoạn $[optL, optR]$, thực tế một vài hàm solve() sẽ chạy chậm hơn nhiều hàm solve() khác.
+Chú ý rằng ta không thể đảm bảo rằng $P(g,mid)$ chia đôi đoạn $[optL, optR]$, thực tế một vài hàm $solve()$ sẽ chạy chậm hơn nhiều hàm $solve()$ khác.
 
-Tuy nhiên ta có thể chứng minh được, xét về tổng thế thuật toán này chạy đủ nhanh. Mỗi lần ta chia đôi đoạn $[L, R]$, nên ta sẽ đảm bảo có tối đa $O(log(L))$ tầng đệ quy, như vậy với mỗi hàng g, ta chỉ mất $O(L \* logL)$ để tính. Toàn bộ thuật toán có độ phức tạp là $O(G \* L \* logL)$.
+Tuy nhiên ta có thể chứng minh được, xét về tổng thế thuật toán này chạy đủ nhanh. Mỗi lần ta chia đôi đoạn $[L, R]$, nên ta sẽ đảm bảo có tối đa $O(log(L))$ tầng đệ quy, như vậy với mỗi hàng $g$, ta chỉ mất $O(L \* logL)$ để tính. Toàn bộ thuật toán có độ phức tạp là $O(G \* L \* logL)$.
 
 [[/uploads/dp_optimization_img2.png]]
 
-## Điều kiện để Chia để trị đúng
+### Điều kiện để Chia để trị đúng
 
-### Điều kiện theo best
+#### Điều kiện theo best
 
 Như ở bài Hai nhà máy CEOI 2004:
 
 Nếu $best(i) \le best(i+1)$, ta có thể sử dụng chia để trị.
 
-### Điều kiện theo cost
+#### Điều kiện theo cost
 
 Nếu hàm cost thoả mãn quadrangle inequalities:
 
@@ -538,7 +538,7 @@ $cost(a, d) + cost(b, c) \ge cost(a, c) + cost(b, d)$ với mọi $a < b < c < d
 
 ta cũng có thể sử dụng QHĐ chia để trị.
 
-### Bài luyện tập
+## Bài luyện tập
 
 - [F - ACM ICPC Vietnam Regional 2017](https://open.kattis.com/problems/famouspagoda)
 - [Hackerrank - Mining](https://www.hackerrank.com/contests/world-codesprint-5/challenges/mining)
@@ -853,3 +853,265 @@ int main() {
 
 ## Bài luyện tập
  - [VOJ-NKLEAVES](http://vn.spoj.com/problems/NKLEAVES/)
+
+
+# 4. Tối ưu bằng stack
+
+Các tính chất của stack cho phép ta xây dựng một số kỹ thuật để tối ưu thuật toán.
+
+## Bài tập ví dụ
+
+### [BLOCKS - IZHO 2014](https://oj.uz/problem/view/IZhO14_blocks)
+#### Đề bài
+Cho dãy số nguyên dương $a[1], a[2], …, a[N]$.
+Xét các chia dãy số $a$ thành $K$ nhóm sao cho mỗi nhóm chứa một đoạn liên tiếp các phần tử của $a$. Gọi trọng số của một cách chia là tổng các phần tử lớn nhất của mỗi nhóm.
+
+**Yêu cầu**
+
+Tìm cách chia dãy số thành $K$ nhóm sao cho trọng số của cách chia là nhỏ nhất.
+
+**Input**
+ - Dòng 1 chứa hai số nguyên dương $N$ và $K$ ($K \le N$)
+ - Dòng 2 gồm $N$ số nguyên dương $a[1], a[2], …, a[N]$
+
+**Output**
+ - Gồm một số nguyên duy nhất là trọng số tìm được
+
+**Ví dụ**
+```
+Input
+5 1
+1 2 3 4 5
+Output
+5
+
+Input
+5 2
+1 2 3 4 5
+Output
+6
+```
+
+**Giới hạn**
+ - $1 \le N \le 100000$
+ - $1 \le K \le 100$
+ - $a[i] \le 1000000$
+
+#### Lời giải
+
+**Thuật toán QHĐ cơ sở**
+
+Gọi $F(i, j)$ là tổng trọng số nhỏ nhất để chia $j$ số đầu tiên của dãy thành $i$ nhóm. Công thức truy hồi là $F(i, j) = min[F(i-1, j’) + max(a[j’+1 .. j])]$ với $j’<j$.
+
+Công thức QHĐ này có thể giải trong $O(N^2 * K)$, tuy nhiên như vậy cũng chưa đạt yêu cầu.
+
+**Nâng cấp thuật toán**
+
+Ta thấy rằng chi phí chuyển trạng thái của công thức QHĐ trên đang là $O(N)$, ta có thể tập trung để tối ưu hóa điểm này.
+
+Với mỗi vị trí $i$, ta gọi $L[i]$ là vị trí $j < i$ lớn nhất thỏa mãn $a[j] > a[i]$.
+Như vậy trong công thức chuyển trạng thái trên, ta không cần phải for $j’ < L[i]$ vì khi đó ta chuyển trực tiếp $F(i, j) = F(i, L[j])$.
+
+Giờ ta chỉ cần quan tâm tới các $j’$ thuộc đoạn $[L[j], j)$. Lúc này $max(a[j’+1..j) = a[j]$, nên ta chỉ cần tìm $min(F(i-1, j’))$. Đây là bài toán truy vấn đoạn có thể giải trong $O(logN)$ mỗi truy vấn. Độ phức tạp bài toán đến đây là $O(N*K*logN)$.
+
+Ta vẫn có thể tối ưu hơn nữa bằng cách sử dụng stack để hỗ trợ xử lí các truy vấn. Ta duy trì môt stack, mỗi phần tử chứa hai tham số là $minF$ và $index$. Stack luôn chứa các $a[index]$ giảm dần, còn $minF$ được cập nhật lại để chứa $minF$ trong đoạn $[L[index]..index-1]$.
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 1e5 + 5;
+const int K = 105;
+const int INF = 0x3f3f3f3f;
+
+int a[N];
+int L[N], minF[N];
+int dp[K][N];
+int n, k;
+
+int main() {
+    cin >> n >> k;
+    for (int i = 1; i <= n; ++i) cin >> a[i];
+    memset(dp, 0x3f, sizeof dp);
+    dp[1][0] = 0;
+    for (int i = 1; i <= n; ++i) dp[1][i] = max(dp[1][i - 1], a[i]);
+    for (int i = 2; i <= k; ++i) {
+        stack<pair<int, int> > S;
+        for (int j = i; j <= n; ++j) {
+            int minF = dp[i - 1][j - 1];
+            while (!S.empty() && a[S.top().second] <= a[j]) {
+                minF = min(minF, S.top().first);
+                S.pop();
+            }
+            dp[i][j] = min(dp[i][S.empty() ? 0 : S.top().second], minF + a[j]);
+            S.push(make_pair(minF, j));
+        }
+    }
+    cout << dp[k][n] << endl;
+    return 0;
+}
+```
+
+Ở bài này ta cũng có thể thay thế stack hoàn toàn bằng cấu trúc dữ liệu Left-Right:
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 1e5 + 5;
+const int K = 105;
+const int INF = 0x3f3f3f3f;
+
+int a[N], L[N], minF[N];
+int dp[K][N];
+int n, k;
+
+int main() {
+    cin >> n >> k;
+    for (int i = 1; i <= n; ++i) cin >> a[i];
+    memset(dp, 0x3f, sizeof dp);
+    dp[1][0] = 0;
+    for (int i = 1; i <= n; ++i) dp[1][i] = max(dp[1][i - 1], a[i]);
+    for (int i = 1; i <= n; ++i)
+        for (L[i] = i - 1; L[i] && a[L[i]] <= a[i]; ) L[i] = L[L[i]];
+    for (int i = 2; i <= k; ++i) {
+        minF[i - 1] = INF;
+        for (int j = i; j <= n; ++j) {
+            minF[j] = dp[i - 1][j - 1];
+            for (int t = j - 1; t > L[j]; t = L[t])
+                minF[j] = min(minF[j], minF[t]);
+            dp[i][j] = min(dp[i][L[j]], minF[j] + a[j]);
+        }
+    }
+    cout << dp[k][n] << endl;
+    return 0;
+}
+```
+
+### [Đốn cây](http://vn.spoj.com/problems/VODONCAY/) (Đề thi HSG quốc gia năm 2016)
+#### Đề bài
+Hùng đang làm việc trong Công ty cao su X. Công ty có rừng cao su rất rộng, với những hàng cây cao su trồng cách đều thẳng tắp. Theo định kỳ, người ta thường phải chặt hạ cả hàng cây cao su đã hết hạn khai thác để trồng thay thế bằng hàng cây mới. Hùng phát hiện ra một bài toán tin học liên quan đến vấn đề này: Một nhóm công nhân được giao nhiệm vụ chặt hạ hàng cây gồm $N$ cây được trồng dọc theo một đường thẳng với khoảng cách cố định giữa hai cây liên tiếp. Nếu các công nhân cưa đổ một cây, họ có thể cho nó đổ về phía bên trái hoặc bên phải dọc theo hàng cây. Một cây khi đổ có thể lật đổ cây khác bị nó rơi vào và có thể làm đổ nhiều cây khác, theo hiệu ứng lan truyền domino. Sau khi khảo sát kỹ, Hùng đã mô tả được hiệu ứng lan truyền domino như sau: Giả sử các cây trên hàng cây được đánh số từ $1$ đến $N$, từ trái qua phải và chiều cao của cây $i$ là $h_i$ ($1 \le i \le N$)
+ - Nếu cây $i$ đổ về bên trái thì tất cả các cây $j$ với $i - h_i < j < i$ cũng sẽ đổ;
+ - Nếu cây $i$ đổ về bên phải thì tất cả các cây $j$ với $i < j < i + h_i$ cũng sẽ đổ;
+ - Mỗi cây chỉ đổ một lần về bên trái hoặc bên phải.
+
+Do đó bài toán đặt ra đối với Hùng là: Xác định số lượng nhỏ nhất các cây mà các công nhân cần cưa đổ đảm bảo hạ đổ toàn bộ hàng cây.
+
+**Yêu cầu**: Giúp Hùng giải quyết bài toán đặt ra.
+
+**Dữ liệu**
+ - Dòng đầu tiên ghi số nguyên dương $N$;
+ - Dòng thứ hai chứa $N$ số nguyên dương $h_1, h_2, …, h_n$ được ghi cách nhau bởi dấu cách, mỗi số không vượt quá $10^6$.
+
+**Kết quả**
+ - Dòng đầu tiên ghi số nguyên dương $k$ là số lượng cây mà các công nhân cần cưa đổ;
+ - Dòng thứ hai ghi dãy số nguyên $c_1, c_2, …, c_k$ trong đó $|c_j|$ ($1 \le j \le k$) là dãy chỉ số của các cây theo thứ tự các công nhân phải lần lượt cưa đổ, $c_j$ là số dương nếu cây cần cho đổ về bên phải và là số âm nếu cây cần cho đổ về bên trái.
+
+Nếu có nhiều cách thì chỉ cần đưa ra một cách tùy ý.
+
+**Ví dụ**
+
+```
+INPUT
+5
+1 2 3 1 1
+
+OUTPUT
+2
+3 -2
+```
+
+**Chú ý**: Còn một cách đốn cây khác: Cưa hai cây $1$ và $2$ và đều cho đổ về bên phải.
+
+**Ràng buộc**
+ - Có 40% số test ứng với 40% số điểm của bài có $1 \le N \le 10000$.
+ - Có 40% số test khác ứng với 40% số điểm của bài có $1 \le N \le 100000$.
+ - Có 20% số test còn lại ứng với 20% số điểm của bài có $1 \le N \le 4000000$.
+
+#### Lời giải
+
+**Bước 1**: Chuẩn bị
+
+Ta sẽ xây dựng hai mảng $L[]$ và $R[]$, trong đó $L[i]$ là vị trí $j$ nhỏ nhất mà bị cây $i$ làm đổ nếu đẩy về bên trái, tương tự với $R$.
+
+$L[i] = min[ i, min(L[j]) với i-h[i] < j < i ]$
+
+Để tính $L[]$ ta duy trì một $stack$ chứa các chỉ số tăng dần. Trước khi thêm một cây $i$ mới vào, các cây bị nó trực tiếp làm đổ sẽ bị $pop$ ra, đồng thời ta cập nhật $L[i]$.
+
+**Bước 2**: Quy hoạch động
+
+Gọi $F(i)$ là số cây cần phải đổ nhỏ nhất để các cây có chỉ số $1..i$ đều đổ.
+
+Để tính $F(i)$ cần xét 2 trường hợp:
+ - Nếu ta đẩy cây $i$ qua trái:
+$F(i) = min[ F(j-1) + 1 ]$ với $L[i] \le j \le i$              $(1)$
+ - Nếu cây $i$ bị đẩy qua phải bởi cây $j$
+$F(i) = min[ F(j-1) + 1 ]$ với $1 \le j \le i$ và $R[j] \ge i$    $(2)$
+
+Có thể dễ dàng tính các $F[]$ trong $O(N^2)$. Có thể dùng các cấu trúc dữ liệu quản lí đoạn để giảm xuống $O(NlogN)$.
+
+Ta có thể sử dụng $stack$ để giảm độ phức tạp xuống $O(N)$.
+
+Để xử lí $(1)$ ta có thể sử dụng kỹ thuật tương tự như bài BLOCK đã trình bày, tuy nhiên ta có thể đánh giá để cài đặt được ngắn gọn hơn:
+
+$F[L[i]-1] = min[ F(j-1) + 1 ]$ với $L[i] \le j \le i$
+(phần chứng minh xin dành lại cho độc giả)
+
+Để xử lí $(2)$ ta sẽ sử dụng một $stack$ để lưu các vị trí có $R[]$ giảm dần, đồng thời luôn duy trì sao cho giá trị ở $top$ của $stack$ luôn là tốt nhất. Chú ý là với $j < i$ và $R[j] \ge i$ thì $R[j] \ge R[i]$. Như vậy nếu tại mỗi bước ta $pop$ các vị trí $j$ có $R[j] < i$ ra khỏi $stack$, thì sẽ luôn duy trì được tính chất của $stack$ vì lúc này đảm bảo được $R[i]$ là nhỏ hơn các $R[]$ đang ở trong $stack$, đồng thời nếu $F(i-1)$ không tốt bằng giá trị ở đầu $stack$ thì ta sẽ không đẩy $i$ vào (để đảm bảo giá trị ở $top$ luôn là tốt nhất).
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 4e6 + 6;
+
+int n;
+int a[N];
+int L[N], R[N];
+int dp[N], trace[N];
+
+void initialize() {
+    vector<int> S;
+    for (int i = 1; i <= n; ++i) {
+        L[i] = i;
+        while (!S.empty() && S.back() > i - a[i])
+	    L[i] = min(L[i], L[S.back()]), S.pop_back();
+        S.push_back(i);
+    }
+    S.clear();
+    for (int i = n; i >= 1; --i) {
+        R[i] = i;
+        while (!S.empty() && S.back() < i + a[i])
+	    R[i] = max(R[i], R[S.back()]), S.pop_back();
+        S.push_back(i);
+    }
+}
+
+void solve() {
+    for (int i = 1; i <= n; ++i) dp[i] = i, trace[i] = -i;
+    vector<int> S;
+    for (int i = 1; i <= n; ++i) {
+        if (dp[i] > dp[L[i] - 1] + 1) dp[i] = dp[L[i] - 1] + 1, trace[i] = -(L[i]);
+        while (!S.empty() && R[S.back()] < i) S.pop_back();
+        if (!S.empty() && dp[i] > dp[S.back() - 1] + 1) {
+            dp[i] = dp[S.back() - 1] + 1;
+            trace[i] = S.back();
+        }
+        if (S.empty() || (dp[S.back() - 1] > dp[i - 1])) S.push_back(i);
+    }
+    cout << dp[n] << endl;
+    for (int i = n; i; i = abs(trace[i]) - 1)
+	cout << (trace[i] < 0 ? -i : trace[i]) << ' ';
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin >> n;
+    for (int i = 1; i <= n; ++i) cin >> a[i];
+    initialize();
+    solve();
+    return 0;
+}
+```
