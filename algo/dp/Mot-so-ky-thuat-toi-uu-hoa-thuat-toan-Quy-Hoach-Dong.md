@@ -1115,3 +1115,319 @@ int main() {
     return 0;
 }
 ```
+
+# 5. Quản lí đồ thị hàm quy hoạch động
+Ở phần này ta hãy xem xét một bài toán cụ thể về ý tưởng quan sát đồ thị của hàm QHĐ để tối ưu độ phức tạp.
+
+## Bài tập ví dụ
+
+### Biến đổi dãy số
+Link: [Codeforces](https://codeforces.com/contest/713/problem/C)
+
+#### Đề bài
+Cho dãy số $N$ phần tử. Mỗi phép biến đổi có thể tăng/giảm một phần tử bất kỳ của dãy 1 đơn vị. Hãy tìm số phép biến đổi ít nhất để dãy trở thành dãy tăng.
+
+**Input**
+ - Dòng đầu tiên là số tự nhiên $N$. Dòng tiếp theo là $N$ số nguyên $A[1..N]$
+
+**Output**
+ - Một dòng duy nhất chứa số phép biến đổi ít nhất.
+
+**Giới hạn**
+ - $N \le 100 000$
+ - $1 \le A[i] \le 1 000 000 000$
+
+#### Lời giải
+
+Trước hết ta gán $A[i] = A[i] - i$ với mọi $i$. Bài toán trở thành biến đổi để dãy trở thành dãy không giảm.
+
+**Thuật toán QHĐ cơ sở**
+
+Đặt $F(i, j) = $ số phép biến đổi ít nhất để biến đổi dãy $A[1..i]$ thành dãy không giảm sao cho $A[i] \le j$. Ta có:
+ - $F(i, j) = |A[i] - j|$ với $i = 1$
+ - $F(i, j) = min(F(i - 1, j) + |A[i] - j|)$ với $i > 1$
+
+Kết hợp với nhận xét: Luôn tồn tại dãy cuối cùng với số phép biến đổi tối ưu mà chỉ chứa các giá trị có trong dãy ban đầu. Ta có thể giải công thức QHĐ này với độ phức tạp $O(N^2)$
+
+**Quan sát đồ thị của hàm QHĐ**
+
+Ở đây $F_i(j)$ là một hàm theo biến $j$. Nhận xét rằng hàm số này không tăng, tức là nó có độ dốc âm tại mọi điểm (ở đây ta coi $F_i(j+1) - F_i(j)$ là “độ dốc” tại điểm $j$). Để quản lí hàm số này, ta sẽ lưu lại tập hợp $S$ những điểm mà tại đó độ dốc của hàm thay đổi, chú ý là nếu độ dốc tại $x$ so với độ dốc tại $x-1$ khác nhau bao nhiêu thì ta lưu lại $x$ bấy nhiêu lần.
+
+Gọi $Opt(i)$ là vị trí $x$ nhỏ nhất mà tại đó $F_i(x)$ đạt giá trị nhỏ nhất, tức là từ $x$ thì độ dốc của $F_i$ bằng $0$. Vậy $F_n(Opt(n))$ là đáp án của bài toán.
+
+Hãy cố gắng phác họa hàm $F$ trên giấy để có thể dễ dàng hình dung phần còn lại của lời giải.
+
+Để cập nhật lại tập hợp $S_i$ thành $S_{i+1}$ ta quan tâm tới 2 trường hợp sau:
+ - $Opt(i-1) \le a[i]$: Trường hợp này, dễ thấy dộ dốc của hàm số của tất cả những điểm nhỏ hơn $a[i]$ sẽ giảm đi $1$ (bởi vì phần này của hàm số được cộng thêm bởi một hàm bậc nhất có độ dốc là $-1$). Đồng thời $Opt(i) = a[i]$.
+ - $Opt(i-1) > a[i]$: Trường hợp này ta cần đẩy $a[i]$ vào tập hợp $S$ hai lần. Bởi phần hàm số bên trái $a[i]$ sẽ có độ dốc giảm đi $1$, trong khi phần từ $a[i]$ đến $Opt(i-1)$ có độ dốc tăng thêm $1$. Để ý là $Opt(i-1)$ không còn là điểm đầu tiên mà từ đó hàm $F$ đạt cực tiểu nữa, ta xóa $Opt(i-1)$ khỏi tập hợp $S$.
+
+Các thao tác chèn xóa và lấy $max$ của tập hợp có thể dễ dàng cài đặt bằng std::multiset<int> trong C++, hay sử dụng Binary Heap nếu code Pascal.
+
+Như vậy độ phức tạp của lời giải trên là $O(NlogN)$.
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n; cin >> n;
+    multiset<int> slope_changing_points;
+    long long answer = 0;
+    for (int i = 1; i <= n; ++i) {
+        int Ai; cin >> Ai;
+        Ai -= i;
+        slope_changing_points.insert(Ai);
+        if (i == 1) continue;
+        int opt = *slope_changing_points.rbegin();
+        if (Ai < opt) {
+            slope_changing_points.erase(--slope_changing_points.end());
+            slope_changing_points.insert(Ai);
+            answer += opt - Ai;
+        }
+    }
+    cout << answer << endl;
+    return 0;
+}
+```
+### Đào vàng
+Link: [Topcoder SRM 610 Div1.Level3](http://community.topcoder.com/stat?c=problem_statement&pm=12930)
+
+#### Đề bài
+Mỏ vàng là có thể được coi là một lưới gồm $(M+1)*(N+1)$ ô vuông. Các hàng được đánh số từ $0$ đến $N$, các cột được đánh số từ $0$ đến $M$.
+
+Bạn có thể làm việc ở mỏ vàng một vài ngày. Bạn có thể chọn vị trí để đào trong ngày đầu tiên (ngày $0$). Trong những ngày tiếp theo, bạn có thể giữ nguyên vị trí, hoặc di chuyển đến một ô vuông khác nằm trong giới hạn được mô tả sau đây.
+
+Khi vàng được tìm thấy ở một ô bất kỳ nào đấy, bạn sẽ nhận được lợi nhuận. Tiền lời được tính bằng $N+M$ trừ đi khoảng cách Manhattan từ ô bạn đang đứng đến ô mà vàng được tìm thấy. Cụ thể nếu vàng được tìm thấy ở ô $(a, b)$, và bạn đang đứng ở ô $(c, d)$, tiền lời bạn nhận được là $N+M - |a-c| - |b-d|$, trong đó kí hiệu $||$ biểu thị giá trị tuyệt đối.
+
+Bạn được cho hai số nguyên $N$ và $M$, hai mảng số nguyên $event_i$ và $event_j$. Với mỗi số $k$ hợp lệ, có một mỏ vàng xuất hiện vào ngày thứ $k$, ở ô $(event_i[k], event_j[k])$.
+
+Cuối cùng bạn có 2 mảng số nguyên $event_{di}$ và $event_{dj}$. Số phần tử của hai mảng này ít hơn số phần tử của hai mảng trên 1 đơn vị. Hai mảng này thể hiện giới hạn của việc di chuyển của bạn trong ngày. Cụ thể, với mỗi $k$, giữa ngày $k$ và $k+1$, bạn đang ở ô $(a, b)$ và chỉ đi được đến ô $(c, d)$ nếu $|a-c| \le event_{di}[k]$ và $|b-d| \le event_{dj}[k]$.
+
+Hãy xác định tổng lợi nhuận cực đại bạn có thể kiếm được nếu lựa chọn tối ưu làm việc tại ô nào trong mỗi ngày.
+
+**Input**
+ - Dòng đầu tiên chứa hai số nguyên $N$ và $M$.
+ - Dòng thứ 2 chứa số ngày mà bạn có thể làm việc $K$.
+ - Dòng thứ 3 chứa $K$ số nguyên mô tả mảng $event_i$.
+ - Dòng thứ 4 chứa $K$ số nguyên mô tả mảng $event_j$.
+
+Nếu $K>1$
+ - Dòng thứ 5 chứa $K-1$ số nguyên mô tả mảng $event_{di}$.
+ - Dòng cuối cùng chứa $K-1$ số nguyên mô tả mảng $event_{dj}$.
+
+**Output**
+
+Một số nguyên duy nhất chứa số tiền lớn nhất mà bạn có thể kiếm được.
+
+**Giới hạn**
+ - $1 \le N, M \le 1 000 000$
+ - $1 \le K \le 1 000$
+
+**Ví dụ**
+
+```
+Input
+3 3
+1
+1
+1
+Output
+6
+
+Vàng tìm được ở ô (1, 1). Chiến lược tốt nhất là làm việc tại đó. 
+
+
+Input
+3 3
+2
+0 2
+0 2
+1
+1
+Output
+10
+
+Vàng sẽ được phát hiện ở ô (0, 0) hôm nay và ô (2, 2) vào ngày mai. Chiến lược là ở ô (0, 0) hôm nay và ở ô (1, 1) vào ngày mai. Lợi nhuận sẽ là 6 + 4 = 10.
+
+
+Input
+4 2
+3
+1 4 4
+1 2 0
+1 1
+1 1
+Output
+15
+
+Input
+6 6
+6
+0 2 1 5 6 4
+4 3 1 6 2 0
+2 3 1 5 6
+2 4 0 5 1
+Output
+63
+```
+
+#### Lời giải
+Trước hết ta tóm tắt lại đề bài. Có $K$ ngày ứng với $K$ sự kiện. Mỗi ngày vàng được tìm thấy ở các ô được mô tả qua hai mảng $event_i[]$ và $event_j[]$. Ngày đầu tiên bạn có thể đứng ở vị trí bất kỳ, nhưng từ ngày thứ hai chỉ có thể di chuyển đến một số ô trong khoảng xác định qua hai mảng $event_{di}[]$ và $event_{dj}[]$.
+
+Hàm mục tiêu là $N+M-|e_i-x|-|e_j-y|$, trong đó $(e_i, e_j)$ là vị trí xuất hiện vàng, còn giới hạn di chuyển là $d_i$ theo chiều dọc và $d_j$ theo chiều ngang. Như vậy lời giải của bài toán là độc lập đối với chiều tọa độ. Chỉ cần xem $N-|e_i-x|$ và $M-|e_j-y|$ là các thành phần độc lập của hàm mục tiêu.
+
+Bài toán hai chiều giờ trở thành hai bài toán một chiều: Có $N+1$ điểm $x[] = 0..N$; ở bước đầu tiên ta có thể chọn xuất phát ở điểm bất kỳ, sau sự kiện $i$ và bạn ở vị trí $e_i$, bạn kiếm được $N-|e_i-x|$ và có quyền tăng/giảm $x$ một lượng tối đa là $d_i$, nhưng không được ra ngoài đoạn $[0..N]$. Nếu ta giải được bài toán này, ta hoàn toàn có thể giải tương tự bài toán đối với trục $y$.
+
+**Thuật toán quy hoạch động cơ sở**
+
+Gọi $F(i, x)$ là số tiền lời nhiều nhất có thể có nếu hiện tại đang bắt đầu lượt thứ $i$ và đang đứng ở tọa độ $x$.
+
+Nếu $i=K$, $F(i, x) = 0$.
+
+Với $i<K$, ta sẽ lời thêm $N-|e_i-x|$, và cần phải quyết định xem tiếp theo sẽ đi tới ô nào. Cần chọn một giá trị $x’$ thỏa mãn $0 \le x’ \le N$ và $|x-x’| \le d_i$, đồng thời giá trị $F(i+1, x’)$ là lớn nhất. Khi đó $F(i, x) = N-|e_i-x| + F(i+1, x’)$.
+
+Độ phức tạp của thuật toán nếu cài đặt thông thường là $O(NNK)$, có thể tối ưu thành $O(NK)$ sử dụng deque nhưng vẫn chưa đạt yêu cầu với giới hạn đề bài.
+
+**Đồ thị của hàm QHĐ**
+
+Ta có thể coi hàm QHĐ $F(i, x)$ ở trên là một hàm $f_i(x)$ nhận $x$ là biến. Xét đồ thị của hàm số này. Dễ thấy $f_k(x) = F(K, x) = 0$, đồ thị của hàm số này là một đường thẳng.
+
+Xét hàm số $f_{k-1}(x) = N - |e_k-1 – x|$. Đồ thị của nó sẽ có dạng:
+
+[[/uploads/dp_optimization_img4.png]]
+
+Vấn đề trở nên phức tạp hơn với hàm $f_{k-2}$. Đặt $g_{k-1}(x) = max(f_{k-1}(x’))$ với $|x’ – x| \le d_{k-2}$. Đồ thị của hàm số này có dạng tương tự như đồ thị của hàm số $f_{k-1}(x)$:
+
+[[/uploads/dp_optimization_img5.png]]
+
+Ta cộng thêm $N-|e_{k-2} – x|$ vào hàm $g_{k-1}(x)$, ta sẽ được đồ thị dạng:
+
+[[/uploads/dp_optimization_img6.png]]
+
+Tương tự như vậy, ý tưởng ở đây là ta sẽ duy trì đồ thị của các hàm số $f_i(x)$ với $i$ từ $k$ về $0$. Để làm được điều này ta cần phải thực hiện một vài thao tác:
+
+ - Tịnh tiến về hai phía: Để tìm được hàm $f(x)$ thì trước hết cần xây dựng được hàm $g(x) = max(f_i(x’) : |x’ – x| \le d)$. Ta chỉ cần tìm được đỉnh của hàm số, rồi tịnh tiến cả hai phía trái phải của hàm thêm một khoảng $d$.
+
+[[/uploads/dp_optimization_img7.png]]
+
+ - Tịnh tiến theo trục tung: Ta biểu diễn hàm số bằng danh sách các đỉnh của đường gấp khúc thì thao tác này có thể dễ dàng thực hiện.
+
+Cuối cùng ta chỉ cần chứng minh hàm $f(x)$ luôn là hàm lõm thì cách làm trên là đúng. Ban đầu hàm số chỉ là một đường thằng $y=0$, sau đó ta thực hiện hai thao tác tịnh tiến về hai phía $(1)$ và tịnh tiến theo trục tung $(2)$. Trong đó $(1)$ chỉ thực hiện được với hàm lõm, và sau thao tác này thì hàm số vẫn là hàm lõm. Với $(2)$ thì ta cộng thêm một hàm lõm (hàm $N-|e_i-x|$), mà ta có định lý tổng hai hàm lõm cũng là hàm lõm, nên thao tác này cũng vẫn đảm bảo $f(x)$ là hàm lõm.
+
+**Độ phức tạp của thuật toán**
+
+Ta biểu diễn đồ thị của hàm số bằng danh sách các điểm, sau mỗi thao tác thì số định của đường gấp khúc tăng thêm tối đa là $1$, nên số đỉnh này là một đại lượng $O(K)$. Như vậy độ phức tạp của toàn bộ thuật toán là $O(K^2)$.
+
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int INF = 2e9;
+
+void maximize(int &a, int b) {
+    if (a < b) a = b;
+}
+
+struct Point {
+    long long x, y;
+    Point(long long x, long long y): x(x), y(y) {}
+    bool operator < (const Point &o) const {
+        return x < o.x;
+    }
+};
+
+vector<Point> H;
+
+void incConst(int delta) {
+    for (int i = 0; i < H.size(); ++i) H[i].y += delta;
+}
+
+void expand(int delta) {
+    int L = 0, R = 0;
+    for (int i = 1; i < H.size(); ++i) {
+        if (H[i].y > H[L].y) {
+            L = R = i;
+        } else if (H[i].y == H[L].y) {
+            R = i;
+        }
+    }
+    if (L == R) {
+        H.insert(H.begin() + L + 1, H[L]);
+        ++R;
+    }
+    for (int i = 0; i <= L; ++i) H[i].x -= delta;
+    for (int i = R; i < H.size(); ++i) H[i].x += delta;
+}
+
+int calc(Point P, Point Q, int x) {
+    if (P.y == Q.y) return P.y;
+    int diff = P.y - Q.y;
+    long long y = min(P.y, Q.y);
+    long long L = x - P.x;
+    long long R = Q.x - x;
+    if (L == 0) return P.y;
+    if (R == 0) return Q.y;
+    if (diff < 0)
+        y -= L * diff / (L + R);
+    else
+        y += R * diff / (L + R);
+    return y;
+}
+
+int eval(int x) {
+    for (int i = 0; i + 1 < H.size(); ++i) if (H[i].x <= x && x <= H[i + 1].x)
+        return calc(H[i], H[i + 1], x);
+}
+
+void mergeHull(int v) {
+    //merge with y = -abs(x - v)
+    int exist = -1;
+    for (int i = 0; i < H.size(); ++i) if (H[i].x == v) {
+        exist = i;
+        break;
+    }
+    if (exist == -1) {
+        H.push_back(Point(v, eval(v)));
+        sort(H.begin(), H.end());
+    }
+    for (int i = 0; i < H.size(); ++i) H[i].y -= abs(H[i].x - v);
+}
+
+int solve(int len, vector<int> pos, vector<int> range) {
+    H.clear();
+    int n = pos.size();
+    H.push_back(Point(0, len - pos[0]));
+    if (pos[0] != 0) H.push_back(Point(pos[0], len));
+    if (pos[0] != len) H.push_back(Point(len, len - abs(pos[0] - len)));
+    for (int i = 1; i < n; ++i) {
+        expand(range[i - 1]);
+        mergeHull(pos[i]);
+        incConst(len);
+    }
+    int ans = 0;
+    int last = 0;
+    for (int x = 0; x <= len; ++x) {
+        while (last < H.size() && H[last].x <= x) ++last;
+        if (last == H.size()) --last;
+        ans = max(ans, calc(H[last - 1], H[last], x));
+    }
+    return ans;
+}
+
+int getMaximumGold(int N, int M, vector<int> event_i, vector<int> event_j, vector<int> event_di, vector<int> event_dj) {
+    return solve(N, event_i, event_di) + solve(M, event_j, event_dj);
+}
+
+int main() {
+    int N, M, D;
+    cin >> N >> M >> D;
+    vector<int> event_i(D), event_j(D), event_di(D - 1), event_dj(D - 1);
+    for (int i = 0; i < D; ++i) cin >> event_i[i];
+    for (int i = 0; i < D; ++i) cin >> event_j[i];
+    for (int i = 0; i < D - 1; ++i) cin >> event_di[i];
+    for (int i = 0; i < D - 1; ++i) cin >> event_dj[i];
+    cout << getMaximumGold(N, M, event_i, event_j, event_di, event_dj) << endl;
+}
+```
