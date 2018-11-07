@@ -114,6 +114,11 @@ Mục tiêu của việc xây dựng các thuật toán ngẫu nhiên là giảm
 Một bài toán có thể có nhiều lời giải, một số lời giải trong số đó là tối ưu. Phương pháp làm cổ điển là xét từng phần tử một, theo thứ tự trong dữ liệu vào. Tuy nhiên, ta không thể chắc chắn các phần tử thuận lợi được phân bố đều trong dữ liệu vào. Vì vậy, thuật toán định tất có thể không tìm ra lời giải trong thời gian đủ nhanh. Lợi thế của thuật toán ngẫu nhiên là không có thứ tự duyệt các phần tử cố định và trong mọi trường hợp, thuật toán ngẫu nhiên có thể hoạt động tốt hơn.
 
 
+# Đọc thêm
+
+Các bạn cũng có thể đọc thêm [[bài này|translate/topcoder/Hieu-ve-xac-suat]] - có thêm 1 số kiến thức nâng cao và 1 số ví dụ về giải bài.
+
+
 # Bài tập
 
 - [Hackerearth - Utkarsh and Jumps](https://www.hackerearth.com/problem/algorithm/utkarsh-and-jumps/)
