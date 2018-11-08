@@ -9,9 +9,9 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://ww
 Ở trang chủ này, các bài viết về thuật toán được đánh dấu về độ khó từ (1\*) đến (5\*) với ý nghĩa:
 
 - (1*): Cơ bản,
-- (2*): Kiến thức cần biết để thi HSG QG, ACM ICPC.
-- (3*): Kiến thức nâng cao, dành cho các bạn có mục tiêu đạt giải cao trong HSG QG.
-- (4*): Kiến thức rất khó
+- (2*): Kiến thức cần biết để thi HSG QG, ACM ICPC,
+- (3*): Kiến thức nâng cao, dành cho các bạn có mục tiêu đạt giải cao trong HSG QG,
+- (4*): Kiến thức rất khó,
 - (5*): Kiến thức rất chuyên sâu về 1 vấn đề nào đó, chỉ áp dụng được với rất ít bài khó.
 
 Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đồ thị, do phần này những quyển sách như sách thầy Lê Minh Hoàng, Tài liệu giáo khoa chuyên tin (download ở [[Một số tài liệu hay về Thuật Toán|algo/basic/Tai-Lieu-Thuat-Toan]]) đã viết rất chi tiết.
