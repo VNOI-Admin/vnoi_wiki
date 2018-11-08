@@ -153,6 +153,10 @@ Chi tiết cài đặt:
        rollback();
 ```
 
+# Cải tiến
+
+Các bạn có thể đọc thêm về cách cải tiến tốc độ chạy của Mo sử dụng TSP và Hilbert curve [tại đây](https://codeforces.com/blog/entry/61203).
+
 # Bài tập áp dụng
 
 - [Codeforces Yandex 2011 Round 2 - D](http://codeforces.com/contest/86/problem/D)
