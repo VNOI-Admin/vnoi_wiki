@@ -1303,7 +1303,7 @@ Vấn đề trở nên phức tạp hơn với hàm $f_{k-2}$. Đặt $g_{k-1}(x
 
 Ta cộng thêm $N-|e_{k-2} – x|$ vào hàm $g_{k-1}(x)$, ta sẽ được đồ thị dạng:
 
-[[/uploads/dp_optimization_img6.png]]
+<img src="https://vnoi.info/wiki/uploads/dp_optimization_img6.png" width="40%"/>
 
 Tương tự như vậy, ý tưởng ở đây là ta sẽ duy trì đồ thị của các hàm số $f_i(x)$ với $i$ từ $k$ về $0$. Để làm được điều này ta cần phải thực hiện một vài thao tác:
 
