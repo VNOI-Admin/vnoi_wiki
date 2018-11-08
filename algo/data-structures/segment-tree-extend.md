@@ -641,7 +641,7 @@ int ask(int id, int l, int r, int x, int y, int k) { // Trả lời C x y-1 k
 
 # 6. Ứng dụng trong cây có gốc
 
-Ta có thể thấy cây phân đoạn là một ứng dụng trong mảng, vì lí do đó nếu chúng ta có thể đổi cây thành các mảng, ta có thể dễ dàng xử lý các truy vấn trên cây. Đây là tư tưởng của [Heavy Light Decomposition](algo/data-structures/heavy-light-decomposition).
+Ta có thể thấy cây phân đoạn là một ứng dụng trong mảng, vì lí do đó nếu chúng ta có thể đổi cây thành các mảng, ta có thể dễ dàng xử lý các truy vấn trên cây. Đây là tư tưởng của [[Heavy Light Decomposition|algo/data-structures/heavy-light-decomposition]].
 
 **Bài tập ví dụ**: [396C - On Changing Tree](http://codeforces.com/contest/396/problem/C)
 
