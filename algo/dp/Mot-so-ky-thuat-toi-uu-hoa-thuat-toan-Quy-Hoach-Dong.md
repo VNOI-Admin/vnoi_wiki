@@ -557,7 +557,7 @@ Với mỗi truy vấn, ta duyệt qua tất cả các hàm số đê tìm giá 
 
 Mỗi hàm số bậc nhất có thể biểu diễn bởi một đường thẳng trên hệ tọa độ $Oxy$.
 
-[[/uploads/dp_optimization_img3.png]]
+<img src="https://vnoi.info/wiki/uploads/dp_optimization_img3.png" width="40%"/>
 
 Xét đồ thị trên. Để ý rằng đường thẳng $y=4$ không bao giờ là kết quả của truy vấn với mọi $x$. Với 3 đường thẳng còn lại, mỗi đường thẳng là “thấp nhất” trên một khoảng liên tục (có thể tiến tới vô cùng). Ngoài ra, với x tăng dần, thì hệ số góc của đường thẳng “thấp nhất” tương ứng là giảm dần, điều này luôn luôn đúng.
 Như vậy, nếu ta bỏ đi đường thẳng không tiềm năng $y=4$, đồng thời sắp xếp các đường thẳng tiềm năng còn lại theo hệ số góc, thì với mỗi truy vấn, ta chỉ việc tìm kiếm nhị phân là có thể trả về kết quả.
@@ -1295,11 +1295,11 @@ Ta có thể coi hàm QHĐ $F(i, x)$ ở trên là một hàm $f_i(x)$ nhận $x
 
 Xét hàm số $f_{k-1}(x) = N - |e_k-1 – x|$. Đồ thị của nó sẽ có dạng:
 
-[[/uploads/dp_optimization_img4.png]]
+<img src="https://vnoi.info/wiki/uploads/dp_optimization_img4.png" width="40%"/>
 
 Vấn đề trở nên phức tạp hơn với hàm $f_{k-2}$. Đặt $g_{k-1}(x) = max(f_{k-1}(x’))$ với $|x’ – x| \le d_{k-2}$. Đồ thị của hàm số này có dạng tương tự như đồ thị của hàm số $f_{k-1}(x)$:
 
-[[/uploads/dp_optimization_img5.png]]
+<img src="https://vnoi.info/wiki/uploads/dp_optimization_img5.png" width="40%"/>
 
 Ta cộng thêm $N-|e_{k-2} – x|$ vào hàm $g_{k-1}(x)$, ta sẽ được đồ thị dạng:
 
