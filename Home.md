@@ -1,4 +1,4 @@
-# Thư viện VNOI
+# VNOI Wiki
 
 # Giới thiệu
 
