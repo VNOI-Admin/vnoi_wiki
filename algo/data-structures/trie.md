@@ -12,7 +12,7 @@ Trie là một cấu trúc dữ liệu dùng để quản lý một tập hợp 
 
 Trie gồm một gốc không chứa thông tin, trên mỗi cạnh lưu một ký tự, mỗi nút và đường đi từ gốc đến nút đó thể hiện 1 xâu, gồm các ký tự là các ký tự thuộc cạnh trên đường đi đó.
 
-![Hình minh họa](https://sites.google.com/site/ngthanhtrung23/_/rsrc/1401387820016/algorithm/trie/Screenshot%20from%202014-05-30%2002%3A22%3A51.png?height=272&width=320)
+[[/uploads/trie.png]]
 
 Trong hình vẽ trên, nút 1 là nút gốc, nút 7 thể hiện có 1 xâu là ‘bg’, nút 8 thể hiện có 1 xâu là ‘db’, nút 9 thể hiện có 1 xâu là ‘dc’, nút 10 thể hiện có 1 xâu là ‘acd’, nút 5 thể hiện là có 1 xâu là ‘ab’.
 
