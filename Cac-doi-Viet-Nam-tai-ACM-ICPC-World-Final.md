@@ -14,7 +14,7 @@ Các đội Việt Nam muốn được thi Regional ở Việt Nam cần phải 
 
 Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và chỉ liệt kê các đội đã vào top 50.
 
-1. 2018 - ĐH Công Nghệ (UET - VNU), team unsigned - rank 15:
+1. [2018](http://zibada.ru/finals/2018) - ĐH Công Nghệ (UET - VNU), team unsigned - rank 15:
   - Phạm Cao Nguyên: [HCV IOI 2016, HCĐ IOI 2017](http://stats.ioinformatics.org/people/6056), CF: [natsukagami](http://codeforces.com/profile/natsukagami)
   - Lê Quang Tuấn: [HCV IOI 2017, HCĐ IOI 2016](http://stats.ioinformatics.org/people/6055), CF: [alexa0704](http://codeforces.com/profile/alexa0704)
   - Nguyễn Đinh Quang Minh: CF: [MofK](http://codeforces.com/profile/MofK)
