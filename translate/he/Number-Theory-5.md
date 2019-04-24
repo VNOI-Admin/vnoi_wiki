@@ -257,12 +257,13 @@ Có bao nhiêu cách để đi từ góc trái trên của một bảng $n * m$ 
 Tính hệ số nhị thức có thể gây tràn số ở các bước trung gian, vì vậy ta nên tính hệ số nhị thức bằng công thức: $\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}$
 
 ```cpp
-//Computing Binomial Coefficients i.e. N choose R using dynamic programming!
 /*
-using the recurrent formula	nCr=(n-1)C(r)+(n-1)C(r-1)
-we can use dynamic programming type approach to precompute all the binomial coefficients in O(n^2) and answer queries in O(1)
-use this method when n<=5000 only.
-also use this method when nCr%non-prime is required.
+Sử dụng công thức truy hồi:
+    nCr = (n-1)Cr + (n-1)C(r-1)
+
+ta dễ dàng khởi tạo tất cả các giá trị nCr trong O(N^2).
+
+Code có thể chạy được với n <= 5000 và mod bất kỳ (không cần nguyên tố).
 */
 //by Tanmay Chaudhari
 #include <bits/stdc++.h>
@@ -293,10 +294,18 @@ int main()
 
 Chương trình trên chỉ tính được $\binom{n}{k}$ với $n$ nhỏ. Bạn có thể tham khảo chương trình sau để tính $\binom{n}{k} \% p$ với $p$ là một số nguyên tố và $n$ lớn.
 
+Chú ý: Code sau sử dụng nghịch đảo modulo, đã được giới thiệu ở bài viết [[Số học 4.5|algo/math/modular-inverse]]
+
 ```cpp
 /*
-	computing binomial coefficients i.e. N choose R using O(n) precomputation.
-	use this for large value of N and whem (NchooseR)%prime is used;
+Tính nCr trong O(N) với mod P nguyên tố.
+
+Ta sử dụng công thức nCr = n! / r! / (n-r)!
+
+Khởi tạo trước fac[i] = i! mod P
+Khởi tạo trước ifac[i] = i!^-1 mod P (nghịch đảo modulo P của i!). 
+
+Từ đó dễ dàng tính được nCr trong O(1).
 */
 //by Tanmay Chaudhari
 #include <bits/stdc++.h>
