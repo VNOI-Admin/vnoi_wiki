@@ -50,12 +50,14 @@ void update(int id, int l, int r, int i, int v) {
         // i nằm ngoài đoạn [l, r], ta bỏ qua nút i
         return ;
     }
-    // i nằm trong đoạn [l, r], ta cần cập nhật nút id
-    ST[id] = max(ST[id], v);
     if (l == r) {
         // Đoạn chỉ gồm 1 phần tử, không có nút con
+        ST[id] = v;
         return ;
     }
+
+    // i nằm trong đoạn [l, r], ta cần cập nhật nút id
+    ST[id] = max(ST[id], v);
 
     // Gọi đệ quy để xử lý các nút con của nút id
     int mid = (l + r) / 2;
