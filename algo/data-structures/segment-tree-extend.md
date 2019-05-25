@@ -56,13 +56,13 @@ void update(int id, int l, int r, int i, int v) {
         return ;
     }
 
-    // i nằm trong đoạn [l, r], ta cần cập nhật nút id
-    ST[id] = max(ST[id], v);
-
     // Gọi đệ quy để xử lý các nút con của nút id
     int mid = (l + r) / 2;
     update(id*2, l, mid, i, v);
     update(id*2 + 1, mid+1, r, i, v);
+
+    // Cập nhật lại giá trị max của đoạn [l, r] theo 2 nút con:
+    ST[id] = max(ST[id*2], ST[id*2 + 1]);
 }
 
 // Truy vấn: tìm max đoạn [u, v]
