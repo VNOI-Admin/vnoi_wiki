@@ -4,7 +4,7 @@
 
 **LƯU Ý**:
 
-- Segment Tree trong 1 số tài liệu Tiếng Việt còn được dịch là Interval Tree. Ở bài viết này, mình sẽ dùng tên Segment Tree (ST) - tên gọi phổ biến hơn của CTDL này.
+- Khi Segment Tree mới được du nhập vào Việt Nam, một số tài liệu gọi là Interval Tree. Đây là cách gọi không chính xác, bởi [Interval Tree là một CTDL khác](https://en.wikipedia.org/wiki/Interval_tree).
 - Tất cả hàm trong bài đều đánh số từ 1. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r]$
 - Segment Tree còn có [[một cách cài đặt khác sử dụng ít bộ nhớ hơn|translate/codeforces/Efficient-and-easy-segment-trees]] (tối đa $2*N$ phần tử), cài đặt ngắn hơn và chạy nhanh hơn. Tuy nhiên theo cá nhân mình không dễ hiểu bằng cách cài đặt trong bài viết này.
 
