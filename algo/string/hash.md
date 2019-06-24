@@ -95,8 +95,10 @@ Trong đoạn code trên, chúng ta thu được mảng $pow[i]$ (lưu lại $ba
 
 ```
 function getHashT(i, j):
+       // Chú ý rằng hashT[i - 1] * pow[j - i + 1] có thể âm.
+       // Với 1 số ngôn ngữ như C++, toán tử mod sẽ trả kết quả sai với số âm.
+       // Do đó ta cần thêm "+ MOD * MOD" để đảm bảo kết quả luôn chính xác.
        return (hashT[j] - hashT[i - 1] * pow[j - i + 1] + MOD * MOD) mod MOD
-
 ```
 
 Bài toán chính đã được giải quyết, và đây là chương trình chính:
