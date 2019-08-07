@@ -1,3 +1,5 @@
+# Phỏng vấn team IOI Việt Nam 2018
+
 Vừa qua, đội tuyển IOI Việt Nam đã thi đấu xuất sắc tại kì thi IOI 2018 tại Nhật Bản, mang về cho Việt Nam 4 tấm huy chương, khép lại một mùa Olympiad rực rỡ với 100% thí sinh Việt Nam đạt giải. Sau đây là 4 gương mặt xuất sắc đã đại diện Việt Nam tranh tài tại IOI 2018:
 
 * Phạm Đức Thắng đến từ trường THPT chuyên KHTN, ĐHQG Hà Nội với thành tích xuất sắc, giành Huy chương Vàng duy nhất cho đoàn Việt Nam trong cả 2 kì thi APIO 2018 và IOI 2018. Vị trí thứ 10/335 thí sinh của Thắng cũng là thành tích tốt nhất của một thí sinh Việt Nam kể từ năm 2004. Bạn cũng sở hữu lượng người hâm mộ hùng hậu nhất đội tuyển IOI năm nay.
