@@ -75,6 +75,8 @@ Vì câu hỏi này không rõ ràng nên mình xin dịch lại là *Các bạn
 
 **Thắng**: Mình đặc biệt thích mấy dạng bài mới lạ + mình đoán là bọn Atcoder Nhật kiểu gì cũng ra mấy dạng bài kiểu thế, nên trước khi thi mình tìm và cày rất nhiều dạng bài này. Rèn luyện tư duy thì phải thay đổi cách suy nghĩ và có chiến thuật nghĩ hợp lý.
 
+**Khánh**: Không làm và được đồng.
+
 **Nhật**: Mình cũng không biết làm thế nào để rèn luyện khả năng tư duy logic. Bài mới lạ thì tất nhiên phải suy nghĩ theo kiểu mới lạ.
 
 ##### 7. Các bạn thường dành khoảng bao lâu để nghĩ một bài khó và sau bao lâu không nghĩ ra thì các bạn sẽ đọc lời giải?
@@ -101,3 +103,66 @@ Vì câu hỏi này không rõ ràng nên mình xin dịch lại là *Các bạn
 
 **Nhật**: Nhiều, mình thi toàn thọt nên lúc nào cũng cảm thấy khó khăn. Nhưng nếu bạn biết bạn đang làm gì thì bạn sẽ vượt qua được thôi.
 
+### Các câu hỏi vui vẻ
+
+##### 10. Các bạn đã có dự định và kế hoạch gì trong tương lai?
+
+**Thắng**: Mình thì cố gắng chuẩn bị hồ sơ để nếu đi du học được thì đi thôi </3.
+
+**Khánh**: đỏ đen codeforces, atcoder, topcoder, csacademy (nếu có)
+
+**Nhật**: Thực hiện những kế hoạch mình chưa thực hiện được hồi ôn IOI (học IELTS, v.v …)
+
+##### 11. Các bạn cảm nhận thế nào về thời gian học đội tuyển, từ lúc ở trường cấp 3 đến lúc học chung? Nếu có thể các bạn có thể chia sẻ 1 vài kỉ niệm đáng nhớ?
+
+**Thắng**: 3 năm cấp 3 và thời gian học đội tuyển là khoảng thời gian rất đáng quý đối với mình. Học ở HSGS, giúp mình được gặp rất nhiều con người khủng, đặc biệt là những idol mà mình rất thần tượng: vuonglongtoan (UncleGrandpa925), MinhTung0404, ....Kỷ niệm đáng nhớ thì nhiều lắm không kể hết được :’).
+
+**Khánh**: Mình chơi suốt nên chả biết gì.
+
+**Nhật**: đối với mình, học đội tuyển là khoảng thời gian rất tuyệt vời vì mình được làm việc mình thích nhất toàn thời gian. Lên ĐH không có đội tuyển, mình ôn ACM vô cùng khó khăn càng thấy giá trị của thời gian học đội tuyển. Kỉ niệm thì nhiều lắm, ví dụ như năm mình 11 đội tuyển NK nhiều thành viên sáng vô sớm ngủ, thầy vô thì dậy học, đến trưa ăn xong lại ngủ, đến chiều thầy vô lại dậy học tiếp, vì thế nên rất thân. 
+
+##### 12. Hãy kể một điều ở đất nước Nhật khiến các bạn nhớ nhất?
+
+**Thắng**: Bản thân mình nghĩ Nhật rất khủng. Chỉ tiếc là mình không có nhiều thời gian mua đồ wibu ở akihabara.
+
+**Khánh**: Nước uống được trực tiếp từ mọi loại vòi (cho ai thắc mắc: mình chưa thử nước bồn cầu). Người Nhật vô cùng quy tắc. Nơi công cộng luôn phục vụ được người khuyết tật. Sushi, sashimi mua trong 7-11 và siêu thị ăn ngon hơn khối nhà hàng ở Việt Nam. Tạp chí gravure nữa ( ͡° ͜ʖ ͡°).
+
+**Nhật**: Thành phố công nghệ của Nhật nhìn dân cư thưa thớt như đồng quê vậy, rất sướng.               
+
+##### 13. Mình nghe đồn trên Codeforces là đồ ăn và chỗ ở trong kì thi có nhiều vấn đề, đặc biệt là thí sinh phải tắm ở nhà tắm công cộng ( ͡° ͜ʖ ͡°). Các bạn có thể chia sẻ một chút về những trải nghiệm và cảm nghĩ về công tác tổ chức IOI 2018 không?
+
+**Nhật**: Mình chưa phải tắm nhà tắm công cộng lần nào. Đồ ăn thì mình thấy cũng bình thường, kiểu phương Đông, có lẽ không hợp các bạn Tây lắm, và nó cũng khá đơn điệu. Những công việc tổ chức khác thì mình thấy không có vấn đề gì, tuy phần chương trình dành cho thí sinh hơi nhàm chán (2 ngày đi chơi không đã).
+
+**Thắng**: Cái này phải hỏi ngkan146.
+
+**Khánh**: Đối với những người con gốc gác phương Đông thì theo cá nhân mình, đồ ăn vô cùng hợp khẩu vị, từ những bát cơm Nhật ngon ngất ngây cho đến các món ăn như salad rau, gà rán kiểu Nhật, korokke … thậm chí Nhật còn lấy 2-3 bát miso. Còn các bạn phương Tây đành phải khóc thét trước nền văn hóa ẩm thực Nhật Bản. Ví dụ: Costin Andrei Oncescu - một đỏ đen codeforces - chỉ ăn cơm trắng, dẫn đến thành tích 2 HCĐ liên tiếp của anh.
+
+Mọi thứ dường như ngược lại trong phòng tắm công cộng. Dân EU hồn nhiên trêu đùa nhau trong phòng tắm, cùng nhau ngâm mình trong bồn nước nóng và ngắm vườn cây Nhật Bản, trong khi các bạn châu Á ngại ngùng hơn, đa phần là đăng ký tắm một mình.
+
+Chuyến đi chơi của BTC làm mình vô cùng thất vọng, chỉ loanh quanh mấy khu triển lãm xàm xàm, không được làm cái gì xịn xịn kiểu như đi công viên giải trí hay là khám phá công nghệ, abc xyz. 
+
+##### 14. Mình được biết năm nay cả đội đã có 3 tháng tập huấn, ăn ở sinh hoạt, học tập và sống cùng nhau. Các bạn hãy kể một vài những kỉ niệm đáng nhớ và trải nghiệm tập huấn trong đội tuyển.
+
+**Khánh**: được tiền
+
+**Thắng**: mình thấy ôn IOI có nhiều kỉ niệm khá là đáng sợ, và mọi người đều khóc thét vì một người nào đó. Thực ra có 1 số lí do mà 4 thằng ở 2 phòng rộng :’D. Cái này nên để người trong cuộc kể thì cảm xúc sẽ dạt dào hơn.
+
+**Nhật**: mình nghĩ kỉ niệm nên giữ giữa những người liên quan :))
+
+##### 15. Các bạn có thể bật mí ý nghĩa đằng sau handle Codeforces của mình không?
+
+**Thắng**: AppleOfMyEye - không phải tên phim đâu xD. - chắc không phải tên phim đâu xD
+
+**Nhật**: hồi lớp 10 lúc tạo tài khoản CF mình cần một cái handle, và sao rơi nghe có vẻ deep nên mình đặt thôi. Còn con số đằng sau là sinh nhật mình.
+
+**Khánh**: ngkan146 - NGuyen KhANh 14/6. Ngoài ra Khánh trong tiếng Nhật đọc là kan. Mình thấy ai khủng khủng cũng toàn nhét thêm birthday hoặc năm sinh vào đuôi nên mình cũng nhét.
+
+##### Theo mình biết thì cả 4 bạn đều sẽ thi ICPC năm nay. Vậy các bạn đã chuẩn bị như thế nào và mục tiêu của các bạn trong kì thi năm nay là gì?
+
+**Thắng**: No comment.
+
+**Khánh**: Team mình 3 người, mỗi người có một thế mạnh riêng. Mình tích cực phát huy thế mạnh của mình: chơi game.
+
+**Nhật**: Mình chuẩn bị bằng cách train khi có thể và tích cực tham gia các kì thi tập luyện để ăn hành của 3 bạn còn lại cho quen. Mục tiêu của mình là được đi du lịch càng nhiều càng tốt.
+
+##### Cảm ơn các bạn đã dành thời gian cho cuộc phỏng vấn này!
