@@ -19,3 +19,6 @@ Cảm ơn các bạn đã quan tâm và cổ vũ cho đội Việt Nam <3 rất 
 (Chú thích: Từ trái qua phải trong ảnh: Nguyễn Khánh, Hoàng Xuân Nhật, Phạm Đức Thắng, Nguyễn Hoàng Hải Minh)
 
 [[/uploads/ioi2018.jpg]]
+
+VNOI Wiki đã rất may mắn có cơ hội phỏng vấn 4 bạn khủng trên với hi vọng đem đến cho các bạn cái nhìn từ các IOI-er về các kì thi lập trình cũng như cách ôn luyện của các bạn để trở nên khủng như bây giờ.
+
