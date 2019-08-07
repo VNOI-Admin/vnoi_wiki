@@ -138,6 +138,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Phỏng vấn Lê Yên Thanh|vnoi-interview/yen-thanh]]
 - [[Phỏng vấn Nguyễn Xuân Khánh|vnoi-interview/xuan-khanh]]
 - [[Phỏng vấn Team IOI Việt Nam 2017|vnoi-interview/Phong-van-team-IOI-VN-2017]]
+- [[Phỏng vấn Team IOI Việt Nam 2018|vnoi-interview/Phong-van-team-IOI-VN-2018]]
 
 ## Khác
 
