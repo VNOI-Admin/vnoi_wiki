@@ -112,6 +112,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Khử nhân ma trận (3*)|algo/trick/counting-without-matrix-multiplication]]
 - [[Mo's algorithm (3*)|algo/data-structures/mo-algorithm]]
 - [[Fun with bits|translate/topcoder/fun-with-bits]]
+- [[Giải thuật cắt tỉa Alpha-Beta|algo/games/Giai-Thuat-Cat-Tia-Alpha-beta]]
 
 
 # Chia sẻ
