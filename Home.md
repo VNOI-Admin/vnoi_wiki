@@ -174,3 +174,12 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
     - [[Seam Carving|cs/imageprocessing/Seam-Carving]]
 - Cryptography
     - [[Public Key Cryptography và RSA|cs/crypto/Public-Key-Cryptography]]
+- [Trang Web VNOI phiên bản đầu tiên](https://v0.vnoi.info)
+- [Trang Web IOICAMP phiên bản đầu tiên](https://v0.vnoi.info/ioicamp)
+
+## [Trò chơi giải trí với AI hay](https://play.google.com/store/apps/dev?id=8454869713871668206)
+
+-   [Cờ Carô với AI hay](http://play.google.com/store/apps/details?id=com.popoko.gomokuvn)
+-   [Cờ Vua với AI hay](http://play.google.com/store/apps/details?id=com.popoko.chessru)
+-   [Cờ Gomoku với AI hay](http://play.google.com/store/apps/details?id=com.popoko.gomokukr)
+-   [Trò chơi Dò Mìn](http://play.google.com/store/apps/details?id=com.popoko.minesweeper)
