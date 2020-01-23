@@ -167,6 +167,8 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Classification - Phần 1|translate/ml/Machine-Learning-Classification-phan-1]]
 - [[Classification - Phần 2|translate/ml/Machine-Learning-Classification-phan-2]]
 - [[Classification - Phần 3|translate/ml/Machine-Learning-Classification-phan-3]]
+- [[Classification - Phần 3|translate/ml/Machine-Learning-Classification-phan-3]]
+- [[PyTorch là gì?|translate/pytorch-la-gi]] 
 
 ## Các chủ đề khác:
 
