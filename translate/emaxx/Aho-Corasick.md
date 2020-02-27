@@ -4,8 +4,6 @@
 
 **Nguồn**: [emaxx](https://cp-algorithms.com/string/aho_corasick.html#toc-tgt-3)
 
-**Người dịch**: Nguyễn *RR* Thành Trung
-
 ## Lưu ý
 
 Trước khi đọc bài viết này bạn cần nắm được các kiến thức sau:
