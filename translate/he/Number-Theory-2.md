@@ -171,7 +171,7 @@ Phương pháp này rất hữu ích khi ta phải phân tich nhiều số nhỏ
 vector<bool> isPrime(R - L + 1, true);  // x là số nguyên tố khi và chỉ khi isPrime[x - l] == true
 
 for (long long i = 2; i * i <= R; ++i) {
-    for (long long j = max(i * i, (L + (i - 1)) / i * i); j <= R; j += i) {
+    for (long long j = max(i * i, (L + i - 1) / i * i); j <= R; j += i) {
         isPrime[j - L] = false;
     }
 }
