@@ -214,3 +214,127 @@ p->push_back(2);
 cerr << p->size() << " " << p->front() << "\n"; // 1 2
 
 ```
+
+## b. Các cú pháp nâng cao
+Phần này nói về các kiến thức nâng cao hơn về con trỏ, dù khó hiểu hơn nhưng vẫn nói đến cú pháp là chính. Đây là các tình huống sử dụng con trỏ ít khi gặp trong lập trình thi đấu. Nếu các bạn cảm thấy phần trên khó hiểu với bạn, có thể cân nhắc bỏ qua phần này. Thành thật xin lỗi các bạn :(
+
+### Lấy con trỏ làm tham số của hàm
+Trước tiên, ta nhắc lại 3 loại tham số đối với các biến "thông thường": *tham trị*, *tham biến* và *hằng tham biến*:
+
+<table>
+<tr>
+<th>Kiểm tham số</th>
+<th>Cú pháp</th>
+<th>Giá trị truyền vào</th>
+<th>Chi phí truyền tham số</th>
+<th>Thay đổi giá trị tham số</th>
+</tr>
+<tr>
+<td>Tham trị</td>
+<td>`int a`</td>
+<td>Biến, biểu thức hoặc hằng số</td>
+<td>Chi phí lớn nếu kiểu dữ liệu truyền vào là vector, set... do phải copy giá trị của biến</td>
+<td>Có thể gán lại trong hàm, nhưng giá trị ngoài hàm của biến không đổi</td>
+</tr>
+<tr>
+<td>Tham biến</td>
+<td>`int &a`</td>
+<td>Chỉ có thể là biểu thức</td>
+<td>Chi phí rất nhỏ do không phải copy giá trị của biến</td>
+<td>Lệnh gán trong hàm làm thay đổi giá trị của biến ở ngoài hàm</td>
+</tr>
+<tr>
+<td>Hằng tham biến</td>
+<td>`const int &a`</td>
+<td>Biến, biểu thức hoặc hằng số</td>
+<td>Chi phí lớn nếu đối tượng truyền vào là biểu thức, chi phí nhỏ nếu đối tượng truyền vào là biến</td>
+<td>Không thể làm thay đổi giá trị của biến trong hàm</td>
+</tr>
+</table>
+
+Ví dụ:
+```cpp
+void update(int a, int &b, const int &c) {
+   a = 10; // OK but has no effect
+   b = 20; // OK and has effect
+   c = 30; // COMPILATION ERROR
+}
+
+int main(void) {
+   int a = 1, b = 2, c = 3;
+   update(a, b, c);
+   cout << a << " " << b << " " << c << endl; // 1 20 3
+   
+   update(1 + 1, b, c); // OK
+   update(a, 1 + 1, c); // COMPILATION ERROR
+   update(a, b, 1 + 1); // OK
+}
+```
+
+Trong đoạn code trên, lệnh `c = 30` gặp lỗi vì hằng tham biến không thể bị gán lại trong hàm. Nếu xóa dòng `c = 30` này đi, hàm update chỉ làm thay đổi giá trị biến `b` vì `a` là tham trị còn `b` là tham biến. Do đó khi in ra, biến `a` vẫn có giá trị là `1`, còn biến `b` bị gán lại thành `20`, biến `c` không thay đổi giá trị do được truyền vào là hằng tham biến và không thể gán lại.
+
+Nếu ta thử truyền một biểu thức (ví dụ, `1 + 1` như ở trên), tham số thứ nhất và thứ ba của hàm `update` (tham trị và hằng tham biến) cho phép làm điều này, còn tham số thứ hai (tham biến) chỉ chấp nhận truyền vào một biến.
+
+**Với con trỏ**, bạn có thể truyền vào ba loại tham số tương tự. Tuy nhiên, do kích thước của một biến con trỏ là rất nhỏ (4 bytes (bằng một biến `int`) với các máy tính dùng HĐH 32-bit, hoặc 8 bytes (bằng một biến `long long`) với các máy tính dùng HĐH 64-bit); mình thấy việc dùng hằng tham biến với con trỏ là **không cần thiết** (Hằng tham biến chỉ được sử dụng khi bạn truyền các tham số có kích thước lớn như vector, map, set...). Với con trỏ được truyền theo kiểu tham trị hoặc tham biến, có các điểm cần chú ý sau đây:
+- Chi phí truyền vào **luôn rất nhỏ**, bất kể là tham trị hay tham biến, bất kể đối tượng được trỏ vào là `int` hay `vector`.
+- Giá trị của con trỏ (biến "thông thường" được con trỏ trỏ vào) **không đổi** với tham trị, và **có thể thay đổi** với tham biến.
+- Giá trị của biến được đối tượng trỏ vào **luôn bị thay đổi** nếu có các lệnh gán hoặc gọi hàm làm thay đổi giá trị của chúng.
+
+Ví dụ:
+```cpp
+int normal_1, normal_2;
+void update(int* pointer) {
+   *pointer = 10;
+   pointer = &normal_2;
+   *pointer = 20;
+}
+
+int main(void) {
+   normal_1 = 1; normal_2 = 2;
+   int* pointer = &normal_1;
+   update(pointer);
+   cout << normal_1 << " " << normal_2 << " " << *pointer << endl; // 10 20 10;
+}
+
+```
+Trong ví dụ trên:
+- Khi hàm `update` được gọi, tham số `pointer` đang trỏ vào biến `normal_1`. Do đó, lệnh `*pointer = 10` mang ý nghĩa `normal_1 = 10`;
+- Sau hai lệnh `pointer = &normal_2` và `*pointer = 20`, biến `pointer` này trỏ vào biến `normal_2` và gán biến này thành `20`.
+- Kết quả in ra cho thấy `*pointer = 10`, tức là `pointer` trỏ vào `normal_1`. Tức là đối tượng bị `pointer` trỏ vào **không đổi** sau khi gọi hàm update.
+
+```cpp
+int normal_1, normal_2;
+void update(int *&pointer) {
+   *pointer = 10;
+   pointer = &normal_2;
+   *pointer = 20;
+}
+
+int main(void) {
+   normal_1 = 1; normal_2 = 2;
+   int* pointer = &normal_1;
+   update(pointer);
+   cout << normal_1 << " " << normal_2 << " " << *pointer << endl; // 10 20 20;
+}
+
+```
+Đoạn code này chỉ khác ở đoạn code trên ở chỗ tham số `pointer` của hàm `update` là **tham biến** thay vì **tham trị**.  Gía trị của hai biến `normal_1` và `normal_2` giống hệt đoạn code trên, nhưng `pointer` lúc này trỏ vào `normal_2`. Sở dĩ có điều này là vì trong hàm `update`, `pointer` bị gán lại thành `&normal_2`, và vì `pointer` là tham biến, lệnh gán này giữ nguyên giá trị khi ra khỏi hàm.
+
+### Tạo mảng động
+### Lệnh free để giải phóng bộ nhớ
+
+## c. Các lỗi thường gặp về con trỏ
+### Sai cú pháp
+Lỗi này bao gồm việc gõ thiếu hoặc thừa các dấu `*` hoặc các dấu `&`. Trong một phép gán hoặc phép tính, nếu bạn chỉ gõ sai ở một trong hai vế, bạn sẽ có một phép gán **không hợp lệ** và trình biên dịch sẽ **báo lỗi**. Khi đó bạn biết mình mắc lỗi và phải sửa, nhưng việc sửa là không dễ dàng do các thông điệp báo lỗi của C++ trong trường hợp này thường khó hiểu. Lời khuyên khi gặp phải trường hợp này đó là bạn hãy nhìn kỹ lại hai vế xem kiểu dữ liệu ở hai vế có tương ứng nhau hay không:
+- Nếu `a` là một biến "thông thường" kiểu `int`, `&a` là một con trỏ kiểu `int*` và `*a` là một biểu thức vô nghĩa.
+- Nếu `a` là một con trỏ kiểu `int*`, `*a` là một biến "thông thường" kiểu `int` và `&a` là một con trỏ kiểu `int**`.
+- Một phép gán chỉ hợp lệ khi kiểu dữ liệu của hai vế **giống nhau** (đều là `int` hay đều là `int*`).
+
+Tuy nhiên, có những trường hợp khó phát hiện hơn do lỗi sai **không gây lỗi biên dịch** (giống như các bệnh nhân nhiễm virus Corona nhưng không triệu chứng), vì vậy bạn phải thật cẩn thận. Giả sử ta có hai con trỏ `int *p` và `int *q`:
+- Lệnh `printf("%d\n", p)` dù không gây lỗi biên dịch nhưng **tạo ra cảnh báo**. Để nhận được cảnh báo này, bạn cần **bật chế độ -O2, -Wall và -Wextra** trong Codeblocks/Dev-Cpp.
+- `cout << p` thay vì `cout << *p`: Lệnh không gây ra lỗi biên dịch hay cảnh báo.
+- `p < q` thay vì `*p < *q`: Lệnh không gây ra lỗi biên dịch hay cảnh báo.
+- `p = q` thay vì `*p = *q` hoặc ngược lại: Lệnh không gây ra lỗi biên dịch hay cảnh báo.
+
+### Khai báo sai cách
+Để khai báo các biến "thông thường" cùng một kiểu, thay vì bạn khai báo `int a; int b; int c` bạn sẽ gộp lại thành `int a, b, c;`. Với con trỏ, để có 3 con trỏ trỏ vào các biến kiểu `int`, bạn cần khai báo là `int *a, *b, *c` (có dấu `*` trước **mỗi** biến), thay vì `int* a, b, c` hoặc `int *a, b, c`. Nếu bạn chỉ có một dấu `*`, chỉ biến `a` là con trỏ (kiểu `int*`), còn các biến `b` và `c` vẫn là biến "thông thường" kiểu `int`. Tất nhiên, bạn sẽ phát hiện lỗi này dễ dàng do trình biên dịch sẽ báo lỗi. Nhưng trình biên dịch chỉ báo lỗi ở dòng bạn gán/sử dụng con trỏ, còn dòng khai báo là chỗ bạn phải sửa thì trình biên dịch không bao giờ báo lỗi ở đây.
