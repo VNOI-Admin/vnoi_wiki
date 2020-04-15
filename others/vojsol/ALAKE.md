@@ -1,3 +1,4 @@
+# ALAKE
 Để đơn giản hóa bài toán, ta tạm coi $w_i = 1$ với mọi $i$ (mình sẽ gọi mỗi đoạn trong đề bài là mỗi cột cho dễ tưởng tượng), và ta chỉ tính thời gian ngập của vị trí $i$ khi nước chảy ở ngay vị trí $i$.
 Để tính được thời gian vị trí $i$ bị ngập trong trường hợp này, ta làm như sau:
 - Tìm hai cột cao hơn $H_i$ ở hai bên $i$ và gần $i$ nhất. Gọi vị trí của hai cột này trong mảng là $prv_i$ và $nxt_i$
