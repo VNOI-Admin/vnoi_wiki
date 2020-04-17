@@ -557,9 +557,9 @@ void addString(const string &s) {
 ```
 
 Một số bài tập dùng trie cho các bạn luyện tập:
-- [Trie Sharding, Google Code Jam 2014 round 2, problem D](https://code.google.com/codejam/contest/3014486/dashboard#s=p3). [Xem code tại đây](https://ideone.com/EwHSOF)
-- [Short Code, CF 476 div.2, problem E](https://codeforces.com/contest/965/problem/E). [Xem code tại đây](https://codeforces.com/contest/965/submission/37609430)
-- [Lexicographical Disorder, AtCoder - CODE FESTIVAL 2016 round B, problem E](https://atcoder.jp/contests/code-festival-2016-qualb/tasks/codefestival_2016_qualB_e). [Xem code tại đây](https://ideone.com/46ONEE)
+- [Trie Sharding, Google Code Jam 2014 round 2, problem D](https://code.google.com/codejam/contest/3014486/dashboard#s=p3). Xem code tại [đây](https://ideone.com/EwHSOF)
+- [Short Code, CF 476 div.2, problem E](https://codeforces.com/contest/965/problem/E). Xem code tại [đây](https://codeforces.com/contest/965/submission/37609430)
+- [Lexicographical Disorder, AtCoder - CODE FESTIVAL 2016 round B, problem E](https://atcoder.jp/contests/code-festival-2016-qualb/tasks/codefestival_2016_qualB_e). Xem code tại [đây](https://ideone.com/46ONEE)
 
 ## b. Kỹ thuật gộp set trên cây
 ## c. Persistent Segment Tree
