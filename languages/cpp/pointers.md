@@ -483,7 +483,7 @@ for (int i = 0; i < 10; i++) v[i] = new int;
 ```
 và
 ```cpp
-vector<int>* v(10, new int);
+vector<int*> v(10, new int);
 
 ```
 
