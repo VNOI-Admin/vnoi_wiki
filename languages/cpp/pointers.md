@@ -1,4 +1,4 @@
-# Con trỏ trong C/C++ (chưa hoàn thiện)
+# Con trỏ trong C/C++
 
 **Tác giả**: Phạm Văn Hạnh (*skyvn97, prof.PVH, I_love_tigersugar*)
 
