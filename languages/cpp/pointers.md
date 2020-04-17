@@ -474,6 +474,19 @@ void do_something_funny(int arr[MAX]) {
 ```
 Dù cách thứ hai trong phần trên là chính xác, mình khuyên các bạn không nên dùng. Tốt nhất là nếu `memset` thì không nên truyền mảng vào hàm
 
+### Các con trỏ trỏ không đúng thứ cần trỏ.
+Các bạn thử nghĩ xem hai đoạn code dưới đây khác nhau như thế nào. Sau khi nhận ra được sự khác biệt, bạn sẽ có cách khác phục cho riêng mình.
+```cpp
+vector<int*> v(10);
+for (int i = 0; i < 10; i++) v[i] = new int;
+
+```
+và
+```cpp
+vector<int>* v(10, new int);
+
+```
+
 # 3. Một số ứng dụng của con trỏ trong lập trình thi đấu
 Phần này điểm qua một số cấu trúc dữ liệu và thuật toán mà việc dùng con trỏ cài đặt sẽ hữu ích. Tất nhiên, các bạn có thể "né tránh" con trỏ bằng nhiều cách cài đặt khác; nhưng bạn sẽ phải trả giá bằng một đoạn code rất xấu và lằng nhằng.
 
