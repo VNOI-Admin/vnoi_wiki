@@ -321,6 +321,40 @@ int main(void) {
 Đoạn code này chỉ khác ở đoạn code trên ở chỗ tham số `pointer` của hàm `update` là **tham biến** thay vì **tham trị**.  Gía trị của hai biến `normal_1` và `normal_2` giống hệt đoạn code trên, nhưng `pointer` lúc này trỏ vào `normal_2`. Sở dĩ có điều này là vì trong hàm `update`, `pointer` bị gán lại thành `&normal_2`, và vì `pointer` là tham biến, lệnh gán này giữ nguyên giá trị khi ra khỏi hàm.
 
 ### Tạo mảng động
+Các bạn đã biết, trong một số trường hợp bạn không thể khai báo mảng tĩnh vì như vậy kích thước mảng cần thiết sẽ quá lớn, vượt quá giới hạn bộ nhớ cho phép và thực tế không cần thiết tới vậy.
+
+Ví dụ, khi bạn cần nhập vào một bảng hai chiều kích thước $m \cdot n$ với $1 \leq m \cdot n \leq 10^5$, ta biết rằng cả $m$ và $n$ đều có thể lên tới $10^5$. Tuy nhiên, khai báo mảng tĩnh `int a[1e5][1e5]` là không khả thi vì kích thước mảng $10^{10}$ là quá to. 
+
+Một trường hợp khác khá quen thuộc với các bạn: Các bạn cần lưu mảng danh sách kề của một đồ thị có $10^5$ đỉnh và $10^5$ cạnh. Ta biết rằng một đỉnh có thể kề với tối đa $10^5-1$ đỉnh khác, do đó nếu dùng mảng tĩnh ta phải khai báo `int adj[1e5][1e5]`, nhưng điều này một lần nữa không khả thi. Nhưng chúng ta biết rằng, thực tế chỉ có $10^5$ cạnh, tức là tổng kích thước của danh sách kề ứng với các đỉnh là không quá $2 \cdot 10^5$, đó là lý do chúng ta sử dụng `vector<int> adj[1e5]`.
+
+Theo quan điểm của mình, việc tạo mảng động bằng con trỏ không cần thiết, do `vector` của C++ cũng khá tiện lợi. Hơn nữa, việc khai báo vector **có kích thước cố định** không khiến vector chậm hơn hoặc dùng nhiều bộ nhớ hơn mảng (chỉ việc `push_back` quá nhiền lần với những vector có kích thước nhỏ mới khiến vector bị chậm). Vì vậy, nếu bạn không thạo con trỏ, lời khuyên là hãy dùng vector.
+
+Để hiểu cách tạo mảng bằng con trỏ, bạn cần hiểu về nguyên lý hoạt động của mảng, và vì sao truy cập phần tử thứ $k$ của mảng lại mất độ phức tạp $\\mathcal{O}(1)$. Điều này nói chi tiết ra sẽ khá dài dòng và cũng hơi khó hiểu, vì vậy mình sẽ bỏ qua (các bạn khi lên đại học sẽ được học thêm về phần này, và mình cảnh báo trước, đây là phần rất rất khó. Bản thân mình ko đạt điểm tối đa bài kiểm tra môn lập trình cơ bản phần con trỏ).
+
+Nói vắn tắt, một mảng các số nguyên kiểu `int` có bản chất giống như một **con trỏ** trỏ vào **phần tử đầu tiên** của mảng. Tức là, nếu ta khai báo `int a[100]` thì biến  `a` có kiểu `int*` (dù `a[0]`, `a[1]`,... có kiểu là `int`). Do `a` là con trỏ kiểu `int*`, `*a` là một biến "thông thường" kiểu `int`, và vì `a` trỏ vào phần tử đầu tiên `a[0]`, `*a` và `a[0]` **là cùng một biến** (gán `*a = 4` và `a[0] = 4` là như nhau).
+
+Tương tự, do mảng hai chiều là **mảng các mảng một chiều**, mảng hai chiều giống như **con trỏ trỏ vào một con trỏ. Nếu ta khai báo `int b[100][100]`, biến `b` có kiểu `int**`. 
+
+Để tạo ra mảng một chiều có $100$ phần tử `int`, ta khai báo như sau:
+```cpp
+int *a = new int[100];
+
+```
+
+Để tạo ra các mảng nhiều chiều, ý tưởng là ta sẽ tạo ra từng chiều một. Ví dụ dưới đây đọc vào 3 số m, n, p và tạo ra một mảng hai chiều kích thước $m \cdot n$ cùng một mảng ba chiều kích thước $m \cdot n \cdot p$:
+```cpp
+int **array_2d, ***array_3d;
+int m, n, p; cin >> m >> n >> p;
+
+array_2d = new int*[m];
+for (int i = 0; i < m; i++) array_2d[i] = new int[n];
+
+array_3d = new int**[m];
+for (int i = 0; i < m; i++) {
+   array_3d[i] = new int*[n];
+   for (int j = 0; j < n; j++) array_3d[i][j] = new int[p];
+}
+
 ### Lệnh free để giải phóng bộ nhớ
 
 ## c. Các lỗi thường gặp về con trỏ
@@ -338,3 +372,5 @@ Tuy nhiên, có những trường hợp khó phát hiện hơn do lỗi sai **kh
 
 ### Khai báo sai cách
 Để khai báo các biến "thông thường" cùng một kiểu, thay vì bạn khai báo `int a; int b; int c` bạn sẽ gộp lại thành `int a, b, c;`. Với con trỏ, để có 3 con trỏ trỏ vào các biến kiểu `int`, bạn cần khai báo là `int *a, *b, *c` (có dấu `*` trước **mỗi** biến), thay vì `int* a, b, c` hoặc `int *a, b, c`. Nếu bạn chỉ có một dấu `*`, chỉ biến `a` là con trỏ (kiểu `int*`), còn các biến `b` và `c` vẫn là biến "thông thường" kiểu `int`. Tất nhiên, bạn sẽ phát hiện lỗi này dễ dàng do trình biên dịch sẽ báo lỗi. Nhưng trình biên dịch chỉ báo lỗi ở dòng bạn gán/sử dụng con trỏ, còn dòng khai báo là chỗ bạn phải sửa thì trình biên dịch không bao giờ báo lỗi ở đây.
+
+Bởi thế, khi cần khai báo nhiều con trỏ cùng một lúc, bạn phải khai báo là `int *a, *b, *c`. Còn khi chỉ có một con trỏ (lúc khai báo biến hoặc khai báo tham số của hàm), bạn nên viết là `int *a` thay vì `int* a`. Thực lòng thì mình thích cách `int* a` hơn, và khi đi làm ở Google mình nhớ là mọi người cũng viết thế, bởi vì khi xét `int*` là một kiểu dữ liệu thì `int* a` là một cách viết rất trong sáng. Tuy nhiên mình không hiểu sao C++ lại không hiểu `int* a, b, c` là 3 con trỏ, mình thật sự thấy hơi vô lý ở đây.
