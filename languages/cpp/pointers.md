@@ -472,4 +472,101 @@ void do_something_funny(int arr[MAX]) {
 }
 
 ```
-Dù cách thứ hai trong phần trên là chính xác, mình khuyên các bạn không nên dùng. Tốt nhất là nếu `memset` thì không nên truyền mảng vào hàm.
+Dù cách thứ hai trong phần trên là chính xác, mình khuyên các bạn không nên dùng. Tốt nhất là nếu `memset` thì không nên truyền mảng vào hàm
+
+# 3. Một số ứng dụng của con trỏ trong lập trình thi đấu
+Phần này điểm qua một số cấu trúc dữ liệu và thuật toán mà việc dùng con trỏ cài đặt sẽ hữu ích. Tất nhiên, các bạn có thể "né tránh" con trỏ bằng nhiều cách cài đặt khác; nhưng bạn sẽ phải trả giá bằng một đoạn code rất xấu và lằng nhằng.
+
+## a. Cây tiền tố (*trie*)
+Ứng dụng phổ biến nhất của con trỏ là để biểu diễn các cấu trúc dữ liệu dạng cây. Ý tưởng chung là ta sẽ viết một `struct Node` để mô tả một nút trên cây. Khi ta vẽ một cây lên giấy, ta thường mô tả các quan hệ cha con bằng cách vẽ một đường có mũi tên nối từ cha xuống con. Nói cách khác, mũi tên này chỉ việc chả "trỏ" vào con. Việc biểu diễn các cấu trúc dữ liệu cây bằng con trỏ dựa trên ý tưởng này: Trong `struct Node`, ta có các trường để lưu các con trỏ `Node*` trỏ vào các con.
+
+Giả sử ta chỉ làm việc trên các xâu ký tự gồm các chữ cái latin in thường. Khi đó, trong `struct Node` cần có một mảng gồm $26$ phần tử có kiểu `Node *`, để lưu lại $26$ con trỏ trỏ đến $26$ con của một nút ứng với $26$ ký tự 'a' - 'z'.
+
+Ta xét bài toán ví dụ đơn giản: *Cho $n$ xâu ký tự $s_1, s_2, \ldots, s_n$, tính tổng độ dài các tiền tố phân biệt của $n$ xâu kí tự này.
+
+Để làm được bài này, đầu tiên ta sẽ dựng cây tiền tố. Sau đó, với mỗi nút ta sẽ tính hai giá trị:
+- Độ cao của nút này
+- Tổng độ cao của các nút nằm trong cây con có gốc là nút này.
+
+Đoạn code mẫu:
+```cpp
+#define REP(i, n) for (int i = 0, _n = (n); i < _n; i++)
+
+struct Node {
+   Node *child[26];
+   long long high, totHigh;
+
+   Node() {
+      high = totHigh = 0;
+      REP(i, 26) child[i] = NULL;
+   }
+};
+Node *root;
+
+void addString(const string &s) {
+   Node *p = root;
+   REP(i, s.size()) {
+      if (p->child[s[i] - 'a'] == NULL) p->child[s[i] - 'a'] = new Node();
+      p = p->child[s[i] - 'a'];
+      p->high = i + 1;
+   }
+}
+
+void dfs(Node *p) {
+   p->totHigh = p->high;
+   REP(i, 26) if (p->child[i] != NULL) {
+      dfs(p->child[i]);
+      p->totHigh += p->child[i]->totHigh;
+   }
+}
+
+int main(void) {
+   int n; cin >> n;
+   root = new Node();
+
+   REP(love, n) {
+      string s; cin >> s; addString(s);
+   }
+
+   root->dfs();
+   cout << root->totHigh << endl;
+}
+
+```
+
+Đoạn code trên có ba phần chính:
+- Phần mô tả `struct Node`: Ở đây, ta thấy trong Node lưu lại một mảng `Node *child[26]` là mảng con trỏ trỏ vào các con như đã nói ở trên. Ngoài ra, ta còn dùng thêm biến `high` để lưu lại độ cao của cây và `totHigh` để lưu lại tổng độ cao của tất cả các nút trong cây con. Đoạn code trong `Node() { ... }` được gọi là *constructor*, giúp ta khởi tạo mảng child bằng NULL.
+- Hàm `addString(string s)`: Dùng để thêm một xâu ký tự vào cây trie. Trong hàm này ta có một con trỏ `Node *p`. Ban đầu con trỏ trỏ vào gốc cây. Ta lần lượt duyệt qua các kí tự của xâu $s$, mỗi kí tự duyệt qua ta "đi" xuống một bước trên cây, duy trì sao cho con trỏ `p` luôn trỏ vào nút ứng với tiền tố kết thúc bởi kí tự đang xét. Lệnh `if (p->child[...] == NULL) p->child[...] = new Node()` có nghĩa là *nếu nút cần đi tới chưa tồn tại trên cây, ta phải tạo ra nút đó*. Lệnh `p = p->child[...]` chính là ta đã "nhảy" một bước xuống lớp xâu hơn của cây.
+- Hàm `dfs` làm quá trình DFS và tính các giá trị. Hàm này có logic giống hệt DFS trên cây bình thường. Chỉ khác rằng, mọi khi bạn đánh số các nút từ $1$ tới $n$, do đó ta có hàm `void dfs(int u)`. Còn ở đây ta không đánh số mà dùng con trỏ, do đó ta dùng `void dfs(Node *p)`.
+
+Các lỗi hay mắc khi cài đặt trie:
+- Thiếu constructor trong `struct Node`: Nếu không có constructor khởi tạo mảng `Node *child[26]` bằng NULL, các con trỏ **không mang giá trị NULL** và do đó bạn **sẽ bị run-time error**.
+- Quên khởi tạo gốc cây `root = new Node()` (dòng thứ 2 ở hàm `main`). Nếu thiếu dòng này, bạn **chắc chắn bị run-time error** do cây của bạn chưa có gốc thì chưa thể thêm các nút khác được.
+- Viết sai hàm `addString`. Sẽ có nhiều bạn khi mới code sẽ bị sai nhu dưới đây. Các bạn thử đoán xem lỗi sai là gì:
+
+```cpp
+void addString(const string &s) {
+   Node *p = root;
+   REP(i, s.size()) {      
+      p = p->child[s[i] - 'a'];
+      if (p == NULL) p = new Node();
+      p->high = i + 1;
+   }
+}
+
+```
+
+Một số bài tập dùng trie cho các bạn luyện tập:
+- [Trie Sharding, Google Code Jam 2014 round 2, problem D](https://code.google.com/codejam/contest/3014486/dashboard#s=p3). [Xem code tại đây](https://ideone.com/EwHSOF)
+- [Short Code, CF 476 div.2, problem E](https://codeforces.com/contest/965/problem/E). [Xem code tại đây](https://codeforces.com/contest/965/submission/37609430)
+- [Lexicographical Disorder, AtCoder - CODE FESTIVAL 2016 round B, problem E](https://atcoder.jp/contests/code-festival-2016-qualb/tasks/codefestival_2016_qualB_e). [Xem code tại đây](https://ideone.com/46ONEE)
+
+## b. Kỹ thuật gộp set trên cây
+## c. Persistent Segment Tree
+Sử dụng con trỏ để cài đặt Persistent Segment Tree khá phổ biến, do đây là một loại cây nhị phân mà bạn cần cài đặt nhiều "phiên bản" khác nhau. Do việc cài đặt rất phức tạp, mình chỉ cho các bạn xem code chứ không thể phân tích chi tiết được. Khi đọc code của mình, bạn chỉ cần đọc phần `class PersistentSegmentTree`. Các phần còn lại không liên quan trực tiếp đến CTDL, chỉ là để giải bài toán.
+
+Bài tập liên quan:
+- [Persistent Bookcase, CF 368 Div.2, problem D](https://codeforces.com/contest/707/problem/D). Xem code tại [đây](https://codeforces.com/contest/707/submission/19992150)
+- [Lazy Learner, The 2018 ICPC Hanoi Regional Contest, problem L](https://hanoi18.kattis.com/problems/lazylearner).
+
+## d. Balanced Binary Search Tree (Red-black Tree, AVL, Splay Tree...)
