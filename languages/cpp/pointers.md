@@ -355,7 +355,62 @@ for (int i = 0; i < m; i++) {
    for (int j = 0; j < n; j++) array_3d[i][j] = new int[p];
 }
 
-### Lệnh free để giải phóng bộ nhớ
+```
+
+Việc dùng vector để tạo mảng động được khuyến khích do sự dễ dàng và thuận tiện. Tuy nhiên, có hai ưu điểm của việc dùng mảng động bằng con trỏ: **Tốn ít bộ nhớ** và **code ngắn gọn hơn.**
+
+Ví dụ, nếu ta cần một mảng 4 chiều kích thước $10^5 \cdot 10^2 \cdot 2 \cdot 2$, có hai cách khai báo mà mình biết:
+```cpp
+int m = (int)1e5, n = (int)1e2;
+
+vector<vector<vector<vector<int>>>> dynamic_vector(m, vector<vector<vector<int>>>);
+for (int i = 0; i < m; i++) {
+   dynamic_vector[i].resize(n);
+   for (int j = 0; j < n; j++) {
+      dynamic_vector[i][j].resize(2);
+      for (int k = 0; k < 2; k++)
+         dynamic_vector[i][j][k].resize(2);
+   }
+}
+
+/**OR**/
+int**** dynamic_array = new int***[m];
+for (int i = 0; i < m; i++) {
+   dynamic_array[i] = new int**[n];
+   for (int j = 0; j < n; j++) {
+      dynamic_array[i][j] = new int*[2];
+      for (int k = 0; k < 2; k++) {
+         dynamic_array[i][j][k] = new int[2];
+      }
+   }
+}
+
+```
+
+Một vector cần 24 bytes để lưu, còn một con trỏ chỉ cần 8 bytes. Ở mỗi cách, ta cần lưu $m + m \cdot n + m \cdot n \cdot 2 = 30.1 \cdot 10^6$ vector/con trỏ và $4 \cdot 10^7$ biến `int`. Do đó dùng vector sẽ tốn $882.4 \cdot 10^6$ bytes ~ $841.5$MB, nhưng dùng con trỏ chỉ tốn ~400MB. 
+
+Sau đây là hai lời khuyên cuối cùng về việc tạo mảng động:
+- Bất kể sử dụng vector hay con trỏ để khai báo mảng động, bạn cố gắng **chỉ tạo một chiều động**, còn các chiều còn lại tĩnh.
+- Trường hợp bắt buộc phải dùng mảng động nhiều chiều, dùng con trỏ sẽ tốt hơn vector.
+
+Giả sử bạn có một bài quy hoạch động 4 chiều với hàm qhđ $f(i, j, k, l)$ với $0 \leq i \leq m$, $0 \leq j \leq n$ và $k$ và $l$ chỉ là các giá trị $0$ hoặc $1$. Nếu đề bài ràng buộc $1 \leq m \cdot n \leq 10^5$, ta biết rằng kích thước của ba chiều $i$, $k$, và $l$ không quá $4 \cdot 10^5$. Do đó mình khuyên các bạn nên biểu diễn trạng thái dưới dạng $f(k, l, i, j)$ thay vì $f(i, j, k, l)$ (đảo thứ tự các chiều):
+```cpp
+#define MAX   100100
+int *f[2][2][MAX];
+
+int main(void) {
+   int m, n; cin >> m >> n;
+   ...
+   for (int k = 0; k < 2; k++) for (int l = 0; l < 2; l++) for (int i = 0; i <= m; i++)
+      f[k][l][i] = new int[n + 1]; // note that 0 <= j <= n so the array size is n+1.
+}
+
+```
+
+### Lệnh *delete* để giải phóng bộ nhớ
+`delete` là lệnh trái ngược với `new`. Nếu như `new` là lệnh dùng để "xin" bộ nhớ máy tính cho một biến mới, thì `delete` dùng để trả lại bộ nhớ biến này. Khi bạn gọi lệnh `new`: `int *p = new int` hay `int *arr = new int[100]`, bạn tiêu tốn một phần tài nguyên của máy tính để lưu các biến `int` được tạo thêm này. Đến lúc bạn không cần chúng nữa, bạn không muốn tiêu tốn tài nguyên, bạn gọi lệnh `delete p` hoặc `delete[] arr`. Khi đó, các biến bạn vừa "xin" thêm sẽ biến mất.
+
+Lệnh `delete` này rất thiết thực trong lập trình thực tế, do bạn không muốn sử dụng tài nguyên khi không cần thiết. Nhưng nhìn chung, bạn không cần `delete` trong lập trình thi đấu, do một khi đã `new` được thì nghĩa là bạn không bị quá giới hạn bộ nhớ cho phép.
 
 ## c. Các lỗi thường gặp về con trỏ
 ### Sai cú pháp
@@ -374,3 +429,47 @@ Tuy nhiên, có những trường hợp khó phát hiện hơn do lỗi sai **kh
 Để khai báo các biến "thông thường" cùng một kiểu, thay vì bạn khai báo `int a; int b; int c` bạn sẽ gộp lại thành `int a, b, c;`. Với con trỏ, để có 3 con trỏ trỏ vào các biến kiểu `int`, bạn cần khai báo là `int *a, *b, *c` (có dấu `*` trước **mỗi** biến), thay vì `int* a, b, c` hoặc `int *a, b, c`. Nếu bạn chỉ có một dấu `*`, chỉ biến `a` là con trỏ (kiểu `int*`), còn các biến `b` và `c` vẫn là biến "thông thường" kiểu `int`. Tất nhiên, bạn sẽ phát hiện lỗi này dễ dàng do trình biên dịch sẽ báo lỗi. Nhưng trình biên dịch chỉ báo lỗi ở dòng bạn gán/sử dụng con trỏ, còn dòng khai báo là chỗ bạn phải sửa thì trình biên dịch không bao giờ báo lỗi ở đây.
 
 Bởi thế, khi cần khai báo nhiều con trỏ cùng một lúc, bạn phải khai báo là `int *a, *b, *c`. Còn khi chỉ có một con trỏ (lúc khai báo biến hoặc khai báo tham số của hàm), bạn nên viết là `int *a` thay vì `int* a`. Thực lòng thì mình thích cách `int* a` hơn, và khi đi làm ở Google mình nhớ là mọi người cũng viết thế, bởi vì khi xét `int*` là một kiểu dữ liệu thì `int* a` là một cách viết rất trong sáng. Tuy nhiên mình không hiểu sao C++ lại không hiểu `int* a, b, c` là 3 con trỏ, mình thật sự thấy hơi vô lý ở đây.
+
+### Con trỏ trỏ đến vùng nhớ không xác định.
+Đây là lỗi hay gặp nhất, có ba lý do chính dẫn đến lỗi này:
+- Chưa xét trường hợp con trỏ hiện tại là con trỏ NULL. Lỗi này đã được nói đến ở phần trên. Để khác phục, bạn cần xét cẩn thận từng trường hợp, khi gọi vào `*p` hay `p->`, bạn cần nghĩ xem liệu `p` có thể là `NULL` không. Nếu có, bạn cần thêm các lệnh `if` (ví dụ, `if (p != NULL) p->push_back(1)`) hay phép toán điều kiện (ví dụ, `cout << (p == NULL ? 0 : *p)`).
+- Chưa khởi tạo con trỏ trước khi truy cập. Chú ý, các con trỏ nếu được khai báo là **biến cục bộ** (khai báo trong hàm), nó **không tự động khởi tạo là NULL**. Do đó, nếu bạn kiểm tra điều kiện `p == NULL`, nó sai, nhưng khi truy cập vào `*p`, bạn vẫn bị chạy sinh lỗi như khi truy cập vào con trỏ NULL. Lời khuyên đưa ra: Giống như bất kỳ biến cục bộ nào khác, bạn phải khởi tạo trước khi sử dụng.
+- Truy cập sau khi `delete`: Khi bạn xóa vùng nhớ của một con trỏ bằng `delete p` hoặc `delete[] arr`, các vùng nhớ tương ứng với các con trỏ bị xóa, nhưng con trỏ **không được gán lại thành NULL**. Khi đó, nếu bạn vô tình truy cập vào `*p` bạn vẫn bị chạy sinh lỗi, và kiểm tra `p == NULL` không giúp bạn tránh được lỗi này.
+
+### *sizeof* không hoạt động với con trỏ và mảng động.
+Các bạn đã biết, ta có thể dùng `memset` để khởi tạo một mảng với cú pháp thông thường: `memset(arr, ..., sizeof arr)`. Điều này đúng với mảng tĩnh các bạn hay dùng, nhưng với mảng động được tạo ra bởi thao tác `new`, bạn không thể dùng `sizeof` mà phải tự truyền kích cỡ thực của chúng.
+
+```cpp
+int m = 100, n = 10000;
+int *int_array; int_array = new int[m];
+int *ll_array; ll_array = new long long[n];
+
+// INCORRECT
+memset(int_array, 0, sizeof int_array);
+memset(ll_array, 0, sizeof ll_array);
+
+
+// CORRECT
+memset(int_array, 0, m * sizeof(int));
+memset(ll_array, 0, n * sizeof(long long));
+
+```
+
+Tương tự, nếu một mảng được truyền vào một hàm, kể cả **nếu mảng đó là mảng tĩnh**, bạn không thể khởi tạo theo cách thông thường.
+
+```cpp
+#define MAX   100100
+int arr[MAX];
+
+// INCORRECT
+void do_something_funny(int arr[MAX]) { // "int arr[MAX]", "int arr[]" or "int *arr" are the same here
+   memset(arr, 0, sizeof arr);
+}
+
+// CORRECT
+void do_something_funny(int arr[MAX]) {
+   memset(arr, 0, MAX * sizeof(int));
+}
+
+```
+Dù cách thứ hai trong phần trên là chính xác, mình khuyên các bạn không nên dùng. Tốt nhất là nếu `memset` thì không nên truyền mảng vào hàm.
