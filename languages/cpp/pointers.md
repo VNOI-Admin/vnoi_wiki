@@ -166,6 +166,8 @@ Trong ví dụ trên:
 **Chú ý**: Các lệnh gán các biến "thông thường" `normal_1` và `normal_2` ở trên kia làm thay đổi `*pointer`, **nhưng không thay đổi** `pointer`. Các bạn cần **phân biệt rất cẩn thận** hai lệnh `*another_pointer = *pointer` và `another_pointer = pointer`. Lệnh thứ nhất chỉ là phép gán giá trị giữa hai biến "thông thường", trong khi lệnh thứ hai làm thay đổi đối tượng mà `another_pointer` đại diện cho.
 
 ### Con trỏ *NULL* - con trỏ không trỏ vào một đối tượng nào.
+*Chú thích: Nếu bạn dùng C++11 hoặc các phiên bản mới hơn, bạn được khuyến khích sử dụng từ khóa *nullptr* thay cho từ khóa *NULL* được nêu ở đây. Tuy việc dùng từ khóa *NULL* là tương đối an toàn, *nullptr* vẫn thích hợp hơn trong trường hợp này. Chi tiết các bạn có thể xem tại [đây](https://embeddedartistry.com/blog/2017/03/08/migrating-from-c-to-c-null-vs-nullptr). Phần còn lại vẫn sẽ sử dụng *NULL* bởi chỉ từ khóa này tương thích với C và các bản C++ trước 11.
+
 Một con trỏ có thể không trỏ vào một đối tượng nào, khi đó con trỏ mang một giá trị mặc định *NULL*. Khi bạn cố gắng truy cập vào đối tượng của một con trỏ mang gía trị *NULL*, chương trình bạn **bị crash ngay lập tức** (bị *crash* chứ không bị *crush*) và bạn sẽ gặp phải lỗi *run-time error* (hoặc *non-zero exit code*, *segmentation fault*):
 
 ```cpp
@@ -239,7 +241,7 @@ Trước tiên, ta nhắc lại 3 loại tham số đối với các biến "th�
 <tr>
 <td>Tham biến</td>
 <td>`int &a`</td>
-<td>Chỉ có thể là biểu thức</td>
+<td>Chỉ có thể là biến</td>
 <td>Chi phí rất nhỏ do không phải copy giá trị của biến</td>
 <td>Lệnh gán trong hàm làm thay đổi giá trị của biến ở ngoài hàm</td>
 </tr>
@@ -430,7 +432,9 @@ Tuy nhiên, có những trường hợp khó phát hiện hơn do lỗi sai **kh
 
 Bởi thế, khi cần khai báo nhiều con trỏ cùng một lúc, bạn phải khai báo là `int *a, *b, *c`. Còn khi chỉ có một con trỏ (lúc khai báo biến hoặc khai báo tham số của hàm), bạn nên viết là `int *a` thay vì `int* a`. Thực lòng thì mình thích cách `int* a` hơn, và khi đi làm ở Google mình nhớ là mọi người cũng viết thế, bởi vì khi xét `int*` là một kiểu dữ liệu thì `int* a` là một cách viết rất trong sáng. Tuy nhiên mình không hiểu sao C++ lại không hiểu `int* a, b, c` là 3 con trỏ, mình thật sự thấy hơi vô lý ở đây.
 
-### Con trỏ trỏ đến vùng nhớ không xác định.
+### Con trỏ trỏ lung tung
+Lỗi này có triệu chứng là việc bạn bị *run-time-error*, do bạn truy cập vào vùng nhớ (biến "thông thường" được trỏ tới) của một con trỏ trỏ vào nơi "lung tung", không xác định.
+
 Đây là lỗi hay gặp nhất, có ba lý do chính dẫn đến lỗi này:
 - Chưa xét trường hợp con trỏ hiện tại là con trỏ NULL. Lỗi này đã được nói đến ở phần trên. Để khác phục, bạn cần xét cẩn thận từng trường hợp, khi gọi vào `*p` hay `p->`, bạn cần nghĩ xem liệu `p` có thể là `NULL` không. Nếu có, bạn cần thêm các lệnh `if` (ví dụ, `if (p != NULL) p->push_back(1)`) hay phép toán điều kiện (ví dụ, `cout << (p == NULL ? 0 : *p)`).
 - Chưa khởi tạo con trỏ trước khi truy cập. Chú ý, các con trỏ nếu được khai báo là **biến cục bộ** (khai báo trong hàm), nó **không tự động khởi tạo là NULL**. Do đó, nếu bạn kiểm tra điều kiện `p == NULL`, nó sai, nhưng khi truy cập vào `*p`, bạn vẫn bị chạy sinh lỗi như khi truy cập vào con trỏ NULL. Lời khuyên đưa ra: Giống như bất kỳ biến cục bộ nào khác, bạn phải khởi tạo trước khi sử dụng.
