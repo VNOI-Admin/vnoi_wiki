@@ -2,21 +2,23 @@
 
 **Người viết**: RR
 
-Trong bài viết này mình muốn chia sẻ kinh nghiệm phỏng vấn Google của mình. Mình tên là RR, hiện đang làm Software Engineer ở Google. Trong thời gian làm ở Google, mình đã refer (giới thiệu) hơn 20 bạn vào Google (kể cả đỗ và trượt), nhờ đó nắm được tương đối rõ quy trình tuyển dụng của Google. Trước khi vào Google, mình làm ở Garena Singapore và cũng có cơ hội được phỏng vấn khá nhiều bạn. Đứng ở cả 2 phía của quá trình phỏng vấn đã giúp cho mình có cái nhìn rõ ràng hơn về quy trình tuyển dụng của các công ty.
+Trong bài viết này mình muốn chia sẻ kinh nghiệm phỏng vấn Google của mình. Mình tên là RR, hiện đang làm Software Engineer ở Google. Trong thời gian làm ở Google, mình đã refer (giới thiệu) hơn 100 bạn vào Google. Mình cũng đã từng phỏng vấn khoảng 60 ứng cử viên. Đứng ở cả 2 phía của quá trình phỏng vấn đã giúp cho mình có cái nhìn rõ ràng hơn về quy trình tuyển dụng của các công ty.
 
-Bài viết này thể hiện quan điểm cá nhân của mình, có thể không đúng với quan điểm tuyển dụng của Google hay Garena Singapore.
+Bài viết này thể hiện quan điểm cá nhân của mình, có thể không đúng với quan điểm tuyển dụng của Google.
 
 # 0. Quy trình phỏng vấn Google
 
-1. **Gửi resume cho Google**: hồ sơ của các bạn sẽ được kiểm duyệt và đánh giá, sau đó những resume nào tốt sẽ được chọn vào vòng phỏng vấn. Vòng này vốn có tỉ lệ đậu rất thấp, hầu hết hồ sơ của các bạn sẽ bị rớt từ vòng này. 2 cách gửi resume:
+1. **Gửi resume cho Google**: hồ sơ của các bạn sẽ được kiểm duyệt và đánh giá, sau đó những resume nào tốt sẽ được chọn vào vòng phỏng vấn. Vòng này có tỉ lệ đậu khá thấp, hầu hết hồ sơ của các bạn sẽ bị rớt từ vòng này. 2 cách gửi resume:
     - Vào trang [Google Careers](https://careers.google.com/), tìm vị trí phù hợp rồi gửi resume, hoặc
     - Tìm người refer là nhân viên Google và gửi resume trực tiếp cho người đó.
+
 2. **Phỏng vấn**:
     - Với intern, các bạn sẽ có 2 vòng phỏng vấn online 45 phút với các lập trình viên Google. Nếu Google chưa đánh giá được trình độ các bạn sau 2 vòng thì sẽ tiến hành phỏng vấn thêm 1 vòng nữa. Kết quả phỏng vấn sẽ được báo sau vài tuần.
     - Với phỏng vấn full time, bạn sẽ phải trải qua nhiều vòng hơn (thường là 1 vòng qua điện thoại và 5 vòng trực tiếp).
-    - Thời gian phỏng vấn các bạn có thể tự thỏa thuận với Google.
+    - Thời gian phỏng vấn các bạn có thể thỏa thuận với Google.
 
-3. **Nhận kết quả phỏng vấn**: Sau khi vượt qua vòng phỏng vấn, bạn sẽ nhận được thư chúc mừng từ recruiter. Các bạn đọc lưu ý bên dưới rằng ở bước này có thể các bạn sẽ chưa được nhận Offer Letter ngay, do vẫn còn bước 4 để các bạn có thể chắc chắn được đi thực tập tại Google.
+3. **Nhận kết quả phỏng vấn**: Nếu vượt qua vòng phỏng vấn, bạn sẽ nhận được thư chúc mừng từ recruiter. Các bạn đọc lưu ý bên dưới rằng ở bước này có thể các bạn sẽ chưa được nhận Offer Letter ngay, do vẫn còn bước 4 để các bạn có thể chắc chắn được đi thực tập tại Google.
+
 4. **Host Matching**: Sau khi đậu phỏng vấn, hồ sơ của các bạn sẽ vào một danh sách để các lập trình viên tại Google hiện có dự án cho thực tập sinh xét chọn. Họ sẽ chủ động liên hệ các bạn để giới thiệu về dự án cũng như đánh giá các bạn có phù hợp với công việc không. Bạn cũng có quyền đồng ý hoặc từ chối để lựa chọn dự án phù hợp với mình. Sau khi đã chọn xong dự án thì coi như mọi thứ đã xong, các bạn sẽ được liên hệ để hoàn thành các giấy tờ và chuẩn bị cho chuyến đi thực tập vào hè. Thời gian thực tập là từ 12 đến 14 tuần và có thể bắt đầu vào thời gian bất kì trong hè tùy vào điều kiện của các bạn.
 
 # 1. Chuẩn bị
@@ -25,10 +27,10 @@ Phỏng vấn Google chủ yếu hỏi về thuật toán. Bạn cũng có thể
 
 ## 1.1. Thuật toán
 
-Với dân ACM ICPC hoặc OI chuyên nghiệp, các câu hỏi phỏng vấn đều không khó. Để thêm tự tin, các bạn có thể luyện tập cài đặt một số bài đơn giản, chú ý vào xét trường hợp đặc biệt và cài đặt dễ hiểu. Trong vòng 1 năm trước khi phỏng vấn Google, mình đang chuẩn bị cho ICPC World final 2016, hầu như ngày nào cũng làm contest 5h, nên lúc đi phỏng vấn mình cứ hồn nhiên đi chứ không cần chuẩn bị gì cả. Tuy nhiên, các bạn vẫn cần chú ý một số điểm sau:
+Với dân ACM ICPC hoặc OI, các câu hỏi phỏng vấn sẽ không quá khó. Để thêm tự tin, các bạn có thể luyện tập cài đặt một số bài đơn giản, chú ý vào xét trường hợp đặc biệt và cài đặt dễ hiểu. Trong vòng 1 năm trước khi phỏng vấn Google, mình đang chuẩn bị cho ICPC World final 2016, hầu như ngày nào cũng làm contest 5h, nên lúc đi phỏng vấn mình không cần chuẩn bị gì cả. Tuy nhiên, các bạn vẫn cần chú ý một số điểm sau:
 
 - Không dùng những kiến thức phức tạp và không phổ biến như Splay Tree, Suffix Array, Max Flow...
-- Chú ý 1 số thuật toán có tên gọi khác với tên gọi phổ biến ở Việt Nam, ví dụ như Interval Tree = Segment Tree, Binary Indexed Tree = Fenwick Tree.
+- Chú ý 1 số thuật toán có tên gọi khác với tên gọi phổ biến ở Việt Nam, ví dụ như Interval Tree = Segment Tree.
 - Tìm thuật toán thật đơn giản. Các bài phỏng vấn được làm trong thời gian ngắn, vì vậy hãy chọn cách tiếp cận đơn giản nhất. Nếu người phỏng vấn chưa hài lòng họ sẽ hỏi cách tốt hơn.
 - Nắm rõ những thuật toán cơ bản dùng bộ nhớ động và con trỏ như Linked list, Tree. Các bạn cũng có thể luyện thêm trên [leetcode](https://www.leetcode.com), [CareerCup](https://www.careercup.com/), [TechieDelight](http://www.techiedelight.com/list-of-problems/).
 
@@ -43,7 +45,7 @@ Với các bạn không thi ACM ICPC hoặc OI, hoặc bạn đã bỏ thi sau n
     - Giảm bộ nhớ.
     - Cài đặt đơn giản hơn.
 
-Để kết thúc phần này, mình sẽ lấy ví dụ về một câu phỏng vấn (chú ý mình chưa từng thấy câu này trong lúc phỏng vấn Google nhưng nó phù hợp về độ khó):
+Để kết thúc phần này, mình sẽ lấy ví dụ về một câu phỏng vấn:
 
 > Một xâu được gọi là xâu đối xứng nếu nó đọc từ trái qua phải cũng giống như từ phải qua trái. Ví dụ: "abcba", "a", "abba" là các xâu đối xứng. "abc" không phải là xâu đối xứng. Cho xâu S. Tìm xâu con gồm các ký tự liên tiếp của S, có độ dài lớn nhất và là xâu đối xứng.
 
