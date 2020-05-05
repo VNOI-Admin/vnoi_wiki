@@ -36,3 +36,9 @@ Cuốn sách này được viết bởi các cựu học sinh trường chuyên 
 
 - [Quyển 1](https://drive.google.com/file/d/0B6O77opfHxDDV1lxdF9jWHVUZDA/view?usp=sharing)
 - [Quyển 3](https://drive.google.com/file/d/0BwcTB8a10LBwSmZFdGhSY1lMNVU/view?usp=sharing)
+
+**6. Guide To Competitive Programming**
+
+Nếu bạn có thể đọc tiếng Anh trôi chảy, bạn có thể tham khảo quyển "Guide To Competitive Programming" được viết năm 2017. Sách sử dụng ngôn ngữ C++ và có nhiều kiến thức mới.
+
+[Link download](https://drive.google.com/file/d/1-V14oys49VJM6oipdcaIGcLzakaR_Hkn/view?usp=sharing)
