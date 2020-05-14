@@ -1,0 +1,4 @@
+/* Gollum incorrectly detect invalid urls. Thus supressing highlight. */
+a.absent {
+        color: #4183c4 !important;
+}
