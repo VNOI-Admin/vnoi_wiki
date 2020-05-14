@@ -188,7 +188,7 @@ Nếu bạn chọn hệ cơ số > 256, bạn chỉ cần dùng mã ASCII của 
 
 ## 3. Chọn modulo
 
-Nếu bạn không hiểu rõ về cách đánh giá độ chính xác của thuật Hash (trình bày ở mục [Đánh giá độ chính xác](#Đánh-giá-độ-chính-xác)), bạn chỉ cần chọn 3-4 số nguyên tố khác nhau làm $MOD$. Bạn có thể tham khảo [code của Phạm Văn Hạnh](http://codeforces.com/contest/727/submission/21451704). Tuy nhiên các bạn cũng nên lưu ý là dùng nhiều $MOD$ quá cũng làm chương trình chạy chậm đi.
+Nếu bạn không hiểu rõ về cách đánh giá độ chính xác của thuật Hash (trình bày ở mục [Đánh giá độ chính xác](#đánh-giá-độ-chính-xác)), bạn chỉ cần chọn 3-4 số nguyên tố khác nhau làm $MOD$. Bạn có thể tham khảo [code của Phạm Văn Hạnh](http://codeforces.com/contest/727/submission/21451704). Tuy nhiên các bạn cũng nên lưu ý là dùng nhiều $MOD$ quá cũng làm chương trình chạy chậm đi.
 
 ## 4. Hash tràn số và Hash có MOD
 
@@ -284,7 +284,7 @@ Khi cài đặt Hash, ta cần chọn:
 Với những trang web mà người khác có thể đọc code bạn rồi tìm test sai (như Codeforces, Topcoder), nếu Hash tràn số hoặc MOD là 1 số nguyên biết trước, có thể sinh test để làm code bạn sai. Với những kỳ thi như HSG QG, IOI, ACM, và các Online Judge, thông thường sẽ không có những test như vậy. Tóm lại, khi chọn $MOD$ và hệ cơ số ta làm như sau:
 
 - Chọn hệ cơ số là số nguyên tố lớn hơn số lượng ký tự (ví dụ 31, 71).
-- Chọn $MOD$ đủ lớn theo nguyên tắc đã phân tích ở phần [Đánh giá độ chính xác](#Đánh-giá-độ-chính-xác).
+- Chọn $MOD$ đủ lớn theo nguyên tắc đã phân tích ở phần [Đánh giá độ chính xác](#đánh-giá-độ-chính-xác).
 - Nếu là Topcoder hoặc Codeforces, dùng kết hợp Hash tràn số và 1 $MOD$ đủ lớn.
 - Nếu không phải Topcoder hay Codeforces, có thể dùng Hash tràn số. Nếu $MOD = 2^{64}$ chưa đủ lớn thì dùng thêm 1 $MOD$ nữa.
 
