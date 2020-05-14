@@ -202,9 +202,10 @@ Với hầu hết các thuật toán thường gặp trong thực tế, giá tr�
 
 Nói cách khác: nếu hằng số là lớn thì thường là các hằng số đó có liên quan tới các đại lượng có sẵn trong đề bài. Trong trường hợp này cách làm thông thường là gán một tên gọi cho hằng số đó và thêm nó vào đánh giá độ phức tạp theo ký pháp, thay vì bỏ qua như ta đã làm với số $1.5$ ở ví dụ 2.
 
-Ví dụ: bài toán yêu cầu đếm số lần xuất hiện của mỗi loại ký tự trong một chuỗi độ dài $N$ ký tự. Thuật toán đơn giản nhất là duyệt cả chuỗi một lần cho mỗi loại ký tự. Kích cỡ bảng chữ cái không thay đổi (ví dụ nhiều nhất là 255 ký tự trong ngôn ngữ C), vì vậy thuật toán là tuyến tính với $N$. Mặc dù vậy, ta nên viết độ phức tạp thời gian là $ \Theta(|S|.N)$, trong đó $S$ là bảng chữ cái được sử dụng (Lưu ý là có một thuật toán tốt hơn giải bài toán này trong $ \Theta(| S| + N)$.
+Ví dụ: bài toán yêu cầu đếm số lần xuất hiện của mỗi loại ký tự trong một chuỗi độ dài $N$ ký tự. Thuật toán đơn giản nhất là duyệt cả chuỗi một lần cho mỗi loại ký tự. Kích cỡ bảng chữ cái không thay đổi (ví dụ nhiều nhất là 255 ký tự trong ngôn ngữ C), vì vậy thuật toán là tuyến tính với $N$. Mặc dù vậy, ta nên viết độ phức tạp thời gian là $ \Theta(\|S\| \times N)$, trong đó $S$ là bảng chữ cái được sử dụng (Lưu ý là có một thuật toán tốt hơn giải bài toán này trong $ \Theta(\|S\| + N)$.
 
 Trong một kỳ thi trên TopCoder, một thuật toán thực thi 1 000 000 000 phép nhân hiếm khi chạy trong giới hạn thời gian cho phép. Thực tế này cộng với quan sát ở trên và một vài kinh nghiệm với các bài toán trên TopCoder giúp ta tổng kết bảng sau:
+
 <table>
 <tbody>
 <tr>
