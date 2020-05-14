@@ -57,7 +57,7 @@ Chúng ta cần tìm ra tất cả các vị trí $i (1 \le i \le m − n + 1)$ 
 
 **Lưu ý**: Lý do chọn $MOD$ là số nguyên tố được giải thích thêm trong phần [Chi tiết cài đặt](#chi-tiết-cài-đặt).
 
-Dễ dàng nhận thấy việc so sánh $x \bmod MOD$ với $y \bmod MOD$ rồi kết luận $a$ có bằng với $b$ hay không là sai. $x \bmod MOD = y \bmod MOD$ chỉ là điều kiện cần để $a$ bằng $b$ chứ chưa phải điều  kiện đủ. Tuy nhiên, chúng ta sẽ chấp nhận lập luận sai này trong thuật toán Hash. Và coi điều kiện cần như điều kiện đủ. Trên thực tế, lập luận sai này có thể dẫn đến kết quả sai nếu bạn không hiểu rõ mình đang làm gì. Để hiểu rõ về tỉ lệ sai của thuật toán Hash, các bạn đọc thêm phần [đánh giá độ chính xác](#Đánh-giá-độ-chính-xác). Phần [Chi tiết cài đặt](#chi-tiết-cài-đặt) cũng nói thêm về cách tránh bị sai số khi cài đặt Hash.
+Dễ dàng nhận thấy việc so sánh $x \bmod MOD$ với $y \bmod MOD$ rồi kết luận $a$ có bằng với $b$ hay không là sai. $x \bmod MOD = y \bmod MOD$ chỉ là điều kiện cần để $a$ bằng $b$ chứ chưa phải điều  kiện đủ. Tuy nhiên, chúng ta sẽ chấp nhận lập luận sai này trong thuật toán Hash. Và coi điều kiện cần như điều kiện đủ. Trên thực tế, lập luận sai này có thể dẫn đến kết quả sai nếu bạn không hiểu rõ mình đang làm gì. Để hiểu rõ về tỉ lệ sai của thuật toán Hash, các bạn đọc thêm phần [Đánh giá độ chính xác](#đánh-giá-độ-chính-xác). Phần [Chi tiết cài đặt](#chi-tiết-cài-đặt) cũng nói thêm về cách tránh bị sai số khi cài đặt Hash.
 
 Để đơn giản trong việc trình bày tiếp thuật toán, chúng ta sẽ gọi biểu diễn của một xâu trong hệ thập phân sau khi lấy phần dư cho $MOD$ là mã Hash của xâu đó. Nhắc lại, 2 xâu bằng nhau _‘khi và chỉ khi’_ mã Hash của 2 xâu bằng nhau.
 
