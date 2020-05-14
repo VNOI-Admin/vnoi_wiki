@@ -144,21 +144,21 @@ Một vài tính chất cơ bản của phép lấy hiệu
 
 # Các quy tắc cơ bản
 
-Kí hiệu $|A|$ là số phần tử của tập $A$ (hay còn được gọi là lực lượng của tập $A$).
+Kí hiệu $\|A\|$ là số phần tử của tập $A$ (hay còn được gọi là lực lượng của tập $A$).
 
 Một vài quy tắc về tổ hợp cần nhớ:
 
 1. **Quy tắc nhân (The Rule of Product):**
-Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp gồm một phần tử thuộc tập $A$ và một phần tử thuộc tập $B$ là $|A|.|B|$
+Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp gồm một phần tử thuộc tập $A$ và một phần tử thuộc tập $B$ là $\|A\|.\|B\|$
 
-2. **Quy tắc cộng (The Rule of Sum):** Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn một phần tử thuộc tập $A$ hoặc thuộc tập $B$ là $|A|+|B|$ nếu hai tập $A$ và $B$ rời nhau.
+2. **Quy tắc cộng (The Rule of Sum):** Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn một phần tử thuộc tập $A$ hoặc thuộc tập $B$ là $\|A\|+\|B\|$ nếu hai tập $A$ và $B$ rời nhau.
 
-3. **Quy tắc cộng mở rộng (sieve principle)** (còn gọi là **công thức bao hàm - loại trừ (Inclusion-Exclusion Formula)**): $|A \cup B| = |A| + |B| - |A \cap B|$.
+3. **Quy tắc cộng mở rộng (sieve principle)** (còn gọi là **công thức bao hàm - loại trừ (Inclusion-Exclusion Formula)**): $\|A \cup B\| = \|A\| + \|B\| - \|A \cap B\|$.
 
 Trong trường hợp tổng quát, ta có:
 
-$|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i| - \sum_{i \ne j} |A_i \cap A_j| + |A_1 \cap A_2 \cap A_3| + |A_1 \cap A_2 \cap A_4| + ... + |A_{n-2} \cap A_{n-1} \cap A_n| - ... -$
-$ (-1)^n|A_1 \cap A_2 \cap ... \cap A_n|$
+$\|\bigcup_{i=1}^n A_i\| = \sum_{i=1}^n \|A_i\| - \sum_{i \ne j} \|A_i \cap A_j\| + \|A_1 \cap A_2 \cap A_3\| + \|A_1 \cap A_2 \cap A_4\| + ... + \|A_{n-2} \cap A_{n-1} \cap A_n\| - ... -$
+$ (-1)^n\|A_1 \cap A_2 \cap ... \cap A_n\|$
 
 Lí do ta phải cộng trừ giao của một số tập hợp vì nếu ta không làm như vậy, ta có thể đếm nhiều lần các phần tử xuất hiện tại nhiều tập hợp khác nhau.
 

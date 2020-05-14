@@ -50,7 +50,7 @@ int phi(int n) {
 
 Một công thức thường gặp để tính phi:
 
-$\phi(N) = n \* \prod_{p|n}(1 - 1/p) $
+$\phi(N) = n \* \prod_{p\|n}(1 - 1/p) $
 
 (p là các ước nguyên tố của n).
 

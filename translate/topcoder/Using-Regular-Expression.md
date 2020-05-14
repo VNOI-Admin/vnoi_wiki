@@ -62,7 +62,7 @@ Chúng ta có thể thấy rằng chuỗi dài nhất có thể sẽ được kh
 - `.` (khớp với bất kỳ ký tự nào)
 - `^` (khớp với xâu rỗng ở đầu dòng)
 - `$` (khớp với xâu rỗng ở cuối dòng)
-- Ký tự `\` được theo sau bởi một trong các ký tự `^.[$()|\*+?{\` (khớp với các ký tự đặc biệt tương ứng)
+- Ký tự `\` được theo sau bởi một trong các ký tự `^.[$()\|\*+?{\` (khớp với các ký tự đặc biệt tương ứng)
 - Một ký tự (khớp với ký tự đó).
 - Ký tự `\` được theo sau bởi một chữ số $d$ khác 0. Nguyên tử này sẽ khớp với chuỗi ký tự giống với chuỗi ký tự được khớp bởi biểu thức con trong ngoặc tròn thứ $d$ (đánh số ngoặc tròn bằng vị trí của mở ngoặc từ trái qua phải). Ví dụ: `([bc])\1` sẽ khớp với `bb` hoặc `cc` và không khớp với `bc`.   
 

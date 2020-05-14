@@ -104,7 +104,7 @@ Cho dãy $A_1, A_2,..., A_N$. Hãy tìm dãy con đổi dấu dài nhất của 
 
 - $A_{i1} < A_{i2} > A_{i3} <...$ hoặc $A_{i1} > A_{i2} < A_{i3} >...$
 - Các chỉ số phải cách nhau ít nhất $L$: $i_2 - i_1 \ge L$, $i_3 - i_2 \ge L$, ...
-- Chênh lệch giữa 2 phần tử liên tiếp nhỏ hơn $U$: $|A_{i1} - A_{i2}| \le U$, $|A_{i2} - A_{i3}| \le U$, ...
+- Chênh lệch giữa 2 phần tử liên tiếp nhỏ hơn $U$: $\|A_{i1} - A_{i2}\| \le U$, $\|A_{i2} - A_{i3}\| \le U$, ...
 
 **Hướng dẫn**:
 
@@ -600,11 +600,11 @@ Khi xếp nhóm $i$ vào phòng $j$ thì số lần chuyển ghế chính là đ
 
 **Bài toán**
 
-Trong hiệu có $n$ đôi giày, đôi giày $i$ có kích thước $H_i$. Có $k$ người cần mua giày, người $i$ cần mua đôi giày kích thước $S_i$. Khi người $i$ chọn mua đôi giày $j$ thì độ lệch sẽ là $|H_i-S_j|$. Hãy tìm cách chọn mua giày cho $k$ người trên sao cho tổng độ lệch là ít nhất. Biết rằng mỗi người chỉ mua 1 đôi giày và 1 đôi giày cũng chỉ có một người mua.
+Trong hiệu có $n$ đôi giày, đôi giày $i$ có kích thước $H_i$. Có $k$ người cần mua giày, người $i$ cần mua đôi giày kích thước $S_i$. Khi người $i$ chọn mua đôi giày $j$ thì độ lệch sẽ là $\|H_i-S_j\|$. Hãy tìm cách chọn mua giày cho $k$ người trên sao cho tổng độ lệch là ít nhất. Biết rằng mỗi người chỉ mua 1 đôi giày và 1 đôi giày cũng chỉ có một người mua.
 
 **Hướng dẫn**
 
-Lập công thức giải như bài Câu lạc bộ. Chú ý chứng minh tính đúng đắn của bổ đề heuristic sau: Cho 2 dãy tăng dần các số dương $A_1, A_2, ..., A_N$, $B_1, B_2, ..., B_N$. Gọi $C_1, C_2, ..., C_N$ là một hoán vị bất kỳ của dãy $B$. Khi đó: $|A_1-B_1| + |A_2-B_2| + ... + |A_N-B_N| \le |A_1-C_1| + |A_2 - C_2| + ... + |A_N-C_N|$
+Lập công thức giải như bài Câu lạc bộ. Chú ý chứng minh tính đúng đắn của bổ đề heuristic sau: Cho 2 dãy tăng dần các số dương $A_1, A_2, ..., A_N$, $B_1, B_2, ..., B_N$. Gọi $C_1, C_2, ..., C_N$ là một hoán vị bất kỳ của dãy $B$. Khi đó: $\|A_1-B_1\| + \|A_2-B_2\| + ... + \|A_N-B_N\| \le \|A_1-C_1\| + \|A_2 - C_2\| + ... + \|A_N-C_N\|$
 
 # 7. Di chuyển
 

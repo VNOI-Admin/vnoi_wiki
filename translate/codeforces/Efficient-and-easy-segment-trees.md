@@ -325,7 +325,7 @@ void push(int l, int r) {
 }
 ```
 
-Cả hai thủ tục này thực hiện trên đoạn bất kỳ với đô phức tạp $O(log(n)+|r-l|)$. Nếu muốn biến đổi một đoạn trên cây, ta có thể viết như sau:
+Cả hai thủ tục này thực hiện trên đoạn bất kỳ với đô phức tạp $O(log(n)+\|r-l\|)$. Nếu muốn biến đổi một đoạn trên cây, ta có thể viết như sau:
 
 ```cpp
 push(l, r);

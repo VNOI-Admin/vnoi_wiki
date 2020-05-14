@@ -19,12 +19,12 @@ Công thức bao hàm - loại trừ được phát biểu như sau:
 
 Công thức bao hàm - loại trừ có dạng như sau:
 
-$|\bigcup_{i=1}^n A_i| = \sum_{i=1}^n |A_i| - \sum_{i \ne j} |A_i \cap A_j| + |A_1 \cap A_2 \cap A_3| + |A_1 \cap A_2 \cap A_4| + ... + |A_{n-2} \cap A_{n-1} \cap A_n| - ... -$
-$ (-1)^n|A_1 \cap A_2 \cap ... \cap A_n|$
+$|\bigcup_{i=1}^n A_i\| = \sum_{i=1}^n \|A_i\| - \sum_{i \ne j} \|A_i \cap A_j\| + \|A_1 \cap A_2 \cap A_3\| + \|A_1 \cap A_2 \cap A_4\| + ... + \|A_{n-2} \cap A_{n-1} \cap A_n\| - ... -$
+$ (-1)^n\|A_1 \cap A_2 \cap ... \cap A_n\|$
 
 Ta có thể viết công thức này một cách gọn hơn bằng cách tính tổng của các tập con. Gọi $B$ là tập hợp các tập hợp $A_i$. Khi đó công thức bao hàm - loại trừ có dạng:
 
-$|\bigcup_{i=1}^n A_i| = \sum_{C \subset B} (-1)^{|C|-1} | \bigcap_{e \in C} e |$
+$|\bigcup_{i=1}^n A_i\| = \sum_{C \subset B} (-1)^{\|C\|-1} \| \bigcap_{e \in C} e \|$
 
 ## Lập công thức bằng biểu đồ Venn (Venn diagrams)
 
@@ -34,7 +34,7 @@ Ta có biểu đồ sau biểu diễn ba tập hợp $A$, $B$ và $C$.
 
 Khi đó ta thấy lực lượng của $A \cup B \cup C$ bằng lực lượng của $A$, $B$, $C$ trừ đi lực lượng của $A \cap B$, $B \cap C$, $C \cap A$ rồi cộng thêm lực lượng của $A \cap B \cap C$.
 
-$| A \cup B \cup C | = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |C \cap A| + |A \cap B \cap C|$
+$| A \cup B \cup C \| = \|A\| + \|B\| + \|C\| - \|A \cap B\| - \|B \cap C\| - \|C \cap A\| + \|A \cap B \cap C\|$
 
 Tương tự, ta có thể lập công thức với $n$ tập hợp.
 
@@ -46,13 +46,13 @@ $P(\bigcup_{i=1}^n A_i) = $ $\sum_{i=1}^n$ $ P(A_i) - $$\sum_{i \ne j}$$ P(A_i A
 
 Nếu gọi $B$ là tập hợp các tập hợp $A_i$, công thức này cũng có thể viết gọn như sau:
 
-$P(\bigcup_{i=1}^n A_i) = \sum_{C \subset B} (-1)^{|C|-1}. P(\bigcap_{e \in C} e)$
+$P(\bigcup_{i=1}^n A_i) = \sum_{C \subset B} (-1)^{\|C\|-1}. P(\bigcap_{e \in C} e)$
 
 ## Chứng minh công thức bao hàm - loại trừ
 
 Để thuật tiện trong chứng minh, ta sử dụng công thức viết gọn sau:
 
-$|\bigcup_{i=1}^n A_i| = \sum_{C \subset B} (-1)^{|C|-1} | \bigcap_{e \in C} e |$
+$|\bigcup_{i=1}^n A_i\| = \sum_{C \subset B} (-1)^{\|C\|-1} \| \bigcap_{e \in C} e \|$
 
 với $B$ là tập hợp các tập hợp $A_i$.
 
@@ -60,17 +60,17 @@ Ta cần chứng minh một phần tử bất kì thuộc ít nhất một tập
 
 Xét một phần tử $x$ bất kì thuộc $k \geq 1$ tập hợp $A_i$. Ta thấy
 
-- Trong công thức, khi $|C| = 1$, $x$ được đếm thêm $k$ lần.
+- Trong công thức, khi $|C\| = 1$, $x$ được đếm thêm $k$ lần.
 
-- Trong công thức, khi $|C| = 2$, $x$ được đếm bớt đi $\binom{k}{2}$ lần bởi $x$ bị đếm bớt đi khi ta xét một cặp 2 tập hợp khác nhau trong số $k$ tập hợp chứa phần tử $x$.
+- Trong công thức, khi $|C\| = 2$, $x$ được đếm bớt đi $\binom{k}{2}$ lần bởi $x$ bị đếm bớt đi khi ta xét một cặp 2 tập hợp khác nhau trong số $k$ tập hợp chứa phần tử $x$.
 
-- Trong công thức, khi $|C| = 3$, $x$ được đếm thêm $\binom{k}{3}$ lần.
+- Trong công thức, khi $|C\| = 3$, $x$ được đếm thêm $\binom{k}{3}$ lần.
 
 - ...
 
-- Trong công thức, khi $|C| = k$, $x$ được đếm $\binom{k}{k}$ lần. Nếu $k$ lẻ thì $x$ được đếm thêm, nếu $k$ chẵn thì $x$ được đếm bớt.
+- Trong công thức, khi $|C\| = k$, $x$ được đếm $\binom{k}{k}$ lần. Nếu $k$ lẻ thì $x$ được đếm thêm, nếu $k$ chẵn thì $x$ được đếm bớt.
 
-- Trong công thức, khi $|C| > k$, $x$ không được đếm.
+- Trong công thức, khi $|C\| > k$, $x$ không được đếm.
 
 Vì vậy, số lần $x$ được đếm là $T = \binom{k}{1} - \binom{k}{2} + \binom{k}{3} - ... + (-1)^{i-1}.\binom{k}{i} + ... + (-1)^{k-1}.\binom{k}{k}$.
 

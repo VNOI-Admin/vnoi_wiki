@@ -187,21 +187,21 @@ $$
 (f \* g)(n) = \sum_{d | n}{f(d)\*g(n/d)}
 $$
 
-Các bạn chú ý kí hiệu $d | n$ nghĩa là $n$ chia hết cho $d$.
+Các bạn chú ý kí hiệu $d \| n$ nghĩa là $n$ chia hết cho $d$.
 
 **Chứng minh**
 
-Xét $a$ và $b$ nguyên tố cùng nhau. Mỗi ước $d$ của $ab$ có thể phân tích duy nhất dưới dạng $d = rs$ trong đó $r | a$ và $s | b$, do $gcd(a, b) = 1$.
+Xét $a$ và $b$ nguyên tố cùng nhau. Mỗi ước $d$ của $ab$ có thể phân tích duy nhất dưới dạng $d = rs$ trong đó $r \| a$ và $s \| b$, do $gcd(a, b) = 1$.
 
 Do đó:
 
 $(f \* g)(ab)$
 
-$= \sum_{r|a, s|b}{f(rs) g(ab/rs)}$
+$= \sum_{r\|a, s\|b}{f(rs) g(ab/rs)}$
 
-$ = \sum_{r|a, s|b}{f(r) f(s) g(a/r) g(b/s)}$
+$ = \sum_{r\|a, s\|b}{f(r) f(s) g(a/r) g(b/s)}$
 
-$ = \sum_{r|a}{f(r) g(a/r)} \sum_{s|b}{f(s) g(b/s)}$
+$ = \sum_{r\|a}{f(r) g(a/r)} \sum_{s\|b}{f(s) g(b/s)}$
 
 $ = (f \* g)(a) (f \* g)(b)$
 
@@ -229,7 +229,7 @@ $$
 
 Như vậy $(f \* g)(n)$ là tổng các ước của $n$ và là hàm nhân tính.
 
-Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum_{d | n}{d^k}$ là hàm nhân tính.
+Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum_{d \| n}{d^k}$ là hàm nhân tính.
 
 ## 4.3. Các hàm nhân tính thường gặp
 
@@ -244,8 +244,8 @@ Sau đây là các hàm nhân tính thường gặp. Bạn có thể thử chứ
   - Nếu $n$ có ước là số chính phương khác 1, $mobius(n) = 0$.
   - Nếu $n$ có lẻ ước nguyên tố, $mobius(n) = -1$.
   - Nếu $n$ có chẵn ước nguyên tố, $mobius(n) = 1$. Chú ý $mobius(1) = 1$.
-- $f(n) = \sum_{d |n}{d}$ là tổng các ước của $n$.
-- $f_k(n) = \sum_{d | n}{d^k}$ với $k$ là hằng số.
+- $f(n) = \sum_{d \|n}{d}$ là tổng các ước của $n$.
+- $f_k(n) = \sum_{d \| n}{d^k}$ với $k$ là hằng số.
 
 
 

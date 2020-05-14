@@ -87,7 +87,7 @@ $bước (2)$: tìm một đường tăng luồng trên mạng thặng dư $G'$
   - nếu tồn một đường tăng luồng $\rightarrow$ thực hiện tăng luồng trên mạng thặng dư và quay trở lại $bước (2)$
 Khi thuật toán kết thúc $f(s,V')$ chính là giá trị luồng cực đại cần tìm.
 
-Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BDF(breath first search) để tìm đường tăng luồng và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{\*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(|f^{\*}|.E)$. Sau đâu là code của thuật toán trên:
+Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BDF(breath first search) để tìm đường tăng luồng và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{\*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(\|f^{\*}\|.E)$. Sau đâu là code của thuật toán trên:
 
 **Lưu ý:** Trong các thuật toán dưới đây ta sẽ gọi trace[u] là điển đi đến được u trong đường tăng luồng, nếu không có đỉnh nào đến được u trace[u] sẽ có giá trị là $-1$
 
@@ -180,7 +180,7 @@ Chứng minh:
 
 ## 3.6 Các thuật toán tìm đường tăng luồng
 
-Như đã nói $O(|f^{\*}|.E)$ là độ phức tạp của thuật toán Ford-Fulkerson nó phụ thuộc 2 yếu tố là tìm đường tăng luồng $O(E)$ và số lần tăng luồng $f^{\*}$ do đó ta có thể tối ưu 1 trong 2 hoặc cả 2 nếu muốn thuật toán chạy nhanh hơn. Trong mục này ta sẽ tìm hiểu cách để có thể giảm được số lần tăng luồng $f^{\*}$ điều này phụ thuộc nhiều vào việc chọn đường tăng luồng nào để tăng, các phương pháp dưới đây đều có độ phức tạp là $O(|f^{\*}|.E)$ nhưng đa số các trường hợp sẽ có độ tốt tăng dần theo thứ tự trình bày sau:
+Như đã nói $O(\|f^{\*}\|.E)$ là độ phức tạp của thuật toán Ford-Fulkerson nó phụ thuộc 2 yếu tố là tìm đường tăng luồng $O(E)$ và số lần tăng luồng $f^{\*}$ do đó ta có thể tối ưu 1 trong 2 hoặc cả 2 nếu muốn thuật toán chạy nhanh hơn. Trong mục này ta sẽ tìm hiểu cách để có thể giảm được số lần tăng luồng $f^{\*}$ điều này phụ thuộc nhiều vào việc chọn đường tăng luồng nào để tăng, các phương pháp dưới đây đều có độ phức tạp là $O(\|f^{\*}\|.E)$ nhưng đa số các trường hợp sẽ có độ tốt tăng dần theo thứ tự trình bày sau:
 
 ### 3.6.1 Sử dụng thuật toán thuật toán tìm kiếm theo chiều sâu(Deep First Search-DFS)
 

@@ -21,7 +21,7 @@ Ta định nghĩa **biến cố (event)** là một tập hợp các kết quả
 
 Thứ mà ta quan tâm nhất là xác suất xảy ra của một biến cố, kí hiệu là $P(A)$. Theo định nghĩa, $P(A)$ là một số thực nằm trong đoạn từ 0 đến 1, với 0 nghĩa là biến cố không thể xảy ra và 1 nghĩa là biến cố chắc chắn xảy ra (nghĩa là biến cố bằng không gian mẫu).
 
-Như đã nói ở trước, mỗi kết qủa được biểu diễn bằng đúng một điểm trong không gian mẫu. Vì thế ta có công thức: $P(A) = \frac{|\Omega_A|}{|\Omega|}$.
+Như đã nói ở trước, mỗi kết qủa được biểu diễn bằng đúng một điểm trong không gian mẫu. Vì thế ta có công thức: $P(A) = \frac{\|\Omega_A\|}{\|\Omega\|}$.
 
 ## Biến cố độc lập (Independent Events)
 
@@ -35,9 +35,9 @@ Nếu hai biến cố $A$ và $B$ độc lập với nhau, không biến cố n�
 
 ## Xác suất có điều kiện (Conditional Probability)
 
-Xác suất có điều kiện là xác suất của một biến cố $B$ nào đó, biết rằng một biến cố $A$ khác xảy ra. Kí hiệu là $P(B|A)$, đọc là xác suất của $B$, biết $A$.
+Xác suất có điều kiện là xác suất của một biến cố $B$ nào đó, biết rằng một biến cố $A$ khác xảy ra. Kí hiệu là $P(B\|A)$, đọc là xác suất của $B$, biết $A$.
 
-Sử dụng toán học, ta định nghĩa $P(B|A) = \frac{P(AB)}{P(A)}$.
+Sử dụng toán học, ta định nghĩa $P(B\|A) = \frac{P(AB)}{P(A)}$.
 
 
 ## Các quy tắc tính xác suất (Rules of Probability)
@@ -51,13 +51,13 @@ Nếu $A$ và $B$ là hai biến cố phụ thuộc, xác suất của biến c�
 
 Nếu $A$ và $B$ là hai biến cố độc lập, xác suất của biến cố $AB$ được tính bằng công thức: $P(AB) = P(A).P(B)$.
 
-Do đó, xác suất có điều kiện của hai biến cố độc lập có thể được tính bằng công thức: $P(B|A) = \frac{P(AB)}{P(A)} \Leftrightarrow P(B|A) = \frac{P(A).P(B)}{P(A)} \Leftrightarrow P(B|A) = P(B)$.
+Do đó, xác suất có điều kiện của hai biến cố độc lập có thể được tính bằng công thức: $P(B\|A) = \frac{P(AB)}{P(A)} \Leftrightarrow P(B\|A) = \frac{P(A).P(B)}{P(A)} \Leftrightarrow P(B\|A) = P(B)$.
 
 Công thức trên phù hợp với định nghĩa xác suất có điều kiện, biến cố $A$ có xảy ra hay không không làm ảnh hưởng đến xác suất xảy ra biến cố $B$, do đó xác suất biến cố $B$ xảy ra biết biến cố $A$ xảy ra bằng xác suất xảy ra biến cố $B$.
 
 ### Quy tắc cộng xác suất (Additive Rule) ($A \cup B$)
 
-Trong xác suất, ta liên tưởng phép cộng như từ "hoặc". Gọi biến cố $A \cup B$ là biến cố "$A$ hoặc $B$ xảy ra", xác suất của biến cố $A \cup B$ được tính bằng công thức: $P(A \cup B) = P(A) + P(B) - P(AB)$ do $|A \cup B| = |A| + |B| - |A \cap B|$.
+Trong xác suất, ta liên tưởng phép cộng như từ "hoặc". Gọi biến cố $A \cup B$ là biến cố "$A$ hoặc $B$ xảy ra", xác suất của biến cố $A \cup B$ được tính bằng công thức: $P(A \cup B) = P(A) + P(B) - P(AB)$ do $\|A \cup B\| = \|A\| + \|B\| - \|A \cap B\|$.
 
 Nhưng hãy nhớ lại phần lí thuyết tập hợp và cách chúng ta định nghĩa không gian mẫu ở trên, gọi $C = (A \cap B)'$, khi đó ta có $P(A \cup B) = 1 - P(C)$.
 
@@ -85,21 +85,21 @@ Từ quy tắc cộng, ta suy ra được quy tắc trừ hai biến cố xung k
 
 ## Xác suất có điều kiện của hai biến cố xung khắc
 
-Ta đã định nghĩa xác suất có điều kiện bằng công thức sau: $P(B|A) = \frac{P(AB)}{P(A)}$
+Ta đã định nghĩa xác suất có điều kiện bằng công thức sau: $P(B\|A) = \frac{P(AB)}{P(A)}$
 
 Mà với hai biến cố xung khắc $A$ và $B$, ta lại có: $P(AB) = 0$
 
-Do đó $P(B|A) = \frac{0}{P(A)} = 0$.
+Do đó $P(B\|A) = \frac{0}{P(A)} = 0$.
 
 ## Định lí Bayes (Bayes’ Theorem)
 
 Trong xác suất và thống kê, định lí Bayes mô tả xác suất của một biến cố dựa trên các biến cố có liên quan đến biến cố đó.
 
-Công thức của định lí Bayes như sau: $P(A|B) = \frac{P(A).P(B|A)}{P(B)}$, với $A$, $B$ là hai biến cố, $P(A)$, $P(B)$ là xác suất của hai biến cố, $P(A|B)$ là xác suất có điều kiện: xác suất của $A$ biết $B$ xảy ra, $P(B|A)$ là xác suất của $B$ biết $A$ xảy ra.
+Công thức của định lí Bayes như sau: $P(A\|B) = \frac{P(A).P(B\|A)}{P(B)}$, với $A$, $B$ là hai biến cố, $P(A)$, $P(B)$ là xác suất của hai biến cố, $P(A\|B)$ là xác suất có điều kiện: xác suất của $A$ biết $B$ xảy ra, $P(B\|A)$ là xác suất của $B$ biết $A$ xảy ra.
 
 ### Dạng mở rộng (Extended Form)
 
-Cho $n$ biến cố $A_1, A_2, ..., A_n$, khi đó nếu $P(B) = \sum_{i=1}^n P(B|A_i)P(A_i)$ thì $P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^n P(B|A_j)P(A_j)}$.
+Cho $n$ biến cố $A_1, A_2, ..., A_n$, khi đó nếu $P(B) = \sum_{i=1}^n P(B\|A_i)P(A_i)$ thì $P(A_i\|B) = \frac{P(B\|A_i)P(A_i)}{\sum_{j=1}^n P(B\|A_j)P(A_j)}$.
 
 ## Thuật toán ngẫu nhiên (Randomized Algorithms)
 

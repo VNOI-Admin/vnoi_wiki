@@ -28,7 +28,7 @@ Kết thúc quá trình trên, ta nhận được mảng `b[]` là nén từ m�
 
 ## Đề bài
 
-Cho n số nguyên $(n \le 10^5)$ số nguyên $a_1, a_2, \dots, a_n$ với $(|a_i| \le 10^9)$ và 2 số $L$, $R$ $(L \le R)$. Hãy đếm xem có bao nhiêu cặp $(i, j)$ thỏa $L \le a_i + a_{i+1} +... + a_j \le R$.
+Cho n số nguyên $(n \le 10^5)$ số nguyên $a_1, a_2, \dots, a_n$ với $(\|a_i\| \le 10^9)$ và 2 số $L$, $R$ $(L \le R)$. Hãy đếm xem có bao nhiêu cặp $(i, j)$ thỏa $L \le a_i + a_{i+1} +... + a_j \le R$.
 
 Input:
 
@@ -112,7 +112,7 @@ for i:=n downto 2 do
 
 # Ví dụ 2: Phân đoạn (VOI 2005 - Bảng A)
 
-Cho dãy $n$ số nguyên $a_1, a_2, \dots , a_n$ và số $k \, (1 \le n, k \le 15000) \, (|a_i| \le 30000)$ hãy tìm số m nhỏ nhất sao cho có thể chia dãy đã cho thành k phần, mỗi phần là 1 đoạn các phân tử liên tiếp, và phải đảm bảo tổng mỗi phần không quá m.
+Cho dãy $n$ số nguyên $a_1, a_2, \dots , a_n$ và số $k \, (1 \le n, k \le 15000) \, (\|a_i\| \le 30000)$ hãy tìm số m nhỏ nhất sao cho có thể chia dãy đã cho thành k phần, mỗi phần là 1 đoạn các phân tử liên tiếp, và phải đảm bảo tổng mỗi phần không quá m.
 
 Input:
 

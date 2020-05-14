@@ -16,7 +16,7 @@ Một hàm $f(n): N \rightarrow C$ được coi là **hàm nhân tính** ([Multi
 
 Một số $n$ phân tích ra thừa số nguyên tố sẽ có dạng $n={p_1}^{a_1}\*{p_2}^{a_2}\*{p_3}^{a_3}\*...\*{p_r}^{a_r}$, với $p_i$ là ước nguyên tố của $n$.
 
-Ký hiệu $a|b$ có nghĩa là $a$ là ước của $b$, hay $b$ chia hết cho $a$
+Ký hiệu $a\|b$ có nghĩa là $a$ là ước của $b$, hay $b$ chia hết cho $a$
 
 **Hàm định danh Dirichlet** $e(n)$ (Dirichlet identity function):
 
@@ -36,7 +36,7 @@ $id(n)=n$ với mọi $n \in N$
 
 - $\mu(n)=(-1)^r$ nếu $n={p_1}\*{p_2}\*{p_3}\*...\*{p_r}$, hay $a_i = 1$ với mọi $i$
 
-- Có thể chứng minh được rằng $\mu(n)=\sum_{d|n,d < n}\mu(d)$ với $n>1$ và tính được $\mu(n)$ bằng cách sử dụng [Sàng](http://codeforces.com/blog/entry/8989):
+- Có thể chứng minh được rằng $\mu(n)=\sum_{d\|n,d < n}\mu(d)$ với $n>1$ và tính được $\mu(n)$ bằng cách sử dụng [Sàng](http://codeforces.com/blog/entry/8989):
 	```cpp
 mu[1] = 1;
 for (int i = 1; i <= N; i++)
@@ -44,7 +44,7 @@ for (int i = 1; i <= N; i++)
         mu[j] -= mu[i];
 	```
 
-Vỡi mỗi $f(n)$, ta gọi hàm tổng $S_f(n)$ là tổng các $f(d)$ với $d$ là ước của $n$: $S_f(n)=\sum_{d|n}{f(d)}$
+Vỡi mỗi $f(n)$, ta gọi hàm tổng $S_f(n)$ là tổng các $f(d)$ với $d$ là ước của $n$: $S_f(n)=\sum_{d\|n}{f(d)}$
 
 **Phi hàm Euler** $\phi(n)$ ([Euler totient function](https://vi.wikipedia.org/wiki/Phi_h%C3%A0m_Euler)): số lượng các số tự nhiên nhỏ hơn hoặc bằng $n$ và nguyên tố cùng nhau với $n$ (hay số lượng các số $d: 1 \leq d \leq n,gcd(d,n)=1$). Các bạn cũng có thể sử dụng sàng để tính $phi(n)$:
 ```cpp
@@ -63,7 +63,7 @@ $f \circ g(n)=\sum_{d_1\*d_2=n}{f(d_1)\*g(d_2)}$
 
 hay
 
-$f \circ g(n)=\sum_{d|n}{f(d)\*g(n/d)}$
+$f \circ g(n)=\sum_{d\|n}{f(d)\*g(n/d)}$
 
 Có thễ dễ dàng chứng minh phép toán này có tính giao hoán và kết hợp:
 
@@ -73,13 +73,13 @@ $(f\circ g)\circ h(n)=f\circ(g\circ h)(n)$
 
 Ta có nhận xét rằng:
 
-$S_f(n)=\sum_{d|n}{f(d)}=\sum_{d|n}{f(d)\*I(n/d)}=f\circ I(n)$
+$S_f(n)=\sum_{d\|n}{f(d)}=\sum_{d\|n}{f(d)\*I(n/d)}=f\circ I(n)$
 
-$S_{\phi}(n)=\sum_{d|n}{\phi(d)}=id(n)$
+$S_{\phi}(n)=\sum_{d\|n}{\phi(d)}=id(n)$
 
-$S_{\mu}(n)=\sum_{d|n}{\mu(d)}=I\circ \mu (n)=\mu \circ I(n)= e(n)$
+$S_{\mu}(n)=\sum_{d\|n}{\mu(d)}=I\circ \mu (n)=\mu \circ I(n)= e(n)$
 
-$f \circ e(n)=\sum_{d|n}{f(n/d)\*e(d)}=f(n)$
+$f \circ e(n)=\sum_{d\|n}{f(n/d)\*e(d)}=f(n)$
 
 Từ đó suy ra:
 
@@ -87,7 +87,7 @@ $S_f \circ \mu(n)=(f \circ I)\circ \mu (n)=f\circ (I\circ\mu)(n)=f\circ e(n)=f(n
 
 hay
 
-$f(n)=\sum_{d|n}{S_f(d)\*\mu (n/d)}$ - đây gọi là [Công thức nghịch đảo Mobius](https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
+$f(n)=\sum_{d\|n}{S_f(d)\*\mu (n/d)}$ - đây gọi là [Công thức nghịch đảo Mobius](https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
 
 # Ứng dụng
 
@@ -111,9 +111,9 @@ Dễ thấy cách tiếp cận đơn giản nhất cho bài toán này là duy�
 
 	$G=\sum_{g=1}^{n}h(g)\*cnt[g]$ với $h(g)=g$
 
-3. Giờ chúng ta sẽ tìm cách phân tích $h(n)$ thành hàm tổng của hàm $f(n)$ nào đó, tức là $h(n)=S_f(n)=\sum_{d|n}f(d)$.
+3. Giờ chúng ta sẽ tìm cách phân tích $h(n)$ thành hàm tổng của hàm $f(n)$ nào đó, tức là $h(n)=S_f(n)=\sum_{d\|n}f(d)$.
 
-	Ứng dụng công thức nghịch đảo Mobius, bạn có thể tìm được $f(n)=\sum_{d|n}{h(d)\*\mu (n/d)}$. Một kết quả rất đẹp trong bài toán này là $f(n)=\phi(n)$, việc chứng minh mình xin nhường bạn đọc.
+	Ứng dụng công thức nghịch đảo Mobius, bạn có thể tìm được $f(n)=\sum_{d\|n}{h(d)\*\mu (n/d)}$. Một kết quả rất đẹp trong bài toán này là $f(n)=\phi(n)$, việc chứng minh mình xin nhường bạn đọc.
 
 	Khi đã biết được $h(n)$ và $\mu(n)$, ta có thể tính $f(n)$ bằng sàng như sau:
 
@@ -127,9 +127,9 @@ for (int i = 1; i <= N; i++)
 
 4. Viết lại (2) một lần nữa ta được:
 
-	$G=\sum_{g=1}^{n}(\sum_{d|g}f(d))\*cnt[g]$ (3)
+	$G=\sum_{g=1}^{n}(\sum_{d\|g}f(d))\*cnt[g]$ (3)
 
-	$\Leftrightarrow G=\sum_{d=1}^{n}f(d)\*(\sum_{g:d|g}cnt[g])$ (4)
+	$\Leftrightarrow G=\sum_{d=1}^{n}f(d)\*(\sum_{g:d\|g}cnt[g])$ (4)
 
 5. Đặt $cnt2[d]=\sum_{g:d|g}cnt[g]$. Hàm này có ý nghĩa là số lượng cặp $(i,j)$ có $gcd$ là bội của $d$. Đến đây mọi việc đã đơn giản hơn rất nhiều. Các bạn chỉ cần tìm số lượng cặp $(i,j)$ mà $i$ và $j$ đều là bội của $d$. Có $n/d$ bội của $d$, nên sẽ có $n/d\*(n/d-1)/2$ cặp.
 
@@ -168,7 +168,7 @@ Ta đưa đề bài này về bài toán: tính $G=\sum_{i=1}^{n}\sum_{j=i+1}^{n
 
 	Ở bài toán này $f(n)$ chính bằng $\mu(n)$, việc chứng minh mình cũng xin nhường lại cho bạn đọc.
 
-	Lúc này $G=\sum_{g=1}^{maxA}(\sum_{d|g}f(d))*cnt[g]$.
+	Lúc này $G=\sum_{g=1}^{maxA}(\sum_{d\|g}f(d))*cnt[g]$.
 
 	$\Leftrightarrow G=\sum_{d=1}^{maxA}f(d)*cnt2[g]$.
 

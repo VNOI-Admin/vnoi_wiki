@@ -16,7 +16,7 @@ Trong bài viết này mình sẽ tiếp tục giới thiệu về hàm Mobius. 
 
 - $\mu(n)=(-1)^r$ nếu $n={p_1}\*{p_2}\*{p_3}\*...\*{p_r}$, hay $a_i = 1$ với mọi $i$
 
-- Có thể chứng minh được rằng $\mu(n)=\sum_{d|n,d < n}\mu(d)$ với $n>1$ và tính được $\mu(n)$ bằng cách sử dụng Sàng:
+- Có thể chứng minh được rằng $\mu(n)=\sum_{d\|n,d < n}\mu(d)$ với $n>1$ và tính được $\mu(n)$ bằng cách sử dụng Sàng:
 
 ```cpp
 mu[1] = 1;

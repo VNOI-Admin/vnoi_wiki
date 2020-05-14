@@ -1007,7 +1007,7 @@ Do đó bài toán đặt ra đối với Hùng là: Xác định số lượng 
 
 **Kết quả**
  - Dòng đầu tiên ghi số nguyên dương $k$ là số lượng cây mà các công nhân cần cưa đổ;
- - Dòng thứ hai ghi dãy số nguyên $c_1, c_2, …, c_k$ trong đó $|c_j|$ ($1 \le j \le k$) là dãy chỉ số của các cây theo thứ tự các công nhân phải lần lượt cưa đổ, $c_j$ là số dương nếu cây cần cho đổ về bên phải và là số âm nếu cây cần cho đổ về bên trái.
+ - Dòng thứ hai ghi dãy số nguyên $c_1, c_2, …, c_k$ trong đó $\|c_j\|$ ($1 \le j \le k$) là dãy chỉ số của các cây theo thứ tự các công nhân phải lần lượt cưa đổ, $c_j$ là số dương nếu cây cần cho đổ về bên phải và là số âm nếu cây cần cho đổ về bên trái.
 
 Nếu có nhiều cách thì chỉ cần đưa ra một cách tùy ý.
 
@@ -1144,8 +1144,8 @@ Trước hết ta gán $A[i] = A[i] - i$ với mọi $i$. Bài toán trở thàn
 **Thuật toán QHĐ cơ sở**
 
 Đặt $F(i, j) = $ số phép biến đổi ít nhất để biến đổi dãy $A[1..i]$ thành dãy không giảm sao cho $A[i] \le j$. Ta có:
- - $F(i, j) = |A[i] - j|$ với $i = 1$
- - $F(i, j) = min(F(i - 1, j) + |A[i] - j|)$ với $i > 1$
+ - $F(i, j) = \|A[i] - j\|$ với $i = 1$
+ - $F(i, j) = min(F(i - 1, j) + \|A[i] - j\|)$ với $i > 1$
 
 Kết hợp với nhận xét: Luôn tồn tại dãy cuối cùng với số phép biến đổi tối ưu mà chỉ chứa các giá trị có trong dãy ban đầu. Ta có thể giải công thức QHĐ này với độ phức tạp $O(N^2)$
 
@@ -1198,11 +1198,11 @@ Mỏ vàng là có thể được coi là một lưới gồm $(M+1)*(N+1)$ ô v
 
 Bạn có thể làm việc ở mỏ vàng một vài ngày. Bạn có thể chọn vị trí để đào trong ngày đầu tiên (ngày $0$). Trong những ngày tiếp theo, bạn có thể giữ nguyên vị trí, hoặc di chuyển đến một ô vuông khác nằm trong giới hạn được mô tả sau đây.
 
-Khi vàng được tìm thấy ở một ô bất kỳ nào đấy, bạn sẽ nhận được lợi nhuận. Tiền lời được tính bằng $N+M$ trừ đi khoảng cách Manhattan từ ô bạn đang đứng đến ô mà vàng được tìm thấy. Cụ thể nếu vàng được tìm thấy ở ô $(a, b)$, và bạn đang đứng ở ô $(c, d)$, tiền lời bạn nhận được là $N+M - |a-c| - |b-d|$, trong đó kí hiệu $||$ biểu thị giá trị tuyệt đối.
+Khi vàng được tìm thấy ở một ô bất kỳ nào đấy, bạn sẽ nhận được lợi nhuận. Tiền lời được tính bằng $N+M$ trừ đi khoảng cách Manhattan từ ô bạn đang đứng đến ô mà vàng được tìm thấy. Cụ thể nếu vàng được tìm thấy ở ô $(a, b)$, và bạn đang đứng ở ô $(c, d)$, tiền lời bạn nhận được là $N+M - \|a-c\| - \|b-d\|$, trong đó kí hiệu $\|\|$ biểu thị giá trị tuyệt đối.
 
 Bạn được cho hai số nguyên $N$ và $M$, hai mảng số nguyên $event_i$ và $event_j$. Với mỗi số $k$ hợp lệ, có một mỏ vàng xuất hiện vào ngày thứ $k$, ở ô $(event_i[k], event_j[k])$.
 
-Cuối cùng bạn có 2 mảng số nguyên $event_{di}$ và $event_{dj}$. Số phần tử của hai mảng này ít hơn số phần tử của hai mảng trên 1 đơn vị. Hai mảng này thể hiện giới hạn của việc di chuyển của bạn trong ngày. Cụ thể, với mỗi $k$, giữa ngày $k$ và $k+1$, bạn đang ở ô $(a, b)$ và chỉ đi được đến ô $(c, d)$ nếu $|a-c| \le event_{di}[k]$ và $|b-d| \le event_{dj}[k]$.
+Cuối cùng bạn có 2 mảng số nguyên $event_{di}$ và $event_{dj}$. Số phần tử của hai mảng này ít hơn số phần tử của hai mảng trên 1 đơn vị. Hai mảng này thể hiện giới hạn của việc di chuyển của bạn trong ngày. Cụ thể, với mỗi $k$, giữa ngày $k$ và $k+1$, bạn đang ở ô $(a, b)$ và chỉ đi được đến ô $(c, d)$ nếu $\|a-c\| \le event_{di}[k]$ và $\|b-d\| \le event_{dj}[k]$.
 
 Hãy xác định tổng lợi nhuận cực đại bạn có thể kiếm được nếu lựa chọn tối ưu làm việc tại ô nào trong mỗi ngày.
 
@@ -1275,9 +1275,9 @@ Output
 #### Lời giải
 Trước hết ta tóm tắt lại đề bài. Có $K$ ngày ứng với $K$ sự kiện. Mỗi ngày vàng được tìm thấy ở các ô được mô tả qua hai mảng $event_i[]$ và $event_j[]$. Ngày đầu tiên bạn có thể đứng ở vị trí bất kỳ, nhưng từ ngày thứ hai chỉ có thể di chuyển đến một số ô trong khoảng xác định qua hai mảng $event_{di}[]$ và $event_{dj}[]$.
 
-Hàm mục tiêu là $N+M-|e_i-x|-|e_j-y|$, trong đó $(e_i, e_j)$ là vị trí xuất hiện vàng, còn giới hạn di chuyển là $d_i$ theo chiều dọc và $d_j$ theo chiều ngang. Như vậy lời giải của bài toán là độc lập đối với chiều tọa độ. Chỉ cần xem $N-|e_i-x|$ và $M-|e_j-y|$ là các thành phần độc lập của hàm mục tiêu.
+Hàm mục tiêu là $N+M-\|e_i-x\|-\|e_j-y\|$, trong đó $(e_i, e_j)$ là vị trí xuất hiện vàng, còn giới hạn di chuyển là $d_i$ theo chiều dọc và $d_j$ theo chiều ngang. Như vậy lời giải của bài toán là độc lập đối với chiều tọa độ. Chỉ cần xem $N-\|e_i-x\|$ và $M-\|e_j-y\|$ là các thành phần độc lập của hàm mục tiêu.
 
-Bài toán hai chiều giờ trở thành hai bài toán một chiều: Có $N+1$ điểm $x[] = 0..N$; ở bước đầu tiên ta có thể chọn xuất phát ở điểm bất kỳ, sau sự kiện $i$ và bạn ở vị trí $e_i$, bạn kiếm được $N-|e_i-x|$ và có quyền tăng/giảm $x$ một lượng tối đa là $d_i$, nhưng không được ra ngoài đoạn $[0..N]$. Nếu ta giải được bài toán này, ta hoàn toàn có thể giải tương tự bài toán đối với trục $y$.
+Bài toán hai chiều giờ trở thành hai bài toán một chiều: Có $N+1$ điểm $x[] = 0..N$; ở bước đầu tiên ta có thể chọn xuất phát ở điểm bất kỳ, sau sự kiện $i$ và bạn ở vị trí $e_i$, bạn kiếm được $N-\|e_i-x\|$ và có quyền tăng/giảm $x$ một lượng tối đa là $d_i$, nhưng không được ra ngoài đoạn $[0..N]$. Nếu ta giải được bài toán này, ta hoàn toàn có thể giải tương tự bài toán đối với trục $y$.
 
 **Thuật toán quy hoạch động cơ sở**
 
@@ -1285,7 +1285,7 @@ Gọi $F(i, x)$ là số tiền lời nhiều nhất có thể có nếu hiện 
 
 Nếu $i=K$, $F(i, x) = 0$.
 
-Với $i<K$, ta sẽ lời thêm $N-|e_i-x|$, và cần phải quyết định xem tiếp theo sẽ đi tới ô nào. Cần chọn một giá trị $x’$ thỏa mãn $0 \le x’ \le N$ và $|x-x’| \le d_i$, đồng thời giá trị $F(i+1, x’)$ là lớn nhất. Khi đó $F(i, x) = N-|e_i-x| + F(i+1, x’)$.
+Với $i<K$, ta sẽ lời thêm $N-\|e_i-x\|$, và cần phải quyết định xem tiếp theo sẽ đi tới ô nào. Cần chọn một giá trị $x’$ thỏa mãn $0 \le x’ \le N$ và $\|x-x’\| \le d_i$, đồng thời giá trị $F(i+1, x’)$ là lớn nhất. Khi đó $F(i, x) = N-\|e_i-x\| + F(i+1, x’)$.
 
 Độ phức tạp của thuật toán nếu cài đặt thông thường là $O(NNK)$, có thể tối ưu thành $O(NK)$ sử dụng deque nhưng vẫn chưa đạt yêu cầu với giới hạn đề bài.
 
@@ -1293,27 +1293,27 @@ Với $i<K$, ta sẽ lời thêm $N-|e_i-x|$, và cần phải quyết định x
 
 Ta có thể coi hàm QHĐ $F(i, x)$ ở trên là một hàm $f_i(x)$ nhận $x$ là biến. Xét đồ thị của hàm số này. Dễ thấy $f_k(x) = F(K, x) = 0$, đồ thị của hàm số này là một đường thẳng.
 
-Xét hàm số $f_{k-1}(x) = N - |e_k-1 – x|$. Đồ thị của nó sẽ có dạng:
+Xét hàm số $f_{k-1}(x) = N - \|e_k-1 – x\|$. Đồ thị của nó sẽ có dạng:
 
 <img src="https://vnoi.info/wiki/uploads/dp_optimization_img4.png" width="40%"/>
 
-Vấn đề trở nên phức tạp hơn với hàm $f_{k-2}$. Đặt $g_{k-1}(x) = max(f_{k-1}(x’))$ với $|x’ – x| \le d_{k-2}$. Đồ thị của hàm số này có dạng tương tự như đồ thị của hàm số $f_{k-1}(x)$:
+Vấn đề trở nên phức tạp hơn với hàm $f_{k-2}$. Đặt $g_{k-1}(x) = max(f_{k-1}(x’))$ với $\|x’ – x\| \le d_{k-2}$. Đồ thị của hàm số này có dạng tương tự như đồ thị của hàm số $f_{k-1}(x)$:
 
 <img src="https://vnoi.info/wiki/uploads/dp_optimization_img5.png" width="40%"/>
 
-Ta cộng thêm $N-|e_{k-2} – x|$ vào hàm $g_{k-1}(x)$, ta sẽ được đồ thị dạng:
+Ta cộng thêm $N-\|e_{k-2} – x\|$ vào hàm $g_{k-1}(x)$, ta sẽ được đồ thị dạng:
 
 <img src="https://vnoi.info/wiki/uploads/dp_optimization_img6.png" width="40%"/>
 
 Tương tự như vậy, ý tưởng ở đây là ta sẽ duy trì đồ thị của các hàm số $f_i(x)$ với $i$ từ $k$ về $0$. Để làm được điều này ta cần phải thực hiện một vài thao tác:
 
- - Tịnh tiến về hai phía: Để tìm được hàm $f(x)$ thì trước hết cần xây dựng được hàm $g(x) = max(f_i(x’) : |x’ – x| \le d)$. Ta chỉ cần tìm được đỉnh của hàm số, rồi tịnh tiến cả hai phía trái phải của hàm thêm một khoảng $d$.
+ - Tịnh tiến về hai phía: Để tìm được hàm $f(x)$ thì trước hết cần xây dựng được hàm $g(x) = max(f_i(x’) : \|x’ – x\| \le d)$. Ta chỉ cần tìm được đỉnh của hàm số, rồi tịnh tiến cả hai phía trái phải của hàm thêm một khoảng $d$.
 
 [[/uploads/dp_optimization_img7.png]]
 
  - Tịnh tiến theo trục tung: Ta biểu diễn hàm số bằng danh sách các đỉnh của đường gấp khúc thì thao tác này có thể dễ dàng thực hiện.
 
-Cuối cùng ta chỉ cần chứng minh hàm $f(x)$ luôn là hàm lõm thì cách làm trên là đúng. Ban đầu hàm số chỉ là một đường thằng $y=0$, sau đó ta thực hiện hai thao tác tịnh tiến về hai phía $(1)$ và tịnh tiến theo trục tung $(2)$. Trong đó $(1)$ chỉ thực hiện được với hàm lõm, và sau thao tác này thì hàm số vẫn là hàm lõm. Với $(2)$ thì ta cộng thêm một hàm lõm (hàm $N-|e_i-x|$), mà ta có định lý tổng hai hàm lõm cũng là hàm lõm, nên thao tác này cũng vẫn đảm bảo $f(x)$ là hàm lõm.
+Cuối cùng ta chỉ cần chứng minh hàm $f(x)$ luôn là hàm lõm thì cách làm trên là đúng. Ban đầu hàm số chỉ là một đường thằng $y=0$, sau đó ta thực hiện hai thao tác tịnh tiến về hai phía $(1)$ và tịnh tiến theo trục tung $(2)$. Trong đó $(1)$ chỉ thực hiện được với hàm lõm, và sau thao tác này thì hàm số vẫn là hàm lõm. Với $(2)$ thì ta cộng thêm một hàm lõm (hàm $N-\|e_i-x\|$), mà ta có định lý tổng hai hàm lõm cũng là hàm lõm, nên thao tác này cũng vẫn đảm bảo $f(x)$ là hàm lõm.
 
 **Độ phức tạp của thuật toán**
 

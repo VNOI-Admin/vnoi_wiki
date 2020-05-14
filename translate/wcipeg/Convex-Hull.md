@@ -42,7 +42,7 @@ Bài toán tìm bao lồi của một tập điểm trên mặt phẳng là mộ
     - $P$ thành $Q$.
 - Thuật toán kết thúc, khi ta quay trở về điểm ban đầu. Lúc này ta đã đi đến tất cả các đỉnh của bao lồi theo chiều kim đồng hồ.
 
-Để xác định điểm ta nhìn thấy đầu tiên khi ta quay mặt theo chiều kim đồng hồ, ta duyệt tất cả các điểm $R$ trong tập, ngoại trừ điểm $P$. Với mỗi điểm, ta xét vector $\vec{u}=\vec{PR}$; $\vec{u}$ tạo với $\vec{v}$  một góc $\theta$ nhỏ nhất sẽ tương ứng với điểm $Q$ (dễ dàng chứng minh được điều này). Để tìm $\theta$ nhỏ nhất, ta tìm $\cos{\theta}$ lớn nhất, mà ta lại dễ dàng tính được $\cos{\theta}$ bằng công thức $\frac{\vec{u}.\vec{v}}{|\vec{u}||\vec{v}|}$.
+Để xác định điểm ta nhìn thấy đầu tiên khi ta quay mặt theo chiều kim đồng hồ, ta duyệt tất cả các điểm $R$ trong tập, ngoại trừ điểm $P$. Với mỗi điểm, ta xét vector $\vec{u}=\vec{PR}$; $\vec{u}$ tạo với $\vec{v}$  một góc $\theta$ nhỏ nhất sẽ tương ứng với điểm $Q$ (dễ dàng chứng minh được điều này). Để tìm $\theta$ nhỏ nhất, ta tìm $\cos{\theta}$ lớn nhất, mà ta lại dễ dàng tính được $\cos{\theta}$ bằng công thức $\frac{\vec{u}.\vec{v}}{\|\vec{u}\|\|\vec{v}\|}$.
 
 Với mỗi lần tìm điểm tiếp theo, ta cần duyệt qua tất cả các điểm trong tập, vì vậy độ phức tạp của mỗi lần tìm điểm là $O(n)$ với $n$ là số lượng điểm trong tập. Số lần tìm điểm tiếp theo phụ thuộc vào số lượng điểm là đỉnh của bao lồi, gọi số lượng điểm đó là $h$, khi đó độ phức tạp của cả thuật toán là $O(nh)$. Trong trường hợp xấu nhất, $h=n$ hay tất cả các điểm trong dữ liệu vào tạo thành một đa giác lồi, độ phức tạp của thuật toán là $O(n^2)$, không đủ nhanh khi $n>5000$.
 

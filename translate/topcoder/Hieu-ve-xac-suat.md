@@ -34,7 +34,7 @@ Cái chúng ta quan tâm nhất là xác suất để một biến cố nhất �
 
 Như đã đề cập, mỗi kết quả khả thi được biểu diễn bởi đúng một điểm trong không gian mẫu. Điều này đưa ta đến công thức:
 
-$P(E) = \frac{\left | E \right |}{\left | S \right |}$
+$P(E) = \frac{\left \| E \right \|}{\left \| S \right \|}$
 
 Nói cách khác, ta có thể tính xác suất để một biến cố xảy ra bằng cách chia **số kết quả thuộc biến cố $E$** cho **tổng số kết quả có thể xảy ra** (theo không gian mẫu $S$). Để diễn tả mối quan hệ giữa các biến cố, bạn có thể dùng các quy ước từ lý thuyết về tập hợp. Xét trường hợp tung con xúc sắc một lần. Như trên, ta có $S = \{1,2,3,4,5,6\}$. Xem xét những biến cố dưới đây:
 
@@ -301,13 +301,13 @@ Bài tập tương tự:
 
 > Xác suất có điều kiện là xác suất để một biến cố A nào đó xảy ra, biết rằng một biến cố B khác đã xảy ra.
 
-Ký hiệu $P(A|B)$, và đọc là "xác suất của A, biết B". Nếu $A$ và $B$ là các biến cố, và $P(B) > 0$, thì xác suất có điều kiện của $A$ nếu biết $B$ là:
+Ký hiệu $P(A\|B)$, và đọc là "xác suất của A, biết B". Nếu $A$ và $B$ là các biến cố, và $P(B) > 0$, thì xác suất có điều kiện của $A$ nếu biết $B$ là:
 
-$P(A|B) = \frac{P(A \cap B)}{P(B)}$
+$P(A\|B) = \frac{P(A \cap B)}{P(B)}$
 
 Tương đương, ta có
 
-$P(A \cap B) = P(A|B) P(B)$
+$P(A \cap B) = P(A\|B) P(B)$
 
 ### Tóm tắt đề bài
 
