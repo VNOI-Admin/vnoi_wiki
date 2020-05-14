@@ -29,7 +29,7 @@ T = aaaaaaaaa
 
 Ở ví dụ này, ta cần các lần xuất hiện của xâu $S$ trong xâu $T$ ($S$ xuất hiện 7 lần).
 
-Ta có thể duyệt bình thường với độ phức tạp $O(|S| \* |T|)$ như sau:
+Ta có thể duyệt bình thường với độ phức tạp $O(\|S\| \* \|T\|)$ như sau:
 
 - So $S_1$ với $T_1$, $S_2$ với $T_2$, $S_3$ với $T_3$, do đó vị trí số 1 là vị trí khớp của $S$ trong $T$.
 - So $S_1$ với $T_2$, $S_2$ với $T_3$, $S_3$ với $T_4$, tìm được vị trí số 2 là vị trí khớp của $S$ trong $T$.
