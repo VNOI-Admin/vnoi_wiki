@@ -392,12 +392,12 @@ Ví dụ đối với cây ở trên:
 <tr>
 <td >2</td>
 <td >0 2</td>
-<td >A[2] < A[1]</script></span>). Lúc này 2 là con phải của 0 và con trái của 2 là 1</td>
+<td >A[2] < A[1]. Lúc này 2 là con phải của 0 và con trái của 2 là 1</td>
 </tr>
 <tr >
 <td >3</td>
 <td >3</td>
-<td >A[3]</script></span> hiện đang là phần tử nhỏ nhất cho nên mọi phần tử của stack bị lấy ra ra và 3 trở thành gốc cây. Con trái của 3 là 0</td>
+<td >A[3] hiện đang là phần tử nhỏ nhất cho nên mọi phần tử của stack bị lấy ra ra và 3 trở thành gốc cây. Con trái của 3 là 0</td>
 </tr>
 <tr>
 <td >4</td>
@@ -464,7 +464,7 @@ void computeTree(int A[MAXN], int N, int T[MAXN])  {
 
 # Thuật toán $< O(N),O(1) >$ cho bài toán RMQ thu hẹp
 
-Bài toán $RMQ$ phát sinh khi giải bài toán LCA chỉ là trường hợp đặc biệt của bài toán RMQ tổng quát, do ta có điều kiện $|A[i]-A[i-1]|=1$ với mọi $i\in[1,N-1]$ (lý do là 2 phần tử liên tiếp có quan hệ cha con với nhau). Ta gọi bài toán $RMQ$ này là bài toán RMQ thu hẹp. Trong 1 số tài liệu còn được gọi là bài toán $\pm 1 RMQ$. Trong mục này, ta sẽ nghiên cứu một thuật toán có độ phức tạp tốt hơn cho bài toán RMQ thu hẹp.
+Bài toán $RMQ$ phát sinh khi giải bài toán LCA chỉ là trường hợp đặc biệt của bài toán RMQ tổng quát, do ta có điều kiện $\|A[i]-A[i-1]\|=1$ với mọi $i\in[1,N-1]$ (lý do là 2 phần tử liên tiếp có quan hệ cha con với nhau). Ta gọi bài toán $RMQ$ này là bài toán RMQ thu hẹp. Trong 1 số tài liệu còn được gọi là bài toán $\pm 1 RMQ$. Trong mục này, ta sẽ nghiên cứu một thuật toán có độ phức tạp tốt hơn cho bài toán RMQ thu hẹp.
 
 Hãy biến đổi $A$ thành một dãy nhị phân có $N-1$ phần tử, với $B[i]=A[i]-A[i-1]$. Như vậy $A[i]=A[0]+B[1]+..+B[i]$ và $B[i]$ chỉ nhận giá trị $1$ hoặc $-1$.
 
