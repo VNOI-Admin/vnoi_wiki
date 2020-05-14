@@ -43,11 +43,11 @@ Sau khi trả lời truy vấn $[l_1, r_1]$, để trả lời truy vấn $[l_2,
 
 Để cập nhật số lần xuất hiện lớn nhất thì có thể dùng thêm set.
 
-Như vậy, độ phức tạp của ta là tổng $|l_i - l_{i-1}| + |r_i - r_{i-1}|$, nhân thêm $\mathcal{O}(logN)$ để đếm và tìm phần tử lớn nhất của mảng đếm.
+Như vậy, độ phức tạp của ta là tổng $\|l_i - l_{i-1}\| + \|r_i - r_{i-1}\|$, nhân thêm $\mathcal{O}(logN)$ để đếm và tìm phần tử lớn nhất của mảng đếm.
 
 # Thuật toán Mo
 
-Thuật toán Mo là một cách sắp xếp lại các truy vấn, sao cho tổng $|l_i - l_{i-1}| + |r_i - r_{i-1}|$ không quá $O(N \* \sqrt{N} + Q \* \sqrt{N})$.
+Thuật toán Mo là một cách sắp xếp lại các truy vấn, sao cho tổng $\|l_i - l_{i-1}\| + \|r_i - r_{i-1}\|$ không quá $O(N \* \sqrt{N} + Q \* \sqrt{N})$.
 
 Thứ tự các truy vấn được định nghĩa qua hàm so sánh dưới đây.
 
