@@ -14,7 +14,7 @@ Trong bài viết này, chúng ta sẽ cùng nhau điểm qua các loại cấu 
 
 - **CTDL lưu trữ**: thường có các thao tác như thêm 1 phần tử, xóa 1 phần tử. Có thể có thêm các thao tác như tìm kiếm 1 phần tử.
 - **CTDL truy vấn**: thường dùng cho các bài toán mà bạn phải duy trì một tập hợp các số và thực hiện 1 số truy vấn trên đó.
-- **CTDL xâu**: dùng cho các bài tập [[xử lý xâu|algo/string/basic]].
+- **CTDL xâu**: dùng cho các bài tập [[Xử lý xâu|algo/string/basic]].
 
 # 1. CTDL Lưu trữ
 
