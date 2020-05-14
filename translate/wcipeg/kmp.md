@@ -14,7 +14,7 @@ Thuật toán được xây dựng dựa vào quan sát rằng một xâu con ch
 
 Cụ thể hơn, ta muốn tính toán trước cách xâu $S$ tự khớp với chính nó. Nhờ vậy thuật toán sẽ *không quay nhìn lại* và chỉ duyệt qua $T$ một lần duy nhất.
 
-Cùng với quá trình tiền xử lí tuyến tính $O(|T|)$ (với $|T|$ là độ dài xâu $T$), thuật toán có thời gian chạy tuyến tính.
+Cùng với quá trình tiền xử lí tuyến tính $O(\|T\|)$ (với $\|T\|$ là độ dài xâu $T$), thuật toán có thời gian chạy tuyến tính.
 
 ## Cảm hứng
 
