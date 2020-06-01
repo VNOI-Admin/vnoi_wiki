@@ -1116,7 +1116,7 @@ int main() {
 }
 ```
 
-# 5. Quản lí đồ thị hàm quy hoạch động
+# 5. Quản lí đồ thị hàm quy hoạch động (Slope Trick)
 Ở phần này ta hãy xem xét một bài toán cụ thể về ý tưởng quan sát đồ thị của hàm QHĐ để tối ưu độ phức tạp.
 
 ## Bài tập ví dụ
