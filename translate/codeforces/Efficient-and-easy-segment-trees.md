@@ -1,4 +1,4 @@
-# Cài đặt cây phân đoạn tối ưu (Efficient and easy segment trees)
+# Cài đặt cây phân đoạn hiệu quả (Efficient and easy segment trees)
 
 **Nguồn**: [Codeforces - Efficient and Easy Segment Tree](http://codeforces.com/blog/entry/18051)
 
