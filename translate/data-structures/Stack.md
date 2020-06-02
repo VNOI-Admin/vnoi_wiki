@@ -28,12 +28,6 @@ Thuật ngữ *ngăn xếp* **(stack)**  dựa trên cuộc sống (một chồn
 
 # Cài đặt
 
-## Call stack
-Quá trình chạy của chương trình có thể gọi là *call stack*. Mỗi phần tử trong stack này lưu trữ tổng thể trạng thái các biến hay hàm. Khi một thủ tục gọi thủ tục khác, việc này xảy ra và đưa vào stack, khi thoát ra thì phần tử đó được xóa khỏi stack. Ví dụ, nếu thủ tục `main` gọi thủ tục `fox`, mà thủ tục này gọi tiếp chính nó, trong lúc chạy, stack này sẽ chứa quá trình chạy của `main`, `fox` và `fox`. Mỗi quá trình này chứa các đối số liên qua đến hai thủ tục, cũng như các biến toàn cục liên quan. Ở đây, phần tử trong *call stack* sẽ chứa đối số của thủ tục sâu hơn. *Call stack* được thực hiện ngầm gần như trong tất cả ngôn ngữ lập trình.
-  
-## Stack bình thường 
-Khi thủ tục đệ quy không có, một stack được trữ tách biệt nhau trong các ô nhớ từ *call stack* bằng cách cài đặt mảng hoặc danh sách liên kiết.
-
 ## Cài đặt bằng mảng
 
 Stack cài bằng mảng chứa dữ liệu trong các phần tử liên tiếp nhau. Thông thường, phần tử cuối stack có chỉ số nhỏ nhất (chẳng hạn 0) và ngược lại với phần tử đầu stack. Dưới đây sẽ là một cách cài đặt bằng mã giả.
