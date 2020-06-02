@@ -1,3 +1,5 @@
+# Queue & Stack
+
 # Hàng đợi (Queues)
 
 Hàng đợi là cấu trúc dữ liệu diễn tả tốt nhất cho câu “vào trước, ra trước”. Một ví dụ thực tế của hàng đợi là đoàn người xếp hàng ở ngân hàng. Mỗi người khi xếp hàng sẽ được đẩy vào hàng đợi ở vị trí cuối cùng. Sau khi người ở đầu hàng hoàn thành thủ tục và rời đi, những người đang xếp ở sau sẽ được đẩy về đầu hàng.
@@ -58,7 +60,8 @@ return curState.moveCount;
 }
 ```
 
-#Ngăn xếp (Stack)
+
+# Ngăn xếp (Stack)
 Ngăn xếp có thể được xem như một định nghĩa đối nghịch với hàng đợi. Đối với ngăn xếp, “vào trước, ra trước”. Một ví dụ thực tế đối với ngăn xếp là chồng đĩa. Người rửa dọn sẽ luôn chọn đĩa trên cùng  – đây chính là đĩa được thêm vào sau cùng, sau đó đến đĩa tiếp theo.
 
 Trông có vẻ như ngăn xếp hiếm khi được sử dụng một cách rõ ràng. Tuy vậy, hiểu biết về ngăn xếp và cách thức chúng được sử dụng ngầm hiện nay là vô cùng quan trọng. Những ai đã lập trình được một thời gian sẽ rất quen với việc ngăn xếp được sử dụng mỗi khi một chương trình con được gọi lên từ bên trong một chương trình. Tất cả các tham biến, biến địa phương đều được đặt trên ngăn xếp. Khi quá trình kết thúc, các biến này được giải phóng, địa chỉ được trả về và lấy ra khỏi ngăn xếp. Như vậy, chương trình có thể tiếp tục thực thi tiếp tục ở đúng nơi mà nó đang dừng để gọi chương trình con.
