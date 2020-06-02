@@ -22,7 +22,7 @@ Ta có hai số 5 và 2, khi đó $5\%2$ bằng 1 do khi chia 5 cho 2, ta đư�
 Tính chất:
 Đồng dư thức có một số tính chất sau:
 
-$(a+b)\%c = a\%c + b\%c$
+$(a+b)\%c = (a\%c + b\%c) \% c$
 
 $(a.b)\%c = ((a\%c).(b\%c))\%c$
 
