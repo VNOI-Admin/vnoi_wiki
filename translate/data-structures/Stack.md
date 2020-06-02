@@ -7,7 +7,7 @@
 **Ngăn xếp (stack)** là cấu trúc dữ liệu chứa 0 hoặc nhiều phần tử có cùng kiểu dữ liệu. Ngăn xếp hỗ trợ hai thao tác cơ bản sau:
 
 - *Thêm* một phần tử vào *đầu stack* **(Push)** trong $O(1)$.
-- *Bỏ* đi phần tử ở *đầu stack*, trả về giá trị của phần tử đó trong $O(1)$.
+- *Bỏ* đi phần tử ở *đầu stack* **(Pop)**, trả về giá trị của phần tử đó trong $O(1)$.
 
 Về ứng dụng, ta sẽ bổ sung thêm một số thao tác sau:
 
