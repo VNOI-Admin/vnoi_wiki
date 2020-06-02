@@ -33,7 +33,7 @@ Cho một mạng (network) có dạng một đồ thị vô hướng $G=(E,V)$ (
 
 hình dưới đây biểu diễn một luồng cực đại trên mạng và mỗi cạnh của nó được gán nhãn là $f[u,v]/c[u,v]$ (giá trị dòng chảy và sức chứa của kênh)
 
-![Luồng cực đại figure 1.a](https://c1.staticflickr.com/9/8203/28888587790_462bb588c9.jpg "Luồng cực đại figure 1.a")
+[[/uploads/max_flow_img_1.jpg]]
 
 # 3. cách giải bài toán
 
@@ -51,10 +51,8 @@ Mạng thặng dư $G'(E',V')$ của mạng $G(E,V)$ cho biết sức chứa cò
 
 (Có thể thấy tập cạnh xuôi trên $G'$ chính là tập cạnh của $G$). Hình dưới đây sẽ diễn tả một đồ thị G và mạng thặng dư $G$' của nó
 
-
-![Luồng cực đại figure 2a](https://c1.staticflickr.com/9/8133/29176141625_2a832999aa.jpg "Luồng cực đại figure 2a")
-
-![Luồng cực đại figure 2b](https://c1.staticflickr.com/9/8333/29070238302_c937d5ce54.jpg "Luồng cực đại figure 2b")
+[[/uploads/max_flow_2a.jpg]]
+[[/uploads/max_flow_2b.jpg]]
 
 ## 3.2 đường tăng luồng - augment path
 
