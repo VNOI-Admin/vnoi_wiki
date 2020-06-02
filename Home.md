@@ -99,6 +99,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Xác suất (2*)|translate/topcoder/Hieu-ve-xac-suat]]
 - [[Định lý Wilson (3*)|translate/he/Wilsons-theorem]]
 - [[Hàm nhân tính (Multiplicative Function) (4*)|algo/math/multiplicative-function]]
+- [[Hàm Mobius (4*)|translate/quora/mobius-function.md]]
 - [[Nhân nhanh đa thức - FFT (4*)|algo/trick/FFT]]
 
 ## Tối ưu hoá
