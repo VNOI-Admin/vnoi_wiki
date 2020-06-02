@@ -131,7 +131,7 @@ for (int i = 1; i <= N; i++)
 
 	$\Leftrightarrow G=\sum_{d=1}^{n}f(d)\*(\sum_{g:d\|g}cnt[g])$ (4)
 
-5. Đặt $cnt2[d]=\sum_{g:d|g}cnt[g]$. Hàm này có ý nghĩa là số lượng cặp $(i,j)$ có $gcd$ là bội của $d$. Đến đây mọi việc đã đơn giản hơn rất nhiều. Các bạn chỉ cần tìm số lượng cặp $(i,j)$ mà $i$ và $j$ đều là bội của $d$. Có $n/d$ bội của $d$, nên sẽ có $n/d\*(n/d-1)/2$ cặp.
+5. Đặt $cnt2[d]=\sum_{g:d\|g}cnt[g]$. Hàm này có ý nghĩa là số lượng cặp $(i,j)$ có $gcd$ là bội của $d$. Đến đây mọi việc đã đơn giản hơn rất nhiều. Các bạn chỉ cần tìm số lượng cặp $(i,j)$ mà $i$ và $j$ đều là bội của $d$. Có $n/d$ bội của $d$, nên sẽ có $n/d\*(n/d-1)/2$ cặp.
 
 	Vậy (4) trở thành $G=\sum_{d=1}^{n}f(d)\*n/d\*(n/d-1)/2$.
 
