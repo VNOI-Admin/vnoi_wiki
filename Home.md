@@ -31,6 +31,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 - [[Tổng quan về cấu trúc dữ liệu (2*)|algo/data-structures/data-structures-overview]]
 - [[Mảng và danh sách liên kết (1*)|algo/data-structures/array-vs-linked-lists]]
+- [[Ngăn xếp (stack)|translate/data-structures/Stack]]
 - [[Deque và tìm min max trên đoạn tịnh tiến (2*)|algo/data-structures/deque-min-max]]
 - [[Heap (2*)|translate/wcipeg/Binary-Heap]]
 - [[Bảng băm (Hash table) (2*)|algo/data-structures/hash-table]]
