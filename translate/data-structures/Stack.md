@@ -6,17 +6,17 @@
 
 **Ngăn xếp (stack)** là cấu trúc dữ liệu chứa 0 hoặc nhiều phần tử có cùng kiểu dữ liệu. Ngăn xếp hỗ trợ hai thao tác cơ bản sau:
 
-- *Thêm* một phần tử vào *đầu stack* **(Push)**
-- *Bỏ* đi phần tử ở *đầu stack*, trả về giá trị của phần tử đó.
+- *Thêm* một phần tử vào *đầu stack* **(Push)** trong $O(1)$.
+- *Bỏ* đi phần tử ở *đầu stack*, trả về giá trị của phần tử đó trong $O(1)$.
 
 Về ứng dụng, ta sẽ bổ sung thêm một số thao tác sau:
 
-- *Xây dựng* một stack rỗng **(Construct)**
-- *Sao chép* stack này sang stack khác **(Copy)**
-- *Lấy* phần tử ở đầu stack mà không xóa nó **(Peek)**
-- *Xóa sạch* một stack có phần tủ **(Empty)**
-- *Trả về* số lượng phần tử trong stack **(Find size)**
-- *Kiểm tra* stack rỗng hay không **(Test empty)**
+- *Xây dựng* một stack rỗng **(Construct)** trong $O(1)$.
+- *Sao chép* stack này sang stack khác **(Copy)** trong $O(N)$.
+- *Lấy* phần tử ở đầu stack mà không xóa nó **(Peek)** trong $O(1)$.
+- *Xóa sạch* một stack có phần tủ **(Empty)** trong $O(N)$.
+- *Trả về* số lượng phần tử trong stack **(Find size)** trong $O(1)$.
+- *Kiểm tra* stack rỗng hay không **(Test empty)** trong $O(1)$.
 
 Thao tác *peek* có thể xem như *pop* phần tử đầu stack và lại *push* nó vào. Cũng như thao tác *kiểm tra* chỉ đơn giản là kiểm tra xem số lượng phần tử có trong stack có bằng 0 hay không.
 
