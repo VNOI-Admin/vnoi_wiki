@@ -62,15 +62,15 @@ Mạng thặng dư $G'(E',V')$ của mạng $G(E,V)$ cho biết sức chứa cò
 
 bằng việc xem xét đường tăng luồng s_A_C_t trên mạng thặng dư $G'$ chúng ta có thể tăng luồng lên 1 vì s_A và A_C có thể cho một luồng có giá trị là 3 nhưng C_t chỉ có thể cho một luồng 1 đi qua, do đó ta sẽ lấy giá trị nhỏ nhất trên đường đi để thực hiện tăng giá trị luồng. Sau khi tăng luồng lên một ta có hình như sau:
 
-![Luồng cực đại figure 3a](https://c1.staticflickr.com/9/8401/29142628656_53bf72b382.jpg "Luồng cực đại figure 3a")
+[[/uploads/max_flow_3a.jpg]]
 
 sau khi tăng luồng ta được một mạng mới với tổng giá trị luồng là 2 nhưng trong ví dụ **1.a** ta thấy tổng luồng là 3 do đó luồng như trên vẫn có thể tăng luồng thêm nữa. Vậy một câu hỏi là ta sẽ tăng luồng như thế nào? hãy nhìn vào mạng thặng dư **3.b** của đồ thị **3.a** dưới đây, trong hình dưới mối cạnh của $G'$ sẽ được gán nhãn bằng $c'[u,v] - f'[u,v]$
 
-![Luồng cực đại figure 3b](https://c1.staticflickr.com/9/8318/28556848573_4f55d6f901.jpg "Luồng cực đại figure 3b")
+[[/uploads/max_flow_3b.jpg]]
 
 Ta có thể thấy từ $s$ đến $t$ tồn tại một đường đi đơn (đường tăng luồn): s_A_C_B_D_E_t, ta sẽ sử dụng đường đi này để tăng các giá trị trên đường đi này một lượng bằng sức chứa nhỏ nhất (sức chứa của C_B nhỏ nhất và bằng 1), hình **1.b** dưới đây là mạng thặng dư tương ứng của **3.a** sau khi được tăng luồng
 
-![Luồng cực đại figure 1b](https://c1.staticflickr.com/9/8264/28556848583_283a1d1b68.jpg "Luồng cực đại figure 1b")
+[[/uploads/max_flow_1b.jpg]]
 
 ## 3.4 Thuật toán Ford–Fulkerson
 
@@ -96,7 +96,7 @@ def dfs(int u, sink):
 
     # duyệt hết các đỉnh v có thể đến được từ u hay thỏa mãn điều kiện c[u][v] - f[u][v] > 0
     for( v in VertecesCanComeFromU ):
-        if !visited[v]:
+        if not visited[v]:
             trace[v] = u
 
 def find_augment_from_to(int source, int sink):
