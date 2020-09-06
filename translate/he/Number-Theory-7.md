@@ -24,7 +24,7 @@ $ (-1)^n\|A_1 \cap A_2 \cap ... \cap A_n\|$
 
 Ta có thể viết công thức này một cách gọn hơn bằng cách tính tổng của các tập con. Gọi $B$ là tập hợp các tập hợp $A_i$. Khi đó công thức bao hàm - loại trừ có dạng:
 
-$|\bigcup_{i=1}^n A_i\| = \sum_{C \subset B} (-1)^{\|C\|-1} \| \bigcap_{e \in C} e \|$
+$\|\bigcup_{i=1}^n A_i\| = \sum_{C \subset B} (-1)^{\|C\|-1} \| \bigcap_{e \in C} e \|$
 
 ## Lập công thức bằng biểu đồ Venn (Venn diagrams)
 
