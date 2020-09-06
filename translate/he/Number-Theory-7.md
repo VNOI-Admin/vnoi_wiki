@@ -34,7 +34,7 @@ Ta có biểu đồ sau biểu diễn ba tập hợp $A$, $B$ và $C$.
 
 Khi đó ta thấy lực lượng của $A \cup B \cup C$ bằng lực lượng của $A$, $B$, $C$ trừ đi lực lượng của $A \cap B$, $B \cap C$, $C \cap A$ rồi cộng thêm lực lượng của $A \cap B \cap C$.
 
-$| A \cup B \cup C \| = \|A\| + \|B\| + \|C\| - \|A \cap B\| - \|B \cap C\| - \|C \cap A\| + \|A \cap B \cap C\|$
+$\| A \cup B \cup C \| = \|A\| + \|B\| + \|C\| - \|A \cap B\| - \|B \cap C\| - \|C \cap A\| + \|A \cap B \cap C\|$
 
 Tương tự, ta có thể lập công thức với $n$ tập hợp.
 
