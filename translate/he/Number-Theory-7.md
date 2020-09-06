@@ -52,7 +52,7 @@ $P(\bigcup_{i=1}^n A_i) = \sum_{C \subset B} (-1)^{\|C\|-1}. P(\bigcap_{e \in C}
 
 Để thuật tiện trong chứng minh, ta sử dụng công thức viết gọn sau:
 
-$|\bigcup_{i=1}^n A_i\| = \sum_{C \subset B} (-1)^{\|C\|-1} \| \bigcap_{e \in C} e \|$
+$\|\bigcup_{i=1}^n A_i\| = \sum_{C \subset B} (-1)^{\|C\|-1} \| \bigcap_{e \in C} e \|$
 
 với $B$ là tập hợp các tập hợp $A_i$.
 
@@ -60,17 +60,17 @@ Ta cần chứng minh một phần tử bất kì thuộc ít nhất một tập
 
 Xét một phần tử $x$ bất kì thuộc $k \geq 1$ tập hợp $A_i$. Ta thấy
 
-- Trong công thức, khi $|C\| = 1$, $x$ được đếm thêm $k$ lần.
+- Trong công thức, khi $\|C\| = 1$, $x$ được đếm thêm $k$ lần.
 
-- Trong công thức, khi $|C\| = 2$, $x$ được đếm bớt đi $\binom{k}{2}$ lần bởi $x$ bị đếm bớt đi khi ta xét một cặp 2 tập hợp khác nhau trong số $k$ tập hợp chứa phần tử $x$.
+- Trong công thức, khi $\|C\| = 2$, $x$ được đếm bớt đi $\binom{k}{2}$ lần bởi $x$ bị đếm bớt đi khi ta xét một cặp 2 tập hợp khác nhau trong số $k$ tập hợp chứa phần tử $x$.
 
-- Trong công thức, khi $|C\| = 3$, $x$ được đếm thêm $\binom{k}{3}$ lần.
+- Trong công thức, khi $\|C\| = 3$, $x$ được đếm thêm $\binom{k}{3}$ lần.
 
 - ...
 
-- Trong công thức, khi $|C\| = k$, $x$ được đếm $\binom{k}{k}$ lần. Nếu $k$ lẻ thì $x$ được đếm thêm, nếu $k$ chẵn thì $x$ được đếm bớt.
+- Trong công thức, khi $\|C\| = k$, $x$ được đếm $\binom{k}{k}$ lần. Nếu $k$ lẻ thì $x$ được đếm thêm, nếu $k$ chẵn thì $x$ được đếm bớt.
 
-- Trong công thức, khi $|C\| > k$, $x$ không được đếm.
+- Trong công thức, khi $\|C\| > k$, $x$ không được đếm.
 
 Vì vậy, số lần $x$ được đếm là $T = \binom{k}{1} - \binom{k}{2} + \binom{k}{3} - ... + (-1)^{i-1}.\binom{k}{i} + ... + (-1)^{k-1}.\binom{k}{k}$.
 
