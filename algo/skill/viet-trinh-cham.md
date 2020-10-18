@@ -2,7 +2,7 @@
 
 **Tác giả**: Vũ *chipchip* Phúc Hoàng
 
-Bạn cảm thấy lo sợ trong những kì thi chấm offline? Bạn bình thường làm bài rất tốt nhưng khi chấm offline lại bị điểm kém vì sai những lỗi vớ vẩn? Bạn code sai một bài rất khó và debug mãi không được vì không có test sai? Tất cả những vấn đề đó sẽ được giải quyết đơn giản với một chương trình chấm bài tự động, giúp bạn tự kiểm tra bài mình và phát hiện test sai. Bài viết này sẽ giới thiệu với bạn những bước cơ bản nhất để viết trình chấm - một kĩ thuật mà bạn nên thành thạo trước khi thi HSG Quốc gia.
+Bạn cảm thấy lo sợ trong những kì thi chấm offline? Bạn bình thường làm bài rất tốt nhưng khi chấm offline lại bị điểm kém vì sai những lỗi vớ vẩn? Bạn code sai một bài rất khó và debug mãi không được vì không có test sai? Tất cả những vấn đề đó sẽ được giải quyết đơn giản với một chương trình chấm bài tự động, giúp bạn tự kiểm tra bài mình và phát hiện test sai. Bài viết này sẽ giới thiệu với bạn những bước cơ bản nhất để viết trình chấm - một kĩ thuật mà bạn nên thành thạo trước khi thi HSG.
 
 [[_TOC_]]
 
