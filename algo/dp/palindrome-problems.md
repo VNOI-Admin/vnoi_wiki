@@ -71,6 +71,10 @@ FillChar( F, sizeof(F), false );
 for i := 1 to n do
     F[i, i] := True;
 
+for i := 1 to n-1 do
+    F[i+1, i] := True;
+
+
 for k := 1 to (n-1) do
     for i := 1 to (n-k) do
         begin
