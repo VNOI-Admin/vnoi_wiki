@@ -18,7 +18,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 # Bảng tin VNOI 
 
-- [link](https://vnoi.info/contributor/news-bulletin/bảng-tin.md)
+- [link](news-bulletin/bảng-tin.md)
 
 # Thuật toán
 
