@@ -42,7 +42,7 @@ Tương tự, ta có thể lập công thức với $n$ tập hợp.
 
 Nếu ta có $n$ biến cố $A_1, A_2,...,A_n$, $P(A_i)$ là xác suất của biến cố $A_i$, xác suất của biến cố hợp của chúng (nghĩa là biến cố "có ít nhất một trong số $n$ biến cố $A_1, A_2, ..., A_n$ xảy ra") là
 
-$P(\bigcup_{i=1}^n A_i) = $ $\sum_{i=1}^n$ $ P(A_i) - $$\sum_{i \ne j}$$ P(A_i A_j) + P(A_1 A_2 A_3) + P(A_1 A_2 A_4) +... + P(A_{n-2} A_{n-1} A_n) $$- ... -$ $(-1)^n.P(A_1 A_2 ... A_n)$
+$P(\bigcup_{i=1}^n A_i) = \sum_{i=1}^n  P(A_i)$ $- \sum_{i \ne j} P(A_i A_j)$ $+ P(A_1 A_2 A_3)$ $+ P(A_1 A_2 A_4)$ $+...+ P(A_{n-2} A_{n-1} A_n)$ $- ... -$ $(-1)^n.P(A_1 A_2 ... A_n)$
 
 Nếu gọi $B$ là tập hợp các tập hợp $A_i$, công thức này cũng có thể viết gọn như sau:
 
