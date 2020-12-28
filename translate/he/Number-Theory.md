@@ -30,7 +30,7 @@ Ta có biểu đồ sau biểu diễn ba tập hợp $A$, $B$ và $C$.
 
 Khi đó ta thấy lực lượng của $A \cup B \cup C$ bằng lực lượng của $A$, $B$, $C$ trừ đi lực lượng của $A \cap B$, $B \cap C$, $C \cap A$ rồi cộng thêm lực lượng của $A \cap B \cap C$.
 
-$| A \cup B \cup C \| = \|A\| + \|B\| + \|C\| - \|A \cap B\| - \|B \cap C\| - \|C \cap A\| + \|A \cap B \cap C\|$
+$\| A \cup B \cup C \| = \|A\| + \|B\| + \|C\| - \|A \cap B\| - \|B \cap C\| - \|C \cap A\| + \|A \cap B \cap C\|$
 
 Tương tự, ta có thể lập công thức với $n$ tập hợp.
 
@@ -48,7 +48,7 @@ $P(\bigcup_{i=1}^n A_i) = \sum_{C \subset B} (-1)^{\|C\|-1}. P(\bigcap_{e \in C}
 
 Để thuật tiện trong chứng minh, ta sử dụng công thức viết gọn sau:
 
-$|\bigcup_{i=1}^n A_i\| = \sum_{C \subset B} (-1)^{\|C\|-1} \| \bigcap_{e \in C} e \|$
+$\|\bigcup_{i=1}^n A_i\| = \sum_{C \subset B} (-1)^{\|C\|-1} \| \bigcap_{e \in C} e \|$
 
 với $B$ là tập hợp các tập hợp $A_i$.
 
