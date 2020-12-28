@@ -15,7 +15,7 @@ Công thức bao hàm - loại trừ được phát biểu như sau:
 
 Công thức bao hàm - loại trừ có dạng như sau:
 
-$|\bigcup_{i=1}^n A_i\| = \sum_{i=1}^n \|A_i\| - \sum_{i \ne j} \|A_i \cap A_j\| + \|A_1 \cap A_2 \cap A_3\| + \|A_1 \cap A_2 \cap A_4\| + ... + \|A_{n-2} \cap A_{n-1} \cap A_n\| - ... -$
+$\|\bigcup_{i=1}^n A_i\| = \sum_{i=1}^n \|A_i\| - \sum_{i \ne j} \|A_i \cap A_j\| + \|A_1 \cap A_2 \cap A_3\| + \|A_1 \cap A_2 \cap A_4\| + ... + \|A_{n-2} \cap A_{n-1} \cap A_n\| - ... -$
 $ (-1)^n\|A_1 \cap A_2 \cap ... \cap A_n\|$
 
 Ta có thể viết công thức này một cách gọn hơn bằng cách tính tổng của các tập con. Gọi $B$ là tập hợp các tập hợp $A_i$. Khi đó công thức bao hàm - loại trừ có dạng:
