@@ -98,28 +98,8 @@ Các đặt điểm cần chú ý của các resume này:
     - Giải thưởng thì phải nói rõ quy mô (bao nhiêu đội tham gia), thi về cái gì, đạt giải ra sao.
     - Kinh nghiệm làm việc cần có mô tả sơ qua về công việc, nêu rõ những gì đã học được như ngôn ngữ lập trình, framework, tools..
 
-Mình lấy một ví dụ khác về Resume mà theo mình thấy là viết chưa tốt: [Resume](https://drive.google.com/file/u/1/d/0BwcTB8a10LBwN0poWERYcTUxWkU/view?usp=sharing)
-
-Nhận xét của mình:
-
-- Về mặt trình bày:
-    - Không nên dùng bảng
-    - Có thể bỏ bớt địa chỉ trường
-- Objective: nếu viết objective thường cần chặt chẽ với vị trí đang apply, không nên viết 1 câu quá chung chung. Thay vào đó có thể viết 1 cái Summary về bản thân.
-- Education: Ghi rõ điểm 3.56 / 4.00
-- Experience:
-    - Giải thưởng để ra 1 mục riêng, không để lẫn với kinh nghiệm làm việc.
-    - Codeforces: recruiter sẽ không biết "rating" và "Master" nghĩa là gì. Thay vào đó nên viết là đứng trong top bao nhiêu %.
-    - Internship: cần viết rõ về mình làm gì, học được gì, không cần viết về công ty đó làm gì.
-- Skills:
-    - Bôi đen những từ khoá như C++, Python... để nhấn mạnh.
-- Interests:
-    - Những interest chung chung không thật sự cần thiết. Nên thay bằng những kinh nghiệm và kết quả cụ thể.
-    - Có thể đưa những ý như "Solving hard problems required using algorithms." vào phần Summary, ví dụ như "Good problem solving skills and algorithm knowledge".
 
 ## 2.2. Kiếm người refer
-
-Một nhân viên Google bất kỳ có thể refer (giới thiệu) bạn với công ty. Nếu người refer có tâm sẽ giúp bạn có khả năng đỗ cao hơn. Để chứng minh điều này mình xin kể lại chuyện có thật:
 
 Ở vòng đầu tiên, resume của bạn sẽ được duyệt bởi recruiter. Những người này không phải là Software Engineer nên có lúc sẽ không đánh giá đúng được trình độ của bạn, do đó quá trình duyệt Resume sẽ có rủi ro nhất định. Trong những bạn mình refer, có hai bạn rất khá nhưng trượt vòng resume (đã nhận được email từ chối của Google). Tuy nhiên sau đó mình đã liên hệ trực tiếp với recruiter, viết 2 email rất dài để chứng minh 2 bạn đó rất giỏi. Kết quả cả 2 bạn đều được đi tiếp đến vòng phỏng vấn và 1 bạn sẽ đi thực tập ở Google vào hè tới. Ví dụ này cũng cho thấy quá trình duyệt resume cũng có rủi ro, và tài năng thật sự có thể bị bỏ qua.
 
