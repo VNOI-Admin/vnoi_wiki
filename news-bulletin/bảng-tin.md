@@ -1,7 +1,7 @@
 # Bảng tin 
 Chào các bạn VNOI 
 
-Dưới đây là bài viết tổng hợp các bài viết / comment chất lượng trong **2 tuần** từ **30/11/2020** đến **13/12/2020**. Để có bài viết/ comment xuất hiện trong bảng tin, các bạn hãy cố gắng đặt các câu hỏi hay hoặc viết các câu trả lời thật hữu ích nhé! 
+Dưới đây là bài viết tổng hợp các bài viết / comment chất lượng trong **2 tuần** từ **14/12/2020 đến 3/1/2021**. Để có bài viết/ comment xuất hiện trong bảng tin, các bạn hãy cố gắng đặt các câu hỏi hay hoặc viết các câu trả lời thật hữu ích nhé! 
 
 ## Livestream chữa VOI 2021
 * [link](https://www.facebook.com/vnoi.wiki/videos/308545883881762)
