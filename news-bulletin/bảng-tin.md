@@ -8,22 +8,23 @@ Dưới đây là bài viết tổng hợp các bài viết / comment chất lư
 * [Form hỏi bài VNOI](https://www.facebook.com/groups/VNOIForum/permalink/3591035067583968/)
 * [Nội quy group VNOI](https://www.facebook.com/groups/VNOIForum/permalink/3551923554828453/)
 
-## [Livestream chữa VOI 2021](https://www.facebook.com/vnoi.wiki/videos/308545883881762)
+## Bảng tin
+* [Livestream chữa VOI 2021](https://www.facebook.com/vnoi.wiki/videos/308545883881762)
 
-## [Chia sẻ về cách học lập trình thi đấu - bạn Nguyễn Khắc Mạnh](https://www.facebook.com/groups/VNOIForum/permalink/3794123667275106/)
+* [Chia sẻ về cách học lập trình thi đấu - bạn Nguyễn Khắc Mạnh](https://www.facebook.com/groups/VNOIForum/permalink/3794123667275106/)
 
-## [Trang Web mới của Free Contest](https://www.facebook.com/groups/VNOIForum/permalink/3836861573001315/)
+* [Trang Web mới của Free Contest](https://www.facebook.com/groups/VNOIForum/permalink/3836861573001315/)
 
-## [Hỏi bài CF 868F (sử dụng kĩ thuật DP Chia để trị)](https://www.facebook.com/groups/VNOIForum/permalink/3835637126457093/)
+* [Hỏi bài CF 868F (sử dụng kĩ thuật DP Chia để trị)](https://www.facebook.com/groups/VNOIForum/permalink/3835637126457093/)
 
-## [Kì thi CODE WOW - LINE Technology Vietnam](https://www.facebook.com/groups/VNOIForum/permalink/3830589686961837/)
+* [Kì thi CODE WOW - LINE Technology Vietnam](https://www.facebook.com/groups/VNOIForum/permalink/3830589686961837/)
 
-## [Livestream chữa đề ICPC Vietnam Regional 2021](https://www.facebook.com/groups/VNOIForum/permalink/3826237537397052/)
+* [Livestream chữa đề ICPC Vietnam Regional 2021](https://www.facebook.com/groups/VNOIForum/permalink/3826237537397052/)
 
-## [Thảo luận về học tiếng anh cho lập trình thi đấu](https://www.facebook.com/groups/VNOIForum/permalink/3808249232529216/))
+* [Thảo luận về học tiếng anh cho lập trình thi đấu](https://www.facebook.com/groups/VNOIForum/permalink/3808249232529216/))
 
-## [Lời giải kì thi VNOI Online 2021](https://www.facebook.com/groups/VNOIForum/permalink/3813838455303627/)
+* [Lời giải kì thi VNOI Online 2021](https://www.facebook.com/groups/VNOIForum/permalink/3813838455303627/)
 
-## [Kết quả và test kì thi VNOI Online 2021](https://www.facebook.com/groups/VNOIForum/permalink/3811864558834350/)
+* [Kết quả và test kì thi VNOI Online 2021](https://www.facebook.com/groups/VNOIForum/permalink/3811864558834350/)
 
 
