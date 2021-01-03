@@ -3,24 +3,35 @@ Chào các bạn VNOI
 
 Dưới đây là bài viết tổng hợp các bài viết / comment chất lượng trong **2 tuần** từ **30/11/2020** đến **13/12/2020**. Để có bài viết/ comment xuất hiện trong bảng tin, các bạn hãy cố gắng đặt các câu hỏi hay hoặc viết các câu trả lời thật hữu ích nhé! 
 
-## Thông báo về kì thi VNOI Online 2021 
-* [link](https://www.facebook.com/groups/VNOIForum/permalink/3773270639360409/)
+## Livestream chữa VOI 2021
+* [link](https://www.facebook.com/vnoi.wiki/videos/308545883881762)
 
-## Khoá học MERN Stack - đội ngũ ZerosX Team 
-* [link](https://www.facebook.com/groups/VNOIForum/permalink/3756550771032396/)
+## Chia sẻ về cách học lập trình thi đấu - bạn Nguyễn Khắc Mạnh
+* [link](https://www.facebook.com/groups/VNOIForum/permalink/3794123667275106/)
 
-## Trang web chấm bài Ucode.vn - bạn Nguyễn Chí Thức 
-* [link](https://www.facebook.com/groups/VNOIForum/permalink/3753237181363755/)
+## Trang Web mới của Free Contest
+* [link](https://www.facebook.com/groups/VNOIForum/permalink/3836861573001315/)
 
-## Cách để học C++ - thầy Lê Minh Hoàng
-* [link](https://www.facebook.com/groups/VNOIForum/permalink/3775548505799289/?comment_id=3775670942453712)
+## Hỏi bài CF 868F (sử dụng kĩ thuật DP Chia để trị)
+* [link](https://www.facebook.com/groups/VNOIForum/permalink/3835637126457093/)
 
-## Thảo luận về VNU-OI 
-* [ngày 1](https://www.facebook.com/groups/VNOIForum/permalink/3770336186320521/)
-* [ngày 2](https://www.facebook.com/groups/VNOIForum/permalink/3772943762726430/)
+## Kì thi CODE WOW - LINE Technology Vietnam 
+* [link](https://www.facebook.com/groups/VNOIForum/permalink/3830589686961837/)
 
-## Thảo luận về Algorithm trong phỏng vấn xin việc
-* [link](https://www.facebook.com/groups/VNOIForum/permalink/3757390337615106/) 
+## Livestream chữa đề ICPC Vietnam Regional 2021
+* [link](https://www.facebook.com/groups/VNOIForum/permalink/3826237537397052/)
 
-## Hỏi về 2SAT - bạn Nguyễn Khắc Mạnh 
-* [link](https://www.facebook.com/groups/VNOIForum/permalink/3754618187892321/)
+## Thảo luận về học tiếng anh cho lập trình thi đấu 
+* [link](https://www.facebook.com/groups/VNOIForum/permalink/3808249232529216/) 
+
+## Lời giải kì thi VNOI Online 2021
+* [link](https://www.facebook.com/groups/VNOIForum/permalink/3813838455303627/)
+
+## Kết quả và test kì thi VNOI Online 2021 
+* [link](https://www.facebook.com/groups/VNOIForum/permalink/3811864558834350/)
+
+
+Các link quan trọng khác:
+* [Thư viện đề thi VNOI](https://drive.google.com/drive/folders/1LBcmCf7TEwKJeaIgDRk-BBkHQbkHyR3n?usp=sharing)
+* [Form hỏi bài VNOI](https://www.facebook.com/groups/VNOIForum/permalink/3591035067583968/)
+* [Nội quy group VNOI](https://www.facebook.com/groups/VNOIForum/permalink/3551923554828453/)
