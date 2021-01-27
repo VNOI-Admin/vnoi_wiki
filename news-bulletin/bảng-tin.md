@@ -1,7 +1,8 @@
 # Bảng tin 
 Chào các bạn VNOI 
 
-Dưới đây là bài viết tổng hợp các bài viết / comment chất lượng trong **2 tuần** từ **14/12/2020 đến 3/1/2021**. Để có bài viết/ comment xuất hiện trong bảng tin, các bạn hãy cố gắng đặt các câu hỏi hay hoặc viết các câu trả lời thật hữu ích nhé! 
+Dưới đây là bài viết tổng hợp các bài viết / comment chất lượng trong **3 tuần** từ **04/01/2020 đến 27/01/2021**. Trong bảng tin lần này, VNOI xin cảm ơn bạn **Trần Quang Lộc** (vì đã có nhiều câu trả lời chi tiết cho các post hỏi bài), bạn **Nguyễn Khắc Mạnh**, **Nguyễn Hồ Thanh Nhân** (vì đã có nhiều post hỏi bài hay và cẩn thận). Để có bài viết/ comment xuất hiện trong bảng tin, các bạn hãy cố gắng đặt các câu hỏi hay hoặc viết các câu trả lời thật hữu ích nhé! 
+
 
 ## Các link quan trọng:
 * [Thư viện đề thi VNOI](https://drive.google.com/drive/folders/1LBcmCf7TEwKJeaIgDRk-BBkHQbkHyR3n?usp=sharing)
@@ -9,22 +10,27 @@ Dưới đây là bài viết tổng hợp các bài viết / comment chất lư
 * [Nội quy group VNOI](https://www.facebook.com/groups/VNOIForum/permalink/3551923554828453/)
 
 ## Bảng tin
-* [Livestream chữa VOI 2021](https://www.facebook.com/vnoi.wiki/videos/308545883881762)
 
-* [Chia sẻ về cách học lập trình thi đấu - bạn Nguyễn Khắc Mạnh](https://www.facebook.com/groups/VNOIForum/permalink/3794123667275106/)
+* [Kết quả kì thi HSG QG lớp 12 môn Tin học + Danh sách thí sinh được lọt vào V2](https://www.facebook.com/groups/VNOIForum/permalink/3882667805087358/)
 
-* [Trang Web mới của Free Contest](https://www.facebook.com/groups/VNOIForum/permalink/3836861573001315/)
+* [4 bạn học sinh đạt giải Quốc Tế môn Tin học được tặng thưởng huân chương lao động](https://www.facebook.com/groups/VNOIForum/permalink/3859045007449638/)
 
-* [Hỏi bài CF 868F (sử dụng kĩ thuật DP Chia để trị)](https://www.facebook.com/groups/VNOIForum/permalink/3835637126457093/)
+* [Đề thi HSG lớp 12 môn Tin học của tỉnh Thừa Thiên Huế - bạn Đinh Hải](https://www.facebook.com/groups/VNOIForum/permalink/3886020988085373/)
 
-* [Kì thi CODE WOW - LINE Technology Vietnam](https://www.facebook.com/groups/VNOIForum/permalink/3830589686961837/)
+* [Đề thi + testcases HSG lớp 9 môn Tin học của TP Hà Nội - bạn Nguyễn Chí Thức](https://www.facebook.com/groups/VNOIForum/permalink/3886169454737193/)
 
-* [Livestream chữa đề ICPC Vietnam Regional 2021](https://www.facebook.com/groups/VNOIForum/permalink/3826237537397052/)
+* [Kết quả kì thi LINE CODE WOW 2021](https://www.facebook.com/groups/VNOIForum/permalink/3902980439722761/)
 
-* [Thảo luận về học tiếng anh cho lập trình thi đấu](https://www.facebook.com/groups/VNOIForum/permalink/3808249232529216/))
+* [Hỏi về tài liệu Tin học viết bằng C++](https://www.facebook.com/groups/VNOIForum/permalink/3875305419156930/)
 
-* [Lời giải kì thi VNOI Online 2021](https://www.facebook.com/groups/VNOIForum/permalink/3813838455303627/)
+* [Hỏi bài Codeforces 102272D về truy vấn cập nhật bậc thang trên Segment Tree](https://www.facebook.com/groups/VNOIForum/permalink/3903073166380155/)
 
-* [Kết quả và test kì thi VNOI Online 2021](https://www.facebook.com/groups/VNOIForum/permalink/3811864558834350/)
+* [Hỏi bài Codeforces 101102K về tìm toposort có thứ tự từ điển lớn nhất](https://www.facebook.com/groups/VNOIForum/permalink/3899415553412583/)
+
+* [Thảo luận về chọn trường UIT, HCMUS, FPT](https://www.facebook.com/groups/VNOIForum/permalink/3891052744248864/)
+
+* [Hỏi về undefined behavior trong code C++ khi thực hiện const_cast](https://www.facebook.com/groups/VNOIForum/permalink/3847604478593691/)
+
+* [Hỏi bài NKPOLICE](https://www.facebook.com/groups/VNOIForum/permalink/3851226988231440/)
 
 
