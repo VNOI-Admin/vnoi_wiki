@@ -118,11 +118,13 @@ Cho một mảng $A$ gồm $N$ phần tử là các số nguyên. Bạn cần th
 ## Cách giải
 ### Giả sử các truy vấn đều có $ l = 1, r=N$
 Với giả sử trên, ta sẽ giải bài toán với đpt $O(Q*100 + N)$. Ta sẽ tạo mảng $lazy[x]$ với ý nghĩa là các số ban đầu là $x$ thì hiện tại đã được đổi giá trị sang $lazy[x]$. Ban đầu $lazy[x] = x$ với $1 \le x \le 100$. Với mỗi truy vấn $(l,r,x,y)$, ta sẽ làm như sau: 
+
 ```cpp
 for(int i=1; i<=100; i++){
 	if (lazy[i]==x) lazy[i]=y;
 }
 ```
+
 Với thao tác cập nhật mảng lazy này, dễ thấy tất cả các số hiện đang có giá trị là $x$ sẽ đều được gán lại thành $y$.
 Sau khi thực hiện tất cả các truy vấn, chúng ta có thể lấy giá trị của các số trong mảng như sau: 
 ```cpp
