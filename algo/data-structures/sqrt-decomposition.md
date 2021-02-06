@@ -106,6 +106,36 @@ void update(int u, int v)
 }
 ```
 
+# Bài toán 2
+Tiếp nối bài toán đầu tiên, chúng ta hãy cùng đi sâu hơn vào các bài toán chia mảng ra làm $\sqrt{N}$ đoạn nhưng có truy vấn cập nhật. 
+
+**Lưu ý:** Bài tập có cách giải tối ưu nhất sử dụng Segment Tree, tuy nhiên vì mục đích của bài viết này nên bài tập sẽ được giải bằng chia căn. 
+
+
+## Đề bài 
+Cho một mảng $A$ gồm $N$ phần tử là các số nguyên. Bạn cần thực hiện $Q$ truy vấn có dạng $(l,r,x,y)$ là với các phần tử trong đoạn từ $l$ đến $r$, nếu $A[i] == x$, gán $A[i] == y$. Bạn cần in ra mảng sau khi thực hiện $Q$ truy vấn. Giới hạn $1 \le N,Q \le 2*10^5, 1 \le A_i \le 100$
+
+## Cách giải
+### Giả sử các truy vấn đều có $ l = 1, r=N$
+Với giả sử trên, ta sẽ giải bài toán với đpt $O(Q*100 + N)$. Ta sẽ tạo mảng $lazy[x]$ với ý nghĩa là các số ban đầu là $x$ thì hiện tại đã được đổi giá trị sang $lazy[x]$. Ban đầu $lazy[x] = x$ với $1 \le x \le 100$. Với mỗi truy vấn $(l,r,x,y)$, ta sẽ làm như sau: 
+```cpp
+for(int i=1; i<=100; i++){
+	if (lazy[i]==x) lazy[i]=y;
+}
+```
+Với thao tác cập nhật mảng lazy này, dễ thấy tất cả các số hiện đang có giá trị là $x$ sẽ đều được gán lại thành $y$.
+Sau khi thực hiện tất cả các truy vấn, chúng ta có thể lấy giá trị của các số trong mảng như sau: 
+```cpp
+for(int i=1; i<=n; i++){
+	a[i] = lazy[a[i]];
+}
+```
+Vậy là chúng ta đã giải xong bài toán với độ phức tạp $O(Q*100 + N)$.
+
+### Giải bài toán gốc 
+Ta sẽ áp dụng ý tưởng trên vào để giải bài toán gốc. 
+
+
 # Lưu ý
 * Trong phần lớn trường hợp, ta nên đặt ***BLOCK_SIZE*** là hằng số, chứ không nên thực sự lấy căn của $N$ trong dữ liệu nhập vào. Lý do là việc chia cho hằng số, cũng như việc dùng mảng tĩnh sẽ giúp code của bạn chạy nhanh hơn nhiều so với việc chia cho biến và xài mảng động.
 * Khi cài đặt, các bạn cần tránh việc thực hiện $O(Q \sqrt{N})$ phép chia (cả chia lấy nguyên lẫn chia lấy dư), vì phép chia là một thao tác chậm hơn nhiều so với các phép toán khác. Phạm vào điều này nhiều khả năng sẽ khiến code bạn bị chạy quá thời gian (TLE).
