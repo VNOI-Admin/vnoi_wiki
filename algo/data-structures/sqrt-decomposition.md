@@ -136,8 +136,19 @@ for(int i=1; i<=n; i++){
 Vậy là chúng ta đã giải xong bài toán với độ phức tạp $O(Q*100 + N)$.
 
 ### Giải bài toán gốc 
-Ta sẽ áp dụng ý tưởng trên vào để giải bài toán gốc. 
+Ta sẽ áp dụng ý tưởng trên vào để giải bài toán gốc. Ta cũng chia mảng thành $sqrt(N)$ đoạn. Xét một truy vấn $(l,r,x,y)$ ta có:
+* $blockL$ là block đầu tiên ở bên phải $l$
+* $blockR$ là block đầu tiên ở bên trái $r$
+* Với mỗi block, ta sẽ có mảng $lazy$ với định nghĩa như trên. Ví dụ block $3$, các số đang có giá trị là $x$ sẽ được đổi thành giá trị $y$ $\Leftrightarrow$ $lazy[3][x]=y$
 
+Vậy truy vấn của chúng ta sẽ được chia làm 3 phần như sau:
+* Phần dư bên trái: $[ l ... blockL * S - 1 ]$
+* Phần dư bên phải: $[ blockR * S ... r ]$
+* Phần đầy đủ các block: $[ blockL * S ... blockR * S - 1 ]$
+
+Đầu tiên, chúng ta sẽ cùng xem cập nhật *phần đầy đủ các block* như thế nào:
+
+Ta sẽ cập nhật lần lượt cho từng block đơn lẻ.
 
 # Lưu ý
 * Trong phần lớn trường hợp, ta nên đặt ***BLOCK_SIZE*** là hằng số, chứ không nên thực sự lấy căn của $N$ trong dữ liệu nhập vào. Lý do là việc chia cho hằng số, cũng như việc dùng mảng tĩnh sẽ giúp code của bạn chạy nhanh hơn nhiều so với việc chia cho biến và xài mảng động.
