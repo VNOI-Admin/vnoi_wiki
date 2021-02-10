@@ -114,6 +114,9 @@ Tiếp nối bài toán đầu tiên, chúng ta hãy cùng đi sâu hơn vào c�
 
 
 ## Đề bài 
+
+Các bạn có thể nộp bài ở [đây](http://codeforces.com/group/FLVn1Sc504/contest/315912/problem/A)
+
 Cho một mảng $A$ gồm $N$ phần tử là các số nguyên. Bạn cần thực hiện $Q$ truy vấn có dạng $(l,r,oval,nval)$ là với các phần tử trong đoạn từ $l$ đến $r$, nếu $A[i] == oval$, gán $A[i] == nval$. Bạn cần in ra mảng sau khi thực hiện $Q$ truy vấn. Giới hạn $1 \le N,Q \le 2*10^5, 1 \le A_i \le 100$
 
 Ghi chú: $oval,nval$ là viết tắt cho _old value_ và _new value_.
@@ -148,7 +151,7 @@ Vậy truy vấn của chúng ta sẽ được chia làm 3 phần như sau:
 * Phần dư bên phải: $[ blockR * S ... r ]$
 * Phần đầy đủ các block: $[ blockL * S ... blockR * S - 1 ]$
 
-Đầu tiên, chúng ta cập nhật *phần đầy đủ các block*:
+#### Đầu tiên, chúng ta cập nhật *phần đầy đủ các block*:
 
 Ta sẽ cập nhật lần lượt cho từng block đơn lẻ. Gọi block hiện tại là $id$, ta sẽ làm tương tự như khi giải bài toán $l = 1, r=N$:
 
@@ -164,7 +167,7 @@ void blockUpdate(int id, int oval, int nval) {
 
 Vậy là chúng ta đã cập nhật xong cho tất cả các block thuộc *phần đầy đủ các block*. *Chú ý*, việc cập nhật này chúng ta chỉ đánh dấu là các phần tử đang có giá trị là $oval$ *sẽ được thay đổi* thành $nval$. Giá trị của các phần tử trong đoạn này sau cập nhật *không có sự thay đổi nào* (ý tưởng giống như ý tưởng cập nhật Lazy trên Segment Tree).
 
-Tiếp theo, chúng ta cập nhật *phần dư bên trái*:
+#### Tiếp theo, chúng ta cập nhật *phần dư bên trái*:
 
 Gọi block của *phần dư bên trái* là $id$.
 
@@ -213,6 +216,9 @@ manualUpdate(l, (blockL + 1) * BLOCK_SIZE - 1, oval, nval);
 /* Chúng ta sẽ gọi hàm như dưới đây để cập nhật cho phần dư bên phải */
 manualUpdate(blockR * BLOCK_SIZE, r, oval, nval);
 ```
+
+# Phân tích
+Ta sẽ cùng xem xét độ phức tạp của lời giải này:
 
 # Lưu ý
 * Trong phần lớn trường hợp, ta nên đặt ***BLOCK_SIZE*** là hằng số, chứ không nên thực sự lấy căn của $N$ trong dữ liệu nhập vào. Lý do là việc chia cho hằng số, cũng như việc dùng mảng tĩnh sẽ giúp code của bạn chạy nhanh hơn nhiều so với việc chia cho biến và xài mảng động.
