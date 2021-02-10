@@ -229,7 +229,7 @@ Hàm $doLazy$ có độ phức tạp là $O(sqrt(N) + 100)$. Còn phần `for (i
 
 Dễ thấy hàm $manualUpdate$ sẽ được gọi không quá $2$ lần trong mỗi truy vấn. Vậy tổng độ phức tạp của việc gọi hàm này là $O(Q*sqrt(N))$
 
-Vậy độ phức tạp của lời giải chia căn này sẽ là $O(Q\*sqrt(N)\*100) + O(Q*sqrt(N))$ = $O(Q\*sqrt(N)\*100) + O(Q*sqrt(N))$
+Vậy độ phức tạp của lời giải chia căn này sẽ là $O(Q\*sqrt(N)\*100) + O(Q\*sqrt(N))$ = $O(Q\*sqrt(N)\*100) + O(Q\*sqrt(N))$
 
 Các bạn có thể xem code mẫu ở [đây](https://ideone.com/TA4XqI)
 
