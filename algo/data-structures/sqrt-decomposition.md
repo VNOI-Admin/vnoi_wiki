@@ -217,7 +217,7 @@ manualUpdate(l, (blockL + 1) * BLOCK_SIZE - 1, oval, nval);
 manualUpdate(blockR * BLOCK_SIZE, r, oval, nval);
 ```
 
-# Phân tích
+## Phân tích
 
 *Ghi chú*: Vì hằng số của lời giải này tương đối lớn nên tác giả sẽ giữ hằng số trong độ phức tạp khi cần thiết
 
@@ -230,6 +230,8 @@ Hàm $doLazy$ có độ phức tạp là $O(sqrt(N) + 100)$. Còn phần `for (i
 Dễ thấy hàm $manualUpdate$ sẽ được gọi không quá $2$ lần trong mỗi truy vấn. Vậy tổng độ phức tạp của việc gọi hàm này là $O(Q*sqrt(N))$
 
 Vậy độ phức tạp của lời giải chia căn này sẽ là $O(Q\*sqrt(N)\*100) + O(Q*sqrt(N))$ = $O(Q\*sqrt(N)\*100) + O(Q*sqrt(N))$
+
+Các bạn có thể xem code mẫu ở [đây](https://ideone.com/TA4XqI)
 
 # Lưu ý
 * Trong phần lớn trường hợp, ta nên đặt ***BLOCK_SIZE*** là hằng số, chứ không nên thực sự lấy căn của $N$ trong dữ liệu nhập vào. Lý do là việc chia cho hằng số, cũng như việc dùng mảng tĩnh sẽ giúp code của bạn chạy nhanh hơn nhiều so với việc chia cho biến và xài mảng động.
