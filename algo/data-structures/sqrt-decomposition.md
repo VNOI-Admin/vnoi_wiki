@@ -218,7 +218,18 @@ manualUpdate(blockR * BLOCK_SIZE, r, oval, nval);
 ```
 
 # Phân tích
+
+*Ghi chú*: Vì hằng số của lời giải này tương đối lớn nên tác giả sẽ giữ hằng số trong độ phức tạp khi cần thiết
+
 Ta sẽ cùng xem xét độ phức tạp của lời giải này:
+
+Dễ thấy hàm $blockUpdate$ có độ phức tạp là $O(100)$. Hàm này mỗi truy vấn có thể bị gọi không quá $O(sqrt(N))$ lần, và có $Q$ truy vấn nên tổng độ phức tạp của các lần gọi hàm này là $O(Q\*sqrt(N)\*100)$
+
+Hàm $doLazy$ có độ phức tạp là $O(sqrt(N) + 100)$. Còn phần `for (int i = L; i <= R; i++)` trong hàm $manualUpdate$ có độ phức tạp chỉ là $O(sqrt(N)$ do hàm này chỉ được gọi cho các *phần dư* có độ lớn $\leq sqrt(N)$ .Vậy tổng kết lại, hàm $manualUpdate$ có độ phức tạp là $O(sqrt(N) + sqrt(N) + 100) = O(sqrt(N))$
+
+Dễ thấy hàm $manualUpdate$ sẽ được gọi không quá $2$ lần trong mỗi truy vấn. Vậy tổng độ phức tạp của việc gọi hàm này là $O(Q*sqrt(N))$
+
+Vậy độ phức tạp của lời giải chia căn này sẽ là $O(Q\*sqrt(N)\*100) + O(Q*sqrt(N))$ = $O(Q\*sqrt(N)\*100) + O(Q*sqrt(N))$
 
 # Lưu ý
 * Trong phần lớn trường hợp, ta nên đặt ***BLOCK_SIZE*** là hằng số, chứ không nên thực sự lấy căn của $N$ trong dữ liệu nhập vào. Lý do là việc chia cho hằng số, cũng như việc dùng mảng tĩnh sẽ giúp code của bạn chạy nhanh hơn nhiều so với việc chia cho biến và xài mảng động.
