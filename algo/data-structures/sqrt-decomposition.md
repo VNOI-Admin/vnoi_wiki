@@ -66,7 +66,7 @@ int a[N];
 
 void preprocess()
 {
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < n; i++)
         ++cnt[i / BLOCK_SIZE][a[i]];
 }
 ```
@@ -85,10 +85,10 @@ int query(int l, int r, int k)
     for (int i = blockL; i <= blockR; ++i)
         sum += cnt[i][k];
         
-    for (int i = l, lim = blockL * BLOCK_SIZE; i < lim; ++i)
+    for (int i = l, lim = blockL * BLOCK_SIZE; i < lim; i++)
         if (a[i] == k) ++sum;
         
-    for (int i = blockR * BLOCK_SIZE + 1; i <= r; ++i)
+    for (int i = blockR * BLOCK_SIZE + 1; i <= r; i++)
         if (a[i] == k) ++sum;
         
     return sum;
@@ -147,9 +147,9 @@ Ta sẽ áp dụng ý tưởng trên vào để giải bài toán gốc. Ta cũn
 * Với mỗi block, ta sẽ có mảng $lazy$ với định nghĩa như trên. Ví dụ block $3$, các số đang có giá trị là $oval$ sẽ được đổi thành giá trị $nval$ $\Leftrightarrow$ $lazy[3][oval]=nval$
 
 Vậy truy vấn của chúng ta sẽ được chia làm 3 phần như sau:
-* Phần dư bên trái: $[ l ... blockL * S - 1 ]$ 
-* Phần dư bên phải: $[ blockR * S ... r ]$
-* Phần đầy đủ các block: $[ blockL * S ... blockR * S - 1 ]$
+* Phần dư bên trái: $[ l ... blockL * BLOCK_SIZE - 1 ]$ 
+* Phần dư bên phải: $[ blockR * BLOCK_SIZE ... r ]$
+* Phần đầy đủ các block: $[ blockL * BLOCK_SIZE ... blockR * BLOCK_SIZE - 1 ]$
 
 #### Đầu tiên, chúng ta cập nhật *phần đầy đủ các block*:
 
