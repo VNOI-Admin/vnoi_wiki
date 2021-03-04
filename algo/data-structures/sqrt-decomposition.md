@@ -127,15 +127,15 @@ Với giả sử trên, ta sẽ giải bài toán với đpt $O(Q*100 + N)$. Ta 
 
 ```cpp
 for (int i = 1; i <= 100; ++i) {
-	if (lazy[i] == oval) lazy[i] = nval;
+    if (lazy[i] == oval) lazy[i] = nval;
 }
 ```
 
 Với thao tác cập nhật mảng lazy này, về mặt ý nghĩa, tất cả các số hiện đang có giá trị là $oval$ sẽ được gán lại thành $nval$.
 Sau khi thực hiện tất cả các truy vấn, chúng ta có thể lấy giá trị của các số trong mảng như sau: 
 ```cpp
-for (int i = 1; i <= n; ++i){
-	a[i] = lazy[a[i]];
+for (int i = 1; i <= n; ++i) {
+    a[i] = lazy[a[i]];
 }
 ```
 Vậy là chúng ta đã giải xong bài toán với độ phức tạp $O(Q*100 + N)$.
