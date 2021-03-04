@@ -66,7 +66,7 @@ int a[N];
 
 void preprocess()
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; ++i)
         ++cnt[i / BLOCK_SIZE][a[i]];
 }
 ```
@@ -85,10 +85,10 @@ int query(int l, int r, int k)
     for (int i = blockL; i <= blockR; ++i)
         sum += cnt[i][k];
         
-    for (int i = l, lim = blockL * BLOCK_SIZE; i < lim; i++)
+    for (int i = l, lim = blockL * BLOCK_SIZE; i < lim; ++i)
         if (a[i] == k) ++sum;
         
-    for (int i = blockR * BLOCK_SIZE + 1; i <= r; i++)
+    for (int i = blockR * BLOCK_SIZE + 1; i <= r; ++i)
         if (a[i] == k) ++sum;
         
     return sum;
@@ -117,7 +117,7 @@ Tiếp nối bài toán đầu tiên, chúng ta hãy cùng đi sâu hơn vào c�
 
 Các bạn có thể nộp bài ở [đây](http://codeforces.com/group/FLVn1Sc504/contest/315912/problem/A)
 
-Cho một mảng $A$ gồm $N$ phần tử là các số nguyên. Bạn cần thực hiện $Q$ truy vấn có dạng $(l,r,oval,nval)$ là với các phần tử trong đoạn từ $l$ đến $r$, nếu $A[i] == oval$, gán $A[i] == nval$. Bạn cần in ra mảng sau khi thực hiện $Q$ truy vấn. Giới hạn $1 \le N,Q \le 2*10^5, 1 \le A_i \le 100$
+Cho một mảng $A$ gồm $N$ phần tử là các số nguyên. Bạn cần thực hiện $Q$ truy vấn có dạng $(l,r,oval,nval)$ là với các phần tử trong đoạn từ $l$ đến $r$, nếu $A[i] == oval$, gán $A[i] = nval$. Bạn cần in ra mảng sau khi thực hiện $Q$ truy vấn. Giới hạn $1 \le N,Q \le 2*10^5, 1 \le A_i \le 100$
 
 Ghi chú: $oval,nval$ là viết tắt cho _old value_ và _new value_.
 
@@ -126,22 +126,22 @@ Ghi chú: $oval,nval$ là viết tắt cho _old value_ và _new value_.
 Với giả sử trên, ta sẽ giải bài toán với đpt $O(Q*100 + N)$. Ta sẽ tạo mảng $lazy[oval]$ với ý nghĩa là các số ban đầu là $oval$ thì hiện tại đã được đổi giá trị sang $lazy[oval]$. Ban đầu $lazy[oval] = oval$ với $1 \le oval \le 100$. Với mỗi truy vấn $(l,r,oval,nval)$, ta sẽ làm như sau: 
 
 ```cpp
-for(int i=1; i<=100; i++){
-	if (lazy[i]==oval) lazy[i]=nval;
+for (int i = 1; i <= 100; ++i) {
+	if (lazy[i] == oval) lazy[i] = nval;
 }
 ```
 
-Với thao tác cập nhật mảng lazy này, dễ thấy tất cả các số hiện đang có giá trị là $oval$ sẽ đều được gán lại thành $nval$.
+Với thao tác cập nhật mảng lazy này, về mặt ý nghĩa, tất cả các số hiện đang có giá trị là $oval$ sẽ được gán lại thành $nval$.
 Sau khi thực hiện tất cả các truy vấn, chúng ta có thể lấy giá trị của các số trong mảng như sau: 
 ```cpp
-for(int i=1; i<=n; i++){
+for (int i = 1; i <= n; ++i){
 	a[i] = lazy[a[i]];
 }
 ```
 Vậy là chúng ta đã giải xong bài toán với độ phức tạp $O(Q*100 + N)$.
 
 ### Giải bài toán gốc 
-Ta sẽ áp dụng ý tưởng trên vào để giải bài toán gốc. Ta cũng chia mảng thành $sqrt(N)$ đoạn. Xét một truy vấn $(l,r,oval,nval)$ ta có:
+Ta sẽ áp dụng ý tưởng trên vào để giải bài toán gốc. Ta cũng chia mảng thành $\sqrt{N}$ đoạn. Xét một truy vấn $(l,r,oval,nval)$ ta có:
 * $blockL$ là block đầu tiên ở bên phải $l$
 * $blockR$ là block đầu tiên ở bên trái $r$
 * Với mỗi block, ta sẽ có mảng $lazy$ với định nghĩa như trên. Ví dụ block $3$, các số đang có giá trị là $oval$ sẽ được đổi thành giá trị $nval$ $\Leftrightarrow$ $lazy[3][oval]=nval$
@@ -157,7 +157,7 @@ Ta sẽ cập nhật lần lượt cho từng block đơn lẻ. Gọi block hi�
 
 ```cpp
 void blockUpdate(int id, int oval, int nval) {
-    for (int i = 1; i <= LIM; i++) {
+    for (int i = 1; i <= LIM; ++i) {
         if (lazy[id][i] == oval) {
             lazy[id][i] = nval;
         }
@@ -165,17 +165,17 @@ void blockUpdate(int id, int oval, int nval) {
 }
 ```
 
-Vậy là chúng ta đã cập nhật xong cho tất cả các block thuộc *phần đầy đủ các block*. *Chú ý*, việc cập nhật này chúng ta chỉ đánh dấu là các phần tử đang có giá trị là $oval$ *sẽ được thay đổi* thành $nval$. Giá trị của các phần tử trong đoạn này sau cập nhật *không có sự thay đổi nào* (ý tưởng giống như ý tưởng cập nhật Lazy trên Segment Tree).
+Vậy là chúng ta đã cập nhật xong cho tất cả các block thuộc *phần đầy đủ các block*. *Chú ý*, việc cập nhật này chúng ta chỉ đánh dấu là các phần tử đang có giá trị là $oval$ *sẽ được thay đổi* thành $nval$. Giá trị của các phần tử trong đoạn này sau cập nhật *không có sự thay đổi nào* (ý tưởng giống như [Lazy Propagation](https://vnoi.info/wiki/algo/data-structures/segment-tree-extend.md#2-lazy-propagation)).
 
 #### Tiếp theo, chúng ta cập nhật *phần dư bên trái*:
 
 Gọi block của *phần dư bên trái* là $id$.
 
-Vì *phần dư bên trái* không bao phủ trọn vẹn 1 block, nên chúng ta sẽ không thể dùng mảng $lazy$ để cập nhật được như ở trên. Thay vào đó chúng ta sẽ phải duyệt từng phần tử trong phần này và cập nhật(xét mỗi phần tử, nếu giá trị của nó là $oval$ thì gán giá trị mới là $nval$): 
+Vì *phần dư bên trái* không bao phủ trọn vẹn 1 block, nên chúng ta sẽ không thể dùng mảng $lazy$ để cập nhật được như ở trên. Thay vào đó chúng ta sẽ phải duyệt từng phần tử trong phần này và cập nhật (xét mỗi phần tử, nếu giá trị của nó là $oval$ thì gán giá trị mới là $nval$): 
 
 ```cpp
 void manualUpdate(int L, int R, int oval, int nval) { // L R là đầu trái và đầu phải của phần dư bên trái
-    for (int i = L; i <= R; i++) {
+    for (int i = L; i <= R; ++i) {
         if (a[i] == oval) {
             a[i] = nval;
         }
@@ -183,16 +183,16 @@ void manualUpdate(int L, int R, int oval, int nval) { // L R là đầu trái v�
 }
 ```
 
-Tuy nhiên, các phần tử trong *phần dư bên trái* này có thể đã từng nằm trong *phần đầy đủ các block*, có nghĩa là chúng có thể đã được cập nhật bằng mảng $lazy$ nhưng giá trị chưa được thay đổi. Vậy chúng ta cần *thực sự cập nhật* các phần tử này bằng mảng $lazy$. 
+Tuy nhiên, các phần tử trong *phần dư bên trái* này có thể đang chịu ảnh hưởng từ mảng $lazy$ của các truy vấn trước đó, nên chúng ta cần *thực sự cập nhật* các phần tử này bằng mảng $lazy$, sau đó mới thực hiện $manualUpdate$ (giống như bước Propagate trong Lazy Propagation). 
 
 ```cpp
 void doLazy(int id) { // L R là đầu trái và đầu phải của phần dư bên trái
     int L = id * BLOCK_SIZE;
     int R = min(n - 1, (id + 1) * BLOCK_SIZE - 1);
-    for (int i = L; i <= R; i++) {
+    for (int i = L; i <= R; ++i) {
         a[i] = lazy[id][a[i]]; // thay đổi giá trị các phần tử bằng mảng lazy
     }
-    for (int i = 1; i <= 100; i++) {
+    for (int i = 1; i <= 100; ++i) {
         lazy[id][i] = i; // đã cập nhật xong, reset lại mảng lazy về ban đầu 
     }
 }
@@ -203,7 +203,7 @@ Vậy tổng kết lại, ta sẽ có hàm cập nhật cho *phần dư bên tr�
 ```cpp
 void manualUpdate(int L, int R, int oval, int nval) { // L R là đầu trái và đầu phải của phần dư bên trái
     doLazy(R / BLOCK_SIZE); // R / BLOCK_SIZE chính là block của của phần này. L / BLOCK_SIZE = R / BLOCK_SIZE
-    for (int i = L; i <= R; i++) {
+    for (int i = L; i <= R; ++i) {
         if (a[i] == oval) {
             a[i] = nval;
         }
@@ -223,17 +223,17 @@ manualUpdate(blockR * BLOCK_SIZE, r, oval, nval);
 
 Ta sẽ cùng xem xét độ phức tạp của lời giải này:
 
-Dễ thấy hàm $blockUpdate$ có độ phức tạp là $O(100)$. Hàm này mỗi truy vấn có thể bị gọi không quá sqrt(N) lần, và có $Q$ truy vấn nên tổng độ phức tạp của các lần gọi hàm này là $O(Q\*sqrt(N)\*100)$ **(1)**
+Dễ thấy hàm $blockUpdate$ có độ phức tạp là $O(100)$. Hàm này mỗi truy vấn có thể được gọi không quá \sqrt{N} lần, và có $Q$ truy vấn nên tổng độ phức tạp của các lần gọi hàm này là $O(Q\*\sqrt{N}\*100)$. **(1)**
 
-Hàm $doLazy$ có độ phức tạp là $O(sqrt(N) + 100)$. Còn phần `for (int i = L; i <= R; i++)` trong hàm $manualUpdate$ có độ phức tạp chỉ là $O(sqrt(N)$ do hàm này chỉ được gọi cho các *phần dư* có độ lớn $\leq sqrt(N)$ .Vậy tổng kết lại, hàm $manualUpdate$ có độ phức tạp là $O(sqrt(N) + sqrt(N) + 100) = O(sqrt(N))$
+Hàm $doLazy$ có độ phức tạp là $O(\sqrt{N} + 100)$ do các *phần dư* có độ lớn $\leq \sqrt{N}$. Cộng với phần `for (int i = L; i <= R; ++i)` có độ phức tạp $O(\sqrt{N})$, hàm $manualUpdate$ có độ phức tạp là $O(\sqrt{N} + \sqrt{N} + 100) = O(\sqrt{N})$.
 
-Dễ thấy hàm $manualUpdate$ sẽ được gọi không quá $2$ lần trong mỗi truy vấn. Vậy tổng độ phức tạp của việc gọi hàm này là $O(Q\*doLazy)$ = $O(Q\*sqrt(N))$ **(2)**
+Dễ thấy hàm $manualUpdate$ sẽ được gọi đúng $2$ lần trong mỗi truy vấn. Vậy tổng độ phức tạp của việc gọi hàm này là $O(Q\*\sqrt{N})$. **(2)**
 
-Vậy độ phức tạp của lời giải chia căn này sẽ là **(1)** + **(2)** = $O(Q\*sqrt(N)\*100) + O(Q\*sqrt(N))$
+Vậy độ phức tạp của lời giải chia căn này sẽ là **(1)** + **(2)** = $O(Q\*\sqrt{N}\*100) + O(Q\*\sqrt{N})$.
 
 Các bạn có thể xem code mẫu ở [đây](https://ideone.com/TA4XqI)
 
 # Lưu ý
 * Trong phần lớn trường hợp, ta nên đặt $BLOCK\\_SIZE$ là hằng số, chứ không nên thực sự lấy căn của $N$ trong dữ liệu nhập vào. Lý do là việc chia cho hằng số, cũng như việc dùng mảng tĩnh sẽ giúp code của bạn chạy nhanh hơn nhiều so với việc chia cho biến và xài mảng động.
-* Khi cài đặt, các bạn cần tránh việc thực hiện $O(Q \sqrt{N})$ phép chia (cả chia lấy nguyên lẫn chia lấy dư), vì phép chia là một thao tác chậm hơn nhiều so với các phép toán khác. Phạm vào điều này nhiều khả năng sẽ khiến code bạn bị chạy quá thời gian (TLE).
+* Khi cài đặt, các bạn cần tránh việc thực hiện $O(Q \sqrt{N})$ phép chia (cả chia lấy nguyên lẫn chia lấy dư), vì phép chia là một thao tác chậm hơn nhiều so với các phép toán khác. Các bạn dễ làm điều này khi cần tính $id$ của các block lúc truy vấn/cập nhật. Phạm vào điều này nhiều khả năng sẽ khiến code bạn bị chạy quá thời gian (TLE).
 * Vì thường yêu cầu bộ nhớ lớn, các bạn cần tính toán để không bị quá bộ nhớ (MLE). Cách tính như sau: 1MB = $10^6$ byte, 1 int = $4$ byte, 1 long long = $8$ byte. Ví dụ, mảng $cnt$ trong code mẫu ở trên sẽ tốn $320 * 10^5 * 4 = 128 000 000 = 128 MB$.
