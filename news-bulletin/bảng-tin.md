@@ -12,7 +12,7 @@ Dưới đây là bài viết tổng hợp các bài viết / comment chất lư
 
 * [Tham khảo về việc làm ở mảng hardware trong những công ty lớn](https://www.facebook.com/groups/VNOIForum/permalink/3995275243826613/) 
 
-* [Hỏi về Sàng nguyên tố trên đoạn](https://www.facebook.com/groups/VNOIForum/post_insights/3945174585503346/)
+* [Hỏi về Sàng nguyên tố trên đoạn](https://www.facebook.com/groups/VNOIForum/permalink/3945174585503346/)
 
 * [Hỏi bài Barcode ICPC Regional 2017](https://www.facebook.com/groups/VNOIForum/permalink/3982820615072076/)
 
