@@ -233,6 +233,10 @@ Vậy độ phức tạp của lời giải chia căn này sẽ là **(1)** + **
 
 Các bạn có thể xem code mẫu ở [đây](https://ideone.com/TA4XqI)
 
+# Bài tập áp dụng
+
+Các bạn có thể thử sức [tại đây](https://vnoi.info/problems/list/?tag=156&page=1).
+
 # Lưu ý
 * Trong phần lớn trường hợp, ta nên đặt $BLOCK\\_SIZE$ là hằng số, chứ không nên thực sự lấy căn của $N$ trong dữ liệu nhập vào. Lý do là việc chia cho hằng số, cũng như việc dùng mảng tĩnh sẽ giúp code của bạn chạy nhanh hơn nhiều so với việc chia cho biến và xài mảng động.
 * Khi cài đặt, các bạn cần tránh việc thực hiện $O(Q \sqrt{N})$ phép chia (cả chia lấy nguyên lẫn chia lấy dư), vì phép chia là một thao tác chậm hơn nhiều so với các phép toán khác. Các bạn dễ làm điều này khi cần tính $id$ của các block lúc truy vấn/cập nhật. Phạm vào điều này nhiều khả năng sẽ khiến code bạn bị chạy quá thời gian (TLE).
