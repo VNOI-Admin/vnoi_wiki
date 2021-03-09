@@ -1,1 +1,1 @@
-# Các thuật toán về đường đi ngắn nhât.
+Như các bạn đã biết đường đi ngắn nhất là một trong những chủ đề quan trọng nhất chi nhưng thí sinh tìm kiếm xuất tuyển thẳng vào đại học.Ở bài viết này mình sẽ giới thiệu 3 thuật toán cơ bản của dạng bài tìm đường đi ngắn nhất
