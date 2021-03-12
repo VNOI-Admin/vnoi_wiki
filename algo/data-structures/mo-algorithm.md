@@ -1,6 +1,8 @@
-# Mo algorithm
+# Chia căn (sqrt decomposition) và ứng dụng: Phần 2
 
 **Tác giả**: Nguyễn *RR* Thành Trung
+
+Tiếp nối chuỗi bài viết về các thuật toán chia căn, trong bài viết này chúng ta sẽ bàn về kĩ thuật tăng tốc độ trả lời truy vấn bằng cách sắp xếp chúng theo một thứ tự nhất định, còn gọi là **Mo's algorithm**.
 
 # Bài toán
 
