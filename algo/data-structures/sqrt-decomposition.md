@@ -241,3 +241,7 @@ Các bạn có thể thử sức [tại đây](https://vnoi.info/problems/list/?
 * Trong phần lớn trường hợp, ta nên đặt $BLOCK\\_SIZE$ là hằng số, chứ không nên thực sự lấy căn của $N$ trong dữ liệu nhập vào. Lý do là việc chia cho hằng số, cũng như việc dùng mảng tĩnh sẽ giúp code của bạn chạy nhanh hơn nhiều so với việc chia cho biến và xài mảng động.
 * Khi cài đặt, các bạn cần tránh việc thực hiện $O(Q \sqrt{N})$ phép chia (cả chia lấy nguyên lẫn chia lấy dư), vì phép chia là một thao tác chậm hơn nhiều so với các phép toán khác. Các bạn dễ làm điều này khi cần tính $id$ của các block lúc truy vấn/cập nhật. Phạm vào điều này nhiều khả năng sẽ khiến code bạn bị chạy quá thời gian (TLE).
 * Vì thường yêu cầu bộ nhớ lớn, các bạn cần tính toán để không bị quá bộ nhớ (MLE). Cách tính như sau: 1MB = $10^6$ byte, 1 int = $4$ byte, 1 long long = $8$ byte. Ví dụ, mảng $cnt$ trong code mẫu ở trên sẽ tốn $320 * 10^5 * 4 = 128 000 000 = 128 MB$.
+
+# Mở rộng
+
+Chia căn còn rất nhiều dạng khác. Các bạn có thể đọc tiếp về kĩ thuật này tại [Phần 2](https://vnoi.info/wiki/algo/data-structures/mo-algorithm.md).
