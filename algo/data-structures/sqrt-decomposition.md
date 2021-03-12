@@ -1,12 +1,12 @@
-# Chia căn (sqrt decomposition) và ứng dụng
+# Chia căn (sqrt decomposition) và ứng dụng: Phần 1
 
 **Tác giả**: Hoàng Xuân Nhật & Vương Hoàng Long
 
 [[_TOC_]]
 
-Chia căn là tên gọi chung của một nhóm các thuật toán thường liên quan đến việc chia mảng độ dài $N$ ra làm $\sqrt{N}$ đoạn, dùng để giải quyết các bài toán truy vấn. 
+Chia căn là tên gọi chung của một nhóm các thuật toán thường liên quan đến việc chia các đối tượng thành $\sqrt{N}$ phần.
 
-Sau đây ta sẽ xét một dạng đơn giản nhất: chia mảng ra làm $\sqrt{N}$ đoạn.
+Sau đây ta sẽ xét một dạng đơn giản nhất: chia mảng ra làm $\sqrt{N}$ đoạn, thường dùng để giải quyết các bài toán truy vấn.
 
 
 # Bài toán
