@@ -1,4 +1,3 @@
-
 # Kĩ thuật hai con trỏ
 
 # Lời mở đầu 
@@ -6,8 +5,8 @@
 Bài viết chưa hoàn thiện
 
 # Bài toán 1
-Cho một mảng số nguyên dương **không giảm** $A$ gồm $N$ phần tử và số nguyên dương $$M$$, đếm cặp số $(i, j)$ sao cho $1 \leq i < j \leq N$ và $A_i + A_j \leq M$. 
-Giới hạn: $N \leq 10^6$ và $A_i, M \leq 10^9$. 
+Cho một mảng số nguyên dương **không giảm** $ A $ gồm $ N $ phần tử và số nguyên dương $ M $, đếm cặp số $ (i, j) $ sao cho $ 1 \leq i < j \leq N $ và $ A_i + A_j \leq M $. 
+Giới hạn: $ N \leq 10^6 $ và $ A_i, M \leq 10^9 $. 
 
 ## Tiếp cận
 
@@ -21,7 +20,7 @@ for (int i = 1; i <= N; i++){
             ans++;
 }
 ```
-Độ phức tạp: $O(N^2)$
+Độ phức tạp: $ O(N^2) $
 
 Dãy $A$ đã được sắp xếp **không giảm** cho nên khi ta tìm được $j_{max}$ (nghĩa là giá trị lớn nhất của $j$ sao cho $j>i$ và $A[i] + A[j] \leq M$) thì mọi $j$ trong đoạn $[i + 1, j_{max}]$ luôn thõa mãn $A[i] + A[j] 
 \leq A[i] + A[j_{max}] \leq M$.
@@ -31,7 +30,7 @@ Dãy $A$ đã được sắp xếp **không giảm** cho nên khi ta tìm đư�
 
 Ta sẽ có một chút cải tiến sau:
 
-```cpp=
+```cpp
 int ans = 0;
 for (int i = 1; i <= N; i++)
     for (int jmax = N; jmax > i; jmax--)
