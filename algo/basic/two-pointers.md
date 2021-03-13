@@ -5,7 +5,7 @@
 Bài viết chưa hoàn thiện
 
 # Bài toán 1
-Cho một mảng số nguyên dương **không giảm** $ A $ gồm $ N $ phần tử và số nguyên dương $ M $, đếm số cặp $ (i, j) $ sao cho $ 1 \leq i < j \leq N $ và $ A_i + A_j \leq M $. 
+Cho một mảng số nguyên dương **tăng dần** $ A $ gồm $ N $ phần tử và số nguyên dương $ M $, đếm số cặp $ (i, j) $ sao cho $ 1 \leq i, j \leq N $ và $ A_i + A_j \leq M $. 
 Giới hạn: $ N \leq 10^6 $ và $ A_i, M \leq 10^9 $. 
 
 ## Tiếp cận
@@ -15,7 +15,7 @@ Cách làm đơn giản với bài toán này là duyệt tất cả các cặp 
 ```cpp
 int ans = 0;
 for (int i = 1; i < N; i++)
-    for (int j = i + 1; j <= N; j++)
+    for (int j = 1; j <= N; j++)
     {
         if (A[i] + A[j] <= M) 
             ans++;
@@ -25,83 +25,36 @@ for (int i = 1; i < N; i++)
 
 Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
 
-Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **không giảm**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
+Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **tăng dần**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
 
-## Phân tích 
+## Giải pháp 
 
-Vì dãy $A$ là một dãy số **không giảm** nên ta có $1$ số tính chất:
-- Nếu $A[i]+A[j] \leq M$ thì mọi $k=[1,j]$ thõa mãn $A[i]+A[k] \leq M$
-- Nếu $A[i]+A[j] > M$ thì mọi $k=[j,N]$ thõa mãn $A[i]+A[k] > M$
+### Phân tích
+$A[i] + A[j] \leq M \Leftrightarrow A[j] \leq M - A[i] \rightarrow$  Bài toán có thể giải theo cách như sau: "Với mỗi $i$ từ $1$ đến $N$, ta tính có bao nhiêu phần tử có giá trị nhỏ hơn $M - A[i]$". Để giải bài toán này, ta sẽ cùng phân tích một số tính chất của dãy $A$.
 
-Coi $j_{max}$ là giá trị lớn nhất của $j$ sao cho $A[i]+A[j]\leq M$ thì 
-- mọi $k=[i+1,j_{max}]$ thõa mãn $A[i]+A[k] \leq M$
-- mọi $k=[j_{max}+1,N]$ thõa mãn $A[i]+A[k] > M$
+- $A[i] < A[i+1], \forall 1 \leq i < N$. Vậy thì để đếm có bao nhiêu phần tử nhỏ hơn $M-A[i]$, ta thực sự chỉ cần biết **_vị trí_** của phần tử **_lớn nhất_** sao cho phần tử có giá trị không quá $M-A[i]$. Bởi vì mọi phần tử nhỏ hơn phần tử này đều sẽ có giá trị không quá $M-A[i]$. Ta gọi vị trí của phần tử **_lớn nhất_** này là $j$.
+- $M-A[i] > M-A[i], \forall 1 \leq i < N$. Có thể nhận thấy rằng vị trí $j$ ứng với $i$ sẽ luôn có giá trị **_lớn hơn hoặc bằng_** vị trí $j$ ứng với $i+1$. Khi $i$ tăng lên $1$ đơn vị thì $j$ luôn không đổi hoặc sẽ giảm.
 
-$\rightarrow$ Để tính số cặp $(i,j)$ của đề bài ta chỉ cần tính $j_{max}$ tương ứng với mỗi $i$. Nhưng ta tìm $j_{max}$ bằng cách nào?
+Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_** để tìm giá trị của $j$, cụ thể cách tìm sẽ được nêu ở dưới đây.
 
-Giả sử ta đã tìm được $j_{max}$ ứng với $i$. Khi $i$ tăng lên $1$ đơn vị thì $j_{max}$ luôn đứng yên hoặc sẽ giảm. Có thể thấy $i$ sẽ tăng không quá $N$ đơn vị, $j_{max}$ sẽ giảm không quá $N$ đơn vị. Vậy để tìm $j_{max}$ ta có thể dùng phương pháp **_hai con trỏ_**, cụ thể cách tìm sẽ được nêu ở mục dưới đây.
-
-## Minh họa
-
-Phương pháp ***hai con trỏ*** áp dụng trong bài toán này sẽ được minh họa chi tiết qua ví dụ sau đây:
-
+### Minh họa
 ![](https://i.imgur.com/DZNoTA0.png)
 
-Ta đặt con trỏ $p1$ làm vai trò của $i$, con trỏ $p2$ làm vai trò của $j_{max}$. Con trỏ $p1$ được đặt ở đầu danh sách và nó sẽ được tịnh tiến đến cuối danh sách. Con trỏ $p2$ được đặt ở cuối danh sách và nó sẽ được tịnh tiến đến đầu danh sách. 
-![](https://i.imgur.com/jm4Sbq1.png)
+**VẼ LẠI MINH HỌA NHỎ HƠN**
 
-***
-Vì $A[p_1] + A[p_2] = 1 + 10 = 11 > 9$ nên ta sẽ di chuyển $p2$ sang trái. 
-![](https://i.imgur.com/LPWVjpy.png)
-
-***
-$A[p_1] + A[p_2] = 10 > 9$ nên ta sẽ di chuyển $p2$ sang trái. 
-![](https://i.imgur.com/oyBGZUv.png)
-
-***
-$A[p_1] + A[p_2] = 9 \leq 9$ nên ta cập nhật kết quả.
-![](https://i.imgur.com/xGnKLwu.png)
-
-***
-Sau khi cập nhật ta sẽ di chuyển $p1$ sang phải.
-![](https://i.imgur.com/Xp5WEhz.png)
-
-***
-Vì $A[p_1] + A[p_2] = 2 + 8 = 10 > 9$ nên ta sẽ di chuyển $p2$ sang trái. 
-![](https://i.imgur.com/2dp6e90.png)
-
-***
-$A[p_1] + A[p_2] = 8 \leq 9$ nên ta cập nhật kết quả.
-![](https://i.imgur.com/VUPSWMa.png)
-
-***
-Sau khi cập nhật ta sẽ di chuyển $p1$ sang phải.
-![](https://i.imgur.com/0BipPQc.png)
-
-***
-$A[p_1] + A[p_2] = 9 \leq 9$ nên ta cập nhật kết quả.
-![](https://i.imgur.com/1TaCCfP.png)
-
-***
-Di chuyển $p1$ sang phải.
-![](https://i.imgur.com/TGHFl4s.png)
-
-***
-Hiện tại $p1=p2$, tuy nhiên mình cần quan tâm các trước 
-![](https://i.imgur.com/ONCVJjU.png)
-  
 ## Cài đặt
 ```cpp
-int p2 = N;
-for (int p1 = 1; p1 < p2; p1++){
-    while (p2 > p1 && A[p2] + A[p1] > M)
-        p2--;
-    ans += p2 - p1;
+int ans = 0;
+for (int i = 1, j = N; i <= N; i++)
+{
+    while (j != 0 && A[j] > M - A[i])
+        j--;
+    ans += j;
 }
 ```
-Độ phức tạp: $O(N)$
-Bộ nhớ: $O(N)$
-Bộ nhớ thêm: $O(1)$
+$j$ luôn luôn giảm hoặc không đổi với mỗi $i$ chạy từ $1$ đến $N$, và giảm không không quá $N$.
+
+Vậy độ phức tạp của giải pháp là: $O(N)$
 
 ## Bài tập
 *Bài 1:* Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $M$, tìm cặp số $(i, j)$ sao cho $1 \leq i < j \leq N$ và $A_i + A_j = M$. Giới hạn: $N \leq 200000$ và $A_i, M \leq 10^9$. 
