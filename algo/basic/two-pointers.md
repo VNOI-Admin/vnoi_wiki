@@ -5,42 +5,26 @@
 Bài viết chưa hoàn thiện
 
 # Bài toán 1
-Cho một mảng số nguyên dương **không giảm** $ A $ gồm $ N $ phần tử và số nguyên dương $ M $, đếm cặp số $ (i, j) $ sao cho $ 1 \leq i < j \leq N $ và $ A_i + A_j \leq M $. 
+Cho một mảng số nguyên dương **không giảm** $ A $ gồm $ N $ phần tử và số nguyên dương $ M $, đếm số cặp $ (i, j) $ sao cho $ 1 \leq i < j \leq N $ và $ A_i + A_j \leq M $. 
 Giới hạn: $ N \leq 10^6 $ và $ A_i, M \leq 10^9 $. 
 
 ## Tiếp cận
 
-Trước tiên, với bài toán này chúng ta có cách giải đơn giản như sau:
+Cách làm đơn giản với bài toán này là duyệt tất cả các cặp $(i, j)$. Độ phức tạp với cách tiếp cận này là $O(N^2)$.
 
 ```cpp
 int ans = 0;
-for (int i = 1; i <= N; i++){
-    for (int j = N; j > i; j--)
+for (int i = 1; i < N; i++)
+    for (int j = i + 1; j <= N; j++)
+    {
         if (A[i] + A[j] <= M) 
             ans++;
-}
+    }
 ```
-Độ phức tạp: $ O(N^2) $
+Độ phức tạp của cách làm này là: $O(N^2)$
+Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
+Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **không giảm**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
 
-Dãy $A$ đã được sắp xếp **không giảm** cho nên khi ta tìm được $j_{max}$ (nghĩa là giá trị lớn nhất của $j$ sao cho $j>i$ và $A[i] + A[j] \leq M$) thì mọi $j$ trong đoạn $[i + 1, j_{max}]$ luôn thõa mãn $A[i] + A[j] 
-\leq A[i] + A[j_{max}] \leq M$.
-
-![](https://i.imgur.com/aU894JD.png)
-
-
-Ta sẽ có một chút cải tiến sau:
-
-```cpp
-int ans = 0;
-for (int i = 1; i <= N; i++)
-    for (int jmax = N; jmax > i; jmax--)
-        if (A[i] + A[jmax] <= M) {
-            ans += jmax - i;
-            // từ (i + 1) đến jmax có (jmax - i) số
-            break;
-        }
-```
-Tuy nhiên độ phức tạp của bài toán vẫn là $O(N^2)$.
 
 ## Phân tích 
 
