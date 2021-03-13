@@ -150,7 +150,7 @@ Coi $l_{min}$ là giá trị nhỏ nhất của $l$ sao cho $\sum_{i=l}^{r} A[i]
 - mọi $k=[l_{min},r]$ thõa mãn $A[i]+A[k] \leq M$
 - mọi $k=[1,l_{min}-1]$ thõa mãn $A[i]+A[k] > M$
 
-$\rightarrow$ Để tính đoạn con dài nhất thõa mãn đề bài ta chỉ cần tính $l_min$ tương ứng với mỗi $r$. Nhưng ta tìm $l_{min}$ bằng cách nào?
+$\rightarrow$ Để tính đoạn con dài nhất thõa mãn đề bài ta chỉ cần tính $l_{min}$ tương ứng với mỗi $r$. Nhưng ta tìm $l_{min}$ bằng cách nào?
 
 Giả sử ta đã tìm được $l_{min}$ ứng với $r$. Khi $r$ tăng lên $1$ đơn vị thì $l_{min}$ luôn đứng yên hoặc sẽ tăng. Có thể thấy $r$ sẽ tăng không quá $N$ đơn vị, $l_{min}$ sẽ tăng không quá $N$ đơn vị. Vậy để tìm $l_{min}$ ta có thể dùng phương pháp **_hai con trỏ_**, cụ thể cách tìm sẽ được nêu ở mục dưới đây.
 
@@ -173,7 +173,6 @@ Ta lặp lại quá trình này đến khi $p1$ tới cuối danh sách
 ![](https://i.imgur.com/Gs1lXHk.png)
 ## Cài đặt
 
-Vì $p2$ luôn tăng dần từ $1$ đến $N$ cho nên độ phức tạp của thuật toán là $O(N)$.
 ```cpp
 int p2 = 1, sum = 0, res = 0;
 for (int p1 = 1; p1 <= N; p1++){
@@ -185,7 +184,9 @@ for (int p1 = 1; p1 <= N; p1++){
     res = max(res, p1 - p2 + 1);
 }
 ```
-Độ phức tạp của cách làm này là: $O(N)$.
+Độ phức tạp: $O(N)$.
+Bộ nhớ: $O(N)$.
+Bộ nhớ thêm: $O(1)$.
 
 ## Bài tập:
 Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên không âm $K$. Tìm đoạn con $[l, r]$ dài nhất sao cho có không có quá $K$ giá trị phân biệt. 
@@ -205,20 +206,24 @@ for (int i = 1; i <= N; i++)
     C[i] = A[i];
 for (int i = 1; i <= M; i++)
     C[i + N] = B[i];
-sort(C + 1, C + N + 1);
+sort(C + 1, C + N + M + 1);
 ```
-Độ phức tạp của cách làm này là: $O(N^2)$.
+Độ phức tạp của cách làm này là: $O((N+M)log(N+M))$.
 
 Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
 
-Nhận thấy dãy rằng $A, B$ được cho là một dãy số **tăng dần**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
+Nhận thấy dãy rằng $A, B$ được cho là một dãy số **tăng dần** và cần xây dựng mảng $C$ cũng **tăng dần**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
 
 ## Phân tích
 
-Vì cả dãy $A$ và dãy $B$
-## Minh họa
+Vì cả dãy $A$, $B$ là dãy số **tăng dần** và mảng $C$ được ghép từ $A, B$ cũng là dãy **tăng dần** nên ta có một số tính chất sau:
+- Tất cả các phần tử trong dãy $A$, $B$ đều xuất hiện trong dãy $C$.
+- Nếu $i < j$ thì trong dãy $C$ phần tử $A[i]$ sẽ đứng trước phần tử $A[j]$.
+- Nếu $i < j$ thì trong dãy $C$ phần tử $B[i]$ sẽ đứng trước phần tử $B[j]$.
 
-## Cách giải
+Từ những tính chất trên ta có thể giải quyết bài toán với phương pháp **_hai con trỏ_**, cụ thể cách tìm sẽ được nêu ở mục dưới đây.
+
+## Minh họa
 
 Đặt $p1$ là con trỏ sẽ tịnh tiến trên mảng $A$, $p2$ là con trỏ trên mảng $B$. Khi đó ta chỉ cần so sánh $A[p1]$ và $B[p2]$, lấy phần tử nhỏ hơn đẩy vào mảng $C$ và tịnh tiến phần tử đó trên con trỏ.
 
@@ -230,7 +235,7 @@ $A=[1,5,8], B=[2,3,7]$
 
 ## Cài đặt
 
-Thuật toán có độ phức tạp $O(N)$.
+Thuật toán có độ phức tạp $O(N + M)$.
 ```cpp
 for (int i = 1, j = 1; i <= N || j <= M; ) {
     if (j == M + 1 || i <= N && A[i] < B[j]) 
@@ -250,33 +255,55 @@ Cho một mảng số nguyên có độ dài $n+1$ có có các giá trị nằm
 *Input:* $nums = [1,3,4,2,2]$
 *Output:* $2$
 
+Giới hạn : $n \leq 10^5$
 Các bạn có thể tự submit [tại đây](https://leetcode.com/problems/find-the-duplicate-number/) 
 
-## Cách giải, phân tích
+## Tiếp cận
+Nhận thấy rằng các số trong mảng đều có giá trị từ $1$ đến $n$. Cho nên ta có thể phương pháp đếm phân phối để giải quyết bài toán
 
-[Theo nguyên lý Dirichlet](https://vi.wikipedia.org/wiki/Nguy%C3%AAn_l%C3%BD_ng%C4%83n_k%C3%A9o_Dirichlet), trong mảng $n+1$ phần tử nhận các giá trị từ $1$ đến $n$ thì luôn xuất hiện ít nhất một số lặp lại. Tuy nhiên dữ liệu vào luôn nhận chỉ có chính xác $1$ số lặp lại và có thể lặp lại nhiều lần.
+```
+for (int i = 0; i < nums.size(); i++)
+    c[nums[i]]++;
+for (int i = 1; i <= n; i++)
+    if (nums[i] > 1){
+        ans = i;
+        break;
+    }
+```
 
-Bài toán này có rất nhiều cách giải khác nhau, ta hãy so sánh một số cách giải sau đây:
-
-**Cách 1**
-Sau khi sắp xếp dãy số này theo thứ tự tăng dần, thì các số lặp lại sẽ đứng sát nhau. Từ đó ta chỉ cần so sánh hai phần tử liền kề để biết được kết quả.
-
-Thời gian: $O(nlog(n))$
-Bộ nhớ thêm: $O(1)$
-
-**Cách 2**
-Đếm phân phối giá trị trong mảng, từ đó dễ dàng tìm được kết quả.
-
-Thời gian: $O(n)$
+Độ phức tạp: $O(n)$
+Bộ nhớ: $O(n)$
 Bộ nhớ thêm: $O(n)$
 
-**Cách 3**
-Sử dụng thuật toán **Floyd's tortoise and hare**
+Vậy có cách nào để chúng ta có thể giảm _bộ nhớ thêm_ hay không?
+Để có thể giảm _bộ nhớ thêm_ ta sẽ áp dụng thuật toán _** Floyd's tortoise and hare**_.
+## Phân tích
+Khi ta xây dựng một đồ thị có hướng, mỗi số từ $1$ đến $n$ tương ứng với $1$ nút của đồ thị. Đồ thị có nút gốc là $nums[0]$. Từ nút gốc ta xây các cạnh có hướng như sau: Nếu trong đồ thị có nút $x$ thì sẽ một có cạnh hướng từ nút $x$ đến nút $nums[x]$. Vì trong dãy tồn tại một số được xuất hiện nhiều lần cho nên đồ thi sẽ luôn có chu trình. Dưới đây là $2$ trường hợp của đồ thị khi ta xây dựng theo cách này.
+![](https://i.imgur.com/RrEww3W.png)
+Bây giờ chúng ta sẽ cho $2$ con trỏ, một con trỏ có tên là con rùa(tortoise) và con trỏ còn lại tên là con thỏ(hare).
 
-Thời gian: $O(n)$
-Bộ nhớ thêm: $O(1)$
+Ban đầu, cho con rùa và con thỏ đứng ở đỉnh gốc. 
+![](https://i.imgur.com/p7a1PJ4.png)
 
-Cụ thể như sau:
+Con rùa mỗi bước nó sẽ đi đến nút kề với nó.
+![](https://i.imgur.com/tug84Bx.png)
+
+Con thỏ mỗi bước nó sẽ đi đến nút kề với nút kề với nó.
+![](https://i.imgur.com/vPx5ZrD.png)
+
+Đánh dấu các đỉnh chu trình như sau:
+![](https://i.imgur.com/LeN8SJJ.png)
+
+Trong câu truyện Rùa và Thỏ, có một lúc rùa sẽ đuổi kịp Thỏ. Vậy khi sau khi bước một số bước liệu con rùa có thể bắt kịp con Thỏ hay không? 
+
+Câu trả lời là có. Nguyên nhân xảy ra điều này chính là do đồ thị có chu trình. Cụ thể như sau:
+
+Ta gọi $T$ là độ dài đường đi từ nút gốc đến nút đánh dấu số $0$. $C$ là độ dài chu trình. 
+Vậy sau $X=T+C-T%C$ bước đi. Rùa sẽ ở nút đánh dấu số $(X-T)%C=(C - T%C)%C$, Thỏ sẽ ở nút đánh dấu số $(2X-T)%C=(T+2C-2T%C)%C=(C - T%C)%C$. Rùa sẽ gặp Thỏ tại thời điểm này tại nút $(C - T%C)%C$.
+
+Tuy nhiên bài toán đặt ra là cần phải biết số ở nút $0$. Thế nên ta sẽ có $1$ thủ thuật sau. Đặt một con trỏ ở nút $(C - T%C)%C$, con trỏ còn lại ở nút gốc. Ta cho hai con trỏ di chuyển như con rùa ban nãy. Từ đó, hai con trỏ sẽ gặp nhau ở nút $0$. 
+## Minh họa
+
 
 ## Cài đặt
 ```cpp
