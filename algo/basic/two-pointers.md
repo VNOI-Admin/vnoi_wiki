@@ -10,7 +10,7 @@ Giới hạn: $ N \leq 10^6 $ và $ A_i, M \leq 10^9 $.
 
 ## Tiếp cận
 
-Cách làm đơn giản với bài toán này là duyệt tất cả các cặp $(i, j)$. Độ phức tạp với cách tiếp cận này là $O(N^2)$.
+Cách làm đơn giản với bài toán này là duyệt tất cả các cặp $(i, j)$. 
 
 ```cpp
 int ans = 0;
