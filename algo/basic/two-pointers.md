@@ -41,7 +41,11 @@ $\rightarrow$ Để tính số cặp $(i,j)$ của đề bài ta chỉ cần tí
 
 Giả sử ta đã tìm được $j_{max}$ ứng với $i$. Khi $i$ tăng lên $1$ đơn vị thì $j_{max}$ luôn đứng yên hoặc sẽ giảm. Có thể thấy $i$ sẽ tăng không quá $N$ đơn vị, $j_{max}$ sẽ giảm không quá $N$ đơn vị. Vậy để tìm $j_{max}$ ta có thể dùng phương pháp **_hai con trỏ_**, cụ thể cách tìm sẽ được nêu ở mục dưới đây.
 
-## Giải pháp
+## Minh họa
+
+Phương pháp ***hai con trỏ*** áp dụng trong bài toán này sẽ được minh họa chi tiết qua ví dụ sau đây:
+
+![](https://i.imgur.com/DZNoTA0.png)
 
 Từ những nhận xét vừa rồi, ta có thể tìm $j_{max}$ qua phương pháp *hai con trỏ*, trong đó $i$ sẽ đóng vai trò con trỏ $p1$ đặt ở $A[1]$ và $j_{max}$ sẽ đóng vai trò con trỏ $p2$ đặt ở $A[N]$.
 
