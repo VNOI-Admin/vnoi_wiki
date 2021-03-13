@@ -34,7 +34,7 @@ Vì dãy $A$ là một dãy số **không giảm** nên ta có $1$ số tính ch
 - Nếu $A[i]+A[j] > M$ thì mọi $k=[j,N]$ thõa mãn $A[i]+A[k] > M$
 
 Coi $j_{max}$ là giá trị lớn nhất của $j$ sao cho $A[i]+A[j]\leq M$ thì 
-- mọi $k=[1,j_{max}]$ thõa mãn $A[i]+A[k] \leq M$
+- mọi $k=[i+1,j_{max}]$ thõa mãn $A[i]+A[k] \leq M$
 - mọi $k=[j_{max}+1,N]$ thõa mãn $A[i]+A[k] > M$
 
 $\rightarrow$ Để tính số cặp $(i,j)$ của đề bài ta chỉ cần tính $j_{max}$ tương ứng với mỗi $i$. Nhưng ta tìm $j_{max}$ bằng cách nào?
@@ -117,13 +117,44 @@ Bộ nhớ thêm: $O(1)$
 Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $X$. Tìm đoạn con $[l, r]$ dài nhất sao cho tổng các phần tử trong đoạn có giá trị không quá $X$. 
 Giới hạn: $N \leq 10^5$, $A_i \leq 10^9$ và $X \leq 10^{18}$. 
 
-## Cách giải
-Nhận xét bài toán như sau:
-* Duyệt $r$ từ $1$ đến $N$ và tìm $l_{min}$ sao cho $\sum_{i=l_{min}}^{r} A[i] \leq X$
-* $l_{min}$ luôn nhận giá trị tăng dần từ $1 \rightarrow N$ và luôn không vượt quá $r$. 
+## Tiếp cận
+Cách làm đơn giản với bài toán này là duyệt tất cả các cặp $(l, r)$ và dùng biến $sum$ để lưu trữ tổng các phần tử từ $l$ đến $r$. 
 
-Sử dụng phương pháp hai con trỏ, trong đó $r$ sẽ đóng vai trò con trỏ $p1$ và $l_{min}$ sẽ đóng vai trò con trỏ $p2$. Cụ thể như sau: 
+```cpp
+int ans = 0;
+for (int l = 1; l <= N; l++)
+{
+    int sum = 0;
+    for (int r = l; r <= N; r++)
+    {
+        sum += A[r];
+        if (sum <= X)
+            ans = max(ans, r - l + 1);
+    }
+}
+```
+Độ phức tạp của cách làm này là: $O(N^2)$.
 
+Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
+
+Nhận thấy dãy rằng $A$ được cho là một dãy số **nguyên dương**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
+
+## Phân tích
+
+Vì dãy $A$ là một dãy số **nguyên dương** nên ta có $1$ số tính chất:
+- Tổng các phần tử từ $l-1$ đến $r$ luôn lớn hơn tổng các phần tử từ $l$ đến $r$
+- Nếu $\sum_{i=l}^{r} A[i] \leq X$ thì mọi $k=[l,r]$ thõa mãn $\sum_{i=l}^{r} A[i] \leq X$
+- Nếu $\sum_{i=l}^{r} A[i] > X$ thì mọi $k=[1,l]$ thõa mãn $\sum_{i=l}^{r} A[i] > X$
+
+Coi $l_{min}$ là giá trị nhỏ nhất của $l$ sao cho $\sum_{i=l}^{r} A[i] \leq X$ thì 
+- mọi $k=[l_{min},r]$ thõa mãn $A[i]+A[k] \leq M$
+- mọi $k=[1,l_{min}-1]$ thõa mãn $A[i]+A[k] > M$
+
+$\rightarrow$ Để tính đoạn con dài nhất thõa mãn đề bài ta chỉ cần tính $l_min$ tương ứng với mỗi $r$. Nhưng ta tìm $l_{min}$ bằng cách nào?
+
+Giả sử ta đã tìm được $l_{min}$ ứng với $r$. Khi $r$ tăng lên $1$ đơn vị thì $l_{min}$ luôn đứng yên hoặc sẽ tăng. Có thể thấy $r$ sẽ tăng không quá $N$ đơn vị, $l_{min}$ sẽ tăng không quá $N$ đơn vị. Vậy để tìm $l_{min}$ ta có thể dùng phương pháp **_hai con trỏ_**, cụ thể cách tìm sẽ được nêu ở mục dưới đây.
+
+## Minh họa
 $A = [2, 6, 4, 3, 6, 8, 9], X = 20$.
 
 Khi $\sum_{i=p2}^{p1} A[i] > X$ ta dịch chuyển $p2$ sang phải, và tất nhiên $p2$ sẽ không vượt quá $p1$.
@@ -154,6 +185,8 @@ for (int p1 = 1; p1 <= N; p1++){
     res = max(res, p1 - p2 + 1);
 }
 ```
+Độ phức tạp của cách làm này là: $O(N)$.
+
 ## Bài tập:
 Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên không âm $K$. Tìm đoạn con $[l, r]$ dài nhất sao cho có không có quá $K$ giá trị phân biệt. 
 Giới hạn: $N \leq 10^5$, $0 \leq K \leq N$ và $A_i \leq 10^{5}$.
@@ -164,6 +197,26 @@ Luyện tập thêm [tại đây](https://vnoi.info/problems/SOPENP/) và [tại
 # Bài toán 3 (Merge Sort)
 Cho hai mảng số nguyên đã được **sắp xếp tăng dần** $A$ và $B$ lần lượt có $N$ và $M$ phần tử. Hãy ghép chúng thành mảng $C$ được bố trí theo thứ tự tăng dần.
 Giới hạn: $N, M \leq 10^5$ và $-10^9 \leq A_i, B_i \leq 10^{9}$.
+
+## Tiếp cận
+Đưa từng phần tử trong mảng $A$ và mảng $B$ vào mảng $C$. Sau đó sử dụng hàm $sort$ trong $C++$ để sắp xếp.
+```
+for (int i = 1; i <= N; i++)
+    C[i] = A[i];
+for (int i = 1; i <= M; i++)
+    C[i + N] = B[i];
+sort(C + 1, C + N + 1);
+```
+Độ phức tạp của cách làm này là: $O(N^2)$.
+
+Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
+
+Nhận thấy dãy rằng $A, B$ được cho là một dãy số **tăng dần**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
+
+## Phân tích
+
+Vì cả dãy $A$ và dãy $B$
+## Minh họa
 
 ## Cách giải
 
