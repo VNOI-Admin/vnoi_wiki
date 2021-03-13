@@ -29,7 +29,7 @@ Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **không 
 
 ## Phân tích 
 
-Vì dãy $A$ là một dãy số không giảm nên ta có $1$ số tính chất:
+Vì dãy $A$ là một dãy số **không giảm** nên ta có $1$ số tính chất:
 - Nếu $A[i]+A[j] \leq M$ thì mọi $k=[1,j]$ thõa mãn $A[i]+A[k] \leq M$
 - Nếu $A[i]+A[j] > M$ thì mọi $k=[j,N]$ thõa mãn $A[i]+A[k] > M$
 
@@ -47,51 +47,49 @@ Phương pháp ***hai con trỏ*** áp dụng trong bài toán này sẽ đượ
 
 ![](https://i.imgur.com/DZNoTA0.png)
 
-Từ những nhận xét vừa rồi, ta có thể tìm $j_{max}$ qua phương pháp *hai con trỏ*, trong đó $i$ sẽ đóng vai trò con trỏ $p1$ đặt ở $A[1]$ và $j_{max}$ sẽ đóng vai trò con trỏ $p2$ đặt ở $A[N]$.
+Ta đặt con trỏ $p1$ làm vai trò của $i$, con trỏ $p2$ làm vai trò của $j_{max}$. Con trỏ $p1$ được đặt ở đầu danh sách và nó sẽ được tịnh tiến đến cuối danh sách. Con trỏ $p2$ được đặt ở cuối danh sách và nó sẽ được tịnh tiến đến đầu danh sách. 
+![](https://i.imgur.com/jm4Sbq1.png)
 
-![](https://i.imgur.com/bFbQe2O.png)
-
-Đối với mỗi $p_1$ chúng ta sẽ đi tìm $p_2$ tương  ứng với nó(tìm $j_{max}$ tương ứng với $i$). Khi gặp điều kiện $A[p_1] + A[p_2] > M$, ta sẽ di chuyển $p2$ sang trái cho đến khi $A[p_1]+A[p_2] \leq M$. Sau khi tìm được $p2$, hãy di chuyển $p_1$ sang phải. 
-
-Lặp lại quá trình này cho đến khi ***không tồn tại*** $p_2$ sao cho $p_2>p_1$ và $A[p_1]+A[p_2]\leq M.$ Bởi vì, khi gặp điều kiện này thì mọi $p = [p1, N]$ sẽ đều ***không tồn tại*** $p_2$ sao cho $p_2>p$ và $A[p]+A[p_2]\leq M.$
-
-
-Cụ thể cách giải quyết sẽ được nêu dưới đây:
-
-$A = [1, 2, 3, 6, 8, 9, 10], M = 9, p_1=1, p_2=N$.
-___
+***
 Vì $A[p_1] + A[p_2] = 1 + 10 = 11 > 9$ nên ta sẽ di chuyển $p2$ sang trái. 
 ![](https://i.imgur.com/LPWVjpy.png)
-___
+
+***
 $A[p_1] + A[p_2] = 10 > 9$ nên ta sẽ di chuyển $p2$ sang trái. 
 ![](https://i.imgur.com/oyBGZUv.png)
-___
+
+***
 $A[p_1] + A[p_2] = 9 \leq 9$ nên ta cập nhật kết quả.
 ![](https://i.imgur.com/xGnKLwu.png)
-___
+
+***
 Sau khi cập nhật ta sẽ di chuyển $p1$ sang phải.
 ![](https://i.imgur.com/Xp5WEhz.png)
-___
+
+***
 Vì $A[p_1] + A[p_2] = 2 + 8 = 10 > 9$ nên ta sẽ di chuyển $p2$ sang trái. 
 ![](https://i.imgur.com/2dp6e90.png)
-___
+
+***
 $A[p_1] + A[p_2] = 8 \leq 9$ nên ta cập nhật kết quả.
 ![](https://i.imgur.com/VUPSWMa.png)
-___
+
+***
 Sau khi cập nhật ta sẽ di chuyển $p1$ sang phải.
 ![](https://i.imgur.com/0BipPQc.png)
-___
+
+***
 $A[p_1] + A[p_2] = 9 \leq 9$ nên ta cập nhật kết quả.
 ![](https://i.imgur.com/1TaCCfP.png)
-___
+
+***
 Di chuyển $p1$ sang phải.
 ![](https://i.imgur.com/TGHFl4s.png)
-___
-Bây giờ chúng ta có thể dừng chương trình bởi vì ***không tồn tại*** $p_2$ sao cho $p_2>p_1$ và $A[p_1]+A[p_2]\leq M.$ Kết quả của chúng ta là $ans =7$.
+
+***
+Hiện tại $p1=p2$, tuy nhiên mình cần quan tâm các trước 
 ![](https://i.imgur.com/ONCVJjU.png)
   
-
-
 ## Cài đặt
 ```cpp
 int p2 = N;
