@@ -21,28 +21,25 @@ for (int i = 1; i < N; i++)
             ans++;
     }
 ```
-Độ phức tạp của cách làm này là: $O(N^2)$
-Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
-Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **không giảm**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
+Độ phức tạp của cách làm này là: $O(N^2)$.
 
+Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
+
+Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **không giảm**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
 
 ## Phân tích 
 
-Đối với mỗi $i$ từ $1$ đến $N$ tồn tại $j_{max}$ thì $j_{max}$ tương ứng với mỗi $i$ sẽ có giá trị ***không tăng*** và luôn ***lớn hơn*** $i$.
+Vì dãy $A$ là một dãy số không giảm nên ta có $1$ số tính chất:
+- Nếu $A[i]+A[j] \leq M$ thì mọi $k=[1,j]$ thõa mãn $A[i]+A[k] \leq M$
+- Nếu $A[i]+A[j] > M$ thì mọi $k=[j,N]$ thõa mãn $A[i]+A[k] > M$
 
-![](https://i.imgur.com/CDfdcD0.png)
+Coi $j_{max}$ là giá trị lớn nhất của $j$ sao cho $A[i]+A[j]\leq M$ thì 
+- mọi $k=[1,j_{max}]$ thõa mãn $A[i]+A[k] \leq M$
+- mọi $k=[j_{max}+1,N]$ thõa mãn $A[i]+A[k] > M$
 
-Tại sao $j_{max}$ lại có giá trị ***không tăng*** ?
+$\rightarrow$ Để tính số cặp $(i,j)$ của đề bài ta chỉ cần tính $j_{max}$ tương ứng với mỗi $i$. Nhưng ta tìm $j_{max}$ bằng cách nào?
 
-Để chứng minh, ta sẽ xem $j_1$ là là giá trị lớn nhất của $j$ sao cho $j>i$ và $A[i] + A[j] \leq M$ và $j_2$ là là giá trị lớn nhất của $j$ sao cho $j>i+1$ và $A[i+1] + A[j] \leq M$.
-
-- $A[i] + A[j_1] \leq M$
-- $A[i+1] + A[j_2] \leq M$
-- $A[i] \leq A[i+1]$
-
-$\Rightarrow A[i] + A[j_2] \leq M$
-
-Giả sử $j_2 > j_1$ thì $j_1$ sẽ không là giá trị lớn nhất của $j$ sao cho $j>i$ và $A[i] + A[j] \leq M$. Cho nên $j2 \leq j1$.
+Giả sử ta đã tìm được $j_{max}$ ứng với $i$. Khi $i$ tăng lên $1$ đơn vị thì $j_{max}$ luôn đứng yên hoặc sẽ giảm. Có thể thấy $i$ sẽ tăng không quá $N$ đơn vị, $j_{max}$ sẽ giảm không quá $N$ đơn vị. Vậy để tìm $j_{max}$ ta có thể dùng phương pháp **_hai con trỏ_**, cụ thể cách tìm sẽ được nêu ở mục dưới đây.
 
 ## Giải pháp
 
