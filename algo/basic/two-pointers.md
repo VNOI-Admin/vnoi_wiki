@@ -92,7 +92,8 @@ Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
 
 Nhận thấy dãy rằng $A$ được cho là một dãy số **nguyên dương**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
 
-## Phân tích
+## Giải pháp
+### Phân tích
 
 Vì dãy $A$ là một dãy số **nguyên dương** nên ta có $1$ số tính chất:
 - Tổng các phần tử từ $l-1$ đến $r$ luôn lớn hơn tổng các phần tử từ $l$ đến $r$
@@ -107,7 +108,7 @@ $\rightarrow$ Để tính đoạn con dài nhất thõa mãn đề bài ta chỉ
 
 Giả sử ta đã tìm được $l_{min}$ ứng với $r$. Khi $r$ tăng lên $1$ đơn vị thì $l_{min}$ luôn đứng yên hoặc sẽ tăng. Có thể thấy $r$ sẽ tăng không quá $N$ đơn vị, $l_{min}$ sẽ tăng không quá $N$ đơn vị. Vậy để tìm $l_{min}$ ta có thể dùng phương pháp **_hai con trỏ_**, cụ thể cách tìm sẽ được nêu ở mục dưới đây.
 
-## Minh họa
+### Minh họa
 $A = [2, 6, 4, 3, 6, 8, 9], X = 20$.
 
 Khi $\sum_{i=p2}^{p1} A[i] > X$ ta dịch chuyển $p2$ sang phải, và tất nhiên $p2$ sẽ không vượt quá $p1$.
@@ -127,19 +128,17 @@ Ta lặp lại quá trình này đến khi $p1$ tới cuối danh sách
 ## Cài đặt
 
 ```cpp
-int p2 = 1, sum = 0, res = 0;
-for (int p1 = 1; p1 <= N; p1++){
-    sum += A[p1];
+for (int l = 1, r = 1; r <= N; r++){
+    sum += A[r];
     while (sum > X){
-        sum -= A[p2];
-        p2++;
+        sum -= A[l];
+        l++;
     }
-    res = max(res, p1 - p2 + 1);
+    res = max(res, r - l + 1);
 }
 ```
-Độ phức tạp: $O(N)$.
-Bộ nhớ: $O(N)$.
-Bộ nhớ thêm: $O(1)$.
+Vì $l$ luôn tăng với mỗi $r$ chạy từ $1$ đến $N$ và luôn có giá trị không quá $r+1$ cho nên độ phức tạp của giải pháp là: $O(N)$.
+
 
 ## Bài tập:
 Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên không âm $K$. Tìm đoạn con $[l, r]$ dài nhất sao cho có không có quá $K$ giá trị phân biệt. 
