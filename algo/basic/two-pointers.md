@@ -1,9 +1,5 @@
 # Kĩ thuật hai con trỏ
 
-**Tác giả**: Phan Đình Khôi
-
-[[_TOC_]]
-
 # Lời mở đầu 
  
 Bài viết chưa hoàn thiện
@@ -39,46 +35,67 @@ Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_**
 
 ***
 
+Ban đầu, đặt $i$ có giá trị là $1$, $j$ có giá trị là $N$.
 
 ![](https://i.imgur.com/gf4yUcr.png)
 
 ***
 
+Vì $A[j] > M - A[i]$ nên ta giảm $j$ đi $1$ đơn vị.
+
 ![](https://i.imgur.com/IQGV1Ne.png)
 
 ***
+
+Vì $A[j] > M - A[i]$ nên ta giảm $j$ đi $1$ đơn vị.
 
 ![](https://i.imgur.com/HVhIBmM.png)
 
 ***
 
-![](https://i.imgur.com/sFJu8gc.png)
+Vì $A[j] \leq M - A[i]$ nên ta sẽ cập nhật kết quả. Cụ thể là sẽ có $j$ phần tử có giá trị không quá $M-A[i]$, tuy nhiên chúng ta chỉ lấy các phần tử có vị trí lớn hơn $i$ cho nên ta cộng $j-i=4$ vào kết quả.
+
+![](https://i.imgur.com/Ie5iYpP.png)
 
 ***
+
+Sau khi cập nhật kết quả, ta sẽ tăng $i$ lên $1$ đơn vị.
 
 ![](https://i.imgur.com/uQu2nPq.png)
 
 ***
 
+Vì $A[j] > M - A[i]$ nên ta giảm $j$ đi $1$ đơn vị.
+
 ![](https://i.imgur.com/rr3V0MD.png)
 
 ***
 
-![](https://i.imgur.com/u3mH4LH.png)
+Vì $A[j] \leq M - A[i]$ nên ta sẽ cập nhật kết quả.
+
+![](https://i.imgur.com/tRzL37B.png)
 
 ***
+
+Sau khi cập nhật kết quả, ta sẽ tăng $i$ lên $1$ đơn vị.
 
 ![](https://i.imgur.com/o7DpiM7.png)
 
 ***
 
-![](https://i.imgur.com/exkaLYY.png)
+Vì $A[j] \leq M - A[i]$ nên ta sẽ cập nhật kết quả.
+
+![](https://i.imgur.com/TOoU0H0.png)
 
 ***
+
+Sau khi cập nhật kết quả, ta sẽ tăng $i$ lên $1$ đơn vị.
 
 ![](https://i.imgur.com/Yp7E0yu.png)
 
 ***
+
+Vì $i$ luôn tăng, $j$ thì luôn giảm hoặc giữ nguyên, hơn nữa bây giờ $i$ đang có giá trị bằng $j$, cho nên sẽ không tồn tại thêm $i < j$ cho nên chương trình kết thúc.
 
 ![](https://i.imgur.com/L0k3MKQ.png)
 
