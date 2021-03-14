@@ -122,7 +122,7 @@ Luyện tập thêm [tại đây](https://vnoi.info/problems/SOPENP/) và [tại
 Cho hai mảng số nguyên đã được **sắp xếp tăng dần** $A$ và $B$ lần lượt có $N$ và $M$ phần tử. Hãy ghép chúng thành mảng $C$ được bố trí theo thứ tự tăng dần.
 Giới hạn: $N, M \leq 10^5$ và $-10^9 \leq A_i, B_i \leq 10^{9}$.
 
-## Tiếp cận
+## Tiếp cận 1
 Đưa từng phần tử trong mảng $A$ và mảng $B$ vào mảng $C$. Sau đó sử dụng hàm $sort$ trong $C++$ để sắp xếp.
 ```
 for (int i = 1; i <= N; i++)
@@ -135,9 +135,11 @@ sort(C + 1, C + N + M + 1);
 
 Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
 
+## Tiêp cận 2
+
 Nhận thấy dãy rằng $A, B$ được cho là một dãy số **tăng dần** và cần xây dựng mảng $C$ cũng **tăng dần**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
 
-## Phân tích
+### Phân tích
 
 Vì cả dãy $A$, $B$ là dãy số **tăng dần** và mảng $C$ được ghép từ $A, B$ cũng là dãy **tăng dần** nên ta có một số tính chất sau:
 - Tất cả các phần tử trong dãy $A$, $B$ đều xuất hiện trong dãy $C$.
@@ -148,17 +150,10 @@ Từ những tính chất trên ta có thể giải quyết bài toán với ph�
 
 ## Minh họa
 
-Đặt $p1$ là con trỏ sẽ tịnh tiến trên mảng $A$, $p2$ là con trỏ trên mảng $B$. Khi đó ta chỉ cần so sánh $A[p1]$ và $B[p2]$, lấy phần tử nhỏ hơn đẩy vào mảng $C$ và tịnh tiến phần tử đó trên con trỏ.
-
-$A=[1,5,8], B=[2,3,7]$
-
-![](https://i.imgur.com/Ztu1p5d.png)
-
-![](https://i.imgur.com/fGhX30u.png)
+**Minh họa lại**
 
 ## Cài đặt
 
-Thuật toán có độ phức tạp $O(N + M)$.
 ```cpp
 for (int i = 1, j = 1; i <= N || j <= M; ) {
     if (j == M + 1 || i <= N && A[i] < B[j]) 
@@ -167,6 +162,8 @@ for (int i = 1, j = 1; i <= N || j <= M; ) {
         C.push_back(B[j++]);
 }
 ```
+Vì $i, j$ luôn tăng trong đó $i$ tăng không quá $N$ đơn vị, $j$ tăng không quá $M$ đơn vị, cho nên độ phức tạp của cách làm này là $O(N+M)$, 
+
 ## Bài tập
 
 Cho $4$ mảng số nguyên dương $A, B, C, D$ có lần lượt $NA, NB, NC, ND$ phần tử. Hãy tìm giá trị nhỏ nhất của $S = max(A_i, B_j, C_k, D_l) - min((A_i, B_j, C_k, D_l).$
@@ -179,9 +176,9 @@ Cho một mảng số nguyên có độ dài $n+1$ có có các giá trị nằm
 *Output:* $2$
 
 Giới hạn : $n \leq 10^5$
-Các bạn có thể tự submit [tại đây](https://leetcode.com/problems/find-the-duplicate-number/) 
+Các bạn có thể tự code và submit [tại đây](https://leetcode.com/problems/find-the-duplicate-number/) 
 
-## Tiếp cận
+## Tiếp cận 1
 Nhận thấy rằng các số trong mảng đều có giá trị từ $1$ đến $n$. Cho nên ta có thể phương pháp đếm phân phối để giải quyết bài toán
 
 ```
@@ -199,6 +196,9 @@ Bộ nhớ: $O(n)$
 Bộ nhớ thêm: $O(n)$
 
 Vậy có cách nào để chúng ta có thể giảm _bộ nhớ thêm_ hay không?
+
+### Tiếp cận 2
+
 Để có thể giảm _bộ nhớ thêm_ ta sẽ áp dụng thuật toán _** Floyd's tortoise and hare**_.
 ## Phân tích
 Khi ta xây dựng một đồ thị có hướng, mỗi số từ $1$ đến $n$ tương ứng với $1$ nút của đồ thị. Đồ thị có nút gốc là $nums[0]$. Từ nút gốc ta xây các cạnh có hướng như sau: Nếu trong đồ thị có nút $x$ thì sẽ một có cạnh hướng từ nút $x$ đến nút $nums[x]$. Vì trong dãy tồn tại một số được xuất hiện nhiều lần cho nên đồ thi sẽ luôn có chu trình. Dưới đây là $2$ trường hợp của đồ thị khi ta xây dựng theo cách này.
@@ -222,9 +222,9 @@ Trong câu truyện Rùa và Thỏ, có một lúc rùa sẽ đuổi kịp Thỏ
 Câu trả lời là có. Nguyên nhân xảy ra điều này chính là do đồ thị có chu trình. Cụ thể như sau:
 
 Ta gọi $T$ là độ dài đường đi từ nút gốc đến nút đánh dấu số $0$. $C$ là độ dài chu trình. 
-Vậy sau $X=T+C-T%C$ bước đi. Rùa sẽ ở nút đánh dấu số $(X-T)%C=(C - T%C)%C$, Thỏ sẽ ở nút đánh dấu số $(2X-T)%C=(T+2C-2T%C)%C=(C - T%C)%C$. Rùa sẽ gặp Thỏ tại thời điểm này tại nút $(C - T%C)%C$.
+Vậy sau $X=T+C-T%C$ bước đi. Rùa sẽ ở nút đánh dấu số $(X-T)\%C=(C - T\%C)\%C$, Thỏ sẽ ở nút đánh dấu số $(2X-T)\%C=(T+2C-2T\%C)\%C=(C - T\%C)\%C$. Rùa sẽ gặp Thỏ tại thời điểm này tại nút $(C - T\%C)\%C$.
 
-Tuy nhiên bài toán đặt ra là cần phải biết số ở nút $0$. Thế nên ta sẽ có $1$ thủ thuật sau. Đặt một con trỏ ở nút $(C - T%C)%C$, con trỏ còn lại ở nút gốc. Ta cho hai con trỏ di chuyển như con rùa ban nãy. Từ đó, hai con trỏ sẽ gặp nhau ở nút $0$. 
+Tuy nhiên bài toán đặt ra là cần phải biết số ở nút $0$. Thế nên ta sẽ có $1$ thủ thuật sau. Đặt một con trỏ ở nút $(C - T\%C)\%C$, con trỏ còn lại ở nút gốc. Ta cho hai con trỏ di chuyển như con rùa ban nãy. Từ đó, hai con trỏ sẽ gặp nhau ở nút $0$. 
 ## Minh họa
 
 
@@ -247,6 +247,9 @@ int findDuplicate(vector<int>& nums) {
 }
 ```
 
+Độ phức tạp: $O(n)$
+Bộ nhớ: $O(n)$
+Bộ nhớ thêm: $O(1)$
 
 # Bài tập áp dụng
 
