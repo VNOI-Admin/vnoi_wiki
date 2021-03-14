@@ -27,16 +27,16 @@ Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
 Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **tăng dần**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
 ### Phân tích
 Bởi vì $A[i] + A[j] \leq M \Leftrightarrow A[j] \leq M - A[i]$ cho nên bài toán có thể giải theo cách như sau: "Với mỗi $i$ từ $1$ đến $N$, ta tính có bao nhiêu phần tử có giá trị nhỏ hơn $M - A[i]$". Để giải bài toán này, ta sẽ cùng phân tích một số tính chất của dãy $A$.
-- $A[i] < A[i+1], \forall 1 \leq i < N$. Vậy thì để đếm có bao nhiêu phần tử nhỏ hơn $M-A[i]$, ta thực sự chỉ cần biết **_vị trí_** của phần tử **_lớn nhất_** sao cho phần tử có giá trị không quá $M-A[i]$. Bởi vì mọi phần tử **nhỏ hơn** phần tử này đều sẽ có giá trị không quá $M-A[i]$. Ta gọi vị trí của phần tử **_lớn nhất_** này là $j$.
+- $A[i] < A[i+1], \forall 1 \leq i < N$. Vậy thì để đếm có bao nhiêu phần tử nhỏ hơn $M-A[i]$, ta thực sự chỉ cần biết **_vị trí_** của phần tử **_lớn nhất_** có giá trị không quá $M-A[i]$. Bởi vì mọi phần tử **nhỏ hơn** phần tử này đều sẽ có giá trị không quá $M-A[i]$. Ta gọi vị trí của phần tử **_lớn nhất_** này là $j$.
 - $M-A[i] > M-A[i+1], \forall 1 \leq i < N$. Có thể nhận thấy rằng khi $i$ **tăng lên** $1$ đơn vị thì $j$ luôn **không đổi hoặc sẽ giảm**.
 Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_** để tìm giá trị của $j$, cụ thể cách tìm sẽ được nêu ở dưới đây.
 ![](https://i.imgur.com/caX1sWH.png)
 
 ***
 
-Ban đầu ta gán $i$ có giá trị là $1$, $j$ có giá trị là $N=7$.
+Mỗi $i$ từ $1$ đến $n$, ta có giá trị của $j$ tương ứng với mỗi $i$ có **giá trị giảm dần**. Vì thế, ban đầu chúng ta sẽ gán $i = 1$ và $j = N = 7$.
 
-![](https://i.imgur.com/oEWYVfj.png)
+![](https://i.imgur.com/uphOuqM.png)
 
 ***
 $A[i] = 1 \rightarrow M - A[i] = 9 - 1 = 8, A[j] = 10$
