@@ -33,13 +33,37 @@ Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_**
 ![](https://i.imgur.com/caX1sWH.png)
 
 ***
+
 Ban đầu ta gán $i$ có giá trị là $1$, $j$ có giá trị là $N=7$.
 
-![](https://i.imgur.com/jm4Sbq1.png)
-
-![](https://i.imgur.com/kO7FKEn.png)
+![](https://i.imgur.com/oEWYVfj.png)
 
 ***
+$A[i] = 1 \rightarrow M - A[i] = 9 - 1 = 8, A[j] = 10$
+
+Vì $A[j] > M - A[i]$ nên ta sẽ giảm $j$ đi $1$ đơn vị. 
+
+![](https://i.imgur.com/JdeyVZ2.png)
+
+
+***
+
+$A[i] = 1 \rightarrow M - A[i] = 9 - 1 = 8, A[j] = 9$
+
+Vì $A[j] > M - A[i]$ nên ta sẽ giảm $j$ đi $1$ đơn vị. 
+
+![](https://i.imgur.com/TsL0uad.png)
+
+***
+
+$A[i] = 1 \rightarrow M - A[i] = 9 - 1 = 8, A[j] = 8$
+Vì $A[j] > M - A[i]$ nên ta cập nhật kết quả.
+
+![](https://i.imgur.com/8svCQPx.png)
+
+
+***
+
 
 ### Cài đặt
 ```cpp
