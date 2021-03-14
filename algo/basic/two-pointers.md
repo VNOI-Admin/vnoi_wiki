@@ -28,11 +28,18 @@ Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **tăng d
 ### Phân tích
 Bởi vì $A[i] + A[j] \leq M \Leftrightarrow A[j] \leq M - A[i]$ cho nên bài toán có thể giải theo cách như sau: "Với mỗi $i$ từ $1$ đến $N$, ta tính có bao nhiêu phần tử có giá trị nhỏ hơn $M - A[i]$". Để giải bài toán này, ta sẽ cùng phân tích một số tính chất của dãy $A$.
 - $A[i] < A[i+1], \forall 1 \leq i < N$. Vậy thì để đếm có bao nhiêu phần tử nhỏ hơn $M-A[i]$, ta thực sự chỉ cần biết **_vị trí_** của phần tử **_lớn nhất_** sao cho phần tử có giá trị không quá $M-A[i]$. Bởi vì mọi phần tử **nhỏ hơn** phần tử này đều sẽ có giá trị không quá $M-A[i]$. Ta gọi vị trí của phần tử **_lớn nhất_** này là $j$.
-- $M-A[i] > M-A[i+1], \forall 1 \leq i < N$. Có thể nhận thấy rằng khi $i$ tăng lên $1$ đơn vị thì $j$ luôn **không đổi hoặc sẽ giảm**.
+- $M-A[i] > M-A[i+1], \forall 1 \leq i < N$. Có thể nhận thấy rằng khi $i$ **tăng lên** $1$ đơn vị thì $j$ luôn **không đổi hoặc sẽ giảm**.
 Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_** để tìm giá trị của $j$, cụ thể cách tìm sẽ được nêu ở dưới đây.
-![](https://i.imgur.com/DZNoTA0.png)
+![](https://i.imgur.com/caX1sWH.png)
 
-**VẼ LẠI MINH HỌA NHỎ HƠN**
+***
+Ban đầu ta gán $i$ có giá trị là $1$, $j$ có giá trị là $N=7$.
+
+![](https://i.imgur.com/jm4Sbq1.png)
+
+![](https://i.imgur.com/kO7FKEn.png)
+
+***
 
 ### Cài đặt
 ```cpp
@@ -89,7 +96,7 @@ Nhận thấy dãy rằng $A$ được cho là một dãy số **nguyên dương
 
 Để áp dụng phương pháp $2$ con trỏ cho bài toán này, ta sẽ phân tích một số điều sau:
 - Vì dãy $A$ là một dãy số **nguyên dương** cho nên tổng các phần tử tử $l-1$ đến $r$ sẽ **lớn hơn** tổng các phần tử tử $l$ đến $r$. Từ đó, thay vì ta tìm đoạn $[l, r]$ **dài nhất** có tổng không quá $X$ thì ta có thể giải bài toán theo hướng này: "Với mỗi $r$ từ $1$ đến $N$, ta tìm vị trí **nhỏ nhất** $l$ sao cho tổng các phần tử từ $l$ đến $r$ có giá trị không quá $X$". 
-- Ta nhận thấy khi $r$ tăng lên $1$ đơn vị thì $l$ sẽ không đổi hoặc tăng lên.
+- Ta nhận thấy khi $r$ **tăng lên** $1$ đơn vị thì $l$ sẽ **không đổi hoặc tăng lên.**
 
 Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_** để tìm giá trị của $l$, cụ thể cách tìm sẽ được nêu ở dưới đây.
 
