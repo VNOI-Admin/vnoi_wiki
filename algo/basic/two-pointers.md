@@ -8,10 +8,9 @@ Bài viết chưa hoàn thiện
 Cho một mảng số nguyên dương **tăng dần** $ A $ gồm $ N $ phần tử và số nguyên dương $ M $, đếm số cặp $ (i, j) $ sao cho $ 1 \leq i, j \leq N $ và $ A_i + A_j \leq M $. 
 Giới hạn: $ N \leq 10^6 $ và $ A_i, M \leq 10^9 $. 
 
-## Tiếp cận
+## Tiếp cận 1
 
 Cách làm đơn giản với bài toán này là duyệt tất cả các cặp $(i, j)$. 
-
 ```cpp
 int ans = 0;
 for (int i = 1; i < N; i++)
@@ -22,27 +21,20 @@ for (int i = 1; i < N; i++)
     }
 ```
 Độ phức tạp của cách làm này là: $O(N^2)$.
-
 Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
 
+## Tiếp cận 2 
 Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **tăng dần**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
-
-## Giải pháp 
-
 ### Phân tích
-$A[i] + A[j] \leq M \Leftrightarrow A[j] \leq M - A[i] \rightarrow$  Bài toán có thể giải theo cách như sau: "Với mỗi $i$ từ $1$ đến $N$, ta tính có bao nhiêu phần tử có giá trị nhỏ hơn $M - A[i]$". Để giải bài toán này, ta sẽ cùng phân tích một số tính chất của dãy $A$.
-
-- $A[i] < A[i+1], \forall 1 \leq i < N$. Vậy thì để đếm có bao nhiêu phần tử nhỏ hơn $M-A[i]$, ta thực sự chỉ cần biết **_vị trí_** của phần tử **_lớn nhất_** sao cho phần tử có giá trị không quá $M-A[i]$. Bởi vì mọi phần tử nhỏ hơn phần tử này đều sẽ có giá trị không quá $M-A[i]$. Ta gọi vị trí của phần tử **_lớn nhất_** này là $j$.
-- $M-A[i] > M-A[i], \forall 1 \leq i < N$. Có thể nhận thấy rằng vị trí $j$ ứng với $i$ sẽ luôn có giá trị **_lớn hơn hoặc bằng_** vị trí $j$ ứng với $i+1$. Khi $i$ tăng lên $1$ đơn vị thì $j$ luôn không đổi hoặc sẽ giảm.
-
+Bởi vì $A[i] + A[j] \leq M \Leftrightarrow A[j] \leq M - A[i]$ cho nên bài toán có thể giải theo cách như sau: "Với mỗi $i$ từ $1$ đến $N$, ta tính có bao nhiêu phần tử có giá trị nhỏ hơn $M - A[i]$". Để giải bài toán này, ta sẽ cùng phân tích một số tính chất của dãy $A$.
+- $A[i] < A[i+1], \forall 1 \leq i < N$. Vậy thì để đếm có bao nhiêu phần tử nhỏ hơn $M-A[i]$, ta thực sự chỉ cần biết **_vị trí_** của phần tử **_lớn nhất_** sao cho phần tử có giá trị không quá $M-A[i]$. Bởi vì mọi phần tử **nhỏ hơn** phần tử này đều sẽ có giá trị không quá $M-A[i]$. Ta gọi vị trí của phần tử **_lớn nhất_** này là $j$.
+- $M-A[i] > M-A[i+1], \forall 1 \leq i < N$. Có thể nhận thấy rằng khi $i$ tăng lên $1$ đơn vị thì $j$ luôn **không đổi hoặc sẽ giảm**.
 Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_** để tìm giá trị của $j$, cụ thể cách tìm sẽ được nêu ở dưới đây.
-
-### Minh họa
 ![](https://i.imgur.com/DZNoTA0.png)
 
 **VẼ LẠI MINH HỌA NHỎ HƠN**
 
-## Cài đặt
+### Cài đặt
 ```cpp
 int ans = 0;
 for (int i = 1, j = N; i <= N; i++)
@@ -52,7 +44,7 @@ for (int i = 1, j = N; i <= N; i++)
     ans += j;
 }
 ```
-$j$ luôn luôn giảm hoặc không đổi với mỗi $i$ chạy từ $1$ đến $N$, và giảm không không quá $N$.
+**_Nhận xét:_** Con trỏ $j$ luôn luôn giảm hoặc không đổi với mỗi $i$ chạy từ $1$ đến $N$, và giảm không không quá $N$.
 
 Vậy độ phức tạp của giải pháp là: $O(N)$
 
@@ -70,7 +62,7 @@ Vậy độ phức tạp của giải pháp là: $O(N)$
 Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $X$. Tìm đoạn con $[l, r]$ dài nhất sao cho tổng các phần tử trong đoạn có giá trị không quá $X$. 
 Giới hạn: $N \leq 10^5$, $A_i \leq 10^9$ và $X \leq 10^{18}$. 
 
-## Tiếp cận
+## Tiếp cận 1
 Cách làm đơn giản với bài toán này là duyệt tất cả các cặp $(l, r)$ và dùng biến $sum$ để lưu trữ tổng các phần tử từ $l$ đến $r$. 
 
 ```cpp
@@ -89,43 +81,21 @@ for (int l = 1; l <= N; l++)
 Độ phức tạp của cách làm này là: $O(N^2)$.
 
 Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
+## Tiếp cận 2
 
 Nhận thấy dãy rằng $A$ được cho là một dãy số **nguyên dương**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
 
-## Giải pháp
 ### Phân tích
 
-Vì dãy $A$ là một dãy số **nguyên dương** nên ta có $1$ số tính chất:
-- Tổng các phần tử từ $l-1$ đến $r$ luôn lớn hơn tổng các phần tử từ $l$ đến $r$
-- Nếu $\sum_{i=l}^{r} A[i] \leq X$ thì mọi $k=[l,r]$ thõa mãn $\sum_{i=l}^{r} A[i] \leq X$
-- Nếu $\sum_{i=l}^{r} A[i] > X$ thì mọi $k=[1,l]$ thõa mãn $\sum_{i=l}^{r} A[i] > X$
+Để áp dụng phương pháp $2$ con trỏ cho bài toán này, ta sẽ phân tích một số điều sau:
+- Vì dãy $A$ là một dãy số **nguyên dương** cho nên tổng các phần tử tử $l-1$ đến $r$ sẽ **lớn hơn** tổng các phần tử tử $l$ đến $r$. Từ đó, thay vì ta tìm đoạn $[l, r]$ **dài nhất** có tổng không quá $X$ thì ta có thể giải bài toán theo hướng này: "Với mỗi $r$ từ $1$ đến $N$, ta tìm vị trí **nhỏ nhất** $l$ sao cho tổng các phần tử từ $l$ đến $r$ có giá trị không quá $X$". 
+- Ta nhận thấy khi $r$ tăng lên $1$ đơn vị thì $l$ sẽ không đổi hoặc tăng lên.
 
-Coi $l_{min}$ là giá trị nhỏ nhất của $l$ sao cho $\sum_{i=l}^{r} A[i] \leq X$ thì 
-- mọi $k=[l_{min},r]$ thõa mãn $A[i]+A[k] \leq M$
-- mọi $k=[1,l_{min}-1]$ thõa mãn $A[i]+A[k] > M$
+Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_** để tìm giá trị của $l$, cụ thể cách tìm sẽ được nêu ở dưới đây.
 
-$\rightarrow$ Để tính đoạn con dài nhất thõa mãn đề bài ta chỉ cần tính $l_{min}$ tương ứng với mỗi $r$. Nhưng ta tìm $l_{min}$ bằng cách nào?
+**Minh họa lại**
 
-Giả sử ta đã tìm được $l_{min}$ ứng với $r$. Khi $r$ tăng lên $1$ đơn vị thì $l_{min}$ luôn đứng yên hoặc sẽ tăng. Có thể thấy $r$ sẽ tăng không quá $N$ đơn vị, $l_{min}$ sẽ tăng không quá $N$ đơn vị. Vậy để tìm $l_{min}$ ta có thể dùng phương pháp **_hai con trỏ_**, cụ thể cách tìm sẽ được nêu ở mục dưới đây.
-
-### Minh họa
-$A = [2, 6, 4, 3, 6, 8, 9], X = 20$.
-
-Khi $\sum_{i=p2}^{p1} A[i] > X$ ta dịch chuyển $p2$ sang phải, và tất nhiên $p2$ sẽ không vượt quá $p1$.
-
-![](https://i.imgur.com/3EBmYUf.png)
-Lúc đầu gán $p1 = p2 = 1$. Mỗi khi tìm $p2$ tương ứng thì chúng ta đều cập nhật kết quả.
-![](https://i.imgur.com/STRMl3K.png)
-Tiếp tục tịnh tiên $p1$ sang phải cho đến khi $\sum_{i=p2}^{p1} A[i] > X$
-![](https://i.imgur.com/m0hXVlt.png)
-Tịnh tiến $p2$ sang phải để $\sum_{i=p2}^{p1} A[i] \leq X$
-![](https://i.imgur.com/GPwCVPQ.png)
-Ta lặp lại quá trình này đến khi $p1$ tới cuối danh sách
-![](https://i.imgur.com/C66d283.png)
-![](https://i.imgur.com/DEDHvAy.png)
-![](https://i.imgur.com/50MqwPk.png)
-![](https://i.imgur.com/Gs1lXHk.png)
-## Cài đặt
+### Cài đặt
 
 ```cpp
 for (int l = 1, r = 1; r <= N; r++){
@@ -137,8 +107,9 @@ for (int l = 1, r = 1; r <= N; r++){
     res = max(res, r - l + 1);
 }
 ```
-Vì $l$ luôn tăng với mỗi $r$ chạy từ $1$ đến $N$ và luôn có giá trị không quá $r+1$ cho nên độ phức tạp của giải pháp là: $O(N)$.
+Vì $l$ luôn tăng với mỗi $r$ chạy từ $1$ đến $N$ và luôn có giá trị không quá $r+1$.
 
+Cho nên độ phức tạp của giải pháp là: $O(N)$.
 
 ## Bài tập:
 Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên không âm $K$. Tìm đoạn con $[l, r]$ dài nhất sao cho có không có quá $K$ giá trị phân biệt. 
