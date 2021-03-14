@@ -1,5 +1,9 @@
 # Kĩ thuật hai con trỏ
 
+**Tác giả**: Phan Đình Khôi
+
+[[_TOC_]]
+
 # Lời mở đầu 
  
 Bài viết chưa hoàn thiện
