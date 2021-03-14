@@ -1,5 +1,7 @@
 # Kĩ thuật hai con trỏ
 
+[[_TOC_]]
+
 # Lời mở đầu 
  
 Bài viết chưa hoàn thiện
