@@ -5,7 +5,7 @@
 Bài viết chưa hoàn thiện
 
 # Bài toán 1
-Cho một mảng số nguyên dương **tăng dần** $ A $ gồm $ N $ phần tử và số nguyên dương $ M $, đếm số cặp $ (i, j) $ sao cho $ 1 \leq i, j \leq N $ và $ A_i + A_j \leq M $. 
+Cho một mảng số nguyên dương **tăng dần** $ A $ gồm $ N $ phần tử và số nguyên dương $ M $, đếm số cặp $ (i, j) $ sao cho $ 1 \leq i < j \leq N $ và $ A_i + A_j \leq M $. 
 Giới hạn: $ N \leq 10^6 $ và $ A_i, M \leq 10^9 $. 
 
 ## Tiếp cận 1
@@ -14,7 +14,7 @@ Cách làm đơn giản với bài toán này là duyệt tất cả các cặp 
 ```cpp
 int ans = 0;
 for (int i = 1; i < N; i++)
-    for (int j = 1; j <= N; j++)
+    for (int j = i + 1; j <= N; j++)
     {
         if (A[i] + A[j] <= M) 
             ans++;
@@ -26,53 +26,66 @@ Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
 ## Tiếp cận 2 
 Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **tăng dần**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
 ### Phân tích
-Bởi vì $A[i] + A[j] \leq M \Leftrightarrow A[j] \leq M - A[i]$ cho nên bài toán có thể giải theo cách như sau: "Với mỗi $i$ từ $1$ đến $N$, ta tính có bao nhiêu phần tử có giá trị nhỏ hơn $M - A[i]$". Để giải bài toán này, ta sẽ cùng phân tích một số tính chất của dãy $A$.
-- $A[i] < A[i+1], \forall 1 \leq i < N$. Vậy thì để đếm có bao nhiêu phần tử nhỏ hơn $M-A[i]$, ta thực sự chỉ cần biết **_vị trí_** của phần tử **_lớn nhất_** có giá trị không quá $M-A[i]$. Bởi vì mọi phần tử **nhỏ hơn** phần tử này đều sẽ có giá trị không quá $M-A[i]$. Ta gọi vị trí của phần tử **_lớn nhất_** này là $j$.
+Bởi vì $A[i] + A[j] \leq M \Leftrightarrow A[j] \leq M - A[i]$ cho nên bài toán có thể giải theo cách như sau: "Với mỗi $i$ từ $1$ đến $N$, ta tính có bao nhiêu phần tử có giá trị **không quá** $M - A[i]$ và có vị trí **lớn hơn** $i$". Để giải bài toán này, ta sẽ cùng phân tích một số tính chất của dãy $A$.
+- $A[i] < A[i+1], \forall 1 \leq i < N$. Vậy thì để giải quyết bài toán trên, ta thực sự chỉ cần biết **_vị trí_** của phần tử **_lớn nhất_** có giá trị **không quá** $M-A[i]$, vị trí này phải có giá trị **lớn hơn** $i$. Bởi vì mọi phần tử **nhỏ hơn** phần tử này đều sẽ có giá trị không quá $M-A[i]$. Ta gọi vị trí của phần tử **_lớn nhất_** này là $j$.
 - $M-A[i] > M-A[i+1], \forall 1 \leq i < N$. Có thể nhận thấy rằng khi $i$ **tăng lên** $1$ đơn vị thì $j$ luôn **không đổi hoặc sẽ giảm**.
 Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_** để tìm giá trị của $j$, cụ thể cách tìm sẽ được nêu ở dưới đây.
+
 ![](https://i.imgur.com/caX1sWH.png)
 
 ***
 
-Mỗi $i$ từ $1$ đến $n$, ta có giá trị của $j$ tương ứng với mỗi $i$ có **giá trị giảm dần**. Vì thế, ban đầu chúng ta sẽ gán $i = 1$ và $j = N = 7$.
 
-![](https://i.imgur.com/uphOuqM.png)
-
-***
-$A[i] = 1 \rightarrow M - A[i] = 9 - 1 = 8, A[j] = 10$
-
-Vì $A[j] > M - A[i]$ nên ta sẽ giảm $j$ đi $1$ đơn vị. 
-
-![](https://i.imgur.com/JdeyVZ2.png)
-
+![](https://i.imgur.com/gf4yUcr.png)
 
 ***
 
-$A[i] = 1 \rightarrow M - A[i] = 9 - 1 = 8, A[j] = 9$
-
-Vì $A[j] > M - A[i]$ nên ta sẽ giảm $j$ đi $1$ đơn vị. 
-
-![](https://i.imgur.com/TsL0uad.png)
+![](https://i.imgur.com/IQGV1Ne.png)
 
 ***
 
-$A[i] = 1 \rightarrow M - A[i] = 9 - 1 = 8, A[j] = 8$
-Vì $A[j] > M - A[i]$ nên ta cập nhật kết quả.
-
-![](https://i.imgur.com/8svCQPx.png)
-
+![](https://i.imgur.com/HVhIBmM.png)
 
 ***
 
+![](https://i.imgur.com/sFJu8gc.png)
+
+***
+
+![](https://i.imgur.com/uQu2nPq.png)
+
+***
+
+![](https://i.imgur.com/rr3V0MD.png)
+
+***
+
+![](https://i.imgur.com/u3mH4LH.png)
+
+***
+
+![](https://i.imgur.com/o7DpiM7.png)
+
+***
+
+![](https://i.imgur.com/exkaLYY.png)
+
+***
+
+![](https://i.imgur.com/Yp7E0yu.png)
+
+***
+
+![](https://i.imgur.com/L0k3MKQ.png)
 
 ### Cài đặt
 ```cpp
 int ans = 0;
-for (int i = 1, j = N; i <= N; i++)
+for (int i = 1, j = N; i < j; i++)
 {
-    while (j != 0 && A[j] > M - A[i])
+    while (j > i && A[j] > M - A[i])
         j--;
-    ans += j;
+    ans += j - i;
 }
 ```
 **_Nhận xét:_** Con trỏ $j$ luôn luôn giảm hoặc không đổi với mỗi $i$ chạy từ $1$ đến $N$, và giảm không không quá $N$.
