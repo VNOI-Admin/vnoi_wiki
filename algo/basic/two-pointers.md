@@ -26,12 +26,33 @@ for (int i = 1; i < N; i++)
 Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
 
 ## Tiếp cận 2 
-Nhận thấy dãy rằng $A$ được cho là một dãy số nguyên **tăng dần**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
+Thay vì chúng ta đếm cặp số $(i,j)$ thõa mãn $i < j$ và $A_i+A_j\leq M$ ta có thể giải bài toán với hướng tiếp cận này: "Với mỗi $i$ từ $1$ đến $N$, hãy đếm có bao nhiêu phần tử có vị trí **lớn hơn** $i$ và có giá trị **không quá** $M - A[i]$."
+
 ### Phân tích
-Bởi vì $A[i] + A[j] \leq M \Leftrightarrow A[j] \leq M - A[i]$ cho nên bài toán có thể giải theo cách như sau: "Với mỗi $i$ từ $1$ đến $N$, ta tính có bao nhiêu phần tử có giá trị **không quá** $M - A[i]$ và có vị trí **lớn hơn** $i$". Để giải bài toán này, ta sẽ cùng phân tích một số tính chất của dãy $A$.
-- $A[i] < A[i+1], \forall 1 \leq i < N$. Vậy thì để giải quyết bài toán trên, ta thực sự chỉ cần biết **_vị trí_** của phần tử **_lớn nhất_** có giá trị **không quá** $M-A[i]$, vị trí này phải có giá trị **lớn hơn** $i$. Bởi vì mọi phần tử **nhỏ hơn** phần tử này đều sẽ có giá trị không quá $M-A[i]$. Ta gọi vị trí của phần tử **_lớn nhất_** này là $j$.
-- $M-A[i] > M-A[i+1], \forall 1 \leq i < N$. Có thể nhận thấy rằng khi $i$ **tăng lên** $1$ đơn vị thì $j$ luôn **không đổi hoặc sẽ giảm**.
-Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_** để tìm giá trị của $j$, cụ thể cách tìm sẽ được nêu ở dưới đây.
+
+Dãy $A$ là dãy số tăng dần và có một số tính chất sau:
+- Nếu $A[i] \leq X$ thì $A[1] < A[2] < ... < A[i] \leq X$
+- Nếu $A[i] > X$ thì $X < A[i] < A[i+1] < ... < A[N]$
+
+Nhận thấy rằng, nếu $j$ là giá trị **lớn nhất** sao cho $A[j] \leq M - A[i]$ thì 
+- $A[1] < A[2] < ... < A[j] \leq M - A[i]$
+- $M - A[i] < A[j + 1] < A[j + 2] < ... < A[N]$
+
+![](https://i.imgur.com/eFLSinH.png)
+
+$\Rightarrow$ Mọi phần tử có giá trị **không quá** $M-A[i]$ đều có vị trí từ $1$ đến $j$.
+
+$\Rightarrow$ Mọi phần tử có giá trị **không quá** $M-A[i]$ và có vị trí **lớn hơn** $i$ đều có vị trí  từ $i + 1$ đến $j$. 
+
+$\Rightarrow$ Có $j - i$ phần tử có giá trị **không quá** $M-A[i]$ và có vị trí **lớn hơn** $i$. Trong trường hợp $j \leq i$, thì **không có** phần tử nào có giá trị **không quá** $M-A[i]$ và có vị trí **lớn hơn** $i$.
+
+Vì thế ta có thể giải quyết bài toán này nếu xác định được giá trị của $j$ tương ứng với mỗi $i$ từ $1$ đến $N$, trong đó $j$ là **giá trị lớn nhất** sao cho $A[j] \leq M - A[i]$.
+
+Vậy làm thế nào để có thể tìm giá trị của $j$ ương ứng với mỗi $i$ từ $1$ đến $N$? Ta hãy cùng nhận xét điều sau đây:
+
+Cho $j$ là giá trị **lớn nhất** sao cho $A[j] \leq M - A[i]$, $j'$ là giá trị **lớn nhất** sao cho $A[j'] \leq M - A[i+1]$. Với những nhận xét ở trên, $j$ cũng chính là số phần tử có giá trị **không quá** $M-A[i]$ và $j'$ là số phần tử có giá trị **không quá** $M-A[i+1]$. Vì $M-A[i] > M - A[i+1]$ (do dãy $A$ tăng dần) cho nên số phần tử có giá trị không quá $M-A[i]$ phải **lớn hơn hoặc bằng** số phần tử có giá trị không quá $M-A[i+1]$. Điều đó cũng có nghĩa rằng $j \geq j'$. Vậy khi ta tăng $i$ lên $1$ đơn vị thì $j$ tương ứng với $i$ sẽ **không thay đổi** hoặc **giảm**. Nhận thấy $j$ chỉ giảm không quá $N$ đơn vị cho nên ta có thể áp dụng *phương pháp hai con trỏ* để tìm $j$. 
+
+Cụ thể, cách áp dụng phương pháp hai con trỏ để tìm $j$ sẽ được nêu ở ví dụ dưới đây:
 
 ![](https://i.imgur.com/caX1sWH.png)
 
