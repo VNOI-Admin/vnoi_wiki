@@ -7,132 +7,135 @@
 Bài viết chưa hoàn thiện
 
 # Bài toán 1
-Cho một mảng số nguyên dương **tăng dần** $ A $ gồm $ N $ phần tử và số nguyên dương $ M $, đếm số cặp $ (i, j) $ sao cho $ 1 \leq i < j \leq N $ và $ A_i + A_j \leq M $. 
-Giới hạn: $ N \leq 10^6 $ và $ A_i, M \leq 10^9 $. 
+Cho một mảng số nguyên dương **tăng dần** $A$ gồm $N$ phần tử và số nguyên dương $X$, kiểm tra xem có hai phần tử trong dãy $A$ có tổng là $X$ hay không?
 
-## Tiếp cận 1
+Giới hạn $2 \leq N \leq 10^5$ và $1 \leq X, A[i] \leq 10^9$
 
-Cách làm đơn giản với bài toán này là duyệt tất cả các cặp $(i, j)$. 
+## Tiếp cận 
+
+### Tiếp cận 1
+
+Duyệt tất cả các cặp phần tử có trong dãy $A$.
+
 ```cpp
-int ans = 0;
 for (int i = 1; i < N; i++)
     for (int j = i + 1; j <= N; j++)
-    {
-        if (A[i] + A[j] <= M) 
-            ans++;
-    }
+        if (A[i] + A[j] == X){
+            cout << "True";
+            return 0;
+        }
+cout << "False";
 ```
-Độ phức tạp của cách làm này là: $O(N^2)$.
-Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
 
-## Tiếp cận 2 
-Thay vì chúng ta đếm cặp số $(i,j)$ thõa mãn $i < j$ và $A_i+A_j\leq M$ ta có thể giải bài toán với hướng tiếp cận này: "Với mỗi $i$ từ $1$ đến $N$, hãy đếm có bao nhiêu phần tử có vị trí **lớn hơn** $i$ và có giá trị **không quá** $M - A[i]$."
+Cách làm này có độ phức tạp là $O(N^2)$.
 
-### Phân tích
+### Tiếp cận 2
 
+Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán.
 
-![](https://i.imgur.com/eFLSinH.png)
+Cụ thể thuật toán như sau:
 
+**Bước 1:** 
+Con trỏ $i$ được đặt ở vị trí thứ $1$. Con trỏ $j$ được đặt ở vị trí thứ $N$. 
 
-Cụ thể, cách áp dụng phương pháp hai con trỏ để tìm $j$ sẽ được nêu ở ví dụ dưới đây:
+**Bước 2:** 
+Nếu $A[i] + A[j] = X$ thì thông báo đã tìm được hai phần tử có tổng là $X$ và kết thúc chương trình.
+Ngược lại, nếu $A[i] + A[j] > X$ thì con trỏ $j$ di chuyển sang trái ($j = j - 1$).
+Ngược lại, nếu $A[i] + A[j] < X$ thì con trỏ $i$ di chuyển sang phải ($i = i + 1$).
 
-![](https://i.imgur.com/caX1sWH.png)
+**Bước 3:** Nếu $i < j$ thì quay lại bước $2$.
 
-***
+**Bước 4:** Thông báo không tìm được hai phần tử có tổng là $X$, kết thúc chương trình.
 
-Ban đầu, đặt $i$ có giá trị là $1$, $j$ có giá trị là $N$.
+Cách làm này có độ phức tạp là $O(N)$.
 
-![](https://i.imgur.com/gf4yUcr.png)
+Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-***
-
-Vì $A[j] > M - A[i]$ nên ta giảm $j$ đi $1$ đơn vị.
-
-![](https://i.imgur.com/IQGV1Ne.png)
-
-***
-
-Vì $A[j] > M - A[i]$ nên ta giảm $j$ đi $1$ đơn vị.
-
-![](https://i.imgur.com/HVhIBmM.png)
+![](https://i.imgur.com/RFoXIJJ.png)
 
 ***
 
-Vì $A[j] \leq M - A[i]$ nên ta sẽ cập nhật kết quả. Cụ thể là sẽ có $j$ phần tử có giá trị không quá $M-A[i]$, tuy nhiên chúng ta chỉ lấy các phần tử có vị trí lớn hơn $i$ cho nên ta cộng $j-i=4$ vào kết quả.
-
-![](https://i.imgur.com/Ie5iYpP.png)
+![](https://i.imgur.com/QWyuRgv.png)
 
 ***
 
-Sau khi cập nhật kết quả, ta sẽ tăng $i$ lên $1$ đơn vị.
+![](https://i.imgur.com/ztzQg4x.png)
 
-![](https://i.imgur.com/uQu2nPq.png)
+***
+![](https://i.imgur.com/Imwt359.png)
 
 ***
 
-Vì $A[j] > M - A[i]$ nên ta giảm $j$ đi $1$ đơn vị.
-
-![](https://i.imgur.com/rr3V0MD.png)
+![](https://i.imgur.com/t9Wu3OV.png)
 
 ***
 
-Vì $A[j] \leq M - A[i]$ nên ta sẽ cập nhật kết quả.
-
-![](https://i.imgur.com/tRzL37B.png)
+![](https://i.imgur.com/oXOBnLE.png)
 
 ***
 
-Sau khi cập nhật kết quả, ta sẽ tăng $i$ lên $1$ đơn vị.
-
-![](https://i.imgur.com/o7DpiM7.png)
+![](https://i.imgur.com/MtF7ecN.png)
 
 ***
 
-Vì $A[j] \leq M - A[i]$ nên ta sẽ cập nhật kết quả.
-
-![](https://i.imgur.com/TOoU0H0.png)
+![](https://i.imgur.com/tPIaNKv.png)
 
 ***
 
-Sau khi cập nhật kết quả, ta sẽ tăng $i$ lên $1$ đơn vị.
-
-![](https://i.imgur.com/Yp7E0yu.png)
+![](https://i.imgur.com/xF8WUue.png)
 
 ***
 
-Vì $i$ luôn tăng, $j$ thì luôn giảm hoặc giữ nguyên, hơn nữa bây giờ $i$ đang có giá trị bằng $j$, cho nên sẽ không tồn tại thêm $i < j$ cho nên chương trình kết thúc.
+![](https://i.imgur.com/1Pvslcv.png)
 
-![](https://i.imgur.com/L0k3MKQ.png)
+***
 
-### Cài đặt
+![](https://i.imgur.com/2yzAB4l.png)
+
+***
+
+![](https://i.imgur.com/wD3KLUr.png)
+
+
+
+
+## Phân tích
+
+Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
+
+
+## Cài đặt
+
 ```cpp
-int ans = 0;
-for (int i = 1, j = N; i < j; i++)
-{
-    while (j > i && A[j] > M - A[i])
+int i = 1, j = N;
+while (i < j){
+    if (A[i] + A[j] == X) {
+        cout << "True";
+        return 0;
+    }
+    if (A[i] + A[j] < X)
+        i++;
+    else
         j--;
-    ans += j - i;
 }
+cout << "False";
 ```
-**_Nhận xét:_** Con trỏ $j$ luôn luôn giảm hoặc không đổi với mỗi $i$ chạy từ $1$ đến $N$, và giảm không không quá $N$.
-
-Vậy độ phức tạp của giải pháp là: $O(N)$
 
 ## Bài tập
-*Bài 1:* Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $M$, tìm cặp số $(i, j)$ sao cho $1 \leq i < j \leq N$ và $A_i + A_j = M$. Giới hạn: $N \leq 200000$ và $A_i, M \leq 10^9$. 
-[Submit](https://cses.fi/problemset/task/1640)
-
-*Bài 2:* Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $M$, tìm cặp số $(i, j, k)$ sao cho $1 \leq i < j < k \leq N$ và $A_i + A_j + A_K = M$. Giới hạn: $N \leq 5000$ và $A_i, M \leq 10^9$.
+*Bài 1:* Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $M$, tìm cặp số $(i, j, k)$ sao cho $1 \leq i < j < k \leq N$ và $A_i + A_j + A_K = M$. Giới hạn: $N \leq 5000$ và $A_i, M \leq 10^9$.
 [Submit](https://cses.fi/problemset/task/1641)
 
-*Bài 3:* Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $M$, tìm cặp số $(i, j, k, l)$ sao cho $1 \leq i < j < k < l \leq N$ và $A_i + A_j + A_K + A_l = M$. Giới hạn: $N \leq 1000$ và $A_i, M \leq 10^9$.
+*Bài 2:* Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $M$, tìm cặp số $(i, j, k, l)$ sao cho $1 \leq i < j < k < l \leq N$ và $A_i + A_j + A_K + A_l = M$. Giới hạn: $N \leq 1000$ và $A_i, M \leq 10^9$.
 [Submit](https://cses.fi/problemset/task/1642)
 
 # Bài toán 2
 Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $X$. Tìm đoạn con $[l, r]$ dài nhất sao cho tổng các phần tử trong đoạn có giá trị không quá $X$. 
-Giới hạn: $N \leq 10^5$, $A_i \leq 10^9$ và $X \leq 10^{18}$. 
+Giới hạn: $N \leq 10^5$, $A_i \leq X \leq 10^{9}$. 
 
-## Tiếp cận 1
+## Tiếp cận 
+
+### Tiếp cận 1
+
 Cách làm đơn giản với bài toán này là duyệt tất cả các cặp $(l, r)$ và dùng biến $sum$ để lưu trữ tổng các phần tử từ $l$ đến $r$. 
 
 ```cpp
@@ -148,25 +151,33 @@ for (int l = 1; l <= N; l++)
     }
 }
 ```
-Độ phức tạp của cách làm này là: $O(N^2)$.
+Cách làm này có độ phức tạp $O(N^2)$.
 
-Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
-## Tiếp cận 2
+### Tiếp cận 2
 
-Nhận thấy dãy rằng $A$ được cho là một dãy số **nguyên dương**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
+Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán.
 
-### Phân tích
+Cụ thể thuật toán như sau:
+**Bước 1:** 
+Con trỏ $l$ được đặt ở vị trí thứ $1$. Con trỏ $r$ được đặt ở vị trí thứ $1$. 
+**Bước 2:** 
+Di duyển $l$ sang phải ($l = l + 1$) cho đến khi tổng các phần tử từ $l$ đến $r$ có giá trị không quá $X$.
+**Bước 3:**
+Cập nhật kết quả ($ans = max (ans, r - l + 1)$).
+**Bước 4:**
+Nếu $r < N$ thì di chuyển $r$ sang phải ($r = r + 1$) và quay lại bước $2$.
+**Bước 5:** In ra kết quả và kết thúc chương trình.
 
-Để áp dụng phương pháp $2$ con trỏ cho bài toán này, ta sẽ phân tích một số điều sau:
-- Vì dãy $A$ là một dãy số **nguyên dương** cho nên tổng các phần tử tử $l-1$ đến $r$ sẽ **lớn hơn** tổng các phần tử tử $l$ đến $r$. Từ đó, thay vì ta tìm đoạn $[l, r]$ **dài nhất** có tổng không quá $X$ thì ta có thể giải bài toán theo hướng này: "Với mỗi $r$ từ $1$ đến $N$, ta tìm vị trí **nhỏ nhất** $l$ sao cho tổng các phần tử từ $l$ đến $r$ có giá trị không quá $X$". 
-- Ta nhận thấy khi $r$ **tăng lên** $1$ đơn vị thì $l$ sẽ **không đổi hoặc tăng lên.**
+Cách làm này có độ phức tạp là $O(N)$.
 
-Từ những phân tích trên, ta sẽ dùng phương pháp **_hai con trỏ_** để tìm giá trị của $l$, cụ thể cách tìm sẽ được nêu ở dưới đây.
+Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-**Minh họa lại**
+## Phân tích
 
-### Cài đặt
+Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
 
+
+## Cài đặt
 ```cpp
 for (int l = 1, r = 1; r <= N; r++){
     sum += A[r];
@@ -174,12 +185,10 @@ for (int l = 1, r = 1; r <= N; r++){
         sum -= A[l];
         l++;
     }
-    res = max(res, r - l + 1);
+    ans = max(ans, r - l + 1);
 }
+cout << ans;
 ```
-Vì $l$ luôn tăng với mỗi $r$ chạy từ $1$ đến $N$ và luôn có giá trị không quá $r+1$.
-
-Cho nên độ phức tạp của giải pháp là: $O(N)$.
 
 ## Bài tập:
 Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên không âm $K$. Tìm đoạn con $[l, r]$ dài nhất sao cho có không có quá $K$ giá trị phân biệt. 
@@ -192,9 +201,12 @@ Luyện tập thêm [tại đây](https://vnoi.info/problems/SOPENP/) và [tại
 Cho hai mảng số nguyên đã được **sắp xếp tăng dần** $A$ và $B$ lần lượt có $N$ và $M$ phần tử. Hãy ghép chúng thành mảng $C$ được bố trí theo thứ tự tăng dần.
 Giới hạn: $N, M \leq 10^5$ và $-10^9 \leq A_i, B_i \leq 10^{9}$.
 
-## Tiếp cận 1
+## Tiếp cận
+
+### Tiếp cận 1
+
 Đưa từng phần tử trong mảng $A$ và mảng $B$ vào mảng $C$. Sau đó sử dụng hàm $sort$ trong $C++$ để sắp xếp.
-```
+```cpp
 for (int i = 1; i <= N; i++)
     C[i] = A[i];
 for (int i = 1; i <= M; i++)
@@ -203,36 +215,40 @@ sort(C + 1, C + N + M + 1);
 ```
 Độ phức tạp của cách làm này là: $O((N+M)log(N+M))$.
 
-Vậy có cách nào để chúng ta có thể giảm độ phức tạp không?
+### Tiếp cận 2
 
-## Tiêp cận 2
+Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán.
 
-Nhận thấy dãy rằng $A, B$ được cho là một dãy số **tăng dần** và cần xây dựng mảng $C$ cũng **tăng dần**. Từ đó có thể rút ra được một số tính chất quan trọng và có thể giải quyết bài toán trong độ phức tạp ***nhỏ hơn*** với phương pháp ***hai con trỏ***. 
+Cụ thể thuật toán như sau:
+**Bước 1:** 
+Con trỏ $i$ được đặt ở vị trí thứ $1$ của mảng $A$. Con trỏ $j$ được đặt ở vị trí thứ $1$ của mảng $B$. 
+**Bước 2:** 
+Nếu $j = M + 1$ hoặc ($i \leq N$ và $A[i] < B[j]$) thì lấy $A[i]$ vào mảng $C$, và di chuyển $i$ sang phải ($i = i + 1$).
+Ngược lại, lấy $B[j]$ vào mảng $C$ và  di chuyển $j$ sang phải ($j = j + 1$).
+**Bước 3:**
+Nếu $i \leq N$ hoặc $j \leq M$ thì quay lại bước $2$.
+**Bước 4:**
+In ra mảng $C$ và kết thúc chương trình.
 
-### Phân tích
+Cách làm này có độ phức tạp là $O(N + M)$.
 
-Vì cả dãy $A$, $B$ là dãy số **tăng dần** và mảng $C$ được ghép từ $A, B$ cũng là dãy **tăng dần** nên ta có một số tính chất sau:
-- Tất cả các phần tử trong dãy $A$, $B$ đều xuất hiện trong dãy $C$.
-- Nếu $i < j$ thì trong dãy $C$ phần tử $A[i]$ sẽ đứng trước phần tử $A[j]$.
-- Nếu $i < j$ thì trong dãy $C$ phần tử $B[i]$ sẽ đứng trước phần tử $B[j]$.
+Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-Từ những tính chất trên ta có thể giải quyết bài toán với phương pháp **_hai con trỏ_**, cụ thể cách tìm sẽ được nêu ở mục dưới đây.
+## Phân tích
+Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
 
-## Minh họa
-
-**Minh họa lại**
 
 ## Cài đặt
-
 ```cpp
-for (int i = 1, j = 1; i <= N || j <= M; ) {
-    if (j == M + 1 || i <= N && A[i] < B[j]) 
+int i = 1, j = 1;
+vector<int> C;
+while (i <= N || j <= M){
+    if (j == M + 1 || (i <= N && A[i] < B[j]))
         C.push_back(A[i++]);
-    else
+    else 
         C.push_back(B[j++]);
 }
 ```
-Vì $i, j$ luôn tăng trong đó $i$ tăng không quá $N$ đơn vị, $j$ tăng không quá $M$ đơn vị, cho nên độ phức tạp của cách làm này là $O(N+M)$, 
 
 ## Bài tập
 
