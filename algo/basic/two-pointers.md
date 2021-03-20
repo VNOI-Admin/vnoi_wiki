@@ -53,46 +53,46 @@ Cách làm này có độ phức tạp là $O(N)$.
 
 ![](https://i.imgur.com/RFoXIJJ.png)
 
-***
+
 
 ![](https://i.imgur.com/QWyuRgv.png)
 
-***
+
 
 ![](https://i.imgur.com/ztzQg4x.png)
 
-***
+
 ![](https://i.imgur.com/Imwt359.png)
 
-***
+
 
 ![](https://i.imgur.com/t9Wu3OV.png)
 
-***
+
 
 ![](https://i.imgur.com/oXOBnLE.png)
 
-***
+
 
 ![](https://i.imgur.com/MtF7ecN.png)
 
-***
+
 
 ![](https://i.imgur.com/tPIaNKv.png)
 
-***
+
 
 ![](https://i.imgur.com/xF8WUue.png)
 
-***
+
 
 ![](https://i.imgur.com/1Pvslcv.png)
 
-***
+
 
 ![](https://i.imgur.com/2yzAB4l.png)
 
-***
+
 
 ![](https://i.imgur.com/wD3KLUr.png)
 
