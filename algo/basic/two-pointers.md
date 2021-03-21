@@ -51,11 +51,11 @@ Cách làm này có độ phức tạp là $O(N)$.
 
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-![](https://i.imgur.com/TJriIk3.png)
+![](https://i.imgur.com/Guac9qd.png)
 
 ***
 
-![](https://i.imgur.com/BZKrBsx.jpg)
+![](https://i.imgur.com/sjyxirZ.jpg)
 
 
 ## Phân tích
@@ -130,7 +130,9 @@ Cụ thể thuật toán như sau:
 
 Cách làm này có độ phức tạp là $O(N)$.
 
-Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
+Để hiểu rõ hơn, ta hãy cùng xem qua ví dụ sau đây:
+
+![](https://i.imgur.com/F6MufFR.jpg)
 
 ## Phân tích
 
@@ -180,19 +182,25 @@ sort(C + 1, C + N + M + 1);
 Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán.
 
 Cụ thể thuật toán như sau:
+
 **Bước 1:** 
 Con trỏ $i$ được đặt ở vị trí thứ $1$ của mảng $A$. Con trỏ $j$ được đặt ở vị trí thứ $1$ của mảng $B$. 
+
 **Bước 2:** 
 Nếu $j = M + 1$ hoặc ($i \leq N$ và $A[i] < B[j]$) thì lấy $A[i]$ vào mảng $C$, và di chuyển $i$ sang phải ($i = i + 1$).
 Ngược lại, lấy $B[j]$ vào mảng $C$ và  di chuyển $j$ sang phải ($j = j + 1$).
+
 **Bước 3:**
 Nếu $i \leq N$ hoặc $j \leq M$ thì quay lại bước $2$.
+
 **Bước 4:**
 In ra mảng $C$ và kết thúc chương trình.
 
 Cách làm này có độ phức tạp là $O(N + M)$.
 
-Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
+Để hiểu rõ hơn, ta hãy cùng xem qua ví dụ sau đây:
+
+![](https://i.imgur.com/koxqUp7.jpg)
 
 ## Phân tích
 Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
