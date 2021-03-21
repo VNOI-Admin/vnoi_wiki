@@ -51,52 +51,11 @@ Cách làm này có độ phức tạp là $O(N)$.
 
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-![](https://i.imgur.com/RFoXIJJ.png)
+![](https://i.imgur.com/TJriIk3.png)
 
+***
 
-
-![](https://i.imgur.com/QWyuRgv.png)
-
-
-
-![](https://i.imgur.com/ztzQg4x.png)
-
-
-![](https://i.imgur.com/Imwt359.png)
-
-
-
-![](https://i.imgur.com/t9Wu3OV.png)
-
-
-
-![](https://i.imgur.com/oXOBnLE.png)
-
-
-
-![](https://i.imgur.com/MtF7ecN.png)
-
-
-
-![](https://i.imgur.com/tPIaNKv.png)
-
-
-
-![](https://i.imgur.com/xF8WUue.png)
-
-
-
-![](https://i.imgur.com/1Pvslcv.png)
-
-
-
-![](https://i.imgur.com/2yzAB4l.png)
-
-
-
-![](https://i.imgur.com/wD3KLUr.png)
-
-
+![](https://i.imgur.com/BZKrBsx.jpg)
 
 
 ## Phân tích
@@ -158,14 +117,15 @@ Cách làm này có độ phức tạp $O(N^2)$.
 Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán.
 
 Cụ thể thuật toán như sau:
-**Bước 1:** 
-Con trỏ $l$ được đặt ở vị trí thứ $1$. Con trỏ $r$ được đặt ở vị trí thứ $1$. 
-**Bước 2:** 
-Di duyển $l$ sang phải ($l = l + 1$) cho đến khi tổng các phần tử từ $l$ đến $r$ có giá trị không quá $X$.
-**Bước 3:**
-Cập nhật kết quả ($ans = max (ans, r - l + 1)$).
-**Bước 4:**
-Nếu $r < N$ thì di chuyển $r$ sang phải ($r = r + 1$) và quay lại bước $2$.
+
+**Bước 1:** Con trỏ $l$ được đặt ở vị trí thứ $1$. Con trỏ $r$ được đặt ở vị trí thứ $1$. 
+
+**Bước 2:** Di duyển $l$ sang phải ($l = l + 1$) cho đến khi tổng các phần tử từ $l$ đến $r$ có giá trị không quá $X$.
+
+**Bước 3:** Cập nhật kết quả ($ans = max (ans, r - l + 1)$).
+
+**Bước 4:** Nếu $r < N$ thì di chuyển $r$ sang phải ($r = r + 1$) và quay lại bước $2$.
+
 **Bước 5:** In ra kết quả và kết thúc chương trình.
 
 Cách làm này có độ phức tạp là $O(N)$.
