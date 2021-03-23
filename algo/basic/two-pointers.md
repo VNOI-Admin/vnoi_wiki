@@ -31,23 +31,14 @@ Cách làm này có độ phức tạp là $O(N^2)$.
 
 ### Tiếp cận 2
 
-Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán.
+Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán như sau:
 
-Cụ thể thuật toán như sau:
-
-**Bước 1:** 
-Con trỏ $i$ được đặt ở vị trí thứ $1$. Con trỏ $j$ được đặt ở vị trí thứ $N$. 
-
-**Bước 2:** 
-Nếu $A[i] + A[j] = X$ thì thông báo đã tìm được hai phần tử có tổng là $X$ và kết thúc chương trình.
-Ngược lại, nếu $A[i] + A[j] > X$ thì con trỏ $j$ di chuyển sang trái ($j = j - 1$).
-Ngược lại, nếu $A[i] + A[j] < X$ thì con trỏ $i$ di chuyển sang phải ($i = i + 1$).
-
-**Bước 3:** Nếu $i < j$ thì quay lại bước $2$.
-
-**Bước 4:** Thông báo không tìm được hai phần tử có tổng là $X$, kết thúc chương trình.
-
-Cách làm này có độ phức tạp là $O(N)$.
+- Con trỏ $i$ bắt đầu từ vị trí đầu tiên của dãy, con trỏ $j$ bắt đầu từ vị trí cuối cùng của dãy.
+- Nếu tổng hai phần tử ở hai vị trí con trỏ có giá trị:
+    - Nhỏ hơn $X$: tăng vị trí con trỏ $i$ lên $1$ đơn vị
+    - Lớn hơn $X$: giảm vị trí con trỏ $j$ đi $1$ đơn vị
+- Ta tiếp tục di chuyển vị trí hai con trỏ cho đến khi tổng hai phần tử ở hai vị trí đó có giá trị là $X$, hoặc cho đến khi hai con trỏ gặp nhau ở cùng một vị trí.
+- Trong trường hợp hai con trỏ có cùng vị trí thì trong dãy $A$ không tồn tại hai phần tử có tổng là $X$. Ngược lại, trong dãy $A$ tồn tại hai phần tử có tổng là $X$.
 
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
@@ -88,7 +79,7 @@ cout << "False";
 [Submit](https://cses.fi/problemset/task/1642)
 
 # Bài toán 2
-Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $X$. Tìm đoạn con $[l, r]$ dài nhất sao cho tổng các phần tử trong đoạn có giá trị không quá $X$. 
+Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $X$. Tìm độ dài đoạn con $[l, r]$ dài nhất sao cho tổng các phần tử trong đoạn có giá trị không quá $X$. 
 Giới hạn: $N \leq 10^5$, $A_i \leq X \leq 10^{9}$. 
 
 ## Tiếp cận 
@@ -114,24 +105,18 @@ Cách làm này có độ phức tạp $O(N^2)$.
 
 ### Tiếp cận 2
 
-Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán.
+Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán như sau:
 
-Cụ thể thuật toán như sau:
-
-**Bước 1:** Con trỏ $l$ được đặt ở vị trí thứ $1$. Con trỏ $r$ được đặt ở vị trí thứ $1$. 
-
-**Bước 2:** Di duyển $l$ sang phải ($l = l + 1$) cho đến khi tổng các phần tử từ $l$ đến $r$ có giá trị không quá $X$.
-
-**Bước 3:** Cập nhật kết quả ($ans = max (ans, r - l + 1)$).
-
-**Bước 4:** Nếu $r < N$ thì di chuyển $r$ sang phải ($r = r + 1$) và quay lại bước $2$.
-
-**Bước 5:** In ra kết quả và kết thúc chương trình.
-
-Cách làm này có độ phức tạp là $O(N)$.
+- Con trỏ $l$ và $r$ đều bắt đầu từ vị trí đầu tiên của dãy.
+- Tăng dần vị trí con trỏ $r$ mỗi lần $1$ đơn vị cho đến khi con trỏ $r$ nằm ở vị trí cuối dãy.
+- Mỗi khi tăng vị trí con trỏ $r$ lên $1$ đơn vị:
+    - Nếu tổng các phần tử từ vị trí $l$ đến $r$ có giá trị:
+        - Không quá $X$: giữ nguyên vị trí con trỏ $l$.
+        - Lớn hơn $X$: tăng vị trí con trỏ $l$ cho đến khi tổng các phần tử từ vị trí $l$ đến $r$ có giá trị không quá $X$.
+    - Sau khi cập nhật vị trí của con trỏ $l$, ta sẽ có một đoạn con $[l, r]$. Đoạn con này chính là đoạn con dài nhất có phần tử cuối ở vị trí $r$ và tổng các phần tử không quá $X$.
+- Với mỗi $r$ từ $1$ đến $n$, ta đã biết được đoạn con dài nhất kết thúc tại $r$ với tổng các phần tử không quá $X$, từ đó kết quả của chúng ta sẽ là đoạn dài nhất trong các đoạn con này. 
 
 Để hiểu rõ hơn, ta hãy cùng xem qua ví dụ sau đây:
-
 ![](https://i.imgur.com/F6MufFR.jpg)
 
 ## Phân tích
@@ -159,7 +144,7 @@ Giới hạn: $N \leq 10^5$, $0 \leq K \leq N$ và $A_i \leq 10^{5}$.
 Luyện tập thêm [tại đây](https://vnoi.info/problems/SOPENP/) và [tại đây](https://vnoi.info/problems/KRECT/)
 
 
-# Bài toán 3 (Merge Sort)
+# Bài toán 3 
 Cho hai mảng số nguyên đã được **sắp xếp tăng dần** $A$ và $B$ lần lượt có $N$ và $M$ phần tử. Hãy ghép chúng thành mảng $C$ được bố trí theo thứ tự tăng dần.
 Giới hạn: $N, M \leq 10^5$ và $-10^9 \leq A_i, B_i \leq 10^{9}$.
 
@@ -179,24 +164,16 @@ sort(C + 1, C + N + M + 1);
 
 ### Tiếp cận 2
 
-Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán.
+Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán như sau:
 
-Cụ thể thuật toán như sau:
-
-**Bước 1:** 
-Con trỏ $i$ được đặt ở vị trí thứ $1$ của mảng $A$. Con trỏ $j$ được đặt ở vị trí thứ $1$ của mảng $B$. 
-
-**Bước 2:** 
-Nếu $j = M + 1$ hoặc ($i \leq N$ và $A[i] < B[j]$) thì lấy $A[i]$ vào mảng $C$, và di chuyển $i$ sang phải ($i = i + 1$).
-Ngược lại, lấy $B[j]$ vào mảng $C$ và  di chuyển $j$ sang phải ($j = j + 1$).
-
-**Bước 3:**
-Nếu $i \leq N$ hoặc $j \leq M$ thì quay lại bước $2$.
-
-**Bước 4:**
-In ra mảng $C$ và kết thúc chương trình.
-
-Cách làm này có độ phức tạp là $O(N + M)$.
+- Mảng $A$ có con trỏ $i$, con trỏ này bắt đầu ở vị trí đầu dãy $A$.
+- Mảng $B$ có con trỏ $j$, con trỏ này bắt đầu ở vị trí đầu dãy $B$.
+- Ta sẽ lập lại công việc này, cho đến khi đưa hết các phần tử trong mảng $A$ và $B$ vào mảng $C$:
+    - Khi các phần tử trong một dãy nào đó, dãy $A$ hoặc dãy $B$, đều đã được đưa vào dãy $C$: Đưa các phần tử trong dãy còn lại vào dãy $C$.
+    - Ngược lại: 
+        - So sánh hai phần tử ở hai con trỏ,
+        - Đưa phần tử có giá trị nhỏ hơn vào dãy $C$, nếu hai phần tử có giá trị như nhau thì chọn $1$ trong $2$.
+        - Tăng vị trí con trỏ ở phần tử đó lên $1$ đơn vị.
 
 Để hiểu rõ hơn, ta hãy cùng xem qua ví dụ sau đây:
 
