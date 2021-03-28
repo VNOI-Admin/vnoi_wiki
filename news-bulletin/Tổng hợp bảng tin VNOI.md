@@ -8,4 +8,4 @@ Dưới đây là danh sách tổng hợp các bảng tin đã được đăng t
 
 * [Bảng tin 04/01/2021](https://vnoi.info/wiki/news-bulletin/b%E1%BA%A3ng-tin-04012021.md)
 
-* [Bảng tin 04/03/2021](https://vnoi.info/wiki/news-bulletin/b%E1%BA%A3ng-tin-04032021.md)
+* [Bảng tin 01/02/2021](https://vnoi.info/wiki/news-bulletin/b%E1%BA%A3ng-tin-04032021.md)
