@@ -17,7 +17,6 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://ww
 Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đồ thị, do phần này những quyển sách như sách thầy Lê Minh Hoàng, Tài liệu giáo khoa chuyên tin (download ở [[Một số tài liệu hay về Thuật Toán|algo/basic/Tai-Lieu-Thuat-Toan]]) đã viết rất chi tiết.
 
 # [Bảng tin VNOI](news-bulletin/bảng-tin.md)
-## 
 * [Bảng tin 30/11/2020](news-bulletin/bảng-tin-30112020.md) 
 * [Bảng tin 14/12/2020](news-bulletin/bảng-tin-14122020.md)
 * [Bảng tin 30/11/2020](news-bulletin/bảng-tin-30112020.md)
