@@ -61,7 +61,7 @@ Trước tiên, ta sẽ xem xét bài toán sau: Kiểm tra trong đoạn con $[
     - $A[i]+A[j]<X$, dãy $A$ được sắp xếp tăng dần nên các phần tử trong đoạn $[i,j]$ đều nhỏ hơn phần tử $A[j]$. Vậy tổng của $A[i]$ với mỗi phần tử trong đoạn $[i,j]$ đều có giá trị nhỏ hơn $X$. Từ đó ta không cần quan tâm đến $A[i]$ nữa mà chỉ quan tâm đến đoạn con $[i+1, j]$ mà thôi
     - $A[i]+A[j]>X$, dãy $A$ được sắp xếp tăng dần nên các phần tử trong đoạn $[i,j]$ đều lớn hơn phần tử $A[i]$. Vậy tổng của $A[j]$ với mỗi phần tử trong đoạn $[i,j]$ đều có giá trị lớn hơn $X$. Từ đó ta không cần quan tâm đến $A[j]$ nữa mà chỉ quan tâm đến đoạn con $[i, j-1]$ mà thôi.
 
-Từ những nhận xét trên, ta có được phương pháp hai con trỏ được nêu ở trên. Trong đó hai con trỏ $i$ và $j$ thể hiện thay cho đoạn con $[i, j]$. 
+Từ những nhận xét này, ta có được phương pháp hai con trỏ được nêu ở trên. Trong đó hai con trỏ $i$ và $j$ thể hiện thay cho đoạn con $[i, j]$. 
 
 Ban đầu, ta đặt $i=1$ và $j=N$, vậy ta sẽ kiểm tra được sự tồn tại hai phần tử khác nhau có tổng là $X$ trong đoạn $[1, n]$, cũng chính là dãy $A$.
 
@@ -93,7 +93,7 @@ cout << "False";
 [Submit](https://cses.fi/problemset/task/1642)
 
 # Bài toán 2
-Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $X$. Tìm độ dài đoạn con $[l, r]$ dài nhất sao cho tổng các phần tử trong đoạn có giá trị không quá $X$. 
+Cho một mảng số **nguyên dương** $A$ gồm $N$ phần tử và số nguyên dương $X$. Tìm độ dài đoạn con $[l, r]$ dài nhất sao cho tổng các phần tử trong đoạn có giá trị không quá $X$. 
 Giới hạn: $N \leq 10^5$, $A_i \leq X \leq 10^{9}$. 
 
 ## Tiếp cận 
@@ -137,8 +137,23 @@ Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán nh�
 
 Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
 
+Vì dãy $A$ là dãy số nguyên dương, nên tổng các phần tử trong đoạn $[l, r]$ sẽ nhỏ hơn các phần tử trong đoạn $[l', r]$ với mọi $(l' < l \leq r)$. 
+Từ đó, khi $l$ là vị trị nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$(luôn tồn tại $l\leq r$ vì $A[r] \leq X$):
+- Tổng các phần tử trong đoạn $[l', r]$ có giá trị lớn hơn $X$ với $1 \leq l' < l$.
+- Tổng các phần tử trong đoạn $[l', r]$ có giá trị không quá $X$ với $l \leq l' \leq r$.
+
+→ Nếu $l$ là vị trị nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$ thì đoạn con $[l, r]$ chính là đoạn con dài nhất có tổng các phần tử không quá $X$ với phần tử cuối cùng ở vị trí $r$. Bài toán sẽ được giải nếu ta biết tất cả các $l$ tương ứng với mỗi $r$ từ $1$ đến $N$. Để xác định được $l$ ta có một số nhận xét sau:
+- $l$ là vị trí nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$
+- $l'$ là vị trí nhỏ nhất sao cho $Sum(A[l']...A[r+1]) \leq X$
+- $Sum(A[l']...A[r+1]) > Sum(A[l']...A[r])$ 
+Mà $Sum(A[l']...A[r+1]) \leq X$ → $Sum(A[l']...A[r]) \leq X$. Nếu $l' < l$ thì sẽ mẫu thuần rằng $l$ là vị trị nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$ → $l' \geq l$.
+
+Từ những nhận xét này, ta có được phương pháp hai con trỏ được nêu ở trên. Nhận thấy rằng con trỏ $l$ và con trỏ $r$ luôn tăng và tăng không quá $N$ lần, cho nên độ phức tạp của bài này là $O(N)$.
 
 ## Cài đặt
+
+Các bạn có thể tham khảo cách cài đặt bài toán với phương pháp hai con trỏ sau đây:
+
 ```cpp
 for (int l = 1, r = 1; r <= N; r++){
     sum += A[r];
@@ -165,7 +180,6 @@ Giới hạn: $N, M \leq 10^5$ và $-10^9 \leq A_i, B_i \leq 10^{9}$.
 ## Tiếp cận
 
 ### Tiếp cận 1
-
 Đưa từng phần tử trong mảng $A$ và mảng $B$ vào mảng $C$. Sau đó sử dụng hàm $sort$ trong $C++$ để sắp xếp.
 ```cpp
 for (int i = 1; i <= N; i++)
@@ -196,8 +210,16 @@ Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán nh�
 ## Phân tích
 Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
 
+Ta cần xây dựng mảng $C$ là một mảng tăng dần nên mỗi phần tử đưa vào mảng $C$ chính là phần tử nhỏ nhất trong các phần tử chưa được đưa vào trong hai mảng $A$ và $B$. Với phương pháp hai con trỏ được nêu trên, con trỏ $i$ chính là phần tử dãy $A$ nhỏ nhất chưa được đưa vào $C$, con trỏ $j$ chính là phần tử dãy $B$ nhỏ nhất chưa được đưa vào $C$. 
+
+Để biết được phần tử tiếp theo ta cần thêm vào, ta chỉ cần so sánh hai phần tử chưa được đưa vào nhỏ nhất mỗi mảng $A$ và $B$ và đưa phần tử có giá trị nhỏ hơn vào. Vì dãy $A$ đã được sắp xếp tăng dần cho nên khi ta đưa $A[i]$ vào mảng $C$ thì $A[i+1]$ sẽ là phần tử dãy $A$ nhỏ nhất chưa được đưa vào $C$. Tương tự, dãy $B$ đã được sắp xếp tăng dần cho nên khi ta đưa $B[j]$ vào mảng $C$ thì $B[j+1]$ sẽ là phần tử dãy $B$ nhỏ nhất chưa được đưa vào $C$. Khi thêm các phần tử như vậy vào mảng $C$, ta sẽ được một mảng $C$ được ghép từ mảng $A$ và mảng $B$ và các phần tử $C$ được bố trí theo thứ tự tăng dần.
+
+Nhận thấy, con trỏ $i$, $j$ đều tăng, trong đó $i$ luôn tăng không quá $N$ lần, $j$ tăng không quá $M$ lần. Vì vậy độ phức tạp của bài toán là $O(N+M)$.
 
 ## Cài đặt
+
+Các bạn có thể tham khảo cách cài đặt bài toán với phương pháp hai con trỏ sau đây:
+
 ```cpp
 int i = 1, j = 1;
 vector<int> C;
