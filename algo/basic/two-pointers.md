@@ -53,8 +53,22 @@ Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán nh�
 
 Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
 
+Trước tiên, ta sẽ xem xét bài toán sau: Kiểm tra trong đoạn con $[i, j]$ có tồn tại hai phần tử khác nhau có tổng là $X$ hay không. 
+
+- Nếu đoạn con $[i, j]$ có **một** phần tử, tức $i=j$, thì chắc chắn trong đoạn sẽ không có hai phần tử khác nhau có tổng là $X$.
+- Ngược lại, nếu đoạn con $[i, j]$ có ít nhất hai phần tử $(i<j)$
+    - $A[i]+A[j]=X$, trong đoạn $[i,j]$ tồn tại hai phần tử khác nhau là $A[i]$ và $A[j]$ có tổng là $X$.
+    - $A[i]+A[j]<X$, dãy $A$ được sắp xếp tăng dần nên các phần tử trong đoạn $[i,j]$ đều nhỏ hơn phần tử $A[j]$. Vậy tổng của $A[i]$ với mỗi phần tử trong đoạn $[i,j]$ đều có giá trị nhỏ hơn $X$. Từ đó ta không cần quan tâm đến $A[i]$ nữa mà chỉ quan tâm đến đoạn con $[i+1, j]$ mà thôi
+    - $A[i]+A[j]>X$, dãy $A$ được sắp xếp tăng dần nên các phần tử trong đoạn $[i,j]$ đều lớn hơn phần tử $A[i]$. Vậy tổng của $A[j]$ với mỗi phần tử trong đoạn $[i,j]$ đều có giá trị lớn hơn $X$. Từ đó ta không cần quan tâm đến $A[j]$ nữa mà chỉ quan tâm đến đoạn con $[i, j-1]$ mà thôi.
+
+Từ những nhận xét trên, ta có được phương pháp hai con trỏ được nêu ở trên. Trong đó hai con trỏ $i$ và $j$ thể hiện thay cho đoạn con $[i, j]$. 
+
+Ban đầu, ta đặt $i=1$ và $j=N$, vậy ta sẽ kiểm tra được sự tồn tại hai phần tử khác nhau có tổng là $X$ trong đoạn $[1, n]$, cũng chính là dãy $A$.
+
+Ta thấy rằng độ dài của đoạn con $[i, j]$ luôn giảm, và luôn giảm không quá $N$ lần. Cho nên độ phức tạp của bài này là $O(N)$.
 
 ## Cài đặt
+Các bạn có thể tham khảo cách cài đặt bài toán với phương pháp hai con trỏ sau đây:
 
 ```cpp
 int i = 1, j = N;
