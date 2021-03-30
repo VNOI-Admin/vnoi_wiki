@@ -88,7 +88,7 @@ int query(int l, int r, int k)
     for (int i = l, lim = blockL * BLOCK_SIZE; i < lim; ++i)
         if (a[i] == k) ++sum;
         
-    for (int i = blockR * BLOCK_SIZE + 1; i <= r; ++i)
+    for (int i = (blockR + 1) * BLOCK_SIZE; i <= r; ++i)
         if (a[i] == k) ++sum;
         
     return sum;
