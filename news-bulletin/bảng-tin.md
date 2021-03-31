@@ -1,6 +1,6 @@
 Chào các bạn VNOI 
 
-Dưới đây là bài viết tổng hợp các bài viết / comment chất lượng trong **4 tuần** từ **01/02/2020 đến 28/02/2021**. Cảm ơn bạn **Trần Xuân Lộc** đã đóng góp nhiều câu trả lời bổ ích cho các post hỏi bài. Để có bài viết/ comment xuất hiện trong bảng tin, các bạn hãy cố gắng đặt các câu hỏi hay hoặc viết các câu trả lời thật hữu ích nhé! 
+Dưới đây là bài viết tổng hợp các bài viết / comment chất lượng trong **tháng Ba** (từ **1/3/2021** đến **31/3/2021**). Để có bài viết/ comment xuất hiện trong bảng tin, các bạn hãy cố gắng đặt các câu hỏi hay hoặc viết các câu trả lời thật hữu ích nhé! 
 
 ## Các link quan trọng:
 * [Thư viện đề thi VNOI](https://drive.google.com/drive/folders/1LBcmCf7TEwKJeaIgDRk-BBkHQbkHyR3n?usp=sharing)
@@ -8,21 +8,25 @@ Dưới đây là bài viết tổng hợp các bài viết / comment chất lư
 * [Nội quy group VNOI](https://www.facebook.com/groups/VNOIForum/permalink/3551923554828453/)
 
 ## Bảng tin:
-* [Tìm lời giải cho khối Rubik kì dị bằng thuật toán A* - anh Nguyễn Tiến Trung Kiên](https://www.facebook.com/groups/VNOIForum/permalink/3973973202623484/)
+* [Đại hội thành lập Câu lạc bộ Olympic Tin học Việt Nam (VNOI)](https://www.facebook.com/groups/VNOIForum/permalink/4046451588708978/)
 
-* [Tham khảo về việc làm ở mảng hardware trong những công ty lớn](https://www.facebook.com/groups/VNOIForum/permalink/3995275243826613/) 
+* [Project VNOI Wiki chính thức trở lại](https://www.facebook.com/groups/VNOIForum/permalink/4030128907007913/)
 
-* [Hỏi về Sàng nguyên tố trên đoạn](https://www.facebook.com/groups/VNOIForum/permalink/3945174585503346/)
+* [Thông báo về kì thi Cá Tháng Tư trên LQDOJ](https://www.facebook.com/groups/VNOIForum/permalink/4084337538253716/)
 
-* [Hỏi bài Barcode ICPC Regional 2017](https://www.facebook.com/groups/VNOIForum/permalink/3982820615072076/)
+* [Hỏi bài về số nguyên tố đối xứng](https://www.facebook.com/groups/VNOIForum/permalink/4069043123116491/)
 
-* [Hỏi bài D 2018 Cycle of Internet Olympiads](https://www.facebook.com/groups/VNOIForum/permalink/3978433445510793/)
+* [Giới thiệu về phương pháp xấp xỉ tuyến tính (Linear Approximation)](https://www.facebook.com/groups/VNOIForum/permalink/4070837676270369/)
 
-* [Hỏi bài 2 DHBB 2015-2016](https://www.facebook.com/groups/VNOIForum/permalink/3972378412782963/)
+* [Lễ trao giải kì thi LINE Code Wow](https://www.facebook.com/groups/VNOIForum/permalink/4057635084257295/)
 
-* [Hỏi bài VDSEQ04](https://www.facebook.com/groups/VNOIForum/permalink/3942443519109786/)
+* [Giới thiệu về Học Bổng Generation Google Scholarship cho những bạn nữ trong Ngành Công Nghệ Thông Tin](https://www.facebook.com/groups/VNOIForum/permalink/4030746750279462/)
 
-* [Hỏi bài IMA2004D](https://www.facebook.com/groups/VNOIForum/permalink/3971271216227016/)
+* [Hỏi bài MDIGITS về Quy hoạch động chữ số](https://www.facebook.com/groups/VNOIForum/permalink/4002152846472186/)
+
+* [Giới thiệu về chương trình sinh viên tài năng Viettel Digital Talent Program 2021](https://www.facebook.com/groups/VNOIForum/permalink/4028814943805976/)
+
+* [Phỏng vấn Kevin Li - Huy Chương Vàng Olympic Vật lí Quốc Tế](https://www.facebook.com/groups/VNOIForum/permalink/4019571368063667/)
 
 ## [--Những bảng tin trước đó--](https://vnoi.info/wiki/news-bulletin/T%E1%BB%95ng%20h%E1%BB%A3p%20b%E1%BA%A3ng%20tin%20VNOI.md)
 
