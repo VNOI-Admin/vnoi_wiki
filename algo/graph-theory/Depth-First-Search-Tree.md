@@ -347,6 +347,7 @@ yes
 	* Nếu cả $2$ đỉnh $A$ và $B$ đều nằm trong cây con $DFS$ gốc $C$ và  $low[pa] < num[c]$ và $low[pb] < num[c]$ (nghĩa là cả $2$ cây con $DFS$ gốc $pa$ và cây con $DFS$ gốc $pb$ đều có cung ngược nối lên tổ tiên của $C$ )
 - Ngược lại, nếu không thỏa mãn tất cả các điều kiện trên thì $A$ và $B$ không thuộc cùng một thành phần liên thông sau khi loại bỏ đỉnh $C$ và các cạnh liên thuộc với đỉnh $C$ đi. 
 - Lúc này, độ phức tạp để xử lí các truy vấn sẽ là $O(Q \cdot logN)$.
+
 ### **Cài đặt**
 
 **Cấu trúc dữ liệu:**
