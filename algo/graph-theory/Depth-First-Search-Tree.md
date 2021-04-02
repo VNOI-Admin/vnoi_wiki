@@ -28,8 +28,8 @@
 - Trong đồ thị vô hướng:
     * Không tồn tại cung chéo. Vì khi đỉnh $u$ được duyệt trong hàm $DFS$ ta sẽ duyệt tất cả các đỉnh $v$ kề $u$ mà $v$ chưa được thăm. Như vậy nếu tồn tại một cung chéo $(u, v)$ chứng tỏ khi duyệt đến đỉnh $u$ hoặc đỉnh $v$ ta đã không duyệt cạnh $(u, v)$. 
     * Vì các cạnh trên đồ thị vô hướng không được định chiều nên không thể định nghĩa $2$ loại cung xuôi và cung ngược như ở đồ thị có hướng. Do đó, ở đồ thị vô hướng, cung xuôi và cung ngược sẽ được định nghĩa như sau:
-        * Cung xuôi ***(Forward edge)***: là các cung thuộc cây DFS. Hay còn có cách gọi khác là "cạnh nét liền" hoặc "cung của cây $DFS$".
-        * Cung ngược ***(Back edge)***: là các cung không thuộc cây DFS. Hay còn có cách gọi khác là "cạnh nét đứt". 
+        * Cung xuôi ***(Forward edge)***: là các cung thuộc cây $DFS$. Hay còn có cách gọi khác là "cạnh nét liền" hoặc "cung của cây $DFS$".
+        * Cung ngược ***(Back edge)***: là các cung không thuộc cây $DFS$. Hay còn có cách gọi khác là "cạnh nét đứt". 
     * Như vậy trên đồ thị vô hướng lúc này chỉ còn $2$ loại cung là cung ngược và cung xuôi (cung của cây $DFS$). 
     
 **Một số mảng quan trọng trong cây DFS :**
