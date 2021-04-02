@@ -18,10 +18,10 @@
 ![](https://i.imgur.com/tFgxlEN.png)
 
 - Trong đồ thị có hướng, xét các cung được thăm và không được thăm bởi $DFS$, ta có $4$ loại cung sau:
-	* Cung của cây $DFS$ ***(Tree edge)***:  là các cung thuộc cây $DFS$ được định hướng theo chiều từ cha đến con. (ví dụ cạnh $(u,v)$ thuộc cây $DFS$ mà $u$ được thăm trước $v$ hay $u$ là cha của $v$ thì ta có cung $u \rightarrow v$ là cung của cây $DFS$). *<Các cung của cây $DFS$ được đánh dấu là các cạnh màu đen trong hình bên dưới>*
-    * Cung xuôi ***(Forward edge)***: là các cung không thuộc cây $DFS$ và có dạng $u \rightarrow v$ trong đó $u$ là tổ tiên của $v$ trong cây $DFS$. *<Các cung xuôi được đánh dấu là các cạnh màu xanh lá trong hình bên dưới>*
-    * Cung ngược ***(Back edge)***: là các cung không thuộc cây $DFS$ và có dạng $v \rightarrow u$ trong đó $u$ là tổ tiên của $v$ trong cây $DFS$. *<Các cung ngược được đánh dấu là các cạnh màu đỏ trong hình bên dưới>*
-    * Cung chéo ***(Cross edge)***: là các cung không thuộc cây DFS có dạng $u \rightarrow v$ trong đó $u$ và $v$ thuộc hai nhánh khác nhau của cùng một cây $DFS$. *<Các cung chéo được đánh dấu là các cạnh màu xanh dương trong hình bên dưới>*
+	* Cung của cây $DFS$ ***(Tree edge)***:  là các cung thuộc cây $DFS$ được định hướng theo chiều từ cha đến con. (ví dụ cạnh $(u,v)$ thuộc cây $DFS$ mà $u$ được thăm trước $v$ hay $u$ là cha của $v$ thì ta có cung $u \rightarrow v$ là cung của cây $DFS$). _$<$ Các cung của cây $DFS$ được đánh dấu là các cạnh màu đen trong hình bên dưới $>$_
+	* Cung xuôi ***(Forward edge)***: là các cung không thuộc cây $DFS$ và có dạng $u \rightarrow v$ trong đó $u$ là tổ tiên của $v$ trong cây $DFS$. _$<$ Các cung xuôi được đánh dấu là các cạnh màu xanh lá trong hình bên dưới $>$_
+	* Cung ngược ***(Back edge)***: là các cung không thuộc cây $DFS$ và có dạng $v \rightarrow u$ trong đó $u$ là tổ tiên của $v$ trong cây $DFS$. _$<$ Các cung ngược được đánh dấu là các cạnh màu đỏ trong hình bên dưới $>$_
+	* Cung chéo ***(Cross edge)***: là các cung không thuộc cây $DFS$ có dạng $u \rightarrow v$ trong đó $u$ và $v$ thuộc hai nhánh khác nhau của cùng một cây $DFS$. _$<$ Các cung chéo được đánh dấu là các cạnh màu xanh dương trong hình bên dưới $>$_
 
     ![](https://i.imgur.com/BRFlqx9.png)
 
