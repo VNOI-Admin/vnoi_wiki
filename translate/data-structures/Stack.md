@@ -9,7 +9,7 @@ Stack là một danh sách được bổ sung 2 thao tác: **thêm một phần 
 Có thể hình dung Stack như một chồng sách. Việc đặt một quyển sách lên trên cùng chính là thao tác thêm phần tử, và lấy quyển sách ở trên đầu là thao tác loại bỏ phần tử. Như vậy, quyển sách được đặt vào sau cùng sẽ luôn được lấy ra trước tiên. Vì tính chất này, Stack còn được gọi là danh sách **LIFO** (Last In - First Out, hay vào sau - ra trước).
 
 ![](https://i.imgur.com/hMPdsl6.png)
-<p style="text-align: center;">Một Stack chứa các phần tử kiểu `char`. Đỉnh của Stack là vị trí được tô màu cam</p>
+<p style="text-align: center;">Một Stack chứa các phần tử kiểu \`char\`. Đỉnh của Stack là vị trí được tô màu cam</p>
   
     
 Stack có khá nhiều ứng dụng trong lập trình thi đấu. Bài viết này sẽ xem xét các ứng dụng điển hình của Stack.
