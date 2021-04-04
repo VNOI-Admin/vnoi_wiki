@@ -82,6 +82,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Các chủ đề cơ bản về đồ thị (2*)|algo/graph-theory/everything]]
 - [[Luồng cực đại trên mạng (3*)|translate/topcoder/max-flow-1-luong-cuc-dai-tren-mang-1.md]]
 - [Bài toán 2-SAT (3*)](https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing)
+- [Bài toán khớp cầu, thành phần liên thông mạnh](https://vnoi.info/wiki/algo/graph-theory/Depth-First-Search-Tree.md)
 
 ## Tham lam
 
