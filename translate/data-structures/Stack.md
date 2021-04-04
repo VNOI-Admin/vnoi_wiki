@@ -453,7 +453,7 @@ Giả sử mảng \\(A = [1, 2, 7, 4, 3, 6]\\). Các bước diễn ra như sau:
 
 ![](https://i.imgur.com/39cNzvd.png)
 
-Bằng phép quy nạp, ta dễ chứng minh được chiều cao của người trong hàng luôn tạo thành một dãy đơn điệu.
+Dễ thấy chiều cao của người trong hàng luôn tạo thành một dãy đơn điệu.
 
 #### Cài đặt
 
