@@ -8,7 +8,7 @@
 - **Trần Thế Hưng** - THPT Chuyên Biên Hòa - Hà Nam
 
 **Reviewer:**
-- **Phạm Tuấn Nghĩa** - Đại học Công Nghệ, Đại học Quốc Gia Hà Nội 
+- **Đỗ Đình Đắc** - Đại học Bách Khoa Hà Nội 
 
 # Mở đầu
 - Bài viết này sẽ giúp bạn tìm hiểu về cây $DFS$ *(Depth First Search Tree – DFS Tree)*. Cây $DFS$ là một ứng dụng quan trọng có được từ kỹ thuật duyệt đồ thị ưu tiên chiều sâu, giúp giải các bài toán tìm khớp cầu và thành phần liên thông mạnh.
