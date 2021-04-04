@@ -1,6 +1,7 @@
 # **Stack (ngăn xếp)**
 
 **Tác giả:** Nguyễn Hà Duy
+
 **Reviewer:** Hoàng Xuân Nhật
 
 ---
