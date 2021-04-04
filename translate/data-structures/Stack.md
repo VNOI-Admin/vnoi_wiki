@@ -360,7 +360,7 @@ bool solve(string s)
 Bài toán 2 có thể được mở rộng thêm: dãy có thể có cả ngoặc vuông và ngoặc nhọn. Rõ ràng, ta có thể xử lý các loại ngoặc như cách ta làm với bài toán 2. Lưu ý duy nhất là ta cần phải kiểm soát thêm cả kiểu loại của dấu.
 
 Minh họa cho quá trình với \\(S = \\) "\\(([\{\}])()\\)":
-![](https://i.imgur.com/EFJVEf9.png)
+![](https://i.imgur.com/eOJNey9.png)
 
 ## Sử dụng Stack để khử đệ quy
 
