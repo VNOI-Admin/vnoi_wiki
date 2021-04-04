@@ -6,11 +6,10 @@
 
 Stack là một danh sách được bổ sung 2 thao tác: **thêm một phần tử vào cuối danh sách**, và **loại bỏ một phần tử ở cuối danh sách**. Ví trí cuối của Stack được gọi là đỉnh (**top**).
 
-Có thể hình dung Stack như một chồng sách. Việc đặt một quyển sách lên trên cùng chính là thao tác thêm phần tử, và lấy quyển sách ở trên đầu là thao tác loại bỏ phần tử. Như vậy, quyển sách được đặt vào sau cùng sẽ luôn được lấy ra trước tiên. Vì tính chất này, Stack còn được gọi là danh sách **LIFO** (Last In - First Out, hay vào sau - ra trước).
+Có thể hình dung Stack như một chồng sách. Việc đặt một quyển sách lên trên cùng chính là thao tác thêm phần tử, và lấy ra quyển sách ở trên đầu là thao tác loại bỏ phần tử. Như vậy, quyển sách được đặt vào sau cùng sẽ luôn được lấy ra trước tiên. Vì tính chất này, Stack còn được gọi là danh sách **LIFO** (Last In - First Out, hay vào sau - ra trước).
 
+Hình ảnh minh họa cho Stack chứa các phần tử kiểu `char`:
 ![](https://i.imgur.com/hMPdsl6.png)
-*<p style="text-align: center;">Một Stack chứa các phần tử kiểu `char`. Đỉnh của Stack là vị trí được tô màu cam</p>*
-  
     
 Stack có khá nhiều ứng dụng trong lập trình thi đấu. Bài viết này sẽ xem xét các ứng dụng điển hình của Stack.
 
@@ -75,10 +74,7 @@ int main()
     return 0;
 }
 ```
-
 ![](https://i.imgur.com/vOJp7DT.png)
-*<p style="text-align: center;">Hình ảnh minh họa trạng thái của Stack qua đoạn code.</p>*
-
 
 Ngoài ra, ta có thể dùng `vector` để biểu diễn một Stack. Các hàm `push`, `top` và `pop` sẽ được thay bằng `push_back`, `pop_back` và `back` khi sử dụng `vector`.
 
@@ -108,9 +104,9 @@ Cho xâu \\(S\\) chỉ gồm các số nguyên dương và các dấu \\(+\\), \
 
 Vấn đề chính của bài toán là các toán tử \\(+\\), \\(-\\), \\(\times\\) và \\(\div\\) không có cùng độ ưu tiên. Cụ thể, ta cần tính kết quả của các cụm dấu \\(\times\\) và \\(\div\\) trước, do nhân và chia có độ ưu tiên cao hơn cộng và trừ.
 
-Xét bài toán đơn giản hơn: trong xâu \\(S\\) chỉ có các dấu \\(+\\) và \\(-\\). Rõ ràng, do \\(+\\) và \\(-\\) có cùng độ ưu tiên nên ta có thể xử lý bài toán bằng cách duyệt các toán hạng và toán tử từ trái sang phải và tính trực tiếp kết quả sau mỗi phép cộng hoặc trừ. Ta có thể cài đặt như sau: duy trì một danh sách chứa số và một danh sách chứa toán tử. Duyệt xâu từ trái qua phải, nếu ký tự đang xét là chữ số thì ta đẩy nó vào danh sách chứa số. Nếu đó là toán tử, ta đẩy ký tự vào danh sách chứa toán tử. Cuối cùng, ta lần lượt tính kết quả dựa vào danh sách toán hạng và toán tử đã xây dựng.
+Xét bài toán đơn giản hơn: trong xâu \\(S\\) chỉ có các dấu \\(+\\) và \\(-\\). Rõ ràng, do \\(+\\) và \\(-\\) có cùng độ ưu tiên nên ta có thể xử lý bài toán bằng cách duyệt các toán hạng và toán tử từ trái sang phải và tính trực tiếp kết quả sau mỗi phép cộng hoặc trừ. Ta có thể cài đặt như sau: duy trì một danh sách chứa số (toán hạng) và một danh sách chứa toán tử. Duyệt xâu từ trái qua phải, nếu ký tự đang xét là chữ số thì ta đẩy nó vào danh sách chứa số. Nếu đó là toán tử, ta đẩy ký tự vào danh sách chứa toán tử. Cuối cùng, ta lần lượt tính kết quả dựa vào danh sách toán hạng và toán tử đã xây dựng.
 
-```cpp=
+```cpp
 // xử lý toán tử và cập nhật trực tiếp vào mảng val
 void process_op(vector<int>& val, char op)
 {
@@ -155,7 +151,7 @@ int evaluate(string s)
 }
 ```
 
-Quan sát đoạn code ở dòng \\(36\\)
+Quan sát đoạn code ở cuối hàm `evaluate`:
 ```cpp
 while (!op.empty())
 {
@@ -163,9 +159,9 @@ while (!op.empty())
     op.pop_back();
 }
 ```
-Do các toán tử có cùng độ ưu tiên, nên ta có thể xử lý chúng lần lượt theo danh sách. Tuy nhiên, nếu danh sách \\(op\\) có các toán tử khác độ ưu tiên, nhưng chúng tạo thành dãy có **độ ưu tiên tăng dần**, thì ta vẫn có thể xử lý danh sách toán tử như trên, do các dấu có độ ưu tiên lớn hơn sẽ luôn được xử lý trước. Do các thay đổi được cập nhật trực tiếp vào mảng giá trị \\(val\\) nên ta luôn đảm bảo thu được kết quả đúng.
+Do các toán tử có cùng độ ưu tiên, nên ta có thể xử lý chúng lần lượt theo danh sách đã xây dựng. Tuy nhiên, nếu danh sách \\(op\\) có các toán tử khác độ ưu tiên, nhưng chúng tạo thành dãy có **độ ưu tiên tăng dần**, thì ta vẫn có thể xử lý như trên, do các dấu có độ ưu tiên lớn hơn sẽ luôn được xử lý trước. Do các thay đổi được cập nhật trực tiếp vào mảng giá trị \\(val\\) nên ta luôn đảm bảo thu được kết quả đúng.
 
-Trong bài toán gốc, xâu \\(S\\) còn chứa ký tự \\(\times\\) và \\(\div\\). Ta cần xử lý danh sách toán tử sao cho các phép tính có độ ưu tiên lớn hơn phải được thực hiện trước.
+Trong bài toán gốc, xâu \\(S\\) còn chứa ký tự \\(\times\\) và \\(\div\\). Ta cần xử lý danh sách toán tử sao cho các phép tính có độ ưu tiên lớn hơn luôn được thực hiện trước.
 
 Ta định nghĩa một thứ tự ưu tiên cho các dấu:
 ```cpp
@@ -177,11 +173,11 @@ int priority(char op)
 }
 ```
 
-Giống với bài toán đơn giản, ta vẫn duyệt xâu \\(S\\) từ trái sang phải. Khi gặp toán hạng, ta vẫn đẩy chúng vào danh sách. Tuy nhiên, khi gặp toán tử, ta cần xem xét thứ tự ưu tiên của toán tử ngay trước nó. Nếu toán tử trước có độ ưu tiên lớn hơn, ta cần phải xử lý nó trước, và loại bỏ toán tử đứng trước đó khỏi danh sách. Ta sẽ lặp lại việc xử lý toán tử đứng trước này cho đến khi nó có độ ưu tiên không lơn hơn toán tử đang xét. Điều này đảm bảo phép tính sẽ luôn được thực hiện theo mức độ ưu tiên.
+Giống với bài toán đơn giản, ta vẫn duyệt xâu \\(S\\) từ trái sang phải. Khi gặp toán hạng, ta vẫn đẩy chúng vào danh sách. Tuy nhiên, khi gặp toán tử, ta cần xem xét thứ tự ưu tiên của toán tử ngay trước nó. Nếu toán tử trước có độ ưu tiên lớn hơn, ta cần phải xử lý nó trước, và loại bỏ toán tử đứng trước đó khỏi danh sách. Ta sẽ lặp lại việc xử lý toán tử đứng trước này cho đến khi nó có độ ưu tiên không lớn hơn toán tử đang xét. Điều này đảm bảo phép tính sẽ luôn được thực hiện theo mức độ ưu tiên.
 
-Ý tưởng chính của lời giải là ta luôn duy trì danh sách toán tử có độ ưu tiên tăng dần. Khi đó, ta có thể xử lý lần lượt các dấu từ cuối về đầu danh sách như với bải toán chỉ có \\(+\\) và \\(-\\).
+Ý tưởng chính của lời giải là ta luôn duy trì danh sách toán tử có độ ưu tiên tăng dần. Khi đó, ta có thể xử lý lần lượt các dấu từ cuối về đầu danh sách toán tử như với bải toán chỉ có \\(+\\) và \\(-\\).
 
-Quan sát rằng bản chất của danh sách ta sử dụng chính là Stack. Việc thêm toán tử/toán hạng vào danh sách chính là thao tác \\(push\\); cách ta xử lý toán tử gợi đến việc \\(top\\) và \\(pop\\), do trong các bước của lời giải, ta chỉ cần quan tâm tới những phần tử ở cuối danh sách. Lời giải sử dụng `vector` để biểu diễn Stack.
+Quan sát rằng bản chất của danh sách ta sử dụng chính là Stack. Việc thêm toán tử/toán hạng vào danh sách chính là thao tác \\(push\\); cách ta xử lý toán tử gợi đến việc \\(top\\) và \\(pop\\) do trong các bước của lời giải, ta chỉ cần quan tâm tới những phần tử ở cuối danh sách. Lời giải sử dụng `vector` để biểu diễn Stack.
 
 ```cpp
 void process_op(vector<int>& val, char op)
@@ -232,11 +228,12 @@ int evaluate(string s)
 ```
 
 Xét ví dụ: \\(S = 2 \times 3 - 4 \times 5\\).
-![](https://i.imgur.com/r2zmJwN.png)
-*<p style="text-align: center;">Giá trị của \\(val\\) và \\(op\\) sau khi xử lý xâu \\(S\\)</p>*
 
+Giá trị của \\(val\\) và \\(op\\) sau khi xử lý xâu \\(S\\):
+![](https://i.imgur.com/r2zmJwN.png)
+
+Quá trình xử lý danh sách toán tử \\(op\\):
 ![](https://i.imgur.com/UAV9GBN.png)
-*<p style="text-align: center;">Giá trị cuối cùng</p>*
 
 ### Bài toán 2
 
@@ -249,8 +246,8 @@ Nếu \\(S\\) là dãy ngoặc đúng, với mỗi vị trí trong \\(S\\) bạn
 * Nếu xâu \\(A\\) là dãy ngoặc đúng thì \\((A)\\) cũng là dãy ngoặc đúng. Khi đó, cặp dấu ngoặc quanh xâu \\(A\\) này là cặp **dấu ngoặc tương ứng**.
 * Nếu xâu \\(A\\) và \\(B\\) đều là dãy ngoặc đúng thì xâu \\(A + B\\) cũng là dãy ngoặc đúng
 
+Hình ảnh minh họa cho một dãy ngoặc đúng. Các cặp dấu ngoặc tương ứng được tô cùng màu:
 ![](https://i.imgur.com/K1Obiw8.png)
-*Hình ảnh minh họa cho một dãy ngoặc đúng. Các cặp dấu ngoặc tương ứng được tô cùng màu*
 
 #### Nhận xét
 
@@ -274,12 +271,13 @@ Trong dãy ngoặc đúng, mỗi dấu ngoặc tương ứng với một và ch�
 
 Giả sử tồn tại một dấu ngoặc có thể tương ứng với nhiều hơn một dấu ngoặc khác. Khi đó, sẽ có nhiều hơn một cách chia dãy ngoặc thành các cặp dấu ngoặc tương ứng. Do đó, tồn tại một dấu ngoặc đóng trong dãy tương ứng với nhiều hơn một dấu ngoặc khác.
 
-Giả sử dấu ngoặc ở vị trí \\(k\\) là dấu ngoặc đóng và có thể tương ứng với các dấu ngoặc mở ở vị trí \\(i\\) và \\(j\\), với \\(i < j\\). Theo **tính chất 1**, ta có:
+Giả sử dấu ngoặc ở vị trí \\(k\\) là dấu ngoặc đóng và có thể tương ứng với các dấu ngoặc mở ở vị trí \\(i\\) và \\(j\\), với \\(i < j < k\\). Theo **tính chất 1**, ta có:
 
 * Dãy ngoặc con từ vị trí \\(i + 1\\) đến \\(k - 1\\) của dãy gốc là dãy ngoặc đúng.
 * Dãy ngoặc con từ vị trí \\(j + 1\\) đến \\(k - 1\\) của dãy gốc là dãy ngoặc đúng.
 
 \\(......(......(...)\\)
+
 \\(......i......j...k\\)
 
 Theo **tính chất 3**, dãy ngoặc từ vị trí \\(i + 1\\) đến \\(j\\) cũng là dãy ngoặc đúng. Mà dãy ngoặc từ vị trí \\(i + 1\\) đến \\(j\\) lại kết thúc bằng dấu mở ngoặc, trái với **tính chất 2**. Vậy giả thiết tồn tại một dấu ngoặc tương ứng với nhiều hơn một dấu ngoặc khác là sai.
@@ -294,11 +292,11 @@ Dãy ngoặc đúng khi và chỉ khi số dấu ngoặc mở bằng số dấu 
 
 * **Chiều thuận**: dãy ngoặc đúng có số dấu ngoặc mở bằng số dấu ngoặc đóng, và trong mọi tiền tố của dãy, số dấu ngoặc mở không nhỏ hơn số dấu ngoặc đóng. Theo **tính chất 2**, dãy ngoặc mở có số dấu đóng ngoặc bằng số dấu mở ngoặc. Mặt khác, nếu tồn tại một tiền tố của dãy ngoặc đúng có số dấu mở ngoặc nhỏ hơn số dấu đóng ngoặc thì rõ ràng tồn tại ít nhất 1 dấu đóng ngoặc không tương ứng với dấu mở ngoặc nào, trái với **bổ đề 1**. Vậy ta chứng minh được chiều thuận.
 
-* **Chiều đảo**: Trong mọi tiền tố của dãy, số dấu ngoặc mở không nhỏ hơn số dấu ngoặc đóng đảm bảo rằng mỗi dấu ngoặc đóng đều có dấu ngoặc mở tương ứng với nó. Hơn nữa, số dấu ngoặc mở bằng số dấu ngoặc đóng đảm bảo không có dấu ngoặc mở bị thừa ra (hay không tương ứng với dấu ngoặc nào) trong dãy ngoặc. Do đó, dãy có số dấu ngoặc mở bằng số dấu ngoặc đóng và trong mọi tiền tố của dãy, số dấu ngoặc mở không nhỏ hơn số dấu ngoặc đóng là dãy ngoặc đúng.
+* **Chiều đảo**: trong mọi tiền tố của dãy, số dấu ngoặc mở không nhỏ hơn số dấu ngoặc đóng đảm bảo rằng mỗi dấu ngoặc đóng đều có dấu ngoặc mở tương ứng với nó. Hơn nữa, số dấu ngoặc mở bằng số dấu ngoặc đóng đảm bảo không có dấu ngoặc mở bị thừa ra (hay không tương ứng với dấu ngoặc nào) trong dãy ngoặc. Do đó, dãy có số dấu ngoặc mở bằng số dấu ngoặc đóng và trong mọi tiền tố của dãy, số dấu ngoặc mở không nhỏ hơn số dấu ngoặc đóng là dãy ngoặc đúng.
 
 #### Hệ quả 1
 
-Dãy ngoặc không đúng sẽ có số dấu ngoặc mở lớn hơn số ngoặc đóng, hoặc tồn tại một prefix mà số dấu ngoặc mở nhỏ hơn số dấu ngoặc đóng. 
+Dãy ngoặc không đúng sẽ có số dấu ngoặc mở lớn hơn số ngoặc đóng, hoặc có một tiền tố mà số dấu ngoặc mở nhỏ hơn số dấu ngoặc đóng. 
 
 #### Cách giải
 
@@ -312,7 +310,7 @@ Trước hết, quá trình này sẽ luôn xác định xem xâu \\(S\\) có ph
 * Ký tự đang xét là dấu đóng ngoặc và Stack đang rỗng.
 * Sau khi xử lý, Stack không rỗng.
 
-Cả hai trường hợp trên đều là dấu hiệu của dãy ngoặc không đúng nêu trong **hệ quả 1**. Vậy quá trình sẽ luôn xác định \\(S\\) là dãy đúng hay không.
+Trường hợp 1 xảy ra khi xâu \\(S\\) có một tiền tố mà số dấu ngoặc đóng nhiều hơn số dấu ngoặc mở. Trường hợp 2 xảy ra khi xâu \\(S\\) có số dấu ngoặc mở nhiều hơn số dấu ngoặc đóng. Cả hai trường hợp trên đều là dấu hiệu của dãy ngoặc không đúng nêu trong **hệ quả 1**. Vậy quá trình sẽ luôn xác định \\(S\\) là dãy đúng hay không.
 
 Từ bây giờ, ta mặc định \\(S\\) là dãy ngoặc đúng, và chứng minh rằng việc sử dụng Stack sẽ **luôn chỉ ra các cặp dấu ngoặc tương ứng**.
 
@@ -355,7 +353,7 @@ bool solve(string s)
 ```
 
 ### Mở rộng
-Bài toán 2 có thể được mở rộng thêm: dãy có thể có cả ngoặc vuông và ngoặc nhọn (\\([\\), \\(]\\), \\(\{\\) và \\(\}\\)). Rõ ràng, ta có thể xử lý các loại ngoặc như cách ta làm với bài toán 2. Lưu ý duy nhất là ta cần phải kiểm soát cả kiểu loại của dấu thay vì chỉ trạng thái của nó.
+Bài toán 2 có thể được mở rộng thêm: dãy có thể có cả ngoặc vuông và ngoặc nhọn. Rõ ràng, ta có thể xử lý các loại ngoặc như cách ta làm với bài toán 2. Lưu ý duy nhất là ta cần phải kiểm soát thêm cả kiểu loại của dấu.
 
 Minh họa cho quá trình với \\(S = \\) "\\(([\{\}])()\\)":
 ![](https://i.imgur.com/EFJVEf9.png)
@@ -411,14 +409,15 @@ Trong lập trình thi đấu, ta có thể sử dụng đệ quy thông thườ
 
 ## Stack đơn điệu
 
-Stack đơn điệu là ngăn xếp mà các phần tử của nó xét từ đáy  của Stack đến đỉnh Stack tạo thành một dãy số đơn điệu.
+Stack đơn điệu là ngăn xếp mà các phần tử của nó xét từ đáy của Stack đến đỉnh Stack tạo thành một dãy số đơn điệu.
+
+Hình ảnh minh họa cho một Stack đơn điệu giảm:
 
 ![](https://i.imgur.com/bzwD9F1.png)
-*<p style="text-align: center;">Stack đơn điệu giảm</p>*
 
 ### Bài toán
 
-Cho mảng \\(A\\) có \\(n\\) phần tử \\(a_1, a_2, ..., a_n\\), \\(n \leq 10^6\\). Với mỗi \\(i\\) từ \\(1\\) đến \\(n\\) ta cần tìm \\(j\\) sao cho \\(a_j > a_i\\), và \\(|i - j|\\) nhỏ nhất. Nếu không tồn tại \\(j\\), in ra \\(-1\\).
+Cho mảng \\(A\\) có \\(n\\) phần tử \\(a_1, a_2, \dots, a_n\\), \\(n \leq 10^6\\). Với mỗi \\(i\\) từ \\(1\\) đến \\(n\\) ta cần tìm \\(j\\) sao cho \\(a_j > a_i\\), và \\(\lvert i - j \rvert\\) nhỏ nhất. Nếu không tồn tại \\(j\\), in ra \\(-1\\).
 
 #### Nhận xét
 
@@ -435,8 +434,9 @@ Xét mô hình sau:
 
 Theo mô hình này, giá trị \\(j\\) gần \\(i\\) nhất \\((j < i)\\) mà \\(a_i < a_j\\) chính là chỉ số của người gần nhất cao hơn người \\(i\\) mà anh ta có thể nhìn được.
 
+Hình ảnh minh họa, số ở hàng trên là chiều cao mỗi người, ở hàng dưới là chỉ số người gần nhất ở bên trái cao hơn họ:
+
 ![](https://i.imgur.com/KZWZoll.png)
-*<p style="text-align: center;">Hình ảnh minh họa, số ở hàng trên là chiều cao mỗi người, ở hàng dưới là chỉ số người gần nhất ở bên trái cao hơn họ.</p>*
 
 Ta có thể cải tiến mô hình bằng việc chỉnh sửa cách thức xếp hàng.
 Khi người thứ \\(i\\) xếp hàng, họ sẽ thực hiện các thao tác sau:
@@ -449,7 +449,8 @@ Lúc đầu, cho một người có chỉ số \\(-1\\), chiều cao \\(+\infty\
 
 Như vậy, số mà mỗi người nhớ lại chính là **chỉ số của người gần nhất cao hơn họ** (\\(-1\\) nếu không tồn tại người như vậy). Đây chính là giá trị \\(j\\) cần tìm với mỗi \\(i\\).
 
-Giả sử mảng \\(A = \{1, 2, 7, 4, 3, 6\}\\). Các bước diễn ra như sau:
+Giả sử mảng \\(A = [1, 2, 7, 4, 3, 6]\\). Các bước diễn ra như sau:
+
 ![](https://i.imgur.com/39cNzvd.png)
 
 Bằng phép quy nạp, ta dễ chứng minh được chiều cao của người trong hàng luôn tạo thành một dãy đơn điệu.
@@ -494,8 +495,10 @@ Vẽ \\(n\\) cột hình chữ nhật sát nhau. Cột thứ \\(i\\) có chiều
 
 Ví dụ:
 \\(h = \{2, 4, 4, 3, 2\}\\)
+
+Hình chữ nhật lớn nhất có diện tích \\(10\\)
+
 ![](https://i.imgur.com/wm76udO.png)
-*Hình chữ nhật lớn nhất có diện tích 10*
 
 ##### Cách giải
 
