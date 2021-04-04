@@ -48,8 +48,6 @@ int peek() // trả về giá trị của phần tử ở đỉnh Stack
 }
 ```
 
-Qua cách cài đặt này, có thể thấy bản chất của Stack là mảng, được bổ sung một vài thao tác đặc biệt để giải quyết các vấn đề trong khoa học máy tính. 
-
 ## Sử dụng thư viện chuẩn
 
 Thư viện chuẩn của C++ cho phép ta sử dụng Stack qua kiểu dữ liệu `stack` trong header cùng tên. Các thao tác chính trên `stack` là:
