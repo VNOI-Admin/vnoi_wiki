@@ -1,6 +1,9 @@
 # **Stack (ngăn xếp)**
 
----
+**Tác giả:** Nguyễn Hà Duy - THPT Chuyên Hà Nội - Amsterdam
+
+* Table of contents
+{:toc}
 
 # Giới thiệu
 
@@ -533,7 +536,7 @@ for (int k = 1; k <= n; ++k)
         if (grid[k][j] == 1) ++h[j];
         else h[j] = 0;
     }
-    <giải bài toán tìm hình chữ nhật lớn nhất trong các cột>
+    // giải bài toán tìm hình chữ nhật lớn nhất trong các cột...
 }
 ```
 
