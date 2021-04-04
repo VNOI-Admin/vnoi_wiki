@@ -2,8 +2,9 @@
 
 **Tác giả:** Nguyễn Hà Duy - THPT Chuyên Hà Nội - Amsterdam
 
-* Table of contents
-{:toc}
+---
+
+[[_TOC_]]
 
 # Giới thiệu
 
