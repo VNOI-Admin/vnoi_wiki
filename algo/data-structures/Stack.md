@@ -60,7 +60,7 @@ Thư viện chuẩn của C++ cho phép ta sử dụng Stack qua kiểu dữ li�
 
 Ngoài ra, `stack` cũng hỗ trợ các thao tác:
 * `size`: trả về số phần tử hiện có trong stack
-* `empty`: trả về trạng thái của stack (\\(true\\) nếu stack rỗng, \\(false\\) nếu stack có ít nhát 1 phần tử)
+* `empty`: trả về trạng thái của stack (\\(true\\) nếu stack rỗng, \\(false\\) nếu stack có ít nhất 1 phần tử)
 
 Ví dụ:
 ```cpp
