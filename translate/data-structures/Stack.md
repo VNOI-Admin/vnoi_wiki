@@ -540,8 +540,8 @@ for (int k = 1; k <= n; ++k)
 Độ phức tạp thời gian và bộ nhớ của lời giải là \\(O(n \times m)\\).
 
 # Bài tập áp dụng
-* https://www.spoj.com/problems/JNEXT/
-* https://www.spoj.com/problems/STPAR/
-* https://codeforces.com/problemset/problem/280/B
-* https://codeforces.com/problemset/problem/1132/G
-* Tham khảo thêm tại: https://vnoi.info/problems/list/
+* [JNEXT](https://www.spoj.com/problems/JNEXT/)
+* [STPAR](https://www.spoj.com/problems/STPAR/)
+* [280B - Codeforces](https://codeforces.com/problemset/problem/280/B)
+* [1132G - Codeforces](https://codeforces.com/problemset/problem/1132/G)
+* Tham khảo thêm tại: [VNOI Problem List](https://vnoi.info/problems/list/)
