@@ -16,6 +16,7 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
   - [cowboycoder - DFS](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-3-tim-kiem-theo-chieu-sau-tren-do-thi-depth-first-search-dfs)
   - [cowboycoder - Topo sort](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-5-dag-va-sap-xep-topo-tren-do-thi)
   - [vietcodes - Thành phần song liên thông](https://vietcodes.github.io/algo/biconnect)
+  - [Bài toán khớp cầu, thành phần liên thông mạnh](https://vnoi.info/wiki/algo/graph-theory/Depth-First-Search-Tree.md) (Cây DFS và ứng dụng)
   - [Code tìm khớp cầu C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BridgeArticulation.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BridgeArticulation.cpp)
   - [Code tìm thành phần liên thông mạnh C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/StronglyConnected.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/StronglyConnected.cpp)
   - [Code tìm thành phần song liên thông C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BiconnectedComponent.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BiconnectedComponent.cpp);
