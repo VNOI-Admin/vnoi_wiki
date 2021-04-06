@@ -473,7 +473,7 @@ Gọi $F(i,j)$ là số phép nhân để tính tích các ma trận từ $A_i$ 
 
 - $F[i,i]=0$.
 - $F[i,i+1]=d_{i-1} \* d_i \* d_{i+1}$
-- $F[i,j] = min(F[i,k]+F[k+1,j] + d_{i-1} \* d_i \* d_{i+1}$ với $k=i+1,i+2,...,j-1$
+- $F[i,j] = min(F[i,k]+F[k+1,j] + d_{i-1} \* d_k \* d_{j}$ với $k=i+1,i+2,...,j-1$
 
 Công thức hơi phức tạp nên tôi xin giải thích như sau:
 
@@ -481,7 +481,7 @@ Công thức hơi phức tạp nên tôi xin giải thích như sau:
 - $F[i,i+1]$ là số phép nhân khi nhân $A_i$ và $A_{i+1}$. $A_i$ có kích thước $d_{i-1} \* d_i$, $A_{i+1}$ có kích thước $d_i \* d_{i+1}$, do đó $F[i,i+1]=d_{i-1} \* d_i \* d_{i+1}$
 - Với $j>i+1$ thì ta thấy có thể tính $A_i \* A_{i+1} \* ... \* A_j$ bằng cách chọn một vị trí $k$ nào đó để đặt ngoặc theo trình tự: $A_i \* A_{i+1} \* ... \* A_j = (A_i..A_k) \* (A_{k+1}..A_j)$
 
-Ma trận kết quả của phép nhân $(A_i..A_k)$ có kích thước $d_{i-1} \* d_i$, ma trận kết quả của phép nhân $(A_{k+1}..A_j)$ có kích thước $d_k \* d_j$. Với cách đặt đó ta sẽ mất $F[i,k]$ phép nhân để có kết quả trong dấu ngoặc thứ nhất, mất thêm $F[k+1,j]$ phép nhân để có kết quả trong dấu ngoặc thứ hai, và cuối cùng mất $d_{i-1} \* d_k \* d_j$ để nhân 2 ma trận kết quả đó. Từ đó tổng số phép nhân của cách đặt đó là: $F[i,k] + F[k+1,j] + d_{i-1} \* d_k \* d_j$.
+Ma trận kết quả của phép nhân $(A_i..A_k)$ có kích thước $d_{i-1} \* d_k$, ma trận kết quả của phép nhân $(A_{k+1}..A_j)$ có kích thước $d_k \* d_j$. Với cách đặt đó ta sẽ mất $F[i,k]$ phép nhân để có kết quả trong dấu ngoặc thứ nhất, mất thêm $F[k+1,j]$ phép nhân để có kết quả trong dấu ngoặc thứ hai, và cuối cùng mất $d_{i-1} \* d_k \* d_j$ để nhân 2 ma trận kết quả đó. Từ đó tổng số phép nhân của cách đặt đó là: $F[i,k] + F[k+1,j] + d_{i-1} \* d_k \* d_j$.
 
 Ta chọn vị trí $k$ cho số phép nhân ít nhất.
 
