@@ -2,3 +2,6 @@
 a.absent {
         color: #4183c4 !important;
 }
+body {
+    padding: 3vw;
+}
