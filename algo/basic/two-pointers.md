@@ -42,8 +42,22 @@ Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán nh�
 
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
+**_Ví dụ 1:_** 
+
+$A = [2, 5, 6, 8, 10, 12, 15], X = 16$
+
 ![](https://i.imgur.com/4kDvgwj.gif)
 
+→ Dãy $A$ **tồn tại** hai phần tử có tổng là $X$.
+
+---
+**_Ví dụ 2:_** 
+
+$A = [2, 3, 7, 8, 10, 12, 15], X = 16$
+
+![](https://i.imgur.com/1KUtV6g.gif)
+
+→ Dãy $A$ **không tồn tại** hai phần tử có tổng là $X$.
 
 ## Phân tích
 
