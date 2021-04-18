@@ -42,11 +42,7 @@ Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán nh�
 
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-![](https://i.imgur.com/Guac9qd.png)
-
-***
-
-![](https://i.imgur.com/sjyxirZ.jpg)
+![](https://i.imgur.com/4kDvgwj.gif)
 
 
 ## Phân tích
