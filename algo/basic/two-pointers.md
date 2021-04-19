@@ -141,24 +141,36 @@ Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán nh�
 - Với mỗi $r$ từ $1$ đến $n$, ta đã biết được đoạn con dài nhất kết thúc tại $r$ với tổng các phần tử không quá $X$, từ đó kết quả của chúng ta sẽ là đoạn dài nhất trong các đoạn con này. 
 
 Để hiểu rõ hơn, ta hãy cùng xem qua ví dụ sau đây:
-![](https://i.imgur.com/F6MufFR.jpg)
+$A = [3, 1, 5, 2, 5], X = 9$
+
+![](https://i.imgur.com/AbRDNQd.gif)
 
 ## Phân tích
 
 Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
 
-Vì dãy $A$ là dãy số nguyên dương, nên tổng các phần tử trong đoạn $[l, r]$ sẽ nhỏ hơn các phần tử trong đoạn $[l', r]$ với mọi $(l' < l \leq r)$. 
+Vì dãy $A$ là dãy số nguyên dương, nên tổng các phần tử trong đoạn $[l, r]$ sẽ nhỏ hơn các phần tử trong đoạn $[l', r]$ với mọi $(l' < l \leq r)$.
+
+![](https://i.imgur.com/cm6ZJfw.png)
+
+
 Từ đó, khi $l$ là vị trị nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$(luôn tồn tại $l\leq r$ vì $A[r] \leq X$):
 - Tổng các phần tử trong đoạn $[l', r]$ có giá trị lớn hơn $X$ với $1 \leq l' < l$.
 - Tổng các phần tử trong đoạn $[l', r]$ có giá trị không quá $X$ với $l \leq l' \leq r$.
 
-→ Nếu $l$ là vị trị nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$ thì đoạn con $[l, r]$ chính là đoạn con dài nhất có tổng các phần tử không quá $X$ với phần tử cuối cùng ở vị trí $r$. Bài toán sẽ được giải nếu ta biết tất cả các $l$ tương ứng với mỗi $r$ từ $1$ đến $N$. Để xác định được $l$ ta có một số nhận xét sau:
-- $l$ là vị trí nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$
-- $l'$ là vị trí nhỏ nhất sao cho $Sum(A[l']...A[r+1]) \leq X$
-- $Sum(A[l']...A[r+1]) > Sum(A[l']...A[r])$ 
-Mà $Sum(A[l']...A[r+1]) \leq X$ → $Sum(A[l']...A[r]) \leq X$. Nếu $l' < l$ thì sẽ mẫu thuần rằng $l$ là vị trị nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$ → $l' \geq l$.
+→ Nếu $l$ là vị trị nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$ thì đoạn con $[l, r]$ chính là đoạn con dài nhất có tổng các phần tử không quá $X$ với phần tử cuối cùng ở vị trí $r$. Bài toán sẽ được giải nếu ta biết tất cả các $l$ tương ứng với mỗi $r$ từ $1$ đến $N$. 
+
+![](https://i.imgur.com/HN3TKSH.png)
+
+Đặt $l$ là vị trí nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$. Đặt $l'$ là vị trí nhỏ nhất sao cho $Sum(A[l']...A[r+1]) \leq X$.
+
+$Sum(A[l']...A[r+1]) > Sum(A[l']...A[r])$ trong khi đó $Sum(A[l']...A[r+1]) \leq X$. Vậy $Sum(A[l']...A[r]) \leq X$. 
+
+Ta có nhận xét sau: Nếu $l' < l$ thì sẽ mẫu thuẫn rằng $l$ là vị trị nhỏ nhất sao cho $Sum(A[l]...A[r]) \leq X$ → $l' \geq l$. Các giá trị $l$ tương ứng với mỗi $r$ từ $1$ đến $N$ sẽ có giá trị **không giảm**.
 
 Từ những nhận xét này, ta có được phương pháp hai con trỏ được nêu ở trên. Nhận thấy rằng con trỏ $l$ và con trỏ $r$ luôn tăng và tăng không quá $N$ lần, cho nên độ phức tạp của bài này là $O(N)$.
+
+(Chưa hoàn thiện)
 
 ## Cài đặt
 
@@ -215,7 +227,7 @@ Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán nh�
 
 Để hiểu rõ hơn, ta hãy cùng xem qua ví dụ sau đây:
 
-![](https://i.imgur.com/koxqUp7.jpg)
+![](https://i.imgur.com/xsfppEM.gif)
 
 ## Phân tích
 Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
