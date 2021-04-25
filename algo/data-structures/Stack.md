@@ -78,7 +78,7 @@ int main()
     return 0;
 }
 ```
-![](https://i.imgur.com/vOJp7DT.png)
+![](https://i.imgur.com/Fm9OL7a.png)
 
 Ngoài ra, ta có thể dùng `vector` để biểu diễn một Stack. Các hàm `push`, `top` và `pop` sẽ được thay bằng `push_back`, `pop_back` và `back` khi sử dụng `vector`.
 
@@ -360,7 +360,8 @@ bool solve(string s)
 Bài toán 2 có thể được mở rộng thêm: dãy có thể có cả ngoặc vuông và ngoặc nhọn. Rõ ràng, ta có thể xử lý các loại ngoặc như cách ta làm với bài toán 2. Lưu ý duy nhất là ta cần phải kiểm soát thêm cả kiểu loại của dấu.
 
 Minh họa cho quá trình với \\(S = \\) "\\(([\{\}])()\\)":
-![](https://i.imgur.com/eOJNey9.png)
+
+![](https://i.imgur.com/p3JM7FF.png)
 
 ## Sử dụng Stack để khử đệ quy
 
