@@ -259,7 +259,7 @@ Giới hạn: $NA, NB, NC, ND \leq 10^5$ và $1 \leq A_i, B_j, C_k, D_l \leq 10^
 ## Vấn đề
 Bạn được cho một danh sách liên kết đơn (Singly linked list) **có chu kỳ**, bạn hãy xác định node bắt đầu chu kỳ.
 
-![](https://i.imgur.com/s3BXhWA.png)
+![](https://i.imgur.com/nFttOjY.png)
 
 ## Phát biểu thuật toán
 
