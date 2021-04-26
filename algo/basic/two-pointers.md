@@ -255,87 +255,37 @@ while (i <= N || j <= M){
 Cho $4$ mảng số nguyên dương $A, B, C, D$ có lần lượt $NA, NB, NC, ND$ phần tử. Hãy tìm giá trị nhỏ nhất của $S = max(A_i, B_j, C_k, D_l) - min((A_i, B_j, C_k, D_l).$
 Giới hạn: $NA, NB, NC, ND \leq 10^5$ và $1 \leq A_i, B_j, C_k, D_l \leq 10^{9}$.
 
-# Bài tập 4 (Floyd's tortoise and hare)
-Cho một mảng số nguyên có độ dài $n+1$ có có các giá trị nằm trong khoảng $[1, n]$. Biết rằng trong mảng có chính xác $1$ số lặp lại, hãy tìm số đó.
+# Floyd's tortoise and hare
+## Vấn đề
+Bạn được cho một danh sách liên kết đơn (Singly linked list) **có chu kỳ**, bạn hãy xác định node bắt đầu chu kỳ.
 
-*Input:* $nums = [1,3,4,2,2]$
-*Output:* $2$
+![](https://i.imgur.com/s3BXhWA.png)
 
-Giới hạn : $n \leq 10^5$
-Các bạn có thể tự code và submit [tại đây](https://leetcode.com/problems/find-the-duplicate-number/) 
+## Phát biểu thuật toán
 
-## Tiếp cận 1
-Nhận thấy rằng các số trong mảng đều có giá trị từ $1$ đến $n$. Cho nên ta có thể phương pháp đếm phân phối để giải quyết bài toán
+Đặt 2 con trỏ ở đầu danh sách liên kết. Trong đó một con trỏ tương trưng cho con rùa (tortoise), một con trỏ tương trưng cho con thỏ (hare).
 
-```
-for (int i = 0; i < nums.size(); i++)
-    c[nums[i]]++;
-for (int i = 1; i <= n; i++)
-    if (nums[i] > 1){
-        ans = i;
-        break;
-    }
-```
+![](https://i.imgur.com/NfhJ6xm.png)
 
-Độ phức tạp: $O(n)$
-Bộ nhớ: $O(n)$
-Bộ nhớ thêm: $O(n)$
+Trong mỗi lần di chuyển, con rùa sẽ di chuyển đến node kề với nó.
 
-Vậy có cách nào để chúng ta có thể giảm _bộ nhớ thêm_ hay không?
+![](https://i.imgur.com/UNh9n0T.png)
 
-### Tiếp cận 2
+Với con thỏ, nó sẽ di chuyển nhanh hơn con rùa. Trong mỗi lần di chuyển con thỏ sẽ đi đến node kề với node kề nó.
 
-Để có thể giảm _bộ nhớ thêm_ ta sẽ áp dụng thuật toán _** Floyd's tortoise and hare**_.
-## Phân tích
-Khi ta xây dựng một đồ thị có hướng, mỗi số từ $1$ đến $n$ tương ứng với $1$ nút của đồ thị. Đồ thị có nút gốc là $nums[0]$. Từ nút gốc ta xây các cạnh có hướng như sau: Nếu trong đồ thị có nút $x$ thì sẽ một có cạnh hướng từ nút $x$ đến nút $nums[x]$. Vì trong dãy tồn tại một số được xuất hiện nhiều lần cho nên đồ thi sẽ luôn có chu trình. Dưới đây là $2$ trường hợp của đồ thị khi ta xây dựng theo cách này.
-![](https://i.imgur.com/RrEww3W.png)
-Bây giờ chúng ta sẽ cho $2$ con trỏ, một con trỏ có tên là con rùa(tortoise) và con trỏ còn lại tên là con thỏ(hare).
+![](https://i.imgur.com/gyZ1TQY.png)
 
-Ban đầu, cho con rùa và con thỏ đứng ở đỉnh gốc. 
-![](https://i.imgur.com/p7a1PJ4.png)
+Thỏ và rùa cùng di chuyển với nhau. Mặc dù, Thỏ luôn di chuyển nhanh hơn rùa nhưng rùa và thỏ sẽ gặp nhau tại một node nào đó trong chu kỳ.
 
-Con rùa mỗi bước nó sẽ đi đến nút kề với nó.
-![](https://i.imgur.com/tug84Bx.png)
+Thật vậy, đặt $T$ là số bước đi mà rùa đến với node bắt đầu chu kỳ, $C$ là độ dài của chu kỳ và đánh số các node trong chu kỳ như sau.
 
-Con thỏ mỗi bước nó sẽ đi đến nút kề với nút kề với nó.
-![](https://i.imgur.com/vPx5ZrD.png)
+![](https://i.imgur.com/S2Y1N7g.png)
 
-Đánh dấu các đỉnh chu trình như sau:
-![](https://i.imgur.com/LeN8SJJ.png)
+Khi con rùa đi được $X$ bước $(X \geq T)$ thì con rùa sẽ đi tới một trong các node của chu kỳ, và nó ở node đánh dấu $(X-T)\%C$. Và con thỏ cũng tới một trong các node của chu kỳ, và nó ở node đánh dấu $(2X-T)\%C$. Khi rùa và thỏ gặp nhau thì $(X-T)\%C=(2X-T)\%C → X\%C=0$. Vì thế khi rùa đi được $X$ bước trong đó $X \geq T$ và $X\%C=0$ thì rùa sẽ gặp được thỏ, và chúng sẽ luôn gặp ở node đánh dấu $(C-T\%C)\%C$.
 
-Trong câu truyện Rùa và Thỏ, có một lúc rùa sẽ đuổi kịp Thỏ. Vậy khi sau khi bước một số bước liệu con rùa có thể bắt kịp con Thỏ hay không? 
+Lúc rùa và thỏ gặp nhau, nếu con rùa đi tiếp $T$ bước thì con rùa sẽ luôn ở node $0$ (node bắt đầu chu trình). Vì vậy, sau khi rùa và thỏ gặp nhau, ta chỉ cần đặt thêm một con trỏ $p$ ở đầu danh sách liên kết (con trỏ này di chuyển tương tự con rùa). Để con trỏ $p$ cùng di chuyển với con rùa. Con trỏ $p$ và con rùa sẽ gặp nhau lần đầu tiên tại node $0$ vì cần $T$ bước để con trỏ $p$ đi chuyển từ node đầu danh sách đến node $0$.
 
-Câu trả lời là có. Nguyên nhân xảy ra điều này chính là do đồ thị có chu trình. Cụ thể như sau:
-
-Ta gọi $T$ là độ dài đường đi từ nút gốc đến nút đánh dấu số $0$. $C$ là độ dài chu trình. 
-Vậy sau $X=T+C-T%C$ bước đi. Rùa sẽ ở nút đánh dấu số $(X-T)\%C=(C - T\%C)\%C$, Thỏ sẽ ở nút đánh dấu số $(2X-T)\%C=(T+2C-2T\%C)\%C=(C - T\%C)\%C$. Rùa sẽ gặp Thỏ tại thời điểm này tại nút $(C - T\%C)\%C$.
-
-Tuy nhiên bài toán đặt ra là cần phải biết số ở nút $0$. Thế nên ta sẽ có $1$ thủ thuật sau. Đặt một con trỏ ở nút $(C - T\%C)\%C$, con trỏ còn lại ở nút gốc. Ta cho hai con trỏ di chuyển như con rùa ban nãy. Từ đó, hai con trỏ sẽ gặp nhau ở nút $0$. 
-## Minh họa
-
-
-## Cài đặt
-```cpp
-int findDuplicate(vector<int>& nums) {
-    int tortoise = nums[0], hare = nums[0];
-    while (true){
-        tortoise = nums[tortoise];
-        hare = nums[nums[hare]];
-        if (tortoise == hare)
-            break;
-    }
-    int p1 = nums[0], p2 = hare;
-    while (p1 != p2){
-        p1 = nums[p1];
-        p2 = nums[p2];
-    }
-    return p1;
-}
-```
-
-Độ phức tạp: $O(n)$
-Bộ nhớ: $O(n)$
-Bộ nhớ thêm: $O(1)$
+![](https://i.imgur.com/Pba7UKt.gif)
 
 # Bài tập áp dụng
 
