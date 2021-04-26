@@ -1,10 +1,14 @@
 # Kĩ thuật hai con trỏ
 
+**Tác giả:** Phan Đình Khôi - Đại học Bách Khoa Đà Nẵng
+
+**Reviewer:** Nguyễn Khánh
+
 [[_TOC_]]
 
 # Lời mở đầu 
  
-Bài viết chưa hoàn thiện
+Bài viết này sẽ giúp bạn tìm hiểu thêm về **kỹ thuật hai con trỏ**. Kỹ thuật này không những được sử dụng khá phổ biến mà còn giúp chương trình tiết kiệm thời gian và không gian xử lý.  
 
 # Bài toán 1
 Cho một mảng số nguyên dương **tăng dần** $A$ gồm $N$ phần tử và số nguyên dương $X$, kiểm tra xem có hai phần tử trong dãy $A$ có tổng là $X$ hay không?
@@ -289,6 +293,4 @@ Lúc rùa và thỏ gặp nhau, nếu con rùa đi tiếp $T$ bước thì con r
 
 # Bài tập áp dụng
 
-Các bạn có thể thử sức [tại đây](https://vnoi.info/problems/list/?tag=73&page=1).
-
-# Lưu ý
+Các bạn có thể luyện tập thêm [tại đây](https://vnoi.info/problems/list/?tag=73&page=1).
