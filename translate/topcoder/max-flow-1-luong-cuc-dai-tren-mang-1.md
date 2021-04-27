@@ -85,7 +85,7 @@ $bước (2)$: tìm một đường tăng luồng trên mạng thặng dư $G'$
   - nếu tồn một đường tăng luồng $\rightarrow$ thực hiện tăng luồng trên mạng thặng dư và quay trở lại $bước (2)$
 Khi thuật toán kết thúc $f(s,V')$ chính là giá trị luồng cực đại cần tìm.
 
-Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BDF(breath first search) để tìm đường tăng luồng và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{\*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(\|f^{\*}\|.E)$. Sau đâu là code của thuật toán trên:
+Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BFS(breath first search) để tìm đường tăng luồng và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{\*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(\|f^{\*}\|.E)$. Sau đâu là code của thuật toán trên:
 
 **Lưu ý:** Trong các thuật toán dưới đây ta sẽ gọi trace[u] là điển đi đến được u trong đường tăng luồng, nếu không có đỉnh nào đến được u trace[u] sẽ có giá trị là $-1$
 
