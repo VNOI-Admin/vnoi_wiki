@@ -139,31 +139,24 @@ int evaluate(string s)
                 number = number * 10 + s[i] - '0';
                 ++i;
             }
+            val.push_back(number);
             --i; // cẩn thận với index!
         }
         else
         {
+            if (!op.empty())
+            {
+                process_op(val, op.back()); // xử lý biểu thức từ trái sang phải
+                op.pop_back();
+            }
             op.push_back(s[i]);
         }
-    }
-    while (!op.empty())
-    {
-        process_op(val, op.back());
-        op.pop_back();
     }
     return val.back();
 }
 ```
 
-Quan sát đoạn code ở cuối hàm `evaluate`:
-```cpp
-while (!op.empty())
-{
-    process_op(val, op.back());
-    op.pop_back();
-}
-```
-Do các toán tử có cùng độ ưu tiên, nên ta có thể xử lý chúng lần lượt theo danh sách đã xây dựng. Tuy nhiên, nếu danh sách \\(op\\) có các toán tử khác độ ưu tiên, nhưng chúng tạo thành dãy có **độ ưu tiên tăng dần**, thì ta vẫn có thể xử lý như trên, do các dấu có độ ưu tiên lớn hơn sẽ luôn được xử lý trước. Do các thay đổi được cập nhật trực tiếp vào mảng giá trị \\(val\\) nên ta luôn đảm bảo thu được kết quả đúng.
+Do các toán tử có cùng độ ưu tiên, ta có thể xử lý chúng lần lượt theo danh sách đã xây dựng. Tuy nhiên, nếu danh sách \\(op\\) có các toán tử khác độ ưu tiên, thì ta vẫn có thể xử lý bài toán bằng việc luôn giữ cho danh sách toán tử \\(op\\) chứa các toán tử có độ ưu tiên *tăng dần*, sau đó xử lý danh sách toán tử từ dưới lên để đảm bảo các dấu có độ ưu tiên lớn hơn luôn được xử lý trước.
 
 Trong bài toán gốc, xâu \\(S\\) còn chứa ký tự \\(\times\\) và \\(\div\\). Ta cần xử lý danh sách toán tử sao cho các phép tính có độ ưu tiên lớn hơn luôn được thực hiện trước.
 
@@ -177,11 +170,9 @@ int priority(char op)
 }
 ```
 
-Giống với bài toán đơn giản, ta vẫn duyệt xâu \\(S\\) từ trái sang phải. Khi gặp toán hạng, ta vẫn đẩy chúng vào danh sách. Tuy nhiên, khi gặp toán tử, ta cần xem xét thứ tự ưu tiên của toán tử ngay trước nó. Nếu toán tử trước có độ ưu tiên lớn hơn, ta cần phải xử lý nó trước, và loại bỏ toán tử đứng trước đó khỏi danh sách. Ta sẽ lặp lại việc xử lý toán tử đứng trước này cho đến khi nó có độ ưu tiên không lớn hơn toán tử đang xét. Điều này đảm bảo phép tính sẽ luôn được thực hiện theo mức độ ưu tiên.
+Giống với bài toán đơn giản, ta vẫn duyệt xâu \\(S\\) từ trái sang phải. Khi gặp toán hạng, ta vẫn đẩy chúng vào danh sách. Tuy nhiên, khi gặp toán tử, ta cần xem xét thứ tự ưu tiên của toán tử ngay trước nó. Nếu toán tử trước có độ ưu tiên lớn hơn hoặc bằng toán tử đang xétxét, ta cần phải xử lý nó trước, và loại bỏ toán tử đứng trước đó khỏi danh sách. Ta sẽ lặp lại việc xử lý toán tử đứng trước này cho đến khi nó có độ ưu tiên không lớn hơn toán tử đang xét. Điều này đảm bảo phép tính sẽ luôn được thực hiện theo mức độ ưu tiên.
 
-Ý tưởng chính của lời giải là ta luôn duy trì danh sách toán tử có độ ưu tiên tăng dần. Khi đó, ta có thể xử lý lần lượt các dấu từ cuối về đầu danh sách toán tử như với bải toán chỉ có \\(+\\) và \\(-\\).
-
-Quan sát rằng bản chất của danh sách ta sử dụng chính là Stack. Việc thêm toán tử/toán hạng vào danh sách chính là thao tác \\(push\\); cách ta xử lý toán tử gợi đến việc \\(top\\) và \\(pop\\) do trong các bước của lời giải, ta chỉ cần quan tâm tới những phần tử ở cuối danh sách. Lời giải sử dụng `vector` để biểu diễn Stack.
+Để ý rằng bản chất của danh sách ta sử dụng chính là Stack. Việc thêm toán tử/toán hạng vào danh sách chính là thao tác \\(push\\); cách ta xử lý toán tử gợi đến việc \\(top\\) và \\(pop\\) do trong các bước của lời giải, ta chỉ cần quan tâm tới những phần tử ở cuối danh sách. Lời giải sử dụng `vector` để biểu diễn Stack.
 
 ```cpp
 void process_op(vector<int>& val, char op)
@@ -209,8 +200,9 @@ int evaluate(string s)
         else
         {
             char cur_op = s[i]; // toán tử hiện tại
-            while (!op.empty() && priority(op.back()) > priority(cur_op))
-            // xử lý các toán tử ngay trước nó có độ ưu tiên lớn hơn
+            while (!op.empty() && priority(op.back()) >= priority(cur_op))
+            // xử lý các toán tử ngay trước nó có độ ưu tiên bằng hoặc lớn hơn
+            // chú ý rằng nếu thay dấu >= bằng dáu > thì đápđáp
             {
                 process_op(val, op.back());
                 op.pop_back();
