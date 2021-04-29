@@ -217,7 +217,7 @@ int evaluate(string s)
     while (!op.empty())
     {
         process_op(val, op.back());
-        op.back();
+        op.pop_back();
     }
     return val.back();
 }
