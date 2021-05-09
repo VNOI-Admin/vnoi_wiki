@@ -10,15 +10,15 @@ Dưới đây là bài viết tổng hợp các bài viết / comment chất lư
 ## Bảng tin:
 * [Thông báo về hệ thống tính điểm mới của VNOJ](https://www.facebook.com/groups/VNOIForum/permalink/4144480918906044/)
 
-* [Bài viết về ngăn xếp (Stack) trong chuỗi bài viết VNOI Wiki](https://www.facebook.com/groups/VNOIForum/permalink/4161548887199247/)
+* [Bài viết về ngăn xếp (Stack) của bạn Nguyễn Hả Duy trong chuỗi bài viết VNOI Wiki](https://www.facebook.com/groups/VNOIForum/permalink/4161548887199247/)
 
-* [Bài viết về DFS và ứng dụng trong chuỗi bài viết VNOI Wiki](https://www.facebook.com/groups/VNOIForum/permalink/4097595166927953/)
+* [Bài viết về DFS và ứng dụng của các bạn Nguyễn Châu Khanh, Bùi Minh Hoạt và Trần Thế Hưng trong chuỗi bài viết VNOI Wiki](https://www.facebook.com/groups/VNOIForum/permalink/4097595166927953/)
 
 * [Cập nhật "VNOI problems" để trỏ các link cũ dến VNOJ](https://www.facebook.com/groups/VNOIForum/permalink/4110776232276513/)
 
 * [Đề thi Olympic Tin Học Miền Trung và Tây Nguyên năm 2021](https://www.facebook.com/groups/VNOIForum/permalink/4163679366986199/)
 
-* [Benchmark cho các dạng cây tìm kiếm nhị phân cơ bản](https://www.facebook.com/groups/VNOIForum/permalink/4175930762427726/)
+* [Benchmark cho các dạng cây tìm kiếm nhị phân cơ bản của thầy Lê Minh Hoàng](https://www.facebook.com/groups/VNOIForum/permalink/4175930762427726/)
 
 * [Thông báo về kì thi Tin học trẻ toàn quốc lần thứ XXVII](https://www.facebook.com/groups/VNOIForum/permalink/4175313365822799/)
 
