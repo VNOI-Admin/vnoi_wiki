@@ -4,8 +4,6 @@
 
 **Reviewer:** Nguyễn Xuân Tùng
 
----
-
 [[_TOC_]]
 
 # Giới thiệu
