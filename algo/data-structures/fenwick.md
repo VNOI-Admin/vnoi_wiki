@@ -1,8 +1,11 @@
 # **Cây chỉ số nhị phân (Binary Indexed Tree)**
 
-**Tác giả:** Bùi Nguyễn Đức Tân, Lê Minh Hoàng - Phổ thông Năng khiếu, Đại học Quốc gia Thành phố Hồ Chí Minh
+**Tác giả:** 
+- Bùi Nguyễn Đức Tân - Phổ thông Năng khiếu, Đại học Quốc gia Thành phố Hồ Chí Minh
+- Lê Minh Hoàng - Phổ thông Năng khiếu, Đại học Quốc gia Thành phố Hồ Chí Minh
 
-**Reviewer:** Nguyễn Xuân Tùng
+**Reviewer:**
+- Nguyễn Xuân Tùng - Đại học Quốc Tế, Đại học Quốc gia Thành phố Hồ Chí Minh
 
 ---
 
