@@ -45,7 +45,7 @@ int getSum(int p) {
 - Độ phức tạp khi update: $\mathcal{O}(1)$.
 - Độ phức tạp khi truy vấn: $\mathcal{O}(p) = \mathcal{O}(N)$. <!--đpt tương đương với số ptu của mảng-->
 - Có $Q$ truy vấn, vì thế độ phức tạp là $\mathcal{O}(Q + Q \cdot N) = \mathcal{O}(Q \cdot N)$
-- Nếu chưa biết về độ phức tạp tính toán, các bạn có thể đọc ở: https://vnoi.info/wiki/translate/topcoder/Computational-Complexity-Section-1.md <!--tạm để đó-->
+- Nếu chưa biết về độ phức tạp tính toán, các bạn có thể đọc ở [đây](https://vnoi.info/wiki/translate/topcoder/Computational-Complexity-Section-1.md).
 
 Đối chiếu giới hạn, cách "ngây thơ" trên tỏ ra chậm chạp, không đủ để xử lí yêu cầu bài toán.
 
