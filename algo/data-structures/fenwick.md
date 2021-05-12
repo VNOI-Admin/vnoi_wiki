@@ -298,4 +298,4 @@ int rangeSum(int l, int r) {
 - [VNOJ - NKINV](https://oj.vnoi.info/problem/nkinv)
 - [VNOJ - INCVN](https://oj.vnoi.info/problem/incvn)
 
-VNOI Online Judge có riêng các bài tập về BIT, các bạn có thể tham khảo tại [đây](https://oj.vnoi.info/problems/?type=14&point_start=&point_end=).
+VNOI Online Judge có phân loại riêng các bài tập về BIT, các bạn có thể tham khảo tại [đây](https://oj.vnoi.info/problems/?type=14&point_start=&point_end=).
