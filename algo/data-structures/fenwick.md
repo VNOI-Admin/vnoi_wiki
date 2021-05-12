@@ -1,4 +1,8 @@
-# Cây chỉ số nhị phân (Binary Indexed Tree)
+# **Cây chỉ số nhị phân (Binary Indexed Tree)**
+
+**Tác giả:** Bùi Nguyễn Đức Tân, Lê Minh Hoàng - Phổ thông Năng khiếu, Đại học Quốc gia Thành phố Hồ Chí Minh
+
+**Reviewer:** Nguyễn Xuân Tùng
 
 ---
 
