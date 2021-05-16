@@ -272,7 +272,7 @@ void updatePoint(vector<int>& b, int u, int v) {
 
 void updateRange(int l, int r, int v) {
     updatePoint(bit1, l, (n - l + 1) * v);
-    updatePoint(bit1, r + 1, -(n - r + 1) * v);
+    updatePoint(bit1, r + 1, -(n - r) * v);
     updatePoint(bit2, l, v);
     updatePoint(bit2, r + 1, -v);
 }
