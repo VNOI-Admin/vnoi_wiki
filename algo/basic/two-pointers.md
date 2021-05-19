@@ -29,19 +29,43 @@ Sử dụng phương pháp hai con trỏ để giải quyết bài toán như sa
 
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-**_Ví dụ 1:_** 
+**Ví dụ 1:** $A = [2, 3, 5, 7, 9, 12]$ và $X = 16$.
 
-$A = [2, 5, 6, 8, 10, 12, 15], X = 16$
+* Đặt $i=1$ và $j=N$. \\
+$A = [\overset{\underset{\downarrow}{\color{red}i}}{2}, 3, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{12}]$
 
-![](https://i.imgur.com/4kDvgwj.gif)
+* Vì $A[i]+A[j]=2+12=14<X$ nên tăng vị trí $i$ lên một đơn vị.\\
+$A = [2,\overset{\underset{\downarrow}{\color{red}i}}{3}, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{12}]$
 
+* Vì $A[i]+A[j]=3+12=15<X$ nên tăng vị trí $i$ lên một đơn vị.\\
+$A = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{5}, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{12}]$
 
----
-**_Ví dụ 2:_** 
+* Vì $A[i]+A[j]=5+12=17>X$ nên giảm vị trí $j$ đi một đơn vị.\\
+$A = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{5}, 7, \underset{\overset{\uparrow}{\color{blue}j}}{9}, 12]$
 
-$A = [2, 3, 7, 8, 10, 12, 15], X = 16$
+* Vì $A[i]+A[j]=5+9<X$ nên tăng vị trí $i$ lên một đơn vị.\\
+$A = [2, 3, 5, \overset{\underset{\downarrow}{\color{red}i}}{7}, \underset{\overset{\uparrow}{\color{blue}j}}{9}, 12]$
 
-![](https://i.imgur.com/1KUtV6g.gif)
+* Vì $A[i]+A[j]=7+9=X$ nên hai vị trí cần tìm là hai vị trí $i$ và $j$.
+
+**Ví dụ 2:** $A = [2, 5, 7, 9, 12]$ và $X = 15$.
+
+* Đặt $i=1$ và $j=N$. \\
+$A = [\overset{\underset{\downarrow}{\color{red}i}}{2}, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{12}]$
+
+* Vì $A[i]+A[j]=2+12=14<X$ tăng vị trí $i$ lên một đơn vị. \\
+$A = [2, \overset{\underset{\downarrow}{\color{red}i}}{5}, 7, 9, \underset{\underset{\uparrow}{\color{blue}j}}{12}]$
+
+* Vì $A[i]+A[j]=5+12=17>X$ nên giảm vị trí $j$ đi một đơn vị. \\
+$A = [2, \overset{\underset{\downarrow}{\color{red}i}}{5}, 7, \underset{\underset{\uparrow}{\color{blue}j}}{9}, 12]$
+
+* Vì $A[i]+A[j]=5+9=14<X$ tăng vị trí $i$ lên một đơn vị. \\
+$A = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{7}, \underset{\underset{\uparrow}{\color{blue}j}}{9}, 12]$
+
+* Vì $A[i]+A[j]=7+9=16>X$ giảm vị trí $j$ đi một đơn vị. \\
+$A = [2, 5, \overset{\underset{\downarrow}{\color{red}i,\color{blue}j}}{7}, 9, 12]$
+
+* Vì $i=j$ nên không tìm được hai vị trí cần tìm.
 
 **Cài đặt giải pháp**
 ```cpp
@@ -91,6 +115,60 @@ Vị trí con trỏ $i$ luôn tăng, vị trí con trỏ $j$ thì luôn giảm. 
 [VNOJ - NDCCARD](https://oj.vnoi.info/problem/ndccard) \\
 [LQDOJ - CNTPAIR02](https://lqdoj.edu.vn/problem/cntpair02) \\
 [VNOJ - TWOSUM](https://oj.vnoi.info/problem/twosum)
+
+# Bài toán 2
+Cho hai mảng số nguyên đã được **sắp xếp tăng dần** $A$ và $B$ lần lượt có $N$ và $M$ phần tử. Hãy ghép chúng thành mảng $C$ được bố trí theo thứ tự tăng dần.
+
+Giới hạn: $N, M \leq 10^5$ và $-10^9 \leq A_i, B_i \leq 10^{9}$.
+
+## Giải pháp
+
+Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán như sau:
+
+- Mảng $A$ có con trỏ $i$, con trỏ này bắt đầu ở vị trí đầu dãy $A$.
+- Mảng $B$ có con trỏ $j$, con trỏ này bắt đầu ở vị trí đầu dãy $B$.
+- Ta sẽ lặp lại công việc này, cho đến khi đưa hết các phần tử trong mảng $A$ và $B$ vào mảng $C$:
+    - Khi các phần tử trong một dãy nào đó, dãy $A$ hoặc dãy $B$, đều đã được đưa vào dãy $C$: đưa lần lượt các phần tử trong dãy còn lại vào dãy $C$.
+    - Ngược lại: 
+        - So sánh hai phần tử ở hai con trỏ.
+        - Đưa phần tử có giá trị nhỏ hơn vào dãy $C$, nếu hai phần tử có giá trị như nhau thì chọn một trong hai.
+        - Tăng vị trí con trỏ ở phần tử được đưa vào lên một đơn vị.
+
+Để hiểu rõ hơn, ta hãy cùng xem qua ví dụ sau đây:
+
+$A = [3, 5, 6, 9], B = [2, 6, 10, 12]$
+
+
+![](https://i.imgur.com/xsfppEM.gif)
+
+## Phân tích
+Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
+
+Ta cần xây dựng mảng $C$ là một mảng tăng dần nên mỗi phần tử đưa vào mảng $C$ chính là phần tử nhỏ nhất trong các phần tử chưa được đưa vào trong hai mảng $A$ và $B$. Với phương pháp hai con trỏ được nêu trên, con trỏ $i$ chính là phần tử dãy $A$ nhỏ nhất chưa được đưa vào $C$, con trỏ $j$ chính là phần tử dãy $B$ nhỏ nhất chưa được đưa vào $C$. 
+
+Để biết được phần tử tiếp theo ta cần thêm vào, ta chỉ cần so sánh hai phần tử chưa được đưa vào nhỏ nhất mỗi mảng $A$ và $B$ và đưa phần tử có giá trị nhỏ hơn vào. Vì dãy $A$ đã được sắp xếp tăng dần cho nên khi ta đưa $A[i]$ vào mảng $C$ thì $A[i+1]$ sẽ là phần tử dãy $A$ nhỏ nhất chưa được đưa vào $C$. Tương tự, dãy $B$ đã được sắp xếp tăng dần cho nên khi ta đưa $B[j]$ vào mảng $C$ thì $B[j+1]$ sẽ là phần tử dãy $B$ nhỏ nhất chưa được đưa vào $C$. Khi thêm các phần tử như vậy vào mảng $C$, ta sẽ được một mảng $C$ được ghép từ mảng $A$ và mảng $B$ và các phần tử $C$ được bố trí theo thứ tự tăng dần.
+
+Nhận thấy, con trỏ $i$, $j$ đều tăng, trong đó $i$ luôn tăng không quá $N$ lần, $j$ tăng không quá $M$ lần. Vì vậy độ phức tạp của bài toán là $O(N+M)$.
+
+## Cài đặt
+
+Các bạn có thể tham khảo cách cài đặt bài toán với phương pháp hai con trỏ sau đây:
+
+```cpp
+int i = 1, j = 1;
+vector<int> C;
+while (i <= N || j <= M){
+    if (j == M + 1 || (i <= N && A[i] < B[j]))
+        C.push_back(A[i++]);
+    else 
+        C.push_back(B[j++]);
+}
+```
+
+## Bài tập
+
+Cho $4$ mảng số nguyên dương $A, B, C, D$ có lần lượt $NA, NB, NC, ND$ phần tử. Hãy tìm giá trị nhỏ nhất của $S = max(A_i, B_j, C_k, D_l) - min((A_i, B_j, C_k, D_l).$
+Giới hạn: $NA, NB, NC, ND \leq 10^5$ và $1 \leq A_i, B_j, C_k, D_l \leq 10^{9}$.
 
 # Bài toán 2
 Cho một mảng số **nguyên dương** $A$ gồm $N$ phần tử và số nguyên dương $X$. Tìm độ dài đoạn con $[l, r]$ dài nhất sao cho tổng các phần tử trong đoạn có giá trị không quá $X$. 
@@ -178,72 +256,6 @@ Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên
 Giới hạn: $N \leq 10^5$, $0 \leq K \leq N$ và $A_i \leq 10^{5}$.
 
 Luyện tập thêm [tại đây](https://vnoi.info/problems/SOPENP/) và [tại đây](https://vnoi.info/problems/KRECT/)
-
-
-# Bài toán 3 
-Cho hai mảng số nguyên đã được **sắp xếp tăng dần** $A$ và $B$ lần lượt có $N$ và $M$ phần tử. Hãy ghép chúng thành mảng $C$ được bố trí theo thứ tự tăng dần.
-Giới hạn: $N, M \leq 10^5$ và $-10^9 \leq A_i, B_i \leq 10^{9}$.
-
-## Tiếp cận
-
-### Tiếp cận 1
-Đưa từng phần tử trong mảng $A$ và mảng $B$ vào mảng $C$. Sau đó sử dụng hàm $sort$ trong $C++$ để sắp xếp.
-```cpp
-for (int i = 1; i <= N; i++)
-    C[i] = A[i];
-for (int i = 1; i <= M; i++)
-    C[i + N] = B[i];
-sort(C + 1, C + N + M + 1);
-```
-Độ phức tạp của cách làm này là: $O((N+M)log(N+M))$.
-
-### Tiếp cận 2
-
-Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán như sau:
-
-- Mảng $A$ có con trỏ $i$, con trỏ này bắt đầu ở vị trí đầu dãy $A$.
-- Mảng $B$ có con trỏ $j$, con trỏ này bắt đầu ở vị trí đầu dãy $B$.
-- Ta sẽ lập lại công việc này, cho đến khi đưa hết các phần tử trong mảng $A$ và $B$ vào mảng $C$:
-    - Khi các phần tử trong một dãy nào đó, dãy $A$ hoặc dãy $B$, đều đã được đưa vào dãy $C$: Đưa các phần tử trong dãy còn lại vào dãy $C$.
-    - Ngược lại: 
-        - So sánh hai phần tử ở hai con trỏ,
-        - Đưa phần tử có giá trị nhỏ hơn vào dãy $C$, nếu hai phần tử có giá trị như nhau thì chọn $1$ trong $2$.
-        - Tăng vị trí con trỏ ở phần tử đó lên $1$ đơn vị.
-
-Để hiểu rõ hơn, ta hãy cùng xem qua ví dụ sau đây:
-
-$A = [3, 5, 6, 9], B = [2, 6, 10]$
-
-![](https://i.imgur.com/xsfppEM.gif)
-
-## Phân tích
-Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
-
-Ta cần xây dựng mảng $C$ là một mảng tăng dần nên mỗi phần tử đưa vào mảng $C$ chính là phần tử nhỏ nhất trong các phần tử chưa được đưa vào trong hai mảng $A$ và $B$. Với phương pháp hai con trỏ được nêu trên, con trỏ $i$ chính là phần tử dãy $A$ nhỏ nhất chưa được đưa vào $C$, con trỏ $j$ chính là phần tử dãy $B$ nhỏ nhất chưa được đưa vào $C$. 
-
-Để biết được phần tử tiếp theo ta cần thêm vào, ta chỉ cần so sánh hai phần tử chưa được đưa vào nhỏ nhất mỗi mảng $A$ và $B$ và đưa phần tử có giá trị nhỏ hơn vào. Vì dãy $A$ đã được sắp xếp tăng dần cho nên khi ta đưa $A[i]$ vào mảng $C$ thì $A[i+1]$ sẽ là phần tử dãy $A$ nhỏ nhất chưa được đưa vào $C$. Tương tự, dãy $B$ đã được sắp xếp tăng dần cho nên khi ta đưa $B[j]$ vào mảng $C$ thì $B[j+1]$ sẽ là phần tử dãy $B$ nhỏ nhất chưa được đưa vào $C$. Khi thêm các phần tử như vậy vào mảng $C$, ta sẽ được một mảng $C$ được ghép từ mảng $A$ và mảng $B$ và các phần tử $C$ được bố trí theo thứ tự tăng dần.
-
-Nhận thấy, con trỏ $i$, $j$ đều tăng, trong đó $i$ luôn tăng không quá $N$ lần, $j$ tăng không quá $M$ lần. Vì vậy độ phức tạp của bài toán là $O(N+M)$.
-
-## Cài đặt
-
-Các bạn có thể tham khảo cách cài đặt bài toán với phương pháp hai con trỏ sau đây:
-
-```cpp
-int i = 1, j = 1;
-vector<int> C;
-while (i <= N || j <= M){
-    if (j == M + 1 || (i <= N && A[i] < B[j]))
-        C.push_back(A[i++]);
-    else 
-        C.push_back(B[j++]);
-}
-```
-
-## Bài tập
-
-Cho $4$ mảng số nguyên dương $A, B, C, D$ có lần lượt $NA, NB, NC, ND$ phần tử. Hãy tìm giá trị nhỏ nhất của $S = max(A_i, B_j, C_k, D_l) - min((A_i, B_j, C_k, D_l).$
-Giới hạn: $NA, NB, NC, ND \leq 10^5$ và $1 \leq A_i, B_j, C_k, D_l \leq 10^{9}$.
 
 # Floyd's tortoise and hare
 ## Vấn đề
