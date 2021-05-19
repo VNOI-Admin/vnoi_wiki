@@ -11,38 +11,21 @@
 Bài viết này sẽ giúp bạn tìm hiểu thêm về **kỹ thuật hai con trỏ**. Kỹ thuật này không những được sử dụng khá phổ biến mà còn giúp chương trình tiết kiệm thời gian và không gian xử lý.  
 
 # Bài toán 1
-Cho một mảng số nguyên dương **tăng dần** $A$ gồm $N$ phần tử và số nguyên dương $X$, kiểm tra xem có hai phần tử trong dãy $A$ có tổng là $X$ hay không?
 
-Giới hạn $2 \leq N \leq 10^5$ và $1 \leq X, A[i] \leq 10^9$
+Cho một mảng số nguyên $A$ có $N$ phần tử, mảng này đã được **sắp xếp tăng dần**. Hãy tìm vị trí của hai phần tử **khác nhau** **bất kỳ** sao cho tổng của chúng có giá trị là $X$.
 
-## Tiếp cận 
+Giới hạn: $2 \leq N \leq 10^7$ và $-10^9 \leq A_i, X \leq 10^9$
 
-### Tiếp cận 1
+## Giải pháp
 
-Duyệt tất cả các cặp phần tử có trong dãy $A$.
+Sử dụng phương pháp hai con trỏ để giải quyết bài toán như sau:
 
-```cpp
-for (int i = 1; i < N; i++)
-    for (int j = i + 1; j <= N; j++)
-        if (A[i] + A[j] == X){
-            cout << "True";
-            return 0;
-        }
-cout << "False";
-```
-
-Cách làm này có độ phức tạp là $O(N^2)$.
-
-### Tiếp cận 2
-
-Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán như sau:
-
-- Con trỏ $i$ bắt đầu từ vị trí đầu tiên của dãy, con trỏ $j$ bắt đầu từ vị trí cuối cùng của dãy.
-- Nếu tổng hai phần tử ở hai vị trí con trỏ có giá trị:
-    - Nhỏ hơn $X$: tăng vị trí con trỏ $i$ lên $1$ đơn vị
-    - Lớn hơn $X$: giảm vị trí con trỏ $j$ đi $1$ đơn vị
-- Ta tiếp tục di chuyển vị trí hai con trỏ cho đến khi tổng hai phần tử ở hai vị trí đó có giá trị là $X$, hoặc cho đến khi hai con trỏ gặp nhau ở cùng một vị trí.
-- Trong trường hợp hai con trỏ có cùng vị trí thì trong dãy $A$ không tồn tại hai phần tử có tổng là $X$. Ngược lại, trong dãy $A$ tồn tại hai phần tử có tổng là $X$.
+* Một con trỏ $(i)$ được đặt ở đầu mảng $A$, con trỏ còn lại $(j)$ được đặt ở cuối mảng $A$.
+* Nếu tổng của hai phần tử ở hai vị trí con trỏ 
+    * Nhỏ hơn $X$: tăng vị trí con trỏ $i$ lên một đơn vị.
+    * Lớn hơn $X$: giảm vị trí con trỏ $j$ đi một đơn vị.
+* Di chuyển vị trí hai con trỏ cho đến khi tổng hai phần tử ở đó có giá trị là $X$, hoặc cho đến khi hai con trỏ gặp nhau tại cùng một vị trí.
+* Trong trường hợp hai con trỏ gặp nhau thì trong dãy không tồn tại hai phần tử có tổng là $X$, ngược lại vị trí của hai phần tử cần tìm chính là vị trí của hai con trỏ $i$ và $j$.
 
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
@@ -52,7 +35,6 @@ $A = [2, 5, 6, 8, 10, 12, 15], X = 16$
 
 ![](https://i.imgur.com/4kDvgwj.gif)
 
-→ Dãy $A$ **tồn tại** hai phần tử có tổng là $X$.
 
 ---
 **_Ví dụ 2:_** 
@@ -61,50 +43,54 @@ $A = [2, 3, 7, 8, 10, 12, 15], X = 16$
 
 ![](https://i.imgur.com/1KUtV6g.gif)
 
-→ Dãy $A$ **không tồn tại** hai phần tử có tổng là $X$.
-
+**Cài đặt giải pháp**
+```cpp
+int i = 1, j = N;
+while (i < j) {
+    if (A[i] + A[j] == X)
+        break;
+    if (A[i] + A[j] < X)
+        i += 1;
+    else
+        j -= 1;
+}
+if (i == j)
+    cout << "No solution";
+else
+    cout << i << " " << j;
+```
 ## Phân tích
 
-Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
+**Phân tích tính đúng đắn của giải pháp**
 
 Trước tiên, ta sẽ xem xét bài toán sau: Kiểm tra trong đoạn con $[i, j]$ có tồn tại hai phần tử khác nhau có tổng là $X$ hay không. 
 
-- Nếu đoạn con $[i, j]$ có **một** phần tử, tức $i=j$, thì chắc chắn trong đoạn sẽ không có hai phần tử khác nhau có tổng là $X$.
+- Nếu đoạn con $[i, j]$ có **một** phần tử, tức $i=j$, thì chắc chắn trong đoạn sẽ không có hai phần tử.
 - Ngược lại, nếu đoạn con $[i, j]$ có ít nhất hai phần tử $(i<j)$
-    - $A[i]+A[j]=X$, trong đoạn $[i,j]$ tồn tại hai phần tử khác nhau là $A[i]$ và $A[j]$ có tổng là $X$.
-    - $A[i]+A[j]<X$, dãy $A$ được sắp xếp tăng dần nên các phần tử trong đoạn $[i,j]$ đều nhỏ hơn phần tử $A[j]$. Vậy tổng của $A[i]$ với mỗi phần tử trong đoạn $[i,j]$ đều có giá trị nhỏ hơn $X$. Từ đó ta không cần quan tâm đến $A[i]$ nữa mà chỉ quan tâm đến đoạn con $[i+1, j]$ mà thôi
-    - $A[i]+A[j]>X$, dãy $A$ được sắp xếp tăng dần nên các phần tử trong đoạn $[i,j]$ đều lớn hơn phần tử $A[i]$. Vậy tổng của $A[j]$ với mỗi phần tử trong đoạn $[i,j]$ đều có giá trị lớn hơn $X$. Từ đó ta không cần quan tâm đến $A[j]$ nữa mà chỉ quan tâm đến đoạn con $[i, j-1]$ mà thôi.
+    - $A[i]+A[j]=X$: 
+        - Hai vị trí cần tìm là hai vị trí $i$ và $j$.
+    - $A[i]+A[j]<X$: 
+        - Vì mảng $A$ đã được sắp xếp tăng dần nên $\forall i < k \leq j : A[k] \leq A[j]$ \\
+        $\Rightarrow \forall i < k \leq j : A[i] + A[k] \leq A[i] + A[j]$ \\
+        $\Rightarrow \forall i < k \leq j : A[i] + A[k] < X$.
+        - Ta thấy rằng tổng của $A[i]$ với một trong các phần tử khác trong đoạn $[i+1,j]$ đều nhỏ hơn $X$ cho nên ta không cần quan tâm đến $A[i]$ nữa mà chỉ quan tâm đến các phần tử trong đoạn $[i+1,j]$ mà thôi.
+    - $A[i]+A[j]>X$: 
+        - Vì mảng $A$ đã được sắp xếp tăng dần nên $\forall i \leq k < j : A[k] \geq A[i]$ \\
+        $\Rightarrow \forall i \leq k < j : A[k] + A[j] \geq A[i] + A[j]$ \\
+        $\Rightarrow \forall i \leq k < j : A[k] + A[j] > X$.
+        - Ta thấy rằng tổng của $A[j]$ với một trong các phần tử khác trong đoạn $[i,j-1]$ đều lớn hơn $X$ cho nên ta không cần quan tâm đến $A[j]$ nữa mà chỉ quan tâm đến các phần tử trong đoạn $[i,j-1]$ mà thôi. 
+        
+Từ những nhận xét này, ta có được giải pháp sử dụng hai con trỏ như trên, trong đó hai con trỏ $i$ và $j$ được thể hiện như đoạn con $[i,j]$.
+Ban đầu ta đặt $i=1$ và $j=N$, điều này sẽ giúp ta tìm được vị trí hai phần tử có tổng là $X$ trong đoạn con $[1,N]$, cũng chính là dãy $A$.
 
-Từ những nhận xét này, ta có được phương pháp hai con trỏ được nêu ở trên. Trong đó hai con trỏ $i$ và $j$ thể hiện thay cho đoạn con $[i, j]$. 
+**Phân tích độ phức tạp của giải pháp**
 
-Ban đầu, ta đặt $i=1$ và $j=N$, vậy ta sẽ kiểm tra được sự tồn tại hai phần tử khác nhau có tổng là $X$ trong đoạn $[1, n]$, cũng chính là dãy $A$.
+Vị trí con trỏ $i$ luôn tăng, vị trí con trỏ $j$ thì luôn giảm. Hơn nữa, sự thay đổi vị trí hai con trỏ này sẽ dừng lại khi tổng hai phần tử ở hai vị trí con trỏ có tổng là $X$ hay khi vị trí $i$ bằng vị trí $j$. Vì thế, việc thay đổi vị trí hai con trỏ sẽ không quá $N$ lần, độ phức tạp của giải pháp là $O(N)$.
 
-Ta thấy rằng độ dài của đoạn con $[i, j]$ luôn giảm, và luôn giảm không quá $N$ lần. Cho nên độ phức tạp của bài này là $O(N)$.
-
-## Cài đặt
-Các bạn có thể tham khảo cách cài đặt bài toán với phương pháp hai con trỏ sau đây:
-
-```cpp
-int i = 1, j = N;
-while (i < j){
-    if (A[i] + A[j] == X) {
-        cout << "True";
-        return 0;
-    }
-    if (A[i] + A[j] < X)
-        i++;
-    else
-        j--;
-}
-cout << "False";
-```
-
-## Bài tập
-*Bài 1:* Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $M$, tìm cặp số $(i, j, k)$ sao cho $1 \leq i < j < k \leq N$ và $A_i + A_j + A_K = M$. Giới hạn: $N \leq 5000$ và $A_i, M \leq 10^9$.
-[Submit](https://cses.fi/problemset/task/1641)
-
-*Bài 2:* Cho một mảng số nguyên dương $A$ gồm $N$ phần tử và số nguyên dương $M$, tìm cặp số $(i, j, k, l)$ sao cho $1 \leq i < j < k < l \leq N$ và $A_i + A_j + A_K + A_l = M$. Giới hạn: $N \leq 1000$ và $A_i, M \leq 10^9$.
-[Submit](https://cses.fi/problemset/task/1642)
+## Luyện tập
+[VNOJ - NDCCARD](https://oj.vnoi.info/problem/ndccard) \\
+[LQDOJ - CNTPAIR02](https://lqdoj.edu.vn/problem/cntpair02) \\
+[VNOJ - TWOSUM](https://oj.vnoi.info/problem/twosum)
 
 # Bài toán 2
 Cho một mảng số **nguyên dương** $A$ gồm $N$ phần tử và số nguyên dương $X$. Tìm độ dài đoạn con $[l, r]$ dài nhất sao cho tổng các phần tử trong đoạn có giá trị không quá $X$. 
