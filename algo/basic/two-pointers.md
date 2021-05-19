@@ -14,7 +14,7 @@ Bài viết này sẽ giúp bạn tìm hiểu thêm về **kỹ thuật hai con 
 
 Cho một mảng số nguyên $A$ có $N$ phần tử, mảng này đã được **sắp xếp tăng dần**. Hãy tìm vị trí của hai phần tử **khác nhau** **bất kỳ** sao cho tổng của chúng có giá trị là $X$.
 
-Giới hạn: $2 \leq N \leq 10^7$ và $-10^9 \leq A_i, X \leq 10^9$
+Giới hạn: $2 \leq N \leq 10^6$ và $-10^9 \leq A_i, X \leq 10^9$
 
 ## Giải pháp
 
