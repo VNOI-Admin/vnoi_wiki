@@ -11,10 +11,11 @@
 Bài viết này sẽ giúp bạn tìm hiểu thêm về **kỹ thuật hai con trỏ**. Kỹ thuật này không những được sử dụng khá phổ biến mà còn giúp chương trình tiết kiệm thời gian và không gian xử lý.  
 
 # Bài toán 1
+[LQDOJ - FINDPAIR](https://lqdoj.edu.vn/problem/findpair)
 
 Cho một mảng số nguyên $A$ có $N$ phần tử, mảng này đã được **sắp xếp tăng dần**. Hãy tìm vị trí của hai phần tử **khác nhau** **bất kỳ** sao cho tổng của chúng có giá trị là $X$.
 
-Giới hạn: $2 \leq N \leq 10^6$ và $-10^9 \leq A_i, X \leq 10^9$
+Giới hạn: $2 \leq N \leq 10^6$ và $0 \leq A_i, X \leq 10^9$
 
 ## Giải pháp
 
@@ -32,38 +33,38 @@ Sử dụng phương pháp hai con trỏ để giải quyết bài toán như sa
 **Ví dụ 1:** $A = [2, 3, 5, 7, 9, 12]$ và $X = 16$.
 
 * Đặt $i=1$ và $j=N$. \\
-$A = [\overset{\underset{\downarrow}{\color{red}i}}{2}, 3, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{12}]$
+$A = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 3, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}]$
 
 * Vì $A[i]+A[j]=2+12=14<X$ nên tăng vị trí $i$ lên một đơn vị.\\
-$A = [2,\overset{\underset{\downarrow}{\color{red}i}}{3}, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{12}]$
+$A = [2,\overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}]$
 
 * Vì $A[i]+A[j]=3+12=15<X$ nên tăng vị trí $i$ lên một đơn vị.\\
-$A = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{5}, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{12}]$
+$A = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}]$
 
 * Vì $A[i]+A[j]=5+12=17>X$ nên giảm vị trí $j$ đi một đơn vị.\\
-$A = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{5}, 7, \underset{\overset{\uparrow}{\color{blue}j}}{9}, 12]$
+$A = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}9}, 12]$
 
 * Vì $A[i]+A[j]=5+9<X$ nên tăng vị trí $i$ lên một đơn vị.\\
-$A = [2, 3, 5, \overset{\underset{\downarrow}{\color{red}i}}{7}, \underset{\overset{\uparrow}{\color{blue}j}}{9}, 12]$
+$A = [2, 3, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}9}, 12]$
 
 * Vì $A[i]+A[j]=7+9=X$ nên hai vị trí cần tìm là hai vị trí $i$ và $j$.
 
 **Ví dụ 2:** $A = [2, 5, 7, 9, 12]$ và $X = 15$.
 
 * Đặt $i=1$ và $j=N$. \\
-$A = [\overset{\underset{\downarrow}{\color{red}i}}{2}, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{12}]$
+$A = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}]$
 
 * Vì $A[i]+A[j]=2+12=14<X$ tăng vị trí $i$ lên một đơn vị. \\
-$A = [2, \overset{\underset{\downarrow}{\color{red}i}}{5}, 7, 9, \underset{\underset{\uparrow}{\color{blue}j}}{12}]$
+$A = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}]$
 
 * Vì $A[i]+A[j]=5+12=17>X$ nên giảm vị trí $j$ đi một đơn vị. \\
-$A = [2, \overset{\underset{\downarrow}{\color{red}i}}{5}, 7, \underset{\underset{\uparrow}{\color{blue}j}}{9}, 12]$
+$A = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}9}, 12]$
 
 * Vì $A[i]+A[j]=5+9=14<X$ tăng vị trí $i$ lên một đơn vị. \\
-$A = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{7}, \underset{\underset{\uparrow}{\color{blue}j}}{9}, 12]$
+$A = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}9}, 12]$
 
 * Vì $A[i]+A[j]=7+9=16>X$ giảm vị trí $j$ đi một đơn vị. \\
-$A = [2, 5, \overset{\underset{\downarrow}{\color{red}i,\color{blue}j}}{7}, 9, 12]$
+$A = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{ \underset{\overset{\uparrow}{\color{blue}j}}{\color{purple}7}}, 9, 12]$
 
 * Vì $i=j$ nên không tìm được hai vị trí cần tìm.
 
@@ -117,9 +118,11 @@ Vị trí con trỏ $i$ luôn tăng, vị trí con trỏ $j$ thì luôn giảm. 
 [VNOJ - TWOSUM](https://oj.vnoi.info/problem/twosum)
 
 # Bài toán 2
+[LQDOJ - TWOPOINTERIA](https://lqdoj.edu.vn/problem/twopointeria)
+
 Cho hai mảng số nguyên đã được **sắp xếp tăng dần** $A$ và $B$ lần lượt có $N$ và $M$ phần tử. Hãy ghép chúng thành mảng $C$ được bố trí theo thứ tự tăng dần.
 
-Giới hạn: $N, M \leq 10^5$ và $-10^9 \leq A_i, B_i \leq 10^{9}$.
+Giới hạn: $N, M \leq 10^5$ và $0 \leq A_i, B_i \leq 10^{9}$.
 
 ## Giải pháp
 
@@ -138,39 +141,74 @@ Sử dụng phương pháp **hai con trỏ** để giải quyết bài toán nh�
 
 $A = [3, 5, 6, 9], B = [2, 6, 10, 12]$
 
+* Đặt $i = 1$ và $j = 1$. \\
+$A = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 5, 6, 9]$\\
+$B = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 10, 12]$\\
+$C = []$
 
-![](https://i.imgur.com/xsfppEM.gif)
+* Vì $B[j]<A[i]$ nên ta đưa $B[j]$ vào mảng $C$ và tăng vị trí $j$ lên một. \\
+$A = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 5, 6, 9]$\\
+$B = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 10, 12]$\\
+$C = [2]$
 
-## Phân tích
-Tại sao cách làm với phương pháp hai con trỏ được nêu ở trên lại chính xác ?
+* Vì $A[i]<B[j]$ nên ta đưa $A[i]$ vào mảng $C$ và tăng vị trí $i$ lên một. \\
+$A = [3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 5, 6, 9]$\\
+$B = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 10, 12]$\\
+$C = [2, 3]$
 
-Ta cần xây dựng mảng $C$ là một mảng tăng dần nên mỗi phần tử đưa vào mảng $C$ chính là phần tử nhỏ nhất trong các phần tử chưa được đưa vào trong hai mảng $A$ và $B$. Với phương pháp hai con trỏ được nêu trên, con trỏ $i$ chính là phần tử dãy $A$ nhỏ nhất chưa được đưa vào $C$, con trỏ $j$ chính là phần tử dãy $B$ nhỏ nhất chưa được đưa vào $C$. 
+* Vì $A[i]<B[j]$ nên ta đưa $A[i]$ vào mảng $C$ và tăng vị trí $i$ lên một. \\
+$A = [3, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 9]$\\
+$B = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 10, 12]$\\
+$C = [2, 3, 5]$
 
-Để biết được phần tử tiếp theo ta cần thêm vào, ta chỉ cần so sánh hai phần tử chưa được đưa vào nhỏ nhất mỗi mảng $A$ và $B$ và đưa phần tử có giá trị nhỏ hơn vào. Vì dãy $A$ đã được sắp xếp tăng dần cho nên khi ta đưa $A[i]$ vào mảng $C$ thì $A[i+1]$ sẽ là phần tử dãy $A$ nhỏ nhất chưa được đưa vào $C$. Tương tự, dãy $B$ đã được sắp xếp tăng dần cho nên khi ta đưa $B[j]$ vào mảng $C$ thì $B[j+1]$ sẽ là phần tử dãy $B$ nhỏ nhất chưa được đưa vào $C$. Khi thêm các phần tử như vậy vào mảng $C$, ta sẽ được một mảng $C$ được ghép từ mảng $A$ và mảng $B$ và các phần tử $C$ được bố trí theo thứ tự tăng dần.
+* Vì $A[i]=B[j]$ nên ta có thể đưa bất kỳ một trong hai phần tử. Ở đây ta đưa phần tử $A[i]$ vào $C$ và tăng vị trí $i$ lên một.\\
+$A = [3, 5, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}9}]$\\
+$B = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 10, 12]$\\
+$C = [2, 3, 5, 6]$
 
-Nhận thấy, con trỏ $i$, $j$ đều tăng, trong đó $i$ luôn tăng không quá $N$ lần, $j$ tăng không quá $M$ lần. Vì vậy độ phức tạp của bài toán là $O(N+M)$.
+* Vì $B[j]<A[i]$ nên ta đưa $B[j]$ vào mảng $C$ và tăng vị trí $j$ lên một. \\
+$A = [3, 5, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}9}]$\\
+$B = [2, 6, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12]$\\
+$C = [2, 3, 5, 6, 6]$
 
-## Cài đặt
+* Vì $A[i]<B[j]$ nên ta đưa $A[i]$ vào mảng $C$ và tăng vị trí $i$ lên một. \\
+$A = [3, 5, 6, 9] \overset{\underset{\downarrow}{\color{red}i}}{ }$\\
+$B = [2, 6, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12]$\\
+$C = [2, 3, 5, 6, 6, 9]$
 
-Các bạn có thể tham khảo cách cài đặt bài toán với phương pháp hai con trỏ sau đây:
+* Vì tất cả các phần tử trong mảng $A$ đều đã được đưa vào mảng $C$ nên từ đưa lần lượt các phần tử chưa được đưa vào trong mảng $B$ từ vị trí $j$.
+$C = [2, 3, 5, 6, 6, 9, 10, 12]$
 
+**Cài đặt giải pháp**
 ```cpp
 int i = 1, j = 1;
 vector<int> C;
 while (i <= N || j <= M){
-    if (j == M + 1 || (i <= N && A[i] < B[j]))
+    if (j == M + 1 || (i <= N && A[i] <= B[j]))
         C.push_back(A[i++]);
     else 
         C.push_back(B[j++]);
 }
+for (auto it: C)
+    cout << it << " ";
 ```
 
-## Bài tập
+## Phân tích
 
-Cho $4$ mảng số nguyên dương $A, B, C, D$ có lần lượt $NA, NB, NC, ND$ phần tử. Hãy tìm giá trị nhỏ nhất của $S = max(A_i, B_j, C_k, D_l) - min((A_i, B_j, C_k, D_l).$
-Giới hạn: $NA, NB, NC, ND \leq 10^5$ và $1 \leq A_i, B_j, C_k, D_l \leq 10^{9}$.
+**Phân tích tính đúng đắn của giải pháp**
 
-# Bài toán 2
+
+
+**Phân tích độ phức tạp của giải pháp**
+
+
+## Luyện tập
+
+[VNOJ - NKSGAME](https://oj.vnoi.info/problem/nksgame)\\
+[CODEFORCES - 1251C](https://codeforces.com/problemset/problem/1251/C)\\
+[CODEFORCES - 1036D](https://codeforces.com/problemset/problem/1036/D)
+
+# Bài toán 3
 Cho một mảng số **nguyên dương** $A$ gồm $N$ phần tử và số nguyên dương $X$. Tìm độ dài đoạn con $[l, r]$ dài nhất sao cho tổng các phần tử trong đoạn có giá trị không quá $X$. 
 Giới hạn: $N \leq 10^5$, $A_i \leq X \leq 10^{9}$. 
 
