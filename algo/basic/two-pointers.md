@@ -273,32 +273,163 @@ Vị trí con trỏ $i$ luôn tăng, vị trí con trỏ $j$ thì luôn giảm. 
 [VNOJ - TWOSUM](https://oj.vnoi.info/problem/twosum)
 
 # Bài toán 3
-Cho dãy số nguyên dương $a$ có $n$ phần tử. Hãy tìm độ dài đoạn con dài nhất trong dãy sao cho trong đoạn này không có quá $k$ số nguyên khác nhau.
+Cho dãy số nguyên dương $a$ có $n$ phần tử. Hãy tìm độ dài đoạn con dài nhất trong dãy sao cho tổng các phần tử trong đoạn này không quá $s$.
 
-Giới hạn: $1\leq n, k \leq 10^6$ và $1 \leq a_i \leq 10^6$.
+Dữ liệu đảm bảo các phần tử trong dãy $a$ đều có giá trị không quá $s$.
+
+Giới hạn: $1\leq n \leq 10^6$, $1 \leq a_i \leq 10^9$ và $s \leq 10^{18}$.
 
 ## Phân tích
 
+Để dễ dàng phân tích, ta tạm gọi 
+* $sum(l,r)$ là tổng các phần tử trong đoạn $[l,r]$.
+* Một đoạn con $[l,r]$ là đoạn con "tốt" nếu $sum(l,r) \leq s$
+
+Qua đây, bài toán của chúng ta sẽ là tìm độ dài đoạn con "tốt" dài nhất.
+
+Vì dãy $a$ là một dãy số nguyên dương cho nên
+
+* $sum(1,r)>sum(2,r)>...>sum(r-1,r)>sum(r,r)$.
+* Nếu đoạn con $[l,r]$ là đoạn con "tốt" thì với mọi $x\geq l$, đoạn $[x,r]$ là đoạn con "tốt".
+* Nếu đoạn con $[l,r]$ không là đoạn con "tốt" thì với mọi $x \leq l$, đoạn $[x,r]$ không là đoạn con "tốt".
+
+Với $r$ là một vị trí bất kỳ, nếu như $l$ là vị trí nhỏ nhất sao cho đoạn $[l,r]$ là một đoạn "tốt" thì
+* mọi $x \geq l$ thì đoạn con $[x,r]$ là một đoạn "tốt".
+* mọi $x < l$ thì đoạn con $[x,r]$ không là một đoạn "tốt".
+* đoạn con $[l,r]$ là một đoạn con "tốt" dài nhất trong các đoạn con "tốt" có vị trí kết thúc tại $r$.
+
+Từ đó, với mỗi $r$ từ $1$ đến $n$, nếu ta xác định được vị trí $l$, ta có thể biết được độ dài của đoạn con "tốt" dài nhất của dãy $a$.
+
+Hãy cùng nhận xét vị trí của $l$ với mỗi $r$ từ $1$ đến $n$ qua ví dụ sau đây:
+
+Cho trước dãy $a = [2, 6, 4, 3, 6, 8, 9]$ và $s=20$
+* $r=1 \rightarrow l=1$
+    * $a = [\overset{\underset{\downarrow}{{\color{red}l},{\color{blue}r}}}{\color{green}2}, 6, 4, 3, 6, 8, 9]$
+    * $sum(l,r)=2$
+* $r=2 \rightarrow l=1$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 4, 3, 6, 8, 9]$
+    * $sum(l,r)=8$
+* $r=3 \rightarrow l=1$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}4}, 3, 6, 8, 9]$
+    * $sum(l,r)=12$
+* $r=4 \rightarrow l=1$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}4},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
+    * $sum(l,r)=15$
+* $r=5 \rightarrow l=2$
+    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}6}, {\color{green}4}, {\color{green}3},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 8, 9]$
+    * $sum(l,r)=19$
+* $r=6 \rightarrow l=4$
+    * $a = [2, 6, 4, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}3}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}8}, 9]$
+    * $sum(l,r)=17$
+* $r=7 \rightarrow l=6$
+    * $a = [2, 6, 4, 3, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}9}]$
+    * $sum(l,r)=17$
+
+Có thể thấy rằng, vị trí $l$ đối với các giá trị $r$ từ $1$ đến $n$ có giá trị không giảm.
+
+Thật vậy, với mọi $x<l$ thì $sum(x,r)>s \Rightarrow sum(x,r+1)>s$, vì thế giá trị $l$ đối với $r+1$ phải không quá giá trị $l$ đối với $r$.
+
+Hơn nữa vì các phần tử trong dãy $a$ đều có giá trị không quá $s$ cho nên luôn tồn tại vị trí $l \leq r$ sao cho đoạn $[l,r]$ là một đoạn "tốt". 
 ## Giải pháp
+
+Với những phân tích như trên, ta có giải quyết bài toán với phương pháp hai con trỏ như sau:
+* Hai con trỏ $l$ và $r$ sẽ đặt ở vị trí $1$.
+    * Hai con trỏ này được thể hiện như hai vị trí $l$, $r$ như ở trên phần phân tích. 
+* Di chuyển lần lượt con trỏ $r$ từ $1$ đến $n$.
+    * Sau mỗi lần di chuyển con trỏ $r$, nếu
+        *  $sum(l,r) \leq s$: giữ nguyên vị trí con trỏ $l$.
+        *  $sum(l,r) > s$: tăng dần vị trí con trỏ $l$ cho đến khi $sum(l,r) \leq s$.
+    * Hiện tại với vị trí con trỏ $l$ và $r$, ta biết đoạn "tốt" dài nhất với vị trí kết thúc tại $r$ là đoạn $[l,r]$.
+* Độ dài đoạn con "tốt" dài nhất chính là giá trị độ dài lớn nhất của các đoạn "tốt" dài nhất với vị trí kết thúc tại $r$, với mỗi $r$ từ $1$ đến $n$.
+
+Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
+
+$a = [2, 6, 4, 3, 6, 8, 9]$ và $s=20$
+
+* Sử dụng biến $ans$ để lưu lại giá trị lớn nhất của độ dài đoạn "tốt" có vị trí kết thúc tại $r$, với $r$ từ $1$ đến $n$.
+
+* Đặt $l=1$ và $r=1$
+    * $a = [\overset{\underset{\downarrow}{{\color{red}l},{\color{blue}r}}}{\color{green}2}, 6, 4, 3, 6, 8, 9]$
+    * vì $a[1] \leq s$ nên đoạn $[1,1]$ là một đoạn "tốt".
+    * $ans = max(ans, r - l + 1)$
+    
+* Tăng vị trí $r$ lên $1$ đơn vị
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 4, 3, 6, 8, 9]$
+    * vì $sum(l,r) = 8 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = max(ans, r - l + 1)$
+    
+* Tăng vị trí $r$ lên $1$ đơn vị
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}4}, 3, 6, 8, 9]$
+    * vì $sum(l,r) = 12 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = max(ans, r - l + 1)$
+    
+* Tăng vị trí $r$ lên $1$ đơn vị
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}4},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
+    * vì $sum(l,r) = 15 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = max(ans, r - l + 1)$
+    
+* Tăng vị trí $r$ lên $1$ đơn vị
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{orange}2}, {\color{orange}6}, {\color{orange}4}, {\color{orange}3}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}6}, 8, 9]$
+    * vì $sum(l,r) = 21 > s$ nên tăng vị trí $l$.
+
+* Tăng vị trí $l$ lên $1$ đơn vị
+    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}6}, {\color{green}4}, {\color{green}3},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 8, 9]$
+    * vì $sum(l,r) = 19 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = max(ans, r - l + 1)$
+
+* Tăng vị trí $r$ lên $1$ đơn vị
+    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}6}, {\color{orange}4}, {\color{orange}3}, {\color{orange}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}8}, 9]$
+    * vì $sum(l,r) = 27 > s$ nên tăng vị trí $l$.
+
+* Tăng vị trí $l$ lên $1$ đơn vị
+    * $a = [2, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}4}, {\color{orange}3}, {\color{orange}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}8}, 9]$
+    * vì $sum(l,r) = 21 > s$ nên tăng vị trí $l$.
+
+* Tăng vị trí $l$ lên $1$ đơn vị
+    * $a = [2, 6, 4, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}3}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}8}, 9]$
+    * vì $sum(l,r) = 17 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = max(ans, r - l + 1)$
+
+* Tăng vị trí $r$ lên $1$ đơn vị
+    * $a = [2, 6, 4, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}3}, {\color{orange}6}, {\color{orange}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}9}]$
+    * vì $sum(l,r) = 26 > s$ nên tăng vị trí $l$.
+
+* Tăng vị trí $l$ lên $1$ đơn vị
+    * $a = [2, 6, 4, 3, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}6}, {\color{orange}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}9}]$
+    * vì $sum(l,r) = 23 > s$ nên tăng vị trí $l$.
+
+* Tăng vị trí $l$ lên $1$ đơn vị
+    * $a = [2, 6, 4, 3, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}9}]$
+    * vì $sum(l,r) = 17 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = max(ans, r - l + 1)$
+
+**Cài đặt**
+
+Để có thể tính được tổng các phần tử từ $l$ đến $r$ trong khi $l$ và $r$ đang di động, ta sẽ sử dụng biến $sum$ để lưu lại tổng của đoạn $[l,r]$ hiện tại. Sau khi di chuyên $r$ sang phải, biến $sum$ sẽ cộng thêm giá trị $a[r]$. Trước khi di chuyển $l$ sang phải, biến $sum$ sẽ trừ đi giá trị $a[l]$.
+
+```cpp
+int ans = 0, sum = 0;
+for (int l = 1, r = 1; r <= n; r++) {
+    sum += a[r];
+    while (sum > s) {
+      sum -= a[l];
+      l++;
+    }
+    ans = max(ans, r - l + 1);
+}
+cout << ans;
+```
+**Độ phức tạp**
+
+Vị trí con trỏ $r$ luôn tăng, vị trí con trỏ $l$ luôn tăng và luôn tăng không giá trị $r$. Hơn nữa, mỗi vị trí $l$ và $r$ tăng không quá $n$ lần. Vì thế độ phức tạp của giải pháp là $O(n)$.
 
 ## Luyện tập
 [VNOJ - SOPENP](https://oj.vnoi.info/problem/sopenp)\\
 [VNOJ - PRODUCT](https://oj.vnoi.info/problem/product)\\
-[VNOJ - KRECT](https://oj.vnoi.info/problem/krect)
-
-# Bài toán 4
-Cho dãy số nguyên dương $a$ có $n$ phần tử. Hãy tìm độ dài đoạn con ngắn nhất trong dãy sao cho ước chung lớn nhất của các phần tử trong dãy là $1$.
-
-Giới hạn: $1\leq n \leq 10^6$ và $1 \leq a_i \leq 10^{18}$.
-
-## Phân tích
-
-## Giải pháp
-
-## Luyện tập
+[VNOJ - KRECT](https://oj.vnoi.info/problem/krect)\\
 [VNOJ - VMQUABEO](https://oj.vnoi.info/problem/vmquabeo)
 
-# Bài toán 5
+# Bài toán 4
 Cho hai số nguyên dương $x, y (x, y\leq 10^{18})$, tìm số thứ $k$ của phân số $\frac{x}{y}$ khi biểu diễn dưới dạng thập phân.
 
 Biết rằng, phân số $\frac{x}{y}$ khi biểu diễn dưới dạng tuần hoàn có không quá $10^7$ ký tự.
