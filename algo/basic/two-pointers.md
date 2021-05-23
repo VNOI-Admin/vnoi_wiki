@@ -16,7 +16,6 @@ Cho hai mảng số nguyên đã được **sắp xếp không giảm** $a$ và 
 
 Giới hạn: $n, m \leq 10^5$ và $0 \leq a_i, b_i \leq 10^{9}$.
 
-Xem chi tiết [tại đây](https://lqdoj.edu.vn/problem/twopointeria)
 ## Phân tích
 
 Hãy cùng xem ví dụ sau đây. 
@@ -430,15 +429,18 @@ Vị trí con trỏ $r$ luôn tăng, vị trí con trỏ $l$ luôn tăng và lu�
 [VNOJ - VMQUABEO](https://oj.vnoi.info/problem/vmquabeo)
 
 # Bài toán 4
-Cho hai số nguyên dương $x, y (x, y\leq 10^{18})$, tìm số thứ $k$ của phân số $\frac{x}{y}$ khi biểu diễn dưới dạng thập phân.
+Cho hai số nguyên dương $x, y (x, y\leq 10^{12})$, biểu diễn phân số $\frac{x}{y}$ dưới dạng số thập phân vô hạn tuần hoàn.
 
-Biết rằng, phân số $\frac{x}{y}$ khi biểu diễn dưới dạng tuần hoàn có không quá $10^7$ ký tự.
+Biết rằng không cần quá $10^7$ ký tự để biểu diễn.
+
+Xem chi tiết [tại đây](https://lqdoj.edu.vn/problem/torhar)
 
 ## Phân tích
+
 
 ## Giải pháp
 
 ## Luyện tập
-[CODEFORCES - D.Sequence analysis](https://codeforces.com/gym/100503/problem/D)\\
-[CODEFORCES - H. Pseudo-Random Number Generator](https://codeforces.com/gym/102501/problem/H)\\
-[CODEFORCES - D. Cooperative Game](https://codeforces.com/contest/1137/problem/D)
+[CODEFORCES - Sequence analysis](https://codeforces.com/gym/100503/problem/D)\\
+[CODEFORCES - Pseudo-Random Number Generator](https://codeforces.com/gym/102501/problem/H)\\
+[CODEFORCES - Cooperative Game](https://codeforces.com/contest/1137/problem/D)
