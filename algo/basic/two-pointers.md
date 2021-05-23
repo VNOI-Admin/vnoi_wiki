@@ -429,16 +429,159 @@ Vị trí con trỏ $r$ luôn tăng, vị trí con trỏ $l$ luôn tăng và lu�
 [VNOJ - VMQUABEO](https://oj.vnoi.info/problem/vmquabeo)
 
 # Bài toán 4
-Cho hai số nguyên dương $x, y (x, y\leq 10^{12})$, biểu diễn phân số $\frac{x}{y}$ dưới dạng số thập phân vô hạn tuần hoàn.
+Bạn được cho một dãy số nguyên như sau:
 
-Biết rằng không cần quá $10^7$ ký tự để biểu diễn.
+* $x_0=1$
+* $x_{i+1} = (a * x + x \ div \ b) \  mod \ c$.
 
-Xem chi tiết [tại đây](https://lqdoj.edu.vn/problem/torhar)
+Tìm $n$ nhỏ nhất sao cho tồn tại $m < n$ và $x_m = x_n$. Dữ liệu đảm bảo $n$ không quá $2*10^7$.
+
+Giới hạn: $1 \leq a \leq 10^4$ và $1 \leq b,c \leq 10^{14}$.
+
+Xem chi tiết [tại đây](https://lqdoj.edu.vn/problem/findloop)
 
 ## Phân tích
 
+Để dễ dàng phân tích ta định nghĩa hàm $f$ như sau:
+
+$$f(x) = (a * x + x \ div \ b) \  mod \ c$$
+
+Dãy số của chúng ta sẽ có dạng
+
+$$x_0 = 1, x_1=f(x_0), x_2=f(x_1),...,x_i=f(x_{i-1}),...$$
+
+Với phép chia lấy dư cho $c$ thì mọi $i > 0$, giá trị của $x_i$ sẽ có giá trị nằm trong khoảng $[0, c-1] $. 
+
+Cũng vì điều này dãy số với vô hạn phần tử này sẽ tồn tại $x_m = x_n$ với $m < n$. (theo nguyên lý [Dirichlet](https://vi.wikipedia.org/wiki/Nguy%C3%AAn_l%C3%BD_ng%C4%83n_k%C3%A9o_Dirichlet)) 
+
+Có thể thấy, khi dãy tồn tại $x_m = x_n$, dãy sẽ xuất hiện chu kỳ. Cụ thể như sau:
+
+Gọi $n$ là giá trị nhỏ nhất thỏa mãn tồn tại $m < n$ sao cho $x_m=x_n$.
+
+$$x_0,x_1, x_2,...,\underset{\uparrow}{x_m},x_{m+1},...,x_{n-1},\underset{\uparrow}{x_n},...$$
+
+Khi đó, dãy sẽ có chu kỳ lặp lại các phần tử từ $x_m$ đến $x_{n-1}$
+
+$${\color{blue}\underbrace{\color{black}x_0,x_1,...,x_{m-1}}_{}},{\color{red}\underbrace{\color{black}x_m,x_{m+1},...,x_{n-1}}_{}}, {\color{red}\underbrace{\color{black}x_m,x_{m+1},...,x_{n-1}}_{}}, {\color{red}\underbrace{\color{black}x_m,x_{m+1},...,x_{n-1}}_{}},...$$
+
+Dãy số có thể biễu diễn như hình sau đây:
+
+![](https://i.imgur.com/0lHu5lA.png)
+
+Bài toán có thể giải quyết nếu chúng ta phần tử bắt đầu chu kỳ ($x_{\mu}$) và độ dài của chu kỳ $\lambda$.
+
+Cụ thể, xem ví dụ sau đây:
+
+$$a = 2, b = 2, c = 32$$
+
+Ta có dãy số 
+
+$${\color{blue}\underbrace{\color{black}1, 2, 5, 12}_{}},{\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}},...$$
+
+Giá trị $n$ cần tìm của bài toán là $n = 12$.
+
+Ta có thể tính được giá trị này bằng cách xác định
+* phần tử bắt đầu chu kỳ $x_{\mu}$.
+* độ dài chu kỳ $\lambda$.
+
+Ở đây, phần tử bắt đầu chu kỳ là $x_4$ và độ dài chu kỳ là $8$.
+
+Giá trị $n = \mu + \lambda = 4 + 8 = 12$.
 
 ## Giải pháp
+
+Để xác định giá trị $\mu$ và $\lambda$, ta sử dụng thuật toán [Floyd's tortoise and hare](https://en.wikipedia.org/wiki/Cycle_detection#Floyd's_tortoise_and_hare)
+
+### Rùa và Thỏ
+
+Khởi tạo hai con trỏ, $toroise$ (rùa) và $hare$ (thỏ).
+
+Tại mỗi thời điểm, ta tịnh tiến hai con trỏ này như sau:
+* Tortoise (rùa): tịnh tiến một "bước"
+    * Nếu hiện tại con trỏ $tortoise$ đang là $x$, nó sẽ được tịnh tiến đến $f(x)$.
+    * $x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow x_3 \rightarrow x_4 \rightarrow ...$
+    * Vì dãy số của chúng ta có chu kỳ nên ta có công thức tính giá trị của con trỏ $tortoise$ sau $t$ lần tịnh tiến:
+        * $t < \mu$: $x_t$
+        * $t \geq \mu$: $x_{\mu+(t-\mu) \ mod \ \lambda}$
+* Hare (thỏ): tịnh tiến hai "bước"
+    * Nếu hiện tại con trỏ $hare$ đang là $x$, nó sẽ được tịnh tiến đến $f(f(x))$.
+    * $x_0 \rightarrow x_2 \rightarrow x_4 \rightarrow x_6 \rightarrow x_8 \rightarrow ...$
+    * Vì dãy số của chúng ta có chu kỳ nên ta có công thức tính giá trị của con trỏ $hare$ sau $t$ lần tịnh tiến:
+        * $2t < \mu$: $x_{2t}$
+        * $2t \geq \mu$: $x_{\mu+(2t-\mu) \ mod \ \lambda}$
+    
+Ngoài lúc ban đầu, hai con trỏ $tortoise$ và $hare$ sẽ luôn gặp nhau tại thời điểm nào đó. Thật vậy:
+* $2t < \mu$: 
+    * Sau $t$ lần tịnh tiến, $tortoise$ = $x_t$ và $hare$ = $x_{2t}$. 
+    * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $0$ đến $\mu + \lambda - 1$ phải đôi một khác nhau. 
+    * Vì thế $x_t \neq x_{2t}$, $tortoise$ và $hare$ chưa gặp nhau lúc này.
+* $2t \geq \mu$ và $t < \mu$
+    * Sau $t$ lần tịnh tiến, $tortoise$ = $x_t$ và $hare$ = $x_{\mu+(2t-\mu) \ mod \ \lambda}$.
+    * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $0$ đến $\mu + \lambda - 1$ phải đôi một khác nhau. 
+    * Vì thế $x_t \neq x_{\mu+(2t-\mu) \ mod \ \lambda}$, tortoise và hare chưa gặp nhau lúc này.
+* $t \geq \mu$
+    * Sau $t$ lần tịnh tiến, $tortoise$ = $x_{\mu+(t-\mu) \ mod \ \lambda}$ và $hare$ = $x_{\mu+(2t-\mu) \ mod \ \lambda}$.
+    * Tại $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $0$ đến $\mu + \lambda - 1$ phải đôi một khác nhau. 
+    * Nếu $tortoise$ và $hare$ gặp nhau thì $\mu+(t-\mu) \ mod \ \lambda = {\mu+(2t-\mu) \ mod \ \lambda} \Rightarrow t \ mod \ \lambda = 0$.
+    * Vậy, $tortoise$ và $hare$ sẽ gặp nhau sau $t$ lần tịnh tiến, trong đó $t$ là số nguyên có giá trị lớn hơn hoặc bằng $\mu$ và chia hết cho $\lambda$.
+    * Trừ lúc khởi tạo, hai con trỏ $tortoise$ và $hare$ sẽ gặp nhau khi giá trị của cả hai con trỏ là $x_{\mu+(\lambda -\mu \ mod \ \lambda) \ mod \ \lambda}$.
+
+Cách cài đặt để $tortoise$ và $hare$ gặp nhau:
+
+```cpp
+int tortoise = 1, hare = 1;
+while (true) {
+    tortoise = f(tortoise);
+    hare = f(f(hare));
+    if (tortoise == hare)
+      break;
+}
+```
+### Tìm $\mu$
+
+Khởi tạo một con trỏ mới $p=x_0=1$, con trỏ này được tịnh tiến giống như con trỏ $tortoise$.
+
+Tịnh tiến cùng lúc hai con trỏ $p$ và $tortoise$ và dừng lại cho đến khi chúng gặp nhau.
+
+Số lần tịnh tiến ở đây chính là $\mu$.
+
+**Chứng minh:**
+
+* Trong những lần tịnh tiến từ $1$ đến $\mu - 1$, con trỏ $p$ nhận giá trị từ $x_0$ đến $x_{\mu -1}$ (các giá trị không có trong chu kỳ) . Còn con trỏ $tortoise$, vì đã nằm ở chu kỳ, nên giá trị của $tortoise$ sẽ nhận giá trị của các phần tử có trong chu kỳ. Vì thế $tortoise$ và $p$ chưa gặp nhau.
+* Hai con trỏ $p$ và $tortoise$ gặp nhau tại lần tịnh tiến thứ $\mu$:
+    * Con trỏ $p$ có giá trị $x_{\mu}$.
+    * Lúc chưa tịnh tiến $p$, con trỏ $tortoise$ có giá trị $x_{\mu+(t-\mu) \ mod \ \lambda}$ (đã nêu ở mục Rùa và Thỏ). Vì đã ở trong chu kỳ cho nên, sau khi tịnh tiến $\mu$ lần con trỏ $tortoise$ sẽ có giá trị là $x_{\mu+(t) \ mod \ \lambda}$. Mà $t$ là số nguyên dương chia hết cho $\lambda$, cho nên con trỏ $tortoise$ có giá trị là $x_{\mu}$.
+
+Cách cài đặt tìm $\mu$:
+
+```cpp
+int mu = 0, p = 1;
+while (p != tortoise) {
+    p = f(p);
+    tortoise = f(tortoise);
+    mu++;
+}
+```
+### Tìm $\lambda$
+
+Bây giờ cả hai con trỏ $tortoise$ và $p$ đang có giá trị là $x_{\mu}$.
+
+Chúng ta giữ nguyên giá trị $tortoise$, và tịnh tiến $p$ cho đến khi $p$ có giá trị $x_{\mu}$ lại.
+
+Vì $p$ đã ở trong chu kỳ cho nên, sau khi tinh tiến $\lambda$ lần, $p$ sẽ lại có giá trị là $x_{\mu}$.
+
+```cpp
+int lambda = 0;
+while (true) {
+    lambda++;
+    p = f(p);
+    if (tortoise == p)
+      break;
+}
+```
+Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
+
+$$a=2, b=2, c=32$$
 
 ## Luyện tập
 [CODEFORCES - Sequence analysis](https://codeforces.com/gym/100503/problem/D)\\
