@@ -215,7 +215,7 @@ Từ những phân tích vừa rồi ta có giải pháp sử dụng hai con tr�
 **Ví dụ 1:** $a = [2, 5, 6, 8, 10, 12, 15]$ và $x = 16$.
 
 * Đặt $i=1$ và $j=N$. \\
-$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, 12 \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}15}]$
+$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, 12,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}15}]$
 
 * Vì $a[i]+a[j]=2+15=17>x$ nên giảm vị trí $j$ đi một đơn vị.\\
 $a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
@@ -224,31 +224,37 @@ $a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, 
 $a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 6, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
 
 * Vì $a[i]+a[j]=5+12=17>x$ nên giảm vị trí $j$ đi một đơn vị.\\
-$a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}9}, 12]$
+$a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 6, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]$
 
-* Vì $a[i]+a[j]=5+9<x$ nên tăng vị trí $i$ lên một đơn vị.\\
-$a = [2, 3, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}9}, 12]$
+* Vì $a[i]+a[j]=5+10<x$ nên tăng vị trí $i$ lên một đơn vị.\\
+$a = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]$
 
-* Vì $a[i]+a[j]=7+9=x$ nên hai vị trí cần tìm là hai vị trí $i$ và $j$.
+* Vì $a[i]+a[j]=6+10=x$ nên hai vị trí cần tìm là hai vị trí $i$ và $j$.
 
 ![](https://i.imgur.com/4kDvgwj.gif)
 
-**Ví dụ 2:** $a = [2, 5, 7, 9, 12]$ và $x = 15$.
+**Ví dụ 2:** $a = [2, 3, 7, 8, 10, 12, 15]$ và $x = 16$.
 
 * Đặt $i=1$ và $j=N$. \\
-$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}]$
-
-* Vì $a[i]+a[j]=2+12=14<x$ tăng vị trí $i$ lên một đơn vị. \\
-$a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}]$
+$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 3, 7, 8, 10, 12 \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}15}]$
 
 * Vì $a[i]+a[j]=5+12=17>x$ nên giảm vị trí $j$ đi một đơn vị. \\
-$a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}9}, 12]$
+$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 3, 7, 8, 10,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
 
-* Vì $a[i]+a[j]=5+9=14<x$ tăng vị trí $i$ lên một đơn vị. \\
-$a = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}9}, 12]$
+* Vì $a[i]+a[j]=2+12=14<x$ nên tăng vị trí $i$ lên một đơn vị. \\
+$a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 7, 8, 10,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
 
-* Vì $a[i]+a[j]=7+9=16>x$ giảm vị trí $j$ đi một đơn vị. \\
-$a = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{ \underset{\overset{\uparrow}{\color{blue}j}}{\color{purple}7}}, 9, 12]$
+* Vì $a[i]+a[j]=3+12=15<x$ tăng vị trí $i$ lên một đơn vị. \\
+$a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, 8, 10,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
+
+* Vì $a[i]+a[j]=7+12=19>x$ giảm vị trí $j$ đi một đơn vị. \\
+$a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]$
+
+* Vì $a[i]+a[j]=7+10=17>x$ giảm vị trí $j$ đi một đơn vị. \\
+$a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}8}, 10, 12, 15]$
+
+* Vì $a[i]+a[j]=7+8=15<x$ tăng vị trí $i$ lên một đơn vị. \\
+$a = [2, 3, 7, \overset{\underset{\downarrow}{\color{red}i}}{ \underset{\overset{\uparrow}{\color{blue}j}}{\color{purple}8}}, 10, 12, 15]$
 
 * Vì $i=j$ nên không tìm được hai vị trí cần tìm.
 
@@ -409,6 +415,8 @@ $a = [2, 6, 4, 3, 6, 8, 9]$ và $s=20$
     * vì $sum(l,r) = 17 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = max(ans, r - l + 1)$
 
+![](https://i.imgur.com/S3HQo51.gif)
+
 **Cài đặt**
 
 Để có thể tính được tổng các phần tử từ $l$ đến $r$ trong khi $l$ và $r$ đang di động, ta sẽ sử dụng biến $sum$ để lưu lại tổng của đoạn $[l,r]$ hiện tại. Sau khi di chuyên $r$ sang phải, biến $sum$ sẽ cộng thêm giá trị $a[r]$. Trước khi di chuyển $l$ sang phải, biến $sum$ sẽ trừ đi giá trị $a[l]$.
@@ -479,21 +487,21 @@ Bài toán có thể giải quyết nếu chúng ta phần tử bắt đầu chu
 
 Cụ thể, xem ví dụ sau đây:
 
-$$a = 2, b = 2, c = 32$$
+$$a = 8, b = 2, c = 31$$
 
 Ta có dãy số 
 
-$${\color{blue}\underbrace{\color{black}1, 2, 5, 12}_{}},{\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}},...$$
+$${\color{blue}\underbrace{\color{black}1, 8, 6, 20, 15}_{}},{\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}}, {\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}}, {\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}},...$$
 
-Giá trị $n$ cần tìm của bài toán là $n = 12$.
+Giá trị $n$ cần tìm của bài toán là $n = 9$.
 
 Ta có thể tính được giá trị này bằng cách xác định
 * phần tử bắt đầu chu kỳ $x_{\mu}$.
 * độ dài chu kỳ $\lambda$.
 
-Ở đây, phần tử bắt đầu chu kỳ là $x_4$ và độ dài chu kỳ là $8$.
+Ở đây, phần tử bắt đầu chu kỳ là $x_5$ và độ dài chu kỳ là $4$.
 
-Giá trị $n = \mu + \lambda = 4 + 8 = 12$.
+Giá trị $n = \mu + \lambda = 5 + 4 = 9$.
 
 ## Giải pháp
 
@@ -588,7 +596,23 @@ while (true) {
 ```
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-$$a=2, b=2, c=32$$
+$$a = 2, b = 2, c = 32$$
+
+Ta có dãy số 
+
+$${\color{blue}\underbrace{\color{black}1, 2, 5, 12}_{}},{\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}},...$$
+
+Giá trị $n$ cần tìm của bài toán là $n = 12$.
+
+Ta có thể tính được giá trị này bằng cách xác định
+* phần tử bắt đầu chu kỳ $x_{\mu}$.
+* độ dài chu kỳ $\lambda$.
+
+Ở đây, phần tử bắt đầu chu kỳ là $x_4$ và độ dài chu kỳ là $8$.
+
+Giá trị $n = \mu + \lambda = 4 + 8 = 12$.
+
+![](https://i.imgur.com/JwbJOWD.gif)
 
 ## Luyện tập
 [LODOJ - TORHAR](https://lqdoj.edu.vn/problem/torhar)\\
