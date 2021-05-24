@@ -24,17 +24,17 @@ Cho trước hai dãy số $a$ và $b$ được sắp xếp không giảm:
 
 $$a=[1,3,6,8,10]$$
 
-$$b=[2,6,7,12,14]$$
+$$b=[2,6,7,12,14,15]$$
 
 Làm cách nào để có thể ghép chúng thành một dãy số $c$ cũng được sắp xếp không giảm ?
 
-Trước tiên, hãy cùng xác định phần tử đầu tiên của dãy $c$. Cần xây dựng dãy $c$ theo thứ tự không giảm, cho nên phần tử đầu tiên của dãy $c$ phải là phần tử có giá trị nhỏ nhất trong cả hai dãy $a$ và $b$. 
+Trước tiên, hãy cùng xác định phần tử đầu tiên của dãy $c$. Vì dãy $c$ được bố trí theo thứ tự không giảm, cho nên phần tử đầu tiên của dãy $c$ phải là phần tử có giá trị nhỏ nhất trong cả hai dãy $a$ và $b$. 
 
 Ta có thể so sánh hai phần tử nhỏ nhất (đầu tiên) của hai dãy $a$, $b$ và đưa phần tử có giá trị nhỏ hơn vào vị trí đầu tiên của dãy $c$.
 
 $$a=[\overset{\downarrow}{\color{red}1},3,6,8,10]$$
 
-$$b=[\overset{\downarrow}{2},6,7,12,14]$$
+$$b=[\overset{\downarrow}{2},6,7,12,14,15]$$
 
 $$c=[1]$$
 
@@ -46,7 +46,7 @@ So sánh phần tử nhỏ nhất chưa được chọn ở dãy $a$ với phầ
 
 $$a=[{\color{red}1},\overset{\downarrow}{3},6,8,10]$$
 
-$$b=[\overset{\downarrow}{\color{red}2},6,7,12,14]$$
+$$b=[\overset{\downarrow}{\color{red}2},6,7,12,14,15]$$
 
 $$c=[1,2]$$
 
@@ -79,62 +79,65 @@ Dựa vào những phân tích ta có giải pháp sử dụng **hai con trỏ**
 
 Để hiểu rõ hơn, ta hãy cùng xem qua ví dụ sau đây:
 
-$a = [1, 3, 6, 8, 10], b = [2, 6, 7, 12, 14]$
+$a = [1, 3, 6, 8, 10], b = [2, 6, 7, 12, 14,15]$
 
 * Đặt $i = 1$ và $j = 1$. \\
 $a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}1}, 3, 6, 8, 10]$\\
-$b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14]$\\
+$b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14,15]$\\
 $c = []$
 
 * Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. \\
 $a = [1,\overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 6, 8, 10]$\\
-$b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14]$\\
+$b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14,15]$\\
 $c = [1]$
 
 * Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. \\
 $a = [1, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 6, 8, 10]$\\
-$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14]$\\
+$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$\\
 $c = [1, 2]$
 
 * Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. \\
 $a = [1, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 8, 10]$\\
-$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14]$\\
+$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$\\
 $c = [1, 2, 3]$
 
 * Vì $a[i]=b[j]$ nên ta có thể đưa bất kỳ một trong hai phần tử. Ở đây ta đưa phần tử $a[i]$ vào $c$ và tăng vị trí $i$ lên một.\\
 $a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$\\
-$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14]$\\
+$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$\\
 $c = [1, 2, 3, 6]$
 
 * Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. \\
 $a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$\\
-$b = [2, 6, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}7}, 12, 14]$\\
+$b = [2, 6, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}7}, 12, 14,15]$\\
 $c = [1, 2, 3, 6, 6]$
 
 * Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. \\
 $a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$\\
-$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14]$\\
+$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$\\
 $c = [1, 2, 3, 6, 6, 7]$
 
 * Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. \\
 $a = [1, 3, 6, 8, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}10}]$\\
-$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14]$\\
+$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$\\
 $c = [1, 2, 3, 6, 6, 7, 8]$
 
 * Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. \\
 $a = [1, 3, 6, 8, 10]\overset{\underset{\downarrow}{\color{red}i}}{ }$\\
-$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14]$\\
+$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$\\
 $c = [1, 2, 3, 6, 6, 7, 8, 10]$
 
 * Vì tất cả các phần tử trong mảng $a$ đều đã được đưa vào mảng $c$ nên từ đưa lần lượt các phần tử chưa được chọn trong mảng $b$ vào trong mảng $c$ 
-$c = [1, 2, 3, 6, 6, 7, 8, 10, 12, 14]$
+$c = [1, 2, 3, 6, 6, 7, 8, 10, 12, 14,15]$
+
+![](https://i.imgur.com/ZVXyx2n.gif)
+
 
 **Cài đặt**
 ```cpp
 int i = 1, j = 1;
 vector<int> c;
 while (i <= n || j <= m){
-    if (j == m + 1 || (i <= m && a[i] <= b[j]))
+    if (j == m + 1 || (i <= n && a[i] <= b[j]))
         c.push_back(a[i++]);
     else 
         c.push_back(b[j++]);
@@ -209,16 +212,16 @@ Từ những phân tích vừa rồi ta có giải pháp sử dụng hai con tr�
 
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-**Ví dụ 1:** $a = [2, 3, 5, 7, 9, 12]$ và $x = 16$.
+**Ví dụ 1:** $a = [2, 5, 6, 8, 10, 12, 15]$ và $x = 16$.
 
 * Đặt $i=1$ và $j=N$. \\
-$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 3, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}]$
+$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, 12 \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}15}]$
+
+* Vì $a[i]+a[j]=2+15=17>x$ nên giảm vị trí $j$ đi một đơn vị.\\
+$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
 
 * Vì $a[i]+a[j]=2+12=14<x$ nên tăng vị trí $i$ lên một đơn vị.\\
-$a = [2,\overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 5, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}]$
-
-* Vì $a[i]+a[j]=3+12=15<x$ nên tăng vị trí $i$ lên một đơn vị.\\
-$a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 7, 9, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}]$
+$a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 6, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
 
 * Vì $a[i]+a[j]=5+12=17>x$ nên giảm vị trí $j$ đi một đơn vị.\\
 $a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}9}, 12]$
@@ -227,6 +230,8 @@ $a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 7, \und
 $a = [2, 3, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}9}, 12]$
 
 * Vì $a[i]+a[j]=7+9=x$ nên hai vị trí cần tìm là hai vị trí $i$ và $j$.
+
+![](https://i.imgur.com/4kDvgwj.gif)
 
 **Ví dụ 2:** $a = [2, 5, 7, 9, 12]$ và $x = 15$.
 
@@ -246,6 +251,8 @@ $a = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, \unders
 $a = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{ \underset{\overset{\uparrow}{\color{blue}j}}{\color{purple}7}}, 9, 12]$
 
 * Vì $i=j$ nên không tìm được hai vị trí cần tìm.
+
+![](https://i.imgur.com/1KUtV6g.gif)
 
 **Cài đặt**
 ```cpp
@@ -584,6 +591,7 @@ while (true) {
 $$a=2, b=2, c=32$$
 
 ## Luyện tập
+[LODOJ - TORHAR](https://lqdoj.edu.vn/problem/torhar)\\
 [CODEFORCES - Sequence analysis](https://codeforces.com/gym/100503/problem/D)\\
 [CODEFORCES - Pseudo-Random Number Generator](https://codeforces.com/gym/102501/problem/H)\\
 [CODEFORCES - Cooperative Game](https://codeforces.com/contest/1137/problem/D)
