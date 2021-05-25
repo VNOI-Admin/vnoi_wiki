@@ -661,6 +661,16 @@ Giá trị $n = \mu + \lambda = 4 + 8 = 12$.
 
 ![](https://i.imgur.com/JwbJOWD.gif)
 
+**Độ phức tạp**
+
+Khi khởi tạo hai con trỏ $tortoise$ và $hare$ ở $x_0$, hai con trỏ sẽ gặp lại nhau lần đầu tiên sau $t$ bước.
+
+Cụ thể $t$ là số nguyên nhỏ nhất sao cho $t$ có giá trị lớn hơn hoặc bằng $\mu$ và chia chết cho $\lambda$.
+
+Vì thế việc xác định được vị trí $tortoise$ và $hare$ gặp nhau sẽ mất không quá $\mu + \lambda$ bước. Hơn nữa, việc xác định $\mu$ mất $\mu$ bước, xác định $\lambda$ mất $\lambda$ bước.
+
+Kết luận: độ phức tạp của bài toán là $O(\mu + \lambda)$. Trong đó $\mu + \lambda \leq 2 * 10^7$.
+
 ## Luyện tập
 [LODOJ - TORHAR](https://lqdoj.edu.vn/problem/torhar)\\
 [CODEFORCES - Sequence analysis](https://codeforces.com/gym/100503/problem/D)\\
