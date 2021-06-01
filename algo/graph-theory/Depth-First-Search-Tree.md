@@ -94,7 +94,7 @@ void dfs(int u, int pre) {
 
 ## Bài toán 1
 
-[GRAPH_ - Tìm khớp và cầu (Cơ bản)](https://codeforces.com/group/FLVn1Sc504/contest/274814/problem/F)
+[GRAPH_ - Tìm khớp và cầu (Cơ bản)](https://oj.vnoi.info/problem/GRAPH_)
 
 ### **Đề bài**
 Xét đơn đồ thị vô hướng $G=(V, E)$ có $N$ $(1 \le N \le 10000)$ đỉnh và $M$ $(1 \le M \le 50000)$ cạnh. Người ta định nghĩa một đỉnh gọi là khớp nếu như xoá đỉnh đó sẽ làm tăng số thành phần liên thông của đồ thị. Tương tự như vậy, một cạnh được gọi là cầu nếu xoá cạnh đó sẽ làm tăng số thành phần liên thông của đồ thị.
@@ -243,7 +243,7 @@ int main() {
 
 ## Bài toán 2
 
-[NKPOLICE - Police](https://codeforces.com/group/FLVn1Sc504/contest/274825/problem/G)
+[NKPOLICE - Police](https://oj.vnoi.info/problem/NKPOLICE)
 
 ### **Đề bài**
 Để truy bắt tội phạm, cảnh sát xây dựng một hệ thống máy tính mới. Bản đồ khu vực bao gồm $N$ thành phố và $M$ đường nối $2$ chiều. Các thành phố được đánh số từ $1$ đến $N$.
@@ -512,7 +512,7 @@ int main() {
 
 ## Bài toán 3
 
-[TJALG - Tìm TPLT mạnh](https://codeforces.com/group/FLVn1Sc504/contest/274834/problem/K)
+[TJALG - Tìm TPLT mạnh](https://oj.vnoi.info/problem/TJALG)
 
 ### **Đề bài**
 Cho đồ thị $G(V, E)$ có hướng $N$ $(1 \le N \le 10^4)$ đỉnh, $M$ $(1 \le M \le 10^5)$ cung. Hãy đếm số thành phần liên thông mạnh của $G$.
@@ -640,7 +640,7 @@ int main() {
 
 ## Bài toán 4
 
-[KCOLLECT - Thu hoạch](https://codeforces.com/group/FLVn1Sc504/contest/274816/problem/F)
+[KCOLLECT - Thu hoạch](https://oj.vnoi.info/problem/KCOLLECT)
 
 ### **Đề bài**
 Khu vườn của Pirate có hình chữ nhật, và được chia thành $M \cdot N$ ô vuông bằng nhau. Trong mỗi ô vuông có một cây thuộc một loại quả khác nhau, đánh số từ $0$ đến $9$. Những con số này thể hiện giá trị kinh tế của các loại cây.
@@ -850,15 +850,15 @@ int main() {
 
 ### Khớp cầu
 
-[WEATHER - Điều kiện thời tiết](https://codeforces.com/group/FLVn1Sc504/contest/272622/problem/A)
+[WEATHER - Điều kiện thời tiết](https://oj.vnoi.info/problem/WEATHER)
 
 [CRITICAL - Thành phố trọng yếu](https://oj.vnoi.info/problem/CRITICAL/)
 
 [BCACM11E - Phương án bắn pháo](https://www.spoj.com/PTIT/problems/BCACM11E/)
 
-[SAFENET2 - Mạng máy tính an toàn ](https://codeforces.com/group/FLVn1Sc504/contest/274830/problem/Z)
+[SAFENET2 - Mạng máy tính an toàn ](https://oj.vnoi.info/problem/SAFENET2)
 
-[REFORM - VOI 2015 Day 1 - Kế hoạch cải tổ](https://codeforces.com/group/FLVn1Sc504/contest/272400/problem/C)
+[REFORM - VOI 2015 Day 1 - Kế hoạch cải tổ](https://oj.vnoi.info/problem/REFORM)
 
 ### Thành phần liên thông mạnh
 
@@ -866,6 +866,6 @@ int main() {
 
 [Checkposts](https://codeforces.com/contest/427/problem/C)
 
-[MESSAGE - Truyền tin](https://codeforces.com/group/FLVn1Sc504/contest/274506/problem/F)
+[MESSAGE - Truyền tin](https://oj.vnoi.info/problem/MESSAGE)
 
-[TREAT - Cho kẹo hay bị phá nào](https://codeforces.com/group/FLVn1Sc504/contest/274834/problem/X)
+[TREAT - Cho kẹo hay bị phá nào](https://oj.vnoi.info/problem/TREAT)
