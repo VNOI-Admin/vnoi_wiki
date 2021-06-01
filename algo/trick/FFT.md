@@ -462,7 +462,7 @@ Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc 
 
 # Bài tập luyện tập
 
-- [VNOJ POST2](https://oj.vnoi.info/problem/POST2/)
+- [VNOJ POST2](https://oj.vnoi.info/problem/post2/)
 - [FFT problems on Codeforces](http://codeforces.com/problemset/tags/fft)
 - [FFT problems by a2oj.com](https://a2oj.com/Category.jsp?ID=42)
 - [SumOfArrays - Topcoder SRM 603](https://community.topcoder.com/stat?c=problem_statement&pm=12910&rd=15836) và [Hướng dẫn giải](https://apps.topcoder.com/wiki/display/tc/SRM+603)

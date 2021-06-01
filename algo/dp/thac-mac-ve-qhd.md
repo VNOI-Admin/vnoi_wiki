@@ -2,7 +2,7 @@
 
 Nguồn: [Facebook VNOI](https://www.facebook.com/groups/163215593699283/permalink/1324060410948123/)
 
-Khi có 1 bạn hỏi Quy hoạch động trạng thái là gì trong bài [QBSELECT](https://oj.vnoi.info/problem/QBSELECT), thầy Lê Minh Hoàng có trả lời như sau:
+Khi có 1 bạn hỏi Quy hoạch động trạng thái là gì trong bài [QBSELECT](https://oj.vnoi.info/problem/qbselect), thầy Lê Minh Hoàng có trả lời như sau:
 
 Bạn cứ hiểu quy hoạch động là quy hoạch động. Đừng quan tâm đến cách thức lưu trữ (một chiều, hai chiều, rời rạc...), cũng đừng quan tâm tới thứ tự tính toán (quét ngang, băm chéo, trên cây, trên DAG, trên đường, dưới ao...) thì sẽ thấy vấn đề là do dân competitive programmers tự thêm thuật ngữ mới vào, chứ bản chất rất đơn giản:
 
