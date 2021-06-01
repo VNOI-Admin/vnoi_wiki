@@ -834,7 +834,7 @@ int main() {
 
 [WEATHER - Điều kiện thời tiết](https://codeforces.com/group/FLVn1Sc504/contest/272622/problem/A)
 
-[CRITICAL - Thành phố trọng yếu](https://vn.spoj.com/problems/CRITICAL/)
+[CRITICAL - Thành phố trọng yếu](https://oj.vnoi.info/problem/CRITICAL/)
 
 [BCACM11E - Phương án bắn pháo](https://www.spoj.com/PTIT/problems/BCACM11E/)
 

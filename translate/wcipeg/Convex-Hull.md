@@ -280,7 +280,7 @@ Ta có thể tìm bao lồi trong không gian với độ phức tạp $O(n \log
 
 - [Kattis - convexhull](https://open.kattis.com/problems/convexhull)
 - [ACM ICPC Vietnam National 2017 - K](https://open.kattis.com/contests/vietnam-national17-open/problems/parade)
-- [VOJ - MILITARY](http://vnoi.info/problems/show/MILITARY/)
-- [VOJ - HEADQRT](http://vnoi.info/problems/show/HEADQRT/)
-- [VOJ - KMIX](http://vnoi.info/problems/show/KMIX/)
+- [VNOJ - MILITARY](https://oj.vnoi.info/problem/MILITARY/)
+- [VNOJ - HEADQRT](https://oj.vnoi.info/problem/HEADQRT/)
+- [VNOJ - KMIX](https://oj.vnoi.info/problem/KMIX/)
 - [USACO - Cow Curling](http://usaco.org/index.php?page=viewproblem2&cpid=382)

@@ -83,5 +83,5 @@ Trong trường hợp đặc biệt, $N = p^{k}, \phi(N) = p^{k-1} \* (p-1)$.
 
 # Bài tập áp dụng:
 
-- [VOJ - VOSPOW](http://vnoi.info/problems/VOSPOW)
-- [VOJ - GCDSUM](http://vnoi.info/problems/GCDSUM/)
+- [VNOJ - VOSPOW](http://vnoi.info/problems/VOSPOW)
+- [VNOJ - GCDSUM](http://vnoi.info/problems/GCDSUM/)

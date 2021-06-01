@@ -511,7 +511,7 @@ Vậy diện tích hình chữ nhật lớn nhất chính là giá trị \\((R_i
 
 #### Hình chữ nhật lớn nhất trong lưới ô vuông
 
-[Link SPOJ](https://vn.spoj.com/problems/QBRECT/)
+[Link SPOJ](https://oj.vnoi.info/problem/QBRECT/)
 
 Đây là một mở rộng của bài toán trước. Cho lưới ô vuông \\(n \times m\\), các ô có giá trị \\(0\\) hoặc \\(1\\). Ta cần tìm hình chữ nhật có diện tích lớn nhất có tất cả ô vuông có cùng giá trị.
 

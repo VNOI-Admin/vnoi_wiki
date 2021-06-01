@@ -1,4 +1,4 @@
-Hẳn mọi người đã từng giải quyết một loạt bài tập trên VOJ có những chiếc cầu dừa thơ mộng cùng anh chàng Pirate. Tác giả những bài đó là anh Nguyễn Xuân Khánh, một trong những Admin đóng góp rất nhiều đường lối quan trọng trong việc phát triển của VNOI.
+Hẳn mọi người đã từng giải quyết một loạt bài tập trên VNOJ có những chiếc cầu dừa thơ mộng cùng anh chàng Pirate. Tác giả những bài đó là anh Nguyễn Xuân Khánh, một trong những Admin đóng góp rất nhiều đường lối quan trọng trong việc phát triển của VNOI.
 
 Anh Khánh là cựu học sinh trường Phổ thông Năng Khiếu, anh đạt được Huy chương đồng IOI năm 2009. Sau khi kết thúc 12 năm học ở Việt Nam, anh đã sang University of Massachusetts, Amherst và sau đó anh tiếp tục theo học PhD ngành Machine learning tại Đại học Maryland, College Park. Tại đây anh nghiên cứu về Machine learning và Natural language processing.
 
@@ -10,10 +10,10 @@ Anh Khánh nổi tiếng với những bài viết trên VNOI wiki như bài vi�
 
 Anh còn kỳ công viết một cuốn sách Machine learning cơ bản bằng tiếng Việt: https://ml-book-vn.khanhxnguyen.com/  
 
-1 vài của anh Khánh trên VOJ:
-- http://vn.spoj.com/problems/KBUILD/
-- http://vn.spoj.com/problems/KHISTORY/
-- http://vn.spoj.com/problems/KTREEC/
+1 vài của anh Khánh trên VNOJ:
+- https://oj.vnoi.info/problem/KBUILD/
+- https://oj.vnoi.info/problem/KHISTORY/
+- https://oj.vnoi.info/problem/KTREEC/
 
 <img src="https://scontent-sin6-1.xx.fbcdn.net/v/t35.0-12/16990886_10208175851465227_15016160_o.jpg?oh=012ec1bb6afde4f7725c0cc9edb1fe48&oe=58B329C8 
 ">

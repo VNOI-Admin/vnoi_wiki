@@ -300,11 +300,11 @@ Cho một đồ thị liên thông gồm n đỉnh và m cạnh, hãy tìm cách
 
 # 5. Một số bài để luyện tập
 
-- [SPOJ - NKFLOW](http://vnoi.info/problems/show/NKFLOW/)
-- [SPOJ - FASTFLOW](http://vnoi.info/problems/show/FASTFLOW/)
-- [SPOJ - ASSIGN1](http://vnoi.info/problems/show/ASSIGN1/)
-- [SPOJ - KWAY](http://vnoi.info/problems/show/KWAY/)
-- [SPOJ - STNODE](http://vnoi.info/problems/show/STNODE/)
+- [VNOJ - NKFLOW](https://oj.vnoi.info/problem/NKFLOW/)
+- [SPOJ - FASTFLOW](https://www.spoj.com/problems/FASTFLOW/)
+- [VNOJ - ASSIGN1](https://oj.vnoi.info/problem/ASSIGN1/)
+- [VNOJ - KWAY](https://oj.vnoi.info/problem/KWAY/)
+- [VNOJ - STNODE](https://oj.vnoi.info/problem/STNODE/)
 - [codeforces - flows](http://codeforces.com/problemset/tags/flows)
 
 # 6. Nguồn tham khảo

@@ -9,7 +9,7 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
 - Biểu diễn đồ thị:
   - [cowboycoder](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-1-gioi-thieu)
   - Bài tập:
-    - [VOJ - GRAPH](http://vnoi.info/problems/show/GRAPH/)
+    - [VNOJ - GRAPH](https://oj.vnoi.info/problem/GRAPH/)
 
 - BFS, DFS, Topo sort:
   - [cowboycoder - BFS](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-tim-kiem-theo-chieu-rong-tren-do-thi-breadth-first-search-bfs)
@@ -20,7 +20,7 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
   - [Code tìm khớp cầu C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BridgeArticulation.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BridgeArticulation.cpp)
   - [Code tìm thành phần liên thông mạnh C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/StronglyConnected.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/StronglyConnected.cpp)
   - [Code tìm thành phần song liên thông C++ - RR](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BiconnectedComponent.h); [cách sử dụng](https://github.com/ngthanhtrung23/ACM_Notebook_new/blob/master/Graph/DfsTree/BiconnectedComponent.cpp);
-  - [Bài tập trên VOJ](http://vnoi.info/problems/list/?tag=37&page=1)
+  - [Bài tập trên VNOI](http://vnoi.info/problems/list/?tag=37&page=1)
   - [Bài H - ACM ICPC Vietnam Regional 2017](https://open.kattis.com/problems/heightpreservation); [Lời giải](http://icpcvn.github.io/2017/regional/Editorial.pdf)
 
 - Tìm đường đi ngắn nhất: Dijkstra, Floyd, Ford-Bellman:
