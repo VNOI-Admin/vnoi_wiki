@@ -583,7 +583,7 @@ Bước sắp xếp ban đầu có thể làm trong $O(NlogN)$. Khi duyệt qua 
 
 ### Phân nhóm (USACO)
 
-Link: [VOJ-GROUP](vn.spoj.com/problems/GROUP)
+Link: [VOJ-GROUP](https://oj.vnoi.info/problem/group)
 
 #### Đề bài
 
@@ -688,7 +688,7 @@ Như vậy với một bài toán chỉ cần ta tìm ra công thức QHĐ mà c
 Dưới đây sẽ trình bày một bài toán khác để giúp các bạn hiểu rõ hơn.
 
 
-### HARBINGERS ([CEOI 2009](vn.spoj.com/problems/HARBINGE))
+### HARBINGERS ([CEOI 2009](https://oj.vnoi.info/problem/harbinge))
 
 #### Đề bài
 
