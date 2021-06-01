@@ -353,7 +353,7 @@ Cụ thể, chúng ta cùng xem bài toán sau:
 
 ## Bài Toán
 
-[VNOJ - QMAX2](https://oj.vnoi.info/problem/QMAX2)
+[VNOJ - QMAX2](https://oj.vnoi.info/problem/qmax2)
 
 ## Tóm tắt đề
 
@@ -456,7 +456,7 @@ Trong loại bài toán này với mỗi nút của cây ta lưu lại một `ve
 
 ## Ví dụ
 
-[KQUERY2](https://oj.vnoi.info/problem/KQUERY2).
+[KQUERY2](https://oj.vnoi.info/problem/kquery2).
 
 ## Tóm tắt đề
 
@@ -703,14 +703,14 @@ Cho một tập hợp chứa các đường thẳng có dạng $ax + b$, mỗi �
 
 # Bài tập áp dụng:
 
-- [VNOJ - QMAX](https://oj.vnoi.info/problem/QMAX)
-- [VNOJ - NKLINEUP](https://oj.vnoi.info/problem/NKLINEUP)
-- [VNOJ - GSS](https://oj.vnoi.info/problem/GSS)
-- [VNOJ - LITES](https://oj.vnoi.info/problem/LITES)
-- [VNOJ - DQUERY](https://oj.vnoi.info/problem/DQUERY)
-- [VNOJ - KQUERY](https://oj.vnoi.info/problem/KQUERY)
+- [VNOJ - QMAX](https://oj.vnoi.info/problem/qmax)
+- [VNOJ - NKLINEUP](https://oj.vnoi.info/problem/nklineup)
+- [VNOJ - GSS](https://oj.vnoi.info/problem/gss)
+- [VNOJ - LITES](https://oj.vnoi.info/problem/lites)
+- [VNOJ - DQUERY](https://oj.vnoi.info/problem/dquery)
+- [VNOJ - KQUERY](https://oj.vnoi.info/problem/kquery)
 - [FREQUENT](http://www.spoj.com/problems/FREQUENT/)
-- [VNOJ - KQUERY2](https://oj.vnoi.info/problem/KQUERY2)
+- [VNOJ - KQUERY2](https://oj.vnoi.info/problem/kquery2)
 - [GSS2](http://www.spoj.com/problems/GSS2/)
 - [GSS3](http://www.spoj.com/problems/GSS3/)
 - [MULTQ3](http://www.spoj.com/problems/MULTQ3)

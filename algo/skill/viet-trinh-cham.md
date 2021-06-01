@@ -50,7 +50,7 @@ Chương trình này có nhiệm vụ duyệt N lần, với N là số test c�
 
 Để chạy file, ta sử dụng `exec('*.exe', '')` trong Pascal và `system("*.exe")` trong C++.
 
-# Ví dụ: Bài [VMELLIP](https://oj.vnoi.info/problem/VMELLIP/)
+# Ví dụ: Bài [VMELLIP](https://oj.vnoi.info/problem/vmellip/)
 
 Đây là một bài cấu trúc dữ liệu rất khó, thuộc đề thi VNOI Marathon 2015. Bài viết xin được lấy code của tanphatls987 được 90 điểm làm ví dụ.
 

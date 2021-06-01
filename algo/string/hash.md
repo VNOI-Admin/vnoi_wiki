@@ -111,7 +111,7 @@ for (i : 1 .. m - n +1)
 
 ## Mã chương trình
 
-Chương trình sau, tôi viết bằng ngôn ngữ C++, là lời giải cho bài [SUBSTR](https://oj.vnoi.info/problem/SUBSTR):
+Chương trình sau, tôi viết bằng ngôn ngữ C++, là lời giải cho bài [SUBSTR](https://oj.vnoi.info/problem/substr):
 
 ```cpp
 typedef long long ll;
@@ -208,7 +208,7 @@ Như đã đề cập ở trên, thuật toán này sẽ có trường hợp ch�
 
 Sử dụng Hash không chỉ giúp người làm bài dễ dàng cài đặt hơn mà quan trọng ở chỗ: Hash có thể làm được những việc mà _‘thuật toán chuẩn’_ không làm được. Sau đây, tôi sẽ xét một vài ví dụ để chứng minh điều này.
 
-## [Longest palindrome substring](https://oj.vnoi.info/problem/PALINY)
+## [Longest palindrome substring](https://oj.vnoi.info/problem/paliny)
 
 Bài toán đặt ra như sau: Bạn được cho một xâu $s$ độ dài $n (n \le 50,000)$. Bạn cần tìm độ dài của xâu đối xứng dài nhất gồm các kí tự liên tiếp trong $s$. (Xâu đối xứng là xâu đọc từ 2 chiều giống nhau).
 
@@ -298,12 +298,12 @@ Nhược điểm của thuật toán Hash là tính chính xác. Mặc dù rất
 
 # Bài tập áp dụng
 
-- [VNOJ - SUBSTR](https://oj.vnoi.info/problem/SUBSTR/)
-- [VNOJ - PALINY](https://oj.vnoi.info/problem/PALINY/)
-- [VNOJ - DTKSUB](https://oj.vnoi.info/problem/DTKSUB/)
-- [VNOJ - DTCSTR](https://oj.vnoi.info/problem/DTCSTR/)
-- [VNOJ - TWOOPERS](https://oj.vnoi.info/problem/TWOOPERS/)
-- [VNOJ - VOSTR](https://oj.vnoi.info/problem/VOSTR/)
+- [VNOJ - SUBSTR](https://oj.vnoi.info/problem/substr/)
+- [VNOJ - PALINY](https://oj.vnoi.info/problem/paliny/)
+- [VNOJ - DTKSUB](https://oj.vnoi.info/problem/dtksub/)
+- [VNOJ - DTCSTR](https://oj.vnoi.info/problem/dtcstr/)
+- [VNOJ - TWOOPERS](https://oj.vnoi.info/problem/twoopers/)
+- [VNOJ - VOSTR](https://oj.vnoi.info/problem/vostr/)
 - [SGU 426](http://acm.sgu.ru/problem.php?contest=0&problem=426)
 
 # Các nguồn tham khảo

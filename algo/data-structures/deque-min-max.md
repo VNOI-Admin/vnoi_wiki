@@ -426,8 +426,8 @@ for (int k = 1; k <= N; ++k) {
 -    Chi phí thời gian thuật toán $BFS$ là $O(N + M)$
 
 # **Bài tập áp dụng**
-- [MINK](https://oj.vnoi.info/problem/MINK)
-- [QBRECT](https://oj.vnoi.info/problem/QBRECT)
-- [KAGAIN](https://oj.vnoi.info/problem/KAGAIN)
-- [KPLANK](https://oj.vnoi.info/problem/KPLANK)
-- [MMASS](https://oj.vnoi.info/problem/MMASS)
+- [MINK](https://oj.vnoi.info/problem/mink)
+- [QBRECT](https://oj.vnoi.info/problem/qbrect)
+- [KAGAIN](https://oj.vnoi.info/problem/kagain)
+- [KPLANK](https://oj.vnoi.info/problem/kplank)
+- [MMASS](https://oj.vnoi.info/problem/mmass)

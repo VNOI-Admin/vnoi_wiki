@@ -205,4 +205,4 @@ bool isPrime(int n) {
 # Bài tập áp dụng:
 
 - [SPOJ - PRIME1](http://www.spoj.com/problems/PRIME1/)
-- [VNOJ - NKABD](https://oj.vnoi.info/problem/NKABD/)
+- [VNOJ - NKABD](https://oj.vnoi.info/problem/nkabd/)

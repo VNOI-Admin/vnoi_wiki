@@ -160,8 +160,8 @@ Như vậy độ phức tạp của một thao tác cập nhật hoặc truy v�
 
 - HLD có thể áp dụng để giải [[bài toán LCA|algo/data-structures/lca]]
 - [QTREE](https://www.spoj.com/problems/QTREE/)
-- [QTREE3](https://oj.vnoi.info/problem/QTREE3/)
-- [QTREEX](https://oj.vnoi.info/problem/QTREEX)
+- [QTREE3](https://oj.vnoi.info/problem/qtree3/)
+- [QTREEX](https://oj.vnoi.info/problem/qtreex)
 - [EpicTree](https://www.hackerrank.com/contests/epiccode/challenges/epic-tree)
 
 # Tham khảo

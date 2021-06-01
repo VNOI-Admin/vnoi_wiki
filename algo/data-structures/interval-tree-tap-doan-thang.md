@@ -191,7 +191,7 @@ Ngoài ra, có một số bài toán yêu cầu tìm max, min trên tập đoạ
 
 ## Một số bài tập "quy hoạch động bao lồi" truyền thống
 
-- [VNOJ - VMPIZZA](https://oj.vnoi.info/problem/VMPIZZA/)
+- [VNOJ - VMPIZZA](https://oj.vnoi.info/problem/vmpizza/)
 - [CF 189 - Div 1 - C](http://codeforces.com/contest/319/problem/C)
 - [SPOJ - ACQUIRE](http://www.spoj.com/problems/ACQUIRE/)
 - [SPOJ - APIO10A](http://www.spoj.com/problems/APIO10A/)
@@ -206,7 +206,7 @@ Bài này yêu cầu tìm $(Ax + By)$ max và min khi cho điểm $(x, y)$ bất
 
 Còn với IT đoạn thẳng, ta cũng gặp khó khăn vì query không phải là số nguyên, và $x/y$ cũng rất lớn. Tuy nhiên ta có thể xử lí offline đơn giản bằng cách đọc hết tất cả các query, lưu lại các điểm $(x/y)$, rời rạc hóa lại, và xây dựng cây IT đoạn thẳng trên tập điểm đã rời rạc hóa đấy. Trong bài này, cách IT đoạn thẳng đơn giản hơn nhiều so với cách bao lồi.
 
-## [VNOJ - VOMARIO](https://oj.vnoi.info/problem/VOMARIO/)
+## [VNOJ - VOMARIO](https://oj.vnoi.info/problem/vomario/)
 
 Bài "độc quyền" của IT đoạn thẳng. Trong bài này, ta cũng tìm công thức quy hoạch động $O(N^2)%: $f[i] = max(a[j] * x[i] + b[j] + c)$.
 
@@ -214,5 +214,5 @@ Tuy nhiên, đáng lưu ý là mỗi cặp $(a[j], b[j])$ chỉ được tính t
 
 ## Bài khác
 
-- [VNOJ - JEWELNB](https://oj.vnoi.info/problem/JEWELNB/)
+- [VNOJ - JEWELNB](https://oj.vnoi.info/problem/jewelnb/)
 - [SPOJ - PTIT133B](http://www.spoj.com/PTIT/problems/PTIT133B/)
