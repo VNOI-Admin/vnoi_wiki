@@ -83,7 +83,7 @@ Từ đó ta có nhận xét sau: Các liên kết trên mỗi tầng không nh�
 
 # Hướng dẫn chi tiết
 
-Học phải đi đôi với hành. Cách hiểu lý thuyết nhanh nhất là đập ngay vào bài tập. Ta sẽ đi chi tiết vào cách sử dụng Skip Lists để giải bài [CPPSET](http://vn.spoj.com/problems/CPPSET). Bạn hãy đọc đề và ngẫm nghĩ một lúc trước khi đọc tiếp bài viết này. Bài giải ở dưới được code bằng ngôn ngữ C++98.
+Học phải đi đôi với hành. Cách hiểu lý thuyết nhanh nhất là đập ngay vào bài tập. Ta sẽ đi chi tiết vào cách sử dụng Skip Lists để giải bài [CPPSET](https://oj.vnoi.info/problem/CPPSET). Bạn hãy đọc đề và ngẫm nghĩ một lúc trước khi đọc tiếp bài viết này. Bài giải ở dưới được code bằng ngôn ngữ C++98.
 
 CPPSET, đúng như tên gọi của nó, bạn có thể AC trong một nốt nhạc nếu sử dụng std::set của C++, một container đã được code sẵn bằng Reb-Black Tree (một loại Balanced Binary Search Tree) để thực hiện bài toán cơ bản nêu ở đầu. Để luyện tập, ta sẽ tự code một cái set "dỏm" bằng Skip Lists.
 

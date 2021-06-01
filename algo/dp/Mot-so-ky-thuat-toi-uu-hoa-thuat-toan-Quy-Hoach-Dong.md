@@ -852,7 +852,7 @@ int main() {
 ```
 
 ## Bài luyện tập
- - [VOJ-NKLEAVES](http://vn.spoj.com/problems/NKLEAVES/)
+ - [VOJ-NKLEAVES](https://oj.vnoi.info/problem/NKLEAVES/)
 
 
 # 4. Tối ưu bằng stack
@@ -990,7 +990,7 @@ int main() {
 }
 ```
 
-### [Đốn cây](http://vn.spoj.com/problems/VODONCAY/) (Đề thi HSG quốc gia năm 2016)
+### [Đốn cây](https://oj.vnoi.info/problem/VODONCAY/) (Đề thi HSG quốc gia năm 2016)
 #### Đề bài
 Hùng đang làm việc trong Công ty cao su X. Công ty có rừng cao su rất rộng, với những hàng cây cao su trồng cách đều thẳng tắp. Theo định kỳ, người ta thường phải chặt hạ cả hàng cây cao su đã hết hạn khai thác để trồng thay thế bằng hàng cây mới. Hùng phát hiện ra một bài toán tin học liên quan đến vấn đề này: Một nhóm công nhân được giao nhiệm vụ chặt hạ hàng cây gồm $N$ cây được trồng dọc theo một đường thẳng với khoảng cách cố định giữa hai cây liên tiếp. Nếu các công nhân cưa đổ một cây, họ có thể cho nó đổ về phía bên trái hoặc bên phải dọc theo hàng cây. Một cây khi đổ có thể lật đổ cây khác bị nó rơi vào và có thể làm đổ nhiều cây khác, theo hiệu ứng lan truyền domino. Sau khi khảo sát kỹ, Hùng đã mô tả được hiệu ứng lan truyền domino như sau: Giả sử các cây trên hàng cây được đánh số từ $1$ đến $N$, từ trái qua phải và chiều cao của cây $i$ là $h_i$ ($1 \le i \le N$)
  - Nếu cây $i$ đổ về bên trái thì tất cả các cây $j$ với $i - h_i < j < i$ cũng sẽ đổ;
