@@ -353,7 +353,7 @@ Cụ thể, chúng ta cùng xem bài toán sau:
 
 ## Bài Toán
 
-[VOJ - QMAX2](https://oj.vnoi.info/problem/QMAX2)
+[VNOJ - QMAX2](https://oj.vnoi.info/problem/QMAX2)
 
 ## Tóm tắt đề
 
@@ -703,14 +703,14 @@ Cho một tập hợp chứa các đường thẳng có dạng $ax + b$, mỗi �
 
 # Bài tập áp dụng:
 
-- [VOJ - QMAX](https://oj.vnoi.info/problem/QMAX)
-- [VOJ - NKLINEUP](https://oj.vnoi.info/problem/NKLINEUP)
-- [VOJ - GSS](https://oj.vnoi.info/problem/GSS)
-- [VOJ - LITES](https://oj.vnoi.info/problem/LITES)
-- [VOJ - DQUERY](https://oj.vnoi.info/problem/DQUERY)
-- [VOJ - KQUERY](https://oj.vnoi.info/problem/KQUERY)
+- [VNOJ - QMAX](https://oj.vnoi.info/problem/QMAX)
+- [VNOJ - NKLINEUP](https://oj.vnoi.info/problem/NKLINEUP)
+- [VNOJ - GSS](https://oj.vnoi.info/problem/GSS)
+- [VNOJ - LITES](https://oj.vnoi.info/problem/LITES)
+- [VNOJ - DQUERY](https://oj.vnoi.info/problem/DQUERY)
+- [VNOJ - KQUERY](https://oj.vnoi.info/problem/KQUERY)
 - [FREQUENT](http://www.spoj.com/problems/FREQUENT/)
-- [VOJ - KQUERY2](https://oj.vnoi.info/problem/KQUERY2)
+- [VNOJ - KQUERY2](https://oj.vnoi.info/problem/KQUERY2)
 - [GSS2](http://www.spoj.com/problems/GSS2/)
 - [GSS3](http://www.spoj.com/problems/GSS3/)
 - [MULTQ3](http://www.spoj.com/problems/MULTQ3)

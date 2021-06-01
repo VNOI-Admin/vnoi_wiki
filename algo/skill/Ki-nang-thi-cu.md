@@ -17,7 +17,7 @@ Trước mỗi kì thi, bạn cần tìm hiểu đề ra những năm trước �
 
 Lưu ý rằng, ĐỀ RA NĂM NAY KHÔNG ĐẢM BẢO SẼ TƯƠNG TỰ NHƯ NHỮNG NĂM TRƯỚC. Bạn cố gắng làm thử, nếu được, giành ra 3h đồng hồ liên tục. Tránh việc làm đc 1h, đi wc 5h, r làm nốt 2h nữa. Vì những j diễn ra trong wc k đảm bảo chất lượng bài thi sẽ giống như lúc bạn thi thật :v Ngoài ra, bạn có thể tìm hiểu mức điểm thi của năm đó để đánh gái trình độ của mình. Điểm thi từng năm có thể khác biệt, nhưng nhìn chung, chất lượng thí sinh thì k thay đổi nhiều.
 
-Dưới đây là danh sách các bài thi chính thức của HSGQG (trên VOJ), kèm theo bảng điểm trong các năm gần đây:
+Dưới đây là danh sách các bài thi chính thức của HSGQG (trên VNOJ), kèm theo bảng điểm trong các năm gần đây:
 
 - 2016: SEQ198, VOHAUCAN, IDCODE, RBULL, VOIEXAM, VODONCAY
 - 2015: TFIELD, CRYPTKEY, REFORM, MINCUT, VODIVIDE, VOITSORT

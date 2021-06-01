@@ -118,7 +118,7 @@ int main() {
 
 ### Computer (VNOI Marathon 2010)
 
-Problem Link: [COMPUTER - VOJ](https://oj.vnoi.info/problem/COMPUTER/).
+Problem Link: [COMPUTER - VNOJ](https://oj.vnoi.info/problem/COMPUTER/).
 
 #### Đề bài
 
@@ -242,7 +242,7 @@ int main() {
 
 ## Bài luyện tập
 
-- [VOJ - BINPACK](https://oj.vnoi.info/problem/BINPACK/)
+- [VNOJ - BINPACK](https://oj.vnoi.info/problem/BINPACK/)
 
 
 # 2. Chia để trị
@@ -583,7 +583,7 @@ Bước sắp xếp ban đầu có thể làm trong $O(NlogN)$. Khi duyệt qua 
 
 ### Phân nhóm (USACO)
 
-Link: [VOJ-GROUP](https://oj.vnoi.info/problem/group)
+Link: [VNOJ-GROUP](https://oj.vnoi.info/problem/group)
 
 #### Đề bài
 
@@ -852,7 +852,7 @@ int main() {
 ```
 
 ## Bài luyện tập
- - [VOJ-NKLEAVES](https://oj.vnoi.info/problem/NKLEAVES/)
+ - [VNOJ-NKLEAVES](https://oj.vnoi.info/problem/NKLEAVES/)
 
 
 # 4. Tối ưu bằng stack

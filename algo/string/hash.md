@@ -298,12 +298,12 @@ Nhược điểm của thuật toán Hash là tính chính xác. Mặc dù rất
 
 # Bài tập áp dụng
 
-- [VOJ - SUBSTR](https://oj.vnoi.info/problem/SUBSTR/)
-- [VOJ - PALINY](https://oj.vnoi.info/problem/PALINY/)
-- [VOJ - DTKSUB](https://oj.vnoi.info/problem/DTKSUB/)
-- [VOJ - DTCSTR](https://oj.vnoi.info/problem/DTCSTR/)
-- [VOJ - TWOOPERS](https://oj.vnoi.info/problem/TWOOPERS/)
-- [VOJ - VOSTR](https://oj.vnoi.info/problem/VOSTR/)
+- [VNOJ - SUBSTR](https://oj.vnoi.info/problem/SUBSTR/)
+- [VNOJ - PALINY](https://oj.vnoi.info/problem/PALINY/)
+- [VNOJ - DTKSUB](https://oj.vnoi.info/problem/DTKSUB/)
+- [VNOJ - DTCSTR](https://oj.vnoi.info/problem/DTCSTR/)
+- [VNOJ - TWOOPERS](https://oj.vnoi.info/problem/TWOOPERS/)
+- [VNOJ - VOSTR](https://oj.vnoi.info/problem/VOSTR/)
 - [SGU 426](http://acm.sgu.ru/problem.php?contest=0&problem=426)
 
 # Các nguồn tham khảo

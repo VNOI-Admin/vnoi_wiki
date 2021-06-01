@@ -178,7 +178,7 @@ Như vậy, bài toán được đưa về bài toán tính lũy thừa của m�
 
 # Ví dụ 4
 
-[VOJ - THBAC](https://oj.vnoi.info/problem/THBAC/)
+[VNOJ - THBAC](https://oj.vnoi.info/problem/THBAC/)
 
 **Bài toán**
 
@@ -308,5 +308,5 @@ Xét bước thứ 2, ta thấy rằng phép thử Freivalds chỉ có ý nghĩa
 - [HackerEarth - ABCD Strings](https://www.hackerearth.com/problem/algorithm/abcd-strings/description/)
 - [HackerEarth - Mehta and the difficult task](https://www.hackerearth.com/problem/algorithm/mehta-and-the-difficult-task-3/)
 - [HackerEarth - Mehta and the Evil Strings](https://www.hackerearth.com/problem/algorithm/mehta-and-the-evil-strings/)
-- [VOJ - PA06ANT](https://oj.vnoi.info/problem/PA06ANT/)
-- [VOJ - CONNECTE](https://oj.vnoi.info/problem/CONNECTE)
+- [VNOJ - PA06ANT](https://oj.vnoi.info/problem/PA06ANT/)
+- [VNOJ - CONNECTE](https://oj.vnoi.info/problem/CONNECTE)

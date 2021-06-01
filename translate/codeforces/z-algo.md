@@ -58,6 +58,6 @@ for (int i = 1; i < n; i++)
 
 # Áp dụng
 
-[VOJ - SUBSTR](https://oj.vnoi.info/problem/SUBSTR/)
+[VNOJ - SUBSTR](https://oj.vnoi.info/problem/SUBSTR/)
 
 Có thể dùng ZFuntion để giải bài này. Ta tạo ra một chuỗi $S=B+A$, sao đó xây dựng mảng $Z$. Những vị trí có $Z_i \ge Length(B)$ (Với $Length(B) \le i < Length(A)+Length(B)$) là vị trí tương ứng của $B$ trong $A$.
