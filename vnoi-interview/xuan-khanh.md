@@ -16,11 +16,11 @@ Anh còn kỳ công viết một cuốn sách Machine learning cơ bản bằng 
 
 1 vài của anh Khánh trên VOJ:
 
-* <a href="http://vnoi.info/problems/show/KBUILD/">KBUILD</a>
+* <a href="https://oj.vnoi.info/problem/KBUILD/">KBUILD</a>
 
-* <a href="http://vnoi.info/problems/show/KHISTORY/">KHISTORY</a>
+* <a href="https://oj.vnoi.info/problem/KHISTORY/">KHISTORY</a>
 
-* <a href="http://vnoi.info/problems/show/KTREEC/">KTREEC</a>
+* <a href="https://oj.vnoi.info/problem/KTREEC/">KTREEC</a>
 
 <img src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t31.0-8/17015895_378209042534421_8017869534658987587_o.jpg?oh=0891ae4537f46e0655f1903b22eb5401&oe=592DDE62">
 

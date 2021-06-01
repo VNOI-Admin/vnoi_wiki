@@ -287,6 +287,6 @@ for i ∈ [1..n]
 
 ## Bài tập áp dụng:
 
-- [VOJ - SUBSTR](http://vnoi.info/problems/show/SUBSTR).
+- [VOJ - SUBSTR](https://oj.vnoi.info/problem/SUBSTR).
     - [Code C++](http://ideone.com/4E11f6)
-- [VOJ - TWOOPERS](http://vnoi.info/problems/show/TWOOPERS/)
+- [VOJ - TWOOPERS](https://oj.vnoi.info/problem/TWOOPERS/)

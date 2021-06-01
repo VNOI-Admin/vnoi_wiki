@@ -125,8 +125,8 @@ Ta sẽ chứng minh “Đỉnh cha chung chính là nhãn của tập hợp ch�
 
 # Các bài tập áp dụng:
 
-- [VOJ - LUBENICA](http://vnoi.info/problems/show/LUBENICA)
+- [VOJ - LUBENICA](https://oj.vnoi.info/problem/LUBENICA)
 - [SPOJ - LCA](http://www.spoj.com/problems/LCA/)
 - [SPOJ - QTREE](http://www.spoj.com/problems/QTREE/)
-- [VOJ - QTREE3](http://vnoi.info/problems/show/QTREE3/)
-- [VOJ - VOTREE](http://vnoi.info/problems/show/VOTREE)
+- [VOJ - QTREE3](https://oj.vnoi.info/problem/QTREE3/)
+- [VOJ - VOTREE](https://oj.vnoi.info/problem/VOTREE)

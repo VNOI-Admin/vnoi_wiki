@@ -141,9 +141,9 @@ Ta cũng có thể sử dụng thuật toán luồng để giải các bài toá
 
 # Một số bài để luyện tập
 
-- [SPOJ - NKFLOW](http://vnoi.info/problems/show/NKFLOW/)
-- [SPOJ - FASTFLOW](http://vnoi.info/problems/show/FASTFLOW/)
-- [SPOJ - ASSIGN1](http://vnoi.info/problems/show/ASSIGN1/)
-- [SPOJ - KWAY](http://vnoi.info/problems/show/KWAY/)
-- [SPOJ - STNODE](http://vnoi.info/problems/show/STNODE/)
+- [VNOJ - NKFLOW](https://oj.vnoi.info/problem/NKFLOW/)
+- [SPOJ - FASTFLOW](https://www.spoj.com/problems/FASTFLOW/)
+- [VNOJ - ASSIGN1](https://oj.vnoi.info/problem/ASSIGN1/)
+- [VNOJ - KWAY](https://oj.vnoi.info/problem/KWAY/)
+- [VNOJ - STNODE](https://oj.vnoi.info/problem/STNODE/)
 - [codeforces - flows](http://codeforces.com/problemset/tags/flows)

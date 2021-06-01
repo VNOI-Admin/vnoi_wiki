@@ -9,7 +9,7 @@ Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đ�
 - Biểu diễn đồ thị:
   - [cowboycoder](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-phan-1-gioi-thieu)
   - Bài tập:
-    - [VOJ - GRAPH](http://vnoi.info/problems/show/GRAPH/)
+    - [VOJ - GRAPH](https://oj.vnoi.info/problem/GRAPH/)
 
 - BFS, DFS, Topo sort:
   - [cowboycoder - BFS](http://cowboycoder.tech/article/ly-thuyet-do-thi-co-ban-tim-kiem-theo-chieu-rong-tren-do-thi-breadth-first-search-bfs)

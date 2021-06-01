@@ -118,7 +118,7 @@ int main() {
 
 ### Computer (VNOI Marathon 2010)
 
-Problem Link: [COMPUTER - VOJ](http://vnoi.info/problems/show/COMPUTER/).
+Problem Link: [COMPUTER - VOJ](https://oj.vnoi.info/problem/COMPUTER/).
 
 #### Đề bài
 
@@ -242,7 +242,7 @@ int main() {
 
 ## Bài luyện tập
 
-- [VOJ - BINPACK](http://vnoi.info/problems/show/BINPACK/)
+- [VOJ - BINPACK](https://oj.vnoi.info/problem/BINPACK/)
 
 
 # 2. Chia để trị

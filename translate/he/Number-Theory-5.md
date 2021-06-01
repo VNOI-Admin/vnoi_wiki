@@ -418,4 +418,4 @@ Cách dễ nhất để đếm số cách phân tích số $n$ là định nghĩ
 - [Hackerearth - Ankit and Race Team](https://www.hackerearth.com/problem/algorithm/ankit-and-race-team-10/description/)
 - [Hackerearth - Tic Tac Toe](https://www.hackerearth.com/problem/algorithm/tic-tac-toe/)
 - [Hackerearth - Roy and Little Mario](https://www.hackerearth.com/problem/algorithm/roy-and-little-mario-4/description/)
-- [VOJ - TREELINE](http://vnoi.info/problems/show/TREELINE/)
+- [VOJ - TREELINE](https://oj.vnoi.info/problem/TREELINE/)
