@@ -456,20 +456,16 @@ Trong loại bài toán này với mỗi nút của cây ta lưu lại một `ve
 
 ## Ví dụ
 
-[KQUERY2](https://oj.vnoi.info/problem/kquery2).
+Cách làm online cho bài [KQUERY](https://oj.vnoi.info/problem/kquery).
 
 ## Tóm tắt đề
 
 - Cho dãy $A$ với $N$ phần tử. Cần trả lời $Q$ truy vấn.
-- Có 2 loại truy vấn:
-    - Cập nhật: Gán $A_i = v$
-    - Truy vấn: đếm số phần tử lớn hơn $k$ trong đoạn $[l, r]$.
+- Truy vấn: đếm số phần tử lớn hơn $k$ trong đoạn $[l, r]$.
 - Giới hạn:
     - $N \le 30,000$
-    - $A_i, v \le 10,000$
+    - $A_i \le 10^9$
     - $Q \le 200,000$
-
-Bài này tương đối giống với bài KQUERY đã phân tích ở trên, tuy nhiên vì có thao tác cập nhật, nên ta buộc phải xử lý online.
 
 ## Phân tích
 
