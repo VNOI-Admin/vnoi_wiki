@@ -34,25 +34,25 @@ Vì dãy $c$ được bố trí theo thứ tự không giảm, cho nên phần t
 
 Ta có thể so sánh hai phần tử nhỏ nhất của hai dãy $a$, $b$ và đưa phần tử có giá trị nhỏ hơn vào vị trí đầu tiên của dãy $c$.
 
-Dãy $a$ và $b$ đã được sắp xếp không giảm, vì thế hai phần tử nhỏ nhất ở đây chính là hai phần tử ở vị trí đầu tiên ở mỗi dãy ($a[1]$ và $b[1]$).
+Dãy $a$ và $b$ đã được sắp xếp không giảm, vì thế hai phần tử nhỏ nhất ở đây chính là hai phần tử ở vị trí đầu tiên ở mỗi dãy ($a[1]$ và $b[1]$). 
 
 $$a=[\overset{\downarrow}{\color{red}1},3,6,8,10]$$
 
 $$b=[\overset{\downarrow}{2},6,7,12,14,15]$$
 
-$$c=[1]$$
+$$c=[{\color{red}1}]$$
 
 Bây giờ, phần tử tiếp theo của dãy $c$ sẽ là phần tử nhỏ nhất trong các phần tử chưa được đưa vào dãy $c$.
 
 Dãy $a$ và $b$ đã được sắp xếp không giảm, vì thế sau khi đưa $a[1]$ vào dãy $c$, $a[2]$ là phần tử nhỏ nhất chưa được chọn ở dãy $a$ và $b[1]$ là phần tử nhỏ nhất chưa được chọn ở dãy $b$.
 
-So sánh phần tử nhỏ nhất chưa được chọn ở dãy $a$ với phần tử nhỏ nhất chưa được chọn ở dãy $b$. Chọn và đưa phần tử nhỏ hơn vào vị trí tiếp theo của dãy $c$.
+So sánh $a[2]$ và $b[1]$, chọn phần tử có giá trị nhỏ hơn và đưa vào dãy $c$.
 
 $$a=[1,\overset{\downarrow}{3},6,8,10]$$
 
 $$b=[\overset{\downarrow}{\color{red}2},6,7,12,14,15]$$
 
-$$c=[1,2]$$
+$$c=[1,{\color{red}2}]$$
 
 Sau khi đưa $b[1]$ vào dãy $c$, $b[2]$ trở thành phần tử nhỏ nhất chưa được chọn ở dãy $b$.
 
@@ -64,9 +64,9 @@ $$a=[1,\overset{\downarrow}{\color{red}3},6,8,10]$$
 
 $$b=[2,\overset{\downarrow}{6},7,12,14,15]$$
 
-$$c=[1,2,3]$$
+$$c=[1,2,{\color{red}3}]$$
 
-Ở đây ta chọn $a[2]$ vào dãy $c$ vì $a[2]$ có giá trị nhỏ hơn. Sau đó, $a[3]$ trở thành phần tử nhỏ nhất chưa được chọn ở dãy $a$.
+Sau khi đưa $a[2]$ vào dãy $c$, $a[3]$ trở thành phần tử nhỏ nhất chưa được chọn ở dãy $a$.
 
 Ta nhận thấy rằng
 * Tại mọi thời điểm, phần tử tiếp theo được đưa vào dãy $c$ sẽ là phần tử có giá trị nhỏ nhất trong các phần tử chưa được chọn.
@@ -176,11 +176,9 @@ Vì thế độ phức tạp của giải pháp là $O(n+m)$.
 
 # Bài toán 2
 
-Cho một mảng số nguyên $a$ có $n$ phần tử, mảng này đã được **sắp xếp tăng dần**. Hãy tìm vị trí của hai phần tử **khác nhau** **bất kỳ** sao cho tổng của chúng có giá trị là $x$.
+Cho một mảng số nguyên $a$ có $n$ phần tử, mảng này đã được **sắp xếp tăng dần**. Hãy tìm hai vị trí **khác nhau** **bất kỳ** sao cho tổng của hai phần tử ở hai vị trí đó có giá trị là $x$.
 
 Giới hạn: $2 \leq n \leq 10^6$ và $0 \leq a_i, x \leq 10^9$
-
-Xem chi tiết [tại đây](https://lqdoj.edu.vn/problem/findpair)
 
 ## Phân tích
 
@@ -306,12 +304,13 @@ Hơn nữa, sự thay đổi vị trí hai con trỏ này sẽ dừng lại khi 
 Vì thế, việc thay đổi vị trí hai con trỏ sẽ không quá $n$ lần, độ phức tạp của giải pháp là $O(n)$.
 
 ## Luyện tập
+[LQDOJ - FINDPAIR](https://lqdoj.edu.vn/problem/findpair) \\
 [LQDOJ - CNTPAIR02](https://lqdoj.edu.vn/problem/cntpair02) \\
 [VNOJ - NDCCARD](https://oj.vnoi.info/problem/ndccard) \\
 [VNOJ - TWOSUM](https://oj.vnoi.info/problem/twosum)
 
 # Bài toán 3
-Cho dãy số nguyên dương $a$ có $n$ phần tử. Hãy tìm độ dài đoạn con dài nhất trong dãy sao cho tổng các phần tử trong đoạn này không quá $s$.
+Cho dãy số **nguyên dương** $a$ có $n$ phần tử. Hãy tìm độ dài đoạn con dài nhất trong dãy sao cho tổng các phần tử trong đoạn này không quá $s$.
 
 Dữ liệu đảm bảo các phần tử trong dãy $a$ đều có giá trị không quá $s$.
 
@@ -340,27 +339,27 @@ Từ đó, với mỗi $r$ từ $1$ đến $n$, nếu ta xác định được v
 
 Hãy cùng nhận xét vị trí của $l$ với mỗi $r$ từ $1$ đến $n$ qua ví dụ sau đây:
 
-Cho trước dãy $a = [2, 6, 4, 3, 6, 8, 9]$ và $s=20$
+Cho trước dãy $a = [2, 6, 5, 3, 6, 8, 9]$ và $s=20$
 * $r=1 \rightarrow l=1$
-    * $a = [\overset{\underset{\downarrow}{{\color{red}l},{\color{blue}r}}}{\color{green}2}, 6, 4, 3, 6, 8, 9]$
+    * $a = [\overset{\underset{\downarrow}{{\color{red}l},{\color{blue}r}}}{\color{green}2}, 6, 5, 3, 6, 8, 9]$
     * $sum(l,r)=2$
 * $r=2 \rightarrow l=1$
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 4, 3, 6, 8, 9]$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 5, 3, 6, 8, 9]$
     * $sum(l,r)=8$
 * $r=3 \rightarrow l=1$
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}4}, 3, 6, 8, 9]$
-    * $sum(l,r)=12$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}5}, 3, 6, 8, 9]$
+    * $sum(l,r)=13$
 * $r=4 \rightarrow l=1$
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}4},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
-    * $sum(l,r)=15$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}5},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
+    * $sum(l,r)=16$
 * $r=5 \rightarrow l=2$
-    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}6}, {\color{green}4}, {\color{green}3},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 8, 9]$
-    * $sum(l,r)=19$
+    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}6}, {\color{green}5}, {\color{green}3},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 8, 9]$
+    * $sum(l,r)=20$
 * $r=6 \rightarrow l=4$
-    * $a = [2, 6, 4, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}3}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}8}, 9]$
+    * $a = [2, 6, 5, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}3}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}8}, 9]$
     * $sum(l,r)=17$
 * $r=7 \rightarrow l=6$
-    * $a = [2, 6, 4, 3, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}9}]$
+    * $a = [2, 6, 5, 3, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}9}]$
     * $sum(l,r)=17$
 
 | $r$      | $l$      | Độ dài đoạn con |
@@ -396,62 +395,62 @@ Với những phân tích như trên, ta có giải quyết bài toán với ph�
 
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-$a = [2, 6, 4, 3, 6, 8, 9]$ và $s=20$
+$a = [2, 6, 5, 3, 6, 8, 9]$ và $s=20$
 
 * Sử dụng biến $ans$ để lưu lại giá trị lớn nhất của độ dài đoạn "tốt" có vị trí kết thúc tại $r$, với $r$ từ $1$ đến $n$.
 
 * Đặt $l=1$ và $r=1$
-    * $a = [\overset{\underset{\downarrow}{{\color{red}l},{\color{blue}r}}}{\color{green}2}, 6, 4, 3, 6, 8, 9]$
+    * $a = [\overset{\underset{\downarrow}{{\color{red}l},{\color{blue}r}}}{\color{green}2}, 6, 5, 3, 6, 8, 9]$
     * vì $a[1] \leq s$ nên đoạn $[1,1]$ là một đoạn "tốt".
     * $ans = max(ans, r - l + 1)$
     
 * Tăng vị trí $r$ lên $1$ đơn vị
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 4, 3, 6, 8, 9]$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 5, 3, 6, 8, 9]$
     * vì $sum(l,r) = 8 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = max(ans, r - l + 1)$
     
 * Tăng vị trí $r$ lên $1$ đơn vị
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}4}, 3, 6, 8, 9]$
-    * vì $sum(l,r) = 12 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}5}, 3, 6, 8, 9]$
+    * vì $sum(l,r) = 13 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = max(ans, r - l + 1)$
     
 * Tăng vị trí $r$ lên $1$ đơn vị
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}4},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
-    * vì $sum(l,r) = 15 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}5},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
+    * vì $sum(l,r) = 16 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = max(ans, r - l + 1)$
     
 * Tăng vị trí $r$ lên $1$ đơn vị
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{orange}2}, {\color{orange}6}, {\color{orange}4}, {\color{orange}3}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}6}, 8, 9]$
-    * vì $sum(l,r) = 21 > s$ nên tăng vị trí $l$.
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{orange}2}, {\color{orange}6}, {\color{orange}5}, {\color{orange}3}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}6}, 8, 9]$
+    * vì $sum(l,r) = 22 > s$ nên tăng vị trí $l$.
 
 * Tăng vị trí $l$ lên $1$ đơn vị
-    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}6}, {\color{green}4}, {\color{green}3},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 8, 9]$
-    * vì $sum(l,r) = 19 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}6}, {\color{green}5}, {\color{green}3},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 8, 9]$
+    * vì $sum(l,r) = 20 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = max(ans, r - l + 1)$
 
 * Tăng vị trí $r$ lên $1$ đơn vị
-    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}6}, {\color{orange}4}, {\color{orange}3}, {\color{orange}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}8}, 9]$
-    * vì $sum(l,r) = 27 > s$ nên tăng vị trí $l$.
+    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}6}, {\color{orange}5}, {\color{orange}3}, {\color{orange}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}8}, 9]$
+    * vì $sum(l,r) = 28 > s$ nên tăng vị trí $l$.
 
 * Tăng vị trí $l$ lên $1$ đơn vị
-    * $a = [2, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}4}, {\color{orange}3}, {\color{orange}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}8}, 9]$
-    * vì $sum(l,r) = 21 > s$ nên tăng vị trí $l$.
+    * $a = [2, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}5}, {\color{orange}3}, {\color{orange}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}8}, 9]$
+    * vì $sum(l,r) = 22 > s$ nên tăng vị trí $l$.
 
 * Tăng vị trí $l$ lên $1$ đơn vị
-    * $a = [2, 6, 4, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}3}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}8}, 9]$
+    * $a = [2, 6, 5, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}3}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}8}, 9]$
     * vì $sum(l,r) = 17 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = max(ans, r - l + 1)$
 
 * Tăng vị trí $r$ lên $1$ đơn vị
-    * $a = [2, 6, 4, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}3}, {\color{orange}6}, {\color{orange}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}9}]$
+    * $a = [2, 6, 5, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}3}, {\color{orange}6}, {\color{orange}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}9}]$
     * vì $sum(l,r) = 26 > s$ nên tăng vị trí $l$.
 
 * Tăng vị trí $l$ lên $1$ đơn vị
-    * $a = [2, 6, 4, 3, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}6}, {\color{orange}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}9}]$
+    * $a = [2, 6, 5, 3, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}6}, {\color{orange}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}9}]$
     * vì $sum(l,r) = 23 > s$ nên tăng vị trí $l$.
 
 * Tăng vị trí $l$ lên $1$ đơn vị
-    * $a = [2, 6, 4, 3, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}9}]$
+    * $a = [2, 6, 5, 3, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}9}]$
     * vì $sum(l,r) = 17 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = max(ans, r - l + 1)$
 
@@ -495,19 +494,17 @@ Vì thế độ phức tạp của giải pháp là $O(n)$.
 Bạn được cho một dãy số nguyên như sau:
 
 * $x_0=1$
-* $x_{i+1} = (a * x + x \ div \ b) \  mod \ c$.
+* $x_{i+1} = (a \cdot x + x \ div \ b) \  mod \ c$.
 
-Tìm $n$ nhỏ nhất sao cho tồn tại $m < n$ và $x_m = x_n$. Dữ liệu đảm bảo $n$ không quá $2*10^7$.
+Tìm $n$ nhỏ nhất sao cho tồn tại $m < n$ và $x_m = x_n$. Dữ liệu đảm bảo $n$ không quá $2 * 10^7$.
 
 Giới hạn: $1 \leq a \leq 10^4$ và $1 \leq b,c \leq 10^{14}$.
-
-Xem chi tiết [tại đây](https://lqdoj.edu.vn/problem/findloop)
 
 ## Phân tích
 
 Để dễ dàng phân tích ta định nghĩa hàm $f$ như sau:
 
-$$f(x) = (a * x + x \ div \ b) \  mod \ c$$
+$$f(x) = (a \cdot x + x \ div \ b) \  mod \ c$$
 
 Dãy số của chúng ta sẽ có dạng
 
@@ -576,15 +573,15 @@ Tại mỗi thời điểm, ta tịnh tiến hai con trỏ này như sau:
 Ngoài lúc ban đầu, hai con trỏ $tortoise$ và $hare$ sẽ luôn gặp nhau tại thời điểm nào đó. Thật vậy:
 * $2t < \mu$: 
     * Sau $t$ lần tịnh tiến, $tortoise$ = $x_t$ và $hare$ = $x_{2t}$. 
-    * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $0$ đến $\mu + \lambda - 1$ phải đôi một khác nhau. 
+    * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $x_0$ đến $x_{\mu + \lambda - 1}$ phải đôi một khác nhau. 
     * Vì thế $x_t \neq x_{2t}$, $tortoise$ và $hare$ chưa gặp nhau lúc này.
 * $2t \geq \mu$ và $t < \mu$
     * Sau $t$ lần tịnh tiến, $tortoise$ = $x_t$ và $hare$ = $x_{\mu+(2t-\mu) \ mod \ \lambda}$.
-    * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $0$ đến $\mu + \lambda - 1$ phải đôi một khác nhau. 
-    * Vì thế $x_t \neq x_{\mu+(2t-\mu) \ mod \ \lambda}$, tortoise và hare chưa gặp nhau lúc này.
+    * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $x_0$ đến $x_{\mu + \lambda - 1}$ phải đôi một khác nhau. 
+    * Vì thế $x_t \neq x_{\mu+(2t-\mu) \ mod \ \lambda}$, $tortoise$ và $hare$ chưa gặp nhau lúc này.
 * $t \geq \mu$
     * Sau $t$ lần tịnh tiến, $tortoise$ = $x_{\mu+(t-\mu) \ mod \ \lambda}$ và $hare$ = $x_{\mu+(2t-\mu) \ mod \ \lambda}$.
-    * Nếu $tortoise$ và $hare$ gặp nhau thì $\mu+(t-\mu) \ mod \ \lambda = {\mu+(2t-\mu) \ mod \ \lambda} \Rightarrow t \ mod \ \lambda = 0$.
+    * Giả sử $tortoise$ và $hare$ gặp nhau thì $\mu+(t-\mu) \ mod \ \lambda = {\mu+(2t-\mu) \ mod \ \lambda} \Leftrightarrow t \ mod \ \lambda = 0$.
     * Vậy, $tortoise$ và $hare$ sẽ gặp nhau sau $t$ lần tịnh tiến, trong đó $t$ là số nguyên có giá trị lớn hơn hoặc bằng $\mu$ và chia hết cho $\lambda$.
     * Trừ lúc khởi tạo, hai con trỏ $tortoise$ và $hare$ sẽ gặp nhau khi giá trị của cả hai con trỏ là $x_{\mu+(\lambda -\mu \ mod \ \lambda) \ mod \ \lambda}$.
 
@@ -669,9 +666,10 @@ Cụ thể $t$ là số nguyên nhỏ nhất sao cho $t$ có giá trị lớn h�
 
 Vì thế việc xác định được vị trí $tortoise$ và $hare$ gặp nhau sẽ mất không quá $\mu + \lambda$ bước. Hơn nữa, việc xác định $\mu$ mất $\mu$ bước, xác định $\lambda$ mất $\lambda$ bước.
 
-Kết luận: độ phức tạp của bài toán là $O(\mu + \lambda)$. Trong đó $\mu + \lambda \leq 2 * 10^7$.
+Kết luận: độ phức tạp của bài toán là $O(\mu + \lambda)$. (trong đó $\mu + \lambda \leq 2 * 10^7$)
 
 ## Luyện tập
+
 [LODOJ - TORHAR](https://lqdoj.edu.vn/problem/torhar)\\
 [CODEFORCES - Sequence analysis](https://codeforces.com/gym/100503/problem/D)\\
 [CODEFORCES - Pseudo-Random Number Generator](https://codeforces.com/gym/102501/problem/H)\\
