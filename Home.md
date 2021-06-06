@@ -24,6 +24,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 * [Bảng tin 01/02/2021](news-bulletin/bảng-tin-01022021.md)
 * [Bảng tin 01/03/2021](news-bulletin/bảng-tin-01032021.md)
 * [Bảng tin 06/05/2021](news-bulletin/bảng-tin-06052021.md)
+* [Bảng tin 07/06/2021](news-bulletin/bảng-tin-07062021.md)
 
 # Thuật toán
 
