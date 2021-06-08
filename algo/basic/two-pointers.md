@@ -496,7 +496,7 @@ Bạn được cho một dãy số nguyên như sau:
 * $x_0=1$
 * $x_{i+1} = (a \cdot x_i + x_i \ div \ b) \  mod \ c$.
 
-Tìm $n$ nhỏ nhất sao cho tồn tại $m < n$ và $x_m = x_n$. Dữ liệu đảm bảo $n$ không quá $2 * 10^7$.
+Tìm $n$ nhỏ nhất sao cho tồn tại $m < n$ và $x_m = x_n$. Dữ liệu đảm bảo $n$ không quá $2 \cdot 10^7$.
 
 Giới hạn: $1 \leq a \leq 10^4$ và $1 \leq b,c \leq 10^{14}$.
 
@@ -666,7 +666,7 @@ Cụ thể $t$ là số nguyên nhỏ nhất sao cho $t$ có giá trị lớn h�
 
 Vì thế việc xác định được vị trí $tortoise$ và $hare$ gặp nhau sẽ mất không quá $\mu + \lambda$ bước. Hơn nữa, việc xác định $\mu$ mất $\mu$ bước, xác định $\lambda$ mất $\lambda$ bước.
 
-Kết luận: độ phức tạp của bài toán là $O(\mu + \lambda)$. (trong đó $\mu + \lambda \leq 2 * 10^7$)
+Kết luận: độ phức tạp của bài toán là $O(\mu + \lambda)$. (trong đó $\mu + \lambda \leq 2 \cdot 10^7$)
 
 ## Luyện tập
 
