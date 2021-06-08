@@ -494,7 +494,7 @@ Vì thế độ phức tạp của giải pháp là $O(n)$.
 Bạn được cho một dãy số nguyên như sau:
 
 * $x_0=1$
-* $x_{i+1} = (a \cdot x + x \ div \ b) \  mod \ c$.
+* $x_{i+1} = (a \cdot x_i + x_i \ div \ b) \  mod \ c$.
 
 Tìm $n$ nhỏ nhất sao cho tồn tại $m < n$ và $x_m = x_n$. Dữ liệu đảm bảo $n$ không quá $2 * 10^7$.
 
