@@ -1,8 +1,8 @@
 # Bài toán tìm cây khung nhỏ nhất trong đồ thị
 
 **Tác giả**: 
-Hoàng Việt Cường - Đại học Bách Khoa Hà Nội
-Phan Thành Long - THPT Chuyên Thái Bình (K17-20)
+* Hoàng Việt Cường - Đại học Bách Khoa Hà Nội
+* Phan Thành Long - THPT Chuyên Thái Bình (K17-20)
 
 **Reviewer**:
 Vương Hoàng Long - Đại học Quốc Gia Singapore 
