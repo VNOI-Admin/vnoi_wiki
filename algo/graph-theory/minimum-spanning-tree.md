@@ -199,13 +199,13 @@ Ta phải chứng minh hai điều:
 > ***Lưu ý*** : Nếu bạn mới học cây khung lần đầu tiên chưa nên đọc ngay chứng minh này, vì chúng có thể khiến bạn hoang mang. Chứng minh có sử dụng một số khái niệm như ***lát cắt***, ***lát cắt hẹp nhất***
  
 Trong chứng minh này, mình có quy ước sử dụng một số kí hiệu: 
-* $|A|$ : số lượng phần tử có trong tập hợp $A$
+* $\|A\|$ : số lượng phần tử có trong tập hợp $A$
 * $A - B$ : tập hợp các phần tử thuộc $A$ mà không thuộc $B$
 
 Giờ cùng đi vào chi tiết chứng minh nhé (づ◔ ͜ʖ◔)づ
-- Gọi $T$ là cây khung đầu ra của thuật toán Kruskal và $T^*$ là một cây khung nhỏ nhất, ta sẽ chứng minh tổng trọng số trên $T$ và $T^*$ bằng nhau : $c(T)$ = $c(T^*)$
-- Nếu $c(T)$ = $c(T^*)$ ⇒ hiển nhiên đúng
-- Nếu $c(T)$ ≠ $c(T^*)$ gọi $(u, v)$ là cạnh $\in$ $T$ mà $\notin$ $T^*$ hay thuộc $T - T^*$. Gọi $S$ là thành phần liên thông chứa u tại thời điểm $(u, v)$ được thêm vào $T$.
+- Gọi $T$ là cây khung đầu ra của thuật toán Kruskal và $T^\*$ là một cây khung nhỏ nhất, ta sẽ chứng minh tổng trọng số trên $T$ và $T^\*$ bằng nhau : $c(T)$ = $c(T^\*)$
+- Nếu $c(T)$ = $c(T^\*)$ ⇒ hiển nhiên đúng
+- Nếu $c(T)$ ≠ $c(T^\*)$ gọi $(u, v)$ là cạnh $\in$ $T$ mà $\notin$ $T^\*$ hay thuộc $T - T^\*$. Gọi $S$ là thành phần liên thông chứa u tại thời điểm $(u, v)$ được thêm vào $T$.
     **Nhận xét:** 
     Dễ thấy nếu xóa cạnh $(u, v)$ trên $T$ thì sẽ tách thành 2 **thành phần liên thông** $S$ và $G - S$. 
     Đây là một **lát cắt**, ta có thể thêm bất cứ cạnh nào nối giữa 2 **thành phần liên thông** này để tạo thành một cây mới ⇒ $(u, v)$ $\in$ lát cắt $(S, G - S)$.
@@ -214,7 +214,7 @@ Giờ cùng đi vào chi tiết chứng minh nhé (づ◔ ͜ʖ◔)づ
     Ta sẽ chứng minh $(u, v)$ thuộc **lát cắt nhỏ nhất** $(S, G - S)$
     - Nếu tồn tại đường đi trọng số $e$ từ $S$ đến $G - S$ có trọng số nhỏ hơn $(u, v)$, thuật toán kruskal sẽ chọn $e$ thay vì $(u, v)$ ⇒ vô lý.
     ⇒ *Ta khẳng định $(u, v)$ có **trọng số nhỏ nhất** trong các cạnh từ $S$ đến $(G - S)$.* **(1)**
-    - Mặt khác, bởi vì $T^*$ là 1 cây khung nhỏ nhất nên  có một đường từ $S$ tới $G - S$, gọi cạnh thuộc đường này là $(x, y)$. Xét cây khung :
+    - Mặt khác, bởi vì $T^\*$ là 1 cây khung nhỏ nhất nên  có một đường từ $S$ tới $G - S$, gọi cạnh thuộc đường này là $(x, y)$. Xét cây khung :
     ${T^*}' = T^* \cup (u, v) - (x, y)$ ⇒ $c({T^*}') = c(T^*) + c(u, v) - c(x, y)$
     - Do theo **(1)** có:  $c(u, v) ≤ c(x, y)$ nên $c({T^*}') ≤ c(T^*)$ mà $T^*$ là cây khung nhỏ nhất ⇒ $c({T^*}')$ = $c(T^*)$ và ${T^*}'$ cũng là **cây khung nhỏ nhất** ⇒ $|T - {T^*}'|$ = $|T - T^*| - 1$
     ***Ý nghĩa :** Như vậy ta đã biến đổi được **cây khung nhỏ nhất** ${T^*}$ thành cây khung ${T^*}'$ cũng là **cây khung nhỏ nhất** mà làm giảm số cạnh khác nhau của $T$ và ${T^*}$ đi 1 cạnh*
@@ -412,7 +412,7 @@ int main() {
 #### Tóm tắt đề bài
 Cho đồ thị vô hướng $G$ gồm $n$ đỉnh và $m$ cạnh. Yêu cầu với mỗi cạnh trong đồ thị, tìm cây khung nhỏ nhất **chứa cạnh đó** của đồ thị và in ra trọng số của cây khung đó.
 
-Đây là 1 bài tập khá kinh điển về cây khung nhỏ nhất. Để giải được bài tập này, chúng ta cần giải bài LUBENICA trước. Các bạn có thể đọc thêm về bài ở [đây](https://hackmd.io/@cuonghv98/H1MRC4ANd)
+Đây là 1 bài tập khá kinh điển về cây khung nhỏ nhất. Để giải được bài tập này, chúng ta cần giải bài LUBENICA trước. Các bạn có thể đọc thêm về bài ở [đây](lubenica-vnoj)
 #### Thuật toán: 
 * Đầu tiên, ta dựng cây khung nhỏ nhất $S$ của đồ thị ban đầu:
 * Sau đó, ta lần lượt đi tìm cây khung nhỏ nhất chứa mỗi cạnh của đồ thị. Với 1 cạnh i nối 2 đỉnh $u$, $v$ với trọng số $w$, có 2 trường hợp xảy ra:
