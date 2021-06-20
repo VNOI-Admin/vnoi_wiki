@@ -215,10 +215,10 @@ Giờ cùng đi vào chi tiết chứng minh nhé (づ◔ ͜ʖ◔)づ
     - Nếu tồn tại đường đi trọng số $e$ từ $S$ đến $G - S$ có trọng số nhỏ hơn $(u, v)$, thuật toán kruskal sẽ chọn $e$ thay vì $(u, v)$ ⇒ vô lý.
     ⇒ *Ta khẳng định $(u, v)$ có **trọng số nhỏ nhất** trong các cạnh từ $S$ đến $(G - S)$.* **(1)**
     - Mặt khác, bởi vì $T^\*$ là 1 cây khung nhỏ nhất nên  có một đường từ $S$ tới $G - S$, gọi cạnh thuộc đường này là $(x, y)$. Xét cây khung :
-    ${T^*}' = T^* \cup (u, v) - (x, y)$ ⇒ $c({T^*}') = c(T^*) + c(u, v) - c(x, y)$
-    - Do theo **(1)** có:  $c(u, v) ≤ c(x, y)$ nên $c({T^*}') ≤ c(T^*)$ mà $T^*$ là cây khung nhỏ nhất ⇒ $c({T^*}')$ = $c(T^*)$ và ${T^*}'$ cũng là **cây khung nhỏ nhất** ⇒ $|T - {T^*}'|$ = $|T - T^*| - 1$
-    ***Ý nghĩa :** Như vậy ta đã biến đổi được **cây khung nhỏ nhất** ${T^*}$ thành cây khung ${T^*}'$ cũng là **cây khung nhỏ nhất** mà làm giảm số cạnh khác nhau của $T$ và ${T^*}$ đi 1 cạnh*
-    - Lặp lại cách chứng minh với mỗi cạnh thuộc $T - {T^*}'$, ta sẽ biến đổi được ${T^*}'$ thành ${T}$, hay nói cách khác đã đã biến đổi cây khung nhỏ nhất ban đầu về cây khung đầu ra của Kruskal : $c(T) = c(T^*)$.
+    ${T^\*}' = T^\* \cup (u, v) - (x, y)$ ⇒ $c({T^\*}') = c(T^\*) + c(u, v) - c(x, y)$
+    - Do theo **(1)** có:  $c(u, v) ≤ c(x, y)$ nên $c({T^\*}') ≤ c(T^\*)$ mà $T^\*$ là cây khung nhỏ nhất ⇒ $c({T^\*}')$ = $c(T^\*)$ và ${T^\*}'$ cũng là **cây khung nhỏ nhất** ⇒ $|T - {T^\*}'|$ = $|T - T^\*| - 1$
+    ***Ý nghĩa :** Như vậy ta đã biến đổi được **cây khung nhỏ nhất** ${T^\*}$ thành cây khung ${T^\*}'$ cũng là **cây khung nhỏ nhất** mà làm giảm số cạnh khác nhau của $T$ và ${T^\*}$ đi 1 cạnh*
+    - Lặp lại cách chứng minh với mỗi cạnh thuộc $T - {T^\*}'$, ta sẽ biến đổi được ${T^\*}'$ thành ${T}$, hay nói cách khác đã đã biến đổi cây khung nhỏ nhất ban đầu về cây khung đầu ra của Kruskal : $c(T) = c(T^\*)$.
 
 **Đánh giá độ phức tạp thuật toán:** 
 Gọi $n$ là số đỉnh, $m$ là số cạnh của đồ thị
@@ -736,14 +736,7 @@ int main() {
 
 ## Luyện tập
 Các bạn có thể thử sức với một số bài tập sau:
-[P186SUMF](https://www.spoj.com/PTIT/problems/P186SUMF/) - [959E](https://codeforces.com/problemset/problem/959/E)
-[VMST](https://vn.spoj.com/problems/VMST/)
-[C11WATER](https://codeforces.com/group/FLVn1Sc504/contest/274809/problem/B)
-[CHEER](https://codeforces.com/group/FLVn1Sc504/contest/274809/problem/M)
-
-
-
-
-
-
-
+* [P186SUMF](https://www.spoj.com/PTIT/problems/P186SUMF/) - [959E](https://codeforces.com/problemset/problem/959/E)
+* [VMST](https://vn.spoj.com/problems/VMST/)
+* [C11WATER](https://codeforces.com/group/FLVn1Sc504/contest/274809/problem/B)
+* [CHEER](https://codeforces.com/group/FLVn1Sc504/contest/274809/problem/M)
