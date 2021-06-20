@@ -199,8 +199,8 @@ Ta phải chứng minh hai điều:
 > ***Lưu ý*** : Nếu bạn mới học cây khung lần đầu tiên chưa nên đọc ngay chứng minh này, vì chúng có thể khiến bạn hoang mang. Chứng minh có sử dụng một số khái niệm như ***lát cắt***, ***lát cắt hẹp nhất***
  
 Trong chứng minh này, mình có quy ước sử dụng một số kí hiệu: 
-* $|A|$ : số lượng phần tử có trong tập hợp $A$
-* $A - B$ : tập hợp các phần tử thuộc $A$ mà không thuộc $B$
+* $$|A|$$ : số lượng phần tử có trong tập hợp $$A$$
+* $$A - B$$ : tập hợp các phần tử thuộc $$A$$ mà không thuộc $$B$$
 
 Giờ cùng đi vào chi tiết chứng minh nhé (づ◔ ͜ʖ◔)づ
 - Gọi $T$ là cây khung đầu ra của thuật toán Kruskal và $T^*$ là một cây khung nhỏ nhất, ta sẽ chứng minh tổng trọng số trên $T$ và $T^*$ bằng nhau : $c(T)$ = $c(T^*)$
