@@ -836,8 +836,8 @@ Trước hết ta gán $A[i] = A[i] - i$ với mọi $i$. Bài toán trở thàn
 **Thuật toán QHĐ cơ sở**
 
 Đặt $F(i, j) = $ số phép biến đổi ít nhất để biến đổi dãy $A[1..i]$ thành dãy không giảm sao cho $A[i] \le j$. Ta có:
- - $F(i, j) = \|A[i] - j\|$ với $i = 1$
- - $F(i, j) = min(F(i - 1, j) + \|A[i] - j\|)$ với $i > 1$
+ - Với $i = 1$: $F(i, j) = \|A[i] - j\|$ 
+ - Với $i > 1$: $F(i, j) = min(F(i - 1, k) + \|A[i] - k\|)$ $\forall k \le j$ 
 
 Kết hợp với nhận xét: Luôn tồn tại dãy cuối cùng với số phép biến đổi tối ưu mà chỉ chứa các giá trị có trong dãy ban đầu. Ta có thể giải công thức QHĐ này với độ phức tạp $O(N^2)$
 
