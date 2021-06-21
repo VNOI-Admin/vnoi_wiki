@@ -348,3 +348,4 @@ Sắp đường thẳng này vào vị trí đúng của nó và những đườ
 # Bài tập:
 
 - [Bài J - ACM ICPC Vietnam Regional 2017](https://open.kattis.com/problems/joiningnetwork)
+- [VNOJ-NKLEAVES](https://oj.vnoi.info/problem/nkleaves/)
