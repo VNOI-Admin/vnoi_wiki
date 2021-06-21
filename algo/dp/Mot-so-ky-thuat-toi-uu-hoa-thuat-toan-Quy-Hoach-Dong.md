@@ -545,7 +545,7 @@ ta cũng có thể sử dụng QHĐ chia để trị.
 
 # 3. Bao lồi đường thẳng
 
-Các bạn có thể đọc thêm về kỹ thuật bao lồi ở link [này](https://vnoi.info/contributor/translate/wcipeg/Convex-Hull-Trick.md)
+Các bạn có thể đọc thêm về kỹ thuật bao lồi ở link [này](https://vnoi.info/wiki/translate/wcipeg/Convex-Hull-Trick.md)
 
 # 4. Tối ưu bằng stack
 
