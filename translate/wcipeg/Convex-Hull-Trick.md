@@ -2,7 +2,7 @@
 
 **Nguồn**: [P3G](http://wcipeg.com/wiki/Convex_hull_trick)
 
-**Người dịch**: Phan Minh Hoàng
+**Tác giả**: Phan Minh Hoàng + Lê Anh Đức
 
 [[_TOC_]]
 
