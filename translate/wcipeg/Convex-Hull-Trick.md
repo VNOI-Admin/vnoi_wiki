@@ -167,6 +167,168 @@ Ngược với bài "acquire" khi chúng ta phải tối thiểu hóa hàm quy h
 
 Do dễ thấy $\delta(n)>\delta(n-1)$, giống như bài "acquire" các truy vấn chúng ta cũng tăng dần theo thứ tự do vậy chúng ta có thể khơi tạo một biến chạy để chạy song song khi làm quy hoạch động (bỏ được phần chặt nhị phân).
 
+# Ví dụ 3: HARBINGERS ([CEOI 2009](https://oj.vnoi.info/problem/harbinge))
+
+## Bài toán
+
+Ngày xửa ngày xưa, có $N$ trị trấn kiểu trung cỏ trong khu tự trị Moldavian. Các trhị trấn này được đánh số từ $1$ đến $N$. Thị trấn $1$ là thủ đô. Các thị trấn được nối với nhau bằng $N-1$ con đường hai chiểu, mỗi con đường có độ dài được đo bằng km. Có duy nhất một tuyến đường nối giữa hai điểm bất kỳ (đồ thị các con đường là hình cây). Mỗi thị trấn không phải trung tâm có một người truyền tin.
+
+Khi một thị trấn bị tấn công, tình hình chiến sự cần được bảo về thủ đô càng sớm càng tốt. Mội thông điệp được truyền bằng các người truyền tin. Mỗi người truyền tin được đặc trưng bởi lượng thời gian khởi động và vận tốc không đổi sau khi xuất phát.
+
+Thông điệp luôn được truyền trên con đường ngắn nhất đến trung tâm. Ban đầu, thông tin chiến sự được đưa cho người truyền tin tại thị trấn bị tấn công. Từ thị trấn đó người truyền tin sẽ đi theo con đường về gần thủ đô hơn. Khi đến một thị trấn mới vừa đến. Lưu ý rằng khi chuyển sang người truyền tin mới thì người này cần một lượng thời gian để khởi động rồi mới đi chuyển tin. Như vậy, thông điệp sẽ được chuyển bằng một số người truyền tin trước khi đến thử đô.
+
+Hãy xác định thời gian ít nhất cần chuyển tin từ các thị trấn về thủ đô.
+
+**Input**
+ - Dòng đầu ghi số N.
+ - $N-1$ dòng tiếp theo, mỗi dòng ghi ba số $u$, $v$, và $d$ thể hiện một con đường nối từ $u$ đến $v$ với độ dài bằng $d$.
+ - $N-1$ dòng tiếp theo, dòng thứ $i$ gồm hai số $S_i$ và $V_i$ thể hiện thời gian cần để khởi động và số lượng phút để đi được $1$ km của người truyền tin ở thị trấn $i+1$.
+
+**Output**
+ - Ghi $N-1$ số trên một dòng. Số thứ $i$ thể hiện thời gian ít nhất cần truyền tin từ thành phố $i+1$ về thủ đô.
+
+**Ví dụ**
+```
+Input
+5
+1 2 20
+2 3 12
+2 4 1
+4 5 3
+26 9
+1 10
+500 2
+2 30
+
+Output
+206 321 542 328
+```
+
+**Giới hạn**
+ - $3 \le N \le 100 000$
+ - $0 \le S_i, V_i \le 10^9$
+ - Độ dài mỗi con đường không vượt quá $10000$
+
+## Lời giải
+
+**Thuật toán QHĐ**
+
+Gọi $F(i)$ là thời gian ít nhất để truyền tin từ thành phố thứ $i$ đến thủ đô, ta có công thức truy hồi:
+
+$F(i) = min[ F(j) + dist(j, i) * V_i + S_i ]$
+
+với $j$ là một nút trên đường từ thành phố $i$ đến thành phố $1$. Trong đó $dist(j, i)$ là khoảng cách giữa 2 thành phố $i$ và $j$, có thể tính trong $O(1)$ sử dụng mảng cộng dồn $D[]$ với $D[i]$ là khoảng cách từ thành phố $i$ tới thủ đô. Thuật toán này có thể dễ dàng cài đặt với độ phức tạp là $O(N^2)$.
+
+**Áp dụng bao lồi**
+
+Công thức truy hồi có thể viết lại thành
+
+$F(i) = min[ F(j) - D_j * V_i + D_i * V_i + S_i ]$
+
+Khi ta tính $F(i)$, thì giá trị $D_i*V_i + S_i$ là hằng số với mọi $j$, vì vậy
+
+$F(i) = min[ F(j) - D_j * V_i ] + D_i * V_i + S_i$
+
+Có thể thấy rằng ta cần tìm giá trị nhỏ nhất của hàm bậc nhất $y = -D_j*x + F(j)$ <dạng $y = ax + b$>.
+Với trường hợp cây là đường thẳng, ta có thể trực tiếp kỹ thuật đã trình bày ở phần trước. Trong trường hợp tổng quát, ta cần một cấu trúc dữ liệu cho phép xử lí hai thao tác:
+
+ - Khi DFS xuống một nút con, ta cần thêm một đường thẳng.
+ - Khi quá trình DFS tính $F[]$ cho gốc cây con đã hoàn tất, ta cần xóa một đường thẳng, trả cấu trúc dữ liệu về trạng thái ban đầu.
+
+Các thao tác này có thể được thực hiện hiệu quả trong $O(logN)$. Cụ thể ta sẽ biểu diễn stack bằng một mảng cũng một biến $size$ (kích thước stack). Khi thêm một đường thẳng vào, ta sẽ tìm kiếm nhị phân vị trí mới của nó, rồi chỉnh sửa biến $size$ cho phù hợp, chú ý là sẽ có tối đa một đường thẳng bị ghi đè, nên ta chỉ cần lưu lại nó. Khi cần trả về trạng thái ban đầu, ta chỉ cần chỉnh sửa lại biến $size$ đồng thời ghi lại đường thẳng đã bị ghi đè trước đó. Để quản lí lịch sử các thao tác ta sử dụng một $vector$ lưu lại chúng.
+Độ phức tạp cho toàn bộ thuật toán là $O(NlogN)$.
+
+```cpp
+#include <bits/stdc++.h>
+#define X first
+#define Y second
+
+const int N = 100005;
+const long long INF = (long long)1e18;
+
+using namespace std;
+
+typedef pair<int, int> Line;
+
+struct operation {
+    int pos, top;
+    Line overwrite;
+    operation(int _p, int _t, Line _o) {
+        pos = _p; top = _t; overwrite = _o;
+    }
+};
+vector<operation> undoLst;
+Line lines[N];
+int n, top;
+
+long long eval(Line line, long long x) {return line.X * x + line.Y;}
+bool bad(Line a, Line b, Line c)
+    {return (double)(b.Y - a.Y) / (a.X - b.X) >= (double)(c.Y - a.Y) / (a.X - c.X);}
+
+long long getMin(long long coord) {
+    int l = 0, r = top - 1; long long ans = eval(lines[l], coord);
+    while (l < r) {
+        int mid = l + r >> 1;
+        long long x = eval(lines[mid], coord);
+        long long y = eval(lines[mid + 1], coord);
+        if (x > y) l = mid + 1; else r = mid;
+        ans = min(ans, min(x, y));
+    }
+    return ans;
+}
+
+bool insertLine(Line newLine) {
+    int l = 1, r = top - 1, k = top;
+    while (l <= r) {
+        int mid = l + r >> 1;
+        if (bad(lines[mid - 1], lines[mid], newLine)) {
+            k = mid; r = mid - 1;
+        }
+        else l = mid + 1;
+    }
+    undoLst.push_back(operation(k, top, lines[k]));
+    top = k + 1;
+    lines[k] = newLine;
+    return 1;
+}
+
+void undo() {
+    operation ope = undoLst.back(); undoLst.pop_back();
+    top = ope.top; lines[ope.pos] = ope.overwrite;
+}
+
+long long f[N], S[N], V[N], d[N];
+vector<Line> a[N];
+
+void dfs(int u, int par) {
+    if (u > 1)
+        f[u] = getMin(V[u]) + S[u] + V[u] * d[u];
+    insertLine(make_pair(-d[u], f[u]));
+    for (vector<Line>::iterator it = a[u].begin(); it != a[u].end(); ++it) {
+        int v = it->X;
+        int uv = it->Y;
+        if (v == par) continue;
+        d[v] = d[u] + uv;
+        dfs(v, u);
+    }
+    undo();
+}
+
+int main() {
+    ios::sync_with_stdio(0); cin.tie(0);
+    cin >> n;
+    int u, v, c;
+    for (int i = 1; i < n; ++i) {
+        cin >> u >> v >> c;
+        a[u].push_back(make_pair(v, c));
+        a[v].push_back(make_pair(u, c));
+    }
+    for (int i = 2; i <= n; ++i) cin >> S[i] >> V[i];
+    dfs(1, 0);
+    for (int i = 2; i <= n; ++i) cout << f[i] << ' ';
+    return 0;
+}
+```
 
 # Biến thể động (Fully Dynamic Variant)
 
