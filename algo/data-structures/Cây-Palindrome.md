@@ -1,7 +1,5 @@
 Cây Palindrome (hay còn được gọi là Eertree) là một loại cấu trúc dữ liệu được dùng để giải một số bài toán liên quan đến Palindrome.
 
-![](https://ai2-s2-public.s3.amazonaws.com/figures/2016-03-25/6087f2ff4f58df199c209655b0244597e72792b6/3-Figure1-1.png "")
-
 # Cấu trúc của cây Palindrome
 Như mọi loại cây khác, cây Palindrome cũng có nút.
 
