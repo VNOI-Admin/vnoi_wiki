@@ -40,7 +40,7 @@ Trong khuôn khổ bài viết, chúng ta sẽ làm việc với **đồ thị v
 Một vài tính chất của cây khung nhỏ nhất trong đồ thị vô hướng có trọng số:
 * **1. Tính chất chu trình**: Trong một chu trình $C$ bất kỳ, nếu $e$ là cạnh có trọng số lớn nhất **tuyệt đối** (không có cạnh nào có trọng số bằng $e$) thì $e$ không thể nằm trên bất kỳ cây khung nhỏ nhất nào.
     
-* **2. Đường đi hẹp nhất**: Xét 2 đỉnh $u$, $v$ bất kỳ trong đồ thị. Nếu $w$ cạnh là trọng số cạnh lớn nhất trên đường đi từ $u$ đến $v$ trên cây khung nhỏ nhất của đồ thị thì ta không thể tìm được đường đi nào từ $u$ đến $v$ trên đồ thị ban đầu chỉ đi qua những cạnh có trọng số nhỏ hơn $w$.
+* **2. Đường đi hẹp nhất**: Xét 2 đỉnh $u$, $v$ bất kỳ trong đồ thị. Nếu $w$ là trọng số của cạnh lớn nhất trên đường đi từ $u$ đến $v$ trên cây khung nhỏ nhất của đồ thị thì ta không thể tìm được đường đi nào từ $u$ đến $v$ trên đồ thị ban đầu chỉ đi qua những cạnh có trọng số nhỏ hơn $w$.
     
 * **3. Tính duy nhất**: Nếu tất cả các cạnh đều có trọng số khác nhau thì chỉ có duy một cây khung nhỏ nhất. Ngược lại, nếu một vài cạnh có trọng số giống nhau thì có thể có nhiều hơn một cây khung nhỏ nhất.
 
