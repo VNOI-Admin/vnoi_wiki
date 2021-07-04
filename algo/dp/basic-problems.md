@@ -594,7 +594,7 @@ Có $n$ phòng học chuyên đề và $k$ nhóm học được đánh số th�
 
 **Hướng dẫn**
 
-Khi xếp nhóm $i$ vào phòng $j$ thì số lần chuyển ghế chính là độ chênh lệch giữa số ghế trong phòng $i$ và số học sinh trong nhóm. Đặt $V[i,j]:=|A_i - B_j|$
+Khi xếp nhóm $i$ vào phòng $j$ thì số lần chuyển ghế chính là độ chênh lệch giữa số ghế trong phòng $i$ và số học sinh trong nhóm. Đặt $V[i,j]:=\|A_i - B_j\|$
 
 ### Mua giày (Đề QG bảng B năm 2003)
 
