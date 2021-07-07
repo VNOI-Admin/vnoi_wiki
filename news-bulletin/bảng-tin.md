@@ -9,11 +9,11 @@ Dưới đây là bài viết tổng hợp các bài viết / comment chất lư
 
 ## Bảng tin:
 
-* [Bảng điểm IOI 21 của đoàn Việt Nam và đề thi IOI 21 ngày 2 trên VNOJ](https://www.facebook.com/groups/163215593699283/posts/4344183605602440)
+* [Thông báo về bảng điểm IOI 21 của đoàn Việt Nam và đề thi IOI 21 ngày 2 trên VNOJ](https://www.facebook.com/groups/163215593699283/posts/4344183605602440)
 
-* [Đề thi IOI 21 ngày 1 trên VNOJ](https://www.facebook.com/groups/163215593699283/posts/4338280926192708)
+* [Thông báo về đề thi IOI 21 ngày 1 trên VNOJ](https://www.facebook.com/groups/163215593699283/posts/4338280926192708)
 
-* [Bộ test không chính thức của VOI 21](https://www.facebook.com/groups/163215593699283/posts/4368462676507866)
+* [Bộ test không chính thức của VOI 21 đã được upload lên VNOJ](https://www.facebook.com/groups/163215593699283/posts/4368462676507866)
 
 * [Bài viết VNOI Wiki về các thuật toán tìm cây khung nhỏ nhất trên đồ thị vô hướng](https://www.facebook.com/groups/163215593699283/posts/4328776207143180)
  
