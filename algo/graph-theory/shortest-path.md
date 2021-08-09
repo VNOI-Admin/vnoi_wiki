@@ -1,5 +1,11 @@
 # **Các thuật toán về tìm đường đi ngắn nhất**
 
+**Tác giả:** 
+- Trần Hoài An - 
+
+**Reviewer:**
+- Nguyễn Xuân Tùng - Đại học Quốc Tế, Đại học Quốc gia Thành phố Hồ Chí Minh
+
 [[_TOC_]]
 
 # Giới thiệu
@@ -174,8 +180,10 @@ Một số bài toán có thể yêu cầu ta tìm một chu trình âm bất k�
 - Tiến hành truy vết: Bắt đầu từ đỉnh $u$ bất kì có đường đi bằng $-\infty$, ta sẽ truy vết theo mảng $trace$:
     - Trước hết gán $u = trace[u]$ đủ $N$ lần.
         - Mục đích của bước này là để $u$ chắc chắn thuộc chu trình âm. Ban đầu có thể đỉnh $u$ có đường đi bằng $-\infty$ nhưng chưa chắc thuộc chu trình âm. Ví dụ trường hợp sau:
+        
         [![](https://i.imgur.com/PblptAC.png)
 ]()
+
         Ở đây, từ $0$ đến $1$ có độ dài đường đi ngắn nhất bằng $-\infty$, tuy nhiên đỉnh $1$ lại không thuộc chu trình âm nào.
         
     - Sau đó, $u$ sẽ thuộc một chu trình âm. Ta chỉ cần truy vết đỉnh $u$ theo mảng $trace$ cho đến khi gặp lại chính nó, sẽ được một chu trình.
