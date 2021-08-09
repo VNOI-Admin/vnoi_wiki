@@ -314,7 +314,7 @@ Ta sẽ lặp $N$ lần quá trình sau:
     * Nếu việc tối ưu hóa diễn ra, ta sẽ cập nhật $trace[v] = u$.
 - Đánh dấu $P[u] = true$, nghĩa là đỉnh $u$ đã được xử lí xong
 
-**Độ phức tạp thuật toán**: Ta có $N$ lần lặp, ở mỗi lần lặp:
+**Độ phức tạp thuật toán**: Ta có $N$ lần lặp:
 - Bước đầu tiên có độ phức tạp $O(N)$ **mỗi lần lặp**.
 - Bước thứ hai có **tổng độ phức tạp $O(M)$ qua tất cả các lần lặp**
 
