@@ -1,7 +1,7 @@
 # **Các thuật toán về tìm đường đi ngắn nhất**
 
 **Tác giả:** 
-- Trần Hoài An - 
+- Trần Hoài An - THPT Hoàng Lê Kha, Tây Ninh
 
 **Reviewer:**
 - Nguyễn Xuân Tùng - Đại học Quốc Tế, Đại học Quốc gia Thành phố Hồ Chí Minh
