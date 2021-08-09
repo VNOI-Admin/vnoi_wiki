@@ -150,7 +150,7 @@ vector<int> trace_path(vector<int> &trace, int S, int u) {
 
 ## Các trường hợp có chu trình âm
 
-Thuật toán Bellman-Ford có thể xử lí được thêm trường hợp nhận biết chu trình âm, cũng như không tồn tại đường đi ngắn nhất đến một đỉnh.
+Thuật toán Bellman-Ford có thể xử lí được thêm trường hợp nhận biết chu trình âm, cũng như nhận biết nếu không tồn tại đường đi ngắn nhất đến một đỉnh.
 
 ### Nhận biết đường đi âm vô cực
 
