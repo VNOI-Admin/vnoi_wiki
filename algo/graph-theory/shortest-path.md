@@ -73,14 +73,15 @@ Xét trường hợp đơn giản hơn, khi đồ thị không có trọng số 
 
 Thuật toán Bellman-Ford sẽ lặp nhiều lần. Ở mỗi vòng lặp, ta sẽ đi qua **tất cả** các cạnh $(u, v)$ trên đồ thị, so sánh đường đi $S \rightarrow v$ đã tìm được với đường đi $S \rightarrow u \rightarrow v$
 
-- Ví dụ:
+- Ví dụ đồ thị sau:
+
 ![](https://i.imgur.com/YMKQtKM.png)
 
 - Giả sử ta tìm được đường đi từ $1\rightarrow 3$ có độ dài là $4$, và đường đi từ $1 \rightarrow 2$ có độ dài là $2$. Như vậy ta có thể sử dụng cạnh $(2, 3)$ để nối dài đường đi $1 \rightarrow 2$ thành $1 \rightarrow 2 \rightarrow 3$ có độ dài bằng $3$, tốt hơn đường đi trực tiếp $1 \rightarrow 3$ ta đã tìm được.
 
 Có thể chứng minh được rằng, vòng lặp trên cần thực hiện $N-1$ lần, mỗi lần đi qua toàn bộ $M$ cạnh, là sẽ đủ để tìm đường đi ngắn nhất.
 
-- **Chứng minh**: Nhận xét rằng một đường đi ngắn nhất bất kì sẽ không có cạnh nào được đi lại quá một lần. Như vậy một đường đi ngắn nhất sẽ không có quá $N-1$ cạnh. Việc thực hiện phép tính $D_v = D_u + W_{u, v}$ cũng đồng nghĩa với thêm một cạnh $u \rightarrow v$ vào hành trình đi từ $s$ đến $v$. Vậy một $D_u$ chỉ có thể được tối ưu tối đa $N-1$ lần, và từ lần thứ $N$ trở đi sẽ không thể tối ưu hơn được nữa.
+- **Chứng minh**: Nhận xét rằng một đường đi ngắn nhất bất kì sẽ không có đỉnh nào được đi lại quá một lần. Như vậy một đường đi ngắn nhất sẽ không có quá $N-1$ cạnh. Việc thực hiện phép tính $D_v = D_u + W_{u, v}$ cũng đồng nghĩa với thêm một cạnh $u \rightarrow v$ vào hành trình đi từ $s$ đến $v$. Vậy một $D_u$ chỉ có thể được tối ưu tối đa $N-1$ lần, và từ lần thứ $N$ trở đi sẽ không thể tối ưu hơn được nữa.
 
 ## Cài Đặt
 Ở thuật toán này, đồ thị thường được lưu ở dạng **danh sách cạnh**. 
