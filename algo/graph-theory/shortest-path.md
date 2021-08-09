@@ -367,9 +367,7 @@ void dijkstra(int n, int S, vector<vector<Edge>> E, vector<long long> &D, vector
 * Mỗi lần tối ưu $D_v$, ta phải push vào Heap một lần. Với mỗi lần push vào trong Heap, ta đều phải pop ra lại một lần. Do có tối đa $O(M)$ lần tối ưu, độ phức tạp của thuật toán là $O(Mlog(N))$.
 
 
-Độ phức tạp sau khi cải tiến: $O(Mlog(N))$. 
-
-**Lưu ý rằng với $M$ lớn thì độ phức tạp này không tốt bằng độ phức tạp của cách cài đặt cơ bản.** Chứng minh như sau:
+Độ phức tạp sau khi cải tiến: $O(Mlog(N))$. **Lưu ý rằng với $M$ lớn thì độ phức tạp này không tốt bằng độ phức tạp của cách cài đặt cơ bản.** Chứng minh như sau:
 - Ta có độ phức tạp của hai cách cài đặt:
     - Cách cài đặt cơ bản: $O(N^2 + M)$.
     - Cách cài đặt cải tiến: $O(MlogN)$.
