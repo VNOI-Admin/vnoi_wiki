@@ -86,8 +86,9 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Các chủ đề cơ bản về đồ thị (2*)|algo/graph-theory/everything]]
 - [[Luồng cực đại trên mạng (3*)|translate/topcoder/max-flow-1-luong-cuc-dai-tren-mang-1.md]]
 - [Bài toán 2-SAT (3*)](https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing)
-- [Bài toán khớp cầu, thành phần liên thông mạnh](https://vnoi.info/wiki/algo/graph-theory/Depth-First-Search-Tree.md) (Cây DFS và ứng dụng)
-- [Cây khung nhỏ nhất trên đồ thị vô hướng](https://vnoi.info/wiki/algo/graph-theory/minimum-spanning-tree.md)
+- [[Bài toán khớp cầu, thành phần liên thông mạnh|algo/graph-theory/Depth-First-Search-Tree.md]] (Cây DFS và ứng dụng)
+- [[Cây khung nhỏ nhất trên đồ thị vô hướng|algo/graph-theory/minimum-spanning-tree.md]]
+- [[Các thuật toán về tìm đường đi ngắn nhất|algo/graph-theory/shortest-path]]
 
 ## Tham lam
 
