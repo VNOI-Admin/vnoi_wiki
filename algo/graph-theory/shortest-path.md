@@ -308,8 +308,7 @@ Sau bước này, $D = [0, 4, 1, 3]$, $P = [true, false, true, true]$
 - $W[u,v]$ là trọng số cạnh trên đường đi từ $u\rightarrow v$.
 - $P[u]$ là mảng đánh dấu các đỉnh $u$ đã được xử lí chưa. Ban đầu tất cả các giá trị đều là **false**.
 
-### Cách cài đặt cơ bản
-Lặp $N$ lần quá trình sau:
+Ta sẽ lặp $N$ lần quá trình sau:
 - Tìm đỉnh $u$ có $D[u]$ nhỏ nhất và $P[u] = false$.
 - Sau khi tìm được đỉnh $u$, ta xét các đỉnh $v$ kề với đỉnh $u$ và tiến hành tối ưu hóa $D[v]$: nếu $D[v] > D[u] + W[u,v]$ thì $D[v] = D[u] + W[u,v]$. 
     * Nếu việc tối ưu hóa diễn ra, ta sẽ cập nhật $trace[v] = u$.
