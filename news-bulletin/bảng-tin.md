@@ -15,7 +15,7 @@ Dưới đây là bài viết tổng hợp các bài viết / comment chất lư
 
 * [VNOJ x Free Contest](https://www.facebook.com/groups/VNOIForum/posts/4411078015579665/)
 
-* [Thông báo]https://www.facebook.com/groups/VNOIForum/posts/4457575920929874/) và [kết quả](https://www.facebook.com/groups/VNOIForum/posts/4473598229327643/) kì thi Bedao Testing Round 01
+* [Thông báo](https://www.facebook.com/groups/VNOIForum/posts/4457575920929874/) và [kết quả](https://www.facebook.com/groups/VNOIForum/posts/4473598229327643/) kì thi Bedao Testing Round 01
 
 * [Bài viết về đường đi ngắn nhất trên đồ thị của bạn Trần Hoài An trong chuỗi bài viết VNOI Wiki](https://www.facebook.com/groups/VNOIForum/posts/4473348572685942/)
 
