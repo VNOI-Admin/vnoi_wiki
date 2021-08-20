@@ -165,7 +165,7 @@ void blockUpdate(int id, int oval, int nval) {
 }
 ```
 
-Vậy là chúng ta đã cập nhật xong cho tất cả các block thuộc *phần đầy đủ các block*. *Chú ý*, việc cập nhật này chúng ta chỉ đánh dấu là các phần tử đang có giá trị là $oval$ *sẽ được thay đổi* thành $nval$. Giá trị của các phần tử trong đoạn này sau cập nhật *không có sự thay đổi nào* (ý tưởng giống như [Lazy Propagation](https://vnoi.info/wiki/algo/data-structures/segment-tree-extend.md#2-lazy-propagation)).
+Vậy là chúng ta đã cập nhật xong cho tất cả các block thuộc *phần đầy đủ các block*. *Chú ý*, việc cập nhật này chúng ta chỉ đánh dấu là các phần tử đang có giá trị là $oval$ *sẽ được thay đổi* thành $nval$. Giá trị của các phần tử trong đoạn này sau cập nhật *không có sự thay đổi nào* (ý tưởng giống như [[Lazy Propagation|algo/data-structures/segment-tree-extend.md#2-lazy-propagation]].
 
 #### Tiếp theo, chúng ta cập nhật *phần dư bên trái*:
 
