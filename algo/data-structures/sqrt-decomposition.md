@@ -9,7 +9,7 @@ Chia căn là tên gọi chung của một nhóm các thuật toán thường li
 Sau đây ta sẽ xét một dạng đơn giản nhất: chia mảng ra làm $\sqrt{N}$ đoạn, thường dùng để giải quyết các bài toán truy vấn.
 
 
-# Bài toán
+# Bài toán 1
 
 Cho một mảng $A$ gồm $N$ phần tử là các số nguyên không âm. Bạn cần trả lời $Q$ truy vấn, mỗi truy vấn có dạng $(l, r, k)$ yêu cầu tìm đếm số phần tử của A nằm trong đoạn $[l..r]$ có giá trị bằng $k$. Giới hạn: $N, Q, A_i \le 10^5$.
 
@@ -34,7 +34,7 @@ Với những đoạn đầy đủ, ta cộng $cnt[0]$ của chúng vào kết q
 Cấu trúc trên vẫn có thể giải bài toán này khi có thêm truy vấn **chỉnh sửa một phần tử** của $A$, bạn chỉ cần thay đổi giá trị $cnt$ của một đoạn duy nhất chứa phần tử cần cập nhật.
 
 
-# Phân tích
+## Phân tích
 
 Đầu tiên, ta phải trả lời được câu hỏi: tại sao lại chia thành $\sqrt{N}$ đoạn, mà không phải $1, 2, 10, N/2, ... $ ? 
 
@@ -48,7 +48,7 @@ Với đoạn dư ra ở hai đầu, ta xét riêng từng phần tử mất $O(
 
 Mỗi truy vấn ta mất thời gian là $O(S + N/S)$. Ta cần tìm giá trị $S$ sao cho $S + N/S$ đạt giá trị nhỏ nhất. Áp dụng [bất đẳng thức AM-GM](https://vi.wikipedia.org/wiki/B%E1%BA%A5t_%C4%91%E1%BA%B3ng_th%E1%BB%A9c_trung_b%C3%ACnh_c%E1%BB%99ng_v%C3%A0_trung_b%C3%ACnh_nh%C3%A2n), giá trị này là nhỏ nhất khi $S = N/S \iff S = \sqrt{N}$. Thời gian để thực hiện $Q$ truy vấn sẽ là $O(Q\sqrt{N})$.
 
-# Cài đặt
+## Cài đặt
 
 Ta cần phải lưu những cấu trúc sau: 
 * $\sqrt{N}$ mảng $cnt$, mỗi mảng có độ dài $max(A_i)$, tốn $O(\sqrt{N} * max(A_i)$) bộ nhớ.
