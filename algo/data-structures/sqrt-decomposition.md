@@ -143,10 +143,10 @@ Vậy là chúng ta đã giải xong bài toán với độ phức tạp $O(Q*10
 ### Giải bài toán gốc 
 Ta sẽ áp dụng ý tưởng trên vào để giải bài toán gốc. Ta cũng chia mảng thành $\sqrt{N}$ đoạn. Xét một truy vấn $(l,r,oval,nval)$ ta có:
 * $blockL$ là block đầu tiên ở bên phải $l$
-* $blockR$ là block đầu tiên ở bên trái $r$
+* $blockR$ là block chứa $r$
 * Với mỗi block, ta sẽ có mảng $lazy$ với định nghĩa như trên. Ví dụ block $3$, các số đang có giá trị là $oval$ sẽ được đổi thành giá trị $nval$ $\Leftrightarrow$ $lazy[3][oval]=nval$
 
-Vậy truy vấn của chúng ta sẽ được chia làm 3 phần như sau:
+Vậy truy vấn của chúng ta sẽ được chia làm 3 phần (có thể rỗng) như sau:
 * Phần dư bên trái: $[ l ... blockL * BLOCK\\_SIZE - 1 ]$ 
 * Phần dư bên phải: $[ blockR * BLOCK\\_SIZE ... r ]$
 * Phần đầy đủ các block: $[ blockL * BLOCK\\_SIZE ... blockR * BLOCK\\_SIZE - 1 ]$
@@ -211,7 +211,7 @@ void manualUpdate(int L, int R, int oval, int nval) { // L R là đầu trái v�
 }
 
 /* Chúng ta sẽ gọi hàm như dưới đây để cập nhật cho phần dư bên trái */
-manualUpdate(l, (blockL + 1) * BLOCK_SIZE - 1, oval, nval);
+manualUpdate(l, blockL * BLOCK_SIZE - 1, oval, nval);
 
 /* Chúng ta sẽ gọi hàm như dưới đây để cập nhật cho phần dư bên phải */
 manualUpdate(blockR * BLOCK_SIZE, r, oval, nval);
