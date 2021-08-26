@@ -12,7 +12,7 @@
 
 Bài viết này được đưa lên thư viện VNOI cũ và được mình khôi phục lại sau nhiều năm thất truyền.
 
-Trước khi đọc bài viết này, bạn cần đọc bài viết: [[Bài toán RMQ và bài toán LCA|translate/topcoder/Range-minimum-Query-and-Lowest-Common-Ancestor]] để nắm được những khái niệm cơ bản.
+Trước khi đọc bài viết này, bạn cần đọc bài viết: [[Bài toán RMQ và bài toán LCA|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]] để nắm được những khái niệm cơ bản.
 
 Để giải bài toán LCA ta có thể chuyển sang bài toán RMQ tương ứng và có thể giải bằng một số cách khác nhau. Trong bài viết này chúng ta sẽ đề cập tới một số phương pháp giải bài toán LCA một cách trực tiếp.
 
