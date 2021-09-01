@@ -286,14 +286,14 @@ main() {
 
 ## Đề bài
 
-Cho đồ thị có hướng gồm $N$ đỉnh và $M$ cạnh. Các đỉnh được đánh số $1,2,...,N$ và với mỗi $i$ $(1 \le i \le M)$, cạnh có hướng thứ $i$ sẽ đi từ đỉnh $x_i$ đến đỉnh $y_i$. $G$ không chứa bất kì chu trình có hướng nào !
+Cho đồ thị có hướng gồm $N$ đỉnh và Mm$ cạnh. Các đỉnh được đánh số $1,2,...,N$ và với mỗi $i$ $(1 \le i \le M)$, cạnh có hướng thứ $i$ sẽ đi từ đỉnh $x_i$ đến đỉnh $y_i$. $G$ không chứa bất kì chu trình có hướng nào !
 
 Tìm độ dài lớn nhất của đường đi có hướng trong $G$. Ở đây, độ dài của đường đi có hướng chính là số cạnh trong nó.
 
 **Input**
 
 - Dòng thứ nhất chứa $2$ số nguyên $N,M$.
-- $M$ dòng tiếp theo mỗi dòng chứa hai số nguyên $x_i,y_i$ $(1 \le xi,yi \le N)$ (Ở đây các cặp $(x_i,y_i)$ phân biệt nhau và đề đảm bảo rằng, $G$ không chứa bất kì chu trình có hướng nào).
+- $M$ dòng tiếp theo mỗi dòng chứa hai số nguyên $x_i,y_i$ $(1 \le x_i, y_i \le N)$ (Ở đây các cặp $(x_i,y_i)$ phân biệt nhau và đề đảm bảo rằng, $G$ không chứa bất kì chu trình có hướng nào).
 
 **Output**
 
