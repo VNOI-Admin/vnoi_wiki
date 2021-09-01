@@ -41,7 +41,7 @@
     * **Ví dụ minh họa:** Để xác định thứ tự Tô-pô của $DAG$ gồm $7$ đỉnh, ta thêm đỉnh nguồn $0$ vào trong danh sách Tô-pô rồi nối thêm thứ tự Tô-pô của đồ thị con $6$ đỉnh. 
     [[/uploads/topological_sort_img2.png]]
     * Bây giờ, với hai đỉnh bất kỳ $u$ và $v$ trong danh sách Tô-pô, giả sử $u$ đứng trước $v$:
-        * Nếu $u$ là giá trị đầu tiên trong danh sách (đỉnh nguồn), trong trường hợp đó, rõ ràng là không thể tồn tại cạnh nối từ $v \rightarrow u$. 
+        * Nếu $u$ là giá trị đầu tiên trong danh sách (đỉnh nguồn), trong trường hợp đó, rõ ràng là **không thể** tồn tại cạnh nối từ $v \rightarrow u$. 
         * Nếu cả hai đỉnh $u$ và $v$ đều không phải là giá trị đầu tiên trong danh sách, dù trong trường hợp nào thì chúng đều được sắp xếp đúng vì chúng thuộc phần đồ thị con được sắp xếp theo thứ tự Tô-pô. 
     * Do đó, danh sách $n+1$ đỉnh mới này là một thứ tự Tô-pô của $DAG$ gồm $n+1$ đỉnh.
 - **Tính chất**
@@ -116,7 +116,7 @@ Cho đồ thị có hướng không chu trình *(Directed Acyclic Graph - DAG)* 
 - Vector `topo` - Danh sách thứ tự Tô-pô.
 - Queue `listSource` - Danh sách các đỉnh không có cung vào.
 
-```
+``` cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -215,7 +215,7 @@ main() {
 - Vector `g[]` - Danh sách cạnh kề của mỗi đỉnh.
 - Stack `topo` - Danh sách thứ tự Tô-pô.
 
-```
+``` cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -336,7 +336,7 @@ Tìm độ dài lớn nhất của đường đi có hướng trong $G$. Ở đ�
 - Vector `g[]` - Danh sách cạnh kề của mỗi đỉnh.
 - Vector `revTopo` - Danh sách nghịch đảo thứ tự Tô-pô.
 
-```
+``` cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -464,7 +464,7 @@ Impossible
 - Vector `g[]` - Danh sách cạnh kề của mỗi đỉnh.
 - Stack `topo` - Danh sách thứ tự Tô-pô.
 
-```
+``` cpp
 #include <bits/stdc++.h>
 
 using namespace std;
