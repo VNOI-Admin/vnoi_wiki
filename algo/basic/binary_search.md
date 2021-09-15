@@ -2,7 +2,8 @@
 
 **Nguồn**: [Topcoder](https://www.topcoder.com/thrive/articles/Binary%20Search)
 
-**Người dịch**: Nguyễn Nhật Minh Khôi, biên soạn lại từ bản dịch của Vũ Thị Thiên Anh
+**Người dịch**:
+- Nguyễn Nhật Minh Khôi - VNU University of Science. Biên soạn lại từ bản dịch của Vũ Thị Thiên Anh
 
 **Reviewer**: Hoàng Xuân Nhật, Trần Quang Lộc
 
@@ -16,7 +17,7 @@ Mở đầu, ta sẽ đến với bài toán sử dụng tìm kiếm nhị phân
 ### Ví dụ
 Đầu tiên, ta sẽ xét một ví dụ để thấy được tư tưởng của thuật toán.
 Cho $A = [0, 5, 13, 19, 2, 41, 55, 68, 72, 81, 98]$ và $x = 55$, thuật toán sẽ diễn ra như hình dưới:
-[[uploads/binary_search_first_example.png]]
+[[/uploads/binary_search_first_example.png]]
 
 Ở lượt tìm đầu tiên, không gian tìm kiếm là tập hợp $S = \{1,\ldots,11\}$ gồm tất cả các chỉ số của mảng. Bắt đầu với việc chọn [phần tử trung vị](https://vi.wikipedia.org/wiki/S%E1%BB%91_trung_v%E1%BB%8B) của không gian tìm kiếm hiện tại (chính là $6$), ta nhận xét $A[6]=41 < 55 = x$. Do theo đề bài mảng $A$ được sắp xếp tăng dần, ta biết được tất cả các phần tử có chỉ số $1,\ldots,6$ đều nhỏ hơn giá trị cần tìm $x$. Do đó, chúng *chắc chắn không thể là kết quả*, khi đó không gian tìm kiếm có thể thu hẹp lại $S = \{7,\ldots,11\}$, tức *giảm đi một nửa.*
 
@@ -95,7 +96,7 @@ Sự tương đương ở đây có thể chứng minh bằng [phương pháp ph
 Nếu ta tính giá trị $P(x)$ cho từng phần tử trong $S$ ban đầu, ta sẽ được một dãy liên tiếp các giá trị $\texttt{false}$ liền kề một dãy liên tiếp các giá trị $\texttt{true}$ (từ nay gọi là dãy $P(S)$). Dễ thấy ta có thể áp dụng tìm kiếm nhị phân trên dãy $P(S)$ mới này để tìm giá trị $x$ *nhỏ nhất* thỏa mãn $P(x) = \texttt{true}$ (hoặc cũng có thể làm cách tìm giá trị $x$ *lớn nhất* mà $P(x) = \texttt{false}$, tuy nhiên ở đây ta không chọn cách này).
 > Với ví dụ đầu bài, như đã nói $P(x) = boolean(A[x] \geq 55)$. Dễ thấy $P$ thỏa mãn tính chất đầu tiên, do $A$ được sắp tăng dần nên nếu $A[x] \geq 55$ thì chắc chắn các phần tử $y$ sau $x$ đều thỏa $A[y] \geq A[x] \geq 55$. Tương tự ta cũng suy ra được, nếu $A[x] < 55$ thì chắc chắn các phần tử $y$ trước $x$ đều thỏa $A[y] \leq A[x] < 55$.
 Áp dụng hàm $P(x) = boolean(A[x] \geq 55)$ cho từng phần tử của $S=\{1,\ldots,11\}$ ta có hình sau
-> [[uploads/binary_search_apply_P_to_A.png]]
+> [[/uploads/binary_search_apply_P_to_A.png]]
 
 Chú ý rằng ta thấy có thể dễ dàng xây dựng định lý chính dựa trên một hàm kiểm tra $P$ ngược lại, tức $P(S)$ sẽ là một dãy $\texttt{true}$ liên tiếp theo sau bởi $\texttt{false}$ liên tiếp. Tuy nhiên, ở đây ta sẽ chỉ xét một trường hợp để bài viết ngắn gọn hơn, trường hợp còn lại có thể làm tương tự.
 
