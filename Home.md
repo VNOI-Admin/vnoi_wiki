@@ -37,6 +37,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Những cách tiếp cận bài toán|translate/topcoder/Planning-an-Approach-to-a-Topcoder-Problem-Part-1]]
 - [[Độ phức tạp tính toán (1*)|translate/topcoder/Computational-Complexity-Section-1]]
 - [[Sắp xếp (1*)|algo/basic/sorting]]
+- [[Chặt nhị phân|algo/basic/binary-search]]
 - [[Hai con trỏ (1*)|algo/basic/two-pointers]]
 
 ## Cấu trúc dữ liệu
