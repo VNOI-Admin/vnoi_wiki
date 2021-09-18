@@ -15,9 +15,9 @@ Phần ba chứa các kiến thức nâng cao hơn, đó là hình học và lý
 
 Link Download:
 
- - [Tập 1](https://drive.google.com/file/d/0BwcTB8a10LBweWxNcExnVzF5dG8/view?usp=sharing)
- - [Tập 2](https://drive.google.com/file/d/0BwcTB8a10LBwY2kzV0dTMEhYb0E/view?usp=sharing)
- - [Tập 3 - phần 1](https://drive.google.com/file/d/0BwcTB8a10LBwTFBGREdfbnNFYXM/view?usp=sharing)
+ - [Tập 1](https://drive.google.com/file/d/0BwcTB8a10LBweWxNcExnVzF5dG8/view?resourcekey=0-WKR6p7r5Djmi--uvQnT-pg)
+ - [Tập 2](https://drive.google.com/file/d/0BwcTB8a10LBwY2kzV0dTMEhYb0E/view?usp=sharing&resourcekey=0-jwmNe4E3bBtidsboHXQPSA)
+ - [Tập 3 - phần 1](https://drive.google.com/file/d/0BwcTB8a10LBwTFBGREdfbnNFYXM/view?usp=sharing&resourcekey=0-xVwjQFoXV4OFwpoVHWywyg)
  - [Tập 3 - phần 2](https://drive.google.com/file/d/1c1dQaNG5XAZWGo3oTA_4mGwubG3LRqni/view?usp=sharing)
 
 **3. Một số vấn đề đáng chú ý trong môn tin học**
