@@ -24,7 +24,7 @@ Link Download:
 
 Cuốn sách này được viết bởi các cựu học sinh trường chuyên Phan Bội Châu - Nghệ An. Nó chứa các kiến thức tuyệt hay mà tài liệu giáo khoa chuyên tin hay giải thuật và lập trình đều không có như: duyệt ưu tiên, thuật toán tìm kiếm chuỗi KMP, quy hoạch động trạng thái, quy hoạch động vị trí cấu hình, quy hoạch động trên cây, tô màu đồ thị, thuật toán Dijkstra với đỉnh ảo, Interval Tree, Binary Index Tree, ...
 
-[Link Download](https://drive.google.com/file/d/0BwcTB8a10LBwZHh0c3p0M2NqZ1E/view?usp=sharing)
+[Link Download](https://drive.google.com/file/d/0BwcTB8a10LBwZHh0c3p0M2NqZ1E/view?usp=sharing&resourcekey=0-sGBMwRWJQF0-oV27ula5Mg)
 
 **4. Bản dịch Introduction to Algorithm**
 
@@ -34,8 +34,8 @@ Cuốn sách này được viết bởi các cựu học sinh trường chuyên 
 
 **5. KC Book**
 
-- [Quyển 1](https://drive.google.com/file/d/0B6O77opfHxDDV1lxdF9jWHVUZDA/view?usp=sharing)
-- [Quyển 3](https://drive.google.com/file/d/0BwcTB8a10LBwSmZFdGhSY1lMNVU/view?usp=sharing)
+- [Quyển 1](https://drive.google.com/file/d/0B6O77opfHxDDV1lxdF9jWHVUZDA/view?usp=sharing&resourcekey=0-bLURXsP9BNX7O6W1izMEjQ)
+- [Quyển 3](https://drive.google.com/file/d/0BwcTB8a10LBwSmZFdGhSY1lMNVU/view?usp=sharing&resourcekey=0-POIEScAwD22aQFyr2mBfaw)
 
 **6. Guide To Competitive Programming**
 
