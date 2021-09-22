@@ -2,6 +2,8 @@
 
 If you are a VNOI wiki contributor, we store your Facebook info when you login with Facebook the first time. This is used to verify your access to VNOI wiki.
 
+If you are not a VNOI wiki contributor, you do not need to login with Facebook, and no data from Facebook is stored.
+
 ## Request deletion of Facebok data
 
 If you want to delete your Facebook data, please follow the following steps:
