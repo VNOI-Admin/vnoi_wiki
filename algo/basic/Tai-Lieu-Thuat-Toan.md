@@ -28,7 +28,7 @@ Cuốn sách này được viết bởi các cựu học sinh trường chuyên 
 
 **4. Bản dịch Introduction to Algorithm**
 
-[Link download](https://drive.google.com/file/d/0B2B4YFwy4LhWWl9NV2pyQno1S0U/view)
+[Link download](https://drive.google.com/file/d/0B2B4YFwy4LhWWl9NV2pyQno1S0U/view?resourcekey=0-soNqn2omBd1JNaDUZSsh5g)
 
 (Cảm ơn bạn Nguyễn Văn Khởi đã chia sẻ link).
 
