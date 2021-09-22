@@ -25,3 +25,7 @@ Một vài chú ý:
 - Để đặt tên bài viết, thêm 1 dòng `# Tiêu đề` ở đầu bài viết.
 - Các heading luôn dùng từ heading 1: `#`, không nhảy cóc. Như vậy thì Table of content mới hiện đúng.
 - Công thức toán cho vào dấu `$$`. Các biến, đoạn code ngắn cho vào trong 2 dấu *`*.
+
+# Dừng làm contributor và xoá thông tin tài khoản
+
+Các bạn có thể làm theo hướng dẫn tại [đây](https://vnoi.info/wiki/Request%20Deletion%20of%20Facebook%20user%20data.md)
