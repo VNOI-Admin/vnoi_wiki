@@ -63,7 +63,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Suffix Array (4*)|algo/data-structures/suffix-array]]
 - [[Palindrome Tree (4*)|translate/codeforces/palindrome-tree]]
 - [[Skip List (3*)|algo/data-structures/Skip-Lists]]
-- [Range Tree - thầy Lê Minh Hoàng (3*)](https://drive.google.com/file/d/0BwcTB8a10LBwbjB2elVmdzg1XzQ/view?usp=sharing)
+- [Range Tree - thầy Lê Minh Hoàng (3*)](https://drive.google.com/file/d/0BwcTB8a10LBwbjB2elVmdzg1XzQ/view?usp=sharing&resourcekey=0-JxqVgB488l3bVgUXg4VU2Q)
 
 ## Xử lý xâu
 
@@ -74,7 +74,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Suffix Array (4*)|algo/data-structures/suffix-array]]
 - [[Palindrome Tree (4*)|translate/codeforces/palindrome-tree]]
 - [[Z Algorithm (3*)|translate/codeforces/z-algo]]
-- [Suffix Tree - thầy Lê Minh Hoàng (4*)](https://drive.google.com/file/d/0BwcTB8a10LBwYUwwNVYzbmZiZnM/view?usp=sharing)
+- [Suffix Tree - thầy Lê Minh Hoàng (4*)](https://drive.google.com/file/d/0BwcTB8a10LBwYUwwNVYzbmZiZnM/view?usp=sharing&resourcekey=0-TyQK7KSoZJW-fVpHquw6NQ)
 
 ## Quy hoạch động
 - [[Nhập môn Quy hoạch động (2*)|translate/topcoder/dynamic-programming]]
