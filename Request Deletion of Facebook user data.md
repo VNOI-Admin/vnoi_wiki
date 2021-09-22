@@ -1,4 +1,4 @@
-## What data from Facebook is stored
+## What and when data from Facebook is stored
 
 If you are a VNOI wiki contributor, we store your Facebook info when you login with Facebook the first time. This is used to verify your access to VNOI wiki.
 
