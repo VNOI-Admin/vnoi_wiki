@@ -719,8 +719,8 @@ Cho một tập hợp chứa các đường thẳng có dạng $ax + b$, mỗi �
 
 # Đọc thêm:
 
-- [Cấu trúc dữ liệu đặc biệt - Đoàn Mạnh Hùng](https://drive.google.com/file/d/0BwcTB8a10LBweklLb1d6N1BPOG8/view)
-- [Cấu trúc dữ liệu đặc biệt - Nguyễn Minh Hiếu](https://drive.google.com/file/d/0BwcTB8a10LBwcUlfTHg0NFFUbW8/view)
+- [Cấu trúc dữ liệu đặc biệt - Đoàn Mạnh Hùng](https://drive.google.com/file/d/0BwcTB8a10LBweklLb1d6N1BPOG8/view?usp=sharing&resourcekey=0-tq6X5R9Dnlt6Gr5kyTOTTA)
+- [Cấu trúc dữ liệu đặc biệt - Nguyễn Minh Hiếu](https://drive.google.com/file/d/0BwcTB8a10LBwcUlfTHg0NFFUbW8/view?usp=sharing&resourcekey=0-J7PRHyxnAFQFB43n_sMz3A)
 
 # Các nguồn tham khảo:
 
