@@ -1,6 +1,6 @@
 # BFS (Breadth-first search)
 
-**Nguồn:** [CP-Algorithms](https://cp-algorithms.com/graph/breadth-first-search.html), sách Giải thuật và lập trình - Lê Minh Hoàng
+**Nguồn:** [CP-Algorithms](https://cp-algorithms.com/graph/breadth-first-search.html), [[Giải thuật và lập trình - Lê Minh Hoàng|algo/basic/Tai-Lieu-Thuat-Toan]]
 
 **Biên soạn:**
 - Nguyễn Châu Khanh - VNU University of Engineering and Technology (VNU-UET)
@@ -789,7 +789,7 @@ Ta coi các thành phố là các đỉnh của đồ thị và các con đườ
 
 ### **Mô tả** 
 
-Bắt đầu thực hiện $BFS$ bắt đầu tại đỉnh $S$ :
+- Thực hiện $BFS$ bắt đầu tại đỉnh $S$ :
 
 [[/uploads/breadth-first-search_gif4.gif]]
 
@@ -1028,11 +1028,11 @@ Thuật toán này đúng với đồ thị liên thông. Với đồ thị gồ
 
 ### **Mô tả**
 
-Ví dụ mô tả đồ thị **không phải** là đồ thị hai phía:
+- Ví dụ mô tả đồ thị **không phải** là đồ thị hai phía:
 
 [[/uploads/breadth-first-search_gif5.gif]]
 
-Ví dụ mô tả **đồ thị hai phía**:
+- Ví dụ mô tả **đồ thị hai phía**:
 
 [[/uploads/breadth-first-search_gif6.gif]]
 
