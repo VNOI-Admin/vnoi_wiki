@@ -86,7 +86,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 ## Đồ thị
 - [[Các chủ đề cơ bản về đồ thị (2*)|algo/graph-theory/everything]]
-- [[Bài toán duyệt đồ thị theo chiều rộng|algo/graph-theory/breadth-first-search.md]]
+- [[Thuật toán duyệt đồ thị theo chiều rộng|algo/graph-theory/breadth-first-search.md]] (BFS)
 - [[Bài toán khớp cầu, thành phần liên thông mạnh|algo/graph-theory/Depth-First-Search-Tree.md]] (Cây DFS và ứng dụng)
 - [[Cây khung nhỏ nhất trên đồ thị vô hướng|algo/graph-theory/minimum-spanning-tree.md]]
 - [[Các thuật toán về tìm đường đi ngắn nhất|algo/graph-theory/shortest-path]]
