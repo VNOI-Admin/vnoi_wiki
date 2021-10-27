@@ -1,5 +1,15 @@
 # Hình học tính toán phần 1: Những khái niệm cơ bản
 
+**Tác giả:** 
+- Lê Minh Hoàng - Phổ thông Năng khiếu, ĐHQG-HCM
+
+**Reviewer:**
+- Trần Quang Lộc - ITMO University
+- Hoàng Xuân Nhật - Đại học Khoa học Tự nhiên, ĐHQG-HCM
+- Hồ Ngọc Vĩnh Phát - Đại học Khoa học Tự nhiên, ĐHQG-HCM
+
+---
+
 [[_TOC_]]
 
 Hình học mặc dù là một chủ đề hết sức phổ biến, song vẫn còn rất nhiều người không thích giải các bài toán hình học vì chúng khá khó chịu và lằng nhằng. Do đó, trong bài viết này, ta sẽ cùng tìm hiểu một vài khái niệm nhằm giúp cho các bài toán hình học trở nên bớt đáng sợ hơn.
@@ -74,15 +84,15 @@ Không như phép cộng trừ vector là tương đối trực quan và dễ hi
 Tích vô hướng có thể được định nghĩa bằng đại số hoặc hình học. 2 định nghĩa này là tương đương khi sử dụng tọa độ Descartes.
 
 - Theo đại số, tích vô hướng là tổng các tích tọa độ tương ứng giữa chúng. Ví dụ: tích vô hướng của $\overrightarrow{\rm u}(x_1, y_1)$ và $\overrightarrow{\rm v}(x_2, y_2)$ là $\overrightarrow{\rm u} \cdot \overrightarrow{\rm v} = x_1x_2+y_1y_2$.
-- Theo hình học, tích vô hướng là tích độ lớn của $2$ vector và $\cos$ của góc giữa chúng. Ví dụ: tích vô hướng của $\overrightarrow{\rm u}(x_1, y_1)$ và $\overrightarrow{\rm v}(x_2, y_2)$ là:
+- Theo hình học, tích vô hướng là tích độ lớn của $2$ vector và $\cos$ của góc giữa chúng. Ví dụ: tích vô hướng của $\overrightarrow{\rm u}(x_1, y_1)$ và $\overrightarrow{\rm v}(x_2, y_2)$ là
 $$\overrightarrow{\rm u} \cdot \overrightarrow{\rm v} = | \overrightarrow{\rm u} | \cdot | \overrightarrow{\rm v} | \cdot \cos(\theta)$$ với $\theta$ là góc hợp bởi $\overrightarrow{\rm u}$ và $\overrightarrow{\rm v}$.
 
-![](https://i.imgur.com/L6Fjwji.png)
+![](https://i.imgur.com/iHks23u.png)
 
 ## Ví dụ
 Tính tích vô hướng của 2 vector $\overrightarrow{\rm u}(5,12)$ và $\overrightarrow{\rm v}(-6,8)$
 
-![](https://i.imgur.com/ZmRjPMr.png)
+![](https://i.imgur.com/Qm8P625.png)
 
 $$\begin{align}
 \overrightarrow{\rm u} \cdot \overrightarrow{\rm v} &= x_1x_2+y_1y_2 \\
@@ -96,7 +106,9 @@ $$\begin{align}
 &= 65.9995359254\ldots \approx 66
 \end{align}$$
 
-Từ $2$ định nghĩa trên, ta có thể tính góc $\theta$ giữa $\overrightarrow{\rm u}(x_1,y_1)$ và $\overrightarrow{\rm v}(x_2,y_2)$ như sau:
+---
+
+Từ $2$ định nghĩa, ta có thể tính góc $\theta$ giữa $\overrightarrow{\rm u}(x_1,y_1)$ và $\overrightarrow{\rm v}(x_2,y_2)$ như sau:
 $$\cos(\theta) = \dfrac{\overrightarrow{\rm u} \cdot \overrightarrow{\rm v}}{|\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}|}
 \Longrightarrow \theta = \arccos\left(\dfrac{\overrightarrow{\rm u} \cdot \overrightarrow{\rm v}}{|\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}|}\right) = \arccos\left(\dfrac{x_1x_2+y_1y_2}{\sqrt{x_1^2+y_1^2} \cdot \sqrt{x_2^2+y_2^2}}\right)$$
 
@@ -130,7 +142,7 @@ Ta cũng có thể xác định dấu của tích có hướng bằng quy tắc 
 ## Ví dụ
 Tính tích có hướng của 2 vector $\overrightarrow{\rm u}(5,12)$ và $\overrightarrow{\rm v}(-6,8)$
 
-![](https://i.imgur.com/ZmRjPMr.png)
+![](https://i.imgur.com/Qm8P625.png)
 
 $$\begin{align}
 \overrightarrow{\rm u} \times \overrightarrow{\rm v} &= \begin{vmatrix} x_1 & y_1 \\ x_2 & y_2 \end{vmatrix} = x_1y_2-x_2y_1 \\
@@ -144,15 +156,19 @@ $$\begin{align}
 &= 112.000273471\ldots \approx	112
 \end{align}$$
 
-Một tích chất hữu dụng của tích có hướng trong hình học phẳng là
+---
+
+**Lưu ý:** Một tích chất hữu dụng của tích có hướng trong hình học phẳng là
 $$| \overrightarrow{\rm a} \times \overrightarrow{\rm b}| = | \overrightarrow{\rm a}| \cdot| \overrightarrow{\rm b}| \cdot\sin(\theta)$$ bằng diện tích của hình bình hành có 2 cạnh bên là $\overrightarrow{\rm a}$ và $\overrightarrow{\rm b}$.
 
-![](https://i.imgur.com/AiEZyxm.png)
+![](https://i.imgur.com/50a2Cp7.png)
 
 Do đó, **diện tích của một tam giác** còn bằng một nửa giá trị tuyệt đối của tích có hướng với 2 vector thành phần là 2 cạnh của tam giác.
 
 # Khoảng cách giữa điểm và đường thẳng
 Tìm khoảng cách giữa điểm và đường thẳng rất thường gặp trong các bài toán hình học.
+
+![](https://i.imgur.com/WBPuzNU.png)
 
 Ví dụ bạn có 3 điểm $A, B, C$ và bạn muốn tìm khoảng cách từ $C$ đến đường thẳng đi qua $A$ và $B$. Bước đầu tiên là tính $\overrightarrow{\rm AB}$ và $\overrightarrow{\rm AC}$. Tiếp theo tính tích có hướng $\overrightarrow{\rm AB}\times\overrightarrow{\rm AC}$ và lấy trị tuyệt đối, rồi chia cho $AB$. Kết quả có được là khoảng cách cần tìm. Công thức này được giải thích như sau:
 
@@ -166,8 +182,6 @@ S_{\Delta{ABC}} = \dfrac{h.AB}{2} \iff 2S_{\Delta{ABC}} = h.AB \\
 \implies h.AB = |\overrightarrow{\rm AB}\times\overrightarrow{\rm AC}| \\
 \iff h = \dfrac{|\overrightarrow{\rm AB}\times\overrightarrow{\rm AC}|}{AB}
 \end{array}$$
-
-![](https://i.imgur.com/QXASxbx.png)
 
 Mọi thứ trở nên phức tạp hơn một chút khi ta muốn tìm khoảng cách từ một đoạn thẳng đến một điểm. Trong trường hợp này, điểm gần nhất có thể là một trong hai đầu mút của đoạn thẳng thay vì là một điểm nào đó trên đường thẳng. Trong hình trên, điểm gần $C$ nhất trên đường thẳng $AB$ không nằm giữa $A$ và $B$ mà là tại $B$.
 
