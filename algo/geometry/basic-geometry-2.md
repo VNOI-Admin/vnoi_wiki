@@ -99,7 +99,7 @@ Ngoài ra, ta còn có thể sử dụng tích có hướng để kiểm tra hai
 - Nếu $\overrightarrow{\rm AB} \times \overrightarrow{\rm AC} < 0$ thì $A,B,C$ cùng chiều kim đồng hồ (CW).
 - Nếu $\overrightarrow{\rm AB} \times \overrightarrow{\rm AC} = 0$ thì $A,B,C$ thẳng hàng.
 
-|![](https://qph.fs.quoracdn.net/main-qimg-763d4e04c5c691df8ba1d4231ea04193.webp)|
+|![](https://i.imgur.com/Qz3w0Wg.png)|
 
 ### **Kiểm tra giao điểm của 2 đoạn thẳng**
 #### Tồn tại 3 điểm thẳng hàng
