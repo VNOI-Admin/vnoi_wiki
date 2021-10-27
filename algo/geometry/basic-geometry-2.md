@@ -1,5 +1,15 @@
 # Hình học tính toán phần 2: Sự giao nhau của đường thẳng và các ứng dụng
 
+**Tác giả:** 
+- Lê Minh Hoàng - Phổ thông Năng khiếu, ĐHQG-HCM
+
+**Reviewer:**
+- Trần Quang Lộc - ITMO University
+- Hoàng Xuân Nhật - Đại học Khoa học Tự nhiên, ĐHQG-HCM
+- Hồ Ngọc Vĩnh Phát - Đại học Khoa học Tự nhiên, ĐHQG-HCM
+
+---
+
 [[_TOC_]]
 
 Trong phần trước, chúng ta đã cùng tìm hiểu cách sử dụng vector để giải các bài toán hình học. Bây giờ chúng ta sẽ học cách sử dụng một vài kiến thức đại số tuyến tính cơ bản để tìm giao điểm của đường thẳng, sau đó áp dụng để giải quyết một số bài toán khác.
@@ -89,18 +99,18 @@ Ngoài ra, ta còn có thể sử dụng tích có hướng để kiểm tra hai
 - Nếu $\overrightarrow{\rm AB} \times \overrightarrow{\rm AC} < 0$ thì $A,B,C$ cùng chiều kim đồng hồ (CW).
 - Nếu $\overrightarrow{\rm AB} \times \overrightarrow{\rm AC} = 0$ thì $A,B,C$ thẳng hàng.
 
-![](https://qph.fs.quoracdn.net/main-qimg-763d4e04c5c691df8ba1d4231ea04193.webp)
+|![](https://qph.fs.quoracdn.net/main-qimg-763d4e04c5c691df8ba1d4231ea04193.webp)|
 
 ### **Kiểm tra giao điểm của 2 đoạn thẳng**
 #### Tồn tại 3 điểm thẳng hàng
 Nếu tồn tại 3 trong 4 điểm đầu mút thẳng hàng, ta kiểm tra xem có tồn tại đầu mút của đoạn thẳng này thuộc đoạn thẳng kia hay không:
 - Nếu có thì rõ ràng là 2 đoạn thẳng giao nhau tại ít nhất 1 điểm (tại đầu mút vừa xét).
 
-![](https://i.imgur.com/ikP58hq.png)
+|![](https://i.imgur.com/ikP58hq.png)|
 
 - Nếu không thì rõ ràng là 2 đoạn thẳng không thể giao nhau.
 
-![](https://i.imgur.com/wc6dups.png)
+|![](https://i.imgur.com/wc6dups.png)|
 
 #### Không tồn tại 3 điểm thẳng hàng
 Nếu không tồn tại 3 trong 4 điểm đầu mút thẳng hàng thì 2 đoạn thẳng $AB$ và $CD$ giao nhau khi:
@@ -111,7 +121,7 @@ Nếu không tồn tại 3 trong 4 điểm đầu mút thẳng hàng thì 2 đo�
 - $A,B,C$ ngược chiều kim đồng hồ và $A,B,D$ cùng chiều kim đồng hồ *hoặc*
 - $A,B,C$ cùng chiều kim đồng hồ và $A,B,D$ ngược chiều kim đồng hồ.
 
-$$\Longrightarrow (\overrightarrow{\rm AB} \times \overrightarrow{\rm AC}) \cdot (\overrightarrow{\rm AB} \times \overrightarrow{\rm AD}) < 0$$
+$\Longrightarrow (\overrightarrow{\rm AB} \times \overrightarrow{\rm AC}) \cdot (\overrightarrow{\rm AB} \times \overrightarrow{\rm AD}) < 0$
 
 Từ đó, ta có hệ sau:
 
@@ -120,7 +130,7 @@ $$\begin{cases}
 (\overrightarrow{\rm CD} \times \overrightarrow{\rm CA}) \cdot (\overrightarrow{\rm CD} \times \overrightarrow{\rm CB}) < 0
 \end{cases}$$
 
-![](https://i.imgur.com/c5v5L4d.png)
+|![](https://i.imgur.com/c5v5L4d.png)|
 
 Nhấn vào [**đây**][intersect] để tương tác với hình trên Desmos.
 
@@ -186,7 +196,7 @@ B = X_x - Y_x = 2 - 1 = 1 \\
 C = AX_x + BX_y = 3 \cdot 2 + 1 \cdot (-3) = 3
 \end{cases}$$
 
-$\Rightarrow$ phương trình đường thẳng $XY$ có dạng: $3x + y = 3$
+$\Longrightarrow$ phương trình đường thẳng $XY$ có dạng: $3x + y = 3$
 
 - **Bước 2:** Đặt $M$ là trung điểm của đoạn $XY$, ta có:
 
@@ -269,7 +279,7 @@ X'_x = 2Y_x - X_x = 2 \cdot (-1.88) - 1 = -4.76 \\
 X'_y = 2Y_y - X_y = 2 \cdot (-0.84) - (-3) = 1.32
 \end{cases}$$
 
-![](https://i.imgur.com/wDQu2gx.png)
+|![](https://i.imgur.com/wDQu2gx.png)|
 
 Nhấn vào [**đây**][symmetry] để tương tác với hình trên Desmos.
 
@@ -342,7 +352,7 @@ $$B=\left( -\dfrac{3\sqrt{2}}{2}+2, \dfrac{\sqrt{2}}{2}+2 \right)$$
 Vậy quay $A(1,4)$ ngược chiều kim đồng hồ 1 góc $45°$ quanh $C(2,2)$, ta được điểm
 $$B\left( -\dfrac{3\sqrt{2}}{2}+2, \dfrac{\sqrt{2}}{2}+2 \right)$$
 
-![](https://i.imgur.com/7OIhZnD.png)
+|![](https://i.imgur.com/t66DtWV.png)|
 
 Nhấn vào [**đây**][rotation2] để tương tác với hình trên Desmos.
 
@@ -355,7 +365,7 @@ Point Rotations(Point A, Point C, double rad) {
 }
 ```
 
-# Tổng hợp các link desmos trong bài:
+# Tổng hợp các link desmos trong bài
 - [Kiểm tra giao điểm của 2 đoạn thẳng (sử dụng tích có hướng)][intersect]
 - [Đường tròn đi qua 3 điểm][circle]
 - [2 đường thẳng vuông góc][pendicular]
