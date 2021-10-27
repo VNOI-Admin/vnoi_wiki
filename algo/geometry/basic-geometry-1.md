@@ -74,7 +74,8 @@ Không như phép cộng trừ vector là tương đối trực quan và dễ hi
 Tích vô hướng có thể được định nghĩa bằng đại số hoặc hình học. 2 định nghĩa này là tương đương khi sử dụng tọa độ Descartes.
 
 - Theo đại số, tích vô hướng là tổng các tích tọa độ tương ứng giữa chúng. Ví dụ: tích vô hướng của $\overrightarrow{\rm u}(x_1, y_1)$ và $\overrightarrow{\rm v}(x_2, y_2)$ là $\overrightarrow{\rm u} \cdot \overrightarrow{\rm v} = x_1x_2+y_1y_2$.
-- Theo hình học, tích vô hướng là tích độ lớn của $2$ vector và $\cos$ của góc giữa chúng. Ví dụ: tích vô hướng của $\overrightarrow{\rm u}(x_1, y_1)$ và $\overrightarrow{\rm v}(x_2, y_2)$ là $\overrightarrow{\rm u} \cdot \overrightarrow{\rm v} =   | \overrightarrow{\rm u} | \cdot | \overrightarrow{\rm v} | \cdot \cos(\theta)$ với $\theta$ là góc hợp bởi $\overrightarrow{\rm u}$ và $\overrightarrow{\rm v}$.
+- Theo hình học, tích vô hướng là tích độ lớn của $2$ vector và $\cos$ của góc giữa chúng. Ví dụ: tích vô hướng của $\overrightarrow{\rm u}(x_1, y_1)$ và $\overrightarrow{\rm v}(x_2, y_2)$ là:
+$$\overrightarrow{\rm u} \cdot \overrightarrow{\rm v} = | \overrightarrow{\rm u} | \cdot | \overrightarrow{\rm v} | \cdot \cos(\theta)$$ với $\theta$ là góc hợp bởi $\overrightarrow{\rm u}$ và $\overrightarrow{\rm v}$.
 
 ![](https://i.imgur.com/L6Fjwji.png)
 
@@ -95,8 +96,8 @@ $$\begin{align}
 \end{align}$$
 
 Từ $2$ định nghĩa trên, ta có thể tính góc $\theta$ giữa $\overrightarrow{\rm u}(x_1,y_1)$ và $\overrightarrow{\rm v}(x_2,y_2)$ như sau:
-$$\cos(\theta) = \dfrac{\overrightarrow{\rm u} \cdot \overrightarrow{\rm v}}{|\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}|} \\
-\Rightarrow \theta = \arccos\left(\dfrac{\overrightarrow{\rm u} \cdot \overrightarrow{\rm v}}{|\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}|}\right) = \arccos\left(\dfrac{x_1x_2+y_1y_2}{\sqrt{x_1^2+y_1^2} \cdot \sqrt{x_2^2+y_2^2}}\right)$$
+$$\cos(\theta) = \dfrac{\overrightarrow{\rm u} \cdot \overrightarrow{\rm v}}{|\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}|}
+\Longrightarrow \theta = \arccos\left(\dfrac{\overrightarrow{\rm u} \cdot \overrightarrow{\rm v}}{|\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}|}\right) = \arccos\left(\dfrac{x_1x_2+y_1y_2}{\sqrt{x_1^2+y_1^2} \cdot \sqrt{x_2^2+y_2^2}}\right)$$
 
 **Lưu ý:** tích vô hướng không chỉ giới hạn trong hình học phẳng, nghĩa là ta có thể sử dụng tích vô hướng cho các vector có số chiều tuỳ ý, và đẳng thức trên vẫn đúng.
 
@@ -116,7 +117,7 @@ Nếu xét trong hình học phẳng thì vector kết quả lúc này vuông g�
 Tương tự tích vô hướng, tích có hướng trong không gian 2 chiều cũng có thể được định nghĩa bằng 2 cách:
 - Theo đại số, tích có hướng giữa 2 vector $\overrightarrow{\rm u}(x_1,y_1)$ và $\overrightarrow{\rm v}(x_2,y_2)$ được định nghĩa bằng công thức:
 
-$$\overrightarrow{\rm u} \times \overrightarrow{\rm v} = \begin{vmatrix} x_1 & y_1 \\ x_2 & y_2 \end{vmatrix} = x_1y_2-x_2y_1$$.
+$$\overrightarrow{\rm u} \times \overrightarrow{\rm v} = \begin{vmatrix} x_1 & y_1 \\ x_2 & y_2 \end{vmatrix} = x_1y_2-x_2y_1$$
 
 - Theo hình học, tích có hướng giữa 2 vector $\overrightarrow{\rm u}$ và $\overrightarrow{\rm v}$ được định nghĩa bằng công thức: $\overrightarrow{\rm u} \times \overrightarrow{\rm v} = |\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}| \cdot \sin(\theta)$ với $\theta$ là góc hợp bởi 2 vector tính từ $\overrightarrow{\rm u}$ đến $\overrightarrow{\rm v}$ và **ngược chiều kim đồng hồ**.
 Với góc $\alpha$ thỏa mãn $0° < \alpha < 180°$ thì $\sin(\alpha) > 0$ nên nếu $\theta < 180°$ thì tích có hướng **dương**, ngược lại tích có hướng **âm**.
@@ -141,7 +142,8 @@ $$\begin{align}
 &= 112.000273471\ldots \approx	112
 \end{align}$$
 
-Một tích chất hữu dụng của tích có hướng trong hình học phẳng là $|\overrightarrow{\rm a} \times \overrightarrow{\rm b}| = |\overrightarrow{\rm a}|\cdot|\overrightarrow{\rm b}|\cdot\sin(\theta)$ bằng diện tích của hình bình hành có 2 cạnh bên là $\overrightarrow{\rm a}$ và $\overrightarrow{\rm b}$.
+Một tích chất hữu dụng của tích có hướng trong hình học phẳng là
+$$| \overrightarrow{\rm a} \times \overrightarrow{\rm b}| = | \overrightarrow{\rm a}| \cdot| \overrightarrow{\rm b}| \cdot\sin(\theta)$$ bằng diện tích của hình bình hành có 2 cạnh bên là $\overrightarrow{\rm a}$ và $\overrightarrow{\rm b}$.
 
 ![](https://i.imgur.com/AiEZyxm.png)
 
@@ -150,7 +152,7 @@ Do đó, **diện tích của một tam giác** còn bằng một nửa giá tr�
 ## Khoảng cách giữa điểm và đường thẳng
 Tìm khoảng cách giữa điểm và đường thẳng rất thường gặp trong các bài toán hình học.
 
-Ví dụ bạn có 3 điểm $A, B, C$ và bạn muốn tìm khoảng cách từ $C$ đến đường thẳng đi qua $A$ và $B$. Bước đầu tiên là tính $\overrightarrow{\rm AB}$ và $\overrightarrow{\rm AC}$. Tiếp theo tính tích có hướng $\overrightarrow{\rm AB}\times\overrightarrow{\rm AC}$ và lấy trị tuyệt đối, rồi chia cho $|\overrightarrow{\rm AB}|$. Kết quả có được là khoảng cách cần tìm. Công thức này được giải thích như sau:
+Ví dụ bạn có 3 điểm $A, B, C$ và bạn muốn tìm khoảng cách từ $C$ đến đường thẳng đi qua $A$ và $B$. Bước đầu tiên là tính $\overrightarrow{\rm AB}$ và $\overrightarrow{\rm AC}$. Tiếp theo tính tích có hướng $\overrightarrow{\rm AB}\times\overrightarrow{\rm AC}$ và lấy trị tuyệt đối, rồi chia cho $AB$. Kết quả có được là khoảng cách cần tìm. Công thức này được giải thích như sau:
 
 - Xét $\Delta{ABC}$, đặt $h$ là đường cao kẻ từ $C$ (khoảng cách từ $C$ đến $AB$) và đáy tương ứng là $AB$, ta có công thức:
 
