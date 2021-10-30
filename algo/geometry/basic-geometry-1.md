@@ -14,6 +14,8 @@
 
 Hình học mặc dù là một chủ đề hết sức phổ biến, song vẫn còn rất nhiều người không thích giải các bài toán hình học vì chúng khá khó chịu và lằng nhằng. Do đó, trong bài viết này, ta sẽ cùng tìm hiểu một vài khái niệm nhằm giúp cho các bài toán hình học trở nên bớt đáng sợ hơn.
 
+Nếu các bạn đã nắm vững các khái niệm trong bài viết này, các bạn có thể chuyển sang [[phần 2|algo/geometry/basic-geometry-2]].
+
 # Vector
 Vector là một đối tượng có cả độ lớn và hướng. Hướng của vector là hướng từ điểm đầu đến điểm cuối của nó.
 
@@ -271,7 +273,7 @@ db linePointDist(const point &A, const point &B, const point &C, bool isSegment)
 ```
 Nếu bạn sử dụng C++ thì bạn nên tìm hiểu về struct và tự viết class/struct geo_2D của riêng mình. Nó sẽ giúp các bài toán hình học trở nên đơn giản hơn nhiều.
 
-# Luyện tập:
+# Luyện tập
 Học phải đi đôi với hành, do đó mình đề xuất cho các bạn [Codeforces Gym 100168](https://codeforces.com/gym/100168). Tuy đề bài trong gym được viết bằng tiếng Nga nhưng rất ngắn gọn và đi thẳng vào bài toán nên các bạn có thể dễ dàng [google translate](https://translate.google.com/?hl=vi&sl=ru&tl=en&text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D0%BC%D0%B8%D1%80&op=translate).
 
 Bên dưới là một số bài tập có liên quan đến bài viết này, mình đã tóm tắt yêu cầu bài toán để các bạn có thể hiểu đề dễ dàng hơn.
