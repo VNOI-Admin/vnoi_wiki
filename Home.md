@@ -110,9 +110,9 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 ## Hình học
 
-- [[Hình học tính toán phần 1|algo/geometry/basic-geometry-1]].
-- [[Hình học tính toán phần 2|algo/geometry/basic-geometry-2]].
-- [[Bao lồi (3*)|translate/wcipeg/Convex-Hull]].
+- [[Hình học tính toán phần 1|algo/geometry/basic-geometry-1]]
+- [[Hình học tính toán phần 2|algo/geometry/basic-geometry-2]]
+- [[Bao lồi (3*)|translate/wcipeg/Convex-Hull]]
 
 ## Toán học
 
