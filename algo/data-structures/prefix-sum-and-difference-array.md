@@ -491,7 +491,7 @@ Trong một số bài toán yêu cầu xử lý kết hợp 2 dạng (cập nh�
 
 [Codeforces - Greg and Array](https://codeforces.com/contest/296/problem/C)
 
-[Codeforces Gym - 319055E](https://codeforces.com/group/1rv4rhCsHp/contest/319055/problem/E) (lưu ý: bài này chỉ có bản tiếng Nga)
+[Codeforces Gym - 319055E](https://codeforces.com/group/1rv4rhCsHp/contest/319055/problem/E) (lưu ý: để xem nội dung bài tập cần tham gia nhóm tại [link đây](https://codeforces.com/group/1rv4rhCsHp))
 
 ### Mảng cộng dồn nhiều chiều
 
