@@ -27,7 +27,7 @@ Mảng $D(A)$ được gọi là **mảng hiệu** của $A$, có tên tiếng A
 
 Để dựng mảng cộng dồn, ta có thể áp dụng định nghĩa ở trên để dựng trực tiếp mảng:
 
-```cpp
+```c++
 vector<int> buildPrefixSum(const vector<int>& a, int C = 0) {
     int n = (int)a.size();
     vector<int> prefixSum(n + 1);
@@ -45,7 +45,7 @@ vector<int> buildPrefixSum(const vector<int>& a, int C = 0) {
 
 Ngoài ra, thư viện C++ STL cũng cung cấp hàm `partial_sum` để phục vụ quá trình dựng mảng cộng dồn, cú pháp của hàm như sau:
 
-```cpp
+```c++
 partial_sum(first, last, result, binary_op)
 ```
 
@@ -173,7 +173,7 @@ Trong đa số trường hợp, mảng cộng dồn thường được sử dụ
 
 Nguồn: [CSES - Maximum Subarray Sum](https://cses.fi/problemset/task/1643)
 
-Đề bài: Cho một mảng $A$ gồm $n$ phần tử. Tìm đoạn con khác rỗng có tổng lớn nhất. Giới hạn: $1 \le n \le 2 \cdot 10^5$, $|A_i| \le 10^9$
+Đề bài: Cho một mảng $A$ gồm $n$ phần tử. Tìm đoạn con khác rỗng có tổng lớn nhất. Giới hạn: $1 \le n \le 2 \cdot 10^5$, $\lvert A_i \rvert \le 10^9$
 
 Trước hết, ta tạo mảng $pref = S(0, A)$ để lưu mảng cộng dồn của $A$. Giả sử với $r$ cố định, ta cần tìm $l < r$ sao cho tổng các phần tử trong nửa khoảng $[l, r)$ đạt cực đại. Ta viết lại bài toán theo công thức sau:
 
