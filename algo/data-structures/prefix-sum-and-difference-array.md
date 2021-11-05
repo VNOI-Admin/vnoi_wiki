@@ -1,5 +1,17 @@
 # Mảng cộng dồn và mảng hiệu
 
+**Tác giả:** 
+- Bùi Nguyễn Đức Tân - VNU-HCM, High School for the Gifted
+
+**Reviewer:**
+- Trần Quang Lộc - ITMO University
+- Hoàng Xuân Nhật - VNU-HCM, University of Science
+- Nguyễn Phú Bình - Hung Vuong High School for the Gifted, Binh Duong Province
+
+---
+
+[[_TOC_]]
+
 ## Khái niệm
 
 ### Mảng cộng dồn (prefix sum)
@@ -159,6 +171,7 @@ Mảng cộng dồn có một tính chất quan trọng: các phần tử đư�
 Theo định nghĩa: $S_i = c + \displaystyle \sum_{j = 0}^{i - 1} A_j$
 
 Khi này: 
+
 $$
 \begin{align*}
 S_r - S_l &= c + \displaystyle \sum_{j = 0}^{r - 1} A_j - \bigg(c + \displaystyle \sum_{j = 0}^{l - 1} A_j\bigg) \\
