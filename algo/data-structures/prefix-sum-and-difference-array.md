@@ -158,7 +158,8 @@ Mảng cộng dồn có một tính chất quan trọng: các phần tử đư�
 
 Theo định nghĩa: $S_i = c + \displaystyle \sum_{j = 0}^{i - 1} A_j$
 
-Khi này: $$
+Khi này:
+$$
 \begin{align*}
 S_r - S_l &= c + \displaystyle \sum_{j = 0}^{r - 1} A_j - \bigg(c + \displaystyle \sum_{j = 0}^{l - 1} A_j\bigg) \\
 &= c + \displaystyle \sum_{j = 0}^{r - 1} A_j - c - \displaystyle \sum_{j = 0}^{l - 1} A_j \\
@@ -177,11 +178,10 @@ Nguồn: [CSES - Maximum Subarray Sum](https://cses.fi/problemset/task/1643)
 
 Trước hết, ta tạo mảng $pref = S(0, A)$ để lưu mảng cộng dồn của $A$. Giả sử với $r$ cố định, ta cần tìm $l < r$ sao cho tổng các phần tử trong nửa khoảng $[l, r)$ đạt cực đại. Ta viết lại bài toán theo công thức sau:
 
-$$
-\begin{align*}
-ans_r &= \max_{0\,\le\,l\,<\,r} (pref_r - pref_l) \\
-&= pref_r + \max_{0\,\le\,l\,<\,r} (-pref_l) \\
-&= pref_r - \min_{0\,\le\,l\,<\,r} pref_l
+$$\begin{align*}
+ans &= \max_{0\,\le\,l\,<\,r} (prefr - prefl) \\
+&= pref + \max_{0\,\le\,l\,<\,r} (-pref_l) \\
+&= pref - \min_{0\,\le\,l\,<\,r} pref_l
 \end{align*}
 $$
 
