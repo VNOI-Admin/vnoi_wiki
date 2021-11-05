@@ -530,5 +530,7 @@ VNOJ có phân loại riêng các bài tập về mảng cộng dồn, bạn đ�
 ## References
 
 [WCIPEG - Prefix sum array and difference array](http://wcipeg.com/wiki/Prefix_sum_array_and_difference_array)
+
 [cppreference.com - partial_sum](https://en.cppreference.com/w/cpp/algorithm/partial_sum)
+
 [cppreference.com - adjacent_difference](https://en.cppreference.com/w/cpp/algorithm/adjacent_difference)
