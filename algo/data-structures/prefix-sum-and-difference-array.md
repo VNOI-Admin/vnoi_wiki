@@ -158,7 +158,7 @@ Mảng cộng dồn có một tính chất quan trọng: các phần tử đư�
 
 Theo định nghĩa: $S_i = c + \displaystyle \sum_{j = 0}^{i - 1} A_j$
 
-Khi này:
+Khi này: 
 $$
 \begin{align*}
 S_r - S_l &= c + \displaystyle \sum_{j = 0}^{r - 1} A_j - \bigg(c + \displaystyle \sum_{j = 0}^{l - 1} A_j\bigg) \\
@@ -166,7 +166,8 @@ S_r - S_l &= c + \displaystyle \sum_{j = 0}^{r - 1} A_j - \bigg(c + \displaystyl
 &= c - c + \displaystyle \sum_{j = 0}^{r - 1} A_j - \displaystyle \sum_{j = 0}^{l - 1} A_j \\
 &= \displaystyle \sum_{j = l}^{r - 1} A_j + \displaystyle \sum_{j = 0}^{l - 1} A_j - \displaystyle \sum_{j = 0}^{l - 1} A_j \\
 &= \displaystyle \sum_{j = l}^{r - 1} A_j \quad \blacksquare
-\end{align*}$$
+\end{align*}
+$$
 
 Trong đa số trường hợp, mảng cộng dồn thường được sử dụng nếu bài toán yêu cầu tính tổng một đoạn cao nhiều lần liên tiếp. Dưới đây, ta sẽ đề cập một số bài toán có điều kiện trên.
 
@@ -178,10 +179,11 @@ Nguồn: [CSES - Maximum Subarray Sum](https://cses.fi/problemset/task/1643)
 
 Trước hết, ta tạo mảng $pref = S(0, A)$ để lưu mảng cộng dồn của $A$. Giả sử với $r$ cố định, ta cần tìm $l < r$ sao cho tổng các phần tử trong nửa khoảng $[l, r)$ đạt cực đại. Ta viết lại bài toán theo công thức sau:
 
-$$\begin{align*}
-ans &= \max_{0\,\le\,l\,<\,r} (prefr - prefl) \\
-&= pref + \max_{0\,\le\,l\,<\,r} (-pref_l) \\
-&= pref - \min_{0\,\le\,l\,<\,r} pref_l
+$$
+\begin{align*}
+ans_r &= \max_{0 \, \le \, l \, < \, r} (pref_r - pref_l) \\ 
+&= pref_r + \max_{0 \, \le \, l \, < \, r} (- pref_l) \\ 
+&= pref_r - \min_{0 \, \le \, l \, < \, r} pref_l \\ 
 \end{align*}
 $$
 
@@ -189,7 +191,7 @@ Nếu ta chạy $r$ từ $1$ đến $n$, ta có thể cập nhật cuốn chiế
 
 Độ phức tạp của cách trên là $\mathcal{O}(n)$. Code tham khảo:
 
-```cpp=
+```cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -243,7 +245,7 @@ Gọi $D$ là mảng hiệu của $A$. Để xử lý truy vấn cập nhật, t
 
 Độ phức tạp thời gian và không gian của cách này đều là $\mathcal{O}(n)$. Code tham khảo:
 
-```cpp=
+```cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -310,9 +312,10 @@ S_{i,j} & =\sum_{t_i\,=\,1}^{i} \sum_{t_j\,=\,1}^{j} A_{t_i,t_j}\\
 $$
 
 Để hình dung rõ hơn công thức biến đổi trên, bạn đọc có thể tham khảo hình ảnh dưới:
-| ![](https://i.imgur.com/3vhyF37.gif) |
-| :----------------------------------: |
-| ![](https://i.imgur.com/TlZhWxX.png) |
+
+| ![](https://i.imgur.com/3vhyF37.gif)                                                            |
+| :---------------------------------------------------------------------------------------------: |
+| ![](https://i.imgur.com/TlZhWxX.png)                                                            |
 | Các phần tử $A_i$ tô màu xanh nhạt được đánh dấu 1 lần, tô màu xanh đậm được đánh dấu tới 2 lần |
 
 Code dưới đây dựng mảng cộng dồn hai chiều:
@@ -380,7 +383,7 @@ Trước khi bắt đầu xây dựng mảng hiệu 2 chiều, ta cần định 
 - $D_{hàng}(A)$ gồm $m$ hàng, hàng thứ $i$ biểu thị mảng hiệu của mảng gồm toàn bộ phần tử nằm trên hàng đó.
 - $D_{cột}(A)$ gồm $n$ cột, cột thứ $i$ biểu thị mảng hiệu của mảng gồm toàn bộ phần tử nằm trên cột đó.
 
-Trong không gian 1 chiều, ta thấy được $S(D(A)) = A$. Để tính chất này được áp dụng cho mảng 2 chiều, ta tạo mảng $A'$ thỏa: $A'_{i, j} = A_{i, j}$ với $i, j$ dương và $A_{i, j} = 0$ với $i = 0$ hoặc $j = 0$. Mảng $A'$ này đánh số theo dạng 0-indexed và có kích thước là $(m + 1) \times (n + 1)$. Khi này, mảng hiệu của $A$ sẽ là mảng $D$ thỏa $S(D) = A'$.
+Trong không gian 1 chiều, ta thấy được $S(D(A)) = A$. Để tính chất này được áp dụng cho mảng 2 chiều, ta tạo mảng $A'$ thỏa: $A_{i, j}^{'}= A_{i, j}$ với $i, j$ dương và $A_{i, j} = 0$ với $i = 0$ hoặc $j = 0$. Mảng $A'$ này đánh số theo dạng 0-indexed và có kích thước là $(m + 1) \times (n + 1)$. Khi này, mảng hiệu của $A$ sẽ là mảng $D$ thỏa $S(D) = A'$.
 
 Đặt $D = D_{cột}(D_{hàng}(A))$, khi này, ta có:
 
