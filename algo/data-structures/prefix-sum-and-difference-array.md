@@ -182,7 +182,7 @@ S_r - S_l &= c + \displaystyle \sum_{j = 0}^{r - 1} A_j - \bigg(c + \displaystyl
 \end{align*}
 $$
 
-Trong đa số trường hợp, mảng cộng dồn thường được sử dụng nếu bài toán yêu cầu tính tổng một đoạn cao nhiều lần liên tiếp. Dưới đây, ta sẽ đề cập một số bài toán có điều kiện trên.
+Trong đa số trường hợp, mảng cộng dồn thường được sử dụng nếu bài toán yêu cầu tính tổng một đoạn con nhiều lần liên tiếp. Dưới đây, ta sẽ đề cập một số bài toán có điều kiện trên.
 
 ### Bài toán minh họa
 
