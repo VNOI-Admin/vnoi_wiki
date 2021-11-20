@@ -369,8 +369,8 @@ Công thức sau được sử dụng để dựng mảng cộng dồn 3 chiều
 $$
 \begin{align*}
 \displaystyle
-S_{t_i,t_j,t_k}&=A_{t_i,t_j,t_k} - S_{t_i-1,t_j,t_k} - S_{t_i,t_j-1,t_k} - S_{t_i,t_j,t_k-1} \\
-& \hspace{1em}+ S_{t_i-1,t_j-1,t_k} + S_{t_i-1,t_j,t_k-1} + S_{t_i,t_j-1,t_k-1} - S_{t_i-1,t_j-1,t_k-1}
+S_{t_i,t_j,t_k}&=A_{t_i,t_j,t_k} + S_{t_i-1,t_j,t_k} + S_{t_i,t_j-1,t_k} + S_{t_i,t_j,t_k-1} \\
+& \hspace{1em}- S_{t_i-1,t_j-1,t_k} - S_{t_i-1,t_j,t_k-1} - S_{t_i,t_j-1,t_k-1} + S_{t_i-1,t_j-1,t_k-1}
 \end{align*}
 $$
 
