@@ -1,6 +1,7 @@
 # Lý thuyết trò chơi
 
 Người viết: Nguyễn Nhật Minh Khôi
+
 Reviewer chính: Trần Quang Lộc, Hồ Ngọc Vĩnh Phát
 
 Trong thực tế, có rất nhiều loại trò chơi khác nhau, tuy nhiên trong bài viết này, chúng ta sẽ chỉ giới hạn trong các **trò chơi tổ hợp cân bằng** vì độ phổ biến của nó trong lập trình thi đấu.
