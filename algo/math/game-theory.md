@@ -447,6 +447,7 @@ Chi tiết hơn, ta cần chứng minh hai điều sau:
 2. $s \notin U$
 
 Để chứng minh ý 1, với một $0 \leq t < s$ bất kỳ, ta xét $s \oplus t$, vì $s > 0$ nên biểu diễn nhị phân của $s \oplus t$ luôn tồn tại bit trái nhất bằng $1$ (tạm gọi là $d$).Khi đó, bit thứ $d$ của một trong hai số $s$ và $t$ phải bằng $1$ và bit thứ $d$ của số còn lại bằng bằng $0$. Tuy nhiên, do $s > t$ nên bit thứ $d$ của $s$ bằng $1$ và bit thứ $d$ của $t$ bằng $0$, trường hợp kia không thể xảy ra. Lập luận tiếp rằng $s = g_1(x_1) \oplus \ldots \oplus g_n(x_n)$, tương tự như khi chứng minh định lý Bouton, nếu bit thứ $d$ của $s$ là $1$ thì ta có số lượng $g_i(x_i)$ có giá trị Sprague-Grundy có bit thứ $d$ bằng $1$ phải lẻ (theo tính chất của phép XOR), do đó luôn tồn tại một trò chơi có bit thứ $d$ bằng $1$. Chọn trò chơi mà giá trị Sprague-Grundy có bit thứ $d$ bằng $1$ để thực hiện bốc sỏi, ta thấy $(s \oplus t) \oplus g_i(x_i) < g_i(x_i)$ nên theo định nghĩa hàm Sprague-Grundy chắc chắn tồn tại $x'_i$ có $g_i(x'_i) = (s \oplus t) \oplus g_i(x_i)$ và từ $x_i$ có thể di chuyển đến $x'_i$. Theo định nghĩa trò chơi tổng, khi đó bước di chuyển từ $(x_1,\ldots, x_i, \ldots, x_n)$ tới $(x_1,\ldots, x'_i, \ldots, x_n)$ là hợp lệ và:
+
 \begin{align*}
 g_1(x_1) &\oplus \ldots \oplus g_i(x'_i) \oplus \ldots \oplus g_n(x_n) 
 \\
@@ -456,14 +457,17 @@ g_1(x_1) &\oplus \ldots \oplus g_i(x'_i) \oplus \ldots \oplus g_n(x_n)
 \\
 &= s \oplus t \oplus s = t
 \end{align*}
+
 Vậy $t \in U$.
 
 Để chứng minh ý 2 ta dùng phản chứng, giả sử trạng thái hiện tại là $(x_1, \ldots, x_n)$, khi đó giả sử tồn tại một trạng thái $(y_1, \ldots, y_n)$ có $g(y_1, \ldots, y_n) = s$. Theo định nghĩa mỗi bước di chuyển trong trò chơi tổng sẽ tương ứng với việc chọn một trò chơi thành phần ra và di chuyển, các trò chơi còn lại giữ nguyên, do đó ta có thể viết $(y_1, \ldots, y_n) = (x_1, \ldots, x'_i, \ldots, x_n)$ với $i$ là trò chơi ta chọn để di chuyển trạng thái. Khi đó
+
 \begin{align*}
 s = g_1(x_1) \oplus \ldots \oplus g_i(x_i) \oplus \ldots \oplus g_n(x_n) &= g_1(x_1) \oplus \ldots \oplus g_i(x'_i) \oplus \ldots \oplus g_n(x_n)
 \\ \Leftrightarrow
 g(x'_i) &= g(x_i)
-\end{align*} 
+\end{align*}
+
 Điều này là mâu thuẫn với giả thuyết ban đầu là ta chọn trò chơi thành phần $i$ để di chuyển trạng thái (khi đó $x'_i \neq x_i$).
 
 Với hai ý được chứng minh này, ta đã chứng minh được định lý 2.
