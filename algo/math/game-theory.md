@@ -233,7 +233,7 @@ Cuối cùng, với một trạng thái thuộc $\hat{P}$ (tức $g = 0$), mọi
 > Ví dụ, nếu trò chơi Nim hiện tại có $3$ đống có số sỏi lần lượt là $5$, $6$, $3$, thì tổng Nim $g = 0$. Xét bit đầu tiên từ phải qua, ta thấy được số lượng bit được bật tại vị trí này là số chẵn ($2$, tương ứng với bit đầu tiên của $5$ và $3$). Tương tự, số lượng các bit được bật tại các vị trị khác đều có tính chất này. Điều này không phải là trùng hợp mà do tính chất của phép XOR, nếu muốn bit thứ $i$ trong kết quả bằng $0$ thì số lượng bit thứ $i$ được bật trong các toán hạng phải là số chẵn. Từ đây ta nhận thấy, việc bỏ sỏi ở một đống sỏi chỉ có thể làm thay đổi số lượng bit được bật tại mỗi vị trí $i$ lên hoặc xuống 1 đơn vị, do đó dù cho lấy sỏi ở cột nào đi nữa thì vẫn sẽ xuất hiện một vị trí có số bit được bật là lẻ.
 > [[/uploads/game_theory_bouton_proof_3.png]]
 
-Rõ ràng $\hat{P}$ và $\hat{N}$ thỏa mãn ba điều kiện theo định nghĩa của tập $P$ và $N$ trong trò chơi tổng quát, vì vậy $P = \hat{P}$ và $N = \hat{N}$.
+Rõ ràng $\hat{P}$ và $\hat{N}$ thỏa mãn ba điều kiện theo định nghĩa của tập $P$ và $N$ trong trò chơi tổng quát, vì vậy $P = \hat{P}$ và $N = \hat{N}$. $\square$
 
 Qua định lý Bouton, chúng ta có một cách xác định tập $P$ và $N$ dựa trên tổng Nim, hơn thế nữa với việc chứng minh định lý Bouton, ta không chỉ biết được trạng thái thắng/thua của trò chơi mà còn có thể xây dựng được một chiến thuật thắng cụ thể.
 
@@ -425,7 +425,7 @@ Thứ hai, với một trạng thái $u$ thuộc $\hat{N}$, khi đó $g(u) > 0$,
 
 Thứ ba, với mọi trạng thái $u$ thuộc $\hat{P}$ mà $u$ không phải trạng thái kết thúc, khi đó với mọi trạng thái $v_1,\ldots,v_k$ đến được từ $u$ thì $g(v_i) > 0$, tức mọi cách đi từ $u \in \hat{P}$ luôn dẫn đến trạng thái $v \in \hat{N}$. Ta cũng sẽ chứng minh phát biểu này bằng phản chứng, giả sử tồn tại một $v_i$ trong các trạng thái đến được từ $u$ có $g(v_i) = 0$, lúc đó rõ ràng $g(v)=\text{mex}(\{0,g(v_1),\ldots\}) > 0$, trái với giả thuyết ban đầu là $g(u) = 0$.
 
-Từ ba tính chất vừa chứng minh, ta thấy rõ ràng tập $\hat{P}$ và $\hat{N}$ tương đương với tập $P$ và $N$ theo định nghĩa của hai tập này. 
+Từ ba tính chất vừa chứng minh, ta thấy rõ ràng tập $\hat{P}$ và $\hat{N}$ tương đương với tập $P$ và $N$ theo định nghĩa của hai tập này. $\square$
 
 **Định lý 2**: với trò chơi tổng $G = G_1 + \ldots + G_n$ và $x_1, \ldots, x_n$ lần lượt là các trạng thái của trò chơi thành phần $G_1, \ldots, G_n$, khi đó:
 $$
@@ -471,6 +471,6 @@ g(x'_i) &= g(x_i)
 
 Điều này là mâu thuẫn với giả thuyết ban đầu là ta chọn trò chơi thành phần $i$ để di chuyển trạng thái (khi đó $x'_i \neq x_i$).
 
-Với hai ý được chứng minh này, ta đã chứng minh được định lý 2.
+Với hai ý được chứng minh này, ta đã chứng minh được định lý 2. $\square$
 
 
