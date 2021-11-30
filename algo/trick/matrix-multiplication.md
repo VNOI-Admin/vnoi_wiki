@@ -31,13 +31,13 @@ Các ô trong ma trận được gọi là các phần tử của ma trận. Cá
 
 Ma trận thường được viết trong dấu ngoặc vuông: 
 
-\begin{bmatrix} a_{11} & a_{12} & ... & a_{1n} \\ a_{21} & a_{22} & ... & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & ... & a_{mn} \end{bmatrix}
+$$\begin{bmatrix} a_{11} & a_{12} & ... & a_{1n} \newline a_{21} & a_{22} & ... & a_{2n} \newline \vdots & \vdots & \ddots & \vdots \newline a_{m1} & a_{m2} & ... & a_{mn} \end{bmatrix}$$
 
 Độ lớn hay kích thước của ma trận được định nghĩa bằng số lượng hàng và cột. Một ma trận $m$ hàng và $n$ cột được gọi là ma trận $(m \times n)$, trong khi $m$ và $n$ được gọi là **chiều** của nó. 
 
 - **Ví dụ:** Ma trận $A$ là ma trận $(3 \times 2)$
 
-    $A = \begin{bmatrix} 1 & 2 \\ 5 & 7 \\ 6 & 3 \end{bmatrix}$
+    $A = \begin{bmatrix} 1 & 2 \newline 5 & 7 \newline 6 & 3 \end{bmatrix}$
     
 ### Ma trận vuông
 
@@ -45,7 +45,7 @@ Ma trận vuông là ma trận có số hàng và số cột bằng nhau. Ma tr�
 
 - **Ví dụ:** Ma trận vuông cấp $3$ (số hàng và số cột bằng $3$)
 
-    \begin{bmatrix} 1 & 2 & 0 \\ 3 & 0 & 1 \\ 2 & 3 & 1 \end{bmatrix}
+    \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix}
  
 ### Ma trận đơn vị (Identity Matrix)
 
@@ -55,11 +55,11 @@ Ma trận đơn vị $I_n$ cấp $n$ là một ma trận $(n \times n)$ trong đ
 
     $I_1 = \begin{bmatrix} 1 \end{bmatrix}$
     
-    $I_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$
+    $I_2 = \begin{bmatrix} 1 & 0 \newline 0 & 1 \end{bmatrix}$
     
     ...
     
-    $I_n = \begin{bmatrix} 1 & 0 & ... & 0 \\ 0 & 1 & ... & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & ... & 1 \end{bmatrix}$
+    $I_n = \begin{bmatrix} 1 & 0 & ... & 0 \newline 0 & 1 & ... & 0 \newline \vdots & \vdots & \ddots & \vdots \newline 0 & 0 & ... & 1 \end{bmatrix}$
 
 ### Vector hàng và vector cột
 
@@ -69,40 +69,14 @@ $\mathbf{a} = \begin{bmatrix} a_1 & a_2 & ... & a_n \end{bmatrix}$
 
 **Vector cột** hay **ma trận cột** là một ma trận $(m \times 1)$, tức là ma trận chỉ gồm một cột đơn gồm $m$ phần tử.
 
-$\mathbf{b} = \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{bmatrix}$
+$\mathbf{b} = \begin{bmatrix} b_1 \newline b_2 \newline \vdots \newline b_m \end{bmatrix}$
 
 Ta định nghĩa tích của vector hàng $\mathbf{a}$ $(1 \times n)$ với vector cột $\mathbf{b}$ $(n \times 1)$ tương đương với [tích vô hướng](https://vi.wikipedia.org/wiki/T%C3%ADch_v%C3%B4_h%C6%B0%E1%BB%9Bng) của hai vector $\mathbf{a}$ và $\mathbf{b}$.
 
-$\mathbf{a} \cdot \mathbf{b} = \begin{bmatrix} a_1 & a_2 & ... & a_n \end{bmatrix} \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_n \end{bmatrix} = \displaystyle\sum_{i = 1}^{n} a_{i} b_{i} = a_1b_1+a_2b_2+...+a_nb_n$
+$\mathbf{a} \cdot \mathbf{b} = \begin{bmatrix} a_1 & a_2 & ... & a_n \end{bmatrix} \begin{bmatrix} b_1 \newline b_2 \newline \vdots \newline b_n \end{bmatrix} = \displaystyle\sum_{i = 1}^{n} a_{i} b_{i} = a_1b_1+a_2b_2+...+a_nb_n$
 
 **Tham khảo:** [Vector hàng và cột](https://vi.wikipedia.org/wiki/Vect%C6%A1_h%C3%A0ng_v%C3%A0_c%E1%BB%99t)
 
-<!-- ## Cộng trừ 2 ma trận
-
-Để thực hiện được phép tính, hai ma trận phải có cùng kích thước *(số hàng và số cột bằng nhau)*. Trong trường hợp đó, tổng hoặc hiệu của hai ma trận $A$ và $B$ sẽ là ma trận có cùng số hàng và số cột với $A$ và $B$. 
-
-Cho $2$ ma trận $A$ và $B$ có cùng kích thước $(m \times n)$ :
-
-- Tổng của $A$ và $B$, được biểu thị $A + B$, được tính bằng cách cộng các phần tử tương ứng của $A$ và $B$.
-- Hiệu của $A$ và $B$, được biểu thị $A - B$, được tính bằng cách trừ đi các phần tử tương ứng của $A$ cho các phần tử tương ứng của $B$.
-
-Gọi ma trận $C$ là tổng hoặc hiệu của hai ma trận $A$ và $B$, ta có:
-
-$\begin{aligned} C = A \pm B &={\begin{bmatrix}a_{11}&a_{12}&\cdots &a_{1n}\\a_{21}&a_{22}&\cdots &a_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1}&a_{m2}&\cdots &a_{mn}\\\end{bmatrix}} \pm {\begin{bmatrix}b_{11}&b_{12}&\cdots &b_{1n}\\b_{21}&b_{22}&\cdots &b_{2n}\\\vdots &\vdots &\ddots &\vdots \\b_{m1}&b_{m2}&\cdots &b_{mn}\\\end{bmatrix}}\\&={\begin{bmatrix}a_{11} \pm b_{11}&a_{12} \pm b_{12}&\cdots &a_{1n} \pm b_{1n}\\a_{21} \pm b_{21}&a_{22} \pm b_{22}&\cdots &a_{2n} \pm b_{2n}\\\vdots &\vdots &\ddots &\vdots \\a_{m1} \pm b_{m1}&a_{m2} \pm b_{m2}&\cdots &a_{mn} \pm b_{mn}\\\end{bmatrix}}\\\end{aligned}$
-
-Hay nói ngắn gọn hơn, phần tử đứng ở hàng thứ $i$, cột thứ $j$ của ma trận $C = A \pm B$ được xác định bởi công thức: $C_{ij} = A_{ij} \pm B_{ij}$ (Với $1 \le i \le m; 1 \le j \le n$).
-
-- **Ví dụ:**
-    - Phép cộng ma trận: 
-    
-        $\begin{bmatrix} 1 & 3 \\ 1 & 0 \\ 1 & 2 \end{bmatrix} + \begin{bmatrix} 0 & 0 \\ 7 & 5 \\ 2 & 1 \end{bmatrix} = \begin{bmatrix} 1 + 0 & 3 + 0 \\ 1 + 7 & 0 + 5 \\ 1 + 2 & 2 + 1 \end{bmatrix} = \begin{bmatrix} 1 & 3 \\ 8 & 5 \\ 3 & 3 \end{bmatrix}$
-        
-    - Phép trừ ma trận:
-    
-        $\begin{bmatrix} 1 & 3 \\ 1 & 0 \\ 1 & 2 \end{bmatrix} - \begin{bmatrix} 0 & 0 \\ 7 & 5 \\ 2 & 1 \end{bmatrix} = \begin{bmatrix} 1 - 0 & 3 - 0 \\ 1 - 7 & 0 - 5 \\ 1 - 2 & 2 - 1 \end{bmatrix} = \begin{bmatrix} 1 & 3 \\ -6 & -5 \\ -1 & 1 \end{bmatrix}$
-
-**Tham khảo:** [Phép cộng ma trận](https://vi.wikipedia.org/wiki/Ph%C3%A9p_c%E1%BB%99ng_ma_tr%E1%BA%ADn)
- -->
 ## Phép nhân ma trận
 
 Phép nhân hai ma trận chỉ thực hiện được khi số lượng cột trong ma trận thứ nhất phải bằng số lượng hàng trong ma trận thứ hai. Ma trận kết quả, được gọi là **tích ma trận**, có số lượng hàng của ma trận đầu tiên và số cột của ma trận thứ hai. 
@@ -111,7 +85,7 @@ Nếu ma trận $A$ có kích thước $(m \times n)$ và ma trận $B$ có kíc
 
 $C_{ij} = A_{i1} B_{1j} + A_{i2} B_{2j} + ... + A_{in} B_{nj} = \displaystyle\sum_{k = 1}^{n} A_{ik} B_{kj}$ (Với $1 \le i \le m; 1 \le j \le p$)
 
-Hay viết $C_{ij} = \begin{bmatrix} a_{i1} & a_{i2} & ... & a_{in} \end{bmatrix} \begin{bmatrix} b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj} \end{bmatrix}$, tức là phần tử ở hàng thứ $i$, cột thứ $j$ của $C$ là tích của vector hàng thứ $i$ của ma trận $A$ với vector cột thứ $j$ của ma trận $B$.
+Hay viết $C_{ij} = \begin{bmatrix} a_{i1} & a_{i2} & ... & a_{in} \end{bmatrix} \begin{bmatrix} b_{1j} \newline b_{2j} \newline \vdots \newline b_{nj} \end{bmatrix}$, tức là phần tử ở hàng thứ $i$, cột thứ $j$ của $C$ là tích của vector hàng thứ $i$ của ma trận $A$ với vector cột thứ $j$ của ma trận $B$.
 
 - Minh họa tích ma trận $AB$ của hai ma trận $A$ và $B$: 
 
@@ -119,15 +93,15 @@ Hay viết $C_{ij} = \begin{bmatrix} a_{i1} & a_{i2} & ... & a_{in} \end{bmatrix
 
 - **Ví dụ:** Cho $2$ ma trận
 
-    $A = \begin{bmatrix} 2 & 3 & 4 \\ 1 & 0 & 0 \end{bmatrix}$ và $B = \begin{bmatrix} 0 & 1000 \\ 1 & 100 \\ 0 & 10 \end{bmatrix}$
+    $A = \begin{bmatrix} 2 & 3 & 4 \newline 1 & 0 & 0 \end{bmatrix}$ và $B = \begin{bmatrix} 0 & 1000 \newline 1 & 100 \newline 0 & 10 \end{bmatrix}$
 
     Phần tử $C_{12}$ của ma trận tích $AB$ là tích của vector hàng thứ nhất của $A$ và vector cột thứ hai của $B$, ta có:
     
-    $C_{12} = \displaystyle\sum_{k = 1}^{3} A_{1k} B_{k2} = \begin{bmatrix} 2 & 3 & 4 \end{bmatrix} \begin{bmatrix} 1000 \\ 100 \\ 10 \end{bmatrix} = 2 \times 1000 + 3 \times 100 + 4 \times 10= 2340$
+    $C_{12} = \displaystyle\sum_{k = 1}^{3} A_{1k} B_{k2} = \begin{bmatrix} 2 & 3 & 4 \end{bmatrix} \begin{bmatrix} 1000 \newline 100 \newline 10 \end{bmatrix} = 2 \times 1000 + 3 \times 100 + 4 \times 10= 2340$
     
     Tính tương tự với tất cả phần tử còn lại của ma trận tích $C$. Ta được ma trận tích $AB$ có dạng:
     
-    $C = A \times B = \begin{bmatrix} 2 & 3 & 4 \\ 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} 0 & 1000 \\ 1 & 100 \\ 0 & 10 \end{bmatrix} = \begin{bmatrix} 3 & 2340 \\ 0 & 1000 \end{bmatrix}$
+    $C = A \times B = \begin{bmatrix} 2 & 3 & 4 \newline 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} 0 & 1000 \newline 1 & 100 \newline 0 & 10 \end{bmatrix} = \begin{bmatrix} 3 & 2340 \newline 0 & 1000 \end{bmatrix}$
 
     Mô tả quá trình nhân ma trận:
 
@@ -140,7 +114,7 @@ Hay viết $C_{ij} = \begin{bmatrix} a_{i1} & a_{i2} & ... & a_{in} \end{bmatrix
 - Phép nhân ma trận **không** có tính chất giao hoán: Tích $AB$ có thể xác định trong khi $BA$ không nhất thiết phải xác định, tức là nếu $A$ và $B$ lần lượt có số chiều $(m \times n)$ và $(n \times p)$, và $m \neq p$. Thậm chí khi cả hai tích này đều tồn tại thì chúng không nhất thiết phải bằng nhau, tức là $AB \neq BA$.
     - **Ví dụ:**
     
-        $\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} = \begin{bmatrix} 0 & 1 \\ 0 & 3 \end{bmatrix}$, trong khi $\begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix} \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} = \begin{bmatrix} 3 & 4 \\ 0 & 0 \end{bmatrix}$.
+        $\begin{bmatrix} 1 & 2 \newline 3 & 4 \end{bmatrix} \begin{bmatrix} 0 & 1 \newline 0 & 0 \end{bmatrix} = \begin{bmatrix} 0 & 1 \newline 0 & 3 \end{bmatrix}$, trong khi $\begin{bmatrix} 0 & 1 \newline 0 & 0 \end{bmatrix} \begin{bmatrix} 1 & 2 \newline 3 & 4 \end{bmatrix} = \begin{bmatrix} 3 & 4 \newline 0 & 0 \end{bmatrix}$.
  - Khi thực hiện nhân một ma trận bất kì với **ma trận đơn vị** thì vẫn thu được kết quả của chính ma trận đó, tức là: $AI_n = I_mA = A$ (với ma trận $A$ kích thước $(m \times n)$ bất kỳ). 
      Cũng chính vì tính chất này mà $I$ có tên gọi là **ma trận đơn vị**.
 
@@ -156,13 +130,13 @@ $A^k = \underbrace{A \times A \times A \times ... \times A}_\text{k}$
 
 - **Ví dụ:** Cho ma trận vuông $A$ cấp $3$ 
 
-    $A = \begin{bmatrix} 1 & 2 & 0 \\ 3 & 0 & 1 \\ 2 & 3 & 1 \end{bmatrix}$
+    $A = \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix}$
     
-    $A^0 = I_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$
+    $A^0 = I_3 = \begin{bmatrix} 1 & 0 & 0 \newline 0 & 1 & 0 \newline 0 & 0 & 1 \end{bmatrix}$
     
-    $A^2 = A \times A = \begin{bmatrix} 1 & 2 & 0 \\ 3 & 0 & 1 \\ 2 & 3 & 1 \end{bmatrix} \begin{bmatrix} 1 & 2 & 0 \\ 3 & 0 & 1 \\ 2 & 3 & 1 \end{bmatrix} = \begin{bmatrix} 7 & 2 & 2 \\ 5 & 9 & 1 \\ 13 & 7 & 4 \end{bmatrix}$ 
+    $A^2 = A \times A = \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix} \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix} = \begin{bmatrix} 7 & 2 & 2 \newline 5 & 9 & 1 \newline 13 & 7 & 4 \end{bmatrix}$ 
     
-    $A^3 = A \times A \times A = A^2 \times A = \begin{bmatrix} 7 & 2 & 2 \\ 5 & 9 & 1 \\ 13 & 7 & 4 \end{bmatrix} \begin{bmatrix} 1 & 2 & 0 \\ 3 & 0 & 1 \\ 2 & 3 & 1 \end{bmatrix} = \begin{bmatrix} 17 & 20 & 4 \\ 34 & 13 & 10 \\ 42 & 38 & 11 \end{bmatrix}$ 
+    $A^3 = A \times A \times A = A^2 \times A = \begin{bmatrix} 7 & 2 & 2 \newline 5 & 9 & 1 \newline 13 & 7 & 4 \end{bmatrix} \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix} = \begin{bmatrix} 17 & 20 & 4 \newline 34 & 13 & 10 \newline 42 & 38 & 11 \end{bmatrix}$ 
 
 Nhờ **tính chất kết hợp** của phép nhân ma trận nên ta có thể tính nhanh lũy thừa của ma trận tương tự như cách tính hàm mũ thông thường  bằng phương pháp **chia để trị**  (tính $a^k$ với $a$ là số nguyên). Bạn có thể tìm hiểu về cách tính hàm mũ tại [[đây|/translate/he/Number-Theory-3]].
 
@@ -341,8 +315,11 @@ $\Rightarrow$ $F_i = F_{i - 1} + F_{i - 2}$.
 Do đó, bài toán quy về tìm số $Fibonacci$ thứ $N$ với dãy $Fibonacci$ được định nghĩa như sau:
 
 > $F_0 = 1$
+>
 > $F_1 = 1$
+>
 > $...$
+>
 > $F_i = F_{i-1} + F_{i-2}$ (với $i \ge 2$)
 
 Hiển nhiên cách làm thông thường là tính lần lượt các $F_i$. Tuy nhiên, cách làm này hoàn toàn không hiệu quả với $N$ lên đến $10^9$, và ta cần một cách tiếp cận khác.
@@ -358,30 +335,30 @@ Ta xét các lớp số:
 
 Ta hình dung mỗi lớp là một ma trận $(2 \times 1)$. Tiếp đó, ta sẽ biến đổi từ lớp $i-1$ đến lớp $i$. Sau mỗi lần biến đổi như vậy, ta tính thêm được một giá trị $F_i$. Để thực hiện phép biến đổi này, chú ý là các số ở lớp sau chỉ phụ thuộc vào lớp ngay trước nó theo các phép cộng, ta tìm được cách biến đổi bằng nhân ma trận:
 
-$A \times \begin{bmatrix} F_{i-1} \\ F_{i-2} \end{bmatrix} = \begin{bmatrix} F_i \\ F_{i-1} \end{bmatrix}$
+$A \times \begin{bmatrix} F_{i-1} \newline F_{i-2} \end{bmatrix} = \begin{bmatrix} F_i \newline F_{i-1} \end{bmatrix}$
 
 Chắc hẳn đọc đến đây bạn đọc sẽ thắc mắc, làm thế nào để tìm được ma trận $A$ ? Để tìm được ma trận này, ta làm như sau:
 
-$A = \begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix}$
+$A = \begin{bmatrix} a_{11} & a_{12} \newline a_{21} & a_{22} \end{bmatrix}$
 
-$\Rightarrow$ $\begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} \begin{bmatrix} F_{i-1} \\ F_{i-2} \end{bmatrix} = \begin{bmatrix} F_i \\ F_{i-1} \end{bmatrix}$
+$\Rightarrow$ $\begin{bmatrix} a_{11} & a_{12} \newline a_{21} & a_{22} \end{bmatrix} \begin{bmatrix} F_{i-1} \newline F_{i-2} \end{bmatrix} = \begin{bmatrix} F_i \newline F_{i-1} \end{bmatrix}$
 
 Suy ra:
 
 - $F_i = a_{11} \times F_{i-1} + a_{12} \times F_{i-2} = 1 \times F_{i-1} + 1 \times F_{i-2}$, do đó hàng đầu tiên của ma trận $A$ là $\begin{bmatrix} 1 & 1 \end{bmatrix}$.
 - $F_{i-1} = a_{21} \times F_{i-1} + a_{22} \times F_{i-2} = 1 \times F_{i-1} + 0 \times F_{i-2}$, do đó hàng thứ hai của ma trận $A$ là $\begin{bmatrix} 1 & 0 \end{bmatrix}$.
 
-$\Rightarrow A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$
+$\Rightarrow A = \begin{bmatrix} 1 & 1 \newline 1 & 0 \end{bmatrix}$
 
 Ta có:
 
-$\begin{bmatrix} F_i \\ F_{i-1} \end{bmatrix} = A \times \begin{bmatrix} F_{i-1} \\ F_{i-2} \end{bmatrix} = A^2 \times \begin{bmatrix} F_{i-2} \\ F_{i-3} \end{bmatrix}$ $\Bigg($vì $\begin{bmatrix} F_{i-1} \\ F_{i-2} \end{bmatrix} = A \times \begin{bmatrix} F_{i-2} \\ F_{i-3} \end{bmatrix}$ $\Bigg)$
+$\begin{bmatrix} F_i \newline F_{i-1} \end{bmatrix} = A \times \begin{bmatrix} F_{i-1} \newline F_{i-2} \end{bmatrix} = A^2 \times \begin{bmatrix} F_{i-2} \newline F_{i-3} \end{bmatrix}$ $\Bigg($vì $\begin{bmatrix} F_{i-1} \newline F_{i-2} \end{bmatrix} = A \times \begin{bmatrix} F_{i-2} \newline F_{i-3} \end{bmatrix}$ $\Bigg)$
 
-$= A^3 \times \begin{bmatrix} F_{i-3} \\ F_{i-4} \end{bmatrix} = ... = A^{i-1} \times \begin{bmatrix} F_1 \\ F_0 \end{bmatrix}$
+$= A^3 \times \begin{bmatrix} F_{i-3} \newline F_{i-4} \end{bmatrix} = ... = A^{i-1} \times \begin{bmatrix} F_1 \newline F_0 \end{bmatrix}$
 
-$\Rightarrow \begin{bmatrix} F_N \\ F_{N-1} \end{bmatrix} = A^{N-1} \times \begin{bmatrix} F_1 \\ F_0 \end{bmatrix} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix} ^{N-1} \times \begin{bmatrix} 1 \\ 1 \end{bmatrix}$ (vì $F_0 = 1$ và $F_1 = 1$)
+$\Rightarrow \begin{bmatrix} F_N \newline F_{N-1} \end{bmatrix} = A^{N-1} \times \begin{bmatrix} F_1 \newline F_0 \end{bmatrix} = \begin{bmatrix} 1 & 1 \newline 1 & 0 \end{bmatrix} ^{N-1} \times \begin{bmatrix} 1 \newline 1 \end{bmatrix}$ (vì $F_0 = 1$ và $F_1 = 1$)
 
-Ma trận $A$ còn được gọi là **ma trận hệ số** và ma trận $\begin{bmatrix} F_1 \\ F_0 \end{bmatrix}$ được gọi là **ma trận cơ sở**.
+Ma trận $A$ còn được gọi là **ma trận hệ số** và ma trận $\begin{bmatrix} F_1 \newline F_0 \end{bmatrix}$ được gọi là **ma trận cơ sở**.
 
 Vậy bài toán trên được đưa về dạng **nhân ma trận**. $F_N$ được tính dựa vào phép lũy thừa của ma trận $A$    .
 
@@ -500,9 +477,9 @@ Cũng như trong **ví dụ 1**, ta xét các lớp số:
 
 Mỗi lớp là một ma trận $(k \times 1)$. Ta cũng sẽ áp dụng phép nhân ma trận để biến đổi từ lớp $i$ sang lớp $i+1$ như sau:
 
-$D \times \begin{bmatrix} a_i \\ a_{i+1} \\ \vdots \\ a_{i+k-2} \\ a_{i+k-1} \end{bmatrix} = \begin{bmatrix} a_{i+1} \\ a_{i+2} \\ \vdots \\ a_{i+k-1} \\ a_{i+k} \end{bmatrix}$
+$D \times \begin{bmatrix} a_i \newline a_{i+1} \newline \vdots \newline a_{i+k-2} \newline a_{i+k-1} \end{bmatrix} = \begin{bmatrix} a_{i+1} \newline a_{i+2} \newline \vdots \newline a_{i+k-1} \newline a_{i+k} \end{bmatrix}$
 
-$\Rightarrow \begin{bmatrix} d_{1, 1} & d_{1, 2} & \dots & d_{1, k-1} & d_{1, k} \\ d_{2, 1} & d_{2, 2} & \dots & d_{2, k-1} & d_{2, k} \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ d_{k-1, 1} & d_{k-1, 2} & \dots & d_{k-1, k-1} & d_{k-1, k} \\ d_{k, 1} & d_{k, 2} & \dots & d_{k, k-1} & d_{k, k} \end{bmatrix} \begin{bmatrix} a_i \\ a_{i+1} \\ \vdots \\ a_{i+k-2} \\ a_{i+k-1} \end{bmatrix} = \begin{bmatrix} a_{i+1} \\ a_{i+2} \\ \vdots \\ a_{i+k-1} \\ a_{i+k} \end{bmatrix}$ 
+$\Rightarrow \begin{bmatrix} d_{1, 1} & d_{1, 2} & \dots & d_{1, k-1} & d_{1, k} \newline d_{2, 1} & d_{2, 2} & \dots & d_{2, k-1} & d_{2, k} \newline \vdots & \vdots & \ddots & \vdots & \vdots \newline d_{k-1, 1} & d_{k-1, 2} & \dots & d_{k-1, k-1} & d_{k-1, k} \newline d_{k, 1} & d_{k, 2} & \dots & d_{k, k-1} & d_{k, k} \end{bmatrix} \begin{bmatrix} a_i \newline a_{i+1} \newline \vdots \newline a_{i+k-2} \newline a_{i+k-1} \end{bmatrix} = \begin{bmatrix} a_{i+1} \newline a_{i+2} \newline \vdots \newline a_{i+k-1} \newline a_{i+k} \end{bmatrix}$ 
 
 Để xây dựng ma trận vuông $D$ như trên, ta thực hiện tương tự như trong ví dụ trước: Phân tích $a_{i+1}$ đến $a_{i+k}$ dưới dạng $a_i, ..., a_{i+k-1}$ :
 
@@ -512,11 +489,11 @@ $\Rightarrow \begin{bmatrix} d_{1, 1} & d_{1, 2} & \dots & d_{1, k-1} & d_{1, k}
 - $a_{i+k-1} = 0 \times a_i + 0 \times a_{i+1} + 0 \times a_{i+2} + ... + 1 \times a_{i+k-1}$ nên hàng thứ $k-1$ của ma trận $D$ là $\begin{bmatrix} 0 & 0 & 0 & ... & 1\end{bmatrix}$.
 - $a_{i+k} = c_k \times a_i + c_{k-1} \times a_{i+1} + c_{k-2} \times a_{i+2} + ... + c_1 \times a_{i+k-1}$ nên hàng thứ $k$ của ma trận $D$ là $\begin{bmatrix} c_k & c_{k-1} & c_{k-2} & ... & c_1\end{bmatrix}$. 
 
-$\Rightarrow D = \begin{bmatrix} 0 & 1 & 0 & ... & 0 \\ 0 & 0 & 1 & ... & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & ... & 1 \\ c_k & c_{k-1} & c_{k-2} & ... & c_1 \end{bmatrix}$
+$\Rightarrow D = \begin{bmatrix} 0 & 1 & 0 & ... & 0 \newline 0 & 0 & 1 & ... & 0 \newline \vdots & \vdots & \vdots & \ddots & \vdots \newline 0 & 0 & 0 & ... & 1 \newline c_k & c_{k-1} & c_{k-2} & ... & c_1 \end{bmatrix}$
 
 Từ đó, ta thu được cách làm như trong **ví dụ 1**. Vì ta cần tính $a_n$ nên chỉ cần xác định đến lớp $n - k + 1$.
 
-$\Rightarrow \begin{bmatrix} a_{n - k + 1} \\ a_{n - k + 2} \\ \vdots \\ a_{n-1} \\ a_{n} \end{bmatrix} = D^{n - k} \times \begin{bmatrix} a_1 \\ a_2 \\ \vdots \\ a_{k-1} \\ a_k \end{bmatrix} = D^{n - k} \times \begin{bmatrix} b_1 \\ b_2 \\ \vdots \\ b_{k-1} \\ b_k \end{bmatrix}$ (vì $a_i = b_i$ với $1 \le i \le k$)
+$\Rightarrow \begin{bmatrix} a_{n - k + 1} \newline a_{n - k + 2} \newline \vdots \newline a_{n-1} \newline a_{n} \end{bmatrix} = D^{n - k} \times \begin{bmatrix} a_1 \newline a_2 \newline \vdots \newline a_{k-1} \newline a_k \end{bmatrix} = D^{n - k} \times \begin{bmatrix} b_1 \newline b_2 \newline \vdots \newline b_{k-1} \newline b_k \end{bmatrix}$ (vì $a_i = b_i$ với $1 \le i \le k$)
 
 ## Cài đặt
 
@@ -718,7 +695,7 @@ Số đẹp là một số nguyên dương với bất kỳ chữ số lẻ nào
 
 ## Phân tích
 
-Cách làm đơn giản nhất là ta sử dụng [quy hoạch động](https://vnoi.info/wiki/translate/topcoder/dynamic-programming.md) với $4$ trạng thái: 
+Cách làm đơn giản nhất là ta sử dụng [[quy hoạch động|/translate/topcoder/dynamic-programming]] với $4$ trạng thái: 
 
 -  `added` : số lượng chữ số đã thêm vào.
 -  `ewoc` *(even_with_odd_cnt)* : số chữ số chẵn đã xuất hiện lẻ lần.
@@ -729,7 +706,7 @@ Ta không phải lưu **số chữ số chẵn đã xuất hiện** vì nếu ch
 
 Do đó, ta có công thức quy hoạch động theo như code sau:
 
-``` cpp=
+``` cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -807,7 +784,7 @@ Tối ưu hóa thuật toán bằng cách tách $n$ thành các lũy thừa củ
 
 **Lưu ý:** Trong cách cài đặt sau, các hàng và cột của ma trận được đánh số bắt đầu từ $0$ để thuận tiện cho việc xử lí.
 
-``` cpp=
+``` cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -946,10 +923,10 @@ Ngoài ra, kể cả khi ta không giảm số trạng thái xuống còn khoả
 
 Dãy $Fibonacci$ được định nghĩa như sau:
 
-$F_1 = 1$
-$F_2 = 1$
-$...$
-$F_n = F_{n - 1} + F_{n - 2} \space (n > 2)$
+- $F_1 = 1$
+- $F_2 = 1$
+- $...$
+- $F_n = F_{n - 1} + F_{n - 2} \space (n > 2)$
 
 Cho một dãy gồm $n$ số nguyên: $a_1, a_2, ..., a_n$. Có $m$ truy vấn, mỗi truy vấn thuộc một trong hai dạng:
 
@@ -968,9 +945,9 @@ Bằng phương pháp quy nạp, ta có thể dễ dàng chứng minh $2$ địn
 Ta còn có tính chất của dãy $Fibonacci$ như sau: 
 
 - Ta có thể chuyển đổi hai số hạng đầu tiên của dãy $Fibonacci$ để nhận được một dãy mới. 
-- Gọi $f1$, $f2$ là hai dãy mới được tạo thành từ việc chuyển đổi hai số hạng đầu tiên của dãy $Fibonacci$, và dãy $f3$ được xác định như sau $f3_{\space i} = f1_{\space i} + f2_{\space i}$ $(i \ge 1)$ thì dãy $f3$ vẫn tuân theo công thức truy hồi $f_n = f_{n-1} + f_{n-2}$ .
+- Gọi $f1$, $f2$ là hai dãy mới được tạo thành từ việc chuyển đổi hai số hạng đầu tiên của dãy $Fibonacci$, và dãy $f3$ được xác định như sau $f3 \displaystyle_{\space i} = f1 \displaystyle_{\space i} + f2 \displaystyle_{\space i} \space (i \ge 1)$ thì dãy $f3$ vẫn tuân theo công thức truy hồi $f_n = f_{n-1} + f_{n-2}$.
 
-Sau khi sử dụng các tính chất trên, bài toán trở thành một hoạt động rất cơ bản của [cây phân đoạn](https://vnoi.info/wiki/algo/data-structures/segment-tree-extend.md) *(Cây IT - Interval Tree / Segment Tree)*. Với mỗi nút của cây phân đoạn lưu lại hai giá trị đầu tiên của dãy. *Bạn có thể tham khảo code **không** sử dụng phương pháp nhân ma trận tại [đây](https://ideone.com/zRN7N1) để hiểu rõ hơn về cách cập nhật cây phân đoạn*.
+Sau khi sử dụng các tính chất trên, bài toán trở thành một hoạt động rất cơ bản của [[cây phân đoạn|/algo/data-structures/segment-tree-extend.md]] *(Cây IT - Interval Tree / Segment Tree)*. Với mỗi nút của cây phân đoạn lưu lại hai giá trị đầu tiên của dãy. *Bạn có thể tham khảo code **không** sử dụng phương pháp nhân ma trận tại [đây](https://ideone.com/zRN7N1) để hiểu rõ hơn về cách cập nhật cây phân đoạn*.
 
 Ở bài viết này, tôi sẽ sử dụng phương pháp **nhân ma trận** kết hợp với cây phân đoạn để giải quyết bài toán. Với mỗi nút của cây sẽ lưu lại ma trận hệ số của dãy $Fibonacci$.
 
@@ -979,7 +956,7 @@ Sau khi sử dụng các tính chất trên, bài toán trở thành một hoạ
 
 **Lưu ý:** Trong cách cài đặt sau, các hàng và cột của ma trận được đánh số bắt đầu từ $0$ để thuận tiện cho việc xử lí.
 
-``` cpp=
+``` cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -1117,7 +1094,6 @@ main() {
 
 Với mỗi truy vấn, ta sẽ mất độ phức tạp $\mathcal{O}(\log{N})$ cho các thao tác trên cây phân đoạn. Và ta cũng mất thêm $\mathcal{O}(2^2)$ và $\mathcal{O}(2^3)$ cho các phép cộng và phép nhân ma trận. Nhìn chung, độ phức tạp của thuật toán là $\mathcal{O}(m \times \log{N} \times 2^3)$.
 
-
 # Ví dụ 6
 
 ## Phép nhân ma trận cộng tối thiểu (Min-plus matrix multiplication)
@@ -1148,13 +1124,18 @@ Xét ma trận $A$ là ma trận kề của đồ thị đã cho. Ta có:
 - $C(2)[i,j] = \min (A[i,u] + A[u,j])$ với $1 \le u \le N$
 - $C(k)[i,j] = \min (C(k-1)[i,u] + A[u,j])$ với $1 \le u \le N$
 
-Như vậy, nếu ta thay phép nhân và phép cộng trong việc nhân ma trận thông thường lần lượt bởi phép cộng và phép lấy *min*, ta thu được một phép ”nhân ma trận” mới, ký hiệu  là $\star$ , thì:
+Như vậy, nếu ta thay phép nhân và phép cộng trong nhân ma trận thông thường lần lượt bởi phép cộng và phép lấy *min*, ta thu được một phép ”nhân ma trận” mới, ký hiệu  là $\star$ , thì:
 
 > $C(1) = A$
+>
 > $C(2) = C(1) \star C(1) = A \star C(1)$
+>
 > $C(3) = C(1) \star C(2) = A \star C(2)$
+>
 > $C(4) = C(1) \star C(3) = A \star C(3)$
+>
 > $...$
+>
 > $C(k) = C(1) \star C(k-1) = A \star C(k-1)$
 
 Do đó, $C(k) = A^k$
@@ -1165,7 +1146,7 @@ Như vậy, bài toán được đưa về bài toán tính lũy thừa của m�
 
 ## Nhân tổ hợp dãy ma trận
 
-Trong phần [Cài đặt](https://hackmd.io/6jm8fjqdTSGsQfhjLgfQSQ?view#C%C3%A0i-%C4%91%E1%BA%B7t), ta đã có thuật toán nhân hai ma trận $A$ kích cỡ $(m \times n)$ và $B$ kích cỡ $(n \times p)$ cần độ phức tạp $\mathcal{O}(m \times n \times p)$. Giả sử ta có thêm ma trận $C$ có kích cỡ $(p \times q)$ và ta cần tính tích $A \times B \times C$. Xét hai cách thực hiện phép nhân này:
+Trong phần [[Cài đặt|algo/trick/matrix-multiplication#cài-đặt]], ta đã có thuật toán nhân hai ma trận $A$ kích cỡ $(m \times n)$ và $B$ kích cỡ $(n \times p)$ cần độ phức tạp $\mathcal{O}(m \times n \times p)$. Giả sử ta có thêm ma trận $C$ có kích cỡ $(p \times q)$ và ta cần tính tích $A \times B \times C$. Xét hai cách thực hiện phép nhân này:
 
 - **Cách 1**: $(A \times B) \times C$ thực hiện nhân $A$ và $B$ rồi nhân với $C$ cần độ phức tạp $\mathcal{O}(m \times n \times p) + \mathcal{O}(m \times p \times q) = \mathcal{O}(m \times p \times (n + q))$.
 - **Cách 2**: $A \times (B \times C)$ thực hiện nhân $B$ và $C$ rồi nhân với $A$ cần độ phức tạp $\mathcal{O}(n \times p \times q) + \mathcal{O}(m \times n \times q) = \mathcal{O}(n \times q \times (m + p))$.
@@ -1176,7 +1157,7 @@ Như vậy là hai cách thực hiện khác nhau cần hai độ phức tạp k
 
 Khi độ dài của dãy ma trận tăng lên, sự khác biệt có thể còn lớn hơn nữa. Ví dụ trên đã cho thấy rằng trong một số trường hợp thứ tự thực hiện phép nhân ma trận có ý nghĩa rất lớn đối với việc tìm lời giải của các bài toán.
 
-Trong thực tế, bài toán xác định thứ tự nhân ma trận hiệu quả nhất là một bài toán rất phổ biến, bạn có thể tìm đọc chi tiết thêm tại [đây](https://vnoi.info/wiki/algo/dp/basic-problems.md#5-nh%C3%A2n-ma-tr%E1%BA%ADn) hoặc ở [Phần 3 mục 3.5 Phép Nhân Tổ Hợp dãy Ma Trận trong sách Giải thuật và lập trình của thầy Lê Minh Hoàng](https://vnoi.info/wiki/algo/basic/Tai-Lieu-Thuat-Toan.md).
+Trong thực tế, bài toán xác định thứ tự nhân ma trận hiệu quả nhất là một bài toán rất phổ biến, bạn có thể tìm đọc chi tiết thêm tại [[đây|/algo/dp/basic-problems#5-nhân-ma-trận]] hoặc ở [[Phần 3 mục 3.5 Phép Nhân Tổ Hợp dãy Ma Trận trong sách Giải thuật và lập trình của thầy Lê Minh Hoàng|/algo/basic/Tai-Lieu-Thuat-Toan]].
 
 ## Giải thuật Freivalds kiểm tra tích hai ma trận
 
@@ -1184,7 +1165,7 @@ Trong thực tế, bài toán xác định thứ tự nhân ma trận hiệu qu�
 
 ### **Phân tích**
 
-Cách làm thông thường là nhân trực tiếp hai ma trận $A, B$ rồi so sánh kết quả với $C$. Như đánh giá trong phần [Cài đặt](https://hackmd.io/6jm8fjqdTSGsQfhjLgfQSQ?view#C%C3%A0i-%C4%91%E1%BA%B7t), độ phức tạp của cách làm này là $\mathcal{O}(N^3)$, với $N = 1000$ thì cách làm này không đủ nhanh. Giải thuật $\mathrm{Freivalds}$ thực hiện việc kiểm tra thông qua thuật toán xác suất kiểu [Monte Carlo](https://vi.wikipedia.org/wiki/Ph%C6%B0%C6%A1ng_ph%C3%A1p_Monte_Carlo) với $k$ lần thử cho xác suất kết luận sai là xấp xỉ $2^{-k}$, mỗi lần thử có độ phức tạp $\mathcal{O}(N^2)$. Các bước cơ bản của một phép thử $\mathrm{Freivalds}$ như sau:
+Cách làm thông thường là nhân trực tiếp hai ma trận $A, B$ rồi so sánh kết quả với $C$. Như đánh giá trong phần [[Cài đặt|algo/trick/matrix-multiplication#cài-đặt]], độ phức tạp của cách làm này là $\mathcal{O}(N^3)$, với $N = 1000$ thì cách làm này không đủ nhanh. Giải thuật $\mathrm{Freivalds}$ thực hiện việc kiểm tra thông qua thuật toán xác suất kiểu [Monte Carlo](https://vi.wikipedia.org/wiki/Ph%C6%B0%C6%A1ng_ph%C3%A1p_Monte_Carlo) với $k$ lần thử cho xác suất kết luận sai là xấp xỉ $2^{-k}$, mỗi lần thử có độ phức tạp $\mathcal{O}(N^2)$. Các bước cơ bản của một phép thử $\mathrm{Freivalds}$ như sau:
 
 1. Sinh ngẫu nhiên một ma trận $v$ kích cỡ $(N \times 1)$ với các phần tử chỉ nhận giá trị $0$ hoặc $1$.
 2. Tính hiệu $P = A \times B \times v - C \times v$. Dễ thấy rằng $P$ là ma trận kích cỡ $N \times 1$.
@@ -1202,7 +1183,7 @@ Bài toán [VMATRIX - VNOI Marathon 2014](https://oj.vnoi.info/problem/vmatrix)
 
 **Lưu ý:** Trong cách cài đặt sau, các hàng và cột của ma trận được đánh số bắt đầu từ $0$ để thuận tiện cho việc xử lí.
 
-``` cpp=
+``` cpp
 #include <bits/stdc++.h>
 
 using namespace std;
