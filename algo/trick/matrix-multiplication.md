@@ -142,7 +142,7 @@ Nhờ **tính chất kết hợp** của phép nhân ma trận nên ta có thể
 
 # Cài đặt
 
-**Lưu ý:** Khác với định nghĩa bên trên. Trong cách cài đặt sau, các hàng và cột của ma trận được đánh số bắt đầu từ $0$ để thuận tiện cho việc xử lí.
+**Lưu ý:** Khác với định nghĩa bên trên, trong cách cài đặt sau, các hàng và cột của ma trận được đánh số bắt đầu từ $0$ để thuận tiện cho việc xử lí.
 
 ``` cpp
 #include <bits/stdc++.h>
