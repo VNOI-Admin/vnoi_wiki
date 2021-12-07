@@ -80,8 +80,8 @@ Resume là một phần rất quan trọng trong quá trình phỏng vấn. Mộ
 
 Dưới đây là một vài resume "chuẩn" của các bạn đã được nhận bởi Google:
 
-- [Trương Minh Bảo](https://drive.google.com/file/d/0BwcTB8a10LBwdXdxOWoyRjdVNWc/view?usp=sharing)
-- [Hồ Vĩnh Thịnh](https://drive.google.com/file/d/0BwcTB8a10LBwVTZESTd5UHZVaFk/view?usp=sharing)
+- [Trương Minh Bảo](https://drive.google.com/file/d/0BwcTB8a10LBwdXdxOWoyRjdVNWc/view?usp=sharing&resourcekey=0-ZTkE-0Semg1HOCfECTWxug)
+- [Hồ Vĩnh Thịnh](https://drive.google.com/file/d/0BwcTB8a10LBwVTZESTd5UHZVaFk/view?usp=sharing&resourcekey=0-0hvRokQYBn6hpC2BOiESXA)
 
 Các đặt điểm cần chú ý của các resume này:
 
