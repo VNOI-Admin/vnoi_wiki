@@ -40,9 +40,13 @@ Trò chơi ở trên chính là một ví dụ điển hình cho trò chơi tổ
 **Trò chơi tổ hợp** là trò chơi gồm: *hai người chơi (ở đây gọi người chơi trước là $A$ và người chơi sau là $B$)*, một *tập **hữu hạn** các trạng thái* $S$ (viết tắt của State) có thể đạt được của trò chơi. Mỗi người chơi có một *tập các bước di chuyển hợp lệ* $Q$ để di chuyển từ trạng thái này sang trạng thái khác (gọi là luật chơi) và một tập các trạng thái kết thúc gọi là $T \subset S$ (viết tắt của Terminal). Hai người chơi sẽ luân phiên di chuyển từ trạng thái này sang trạng thái khác. Người đến được trạng thái kết thúc trước sẽ là người chiến thắng.
 
 > Trong trò chơi ví dụ, giả sử $n = 8$ thì mỗi trạng thái sẽ là số sỏi còn lại hiện tại của trò chơi. Do đó tập trạng thái của trò chơi là $S = \{0,1,\ldots, 8\}$ (hình dưới).
-[[/uploads/game_theory_decrease_state.png]]
+>
+> [[/uploads/game_theory_decrease_state.png]]
+>
 > Giả sử đang ở trạng thái $x = 7$, ta có thể di chuyển hợp lệ đến trạng thái $x' = 6$ (lấy ra $1$ viên sỏi), $x' = 5$ (lấy ra $2$ viên sỏi) hoặc $x' = 4$ (lấy ra $3$ viên sỏi). Do đó ta có các phần tử $(7, 6), (7,5), (7,4)$ thuộc tập di chuyển hợp lệ $Q$ (hình dưới).
-[[/uploads/game_theory_decrease_transition.png]]
+>
+> [[/uploads/game_theory_decrease_transition.png]]
+>
 > Từ đó, ta nhận xét được tập các bước di chuyển hợp lệ $Q$ của cả hai người chơi sẽ là tất cả những cặp số nguyên $(x,x - c)$ ($0 \leq x \leq n$) sao cho $c \in \{1, 2, 3\}$ (từ trạng thái có số sỏi $x$ chỉ có thể lấy ra $1$, $2$, hoặc $3$ viên sỏi) và $x - c \geq 0$ (số sỏi lấy ra không được phép lớn hơn số sỏi đang có).
 > 
 > Trò chơi kết thúc khi không còn viên sỏi nào để bốc, do đó tập trạng thái kết thúc của cả hai người chơi là $T = \{0\}$. Khi đó người bốc viên sỏi cuối cùng sẽ là người thắng.
@@ -207,30 +211,35 @@ Gọi $\hat{P}$ là tập gồm các trạng thái có tổng Nim bằng $0$ và
 Đầu tiên, trạng thái kết thúc là $(0,\ldots,0)$ thuộc $\hat{P}$ do có tổng Nim là $0$
 
 Thứ hai, với một trạng thái thuộc $\hat{N}$ ($g > 0$), ta luôn có thể đi tới một trạng thái thuộc $\hat{P}$ ($g = 0$). Để chứng minh, chọn một đống sỏi thứ $i$ có $p_i$ sỏi và biến nó thành $p'_i$ sao cho $p'_i = g \oplus p_i < p_i$, ta có được tổng Nim mới $g'$ như sau:
-\begin{align*}
+
+$$\begin{align*}
     g' &= p_1 \oplus p_2 \oplus \ldots \oplus p'_i \oplus \ldots \oplus p_n \\
         &=  p_1 \oplus p_2 \oplus \ldots \oplus [p_i \oplus g] \oplus \ldots \oplus p_n \\
         &=  (p_1 \oplus p_2 \oplus \ldots \oplus p_i \oplus \ldots \oplus p_n) \oplus g \\
         &= g \oplus g = 0
-\end{align*}
+\end{align*}$$
         
 Lưu ý rằng phép XOR không giống phép cộng thông thường. Ở phép cộng hai số nguyên dương, kết quả luôn lớn hơn các toán hạng ban đầu. Tuy nhiên, trong phép XOR điều này không xảy ra, kết quả có thể lớn hơn hoặc nhỏ hơn các toán hạng ban đầu. Do đó việc ta có thể đảm bảo luôn tồn tại đống sỏi $i$ thỏa mãn yêu cầu $p'_i = g \oplus p_i < p_i$ không phải là điều hiển nhiên và **cần được chứng minh**.
 
 Vì $g > 0$ nên  biểu diễn nhị phân của $g$ luôn tồn tại bit trái nhất bằng $1$ (tạm gọi là $d$).Khi đó, xét bit thứ $d$ của tất cả các cột $p_i$, ta có số lượng $p_i$ có bit thứ $d$ bằng $1$ phải lẻ (theo tính chất của phép XOR), do đó luôn tồn tại một đống sỏi có bit thứ $d$ bằng $1$. Chọn đống sỏi có bit thứ $d$ bằng $1$ đó để thực hiện bốc sỏi, ta thấy $p'_i = p_i \oplus g < p_i$ bởi vì khi XOR bit tại vị trí $d$ bằng $1 \oplus 1 = 0$, do đó $p'_i$ luôn mất một bit $1$ tại vị trí $d$ so với $p_i$.
 
 > Ví dụ, nếu trò chơi Nim hiện tại có $4$ cột có số sỏi lần lượt là $7$, $10$, $12$, $3$, thì thao tác tính tổng Nim và chọn cột để lấy sỏi ra sẽ diễn ra như hình dưới
+>
 > [[/uploads/game_theory_bouton_proof_2.png]]
 
 Cuối cùng, với một trạng thái thuộc $\hat{P}$ (tức $g = 0$), mọi cách đi đều dẫn tới trạng thái thuộc $\hat{N}$ (tức $g > 0$). Ta có thể chứng minh dễ dàng bằng phương pháp phản chứng. Giả sử trạng thái trò chơi hiện tại là $(p_1, \ldots, p_n)$ có tổng Nim $g = 0$ và tồn tại một đống sỏi $i$ sao cho khi lấy bớt sỏi từ $i$ ra trạng thái trò chơi mới có tổng Nim $g' = 0$. Khi đó
-\begin{align*}
+
+$$\begin{align*}
     g' &= 0 = g
     \\ \Leftrightarrow
     p_1 \oplus p_2 \oplus \ldots \oplus p'_i \oplus \ldots \oplus p_n &=  p_1 \oplus p_2 \oplus \ldots \oplus p_i \oplus \ldots \oplus p_n
     \\ \Leftrightarrow
     p'_i &= p_i
-\end{align*}
+\end{align*}$$
+
 Điều này có nghĩa là ta không bốc viên sỏi nào từ đống $p_i$ ra cả, mà theo giả thuyết ta phải bốc ít nhất một viên ($p'_i < p_i$), vì vậy không thể tồn tại đống sỏi $i$ nào thỏa mãn yêu cầu.
 > Ví dụ, nếu trò chơi Nim hiện tại có $3$ đống có số sỏi lần lượt là $5$, $6$, $3$, thì tổng Nim $g = 0$. Xét bit đầu tiên từ phải qua, ta thấy được số lượng bit được bật tại vị trí này là số chẵn ($2$, tương ứng với bit đầu tiên của $5$ và $3$). Tương tự, số lượng các bit được bật tại các vị trị khác đều có tính chất này. Điều này không phải là trùng hợp mà do tính chất của phép XOR, nếu muốn bit thứ $i$ trong kết quả bằng $0$ thì số lượng bit thứ $i$ được bật trong các toán hạng phải là số chẵn. Từ đây ta nhận thấy, việc bỏ sỏi ở một đống sỏi chỉ có thể làm thay đổi số lượng bit được bật tại mỗi vị trí $i$ lên hoặc xuống 1 đơn vị, do đó dù cho lấy sỏi ở cột nào đi nữa thì vẫn sẽ xuất hiện một vị trí có số bit được bật là lẻ.
+>
 > [[/uploads/game_theory_bouton_proof_3.png]]
 
 Rõ ràng $\hat{P}$ và $\hat{N}$ thỏa mãn ba điều kiện theo định nghĩa của tập $P$ và $N$ trong trò chơi tổng quát, vì vậy $P = \hat{P}$ và $N = \hat{N}$. $\square$
@@ -261,7 +270,8 @@ Khi đó, dựa vào trạng thái bắt đầu, ta có thể xác định việ
 Nếu xem mỗi trạng thái trong tập trạng thái $S$ là một đỉnh, mỗi cạnh có hướng $(u,v)$ thể hiện cho việc từ trạng $u$ có thể di chuyển đến trạng thái $v$ (tức $(u,v)$ là một phần tử thuộc tập các bước di chuyển di chuyển hợp lệ $Q$) thì ta có thể xây dựng một đồ thị có hướng $(V,E)$ với tập đỉnh $V$ và tập cạnh $E$ tương ứng với tập trạng thái $S$ và tập các bước di chuyển $Q$ như đã nói. Ở đây có một quan sát quan trọng rằng ta tất cả các trạng thái kết thúc sẽ ứng với những đỉnh những đỉnh có bậc ra bằng $0$ (tức từ đỉnh này không đi tới được bất kỳ đỉnh nào khác)
 
 > Ví dụ: trong trò chơi bốc sỏi ở phần đầu, giả sử ta chỉ có một đống sỏi $4$ viên, thì đồ thị của trò chơi sẽ như hình dưới, trạng thái kết thúc $0$ có bậc ra bằng $0$.
-[[/uploads/game_theory_graph_state.png]]
+>
+> [[/uploads/game_theory_graph_state.png]]
 
 Cũng cần chú ý rằng các trò chơi được xem xét trong phần định lý Sprague-Grundy có một tính chất quan trọng, đó là chúng sẽ **kết thúc trong hữu hạn bước**. Khi đó, hiển nhiên đồ thị trò chơi phải không tồn tại chu trình, vì nếu tồn tại chu trình, sẽ tồn tại trường hợp người chơi cố tình đi theo chu trình đó và sẽ không bao giờ đến được đỉnh kết thúc, nghĩa là khi đó trò chơi sẽ lặp vĩnh viễn. Loại đồ thị có hướng không có chu trình như trên còn có thể gọi tắt là DAG ([Directed Acyclic Graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph)).
 
