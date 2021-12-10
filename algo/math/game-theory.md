@@ -223,7 +223,7 @@ Lưu ý rằng phép XOR không giống phép cộng thông thường. Ở phép
 
 Vì $g > 0$ nên  biểu diễn nhị phân của $g$ luôn tồn tại bit trái nhất bằng $1$ (tạm gọi là $d$).Khi đó, xét bit thứ $d$ của tất cả các cột $p_i$, ta có số lượng $p_i$ có bit thứ $d$ bằng $1$ phải lẻ (theo tính chất của phép XOR), do đó luôn tồn tại một đống sỏi có bit thứ $d$ bằng $1$. Chọn đống sỏi có bit thứ $d$ bằng $1$ đó để thực hiện bốc sỏi, ta thấy $p'_i = p_i \oplus g < p_i$ bởi vì khi XOR bit tại vị trí $d$ bằng $1 \oplus 1 = 0$, do đó $p'_i$ luôn mất một bit $1$ tại vị trí $d$ so với $p_i$.
 
-> Ví dụ, nếu trò chơi Nim hiện tại có $4$ cột có số sỏi lần lượt là $7$, $10$, $12$, $3$, thì thao tác tính tổng Nim và chọn cột để lấy sỏi ra sẽ diễn ra như hình dưới
+> Ví dụ, nếu trò chơi Nim hiện tại có $4$ cột có số sỏi lần lượt là $7$, $10$, $12$, $5$, thì thao tác tính tổng Nim và chọn cột để lấy sỏi ra sẽ diễn ra như hình dưới
 >
 > [[/uploads/game_theory_bouton_proof_2.png]]
 
