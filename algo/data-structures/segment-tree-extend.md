@@ -837,6 +837,7 @@ Code này có một chút lạ, khác so với code ở **bài toán 2** một c
 
 # Bài tập áp dụng:
 
+- [Educational Segment Tree Contest](https://oj.vnoi.info/contest/segtree)
 - [VNOJ - QMAX](https://oj.vnoi.info/problem/qmax)
 - [VNOJ - NKLINEUP](https://oj.vnoi.info/problem/nklineup)
 - [VNOJ - GSS](https://oj.vnoi.info/problem/gss)
