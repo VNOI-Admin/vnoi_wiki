@@ -122,9 +122,9 @@ Theo giả sử thì với mọi $G_i$ ta tìm được một chu trình Euler $
 Đồ thị có hướng là đồ thị nửa Euler nếu và chỉ nếu đồ thị thoả **một trong hai** điều kiện sau:
 1. Tồn tại chu trình Euler
 2. Thoả tất cả các điều kiện sau:
-    2.1. Tồn tại trong đồ thị đúng $2$ đỉnh $s$ và $t$ sao cho $deg^-(s) = deg^+(s) + 1$ và $deg^-(t) = deg^+(t) - 1$
-    2.2 Với mọi đỉnh $u$ khác $s$ và $t$, $deg^+(u) = deg^-(u)$
-    2.3 Tất cả các đỉnh có bậc lớn hơn $0$ thuộc cùng một thành phần liên thông
+    - Tồn tại trong đồ thị đúng $2$ đỉnh $s$ và $t$ sao cho $deg^-(s) = deg^+(s) + 1$ và $deg^-(t) = deg^+(t) - 1$
+    - Với mọi đỉnh $u$ khác $s$ và $t$, $deg^+(u) = deg^-(u)$
+    - Tất cả các đỉnh có bậc lớn hơn $0$ thuộc cùng một thành phần liên thông
 
 Đỉnh $s$ và đỉnh $t$ cũng chính là đỉnh xuất phát và kết thúc của đường đi Euler trong đồ thị.
 
@@ -214,7 +214,7 @@ Xét một đồ thị vô hướng $G$ có $n$ đỉnh thoả $\forall u \in G$
 >
 > ![](https://i.imgur.com/3BgtAJ0.png)
 > 
-> Nhận thấy $C$ và $C_1$ có đỉnh chung $2$, nối $C$ và $C_1$ để tạo ra chu trình mới lớn hơn: $1_{C} \to 2_{C/C_1} \to 6_{C_1} \to 3_{C_1} \to 7_{C_1} \to 4_{C_1} \to 8_{C_1} \to 1_{C_1} \to 5_{C_1} \to 2_{C/C_1} \to 3_{C} \to 4_{C} \to 1_{C}$. Ta đã đi qua tất cả các cạnh và tìm được chu trình Euler trong đồ thị.
+> Nhận thấy $C$ và $C_1$ có đỉnh chung $2$, nối $C$ và $C_1$ để tạo ra chu trình mới lớn hơn: $1 \to 2 \to 6 \to 3 \to 7 \to 4 \to 8 \to 1 \to 5 \to 2 \to 3 \to 4 \to 1$. Ta đã đi qua tất cả các cạnh và tìm được chu trình Euler trong đồ thị.
 >
 > ![](https://i.imgur.com/Cv1oPJH.png)
 
@@ -253,9 +253,9 @@ Giả sử đồ thị thoả định lý 1. Các bước trong thuật toán c�
 
 0. Trước khi bắt đầu thuật toán ta chọn một đỉnh $u$ bất kì có bậc lớn hơn $0$ trong đồ thị để bắt đầu. Ta xem $u$ là tham số cho thuật toán. Nếu đồ thị không có cạnh, hiển nhiên ta trả về chu trình rỗng.
 1. Từ đỉnh $u$ tham số, ta tìm một chu trình $C$ chứa $u$. Các bước cụ thể để tìm $C$ như sau:
-    1.1. Khởi tạo mảng kết quả $C$ là rỗng và xuất phát từ đỉnh $u$.
-    1.2. Từ đỉnh đang đứng, chọn một cạnh ra chưa thăm để đi. Đánh dấu cạnh vừa đi qua và cập nhật vào $C$.
-    1.3. Lặp lại bước (1.2). Nếu không thể đi tiếp thì ta tìm được một chu trình $C$ và sang bước 2.
+    1. Khởi tạo mảng kết quả $C$ là rỗng và xuất phát từ đỉnh $u$.
+    2. Từ đỉnh đang đứng, chọn một cạnh ra chưa thăm để đi. Đánh dấu cạnh vừa đi qua và cập nhật vào $C$.
+    3. Lặp lại bước (1.2). Nếu không thể đi tiếp thì ta tìm được một chu trình $C$ và sang bước 2.
 2. Nếu ta đã đi qua tất cả cạnh, trả $C$ là kết quả. Nếu $C$ chưa đi qua tất cả các cạnh, các cạnh chưa thăm trong đồ thị tạo thành những thành phần liên thông yếu. Tìm một đỉnh $v$ trên đồ thị thuộc $C$ mà có cạnh ra chưa đi qua. 
 4. Gọi đệ quy thủ tục tìm chu trình Euler với tham số là đỉnh $v$. Sau khi hoàn thành ta thu được một chu trình Euler $D$ đi qua tất cả các cạnh trong đồ thị con chứa $v$.
 5. Nối hai chu trình $C$ và $D$ tại đỉnh chung $v$. Lặp lại bước 2.
@@ -661,7 +661,7 @@ int main() {
 
 #### Tóm tắt đề
 
-Có $N \leq 1000$ đoạn thẳng song song với trục tọa độ trên mặt phẳng. Mỗi đoạn được biểu diễn bởi hai điểm $(x, y)$ ($x, y \in \mathbb{Z}$, $|x|, |y| \leq 1000$). In ra cách vẽ sao cho có thể tô màu tất cả các đoạn thẳng và số lần phải nhấc bút là ít nhất.
+Có $N \leq 1000$ đoạn thẳng song song với trục tọa độ trên mặt phẳng. Mỗi đoạn được biểu diễn bởi hai điểm $(x, y)$ ($x, y \in \mathbb{Z}$, $-1000 \leq x, y \leq 1000$). In ra cách vẽ sao cho có thể tô màu tất cả các đoạn thẳng và số lần phải nhấc bút là ít nhất.
 
 #### Lời giải
 
