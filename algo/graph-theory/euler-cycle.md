@@ -10,9 +10,10 @@
 - Hoàng Xuân Nhật - VNUHCM-University of Science
 - Nguyễn Nhật Minh Khôi - VNUHCM-University of Science
 - Nguyễn Châu Khanh - VNU University of Engineering and Technology (VNU-UET)
+- Hồ Ngọc Vĩnh Phát - VNUHCM-University of Science
 
 **Chuẩn bị bài tập và bộ test**
-- Hồ Ngọc Vĩnh Phát - VNUHCM-University of Science
+- Nguyễn Hoàng Vũ - VNU University of Engineering and Technology (VNU-UET)
 
 [[_TOC_]]
 
