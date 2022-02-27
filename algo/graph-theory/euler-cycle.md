@@ -272,7 +272,7 @@ Giả sử đồ thị thoả định lý 1. Các bước trong thuật toán c�
 1. Từ đỉnh $u$ tham số, ta tìm một chu trình $C$ chứa $u$. Các bước cụ thể để tìm $C$ như sau:
     1. Khởi tạo mảng kết quả $C$ là rỗng và xuất phát từ đỉnh $u$.
     2. Từ đỉnh đang đứng, chọn một cạnh ra chưa thăm để đi. Đánh dấu cạnh vừa đi qua và cập nhật vào $C$.
-    3. Lặp lại bước (1.2). Nếu không thể đi tiếp thì ta tìm được một chu trình $C$ và sang bước 2.
+    3. Lặp lại bước (ii). Nếu không thể đi tiếp thì ta tìm được một chu trình $C$ và sang bước 2.
 2. Nếu ta đã đi qua tất cả cạnh, trả $C$ là kết quả. Nếu $C$ chưa đi qua tất cả các cạnh, các cạnh chưa thăm trong đồ thị tạo thành những thành phần liên thông yếu. Tìm một đỉnh $v$ trên đồ thị thuộc $C$ mà có cạnh ra chưa đi qua. 
 4. Gọi đệ quy thủ tục tìm chu trình Euler với tham số là đỉnh $v$. Sau khi hoàn thành ta thu được một chu trình Euler $D$ đi qua tất cả các cạnh trong đồ thị con chứa $v$.
 5. Nối hai chu trình $C$ và $D$ tại đỉnh chung $v$. Lặp lại bước 2.
