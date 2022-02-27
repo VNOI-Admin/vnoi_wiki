@@ -755,11 +755,11 @@ struct Graph {
         if (x1 > x2) swap(x1, x2);
         if (y1 > y2) swap(y1, y2);
 
-        if (x1 == x2) { // if the line is parallel to y-axis
+        if (x1 == x2) { // nếu đoạn thẳng song song với trục Oy
             for (int i = y1; i < y2; ++i) {
                 addEdge(N + x1, N + i, N + x2, N + i + 1);
             }
-        } else { // if the line is parallel to x-axis
+        } else { // nếu đoạn thẳng song song với trục Ox
             for (int i = x1; i < x2; ++i) {
                 addEdge(N + i, N + y1, N + i + 1, N + y2);
             }
