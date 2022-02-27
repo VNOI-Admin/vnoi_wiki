@@ -13,7 +13,7 @@
 - Hồ Ngọc Vĩnh Phát - VNUHCM-University of Science
 
 **Chuẩn bị bài tập và bộ test**
-- Nguyễn Hoàng Vũ - VNU University of Engineering and Technology (VNU-UET)
+- Nguyễn Hoàng Vũ - THPT chuyên Phan Bội Châu - Nghệ An
 
 [[_TOC_]]
 
