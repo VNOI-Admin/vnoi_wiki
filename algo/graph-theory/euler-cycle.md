@@ -106,11 +106,11 @@ Theo giả sử thì với mọi $G_i$ ta tìm được một chu trình Euler $
 >
 > ![graph4](https://i.imgur.com/fwSS7hb.png)
 > 
-> Nhận thấy giữa $C$ và $C_1$ có đỉnh chung $5$. Nối $2$ chu trình lại ta thu được một chu trình $C$ mới lớn hơn: $C = 1 \to 2 \to 3 \to 4 \to 5_{C/C_1} \to 3_{C_1} \to 9_{C_1} \to 5_{C/C_1} \to 6 \to 1$.
+> Nhận thấy giữa $C$ và $C_1$ có đỉnh chung $5$. Nối $2$ chu trình lại ta thu được một chu trình $C$ mới lớn hơn: $C = 1 \to 2 \to 3 \to 4 \to 5 \to 3 \to 9 \to 5 \to 6 \to 1$.
 >
 > ![graph5](https://i.imgur.com/sekE1zw.png)
 > 
-> Tiếp tục, giữa $C$ và $C_2$ có đỉnh chung $6$. Nối $2$ chu trình lại ta thu được một chu trình $C$ mới: $C = 1_{C} \to 2_{C} \to 3_{C} \to 4_{C} \to 5_{C/C_1} \to 3_{C_1} \to 9_{C_1} \to 5_{C/C_1} \to 6_{C/C_2} \to 7_{C_2} \to 8_{C_2} \to 6_{C/C_2} \to 1_{C}$. Ta đã đi qua tất cả các cạnh và tìm được chu trình Euler trong đồ thị.
+> Tiếp tục, giữa $C$ và $C_2$ có đỉnh chung $6$. Nối $2$ chu trình lại ta thu được một chu trình $C$ mới: $C = 1 \to 2 \to 3 \to 4 \to 5 \to 3 \to 9 \to 5 \to 6 \to 7 \to 8 \to 6 \to 1$. Ta đã đi qua tất cả các cạnh và tìm được chu trình Euler trong đồ thị.
 >
 > ![graph6](https://i.imgur.com/l9EXMND.png)
 
@@ -122,9 +122,9 @@ Theo giả sử thì với mọi $G_i$ ta tìm được một chu trình Euler $
 Đồ thị có hướng là đồ thị nửa Euler nếu và chỉ nếu đồ thị thoả **một trong hai** điều kiện sau:
 1. Tồn tại chu trình Euler
 2. Thoả tất cả các điều kiện sau:
-2.1. Tồn tại trong đồ thị đúng $2$ đỉnh $s$ và $t$ sao cho $deg^-(s) = deg^+(s) + 1$ và $deg^-(t) = deg^+(t) - 1$
-2.2 Với mọi đỉnh $u$ khác $s$ và $t$, $deg^+(u) = deg^-(u)$
-2.3 Tất cả các đỉnh có bậc lớn hơn $0$ thuộc cùng một thành phần liên thông
+    2.1. Tồn tại trong đồ thị đúng $2$ đỉnh $s$ và $t$ sao cho $deg^-(s) = deg^+(s) + 1$ và $deg^-(t) = deg^+(t) - 1$
+    2.2 Với mọi đỉnh $u$ khác $s$ và $t$, $deg^+(u) = deg^-(u)$
+    2.3 Tất cả các đỉnh có bậc lớn hơn $0$ thuộc cùng một thành phần liên thông
 
 Đỉnh $s$ và đỉnh $t$ cũng chính là đỉnh xuất phát và kết thúc của đường đi Euler trong đồ thị.
 
