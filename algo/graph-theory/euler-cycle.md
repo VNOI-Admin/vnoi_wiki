@@ -139,9 +139,9 @@ Theo giả sử thì với mọi $G_i$ ta tìm được một chu trình Euler $
 Đồ thị có hướng là đồ thị nửa Euler nếu và chỉ nếu đồ thị thoả **một trong hai** điều kiện sau:
 1. Tồn tại chu trình Euler
 2. Thoả tất cả các điều kiện sau:
-    - Tồn tại trong đồ thị đúng $2$ đỉnh $s$ và $t$ sao cho $deg^-(s) = deg^+(s) + 1$ và $deg^-(t) = deg^+(t) - 1$
-    - Với mọi đỉnh $u$ khác $s$ và $t$, $deg^+(u) = deg^-(u)$
-    - Tất cả các đỉnh có bậc lớn hơn $0$ thuộc cùng một thành phần liên thông
+    1. Tồn tại trong đồ thị đúng $2$ đỉnh $s$ và $t$ sao cho $deg^-(s) = deg^+(s) + 1$ và $deg^-(t) = deg^+(t) - 1$
+    2. Với mọi đỉnh $u$ khác $s$ và $t$, $deg^+(u) = deg^-(u)$
+    3. Tất cả các đỉnh có bậc lớn hơn $0$ thuộc cùng một thành phần liên thông
 
 Đỉnh $s$ và đỉnh $t$ cũng chính là đỉnh xuất phát và kết thúc của đường đi Euler trong đồ thị.
 
@@ -183,7 +183,7 @@ Giả sử tồn tại đường đi Euler bắt đầu từ $s$ và kết thúc
 
 Trong trường hợp đồ thị có hướng tồn tại chu trình Euler, hiển nhiên đồ thị tồn tại đường đi Euler.
 
-Giả sử đồ thị có hướng thoả các điều kiện (2.1), (2.2) và (2.3). Thêm một cạnh $e$ nối từ $t$ đến $s$ vào đồ thị ($s$ và $t$ là $2$ đỉnh duy nhất trong đồ thị không thoả điều kiện bán bậc vào bằng bán bậc ra). Khi này mọi đỉnh trong đồ thị đều có bán bậc vào bằng bán bậc ra nên đồ thị tồn tại chu trình Euler đi qua $t$ và $s$:
+Giả sử đồ thị có hướng thoả các điều kiện trong định lý 2. Thêm một cạnh $e$ nối từ $t$ đến $s$ vào đồ thị ($s$ và $t$ là $2$ đỉnh duy nhất trong đồ thị không thoả điều kiện bán bậc vào bằng bán bậc ra). Khi này mọi đỉnh trong đồ thị đều có bán bậc vào bằng bán bậc ra nên đồ thị tồn tại chu trình Euler đi qua $t$ và $s$:
 $$u_1\ u_2\ u_3\ \cdots\ t\ s\ \cdots\ u_{n - 1}\ u_n$$
 Ta nhận thấy trên đồ thị lúc sau tồn tại một đường đi qua tất cả các cạnh khác $e$ bắt đầu từ $s$ và kết thúc ở $t$.
 $$s\ \cdots\ u_{n - 1}\ u_n\ u_1\ u_2\ u_3\ \cdots\ t$$
