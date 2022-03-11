@@ -682,7 +682,7 @@ Có $N \leq 1000$ đoạn thẳng song song với trục tọa độ trên mặt
 
 ### Lời giải
 
-Ta xem mỗi điểm trên mặt phẳng như một cạnh trên đồ thị vô hướng. Giữa $2$ đỉnh có cạnh nối nếu có đường thẳng nối giữa hai điểm tương ứng trên mặt phẳng. Với $2$ đỉnh có bậc lẻ bất kì ta thêm một cạnh ảo nối $2$ đỉnh đó. Tìm chu trình Euler trên đồ thị vô hướng vừa dựng rồi xoá các cạnh ảo ta đã thêm khỏi chu trình vừa tìm được, ta thu được cách vẽ sao cho số lần nhấc bút là ít nhất.
+Ta xem mỗi điểm trên mặt phẳng như một cạnh trên đồ thị vô hướng. Thêm $1$ đỉnh ảo vào đồ thị. Với mỗi đỉnh bậc lẻ trong đồ thị ban đầu, nối đỉnh đó với đỉnh ảo vừa thêm. Khi này đồ thị ta đang có gồm nhiều thành phần liên thông, mỗi thành phân liên thông là một đồ thị Euler. Tìm chu trình Euler trên tửng thành phần liên thông rồi xoá đỉnh ảo và các cạnh ảo đã thêm khỏi chu trình tìm được, ta thu được cách vẽ sao cho số lần nhấc bút là ít nhất.
 
 ### Cài đặt mẫu
 
@@ -734,19 +734,11 @@ struct Graph {
     }
 
     void addFakeEdges() {
-        int ti = -1, tj = -1;
         for (int i = 0; i < N * 2; ++i)
             for (int j = 0; j < N * 2; ++j) {
                 if (graph[i][j].size() % 2 != 0) {
-                    // Ghép cặp các đỉnh bậc lẻ với nhau
-                    if (ti < 0) {
-                        ti = i;
-                        tj = j;
-                    } else {
-                        addEdge(i, j, ti, tj, true);
-                        ti = -1;
-                        tj = -1;
-                    }
+                    // Nối đỉnh bậc lẻ với đỉnh ảo
+                    addEdge(i, j, 0, 0, true);
                 }
             }
     }
@@ -827,19 +819,6 @@ int main() {
                 // Tìm chu trình Euler trên TPLT đang xét
                 list<Edge> cycle = euler_walk(Point(i, j), g);
 
-                // Nếu trên chu trình tìm được có cạnh ảo, 
-                // dịch chu trình sao cho ta xuất phát từ 
-                // cạnh ảo để tối thiểu số nét cần dùng
-                for (auto it = cycle.begin(); it != cycle.end(); ++it)
-                    if (it->fake) {
-                        list<Edge> new_cycle;
-                        new_cycle.clear();
-                        new_cycle.insert(new_cycle.end(), it, cycle.end());
-                        new_cycle.insert(new_cycle.end(), cycle.begin(), it);
-                        cycle = new_cycle;
-                        break;
-                    }
-
                 // Chia chu trình tìm được thành các nét vẽ 
                 // riêng biệt dựa vào các cạnh ảo
                 vector<Point> stroke;
@@ -850,7 +829,6 @@ int main() {
                             ans.push_back(stroke);
                             stroke.clear();
                         }
-                        stroke.push_back(it->target);
                     } else {
                         if (stroke.empty()) {
                             stroke.push_back(it->source);
@@ -858,8 +836,7 @@ int main() {
                         stroke.push_back(it->target);
                     }
                 }
-
-                ans.push_back(stroke);
+                if (!stroke.empty()) ans.push_back(stroke);
             }
         }
     }
