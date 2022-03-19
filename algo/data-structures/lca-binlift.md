@@ -26,7 +26,7 @@ Bài toán tìm LCA có nhiều cách giải:
 Trong bài viết này, ta tập trung vào cách đầu tiên là sử dụng kỹ thuật Binary Lifting để tìm LCA.
 
 **Lưu ý:** Trong suốt bài viết mình dùng `__lg(x)` để tính $\log_2$ của 1 số vì ta cần giá trị nguyên, còn `log2(x)` thì trả về số thực. Nếu không muốn dùng hàm thì có thể tính trước như sau:
-```cpp=1
+```cpp
 int lg2[N];
 void preprocess() {
     lg2[1] = 0;
@@ -226,17 +226,19 @@ Nhưng nếu dùng $\log_2$ mảng $up$ sẽ mang đến cho ta nhiều bất ti
     - Cha của $u$ là tổ tiên thứ $1$ (đầu tiên) của $u$.
         - $up[u][0] = par[u]$
     - Đặt $x$ là tổ tiên thứ $2^{j-1}$ của $u$, ta có, tổ tiên thứ $2^{j-1}$ của $x$ là tổ tiên thứ $2^j$ của $u$ (vì $2^{j-1} + 2^{j-1} = 2^j$)
-\begin{cases}
+
+$$\begin{cases}
 x &= up[u][j - 1] \\
 up[u][j] &= up[x][j - 1]
-\end{cases}
-    - Ta có công thức truy hồi sau:
+\end{cases}$$
 
-\begin{cases}
+- Ta có công thức truy hồi sau:
+
+$$\begin{cases}
 up[u][j] = par[u] & \text{ với } j = 0 \\ 
 up[u][j] = up[up[u][j-1]][j-1] & \text{ với } j > 0 \text{ và } 2^j \leq h[u] \\
 up[u][j] = 0 \text{ (NULL)} & \text{ với } j > 0 \text{ và } 2^j > h[u]
-\end{cases}
+\end{cases}$$
 
 ```cpp
 int par[N], up[N][17];
@@ -348,7 +350,7 @@ int solve(int u, int x) {
 ## Ứng dụng Binary Lifting vào bài toán LCA
 Dễ thấy: nếu $x$ là tổ tiên chung của $u$ và $v$ ($x \neq$ gốc) thì $par[x]$ cũng là tổ tiên chung của $u$ và $v$. Do đó, ta có thể tìm tổ tiên chung gần nhất của $u$ và $v$ bằng Binary Lifting.
 
-Bằng cách sử dụng mảng $up$, ta có thể nhảy từ $u$ đến bất kì tổ tiên nào chỉ trong $\mathcal{O}(\log_2N)$ (bài toán tìm tổ tiên thứ $k$). Ta có thể tính mảng này bằng hàm $DFS$ như sau:
+Bằng cách sử dụng mảng $up$, ta có thể nhảy từ $u$ đến bất kì tổ tiên nào chỉ trong $\mathcal{O}(\log N)$ (bài toán tìm tổ tiên thứ $k$). Ta có thể tính mảng này bằng hàm $DFS$ như sau:
 
 ```cpp
 void dfs(int u) {
@@ -365,9 +367,9 @@ void dfs(int u) {
 }
 ```
 
-Bước khởi tạo này chi phí $\mathcal{O}(N\log_2N)$ bộ nhớ lẫn thời gian.
+Bước khởi tạo này chi phí $\mathcal{O}(N\log N)$ bộ nhớ lẫn thời gian.
 
-Cách tìm LCA giống hệt thuật toán ngây thơ 1, nhưng để tăng tốc, thay vì nhảy lên cha ở mỗi bước, ta dùng mảng $up$ để nhảy, từ đó thu được độ phức tạp $\mathcal{O}(\log_2N)$ cho mỗi truy vấn. Cụ thể:
+Cách tìm LCA giống hệt thuật toán ngây thơ 1, nhưng để tăng tốc, thay vì nhảy lên cha ở mỗi bước, ta dùng mảng $up$ để nhảy, từ đó thu được độ phức tạp $\mathcal{O}(\log N)$ cho mỗi truy vấn. Cụ thể:
 
 - Gọi $h(u)$ là độ cao của đỉnh $u$. Để tính $LCA(u, v)$, giả sử $h(u) > h(v)$, đầu tiên ta tìm $u'$ là tổ tiên của $u$ và có $h(u') = h(v)$:
     - Rõ ràng, ta cần nhảy từ $u$ lên cha thứ $k = h(u) - h(v)$.
@@ -405,12 +407,12 @@ int lca(int u, int v) {
 ```
 
 ## Phân tích:
-- Độ phức tạp tiền xử lý: $\mathcal{O}(N\log_2N)$
-- Độ phức tạp khi truy vấn: $\mathcal{O}(\log_2N)$
-- Có $Q$ truy vấn, vì thế tổng độ phức tạp là $\mathcal{O}(N\log_2N + Q\log_2N)$
+- Độ phức tạp tiền xử lý: $\mathcal{O}(N\log N)$
+- Độ phức tạp khi truy vấn: $\mathcal{O}(\log N)$
+- Có $Q$ truy vấn, vì thế tổng độ phức tạp là $\mathcal{O}(N\log N + Q\log N)$
 
 # Bài toán 1
-https://oj.vnoi.info/problem/pwalk
+[**VNOJ - PWALK**](https://oj.vnoi.info/problem/pwalk)
 ## Tóm tắt
 Cho $1$ cây $N$ đỉnh có trọng số $(N \le 1000)$. Cần trả lời $Q$ truy vấn, mỗi truy vấn yêu cầu tìm khoảng cách giữa 2 đỉnh $u$ và $v$ trong cây.
 
@@ -502,7 +504,7 @@ int main() {
 ```
 
 # Bài toán 2
-https://oj.vnoi.info/problem/fselect
+[**VNOJ - FSELECT**](https://oj.vnoi.info/problem/fselect)
 ## Tóm tắt
 Cho $1$ cây $N$ đỉnh và một số nguyên dương $K$ là số nhóm $(N \le 2\cdot 10^5, K \le \frac{N}{2})$. Đỉnh thứ $i$ thuộc nhóm $x_i$.
 
@@ -606,7 +608,7 @@ int main() {
 ```
 
 # Bài toán 3
-https://oj.vnoi.info/problem/hbtlca
+[**VNOJ - HBTLCA**](https://oj.vnoi.info/problem/hbtlca)
 ## Tóm tắt
 Cho $1$ cây $N$ đỉnh có gốc là đỉnh $1$ và $M$ truy vấn thuộc $1$ trong $2$ loại:
 - $!$ $root$ : Chọn $root$ làm gốc của cây.
@@ -703,4 +705,3 @@ int main() {
 - [**VNOJ - BGAME (VOI17)**](https://oj.vnoi.info/problem/voi17bgame)
 - [**Codeforces - 519E**](https://codeforces.com/contest/519/problem/E)
 - [**Codeforces - 916E**](https://codeforces.com/contest/916/problem/E)
-- 
