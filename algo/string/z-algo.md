@@ -95,7 +95,7 @@ Cho chuỗi $S$ độ dài $n$ và $T$ độ dài $m$, ta cần tìm chuỗi con
 
 Thuật toán trong trường hợp này rất đơn giản, ta chỉ cần tạo chuỗi mới $P = T + \diamond + S$, khi đó ta chỉ cần tính $z$ của chuỗi $P$ mới này và chọn ra các $i$ có $z[i] = m$. Ở đây, $\diamond$ là một ký tự đặc biệt dùng để phân tách $T$ và $S$ trong chuỗi $P$, đảm bảo $z[i]$ không vượt quá độ dài của $T$, ký tự $\diamond$ này phải thoả điều kiện là không nằm trong cả chuỗi $S$ và chuỗi $T$.
 
-Giả sử $\diamond = \#$, thuật toán có thể cài đặt bằng ngôn ngữ C++ như sau:
+Giả sử $ \diamond = \texttt{#} $, thuật toán có thể cài đặt bằng ngôn ngữ C++ như sau:
 ```c++
 vector<int> string_matching(string s, string t) {
     string p = t + '#' + s;
