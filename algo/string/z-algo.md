@@ -91,7 +91,7 @@ Kĩ thuật hai con trỏ cũng là một cách giải thích khác cho thuật 
 
 ## Một số ứng dụng
 ### So khớp chuỗi
-Cho chuỗi $S$ độ dài $n$ và $T$ độ dài $m$, ta cần tìm chuỗi con liên tục trong $S$ sao cho chuỗi con đó bằng với chuỗi $T$. Bạn đọc có thể nộp bài ở [VNOI OJ](https://oj.vnoi.info/problem/substr).
+Cho chuỗi $S$ độ dài $n$ và $T$ độ dài $m$, ta cần tìm chuỗi con liên tục trong $S$ sao cho chuỗi con đó bằng với chuỗi $T$. Bạn đọc có thể nộp bài ở [VNOJ](https://oj.vnoi.info/problem/substr).
 
 Thuật toán trong trường hợp này rất đơn giản, ta chỉ cần tạo chuỗi mới $P = T + \diamond + S$, khi đó ta chỉ cần tính $z$ của chuỗi $P$ mới này và chọn ra các $i$ có $z[i] = m$. Ở đây, $\diamond$ là một ký tự đặc biệt dùng để phân tách $T$ và $S$ trong chuỗi $P$, đảm bảo $z[i]$ không vượt quá độ dài của $T$, ký tự $\diamond$ này phải thoả điều kiện là không nằm trong cả chuỗi $S$ và chuỗi $T$.
 
