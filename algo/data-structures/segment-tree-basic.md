@@ -1,6 +1,6 @@
 # Cây Phân Đoạn (cơ bản)
 
-**Nguồn:** [wcipeg](http://wcipeg.com/wiki/Segment_tree), [cp-algorithms](https://cp-algorithms.com/data_structures/segment_tree.html), [Tất tần tật về Cây Phân Đoạn (Segment Tree) - VNOI](https://vnoi.info/wiki/algo/data-structures/segment-tree-extend.md)
+**Nguồn:** [wcipeg](http://wcipeg.com/wiki/Segment_tree), [cp-algorithms](https://cp-algorithms.com/data_structures/segment_tree.html), [[Tất tần tật về Cây Phân Đoạn (Segment Tree) - VNOI|algo/data-structures/segment-tree-extend]]
 
 **Tác giả:** 
 
@@ -24,11 +24,11 @@
 
 Ở bài viết này, ta sẽ chỉ tìm hiểu về những kiến thức cơ bản của **Segment Tree** và một số bài tập thường gặp trong các kì thi.
 
-Còn nếu bạn muốn tìm hiểu sâu hơn về **Segment Tree** thì bạn có thể tham khảo bài viết: [Tất tần tật về Cây Phân Đoạn (Segment Tree) - VNOI](https://vnoi.info/wiki/algo/data-structures/segment-tree-extend.md).
+Còn nếu bạn muốn tìm hiểu sâu hơn về **Segment Tree** thì bạn có thể tham khảo bài viết: [[Tất tần tật về Cây Phân Đoạn (Segment Tree) - VNOI|algo/data-structures/segment-tree-extend]].
 
 # Ý tưởng 
 
-Một trong những ứng dụng phổ biến nhất của **Segment Tree** là giải quyết bài toán [$Range \space Minimum \space Query \space \mathit{(RMQ)}$](https://vnoi.info/wiki/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor.md). Trong bài toán này, ta được cho một mảng $A$ và $Q$ truy vấn; mỗi truy vấn gồm cặp số $l$ và $r$, yêu cầu tìm phần tử có giá trị nhỏ nhất trong đoạn từ $l$ đến $r$ của mảng $A$. 
+Một trong những ứng dụng phổ biến nhất của **Segment Tree** là giải quyết bài toán [[$Range \space Minimum \space Query \space \mathit{(RMQ)}$|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]]. Trong bài toán này, ta được cho một mảng $A$ và $Q$ truy vấn; mỗi truy vấn gồm cặp số $l$ và $r$, yêu cầu tìm phần tử có giá trị nhỏ nhất trong đoạn từ $l$ đến $r$ của mảng $A$. 
 - **Ví dụ:** Ta có mảng $A = \{9,2,6,3,1,5,7\}$. Với truy vấn $l = 3$ và $r = 6$, đáp án sẽ là $\min{(6,3,1,5)} = 1$. Sau đó, một truy vấn khác với $l = 1$ và $r = 3$ thì đáp án là $2$; v.v...
 
 Có nhiều giải pháp khác nhau để giải quyết bài toán này nhưng **Segment Tree** thường là lựa chọn thích hợp nhất, đặc biệt là khi có thêm **hoạt động sửa đổi** được xen kẽ với các truy vấn. 
@@ -50,14 +50,17 @@ Có nhiều giải pháp khác nhau để giải quyết bài toán này nhưng 
 **Tổng quát**
 
 - Gọi $a_i$ là giá trị của phần tử thứ $i$ trong mảng, việc tìm giá trị nhỏ nhất có thể được viết dưới dạng hàm [đệ quy](https://vi.wikipedia.org/wiki/%C4%90%E1%BB%87_quy_(tin_h%E1%BB%8Dc)) như sau:
-    $f(l, r) = \begin{cases} a_l & \quad \text{if } l = r \\ \min{\Big( f \big(l, \big\lfloor \frac{l + r}{2} \big\rfloor \big), f \big( \big\lfloor \frac{l + r}{2} \big\rfloor + 1, r \big) \Big)}  & \quad \text{if } l < r \end{cases}$
+    $$f(l, r) = \begin{cases} 
+                    a_l & \quad \text{if } l = r \\ 
+                    \min{\Big( f \big(l, \big\lfloor \frac{l + r}{2} \big\rfloor \big), f \big( \big\lfloor \frac{l + r}{2} \big\rfloor + 1, r \big) \Big)}  & \quad \text{if } l < r 
+                \end{cases}$$
     - Với $f(l, r)$ là phần tử có giá trị nhỏ nhất trong đoạn từ $l$ đến $r$ của mảng $A$.
     
 - Do đó, khi ta sửa đổi giá trị của phần tử thứ $i$ trong mảng thì ta chỉ cần tính lại kết quả của các hàm $f(l, r)$ với $l \le i \le r$.
 
 Giả sử rằng ta sử dụng hàm được định nghĩa ở trên để xác định $f(1, N)$, với $N$ là số lượng phần tử của mảng. Khi $N$ lớn, hàm gọi đệ quy này sẽ có hai "con", một trong số đó là lệnh gọi đệ quy $f \big(l, \big\lfloor \frac{l + r}{2} \big\rfloor \big)$ và lệnh còn lại là $f \big( \big\lfloor \frac{l + r}{2} \big\rfloor + 1, r \big)$. Mỗi hàm này sau đó sẽ lại có thêm hai "con" của riêng nó, và cứ tiếp tục như vậy cho đến khi đạt được trường hợp cơ sở (khi $l = r$). 
 
-Nếu ta biểu diễn các hàm gọi đệ quy này bằng cấu trúc [cây](https://vnoi.info/wiki/translate/wcipeg/tree.md), thì hàm $f(1, N)$ sẽ là gốc, nó sẽ có hai con, mỗi con sẽ có thêm hai con nữa, v.v...; các trường hợp cơ sở sẽ là lá của cây. Khi đó, cấu trúc cây gọi đệ quy của hàm $f(1, N)$ chính là cấu trúc của **cây phân đoạn**. Và việc sửa đổi giá trị phần tử trong mảng cũng chính là bản chất của **thao tác cập nhật** trên cây phân đoạn *(sẽ được mô tả rõ hơn ở phần sau)*.
+Nếu ta biểu diễn các hàm gọi đệ quy này bằng cấu trúc [[cây|translate/wcipeg/tree]], thì hàm $f(1, N)$ sẽ là gốc, nó sẽ có hai con, mỗi con sẽ có thêm hai con nữa, v.v...; các trường hợp cơ sở sẽ là lá của cây. Khi đó, cấu trúc cây gọi đệ quy của hàm $f(1, N)$ chính là cấu trúc của **cây phân đoạn**. Và việc sửa đổi giá trị phần tử trong mảng cũng chính là bản chất của **thao tác cập nhật** trên cây phân đoạn *(sẽ được mô tả rõ hơn ở phần sau)*.
 
 - **Ví dụ:** Ta có mảng $A = \{9,2,6,3,1,5,7\}$ được kiểm soát bởi cây phân đoạn sau:
 
@@ -67,7 +70,7 @@ Nếu ta biểu diễn các hàm gọi đệ quy này bằng cấu trúc [cây](
 
 Bây giờ ta đã sẵn sàng để xác định cấu trúc của cây phân đoạn:
 
-- **Segment Tree** là một [cây](https://vnoi.info/wiki/translate/wcipeg/tree). Cụ thể hơn, nó là một cây nhị phân đầy đủ (mỗi nút là lá hoặc có đúng $2$ nút con).
+- **Segment Tree** là một [[cây|translate/wcipeg/tree]]. Cụ thể hơn, nó là một cây nhị phân đầy đủ (mỗi nút là lá hoặc có đúng $2$ nút con).
 - Mỗi nút quản lý một dãy các đối tượng liên tiếp, trong nút chứa thông tin tổng hợp từ các đối tượng mà nó quản lý.
 - Với một dãy số gồm $N$ phần tử, nút gốc quản lý các đối tượng từ $1$ tới $N$.
 - Nếu một nút quản lý dãy các đối tượng từ $l$ tới $r$ $(l<r)$ thì nút con trái của nó quản lý các đối tượng từ $l$ tới $mid$ và nút con phải của nó quản lý các đối tượng từ $mid+1$ tới $r$ $\big($Với $mid = \big\lfloor \frac{l + r}{2} \big\rfloor \big)$.
@@ -255,9 +258,9 @@ int main() {
 
 ## Đánh giá
 
-Ở phần **[Các thao tác trên cây phân đoạn](https://hackmd.io/vVI4UQHzSlGdXHRkMYEVOA?view#C%C3%A1c-thao-t%C3%A1c-tr%C3%AAn-c%C3%A2y-ph%C3%A2n-%C4%91o%E1%BA%A1n)** có nhắc đến $2$ cách để cài đặt **Segment Tree**. Vì sự khác biệt về tốc độ của hai cách có thể là không đáng kể, nên bài viết này sẽ chỉ cài đặt theo cách thông thường nhất là sử dụng **phương pháp đệ quy**.
+Ở phần **[[Các thao tác trên cây phân đoạn|algo/data-structures/segment-tree-basic]]** có nhắc đến $2$ cách để cài đặt **Segment Tree**. Vì sự khác biệt về tốc độ của hai cách có thể là không đáng kể, nên bài viết này sẽ chỉ cài đặt theo cách thông thường nhất là sử dụng **phương pháp đệ quy**.
 
-**Segment Tree** còn có một cách cài đặt khác sử dụng ít bộ nhớ hơn (sử dụng tối đa $2 \times N$ phần tử), cài đặt ngắn hơn và chạy nhanh hơn. Tuy nhiên thì nó không dễ hiểu bằng cách cài đặt trên. *Bạn có thể tham khảo thêm tại đây: [**VNOI - Efficient and easy segment trees**](https://vnoi.info/wiki/translate/codeforces/Efficient-and-easy-segment-trees)*.
+**Segment Tree** còn có một cách cài đặt khác sử dụng ít bộ nhớ hơn (sử dụng tối đa $2 \times N$ phần tử), cài đặt ngắn hơn và chạy nhanh hơn. Tuy nhiên thì nó không dễ hiểu bằng cách cài đặt trên. *Bạn có thể tham khảo thêm tại đây:* ***[[VNOI - Efficient and easy segment trees|translate/codeforces/Efficient-and-easy-segment-trees]]***.
 
 # Phân tích độ phức tạp
 
@@ -327,7 +330,7 @@ $\circ \space \space 1 \le n, q \le 10^5$ (với $q$ là số lượng truy vấ
 
 Vì ban đầu giá trị của tất cả phần tử trong mảng đều bằng $0$ nên ta không cần phải thực hiện thao tác xây dựng cây phân đoạn.
 
-Nhận thấy rằng, trên cây phân đoạn, mỗi nút không phải lá sẽ chứa tổng giá trị tại các nút con của nó. Do đó, ta chỉ cần thay thế tất cả các phép toán *min* ở ví dụ trên *(trong phần **[Cài đặt](https://hackmd.io/vVI4UQHzSlGdXHRkMYEVOA#C%C3%A0i-%C4%91%E1%BA%B7t1)**)* bằng các phép toán cộng.
+Nhận thấy rằng, trên cây phân đoạn, mỗi nút không phải lá sẽ chứa tổng giá trị tại các nút con của nó. Do đó, ta chỉ cần thay thế tất cả các phép toán *min* ở ví dụ trên *(trong phần **[[Cài đặt|algo/data-structures/segment-tree-basic]]**)* bằng các phép toán cộng.
 
 ## Cài đặt
 
@@ -415,7 +418,7 @@ Bây giờ, ta cần phải xác định các phép toán để "hợp nhất" h
     [[/uploads/segment-tree-basic_img7.png]]
 
 - `suf` : Hậu tố lớn nhất của nút cha sẽ bằng *max* hậu tố của nút con bên phải và tổng giá trị của nút con bên phải cộng với hậu tố của nút con bên trái. *Cách tính hậu tố tương tự như với tiền tố nên sẽ không minh họa lại nữa.*
-- `sum` : Ta có thể dễ dàng tính toán giống như ở **[Ví dụ 1](https://hackmd.io/vVI4UQHzSlGdXHRkMYEVOA?view#V%C3%AD-d%E1%BB%A5-1)** bằng cách lấy tổng giá trị $2$ nút con.
+- `sum` : Ta có thể dễ dàng tính toán giống như ở **[[Ví dụ 1|algo/data-structures/segment-tree-basic]]** bằng cách lấy tổng giá trị $2$ nút con.
 - `maxsum` : 
     - Xét $3$ trường hợp:
         - **TH1:** Đoạn con có tổng lớn nhất nằm hoàn toàn bên trong nút con bên trái.
@@ -706,7 +709,7 @@ Với truy vấn loại $1$, thao tác cập nhật đoạn $[u, v]$. Giả sử
         - `lazy[2 * id] += lazy[id]`
         - `lazy[2 * id + 1] += lazy[id]`
     - `lazy[id] = 0` - chú ý ta cần phải thực hiện thao tác này, nếu không mỗi phần tử của dãy sẽ bị tăng lên nhiều lần, do ta đẩy xuống nhiều lần.
-- Bây giờ, để cập nhật đoạn, ta thực hiện tương tự như ở **[thao tác lấy giá trị](https://hackmd.io/vVI4UQHzSlGdXHRkMYEVOA?view#L%E1%BA%A5y-gi%C3%A1-tr%E1%BB%8B)**, là xác định tập hợp ít nút nhất sao cho tổng tất cả các phạm vi mà các nút đó quản lí đúng bằng đoạn cần cập nhật. Khi đó, ta sửa lại giá trị của các nút thuộc tập hợp này và lưu lại giá trị cần cập nhật vào $lazy$ tương ứng với các nút con của chúng.
+- Bây giờ, để cập nhật đoạn, ta thực hiện tương tự như ở **[[thao tác lấy giá trị|algo/data-structures/segment-tree-basic]]**, là xác định tập hợp ít nút nhất sao cho tổng tất cả các phạm vi mà các nút đó quản lí đúng bằng đoạn cần cập nhật. Khi đó, ta sửa lại giá trị của các nút thuộc tập hợp này và lưu lại giá trị cần cập nhật vào $lazy$ tương ứng với các nút con của chúng.
 
 ## Cài đặt
 
