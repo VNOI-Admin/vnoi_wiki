@@ -45,10 +45,12 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Tổng quan về cấu trúc dữ liệu (2*)|algo/data-structures/data-structures-overview]]
 - [[Mảng và danh sách liên kết (1*)|algo/data-structures/array-vs-linked-lists]]
 - [[Ngăn xếp (stack) (1*)|algo/data-structures/Stack]]
+- [[Mảng cộng dồn và mảng hiệu|algo/data-structures/prefix-sum-and-difference-array.md]]
 - [[Deque và tìm min max trên đoạn tịnh tiến (2*)|algo/data-structures/deque-min-max]]
 - [[Heap (2*)|translate/wcipeg/Binary-Heap]]
 - [[Bảng băm (Hash table) (2*)|algo/data-structures/hash-table]]
 - [[Disjoint Set (2*)|algo/data-structures/disjoint-set]]
+- [[Cây Phân Đoạn (cơ bản)|algo/data-structures/segment-tree-basic.md]]
 - [[Segment Tree (Interval Tree) (2*)|algo/data-structures/segment-tree-extend]]
 - [[Cài đặt Segment Tree chạy nhanh hơn (3*)|translate/codeforces/Efficient-and-easy-segment-trees.md]]
 - [[Chia căn - Part 1|algo/data-structures/sqrt-decomposition]]
@@ -57,6 +59,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Fenwick Tree (Binary Indexed Tree) (2*)|algo/data-structures/fenwick]]
 - [[Heavy Light Decomposition (3*)|algo/data-structures/heavy-light-decomposition]]
 - [[Persistent Data Structures (3*)|algo/data-structures/persistent-data-structures]]
+- [[Lowest Common Ancestor (LCA) - Binary Lifting|algo/data-structures/lca-binlift.md]]
 - [[Bài toán RMQ & bài toán LCA (2*)|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]]
 - [[Các phương pháp giải bài toán LCA (3*)|algo/data-structures/lca]]
 - [[Trie (2*)|algo/data-structures/trie]]
@@ -73,8 +76,9 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Hash (2*)|algo/string/hash]]
 - [[Suffix Array (4*)|algo/data-structures/suffix-array]]
 - [[Palindrome Tree (4*)|translate/codeforces/palindrome-tree]]
+- [[Z-function|algo/string/z-algo]]
 - [[Z Algorithm (3*)|translate/codeforces/z-algo]]
-- [Suffix Tree - thầy Lê Minh Hoàng (4*)](https://drive.google.com/file/d/0BwcTB8a10LBwYUwwNVYzbmZiZnM/view?usp=sharing&resourcekey=0-TyQK7KSoZJW-fVpHquw6NQ)
+- [Suffix Tree - thầy Lê Minh Hoàng(4*)](https://drive.google.com/file/d/0BwcTB8a10LBwYUwwNVYzbmZiZnM/view?usp=sharing&resourcekey=0-TyQK7KSoZJW-fVpHquw6NQ)
 
 ## Quy hoạch động
 - [[Nhập môn Quy hoạch động (2*)|translate/topcoder/dynamic-programming]]
@@ -90,6 +94,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Bài toán khớp cầu, thành phần liên thông mạnh|algo/graph-theory/Depth-First-Search-Tree.md]] (Cây DFS và ứng dụng)
 - [[Cây khung nhỏ nhất trên đồ thị vô hướng|algo/graph-theory/minimum-spanning-tree.md]]
 - [[Các thuật toán về tìm đường đi ngắn nhất|algo/graph-theory/shortest-path]]
+- [[Đường đi - Chu trình Euler|algo/graph-theory/euler-cycle.md]]
 - [Bài toán 2-SAT (3*)](https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing)
 - [[Luồng cực đại trên mạng (3*)|translate/topcoder/max-flow-1-luong-cuc-dai-tren-mang-1.md]]
 
@@ -122,6 +127,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Hàm nhân tính (Multiplicative Function) (4*)|algo/math/multiplicative-function]]
 - [[Hàm Mobius (4*)|translate/quora/mobius-function.md]]
 - [[Nhân nhanh đa thức - FFT (4*)|algo/trick/FFT]]
+- [[Lý thuyết trò chơi|algo/math/game-theory.md]]
 
 ## Tối ưu hoá
 
