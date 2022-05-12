@@ -35,7 +35,7 @@ Ta có thể xử lí các thao tác một cách hiệu quả này với các t�
 
 Cấu trúc của cây được thể hiện qua ví dụ sau đây:
 
-![](https://i.imgur.com/nkBSWOW.png)
+[[/uploads/disjoint-set-union_img1.png]]
 
 Ban đầu, mỗi phần tử thuộc một tập hợp riêng biệt, vậy mỗi đỉnh là một cây riêng biệt. Bước tiếp theo, ta gộp hai tập hợp chứa phần tử $1$ và $2$. Sau đó, ta gộp hai tập hợp chứa phần tử $3$ và $4$. Cuối cùng, ta gộp hai tập hợp chứa phần tử $1$ và $3$.
 
@@ -125,9 +125,8 @@ Giả dụ ta gọi `find_set(v)` với một đỉnh `v` bất kì, chúng ta t
 Có thể thấy sau khi thực hiện một thao tác như vậy, cấu trúc cả cây có thể thay đổi. Ta có thể thấy điều này trong ví dụ sau đây:
 
 <center>
-<img src="https://i.imgur.com/Jrj137G.png"  width="700">
+[[/uploads/disjoint-set-union_img2.png|width=700px]]
 </center>
-<br>
 
 Bên trái là cây ban đầu và bên phải là cây bị nén sau khi ta sử dụng thao tác `find_set(7)`, nén đường đi tới gốc của các đỉnh $7, 5, 3, 2$.
 
@@ -252,14 +251,14 @@ Với mỗi vị trí, ta sẽ có một con trỏ. Nếu người đứng ở v
 Xét ví dụ sau với $n = 5$, ban đầu ta có:
 
 <center>
-<img src="https://i.imgur.com/f7LowQ6.png"  width="600">
+[[/uploads/disjoint-set-union_img3.png|width=600px]]
 </center>
 <br>
 
 Giả dụ người đứng ở vị trí $2$ và $3$ rời khỏi hàng:
 
 <center>
-<img src="https://i.imgur.com/4jTaf1e.png"  width="600">
+[[/uploads/disjoint-set-union_img4.png|width=600px]]
 </center>
 <br>
 
@@ -600,14 +599,14 @@ void dfs(int u, int p) {
 Với cây con gốc $u$ đang xét, ta sẽ dfs xuống giải bài toán với đỉnh $v$ là con trực tiếp của đỉnh $u$. Nếu giải như bài toán colquery, ở mỗi đỉnh ta sẽ lưu một cấu trúc dữ liệu map để lưu số lượng từng màu trong cây con đó. Sau đó ta sẽ gộp chúng lại để có được map chứa số lượng từng màu trong cây con gốc $u$ (Gộp các map của cây con không phải cây con lớn nhất vào map của cây con lớn nhất).
 
 <center>
-<img src="https://i.imgur.com/tkeb6QU.png"  width="400">
+[[/uploads/disjoint-set-union_img17.png|width=400px]]
 </center>
 <br>
 
 Tuy nhiên, sự tối ưu của kỹ thuật này chính là ta có thể đảo thứ tự dfs và trả lời các truy vấn offline.
 
 <center>
-<img src="https://i.imgur.com/ZKfoYLT.png"  width="800">
+[[/uploads/disjoint-set-union_img16.png|width=800px]]
 </center>
 <br>
 
@@ -621,15 +620,15 @@ Ta có thể thấy rõ hơn thông tin mà mảng $cnt$ lưu trữ trong quá t
 
 | Chú thích | Minh họa |
 | -------- | -------- |
-| dfs xuống cây con $v_1$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | ![](https://i.imgur.com/aVUSS1i.png) |
-| $v_1$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $cnt$ | ![](https://i.imgur.com/9EsXLqy.png) |
-| dfs xuống cây con $v_3$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | ![](https://i.imgur.com/8XUnoC1.png) |
-| $v_3$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $cnt$ | ![](https://i.imgur.com/bptlyFn.png) |
-| dfs xuống cây con $v_2$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | ![](https://i.imgur.com/mIXMjDb.png) |
-| $v_2$ là `bigChild`,  do đó ta giữ nguyên các màu trong cây con này trong mảng $cnt$ | ![](https://i.imgur.com/AkVMFqx.png) |
-| Thêm các màu trong cây con $v_1$ vào mảng $cnt$ | ![](https://i.imgur.com/U7f5IA4.png) |
-| Thêm các màu trong cây con $v_3$ vào mảng $cnt$ | ![](https://i.imgur.com/ZFWpQLa.png) |
-| Thêm đỉnh $u$ vào mảng $cnt$ | ![](https://i.imgur.com/BcPN4jp.png) |
+| dfs xuống cây con $v_1$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | [[/uploads/disjoint-set-union_img5.png]] |
+| $v_1$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $cnt$ | [[/uploads/disjoint-set-union_img6.png]] |
+| dfs xuống cây con $v_3$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | [[/uploads/disjoint-set-union_img7.png]] |
+| $v_3$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $cnt$ | [[/uploads/disjoint-set-union_img8.png]] |
+| dfs xuống cây con $v_2$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | [[/uploads/disjoint-set-union_img9.png]] |
+| $v_2$ là `bigChild`,  do đó ta giữ nguyên các màu trong cây con này trong mảng $cnt$ | [[/uploads/disjoint-set-union_img10.png]] |
+| Thêm các màu trong cây con $v_1$ vào mảng $cnt$ | [[/uploads/disjoint-set-union_img11.png]] |
+| Thêm các màu trong cây con $v_3$ vào mảng $cnt$ | [[/uploads/disjoint-set-union_img12.png]] |
+| Thêm đỉnh $u$ vào mảng $cnt$ | [[/uploads/disjoint-set-union_img13.png]] |
 
 Lúc này mảng $cnt$ đã có đủ các màu trong cây con gốc $u$ và ta có thể trả lời các truy vấn của đỉnh $u$.
 
