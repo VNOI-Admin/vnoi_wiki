@@ -252,14 +252,14 @@ Với mỗi vị trí, ta sẽ có một con trỏ. Nếu người đứng ở v
 Xét ví dụ sau với $n = 5$, ban đầu ta có:
 
 <center>
-<img src="https://i.imgur.com/f7LowQ6.png"  width="400">
+<img src="https://i.imgur.com/f7LowQ6.png"  width="600">
 </center>
 <br>
 
 Giả dụ người đứng ở vị trí $2$ và $3$ rời khỏi hàng:
 
 <center>
-<img src="https://i.imgur.com/4jTaf1e.png"  width="400">
+<img src="https://i.imgur.com/4jTaf1e.png"  width="600">
 </center>
 <br>
 
@@ -606,7 +606,10 @@ Với cây con gốc $u$ đang xét, ta sẽ dfs xuống giải bài toán với
 
 Tuy nhiên, sự tối ưu của kỹ thuật này chính là ta có thể đảo thứ tự dfs và trả lời các truy vấn offline.
 
-![](https://i.imgur.com/ZKfoYLT.png)
+<center>
+<img src="https://i.imgur.com/ZKfoYLT.png"  width="800">
+</center>
+<br>
 
 Ta sẽ sử dụng duy nhất một mảng để đếm số lượng từng màu trong một cây con. Bằng cách nào đó, đến cuối hàm dfs của cây con gốc $u$, ta có sẽ có mảng $cnt$ với $cnt[c]$ là số lượng đỉnh có màu $c$ trong cây con gốc $u$.
 
