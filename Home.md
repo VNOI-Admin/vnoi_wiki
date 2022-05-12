@@ -49,7 +49,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Deque và tìm min max trên đoạn tịnh tiến (2*)|algo/data-structures/deque-min-max]]
 - [[Heap (2*)|translate/wcipeg/Binary-Heap]]
 - [[Bảng băm (Hash table) (2*)|algo/data-structures/hash-table]]
-- [[Disjoint Set (2*)|algo/data-structures/disjoint-set]]
+- [[Disjoint Set Union (2*)|algo/data-structures/disjoint-set-union]]
 - [[Cây Phân Đoạn (cơ bản)|algo/data-structures/segment-tree-basic.md]]
 - [[Segment Tree (Interval Tree) (2*)|algo/data-structures/segment-tree-extend]]
 - [[Cài đặt Segment Tree chạy nhanh hơn (3*)|translate/codeforces/Efficient-and-easy-segment-trees.md]]
