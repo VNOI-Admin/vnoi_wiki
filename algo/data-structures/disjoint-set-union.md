@@ -306,7 +306,7 @@ int find_next(int p) { // Trả vè thứ tự của người gần nhất về 
 
 Sử dụng DSU, ta có thể tối ưu độ phức tạp của thuật toán tìm cây khung nhỏ nhất của đồ thị từ $\mathcal{O}(m \log{n} + n^2)$ xuống $\mathcal{O}(m \log{n})$. 
 
-Bạn đọc có thể tìm hiểu kĩ hơn ở [blog](https://vnoi.info/wiki/algo/graph-theory/minimum-spanning-tree.md) tìm cây khung nhỏ nhất trong đồ thị.
+Bạn đọc có thể tìm hiểu kĩ hơn ở [[blog|algo/graph-theory/minimum-spanning-tree.md]] tìm cây khung nhỏ nhất trong đồ thị.
 
 ## Đảo ngược truy vấn
 
@@ -712,7 +712,7 @@ signed main() {
 # Tham khảo
 - [CP-Algorithms](https://cp-algorithms.com/data_structures/disjoint_set_union.html)
 - [Codeforces ITMO Academy: pilot course](https://codeforces.com/edu/course/2/lesson/7)
-- [Codeforces blog: Dsu trên cây (Sack)](https://codeforces.com/blog/entry/44351)
+- [Codeforces blog: DSU trên cây (Sack)](https://codeforces.com/blog/entry/44351)
 
 # Bài tập
 
