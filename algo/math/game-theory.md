@@ -68,7 +68,7 @@ Vậy từ đây, ta thấy với một trò chơi tổ hợp cân bằng, chỉ
 
 Từ định nghĩa trên, $N$ và $P$ sẽ thỏa ba tính chất sau:
 1. Tập $P$ phải chứa toàn bộ trạng thái kết thúc.
-2. Với mỗi trạng thái $s$ thuộc tập $N$, **tồn tại** ít nhất một thái $s'$ đến được từ $S$ mà thuộc tập $P$.
+2. Với mỗi trạng thái $s$ thuộc tập $N$, **tồn tại** ít nhất một trạng thái $s'$ đến được từ $s$ mà thuộc tập $P$.
 3. Với mỗi trạng thái $s$ thuộc tập $P$, **tất cả** các trạng thái $s'$ đến được từ $s$ phải thuộc tập $N$. 
 
 Tới đây, có thể bạn sẽ đặt ra câu hỏi: Liệu mọi trạng thái của trò chơi đều thuộc một trong hai tập $N$ hay $P$? Ta có thể chứng minh dễ dàng bằng quy nạp mạnh theo số bước tối đa để đạt tới trạng thái kết thúc. Nếu muốn, bạn đọc có thể tham khảo thêm ở phần [1.1. Impartial game - Game Theory, Alive](https://homes.cs.washington.edu/~karlin/GameTheoryBook.pdf).
