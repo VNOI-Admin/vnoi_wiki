@@ -182,7 +182,7 @@ Node operator + (const Node& left, const Node& right) {
 
     // Để xây dựng kết quả tối ưu ở nút id, ta nối dãy ngoặc tối ưu ở 2 con, rồi thêm
     // min(số "(" thừa ra ở con trái, số ")" thừa ra ở con phải).
-    res.optimal = left.optimal + right.optimal + tmp;
+    res.optimal = left.optimal + right.optimal + tmp * 2;
 
     res.open = left.open + right.open - tmp;
     res.close = left.close + right.close - tmp;
