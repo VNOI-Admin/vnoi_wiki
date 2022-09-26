@@ -15,7 +15,7 @@ Nguồn: [Facebook VNOI](https://www.facebook.com/groups/163215593699283/permali
 
 Trước mỗi kì thi, bạn cần tìm hiểu đề ra những năm trước để ngửi được "hương vị" của nó. Con số 5 năm là vừa đủ, bởi kỳ thi ở những năm trước nữa có thể khác xa so với hiện tại, lại vừa khó kiếm được đề, và trên hết, bạn không phải là một nhà sử học nên không có nhu cầu tìm hiểu xem vào thời Vua Hùng dựng nước, kỳ thi HSGQG đã diễn ra như thế nào; hay vào thời kỳ đồ đá, người ta đã thi lập trình hay chưa. Quan trọng là, bạn cần chú ý đến văn phong ra đề, một số chủ đề hay xuất hiện, hoặc độ khó (trung bình) của nó.
 
-Lưu ý rằng, ĐỀ RA NĂM NAY KHÔNG ĐẢM BẢO SẼ TƯƠNG TỰ NHƯ NHỮNG NĂM TRƯỚC. Bạn cố gắng làm thử, nếu được, giành ra 3h đồng hồ liên tục. Tránh việc làm đc 1h, đi wc 5h, r làm nốt 2h nữa. Vì những j diễn ra trong wc k đảm bảo chất lượng bài thi sẽ giống như lúc bạn thi thật :v Ngoài ra, bạn có thể tìm hiểu mức điểm thi của năm đó để đánh gái trình độ của mình. Điểm thi từng năm có thể khác biệt, nhưng nhìn chung, chất lượng thí sinh thì k thay đổi nhiều.
+Lưu ý rằng, ĐỀ RA NĂM NAY KHÔNG ĐẢM BẢO SẼ TƯƠNG TỰ NHƯ NHỮNG NĂM TRƯỚC. Bạn cố gắng làm thử, nếu được, giành ra 3h đồng hồ liên tục. Tránh việc làm đc 1h, đi wc 5h, r làm nốt 2h nữa. Vì những j diễn ra trong wc k đảm bảo chất lượng bài thi sẽ giống như lúc bạn thi thật :v Ngoài ra, bạn có thể tìm hiểu mức điểm thi của năm đó để đánh giá trình độ của mình. Điểm thi từng năm có thể khác biệt, nhưng nhìn chung, chất lượng thí sinh thì k thay đổi nhiều.
 
 Dưới đây là danh sách các bài thi chính thức của HSGQG (trên VNOJ), kèm theo bảng điểm trong các năm gần đây:
 
