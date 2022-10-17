@@ -117,6 +117,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 - [[Hình học tính toán phần 1|algo/geometry/basic-geometry-1]]
 - [[Hình học tính toán phần 2|algo/geometry/basic-geometry-2]]
+- [[Thuật toán đường quét (2*)|algo/geometry/Sweep-Line.md]]
 - [[Bao lồi (3*)|translate/wcipeg/Convex-Hull]]
 
 ## Toán học
