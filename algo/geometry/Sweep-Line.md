@@ -225,7 +225,7 @@ Dễ thấy thuật toán của chúng ta duyệt qua một danh sách có $O(n)
 Minh họa thuật toán:
 
 <center>
-<img src="https://i.imgur.com/xj1XD68.gif"  width="400">
+<img src="https://i.imgur.com/xj1XD68.gif"  style="width: 60%">
 </center>
 
 ## Cài đặt mẫu
@@ -355,7 +355,7 @@ Vấn đề đặt ra là làm thế nào để tìm tổng độ dài của cá
 
 Minh họa thuật toán:
 <center>
-<img src="https://i.imgur.com/h7RJef6.gif"  width="400">
+<img src="https://i.imgur.com/h7RJef6.gif" style="width: 60%">
 </center>
 
 <br>
