@@ -31,7 +31,9 @@ Với hai điểm $P(x_P, y_P)$ và $Q(x_Q, y_Q)$:
 
 <center>
 <img src="https://i.imgur.com/fGtbzuW.png"  width="200">
-    
+</center>
+
+<center>
 Các đường màu đỏ, xanh lam, vàng biểu diễn khoảng cách Manhattan có cùng độ dài $(12)$, trong khi đường màu xanh lục biểu diễn khoảng cách Euclid với độ dài $6 * \sqrt2 \approx 8.48$.
 </center>
 
@@ -89,7 +91,7 @@ Ta nhận thấy mỗi điểm được thêm vào và xoá khỏi $T$ đúng m�
 
 Trong phần cài đặt này, các khoảng cách được lưu dưới dạng bình phương để tránh bị sai số.
 
-```cpp=
+```cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -224,7 +226,7 @@ Minh họa thuật toán:
 
 ## Cài đặt mẫu
 
-```cpp=
+```cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -347,7 +349,7 @@ Vấn đề đặt ra là làm thế nào để tìm tổng độ dài của cá
 
 Minh họa thuật toán:
 <center>
-<img src="https://i.imgur.com/r7ALVSr.gif"  width="400">
+<img src="https://i.imgur.com/h7RJef6.gif"  width="400">
 </center>
 
 <!-- Chúng ta có thể xác định được độ dài đoạn được cắt bằng cách cũng sử dụng thuật toán này, nhưng quay 90 độ. Bỏ qua các hình chữ nhật ngoài tập trên ra, ta cho một đường quét chạy từ trên xuống, với các sự kiện giờ là các cạnh ngang của hình chữ nhật, và mỗi khi đường quét chạm vào một trong số chúng, ta chỉ cần tăng hoặc giảm biến đếm số lượng hình chữ nhật đang đè lên nhau ở thời điểm đó. Độ dài đoạn cắt này sẽ tăng nếu biến đếm khác 0. Tất nhiên, chúng ta sẽ không tăng liên tục, mà sẽ đi từ sự kiện này sang sự kiện khác.
@@ -367,7 +369,7 @@ Chi tiết việc cập nhật hai giá trị tại mỗi bước độc giả c
 
 ## Cài đặt mẫu
 
-```cpp=
+```cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -514,7 +516,7 @@ Chúng ta đã nói về cách chia các điểm và về cách quét theo thứ
 
 ## Cài đặt mẫu
 
-```cpp=
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
