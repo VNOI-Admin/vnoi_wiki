@@ -685,3 +685,4 @@ Giống như quy hoạch động, thuật toán đường quét là một công 
 
 1. [bmerry, TopCoder: Line Sweep Algorithm](https://www.topcoder.com/thrive/articles/Line%20Sweep%20Algorithms)
 2. [Leo J. Guibas, Jorge Stolfi, On computing all north-east nearest neighbors in the L1 metric](https://www.sciencedirect.com/science/article/abs/pii/0020019083900455)
+3. Các gif được tạo bởi [manim](https://www.manim.community/), mã nguồn tại [đây](https://pastebin.com/CnpTEibi) và [đây](https://pastebin.com/irPSKyYm)
