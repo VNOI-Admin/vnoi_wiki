@@ -146,7 +146,7 @@ signed main() {
         int id = p.id;
         
         ll d = sqrt(squared_d);
-        Point cur = {y - d, -1000001, id};
+        Point cur = {-1000001, y - d, id};
         
         while (1) { // Tìm tất cả các điểm có tung độ trong khoảng [y - d, y + d]
             auto it = T.upper_bound(cur);
