@@ -523,6 +523,8 @@ Chúng ta đã nói về cách chia các điểm và về cách quét theo thứ
 
 ## Cài đặt mẫu
 
+Cảm ơn bạn Trần Xuân Bách (HUS High School for Gifted Students) đã đóng góp vào đoạn code này.
+
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
