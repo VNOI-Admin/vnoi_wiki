@@ -190,9 +190,9 @@ for i ∈ [2..m]
     while k > 0 and S[k+1] ≠ S[i]
         k ← π[k]
     if S[k+1] = S[i]
-        π[i] ← 0
-    else
         π[i] ← k+1
+    else
+        π[i] ← 0
 ```
 
 Hoặc có thể viết gọn lại như sau:
