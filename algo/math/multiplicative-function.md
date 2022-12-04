@@ -9,8 +9,8 @@ Trong bài viết này, mình sẽ giới thiệu về hàm nhân tính cũng nh
 
 # 1. Định nghĩa
 
-Một hàm $f(n), n \in N$ được coi là **hàm nhân tính** ([Multiplicative Function](https://crypto.stanford.edu/pbc/notes/numbertheory/mult.html)) nếu:
-Với mọi cặp số nguyên tố cùng nhau $n, m \in N$ ta có $f(mn)=f(m)f(n)$.
+Một hàm $f(n)$, $n \in N$ được coi là **hàm nhân tính** ([Multiplicative Function](https://crypto.stanford.edu/pbc/notes/numbertheory/mult.html)) nếu:
+Với mọi cặp số nguyên tố cùng nhau $n$, $m \in N$ ta có $f(mn)=f(m)f(n)$.
 
 
 **Ví dụ**
@@ -175,16 +175,16 @@ if (n > 1) {  // giá trị hiện tại của n là số nguyên tố
 
 Việc chứng minh trực tiếp một hàm là hàm nhân tính như ví dụ về hàm số ước ở trên không hề đơn giản. Chẳng hạn, bạn hãy thử chứng minh hàm $f(n)$ là hàm nhân tính với $f(n)$ là tổng các ước của số $n$. Dĩ nhiên bạn có thể chứng minh trâu bò bằng cách viết ra một đống công thức, tuy nhiên ở mục này mình sẽ hướng dẫn các bạn một phương pháp kỳ diệu hơn.
 
-Với 2 hàm $f$ và $g$ là hàm nhân tính, ta có một hàm nhân tính mới $f \* g$:
+Với 2 hàm $f$ và $g$ là hàm nhân tính, ta có một hàm nhân tính mới $f \times g$:
 
 $$
-(f \* g)(n) = \sum_{d_1\*d_2=n}{f(d_1)\*g(d_2)}
+(f \times g)(n) = \sum_{d_1 * d_2=n}{f(d_1) * g(d_2)}
 $$
 
 Một cách biểu diễn khác là:
 
 $$
-(f \* g)(n) = \sum_{d | n}{f(d)\*g(n/d)}
+(f \times g)(n) = \sum_{d | n}{f(d) * g(n/d)}
 $$
 
 Các bạn chú ý kí hiệu $d \| n$ nghĩa là $n$ chia hết cho $d$.
@@ -195,7 +195,7 @@ Xét $a$ và $b$ nguyên tố cùng nhau. Mỗi ước $d$ của $ab$ có thể 
 
 Do đó:
 
-$(f \* g)(ab)$
+$(f \times g)(ab)$
 
 $= \sum_{r\|a, s\|b}{f(rs) g(ab/rs)}$
 
@@ -203,9 +203,9 @@ $ = \sum_{r\|a, s\|b}{f(r) f(s) g(a/r) g(b/s)}$
 
 $ = \sum_{r\|a}{f(r) g(a/r)} \sum_{s\|b}{f(s) g(b/s)}$
 
-$ = (f \* g)(a) (f \* g)(b)$
+$ = (f \times g)(a) (f \times g)(b)$
 
-Như vậy, $(f \* g)$ cũng là hàm nhân tính.
+Như vậy, $(f \times g)$ cũng là hàm nhân tính.
 
 Để hiểu thêm về Dirichlet Convolution, ta xét vài ví dụ:
 
@@ -214,7 +214,7 @@ Như vậy, $(f \* g)$ cũng là hàm nhân tính.
 Xét hàm $f(n) = 1$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
 
 $$
-(f \* g)(n) = \sum_{d | n}{f(d) * g(n/d)} = \sum_{d | n}{1}
+(f \times g)(n) = \sum_{d | n}{f(d) * g(n/d)} = \sum_{d | n}{1}
 $$
 
 Như vậy $(f \* g)(n)$ là số ước của số $n$ và là hàm nhân tính.
@@ -224,10 +224,10 @@ Như vậy $(f \* g)(n)$ là số ước của số $n$ và là hàm nhân tính
 Xét hàm $f(n) = n$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
 
 $$
-(f \* g)(n) = \sum_{d | n}{f(d) * g(n/d)} = \sum_{d | n}{d}
+(f \times g)(n) = \sum_{d | n}{f(d) * g(n/d)} = \sum_{d | n}{d}
 $$
 
-Như vậy $(f \* g)(n)$ là tổng các ước của $n$ và là hàm nhân tính.
+Như vậy $(f \times g)(n)$ là tổng các ước của $n$ và là hàm nhân tính.
 
 Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum_{d \| n}{d^k}$ là hàm nhân tính.
 
