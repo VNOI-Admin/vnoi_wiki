@@ -14,7 +14,7 @@ Các đội Việt Nam muốn được thi Regional ở Việt Nam cần phải 
 
 Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và chỉ liệt kê các đội đã vào top 50.
 
-1. [2022](https://zibada.guru/finals/) - ĐH Công Nghệ (UET - VNU), team EggCentroy2 - rank 12: **Đội đầu tiên của Việt Nam dành huy chương ICPC World Final**
+1. [2021](https://zibada.guru/finals/2021) - ĐH Công Nghệ (UET - VNU), team EggCentroy2 - rank 12: **Đội đầu tiên của Việt Nam dành huy chương ICPC World Final**
   - Bùi Hồng Đức [HCV IOI 2019 và 2020](https://cphof.org/profile/codeforces:user202729_)
   - Vũ Hoàng Kiên [HCB IOI 2019 và 2020](https://cphof.org/profile/codeforces:Maripium)
   - Nguyễn Hải Bình: CF: [Negativez2](https://cphof.org/profile/codeforces:Negativez2)
@@ -40,7 +40,17 @@ Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và ch
   - Nguyễn Tiến Trung Kiên: [HCB IOI 2015, HCĐ IOI 2014](http://stats.ioinformatics.org/people/5245), CF: [kien_coi_1997](http://codeforces.com/profile/kien_coi_1997)
   - Đỗ Ngọc Khánh: CF: [dnk](http://codeforces.com/profile/dnk)
 
-6. [2017](http://static.kattis.com/icpc/wf2017/) - ĐH Công Nghệ (UET - VNU) - rank 39:
+6. [2021](https://zibada.guru/finals/2021/) - ĐH Bách Khoa Hà Nội - rank 37:
+  - Lê Minh Quang: [Quang](https://cphof.org/profile/topcoder:LeMinhQuang)
+  - Đỗ Đình Đắc: [6aren](https://cphof.org/profile/icpc:Dinh%20Dac%20Do)
+  - Lê Anh Đức: [ladpro98](https://cphof.org/profile/icpc:Anh%20Duc%20Le)
+
+7. [2017](http://static.kattis.com/icpc/wf2017/) - ĐH Công Nghệ (UET - VNU) - rank 39:
   - Phạm Văn Hạnh: [HCV IOI 2015](http://stats.ioinformatics.org/people/5815), CF: [skyvn97](http://codeforces.com/profile/skyvn97)
   - Phan Đức Nhật Minh: [HCV IOI 2016, HCB IOI 2015](http://stats.ioinformatics.org/people/5816), CF: [minh141198](http://codeforces.com/profile/minh141198)
   - Nguyễn Đức Duy: CF: [duyboy135](http://codeforces.com/profile/duyboy135)
+ 
+8. [2021](https://zibada.guru/finals/2021/) - ĐH Khoa Học Tự nhiên - ĐHQG HCM - rank 46:
+  - Nguyễn Diệp Xuân Quang: [xuanquang1999](https://cphof.org/profile/codeforces:xuanquang1999)
+  - Lê Quý Khôi: [GreymaneSilverfang](https://cphof.org/profile/icpc:Quy-Khoi%20Le)
+  - Nguyễn Quang Thức: [ZigonK](https://cphof.org/profile/icpc:Quang-Thuc%20Nguyen)
