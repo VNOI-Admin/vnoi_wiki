@@ -65,7 +65,7 @@ Câu hỏi đặt ra là ta còn có thể tối ưu thời gian truy vấn đư
 - Nhận xét: Thay vì duyệt qua từng phần tử, ta có thể duyệt qua từng nhóm $2$ phần tử. Từ đó, ta có thể giảm thời gian truy vấn xuống còn $\mathcal{O}(\frac{N}2)$
 
 ### Thuật toán tối ưu 1.1
-- Ta xây dựng mảng $a2$ với công thức $a2_i = min(a_i, a_{i+1})$.
+- Ta xây dựng mảng $a2$ với công thức $$a2_i = min(a_i, a_{i+1})$$.
 ![](https://i.imgur.com/ORCwi7l.gif)
 - Khi truy vấn, nếu độ dài đoạn cần truy vấn $len = 1$ thì ta in ra $a[l]$, nếu $len > 1$ thì ra dùng mảng $a2$:
 ![](https://i.imgur.com/WE6aVdx.gif)
