@@ -6,6 +6,7 @@
 **Reviewer:**
 - Hồ Ngọc Vĩnh Phát - Đại học Khoa học Tự nhiên, ĐHQG-HCM
 - Hoàng Xuân Nhật - Đại học Khoa học Tự nhiên, ĐHQG-HCM
+- Nguyễn Anh Bảo - Đại học Bách Khoa Hà Nội
 
 ---
 
