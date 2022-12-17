@@ -18,13 +18,13 @@ Ví dụ: $A = [4, 6, 1, 5, 7, 3]\rightarrow min[2\ldots5] = min(6,1,5,7)=1$
 
 Bài toán $RMQ$ có nhiều cách giải, nhưng $2$ cách phổ biến nhất là:
 - **Sparse Table**: $\mathcal{O}(N\log{N})$ tiền xử lý, $\mathcal{O}(1)$ mỗi truy vấn.
-- [[**Segment Tree**|algo/data-structures/segment-tree-basic]]: $\mathcal{O}(N)$ tiền xử lý, $\mathcal{O}(\log{N})$ mỗi truy vấn.
+- [[Segment Tree|algo/data-structures/segment-tree-basic]]: $\mathcal{O}(N)$ tiền xử lý, $\mathcal{O}(\log{N})$ mỗi truy vấn.
 
 Sự khác biệt giữa $2$ cách giải này nằm ở chỗ, [[Segment Tree|algo/data-structures/segment-tree-basic]] có thể xử lý được **hoạt động sửa đổi** xen kẽ với các truy vấn, còn Sparse Table thì không.
 
 Nhưng Sparse Table không "phế", sức mạnh của Sparse Table nằm ở khả năng truy vấn trong $\mathcal{O}(1)$ khi các phép toán thoả mãn tính chất [Idempotence](https://en.wikipedia.org/wiki/Idempotence): "một giá trị có thể **xuất hiện nhiều lần** nhưng **không làm thay đổi kết quả** phép toán", ví dụ như $min,max,gcd,lcm,and,or,\ldots$
 
-Và Sparse Table cũng có khả năng truy vấn trong $\mathcal{O}(\log{N})$ nếu phép toán không thoả mãn tính chất Idempotence (ví dụ như bài toán Range Sum Query ở [bên dưới](#Range-Sum-Queries-RSQ)).
+Và Sparse Table cũng có khả năng truy vấn trong $\mathcal{O}(\log{N})$ nếu phép toán không thoả mãn tính chất Idempotence (ví dụ như bài toán Range Sum Query ở [bên dưới](#range-sum-queries-rsq)).
 
 **Lưu ý:** Trong suốt bài viết mình dùng `__lg(x)` để tính $\log_2$ của 1 số vì ta cần giá trị nguyên, còn `log2(x)` thì trả về số thực. Nếu không muốn dùng hàm thì có thể tính trước như sau:
 ```cpp
@@ -194,11 +194,11 @@ Nếu ta làm tiếp như thuật toán tối ưu $1.3$ (tiếp tục tạo các
 Nhưng nếu dùng $\log_2$ mảng $a$ sẽ mang đến cho ta nhiều bất tiện (code dài, dễ sai, ...). Do đó, ta có thể đặt:
 - $st[j][i]$ là giá trị nhỏ nhất của $2^j$ phần tử tính từ $i$ (min của $a[i\ldots i + 2^j - 1]$), tương ứng với $a(2^j)[i]$) ($st$ ở đây là viết tắt của $S$(parse)$T$(able)).
 - Ta có công thức truy hồi sau:
-$st[j][i] = 
+$$st[j][i] = 
 \begin{cases}
 a[i] & \text{ với } j = 0 \\ 
 min(st[j-1][i], st[j-1][i + 2^{j-1}]) & \text{ với } j > 0
-\end{cases}$
+\end{cases}$$
 
 Nhận xét thêm:
 - $\log$ lệnh if trong $queryMin$ lúc này thật ra chỉ thực hiện nhiệm vụ: tìm $k$ nhỏ nhất thoả mãn $len < 2^{k+1} = 2^k + 2^k$ (hay nói cách khác là để chắc chắn $2$ đoạn $[l\ldots l+2^k-1]$ và $[r-2^k+1,r]$ giao nhau nhưng vẫn nằm trong đoạn $[l,r]$).
@@ -206,7 +206,7 @@ Nhận xét thêm:
 - Ví dụ:
     - $len=6\Rightarrow k=2$, vì $6 < 2^{k+1} = 8$
     - $len=8\Rightarrow k=3$, vì $8 < 2^{k+1}=16$
-- Vậy nên, $k$ còn có một cách tính khác là $k=\_\_lg(len)$ (phần nguyên của phép $\log_2(len)$)
+- Vậy nên, $k$ còn có một cách tính khác là $$k=\_\_lg(len)$$ (phần nguyên của phép $\log_2(len)$)
 - Từ đây, ta có thể giảm độ phức tạp truy vấn xuống còn $\mathcal{O}(1)!!!!!!!$
 
 ```cpp
@@ -238,13 +238,13 @@ Giới hạn: $N, Q \le 10^5$
 ### Ý tưởng
 Giống như RMQ, ta vẫn sẽ dựng mảng $st[LG+1][N]$.
 
-Nhưng lúc này, ta không thể lấy $k = \_\_lg(len)$ rồi $res = sum[l\ldots l+2^k-1] + sum[r-2^k+1\ldots r]$ như RMQ được nữa (vì $2$ đoạn chắc chắn giao nhau).
+Nhưng lúc này, ta không thể lấy $$k = \_\_lg(len)$$ rồi $res = sum[l\ldots l+2^k-1] + sum[r-2^k+1\ldots r]$ như RMQ được nữa (vì $2$ đoạn chắc chắn giao nhau).
 
 Nhận xét: Ta luôn có thể tách một số nguyên dương thành tổng các lũy thừa phân biệt của 2 (hệ nhị phân). Ví dụ: $25 = 2^4 + 2^3 + 2^0 = 11001_2$.
 
 Từ nhận xét trên, ta có thể tách $[l\ldots r]$ thành $\log_2$ đoạn có độ dài $2^x$ như sau:
 - Đặt $len = r - l + 1$
-- Duyệt $j$ từ $0$ đến $\_\_lg(len)$, nếu bit thứ $j$ của $len$ là $1$ thì:
+- Duyệt $j$ từ $0$ đến $$\_\_lg(len)$$, nếu bit thứ $j$ của $len$ là $1$ thì:
     - Ta tách $[l\ldots r]$ thành $[l\ldots l+2^j-1]$ và $[l+2^j\ldots r]$
     - $l = l + 2^j$ (tiếp tục tách $[l+2^j\ldots r]$ như $[l\ldots r]$)
 
@@ -318,24 +318,24 @@ Với giới hạn như trên, rõ ràng cả $2$ thuật toán đều không đ
 - Xem mỗi Sparse Table 1D của mỗi hàng như $1$ "nhóm" phần tử.
 - Để gộp $2$ "nhóm" phần tử, ta thực hiện gộp từng "phần tử" trong "nhóm".
 
-![](https://i.imgur.com/MPrrpbW.gif)
-|![](https://i.imgur.com/MnTNZ41.png)|
-|:--:|
-|gộp $2$ "nhóm" Sparse Table|
+| ![](https://i.imgur.com/MPrrpbW.gif)          |
+| :-------------------------------------------: |
+| ![](https://i.imgur.com/MnTNZ41.png)          |
+| Gộp $2$ "nhóm" Sparse Table                   |
 
 Từ ý tưởng trên, ta xây dựng công thức như sau:
 - Đặt $st(k, i)(l, j)$ là giá trị nhỏ nhất của hình chữ nhật $[i\ldots i+2^k-1][j\ldots j+2^l-1]$
 - Khi $k = 0$, ta dựng Sparse Table 1D của hàng $i$ (vì $2^k=1$), là $st(0,i)$:
-$st(0,i)(l,j)=\left\{
+$$st(0,i)(l,j)=\left\{
 \begin{matrix}
 A[i][j] & \text{ với } l = 0 \\ 
 min\left\{st(0,i)(l-1,j), st(0,i)(l-1,j+2^{l-1})\right\} & \text{ với } l > 0
 \end{matrix}
-\right.$
+\right.$$
 - Khi $k > 0$, ta dựng $st(k,i)$ bằng cách gộp $st(k-1,i)$ và $st(k-1,i + 2^{k-1})$.
 
 Tóm lại, ta có công thức truy hồi như sau:
-$st(k,i)(l,j)=\left\{
+$$st(k,i)(l,j)=\left\{
 \begin{matrix}
 A[i][j]
 & \text{ với } k = 0 \text{ và } l = 0 \\
@@ -344,7 +344,7 @@ min\left\{st(k,i)(l - 1,j), st(k,i)(l - 1,j+2^{l-1})\right\}
 min\left\{st(k - 1,i)(l,j), st(k - 1,i+2^{k-1})(l,j)\right\}
 & \text{ với } k > 0 \\
 \end{matrix}
-\right.$
+\right.$$
 
 ```cpp
 int a[M][N], st[LGM + 1][M][LGN + 1][N];
@@ -371,14 +371,14 @@ void preprocess() {
 }
 ```
 Để truy vấn $min([x\ldots a][y\ldots b])$ trong $\mathcal{O}(1)$ bằng Sparse Table 2D, ta làm tương tự như [Bài Toán RMQ](#Range-Minimum-Queries-RMQ), nhưng tách cả $2$ chiều $M$ và $N$, nghĩa là:
-\begin{cases}
+$$\begin{cases}
 k = \log_2(a - x + 1) \\
 l = \log_2(b - y + 1) \\
 min([x\ldots a][y\ldots b]) = min(& min([x\ldots x+2^k][y\ldots y+2^l]), \\
 & min([x\ldots x+2^k][b-2^l+1\ldots b]), \\
 & min([a-2^k+1\ldots a][y\ldots y+2^l]), \\
 & min([a-2^k+1\ldots a][b-2^l+1\ldots b])
-\end{cases}
+\end{cases}$$
 
 ```cpp
 int getMin(int x, int y, int a, int b) {
