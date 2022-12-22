@@ -288,6 +288,7 @@ Vậy bài toán lúc này không thể dùng mảng cộng dồn, cũng không 
 
 ## Bài tập áp dụng
 - [**Library Checker - Static RMQ**](https://judge.yosupo.jp/problem/staticrmq)
+- [**VNOJ - AVLBIT (Dãy cấp số cộng)**](https://oj.vnoi.info/problem/avlbit)
 - [**Codechef - FRMQ (Chef and Array)**](https://www.codechef.com/problems/FRMQ)
 - [**Codeforces - 5C (Longest Regular Bracket Sequence)**](https://codeforces.com/contest/5/problem/C)
 - [**Codeforces - 1454F (Array Partition)**](https://codeforces.com/contest/1454/problem/F)
