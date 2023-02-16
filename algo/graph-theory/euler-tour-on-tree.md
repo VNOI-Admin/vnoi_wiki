@@ -11,9 +11,7 @@
 * Hoàng Xuân Nhật - Đại học Khoa học Tự nhiên - ĐHQG-HCM
 * Ngô Nhật Quang - Trường THPT chuyên Khoa học Tự Nhiên - ĐHQGHN
 
-|[TOC]|
-|---|
-
+[[_TOC_]]
 
 # Giới thiệu
 
@@ -38,7 +36,7 @@ Giới hạn: $n, q \leq 10^5$.
 
 <center>
 
-![](https://i.ibb.co/ykSMHwN/subtree-example.png)
+[[/uploads/euler-tour-on-tree_img1.png]]
 </center>
 
 <!-- ![](https://i.ibb.co/ykSMHwN/subtree-example.png) -->
@@ -98,7 +96,7 @@ Thể hiện chu trình Euler (**) trên đồ thị $T'$ bằng một dãy các
 
 <center>
     
-![](https://i.ibb.co/02Bf8tp/simpletree.png)
+[[/uploads/euler-tour-on-tree_img2.png]]
 </center>
 
 <!-- ![](https://i.ibb.co/02Bf8tp/simpletree.png) -->
@@ -222,7 +220,7 @@ Từ hai tính chất trên ta nhận xét được rằng, với hai đỉnh $u
 
 <center>
 
-![](https://i.ibb.co/x1SCbYB/cover.png)
+[[/uploads/euler-tour-on-tree_img3.png]]
 </center>
 
 
@@ -408,7 +406,7 @@ Ví dụ:
 
 
 <center>
-  <img src="https://i.ibb.co/THr5fDt/twice.png"/>
+  [[/uploads/euler-tour-on-tree_img4.png]]
 </center>
 
 
