@@ -158,6 +158,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 - [[Viết trình chấm|algo/skill/viet-trinh-cham]]
 - [[Tổng hợp lời khuyên cho các kỳ thi|algo/skill/Ki-nang-thi-cu]]
+- [[Kinh nghiệm thi VOI|algo/skill/Kinh-nghiem-thi-VOI]]
 
 ## Kinh nghiệm phỏng vấn
 
