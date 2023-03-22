@@ -399,10 +399,6 @@ Biết được trạng thái thay đổi như thế nào, ta có thể dùng n�
 
 $$K[i][j] = K[i-1][j] + (\text{mid} == |s|) + K[i-1][\text{mid}]$$
 
-Trường hợp biên: $G[0][j] = j, K[0][j] = 0$. 
-Đáp án của chúng ta là $K[k][0]$. 
-Do mỗi trạng thái trong $k * 26$ trạng thái của $K, G$ tính được trong $O(1)$, và độ phức tạp xây automaton là $O(n * 26)$, độ phức tạp cuối cùng là $O((n + k) * 26)$.
-
 Chốt lại, nhờ việc sử dụng automaton mà ta giải được bài toán so khớp trên xâu Gray, và ta có thể dùng lại ý tưởng này cho nhiều xâu khác được tạo bởi các quy tắc phức tạp hơn. 
 Cụ thể là bài toán: Tìm số lần $s$ xuất hiện trong $t_i$, biết $t_i$ được tạo bằng cách nối các xâu $t_k^{\text{cnt}}$ (lặp lại $t_k$ $\text{cnt}$ lần, $k \lt n$) vào nhau. 
 Ví dụ một quy tắc như thế: 
