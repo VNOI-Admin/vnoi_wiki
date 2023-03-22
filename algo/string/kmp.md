@@ -417,7 +417,7 @@ t_4 &= t_2^{10} + t_3^{100}
 Ta không thể dựng cả xâu vì độ lớn bùng nổ lên tới $100^{100}$ chữ cái (!). Tuy nhiên, cách giải cho bài nay không khác gì bài trước, đó là xây dựng automaton và tìm quy hoạch động để miêu tả cách trạng thái thay đổi. 
 
 # Bài tập
-Test code KMP: https://oj.vnoi.info/problem/substr
+Test code KMP: [VNOJ - SUBSTR](https://oj.vnoi.info/problem/substr)
 * [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
 * [Codeforces - MUH and Cube Walls](https://codeforces.com/problemset/problem/471/D)
 * [Codeforces - Prefixes and Suffixes](https://codeforces.com/contest/432/problem/D)
