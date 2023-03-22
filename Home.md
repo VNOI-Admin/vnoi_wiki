@@ -71,7 +71,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 ## Xử lý xâu
 
 - [[Tổng quan (2*)|algo/string/basic]]
-- [[KMP (2*)|translate/wcipeg/kmp]]
+- [[KMP (2*)|algo/string/kmp]]
 - [[Trie (2*)|algo/data-structures/trie]]
 - [[Hash (2*)|algo/string/hash]]
 - [[Suffix Array (4*)|algo/data-structures/suffix-array]]
