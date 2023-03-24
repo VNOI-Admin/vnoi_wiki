@@ -166,13 +166,13 @@ Về mặt bộ nhớ, ta vẫn cần phải lưu lại xâu và giá trị các
 ## Thuật toán Knuth-Morris-Pratt (KMP)
 Quay trở lại với bài toán ban đầu: Đếm số lần xâu $s$ độ dài $n$ xuất hiện trong xâu $t$ độ dài $m$. Lời giải cho bài toán này - thuật toán KMP - là một áp dụng kinh điển của hàm tiền tố. Vậy làm thế nào để dùng hàm tiền tố khi có hai xâu cần khớp chứ không phải trong một xâu? Bằng cách gộp chúng vào nhau.
 
-Nhận xét rằng nếu ta nối xâu $t$ vào sau xâu $s$ và hai xâu được ngăn cách bởi một ký tự $\#$ không nằm trong cả 2 xâu (ví dụ nếu $s$, $t$ gồm toàn chữ cái thì có thể lấy $\#$ là $0$, xâu mới là $s + 0 + t$), thì mỗi một lần $s$ xuất hiện trong $t$ tương đương với một vị trí $i$ ở xâu mới có hàm tiền tố = $\pi[i] = n$. 
+Nhận xét rằng nếu ta nối xâu $t$ vào sau xâu $s$ và hai xâu được ngăn cách bởi một ký tự $\text{#}$ không nằm trong cả 2 xâu (ví dụ nếu $s$, $t$ gồm toàn chữ cái thì có thể lấy $\text{#}$ là $0$, xâu mới là $s + 0 + t$), thì mỗi một lần $s$ xuất hiện trong $t$ tương đương với một vị trí $i$ ở xâu mới có hàm tiền tố = $\pi[i] = n$. 
 
 Thuật toán KMP đảm bảo tính đúng đắn, vì nếu $i$ thỏa mãn $\pi[i] = n$ thì phải có $i \gt n$ (nghĩa là các giá trị $i$ thỏa mãn phải nằm ở nửa sau tạo bởi $t$) và hậu tố của $i$ có độ dài $\pi[i]$ không thể "tràn" sang phần của $s$. 
 
-Ta có thể cài đặt KMP bằng cách sử dụng code trên: `prefix_function(s + # + t)` trả về hàm tiền tố cho $s + \# + t$ và ta chỉ cần đếm xem có bao nhiêu phần tử trong đó có giá trị là $n$. Cách cài đặt này tốn $O(n + m)$ bộ nhớ.
+Ta có thể cài đặt KMP bằng cách sử dụng code trên: `prefix_function(s + # + t)` trả về hàm tiền tố cho $s + \text{#} + t$ và ta chỉ cần đếm xem có bao nhiêu phần tử trong đó có giá trị là $n$. Cách cài đặt này tốn $O(n + m)$ bộ nhớ.
 
-Tuy nhiên, việc chọn ký tự ngăn cách là một chữ cái không nằm trong cả hai xâu còn dẫn đến $\pi[i] \leq n$. Như đã nói ở trên, chặn trên này cho phép ta chỉ lưu xâu $s + \#$ và hàm tiền tố của xâu này. Với các vị trí thuộc xâu $t$ thì ta có thể tính $\pi$ lần lượt (bằng cách lưu một biến $j$ chứa giá trị $\pi$ ở vị trí hiện tại) và thêm $1$ vào đáp án nếu $\pi$ tại vị trí đang xét là $n$: 
+Tuy nhiên, việc chọn ký tự ngăn cách là một chữ cái không nằm trong cả hai xâu còn dẫn đến $\pi[i] \leq n$. Như đã nói ở trên, chặn trên này cho phép ta chỉ lưu xâu $s + \text{#}$ và hàm tiền tố của xâu này. Với các vị trí thuộc xâu $t$ thì ta có thể tính $\pi$ lần lượt (bằng cách lưu một biến $j$ chứa giá trị $\pi$ ở vị trí hiện tại) và thêm $1$ vào đáp án nếu $\pi$ tại vị trí đang xét là $n$: 
 
 ```cpp
 vector<int> pi = prefix_function(s); 
@@ -242,7 +242,7 @@ for (int i = n - 1; i > 0; i--)
         ans[pi[i] - 1] += ans[i];
 ```
 
-Để giải quyết phiên bản thứ 2, ta chỉ cần áp dụng kỹ thuật được sử dụng ở thuật toán KMP: **nối hai xâu để tạo xâu mới $s + \# + t$ và xây dựng hàm tiền tố cho xâu này**. Sau đó, tìm $ans$ tương tự như phiên bản 1, đáp án là $ans$ của các vị trí $i$ thuộc về xâu $t$ ($i \ge n + 1$). 
+Để giải quyết phiên bản thứ 2, ta chỉ cần áp dụng kỹ thuật được sử dụng ở thuật toán KMP: **nối hai xâu để tạo xâu mới $s + \text{#} + t$ và xây dựng hàm tiền tố cho xâu này**. Sau đó, tìm $ans$ tương tự như phiên bản 1, đáp án là $ans$ của các vị trí $i$ thuộc về xâu $t$ ($i \ge n + 1$). 
 
 ## Đếm số xâu con phân biệt trong một xâu 
 
@@ -305,8 +305,8 @@ $$s_0 = s_2, s_1 = s_3, s_2 = s_4, s_3 = s_0, s_4 = s_1 \\ \Rightarrow s_0 = s_1
 
 ## Tạo automaton từ hàm tiền tố
 
-Một kỹ thuật đặc trưng đã được sử dụng ở các bài nêu trên là: ghép hai xâu $s, t$ vào nhau bằng một ký tự ngăn cách $\#$ không nằm trong $s$ hoặc $t$, rồi tính hàm tiền tố cho xâu $s + \# + t$ này. 
-Việc $\#$ là ký tự không nằm trong cả hai xâu dẫn tới $\pi[i]$ không thể vượt quá $\lvert s \rvert$ với mọi $i$, qua đó cho phép chúng ta chỉ cần lưu xâu $s + \#$ và các giá trị $\pi$ tương ứng với xâu này.
+Một kỹ thuật đặc trưng đã được sử dụng ở các bài nêu trên là: ghép hai xâu $s, t$ vào nhau bằng một ký tự ngăn cách $\text{#}$ không nằm trong $s$ hoặc $t$, rồi tính hàm tiền tố cho xâu $s + \text{#} + t$ này. 
+Việc $\text{#}$ là ký tự không nằm trong cả hai xâu dẫn tới $\pi[i]$ không thể vượt quá $\lvert s \rvert$ với mọi $i$, qua đó cho phép chúng ta chỉ cần lưu xâu $s + \text{#}$ và các giá trị $\pi$ tương ứng với xâu này.
 
 $$\underbrace{s_0 ~ s_1 ~ \dots ~ s_{n-1} ~ \#}_{\text{cần lưu}} ~ \underbrace{t_0 ~ t_1 ~ \dots ~ t_{m-1}}_{\text{không cần lưu}}$$
 
@@ -358,9 +358,9 @@ void compute_automaton(string s, vector<vector<int> >& aut) {
 
 Vậy thì tại sao xây một automaton như vậy lại hữu ích? 
 
-Trước tiên, ta cần hiểu mục đích chính của việc tạo xâu $s + \# + t$ là để đếm số lần xâu $s$ xuất hiện trong xâu $t$. 
+Trước tiên, ta cần hiểu mục đích chính của việc tạo xâu $s + \text{#} + t$ là để đếm số lần xâu $s$ xuất hiện trong xâu $t$. 
 
-Do đó, lợi ích gần nhất của automaton này là **tăng tốc độ tính hàm tiền tố** cho xâu $s + \# + t$. Nhờ có automaton mà ta không cần lưu lại xâu $s$ và hàm tiền tố $\pi$, vì mọi bước chuyển trạng thái có thể đều đã được tính trong ma trận. 
+Do đó, lợi ích gần nhất của automaton này là **tăng tốc độ tính hàm tiền tố** cho xâu $s + \text{#} + t$. Nhờ có automaton mà ta không cần lưu lại xâu $s$ và hàm tiền tố $\pi$, vì mọi bước chuyển trạng thái có thể đều đã được tính trong ma trận. 
 
 Nhưng còn có một ứng dụng khác, ít hiển nhiên hơn của automaton: giải bài toán so khớp chuỗi khi $t$ là một xâu cực đại được xây theo một quy tắc nào đó. Ví dụ, xâu $t$ có thể là các xâu Gray (định nghĩa ở dưới), hoặc một xâu được định nghĩa theo một công thức đệ quy dựa vào các xâu đầu vào. Để minh họa cụ thể hơn, ta xét bài tập sau: 
 
