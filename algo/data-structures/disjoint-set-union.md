@@ -31,7 +31,7 @@ Nếu ta coi mỗi đỉnh trong đồ thị là một phần tử và mỗi th�
 - `union_sets(a, b)` - gộp tập hợp chứa phần tử `a` và tập hợp chứa phần tử `b` thành một.
 - `find_set(v)` - cho biết **đại diện** của tập hợp có chứa phần tử `v`. Đại diện này sẽ là một phần tử của tập hợp đó và có thể thay đổi sau mỗi lần gọi thao tác `union_sets`. Ta có thể sử dụng đại diện đó để kiểm tra hai phần tử có nằm trong cùng một tập hợp hay không. `a` và `b` nằm trong cùng một tập hợp nếu như đại diện của hai tập chứa chúng là giống nhau và không nằm trong cùng một tập hợp nếu ngược lại.
 
-Ta có thể xử lí các thao tác một cách hiệu quả này với các tập hợp được biểu diễn dưới dạng các cây, mỗi phần tử là một đỉnh và mỗi cây tương ứng với một tập hợp. Gốc của mỗi cây sẽ là đại di của tập hợp đó.
+Ta có thể xử lí các thao tác một cách hiệu quả này với các tập hợp được biểu diễn dưới dạng các cây, mỗi phần tử là một đỉnh và mỗi cây tương ứng với một tập hợp. Gốc của mỗi cây sẽ là đại diện của tập hợp đó.
 
 Cấu trúc của cây được thể hiện qua ví dụ sau đây:
 
