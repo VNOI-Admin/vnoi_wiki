@@ -31,7 +31,7 @@ Bài toán tìm bao lồi của một tập điểm trên mặt phẳng là mộ
 
 **Thuật toán bọc gói quà**, hay còn gọi là thuật toán **Jarvis march**, là một trong những thuật toán tìm bao lồi đơn giản và dễ hiểu nhất. Tên thuật toán xuất phát từ sự tương tự của thuật toán với việc đi bộ xung quanh các điểm và cầm theo một dải băng gói quà.
 
-|![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Jarvis_march_convex_hull_algorithm_diagram.svg/1024px-Jarvis_march_convex_hull_algorithm_diagram.svg.png)|
+|[[/uploads/algo_geometry_convex_hull_gift_wrapping_algorithm.png]]|
 |-|
 |source: [wikipedia - Gift wrapping algorithm](https://en.wikipedia.org/wiki/Gift_wrapping_algorithm)|
 
@@ -163,7 +163,7 @@ Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất n
 
 Về độ phức tạp thuật toán, ta thấy bước sắp xếp các điểm có độ phức tạp $\mathcal{O}(n\log{n})$. Mỗi điểm được thêm/xoá nhiều nhất một lần nên tổng độ phức tạp của các bước thêm/xoá điểm là $\mathcal{O}(n)$. Vậy độ phức tạp của thuật toán Graham là $\mathcal{O}(n\log{n})$, phù hợp cho hầu hết các bài toán.
 
-|![](https://upload.wikimedia.org/wikipedia/commons/7/71/GrahamScanDemo.gif)|
+|[[/uploads/algo_geometry_convex_hull_graham_scan.gif]]|
 |-|
 |Minh hoạ của thuật toán Graham<br> source: [wikipedia - Graham scan](https://en.wikipedia.org/wiki/Graham_scan)|
 
@@ -225,7 +225,7 @@ vector<Point> convexHull(vector<Point> p, int n) {
 ## Thuật toán chuỗi đơn điệu (Monotone chain algorithm)
 Thuật toán chuỗi đơn điệu vừa dễ cài đặt, vừa là thuật toán nhanh nhất trong $3$ thuật toán được giới thiệu trong bài này. Thuật toán dựa trên việc tìm hai chuỗi đơn điệu của bao lồi: bao trên (hay chuỗi trên) và bao dưới (hay chuỗi dưới).
 
-|![](https://upload.wikimedia.org/wikipedia/commons/d/d5/UpperAndLowerConvexHulls.png)|
+|[[/uploads/algo_geometry_convex_hull_UpperAndLowerConvexHulls.png]]|
 |-|
 |source: [wikibooks - Monotone chain](https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain)|
 
@@ -242,7 +242,7 @@ Sau khi xét hết các điểm, $H$ sẽ chứa toàn bộ phần bao trên. Sa
 
 Thuật toán này cũng có độ phức tạp $\mathcal{O}(n\log{n})$. Thuật toán chuỗi đơn điệu được khuyên dùng ở mọi bài toán tìm bao lồi, do nó đơn giản hơn thuật toán Graham và nhanh hơn một chút (do ta không phải tính góc).
 
-|![](https://upload.wikimedia.org/wikipedia/commons/9/9a/Animation_depicting_the_Monotone_algorithm.gif)|
+|[[/uploads/algo_geometry_convex_hull_monotone_algorithm.gif]]|
 |-|
 |Minh hoạ của thuật toán chuỗi đơn điệu<br> source: [wikibooks - Monotone chain](https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain)|
 
@@ -354,12 +354,12 @@ Mở rộng, các loại cocktail có thể pha chế từ $N$ loại cocktail b
 Để kiểm tra nhanh một điểm có nằm trong bao lồi hay không trong $\mathcal{O}(\log{n})$, ta thực hiện như sau:
 - Gọi tập bao lồi là $H$, giả sử tập $H$ được liệt kê theo chiều kim đồng hồ.
 - Đầu tiên, ta kiểm tra $(H_0, H_1, P)$ có ngược chiều kim đồng hồ hay không ($P$ thoả thuộc vùng màu xanh).
-    ![](https://i.imgur.com/QiqiwNP.png)
+    [[/uploads/algo_geometry_convex_hull_kmix1.png]]
 - Tiếp theo, ta kiểm tra $(H_{n-1}, H_0, P)$ có ngược chiều kim đồng hồ hay không ($P$ thoả thuộc vùng màu cam).
-    ![](https://i.imgur.com/rKgFxTk.png)
+    [[/uploads/algo_geometry_convex_hull_kmix2.png]]
 - Bây giờ, ta chặt nhị phân để tìm **tia** $\overrightarrow{H_0H_x}$ thoả mãn $\overrightarrow{H_0H_x}$ là tia gần điểm $P$ nhất ở phía **bên phải** bằng cách kiểm tra $CCW(H_0,H_x,P)$ (chi tiết xem ở phần cài đặt).
 - Sau khi có $x$ (ví dụ $x=4$), ta biết được rằng $P$ thuộc vùng tạo bởi $2$ tia $\overrightarrow{H_0H_{x-1}}$ và $\overrightarrow{H_0H_x}$ (vùng màu tím).
-    ![](https://i.imgur.com/IDxhTWH.png)
+    [[/uploads/algo_geometry_convex_hull_kmix3.png]]
 - Đến đây, ta kiểm tra $(H_{x-1}, H_x, P)$ có cùng chiều kim đồng hồ hay không (tức $P$ có thuộc tam giác $(H_0,H_{x-1},H_x)$ hay không).
 
 ### Cài đặt
