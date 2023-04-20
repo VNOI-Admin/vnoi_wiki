@@ -360,11 +360,11 @@ void preprocess() {
                             st[0][i][0][j] = a[i][j];
                         }
                         else {
-                            st[0][i][l][j] = st[0][i][l - 1][j] + st[0][i][l - 1][j + (1 << (l - 1))];
+                            st[0][i][l][j] = min(st[0][i][l - 1][j], st[0][i][l - 1][j + (1 << (l - 1))]);
                         }
                     }
                     else {
-                        st[k][i][l][j] = st[k - 1][i][l][j] + st[k - 1][i + (1 << (k - 1))][l][j];
+                        st[k][i][l][j] = min(st[k - 1][i][l][j], st[k - 1][i + (1 << (k - 1))][l][j]);
                     }
                 }
             }
