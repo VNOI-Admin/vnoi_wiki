@@ -71,6 +71,8 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 ## Quy hoạch động
 - [[Nhập môn Quy hoạch động (2*)|translate/topcoder/dynamic-programming]]
+- [[Quy hoạch động cơ bản (Phần 1)|algo/dp/basic-dynamic-programming-1.md]]
+- [[Quy hoạch động cơ bản (Phần 2)|algo/dp/basic-dynamic-programming-2.md]]
 - [[Một vài bài tập về Palindrome (2*)|algo/dp/palindrome-problems]]
 - [[Một số bài toán QHD điển hình (2*)|algo/dp/basic-problems]]
 - [[Phân tích về QHD - Thầy Lê Minh Hoàng|algo/dp/thac-mac-ve-qhd]]
