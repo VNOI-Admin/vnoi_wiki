@@ -27,6 +27,7 @@ Bài viết được sưu tầm và bổ sung từ bài viết *"Một số bài
 > **Điều kiện:** $1\le n \times m \le 10^6$.
 
 **Ví dụ 1:** `ILoveVNOI`$\to$`ILoveVNOIMore`
+
 |Lượt biến đổi|Phép biến đổi|    A    |
 |-------------|-------------|---------|
 |$1$          |`I 9 e`|`ILoveVNOIe`|
@@ -35,6 +36,7 @@ Bài viết được sưu tầm và bổ sung từ bài viết *"Một số bài
 |$4$          |`I 9 M`|`ILoveVNOIMore`|
 
 **Ví dụ 2:** `asrefghuar`$\to$`regular`
+
 |Lượt biến đổi|Phép biến đổi|    A    |
 |-------------|-------------|---------|
 |$1$          |`R 8 l`|`asrefghlar`|
@@ -44,6 +46,7 @@ Bài viết được sưu tầm và bổ sung từ bài viết *"Một số bài
 |$5$          |`D 1`|`regular`|
 
 **Ví dụ 3:** `D9M12Y2022`$\to$`D1M1Y2023`
+
 |Lượt biến đổi|Phép biến đổi|    A    |
 |-------------|-------------|---------|
 |$1$          |`R 2 1`|`D1M12Y2022`|
@@ -85,7 +88,7 @@ Bài này ta có thể tiết kiệm biến hơn bằng cách dùng 2 mảng 1 c
 
 Cần lưu ý thứ tự tính. Để tính $L[i][j]$ cần biết $L[i - 1][j -1],L[i-1][j]$ và $L[i][j-1]$. Hơn nữa, $L[i][0]$ và $L[0][j]$ có thể tính trực tiếp nên ta có thể tính theo trình tự sau:
 
-![Trình tự tính](https://i.imgur.com/KKKCFVd.png)
+[[/uploads/basic-dynamic-programming-2_img1.png]]
 
 ```cpp
 #include <iostream>
@@ -264,7 +267,7 @@ for (int i = 1; i <= m; i++)
 > Mỗi thành phố của nước này thường có quan hệ kết nghĩa với một số thành phố của nước kia. Để tăng cường tình hữu nghị, hai nước muốn xây các cây cầu bắc qua sông, mỗi cây cầu sẽ là nhịp cầu nối 2 thành phố kết nghĩa. Với yêu cầu là các cây cầu không được cắt nhau và mỗi thành phố chỉ là đầu cầu cho nhiều nhất là một cây cầu, hãy đếm số cây cầu nhiều nhất có thể xây dựng.*
 > **Điều kiện:** $1\le n \times m \le 10^6$.
 
-![Minh họa](https://i.imgur.com/2zUiuhZ.png)
+[[/uploads/basic-dynamic-programming-2_img2.png]]
 
 **Lời giải:**
 
@@ -360,7 +363,7 @@ Ví dụ: $S=edbabcd$, xâu đảo của $S$ là $P=dcbabde$. Xâu con chung dà
 > *Có $n$ đồ vật, vật thứ $i$ có trọng lượng $A_i$ và giá trị $B_i$. Hãy chọn ra một số các đồ vật để xếp vào vali có trọng lượng tối đa $W$ sao cho tổng giá trị của vali là lớn nhất (Chú ý mỗi vật có thể chọn nhiều lần).*
 > **Điều kiện:** $1\le n\times W\le 10^6,1\le A_i,B_i\le 10^9$.
 
-![Minh họa](https://i.imgur.com/mYcNyJK.png)
+[[/uploads/basic-dynamic-programming-2_img3.png]]
 
 **Chú ý:** Bài toán này khác với bài toán **Xếp Vali** ở phần trước ở chỗ mỗi vật không phải là duy nhất và có thể được chọn vào vali nhiều lần.
 
@@ -546,7 +549,7 @@ int main()
 > **Input:** Số $n$ và $n+1$ số $d_0,d_1,\ldots,d_n$.
 > **Output:** Số nguyên duy nhất là số phép nhân ít nhất.
 
-![Minh họa](https://i.imgur.com/Ufe61Ss.png)
+[[/uploads/basic-dynamic-programming-2_img4.png]]
 ## 3.2. Lời giải
 
 Gọi $L[i][j]$ là số phép nhân nhỏ nhất cần dùng để tính tích các ma trận từ $A_i$ đến $A_j$ $(A_i \times A_{i+1} \times \ldots \times A_j)$.
