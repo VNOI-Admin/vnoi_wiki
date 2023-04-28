@@ -770,7 +770,7 @@ cout << L[k];
 
 **Lời giải:**
 
-Khi xếp nhóm $i$ vào phòng $j$ thì số lần chuyển ghế chính là độ chênh lệch giữa số ghế trong phòng $i$ và số học sinh trong nhóm. Khi đó, "giá trị thẩm mỹ" nếu lớp $j$ học ở phòng $i$ là $v_{i,j}=|A_i - B_j|$. Ta cần tìm cách ghép $k$ nhóm học sinh với $n$ lớp học sao cho nhóm có số hiệu nhỏ hơn thì học lớp có số hiệu nhỏ hơn. Để ý trong bài toán này, tổng giá trị thẩm mỹ của cách ghép phải là **nhỏ nhất**.
+Khi xếp nhóm $i$ vào phòng $j$ thì số lần chuyển ghế chính là độ chênh lệch giữa số ghế trong phòng $i$ và số học sinh trong nhóm. Khi đó, "giá trị thẩm mỹ" nếu lớp $j$ học ở phòng $i$ là $v_{i,j}=\lvert A_i - B_j \rvert$. Ta cần tìm cách ghép $k$ nhóm học sinh với $n$ lớp học sao cho nhóm có số hiệu nhỏ hơn thì học lớp có số hiệu nhỏ hơn. Để ý trong bài toán này, tổng giá trị thẩm mỹ của cách ghép phải là **nhỏ nhất**.
 
 ### 4.4.2. Mua giày (Đề QG bảng B năm 2003)
 
