@@ -489,7 +489,7 @@ Dãy con đổi dấu $a_{i_1},a_{i_2},\ldots, a_{i_k}$ phải thoả mãn các 
 
 - $A_{i_1} < A_{i_2} > A_{i_3} <\ldots$ hoặc $A_{i_1} > A_{i_2} < A_{i_3} >\ldots$
 - Các chỉ số phải cách nhau ít nhất $L: i_2 - i_1 \ge L, i_3 - i_2 \ge L, \ldots$
-- Chênh lệch giữa 2 phần tử liên tiếp không vượt quá $U:$ $|A_{i1} - A_{i2}| \le U,$ $|A_{i2} - A_{i3}| \le U, \ldots$
+- Chênh lệch giữa 2 phần tử liên tiếp không vượt quá $U:$ $\|A_{i1} - A_{i2}\| \le U,$ $\|A_{i2} - A_{i3}\| \le U, \ldots$
 
 **Hướng dẫn**:
 
