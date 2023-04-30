@@ -357,7 +357,7 @@ Từ ý tưởng của bài xâu con chung dài nhất, ta có thuật toán sau
 
 * Gọi $P$ là xâu đảo của $S$ và $T$ là xâu con chung dài nhất của $S$ và $P$. Khi đó các kí tự của $S$ không thuộc $T$ cũng là các kí tự cần thêm vào để $S$ trở thành đối xứng. Đáp số của bài toán sẽ là $n-k$, với $k$ là độ dài của $T$.
 
-Ví dụ: $S=edbabcd$, xâu đảo của $S$ là $P=dcbabde$. Xâu con chung dài nhất của $S$ và $P$ là $T=dbabd$. Như vậy cần thêm $|S|-|T|=7-5=2$ kí tự vào $S$ để $S$ trở thành xâu đối xứng. Ví dụ, ta có thể thêm kí tự `e` và `c` vào $S$ và thu được xâu $S=edcbabcde$.
+Ví dụ: $S=edbabcd$, xâu đảo của $S$ là $P=dcbabde$. Xâu con chung dài nhất của $S$ và $P$ là $T=dbabd$. Như vậy cần thêm $\|S\|-\|T\|=7-5=2$ kí tự vào $S$ để $S$ trở thành xâu đối xứng. Ví dụ, ta có thể thêm kí tự `e` và `c` vào $S$ và thu được xâu $S=edcbabcde$.
 
 # 2. Xếp vali không giới hạn (Unbounded Knapsack)
 ## 2.1. Mô hình
