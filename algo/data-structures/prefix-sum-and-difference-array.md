@@ -222,7 +222,7 @@ int main() {
     for (int i = 1; i <= n; i++)
       prefSum[i] = prefSum[i - 1] + a[i], prefMin[i] = min(prefMin[i - 1], prefSum[i]);
     for (int i = 1; i <= n; i++)
-        ans = max(ans, prefSum[i] - prefMin[i]);
+        ans = max(ans, prefSum[i] - prefMin[i - 1]);
     cout << ans;
 }
 ```
