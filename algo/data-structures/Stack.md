@@ -152,6 +152,13 @@ int evaluate(string s)
             op.push_back(s[i]);
         }
     }
+    
+    if (!op.empty())
+    {
+        process_op(val, op.back());
+        op.pop_back();
+    }
+
     return val.back();
 }
 ```
