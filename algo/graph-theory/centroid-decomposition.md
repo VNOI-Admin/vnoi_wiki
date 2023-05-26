@@ -101,8 +101,6 @@ Cũng theo ý tưởng trên, nhưng thuật toán phân tách trọng tâm cho 
 
 Độ phức tạp của thuật toán bằng $\log(n)$ nhân cho độ phức tạp của bước $2$. Nếu bước $2$ được thực hiện trong $O(m)$, với $m$ là số đỉnh của cây đang xét lúc đó, thì độ phức tạp tổng sẽ là $O(n \times \log(n))$. Nếu bước $2$ được thực hiện trong $O(m\log(m))$, thì độ phức tạp tổng là $O(n \times \log(n)^2)$
 
-(có gif :((( )
-
 ## Giải thích
 
 Giả sử ta xếp các cây được xét thành nhiều hàng, bắt đầu từ hàng $0$, mỗi hàng gồm một số cây theo quy luật: hàng $0$ chứa cây ban đầu, hàng thứ $i$ ($i$ từ $1$ trở đi) chứa các cây tạo được từ việc phân tách một cây nào đó ở hàng $i - 1$.
