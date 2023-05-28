@@ -1,9 +1,9 @@
 # Thuật toán phân tách trọng tâm - Centroid decomposition
 
 **Tác giả:**
-* Cao Thanh Hậu - Đại học Khoa học Tự Nhiên - DHQG-HCM
+* Cao Thanh Hậu - Trường đại học Khoa học Tự Nhiên - ĐHQG-HCM
 
-**Reviewer:**
+**Reviwer:**
 * Lê Minh Hoàng - Đại học Khoa học Tự nhiên - ĐHQG-HCM
 * Hồ Ngọc Vĩnh Phát - Đại học Khoa học Tự nhiên - ĐHQG-HCM
 * Ngô Nhật Quang - Trường THPT chuyên Khoa học Tự Nhiên - ĐHQGHN
@@ -12,13 +12,13 @@
 
 # Giới thiệu
 
-Thuật toán phân tách trọng tâm có thể hiểu là thuật toán "chia để trị" trên cây. Thuật toán này hoạt động bằng cách liên tục chia nhỏ cây và xử lý trên mỗi cây được chia. Độ phức tạp của thuật toán là $O(n\log(n))$.
+Thuật toán phân tách trọng tâm có thể hiểu là thuật toán "chia để trị" trên cây. Thuật toán này hoạt động bằng cách liên tục chia nhỏ cây và xử lý trên mỗi cây được chia.
 
 # Trọng tâm của cây
 
 ## Định nghĩa
 
-Trọng tâm của cây - centroid - là một đỉnh trên cây mà khi bỏ nó ra khỏi cây, mỗi thành phần liên thông còn lại có số lượng đỉnh không quá một nửa số lượng đỉnh của cây ban đầu.
+Trọng tâm của cây - centroid - là một đỉnh trên cây mà khi bỏ nó ra khỏi cây, mỗi thành phần liên thông còn lại có số đỉnh không quá một nửa số đỉnh của cây ban đầu.
 
 <center>
 
@@ -67,7 +67,7 @@ int findCentroid(int u, int parent) {
 }
 ```
 
-Code trên hoạt động với độ phức tạp là $O(n)$.
+Code trên hoạt động với độ phức tạp là $O(n)$ (lưu ý, $n$ là số đỉnh của cây **đang xét**).
 
 Từ định nghĩa hàm $findCentroid(u)$ cũng có thể chứng minh trọng tâm của cây luôn tồn tại. Khi $findCentroid()$ dừng lại tại đỉnh $u$ ($findCentroid(u)$ trả về $u$) ta biết rằng các cây con có gốc là con của $u$ đều đã thỏa mãn điều kiện có số đỉnh không vượt quá $n / 2$. Đồng thời khi $findCentroid(u)$ được gọi ta cũng biết số lượng đỉnh thuộc cây con gốc $u$ không nhỏ hơn $n / 2$, vậy số lượng đỉnh không thuộc cây con gốc $u$ cũng không vượt quá $n / 2$. Vậy khi xóa đỉnh $u$ đi thì mọi cây tạo thành đều có số đỉnh không vượt quá $n/2$.
 
@@ -99,7 +99,7 @@ Cũng theo ý tưởng trên, nhưng thuật toán phân tách trọng tâm cho 
 2. Đếm số lượng đường đi trên cây thỏa mãn yêu cầu và có chứa gốc của cây. 
 4. Xóa đỉnh gốc. Nếu trước khi xóa cây có nhiều hơn $1$ đỉnh (khi đó tạo thành một hoặc một số cây riêng biệt khác) thì với mỗi cây mới được tạo, trở lại bước $1$.
 
-Độ phức tạp của thuật toán bằng $\log(n)$ nhân cho độ phức tạp của bước $2$. Nếu bước $2$ được thực hiện trong $O(m)$, với $m$ là số đỉnh của cây đang xét lúc đó, thì độ phức tạp tổng sẽ là $O(n \times \log(n))$. Nếu bước $2$ được thực hiện trong $O(m\log(m))$, thì độ phức tạp tổng là $O(n \times \log(n)^2)$
+Độ phức tạp của thuật toán bằng $\log(n)$ nhân cho độ phức tạp của bước $2$. Nếu bước $2$ được thực hiện trong $O(m)$, với $m$ là số đỉnh của cây đang xét lúc đó, thì độ phức tạp tổng sẽ là $O(n \times \log(n))$. Nếu bước $2$ được thực hiện trong $O(m\log(m))$, thì độ phức tạp tổng là $O(n \times \log(n)^2)$.
 
 ## Giải thích
 
@@ -184,6 +184,9 @@ Sau khi xóa tất cả đỉnh trong cây $T$, ta đã xây dựng được câ
 
 ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmM2NjQyYWYyNGIyNTgyNWRlMTMzMmVmZjVmYjQxZDJiNzRkMTgwMiZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/WNYdDoVhmiZgoNKGld/giphy.gif)
 
+
+
+
 Cây trọng tâm có một số tính chất đặc biệt như:
 * Cây có số lượng đỉnh bằng với cây ban đầu.
 * Độ cao của cây không vượt quá $\log(n)$.
@@ -191,9 +194,9 @@ Cây trọng tâm có một số tính chất đặc biệt như:
 
 Từ các tính chất đó, ta có một ứng dụng vô cùng quan trọng của cây trọng tâm nói riêng hay thuật toán phân tách trọng tâm nói chung. Ứng dụng như sau:
 
-Giả sử cần tính hàm $f(u, v)$ rất nhiều lần, với $f(u, v)$ là một hàm liên quan đến đường đi $u, v$, nghĩa là ta có thể tính $f(u, v)$ từ $f(u, k)$ và $f(k, v)$ với $k$ là một đỉnh thuộc đường đi $u, v$. Khi đó ta có thể tính trước tất cả các giá trị $f(u, p)$ với $p$ là tổ tiên của $u$ **trên cây trọng tâm**. Theo tính chất thứ $2$ thì chỉ có $n\log(n)$ cặp $(u, p)$, có thể áp dụng thuật phân tách trọng tâm để tìm tất cả các giá trị $f(u, p)$ đó. Vậy với hai đỉnh $u, v$ bất kì, ta có thể tính $f(u, v)$ từ $f(u, LCA'(u, v))$ và $f(LCA'(u, v), v)$, trong đó $LCA'(u, v)$ là tổ tiên chung gần nhất của $u$ và $v$ trên cây trọng tâm.
+Giả sử cần tính hàm $f(u, v)$ rất nhiều lần, với $f(u, v)$ là một hàm liên quan đến đường đi $u, v$, nghĩa là ta có thể tính $f(u, v)$ từ $f(u, k)$ và $f(k, v)$ với $k$ là một đỉnh thuộc đường đi $u, v$. Khi đó ta có thể tính trước tất cả các giá trị $f(u, p)$ với $p$ là tổ tiên của $u$ **trên cây trọng tâm**. Theo tính chất thứ $2$ thì chỉ có $n\log(n)$ cặp $(u, p)$, có thể áp dụng thuật phân tách trọng tâm để tìm tất cả các giá trị $f(u, p)$ đó. Vậy với hai đỉnh $u, v$ bất kì, ta có thể tính $f(u, v)$ từ $f(u, LCA_{ct}(u, v))$ và $f(v, LCA_{ct})$, trong đó $LCA_{ct}$ là tổ tiên chung gần nhất của $u$ và $v$ trên cây trọng tâm.
 
-Nói đơn giản, vì độ cao của cây trọng tâm chỉ là $\log(n)$, vậy chỉ có tất cả $n\log(n)$ đường đi thẳng (đường đi từ một đỉnh đến một tổ tiên của đỉnh đó). Do đó, ta có thể tính trước tất cả giá trị của các đường đi thẳng, từ đó tính giá trị của mọi đường đi trên cây bằng cách chia đường đi đó thành $2$ đường đi mà là đường đi thẳng trên cây trọng tâm.
+Nói đơn giản, vì độ cao của cây trọng tâm chỉ là $\log(n)$, vậy chỉ có tất cả $n\log(n)$ đường đi thẳng (đường đi từ một đỉnh đến một tổ tiên của đỉnh đó). Do đó, ta có thể tính trước tất cả giá trị của các đường đi có $2$ đầu mút là $2$ đầu của đường đi thẳng, từ đó tính giá trị của mọi đường đi trên cây bằng cách chia đường đi đó thành $2$ đường đi mà mỗi đường đi có $2$ đầu mút là $2$ đầu của một đường đi thẳng trên cây trọng tâm.
 
 Đồng thời, việc tìm tổ tiên chung gần nhất trên cây trọng tâm có độ phức tạp vô cùng nhỏ. Độ phức tạp của thuật tìm $LCA$ là $\log(H)$ với $H$ là độ cao của cây. Với cây trọng tâm, $H = \log(n)$, vậy độ phức tạp cho mỗi lần tìm $LCA$ trên cây trọng tâm chỉ là $O(\log(\log(n)))$.
 
@@ -517,4 +520,3 @@ int main()
 [Race - IOI2011](https://oj.uz/problem/view/IOI11_race)
 
 Bạn đọc cũng có thể tìm thêm bài tập về Centroid tại mục [tag](https://oj.vnoi.info/tags/?tag_id=Centroid) trên trang oj.vnoi.info/.
-
