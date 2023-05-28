@@ -88,6 +88,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Sắp xếp Tô-pô|algo/graph-theory/topological-sort.md]]
 - [[Đường đi - Chu trình Euler|algo/graph-theory/euler-cycle.md]]
 - [[Đường đi Euler trên cây|algo/graph-theory/euler-tour-on-tree.md]]
+- [[Thuật toán phân tách trọng tâm|algo/graph-theory/centroid-decomposition.md]]
 - [Bài toán 2-SAT (3*)](https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing)
 - [[Luồng cực đại trên mạng (3*)|translate/topcoder/max-flow-1-luong-cuc-dai-tren-mang-1.md]]
 
