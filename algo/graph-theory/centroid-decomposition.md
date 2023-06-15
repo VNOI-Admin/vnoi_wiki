@@ -3,7 +3,7 @@
 **Tác giả:**
 * Cao Thanh Hậu - Trường đại học Khoa học Tự Nhiên - ĐHQG-HCM
 
-**Reviwer:**
+**Reviewer:**
 * Lê Minh Hoàng - Đại học Khoa học Tự nhiên - ĐHQG-HCM
 * Hồ Ngọc Vĩnh Phát - Đại học Khoa học Tự nhiên - ĐHQG-HCM
 * Ngô Nhật Quang - Trường THPT chuyên Khoa học Tự Nhiên - ĐHQGHN
