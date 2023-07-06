@@ -1,6 +1,6 @@
 # Một số Tài liệu hay về Thuật Toán
 
-**1. Giải thuật và lập trình - thầy Lê Minh Hoàng**
+**1. Giải thuật và lập trình (DSAP) - thầy Lê Minh Hoàng**
 
 
 Chắc hẳn những bạn học chuyên tin đều biết đến cuốn sách này, bởi nó như là một cuốn sách giáo khoa cho chuyên tin với các kiến thức cơ bản từ quay lui, sắp xếp đến quy hoạch động, đồ thị.
