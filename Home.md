@@ -16,17 +16,6 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi [ở đây](https://ww
 
 Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đồ thị, do phần này những quyển sách như sách thầy Lê Minh Hoàng, Tài liệu giáo khoa chuyên tin (download ở [[Một số tài liệu hay về Thuật Toán|algo/basic/Tai-Lieu-Thuat-Toan]]) đã viết rất chi tiết.
 
-# [Bảng tin VNOI](news-bulletin/bảng-tin.md)
-* [Bảng tin 30/11/2020](news-bulletin/bảng-tin-30112020.md) 
-* [Bảng tin 14/12/2020](news-bulletin/bảng-tin-14122020.md)
-* [Bảng tin 30/11/2020](news-bulletin/bảng-tin-30112020.md)
-* [Bảng tin 04/01/2021](news-bulletin/bảng-tin-04012021.md)
-* [Bảng tin 01/02/2021](news-bulletin/bảng-tin-01022021.md)
-* [Bảng tin 01/03/2021](news-bulletin/bảng-tin-01032021.md)
-* [Bảng tin 06/05/2021](news-bulletin/bảng-tin-06052021.md)
-* [Bảng tin 07/06/2021](news-bulletin/bảng-tin-07062021.md)
-* [Bảng tin 07/07/2021](news-bulletin/bảng-tin-07072021.md)
-
 # Thuật toán
 
 ## Nhập môn
@@ -201,7 +190,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Classification - Phần 2|translate/ml/Machine-Learning-Classification-phan-2]]
 - [[Classification - Phần 3|translate/ml/Machine-Learning-Classification-phan-3]]
 - [[Classification - Phần 3|translate/ml/Machine-Learning-Classification-phan-3]]
-- [[PyTorch là gì?|translate/PyTorch-la-gi]] 
+- [[PyTorch là gì?|translate/PyTorch-la-gi]]
 
 ## Các chủ đề khác:
 
