@@ -2,8 +2,10 @@
 **Người viết:** Nguyễn Anh Bảo - Đại học Bách Khoa Hà Nội
 
 **Reviewer:**
-* Ngô Nhật Quang - Trường THPT chuyên Khoa học Tự Nhiên, ĐHQGHN
+* Ngô Nhật Quang - The University of Texas at Dallas
 * Phạm Hoàng Hiệp - Đại học Công Nghệ, ĐHQGHN
+
+[[_TOC_]]
 
 ## Giới thiệu
 
@@ -25,7 +27,7 @@ Cách đơn giản nhất để kiểm tra tính nguyên tố của số tự nh
 
 Ta có thể cài đặt như sau:
 
-```cpp=
+```cpp
 bool primeCheck(int n)
 {
     if (n < 2)
@@ -44,7 +46,7 @@ bool primeCheck(int n)
 
 Cài đặt thuật toán:
 
-```cpp=
+```cpp
 bool primeCheck(int n)
 {
     if (n < 2)
@@ -60,7 +62,7 @@ bool primeCheck(int n)
 
 Ta có thể mở rộng thuật toán trên thành thuật toán phân tích một số nguyên dương ra thừa số nguyên tố:
 
-```cpp=
+```cpp
 void primeFactorization(int n)
 {
     for (int i = 2; i * i <= n; ++i)
@@ -78,7 +80,7 @@ void primeFactorization(int n)
 
 Để ý nếu số nguyên tố $n$ lẻ thì $n$ không chia hết cho một số chẵn bất kì. Do đó nếu $n>2$, ta chỉ cần xét các số $i$ lẻ thuộc đoạn $\left[2,\left[\sqrt{n}\right]\right]$. Tương tự, nếu $n>3$ thì ta chỉ cần xét $i$ là các số không chia hết cho $3$. Từ hai nhận xét trên, nếu $n>3$ thì ta chỉ cần xét các số $i$ sao cho $i$ chia $6$ dư $1$ hoặc $5$.
 
-```cpp=
+```cpp
 bool primeCheck(int n)
 {
     if (n == 2 || n == 3)
@@ -116,7 +118,7 @@ Về lý thuyết, nếu ta kiểm tra đẳng thức Fermat với mọi số $a
 ### 2.2. Cài đặt
 Ta có thể cài đặt kết quả của phép tính $a^{n-1}\mod{n}$ bằng lũy thừa nhị phân.
 
-```cpp=
+```cpp
 // Tính a^k (mod n)
 int binaryPower(long long a, int k, int n)
 {
@@ -135,7 +137,7 @@ int binaryPower(long long a, int k, int n)
 
 Cài đặt phép thử Fermat:
 
-```cpp=
+```cpp
 bool isProbablyPrime(int n)
 {
     if (n < 7)
@@ -156,7 +158,7 @@ bool isProbablyPrime(int n)
 
 Do thuật toán `binaryPower` có sử dụng phép tính `(a * a) % n` nên nếu $n\ge2^{32}$ sẽ có thể bị tràn số. Phiên bản được trình bày ở trên xử lí $n<2^{32}$. Để áp dụng thuật toán lũy thừa nhị phân với $10^{18}\ge n$, bạn phải dùng kiểu số nguyên $128-bit$ nếu ngôn ngữ lập trình cho phép. Nếu ngôn ngữ lập trình chỉ có loại số nguyên $64-bit$, bạn có thể tham khảo thuật toán được chỉnh sửa như sau:
 
-```cpp=
+```cpp
 // Tính a * b mod n
 long long binaryMul(long long a, long long b, long long n)
 {
@@ -262,7 +264,7 @@ Nghĩa là với hợp số $n$ bất kì, xác suất để thuật toán chứ
 
 **Cài đặt thuật toán:**
 
-```cpp=
+```cpp
 // Tính a^k mod n
 long long binaryPower(long long a, long long k, long long n)
 {
@@ -333,7 +335,7 @@ Với $n$ đủ lớn thì vẫn có rất nhiều giá trị cần kiểm tra. 
 
 Do đó, ta có phiên bản thuật toán (độ chính xác $100\%$) của phép thử như sau:
 
-```cpp=
+```cpp
 bool MillerRabin(long long n)
 {
     if (n == 2 || n == 3 || n == 5 || n == 7)
