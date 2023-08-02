@@ -7,19 +7,19 @@
 
 [[_TOC_]]
 
-## Giới thiệu
+# Giới thiệu
 
 Trong bài viết này, chúng ta sẽ cùng tìm hiểu một số thuật toán và phương pháp kiểm tra một số tự nhiên bất kì có là số nguyên tố hay không.
-## Số nguyên tố
+# Số nguyên tố
 Một số tự nhiên $n$ được gọi là số nguyên tố khi và chỉ khi $n$ có đúng $2$ ước dương là $1$ và chính nó.
 
 Ví dụ: $2,3,5,101$ là các số nguyên tố. $0,1,10,12$ không là số nguyên tố.
 
 Trong bài viết này, chúng ta sẽ tập trung vào việc kiểm tra **một** số nguyên dương có phải số nguyên tố hay không. Để kiểm tra tính nguyên tố của nhiều số nguyên trên một đoạn $\left[a,b\right]$, bạn đọc có thể tham khảo bài viết [Số nguyên tố và sàng Eratosthenes](https://vnoi.info/wiki/translate/he/Number-Theory-2.md).
 
-## 1. Thuật toán ngây thơ
+# 1. Thuật toán ngây thơ
 
-### 1.1. Ngây thơ 1
+## 1.1. Ngây thơ 1
 
 Cách đơn giản nhất để kiểm tra tính nguyên tố của số tự nhiên $n$ là trực tiếp sử dụng định nghĩa số nguyên tố: 
 
@@ -40,7 +40,7 @@ bool primeCheck(int n)
 ```
 Độ phức tạp thuật toán: $\mathcal{O}\left(n\right)$.
 
-### 1.2. Ngây thơ 2
+## 1.2. Ngây thơ 2
 
 Để tối ưu thuật toán trên, nhận xét rằng nếu $n$ có một ước $d$ sao cho $n-1\ge d\ge\sqrt{n}$ thì $\frac{n}{d}$ cũng là ước của $n$ và có $1<\frac{n}{d} \le \sqrt{n}$. Suy ra nếu $n$ không chia hết cho các số tự nhiên lớn hơn $1$ và không vượt quá $\sqrt{n}$ thì $n$ cũng không chia hết cho các số tự nhiên lớn hơn $\sqrt{n}$. Từ đó, thay vì xét tính chia hết của $n$ cho $i=2,3,\ldots,n-1$ ta chỉ cần xét $i=2,3,\ldots,\left[\sqrt{n}\right]$.
 
@@ -76,7 +76,7 @@ void primeFactorization(int n)
 }
 ```
 
-### 1.3. Ngây thơ 2.5
+## 1.3. Ngây thơ 2.5
 
 Để ý nếu số nguyên tố $n$ lẻ thì $n$ không chia hết cho một số chẵn bất kì. Do đó nếu $n>2$, ta chỉ cần xét các số $i$ lẻ thuộc đoạn $\left[2,\left[\sqrt{n}\right]\right]$. Tương tự, nếu $n>3$ thì ta chỉ cần xét $i$ là các số không chia hết cho $3$. Từ hai nhận xét trên, nếu $n>3$ thì ta chỉ cần xét các số $i$ sao cho $i$ chia $6$ dư $1$ hoặc $5$.
 
@@ -97,9 +97,9 @@ bool primeCheck(int n)
 
 Do đó thuật toán này có thể không đủ nhanh để giải quyết giới hạn $n\le10^{18}$, hoặc $n\le10^9$ nhưng phải kiểm tra $10^6$ số $n$ trở lên. Để giải quyết các bài toán có giới hạn lớn như thế, ta phải sử dụng đến các phương pháp xác suất.
 
-## 2. Phép thử Fermat (Định lí Fermat nhỏ)
+# 2. Phép thử Fermat (Định lí Fermat nhỏ)
 
-### 2.1. Ý tưởng
+## 2.1. Ý tưởng
 
 Theo định lí Fermat nhỏ, nếu $p$ là một số nguyên tố thì với mọi số nguyên $a$ thỏa mãn $\gcd\left(a,p\right)=1$, ta có: 
 $$
@@ -115,7 +115,7 @@ Từ định lý Fermat ta có ý tưởng kiểm tra tính nguyên tố của s
 
 Về lý thuyết, nếu ta kiểm tra đẳng thức Fermat với mọi số $a$, ta có thể kết luận chắc chắn tính nguyên tố của $n$. Tuy nhiên, việc kiểm tra đẳng thức với mọi $a$ sẽ phức tạp hơn cả thuật toán ngây thơ. Do đó, phép thử Fermat sẽ thực hiện một số lần thử với các số $a$ được lấy ngẫu nhiên. Trong các bài toán lập trình thi đấu, phép thử vẫn có độ chính xác đủ tốt. 
 
-### 2.2. Cài đặt
+## 2.2. Cài đặt
 Ta có thể cài đặt kết quả của phép tính $a^{n-1}\mod{n}$ bằng lũy thừa nhị phân.
 
 ```cpp
@@ -199,7 +199,7 @@ Tuy tốc độ cao và dễ cài đặt, vẫn có những trường hợp xác
 
 Các số có tính chất trên được gọi là số *Carmichael*. 
 
-### 2.3. Vấn đề với số Carmichael
+## 2.3. Vấn đề với số Carmichael
 
 Xét $n$ là một số Carmichael có $k$ ước nguyên tố, $c$ là số lần chọn cơ số $a$ (`repeatNum`). Nếu $k=3$ thì số $n$ nhỏ nhất là $561$. Xác suất phép thử kết luận đúng với $k=3$ do đó bị chặn bởi $T(c)$. $T(c)$ cho bởi bảng sau:
 
@@ -224,9 +224,9 @@ Một điều khá thú vị là các số Carmichael phân bố rất ít trong
 
 Do đó, các bạn có thể yên tâm khi sử dụng phép thử Fermat nếu test được sinh ngẫu nhiên, vì xác suất gặp số Carmichael rất thấp. Nếu test cố tình chọn số Carmichael thì phép thử không còn đáng tin cậy. Rất may là có những phép thử hiệu quả và chính xác hơn phép thử Fermat. Trong phần tiếp theo chúng ta sẽ cùng tìm hiểu thuật toán Rabin-Miller.
 
-## 3. Thuật toán Rabin-Miller
+# 3. Thuật toán Rabin-Miller
 
-### 3.1. Ý tưởng
+## 3.1. Ý tưởng
 
 Thuật toán Rabin-Miller là phiên bản mở rộng và mạnh hơn của phép thử Fermat. Thuật toán dựa vào nhận xét sau:
 
@@ -256,7 +256,7 @@ Câu trả lời là **không**. Ví dụ: với $n=28,a=19$ thì $n-1=2^0\times
 
 Do đó, để áp dụng ý tưởng trên, ta có thể triển khai theo hai cách sau:
 
-### 3.2. Phép thử xác suất (Probabilistic)
+## 3.2. Phép thử xác suất (Probabilistic)
 
 Để tăng tính chính xác của thuật toán ta có thể lặp lại bước kiểm tra với nhiều cơ số $a$, giống như phép thử Fermat. Hơn thế nữa, chứng minh được nếu $n$ là hợp số, chỉ có $\approx25\%$ số cơ số $a$ trong đoạn $\left[2,n-1\right]$ thỏa mãn một trong hai điều kiện. 
 
@@ -324,7 +324,7 @@ bool RabinMiller(long long n)
 ```
 Độ phức tạp là $\mathcal{O}\left(c\log{n}\right)$.
 
-### 3.3. Thuật toán đơn định (Deterministic)
+## 3.3. Thuật toán đơn định (Deterministic)
 
 Phép thử xác suất có thể trở thành thuật toán bằng cách thay vì xét $a$ ngẫu nhiên, ta sẽ xét tất cả $a$ bị chặn bởi một hàm theo $n$. Miller chứng minh được nếu [Định đề Riemann tổng quát (GRH)](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test#Deterministic_variants) là đúng thì ta chỉ cần kiểm tra $a\in\left[2,\mathcal{O}\left(\ln^2 n\right)\right]$. Sau đó, Bach chứng minh được chỉ cần xét $a\in\left[2,2\ln^2 n\right]$.
 
@@ -358,11 +358,11 @@ bool MillerRabin(long long n)
 }
 ```
 
-## 4. Bài tập luyện tập:
+# 4. Bài tập luyện tập:
 
 * [**SPOJ - Prime Or Not**](https://www.spoj.com/problems/PON/)
 
-## 5. Tham khảo:
+# 5. Tham khảo:
 
 * [CP Algorithm - Primality Test](https://cp-algorithms.com/algebra/primality_tests.html#fermat-primality-test)
 * [Wikipedia - Primality Miller-Rabin test](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
