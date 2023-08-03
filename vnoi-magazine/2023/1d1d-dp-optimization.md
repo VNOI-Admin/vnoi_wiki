@@ -313,7 +313,7 @@ Sau khi chuẩn bị xong, tất cả người dân sẽ di chuyển đến đ�
 
 Hãy tìm cách chọn một số địa điểm sao cho tổng chi phí tổ chức lễ hội và di chuyển là nhỏ nhất.
 
-Nói cách khác, nếu như ta chọn $m$ địa điểm, địa điểm thứ $i$ nằm cách nhà trưởng làng đúng $s_i$ km về phía đông, tổng chi phí tổ chức lễ hội và di chuyển sẽ là $k \cdot m + \sum \limits_{i = 1}^{n} \min \limits_{j = 1}^{m} |a_i - s_j|$.
+Nói cách khác, nếu như ta chọn $m$ địa điểm, địa điểm thứ $i$ nằm cách nhà trưởng làng đúng $s_i$ km về phía đông, tổng chi phí tổ chức lễ hội và di chuyển sẽ là $k \cdot m + \sum \limits_{i = 1}^{n} \min \limits_{j = 1}^{m} \|a_i - s_j\|$.
 
 Điều kiện bài toán: 
 $$\left\{\begin{array}{l}
