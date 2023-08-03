@@ -77,7 +77,7 @@ Node makeLeaf(Node p) {
 ```
 
 Phần gán biến `id`, `parent` và `depth` khá dễ hiểu, nhưng còn đoạn này thì nghĩa là gì?
-```cpp!
+```cpp
 p.depth - p.jump.depth == p.jump.depth - p.jump.jump.depth
 ```
 
@@ -85,7 +85,7 @@ Chứng minh tính đúng đắn của nó khá dài, bạn đọc muốn tìm h
 
 Dưới đây sẽ là một số hình ảnh để bạn đọc có thể có một số ý tưởng tại sao nó lại đúng.
 
-![](../assets/binary-lifting/img1.png)
+[[/uploads/binary-lifting_img1.png]]
     
 Ở đây, đỉnh `y` là lá ta vừa thêm vào cây. Các mũi tên màu đỏ thể hiện các cú nhảy qua con trỏ `jump`, còn mũi tên màu xanh là đi lên cha nó qua con trỏ `parent`. Dễ thấy khi xem lại hàm `find` của ta, nó sẽ thử nhảy bước $2d + 1$, nếu không được thì sẽ nhảy lên đỉnh cha. Bước nhảy ở đỉnh cha sẽ luôn luôn ngắn hơn bước nhảy của đỉnh con, ngắn hơn ít nhất $2$ lần.
 
@@ -93,7 +93,7 @@ Nhớ lại, đây không phải giống hệt binary lifting mà ta biết hay 
 
 Điều này giúp ta giải thích việc ta luôn tìm được đỉnh có bước nhảy bé hơn nhanh. Thế nếu ta ở một đỉnh rất sâu, mà nó lại không có bước nhảy đủ to thì sao? Vậy thì việc có bước nhảy bé hơn thì có tác dụng gì? Ta nhìn vào bức ảnh lớn hơn:
 
-![](../assets/binary-lifting/img2.png)
+[[/uploads/binary-lifting_img2.png]]
 
 Bức ảnh không lớn lắm, nhưng mong bạn đọc có thể nhận ra bức tranh tổng thể mà thuật toán muốn thực hiện. Nhận thấy rằng sau tối đa hai bước nhảy qua con trỏ `jump`, ta sẽ đến được một đỉnh có bước nhảy lớn hơn ít nhất gấp đôi. Tức là, nếu ta cứ nhảy qua con trỏ `jump` liên tục, độ dài của bước nhảy sẽ tăng theo cấp số nhân.
 
@@ -109,19 +109,11 @@ Như phần trước, ta có được cận trên của thuật toán là sử d
 
 ~~Nếu đúng thì đã không có phần này.~~ Ta xem các submission sau đây:
 
-\begin{tabularx}{\linewidth}{|X|S|S|}
-\hline
-    Link bài & Bộ nhớ $\mathcal{O}(n)$ & Bộ nhớ $\mathcal{O}(n \log{n})$ \\ \hline
-    \insertTableLink{https://oj.vnoi.info/problem/secondthread\_tree\_sloth}{VNOJ - Sloth Naptime} &
-        \insertTableLink{https://oj.vnoi.info/submission/2147925}{441ms} &
-        \insertTableLink{https://oj.vnoi.info/submission/336556}{1265ms} \\ \hline
-    \insertTableLink{https://codeforces.com/contest/609/problem/E}{Codeforces - Minimum spanning tree for each edge} &
-        \insertTableLink{https://codeforces.com/contest/609/submission/189027148}{265 ms} &
-        \insertTableLink{https://codeforces.com/contest/609/submission/136238260}{358 ms} \\ \hline
-    \insertTableLink{https://judge.yosupo.jp/problem/lca}{Library Checker - Lowest Common Ancestor} &
-        \insertTableLink{https://judge.yosupo.jp/submission/120907}{436 ms} &
-        \insertTableLink{https://judge.yosupo.jp/submission/120909}{664 ms} \\ \hline
-\end{tabularx}
+| Link bài | Bộ nhớ $\mathcal{O}(n)$ | Bộ nhớ $\mathcal{O}(n \log{n})$ |
+| - | - | - |
+| [VNOJ - Sloth Naptime](https://oj.vnoi.info/problem/secondthread_tree_sloth) | [441ms](https://oj.vnoi.info/submission/2147925) | [1265ms](https://oj.vnoi.info/submission/336556) |
+| [Codeforces - Minimum spanning tree for each edge](https://codeforces.com/contest/609/problem/E) | [265 ms](https://codeforces.com/contest/609/submission/189027148) | [358 ms](https://codeforces.com/contest/609/submission/136238260) |
+| [Library Checker - Lowest Common Ancestor](https://judge.yosupo.jp/problem/lca) | [436 ms](https://judge.yosupo.jp/submission/120907) | [664 ms](https://judge.yosupo.jp/submission/120909) |
 
 Điều này cho ta thấy, ít nhất là trên các bộ test ngẫu nhiên, thì binary lifting bộ nhớ $\mathcal{O}(n)$ chạy nhanh hơn, thậm chí là nhanh gấp đôi, gấp ba lần. Theo suy đoán của tác giả, điều này liên quan đến cách sử dụng bộ nhớ đệm của mỗi thuật toán. Bạn đọc muốn tìm hiểu thêm có ở đọc tại [đây](https://stackoverflow.com/questions/16699247/what-is-a-cache-friendly-code). Đây cũng là lí do mà tại sao quy hoạch động cuốn chiếu không chỉ dùng ít bộ nhớ hơn mà còn thường chạy nhanh hơn quy hoạch động thông thường.
 
