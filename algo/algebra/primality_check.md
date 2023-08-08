@@ -3,7 +3,7 @@
 
 **Reviewer:**
 * Ngô Nhật Quang - The University of Texas at Dallas
-* Phạm Hoàng Hiệp - Đại học Công Nghệ, ĐHQGHN
+* Phạm Hoàng Hiệp - University of Georgia
 
 [[_TOC_]]
 
