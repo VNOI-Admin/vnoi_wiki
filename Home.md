@@ -98,7 +98,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 ## Số học
 
-- [[Kiểm tra số nguyên tố|algebra/primality_check.md]]
+- [[Kiểm tra số nguyên tố|algo/algebra/primality_check.md]]
 
 ### Series số học của HackerEarth
 - [[Số học 1 - Modulo và gcd (1*)|translate/he/So-hoc-Phan-1-Modulo-gcd]].
