@@ -234,24 +234,21 @@ Một ma trận con được định nghĩa là **đẹp** nếu có cách để
 
 Xác định số ma trận con **đẹp** trong ma trận đã cho.
 
-:::spoiler Gợi ý
+## Gợi ý
 
 - Từ điều kiện đề bài, thử tìm cách sắp xếp một ma trận con và xác định điều kiện để tạo ra xâu đối xứng trên hàng và cột. 
 - Do các chữ cái trên một hàng chỉ thay đổi thứ tự, khi nào thì hai hàng được coi là "bằng nhau"?
 
-:::
-
-:::spoiler Lời giải
+## Lời giải
 
 - Trước hết, chúng ta có nhận xét rằng để ma trận con thỏa mãn điều kiện thì các hàng phải sắp xếp lại được thành xâu đối xứng (có $0$ hoặc $1$ chữ cái có số lần xuất hiện lẻ).
 - Để cả ma trận con đối xứng thì hai hàng đối xứng qua điểm đối xứng $mid$ phải có số lần xuất hiện bằng nhau với tất cả các chữ cái.
 - Như vậy, khi đã có cách so sánh hai hàng "bằng nhau", chúng ta sẽ có thể đếm số ma trận con thỏa mãn bằng cách cố định hai cột bất kỳ và đếm số xâu đối xứng.
 - Khi đó, chúng ta có thể sử dụng thuật toán Manacher trên các hàng.
 - Lưu ý, cần đảm bảo các điều kiện về hàng có thể đối xứng.
-- Như vậy độ phức tạp là $O(n^3 * 26)$, trong đó $O(n^2)$ là số cặp cột, $O(n)$ cho thuật toán Manacher và $O(26)$ để so sánh giữa 2 hàng (26 là kích thước bảng chữ cái). 
-:::
+- Như vậy độ phức tạp là $O(n^3 * 26)$, trong đó $O(n^2)$ là số cặp cột, $O(n)$ cho thuật toán Manacher và $O(26)$ để so sánh giữa 2 hàng (26 là kích thước bảng chữ cái).
 
-::: spoiler Code mẫu
+## Code mẫu
 ```cpp
 #include<bits/stdc++.h>
 using namespace std;
@@ -340,12 +337,12 @@ signed main() {
     cout << Ans;
 }
 ```
-:::
 
 # Nhận xét về thuật toán
 - Thuật toán Manacher là thuật toán có ý tưởng khá đơn giản: tận dụng các dữ liệu có sẵn để giảm độ phức tạp khi tính toán trên xâu.
 - Chúng ta đã từng gặp ý tưởng tương tự khi tính toán [*Z-function*](https://vnoi.info/wiki/algo/string/kmp.md) hay [*prefix function*](https://vnoi.info/wiki/algo/string/z-algo.md).
 - Thuật toán Manacher có thể được sử dụng trong hơi ít các bài toán. Tuy nhiên, thuật toán có ý tưởng tự nhiên và dễ cài đặt nên có thể có ích khi thi đấu.
+
 ![](https://i.imgur.com/5AC7Eew.png)
 
 # Bài tập luyện tập 
