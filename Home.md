@@ -24,7 +24,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Một số tài liệu hay về Thuật Toán|algo/basic/Tai-Lieu-Thuat-Toan]]
 - [[Nghệ thuật giải bài|translate/topcoder/How-to-Find-a-Solution]]
 - [[Những cách tiếp cận bài toán|translate/topcoder/Planning-an-Approach-to-a-Topcoder-Problem-Part-1]]
-- [[Độ phức tạp tính toán (1*)|translate/topcoder/Computational-Complexity-Section-1]]
+- [[Độ phức tạp thời gian (1*)|algo/basic/computational-complexity.md]]
 - [[Sắp xếp (1*)|algo/basic/sorting]]
 - [[Tìm kiếm nhị phân|algo/basic/binary-search]]
 - [[Hai con trỏ (1*)|algo/basic/two-pointers]]
