@@ -80,17 +80,12 @@ Các toán tử này thuộc loại "Toán tử Bit Logic". Việc sử dụng c
 
 Sau đây là bảng chân trị của các toán tử này
 
-<!-- markdownlint-disable-next-line no-inline-html -->
-<div align="center">
-
-|a|b|AND|OR|XOR|
-|:-|:-|:-|:-|:-|
-|1|1|1|1|0|
-|1|0|0|1|1|
-|0|1|0|1|1|
-|0|0|0|0|0|
-
-</div>
+|a  |b  |AND|OR |XOR|
+|---|---|---|---|---|
+|1  |1  |1  |1  |0  |
+|1  |0  |0  |1  |1  |
+|0  |1  |0  |1  |1  |
+|0  |0  |0  |0  |0  |
 
 ## Toán tử Bitwise NOT (~)
 
