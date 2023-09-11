@@ -224,7 +224,7 @@ Từ các phần [Truy cập Bit](#truy-cập-bit), [Chỉnh sửa Bit](#chỉnh
 |Hàm                        |Ký hiệu toán    |Code                |
 |---                        |---             |---                 |
 |Giao                       |$A\cap B$       |```A & B```         |
-|Hợp                        |$A\cup B$       |```A \| B```        |
+|Hợp                        |$A\cup B$       |```A || B```        |
 |Hiệu                       |$A\backslash B$ |```(A ^ B) & A```   |
 |Hiệu đối xứng              |$A\Delta B$     |```A ^ B```         |
 |Phần bù                    |$A^C$ hay $A'$  |```~A & (1<<n)-1``` |
