@@ -28,6 +28,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Sắp xếp (1*)|algo/basic/sorting]]
 - [[Tìm kiếm nhị phân|algo/basic/binary-search]]
 - [[Hai con trỏ (1*)|algo/basic/two-pointers]]
+- [[Phép toán bit|algo/basic/bitwise-operators.md]]
 
 ## Cấu trúc dữ liệu
 
