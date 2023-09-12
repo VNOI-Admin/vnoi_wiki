@@ -228,7 +228,7 @@ Từ các phần [Truy cập Bit](#truy-cập-bit), [Chỉnh sửa Bit](#chỉnh
 |Hiệu                       |$A\backslash B$ |```(A ^ B) & A```   |
 |Hiệu đối xứng              |$A\Delta B$     |```A ^ B```         |
 |Phần bù                    |$A^C$ hay $A'$  |```~A & (1<<n)-1``` |
-|Kiểm tra tập con           |$A \subseteq B$ |```A & B == A```    |
+|Kiểm tra tập con           |$A \subseteq B$ |```(A & B) == A```    |
 |Tập hợp chỉ có phần tử $i$ |$\{i\}$         |```1 << i```        |
 
 <!-- 1. Lấy giao của tập $A$ và tập $B$ với ```A & B```.
@@ -407,7 +407,7 @@ void loop_triplets(int n){
 ```c++
 void generate_partitions(vector<int> &sets, int mask, int x){
     if (x == 1){
-        sets.push_back(x);
+        sets.push_back(mask);
         // Hàm thực hiện thao tác gì đó đối với sets
         solve_for_sets(sets);
         sets.pop_back();
