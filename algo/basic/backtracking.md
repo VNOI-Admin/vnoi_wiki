@@ -50,7 +50,7 @@ Lựa chọn thứ nhất có vẻ không khả thi, phần vì $(-1)!$ không x
 ![Mô hình tính giai thừa đệ quy](https://i.imgur.com/OMVG6I2.png)
 
 Phân tích thì dài dòng vậy thôi, còn cài đặt thì rất đơn giản:
-``` cpp=
+``` cpp
 void factorial(int n)
 {
     if (n == 0) return 1;    //trường hợp cơ sở
@@ -59,7 +59,7 @@ void factorial(int n)
 ```
 
 Nếu bạn chưa quen với cú pháp đệ quy như vậy thì có thể hiểu hàm trên tương đương với hàm `factorial_2()` trong đoạn code sau với $n = 2$:
-``` cpp=
+``` cpp
 //n = 0
 void factorial_0()
 {
@@ -95,7 +95,7 @@ Văn vẻ hơn thì trong dãy này, mỗi số hạng bằng tổng của hai s
 
 Dựa vào công thức truy hồi đã cho và lập luận kiểu "để tính $f$ này thì ta cần có $f$ kia" như trên, chúng ta có thể cài đặt như sau:
 
-``` cpp=
+``` cpp
 void fibo(int n)
 {
     if (n == 0) return 0;    //trường hợp cơ sở
@@ -128,7 +128,7 @@ Nếu bạn vẫn chưa hiểu các dãy này được tạo dựng theo thứ t
  
 Trên phương diện quy nạp, nếu cần dựng danh sách các tập hợp mà mỗi tập có dạng $\{x_1, x_2, ..., x_n\}$, ta xét mọi giá trị của $x_1$, rồi sau đó duyệt tiếp $\{x_2, x_3, ..., x_n\}$, tiếp tục xét mọi giá trị $x_2$, rồi lại duyệt $\{x_3, x_4, ..., x_n\}$, ..., cho đến khi nào tất cả các giá trị đều đã xác định. Lúc này, ta lưu tập vừa tạo lại vào danh sách và tiếp tục chuyển sang tập khác từ các giá trị khác của các $x_i$
 
-``` cpp=
+``` cpp
 void backtrack(int pos)
 {	
     // Trường hợp cơ sở
@@ -165,7 +165,7 @@ Ví dụ, với $n = 3$ ta có các dãy $000, 001, 010, 011, 100, 101, 110, 111
 
 Tại hàm `gen(1)`, ta xét từng giá trị của ký tự hiện tại, sau đó gọi `gen(2)` với từng ký tự đó. Tương tự như vậy, ta gọi `gen(3)` từ các ký tự ở `gen(2)` và rồi `gen(4)`. Tới `gen(4)`, ta đã duyệt hết các vị trí và không thể thử thêm nữa, nên có thể in ra xâu.
 
-``` cpp=
+``` cpp
 int n;
 string curString;
 
@@ -207,7 +207,7 @@ Phần đệ quy sẽ kết thúc khi tập con đã có đủ $k$ phần tử.
 
 Sử dụng ý tưởng trên ta cài đặt như sau:
 
-``` cpp=
+``` cpp
 int n, k;
 vector <int> curSubset;
 
@@ -254,7 +254,7 @@ Vậy thì khi nào chúng ta dừng lại? Đó là khi tổng số tiền chú
 
 Trong quá trình cài đặt, song song với việc duy trì một tập hợp tiền đang xây dựng `curMoneySet`, chúng ta sẽ cần lưu thêm một giá trị tổng `curMoneySum` để đơn giản tính toán.
 
-``` cpp=
+``` cpp
 int n, a[15];
 long long S, curMoneySum;
 vector <int> curMoneySet;
@@ -329,7 +329,7 @@ Vậy thì, việc của chúng ta bây giờ chỉ là sinh ra những bộ to�
 
 Một vòng đệ quy sẽ kết thúc nếu ta sinh thành công $n$ quân Hậu. Lúc này, ta chỉ việc in kết quả, và đi tiếp tới các trường hợp khác.
 
-``` cpp=
+``` cpp
 int n;
 
 //mảng đánh dấu cột, đường chéo phụ và đường chéo chính
@@ -412,7 +412,7 @@ Quay trở lại bài toán phân tích số ở trên. Lần này, ta sẽ thê
 
 Vẫn với ý tưởng đệ quy như trên, chúng ta hoàn toàn có thể liệt kê tất cả cách xếp rồi lấy cách tốt nhất. Tuy nhiên, rõ ràng tại một số cách, số tiền còn lại khi duyệt tới những tờ giữa đã hơi "cấn" rồi. Ví dụ đã có một cách xếp $2 \times 20 + 1 \times 10 + 1 \times 50 = 100$, trong một bước khác mới xét tới $5 \times 10$ thôi đã chẳng còn ý nghĩa gì. Những cách đó có thể bỏ đi để chương trình chạy nhanh hơn.
 
-``` cpp=
+``` cpp
 int n, a[15];
 long long S, curMoneySum;
 vector <int> curMoneySet, bestSet;
@@ -470,7 +470,7 @@ Ngoài các bài toán sinh hoặc duyệt vét cạn, đệ quy còn được s
 
 ## Độ phức tạp của đệ quy
 Một hàm đệ quy có dạng như sau:
-``` cpp=
+``` cpp
 void recursive(int x)
 {
     if (x > n) return;
