@@ -128,7 +128,7 @@ Nếu bạn vẫn chưa hiểu các dãy này được tạo dựng theo thứ t
  
 Trên phương diện quy nạp, nếu cần dựng danh sách các tập hợp mà mỗi tập có dạng $\{x_1, x_2, ..., x_n\}$, ta xét mọi giá trị của $x_1$, rồi sau đó duyệt tiếp $\{x_2, x_3, ..., x_n\}$, tiếp tục xét mọi giá trị $x_2$, rồi lại duyệt $\{x_3, x_4, ..., x_n\}$, ..., cho đến khi nào tất cả các giá trị đều đã xác định. Lúc này, ta lưu tập vừa tạo lại vào danh sách và tiếp tục chuyển sang tập khác từ các giá trị khác của các $x_i$
 
-``` cpp
+```
 void backtrack(int pos)
 {	
     // Trường hợp cơ sở
