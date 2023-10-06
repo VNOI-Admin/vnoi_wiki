@@ -623,7 +623,7 @@ void sieve_with_wheel(int n){
 
 Xét kích thước "bánh xe" là $mod = 2 \cdot 3 \cdot 5 \ldots$ có thể chọn $mod$ vào khoảng $\sqrt n$ thì ĐPT sẽ còn là $O\left( \dfrac{n}{\log \log n} \right)$. Nhìn thì ĐPT thấp hơn sàng Eratosthenes thông thường, nhưng vì phương pháp trên mỗi vòng lặp đều sử dụng phép nhân/chia nên thời gian chạy có thể chậm hơn nhiều so với sàng Eratosthenes thông thường với bộ dữ liệu nhỏ $\left(n \le 10^6 \right)$.
 
-Và vì lý do bộ nhớ cache mà người ta chỉ thường chọn modulo $mod \in \left\{30, 210 \right\}$. Các số lọc được tiếp tục kiểm tra bằng cách khác như bên trên.
+Và vì lý do bộ nhớ cache mà người ta chỉ thường chọn modulo $mod \in 30; 210$. Các số lọc được tiếp tục kiểm tra bằng cách khác như bên trên.
 
 ### Kết hợp các cải tiến
 Bên trên là một số cách cải tiến thường được sử dụng. Tuy nhiên bạn có thể kết hợp các cải tiến một cách hợp lý để tạo ra một sàng nguyên tố mạnh mẽ. 
