@@ -97,6 +97,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 ## Tham lam
 
 - [[Tham lam (2*)|translate/topcoder/Greedy-is-Good]]
+- [[Sum-constrained convex optimization|algo/trick/convex_greedy]]
 
 ## Số học
 
