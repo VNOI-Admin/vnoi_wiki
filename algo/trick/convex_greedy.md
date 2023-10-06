@@ -318,10 +318,10 @@ Bởi thế, theo thuật toán tham chi phí tăng, ta phải chọn tăng $x_u
 
 Từ hai nhận xét này, ta nhận thấy nghiệm nguyên có thể được tạo nên từ nghiệm thực bằng một trong hai cách sau:
 
-$\hat{x}_u$
+$x_u = \lfloor \hat{x}_u \rfloor$
 
-- Khởi tạo $x_u = \lfloor \hat{x}_u \rfloor$ rồi chạy tham chi phí tăng không quá $n$ bước (vì $\sum_{u \in \{1 \to n\}} \lfloor \hat{x}_u \rfloor \ge x - n$).
-- Khởi tạo $x_u = \lceil \hat{x}_u \rceil$ rồi chạy thuật toán đảo của tham chi phí tăng (xoá chi phí giảm nhỏ nhất) không quá $n$ bước (vì $\sum_{u \in \{1 \to n\}} \lceil \hat{x}_u \rceil \le x + n$).
+- Khởi tạo $x_u =\lfloor\hat{x}_u\rfloor$ rồi chạy tham chi phí tăng không quá $n$ bước (vì $\sum \lfloor \hat{x}_u \rfloor \ge x - n$).
+- Khởi tạo $x_u = \lceil \hat{x}_u \rceil$ rồi chạy thuật toán đảo của tham chi phí tăng (xoá chi phí giảm nhỏ nhất) không quá $n$ bước (vì $\sum \lceil \hat{x}_u \rceil \le x + n$).
 
 Trên thực tế, với riêng bài toán này, ta chỉ cần sử dụng cách thứ nhất. Mình không biết cách chứng minh điều này, tuy nhiên kể cả khi ta thực hiện cả 2 cách thì độ phức tạp của phần này là $O(n \log n)$.
 
