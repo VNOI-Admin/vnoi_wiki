@@ -294,13 +294,18 @@ Ta nhận thấy là với nghiệm nguyên, ta lặp thao tác trên với $dx 
 
 Vì thế, ta có thể tìm nghiệm thực của bài toán trên như sau: ta chặt nhị phân giá trị $t$; ở mỗi vòng chặt nhị phân và với mỗi $u$, ta giải $\hat{x}_u$ sao cho $f'_u(\hat{x}_u) = t$ (hoặc gán $\hat{x}_u = 0$ nếu $f'(\hat{x}_u) \le t$). Độ phức tạp của phần này là $O(n \log \epsilon^{-1})$ vì ta có thể trực tiếp giải $\hat{x}_u$.
 
-:::spoiler Chi tiết giải
+<details>
+<summary>Chi tiết giải</summary>
+<p>
 Ta biết rằng $f'_u(\hat{x}_u) = \frac{1}{c_u + \hat{x}_u} - \frac{1}{b_u + \hat{x}_u}$. Giả sử $c_u < b_u$ (nếu không thì ta không cần phải thêm phô mai vào đỉnh này), thì $f'_u(\hat{x}_u) = t$ là phương trình bậc hai, nhận nghiệm $\hat{x}_u = \frac{\sqrt{\frac{4(b_u - c_u)}{t} + (b_u - c_u)^2} - b_u - c_u}{2}$.
-:::
+</p>
+</details>
 
 Ta nhận được nghiệm thực $\hat{x}_u$ của bài toán thực trên; bây giờ ta phải chuyển đổi nghiệm thực này thành nghiệm nguyên $x_u$ của bài toán ban đầu. Ta có nhận xét cuối cùng: nghiệm dương phải thỏa mãn $x_u \ge \lfloor \hat{x}_u \rfloor$ với mọi $u$, hoặc $x_u \le \lceil \hat{x}_u \rceil$ với mọi $u$.
 
-:::spoiler Chứng minh
+<details>
+<summary>Chứng minh</summary>
+<p>
 Gọi $\hat{x}_u$ là nghiệm thực của bài toán và $x_u$ là nghiệm nguyên của bài toán. Ta chứng minh mệnh đề trên bằng phản chứng.
 
 Giả sử tồn tại $u$ và $v$ sao cho $x_u \le \lfloor \hat{x}_u \rfloor - 1$ và $x_v \ge \lceil \hat{x}_v \rceil + 1$. Để ý rằng bởi vì $x_u \ge 0$, điều này nghĩa rằng $\hat{x}_u \ge 1$, tức là $f'_u(\hat{x}_u) = t$. Tuy nhiên, ta có:
@@ -308,9 +313,13 @@ Giả sử tồn tại $u$ và $v$ sao cho $x_u \le \lfloor \hat{x}_u \rfloor - 
 $$f_u(x_u + 1) - f_u(x_u) > f'_u(x_u + 1) \ge f'_u(\hat{x}_u) = t \ge f'_v(\hat{x}_v) \ge f'_v(x_v - 1) \ge f_v(x_v) - f_v(x_v - 1).$$
 
 Bởi thế, theo thuật toán tham chi phí tăng, ta phải chọn tăng $x_u$ lên $x_u + 1$ trước khi chọn tăng $x_v - 1$ lên $x_v$. Vì thế, $x$ không phải nghiệm nguyên của bài toán trên.
-:::
+</p>
+</details>
 
 Từ hai nhận xét này, ta nhận thấy nghiệm nguyên có thể được tạo nên từ nghiệm thực bằng một trong hai cách sau:
+
+$\hat{x}_u$
+
 - Khởi tạo $x_u = \lfloor \hat{x}_u \rfloor$ rồi chạy tham chi phí tăng không quá $n$ bước (vì $\sum_{u \in \{1 \to n\}} \lfloor \hat{x}_u \rfloor \ge x - n$).
 - Khởi tạo $x_u = \lceil \hat{x}_u \rceil$ rồi chạy thuật toán đảo của tham chi phí tăng (xoá chi phí giảm nhỏ nhất) không quá $n$ bước (vì $\sum_{u \in \{1 \to n\}} \lceil \hat{x}_u \rceil \le x + n$).
 
