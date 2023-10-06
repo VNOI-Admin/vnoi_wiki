@@ -1,4 +1,4 @@
-# Tham chi phí tăng/tham đạo hàm
+# Sum-constrained convex optimization
 
 **Người viết:**
 - Đặng Đoàn Đức Trung - UT Austin
