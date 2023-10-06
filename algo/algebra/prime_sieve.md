@@ -176,7 +176,7 @@ vector<long long> factorize(long long n) {
 Trước hết, ta tạo mảng các số nguyên tố trong đoạn $\left[ 2;\sqrt{n} \right]$. Sau đó, chúng ta làm như sau:
 ```cpp
 vector<int> primes;
-...
+
 vector<long long> factorize(long long n) {
     vector<long long> res;
     for (int p : primes){
