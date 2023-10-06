@@ -8,8 +8,7 @@
 - Cao Thanh Hậu - Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 
-| [TOC] |
-| ----- |
+[[_TOC_]]
 
 Khi cần tìm ra các số nguyên tố từ $1$ đến $n$, ta có thể duyệt từng số và kiểm tra tính nguyên tố của nó. Và ý tưởng đó cho ta một thuật toán $\boldsymbol{O\left(n\sqrt n\right)}$.
 
@@ -28,7 +27,7 @@ Dưới đây là hình minh họa cho thuật toán trên. *Nguồn: [CP-Algori
 ![](https://hackmd.io/_uploads/HJup_OQSn.png)
 
 ### Code C++ minh họa
-```cpp=
+```cpp
 const int maxn = 1000000 + 5; //10^6 + 5
 bool is_prime[maxn]; // mảng bool khởi tạo với các giá trị false
 void sieve(int n){
@@ -61,7 +60,7 @@ $$O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right
 
 
 Dựa vào *Nhận xét* trên, ta có cải tiến như sau:
-```cpp=
+```cpp
 const int maxn = 1000000 + 5; //10^6 + 5
 bool is_prime[maxn];
 void Eratosthenes(int n){
@@ -82,7 +81,7 @@ void Eratosthenes(int n){
 - Trong đoạn code trên, vì $j$ chạy từ $i\times i$ đến $n$, nên $i$ chỉ chạy từ $1$ đến $\sqrt n$. Ngoài ra, ở đây, ta sử dụng điều kiện `i * i <= n` thay vì sử dụng `i <= sqrt(n)` bởi hàm `sqrt()` chạy lâu hơn so với phép nhân số nguyên.
 - Nếu vẫn muốn sử dụng hàm `sqrt()`, ta phải tránh việc phải tính lại `sqrt(n)` mỗi lần lặp:
 
-```cpp=
+```cpp
     int nsqrt = sqrt(n);
     for (int i = 2; i <= nsqrt; i++) 
 ```
@@ -99,7 +98,7 @@ Dưới đây là hình minh họa cho cải tiến trên. *Nguồn: [Wikipedia]
 #### Phân tích số nguyên nhỏ
 Khi phân tích các số nhỏ $i \approx 10^6$, thay vì lưu kết quả kiểm tra tính nguyên tố của $i$ ở mảng `is_prime[i]`, ta có thể sử dụng `min_prime[i]` lưu ước nguyên tố nhỏ nhất của số `i`.
 
-```cpp=
+```cpp
 const int maxn = 1000000 + 5; //10^6 + 5
 int min_prime[maxn];
 void sieve(int n){
@@ -120,7 +119,7 @@ void sieve(int n){
 }
 ```
 Bây giờ ta có thể phân tích một số ra thừa số nguyên tố:
-```cpp=
+```cpp
 vector<int> factorize(int n) {
     vector<int> res;
     while (n != 1) {
@@ -154,7 +153,7 @@ $$\sum\limits_{p\text{ nguyên tố}} v_p\left(n!\right) < \sum\limits_{p\text{ 
 
 Dựa vào `Nhận xét` trên, để phân tích một số nguyên $n$ lớn (khoảng $10^9$ hay $10^{12}$), ta xây dựng được thuật toán với độ phức tạp $\boldsymbol{O \left(\sqrt n \right)}$ dưới đây:
 
-```cpp=
+```cpp
 vector<long long> factorize(long long n) {
     vector<long long> res;
     for (long long i = 2; i * i <= n; i++){
@@ -171,7 +170,7 @@ vector<long long> factorize(long long n) {
 Đến đây, ta dễ dàng tìm được một cách cải tiến thuật toán này: ta chỉ cần xét các số nguyên tố trong đoạn $\left[ 2;\sqrt{n} \right]$. Thật vậy, nếu $n$ không chia hết cho số nguyên tố $p$ thì chắc chắn $n$ sẽ không chia hết cho bội của $p$.
 
 Trước hết, ta tạo mảng các số nguyên tố trong đoạn $\left[ 2;\sqrt{n} \right]$. Sau đó, chúng ta làm như sau:
-```cpp=
+```cpp
 vector<int> primes;
 ...
 vector<long long> factorize(long long n) {
@@ -206,7 +205,7 @@ Ta đặt $N = R - L + 1$ là độ dài đoạn $[L;R]$ để tiện theo dõi.
 Để làm được điều này, ta sẽ chuẩn bị trước một mảng gồm các số nguyên tố trong đoạn $\left[ 1;\sqrt R \right]$. Sau đó, dùng các số nguyên tố đó để đánh dấu trong đoạn $[L; R]$.
 
 
-```cpp=
+```cpp
 vector<bool> sieve(long long L, long long R) {
     long long sqrtR = sqrt(R);
     vector<bool> mark(sqrtR + 1, false);
@@ -240,7 +239,7 @@ Trong đó:
 
 Ta cũng không cần phải sinh trước các số nguyên tố trong đoạn $\left[ 1;\sqrt R \right]$:
 
-```cpp=
+```cpp
 vector<bool> is_prime;
 void sieve(int L, int R){
     is_prime.assign(R - L + 1, true); 
@@ -286,7 +285,7 @@ $\begin{align}
 Dựa vào công thức trên, đầu tiên ta sẽ gán `f[i] = i`.
 Sau đó, ta chỉ cần duyệt tất cả các số nguyên tố. Với mỗi số nguyên tố `p`, ta sẽ duyệt các bội `j` của chúng, rồi nhân `f[j]` với $\dfrac{p-1}{p}$
 
-```cpp=
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -339,7 +338,7 @@ Một cải tiến khác cũng có thể được sử dụng đó là chỉ ti�
 <!-- -->
 #### Code C++ minh họa
 
-```cpp=
+```cpp
 vector<bool> is_prime;
 void sieve_odd(int n){
     is_prime.assign(n / 2 + 1, true);
@@ -363,7 +362,7 @@ Trong C++, `std::bitset` là một công cụ hữu hiệu trong việc lưu tr�
 `std::bitset` sử dụng cách lưu bit tương tự `std::vector<bool>` và nhanh hơn `std::vector<bool>` một chút. Tuy nhiên kích thước `MAX` của `std::bitset<MAX>` phải được biết lúc biên dịch.
 
 #### Code C++ minh họa
-```cpp=
+```cpp
 const int maxn = 1e6;
 bitset<maxn + 1> is_prime;
 void sieve_bitset(int n){
@@ -387,7 +386,7 @@ Một cách khác, vì biến `bool` lưu trong bộ nhớ thường là $1$ byt
 
 #### Code C++ minh họa
 
-```cpp=
+```cpp
 #define doc(n) (prime_bits[n >> 3] & (1 << (n & 7)))
 #define set(n) {prime_bits[n >> 3] |= (1 << (n & 7));}
 vector<int> prime_bits;
@@ -427,7 +426,7 @@ Chúng ta có thể làm như sau: Duyệt các số nguyên $i$ từ $2$ đến
 
 #### Code C++ minh họa
 
-```cpp=
+```cpp
 vector<int> min_prime, primes;
 void linear_sieve(int n){
     min_prime.assign(n + 1, 0);
@@ -468,7 +467,7 @@ Vì có duy nhất một cách biểu diễn $x = \text{min_prime}[x] \cdot i$ n
 
 Xét code sàng Erathosenes sau:
 
-```cpp=
+```cpp
     for (int i = 2; i * i <= n; i++) {
         if (is_prime[i]) {
             // j sẽ bắt đầu chạy từ i * i
@@ -487,7 +486,7 @@ Gọi $S$ là kích thước của mỗi đoạn. Như thế, chúng ta sẽ có
 Với mỗi đoạn, vòng lặp `for (int j = i * i; j <= n; j += i)` sẽ thay đổi sao cho `j` chỉ chạy trong đoạn đang xét.
 
 #### Code C++ minh họa
-```cpp=
+```cpp
 vector<int> primes;
 void segmented_sieve(int n) {
     const int S = 10000;
@@ -550,7 +549,7 @@ Lý do người ta dùng bánh xe thì bạn đọc có thể xem ảnh dưới 
 
 #### Code C++ minh họa
 
-```cpp=
+```cpp
 // Các thông số của bánh xe
 // Bội của các số nguyên tố bé
 const int wheel_size = 2 * 3 * 5;
@@ -613,7 +612,7 @@ Dưới đây là một số sàng được sưu tầm bởi [*Code cùng RR*](h
 
 :::spoiler **`Sàng phân đoạn` và `Chỉ sàng số lẻ`**
 
-```cpp=
+```cpp
 // Source: RR Code
 const int maxn = 1e6;
 void block_sieve_odd() {
@@ -652,7 +651,7 @@ void block_sieve_odd() {
 
 :::spoiler **`Sàng phân đoạn` và `Bánh xe phân tích`**
 
-```cpp=
+```cpp
 // Source: RR Code
 const int WHEEL = 3 * 5 * 7 * 11 * 13;
 const int N_SMALL_PRIMES = 6536;             // cnt primes less than 2^16
@@ -762,7 +761,7 @@ Xem code gốc tại [đây](https://github.com/kimwalisch/primesieve).
 Sàng nguyên tố của Kim Walisch sử dụng kết hợp rất nhiều phương pháp nhằm tối ưu hóa sàng nguyên tố từ nhưng trường hợp nhỏ đến những trường hợp lớn. Tham khảo các tối ưu hóa được sử dụng tại [đây](https://github.com/kimwalisch/primesieve/blob/master/doc/ALGORITHMS.md#optimizations-used-in-primesieve).
 
 Dưới đây là một phần code được tối giản cho trường hợp $n$ lớn và phù hợp hơn với lập trình thi đấu.
-```cpp=
+```cpp
 // Source: RR Code
 const int lim = 1e9;
 typedef unsigned char byte;
