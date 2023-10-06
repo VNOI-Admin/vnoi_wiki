@@ -46,7 +46,9 @@ void sieve(int n){
 Độ phức tạp thời gian là $O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right)$ với $p$ là số nguyên tố $\le  n$. 
 Đến đây, bạn đọc có thể tham khảo [Định lý Merten 2](https://en.wikipedia.org/wiki/Mertens%27_theorems#Proof) để rút gọn độ phức tạp:
 $$O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right) = O( n \log (\log n))$$
+
 **Độ phức tạp thời gian: $\boldsymbol{O(n \log \log n)}$**
+
 **Độ phức tạp không gian: $\boldsymbol{O(n)}$**
 
 ---
@@ -87,6 +89,7 @@ void Eratosthenes(int n){
 ```
 
 Dưới đây là hình minh họa cho cải tiến trên. *Nguồn: [Wikipedia](https://vi.wikipedia.org/wiki/S%C3%A0ng_Eratosthenes)*
+
 ![](https://hackmd.io/_uploads/SkCOvuXSn.gif)
 
 ---
@@ -135,18 +138,19 @@ Tuy nhiên, phương pháp này có **độ phức tạp không gian** $\boldsym
 
 Đặc biệt, khi phân tích tất cả các số nguyên từ $1$ đến $n$, tổng độ phức tạp chỉ còn lại $\boldsymbol{O(n\log\log n)}$.
 
-:::spoiler *Chứng minh tổng độ phức tạp khi phân tích tất cả các số nguyên từ 1 đến n*
+<details>
+<summary><i>Chứng minh tổng độ phức tạp khi phân tích tất cả các số nguyên từ 1 đến n</i></summary>
+<p>
 Xét số nguyên tố $p$ và hàm định giá $p$-adic: $v_p(n)$ là số nguyên lớn nhất thỏa mãn $p^{v_p(n)} | n$. Nói cách khác $v_p(n)$ là số thừa số $p$ nhận được khi phân tích $n$ ra thừa số nguyên tố.
 
 Theo định lý Legendre, ta có:
-$\begin{align}
-v_p\left(n!\right) &= \left\lfloor {\dfrac{n}{{{p^1}}}} \right\rfloor + \left\lfloor {\dfrac{n}{{{p^2}}}} \right\rfloor + \left\lfloor {\dfrac{n}{{{p^3}}}} \right\rfloor + \ldots \\
-&< \dfrac{n}{{{p^1}}} + \dfrac{n}{{{p^2}}} + \dfrac{n}{{{p^3}}} + \ldots = \dfrac{n}{p-1}
-\end{align}$
+$$
+v_p\left(n!\right) = \left\lfloor {\dfrac{n}{{{p^1}}}} \right\rfloor + \left\lfloor {\dfrac{n}{{{p^2}}}} \right\rfloor + \left\lfloor {\dfrac{n}{{{p^3}}}} \right\rfloor + \ldots < \dfrac{n}{{{p^1}}} + \dfrac{n}{{{p^2}}} + \dfrac{n}{{{p^3}}} + \ldots = \dfrac{n}{p-1}$$
 
 Như vậy, việc phân tích tất cả các số nguyên từ $1$ đến $n$ cũng như việc phân tích $n!$ cho ta tổng cộng tối đa 
 $$\sum\limits_{p\text{ nguyên tố}} v_p\left(n!\right) < \sum\limits_{p\text{ nguyên tố}} \dfrac{n}{p-1} \sim n\ln \ln n + n + O(1) \text{ thừa số}$$
-:::
+</p>
+</details>
 
 #### Phân tích số nguyên lớn hơn
 > Nhận xét: Nếu tất cả các số nguyên trong đoạn $\left[ 2;\sqrt{n} \right]$ đều không phải là ước của $n$ thì $n$ là số nguyên tố.
@@ -230,6 +234,7 @@ vector<bool> sieve(long long L, long long R) {
 ```
 
 **Độ phức tạp thời gian: $\boldsymbol{O \left( N \log \log (R) + \sqrt R \log \log \sqrt R \right)}$**
+
 **Độ phức tạp không gian: $\boldsymbol{O \left( N + \sqrt R \right)}$**
 
 Trong đó:
@@ -272,18 +277,25 @@ Nguyên nhân là ta dùng tất cả các *số nguyên* trong đoạn $\left[ 
 [VNOI - Phi hàm Euler](https://oj.vnoi.info/problem/etf)
 *Tóm tắt đề:* 
 Cho số nguyên dương $T$ và $T$ số nguyên dương $n_i$. Hãy tính phi hàm $\varphi(n_i)$ của $T$ số nguyên dương đã cho.
-:::spoiler *Gợi ý* 
-Giả sử khi phân tích ra thừa số nguyên tố, $n = p_1^{\alpha_1} . p_2^{\alpha_2} \ldots p_k^{\alpha_k}$ với $\alpha_i > 0$. Khi đó:
-$\varphi(n) = p_1^{\alpha_1 - 1} . p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} . (p_1-1)(p_2 - 1) \ldots (p_k - 1)$
-:::
+$$\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p_1-1)(p_2 - 1) \ldots (p_k - 1)$$
+<details>
+<summary><i>Gợi ý</i></summary>
+<p>
+Giả sử khi phân tích ra thừa số nguyên tố, $n = p_1^{\alpha_1}p_2^{\alpha_2} \ldots p_k^{\alpha_k}$ với $\alpha_i > 0$. Khi đó:
 
-:::spoiler *Lời giải*
-$\begin{align}
-\varphi(n) &= p_1^{\alpha_1 - 1} . p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} . (p_1-1)(p_2 - 1) \ldots (p_k - 1) \\ 
-&= n . \dfrac{p_1-1}{p_1} . \dfrac{p_2-1}{p_2} \ldots \dfrac{p_k-1}{p_k}
-\end{align}$
-Dựa vào công thức trên, đầu tiên ta sẽ gán `f[i] = i`.
-Sau đó, ta chỉ cần duyệt tất cả các số nguyên tố. Với mỗi số nguyên tố `p`, ta sẽ duyệt các bội `j` của chúng, rồi nhân `f[j]` với $\dfrac{p-1}{p}$
+$$\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p_1-1)(p_2 - 1) \ldots (p_k - 1)$$
+</p>
+</details>
+
+<details>
+<summary><i>Lời giải</i></summary>
+<p>
+$$
+\varphi(n) = p_1^{\alpha_1 - 1} . p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} . (p_1-1)(p_2 - 1) \ldots (p_k - 1)
+= n \dfrac{p_1-1}{p_1} \dfrac{p_2-1}{p_2} \ldots \dfrac{p_k-1}{p_k}$$
+
+Dựa vào công thức trên, đầu tiên ta sẽ gán <code>f[i] = i</code>. Sau đó, ta chỉ cần duyệt tất cả các số nguyên tố. Với mỗi số nguyên tố <code>p</code>, ta sẽ duyệt các bội <code>j</code> của chúng, rồi nhân <code>f[j]</code> với $\dfrac{p-1}{p}$
+</p>
 
 ```cpp
 #include <bits/stdc++.h>
@@ -314,13 +326,13 @@ int main(){
 }
 
 ```
-:::
+</details>
 
 ## Một số cải tiến của sàng nguyên tố Eratosthenes
 > Sàng nguyên tố Eratosthenes với ĐPT thời gian $\boldsymbol{O(n \log \log n)}$ đã khá phù hợp với hầu hết các bài toán lập trình thi đấu. Tuy nhiên điểm yếu chí mạng của nó chính là ĐPT không gian $\boldsymbol{O(n)}$.
 > Một số cải tiến dưới đây có thể không phù hợp với những bạn mới chỉ biết đến sàng nguyên tố. Các bạn hãy luyện tập với các bài tập luyện tập trước khi đến với các cải tiến bên dưới nha!
 
-### **So sánh mảng bool và vector<bool>**
+### So sánh mảng bool và vector<bool>
 - Một biến `bool` chỉ có hai giá trị `true/false` nên về mặt lý thuyết chỉ cần 1 bit để lưu trữ nó. Nhưng bình thường, các máy tính hiện nay khi lưu trữ biến `bool` sẽ sử dụng $1$ byte (tương đương với $8$ bits) để truy cập nhanh chóng. Vì thế một mảng `bool a[n]` sẽ cần đến $n$ bytes.
 - `vector<bool>` được tối ưu để lưu trữ $1$ biến `bool` trong $1$ bit thay vì $1$ byte, ngoài ra còn có $40$ bytes sử dụng cho khởi tạo `vector<bool>` ban đầu. Tuy nhiên, việc tối ưu về bộ nhớ khiến ta phải truy cập bit một các gián tiếp: mỗi lần truy cập, đọc, ghi bit ta cần tách nhỏ từng bit của byte đó. Trong trường hợp bộ dữ liệu nhỏ (khoảng $10^6$), truy cập như vậy sẽ chậm hơn so với việc truy cập trực tiếp.
 - Tóm lại, ta có bảng dưới đây
@@ -354,6 +366,7 @@ void sieve_odd(int n){
 }
 ```
 **Độ phức tạp thời gian: $\boldsymbol{O\left(\dfrac{n}{2} \cdot \log \log n\right)}$**
+
 **Độ phức tạp không gian: $\boldsymbol{O\left(\dfrac{n}{2}\right)}$**
 
 ---
@@ -378,6 +391,7 @@ void sieve_bitset(int n){
 }
 ```
 **Độ phức tạp thời gian: $\boldsymbol{O(n \log \log n)}$**
+
 **Độ phức tạp không gian: $\boldsymbol{O\left(\dfrac{n}{32}\right)}$**
 
 
@@ -403,6 +417,7 @@ void sieve_bits(int n){
 }
 ```
 **Độ phức tạp thời gian: $\boldsymbol{O(n \log \log n)}$**
+
 **Độ phức tạp không gian: $\boldsymbol{O\left(\dfrac{n}{8}\right)}$**
 
 Trong code bên trên, `int` được sử dụng để lưu $8$ giá trị `bool`.
@@ -412,6 +427,7 @@ Trên thực tế, `int/unsigned int` chứa $4$ bytes hay $32$ bits. Nhờ đó
 ### **Sàng nguyên tố tuyến tính - Linear Sieve**
 >- Sàng nguyên tố này được cải tiến từ Sàng Eratosthenes. Tuy có ĐPT thời gian là $\boldsymbol{O(n)}$ nhưng với những bộ dữ liệu khoảng $10^6$ thì không nhanh hơn Sàng Eratosthenes là mấy.
 >- Sàng $O(n)$ này có lưu lại các ước nguyên tố nhỏ nhất của các số không vượt quá $n$ nên sẽ phù hợp cho các bài toán liên quan đến phân tích thừa số nguyên tố.
+
 #### Hướng tiếp cận
 Xét $\text{min_prime}[i]$ là ước nguyên tố nhỏ nhất của $i$
 Mảng $\text{primes}[]$ sẽ lưu tất cả các số nguyên tố đã tìm được.
@@ -446,10 +462,13 @@ void linear_sieve(int n){
 }
 ```
 **Độ phức tạp thời gian: $\boldsymbol{O(n)}$**
+
 **Độ phức tạp không gian: $\boldsymbol{O(n)}$**
 
-:::spoiler  Giải thích về ĐPT của thuật toán
-Mỗi số $x$ có **duy nhất** một cách biểu diễn:
+<details>
+<summary><i>Giải thích về ĐPT của thuật toán</i></summary>
+<p>
+Mỗi số $x$ có <b>duy nhất</b> một cách biểu diễn:
 $$x = \text{min_prime}[x] \cdot i$$
 trong đó $\text{min_prime}[x]$ là ước nguyên tố nhỏ nhất của $x$.
 Suy ra $i$ không có ước nguyên tố nào nhỏ hơn $\text{min_prime}[x]$, tức là
@@ -457,12 +476,11 @@ $$\text{min_prime}[x] \le \text{min_prime}[i]$$
 Với mỗi $i$, ta duyệt tất cả các số nguyên tố lên đến $\text{min_prime}[i]$ thì sẽ duyệt được các số có dạng đã cho ở trên.
 
 Vì có duy nhất một cách biểu diễn $x = \text{min_prime}[x] \cdot i$ nên thuật toán sẽ đi qua mỗi số hợp số đúng một lần để gán các giá trị $\text{min_prime}[]$ tại đó. Hay thuật toán có ĐPT thời gian $O(n)$.
-
-
+</p>
 ---
-:::
+</details>
 
-### **Sàng phân đoạn - Block Sieve / Segmented Sieve**
+### Sàng phân đoạn - Block Sieve / Segmented Sieve
 > Đây là một trong số những phương pháp hữu hiệu khắc phục điểm yếu về không gian của sàng nguyên tố Eratosthenes.
 
 Xét code sàng Erathosenes sau:
@@ -524,6 +542,7 @@ void segmented_sieve(int n) {
 }
 ```
 **Độ phức tạp thời gian: $\boldsymbol{O \left( n \log \log n +  \dfrac{n \cdot \pi(\sqrt n)}{S} \right)}$**
+
 **Độ phức tạp không gian: $\boldsymbol{O\left(\sqrt{n} + S\right)}$**
 
 Chú ý rằng ta phải chọn $S$ sao cho cân bằng giữa độ phức tạp không gian và thời gian. Thông thường thì ta hay chọn $S = \sqrt n$.
@@ -599,6 +618,7 @@ void sieve_with_wheel(int n){
 }
 ```
 **Độ phức tạp thời gian: $\boldsymbol{O\left(\dfrac{4}{15} n \log \log n \right)}$**
+
 **Độ phức tạp không gian: $\boldsymbol{O\left(\dfrac{4}{15} n \right)}$**
 
 Xét kích thước "bánh xe" là $mod = 2 \cdot 3 \cdot 5 \ldots$ có thể chọn $mod$ vào khoảng $\sqrt n$ thì ĐPT sẽ còn là $O\left( \dfrac{n}{\log \log n} \right)$. Nhìn thì ĐPT thấp hơn sàng Eratosthenes thông thường, nhưng vì phương pháp trên mỗi vòng lặp đều sử dụng phép nhân/chia nên thời gian chạy có thể chậm hơn nhiều so với sàng Eratosthenes thông thường với bộ dữ liệu nhỏ $\left(n \le 10^6 \right)$.
@@ -610,7 +630,8 @@ Bên trên là một số cách cải tiến thường được sử dụng. Tuy
 
 Dưới đây là một số sàng được sưu tầm bởi [*Code cùng RR*](https://www.facebook.com/code.cung.rr).
 
-:::spoiler **`Sàng phân đoạn` và `Chỉ sàng số lẻ`**
+<details>
+<summary><i>Sàng phân đoạn và Chỉ sàng số lẻ</i></summary>
 
 ```cpp
 // Source: RR Code
@@ -647,9 +668,10 @@ void block_sieve_odd() {
 }
 ```
 
-:::
+</details>
 
-:::spoiler **`Sàng phân đoạn` và `Bánh xe phân tích`**
+<details>
+<summary><i>Sàng phân đoạn và Bánh xe phân tích</i></summary>
 
 ```cpp
 // Source: RR Code
@@ -754,13 +776,16 @@ void sieve() {
 }
 ```
 
-:::
+</details>
 
-:::spoiler **Cải tiến của Kim Walisch**
-Xem code gốc tại [đây](https://github.com/kimwalisch/primesieve).
-Sàng nguyên tố của Kim Walisch sử dụng kết hợp rất nhiều phương pháp nhằm tối ưu hóa sàng nguyên tố từ nhưng trường hợp nhỏ đến những trường hợp lớn. Tham khảo các tối ưu hóa được sử dụng tại [đây](https://github.com/kimwalisch/primesieve/blob/master/doc/ALGORITHMS.md#optimizations-used-in-primesieve).
+<details>
+<summary><i> Cải tiến của Kim Walisch</i></summary>
+<p>
+Xem code gốc tại <a href="https://github.com/kimwalisch/primesieve">đây</a>.
+Sàng nguyên tố của Kim Walisch sử dụng kết hợp rất nhiều phương pháp nhằm tối ưu hóa sàng nguyên tố từ nhưng trường hợp nhỏ đến những trường hợp lớn. Tham khảo các tối ưu hóa được sử dụng tại <a href="https://github.com/kimwalisch/primesieve/blob/master/doc/ALGORITHMS.md#optimizations-used-in-primesieve">đây</a>.
 
 Dưới đây là một phần code được tối giản cho trường hợp $n$ lớn và phù hợp hơn với lập trình thi đấu.
+</p>
 ```cpp
 // Source: RR Code
 const int lim = 1e9;
@@ -832,7 +857,6 @@ void sieve()
     }
 }
 ```
-:::
 </details>
 
 So sánh *độ dài code* và *thời gian chạy* với $n = 10^9$ của một số sàng nguyên tố (*Nguồn: [Code cùng RR](https://www.facebook.com/photo/?fbid=483129447247239&set=pcb.483147020578815)*)
