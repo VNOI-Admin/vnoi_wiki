@@ -63,7 +63,7 @@ Ta có thể sử dụng heap để cài đặt thuật toán trên với độ 
 
 ### Cài đặt
 
-```cpp!
+```cpp
 int n; // Số lượng hàm f_i
 int f(int i, int x){
     // Trả về f_i(x)
@@ -111,7 +111,7 @@ Bởi thế, ta có thể dùng ý tưởng tham lam được đề cập ở ph
 
 ### Cài đặt
 
-```cpp!
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
  
@@ -185,7 +185,7 @@ và vế phải giảm dần khi $x$ tăng dần. Vì thế, ta có thể dùng 
 
 Một số lưu ý khi cài đặt thuật toán trên: sẽ có thể tồn tại giá trị $m$ mà số lượng chi phí tăng $< m$ bé hơn $k$, nhưng số lượng chi phí tăng $\le m$ thì lại lớn hơn $k$ (vì có thể có nhiều chi phí tăng đúng bằng $m$). Ta cần phải cẩn thận khi cài đặt trường hợp này.
 
-```cpp!
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -322,7 +322,7 @@ Vì thế, bài toán có thể được giải với độ phức tạp $O(n (\
 
 Ở đây mình không sử dụng $\epsilon$; thay vào đó, điều kiện thoát của mình là khi tổng của $\hat{x}_u$ cách $x$ tối đa là $n$.
 
-```cpp!
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
