@@ -256,7 +256,7 @@ Giới hạn:
 Đặt $i,j,k,l$ $(i<j<k<l)$ là $4$ vị trí thoả mãn $a_i+a_j+a_k+a_l=x$.
 
 Thuật toán ngây thơ của bài toán này là sử dụng $4$ vòng lặp lồng nhau với độ phức tạp $\mathcal{O}(n^4)$.
-```cpp=1
+```cpp
 for (int i = 1; i <= n; ++i)
     for (int j = i + 1; j <= n; ++j)
         for (int k = j + 1; k <= n; ++k)
