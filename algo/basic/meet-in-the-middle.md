@@ -4,7 +4,7 @@
 - Lê Minh Hoàng - Đại học Khoa học Tự nhiên, ĐHQG-HCM
 
 **Reviewer:**
-- Ngô Nhật Quang - THPT chuyên Khoa học Tự Nhiên, ĐHQGHN
+- Ngô Nhật Quang - The University of Texas at Dallas
 - Phạm Công Minh - THPT chuyên Khoa học Tự Nhiên, ĐHQGHN
 
 [[_TOC_]]
