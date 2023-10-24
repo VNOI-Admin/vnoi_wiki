@@ -1,5 +1,12 @@
 # Meet In The Middle (MITM)
 
+**Tác giả:**
+- Lê Minh Hoàng - Đại học Khoa học Tự nhiên, ĐHQG-HCM
+
+**Reviewer:**
+- Ngô Nhật Quang - THPT chuyên Khoa học Tự Nhiên, ĐHQGHN
+- Phạm Công Minh - THPT chuyên Khoa học Tự Nhiên, ĐHQGHN
+
 [[_TOC_]]
 
 # Giới thiệu
