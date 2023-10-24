@@ -30,6 +30,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Hai con trỏ (1*)|algo/basic/two-pointers]]
 - [[Phép toán bit|algo/basic/bitwise-operators.md]]
 - [[Đệ quy và quay lui|algo/basic/backtracking.md]]
+- [[Chia đôi tập|algo/basic/meet-in-the-middle.md]]
 
 ## Cấu trúc dữ liệu
 
