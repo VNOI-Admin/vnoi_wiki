@@ -4,7 +4,6 @@
 - Phạm Hoàng Hiệp – University of Georgia
 
 **Reviewer:**
-Hiển, kuroni, noe
 - Nguyễn Minh Hiển - Trường Đại học Công Nghệ, ĐHQGHN
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 - Đặng Đoàn Đức Trung - UT Austin
