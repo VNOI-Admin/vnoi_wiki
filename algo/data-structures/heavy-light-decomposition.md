@@ -73,11 +73,13 @@ Khi đó, chúng ta có thể chứng minh được rằng đường đi giữa 
 
 <details>
 <summary>Chứng minh</summary>
+<p>
 Xét một đỉnh $v$ được nối với đỉnh cha của nó là $p$ bởi một cạnh nhẹ. Giả sử kích thước cây con của $v$ là $x$ và kích thước cây con của $p$ là $y$. Do cạnh nặng đi từ $p$ không được nối xuống $v$ nên chắc chắn tồn tại một con khác của $p$ là $u$ có kích thước cây con $\geq x$. Vì vậy, $y \geq 2 * x$
 
 Do với mỗi lần nhảy qua cạnh nhẹ, kích thước của cây con ở đỉnh sau khi nhảy sẽ tăng ít nhất là gấp đôi nên ta có thể kết luận rằng để đi lên một tổ tiên bất kỳ ở phía trên thì có thể nhảy qua không quá $\log_2(n)$ cạnh nhẹ. Do mỗi lần đi qua cạnh nhẹ chính là một lần nhảy sang chuỗi mới nên từ một đỉnh $v$ lên tổ tiên bất kỳ của nó sẽ chỉ đi qua $O(\log(n))$ chuỗi.
 
 Khi đó, từ hai đỉnh $u$, $v$ bất kỳ, chúng ta có thể tìm LCA của $u$, $v$ và đi từ $u$, $v$ đến LCA. Số chuỗi đi qua sẽ không quá $O(\log(n))$
+</p>
 </details>
 
 Ngoài ra, nếu ta duyệt cây bằng DFS *ưu tiên các đỉnh liền trong chuỗi trước*, ta có thể nhận thấy là các đỉnh trên cùng một chuỗi sẽ nằm kế tiếp nhau trên thứ tự DFS, và vì thế việc truy vấn một đoạn con bất kì trên một chuỗi nào đó có thể được thực hiện trên Segment tree với độ phức tạp là $O(\log(n))$.
