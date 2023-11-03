@@ -49,7 +49,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Mo Algorithm (3*)|algo/data-structures/mo-algorithm]]
 - [[Segment Tree (Interval Tree) trên tập đoạn thẳng (4*)|algo/data-structures/interval-tree-tap-doan-thang]]
 - [[Fenwick Tree (Binary Indexed Tree) (2*)|algo/data-structures/fenwick]]
-- [[Heavy Light Decomposition (3*)|algo/data-structures/heavy-light-decomposition]]
+- [[Heavy Light Decomposition|algo/data-structures/heavy-light-decomposition]]
 - [[Persistent Data Structures (3*)|algo/data-structures/persistent-data-structures]]
 - [[Lowest Common Ancestor (LCA) - Binary Lifting|algo/data-structures/lca-binlift.md]]
 - [[Bài toán RMQ & bài toán LCA (2*)|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]]
