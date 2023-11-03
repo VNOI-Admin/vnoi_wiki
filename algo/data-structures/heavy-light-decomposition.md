@@ -1,171 +1,435 @@
-# Heavy-Light Decomposition
+# Heavy-Light Decomposition (HLD)
 
-Tác giả: Nguyễn Đình Trí Cường
+**Tác giả:** 
+- Phạm Hoàng Hiệp – University of Georgia
+
+**Reviewer:**
+Hiển, kuroni, noe
+- Nguyễn Minh Hiển - Trường Đại học Công Nghệ, ĐHQGHN
+- Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
+- Đặng Đoàn Đức Trung - UT Austin
 
 [[_TOC_]]
 
-Heavy-light decomposition (HLD) là kĩ thuật phân tách một [[cây|translate/wcipeg/tree]] thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
+## Mở đầu
+### Giới thiệu về HLD
+**Heavy-Light Decomposition (HLD)**, dịch ra tiếng Việt là phân chia nặng nhẹ là một kỹ thuật thường được dùng trong những bài toán xử lý trên cây. 
 
-# Thuật toán phân tách cây
+Trong bài viết này, để ngắn gọn và dễ nhớ, chúng ta sẽ gọi tên kỹ thuật là **HLD**. 
 
-Trước hết, chúng ta có các định nghĩa như sau:
+Tuy nghe tên có vẻ kinh khủng nhưng trên thực tế, đây là một kỹ thuật có ý tưởng khá tự nhiên và có tính ứng dụng cao, có thể được sử dụng trong nhiều bài tập.
 
-- Đỉnh con đặc biệt (**heavy vertex**): Trong số những đỉnh con của một đỉnh $u$ không phải là lá, đỉnh đặc biệt $v$ là gốc của cây con có kích thước lớn nhất.
-- Cạnh đặc biệt (**heavy edge**): Là cạnh nối giữa $u$ và $v$, với $v$ là đỉnh đặc biệt và $u$ là cha của $v$.
-- Những đỉnh con còn lại của $u$ gọi là đỉnh thường (**light vertex**) và những cạnh nối giữa $u$ đến các đỉnh đó gọi là cạnh thường (**light edge**).
+### Kiến thức cần biết
+- Các thuật toán duyệt đồ thị cơ bản (DFS, BFS, ...)
+- Cây
+- [Lowest Common Ancestor (LCA) - Tổ tiên chung gần nhất](https://vnoi.info/wiki/algo/data-structures/lca.md)
+- [Segment Tree](https://vnoi.info/wiki/algo/data-structures/segment-tree-extend.md)
+- [Euler tour on tree](https://vnoi.info/wiki/algo/graph-theory/euler-tour-on-tree.md) (nên biết nhưng không bắt buộc)
 
-Dễ thấy là với mỗi đỉnh không phải là lá đều có thể chọn được đúng một cạnh và một đỉnh con đặc biệt của nó. Để tạo các chuỗi đỉnh, chúng ta làm như sau: bắt đầu từ đỉnh gốc, di chuyển xuống đỉnh con đặc biệt của nó và tiếp tục di chuyển xuống các đỉnh con tiếp theo đến khi gặp đỉnh lá thì kết thúc. Đường đi từ đỉnh gốc đến đỉnh lá này tạo thành một chuỗi đỉnh. Chúng ta lại lặp lại thao tác này với các đỉnh còn lại đến khi tất cả các đỉnh đều thuộc đúng một chuỗi nào đó.
+### Bài toán
+Để trả lời câu hỏi HLD sẽ giúp chúng ta làm gì, chúng ta sẽ cùng giải một bài toán. 
 
-Để cho dễ hiểu, chúng ta có ví dụ sau:
+Trước hết, chúng ta sẽ đến với phiên bản dễ hơn của bài toán như sau. 
 
-![Hình minh họa 1](http://i.imgur.com/4eGBX7e.jpg)
+Cho một mảng số nguyên dương gồm tối đa $10^5$ phần tử. Chúng ta cần xử lý tối đa $10^5$ truy vấn thuộc một trong hai loại sau:
+- Cập nhật giá trị của phần tử thứ $i$ thành $x$
+- Tính tổng XOR của tất cả các phần tử trong đoạn từ $l$ đến $r$
 
-Từ đỉnh 1 di chuyển xuống đỉnh 2. Đỉnh đặc biệt của đỉnh 1 là đỉnh 2 vì cây con có đỉnh 2 làm gốc có kích thước lớn nhất.
+Bài toán trên là một bài toán quen thuộc và có thể được xử lý đơn giản bằng cách sử dụng Segment Tree. Nhưng, giả sử thay vì mảng một chiều, chúng ta cần xử lý bài toán trên cây thì phải làm như thế nào? 
 
-![Hình 2](http://i.imgur.com/9AK3on2.jpg)
+#### Phát biểu bài toán
 
-Từ đỉnh 2 di chuyển xuống đỉnh 4 vì cây con có gốc là đỉnh 4 có kích thước lớn nhất.
+Bạn đọc có thể đọc đề bài cụ thể và nộp code tại [đây](http://www.usaco.org/current/index.php?page=viewproblem2&cpid=921)
 
-![Hình 3](http://i.imgur.com/Ke7or5g.jpg)
+Cho một cây (một đồ thị có $n$ đỉnh và $n-1$ cạnh và giữa hai đỉnh bất kỳ có đúng một đường đi giữa chúng). Mỗi đỉnh được gán một giá trị. Chúng ta cần xử lý hai loại truy vấn
+- Cập nhật giá trị của đỉnh $i$ thành $x$
+- Tính tổng XOR của tất cả các giá trị trên đường đi từ đỉnh $u$ đến đỉnh $v$
 
-Từ đỉnh 4 di chuyển xuống đỉnh số 7. Tại đây 2 cây con có gốc là đỉnh 7 và đỉnh 5 đều có kích thước như nhau nên ta có thể chọn bất kì đỉnh nào.
+Đường đi từ $u$ đến $v$ trên đồ thị được định nghĩa là một chuỗi các đỉnh $u, w_1, w_2, ..., w_k, v$ trong đó tồn tại một cạnh nối giữa $u$ và $w_1$, $w_1$ và $w_2$, ..., $w_{k-1}$ đến $w_k$, $w_k$ đến $v$. Với mỗi cặp đỉnh $u$, $v$ bất kỳ trên cây tồn tại một và chỉ một đường đi từ $u$ đến $v$.
 
-![Hình 4](http://i.imgur.com/c2rGgH1.jpg)
+## HLD
+### Ý tưởng chính
 
-Tiếp tục thực hiện cho đến khi gặp đỉnh lá. Như vậy là chúng ta đã có được một chuỗi đỉnh.
+Vậy chính xác thì HLD sẽ làm gì để giúp chúng ta giải được phiên bản "trên cây" của bài toán trên? Liệu chúng ta có thể biến cây cho trước thành một mảng để giải bài toán trên đó? Câu trả lời là không. Tuy nhiên chúng ta có thể chia cây thành một số phần, và giải bài toán trên từng phần đó.
+Cụ thể như sau, giả sử có cây sau đây
 
-![Hình 5](http://i.imgur.com/YHzohEv.jpg)
+![](https://hackmd.io/_uploads/SyW0NnFB3.png)
 
-Chúng ta bắt đầu chuỗi mới ở một đỉnh gần nhất và lặp lại quá trình trên.
+Không mất tính tổng quát, có thể coi đỉnh $1$ là gốc của cây. Với mỗi đỉnh không phải lá trên cây, chúng ta sẽ đánh dấu những cạnh nối đỉnh đó với con có kích thước cây con lớn nhất của của nó.
 
-![Hình 6](http://i.imgur.com/8nNHG8K.jpg)
+Ví dụ, xét đỉnh $15$ có ba đỉnh con lần lượt là đỉnh $17$, $18$ và $19$.  Cây con ở hai đỉnh $18$ và $19$ có kích thước là $1$, còn cây con ở đỉnh $17$ có kích thước là $2$.
 
-Cuối cùng chúng ta sẽ có một tập các chuỗi đỉnh rời nhau. Những cạnh được tô màu là cạnh đặc biệt và cạnh không được tô màu là cạnh thường.
+Vì vậy, chúng ta sẽ đánh dấu cạnh nối giữa đỉnh $15$ và đỉnh $17$ (tô màu đỏ). Làm tương tự với các đỉnh còn lại, chúng ta được cây như hình vẽ dưới đây.
 
-```cpp
+![](https://hackmd.io/_uploads/H1I6U3YH2.png)
 
-// nChain chuỗi hiện tại. Sau khi kết thúc việc phân tách thì đây sẽ là tổng số chuỗi.
-// chainHead[c] đỉnh đầu của chuỗi c
-// chainInd[u] chuỗi mà đỉnh u nằm trong.
+Chúng ta sẽ gọi những cạnh màu đỏ là những **"cạnh nặng" (heavy edges)** vì chúng nối một đỉnh với đỉnh con **"nặng nhất"**. Những cạnh còn lại sẽ được gọi là những **"cạnh nhẹ" (light edges)**
 
-void hld(int u) {
+Có thể thấy rằng, những cạnh được đánh dấu sẽ tạo thành các **"chuỗi"** đi từ trên xuống dưới. Ví dụ như chuỗi $1-3-8-15-17-20$ hay chuỗi $5-11$. Các đỉnh là lá cũng có thể coi là một chuỗi riêng. 
 
-    // Nếu chuỗi hiện tại chưa có đỉnh đầu (đỉnh gần gốc nhất) thì đặt u làm đỉnh đầu của nó.
-	if (chainHead[nChain] == 0) chainHead[nChain] = u;
+Với cách quy ước trên, ta có thể thấy rằng hai chuỗi "liền nhau" được nối với nhau bởi một cạnh nhẹ. Hai chuỗi "liền nhau" là hai chuỗi mà tồn tại đỉnh $u$ nằm ở một chuỗi và $v$ nằm ở chuỗi còn lại sao cho $u$ và $v$ có cạnh nối trực tiếp với nhau. Do $u$ và $v$ khác chuỗi nên cạnh nối giữa $u$ và $v$ là cạnh nhẹ. Hai chuỗi không thể nối ở nhiều hơn một cặp điểm.
 
-    // Gán chuỗi hiện tại cho u
-	chainInd[u] = nChain;
+Khi đó, chúng ta có thể chứng minh được rằng đường đi giữa hai đỉnh **bất kỳ** trên cây đi qua không quá **$O(\log(n))$** chuỗi. Bạn đọc có thể tự chứng minh nhận xét trên trước khi đọc chứng minh bên dưới.
 
-    // Giải thích bên dưới
-	posInBase[u] = ++nBase;
+<details>
+<summary>Chứng minh</summary>
+Xét một đỉnh $v$ được nối với đỉnh cha của nó là $p$ bởi một cạnh nhẹ. Giả sử kích thước cây con của $v$ là $x$ và kích thước cây con của $p$ là $y$. Do cạnh nặng đi từ $p$ không được nối xuống $v$ nên chắc chắn tồn tại một con khác của $p$ là $u$ có kích thước cây con $\geq x$. Vì vậy, $y \geq 2 * x$
 
-    // Biến lưu đỉnh con đặc biệt của u
-	int mxVtx = -1;
+Do với mỗi lần nhảy qua cạnh nhẹ, kích thước của cây con ở đỉnh sau khi nhảy sẽ tăng ít nhất là gấp đôi nên ta có thể kết luận rằng để đi lên một tổ tiên bất kỳ ở phía trên thì có thể nhảy qua không quá $\log_2(n)$ cạnh nhẹ. Do mỗi lần đi qua cạnh nhẹ chính là một lần nhảy sang chuỗi mới nên từ một đỉnh $v$ lên tổ tiên bất kỳ của nó sẽ chỉ đi qua $O(\log(n))$ chuỗi.
 
-    // Tìm đỉnh con đặc biệt trong số những đỉnh con của u
-	for (int i = 0; i < adj[u].size(); i++) {
-		int v = adj[u][i];
-		if (v != parent[u]) {
-			if (mxVtx == -1 || nChild[v] > nChild[mxVtx]) {
-				mxVtx = v;
-			}
-		}	
-	}
+Khi đó, từ hai đỉnh $u$, $v$ bất kỳ, chúng ta có thể tìm LCA của $u$, $v$ và đi từ $u$, $v$ đến LCA. Số chuỗi đi qua sẽ không quá $O(\log(n))$
+</details>
 
-    // Nếu tìm ra đỉnh con đặc biệt (u không phải là đỉnh lá) thì di chuyển đến đỉnh đó
-	if (mxVtx > -1)
-		hld(mxVtx);
+Ngoài ra, nếu ta duyệt cây bằng DFS *ưu tiên các đỉnh liền trong chuỗi trước*, ta có thể nhận thấy là các đỉnh trên cùng một chuỗi sẽ nằm kế tiếp nhau trên thứ tự DFS, và vì thế việc truy vấn một đoạn con bất kì trên một chuỗi nào đó có thể được thực hiện trên Segment tree với độ phức tạp là $O(\log(n))$.
 
-    // Sau khi đi hết một chuỗi thì tăng nChain lên và bắt đầu một chuỗi mới
-	for (int i = 0; i < adj[u].size(); i++) {
-		int v = adj[u][i];
-		if (v != parent[u] && v != mxVtx) {
-			nChain++;
-			hld(v);
-		}
-	}
-}
+Như vậy, chúng ta đi qua không quá $O(\log(n))$ chuỗi, với mỗi chuỗi chúng ta có thể thực hiện trả lời truy vấn hoặc update trong $O(\log(n))$ trên Segment tree nên độ phức tạp cho việc trả lời các truy vấn và cập nhật trên một đường đi giữa hai đỉnh bất kỳ trên cây là $O(\log^2(n))$
 
-```
+### Chi tiết cài đặt
 
-Để có thể tiếp tục, chúng ta cần biết ít nhất các thông tin sau:
+Thông thường, do việc sử dụng HLD sẽ đi kèm với một cấu trúc dữ liệu nào đó và duyệt đồ thị, code có thể sẽ dài và gồm nhiều phần. Tuy nhiên, nếu nắm chắc ý tưởng chính thì cài đặt HLD rất đơn giản. 
 
-- Với một chuỗi, đỉnh đầu (đỉnh gần đỉnh gốc nhất) của nó là đỉnh nào.
-- Với một đỉnh, chuỗi mà nó nằm trong là chuỗi nào.
-- Ngoài ra chúng ta còn có mảng `posInBase[]`. Đây là mảng lưu lại vị trí của các đỉnh sau khi chúng ta "trải" các chuỗi trên lên một đường thẳng. Điều này sẽ giúp cho việc cài đặt các cấu trúc dữ liệu như Interval Tree hoặc Binary Indexed Tree một cách gọn gàng hơn.
+#### Tiền xử lý
 
-![Hình 7](http://i.imgur.com/fbhjbh8.jpg)
-
-Giả sử với hình trên thì `posInBase[7] = 4`; `posInBase[14] = 8` ...
-
-# Cập nhật và truy vấn một đường đi trên cây
-
-Thay vì cập nhật hoặc truy vấn một đường đi từ đỉnh u đến đỉnh v trên cây, chúng ta có thể thực hiện các thao tác này trên 2 đường đi từ $u$ đến $lca(u, v)$ và từ $v$ đến $lca(u, v)$ ($lca$ là hàm tìm cha chung gần nhất của 2 đỉnh).
-
-Giả sử chúng ta cần cập nhật đường đi từ $u$ đến $lca(u, v)$ (gọi tắt là $a$). Nếu $a$ và $u$ không cùng một chuỗi, chúng ta thực hiện thao tác cập nhật lên đường đi từ đỉnh $u$ đến đỉnh đầu của chuỗi hiện tại. Sau đó cho $u$ nhảy lên đỉnh cha của đỉnh đầu này rồi lặp lại thao tác cập nhật. Đến khi $u$ và $a$ nằm trên cùng một chuỗi, chúng ta chỉ cần cập nhật đoạn từ $u$ đến $a$ và kết thúc. Thao tác truy vấn được thực hiện tương tự.
-
-**Ví dụ**:
-
-Chúng ta cần thực hiện cập nhật trên đường đi từ $u = 16$ đến $a = 1$.
-
-![Hình 8](http://i.imgur.com/gYO4zTT.jpg)
-
-Gọi hàm update interval tree cho đoạn từ đỉnh 8 đến đỉnh 16.
-
-![Hình 9](http://i.imgur.com/rdRGNlP.jpg)
-
-Nhảy lên đỉnh cha của đỉnh đầu của chuỗi hiện tại. Lúc này u = 11.
-
-![Hình 10](http://i.imgur.com/l5FC9vC.jpg)
-
-Gọi hàm update interval tree cho đoạn từ đỉnh 11 đến đỉnh 5.
-
-![Hình 11](http://i.imgur.com/kY57Fv0.jpg)
-
-Nhảy lên đỉnh cha của đỉnh đầu của chuỗi hiện tại. Lúc này u = 4.
-
-![Hình 12](http://i.imgur.com/7rMjl6j.jpg)
-
-Gọi hàm update interval tree cho đoạn từ đỉnh 4 đến đỉnh 1 và kết thúc.
+Đầu tiên, ta cần phải tính kích thước của cây con từng đỉnh để lấy ra các con "nặng" của từng đỉnh một. Ngoài ra, ta cần tính thêm độ sâu các đỉnh để phục vụ cho thao tác tính LCA.
 
 ```cpp
-void update(int u, int a) {
-    // uchain chuỗi hiện tại của u 
-    // achain chuỗi của a
-     int uchain = chainInd[u], achain = chainInd[a];
+void Dfs(int s, int p = -1) {
+    Sz[s] = 1;
+    for(int u: AdjList[s]) {
+        if(u == p) continue;
+        Par[u] = s;
+        Depth[u] = Depth[s] + 1;
+        Dfs(u, s);
+        Sz[s] += Sz[u];
+    }
+}
+```
+mảng $Sz, Depth$ và $Par$ lần luợt lưu kích thuớc cây con, độ sâu và cha (tổ tiên trực tiếp) của các đỉnh trên cây
+mảng $AdjList$ là mảng vector để lưu lại thông tin về đồ thị. $AdjList[s]$ là vector gồm các đỉnh kề với $s$.
 
-     while (1) {
-        // Nếu u và a cùng nằm trên một chuỗi thì update đoạn từ u đến a và kết thúc.
-          if (uchain == achain) {
-               updateIntervalTree(..., posInBase[a], posInBase[u], ...);
-               break;
-          }
-        // Nếu u và a không nằm trên cùng một chuỗi thì update đoạn từ u đến đỉnh đầu của chuỗi hiện tại.
-          updateIntervalTree(..., posInBase[chainHead[uchain]], posInBase[u], ...);
+#### Tìm cạnh nặng, cạnh nhẹ và tạo các chuỗi
 
-        // Nhảy lên đỉnh cha của đỉnh đầu hiện tại.
-          u = parent[chainHead[uchain]];
-          uchain = chainInd[u];
-     }
+Sau đó chúng ta thực hiện phân chia các đỉnh vào các chuỗi. Với mỗi đỉnh, cần lưu lại chuỗi của đỉnh và vị trí của đỉnh khi đặt các chuỗi liên tiếp với nhau (để thuận tiện cho việc xử lý truy vấn). Với mỗi chuỗi, chúng ta cần biết đỉnh đầu tiên của chuỗi (để thực hiện việc nhảy giữa các chuỗi).
+
+```cpp
+void Hld(int s, int p = -1) {
+    if(!ChainHead[CurChain]) {
+        ChainHead[CurChain] = s;
+    }
+    ChainID[s] = CurChain;
+    Pos[s] = CurPos;
+    Arr[CurPos] = s;
+    CurPos++;
+    int nxt = 0;
+    for(int u: AdjList[s]) {
+        if(u != p) {
+            if(nxt == 0 || Sz[u] > Sz[nxt]) nxt = u;
+        }
+    }
+    if(nxt) Hld(nxt, s);
+    for(int u: AdjList[s]) {
+        if(u != p && u != nxt) {
+            CurChain++;
+            Hld(u, s);
+        }
+    }
+}
+```
+$nxt$ là biến dùng để lưu lại đỉnh con "nặng nhất".
+$Arr$ là mảng dùng để lưu lại các chuỗi. 
+$ChainID$ là mảng lưu lại số thứ tự của các chuỗi. 
+$ChainHead$ là mảng lưu lại node đầu tiên ($Depth$ bé nhất) của từng chuỗi để biết khi nào cần nhảy sang chuỗi mới qua cạnh nhẹ. 
+Mảng $Pos$ lưu lại vị trí của các đỉnh trên $Arr$ để tiện xử lý trên segment tree.
+$CurChain$ và $CurPos$ lần lượt là các biến lưu lại chỉ số của chuỗi và vị trí trong mảng $Arr$ để dùng cho chuỗi và đỉnh tiếp theo
+
+Như vậy, với mỗi đỉnh, chúng ta sẽ tìm cạnh nặng và đi xuống cạnh đó trước. Sau đó, chúng ta sẽ lần lượt tạo ra các chuỗi mới và nhảy sang các đỉnh nhẹ. Như vậy, thứ tự duyệt đồ thị sẽ đảm bảo mỗi chuỗi được lưu đúng thứ tự từ trên xuống dưới trong một đoạn liên tiếp trên mảng $Arr$.
+
+#### Tìm LCA
+
+Trong phần lớn các bài toán sử dụng HLD để thực hiện truy vấn trên đường đi, chúng ta cần tìm tổ tiên chung gần nhất và thực hiện thao tác lần lượt từ hai đỉnh đến tổ tiên chung này. Rất may là chúng ta có thể sử dụng chính những thông tin đã lưu để tìm ra LCA một cách nhanh chóng.
+
+Khi nhảy từ một node $v$ qua một cạnh nhẹ lên cha của nó, chúng ta luôn nhảy sang một chuỗi có số thứ tự bé hơn (do thứ tự duyệt đồ thị trong hàm $HLD$) nên để tìm LCA của hai đỉnh, chúng ta sẽ tìm chuỗi chứa LCA đó.
+
+Liên tục thực hiện nhảy từ chuỗi có số thứ tự lớn hơn lên một chuỗi có số thứ tự bé hơn (Để đảm bảo không bị nhảy quá, luôn chọn đỉnh đang ở chuỗi có số thứ tự lớn hơn để nhảy) cho đến khi hai đỉnh nằm trên cùng một chuỗi.
+
+Ở đó, đỉnh có độ sâu thấp hơn là LCA của $u$ và $v$.
+
+```cpp
+int LCA(int u, int v) {
+    while(ChainID[u] != ChainID[v]) {
+        if(ChainID[u] > ChainID[v]) {
+            u = Par[ChainHead[ChainID[u]]];
+        }
+        else {
+            v = Par[ChainHead[ChainID[v]]];
+        }
+    }
+    if(Depth[u] < Depth[v]) return u;
+    return v;
 }
 ```
 
-# Độ phức tạp
+#### Segment tree
 
-Với một cây có $n$ đỉnh, khi đi từ đỉnh gốc đến một đỉnh lá bằng một đường đi bất kì thì số lần chúng ta phải nhảy chuỗi sẽ không vượt quá $log(n)$. Để chứng minh điều này, chúng ta có thể thấy rằng, khi nhảy từ một đỉnh bất kì đến đỉnh con thường của nó thông qua cạnh thường thì số lượng đỉnh con có thể đi được sẽ giảm đi xuống còn tối đa một nửa so với ban đầu (nếu số đỉnh con còn lại nhiều hơn một nửa số đỉnh ban đầu thì đỉnh chúng ta nhảy tới đã là đỉnh con đặc biệt). Và nếu chúng ta tiếp tục nhảy qua nhiều chuỗi mới thì số lượng đỉnh sẽ giảm theo bội của 2. Bên cạnh đó, chúng ta sử dụng cấu trúc dữ liệu đặc biệt cho việc cập nhật hoặc truy vấn thông tin các đỉnh trong cùng một chuỗi nên độ phức tạp của thao tác này cũng là $O(log(n))$.
+Duới đây là các thao tác xử lý trên segment tree. Phần này sẽ đủ để xử lý phiên bản không trên cây của bài toán.
 
-Như vậy độ phức tạp của một thao tác cập nhật hoặc truy vấn một đường đi trên cây sẽ là $O(log(n))$.
+```cpp
+int ST[MaxN * 4];
+void Build(int id, int l, int r) {
+    if(l == r) {
+        ST[id] = Val[Arr[l]];
+        return;
+    }
+    int mid = (l + r) / 2;
+    Build(id * 2, l, mid);
+    Build(id * 2 + 1, mid + 1, r);
+    ST[id] = ST[id * 2] ^ ST[id * 2 + 1];
+}
 
-# Bài tập áp dụng
+void Upd(int id, int l, int r, int pos, int val) {
+    if (l > pos || r < pos) return;
+    if (l == r && l == pos) {
+        ST[id] = val;
+        return;
+    }
+    int mid = (l + r) / 2;
+    Upd(id * 2, l, mid, pos, val);
+    Upd(id * 2 + 1, mid + 1, r, pos, val);
+    ST[id] = ST[id * 2] ^ ST[id * 2 + 1];
+}
 
-- HLD có thể áp dụng để giải [[bài toán LCA|algo/data-structures/lca]]
-- [QTREE](https://www.spoj.com/problems/QTREE/)
-- [QTREE3](https://oj.vnoi.info/problem/qtree3/)
-- [QTREEX](https://oj.vnoi.info/problem/qtreex)
-- [EpicTree](https://www.hackerrank.com/contests/epiccode/challenges/epic-tree)
+int Calc(int id, int tl, int tr, int l, int r) {
+    if (tl > r || tr < l) return 0;
+    if (l <= tl && tr <= r) return ST[id];
+    int mid = (tl + tr) / 2;
+    return Calc(id * 2, tl, mid, l, r) ^ Calc(id * 2 + 1, mid + 1, tr, l, r);
+}
+```
 
-# Tham khảo
 
-[wcipeg](http://wcipeg.com/wiki/Heavy-light_decomposition)
+#### Các thao tác trên cây
 
-[Blog Anudeep](http://blog.anudeep2011.com/heavy-light-decomposition/)
+Và cuối cùng, chúng ta sẽ có các hàm để xử lý truy vấn trên cây. Tất nhiên có thể đưa toàn bộ phần này vào trong main mà không tăng độ dài code. Tuy nhiên để dễ nhìn và tiện debug, chúng ta sẽ code riêng hàm để xử lý truy vấn trên đuờng đi từ đỉnh $u$ đến đỉnh $v$.
+
+```cpp
+void Update(int x, int val) {
+    Upd(1, 1, N, Pos[x], val);
+}
+
+int Query(int u, int v) {
+    int lca = LCA(u, v);
+    int ans = 0;
+    while(ChainID[u] != ChainID[lca]) {
+        ans ^= Calc(1, 1, N, Pos[ChainHead[ChainID[u]]], Pos[u]);
+        u = Par[ChainHead[ChainID[u]]];
+    }
+    while(ChainID[v] != ChainID[lca]) {
+        ans ^= Calc(1, 1, N, Pos[ChainHead[ChainID[v]]], Pos[v]);
+        v = Par[ChainHead[ChainID[v]]];
+    }
+    if(Depth[u] < Depth[v]) {
+        ans ^= Calc(1, 1, N, Pos[u], Pos[v]);
+    }
+    else {
+        ans ^= Calc(1, 1, N, Pos[v], Pos[u]);
+    }
+    return ans;
+}
+```
+
+Do bài toán chỉ yêu cầu cập nhật trên điểm nên hàm $Update$ không có gì đáng chú ý. Độ phức tạp của hàm này là $O(\log(n))$.
+
+Hàm $Query$ dùng để trả lời truy vấn tổng XOR của các số trên đường đi từ $u$ đến $v$. Sau đó, chúng ta thực hiện chia đường đi này thành các đoạn trên các chain rồi thực hiện thao tác tính trên từng đoạn. 
+
+Có thể thấy, cách nhảy trong khi tính toán Query chính là cách nhảy khi tìm LCA. Trên thực tế, chúng ta không cần tìm LCA trước mà có thể thực hiện việc đó ngay khi tính Query. Nhưng trong bài này, phần tìm LCA được code riêng một hàm để dễ hiểu và tiện giải thích.
+
+#### Code đầy đủ
+
+Dưới đây là code đầy đủ cho bài toán (kết hợp của tất cả các đoạn trên, khai báo biến và hàm main) để bạn đọc tham khảo. (Code nộp AC)
+
+<details>
+<summary><b>Code</b></summary>
+
+```cpp
+#include<bits/stdc++.h>
+using namespace std;
+const int MaxN = 1e5 + 5;
+
+int N, Q;
+int Val[MaxN];
+vector<int> AdjList[MaxN]; // input
+
+int Par[MaxN]; // parent
+int Depth[MaxN]; // do sau cua node
+int Sz[MaxN]; // kich thuoc cua cay con cho cac node
+int Pos[MaxN]; // vi tri trong mang cua node
+int Arr[MaxN]; // gia tri cua cac phan tu trong mang
+int ChainID[MaxN]; // ChainID[i]: Chain ma i nam trong 
+int ChainHead[MaxN]; // ChainHead[i]: Node dau tien trong chain i
+int CurChain, CurPos;
+
+void Dfs(int s, int p = -1) {
+    Sz[s] = 1;
+    for(int u: AdjList[s]) {
+        if(u == p) continue;
+        Par[u] = s;
+        Depth[u] = Depth[s] + 1;
+        Dfs(u, s);
+        Sz[s] += Sz[u];
+    }
+}
+
+void Hld(int s, int p = -1) {
+    if(!ChainHead[CurChain]) {
+        ChainHead[CurChain] = s;
+    }
+    ChainID[s] = CurChain;
+    Pos[s] = CurPos;
+    Arr[CurPos] = s;
+    CurPos++;
+    int nxt = 0;
+    for(int u: AdjList[s]) {
+        if(u != p) {
+            if(nxt == 0 || Sz[u] > Sz[nxt]) nxt = u;
+        }
+    }
+    if(nxt) Hld(nxt, s);
+    for(int u: AdjList[s]) {
+        if(u != p && u != nxt) {
+            CurChain++;
+            Hld(u, s);
+        }
+    }
+}
+
+// find LCA
+
+int LCA(int u, int v) {
+    while(ChainID[u] != ChainID[v]) {
+        if(ChainID[u] > ChainID[v]) {
+            u = Par[ChainHead[ChainID[u]]];
+        }
+        else {
+            v = Par[ChainHead[ChainID[v]]];
+        }
+    }
+    if(Depth[u] < Depth[v]) return u;
+    return v;
+}
+
+// Segment Tree
+
+int ST[MaxN * 4];
+void Build(int id, int l, int r) {
+    if(l == r) {
+        ST[id] = Val[Arr[l]];
+        return;
+    }
+    int mid = (l + r) / 2;
+    Build(id * 2, l, mid);
+    Build(id * 2 + 1, mid + 1, r);
+    ST[id] = ST[id * 2] ^ ST[id * 2 + 1];
+}
+
+void Upd(int id, int l, int r, int pos, int val) {
+    if (l > pos || r < pos) return;
+    if (l == r && l == pos) {
+        ST[id] = val;
+        return;
+    }
+    int mid = (l + r) / 2;
+    Upd(id * 2, l, mid, pos, val);
+    Upd(id * 2 + 1, mid + 1, r, pos, val);
+    ST[id] = ST[id * 2] ^ ST[id * 2 + 1];
+}
+
+int Calc(int id, int tl, int tr, int l, int r) {
+    if (tl > r || tr < l) return 0;
+    if (l <= tl && tr <= r) return ST[id];
+    int mid = (tl + tr) / 2;
+    return Calc(id * 2, tl, mid, l, r) ^ Calc(id * 2 + 1, mid + 1, tr, l, r);
+}
+
+// Update and queries
+
+void Update(int x, int val) {
+    Upd(1, 1, N, Pos[x], val);
+}
+
+int Query(int u, int v) {
+    int lca = LCA(u, v);
+    int ans = 0;
+    while(ChainID[u] != ChainID[lca]) {
+        ans ^= Calc(1, 1, N, Pos[ChainHead[ChainID[u]]], Pos[u]);
+        u = Par[ChainHead[ChainID[u]]];
+    }
+    while(ChainID[v] != ChainID[lca]) {
+        ans ^= Calc(1, 1, N, Pos[ChainHead[ChainID[v]]], Pos[v]);
+        v = Par[ChainHead[ChainID[v]]];
+    }
+    if(Depth[u] < Depth[v]) {
+        ans ^= Calc(1, 1, N, Pos[u], Pos[v]);
+    }
+    else {
+        ans ^= Calc(1, 1, N, Pos[v], Pos[u]);
+    }
+    return ans;
+}
+
+// main
+
+signed main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+    freopen("cowland.in", "r", stdin);
+    freopen("cowland.out", "w", stdout);
+    cin >> N >> Q;
+    for(int i = 1; i <= N; i++) {
+        cin >> Val[i];
+    }
+    for(int i = 1; i < N; i++) {
+        int u, v;
+        cin >> u >> v;
+        AdjList[u].push_back(v);
+        AdjList[v].push_back(u);
+    }
+    CurPos = CurChain = 1;
+    Dfs(1);
+    Hld(1);
+    Build(1, 1, N);
+    while(Q--) {
+        int type;
+        cin >> type;
+        if(type == 1) {
+            // Update
+            int x, val;
+            cin >> x >> val;
+            Update(x, val);
+        }
+        else {
+            int u, v;
+            cin >> u >> v;
+            cout << Query(u, v) << '\n';
+        }
+    }
+}
+```
+</details>
+### Bài viết tham khảo và bài tập luyện tập
+
+Bài viết trên được tham khảo từ bài viết gốc [Hybrid Tutorial 1: Heavy-Light Decomposition](https://codeforces.com/blog/entry/81317). Bạn đọc có thể tham khảo và xem video hướng dẫn kèm theo của galen_colin. Ngoài ra có thể tham khảo bài viết của [CP algo](https://cp-algorithms.com/graph/hld.html).
+
+Trước hết, bạn đọc nên tự cài đặt và nộp bài tập phía trên tại [đây](http://www.usaco.org/current/index.php?page=viewproblem2&cpid=921). Sau đó có thể làm thêm các bài tập luyện tập dưới đây
+
+- [Path Queries (CSES)](https://cses.fi/problemset/task/1138)
+- [LUBENICA (SPOJ)](https://www.spoj.com/problems/LUBENICA/)
+- [QTREE (SPOJ)](https://www.spoj.com/problems/QTREE/)
+- [GRASSPLA (SPOJ)](https://www.spoj.com/problems/GRASSPLA/)
+- [GSS7 (SPOJ)](https://www.spoj.com/problems/GSS7/)
+- [QRYLAND (CodeChef)](https://www.codechef.com/problems/QRYLAND)
+- [MONOPLOY (CodeChef)](https://www.codechef.com/problems/MONOPLOY)
+- [QUERY (CodeChef)](https://www.codechef.com/problems/QUERY)
+- [BLWHTREE (CodeChef)](https://www.codechef.com/problems/BLWHTREE)
+- [Milk Visits (USACO)](http://www.usaco.org/index.php?page=viewproblem2&cpid=970)
+- [Max Flow (USACO)](http://www.usaco.org/current/index.php?page=viewproblem2&cpid=576)
+- [Exercise Route (USACO)](http://www.usaco.org/index.php?page=viewproblem2&cpid=901)
