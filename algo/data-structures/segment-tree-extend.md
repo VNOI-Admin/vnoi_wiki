@@ -293,7 +293,7 @@ void build(int id, int l, int r) {
     }
     int mid = (l + r) / 2;
     build(id * 2, l, mid);
-    build(id * 2, mid+1, r);
+    build(id * 2 + 1, mid+1, r);
 
     st[id] = st[id*2] + st[id*2+1];
 }
