@@ -217,14 +217,9 @@ Khi ta thực hiện truy vấn $1$, có $4$ giá trị của $D$ thay đổi:
 
 Nếu vẫn chưa rõ, bạn đọc có thể tham khảo hình minh họa sau:
 
+![](https://hackmd.io/_uploads/rkJVfmvw3.png)
 
-
-<img align="left" width="450" height="450" src="https://hackmd.io/_uploads/rkJVfmvw3.png">
-
-
-
-<img align="left" width="450" height="450" src="https://hackmd.io/_uploads/r1_4NmvPh.png">
-
+![](https://hackmd.io/_uploads/r1_4NmvPh.png)
 
 ### Cài đặt
 
