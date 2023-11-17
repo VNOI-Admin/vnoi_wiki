@@ -1,5 +1,17 @@
 # Cây chỉ số nhị phân 2 chiều (BIT 2 chiều)
 
+**Tác giả:** 
+- Phạm Công Minh - THPT chuyên Khoa học Tự Nhiên, ĐHQGHN 
+
+**Reviewer:**
+- Lê Minh Hoàng - Đại học Khoa học Tự nhiên, ĐHQG-HCM
+- Phạm Hoàng Hiệp – University of Georgia
+- Ngô Nhật Quang - The University of Texas at Dallas 
+
+
+MONA, FIREFOX, MIKE
+---
+
 [[_TOC_]]
 
 # Giới thiệu
