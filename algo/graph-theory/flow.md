@@ -107,7 +107,9 @@ Luồng này gọi là **luồng cực đại** trên mạng $G$.
 </summary>
 <p>
 Năm 1956, L. R. Ford Jr. và D. R. Fulkerson đề xuất một phương pháp để tìm ra luồng cực đại trên mạng. Tuy nhiên, phương pháp này không chỉ rõ việc tìm *đường tăng luồng* như thế nào. Đến năm 1972, Jack Edmonds and Richard Karp đã hoàn thiện phương pháp trên bằng cách sử dụng thuật BFS để tìm *đường tăng luồng*. 
+</p>
 
+<p>
 Nhiều tài liệu mà chúng ta đang dùng có sử dụng cụm từ "thuật toán Ford-Fulkerson" để gọi thuật tìm luồng cực đại hoàn chỉnh, và biến "thuật toán Edmonds-Karp" thành một thuật xa lạ kì quặc nào đó. Điều này có lẽ cũng ... không hẳn là sai. Bài viết này sẽ sử dụng tên Edmonds-Karp cho thuật toán, và chỉ gọi là "phương pháp Ford-Fulkerson" thôi. Bạn đọc muốn hiểu theo cách nào cũng được.
 </p>
 </details>
@@ -174,22 +176,33 @@ Hai thuật BFS và DFS có độ phức tạp giống nhau, nhưng trên thực
 <summary>
 <b>Chứng minh</b>
 </summary>
+
 <p>
-
 Giả sử thuật toán cho một luồng có giá trị là $f^{*}$.
+</p>
 
+<p>
 Tại bước cuối cùng của thuật toán, chúng ta không thể tìm được một đường tăng luồng nào từ $s$ tới $t$ nữa. Gọi $S$ là tập tất cả các đỉnh trên đồ thị có thể đi tới từ $s$ theo một đường tăng luồng, và $T$ là tập các đỉnh còn lại. Khi đó $(S, T)$ là một lát cắt trên mạng.
+</p>
 
+<p>
 Ta chứng minh $f^{*} = c(S, T)$. Nhắc lại rằng $c(S, T)$ là khả năng thông qua của lát cắt $(S, T)$.
+</p>
 
+<p>
 Gọi $(u, v)$ là một cạnh bất kỳ nối từ $S$ sang $T$, với $u \in S, v \in T$. Cạnh $(u, v)$ phải thoả mãn $f(u, v) = c(u, v)$, nếu không sẽ tồn tại một đường tăng luồng đi từ $s$ sang tập $T$, trái với giả thiết.
+</p>
 
+<p>
 Lại gọi $(u', v')$ là một cạnh bất kỳ nối từ $T$ sang $S$, với $u' \in T, v' \in S$. Nếu $f(u', v') > 0$, sẽ tồn tại một đường tăng luồng đi qua cạnh ngược $(v', u')$ do $f(v', u') < 0 = c(u', v')$, trái với giả thiết không tồn tại đường đi từ $S$ sang $T$.
+</p>
 
+<p>
 Lấy tổng tất cả các đẳng thức $f(u, v) = c(u, v)$ và $f(v', u') = 0$ với mọi cặp đỉnh thoả mãn một trong hai trường hợp trên, ta được:
-
 $f^* = c(A, B)$
+</p>
 
+<p>
 Nhưng theo định lý về luồng và lát cắt đã trình bày ở trên ta có $f^* \le c(A, B)$ nên đây là luồng cực đại. (đpcm)
 </p>
 </details>
@@ -442,22 +455,42 @@ int32_t main()
 </summary>
 <p>
 Gọi $d_i(u)$ là mức của đỉnh $u$ sau khi thực hiện $i$ lần BFS và gán nhãn $d$. Ta chứng minh hai bổ đề sau:
+</p>
 
-*Bổ đề 1*: $d_{i + 1}(u) \ge d_i(u)$
+<p>
+<b>Bổ đề 1:</b> $d_{i + 1}(u) \ge d_i(u)$
+</p>
 
+<p>
 Xét vòng BFS thứ $i$, đang xét đến đỉnh $u$. Xét đồ thị $G^R_i$ là đồ thị thặng dư ở lượt BFS thứ $i$. Dễ thấy $G^R_{i + 1}$ luôn bao gồm một số cạnh trong $G^R_i$ cùng với một số cạnh ngược trong $G^R_i$. 
 Tại vòng thứ $i + 1$, trường hợp đường đi từ $s$ đến $u$ không đi qua cạnh ngược, hiển nhiên đường đi này phải xuất hiện trên $G^R_i$, cho nên $d_{i + 1}(u) = d_{i}(u)$. 
+</p>
+
+<p>
 Trường hợp đường đi này chứa cạnh ngược, giả sử cạnh đầu tiên như vậy là cạnh $(w, v)$. Theo trường hợp đầu, $d_{i + 1}(w) = d_{i}(w)$ (1). Ở vòng thứ $i$, đường này vẫn còn đi được, do đó $d_i(w) = d_i(v) + 1$ (2). Nhưng tại vòng $i + 1$, cạnh này trở thành cạnh ngược, cho nên $d_{i + 1}(v) = d_i(w) + 1%$ (3). Từ (1), (2), (3) suy ra $d_{i + 1}(w) \ge d_i(w) + 2$.
+</p>
+
+<p>
 Tóm lại, trong cả hai trường hợp ta đều có $d_{i + 1}(u) >= d_i(u)$. Bổ đề được chứng minh.
+</p>
 
-*Bổ đề 2*: $d_{i + 1}(t) > d_i(t)$
+<p>
+<b>Bổ đề 2:</b> $d_{i + 1}(t) > d_i(t)$
+</p>
 
+<p>
 Theo bổ đề 1, $d_{i + 1}(t) \ge d_i(t)$. Giả sử $d_{i + 1}(t) = d_i(t)$. Vì $G^R_{i + 1}$ chỉ chứa các cạnh xuôi và cạnh ngược trong $G^R_i$ nên phải tồn tại một đường đi từ $s$ tới $t$, trái với giả thiết một luồng cản được tạo ra. Bổ đề được chứng minh.
+</p>
 
+<p>
 Theo bổ đề 2, $d(t)$ tăng nghiêm ngặt sau mỗi lần BFS, nhưng không vượt quá $n - 1$. Do vậy, thuật toán Dinic sẽ BFS tối đa $n$ lần.
+</p>
 
+<p>
 Chi phí cho một lần tìm luồng cản là $O(mn)$, với $O(n)$ dùng cho DFS trên đồ thị phân cấp, và $O(m)$ cho việc duyệt tất cả các cạnh để tìm đường DFS. Lưu ý do duyệt từ cạnh cuối cùng được DFS, đoạn này chỉ mất $O(mn)$ thay vì $O(m^2)$.
+</p>
 
+<p>
 Tổng kết hai phần lại, chúng ta có độ phức tạp thuật toán Dinic là $O(mn^2)$. (đpcm)
 </p>
 </details>
