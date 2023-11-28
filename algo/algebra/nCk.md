@@ -44,7 +44,9 @@ for (int i = 1; i <= n-k; i++) res = res / i;
 ```
 
 - Mở rộng hơn, ta có thể biến đổi một chút như sau:
+
 $$C_n^k = \dfrac{n}{1} \cdot \dfrac{n - 1}{2} \ldots \dfrac{n - k + 1}{k} = \dfrac{C_{n-1}^{k-1} \cdot (n - k + 1)}{k}$$
+
 Vì $C_n^k$ là số nguyên, nên bạn yên tâm rằng $C_{n-1}^{k-1} \cdot (n - k + 1)$ luôn chia hết cho $k$.
 
 ```cpp
@@ -53,17 +55,18 @@ for (int i = 1; i <= k; i++)
     res = res * (n - i + 1) / i;
 ```
 
-- Hai cách tiếp cận trên rất tự nhiên, dễ nghĩ, dễ thực hiện nhưng lại có một trở ngại: giá trị của $n!$ có thể rất lớn $\Big($khi $n = 20$ thì $n! \approx 2.42\times10^{18}\Big)$
+- Hai cách tiếp cận trên rất tự nhiên, dễ nghĩ, dễ thực hiện nhưng lại có một trở ngại: giá trị của $n!$ có thể rất lớn (khi $n = 20$ thì $n! \approx 2.42\times10^{18}$)
 
 ### Sử dụng công thức truy hồi
 
 $$\begin{align*}
 C_n^k=\begin{cases}
-1 &\style{font-family:Cambria Math}{\large\text{nếu }} k = 0 \style{font-family: Cambria Math}{\large\text{ và }} n \ge 0\\
-0 &\style{font-family:Cambria Math}{\large\text{nếu }} k > n\\
-C_{n - 1}^{k - 1} + C_{n - 1}^{k} &\style{font-family: Cambria Math}{\large\text{trong các trường hợp còn lại}}
+1 &\text{nếu } k = 0 \text{ và } n \ge 0\\
+0 &\text{nếu } k > n\\
+C_{n - 1}^{k - 1} + C_{n - 1}^{k} &\text{trong các trường hợp còn lại}
 \end{cases}
 \end{align*}$$
+
 Với công thức truy hồi này, ta sẽ sử dụng một mảng hai chiều `C[n][k]` để tính $C_n^k$
 
 **Code C++ minh họa**
@@ -96,6 +99,7 @@ Dưới đây là một số cách sử dụng để tính $C_n^k$ theo modulo $
 | [Sử dụng định lý thặng dư Trung Hoa](#Sử-dụng-định-lý-thặng-dư-Trung-Hoa) |                 |                        |          | Trung bình |                 $M$ bất kỳ                 |
 
 Ngoài ra còn có hai cách tính dựa trên cách tính giai thừa modulo $M$ khá hiệu quả. Tham khảo thêm tại [đây](https://hackmd.io/vEuqGacrS-iS9SCBJ_5anQ?view). Dưới đây là đánh giá về hai cách đó:
+
 |     Cách     |         Tiền xử lý          |           Truy vấn            |           Bộ nhớ            | Độ khó |              Giới hạn              |
 |:------------:|:---------------------------:|:-----------------------------:|:---------------------------:|:------:|:----------------------------------:|
 |   Chia căn   | $O\left(\frac{M}{S}\right)$ | $O\left(S+\frac{M}{S}\right)$ | $O\left(\frac{M}{S}\right)$ | Cơ bản |      $n < M \le 2 \cdot 10^9$      |
@@ -141,28 +145,32 @@ Rào cản lớn nhất cho việc sử dụng định nghĩa $C_n^k = \dfrac{n!
 - **Ý tưởng:**
     - Ta viết lại: 
 $$C_n^k = n! \times \left( k! \right)^{-1} \times \left( (n - k)! \right)^{-1} \mod M$$
-    - Ta sử dụng hai mảng: mảng $\text{fact}[i]$ để lưu $i! \bmod M$ và mảng $\text{ifact}[i]$ để lưu $(i!)^{-1} \bmod M$. Từ đó rút ra: 
-    $$\begin{align}
-        \text{ifact}[i] &= (\text{fact}[i]) ^ {-1} \mod M\\
-        &= (\text{fact}[i])^{M-2} \mod M &\style{font-family: Cambria Math}{\large\text{(Theo định lý Fermat nhỏ)}}
-    \end{align}$$
-    Chú ý rằng $\text{fact}[i] \equiv 0 \pmod M \;\;\forall i \ge M$ nên ta chỉ tính $\text{fact}[i]$ và $\text{ifact}[i]$ với $0 \le i \le M - 1$.
+    - Ta sử dụng hai mảng: mảng $\text{fact}[i]$ để lưu $i! \bmod M$ và mảng $\text{ifact}[i]$ để lưu $(i!)^{-1} \bmod M$. Sau đó dùng công thức (sử dụng định lý Fermat nhỏ):
+
+        $$\text{ifact}[i] = (\text{fact}[i]) ^ {-1} \bmod M = (\text{fact}[i])^{M-2} \bmod M$$
+
+        Chú ý rằng $\text{fact}[i] \equiv 0 \pmod M \;\;\forall i \ge M$ nên ta chỉ tính $\text{fact}[i]$ và $\text{ifact}[i]$ với $0 \le i \le M - 1$.
+        
     - Ta sẽ tính mảng $\text{fact}[i]$ như sau:
-    \begin{align}
+    
+    $$\begin{align}
         \begin{cases}
         \text{fact}[0] &= 1\\
         \text{fact}[i] &= (\text{fact}[i - 1] \times i ) \bmod M &\text{ nếu } 1 \le i \le n
         \end{cases}
-    \end{align}
-    - Tiếp theo ta sử dụng thuật toán lũy thừa nhanh để tính $\text{ifact}[n] = \left( \text{fact}[n] \right)^{M-2} \mod M$ với độ phức tạp $O(\log M)$
+    \end{align}$$
+    
+    - Tiếp theo ta sử dụng thuật toán lũy thừa nhanh để tính $\text{ifact}[n] = \left( \text{fact}[n] \right)^{M-2} \mod M$ với độ phức tạp $O(\log M)$.
     - Còn mảng $\text{ifact}[i]$ thì tính như sau:
-    \begin{align}
+    
+    $$\begin{align}
         \begin{cases}
         \text{ifact}[n] &= \left( \text{fact}[n] \right)^{M-2} &\mod M\\
         \text{ifact}[i - 1] &= \text{ifact}[i] \times i  &\mod M  &\text{nếu } 1 \le i \le n
         \end{cases}
-    \end{align}
-    - Cuối cùng, $C_n^k = \text{fact}[n] \times \text{ifact}[k] \times \text{ifact}[n - k] \mod M$
+    \end{align}$$
+    
+    - Cuối cùng, $C_n^k = \text{fact}[n] \times \text{ifact}[k] \times \text{ifact}[n - k] \mod M$.
 
 **Code C++ minh họa**
 ```cpp
@@ -235,7 +243,8 @@ int comb(long long n, long long k){
 }
 ```
 
-:::spoiler *Bạn đọc tham khảo thêm code đầy đủ dưới đây*
+<details>
+<summary>Bạn đọc tham khảo thêm code đầy đủ ở đây</summary>
 ```cpp
 const int MOD = 1e6 + 3;
 int fact[MOD + 5], ifact[MOD + 5];
@@ -292,8 +301,7 @@ int main(){
     
 }
 ```
-:::
-<br/>
+</details>
 
 Độ phức tạp không gian: $O(M)$
 Độ phức tạp thời gian:
@@ -305,33 +313,30 @@ int main(){
 - **Kiến thức sử dụng:**
     - *Nghịch đảo modulo, lũy thừa nhanh*
     - *Định lý Euler (mở rộng của định lý Fermat nhỏ)*
-    :::spoiler
-    Cho $2$ số nguyên $a, m$ nguyên tố cùng nhau. Khi đó, ta có:
-    $$a^{\varphi(m)} \equiv 1 \pmod m$$
-    *Trong đó, $\varphi(m)$ là hàm phi Euler:* $\varphi(m) = m \cdot \prod\limits_{\begin{gather} p \text{ nguyên tố} \\ p \mid m \end{gather}} \dfrac{p - 1}{p}$
-    Từ đó, ta rút ra:
-    $$a^{-1} \equiv a^{\varphi(m)-1} \pmod p$$
-    :::
-    - *Mở rộng định lý Lucas cho modulo là lũy thừa số nguyên tố*
-    :::spoiler 
-    *Andrew Granville* đã chứng minh được công thức sau: (*Xem bài báo tại* [đây](https://web.archive.org/web/20170202003812/http://www.dms.umontreal.ca/~andrew/PDF/BinCoeff.pdf) *hoặc tại* [đây](http://www.cecm.sfu.ca/organics/papers/granville/paper/binomial/html/node2.html))
+        Cho $2$ số nguyên $a, m$ nguyên tố cùng nhau. Khi đó, ta có: $a^{\varphi(m)} \equiv 1 \pmod m$.
+
+        Trong đó, $\varphi(m)$ là hàm phi Euler: $\varphi(m) = m \cdot \prod\limits_{p \text{ nguyên tố}, p \mid m} \dfrac{p - 1}{p}$.
+        Từ đó, ta rút ra:
+        $$a^{-1} \equiv a^{\varphi(m)-1} \pmod p$$
+    - *Mở rộng định lý Lucas cho modulo là lũy thừa số nguyên tố*:
+    Andrew Granville đã chứng minh được công thức sau: (Xem bài báo tại [đây](https://web.archive.org/web/20170202003812/http://www.dms.umontreal.ca/~andrew/PDF/BinCoeff.pdf) hoặc tại [đây](http://www.cecm.sfu.ca/organics/papers/granville/paper/binomial/html/node2.html))
+    
     $$\dfrac{t^{e_q}}{p^{e_1}} C_n^k \equiv \dfrac{(n_0!)_p}{(k_0!)_p(r_0!)_p} \cdot \dfrac{(n_1!)_p}{(k_1!)_p(r_1!)_p} \ldots \dfrac{(n_d!)_p}{(k_d!)_p(r_d!)_p} \,(\bmod p^q)$$
 
     Trong đó:
-    - $t = \begin{align}
-    \begin{cases}
-    1 &\text{ nếu } p = 2 \text{ và } q \ge 3\\
-    -1&\text{ còn lại}
-    \end{cases}
-    \end{align}$
-    - $e_j = \sum\limits_{i \ge j} \left( \left\lfloor \dfrac{n}{p^i} \right\rfloor - \left\lfloor \dfrac{k}{p^i} \right\rfloor - \left\lfloor \dfrac{r}{p^i} \right\rfloor \right)$
-    *Bạn đọc có thể thấy, $e_1$ là số mũ của $p$ khi phân tích $C_n^k$ ra thừa số nguyên tố.*
-    - $\left( n! \right)_p$ là tích tất cả các số từ $1$ đến $n$ và không bao gồm các số chia hết cho $p$ (với $p$ là số nguyên tố).
-    - $r = n-k$
-    - $n_i = \left\lfloor \dfrac{n}{p^i} \right\rfloor \bmod p ^ q$
-    - $k_i, r_i$ định nghĩa tương tự $n_i$
-    - $d$ là vị trí cuối cùng mà $n_i \neq 0$.  Nghĩa là ta chỉ cần chạy cho đến khi $n_i = 0$.
-    :::
+        - $t = \begin{align}
+        \begin{cases}
+        1 &\text{ nếu } p = 2 \text{ và } q \ge 3\\
+        -1&\text{ còn lại}
+        \end{cases}
+        \end{align}$
+        - $e_j = \sum\limits_{i \ge j} \left( \left\lfloor \dfrac{n}{p^i} \right\rfloor - \left\lfloor \dfrac{k}{p^i} \right\rfloor - \left\lfloor \dfrac{r}{p^i} \right\rfloor \right)$
+        Bạn đọc có thể thấy, $e_1$ là số mũ của $p$ khi phân tích $C_n^k$ ra thừa số nguyên tố.
+        - $\left( n! \right)_p$ là tích tất cả các số từ $1$ đến $n$ và không bao gồm các số chia hết cho $p$ (với $p$ là số nguyên tố).
+        - $r = n-k$
+        - $n_i = \left\lfloor \dfrac{n}{p^i} \right\rfloor \bmod p ^ q$
+        - $k_i, r_i$ định nghĩa tương tự $n_i$
+        - $d$ là vị trí cuối cùng mà $n_i \neq 0$.  Nghĩa là ta chỉ cần chạy cho đến khi $n_i = 0$.
 
 **Chi tiết các bước:**
 ```cpp
@@ -400,7 +405,6 @@ long long calc(long long N, long long K, long long R) {
 Định lý thặng dư Trung Hoa là cầu nối giúp ta tính toán được khi $M$ không phải là số nguyên tố.
 - **Kiến thức sử dụng:**
     - *Định lý Thặng dư trung hoa - Chinese remainder theorem (CRT)*
-    :::spoiler 
     Xét hệ:
     $\left\{\begin{array}{rcl}
         a & \equiv & a_1 \pmod{m_1} \\
@@ -422,7 +426,7 @@ long long calc(long long N, long long K, long long R) {
 
     Khi này chỉ cần cộng tất cả số hạng $a_i M_i N_i$ ta được một nghiệm thỏa mãn hệ:
     $$a = a_1 M_1 N_1 + a_2 M_2 N_2 + \ldots + a_k M_k N_k$$
-    :::
+   
 
 Để minh họa rõ hơn này, ta sẽ giải quyết bài [nCr](https://www.hackerrank.com/challenges/ncr/problem) trên Hackerrank
 
@@ -466,7 +470,8 @@ Tính $C_n^k \bmod 142857$ với $0 \le k \le n \le 10^{9}$
     }
     ```
 
-:::spoiler *Bạn đọc tham khảo code nộp AC bài nCr dưới đây*
+<details>
+<summary> Bạn đọc tham khảo code nộp AC bài nCr ở đây </summary>
 ```cpp
 #include <bits/stdc++.h>
 const int MOD = 142857;
@@ -593,8 +598,7 @@ int main()
     solve();
 }
 ```
-:::
-
+</details>
 
 ## Bài tập luyện tập
 * [SPOJ - Marbles](https://www.spoj.com/problems/MARBLES/)
