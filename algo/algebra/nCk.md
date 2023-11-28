@@ -319,11 +319,11 @@ int main(){
         Từ đó, ta rút ra:
         $$a^{-1} \equiv a^{\varphi(m)-1} \pmod p$$
     - *Mở rộng định lý Lucas cho modulo là lũy thừa số nguyên tố*:
-    Andrew Granville đã chứng minh được công thức sau: (Xem bài báo tại [đây](https://web.archive.org/web/20170202003812/http://www.dms.umontreal.ca/~andrew/PDF/BinCoeff.pdf) hoặc tại [đây](http://www.cecm.sfu.ca/organics/papers/granville/paper/binomial/html/node2.html))
+        Andrew Granville đã chứng minh được công thức sau: (Xem bài báo tại [đây](https://web.archive.org/web/20170202003812/http://www.dms.umontreal.ca/~andrew/PDF/BinCoeff.pdf) hoặc tại [đây](http://www.cecm.sfu.ca/organics/papers/granville/paper/binomial/html/node2.html))
     
-    $$\dfrac{t^{e_q}}{p^{e_1}} C_n^k \equiv \dfrac{(n_0!)_p}{(k_0!)_p(r_0!)_p} \cdot \dfrac{(n_1!)_p}{(k_1!)_p(r_1!)_p} \ldots \dfrac{(n_d!)_p}{(k_d!)_p(r_d!)_p} \,(\bmod p^q)$$
+        $$\dfrac{t^{e_q}}{p^{e_1}} C_n^k \equiv \dfrac{(n_0!)_p}{(k_0!)_p(r_0!)_p} \cdot \dfrac{(n_1!)_p}{(k_1!)_p(r_1!)_p} \ldots \dfrac{(n_d!)_p}{(k_d!)_p(r_d!)_p} \,(\bmod p^q)$$
 
-    Trong đó:
+        Trong đó:
         - $t = \begin{align}
         \begin{cases}
         1 &\text{ nếu } p = 2 \text{ và } q \ge 3\\
@@ -405,33 +405,39 @@ long long calc(long long N, long long K, long long R) {
 Định lý thặng dư Trung Hoa là cầu nối giúp ta tính toán được khi $M$ không phải là số nguyên tố.
 - **Kiến thức sử dụng:**
     - *Định lý Thặng dư trung hoa - Chinese remainder theorem (CRT)*
-    Xét hệ:
-    $\left\{\begin{array}{rcl}
-        a & \equiv & a_1 \pmod{m_1} \\
-        a & \equiv & a_2 \pmod{m_2} \\
-          & \vdots & \\
-        a & \equiv & a_k \pmod{m_k}
-    \end{array}\right.$ với $m_1, m_2, \ldots m_k$ đôi một nguyên tố cùng nhau.
-
-    Ký hiệu: 
-    $M = m_1 \cdot m_2 \ldots m_k$
-    $M_i = \dfrac{M}{m_i}$
-    $N_i = M_i^{-1} \mod m_i$
-
-    Từ đó nhận thấy:
-    $\left\{\begin{array}{rcl}
-        a_i M_i N_i & \equiv & a_i \pmod{m_i} \\
-        a_j M_j N_j & \equiv & 0 \pmod{m_i} \,\,\forall j \neq i
-    \end{array}\right.$
-
-    Khi này chỉ cần cộng tất cả số hạng $a_i M_i N_i$ ta được một nghiệm thỏa mãn hệ:
-    $$a = a_1 M_1 N_1 + a_2 M_2 N_2 + \ldots + a_k M_k N_k$$
+    
+        Xét hệ:
+        
+        $$\left\{\begin{array}{rcl}
+            a & \equiv & a_1 \pmod{m_1} \\
+            a & \equiv & a_2 \pmod{m_2} \\
+              & \vdots & \\
+            a & \equiv & a_k \pmod{m_k}
+        \end{array}\right.$$
+        
+        với $m_1, m_2, \ldots m_k$ đôi một nguyên tố cùng nhau.
+    
+        Ký hiệu: 
+        - $M = m_1 \cdot m_2 \ldots m_k$
+        
+        - $M_i = \dfrac{M}{m_i}$
+        
+        - $N_i = M_i^{-1} \mod m_i$
+    
+        Từ đó nhận thấy:
+        
+        $$\left\{\begin{array}{rcl}
+            a_i M_i N_i & \equiv & a_i \pmod{m_i} \\
+            a_j M_j N_j & \equiv & 0 \pmod{m_i} \,\,\forall j \neq i
+        \end{array}\right.$$
+    
+        Khi này chỉ cần cộng tất cả số hạng $a_i M_i N_i$ ta được một nghiệm thỏa mãn hệ:
+        $$a = a_1 M_1 N_1 + a_2 M_2 N_2 + \ldots + a_k M_k N_k$$
    
 
 Để minh họa rõ hơn này, ta sẽ giải quyết bài [nCr](https://www.hackerrank.com/challenges/ncr/problem) trên Hackerrank
 
-**Tóm tắt:**
-Tính $C_n^k \bmod 142857$ với $0 \le k \le n \le 10^{9}$
+**Tóm tắt:** Tính $C_n^k \bmod 142857$ với $0 \le k \le n \le 10^{9}$
 
 **Lời giải:**
 - Giả sử bằng những cách trên, bạn đã tính được $C_n^k$ modulo là số nguyên tố ([ĐL Lucas](#Định-lý-Lucas)) hoặc lũy thừa của chúng ([ĐL Lucas mở rộng](#Định-lý-Lucas-mở-rộng)). Tiếp theo ta sẽ sử dụng CRT xử lý các phần còn lại.
