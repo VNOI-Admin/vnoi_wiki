@@ -1,4 +1,14 @@
 # Thuật toán Euclid
+
+**Tác giả:** 
+- Nguyễn Đức Kiên, Trường Đại học Công nghệ, ĐHQGHN.
+
+**Reviewer:** 
+- Nguyễn Minh Hiển - Trường Đại học Công nghệ, ĐHQGHN
+- Phạm Hoàng Hiệp - University of Georgia
+- Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
+
+---
 [[_TOC_]]
 
 ## Mở đầu
@@ -42,7 +52,7 @@ Phép tính $a - b$ sau khi thực hiện $\lfloor \frac{a}{b} \rfloor$ lần th
 Vậy $\gcd(a, b) = \gcd(b, a \text{ mod } b)$ (đpcm).
 
 ### Cài đặt
-``` 
+```cpp
 int gcd(int a, int b)
 {
     if (b == 0) return a;
@@ -51,7 +61,7 @@ int gcd(int a, int b)
 ```
 
 Hoặc ngắn hơn:
-``` 
+```cpp
 int gcd(int a, int b)
 {
     return (b ? gcd(b, a % b) : a);
@@ -71,7 +81,7 @@ Ta có một số tính chất sau:
 - $\gcd(2k, 2h + 1) = \gcd(k, 2h + 1)$
 
 Kết hợp với $\gcd(a, b) = \gcd(b, a - b)$ ta cài đặt như sau (Code tham khảo từ CP Algorithms):
-```
+```cpp
 int gcd(int a, int b) 
 {
     if (!a || !b) return a | b;
@@ -177,7 +187,7 @@ Ta cần tìm các hệ số $x_0, y_0$ để: $a_0x_0 + b_0y_0 = d$.
 Liên tục cập nhật các hệ số $x, y$ theo công thức trên tới khi thu được $a = A, b = B$ như ban đầu, ta sẽ thu được kết quả.
 
 ### Cài đặt
-``` 
+```cpp
 // Hàm trả về ƯCLN của a và b đồng thời thay đổi giá trị của x, y
 int extEuclid(int a, int b, int& x, int& y)
 {
@@ -285,7 +295,7 @@ Chốt lại, để tìm nghiệm của một phương trình Diophantus, ta tì
 ### Cài đặt
 Đoạn chương trình sau tìm **một** nghiệm nguyên của phương trình $ax + by = c$, với $a, b \neq 0$:
 
-``` 
+```cpp
 const pair <int, int> INVALID_ROOT = {INT_MAX, INT_MAX};
 
 //Hàm trả về ƯCLN của a và b, biến đổi x, y thoả mãn ax + by = \gcd(a, b)
