@@ -124,8 +124,7 @@ $$ax + by = d$$
 
 Ví dụ: 
 
-$\gcd(55, 80) = 5\\
-5 = 55 \times 3 + 80 \times (-2)$
+$\gcd(55, 80) = 5 = 55 \times 3 + 80 \times (-2)$
 
 Các số $x, y$ thoả mãn đẳng thức trên luôn tồn tại theo bổ đề sau:
 
