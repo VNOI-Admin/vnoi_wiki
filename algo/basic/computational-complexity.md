@@ -347,7 +347,7 @@ Nói cách khác: nếu hằng số quá lớn thì thường là các hằng s�
         - Tuy nhiên khi so sánh về thời gian chạy thì `std::sort` $<$ `std::priority_queue` $<$ `std::set`/`std::map`
 
     - **Thuật toán có ĐPT bậc cao hơn không có nghĩa là chúng chạy chậm hơn trong mọi bộ dữ liệu.**
-        - Ví dụ điển hình là hàm `std::sort` của C++. Thuật toán chủ yếu vẫn là `Quick-sort` - $O(n\log n)$. Và để tối ưu, thì với bộ dữ liệu nhỏ, hàm sẽ sử dụng `Insert-Sort` - $O(n^2)$. Còn khi chọn phần tử chốt của `Quick-sort` không đẹp, thì sẽ sử dụng `Merge-Sort` - $O(n\log n)$ thay thế.
+        - Ví dụ điển hình là hàm `std::sort` của C++. Thuật toán chủ yếu vẫn là `Quick-sort` - $O(n\log n)$. Và để tối ưu, thì với bộ dữ liệu nhỏ, hàm sẽ sử dụng `Insert-Sort` - $O(n^2)$. Còn khi chọn phần tử chốt của `Quick-sort` không đẹp, thì sẽ sử dụng `Heap-Sort` - $O(n\log n)$ thay thế.
 - Vì thế, trong từng trường hợp, ta nên chú ý chọn thuật toán cho phù hợp nhất để tối ưu thời gian chạy chương trình.
 Và đặc biệt khi sử dụng các hàm trong thư viện sẵn có hay các code sẵn có thì nên hiểu cơ bản cách hoạt động và tốc độ của nó.
     
