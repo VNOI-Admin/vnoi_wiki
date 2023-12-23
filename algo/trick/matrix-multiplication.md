@@ -2,12 +2,12 @@
 
 **Nguồn**: Biên soạn lại từ bài viết của Nguyễn *RR* Thành Trung, Nguyễn Mạnh Quân.
 
-**Tác giả**: 
+**Tác giả**:
 
 - Nguyễn Châu Khanh - VNU University of Engineering and Technology (VNU-UET)
 - Bùi Minh Hoạt - VNU University of Engineering and Technology (VNU-UET)
 
-**Reviewer:** 
+**Reviewer:**
 
 - Trần Quang Lộc - ITMO University
 - Hồ Ngọc Vĩnh Phát - VNUHCM-University of Science
@@ -20,25 +20,25 @@
 
 Thông thường, để đạt được độ phức tạp thuật toán như mong muốn, cách làm thường là tìm ra một thuật toán ban đầu làm cơ sở, rồi từ đó dùng các kỹ năng để giảm độ phức tạp của thuật toán. Trong bài viết này, tôi xin giới thiệu với bạn đọc một kỹ năng khá thông dụng: **Nhân ma trận**.
 
-# Định nghĩa 
+# Định nghĩa
 
 **Tham khảo:** [Ma trận_wikipedia](https://vi.wikipedia.org/wiki/Ma_tr%E1%BA%ADn_(to%C3%A1n_h%E1%BB%8Dc))
 
 ## Ma trận
 
-**Ma trận** là một mảng chữ nhật gồm các số, ký hiệu, hoặc biểu thức, sắp xếp theo hàng và cột mà mỗi ma trận tuân theo những quy tắc định trước. 
+**Ma trận** là một mảng chữ nhật gồm các số, ký hiệu, hoặc biểu thức, sắp xếp theo hàng và cột mà mỗi ma trận tuân theo những quy tắc định trước.
 Các ô trong ma trận được gọi là các phần tử của ma trận. Các phần tử được xác định bằng $2$ địa chỉ hàng $i$ và cột $j$ tương ứng (Kí hiệu là $a_{ij}$).
 
-Ma trận thường được viết trong dấu ngoặc vuông: 
+Ma trận thường được viết trong dấu ngoặc vuông:
 
 $$\begin{bmatrix} a_{11} & a_{12} & ... & a_{1n} \newline a_{21} & a_{22} & ... & a_{2n} \newline \vdots & \vdots & \ddots & \vdots \newline a_{m1} & a_{m2} & ... & a_{mn} \end{bmatrix}$$
 
-Độ lớn hay kích thước của ma trận được định nghĩa bằng số lượng hàng và cột. Một ma trận $m$ hàng và $n$ cột được gọi là ma trận $(m \times n)$, trong khi $m$ và $n$ được gọi là **chiều** của nó. 
+Độ lớn hay kích thước của ma trận được định nghĩa bằng số lượng hàng và cột. Một ma trận $m$ hàng và $n$ cột được gọi là ma trận $(m \times n)$, trong khi $m$ và $n$ được gọi là **chiều** của nó.
 
 - **Ví dụ:** Ma trận $A$ là ma trận $(3 \times 2)$
 
     $A = \begin{bmatrix} 1 & 2 \newline 5 & 7 \newline 6 & 3 \end{bmatrix}$
-    
+
 ### Ma trận vuông
 
 Ma trận vuông là ma trận có số hàng và số cột bằng nhau. Ma trận $(n \times n)$ còn gọi là ma trận vuông cấp $n$. Các phần tử $a_{ii}$ tạo thành **đường chéo chính** của ma trận vuông.
@@ -46,7 +46,7 @@ Ma trận vuông là ma trận có số hàng và số cột bằng nhau. Ma tr�
 - **Ví dụ:** Ma trận vuông cấp $3$ (số hàng và số cột bằng $3$)
 
     \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix}
- 
+
 ### Ma trận đơn vị (Identity Matrix)
 
 Ma trận đơn vị $I_n$ cấp $n$ là một ma trận $(n \times n)$ trong đó mọi phần tử trên [đường chéo chính](https://vi.wikipedia.org/wiki/%C4%90%C6%B0%E1%BB%9Dng_ch%C3%A9o_ch%C3%ADnh) bằng $1$ và tất cả những phần tử khác đều bằng $0$. Ma trận đơn vị cấp $n$ cũng chính là ma trận vuông cấp $n$.
@@ -54,11 +54,11 @@ Ma trận đơn vị $I_n$ cấp $n$ là một ma trận $(n \times n)$ trong đ
 - **Ví dụ**
 
     $I_1 = \begin{bmatrix} 1 \end{bmatrix}$
-    
+
     $I_2 = \begin{bmatrix} 1 & 0 \newline 0 & 1 \end{bmatrix}$
-    
+
     ...
-    
+
     $I_n = \begin{bmatrix} 1 & 0 & ... & 0 \newline 0 & 1 & ... & 0 \newline \vdots & \vdots & \ddots & \vdots \newline 0 & 0 & ... & 1 \end{bmatrix}$
 
 ### Vector hàng và vector cột
@@ -79,7 +79,7 @@ $\mathbf{a} \cdot \mathbf{b} = \begin{bmatrix} a_1 & a_2 & ... & a_n \end{bmatri
 
 ## Phép nhân ma trận
 
-Phép nhân hai ma trận chỉ thực hiện được khi số lượng cột trong ma trận thứ nhất phải bằng số lượng hàng trong ma trận thứ hai. Ma trận kết quả, được gọi là **tích ma trận**, có số lượng hàng của ma trận đầu tiên và số cột của ma trận thứ hai. 
+Phép nhân hai ma trận chỉ thực hiện được khi số lượng cột trong ma trận thứ nhất phải bằng số lượng hàng trong ma trận thứ hai. Ma trận kết quả, được gọi là **tích ma trận**, có số lượng hàng của ma trận đầu tiên và số cột của ma trận thứ hai.
 
 Nếu ma trận $A$ có kích thước $(m \times n)$ và ma trận $B$ có kích thước $(n \times p)$, thì ma trận tích $C = A \times B$ có kích thước $(m \times p)$, phần tử đứng ở hàng thứ $i$, cột thứ $j$ xác định bởi công thức:
 
@@ -87,7 +87,7 @@ $C_{ij} = A_{i1} B_{1j} + A_{i2} B_{2j} + ... + A_{in} B_{nj} = \displaystyle\su
 
 Hay viết $C_{ij} = \begin{bmatrix} a_{i1} & a_{i2} & ... & a_{in} \end{bmatrix} \begin{bmatrix} b_{1j} \newline b_{2j} \newline \vdots \newline b_{nj} \end{bmatrix}$, tức là phần tử ở hàng thứ $i$, cột thứ $j$ của $C$ là tích của vector hàng thứ $i$ của ma trận $A$ với vector cột thứ $j$ của ma trận $B$.
 
-- Minh họa tích ma trận $AB$ của hai ma trận $A$ và $B$: 
+- Minh họa tích ma trận $AB$ của hai ma trận $A$ và $B$:
 
 [[/uploads/matrix-multiplication_img1.png]]
 
@@ -96,11 +96,11 @@ Hay viết $C_{ij} = \begin{bmatrix} a_{i1} & a_{i2} & ... & a_{in} \end{bmatrix
     $A = \begin{bmatrix} 2 & 3 & 4 \newline 1 & 0 & 0 \end{bmatrix}$ và $B = \begin{bmatrix} 0 & 1000 \newline 1 & 100 \newline 0 & 10 \end{bmatrix}$
 
     Phần tử $C_{12}$ của ma trận tích $AB$ là tích của vector hàng thứ nhất của $A$ và vector cột thứ hai của $B$, ta có:
-    
+
     $C_{12} = \displaystyle\sum_{k = 1}^{3} A_{1k} B_{k2} = \begin{bmatrix} 2 & 3 & 4 \end{bmatrix} \begin{bmatrix} 1000 \newline 100 \newline 10 \end{bmatrix} = 2 \times 1000 + 3 \times 100 + 4 \times 10= 2340$
-    
+
     Tính tương tự với tất cả phần tử còn lại của ma trận tích $C$. Ta được ma trận tích $AB$ có dạng:
-    
+
     $C = A \times B = \begin{bmatrix} 2 & 3 & 4 \newline 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} 0 & 1000 \newline 1 & 100 \newline 0 & 10 \end{bmatrix} = \begin{bmatrix} 3 & 2340 \newline 0 & 1000 \end{bmatrix}$
 
     Mô tả quá trình nhân ma trận:
@@ -110,12 +110,12 @@ Hay viết $C_{ij} = \begin{bmatrix} a_{i1} & a_{i2} & ... & a_{in} \end{bmatrix
 ### Tính chất của phép nhân ma trận
 
 - Tính chất kết hợp: $(AB)C = A(BC)$.
-- Tính chất phân phối: $(A+B)C = AC+BC$, cũng như $C(A+B) = CA+CB$. 
+- Tính chất phân phối: $(A+B)C = AC+BC$, cũng như $C(A+B) = CA+CB$.
 - Phép nhân ma trận **không** có tính chất giao hoán: Tích $AB$ có thể xác định trong khi $BA$ không nhất thiết phải xác định, tức là nếu $A$ và $B$ lần lượt có số chiều $(m \times n)$ và $(n \times p)$, và $m \neq p$. Thậm chí khi cả hai tích này đều tồn tại thì chúng không nhất thiết phải bằng nhau, tức là $AB \neq BA$.
     - **Ví dụ:**
-    
+
         $\begin{bmatrix} 1 & 2 \newline 3 & 4 \end{bmatrix} \begin{bmatrix} 0 & 1 \newline 0 & 0 \end{bmatrix} = \begin{bmatrix} 0 & 1 \newline 0 & 3 \end{bmatrix}$, trong khi $\begin{bmatrix} 0 & 1 \newline 0 & 0 \end{bmatrix} \begin{bmatrix} 1 & 2 \newline 3 & 4 \end{bmatrix} = \begin{bmatrix} 3 & 4 \newline 0 & 0 \end{bmatrix}$.
- - Khi thực hiện nhân một ma trận bất kì với **ma trận đơn vị** thì vẫn thu được kết quả của chính ma trận đó, tức là: $AI_n = I_mA = A$ (với ma trận $A$ kích thước $(m \times n)$ bất kỳ). 
+ - Khi thực hiện nhân một ma trận bất kì với **ma trận đơn vị** thì vẫn thu được kết quả của chính ma trận đó, tức là: $AI_n = I_mA = A$ (với ma trận $A$ kích thước $(m \times n)$ bất kỳ).
      Cũng chính vì tính chất này mà $I$ có tên gọi là **ma trận đơn vị**.
 
 Bạn có thể tìm hiểu thêm về **phép cộng trừ ma trận** tại [đây](https://vi.wikipedia.org/wiki/Ph%C3%A9p_c%E1%BB%99ng_ma_tr%E1%BA%ADn).
@@ -128,17 +128,17 @@ $A^k = \underbrace{A \times A \times A \times ... \times A}_\text{k}$
 
 **Trường hợp đặc biệt**: Với $k = 0$, ma trận $A^0$ được xác định là **ma trận đơn vị** có cùng kích thước, tức là $A^0 = I_n$.
 
-- **Ví dụ:** Cho ma trận vuông $A$ cấp $3$ 
+- **Ví dụ:** Cho ma trận vuông $A$ cấp $3$
 
     $A = \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix}$
-    
-    $A^0 = I_3 = \begin{bmatrix} 1 & 0 & 0 \newline 0 & 1 & 0 \newline 0 & 0 & 1 \end{bmatrix}$
-    
-    $A^2 = A \times A = \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix} \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix} = \begin{bmatrix} 7 & 2 & 2 \newline 5 & 9 & 1 \newline 13 & 7 & 4 \end{bmatrix}$ 
-    
-    $A^3 = A \times A \times A = A^2 \times A = \begin{bmatrix} 7 & 2 & 2 \newline 5 & 9 & 1 \newline 13 & 7 & 4 \end{bmatrix} \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix} = \begin{bmatrix} 17 & 20 & 4 \newline 34 & 13 & 10 \newline 42 & 38 & 11 \end{bmatrix}$ 
 
-Nhờ **tính chất kết hợp** của phép nhân ma trận nên ta có thể tính nhanh lũy thừa của ma trận tương tự như cách tính hàm mũ thông thường  bằng phương pháp **chia để trị**  (tính $a^k$ với $a$ là số nguyên). Bạn có thể tìm hiểu về cách tính hàm mũ tại [[đây|/translate/he/Number-Theory-3]].
+    $A^0 = I_3 = \begin{bmatrix} 1 & 0 & 0 \newline 0 & 1 & 0 \newline 0 & 0 & 1 \end{bmatrix}$
+
+    $A^2 = A \times A = \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix} \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix} = \begin{bmatrix} 7 & 2 & 2 \newline 5 & 9 & 1 \newline 13 & 7 & 4 \end{bmatrix}$
+
+    $A^3 = A \times A \times A = A^2 \times A = \begin{bmatrix} 7 & 2 & 2 \newline 5 & 9 & 1 \newline 13 & 7 & 4 \end{bmatrix} \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix} = \begin{bmatrix} 17 & 20 & 4 \newline 34 & 13 & 10 \newline 42 & 38 & 11 \end{bmatrix}$
+
+Nhờ **tính chất kết hợp** của phép nhân ma trận nên ta có thể tính nhanh lũy thừa của ma trận tương tự như cách tính hàm mũ thông thường  bằng phương pháp **chia để trị**  (tính $a^k$ với $a$ là số nguyên). Bạn có thể tìm hiểu về cách tính hàm mũ tại [[đây|translate/he/Number-Theory-3]].
 
 # Cài đặt
 
@@ -149,23 +149,23 @@ Nhờ **tính chất kết hợp** của phép nhân ma trận nên ta có thể
 
 using namespace std;
 
-using type = int; // Kiểu dữ liệu các phần tử của ma trận 
+using type = int; // Kiểu dữ liệu các phần tử của ma trận
 
 struct Matrix {
     vector <vector <type> > data;
 
     // Số lượng hàng của ma trận
-    int row() const { return data.size(); } 
+    int row() const { return data.size(); }
 
     // Số lượng hàng của ma trận
     int col() const { return data[0].size(); }
 
     auto & operator [] (int i) { return data[i]; }
-    
+
     const auto & operator[] (int i) const { return data[i]; }
 
     Matrix() = default;
-    
+
     Matrix(int r, int c): data(r, vector <type> (c)) { }
 
     Matrix(const vector <vector <type> > &d): data(d) {
@@ -199,7 +199,7 @@ struct Matrix {
         Matrix a = *this;
 
         // Kiểm tra điều kiện nhân ma trận
-        assert(a.col() == b.row()); 
+        assert(a.col() == b.row());
 
         Matrix c(a.row(), b.col());
         for (int i = 0; i < a.row(); ++i)
@@ -213,7 +213,7 @@ struct Matrix {
     Matrix pow(long long exp) {
 
         // Kiểm tra điều kiện lũy thừa ma trận (là ma trận vuông)
-        assert(row() == col());  
+        assert(row() == col());
 
         Matrix base = *this, ans = identity(row());
         for (; exp > 0; exp >>= 1, base = base * base)
@@ -234,33 +234,33 @@ int main(){
     });
 
     cout << a * b << '\n';
-    // 2 12 120 
-    // 4 34 340 
+    // 2 12 120
+    // 4 34 340
 
     cout << a.pow(3) << '\n';
-    // 37 54 
+    // 37 54
     // 81 118
 
     b = a;
     cout << b << '\n';
-    // 1 2 
+    // 1 2
     // 3 4
 
     b = Matrix::identity(3);
     cout << b << '\n';
-    // 1 0 0 
-    // 0 1 0 
+    // 1 0 0
+    // 0 1 0
     // 0 0 1
 
     b = Matrix(2, 3);
     cout << b << '\n';
-    // 0 0 0 
-    // 0 0 0 
+    // 0 0 0
+    // 0 0 0
 
     Matrix c(3, 2);
     cout << c << '\n';
-    // 0 0 
-    // 0 0 
+    // 0 0
+    // 0 0
     // 0 0
 }
 ```
@@ -373,21 +373,21 @@ using namespace std;
 
 const int mod = 111539786;
 
-using type = int; 
+using type = int;
 
 struct Matrix {
     vector <vector <type> > data;
 
-    int row() const { return data.size(); } 
+    int row() const { return data.size(); }
 
     int col() const { return data[0].size(); }
 
     auto & operator [] (int i) { return data[i]; }
-    
+
     const auto & operator[] (int i) const { return data[i]; }
 
     Matrix() = default;
-    
+
     Matrix(int r, int c): data(r, vector <type> (c)) { }
 
     Matrix(const vector <vector <type> > &d): data(d) { }
@@ -408,7 +408,7 @@ struct Matrix {
 
     Matrix operator * (const Matrix &b) {
         Matrix a = *this;
-        assert(a.col() == b.row()); 
+        assert(a.col() == b.row());
         Matrix c(a.row(), b.col());
         for (int i = 0; i < a.row(); ++i)
             for (int j = 0; j < b.col(); ++j)
@@ -420,7 +420,7 @@ struct Matrix {
     }
 
     Matrix pow(long long exp) {
-        assert(row() == col());  
+        assert(row() == col());
         Matrix base = *this, ans = identity(row());
         for (; exp > 0; exp >>= 1, base = base * base)
             if (exp & 1) ans = ans * base;
@@ -479,7 +479,7 @@ Mỗi lớp là một ma trận $(k \times 1)$. Ta cũng sẽ áp dụng phép n
 
 $D \times \begin{bmatrix} a_i \newline a_{i+1} \newline \vdots \newline a_{i+k-2} \newline a_{i+k-1} \end{bmatrix} = \begin{bmatrix} a_{i+1} \newline a_{i+2} \newline \vdots \newline a_{i+k-1} \newline a_{i+k} \end{bmatrix}$
 
-$\Rightarrow \begin{bmatrix} d_{1, 1} & d_{1, 2} & \dots & d_{1, k-1} & d_{1, k} \newline d_{2, 1} & d_{2, 2} & \dots & d_{2, k-1} & d_{2, k} \newline \vdots & \vdots & \ddots & \vdots & \vdots \newline d_{k-1, 1} & d_{k-1, 2} & \dots & d_{k-1, k-1} & d_{k-1, k} \newline d_{k, 1} & d_{k, 2} & \dots & d_{k, k-1} & d_{k, k} \end{bmatrix} \begin{bmatrix} a_i \newline a_{i+1} \newline \vdots \newline a_{i+k-2} \newline a_{i+k-1} \end{bmatrix} = \begin{bmatrix} a_{i+1} \newline a_{i+2} \newline \vdots \newline a_{i+k-1} \newline a_{i+k} \end{bmatrix}$ 
+$\Rightarrow \begin{bmatrix} d_{1, 1} & d_{1, 2} & \dots & d_{1, k-1} & d_{1, k} \newline d_{2, 1} & d_{2, 2} & \dots & d_{2, k-1} & d_{2, k} \newline \vdots & \vdots & \ddots & \vdots & \vdots \newline d_{k-1, 1} & d_{k-1, 2} & \dots & d_{k-1, k-1} & d_{k-1, k} \newline d_{k, 1} & d_{k, 2} & \dots & d_{k, k-1} & d_{k, k} \end{bmatrix} \begin{bmatrix} a_i \newline a_{i+1} \newline \vdots \newline a_{i+k-2} \newline a_{i+k-1} \end{bmatrix} = \begin{bmatrix} a_{i+1} \newline a_{i+2} \newline \vdots \newline a_{i+k-1} \newline a_{i+k} \end{bmatrix}$
 
 Để xây dựng ma trận vuông $D$ như trên, ta thực hiện tương tự như trong ví dụ trước: Phân tích $a_{i+1}$ đến $a_{i+k}$ dưới dạng $a_i, ..., a_{i+k-1}$ :
 
@@ -487,7 +487,7 @@ $\Rightarrow \begin{bmatrix} d_{1, 1} & d_{1, 2} & \dots & d_{1, k-1} & d_{1, k}
 - $a_{i+2} = 0 \times a_i + 0 \times a_{i+1} + 1 \times a_{i+2} + ... + 0 \times a_{i+k-1}$ nên hàng thứ hai của ma trận $D$ là $\begin{bmatrix} 0 & 0 & 1 & ... & 0\end{bmatrix}$.
 - $...$
 - $a_{i+k-1} = 0 \times a_i + 0 \times a_{i+1} + 0 \times a_{i+2} + ... + 1 \times a_{i+k-1}$ nên hàng thứ $k-1$ của ma trận $D$ là $\begin{bmatrix} 0 & 0 & 0 & ... & 1\end{bmatrix}$.
-- $a_{i+k} = c_k \times a_i + c_{k-1} \times a_{i+1} + c_{k-2} \times a_{i+2} + ... + c_1 \times a_{i+k-1}$ nên hàng thứ $k$ của ma trận $D$ là $\begin{bmatrix} c_k & c_{k-1} & c_{k-2} & ... & c_1\end{bmatrix}$. 
+- $a_{i+k} = c_k \times a_i + c_{k-1} \times a_{i+1} + c_{k-2} \times a_{i+2} + ... + c_1 \times a_{i+k-1}$ nên hàng thứ $k$ của ma trận $D$ là $\begin{bmatrix} c_k & c_{k-1} & c_{k-2} & ... & c_1\end{bmatrix}$.
 
 $\Rightarrow D = \begin{bmatrix} 0 & 1 & 0 & ... & 0 \newline 0 & 0 & 1 & ... & 0 \newline \vdots & \vdots & \vdots & \ddots & \vdots \newline 0 & 0 & 0 & ... & 1 \newline c_k & c_{k-1} & c_{k-2} & ... & c_1 \end{bmatrix}$
 
@@ -511,16 +511,16 @@ using type = int;
 struct Matrix {
     vector <vector <type> > data;
 
-    int row() const { return data.size(); } 
+    int row() const { return data.size(); }
 
     int col() const { return data[0].size(); }
 
     auto & operator [] (int i) { return data[i]; }
-    
+
     const auto & operator[] (int i) const { return data[i]; }
 
     Matrix() = default;
-    
+
     Matrix(int r, int c): data(r, vector <type> (c)) { }
 
     Matrix(const vector <vector <type> > &d): data(d) { }
@@ -541,7 +541,7 @@ struct Matrix {
 
     Matrix operator * (const Matrix &b) {
         Matrix a = *this;
-        assert(a.col() == b.row()); 
+        assert(a.col() == b.row());
         Matrix c(a.row(), b.col());
         for (int i = 0; i < a.row(); ++i)
             for (int j = 0; j < b.col(); ++j)
@@ -553,7 +553,7 @@ struct Matrix {
     }
 
     Matrix pow(long long exp) {
-        assert(row() == col());  
+        assert(row() == col());
         Matrix base = *this, ans = identity(row());
         for (; exp > 0; exp >>= 1, base = base * base)
             if (exp & 1) ans = ans * base;
@@ -695,12 +695,12 @@ Số đẹp là một số nguyên dương với bất kỳ chữ số lẻ nào
 
 ## Phân tích
 
-Cách làm đơn giản nhất là ta sử dụng [[quy hoạch động|/translate/topcoder/dynamic-programming]] với $4$ trạng thái: 
+Cách làm đơn giản nhất là ta sử dụng [[quy hoạch động|translate/topcoder/dynamic-programming]] với $4$ trạng thái:
 
 -  `added` : số lượng chữ số đã thêm vào.
 -  `ewoc` *(even_with_odd_cnt)* : số chữ số chẵn đã xuất hiện lẻ lần.
 -  `owoc` *(odd_with_odd_cnt)* : số chữ số lẻ đã xuất hiện lẻ lần.
--  `added_odd` : số chữ số lẻ đã xuất hiện. 
+-  `added_odd` : số chữ số lẻ đã xuất hiện.
 
 Ta không phải lưu **số chữ số chẵn đã xuất hiện** vì nếu chữ số chẵn đó không xuất hiện thì cũng đã được tính vào trường hợp nó đã xuất hiện chẵn lần rồi.
 
@@ -725,23 +725,23 @@ long long digit_dp(int added, int ewoc, int owoc, int added_odd) {
     long long cur = 0;
 
     // Thêm vào 1 số chẵn đã xuất hiện lẻ lần
-    if (ewoc) 
+    if (ewoc)
         cur += digit_dp(added + 1, ewoc - 1, owoc, added_odd) * ewoc;
 
     // Thêm vào 1 số chẵn đã xuất hiện chẵn lần
-    if (ewoc < 5) 
+    if (ewoc < 5)
         cur += digit_dp(added + 1, ewoc + 1, owoc, added_odd) * (5 - ewoc);
 
     // Thêm vào 1 số lẻ chưa xuất hiện
-    if (added_odd < 5) 
-        cur += digit_dp(added + 1, ewoc, owoc + 1, added_odd + 1) * (5 - added_odd); 
+    if (added_odd < 5)
+        cur += digit_dp(added + 1, ewoc, owoc + 1, added_odd + 1) * (5 - added_odd);
 
     // Thêm vào 1 số lẻ đã xuất hiện lẻ lần
-    if (owoc) 
+    if (owoc)
         cur += digit_dp(added + 1, ewoc, owoc - 1, added_odd) * owoc;
 
     // Thêm vào 1 số lẻ đã xuất hiện chẵn lần
-    if (owoc < added_odd) 
+    if (owoc < added_odd)
         cur += digit_dp(added + 1, ewoc, owoc + 1, added_odd) * (added_odd - owoc);
 
     // Không nhất thiết phải chọn đủ n chữ số
@@ -758,13 +758,13 @@ int solve(int n1) {
                 for (int l = 0; l < 6; ++l) dp[i][j][k][l] = -1;
 
     // Loại trường hợp chọn phải số 0 vô nghĩa bằng cách đặt trước chữ số đầu tiên
-    long long tmp1 = digit_dp(1, 1, 0, 0) * 4; 
-    
+    long long tmp1 = digit_dp(1, 1, 0, 0) * 4;
+
     long long tmp2 = digit_dp(1, 0, 1, 1) * 5;
     return (tmp1 + tmp2) % mod;
 }
 
-int main(){ 
+int main(){
     int n1;
     while (cin >> n1) cout << solve(n1) << '\n';
 }
@@ -796,16 +796,16 @@ using type = int;
 struct Matrix {
     vector <vector <type> > data;
 
-    int row() const { return data.size(); } 
+    int row() const { return data.size(); }
 
     int col() const { return data[0].size(); }
 
     auto & operator [] (int i) { return data[i]; }
-    
+
     const auto & operator[] (int i) const { return data[i]; }
 
     Matrix() = default;
-    
+
     Matrix(int r, int c): data(r, vector <type> (c)) { }
 
     Matrix(const vector <vector <type> > &d): data(d) { }
@@ -820,7 +820,7 @@ struct Matrix {
 
     Matrix operator * (const Matrix &b) {
         Matrix a = *this;
-        assert(a.col() == b.row()); 
+        assert(a.col() == b.row());
         Matrix c(a.row(), b.col());
         for (int i = 0; i < a.row(); ++i)
             for (int j = 0; j < b.col(); ++j)
@@ -852,16 +852,16 @@ void build_coef() {
             for (int owoc = 0; owoc <= added_odd; ++owoc) {
 
                 int cur_id = id(ewoc, owoc, added_odd);
-                if (ewoc) 
+                if (ewoc)
                     coef[id(ewoc - 1, owoc, added_odd)][cur_id] += ewoc;
 
-                if (ewoc < 5) 
+                if (ewoc < 5)
                     coef[id(ewoc + 1, owoc, added_odd)][cur_id] += 5 - ewoc;
 
                 if (added_odd < 5)
                     coef[id(ewoc, owoc + 1, added_odd + 1)][cur_id] += 5 - added_odd;
 
-                if (owoc) 
+                if (owoc)
                     coef[id(ewoc, owoc - 1, added_odd)][cur_id] += owoc;
 
                 if (owoc < added_odd)
@@ -909,7 +909,7 @@ int main() {
 
 **Độ phức tạp**
 
-Ta mất độ phức tạp $\mathcal{O}(6 \times 6 \times 6 \space / \space 2)$ cho việc xây dựng ma trận hệ số. 
+Ta mất độ phức tạp $\mathcal{O}(6 \times 6 \times 6 \space / \space 2)$ cho việc xây dựng ma trận hệ số.
 
 Vì ma trận kết quả có kích thước là $($(số trạng thái) $\times \space 1)$ chứ không phải là $($(số trạng thái) $\times$ (số trạng thái)$)$, nên độ phức tạp nhân ma trận trong lúc tính kết quả là (số trạng thái)$^2$ chứ không phải (số trạng thái)$^3$. Nên độ phức tạp của thuật toán là  $\mathcal{O}(\log{10^{18}} \times 108^2)$.
 
@@ -917,7 +917,7 @@ Ngoài ra, kể cả khi ta không giảm số trạng thái xuống còn khoả
 
 # Ví dụ 5
 
-## Bài toán 
+## Bài toán
 
 [Codeforces - 446C DZY Loves Fibonacci Numbers](https://codeforces.com/contest/446/problem/C)
 
@@ -935,19 +935,19 @@ Cho một dãy gồm $n$ số nguyên: $a_1, a_2, ..., a_n$. Có $m$ truy vấn,
 
 Hãy thực hiện tất cả các truy vấn.
 
-## Phân tích 
+## Phân tích
 
 Bằng phương pháp quy nạp, ta có thể dễ dàng chứng minh $2$ định lý sau:
- 
+
 - **Định lí 1:** Cho dãy $f_1 = a, f_2 = b, ..., f_n = f_{n-1} + f_{n-2} \space (n > 2)$ thì $f_n = b \times F_{n-1} + a \times F_{n-2} \space (n > 2)$, trong đó $F_i$ là số hạng thứ $i$ của dãy $Fibonacci$.
 - **Định lí 2:** Cho dãy $f_1 = a, f_2 = b, ..., f_n = f_{n-1} + f_{n-2} \space (n > 2)$ thì $f_1 + f_2 + ... + f_n = f_{n + 2} - b$ .
 
-Ta còn có tính chất của dãy $Fibonacci$ như sau: 
+Ta còn có tính chất của dãy $Fibonacci$ như sau:
 
-- Ta có thể chuyển đổi hai số hạng đầu tiên của dãy $Fibonacci$ để nhận được một dãy mới. 
+- Ta có thể chuyển đổi hai số hạng đầu tiên của dãy $Fibonacci$ để nhận được một dãy mới.
 - Gọi $f1$, $f2$ là hai dãy mới được tạo thành từ việc chuyển đổi hai số hạng đầu tiên của dãy $Fibonacci$, và dãy $f3$ được xác định như sau $f3 \displaystyle_{\space i} = f1 \displaystyle_{\space i} + f2 \displaystyle_{\space i} \space (i \ge 1)$ thì dãy $f3$ vẫn tuân theo công thức truy hồi $f_n = f_{n-1} + f_{n-2}$.
 
-Sau khi sử dụng các tính chất trên, bài toán trở thành một hoạt động rất cơ bản của [[cây phân đoạn|/algo/data-structures/segment-tree-extend.md]] *(Cây IT - Interval Tree / Segment Tree)*. Với mỗi nút của cây phân đoạn lưu lại hai giá trị đầu tiên của dãy. *Bạn có thể tham khảo code **không** sử dụng phương pháp nhân ma trận tại [đây](https://ideone.com/zRN7N1) để hiểu rõ hơn về cách cập nhật cây phân đoạn*.
+Sau khi sử dụng các tính chất trên, bài toán trở thành một hoạt động rất cơ bản của [[cây phân đoạn|algo/data-structures/segment-tree-extend.md]] *(Cây IT - Interval Tree / Segment Tree)*. Với mỗi nút của cây phân đoạn lưu lại hai giá trị đầu tiên của dãy. *Bạn có thể tham khảo code **không** sử dụng phương pháp nhân ma trận tại [đây](https://ideone.com/zRN7N1) để hiểu rõ hơn về cách cập nhật cây phân đoạn*.
 
 Ở bài viết này, tôi sẽ sử dụng phương pháp **nhân ma trận** kết hợp với cây phân đoạn để giải quyết bài toán. Với mỗi nút của cây sẽ lưu lại ma trận hệ số của dãy $Fibonacci$.
 
@@ -981,7 +981,7 @@ struct Matrix {
     Matrix operator + (const Matrix &b) {
         Matrix a = *this;
         for (int i = 0; i < a.row; ++i)
-            for (int j = 0; j < a.col; ++j) 
+            for (int j = 0; j < a.col; ++j)
                 a[i][j] = (a[i][j] + b[i][j]) % mod;
         return a;
     }
@@ -1016,7 +1016,7 @@ Matrix lazy[4 * maxN], base_pow[4 * maxN];
 
 void build(int id, int l, int r) {
     if (l == r) {
-        st[id] = a[l]; 
+        st[id] = a[l];
         return;
     }
     int mid = (l + r) >> 1;
@@ -1072,14 +1072,14 @@ main() {
     for (int i = 1; i <= n; ++i) cin >> a[i];
     build(1, 1, n);
 
-    // Xây dựng lũy thừa ma trận hệ số của dãy Fibonacci 
+    // Xây dựng lũy thừa ma trận hệ số của dãy Fibonacci
     base_pow[1][0][0] = base_pow[1][0][1] = base_pow[1][1][0] = 1;
-    for (int i = 2; i <= n + 2; ++i) 
+    for (int i = 2; i <= n + 2; ++i)
         base_pow[i] = base_pow[i - 1] * base_pow[1];
 
     while (m--) {
-        int t, l, r; 
-        cin >> t >> l >> r; 
+        int t, l, r;
+        cin >> t >> l >> r;
         if (t == 1) update(1, 1, n, l, r);
         else cout << get(1, 1, n, l, r) << '\n';
     }
@@ -1157,7 +1157,7 @@ Như vậy là hai cách thực hiện khác nhau cần hai độ phức tạp k
 
 Khi độ dài của dãy ma trận tăng lên, sự khác biệt có thể còn lớn hơn nữa. Ví dụ trên đã cho thấy rằng trong một số trường hợp thứ tự thực hiện phép nhân ma trận có ý nghĩa rất lớn đối với việc tìm lời giải của các bài toán.
 
-Trong thực tế, bài toán xác định thứ tự nhân ma trận hiệu quả nhất là một bài toán rất phổ biến, bạn có thể tìm đọc chi tiết thêm tại [[đây|/algo/dp/basic-problems#5-nhân-ma-trận]] hoặc ở [[Phần 3 mục 3.5 Phép Nhân Tổ Hợp dãy Ma Trận trong sách Giải thuật và lập trình của thầy Lê Minh Hoàng|/algo/basic/Tai-Lieu-Thuat-Toan]].
+Trong thực tế, bài toán xác định thứ tự nhân ma trận hiệu quả nhất là một bài toán rất phổ biến, bạn có thể tìm đọc chi tiết thêm tại [[đây|algo/dp/basic-problems#5-nhân-ma-trận]] hoặc ở [[Phần 3 mục 3.5 Phép Nhân Tổ Hợp dãy Ma Trận trong sách Giải thuật và lập trình của thầy Lê Minh Hoàng|algo/basic/Tai-Lieu-Thuat-Toan]].
 
 ## Giải thuật Freivalds kiểm tra tích hai ma trận
 
@@ -1169,13 +1169,13 @@ Cách làm thông thường là nhân trực tiếp hai ma trận $A, B$ rồi s
 
 1. Sinh ngẫu nhiên một ma trận $v$ kích cỡ $(N \times 1)$ với các phần tử chỉ nhận giá trị $0$ hoặc $1$.
 2. Tính hiệu $P = A \times B \times v - C \times v$. Dễ thấy rằng $P$ là ma trận kích cỡ $N \times 1$.
-3. Trả về `True` nếu $P$ chỉ gồm phần tử $0$ (bằng với vector $0$) và `False` nếu ngược lại. 
+3. Trả về `True` nếu $P$ chỉ gồm phần tử $0$ (bằng với vector $0$) và `False` nếu ngược lại.
 
 Bạn có thể tìm hiểu thêm về **phép cộng trừ ma trận** tại [đây](https://vi.wikipedia.org/wiki/Ph%C3%A9p_c%E1%BB%99ng_ma_tr%E1%BA%ADn).
 
 Ta thực hiện $k$ lần thử, nếu gặp phép thử trả về `False` thì ta kết luận là $A \times B \neq C$. Ngược lại nếu sau $k$ phép thử mà luôn thấy `True` thì ta kết luận $A \times B = C$. Vì xác suất lỗi giảm theo hàm mũ của $k$ nên thông thường chỉ cần chọn $k$ vừa đủ là sẽ thu được xác suất đúng rất cao ($k = 5$ với bài **VMATRIX** ở trên). Một nhận xét quan trọng khác là cận trên của đánh giá xác suất kiểm tra lỗi không phụ thuộc vào kích cỡ $N$ của ma trận được cho mà chỉ phụ thuộc vào số lần thực hiện phép thử.
 
-Xét bước thứ $2$, ta thấy rằng phép thử $\mathrm{Freivalds}$ chỉ có ý nghĩa nếu như ta có thể thực hiện phép nhân $A \times B \times v$ trong thời gian $\mathcal{O}(N^2)$ (vì phép nhân $C \times v$ đã đạt sẵn $\mathcal{O}(N^2)$ rồi). Thay vì thực hiện tuần tự từ trái qua phải sẽ cần $\mathcal{O}(N^3)$, ta thực hiện theo thứ tự $A \times (B \times v)$. Vì kết quả của phép nhân $B$ và $v$ là một ma trận $(N \times 1)$ nên độ phức tạp tổng cộng sẽ là $\mathcal{O}(N^2)$. Trên tất cả các phép thử, độ phức tạp là $\mathcal{O}(k \times N^2)$. 
+Xét bước thứ $2$, ta thấy rằng phép thử $\mathrm{Freivalds}$ chỉ có ý nghĩa nếu như ta có thể thực hiện phép nhân $A \times B \times v$ trong thời gian $\mathcal{O}(N^2)$ (vì phép nhân $C \times v$ đã đạt sẵn $\mathcal{O}(N^2)$ rồi). Thay vì thực hiện tuần tự từ trái qua phải sẽ cần $\mathcal{O}(N^3)$, ta thực hiện theo thứ tự $A \times (B \times v)$. Vì kết quả của phép nhân $B$ và $v$ là một ma trận $(N \times 1)$ nên độ phức tạp tổng cộng sẽ là $\mathcal{O}(N^2)$. Trên tất cả các phép thử, độ phức tạp là $\mathcal{O}(k \times N^2)$.
 
 ### **Cài đặt**
 
@@ -1195,16 +1195,16 @@ using type = int;
 struct Matrix {
     vector <vector <type> > data;
 
-    int row() const { return data.size(); } 
+    int row() const { return data.size(); }
 
     int col() const { return data[0].size(); }
 
     auto & operator [] (int i) { return data[i]; }
-    
+
     const auto & operator[] (int i) const { return data[i]; }
 
     Matrix() = default;
-    
+
     Matrix(int r, int c): data(r, vector <type> (c)) { }
 
     Matrix(const vector <vector <type> > &d): data(d) { }
@@ -1220,19 +1220,19 @@ struct Matrix {
     // Phép trừ ma trận
     Matrix operator - (const Matrix &b) {
         Matrix a = *this;
-        
+
         // Kiểm tra điều kiện phép trừ ma trận
-        assert(a.row() == b.row() && a.col() == b.col()); 
-        
+        assert(a.row() == b.row() && a.col() == b.col());
+
         for (int i = 0; i < a.row(); ++i)
-            for (int j = 0; j < a.col(); ++j) 
+            for (int j = 0; j < a.col(); ++j)
                 a[i][j] = (a[i][j] - b[i][j] + mod) % mod;
         return a;
     }
 
     Matrix operator * (const Matrix &b) {
         Matrix a = *this;
-        assert(a.col() == b.row()); 
+        assert(a.col() == b.row());
         Matrix c(a.row(), b.col());
         for (int i = 0; i < a.row(); ++i)
             for (int j = 0; j < b.col(); ++j)
@@ -1254,7 +1254,7 @@ bool check(Matrix a, Matrix b, Matrix c, int n) {
         Matrix v(n, 1);
         for (int i = 0; i < n; ++i) v[i][0] = random(0, 1);
         Matrix p = (a * (b * v)) - (c * v);
-        for (int i = 0; i < n; ++i) 
+        for (int i = 0; i < n; ++i)
             if (p[i][0]) return false;
     }
     return true;
