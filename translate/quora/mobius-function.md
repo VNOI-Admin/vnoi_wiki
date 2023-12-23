@@ -176,14 +176,14 @@ Ta đưa đề bài này về bài toán: tính $G=\sum_{i=1}^{n}\sum_{j=i+1}^{n
 
 # Một số bài luyện tập
 
-- [[https://www.codechef.com/JULY10/problems/LCM/]]
+- [https://www.codechef.com/JULY10/problems/LCM/](https://www.codechef.com/JULY10/problems/LCM/)
 
-- [[http://www.codechef.com/COOK29/problems/EXGCD]]
+- [http://www.codechef.com/COOK29/problems/EXGCD](http://www.codechef.com/COOK29/problems/EXGCD)
 
-- [[https://www.hackerrank.com/challenges/hyperrectangle-gcd]]
+- [https://www.hackerrank.com/challenges/hyperrectangle-gcd](https://www.hackerrank.com/challenges/hyperrectangle-gcd)
 
-- [[http://www.spoj.com/problems/LCMSUM/]]
+- [http://www.spoj.com/problems/LCMSUM/](http://www.spoj.com/problems/LCMSUM/)
 
-- [[http://www.spoj.com/problems/GCDEX2/]]
+- [http://www.spoj.com/problems/GCDEX2/](http://www.spoj.com/problems/GCDEX2/)
 
-Nếu các bạn muốn tìm hiểu sâu và đầy đủ hơn về các bài toán liên quan thì có thể tham khảo [[http://mathcircle.berkeley.edu/original/Multiplicative.pdf]]
+Nếu các bạn muốn tìm hiểu sâu và đầy đủ hơn về các bài toán liên quan thì có thể tham khảo [http://mathcircle.berkeley.edu/original/Multiplicative.pdf](http://mathcircle.berkeley.edu/original/Multiplicative.pdf)
