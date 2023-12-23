@@ -8,7 +8,7 @@ Bởi vì bảng chữ cái Latin có 26 chữ cái, ROT13 là *inverse* của c
 
 Để sử dụng ROT13, ta chỉ cần thay chữ cái này bằng chữ cái thứ 13 sau nó trong bảng chữ cái. Để giải mã, chúng ta cũng thay bằng chữ cái thứ 13 sau nó là trở lại được về chữ ban đầu
 
-![Alt](https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/ROT13_table_with_example.svg/320px-ROT13_table_with_example.svg.png "ROT13")
+![Alt](https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/ROT13_table_with_example.svg/320px-ROT13_table_with_example.svg.png)
 
 Hay nói cách khác:
 ```
@@ -22,7 +22,7 @@ Gur Dhvpx Oebja Sbk Whzcf Bire Gur Ynml Qbt
 
 ##Các biến thể
 
-ROT5 cũng được sử dụng y hệt như ROT13 trong bảng chữ số (0 đến 9). 
+ROT5 cũng được sử dụng y hệt như ROT13 trong bảng chữ số (0 đến 9).
 Ngoài ra ROT13 và ROT5 còn được sử dụng trong cùng một văn bản.
 Mở rộng ROT13, ta còn có ROT47. ROT47 áp dụng đối với chữ cái trong bảng mã ASCII. Ví dụ:
 ```

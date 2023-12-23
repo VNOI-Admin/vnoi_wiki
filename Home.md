@@ -198,7 +198,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 ## Machine Learning
 
-- [Machine Learning 101: Làm quen](/cs/ml/machine-learning-101)
+- [Machine Learning 101: Làm quen](/comp-sci/ml/machine-learning-101)
 - [Classification - Phần 1](/translate/ml/Machine-Learning-Classification-phan-1)
 - [Classification - Phần 2](/translate/ml/Machine-Learning-Classification-phan-2)
 - [Classification - Phần 3](/translate/ml/Machine-Learning-Classification-phan-3)
@@ -208,9 +208,9 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 ## Các chủ đề khác:
 
 - Xử lý ảnh
-    - [Seam Carving](/cs/imageprocessing/Seam-Carving)
+    - [Seam Carving](/comp-sci/imageprocessing/Seam-Carving)
 - Cryptography
-    - [Public Key Cryptography và RSA](/cs/crypto/Public-Key-Cryptography)
+    - [Public Key Cryptography và RSA](/comp-sci/crypto/Public-Key-Cryptography)
 - [Trang Web VNOI phiên bản đầu tiên](https://v0.vnoi.info)
 - [Trang Web IOICAMP phiên bản đầu tiên](https://v0.vnoi.info/ioicamp)
 
