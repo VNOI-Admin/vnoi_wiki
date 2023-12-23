@@ -38,16 +38,16 @@ Xét hai vị trí $m_1$ và $m_2$ trong đoạn $[l, r]$ sao cho $l < m_1 < m_2
 
 *   $[l, m_1]$. Khi đó, ta biết chắc chắn $F(m_1) > F(m_2)$.
 
-[[/uploads/ternary_search_case_1.png]]
+![](/uploads/ternary_search_case_1.png)
 
 *   $[m_1, m_2]$. Ta không thể rút ra kết luận gì về $F(m_1)$ và $F(m_2)$.
 
-[[/uploads/ternary_search_case_2.png]]
+![](/uploads/ternary_search_case_2.png)
 
 
 *   $[m_2, R]$. Tương tự trường hợp đầu, ta biết chắc chắn $F(m_1) < F(m_2)$.
 
-[[/uploads/ternary_search_case_3.png]]
+![](/uploads/ternary_search_case_3.png)
 
 
 Ngược lại, bằng việc so sánh $F(m_1)$ và $F(m_2)$, ta có thể rút ra kết luận như sau:

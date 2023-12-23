@@ -224,7 +224,7 @@ Thuật toán trên có độ phức tạp lớn do mỗi tiền tố ta phải 
 Ví dụ: với xâu "$abcabcd$", ta có hàm tiền tố $[0, 1, 0, 1, 2, 2, 3]$, tương ứng với các cạnh $(1, 0), (2, 1), (3, 0), (4, 1), (5, 2), (6, 2), (7, 3)$ của cây:
 <center>
 
-[[/uploads/kmp_img1.png]]
+![](/uploads/kmp_img1.png)
 </center>
 
 Ý tưởng này phần nào giúp chúng ta dễ hình dung hơn cách giải: việc tính $ans$ đưa về bài toán cập nhật truy vấn cộng **$1$ vào các nút trên đường đi từ một nút đến gốc** và tìm giá trị tại tất cả các nút sau mọi truy vấn - một bài toán có cách giải dùng mảng cộng dồn.

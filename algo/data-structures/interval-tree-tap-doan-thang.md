@@ -22,7 +22,7 @@ Cho một tập hợp chứa các đường thẳng có dạng $ax + b$, mỗi �
 1. Phụ thuộc vào kích thước hoành độ $x$. Vì IT đoạn thẳng xử lí trên khoảng của hoành độ, với bài toán mà query $x$ lớn hoặc $x$ không phải số nguyên không thể biểu diễn bằng IT bình thường. Có thể thay thế bằng rời rạc hóa các tọa độ hoặc IT động, nhưng so với bao lồi đây là một nhược điểm đáng kể khi bao lồi hoàn toàn không phụ thuộc vào $x$.
 2. Bộ nhớ và thời gian lớn. Lưu một cây IT chứa hai số nguyên $a$, $b$ tốn bộ nhớ hơn nhiều so với stack bao lồi. Xử lí trên cây IT cũng chậm hơn chặt nhị phân trên bao lồi. Về độ phức tạp, có thể so sánh qua bảng sau
 
-[[/uploads/it_segment.png]]
+![](/uploads/it_segment.png)
 
 **Lưu ý**: Ở đây ta giả sử các đường thẳng thêm vào có hệ số $a$ tăng dần hoặc giảm dần, bao lồi được biểu diễn bằng stack.
 

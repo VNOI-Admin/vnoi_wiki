@@ -21,7 +21,7 @@ Biến thể của bài toán có thể là tìm giá trị cực đại có th�
 
 Sau khi ta vẽ các đường thẳng lên hệ trục tọa độ, dễ thấy rằng: chúng ta muốn xác định, tại $x=1$(đường màu đỏ)  đường nào có tọa độ $y$ nhỏ nhất. Ở trong trường hợp này là đường nét đứt đậm $y=\frac{4}{3}+\frac{2}{3}x$.
 
-[[/uploads/translate_p3g_Convex_hull_trick1.png]]
+![](/uploads/translate_p3g_Convex_hull_trick1.png)
 
 
 # Thuật toán duyệt

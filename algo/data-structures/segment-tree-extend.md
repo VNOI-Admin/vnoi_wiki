@@ -16,7 +16,7 @@ Segment Tree là một [cây](/translate/wcipeg/tree). Cụ thể hơn, nó là 
 
 Xét một dãy gồm 7 phần tử, Segment Tree sẽ quản lý các đoạn như sau:
 
-[[/uploads/segment_tree_structure_example.png]]
+![](/uploads/segment_tree_structure_example.png)
 
 ## Cài đặt
 
@@ -109,7 +109,7 @@ Với thao này, ta cũng chứng minh tương tự, nhưng ở mỗi độ sâu
 
 Ta chứng minh bằng phản chứng, giả sử ta gọi đệ quy với 3 nút khác nhau của cây ST (đánh dấu màu đỏ):
 
-[[/uploads/segment_tree_proof_time_complexity.png]]
+![](/uploads/segment_tree_proof_time_complexity.png)
 
 Trong trường hợp này, rõ ràng toàn bộ đoạn của nút ở giữa quản lý nằm trong đoạn đang truy vấn. Do đó ta không cần phải gọi đệ quy các con của nút ở giữa. Từ đó suy ra vô lý, nghĩa là ở mỗi độ sâu ta chỉ gọi đệ quy với không quá 2 nút.
 
@@ -770,18 +770,18 @@ int query(int k) {
 
 Nhưng nếu chỉ dừng ở đây thì đã không cần phải nhắc đến trong bài viết này rồi <(") . Ta nhìn một chút vào cấu trúc cây Segment tree (quản lý *min*) dưới dây:
 
-[[/uploads/segment-tree-extend_img1.png]]
+![](/uploads/segment-tree-extend_img1.png)
 
 Giả sử ta cần tìm vị trí đầu tiên có giá trị không vượt quá $2$. Ta đứng từ gốc, xét $2$ con trái phải lần lượt có giá trị là $3$ và $2$:
-[[/uploads/segment-tree-extend_img2.png]]
+![](/uploads/segment-tree-extend_img2.png)
 
 Do ta đang cần tìm giá trị không vượt quá $2$, nên ta chắc chắn kết quả không nằm trong cây con bên trái (vì *min* của cây con này là $3$, suy ra mọi phần tử được quản lý bởi cây con này đều lớn hơn $2$). Và do cây con phải có giá trị là $2$, suy ra kết quả chắc chắn nằm cây con này, ta đệ quy xuống cây con bên trái:
 
-[[/uploads/segment-tree-extend_img3.png]]
+![](/uploads/segment-tree-extend_img3.png)
 
 Tương tự, cây con này có $2$ cây con trái và phải, cả $2$ đều có giá trị là $2$, nghĩa là luôn tồn tại ít nhất một số có giá trị bằng $2$ trong cả $2$ cây con này, từ đó suy ra cả $2$ cây con đều có thể chứa kết quả ta cần tìm. Nhưng do ta muốn tìm vị trí có $i$ bé nhất, nên ta sẽ ưu tiên đi vào cây con bên trái (cây con này quản lý các vị trí nhỏ hơn các vị trí của cây con phải).
 
-[[/uploads/segment-tree-extend_img4.png]]
+![](/uploads/segment-tree-extend_img4.png)
 
 Lập luận tương tự thì ta sẽ biết được kết quả nằm ở cây con trái, lúc này cây chỉ quản lý duy nhất một phần tử nên ta có thể kết luận luôn vị trí cần tìm.
 

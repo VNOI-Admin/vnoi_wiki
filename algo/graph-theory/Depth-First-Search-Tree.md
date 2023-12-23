@@ -17,7 +17,7 @@
 - Các cạnh thuộc cây $DFS$ được gọi là các “cạnh nét liền”.
 - Các cạnh còn lại không thuộc cây $DFS$ được gọi là các “cạnh nét đứt".
 
-[[/uploads/Depth-First-Search-Tree_img1.png]]
+![](/uploads/Depth-First-Search-Tree_img1.png)
 
 - Trong đồ thị có hướng, xét các cung được thăm và không được thăm bởi $DFS$, ta có $4$ loại cung sau:
 	* Cung của cây $DFS$ ***(Tree edge)***:  là các cung thuộc cây $DFS$ được định hướng theo chiều từ cha đến con. (ví dụ cạnh $(u,v)$ thuộc cây $DFS$ mà $u$ được thăm trước $v$ hay $u$ là cha của $v$ thì ta có cung $u \rightarrow v$ là cung của cây $DFS$). _$<$ Các cung của cây $DFS$ được đánh dấu là các cạnh màu đen trong hình bên dưới $>$_
@@ -25,7 +25,7 @@
 	* Cung ngược ***(Back edge)***: là các cung không thuộc cây $DFS$ và có dạng $v \rightarrow u$ trong đó $u$ là tổ tiên của $v$ trong cây $DFS$. _$<$ Các cung ngược được đánh dấu là các cạnh màu đỏ trong hình bên dưới $>$_
 	* Cung chéo ***(Cross edge)***: là các cung không thuộc cây $DFS$ có dạng $u \rightarrow v$ trong đó $u$ và $v$ thuộc hai nhánh khác nhau của cùng một cây $DFS$. _$<$ Các cung chéo được đánh dấu là các cạnh màu xanh dương trong hình bên dưới $>$_
 
-    [[/uploads/Depth-First-Search-Tree_img2.png]]
+    ![](/uploads/Depth-First-Search-Tree_img2.png)
 
 - Trong đồ thị vô hướng:
     * Không tồn tại cung chéo. Vì khi đỉnh $u$ được duyệt trong hàm $DFS$ ta sẽ duyệt tất cả các đỉnh $v$ kề $u$ mà $v$ chưa được thăm. Như vậy nếu tồn tại một cung chéo $(u, v)$ chứng tỏ khi duyệt đến đỉnh $u$ hoặc đỉnh $v$ ta đã không duyệt cạnh $(u, v)$.
@@ -77,11 +77,11 @@ void dfs(int u, int pre) {
 
 - **Ví dụ minh họa :**
 
-    [[/uploads/Depth-First-Search-Tree_img3.png]]
+    ![](/uploads/Depth-First-Search-Tree_img3.png)
 
 - **Mô tả quá trình :**
 
-    [[/uploads/Depth-First-Search-Tree_gif1.gif]]
+    ![](/uploads/Depth-First-Search-Tree_gif1.gif)
 
 # Ứng dụng cây DFS trong bài toán tìm khớp, cầu
 ## Định nghĩa
@@ -89,7 +89,7 @@ void dfs(int u, int pre) {
 - Trong đồ thị vô hướng, một đỉnh được gọi là đỉnh khớp nếu như loại bỏ đỉnh này và các cạnh liên thuộc với nó ra khỏi đồ thị thì số thành phần liên thông của đồ thị tăng lên.
 - Trong đồ thị vô hướng, một cạnh được gọi là cạnh cầu nếu như loại bỏ cạnh này ra khỏi đồ thị thì số thành phần liên thông của đồ thị tăng lên.
 
-    [[/uploads/Depth-First-Search-Tree_img4.png]]
+    ![](/uploads/Depth-First-Search-Tree_img4.png)
 
 ## Bài toán 1
 
@@ -137,7 +137,7 @@ Vấn đề đặt ra là cần phải đếm tất cả các khớp và cầu c
 - Các cạnh màu đỏ là cạnh cầu.
 - Các đỉnh màu xanh lá là đỉnh khớp.
 
-[[/uploads/Depth-First-Search-Tree_img5.png]]
+![](/uploads/Depth-First-Search-Tree_img5.png)
 
 ### **Phân tích**
 #### **Tìm cạnh cầu**
@@ -147,7 +147,7 @@ Vấn đề đặt ra là cần phải đếm tất cả các khớp và cầu c
     * Xét cây con gốc $v$ trong cây $DFS$ của $G$ có $u$ là cha trực tiếp của $v$. Gọi tập hợp các đỉnh thuộc cây con gốc $v$ là $A$, tập hợp các đỉnh không thuộc cây con gốc $v$ là $B$. Khi xoá đi cạnh $(u, v)$ thì giữa $2$ đỉnh bất kì thuộc cùng $1$ tập hợp vẫn có thể đến với nhau bằng các cạnh nét liền. Một đỉnh thuộc $A$ với một đỉnh thuộc $B$ muốn đi đến với nhau bằng các **cạnh nét liền** thì đều phải thông qua cạnh $(u, v)$.
         * **Ví dụ minh họa:** Xét cạnh nét liền $(7, 9)$ với đỉnh $9$ là con trực tiếp của đỉnh $7$ trên cây $DFS$. Tập đỉnh $A$ là các đỉnh được đánh dấu màu hồng. Tập đỉnh $B$ là các đỉnh được đánh dấu màu vàng. Đỉnh $11$ thuộc tập $A$ muốn đi đến đỉnh $6$ thuộc tập $B$ bằng các cạnh nét liền thì đều phải thông qua cạnh $(7, 9)$.
 
-        [[/uploads/Depth-First-Search-Tree_img6.png]]
+        ![](/uploads/Depth-First-Search-Tree_img6.png)
 
     * Giả sử không có cạnh nét đứt nào nối giữa $1$ đỉnh thuộc $A$ với $1$ đỉnh thuộc $B$ thì khi xoá cạnh $(u, v)$, $G$ sẽ tách ra thành $2$ vùng liên thông $A$ và $B$. Ngược lại nếu tồn tại cạnh nét đứt nối giữa $1$ đỉnh thuộc $A$ và $1$ đỉnh thuộc $B$ đồ thị vẫn liên thông . Do đó ta chỉ cần xét xem có tồn tại cạnh nét đứt nối giữa $A$ và $B$ hay không để kết luận $(u, v)$ có phải cầu không?
     * Ta có từ $v$ có thể đi đến một đỉnh $p$ nào đó có $num[p]=low[v]$ bằng cách đi theo các cung của cây $DFS$ và đi qua không quá $1$ cạnh nét đứt và $p$ có thứ tự thăm sớm nhất khi $DFS$. Nếu $p$ nằm trong $B$ thì $p$ phải là tổ tiên của $v$ cũng đồng nghĩa với việc $num[p]<num[v]$ hay $low[v]<num[v]$ **(vì đồ thị không có cung chéo)**, nghĩa là tồn tại $1$ cạnh nét đứt nối giữa $1$ đỉnh thuộc $A$ với $1$ đỉnh thuộc $B$ (vì nếu chỉ đi bằng các cung của cây $DFS$ thì $v$ không thể tới một tổ tiên của nó).
@@ -159,17 +159,17 @@ Vấn đề đặt ra là cần phải đếm tất cả các khớp và cầu c
     * Xét cây con gốc $u$ trong cây $DFS$ của $G$, nếu mọi nhánh con của $u$ đều có cung ngược lên tới tổ tiên của $u$ ($low[v] < num[u]$, với $v$ là tất cả các con trực tiếp của $u$ trên cây $DFS$) thì đỉnh $u$ không thể là đỉnh khớp. Bởi trong đồ thị ban đầu, nếu ta loại bỏ đỉnh $u$ đi thì từ mỗi đỉnh bất kỳ thuộc nhánh con vẫn có thể đi lên một tổ tiên của $u$, rồi đi sang nhánh con khác hoặc đi sang tất cả những đỉnh còn lại của cây nên số thành phần liên thông của đồ thị không thay đổi.
         * **Ví dụ minh họa:** Xét đỉnh $9$ không phải là đỉnh khớp vì cả $2$ nhánh con của nó là cây con gốc $10$ và cây con gốc $13$ trong cây $DFS$ đều có cung ngược lên tới đỉnh $7$ là tổ tiên của đỉnh $9$.
 
-        [[/uploads/Depth-First-Search-Tree_img7.png]]
+        ![](/uploads/Depth-First-Search-Tree_img7.png)
 
     * Nếu $u$ không phải là đỉnh gốc của cây $DFS$, và tồn tại ít nhất một nhánh con trong cây con gốc $u$ không có cung ngược lên một tổ tiên của $u$ ($low[v] \ge num[u]$, với $v$ là một con trực tiếp bất kì của $u$ trên cây $DFS$) thì đỉnh $u$ là đỉnh khớp. Bởi khi đó, tất cả những cung xuất phát từ nhánh con đó chỉ có thể đi tới những đỉnh thuộc cây con gốc $u$ mà thôi, trên đồ thị ban đầu, không tồn tại cạnh nối từ những đỉnh thuộc nhánh con đó tới một tổ tiên của $u$. Vậy nên từ một đỉnh bất kì thuộc nhánh con đó muốn đi lên một tổ tiên của $u$ thì bắt buộc phải đi qua $u$ nên việc loại bỏ đỉnh $u$ ra khỏi đồ thị sẽ làm tăng số thành phần liên thông của đồ thị.
         * **Ví dụ minh họa:** Xét đỉnh $2$ là đỉnh khớp vì tồn tại $1$ nhánh con của nó là cây con gốc $4$ không có cung ngược lên tới tổ tiên của đỉnh $2$.
 
-        [[/uploads/Depth-First-Search-Tree_img8.png]]
+        ![](/uploads/Depth-First-Search-Tree_img8.png)
 
     * Nếu $u$ là đỉnh gốc của cây $DFS$, thì $u$ là đỉnh khớp khi và chỉ khi $u$ có ít nhất $2$ nhánh con. Vì đồ thị không có cung chéo nên khi $u$ có $2$ nhánh con thì đường đi giữa hai đỉnh thuộc hai nhánh con đó bắt buộc phải đi qua $u$. Việc loại bỏ đỉnh $u$ ra khỏi đồ thị sẽ làm tăng số thành phần liên thông của đồ thị.
         * **Ví dụ minh họa:** Xét đỉnh $1$ là đỉnh khớp vì đỉnh $1$ là đỉnh gốc của cây $DFS$ và có tới $3$ nhánh con.
 
-        [[/uploads/Depth-First-Search-Tree_img9.png]]
+        ![](/uploads/Depth-First-Search-Tree_img9.png)
 
 - **Kết luận:** Đỉnh $u$ là đỉnh khớp khi:
     * Đỉnh $u$ không phải là gốc của cây $DFS$ và $low[v] \ge num[u]$ (với $v$ là một con trực tiếp bất kì của $u$ trong cây $DFS$).
@@ -304,7 +304,7 @@ yes
 
 **Note**
 
-[[/uploads/Depth-First-Search-Tree_img10.png]]
+![](/uploads/Depth-First-Search-Tree_img10.png)
 
 ### **Phân tích**
 - Để tồn tại ít nhất một cách di chuyển từ thành phố $A$ đến thành phố $B$ thì cả $2$ thành phố $A$ và $B$ phải cùng thuộc một thành phần liên thông.
@@ -317,7 +317,7 @@ yes
     * Thành phần liên thông thứ nhất là tập hợp các đỉnh còn lại không thuộc cây con gốc $G2$ của cây $DFS$.
 - **Ví dụ minh họa:** Loại bỏ cạnh cầu $(1,7)$ (với đỉnh $7$ là con trực tiếp của đỉnh $1$)
 
-    [[/uploads/Depth-First-Search-Tree_img11.png]]
+    ![](/uploads/Depth-First-Search-Tree_img11.png)
 
 - Bây giờ, ta có thể xác định vị trí của $2$ đỉnh $A,$ $B$ có nằm trong cây con gốc $G2$ hay không.
     * Nếu chỉ có đúng duy nhất $1$ trong $2$ đỉnh nằm trong cây con gốc $G2$ thì $2$ thành phố $A$ và $B$ không thuộc cùng một thành phần liên thông sau khi loại bỏ cạnh $(G1,G2)$.
@@ -332,7 +332,7 @@ yes
     * Một thành phần liên thông là tập hợp tất cả các đỉnh còn lại (bao gồm các đỉnh là tổ tiên của của $C$ và các đỉnh thuộc các cây con gốc $u$ với $u$ là các con trực tiếp của $C$ trong cây $DFS$ và $low[u] < num[C]$).
 - **Ví dụ minh họa:** Loại bỏ đỉnh khớp $8$. Đỉnh $11$ và $12$ là các con trực tiếp của đỉnh $8$ trong cây $DFS$. Nhưng chỉ có cây con gốc $11$ là tách riêng ra thành $1$ thành phần liên thông riêng biệt. Còn cây con gốc $12$ thì có $1$ cung ngược nối lên đỉnh $7$ (tổ tiên của đỉnh $8$) nên số lượng thành phần liên thông của cả đồ thị chỉ tăng thêm $1$.
 
-    [[/uploads/Depth-First-Search-Tree_img12.png]]
+    ![](/uploads/Depth-First-Search-Tree_img12.png)
 
 - Với mỗi đỉnh $v$ là con trực tiếp của $C$ trong cây $DFS$ và $low[v] \ge num[C]$, ta kiểm tra xem nếu chỉ có đúng duy nhất $1$ trong $2$ đỉnh nằm trong cây con gốc $v$ thì $2$ thành phố $A$ và $B$ không thuộc cùng một thành phần liên thông sau khi loại bỏ đỉnh $C$ và các cạnh liên thuộc với đỉnh $C$ đi.
 - Ngược lại, với $v$ là các con trực tiếp của $C$ trong cây $DFS$ và $low[v] \ge num[C]$, nếu cả $2$ đỉnh $A$ và $B$ cùng nằm trong $1$ cây con gốc $v$ hoặc cả $2$ đỉnh $A$ và $B$ đều không nằm trong bất cứ $1$ cây con gốc $v$ nào cả (đồng nghĩa với việc cả $2$ đỉnh $A,$ $B$ sẽ cùng nằm trong thành phần liên thông còn lại) thì $2$ thành phố $A$ và $B$ đều thuộc cùng một thành phần liên thông sau khi loại bỏ đỉnh $C$ và các cạnh liên thuộc với đỉnh $C$ đi.
@@ -528,7 +528,7 @@ Vì đồ thị ban đầu liên thông và có $N - 1$ cạnh nên đây là đ
 Để đánh dấu các cạnh thuộc đường đi từ đỉnh $u$ đến đỉnh $v$ trên cây, thì ta có thể thêm một cạnh $(u,v)$ vào đồ thị. Khi đó, các cạnh thuộc đường đi từ $u \rightarrow v$ trên cây sẽ nằm trong $1$ chu trình. Từ đó, bài toán sẽ quy về thành bài toán đếm số lượng cạnh cầu của đồ thị.
 - **Ví dụ minh họa:** Để dánh dấu đường đi từ đỉnh $3 \rightarrow 6$ và đường đi từ đỉnh $5 \rightarrow 6$, ta thêm cạnh $(3, 6)$, $(5, 6)$ vào đồ thị. Khi đó, đồ thị có một cạnh cầu là cạnh $(1, 2)$.
 
-    [[/uploads/Depth-First-Search-Tree_img13.png]]
+    ![](/uploads/Depth-First-Search-Tree_img13.png)
 
 ### **Cài đặt**
 
@@ -594,7 +594,7 @@ int main() {
 - Một thành phần liên thông mạnh của một đồ thị có hướng là một đồ thị con tối đại liên thông mạnh. Nếu mỗi thành phần liên thông mạnh được co lại thành một đỉnh, thì đồ thị sẽ trở thành một đồ thị có hướng không có chu trình.
 - Thuật toán $Kosaraju$, thuật toán $Tarjan$, và thuật toán $Gabow$ đều có thể tìm các thành phần liên thông mạnh của một đồ thị cho trước trong thời gian tuyến tính. Tuy nhiên, các thuật toán của $Tarjan$  thường được sử dụng nhiều hơn do chúng chỉ cần thực hiện tìm kiếm theo chiều sâu một lần trong khi thuật toán của $Kosaraju$ cần hai lần.
 
-[[/uploads/Depth-First-Search-Tree_img14.png]]
+![](/uploads/Depth-First-Search-Tree_img14.png)
 
 ## Một số định lý quan trọng
 
@@ -660,7 +660,7 @@ Cho đồ thị $G(V, E)$ có hướng $N$ $(1 \le N \le 10^4)$ đỉnh, $M$ $(1
 
 ### **Thuật toán Tarjan**
 
-[[/uploads/Depth-First-Search-Tree_img15.png]]
+![](/uploads/Depth-First-Search-Tree_img15.png)
 
 **Thuật toán Tarjan được xây dựng dựa trên các dữ kiện sau:**
 - Tìm kiếm $DFS$ tạo ra cây/ rừng $DFS$
@@ -670,7 +670,7 @@ Cho đồ thị $G(V, E)$ có hướng $N$ $(1 \le N \le 10^4)$ đỉnh, $M$ $(1
 
 #### **Mô tả thuật toán**
 
-[[/uploads/Depth-First-Search-Tree_gif2.gif]]
+![](/uploads/Depth-First-Search-Tree_gif2.gif)
 
 #### **Ý tưởng**
 - **Nhận xét:** Xét cây con gốc $u$ trong cây $DFS$. Gọi tập hợp các đỉnh thuộc cây con gốc $u$ là $A$, tập hợp các đỉnh không thuộc cây con gốc $u$ là $B$. Nếu tồn tại $1$ đỉnh $x$ thuộc $A$ tới được $1$ đỉnh $y$ thuộc $B$ thì $y$ phải có thứ tự thăm sớm hơn $u$. Vì nếu $y$ được thăm sau $u$ ta có thể duyệt từ $u$ qua $x$ tới $y$ khi đó $y$ sẽ trở thành con của $u$.

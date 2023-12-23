@@ -16,7 +16,7 @@ Trong **hình học tính toán (computational geometry)**, **bao lồi (convex 
 
 Theo một cách trực quan, nếu ta coi những điểm trong một tập hợp là những cái đinh đóng trên một tấm gỗ, bao lồi của tập điểm đó có viền ngoài tạo bởi sợi dây chun mắc vào những cái đinh sau khi bị kéo căng về các phía.
 
-[[/uploads/algo_geometry_convex_hull_nail.png]]
+![](/uploads/algo_geometry_convex_hull_nail.png)
 
 # Các thuật toán tìm bao lồi trên mặt phẳng
 Bài toán tìm bao lồi của một tập điểm trên mặt phẳng là một trong những bài toán được nghiên cứu nhiều nhất trong hình học tính toán và có rất nhiều thuật toán để giải bài toán này. Sau đây là ba thuật toán phổ biến nhất, được giới thiệu theo thứ tự tăng dần về độ khó.
@@ -29,7 +29,7 @@ Bài toán tìm bao lồi của một tập điểm trên mặt phẳng là mộ
 
 **Thuật toán bọc gói quà**, hay còn gọi là thuật toán **Jarvis march**, là một trong những thuật toán tìm bao lồi đơn giản và dễ hiểu nhất. Tên thuật toán xuất phát từ sự tương tự của thuật toán với việc đi bộ xung quanh các điểm và cầm theo một dải băng gói quà.
 
-|[[/uploads/algo_geometry_convex_hull_gift_wrapping_algorithm.png]]|
+|![](/uploads/algo_geometry_convex_hull_gift_wrapping_algorithm.png)|
 |-|
 |source: [wikipedia - Gift wrapping algorithm](https://en.wikipedia.org/wiki/Gift_wrapping_algorithm)|
 
@@ -161,7 +161,7 @@ Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất n
 
 Về độ phức tạp thuật toán, ta thấy bước sắp xếp các điểm có độ phức tạp $\mathcal{O}(n\log{n})$. Mỗi điểm được thêm/xoá nhiều nhất một lần nên tổng độ phức tạp của các bước thêm/xoá điểm là $\mathcal{O}(n)$. Vậy độ phức tạp của thuật toán Graham là $\mathcal{O}(n\log{n})$, phù hợp cho hầu hết các bài toán.
 
-|[[/uploads/algo_geometry_convex_hull_graham_scan.gif]]|
+|![](/uploads/algo_geometry_convex_hull_graham_scan.gif)|
 |-|
 |Minh hoạ của thuật toán Graham<br> source: [wikipedia - Graham scan](https://en.wikipedia.org/wiki/Graham_scan)|
 
@@ -223,7 +223,7 @@ vector<Point> convexHull(vector<Point> p, int n) {
 ## Thuật toán chuỗi đơn điệu (Monotone chain algorithm)
 Thuật toán chuỗi đơn điệu vừa dễ cài đặt, vừa là thuật toán nhanh nhất trong $3$ thuật toán được giới thiệu trong bài này. Thuật toán dựa trên việc tìm hai chuỗi đơn điệu của bao lồi: bao trên (hay chuỗi trên) và bao dưới (hay chuỗi dưới).
 
-|[[/uploads/algo_geometry_convex_hull_UpperAndLowerConvexHulls.png]]|
+|![](/uploads/algo_geometry_convex_hull_UpperAndLowerConvexHulls.png)|
 |-|
 |source: [wikibooks - Monotone chain](https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain)|
 
@@ -240,7 +240,7 @@ Sau khi xét hết các điểm, $H$ sẽ chứa toàn bộ phần bao trên. Sa
 
 Thuật toán này cũng có độ phức tạp $\mathcal{O}(n\log{n})$. Thuật toán chuỗi đơn điệu được khuyên dùng ở mọi bài toán tìm bao lồi, do nó đơn giản hơn thuật toán Graham và nhanh hơn một chút (do ta không phải tính góc).
 
-|[[/uploads/algo_geometry_convex_hull_monotone_algorithm.gif]]|
+|![](/uploads/algo_geometry_convex_hull_monotone_algorithm.gif)|
 |-|
 |Minh hoạ của thuật toán chuỗi đơn điệu<br> source: [wikibooks - Monotone chain](https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain)|
 
@@ -326,7 +326,7 @@ Các thuật toán trên hoạt động tốt trong trường hợp lí tưởng
 - Diện tích bao lồi bằng $0$. Có hai trường hợp như vậy: tất cả các điểm đều trùng nhau, hoặc tất cả điểm đều thẳng hàng.
 
 # Bao lồi 3D
-[[/uploads/algo_geometry_convex_hull_3d.gif]]
+![](/uploads/algo_geometry_convex_hull_3d.gif)
 
 Tìm bao lồi trong 3D thực sự là một bài toán khó. Bài toán này chắc chắn sẽ không bao giờ được ra trong IOI, và học sinh trung học không cần phải đi sâu vào vấn đề này. Tuy nhiên, có một thuật toán $\mathcal{O}(n^2)$  khá là đơn giản:
 - Đầu tiên, ta tìm hình chiếu của các điểm trên mặt phẳng $Oxy$, và tìm một cạnh chắc chắn thuộc bao bằng cách lấy một điểm có tung độ lớn nhất rồi tìm điểm kia bằng cách chạy vòng lặp của thuật toán bọc gói một lần. Đây là phần đầu tiên của bao lồi.
@@ -352,12 +352,12 @@ Mở rộng, các loại cocktail có thể pha chế từ $N$ loại cocktail b
 Để kiểm tra nhanh một điểm có nằm trong bao lồi hay không trong $\mathcal{O}(\log{n})$, ta thực hiện như sau:
 - Gọi tập bao lồi là $H$, giả sử tập $H$ được liệt kê theo chiều kim đồng hồ.
 - Đầu tiên, ta kiểm tra $(H_0, H_1, P)$ có ngược chiều kim đồng hồ hay không ($P$ thoả thuộc vùng màu xanh).
-    [[/uploads/algo_geometry_convex_hull_kmix1.png]]
+    ![](/uploads/algo_geometry_convex_hull_kmix1.png)
 - Tiếp theo, ta kiểm tra $(H_{n-1}, H_0, P)$ có ngược chiều kim đồng hồ hay không ($P$ thoả thuộc vùng màu cam).
-    [[/uploads/algo_geometry_convex_hull_kmix2.png]]
+    ![](/uploads/algo_geometry_convex_hull_kmix2.png)
 - Bây giờ, ta chặt nhị phân để tìm **tia** $\overrightarrow{H_0H_x}$ thoả mãn $\overrightarrow{H_0H_x}$ là tia gần điểm $P$ nhất ở phía **bên phải** bằng cách kiểm tra $CCW(H_0,H_x,P)$ (chi tiết xem ở phần cài đặt).
 - Sau khi có $x$ (ví dụ $x=4$), ta biết được rằng $P$ thuộc vùng tạo bởi $2$ tia $\overrightarrow{H_0H_{x-1}}$ và $\overrightarrow{H_0H_x}$ (vùng màu tím).
-    [[/uploads/algo_geometry_convex_hull_kmix3.png]]
+    ![](/uploads/algo_geometry_convex_hull_kmix3.png)
 - Đến đây, ta kiểm tra $(H_{x-1}, H_x, P)$ có cùng chiều kim đồng hồ hay không (tức $P$ có thuộc tam giác $(H_0,H_{x-1},H_x)$ hay không).
 
 ### Cài đặt

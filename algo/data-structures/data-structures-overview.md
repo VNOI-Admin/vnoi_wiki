@@ -139,7 +139,7 @@ Bảng băm là một CTDL thường được sử dụng như một từ điể
 
 Bảng băm hoạt động dựa trên hàm Hash: Hash là quá trình khởi tạo một giá trị khóa (thường là 32 bit hoặc 64 bit) từ một phần dữ liệu. Nó có thể là $n$ bit đầu tiên của dữ liệu, $n$ bit cuối cùng, giá trị mod cho một số nguyên tố nào đó. Dựa theo giá trị hash, dữ liệu được chia vào các **bucket**:
 
-[[/uploads/data_structures_hash_table_hash_function.png]]
+![](/uploads/data_structures_hash_table_hash_function.png)
 
 Trong trường hợp hàm Hash hoạt động tốt, mỗi bucket có rất ít phần tử, độ phức tạp của các thao tác trên Hash table như sau:
 
@@ -189,7 +189,7 @@ Khi đó, ta có: $f(i, j) = f(i-1, j) + f(i, j-1) - f(i-1, j-1) + A(i, j)$.
 
 Giải thích công thức trên:
 
-[[/uploads/2DPartialSum_small.png]]
+![](/uploads/2DPartialSum_small.png)
 
 đỏ = xanh da trời + vàng - tím + xanh lá
 

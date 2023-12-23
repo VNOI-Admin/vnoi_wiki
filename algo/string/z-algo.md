@@ -49,7 +49,7 @@ vector<int> z_function(string s) {
 $$
 z[i] = \texttt{min}(r - i + 1, z[i - l])
 $$
-[[/uploads/z-algo-visualize.png]]
+![](/uploads/z-algo-visualize.png)
 - $i > r$: khi đó $i$ nằm ngoài vùng ta đã kiểm tra, khi đó ta không thể tận dụng gì nên chỉ khởi tạo $z[i] = 0$ và làm theo thuật toán ngây thơ.
 
 

@@ -24,7 +24,7 @@ Ta định nghĩa một **biến cố** (**event**) là một tập hợp các k
 
 Cái chúng ta quan tâm nhất là xác suất để một biến cố nhất định xảy ra, $P(E)$. Theo định nghĩa, $P(E)$ là một số thực trong khoảng từ $0$ đến $1$, trong đó $0$ thể hiện biến cố không có khả năng xảy ra và $1$ thể hiện biến cố chắc chắn xảy ra (hay là toàn bộ không gian mẫu).
 
-[[/uploads/translate_topcoder_undertstandprobabilities_1.gif]]
+![](/uploads/translate_topcoder_undertstandprobabilities_1.gif)
 
 - Impossible Event: biến cố chắc chắn ko thể xảy ra
 - Certain: biến cố chắc chắn xảy ra
@@ -253,7 +253,7 @@ Giờ xét `random(random(N))`. Để dễ hình dung, ta xét $N=4$:
 
 Ta hình dung bằng hình sau:
 
-[[/uploads/translate_topcoder_understandprobabilties_02.gif]]
+![](/uploads/translate_topcoder_understandprobabilties_02.gif)
 
 Code để giải bài này
 

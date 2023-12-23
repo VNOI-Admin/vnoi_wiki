@@ -34,7 +34,7 @@ Giới hạn: $n, q \leq 10^5$.
 
 <center>
 
-[[/uploads/euler-tour-on-tree_img1.png]]
+![](/uploads/euler-tour-on-tree_img1.png)
 </center>
 
 <!-- ![](https://i.ibb.co/ykSMHwN/subtree-example.png) -->
@@ -94,7 +94,7 @@ Thể hiện chu trình Euler (**) trên đồ thị $T'$ bằng một dãy các
 
 <center>
 
-[[/uploads/euler-tour-on-tree_img2.png]]
+![](/uploads/euler-tour-on-tree_img2.png)
 </center>
 
 <!-- ![](https://i.ibb.co/02Bf8tp/simpletree.png) -->
@@ -218,7 +218,7 @@ Từ hai tính chất trên ta nhận xét được rằng, với hai đỉnh $u
 
 <center>
 
-[[/uploads/euler-tour-on-tree_img3.png]]
+![](/uploads/euler-tour-on-tree_img3.png)
 </center>
 
 
@@ -404,7 +404,7 @@ Ví dụ:
 
 
 <center>
-  [[/uploads/euler-tour-on-tree_img4.png]]
+  ![](/uploads/euler-tour-on-tree_img4.png)
 </center>
 
 

@@ -8,7 +8,7 @@ Google từ khóa Lê Yên Thanh, bạn sẽ tìm thấy hàng trăm bài báo l
 
 *“Anh ấy ăn gì mà khủng thế. Mình không thể được như anh ấy đâu.”* Có thể bạn đang nghĩ vậy. Nhưng bạn có biết rằng anh ấy cũng là một người thành công đi lên từ VNOI chúng ta. Idol Yên Thanh mới ngày nào vẫn còn là một OI-er ở An Giang, chăm chỉ cày quốc trên VNOJ lên đến nick cam, chinh chiến qua từng trận Codeforces, VNOI Marathon. Anh ấy là một thành viên VNOI nhiệt tình, một admin vui tính. Vậy thì, hãy cùng VNOI Wiki phỏng vấn idol Yên Thanh nhé. Không giống thông tin lá cải trên báo, chúng ta sẽ được hiểu thêm về Yên Thanh theo một phong cách rất VNOI.
 
-[[/uploads/yenthanh.png]]
+![](/uploads/yenthanh.png)
 
 ## Trả lời nhanh
 
@@ -69,7 +69,7 @@ Nếu bây giờ em học thuật toán mà vẫn thấy chưa có tác dụng, 
 - ***Kiến thức chuyên môn:***
 
     Ở đây anh đánh giá, bao gồm thuật toán (50%), kiến thức về máy tính (20%) và về các kĩ thuật (30%).
-    
+
     Thuật toán có thể em chỉ cần biết những thuật toán cơ bản, quan trọng là em cần hiểu kĩ và sâu. Ví dụ như quicksort cài như vậy nhưng nó hoạt động như thế nào, tại sao độ phức tạp lại thấp, nó lại chạy nhanh hơn các thuật toán khác. Việc biết thêm các thuật toán, CTDL nâng cao sẽ là một điểm cộng thêm rất lớn cho em khi được phỏng vấn.
 Kiến thức tổng quan về máy tính như em phải hiểu HĐH nó hoạt động ntn, ram, ổ cứng, dữ liệu trên máy tính được lưu ra sao, mạng máy tính hoạt động ra sao..., mấy cái này học ở ĐH sẽ được dạy.
 

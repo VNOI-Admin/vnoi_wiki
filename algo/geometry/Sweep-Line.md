@@ -463,7 +463,7 @@ Giới hạn:
 > Xét một điểm $P$ cho trước bất kì. Lấy gốc toạ độ tại $P$. Chia mặt phẳng toạ độ thành $8$ phần bằng nhau như hình dưới. Với mỗi phần tám, nối $P$ với một điểm bất kì trong phần tám đó có khoảng cách Manhattan gần nhất với $P$ (nếu có). Chẳng hạn trong ví dụ ở hình dưới, ta sẽ nối $P$ với $Q$.
 >
 <center>
-> [[/uploads/Sweep-Line_img5.png]]
+> ![](/uploads/Sweep-Line_img5.png)
 </center>
 >
 > Thực hiện thao tác trên với tất cả các điểm được cho, ta thu được một đồ thị $G$ có $O(n)$ cạnh. Ta sẽ chứng minh rằng cây khung nhỏ nhất trên đồ thị $G$ là một đáp án cho bài toán.

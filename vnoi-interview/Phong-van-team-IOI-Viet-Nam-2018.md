@@ -20,7 +20,7 @@ Cảm ơn các bạn đã quan tâm và cổ vũ cho đội Việt Nam <3 rất 
 
 (Chú thích: Từ trái qua phải trong ảnh: Nguyễn Khánh, Hoàng Xuân Nhật, Phạm Đức Thắng, Nguyễn Hoàng Hải Minh)
 
-[[/uploads/ioi2018.jpg]]
+![](/uploads/ioi2018.jpg)
 
 VNOI Wiki đã rất may mắn có cơ hội phỏng vấn 3/4 bạn khủng trên với hi vọng đem đến cho các bạn cái nhìn từ các IOI-er về các kì thi lập trình cũng như cách ôn luyện của các bạn để trở nên khủng như bây giờ.
 
@@ -29,9 +29,9 @@ VNOI Wiki đã rất may mắn có cơ hội phỏng vấn 3/4 bạn khủng tr�
 
 ##### 1. Lúc thi vòng 1, các bạn có sinh test và trình chấm để check lại không, nếu không thì các bạn dò bug như thế nào?
 
-**Thắng**: Lúc thi vòng 1, mình dành 1 tiếng cuối sinh test cho tất cả các bài. May năm 2018 đề không quá khó nên có thể code hết trong khoảng 2 tiếng. Tóm lại sau khi thi fail mấy lần offline thì mình nghĩ là nên dành ⅓ thời gian để sinh test dù đề có khó hay dễ. Còn với mấy bài mà khó sinh test để kiểm tra thì mình thường đọc lại từng phần code, rồi kiểm tra lại thuật toán, có thể sinh thử một số test tay nhỏ trên nháp. 
+**Thắng**: Lúc thi vòng 1, mình dành 1 tiếng cuối sinh test cho tất cả các bài. May năm 2018 đề không quá khó nên có thể code hết trong khoảng 2 tiếng. Tóm lại sau khi thi fail mấy lần offline thì mình nghĩ là nên dành ⅓ thời gian để sinh test dù đề có khó hay dễ. Còn với mấy bài mà khó sinh test để kiểm tra thì mình thường đọc lại từng phần code, rồi kiểm tra lại thuật toán, có thể sinh thử một số test tay nhỏ trên nháp.
 
-**Khánh**: Hồi lớp 11, mình code trong 2 tiếng, tiếng cuối mình dùng để kiểm tra lại bài làm bằng cách đọc hiểu và sinh tay vài test con kiểm tra giới hạn. 
+**Khánh**: Hồi lớp 11, mình code trong 2 tiếng, tiếng cuối mình dùng để kiểm tra lại bài làm bằng cách đọc hiểu và sinh tay vài test con kiểm tra giới hạn.
 
 **Nhật**: Thi vòng 1 là thi độ cẩn thận, nên không test tay và/hoặc sinh test thì bạn chỉ có ăn hành.
 
@@ -41,7 +41,7 @@ VNOI Wiki đã rất may mắn có cơ hội phỏng vấn 3/4 bạn khủng tr�
 
 **Khánh**: Mình thấy biểu đồ cũng khá bắt mắt, gồm 3 màu đỏ, xanh lam và xanh lá; ngoài ra trong lúc xem biểu đồ, độ lớn của các màu thay đổi liên tục làm mình cảm thấy thích thú và ngắm nó suốt 5 tiếng làm bài. Nếu được thi nữa, mình muốn BTC cải thiện biểu đồ bằng cách thêm màu cho nó kịch tính hơn.
 
-**Nhật**: Cá nhân mình không thích cái biểu đồ lắm nhưng có thì phải xài vì biểu đồ cung cấp thông tin. Ngày 1 vì đọc biểu đồ sai nên mình đánh giá sai độ khó dễ của các bài và mất điểm khá phí. Sau đó một đàn anh phân tích cho mình mình đã sai ở chỗ nào. Ngày 2 mình đọc biểu đồ đúng (đúng ở đây là biết được mọi người đang làm bài nào), từ đó mình biết được vị trí tương đối của mình và ra các quyết định khá hợp lý. 
+**Nhật**: Cá nhân mình không thích cái biểu đồ lắm nhưng có thì phải xài vì biểu đồ cung cấp thông tin. Ngày 1 vì đọc biểu đồ sai nên mình đánh giá sai độ khó dễ của các bài và mất điểm khá phí. Sau đó một đàn anh phân tích cho mình mình đã sai ở chỗ nào. Ngày 2 mình đọc biểu đồ đúng (đúng ở đây là biết được mọi người đang làm bài nào), từ đó mình biết được vị trí tương đối của mình và ra các quyết định khá hợp lý.
 
 Về việc BTC IOI năm sau có nên tiếp tục cung cấp biểu đồ thì mình cũng không đánh giá được, đã có những người khác làm việc đó. Là thí sinh thì họ thay đổi thế nào thì mình phải theo thôi.
 
@@ -55,7 +55,7 @@ Về việc BTC IOI năm sau có nên tiếp tục cung cấp biểu đồ thì 
 
 ##### 4. Dành cho 3 bạn chuyên Tổng hợp: Thầy cô và các thế hệ chuyên Tin đi trước đã giúp đỡ bạn như thế nào trong quá trình học tập của các bạn?
 
-**Thắng**: Thực sự mình khá thích cái hệ thống khóa trên dạy khóa dưới của Tổng hợp. Mình cảm thấy như vậy dựa trên 2 nguyên nhân chính. Đầu tiên, mình có thể học được rất nhiều từ nhiều anh khóa trên khủng. Thứ 2, lúc dạy bọn khóa dưới, thì mình có thể chơi cùng và chửi bọn nó thoải mái <("). Mình tin chắc rằng nhờ có cái truyền thống trên thì mình mới có thể đi xa được. 
+**Thắng**: Thực sự mình khá thích cái hệ thống khóa trên dạy khóa dưới của Tổng hợp. Mình cảm thấy như vậy dựa trên 2 nguyên nhân chính. Đầu tiên, mình có thể học được rất nhiều từ nhiều anh khóa trên khủng. Thứ 2, lúc dạy bọn khóa dưới, thì mình có thể chơi cùng và chửi bọn nó thoải mái <("). Mình tin chắc rằng nhờ có cái truyền thống trên thì mình mới có thể đi xa được.
 
 **Khánh**: Làm bạn với những người tiền nhiệm giúp mình hiểu rõ hơn về cách học của họ, đồng thời trau dồi kĩ năng học của bản thân. Ví dụ, 99ers hay chơi rhythm game nên mình bắt chước theo và nắm được nhịp độ của bản thân, đạt được khả năng code nhanh vô não, đồng thời sắp 3kpp std và 2k5pp mania.
 
@@ -71,7 +71,7 @@ Tất nhiên bạn không biết gì thì thi sẽ không được gì rồi. B�
 
 Vì câu hỏi này không rõ ràng nên mình xin dịch lại là *Các bạn có nghĩ có cơ hội nào cho những học sinh không học __trường chuyên__ không*. Nếu mình dịch không đúng thì bạn hỏi có thể comment vào post trả lời, mình sẽ trả lời lại. Còn câu trả lời cho câu hỏi mình dịch lại là: có, nhiều ít phụ thuộc vào khả năng tự thân vận động của các bạn.
 
-##### 6. Các bạn đã rèn luyện khả năng tư duy logic như thế nào? Các bạn xử lý thế nào khi gặp các dạng bài mới, lạ? 
+##### 6. Các bạn đã rèn luyện khả năng tư duy logic như thế nào? Các bạn xử lý thế nào khi gặp các dạng bài mới, lạ?
 
 **Thắng**: Mình đặc biệt thích mấy dạng bài mới lạ + mình đoán là bọn Atcoder Nhật kiểu gì cũng ra mấy dạng bài kiểu thế, nên trước khi thi mình tìm và cày rất nhiều dạng bài này. Rèn luyện tư duy thì phải thay đổi cách suy nghĩ và có chiến thuật nghĩ hợp lý.
 
@@ -89,7 +89,7 @@ Vì câu hỏi này không rõ ràng nên mình xin dịch lại là *Các bạn
 
 ##### 8. Trong ngày các bạn dành bao nhiêu thời gian cho việc học thuật toán và code, ngoài thời gian học thì các bạn thường làm gì để giải trí và nghỉ ngơi? Theo các bạn thì việc quản lý thời gian có quan trọng không và các bạn quản lý thời gian như thế nào để việc học tập được hiệu quả?
 
-**Thắng**: Mình không giỏi việc quản lý thời gian, đội IOI năm nay có nhiều thời gian ôn nhưng do số lượng các người dạy giới hạn nên thời gian học không nhiều bằng các năm khác. Đa số mọi buổi chiều đều nghỉ, hầu hết mọi người đều dành buổi chiều để ngủ, còn mình đôi khi dành cả tối + chiều để ngủ :<, do đó thời gian làm việc mỗi ngày đều khác nhau. Thời gian giải trí của cả đội là rất lớn nếu so sánh với thời gian học, điển hình như những ngày giúp bạn Kan lên kim cương LOL. 
+**Thắng**: Mình không giỏi việc quản lý thời gian, đội IOI năm nay có nhiều thời gian ôn nhưng do số lượng các người dạy giới hạn nên thời gian học không nhiều bằng các năm khác. Đa số mọi buổi chiều đều nghỉ, hầu hết mọi người đều dành buổi chiều để ngủ, còn mình đôi khi dành cả tối + chiều để ngủ :<, do đó thời gian làm việc mỗi ngày đều khác nhau. Thời gian giải trí của cả đội là rất lớn nếu so sánh với thời gian học, điển hình như những ngày giúp bạn Kan lên kim cương LOL.
 
 **Khánh**: Mình chơi là chủ yếu, HCV đã có người khác lo
 
@@ -119,7 +119,7 @@ Vì câu hỏi này không rõ ràng nên mình xin dịch lại là *Các bạn
 
 **Khánh**: Mình chơi suốt nên chả biết gì.
 
-**Nhật**: đối với mình, học đội tuyển là khoảng thời gian rất tuyệt vời vì mình được làm việc mình thích nhất toàn thời gian. Lên ĐH không có đội tuyển, mình ôn ACM vô cùng khó khăn càng thấy giá trị của thời gian học đội tuyển. Kỉ niệm thì nhiều lắm, ví dụ như năm mình 11 đội tuyển NK nhiều thành viên sáng vô sớm ngủ, thầy vô thì dậy học, đến trưa ăn xong lại ngủ, đến chiều thầy vô lại dậy học tiếp, vì thế nên rất thân. 
+**Nhật**: đối với mình, học đội tuyển là khoảng thời gian rất tuyệt vời vì mình được làm việc mình thích nhất toàn thời gian. Lên ĐH không có đội tuyển, mình ôn ACM vô cùng khó khăn càng thấy giá trị của thời gian học đội tuyển. Kỉ niệm thì nhiều lắm, ví dụ như năm mình 11 đội tuyển NK nhiều thành viên sáng vô sớm ngủ, thầy vô thì dậy học, đến trưa ăn xong lại ngủ, đến chiều thầy vô lại dậy học tiếp, vì thế nên rất thân.
 
 ##### 12. Hãy kể một điều ở đất nước Nhật khiến các bạn nhớ nhất?
 
@@ -127,7 +127,7 @@ Vì câu hỏi này không rõ ràng nên mình xin dịch lại là *Các bạn
 
 **Khánh**: Nước uống được trực tiếp từ mọi loại vòi (cho ai thắc mắc: mình chưa thử nước bồn cầu). Người Nhật vô cùng quy tắc. Nơi công cộng luôn phục vụ được người khuyết tật. Sushi, sashimi mua trong 7-11 và siêu thị ăn ngon hơn khối nhà hàng ở Việt Nam. Tạp chí gravure nữa ( ͡° ͜ʖ ͡°).
 
-**Nhật**: Thành phố công nghệ của Nhật nhìn dân cư thưa thớt như đồng quê vậy, rất sướng.               
+**Nhật**: Thành phố công nghệ của Nhật nhìn dân cư thưa thớt như đồng quê vậy, rất sướng.
 
 ##### 13. Mình nghe đồn trên Codeforces là đồ ăn và chỗ ở trong kì thi có nhiều vấn đề, đặc biệt là thí sinh phải tắm ở nhà tắm công cộng ( ͡° ͜ʖ ͡°). Các bạn có thể chia sẻ một chút về những trải nghiệm và cảm nghĩ về công tác tổ chức IOI 2018 không?
 
@@ -139,7 +139,7 @@ Vì câu hỏi này không rõ ràng nên mình xin dịch lại là *Các bạn
 
 Mọi thứ dường như ngược lại trong phòng tắm công cộng. Dân EU hồn nhiên trêu đùa nhau trong phòng tắm, cùng nhau ngâm mình trong bồn nước nóng và ngắm vườn cây Nhật Bản, trong khi các bạn châu Á ngại ngùng hơn, đa phần là đăng ký tắm một mình.
 
-Chuyến đi chơi của BTC làm mình vô cùng thất vọng, chỉ loanh quanh mấy khu triển lãm xàm xàm, không được làm cái gì xịn xịn kiểu như đi công viên giải trí hay là khám phá công nghệ, abc xyz. 
+Chuyến đi chơi của BTC làm mình vô cùng thất vọng, chỉ loanh quanh mấy khu triển lãm xàm xàm, không được làm cái gì xịn xịn kiểu như đi công viên giải trí hay là khám phá công nghệ, abc xyz.
 
 ##### 14. Mình được biết năm nay cả đội đã có 3 tháng tập huấn, ăn ở sinh hoạt, học tập và sống cùng nhau. Các bạn hãy kể một vài những kỉ niệm đáng nhớ và trải nghiệm tập huấn trong đội tuyển.
 

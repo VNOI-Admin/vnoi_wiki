@@ -38,7 +38,7 @@ Trên Windows, [Free Pascal](http://www.freepascal.org/) là sự lựa chọn t
 
 Tuy nhiên, mình khuyên là các bạn nên từ bỏ Windows và chuyển sang một hệ điều khác dựa trên nền tảng Unix như là [Ubuntu](http://www.ubuntu.com/). Hiện tại thì màn hình lập trình của mình trông giống như thế này:
 
-[[/uploads/algo_basic_hoc_tin_the_nao_ubuntu.png]]
+![](/uploads/algo_basic_hoc_tin_the_nao_ubuntu.png)
 
 Ở cửa sổ trái mình sử dụng **vim**, chỉ đơn thuần là một chương trình soạn thảo văn bản (text editor) của Ubuntu. Ở cửa sổ phải mình sử dụng **terminal**, nói nôm na là nơi bạn có thể điều khiển máy tính bằng các câu lệnh thay vì dùng chuột (giống như là MS-DOS thời xa xưa). Lưu ý là hai công cụ này đều có sẵn trong Ubuntu, bạn không cần phải cài đặt gì cả. Trong hình, mình có cài thêm một số Plugins cho vim để thêm màu mè, màn hình đen, hiển thị dòng cột (cảm ơn bạn mình là RR!). Mình cũng cài thêm theme Macbook cho máy nên màn hình trông giống MacOS mặc dù thật ra nó vẫn là Ubuntu.
 

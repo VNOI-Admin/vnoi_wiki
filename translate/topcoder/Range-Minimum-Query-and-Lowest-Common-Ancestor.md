@@ -172,7 +172,7 @@ Thuật toán đơn giản nhất như sau:
   - Ta đi từ $u$ đến $u'$, với $u'$ là tổ tiên của $u$ và $h(u') = h(v)$.
   - Ta đồng thời đi từ $u$ và $v$ lên cha của nó, đến khi 2 đỉnh này trùng nhau (lúc đó cả 2 đỉnh đều ở LCA).
 
-[[/uploads/translate_topcoder_lca_rmq.png]]
+![](/uploads/translate_topcoder_lca_rmq.png)
 
 Ví dụ:
 

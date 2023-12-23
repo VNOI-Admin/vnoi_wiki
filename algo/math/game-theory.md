@@ -41,14 +41,14 @@ Trò chơi ở trên chính là một ví dụ điển hình cho trò chơi tổ
 
 > Trong trò chơi ví dụ, giả sử $n = 8$ thì mỗi trạng thái sẽ là số sỏi còn lại hiện tại của trò chơi. Do đó tập trạng thái của trò chơi là $S = \{0,1,\ldots, 8\}$ (hình dưới).
 >
-> [[/uploads/game_theory_decrease_state.png]]
+> ![](/uploads/game_theory_decrease_state.png)
 >
 > Giả sử đang ở trạng thái $x = 7$, ta có thể di chuyển hợp lệ đến trạng thái $x' = 6$ (lấy ra $1$ viên sỏi), $x' = 5$ (lấy ra $2$ viên sỏi) hoặc $x' = 4$ (lấy ra $3$ viên sỏi). Do đó ta có các phần tử $(7, 6), (7,5), (7,4)$ thuộc tập di chuyển hợp lệ $Q$ (hình dưới).
 >
-> [[/uploads/game_theory_decrease_transition.png]]
+> ![](/uploads/game_theory_decrease_transition.png)
 >
 > Từ đó, ta nhận xét được tập các bước di chuyển hợp lệ $Q$ của cả hai người chơi sẽ là tất cả những cặp số nguyên $(x,x - c)$ ($0 \leq x \leq n$) sao cho $c \in \{1, 2, 3\}$ (từ trạng thái có số sỏi $x$ chỉ có thể lấy ra $1$, $2$, hoặc $3$ viên sỏi) và $x - c \geq 0$ (số sỏi lấy ra không được phép lớn hơn số sỏi đang có).
-> 
+>
 > Trò chơi kết thúc khi không còn viên sỏi nào để bốc, do đó tập trạng thái kết thúc của cả hai người chơi là $T = \{0\}$. Khi đó người bốc viên sỏi cuối cùng sẽ là người thắng.
 
 Khi hai người chơi có tập các bước di chuyển hợp lệ $Q$ và tập trạng thái kết thúc $T$ giống nhau thì trò chơi được gọi là **trò chơi tổ hợp cân bằng**. Nói cách khác, hai người chơi chỉ khác nhau ở đúng một điểm là người này được đi trước, người kia đi sau.
@@ -62,14 +62,14 @@ Rõ ràng khi phân tích trò chơi bốc sỏi, ta thấy rằng nếu cả An
 Vậy từ đây, ta thấy với một trò chơi tổ hợp cân bằng, chỉ cần biết trạng thái ban đầu, ta có thể suy ra được ai sẽ là người chiến thắng. Để phục vụ cho việc đưa ra chiến thuật thắng, người ta phân loại các trạng thái cùa trò chơi thành 2 tập $N$ và $P$:
 - $N$: tập các trạng thái $x \in S$ sao cho nếu trạng thái ban đầu của trò chơi là $x$ thì **người chơi trước** luôn chiến thắng.
 - $P$: tập các trạng thái $x \in S$ sao cho nếu trạng thái ban đầu của trò chơi là $x$ thì **người chơi sau** luôn chiến thắng.
-> Trong trò chơi ví dụ, nếu số sỏi ban đầu là $n = 8$ thì 
+> Trong trò chơi ví dụ, nếu số sỏi ban đầu là $n = 8$ thì
 > - $N = \{1, 2, 3, 5, 6, 7\}$
 > - $P = \{0, 4, 8\}$
 
 Từ định nghĩa trên, $N$ và $P$ sẽ thỏa ba tính chất sau:
 1. Tập $P$ phải chứa toàn bộ trạng thái kết thúc.
 2. Với mỗi trạng thái $s$ thuộc tập $N$, **tồn tại** ít nhất một trạng thái $s'$ đến được từ $s$ mà thuộc tập $P$.
-3. Với mỗi trạng thái $s$ thuộc tập $P$, **tất cả** các trạng thái $s'$ đến được từ $s$ phải thuộc tập $N$. 
+3. Với mỗi trạng thái $s$ thuộc tập $P$, **tất cả** các trạng thái $s'$ đến được từ $s$ phải thuộc tập $N$.
 
 Tới đây, có thể bạn sẽ đặt ra câu hỏi: Liệu mọi trạng thái của trò chơi đều thuộc một trong hai tập $N$ hay $P$? Ta có thể chứng minh dễ dàng bằng quy nạp mạnh theo số bước tối đa để đạt tới trạng thái kết thúc. Nếu muốn, bạn đọc có thể tham khảo thêm ở phần [1.1. Impartial game - Game Theory, Alive](https://homes.cs.washington.edu/~karlin/GameTheoryBook.pdf).
 
@@ -88,12 +88,12 @@ Ta có ý tưởng thuật toán để tìm tập $P$ và $N$ như sau:
 bool isInP(State u) {
     if (u in T) // nếu u là trạng thái kết thúc thì u thuộc P
         return true;
-    
+
     // duyệt qua tất cả các trạng thái v trong tập hợp S
-    for (State v in S) 
+    for (State v in S)
         if (u, v) in Q and isInP(v)
             return false; // nếu có v thuộc P thì u thuộc N
-    
+
     return true; // nếu không thì u thuộc P
 }
 ```
@@ -121,19 +121,19 @@ Sau đó, ta viết hàm xác định xem trạng thái $u$ có thuộc $P$ khô
 bool isInP(int u) {
     if (dp[u] != -1) // nếu u đã được tính trước đó thì
         return dp[u];
-    
+
     if (u == 0) { // u = 0 là trạng thái kết thúc nên thuộc P
         dp[u] = 1;
         return 1;
-    } 
-        
+    }
+
     // Từ u chỉ có thể đi tới các v hợp lệ
     for (int v = u - 1; v >= max(u - 3, 0); v--)
         if (isInP(v)) {
             dp[u] = 0;
-            return false; 
+            return false;
         }
-    
+
     // u không đi được trạng thái nào thuộc P
     dp[u] = 1;
     return true;
@@ -147,7 +147,7 @@ bool isInP(int u) {
 
 Sở dĩ ta quy ước như vậy vì c++ có cơ chế [implicit casting](https://www.cplusplus.com/doc/oldtutorial/typecasting/). Nói đơn giản, khi trả về $dp[u]$ trong hàm `isInP(u)`, $dp[u]$ sẽ được tự động ép kiểu về `bool` với quy tắc: $0$ là $\texttt{false}$, các giá trị khác là $\texttt{true}$.
 
-Cài đặt này tối ưu thời gian đệ quy bằng hai ý sau: 
+Cài đặt này tối ưu thời gian đệ quy bằng hai ý sau:
 1. Khi tính xong, trước khi trả về giá trị thì ta lưu giá trị lại vào một mảng $dp$ và ở đầu hàm $isInP(u)$
 2. Ta trả về $dp[u]$ nếu $dp[u] \neq -1$ (tức $u$ đã được tính trước đó).
 
@@ -155,13 +155,13 @@ Cuối cùng, ta viết hàm main để nhập xuất và kết luận nghiệm.
 ```c++
 int main() {
     int n;
-    
+
     cin >> n;
-    
+
     fill(dp, dp + n + 1, -1);
     if (!isInP(n)) cout << "A win";
     else cout << "B win";
-    
+
     return 0;
 }
 ```
@@ -218,14 +218,14 @@ $$\begin{align*}
         &=  (p_1 \oplus p_2 \oplus \ldots \oplus p_i \oplus \ldots \oplus p_n) \oplus g \\
         &= g \oplus g = 0
 \end{align*}$$
-        
+
 Lưu ý rằng phép XOR không giống phép cộng thông thường. Ở phép cộng hai số nguyên dương, kết quả luôn lớn hơn các toán hạng ban đầu. Tuy nhiên, trong phép XOR điều này không xảy ra, kết quả có thể lớn hơn hoặc nhỏ hơn các toán hạng ban đầu. Do đó việc ta có thể đảm bảo luôn tồn tại đống sỏi $i$ thỏa mãn yêu cầu $p'_i = g \oplus p_i < p_i$ không phải là điều hiển nhiên và **cần được chứng minh**.
 
 Vì $g > 0$ nên  biểu diễn nhị phân của $g$ luôn tồn tại bit trái nhất bằng $1$ (tạm gọi là $d$).Khi đó, xét bit thứ $d$ của tất cả các cột $p_i$, ta có số lượng $p_i$ có bit thứ $d$ bằng $1$ phải lẻ (theo tính chất của phép XOR), do đó luôn tồn tại một đống sỏi có bit thứ $d$ bằng $1$. Chọn đống sỏi có bit thứ $d$ bằng $1$ đó để thực hiện bốc sỏi, ta thấy $p'_i = p_i \oplus g < p_i$ bởi vì khi XOR bit tại vị trí $d$ bằng $1 \oplus 1 = 0$, do đó $p'_i$ luôn mất một bit $1$ tại vị trí $d$ so với $p_i$.
 
 > Ví dụ, nếu trò chơi Nim hiện tại có $4$ cột có số sỏi lần lượt là $7$, $10$, $12$, $5$, thì thao tác tính tổng Nim và chọn cột để lấy sỏi ra sẽ diễn ra như hình dưới
 >
-> [[/uploads/game_theory_bouton_proof_2.png]]
+> ![](/uploads/game_theory_bouton_proof_2.png)
 
 Cuối cùng, với một trạng thái thuộc $\hat{P}$ (tức $g = 0$), mọi cách đi đều dẫn tới trạng thái thuộc $\hat{N}$ (tức $g > 0$). Ta có thể chứng minh dễ dàng bằng phương pháp phản chứng. Giả sử trạng thái trò chơi hiện tại là $(p_1, \ldots, p_n)$ có tổng Nim $g = 0$ và tồn tại một đống sỏi $i$ sao cho khi lấy bớt sỏi từ $i$ ra trạng thái trò chơi mới có tổng Nim $g' = 0$. Khi đó
 
@@ -240,7 +240,7 @@ $$\begin{align*}
 Điều này có nghĩa là ta không bốc viên sỏi nào từ đống $p_i$ ra cả, mà theo giả thuyết ta phải bốc ít nhất một viên ($p'_i < p_i$), vì vậy không thể tồn tại đống sỏi $i$ nào thỏa mãn yêu cầu.
 > Ví dụ, nếu trò chơi Nim hiện tại có $3$ đống có số sỏi lần lượt là $5$, $6$, $3$, thì tổng Nim $g = 0$. Xét bit đầu tiên từ phải qua, ta thấy được số lượng bit được bật tại vị trí này là số chẵn ($2$, tương ứng với bit đầu tiên của $5$ và $3$). Tương tự, số lượng các bit được bật tại các vị trị khác đều có tính chất này. Điều này không phải là trùng hợp mà do tính chất của phép XOR, nếu muốn bit thứ $i$ trong kết quả bằng $0$ thì số lượng bit thứ $i$ được bật trong các toán hạng phải là số chẵn. Từ đây ta nhận thấy, việc bỏ sỏi ở một đống sỏi chỉ có thể làm thay đổi số lượng bit được bật tại mỗi vị trí $i$ lên hoặc xuống 1 đơn vị, do đó dù cho lấy sỏi ở cột nào đi nữa thì vẫn sẽ xuất hiện một vị trí có số bit được bật là lẻ.
 >
-> [[/uploads/game_theory_bouton_proof_3.png]]
+> ![](/uploads/game_theory_bouton_proof_3.png)
 
 Rõ ràng $\hat{P}$ và $\hat{N}$ thỏa mãn ba điều kiện theo định nghĩa của tập $P$ và $N$ trong trò chơi tổng quát, vì vậy $P = \hat{P}$ và $N = \hat{N}$. $\square$
 
@@ -258,9 +258,9 @@ bool isInP(vector<int> v) {
 ```
 ### Misère Nim
 
-Ngoài trò chơi Nim chuẩn, có rất nhiều biến thể của trò chơi Nim. Một trong số đó là misère Nim, cách chơi giống như trò chơi Nim bình thường, tuy nhiên thay vì người lấy viên sỏi cuối cùng sẽ thắng, trong Misère Nim thì người lấy viên sỏi cuối cùng sẽ thua. 
+Ngoài trò chơi Nim chuẩn, có rất nhiều biến thể của trò chơi Nim. Một trong số đó là misère Nim, cách chơi giống như trò chơi Nim bình thường, tuy nhiên thay vì người lấy viên sỏi cuối cùng sẽ thắng, trong Misère Nim thì người lấy viên sỏi cuối cùng sẽ thua.
 
-Khi đó, dựa vào trạng thái bắt đầu, ta có thể xác định việc thắng thua như sau: 
+Khi đó, dựa vào trạng thái bắt đầu, ta có thể xác định việc thắng thua như sau:
 - Nếu tất cả đống sỏi đều có số sỏi nhỏ hơn hơn $2$ (tức chỉ gồm các đống sỏi có $0$ và $1$ viên): nếu số lượng đống sỏi còn sỏi là lẻ (tức giá trị Nim $g=1$) thì người chơi đầu tiên sẽ thua, ngược lại (tức $g=0$) thì người chơi đầu tiên sẽ thắng.
 - Các trường hợp còn lại: Người chơi đầu tiên sẽ thắng nếu giá trị Nim hiện tại $g > 0$ , ngược lại sẽ thua. Chiến thuật để giành chiến thắng là chơi theo chiến lược Nim thông thường, trừ khi bước di chuyển tiếp theo làm các đống sỏi đều có nhỏ hơn $2$ viên, lúc đó người chơi thực hiện nước đi hiện tại sẽ đặt số lượng đống có $1$ viên sỏi là số lẻ để ép người kia phải bốc viên cuối cùng. Ta có thể chứng minh được nếu một người đang ở trạng thái có giá trị Nim $g > 0$, anh ta luôn có thể quyết định số lượng đống sỏi là chẵn hay lẻ và do đó luôn là người chiến thắng.
 
@@ -271,7 +271,7 @@ Nếu xem mỗi trạng thái trong tập trạng thái $S$ là một đỉnh, m
 
 > Ví dụ: trong trò chơi bốc sỏi ở phần đầu, giả sử ta chỉ có một đống sỏi $4$ viên, thì đồ thị của trò chơi sẽ như hình dưới, trạng thái kết thúc $0$ có bậc ra bằng $0$.
 >
-> [[/uploads/game_theory_graph_state.png]]
+> ![](/uploads/game_theory_graph_state.png)
 
 Cũng cần chú ý rằng các trò chơi được xem xét trong phần định lý Sprague-Grundy có một tính chất quan trọng, đó là chúng sẽ **kết thúc trong hữu hạn bước**. Khi đó, hiển nhiên đồ thị trò chơi phải không tồn tại chu trình, vì nếu tồn tại chu trình, sẽ tồn tại trường hợp người chơi cố tình đi theo chu trình đó và sẽ không bao giờ đến được đỉnh kết thúc, nghĩa là khi đó trò chơi sẽ lặp vĩnh viễn. Loại đồ thị có hướng không có chu trình như trên còn có thể gọi tắt là DAG ([Directed Acyclic Graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph)).
 
@@ -295,10 +295,10 @@ Hãy lấy ví dụ với một biến thể của trò chơi Nim chuẩn, trong
 Đầu tiên, ta cũng xét trò chơi ở dạng đơn giản nhất: chỉ có một đống sỏi duy nhất với $p$ viên. Vậy làm thế nào để bạn biết đó là trạng thái thuộc $P$ hay trạng thái thuộc $N$?
 
 Hãy nhìn trò chơi dưới góc độ đồ thị. Đồ thị này có $p + 1$ đỉnh có nhãn lần lượt là các số nguyên từ $0$ đến $p$. Mỗi đỉnh đồ thị tương ứng với một trạng thái trò chơi, trong đó nhãn của nó cho biết có bao nhiêu sỏi còn lại trong đống hiện tại. Hình dưới là ví dụ trò chơi với một đống sỏi có số sỏi $p = 5$.
-[[/uploads/game_theory_custom-nim.png]]
+![](/uploads/game_theory_custom-nim.png)
 
 Rõ ràng đỉnh $0$ là đỉnh kết thúc, do đó nó là đỉnh thuộc $P$. Các đỉnh tiếp theo có thể xác định là thuộc $P$ hay $N$ như hình dưới
-[[/uploads/game_theory_custom_nim_PN.gif]]
+![](/uploads/game_theory_custom_nim_PN.gif)
 
 Tuy nhiên, cách làm ở trên chỉ cho ta trạng thái định tính của từng trạng thái, để phục vụ cho việc ghép các trò chơi lại, ta cần một hàm định lượng. Hàm mà chúng ta sẽ dùng có tên là hàm Sprague-Grundy, với một trạng thái $x \in S$ thì giá trị Sprague-Grundy được định nghĩa như sau:
 $$
@@ -310,7 +310,7 @@ Trong định nghĩa trên có dùng hàm mex (minimum excludant), hàm này s�
 Câu hỏi đặt ra là: tại sao lại là hàm Sprague-Grundy? Hàm này có ý nghĩa gì trong việc giải các trò chơi tổ hợp cân bằng?
 
 Để thấy rõ hơn ý nghĩa của hàm Sprague-Grundy, ta có thể ví dụ biến thể của trò chơi Nim ở trên.
-[[/uploads/game_theory_custom_nim_spfunc.png]]
+![](/uploads/game_theory_custom_nim_spfunc.png)
 
 Quan sát ví dụ ở trên, ta có nhận xét rằng các trạng thái $u$ thuộc $P$ đều có $g(u) = 0$ và các trạng thái $u$ thuộc $N$ đều có $g(u) > 0$. Điều này làm ta nhận ra sự tương đồng của giá trị Sprague-Grundy với một đại lượng ở phần trước - giá trị Nim. Đó là cảm nhận ban đầu để có định lý sau.
 
@@ -330,7 +330,7 @@ Hai định lý 1 và 2 trong phần này có ý nghĩa rất quan trọng, nó 
 
 Như vậy, ta thấy rằng thực ra cách giải trò chơi Nim cũng chỉ là một trường hợp riêng của cách giải với giá trị Sprague-Grundy này, trong đó giá trị Nim của trò chơi Nim chỉ có một đống $n$ viên sỏi tương đương với giá trị Sprague-Grundy $\text{mex}(\{0,1,\ldots,n-1\}) = n$
 > Ví dụ với trò chơi Nim chỉ có một đống $3$ viên sỏi
-> [[/uploads/game_theory_nim_SP.gif]]
+> ![](/uploads/game_theory_nim_SP.gif)
 
 và định lý Bouton tương đương định lý 2.
 
@@ -348,7 +348,7 @@ Ta sẽ ví dụ với trò chơi sau
 
 Cho bàn cờ $N \times N$ với $K$ quân mã trên đó. Không giống như quân mã trong cờ vua truyền thống, những quân mã này chỉ có thể di chuyển như thể hiện trong hình bên dưới (vì vậy tọa độ của các con sẽ chỉ bị giảm chứ không tăng, đảm bảo trò chơi kết thúc trong hữu hạn bước). Cùng một lúc có thể có nhiều quân ở cùng một ô của bàn cờ. Hai người chơi thay phiên nhau di chuyển. Khi tới lượt, người chơi chọn một trong các quân mã và di chuyển nó. Người chơi không thể thực hiện nước đi ở lượt của mình là người thua.
 
-[[/uploads/game_theory_sp_exercise.png]]
+![](/uploads/game_theory_sp_exercise.png)
 
 Đầu tiên, vì luật chơi cho phép có nhiều quân mã trên cùng ô nên các quân mã có thể di chuyển độc lập với nhau, như vậy ta có thể coi trò chơi có $K$ quân mã là trò chơi tổng của $K$ trò chơi thành phần, trong đó trò chơi thành phần thứ $i$ chỉ có quân mã thứ $i$ trên bàn cờ.
 
@@ -375,7 +375,7 @@ int mex(vector<int>& U) {
 int calculateGValue(int i, int j) {
     if (g[i][j] != -1)
         return g[i][j];
-    
+
     int res = 0;
     vector<int> U;
     // lấy giá trị SP của các trạng thái mà (i,j) có thể đi tới
@@ -445,7 +445,7 @@ Với $g, g_1, \ldots, g_n$ lần lượt là hàm Sprague-Grundy của trò ch�
 
 **Chứng minh**:
 
-Do $G$ là một trò chơi tổ hợp cân bằng, do đó theo định lý 1 thì 
+Do $G$ là một trò chơi tổ hợp cân bằng, do đó theo định lý 1 thì
 $$g(x_1, \ldots, x_n) = mex(\{g(y_1, \ldots, y_n) | (x_1, \ldots, x_n) \rightarrow (y_1, \ldots, y_n) \in Q\})$$
 
 Từ đó, nếu gọi $U = \{g(y_1, \ldots, y_n) | (x_1, \ldots, x_n) \rightarrow (y_1, \ldots, y_n) \in Q\}$, ta thấy nếu muốn chứng minh $g(x_1, \ldots, x_n) = g_1(x_1) \oplus \ldots \oplus g_n(x_n) = s$ thì ta cần chứng minh
@@ -460,7 +460,7 @@ Chi tiết hơn, ta cần chứng minh hai điều sau:
 Để chứng minh ý 1, với một $0 \leq t < s$ bất kỳ, ta xét $s \oplus t$, vì $s > 0$ nên biểu diễn nhị phân của $s \oplus t$ luôn tồn tại bit trái nhất bằng $1$ (tạm gọi là $d$).Khi đó, bit thứ $d$ của một trong hai số $s$ và $t$ phải bằng $1$ và bit thứ $d$ của số còn lại bằng bằng $0$. Tuy nhiên, do $s > t$ nên bit thứ $d$ của $s$ bằng $1$ và bit thứ $d$ của $t$ bằng $0$, trường hợp kia không thể xảy ra. Lập luận tiếp rằng $s = g_1(x_1) \oplus \ldots \oplus g_n(x_n)$, tương tự như khi chứng minh định lý Bouton, nếu bit thứ $d$ của $s$ là $1$ thì ta có số lượng $g_i(x_i)$ có giá trị Sprague-Grundy có bit thứ $d$ bằng $1$ phải lẻ (theo tính chất của phép XOR), do đó luôn tồn tại một trò chơi có bit thứ $d$ bằng $1$. Chọn trò chơi mà giá trị Sprague-Grundy có bit thứ $d$ bằng $1$ để thực hiện bốc sỏi, ta thấy $(s \oplus t) \oplus g_i(x_i) < g_i(x_i)$ nên theo định nghĩa hàm Sprague-Grundy chắc chắn tồn tại $x'_i$ có $g_i(x'_i) = (s \oplus t) \oplus g_i(x_i)$ và từ $x_i$ có thể di chuyển đến $x'_i$. Theo định nghĩa trò chơi tổng, khi đó bước di chuyển từ $(x_1,\ldots, x_i, \ldots, x_n)$ tới $(x_1,\ldots, x'_i, \ldots, x_n)$ là hợp lệ và:
 
 $$\begin{align*}
-g_1(x_1) &\oplus \ldots \oplus g_i(x'_i) \oplus \ldots \oplus g_n(x_n) 
+g_1(x_1) &\oplus \ldots \oplus g_i(x'_i) \oplus \ldots \oplus g_n(x_n)
 \\
 &= g_1(x_1) \oplus \ldots \oplus [(s \oplus t) \oplus g_i(x_i)] \oplus \ldots \oplus g_n(x_n)
 \\
@@ -482,5 +482,3 @@ g(x'_i) &= g(x_i)
 Điều này là mâu thuẫn với giả thuyết ban đầu là ta chọn trò chơi thành phần $i$ để di chuyển trạng thái (khi đó $x'_i \neq x_i$).
 
 Với hai ý được chứng minh này, ta đã chứng minh được định lý 2. $\square$
-
-

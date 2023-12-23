@@ -83,7 +83,7 @@ Chứng minh tính đúng đắn của nó khá dài, bạn đọc muốn tìm h
 
 Dưới đây sẽ là một số hình ảnh để bạn đọc có thể có một số ý tưởng tại sao nó lại đúng.
 
-[[/uploads/binary-lifting_img1.png]]
+![](/uploads/binary-lifting_img1.png)
 
 Ở đây, đỉnh `y` là lá ta vừa thêm vào cây. Các mũi tên màu đỏ thể hiện các cú nhảy qua con trỏ `jump`, còn mũi tên màu xanh là đi lên cha nó qua con trỏ `parent`. Dễ thấy khi xem lại hàm `find` của ta, nó sẽ thử nhảy bước $2d + 1$, nếu không được thì sẽ nhảy lên đỉnh cha. Bước nhảy ở đỉnh cha sẽ luôn luôn ngắn hơn bước nhảy của đỉnh con, ngắn hơn ít nhất $2$ lần.
 
@@ -91,7 +91,7 @@ Nhớ lại, đây không phải giống hệt binary lifting mà ta biết hay 
 
 Điều này giúp ta giải thích việc ta luôn tìm được đỉnh có bước nhảy bé hơn nhanh. Thế nếu ta ở một đỉnh rất sâu, mà nó lại không có bước nhảy đủ to thì sao? Vậy thì việc có bước nhảy bé hơn thì có tác dụng gì? Ta nhìn vào bức ảnh lớn hơn:
 
-[[/uploads/binary-lifting_img2.png]]
+![](/uploads/binary-lifting_img2.png)
 
 Bức ảnh không lớn lắm, nhưng mong bạn đọc có thể nhận ra bức tranh tổng thể mà thuật toán muốn thực hiện. Nhận thấy rằng sau tối đa hai bước nhảy qua con trỏ `jump`, ta sẽ đến được một đỉnh có bước nhảy lớn hơn ít nhất gấp đôi. Tức là, nếu ta cứ nhảy qua con trỏ `jump` liên tục, độ dài của bước nhảy sẽ tăng theo cấp số nhân.
 

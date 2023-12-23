@@ -87,7 +87,7 @@ Hay viết $C_{ij} = \begin{bmatrix} a_{i1} & a_{i2} & ... & a_{in} \end{bmatrix
 
 - Minh họa tích ma trận $AB$ của hai ma trận $A$ và $B$:
 
-[[/uploads/matrix-multiplication_img1.png]]
+![](/uploads/matrix-multiplication_img1.png)
 
 - **Ví dụ:** Cho $2$ ma trận
 
@@ -308,7 +308,7 @@ Gọi $F_i$ là số cách lát các viên gạch nhỏ vào hình chữ nhật 
 
 $\Rightarrow$ $F_i = F_{i - 1} + F_{i - 2}$.
 
-[[/uploads/matrix-multiplication_img2.png]]
+![](/uploads/matrix-multiplication_img2.png)
 
 Do đó, bài toán quy về tìm số $Fibonacci$ thứ $N$ với dãy $Fibonacci$ được định nghĩa như sau:
 

@@ -33,7 +33,7 @@ Ta có thể xử lí các thao tác một cách hiệu quả này với các t�
 
 Cấu trúc của cây được thể hiện qua ví dụ sau đây:
 
-[[/uploads/disjoint-set-union_img1.png]]
+![](/uploads/disjoint-set-union_img1.png)
 
 Ban đầu, mỗi phần tử thuộc một tập hợp riêng biệt, vậy mỗi đỉnh là một cây riêng biệt. Bước tiếp theo, ta gộp hai tập hợp chứa phần tử $1$ và $2$. Sau đó, ta gộp hai tập hợp chứa phần tử $3$ và $4$. Cuối cùng, ta gộp hai tập hợp chứa phần tử $1$ và $3$.
 
@@ -618,15 +618,15 @@ Ta có thể thấy rõ hơn thông tin mà mảng $cnt$ lưu trữ trong quá t
 
 | Chú thích | Minh họa |
 | -------- | -------- |
-| dfs xuống cây con $v_1$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | [[/uploads/disjoint-set-union_img5.png]] |
-| $v_1$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $cnt$ | [[/uploads/disjoint-set-union_img6.png]] |
-| dfs xuống cây con $v_3$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | [[/uploads/disjoint-set-union_img7.png]] |
-| $v_3$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $cnt$ | [[/uploads/disjoint-set-union_img8.png]] |
-| dfs xuống cây con $v_2$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | [[/uploads/disjoint-set-union_img9.png]] |
-| $v_2$ là `bigChild`,  do đó ta giữ nguyên các màu trong cây con này trong mảng $cnt$ | [[/uploads/disjoint-set-union_img10.png]] |
-| Thêm các màu trong cây con $v_1$ vào mảng $cnt$ | [[/uploads/disjoint-set-union_img11.png]] |
-| Thêm các màu trong cây con $v_3$ vào mảng $cnt$ | [[/uploads/disjoint-set-union_img12.png]] |
-| Thêm đỉnh $u$ vào mảng $cnt$ | [[/uploads/disjoint-set-union_img13.png]] |
+| dfs xuống cây con $v_1$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img5.png) |
+| $v_1$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $cnt$ | ![](/uploads/disjoint-set-union_img6.png) |
+| dfs xuống cây con $v_3$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img7.png) |
+| $v_3$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $cnt$ | ![](/uploads/disjoint-set-union_img8.png) |
+| dfs xuống cây con $v_2$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img9.png) |
+| $v_2$ là `bigChild`,  do đó ta giữ nguyên các màu trong cây con này trong mảng $cnt$ | ![](/uploads/disjoint-set-union_img10.png) |
+| Thêm các màu trong cây con $v_1$ vào mảng $cnt$ | ![](/uploads/disjoint-set-union_img11.png) |
+| Thêm các màu trong cây con $v_3$ vào mảng $cnt$ | ![](/uploads/disjoint-set-union_img12.png) |
+| Thêm đỉnh $u$ vào mảng $cnt$ | ![](/uploads/disjoint-set-union_img13.png) |
 
 Lúc này mảng $cnt$ đã có đủ các màu trong cây con gốc $u$ và ta có thể trả lời các truy vấn của đỉnh $u$.
 

@@ -98,8 +98,8 @@ Vậy tại sao phải tính được trước độ dài đường đi ngắn n
     - Nếu hai điều kiện trên không thỏa mãn, cạnh này bị xóa bỏ khỏi đồ thị.
 
 **Ví dụ:**
-- Đồ thị ban đầu: [[/uploads/shortest-path-dag_img1.png]]
-- Đồ thị đã thay đổi: [[/uploads/shortest-path-dag_img2.png]]
+- Đồ thị ban đầu: ![](/uploads/shortest-path-dag_img1.png)
+- Đồ thị đã thay đổi: ![](/uploads/shortest-path-dag_img2.png)
 
 Khi đó, $f(i)$ chính là số đường đi từ $1$ đến $i$. Bài toán này trở thành bài _Đếm số đường đi trên DAG_.
 

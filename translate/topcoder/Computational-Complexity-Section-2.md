@@ -188,7 +188,7 @@ với một hằng số $c$ nào đó. Ta sẽ chứng minh rằng tồn tại m
 
 Giả sử $f (N/2) \leq d (N/2)lg(N/2)$. Ta có:
 
-[[/uploads/topcoder_translate_new57.png]]
+![](/uploads/topcoder_translate_new57.png)
 
 Nói cách khác, phép quy nạp sẽ đúng nếu $d>c$. Ta luôn luôn có thể chọn $d$ lớn thỏa mãn điều kiện này.
 
@@ -209,17 +209,17 @@ Tương tự như các phần trên, ta chỉ quan tâm tới cận trên tiệm
 ## Ví dụ 4
 
 Cây đệ quy cho thuật toán *MergeSort* ở Ví dụ 3 với 5 phần tử.
-[[/uploads/topcoder_translate_tree1.png]]
+![](/uploads/topcoder_translate_tree1.png)
 
 Cây đệ quy cho công thức truy hồi tương ứng của *MergeSort*. Số trong mỗi đỉnh biểu thị số bước mà thuật toán thực thi tại đỉnh đó.
 
-[[/uploads/topcoder_translate_tree2.png]]
+![](/uploads/topcoder_translate_tree2.png)
 
 ## Ví dụ 5
 
 Cây đệ quy trong trường hợp xấu nhất của phương trình (1):
 
-[[/uploads/topcoder_translate_tree3.png]]
+![](/uploads/topcoder_translate_tree3.png)
 
 Một cách xử lý phổ biến trong toán tổ hợp là tính tổng các cấu hình theo thứ tự mới khác với thứ tự mà các tổ hợp được tạo ra. Trong trường hợp này ta tính tổng theo từng mức trên cây (các đỉnh có cùng độ sâu). Không khó để nhận ra rằng tổng độ phức tạp ở mỗi mức là $cN$.
 
@@ -246,7 +246,7 @@ $$
 
 Cây đệ quy sẽ có dạng sau:
 
-[[/uploads/topcoder_translate_tree5.png]]
+![](/uploads/topcoder_translate_tree5.png)
 
 Thử tính toán độ phức tạp tại vài mức đầu tiên, ta có:
 
@@ -290,7 +290,7 @@ $$
 f(N) = 5f(N/3) + \Theta(N)
 $$
 Cây đệ quy sẽ có dạng sau
-[[/uploads/topcoder_translate_tree4.png]]
+![](/uploads/topcoder_translate_tree4.png)
 
 Như trên, thử tính số lệnh cần thực thi ở vài mức đầu tiên. Ta có:
 

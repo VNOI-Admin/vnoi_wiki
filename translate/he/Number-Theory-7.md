@@ -27,7 +27,7 @@ $\|\bigcup_{i=1}^n A_i\| = \sum_{C \subset B} (-1)^{\|C\|-1} \| \bigcap_{e \in C
 
 Ta có biểu đồ sau biểu diễn ba tập hợp $A$, $B$ và $C$.
 
-[[/uploads/number-theory-venn-diagram.png]]
+![](/uploads/number-theory-venn-diagram.png)
 
 Khi đó ta thấy lực lượng của $A \cup B \cup C$ bằng lực lượng của $A$, $B$, $C$ trừ đi lực lượng của $A \cap B$, $B \cap C$, $C \cap A$ rồi cộng thêm lực lượng của $A \cap B \cap C$.
 
