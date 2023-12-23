@@ -10,7 +10,7 @@ Cho N điểm trên mặt phẳng, đánh số từ 1 đến N. Tìm một chu t
 
 Bài toán này là NP, không có thuật toán tối ưu với độ phức tạp đa thức. Tên gọi phổ biến của bài này là Traveling Salesman Problem (TSP).
 
-Khi gặp bài NP, ta chỉ có thể tìm cách đưa ra một kết quả càng tối ưu càng tốt. Một số phương pháp thường dùng là [[tham lam|translate/topcoder/Greedy-is-Good]] hoặc local search - sẽ được nói trong bài viết này.
+Khi gặp bài NP, ta chỉ có thể tìm cách đưa ra một kết quả càng tối ưu càng tốt. Một số phương pháp thường dùng là [tham lam](/translate/topcoder/Greedy-is-Good) hoặc local search - sẽ được nói trong bài viết này.
 
 Bạn có thể nộp thử bài này ở [VNOJ](https://oj.vnoi.info/problem/torch/).
 

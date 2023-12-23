@@ -21,7 +21,7 @@ begin
       n := length(s);
       for i := 1 to (n div 2) do
            if s[i] <> s[n+1-i] then exit(false);
-      exit(true); 
+      exit(true);
 end;
 
 ```
@@ -36,9 +36,9 @@ var i, j : integer;
 begin
      i := 1;
      j := length(n);
-     while (i<j) 
+     while (i<j)
         begin
-               if s[i] <> s[j] then exit(false);  
+               if s[i] <> s[j] then exit(false);
                inc(i);
                dec(j);
         end;
@@ -107,15 +107,15 @@ procedure try( first, last : Longint );
 var dd : Longint;
 begin
       if first = last then
-          begin 
-                  dd := 1; 
-                  dec(first); 
-                  inc(last); 
+          begin
+                  dd := 1;
+                  dec(first);
+                  inc(last);
           end
       else dd := 0;
-      
+
       repeat
-           if (first < 1) or (last > N) then break; 
+           if (first < 1) or (last > N) then break;
            if s[i] = s[j] then
                begin
                      dd := dd + 2;
@@ -151,7 +151,7 @@ end;
 
 Cách làm này có độ phức tạp: $max \* (N-max)$. Vì vậy nó chạy nhanh hơn cách QHĐ trên, thời gian chậm nhất khi tất cả các ký tự giống nhau (khi đó, $max = N/2$): cũng chỉ mất $N^2/4$ và nhanh gấp 4 lần cách dùng QHĐ. Nhờ vậy, chúng ta biết là: không phải lúc nào QHĐ cũng chấp nhận được về mặt thời gian và không phải lúc nào duyệt lúc nào cũng chậm.
 
-Bài này còn có một cách NlogN nữa là dùng [[Suffix Aray|algo/data-structures/suffix-array]], thậm chí có cách $O(N)$ là sử dụng Suffix Tree và [[thuật toán tìm LCA|algo/data-structures/lca]]. Đương nhiên cách cài đặt không hề dễ dàng, tôi sẽ thảo luận với các bạn vào một dịp khác.
+Bài này còn có một cách NlogN nữa là dùng [Suffix Aray](/algo/data-structures/suffix-array), thậm chí có cách $O(N)$ là sử dụng Suffix Tree và [thuật toán tìm LCA](/algo/data-structures/lca). Đương nhiên cách cài đặt không hề dễ dàng, tôi sẽ thảo luận với các bạn vào một dịp khác.
 
 # Bài 3: Chia một xâu thành ít nhất các Palindrome
 
@@ -254,7 +254,7 @@ begin
       n := length(s);
       for i := 1 to n do
           F[i, i] := 1;
- 
+
       for k := 1 to n do
            for i := 1 to n-k do
                begin

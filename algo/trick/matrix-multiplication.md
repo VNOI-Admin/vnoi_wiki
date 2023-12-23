@@ -138,7 +138,7 @@ $A^k = \underbrace{A \times A \times A \times ... \times A}_\text{k}$
 
     $A^3 = A \times A \times A = A^2 \times A = \begin{bmatrix} 7 & 2 & 2 \newline 5 & 9 & 1 \newline 13 & 7 & 4 \end{bmatrix} \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix} = \begin{bmatrix} 17 & 20 & 4 \newline 34 & 13 & 10 \newline 42 & 38 & 11 \end{bmatrix}$
 
-Nhờ **tính chất kết hợp** của phép nhân ma trận nên ta có thể tính nhanh lũy thừa của ma trận tương tự như cách tính hàm mũ thông thường  bằng phương pháp **chia để trị**  (tính $a^k$ với $a$ là số nguyên). Bạn có thể tìm hiểu về cách tính hàm mũ tại [[đây|translate/he/Number-Theory-3]].
+Nhờ **tính chất kết hợp** của phép nhân ma trận nên ta có thể tính nhanh lũy thừa của ma trận tương tự như cách tính hàm mũ thông thường  bằng phương pháp **chia để trị**  (tính $a^k$ với $a$ là số nguyên). Bạn có thể tìm hiểu về cách tính hàm mũ tại [đây](/translate/he/Number-Theory-3).
 
 # Cài đặt
 
@@ -695,7 +695,7 @@ Số đẹp là một số nguyên dương với bất kỳ chữ số lẻ nào
 
 ## Phân tích
 
-Cách làm đơn giản nhất là ta sử dụng [[quy hoạch động|translate/topcoder/dynamic-programming]] với $4$ trạng thái:
+Cách làm đơn giản nhất là ta sử dụng [quy hoạch động](/translate/topcoder/dynamic-programming) với $4$ trạng thái:
 
 -  `added` : số lượng chữ số đã thêm vào.
 -  `ewoc` *(even_with_odd_cnt)* : số chữ số chẵn đã xuất hiện lẻ lần.
@@ -947,7 +947,7 @@ Ta còn có tính chất của dãy $Fibonacci$ như sau:
 - Ta có thể chuyển đổi hai số hạng đầu tiên của dãy $Fibonacci$ để nhận được một dãy mới.
 - Gọi $f1$, $f2$ là hai dãy mới được tạo thành từ việc chuyển đổi hai số hạng đầu tiên của dãy $Fibonacci$, và dãy $f3$ được xác định như sau $f3 \displaystyle_{\space i} = f1 \displaystyle_{\space i} + f2 \displaystyle_{\space i} \space (i \ge 1)$ thì dãy $f3$ vẫn tuân theo công thức truy hồi $f_n = f_{n-1} + f_{n-2}$.
 
-Sau khi sử dụng các tính chất trên, bài toán trở thành một hoạt động rất cơ bản của [[cây phân đoạn|algo/data-structures/segment-tree-extend.md]] *(Cây IT - Interval Tree / Segment Tree)*. Với mỗi nút của cây phân đoạn lưu lại hai giá trị đầu tiên của dãy. *Bạn có thể tham khảo code **không** sử dụng phương pháp nhân ma trận tại [đây](https://ideone.com/zRN7N1) để hiểu rõ hơn về cách cập nhật cây phân đoạn*.
+Sau khi sử dụng các tính chất trên, bài toán trở thành một hoạt động rất cơ bản của [cây phân đoạn](/algo/data-structures/segment-tree-extend.md) *(Cây IT - Interval Tree / Segment Tree)*. Với mỗi nút của cây phân đoạn lưu lại hai giá trị đầu tiên của dãy. *Bạn có thể tham khảo code **không** sử dụng phương pháp nhân ma trận tại [đây](https://ideone.com/zRN7N1) để hiểu rõ hơn về cách cập nhật cây phân đoạn*.
 
 Ở bài viết này, tôi sẽ sử dụng phương pháp **nhân ma trận** kết hợp với cây phân đoạn để giải quyết bài toán. Với mỗi nút của cây sẽ lưu lại ma trận hệ số của dãy $Fibonacci$.
 
@@ -1146,7 +1146,7 @@ Như vậy, bài toán được đưa về bài toán tính lũy thừa của m�
 
 ## Nhân tổ hợp dãy ma trận
 
-Trong phần [[Cài đặt|algo/trick/matrix-multiplication#cài-đặt]], ta đã có thuật toán nhân hai ma trận $A$ kích cỡ $(m \times n)$ và $B$ kích cỡ $(n \times p)$ cần độ phức tạp $\mathcal{O}(m \times n \times p)$. Giả sử ta có thêm ma trận $C$ có kích cỡ $(p \times q)$ và ta cần tính tích $A \times B \times C$. Xét hai cách thực hiện phép nhân này:
+Trong phần [Cài đặt](/algo/trick/matrix-multiplication#cài-đặt), ta đã có thuật toán nhân hai ma trận $A$ kích cỡ $(m \times n)$ và $B$ kích cỡ $(n \times p)$ cần độ phức tạp $\mathcal{O}(m \times n \times p)$. Giả sử ta có thêm ma trận $C$ có kích cỡ $(p \times q)$ và ta cần tính tích $A \times B \times C$. Xét hai cách thực hiện phép nhân này:
 
 - **Cách 1**: $(A \times B) \times C$ thực hiện nhân $A$ và $B$ rồi nhân với $C$ cần độ phức tạp $\mathcal{O}(m \times n \times p) + \mathcal{O}(m \times p \times q) = \mathcal{O}(m \times p \times (n + q))$.
 - **Cách 2**: $A \times (B \times C)$ thực hiện nhân $B$ và $C$ rồi nhân với $A$ cần độ phức tạp $\mathcal{O}(n \times p \times q) + \mathcal{O}(m \times n \times q) = \mathcal{O}(n \times q \times (m + p))$.
@@ -1157,7 +1157,7 @@ Như vậy là hai cách thực hiện khác nhau cần hai độ phức tạp k
 
 Khi độ dài của dãy ma trận tăng lên, sự khác biệt có thể còn lớn hơn nữa. Ví dụ trên đã cho thấy rằng trong một số trường hợp thứ tự thực hiện phép nhân ma trận có ý nghĩa rất lớn đối với việc tìm lời giải của các bài toán.
 
-Trong thực tế, bài toán xác định thứ tự nhân ma trận hiệu quả nhất là một bài toán rất phổ biến, bạn có thể tìm đọc chi tiết thêm tại [[đây|algo/dp/basic-problems#5-nhân-ma-trận]] hoặc ở [[Phần 3 mục 3.5 Phép Nhân Tổ Hợp dãy Ma Trận trong sách Giải thuật và lập trình của thầy Lê Minh Hoàng|algo/basic/Tai-Lieu-Thuat-Toan]].
+Trong thực tế, bài toán xác định thứ tự nhân ma trận hiệu quả nhất là một bài toán rất phổ biến, bạn có thể tìm đọc chi tiết thêm tại [đây](/algo/dp/basic-problems#5-nhân-ma-trận) hoặc ở [Phần 3 mục 3.5 Phép Nhân Tổ Hợp dãy Ma Trận trong sách Giải thuật và lập trình của thầy Lê Minh Hoàng](/algo/basic/Tai-Lieu-Thuat-Toan).
 
 ## Giải thuật Freivalds kiểm tra tích hai ma trận
 
@@ -1165,7 +1165,7 @@ Trong thực tế, bài toán xác định thứ tự nhân ma trận hiệu qu�
 
 ### **Phân tích**
 
-Cách làm thông thường là nhân trực tiếp hai ma trận $A, B$ rồi so sánh kết quả với $C$. Như đánh giá trong phần [[Cài đặt|algo/trick/matrix-multiplication#cài-đặt]], độ phức tạp của cách làm này là $\mathcal{O}(N^3)$, với $N = 1000$ thì cách làm này không đủ nhanh. Giải thuật $\mathrm{Freivalds}$ thực hiện việc kiểm tra thông qua thuật toán xác suất kiểu [Monte Carlo](https://vi.wikipedia.org/wiki/Ph%C6%B0%C6%A1ng_ph%C3%A1p_Monte_Carlo) với $k$ lần thử cho xác suất kết luận sai là xấp xỉ $2^{-k}$, mỗi lần thử có độ phức tạp $\mathcal{O}(N^2)$. Các bước cơ bản của một phép thử $\mathrm{Freivalds}$ như sau:
+Cách làm thông thường là nhân trực tiếp hai ma trận $A, B$ rồi so sánh kết quả với $C$. Như đánh giá trong phần [Cài đặt](/algo/trick/matrix-multiplication#cài-đặt), độ phức tạp của cách làm này là $\mathcal{O}(N^3)$, với $N = 1000$ thì cách làm này không đủ nhanh. Giải thuật $\mathrm{Freivalds}$ thực hiện việc kiểm tra thông qua thuật toán xác suất kiểu [Monte Carlo](https://vi.wikipedia.org/wiki/Ph%C6%B0%C6%A1ng_ph%C3%A1p_Monte_Carlo) với $k$ lần thử cho xác suất kết luận sai là xấp xỉ $2^{-k}$, mỗi lần thử có độ phức tạp $\mathcal{O}(N^2)$. Các bước cơ bản của một phép thử $\mathrm{Freivalds}$ như sau:
 
 1. Sinh ngẫu nhiên một ma trận $v$ kích cỡ $(N \times 1)$ với các phần tử chỉ nhận giá trị $0$ hoặc $1$.
 2. Tính hiệu $P = A \times B \times v - C \times v$. Dễ thấy rằng $P$ là ma trận kích cỡ $N \times 1$.

@@ -36,7 +36,7 @@ Cấu trúc trên vẫn có thể giải bài toán này khi có thêm truy vấ
 
 ## Phân tích
 
-Đầu tiên, ta phải trả lời được câu hỏi: tại sao lại chia thành $\sqrt{N}$ đoạn, mà không phải $1, 2, 10, N/2, ... $ ? 
+Đầu tiên, ta phải trả lời được câu hỏi: tại sao lại chia thành $\sqrt{N}$ đoạn, mà không phải $1, 2, 10, N/2, ... $ ?
 
 Gọi số đoạn ta chia ra là $S$. Vậy mỗi đoạn sẽ có độ dài $N/S$ (ta tạm bỏ qua đoạn cuối).
 
@@ -50,7 +50,7 @@ Mỗi truy vấn ta mất thời gian là $O(S + N/S)$. Ta cần tìm giá trị
 
 ## Cài đặt
 
-Ta cần phải lưu những cấu trúc sau: 
+Ta cần phải lưu những cấu trúc sau:
 * $\sqrt{N}$ mảng $cnt$, mỗi mảng có độ dài $max(A_i)$, tốn $O(\sqrt{N} * max(A_i)$) bộ nhớ.
 * Mảng $A$, tốn $O(N)$ bộ nhớ.
 
@@ -80,17 +80,17 @@ int query(int l, int r, int k)
     int blockR = r / BLOCK_SIZE;
     if (blockL >= blockR)
         return count(a + l, a + r + 1, k);
-    
+
     int sum = 0;
     for (int i = blockL; i < blockR; ++i)
         sum += cnt[i][k];
-        
+
     for (int i = l, lim = blockL * BLOCK_SIZE; i < lim; ++i)
         if (a[i] == k) ++sum;
-        
+
     for (int i = blockR * BLOCK_SIZE; i <= r; ++i)
         if (a[i] == k) ++sum;
-        
+
     return sum;
 }
 ```
@@ -108,12 +108,12 @@ void update(int u, int v)
 ```
 
 # Bài toán 2
-Tiếp nối bài toán đầu tiên, chúng ta hãy cùng đi sâu hơn vào các bài toán chia mảng ra làm $\sqrt{N}$ đoạn nhưng có truy vấn cập nhật. 
+Tiếp nối bài toán đầu tiên, chúng ta hãy cùng đi sâu hơn vào các bài toán chia mảng ra làm $\sqrt{N}$ đoạn nhưng có truy vấn cập nhật.
 
-**Lưu ý:** Bài tập có cách giải tối ưu nhất sử dụng Segment Tree, tuy nhiên vì mục đích của bài viết này nên bài tập sẽ được giải bằng chia căn. 
+**Lưu ý:** Bài tập có cách giải tối ưu nhất sử dụng Segment Tree, tuy nhiên vì mục đích của bài viết này nên bài tập sẽ được giải bằng chia căn.
 
 
-## Đề bài 
+## Đề bài
 
 Các bạn có thể nộp bài ở [đây](http://codeforces.com/group/FLVn1Sc504/contest/315912/problem/A)
 
@@ -123,7 +123,7 @@ Ghi chú: $oval,nval$ là viết tắt cho _old value_ và _new value_.
 
 ## Cách giải
 ### Giả sử các truy vấn đều có $l = 1, r=N$
-Với giả sử trên, ta sẽ giải bài toán với đpt $O(Q*100 + N)$. Ta sẽ tạo mảng $lazy[oval]$ với ý nghĩa là các số ban đầu là $oval$ thì hiện tại đã được đổi giá trị sang $lazy[oval]$. Ban đầu $lazy[oval] = oval$ với $1 \le oval \le 100$. Với mỗi truy vấn $(l,r,oval,nval)$, ta sẽ làm như sau: 
+Với giả sử trên, ta sẽ giải bài toán với đpt $O(Q*100 + N)$. Ta sẽ tạo mảng $lazy[oval]$ với ý nghĩa là các số ban đầu là $oval$ thì hiện tại đã được đổi giá trị sang $lazy[oval]$. Ban đầu $lazy[oval] = oval$ với $1 \le oval \le 100$. Với mỗi truy vấn $(l,r,oval,nval)$, ta sẽ làm như sau:
 
 ```cpp
 for (int i = 1; i <= 100; ++i) {
@@ -132,7 +132,7 @@ for (int i = 1; i <= 100; ++i) {
 ```
 
 Với thao tác cập nhật mảng lazy này, về mặt ý nghĩa, tất cả các số hiện đang có giá trị là $oval$ sẽ được gán lại thành $nval$.
-Sau khi thực hiện tất cả các truy vấn, chúng ta có thể lấy giá trị của các số trong mảng như sau: 
+Sau khi thực hiện tất cả các truy vấn, chúng ta có thể lấy giá trị của các số trong mảng như sau:
 ```cpp
 for (int i = 1; i <= n; ++i) {
     a[i] = lazy[a[i]];
@@ -140,14 +140,14 @@ for (int i = 1; i <= n; ++i) {
 ```
 Vậy là chúng ta đã giải xong bài toán với độ phức tạp $O(Q*100 + N)$.
 
-### Giải bài toán gốc 
+### Giải bài toán gốc
 Ta sẽ áp dụng ý tưởng trên vào để giải bài toán gốc. Ta cũng chia mảng thành $\sqrt{N}$ đoạn. Xét một truy vấn $(l,r,oval,nval)$ ta có:
 * $blockL$ là block đầu tiên ở bên phải $l$
 * $blockR$ là block chứa $r$
 * Với mỗi block, ta sẽ có mảng $lazy$ với định nghĩa như trên. Ví dụ block $3$, các số đang có giá trị là $oval$ sẽ được đổi thành giá trị $nval$ $\Leftrightarrow$ $lazy[3][oval]=nval$
 
 Vậy truy vấn của chúng ta sẽ được chia làm 3 phần (có thể rỗng) như sau:
-* Phần dư bên trái: $[ l ... blockL * BLOCK\\_SIZE - 1 ]$ 
+* Phần dư bên trái: $[ l ... blockL * BLOCK\\_SIZE - 1 ]$
 * Phần dư bên phải: $[ blockR * BLOCK\\_SIZE ... r ]$
 * Phần đầy đủ các block: $[ blockL * BLOCK\\_SIZE ... blockR * BLOCK\\_SIZE - 1 ]$
 
@@ -165,13 +165,13 @@ void blockUpdate(int id, int oval, int nval) {
 }
 ```
 
-Vậy là chúng ta đã cập nhật xong cho tất cả các block thuộc *phần đầy đủ các block*. *Chú ý*, việc cập nhật này chúng ta chỉ đánh dấu là các phần tử đang có giá trị là $oval$ *sẽ được thay đổi* thành $nval$. Giá trị của các phần tử trong đoạn này sau cập nhật *không có sự thay đổi nào* (ý tưởng giống như [[Lazy Propagation|algo/data-structures/segment-tree-extend.md#2-lazy-propagation]].
+Vậy là chúng ta đã cập nhật xong cho tất cả các block thuộc *phần đầy đủ các block*. *Chú ý*, việc cập nhật này chúng ta chỉ đánh dấu là các phần tử đang có giá trị là $oval$ *sẽ được thay đổi* thành $nval$. Giá trị của các phần tử trong đoạn này sau cập nhật *không có sự thay đổi nào* (ý tưởng giống như [Lazy Propagation](/algo/data-structures/segment-tree-extend.md#2-lazy-propagation).
 
 #### Tiếp theo, chúng ta cập nhật *phần dư bên trái*:
 
 Gọi block của *phần dư bên trái* là $id$.
 
-Vì *phần dư bên trái* không bao phủ trọn vẹn 1 block, nên chúng ta sẽ không thể dùng mảng $lazy$ để cập nhật được như ở trên. Thay vào đó chúng ta sẽ phải duyệt từng phần tử trong phần này và cập nhật (xét mỗi phần tử, nếu giá trị của nó là $oval$ thì gán giá trị mới là $nval$): 
+Vì *phần dư bên trái* không bao phủ trọn vẹn 1 block, nên chúng ta sẽ không thể dùng mảng $lazy$ để cập nhật được như ở trên. Thay vào đó chúng ta sẽ phải duyệt từng phần tử trong phần này và cập nhật (xét mỗi phần tử, nếu giá trị của nó là $oval$ thì gán giá trị mới là $nval$):
 
 ```cpp
 void manualUpdate(int L, int R, int oval, int nval) { // L R là đầu trái và đầu phải của phần dư bên trái
@@ -183,7 +183,7 @@ void manualUpdate(int L, int R, int oval, int nval) { // L R là đầu trái v�
 }
 ```
 
-Tuy nhiên, các phần tử trong *phần dư bên trái* này có thể đang chịu ảnh hưởng từ mảng $lazy$ của các truy vấn trước đó, nên chúng ta cần *thực sự cập nhật* các phần tử này bằng mảng $lazy$, sau đó mới thực hiện $manualUpdate$ (giống như bước Propagate trong Lazy Propagation). 
+Tuy nhiên, các phần tử trong *phần dư bên trái* này có thể đang chịu ảnh hưởng từ mảng $lazy$ của các truy vấn trước đó, nên chúng ta cần *thực sự cập nhật* các phần tử này bằng mảng $lazy$, sau đó mới thực hiện $manualUpdate$ (giống như bước Propagate trong Lazy Propagation).
 
 ```cpp
 void doLazy(int id) { // L R là đầu trái và đầu phải của phần dư bên trái
@@ -193,7 +193,7 @@ void doLazy(int id) { // L R là đầu trái và đầu phải của phần dư
         a[i] = lazy[id][a[i]]; // thay đổi giá trị các phần tử bằng mảng lazy
     }
     for (int i = 1; i <= 100; ++i) {
-        lazy[id][i] = i; // đã cập nhật xong, reset lại mảng lazy về ban đầu 
+        lazy[id][i] = i; // đã cập nhật xong, reset lại mảng lazy về ban đầu
     }
 }
 ```

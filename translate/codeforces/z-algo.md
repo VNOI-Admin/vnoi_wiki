@@ -4,7 +4,7 @@
 
 [[_TOC_]]
 
-Trước khi đọc bài này, các bạn có thể đọc bài [[Xử lý xâu|algo/string/basic]] để nắm được các thuật ngữ cơ bản.
+Trước khi đọc bài này, các bạn có thể đọc bài [Xử lý xâu](/algo/string/basic) để nắm được các thuật ngữ cơ bản.
 
 **Z Algorithm** hay còn gọi là **Z Function** là thuật toán áp dụng cho các bài so khớp chuỗi.
 

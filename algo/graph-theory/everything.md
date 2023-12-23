@@ -2,7 +2,7 @@
 
 [[_TOC_]]
 
-[[Sách thầy Lê Minh Hoàng|algo/basic/Tai-Lieu-Thuat-Toan]] đã trình bày rất chi tiết về phần lý thuyết đồ thị, do đó VNOI wiki sẽ không viết lại nữa.
+[Sách thầy Lê Minh Hoàng](/algo/basic/Tai-Lieu-Thuat-Toan) đã trình bày rất chi tiết về phần lý thuyết đồ thị, do đó VNOI wiki sẽ không viết lại nữa.
 
 Trong bài viết này mình chỉ liệt kê lại các thuật toán trong đồ thị và dẫn link đến các tài liệu bổ sung:
 

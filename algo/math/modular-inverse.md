@@ -20,13 +20,13 @@ Có thể chứng minh rằng $a^{-1}$ luôn luôn tồn tại nếu $gcd(a, m) 
 
 Trong bài viết này, mình sẽ trình bày 2 cách khác nhau để tìm nghịch đảo modulo, dựa trên các kiến thức đã được trình bày ở các bài viết trên VNOI:
 
-- [[Extended Euclid|translate/he/So-hoc-Phan-1-Modulo-gcd]]
-- [[Tính a^b % c bằng chia để trị|translate/he/Number-Theory-3]]
-- [[Phi hàm Euler|translate/he/Number-Theory-4]]
+- [Extended Euclid](/translate/he/So-hoc-Phan-1-Modulo-gcd)
+- [Tính a^b % c bằng chia để trị](/translate/he/Number-Theory-3)
+- [Phi hàm Euler](/translate/he/Number-Theory-4)
 
 # Extended Euclid
 
-Như đã trình bày trong bài viết [[Số học 1|translate/he/So-hoc-Phan-1-Modulo-gcd]], nếu $gcd(a, m) = 1$, ta luôn luôn tìm được 2 số nguyên x và y thoả mãn:
+Như đã trình bày trong bài viết [Số học 1](/translate/he/So-hoc-Phan-1-Modulo-gcd), nếu $gcd(a, m) = 1$, ta luôn luôn tìm được 2 số nguyên x và y thoả mãn:
 
 $a \*x + m \* y = 1$.
 
@@ -54,7 +54,7 @@ Khi $gcd(a, m) = 1$, theo định lý Euler, ta có:
 
 $a^{phi(m)} \equiv 1 \pmod{m}$.
 
-Với Phi hàm Euler đã được giải thích ở bài viết [[Số học 4|translate/he/Number-Theory-4]].
+Với Phi hàm Euler đã được giải thích ở bài viết [Số học 4](/translate/he/Number-Theory-4).
 
 Trong trường hợp $m$ là số nguyên tố, $phi(m) = m - 1$, nên ta có:
 
@@ -65,7 +65,7 @@ Nhân cả 2 vế với $a^{-1}$, ta được:
 - Với $m$ bất kỳ, $a^{phi(m) - 1} \equiv a^{-1} \pmod{m}$,
 - Với $m$ nguyên tố, $a^{m-2} \equiv a^{-1} \pmod{m}$.
 
-Như vậy, ta có thể dùng thuật toán [[Tính a^b % c bằng chia để trị|translate/he/Number-Theory-3]] để tính nghịch đảo modulo với độ phức tạp $O(\log{m})$.
+Như vậy, ta có thể dùng thuật toán [Tính a^b % c bằng chia để trị](/translate/he/Number-Theory-3) để tính nghịch đảo modulo với độ phức tạp $O(\log{m})$.
 
 # Tính tất cả nghịch đảo modulo m
 

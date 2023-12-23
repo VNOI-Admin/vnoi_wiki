@@ -2,15 +2,15 @@
 
 Bài viết bởi [leadhyena_inran](https://www.topcoder.com/members/leadhyena_inran/).
 
-Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/planning-an-approach-to-a-topcoder-problem-part-2/) 
+Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/planning-an-approach-to-a-topcoder-problem-part-2/)
 
 [[_TOC_]]
 
 # Tiếp cận từ dưới lên (Bottom-up Programming)
 
-Kỹ thuật này ngược với kỹ thuật chia nhỏ vấn đề đã được nói đến ở [[bài viết trước|translate/topcoder/Planning-an-Approach-to-a-Topcoder-Problem-Part-1]], và nó nên là kỹ thuật đầu tiên bạn nghĩ tới khi bạn chưa tìm ra hướng giải. Bottom-up programming là phương pháp xuất phát từ những hàm cơ bản, chỉnh sửa, thêm tính năng, kết hợp chúng để giải được bài toán ban đầu. Nhiều lúc khi vừa đọc đề bạn sẽ thấy rằng bạn cần một hàm cụ thể nào đó để giải bài này, nếu nó đã atomic hay dễ dàng cài đặt thì bạn có thể có thể xây dựng thẳng lên từ những hàm cơ bản đó thay vì chia nhỏ ra.
+Kỹ thuật này ngược với kỹ thuật chia nhỏ vấn đề đã được nói đến ở [bài viết trước](/translate/topcoder/Planning-an-Approach-to-a-Topcoder-Problem-Part-1), và nó nên là kỹ thuật đầu tiên bạn nghĩ tới khi bạn chưa tìm ra hướng giải. Bottom-up programming là phương pháp xuất phát từ những hàm cơ bản, chỉnh sửa, thêm tính năng, kết hợp chúng để giải được bài toán ban đầu. Nhiều lúc khi vừa đọc đề bạn sẽ thấy rằng bạn cần một hàm cụ thể nào đó để giải bài này, nếu nó đã atomic hay dễ dàng cài đặt thì bạn có thể có thể xây dựng thẳng lên từ những hàm cơ bản đó thay vì chia nhỏ ra.
 
-Trong bài [MatArith](https://community.topcoder.com/stat?c=problem_statement&pm=511&rd=4335) ở phần trước, chương trình con để cộng và nhân ma trận cũng có thể áp dụng kĩ thuật này. Bạn có thể viết một hàm `evalMult` nhỏ hơn có nhiệm vụ nhân các ma trận với nhau bằng cách xử lí luôn trên string, một hàm `evalAdd` tương tự để cộng ma trận. 
+Trong bài [MatArith](https://community.topcoder.com/stat?c=problem_statement&pm=511&rd=4335) ở phần trước, chương trình con để cộng và nhân ma trận cũng có thể áp dụng kĩ thuật này. Bạn có thể viết một hàm `evalMult` nhỏ hơn có nhiệm vụ nhân các ma trận với nhau bằng cách xử lí luôn trên string, một hàm `evalAdd` tương tự để cộng ma trận.
 
 Nói chung, xây dựng dần dần lên những chương trình con trước khi giải quyết vấn đề chính của bài toán là một chiến thuật khá tốt. Một vài ví dụ điển hình là các thao tác trên cấu trúc dữ liệu (data structures), các toán tử của ma trận, số phức... Bạn sẽ thấy rằng, bằng việc giải quyết những vấn đề nhỏ trước, bạn sẽ hình dung rõ hơn bạn cần làm gì. Thỉnh thoảng, nếu bạn bị bế tắc với cách này, thì hãy viết một vài dòng atomic code để xem việc chia nhỏ vấn đề ra thì có hợp lí hơn hay không. Như bạn thấy, để tìm được cách tiếp cận đúng thì phải thử để biết cách tiếp cận nào sai trước đã.
 

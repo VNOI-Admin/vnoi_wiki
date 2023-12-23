@@ -1,6 +1,6 @@
 # Hình học tính toán phần 2: Sự giao nhau của đường thẳng và các ứng dụng
 
-**Tác giả:** 
+**Tác giả:**
 - Lê Minh Hoàng - Phổ thông Năng khiếu, ĐHQG-HCM
 
 **Reviewer:**
@@ -12,7 +12,7 @@
 
 [[_TOC_]]
 
-Trong [[phần 1|algo/geometry/basic-geometry-1]], chúng ta đã tìm hiểu cách sử dụng vector để giải các bài toán hình học. Bây giờ chúng ta sẽ học cách sử dụng một vài kiến thức đại số tuyến tính cơ bản để tìm giao điểm của đường thẳng, sau đó áp dụng để giải quyết một số bài toán khác.
+Trong [phần 1](/algo/geometry/basic-geometry-1), chúng ta đã tìm hiểu cách sử dụng vector để giải các bài toán hình học. Bây giờ chúng ta sẽ học cách sử dụng một vài kiến thức đại số tuyến tính cơ bản để tìm giao điểm của đường thẳng, sau đó áp dụng để giải quyết một số bài toán khác.
 
 **Lưu ý:** một số hình ảnh được chụp từ Desmos, và đều có link Desmos tương ứng ở dưới mỗi hình, các bạn có thể nhấn vào link để tương tác với hình và các tham số.
 
@@ -266,7 +266,7 @@ $$\begin{cases}
 Y_x = \dfrac{B_2C_1 - B_1C_2}{A_1B_2 - A_2B_1} =
 \dfrac{4 \cdot (-5) - (-3) \cdot (-9)}{4 \cdot 4 - 3 \cdot (-3)} =
 \dfrac{-47}{25} = -1.88 \\
-Y_y = \dfrac{A_1C_2 - A_2C_1}{A_1B_2 - A_2B_1} = 
+Y_y = \dfrac{A_1C_2 - A_2C_1}{A_1B_2 - A_2B_1} =
 \dfrac{4 \cdot (-9) - 3 \cdot (-5)}{4 \cdot 4 - 3 \cdot (-3)} =
 \dfrac{-21}{25} = -0.84
 \end{cases}$$

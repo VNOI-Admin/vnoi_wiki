@@ -2,7 +2,7 @@
 
 **Nguồn:** [Achoum's blog](http://blog.mathieu.guillame-bert.com/2015/07/20/machine-learning-for-dummies-part-2/)
 
-Trong bài viết trước ([[link|translate/ml/Machine-Learning-Classification-phan-1]]), chúng ta đã cùng tìm hiểu về **Classification**. Chúng ta cũng đã đưa ra vài ví dụ về ứng dụng của nó và cũng đã làm quen với **the Iris dataset**. Nếu có thời gian, bạn nên đọc bài viết đó để có thể hiểu cặn kẽ những nội dung trong bài viết này.
+Trong bài viết trước ([link](/translate/ml/Machine-Learning-Classification-phan-1)), chúng ta đã cùng tìm hiểu về **Classification**. Chúng ta cũng đã đưa ra vài ví dụ về ứng dụng của nó và cũng đã làm quen với **the Iris dataset**. Nếu có thời gian, bạn nên đọc bài viết đó để có thể hiểu cặn kẽ những nội dung trong bài viết này.
 
 Trở lại câu chuyện về hoa diên vĩ (Iris flower): Chúng ta có một danh sách các bông hoa diên vĩ được mô tả bằng độ dài và độ dày của đài hoa và cánh hoa (**attributes**). Chúng ta cũng đã biết chủng loại của tất cả các bông hoa trừ một cái duy nhất (chúng ta sẽ gọi nó là *"bông diên vĩ bí ẩn"*) và mục tiêu cuối cùng là tìm ra chủng loại của bông diên vĩ bí ẩn này. Với bài toán này, chúng ta giả sử rằng những thuộc tính trên là đặc trưng của chủng loại.
 

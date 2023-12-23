@@ -22,7 +22,7 @@ Trọng tâm của cây - centroid - là một đỉnh trên cây mà khi bỏ n
 
 <center>
 
-[[/uploads/centroid-decomposition_img1.png|width=300px]]
+[/uploads/centroid-decomposition_img1.png](/width=300px)
 
 </center>
 
@@ -56,8 +56,8 @@ void countChild(int u, int parent) {
 }
 
 int findCentroid(int u, int parent) {
-    for (int v : adj[u]) { 
-        if (v != parent) { 
+    for (int v : adj[u]) {
+        if (v != parent) {
             if (child[v] > n/2) { // tìm được v thỏa mãn
                 return findCentroid(v, u);
             }
@@ -81,7 +81,7 @@ Ta sẽ cùng giải quyết một bài toán điển hình như sau: Cho một 
 
 Nếu thêm điều kiện để bài toán trở thành "Đếm số đường đi trên cây độ dài $k$ đi qua một đỉnh cho trước" thì vấn đề đơn giản hơn khá nhiều.
 
-Để giải quyết bài toán với điều kiện đi qua một đỉnh cho trước, ta chỉ cần chọn đỉnh đó là gốc, lúc này, với mỗi đỉnh $v$ là con trực tiếp của đỉnh gốc, mỗi đỉnh thuộc cây con gốc $v$ có khoảng cách đến gốc là $d$ có thể ghép với tất cả các đỉnh không thuộc cây con gốc $v$ và có khoảng cách đến gốc là $k - d$ để tạo thành một đường đi độ dài $k$ đi qua đỉnh gốc. 
+Để giải quyết bài toán với điều kiện đi qua một đỉnh cho trước, ta chỉ cần chọn đỉnh đó là gốc, lúc này, với mỗi đỉnh $v$ là con trực tiếp của đỉnh gốc, mỗi đỉnh thuộc cây con gốc $v$ có khoảng cách đến gốc là $d$ có thể ghép với tất cả các đỉnh không thuộc cây con gốc $v$ và có khoảng cách đến gốc là $k - d$ để tạo thành một đường đi độ dài $k$ đi qua đỉnh gốc.
 
 Có thể dfs để xây dựng các mảng đếm số lượng đỉnh có khoảng cách đến gốc là $0, 1, 2, 3,...$ trên cây và trong mỗi cây con gốc $v$, khi đó dễ dàng tính được số lượng đường đi thỏa mãn. Độ phức tạp của cách làm này là $O(n)$, với $n$ là số đỉnh của cây đang xét.
 
@@ -96,7 +96,7 @@ Tuy nhiên, cách này có độ phức tạp khá lớn trong một số trư�
 Cũng theo ý tưởng trên, nhưng thuật toán phân tách trọng tâm cho cách chọn đỉnh tối ưu hơn, làm giảm độ phức tạp của thuật toán. Cụ thể, thuật toán hoạt động như sau:
 
 1. Chọn trọng tâm của cây làm **gốc** của cây.
-2. Đếm số lượng đường đi trên cây thỏa mãn yêu cầu và có chứa gốc của cây. 
+2. Đếm số lượng đường đi trên cây thỏa mãn yêu cầu và có chứa gốc của cây.
 4. Xóa đỉnh gốc. Nếu trước khi xóa cây có nhiều hơn $1$ đỉnh (khi đó tạo thành một hoặc một số cây riêng biệt khác) thì với mỗi cây mới được tạo, trở lại bước $1$.
 
 Độ phức tạp của thuật toán bằng $\log(n)$ nhân cho độ phức tạp của bước $2$. Nếu bước $2$ được thực hiện trong $O(m)$, với $m$ là số đỉnh của cây đang xét lúc đó, thì độ phức tạp tổng sẽ là $O(n \times \log(n))$. Nếu bước $2$ được thực hiện trong $O(m\log(m))$, thì độ phức tạp tổng là $O(n \times \log(n)^2)$.
@@ -122,15 +122,15 @@ int n, k, child[N], del[N]; // del[u] để kiểm tra đỉnh u có bị xóa h
 vector<int> adj[N];
 
 void countChild(int u, int parent) {
-    child[u] = 1; 
-    for (int v : adj[u]) if (v != parent && !del[v]) { 
+    child[u] = 1;
+    for (int v : adj[u]) if (v != parent && !del[v]) {
 		countChild(v, u);
 		child[u] += child[v];
     }
 }
 
 int centroid(int u, int parent, int n) {
-	for (int v : adj[u]) 
+	for (int v : adj[u])
 		if (v != parent && child[v] > n/2 && !del[v])
 			return centroid(v, u, n);
 	return u;
@@ -141,15 +141,15 @@ void updateAns(int root, int n) {
 }
 
 long long solve(int u) {
-	countChild(u, 0); 
-	
+	countChild(u, 0);
+
 	int n = child[u];
 	int root = centroid(u, 0, n); // bước 1
-	
+
 	updateAns(root, n); // bước 2
-	
+
 	del[root] = 1;
-	for (int v : adj[root]) if (!del[v]) 
+	for (int v : adj[root]) if (!del[v])
             ans += solve(v); // bước 3
 
 	return ans;
@@ -214,7 +214,7 @@ Thoạt nhìn bài toán giống với các dạng bài dùng thuật phân tác
 
 Vì vậy cần áp dụng thêm thuật toán chặt nhị phân để làm bài toán đơn giản hơn nữa.
 
-Thuật toán chặt nhị phân áp dụng được nhờ tính chất: nếu tồn tại đường đi đối xứng độ dài $k$, thì cũng tồn tại đường đi đối xứng với bất kì độ dài nào nhỏ hơn $k$ và cùng tính chẵn lẻ với $k$ (và vì vậy mà ta cần chặt nhị phân hai lần, một để tìm đường đi đối xứng chẵn dài nhất và một để tìm đường đi đối xứng lẻ dài nhất). 
+Thuật toán chặt nhị phân áp dụng được nhờ tính chất: nếu tồn tại đường đi đối xứng độ dài $k$, thì cũng tồn tại đường đi đối xứng với bất kì độ dài nào nhỏ hơn $k$ và cùng tính chẵn lẻ với $k$ (và vì vậy mà ta cần chặt nhị phân hai lần, một để tìm đường đi đối xứng chẵn dài nhất và một để tìm đường đi đối xứng lẻ dài nhất).
 
 Giải thích đơn giản, nếu tồn tại đường đi đối xứng độ dài $k$, ta có thể bỏ đi hai đầu mút của đường đi để còn lại đường đi độ dài $k - 2$, và vẫn đối xứng.
 
@@ -270,20 +270,20 @@ bool dfs(int u, int p, int h, long long hshdown, long long hshup)
     if (h > Len) return false;
 
     if (p)
-        hshdown = (hshdown * base + a[u]) % mod;    
+        hshdown = (hshdown * base + a[u]) % mod;
     hshup = (hshup + 1LL * a[u] * pw[h - 1]) % mod;
-    
+
     long long x =  (hshup * pw[Len - h] - hshdown + mod) % mod;
     if (!p) f[h][x] = true;
-    
-    if (f[Len - h + 1].find(x) != f[Len - h + 1].end() ) 
+
+    if (f[Len - h + 1].find(x) != f[Len - h + 1].end() )
         return true;
 
     for (int v : adj[u]) if (v != p && valid[v])
     {
         if (!p) b.clear();
 
-        if (dfs(v, u, h + 1, hshdown, hshup)) 
+        if (dfs(v, u, h + 1, hshdown, hshup))
             return true;
 
         if (!p)
@@ -312,7 +312,7 @@ bool CD(int u, int n)
                 break;
             }
     }
-    
+
     childCounting(u, 0);
 
     if (dfs(u, 0, 1, 0, 0)) return true;
@@ -355,7 +355,7 @@ void solve()
     }
 
     int ans = r * 2 + 1;
-    
+
     l = 0, r = n / 2;
     while (l < r)
     {
@@ -428,7 +428,7 @@ int countChild(int u, int p) {
 int centroid(int u, int p, int m) {
     for (int v : adj[u]) {
         if (v == p || del[v]) continue;
-        if (child[v] > m / 2) 
+        if (child[v] > m / 2)
             return centroid(v, u, m);
     }
     return u;

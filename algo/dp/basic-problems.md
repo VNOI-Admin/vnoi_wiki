@@ -47,7 +47,7 @@ for i:= 1 to n do
 
 Như vậy độ phức tạp bộ nhớ của bài toán là $O(n)$, độ phức tạp thời gian là $O(n^2)$.
 
-Có một số phương pháp cài đặt tốt hơn so với phương pháp trên, cho chi phí thời gian là $O(nlogn)$, một trong những cách đó là dùng [[Segment Tree|algo/data-structures/segment-tree-extend]].
+Có một số phương pháp cài đặt tốt hơn so với phương pháp trên, cho chi phí thời gian là $O(nlogn)$, một trong những cách đó là dùng [Segment Tree](/algo/data-structures/segment-tree-extend).
 
 ## 1.4. Một số bài toán khác
 
@@ -392,7 +392,7 @@ Bài toán này có một công thức QHĐ như sau:
   - $L(i,j)=L(i+1,j-1)$ nếu $S_i=S_j$
   - $L(i,j)=max(L(i+1,j), L(i,j-1))$ nếu $S_i \ne S_j$
 
-Bạn đọc dễ dàng có thể kiểm chứng công thức đó. Ta có thể cài đặt trực tiếp công thức đó bằng phương pháp đệ quy có nhớ. Tuy nhiên khi đó độ phức tạp bộ nhớ là $O(n^2)$. Có một phương pháp cài đặt tiết kiệm hơn, có thể tham khảo ở [[bài viết của Nguyễn Hoành Tiến|algo/dp/palindrome-problems]]
+Bạn đọc dễ dàng có thể kiểm chứng công thức đó. Ta có thể cài đặt trực tiếp công thức đó bằng phương pháp đệ quy có nhớ. Tuy nhiên khi đó độ phức tạp bộ nhớ là $O(n^2)$. Có một phương pháp cài đặt tiết kiệm hơn, có thể tham khảo ở [bài viết của Nguyễn Hoành Tiến](/algo/dp/palindrome-problems)
 
 Ta có thuật toán đơn giản hơn như sau:
 

@@ -1,6 +1,6 @@
 # Disjoint Set Union
 
-**Nguời viết:** 
+**Nguời viết:**
 - Ngô Nhật Quang - HUS High School for Gifted Students
 
 **Reviewer:**
@@ -12,7 +12,7 @@
 
 # Giới thiệu
 
-**Disjoint Set Union**, hay **DSU**, là một cấu trúc dữ liệu hữu dụng và thường xuyên được sử dụng trong các kì thi CP. DSU, đúng như tên gọi của nó, là một cấu trúc dữ liệu có thể quản lí một cách hiệu quả một tập hợp của các tập hợp.  
+**Disjoint Set Union**, hay **DSU**, là một cấu trúc dữ liệu hữu dụng và thường xuyên được sử dụng trong các kì thi CP. DSU, đúng như tên gọi của nó, là một cấu trúc dữ liệu có thể quản lí một cách hiệu quả một tập hợp của các tập hợp.
 
 # Bài toán
 
@@ -74,7 +74,7 @@ Như đã nói, đây là cách cài đặt ngây thơ, ta có thể dễ dàng 
 
 Phương pháp tối ưu này sẽ thay đổi thao tác `union_sets`. Chính xác hơn, ta sẽ thay đổi cách xét trong hai cây đang gộp, gốc của cây nào sẽ là cha của gốc của cây còn lại.
 
-Có khá nhiều cách để xét điều này, nhưng hai cách được sử dụng nhiều nhất chính là gộp theo kích cỡ và gộp theo độ cao của cây. 
+Có khá nhiều cách để xét điều này, nhưng hai cách được sử dụng nhiều nhất chính là gộp theo kích cỡ và gộp theo độ cao của cây.
 
 Giả dụ mỗi cây có một giá trị. Ở cách thứ nhất, giá trị đó là kích cỡ của cây, và ở cách thứ hai, giá trị đó là độ cao của cây. Ở cả hai cách này, ta sẽ luôn đặt gốc của cây có giá trị cao hơn là cha của gốc của cây có giá trị thấp hơn.
 
@@ -92,7 +92,7 @@ void union_sets(int a, int b) {
         if (sz[a] < sz[b]) swap(a, b); // Đặt biến a là gốc của cây có kích cỡ lớn hơn
         parent[b] = a;
         sz[a] += sz[b]; // Cập nhật kích cỡ của cây mới gộp lại
-    } 
+    }
 }
 ```
 
@@ -110,7 +110,7 @@ void union_sets(int a, int b) {
         if (rank[a] < rank[b]) swap(a, b); // Đặt biến a là gốc của cây có độ cao lớn hơn
         parent[b] = a;
         if (rank[a] == rank[b]) rank[a]++; // Nếu như hai cây có cùng một độ cao, độ cao của cây mới sau khi gộp sẽ tăng 1
-    } 
+    }
 }
 ```
 
@@ -118,14 +118,14 @@ Chỉ cần sử dụng phương pháp tối ưu này, độ phức tạp của 
 
 ## Tối ưu 2 - Nén đường đi
 
-Phương pháp tối ưu này nhằm tăng tốc thao tác `find_set`. 
+Phương pháp tối ưu này nhằm tăng tốc thao tác `find_set`.
 
 Giả dụ ta gọi `find_set(v)` với một đỉnh `v` bất kì, chúng ta tìm được `p` là gốc của cây, đồng thời cũng là giá trị của mọi hàm `find_set(u)` với `u` là một đỉnh nằm trên đường đi từ `u` đến `p`. Cách tối ưu ở đây chính là làm cho đường đi đến gốc của các đỉnh `u` ngắn đi bằng cách gán trực tiếp cha của các đỉnh `u` này thành `p`.
 
 Có thể thấy sau khi thực hiện một thao tác như vậy, cấu trúc cả cây có thể thay đổi. Ta có thể thấy điều này trong ví dụ sau đây:
 
 <center>
-[[/uploads/disjoint-set-union_img2.png|width=700px]]
+[/uploads/disjoint-set-union_img2.png](/width=700px)
 </center>
 
 Bên trái là cây ban đầu và bên phải là cây bị nén sau khi ta sử dụng thao tác `find_set(7)`, nén đường đi tới gốc của các đỉnh $7, 5, 3, 2$.
@@ -181,7 +181,7 @@ int find_set(int v) {
 void union_sets(int a, int b) {
     a = find_set(a);
     b = find_set(b);
-    
+
     if (a != b) {
         if (lab[a] > lab[b]) swap(a, b);
         lab[a] += lab[b];
@@ -218,7 +218,7 @@ void union_sets(int a, int b) {
         sz[a] += sz[b];
         sum[a] += sum[b];
         mn[a] = min(mn[a], mn[b]);
-    } 
+    }
 }
 ```
 
@@ -251,20 +251,20 @@ Với mỗi vị trí, ta sẽ có một con trỏ. Nếu người đứng ở v
 Xét ví dụ sau với $n = 5$, ban đầu ta có:
 
 <center>
-[[/uploads/disjoint-set-union_img3.png|width=600px]]
+[/uploads/disjoint-set-union_img3.png](/width=600px)
 </center>
 <br>
 
 Giả dụ người đứng ở vị trí $2$ và $3$ rời khỏi hàng:
 
 <center>
-[[/uploads/disjoint-set-union_img4.png|width=600px]]
+[/uploads/disjoint-set-union_img4.png](/width=600px)
 </center>
 <br>
 
 Dễ thấy để tìm người gần nhất bên phải mà chưa rời khỏi hàng, ta đi dần dần sang phải cho đến khi gặp một vị trí có con trỏ trỏ đến chính nó.
 
-Chúng ta có thể sử dụng cấu trúc dữ liệu DSU để lưu trữ các thông tin trên và sử dụng phương pháp tối ưu nén đoạn để đạt được độ phức tạp trung bình $\mathcal{O}(\log{n})$ với mỗi truy vấn. 
+Chúng ta có thể sử dụng cấu trúc dữ liệu DSU để lưu trữ các thông tin trên và sử dụng phương pháp tối ưu nén đoạn để đạt được độ phức tạp trung bình $\mathcal{O}(\log{n})$ với mỗi truy vấn.
 
 Để ý kĩ hơn, ta thấy vị trí ta cần tìm chính là vị trí có thứ tự lớn nhất trong tập hợp. Ta có thể lưu phần tử lớn nhất trong một tập hợp như đã nói ở phần trên, qua đó đạt được độ phức tạp trung bình $\mathcal{O}(\alpha{(n)})$ với mỗi truy vấn.
 
@@ -288,14 +288,14 @@ void union_sets(int a, int b) {
         parent[b] = a;
         sz[a] += sz[b];
         mx[a] = max(mx[a], mx[b]);
-    } 
+    }
 }
 
 void leave(int v) { // Người thứ v rời khỏi hàng
     union_sets(v, v + 1);
 }
 
-int find_next(int p) { // Trả vè thứ tự của người gần nhất về bên phải 
+int find_next(int p) { // Trả vè thứ tự của người gần nhất về bên phải
                        // vị trí p mà chưa rời khỏi hàng
     p = find_set(p);
     return mx[p];
@@ -304,9 +304,9 @@ int find_next(int p) { // Trả vè thứ tự của người gần nhất về 
 
 ## Tối ưu thuật toán tìm cây khung nhỏ nhất trong đồ thị
 
-Sử dụng DSU, ta có thể tối ưu độ phức tạp của thuật toán tìm cây khung nhỏ nhất của đồ thị từ $\mathcal{O}(m \log{n} + n^2)$ xuống $\mathcal{O}(m \log{n})$. 
+Sử dụng DSU, ta có thể tối ưu độ phức tạp của thuật toán tìm cây khung nhỏ nhất của đồ thị từ $\mathcal{O}(m \log{n} + n^2)$ xuống $\mathcal{O}(m \log{n})$.
 
-Bạn đọc có thể tìm hiểu kĩ hơn ở [[blog|algo/graph-theory/minimum-spanning-tree.md]] tìm cây khung nhỏ nhất trong đồ thị.
+Bạn đọc có thể tìm hiểu kĩ hơn ở [blog](/algo/graph-theory/minimum-spanning-tree.md) tìm cây khung nhỏ nhất trong đồ thị.
 
 ## Đảo ngược truy vấn
 
@@ -326,7 +326,7 @@ Giới hạn: $1\le n \le 10^5, 0 \le a_i \le 10^9$.
 
 Do các phần tử là các số nguyên không âm, ta có thể thấy rằng nếu sau khi một số phần tử bị phá hủy, dãy bị chia thành $k$ đoạn con liên tiếp thì đáp án sẽ là một trong $k$ đoạn con này.
 
-Đảo ngược thứ tự của các truy vấn, ta có thể thấy bài toán trở nên dễ dàng rất nhiều: Hồi sinh một số bị phá hủy trở về ban đầu và in ra đoạn con có tổng lớn nhất. Đến đây ta nghĩ tới cấu trúc dữ liệu DSU để xử lí các đoạn con liên tiếp. 
+Đảo ngược thứ tự của các truy vấn, ta có thể thấy bài toán trở nên dễ dàng rất nhiều: Hồi sinh một số bị phá hủy trở về ban đầu và in ra đoạn con có tổng lớn nhất. Đến đây ta nghĩ tới cấu trúc dữ liệu DSU để xử lí các đoạn con liên tiếp.
 
 Khi một số được hồi sinh, ta sẽ kiểm tra bên trái số đó, nếu có số nào đã được hồi sinh từ trước thì ta sẽ thêm cạnh giữa số đó và số bên trái số đó. Tương tự với số bên phải. Dễ thấy rằng mọi lúc các thành phần liên thông trong DSU sẽ thể hiện cho một đoạn con liên tiếp. Việc lưu trữ tổng của một thành phần liên thông đã được nhắc đến ở phần trước.
 
@@ -353,7 +353,7 @@ struct DSU{
         sz[v] = 1;
         sum[v] = a[v];
     }
-     
+
     int find_set(int v) {
         return v == parent[v] ? v : parent[v] = find_set(parent[v]);
     }
@@ -371,16 +371,16 @@ struct DSU{
 };
 
 signed main() {
-        
+
     ios_base::sync_with_stdio(false); cin.tie(NULL);
 
     cin >> n;
-    
+
     for (int i = 1; i <= n; i++) cin >> a[i];
     for (int i = 1; i <= n; i++) cin >> p[i];
 
     DSU g(n + 5);
-    for (int i = 1; i <= n; i++) g.make_set(i);    
+    for (int i = 1; i <= n; i++) g.make_set(i);
     for (int i = n; i >= 1; i--) {
         flag[p[i]] = true;
 
@@ -390,9 +390,9 @@ signed main() {
         ans = max(ans, g.sum[g.find_set(p[i])]);
         res[i - 1] = ans;
     }
-        
+
     for (int i = 1; i <= n; i++) cout << res[i] << "\n";
-        
+
 }
 ```
 
@@ -414,8 +414,8 @@ pair<int, int> find_set(int v) {
     pair<int, int> val = get(parent[v]);
     parent[v] = val.first;
     dist[v] = (dist[v] + val.second) % 2;
-        // độ dài từ đỉnh đến cha mới 
-        // = độ dài đến đỉnh cha cũ 
+        // độ dài từ đỉnh đến cha mới
+        // = độ dài đến đỉnh cha cũ
         // + độ dài từ cha cũ tới cha mới (gốc của cây)
     return {p[a], dist[a]};
 }
@@ -427,14 +427,14 @@ void union_sets(int a, int b) {
     pair<int, int> valA = find_set(a),
                    valB = find_set(b);
     a = valA.first; b = valB.first;
-    
+
     if (a == b) {
         if (valA.second != valB.second) {
             // Đồ thị không còn là đồ thị hai phía do có
             // cạnh nối giữa hai đỉnh thuộc hai phía khác nhau.
         }
     }
-    
+
     else {
         if (sz[a] < sz[b]) swap(a, b);
         parent[b] = a;
@@ -444,7 +444,7 @@ void union_sets(int a, int b) {
             // = Độ dài từ đỉnh a tới gốc cây ban đầu chứa a
             // + Dộ dài từ đỉnh b tới gốc cây ban đầu chứa b
             // + 1 (Khoảng cách giữa hai đỉnh a và b)
-    } 
+    }
 }
 ```
 
@@ -514,7 +514,7 @@ struct DSU{
 
             for (auto p : color[b]) color[a][p.first] += p.second;
             color[b].clear();
-        } 
+        }
     }
 
     int query(int v, int c) {
@@ -524,9 +524,9 @@ struct DSU{
 };
 
 signed main() {
-    
+
     ios_base::sync_with_stdio(false); cin.tie(NULL);
-    
+
     cin >> n >> q;
     for (int i = 1; i <= n; i++) cin >> a[i];
 
@@ -561,7 +561,7 @@ Bằng cách thay đổi cách dfs, ta có thể loại bỏ một $\log$ của 
 int sz[N];
 int cnt[N];
 
-void pre_dfs(int u, int p) { // Một hàm dfs chạy trước 
+void pre_dfs(int u, int p) { // Một hàm dfs chạy trước
                              // để tính được độ lớn của từng cây con
     sz[u] = 1;
     for (auto v : g[u]) if (v != p) {
@@ -573,13 +573,13 @@ void pre_dfs(int u, int p) { // Một hàm dfs chạy trước
 void update(int u, int p, int delta) {
     cnt[color[u]] += delta;
     for (auto v : g[u]) if (v != p) update(v, u, delta);
-} 
+}
 
 void dfs(int u, int p) {
     int bigChild = -1;
     for (auto v : g[u]) if (v != p) {
         if (bigChild == -1 || sz[v] > sz[bigChild]) bigChild = v;
-    } // Tìm cây con lớn nhất trong 
+    } // Tìm cây con lớn nhất trong
       // các con trực tiếp của đỉnh u
 
     for (auto v : g[u]) if (v != p && v != bigChild) {
@@ -590,8 +590,8 @@ void dfs(int u, int p) {
 
     for (auto v : g[u]) if (v != p && v != bigChild) update(v, u, 1);
     cnt[color[u]]++;
-    
-    // Trả lời các truy vấn tại đỉnh u, với cnt[c] 
+
+    // Trả lời các truy vấn tại đỉnh u, với cnt[c]
     // là số lượng đỉnh có màu c trong cây con gốc u
 }
 ```
@@ -599,14 +599,14 @@ void dfs(int u, int p) {
 Với cây con gốc $u$ đang xét, ta sẽ dfs xuống giải bài toán với đỉnh $v$ là con trực tiếp của đỉnh $u$. Nếu giải như bài toán colquery, ở mỗi đỉnh ta sẽ lưu một cấu trúc dữ liệu map để lưu số lượng từng màu trong cây con đó. Sau đó ta sẽ gộp chúng lại để có được map chứa số lượng từng màu trong cây con gốc $u$ (Gộp các map của cây con không phải cây con lớn nhất vào map của cây con lớn nhất).
 
 <center>
-[[/uploads/disjoint-set-union_img17.png|width=400px]]
+[/uploads/disjoint-set-union_img17.png](/width=400px)
 </center>
 <br>
 
 Tuy nhiên, sự tối ưu của kỹ thuật này chính là ta có thể đảo thứ tự dfs và trả lời các truy vấn offline.
 
 <center>
-[[/uploads/disjoint-set-union_img16.png|width=800px]]
+[/uploads/disjoint-set-union_img16.png](/width=800px)
 </center>
 <br>
 
@@ -643,9 +643,9 @@ int n, q, color[N];
 int sz[N];
 int cnt[N];
 int res[N]; // res[i] là đáp án của truy vấn thứ i
-vector<pair<int, int>> queries[N]; 
-        // cặp (a, b) trong queries[v] có nghĩa là ở đỉnh v 
-        // có truy vấn hỏi có bao nhiêu đỉnh trong cây con có màu a 
+vector<pair<int, int>> queries[N];
+        // cặp (a, b) trong queries[v] có nghĩa là ở đỉnh v
+        // có truy vấn hỏi có bao nhiêu đỉnh trong cây con có màu a
         // và số thứ tự của truy vấn là b
 vector<int> g[N];
 
@@ -660,7 +660,7 @@ void pre_dfs(int u, int p) {
 void update(int u, int p, int delta) {
     cnt[color[u]] += delta;
     for (auto v : g[u]) if (v != p) update(v, u, delta);
-} 
+}
 
 void dfs(int u, int p) {
     int bigChild = -1;
@@ -676,7 +676,7 @@ void dfs(int u, int p) {
 
     for (auto v : g[u]) if (v != p && v != bigChild) update(v, u, 1);
     cnt[color[u]]++;
-    
+
     for (auto p : queries[u]) res[p.second] = cnt[p.first];
 }
 

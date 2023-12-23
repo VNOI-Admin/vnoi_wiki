@@ -32,7 +32,7 @@ Giá trị $n/k$ được gọi là **load factor**. Khi load factor nhỏ (xấ
 
 ## Separate chaining
 
-Trường hợp một hash bucket chứa nhiều hơn một giá trị ta gọi đó là **Hash collision** (va chạm). Việc xử lý hash collision rất quan trọng đối với độ hiệu quả của bảng băm. Một trong những phương pháp đơn giản nhất là cài đặt các [[danh sách liên kết|algo/data-structures/array-vs-linked-lists]] ở các bucket. Kĩ thuật này được gọi là **Separate chaining**:
+Trường hợp một hash bucket chứa nhiều hơn một giá trị ta gọi đó là **Hash collision** (va chạm). Việc xử lý hash collision rất quan trọng đối với độ hiệu quả của bảng băm. Một trong những phương pháp đơn giản nhất là cài đặt các [danh sách liên kết](/algo/data-structures/array-vs-linked-lists) ở các bucket. Kĩ thuật này được gọi là **Separate chaining**:
 
 [[/uploads/data_structures_hash_table_collision_linked_list.png]]
 

@@ -12,7 +12,7 @@ Các bài viết trên VNOI có cấu trúc [hình cây](http://vnoi.info/contri
 
 # Viết markdown
 
-Tất cả các bài viết trên VNOI được viết theo định dạng markdown. Bạn có thể xem ví dụ [[ở đây|markdown]]. Bạn có thể click vào Edit để xem code markdown.
+Tất cả các bài viết trên VNOI được viết theo định dạng markdown. Bạn có thể xem ví dụ [ở đây](/markdown). Bạn có thể click vào Edit để xem code markdown.
 
 Mình khuyến khích dùng Atom editor cho việc viết markdown.
 
@@ -20,7 +20,7 @@ Mình khuyến khích dùng Atom editor cho việc viết markdown.
 
 Một vài chú ý:
 
-- Link bài viết khác trên wiki: `[[chữ hiển thị|link/sau/contributor]]`. Chú ý bạn không nên đặt absolute link (kiểu http://vnoi.info/contributor/...), và chú ý là chỉ có contributor mới vào đc link `vnoi.info/contributor`.
+- Link bài viết khác trên wiki: `[chữ hiển thị](/link/sau/contributor)`. Chú ý bạn không nên đặt absolute link (kiểu http://vnoi.info/contributor/...), và chú ý là chỉ có contributor mới vào đc link `vnoi.info/contributor`.
 - Link thông thường: `[chữ hiển thị](https://link.com)`
 - Để đặt tên bài viết, thêm 1 dòng `# Tiêu đề` ở đầu bài viết.
 - Các heading luôn dùng từ heading 1: `#`, không nhảy cóc. Như vậy thì Table of content mới hiện đúng.

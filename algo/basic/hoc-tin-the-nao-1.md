@@ -43,7 +43,7 @@ Ngược lại, trong công thức truy hồi, tôi chỉ thấy một phép c�
 F[0] = 1
 F[1] = 1
 for n = 2 to 1000:
-    F[n] = F[n-1] + F[n-2] 
+    F[n] = F[n-1] + F[n-2]
 ```
 
 Hãy nhớ lại vì sao tôi lại không dùng công thức này ngay từ đầu? Vì muốn tính số thứ 1000 tôi phải tính tay ra 999 số trước đó. Đấy là khi tôi chưa biết lập trình. Khi tôi biết lập trình, tôi ở trong một tình huống khác hẳn. Tôi chỉ cần gõ một vòng lặp, và gõ **một lần duy nhất**. Máy tính sẽ giúp tôi thực hiện phần tính toán. Bạn có thấy điều khác biệt không? Lần trước công sức tôi bỏ ra là phải ngồi tính tay 1000 giá trị nhưng bây giờ thì chỉ việc ngồi gõ ra một công thức trừu tượng và để máy tính thực hiện phần tính toán với giá trị cụ thể. Điều này đảo ngược lựa chọn của tôi như thế nào? Giờ tôi sẽ thích công thức truy hồi hơn vì nó ngắn hơn để gõ so với công thức tổng quát.
@@ -54,4 +54,4 @@ Quay lại vấn đề, tại sao tôi lại nói vòng lặp là một trong nh
 
 Lúc mới học tin, tôi thấy hứng thú với lối tư duy mới này. Tôi thấy nó giúp tôi tiếp cận gần hơn với những gì đang xảy ra trong cuộc sống. Nếu như lúc trước tôi chỉ biết bấm máy tính thì bây giờ tôi đã biết quan tâm xem nó thực hiện những phép tính thế nào. Hiểu thêm về thế giới xung quanh làm tôi thấy hạnh phúc. Mọi môn học khác đều có cái hay của nó và đều có thể dẫn tôi đến cái cảm giác đó nhưng tôi đến với Tin học là một cái duyên. Vì thế khi bảo tôi nói ra lý do cần phải học Tin học, tôi không nghĩ ra lý do nào. Một ngày nọ tôi ăn được một món ngon, thế là tôi là về quyết định học cách nấu món đó. Chỉ vậy thôi.
 
-[[Đọc tiếp phần 2|algo/basic/hoc-tin-the-nao-2]]
+[Đọc tiếp phần 2](/algo/basic/hoc-tin-the-nao-2)

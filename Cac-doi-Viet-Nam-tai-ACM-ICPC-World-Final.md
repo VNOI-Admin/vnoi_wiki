@@ -23,7 +23,7 @@ Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và ch
   - Phạm Cao Nguyên: [HCV IOI 2016, HCĐ IOI 2017](http://stats.ioinformatics.org/people/6056), CF: [natsukagami](http://codeforces.com/profile/natsukagami)
   - Lê Quang Tuấn: [HCV IOI 2017, HCĐ IOI 2016](http://stats.ioinformatics.org/people/6055), CF: [alexa0704](http://codeforces.com/profile/alexa0704)
   - Nguyễn Đinh Quang Minh: CF: [MofK](http://codeforces.com/profile/MofK)
-  - Cao Nguyên và Quang Tuấn đã từng có [[bài phỏng vấn trên VNOI wiki|vnoi-interview/Phong-van-team-IOI-VN-2017]]
+  - Cao Nguyên và Quang Tuấn đã từng có [bài phỏng vấn trên VNOI wiki](/vnoi-interview/Phong-van-team-IOI-VN-2017)
 
 3. [2016](http://static.kattis.com/icpc/wf2016/) - National University of Singapore (NUS), team RRwatameda - rank 15:
   - Nguyễn Tấn Sỹ Nguyên: [HCB IOI 2011](http://stats.ioinformatics.org/people/2226), CF: [flashmt](http://codeforces.com/profile/flashmt), #49 ACM ICPC World Final 2013
@@ -49,7 +49,7 @@ Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và ch
   - Phạm Văn Hạnh: [HCV IOI 2015](http://stats.ioinformatics.org/people/5815), CF: [skyvn97](http://codeforces.com/profile/skyvn97)
   - Phan Đức Nhật Minh: [HCV IOI 2016, HCB IOI 2015](http://stats.ioinformatics.org/people/5816), CF: [minh141198](http://codeforces.com/profile/minh141198)
   - Nguyễn Đức Duy: CF: [duyboy135](http://codeforces.com/profile/duyboy135)
- 
+
 8. [2021](https://zibada.guru/finals/2021/) - ĐH Khoa Học Tự nhiên - ĐHQG HCM - rank 46:
   - Nguyễn Diệp Xuân Quang: [xuanquang1999](https://cphof.org/profile/codeforces:xuanquang1999)
   - Lê Quý Khôi: [GreymaneSilverfang](https://cphof.org/profile/icpc:Quy-Khoi%20Le)

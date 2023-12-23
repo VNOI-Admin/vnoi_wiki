@@ -56,7 +56,7 @@ Giờ ta xét bài toán sau:
 2. Tìm công thức cho $f(p^k)$ với p là số nguyên tố.
 3. Dùng sàng để tính $f$ trong $O(N*logN)$.
 
-Nếu bạn chưa biết sàng có thể đọc [[ở đây|translate/topcoder/Mathematics-for-Topcoders]].
+Nếu bạn chưa biết sàng có thể đọc [ở đây](/translate/topcoder/Mathematics-for-Topcoders).
 
 
 ## 2.1. Bước 1

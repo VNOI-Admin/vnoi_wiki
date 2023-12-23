@@ -2,7 +2,7 @@
 
 Nguồn: [wcipeg](http://wcipeg.com/wiki/Convex_hull)
 
-**Tác giả:** 
+**Tác giả:**
 - Lê Minh Hoàng - Đại học Khoa học Tự nhiên, ĐHQG-HCM
 
 **Reviewer:**
@@ -23,7 +23,7 @@ Theo một cách trực quan, nếu ta coi những điểm trong một tập h�
 # Các thuật toán tìm bao lồi trên mặt phẳng
 Bài toán tìm bao lồi của một tập điểm trên mặt phẳng là một trong những bài toán được nghiên cứu nhiều nhất trong hình học tính toán và có rất nhiều thuật toán để giải bài toán này. Sau đây là ba thuật toán phổ biến nhất, được giới thiệu theo thứ tự tăng dần về độ khó.
 
-**Chú ý 1:** Bạn đọc nên xem qua [[Hình học tính toán phần 1|algo/geometry/basic-geometry-1]] và [[Hình học tính toán phần 2|algo/geometry/basic-geometry-2]] trước khi tiếp tục để biết về các khái niệm cơ bản.
+**Chú ý 1:** Bạn đọc nên xem qua [Hình học tính toán phần 1](/algo/geometry/basic-geometry-1) và [Hình học tính toán phần 2](/algo/geometry/basic-geometry-2) trước khi tiếp tục để biết về các khái niệm cơ bản.
 
 **Chú ý 2:** Bạn đọc nên hiểu phần thuật toán trước khi đọc phần cài đặt để dễ hiểu hơn.
 
@@ -464,7 +464,7 @@ bool checkInHull(vector<Point> &hull, Point P) {
         else lo = mid + 1;
     }
 
-    // P nằm trong tam giác (hull[0], hull[x - 1], hull[x]) 
+    // P nằm trong tam giác (hull[0], hull[x - 1], hull[x])
     // nếu (hull[x - 1], hull[x], P) không ngược chiều kim đồng hồ
     return !ccw(hull[x - 1], hull[x], P);
 }

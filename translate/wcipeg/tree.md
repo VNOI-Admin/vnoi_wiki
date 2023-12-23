@@ -54,7 +54,7 @@ _Một vài chú ý:_
 
 # Cây nhị phân (binary tree) và cây k-phân (k-ary tree)
 
-- **Cây nhị phân** (**binary tree**) là cây có gốc mà mỗi đỉnh có *tối đa* 2 con, gọi là **con trái** (**left**) và **phải** (**right**). Cây con có gốc là đỉnh con trái của một đỉnh gọi là **cây con trái** (**left subtree**). **Cây con phải** (**right subtree**) cũng định nghĩa tương tự. Cây nhị phân được sử dụng rất nhiều ví dụ như trong *cây nhị phân tìm kiếm* (*binary search tree*), [[Heap nhị phân|translate/wcipeg/Binary-Heap]],...
+- **Cây nhị phân** (**binary tree**) là cây có gốc mà mỗi đỉnh có *tối đa* 2 con, gọi là **con trái** (**left**) và **phải** (**right**). Cây con có gốc là đỉnh con trái của một đỉnh gọi là **cây con trái** (**left subtree**). **Cây con phải** (**right subtree**) cũng định nghĩa tương tự. Cây nhị phân được sử dụng rất nhiều ví dụ như trong *cây nhị phân tìm kiếm* (*binary search tree*), [Heap nhị phân](/translate/wcipeg/Binary-Heap),...
 
 - Một cây nhị phân được coi là có vô hạn số **tầng** (**level**), nhưng chỉ có một số tầng thường được sử dụng. Mỗi tầng của cây bao gồm tất cả các đỉnh có cùng độ sâu. Tầng $0$ của cây chỉ bao gồm $1$ đỉnh là gốc; tầng thứ nhất chứa những đỉnh con của gốc, như vậy tầng $1$ chứa tối đa $2$ đỉnh; tầng thứ $2$ chứa tất cả đỉnh cháu của gốc (con của con của gốc), như vậy tầng này chứa tối đa $4$ đỉnh;... tổng quát: tầng thứ $h$ của cây nhị phân có thể chứa tới $2^{h}$ đỉnh. Nếu một cây nhị phân có chiều cao $h$ thì số đỉnh tối đa nó có thể chứa là $1 + 2 + 4 + ... + 2^{h} = 2^{h+1} - 1$. Mặt khác, cây nhị phân có $N$ đỉnh sẽ có chiều cao ít nhất là $\left \lceil log_2 (N + 1) \right \rceil - 1$.
 
@@ -64,9 +64,9 @@ _Một vài chú ý:_
 
 - Tổng quát, một **cây k-phân** (**k-ary tree**) là một cây có gốc mà mỗi đỉnh có tối đa k con, các thuật ngữ khác định nghĩa tương tự như cây nhị phân.
 
-# Duyệt cây (tree traversal) 
+# Duyệt cây (tree traversal)
 
-**Duyệt cây** là việc thăm tất cả đỉnh của cây. Liệt kê các đỉnh được thăm theo thứ tự, ta thu được một thứ tự duyệt cây. Nếu một cây có $N$ đỉnh thì sẽ có $N!$ thứ tự duyệt cây. Có 2 cách duyệt quan trọng là duyệt theo **thứ tự trước** (**preoder**) và duyệt theo **thứ tự sau** (**postorder**). 
+**Duyệt cây** là việc thăm tất cả đỉnh của cây. Liệt kê các đỉnh được thăm theo thứ tự, ta thu được một thứ tự duyệt cây. Nếu một cây có $N$ đỉnh thì sẽ có $N!$ thứ tự duyệt cây. Có 2 cách duyệt quan trọng là duyệt theo **thứ tự trước** (**preoder**) và duyệt theo **thứ tự sau** (**postorder**).
 
 ## Duyệt theo thứ tự trước (preorder)
 
@@ -81,7 +81,7 @@ DFS(u):
 
 ## Duyệt theo thứ tự sau (postorder)
 
-Phép duyệt theo thứ tự sau cũng tương tự, nhưng khác ở chỗ là một đỉnh được coi là đã thăm ngay khi *tất cả* các con của nó đã được thăm (các đỉnh lá được đánh dấu đã thăm khi chúng vừa được đưa vào stack vì chúng không có con). 
+Phép duyệt theo thứ tự sau cũng tương tự, nhưng khác ở chỗ là một đỉnh được coi là đã thăm ngay khi *tất cả* các con của nó đã được thăm (các đỉnh lá được đánh dấu đã thăm khi chúng vừa được đưa vào stack vì chúng không có con).
 
 ```
 DFS(u):

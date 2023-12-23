@@ -23,7 +23,7 @@ Kỹ thuật bổ trợ trong phương pháp này là _đánh lại số thứ t
 
 Kết thúc quá trình trên, ta nhận được mảng `b[]` là nén từ mảng `a[]` với độ phức tạp thao tác nén này là $O(n*log(n))$.
 
- 
+
 # Ví dụ 1: Dãy số (C11SEQ)
 
 ## Đề bài
@@ -68,7 +68,7 @@ Từ 3 nhận xét trên ta sẽ tìm cách đưa $S_i - L, S_i - R, S_{j-1}$ v�
 
 *   Ta lập một mảng mới có 3*n phần tử: n phần tử dạng $S_i$, n dạng $S_i - L$, n dạng $S_i - R$, nhớ lưu vị trí đi kèm.
 *   Bây giờ tiến hành sort mảng đó lại, và ta tiến hành đánh số lai mảng đó, gọi các mảng $p1_i, p2_i, p3_i$ là các giá trị sau khi đánh số lại của $S_i, S_i - L, S_i - R$.
-*   Ta tiến hành duyệt các vị trí i, dùng 1 cây [[Segment Tree|algo/data-structures/segment-tree-extend]] hoặc [[Binary Indexed Tree|algo/data-structures/fenwick]] để quản lý và đếm:
+*   Ta tiến hành duyệt các vị trí i, dùng 1 cây [Segment Tree](/algo/data-structures/segment-tree-extend) hoặc [Binary Indexed Tree](/algo/data-structures/fenwick) để quản lý và đếm:
 
     * B1: cập nhất kết quả: tăng res thêm số lượng phần tử đoạn $[p3_i, p2_i]$ đã xuất hiện.
     * B2: thêm số lượng 1 phần tử $p1_i$ vào cây.
@@ -81,7 +81,7 @@ Từ 3 nhận xét trên ta sẽ tìm cách đưa $S_i - L, S_i - R, S_{j-1}$ v�
 Code tham khảo (pascal):
 
 ```pascal
-// Code phần nén số: 
+// Code phần nén số:
 // ở đây thay vì dùng 3 mảng p1[i], p2[i], p3[i] mình tận dụng luôn mảng a:
 // * a[i] = p1[i], a[n + i] = p2[i], a[2*n + i] = p3[i]
 procedure unzip;
@@ -135,7 +135,7 @@ QBSEGPAR.OUT
 
 5
 ```
- 
+
 
 ## Hướng giải quyết
 

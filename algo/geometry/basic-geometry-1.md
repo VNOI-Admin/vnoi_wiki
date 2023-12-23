@@ -1,6 +1,6 @@
 # Hình học tính toán phần 1: Những khái niệm cơ bản
 
-**Tác giả:** 
+**Tác giả:**
 - Lê Minh Hoàng - Phổ thông Năng khiếu, ĐHQG-HCM
 
 **Reviewer:**
@@ -14,7 +14,7 @@
 
 Hình học mặc dù là một chủ đề hết sức phổ biến, song vẫn còn rất nhiều người không thích giải các bài toán hình học vì chúng khá khó chịu và lằng nhằng. Do đó, trong bài viết này, ta sẽ cùng tìm hiểu một vài khái niệm nhằm giúp cho các bài toán hình học trở nên bớt đáng sợ hơn.
 
-Nếu đã nắm vững các khái niệm trong bài viết này, các bạn có thể chuyển sang [[phần 2|algo/geometry/basic-geometry-2]].
+Nếu đã nắm vững các khái niệm trong bài viết này, các bạn có thể chuyển sang [phần 2](/algo/geometry/basic-geometry-2).
 
 # Vector
 Vector là một đối tượng có cả độ lớn và hướng. Hướng của vector là hướng từ điểm đầu đến điểm cuối của nó.
@@ -55,7 +55,7 @@ Giả sử ta có $2$ vector $\overrightarrow{\rm u}(x_1, y_1)$ và $\overrighta
 
 ![](https://i.imgur.com/PYkqiVG.gif)
 
-**Lưu ý:** Thứ tự cộng các vector không quan trọng, cũng giống như phép cộng trên số (tính giao hoán). 
+**Lưu ý:** Thứ tự cộng các vector không quan trọng, cũng giống như phép cộng trên số (tính giao hoán).
 
 ![](https://i.imgur.com/sKDldWR.png)
 

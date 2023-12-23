@@ -1,6 +1,6 @@
 # Range Minimum Query (RMQ) - Sparse Table
 
-**Tác giả:** 
+**Tác giả:**
 - Lê Minh Hoàng - Đại học Khoa học Tự nhiên, ĐHQG-HCM
 
 **Reviewer:**
@@ -19,9 +19,9 @@ Ví dụ: $A = [4, 6, 1, 5, 7, 3]\rightarrow min[2\ldots5] = min(6,1,5,7)=1$
 
 Bài toán $RMQ$ có nhiều cách giải, nhưng $2$ cách phổ biến nhất là:
 - **Sparse Table**: $\mathcal{O}(N\log{N})$ tiền xử lý, $\mathcal{O}(1)$ mỗi truy vấn.
-- [[Segment Tree|algo/data-structures/segment-tree-basic]]: $\mathcal{O}(N)$ tiền xử lý, $\mathcal{O}(\log{N})$ mỗi truy vấn.
+- [Segment Tree](/algo/data-structures/segment-tree-basic): $\mathcal{O}(N)$ tiền xử lý, $\mathcal{O}(\log{N})$ mỗi truy vấn.
 
-Sự khác biệt giữa $2$ cách giải này nằm ở chỗ, [[Segment Tree|algo/data-structures/segment-tree-basic]] có thể xử lý được **hoạt động sửa đổi** xen kẽ với các truy vấn, còn Sparse Table thì không.
+Sự khác biệt giữa $2$ cách giải này nằm ở chỗ, [Segment Tree](/algo/data-structures/segment-tree-basic) có thể xử lý được **hoạt động sửa đổi** xen kẽ với các truy vấn, còn Sparse Table thì không.
 
 Nhưng Sparse Table không "phế", sức mạnh của Sparse Table nằm ở khả năng truy vấn trong $\mathcal{O}(1)$ khi các phép toán thoả mãn tính chất [Idempotence](https://en.wikipedia.org/wiki/Idempotence): "một giá trị có thể **xuất hiện nhiều lần** nhưng **không làm thay đổi kết quả** phép toán", ví dụ như $min,max,gcd,lcm,and,or,\ldots$
 
@@ -195,9 +195,9 @@ Nếu ta làm tiếp như thuật toán tối ưu $1.3$ (tiếp tục tạo các
 Nhưng nếu dùng $\log_2$ mảng $a$ sẽ mang đến cho ta nhiều bất tiện (code dài, dễ sai, ...). Do đó, ta có thể đặt:
 - $st[j][i]$ là giá trị nhỏ nhất của $2^j$ phần tử tính từ $i$ (min của $a[i\ldots i + 2^j - 1]$), tương ứng với $a(2^j)[i]$) ($st$ ở đây là viết tắt của $S$(parse)$T$(able)).
 - Ta có công thức truy hồi sau:
-$$st[j][i] = 
+$$st[j][i] =
 \begin{cases}
-a[i] & \text{ với } j = 0 \\ 
+a[i] & \text{ với } j = 0 \\
 min(st[j-1][i], st[j-1][i + 2^{j-1}]) & \text{ với } j > 0
 \end{cases}$$
 
@@ -278,10 +278,10 @@ int querySum(int l, int r) {
 - Độ phức tạp bộ nhớ: $\mathcal{O}(N\log N)$
 
 ### Lưu ý
-Mình biết rằng bài này có cách dễ hơn là dùng [[Mảng Cộng Dồn|algo/data-structures/prefix-sum-and-difference-array]], nhưng lý do mảng cộng dồn sử dụng được là vì phép cộng có "phép đảo ngược" là phép trừ.
+Mình biết rằng bài này có cách dễ hơn là dùng [Mảng Cộng Dồn](/algo/data-structures/prefix-sum-and-difference-array), nhưng lý do mảng cộng dồn sử dụng được là vì phép cộng có "phép đảo ngược" là phép trừ.
 
 Nếu xét phép toán nhân $2$ ma trận **không** vuông:
-- Phép [[nhân ma trận|algo/trick/matrix-multiplication]] không thoả tính chất Idempotence
+- Phép [nhân ma trận](/algo/trick/matrix-multiplication) không thoả tính chất Idempotence
 - Ma trận **không** vuông không có ma trận nghịch đảo nên không có "phép đảo ngược"
 
 Vậy bài toán lúc này không thể dùng mảng cộng dồn, cũng không thể dùng Sparse Table truy vấn $\mathcal{O}(1)$. Do đó, Sparse Table truy vấn $\mathcal{O}(\log N)$ là một giải pháp hợp lý (dù khá tốn bộ nhớ so với Segment Tree).
@@ -330,7 +330,7 @@ Từ ý tưởng trên, ta xây dựng công thức như sau:
 - Khi $k = 0$, ta dựng Sparse Table 1D của hàng $i$ (vì $2^k=1$), là $st(0,i)$:
 $$st(0,i)(l,j)=\left\{
 \begin{matrix}
-A[i][j] & \text{ với } l = 0 \\ 
+A[i][j] & \text{ với } l = 0 \\
 min\left\{st(0,i)(l-1,j), st(0,i)(l-1,j+2^{l-1})\right\} & \text{ với } l > 0
 \end{matrix}
 \right.$$

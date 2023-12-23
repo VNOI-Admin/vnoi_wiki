@@ -294,7 +294,7 @@ int main()
 
 Chương trình trên chỉ tính được $\binom{n}{k}$ với $n$ nhỏ. Bạn có thể tham khảo chương trình sau để tính $\binom{n}{k} \% p$ với $p$ là một số nguyên tố và $n$ lớn.
 
-Chú ý: Code sau sử dụng nghịch đảo modulo, đã được giới thiệu ở bài viết [[Số học 4.5|algo/math/modular-inverse]]
+Chú ý: Code sau sử dụng nghịch đảo modulo, đã được giới thiệu ở bài viết [Số học 4.5](/algo/math/modular-inverse)
 
 ```cpp
 /*
@@ -303,7 +303,7 @@ Tính nCr trong O(N) với mod P nguyên tố.
 Ta sử dụng công thức nCr = n! / r! / (n-r)!
 
 Khởi tạo trước fac[i] = i! mod P
-Khởi tạo trước ifac[i] = i!^-1 mod P (nghịch đảo modulo P của i!). 
+Khởi tạo trước ifac[i] = i!^-1 mod P (nghịch đảo modulo P của i!).
 
 Từ đó dễ dàng tính được nCr trong O(1).
 */
@@ -376,19 +376,19 @@ Các ứng dụng của dãy số Catalan:
 
 - $C_n$ còn là số cách đặt ngoặc cho một biểu thức gồm $n+1$ thừa số. Ví dụ với $n=3$, ta có 5 cách đặt ngoặc cho 4 thừa số: $((ab)c)d, (a(bc))d, (ab)(cd), a((bc)d), a(b(cd))$.
 
-- $C_n$ còn là số cây nhị phân đầy đủ có $n$ là (một cây nhị phân được gọi là đầy đủ nếu mọi nút của nó có hai nút con hoặc không có nút con nào). 
+- $C_n$ còn là số cây nhị phân đầy đủ có $n$ là (một cây nhị phân được gọi là đầy đủ nếu mọi nút của nó có hai nút con hoặc không có nút con nào).
 
 ![](https://upload.wikimedia.org/wikipedia/commons/0/01/Catalan_number_binary_tree_example.png)
 
 [Và còn nhiều ứng dụng khác...](https://en.wikipedia.org/wiki/Catalan_number#Applications_in_combinatorics)
 
-### Số Euler 
+### Số Euler
 
-Số Euler $\big \langle^n_k \big \rangle$ là số lượng hoán vị các số từ 1 đến $n$ mà có đúng $k$ phần tử lớn hơn phần tử đứng trước nó. Hệ thức truy hồi tính số Euler được lập bằng cách xét mỗi hoán vị $p$ của 1,2,...,$n-1$. Có $n$ vị trí để thêm số $n$ vào hoán vị, và một cách thêm số $n$ có thể làm tăng số phần tử lớn hơn phần tử đứng trước nó của $p$, hoặc bảo toàn số phần tử lớn hơn phần tử đứng trước nó. Vì vậy, 
+Số Euler $\big \langle^n_k \big \rangle$ là số lượng hoán vị các số từ 1 đến $n$ mà có đúng $k$ phần tử lớn hơn phần tử đứng trước nó. Hệ thức truy hồi tính số Euler được lập bằng cách xét mỗi hoán vị $p$ của 1,2,...,$n-1$. Có $n$ vị trí để thêm số $n$ vào hoán vị, và một cách thêm số $n$ có thể làm tăng số phần tử lớn hơn phần tử đứng trước nó của $p$, hoặc bảo toàn số phần tử lớn hơn phần tử đứng trước nó. Vì vậy,
 
 [[/uploads/number-theory-euler-number.gif]]
 
-### Bài toán phân tích một số nguyên (Integer Partitions) 
+### Bài toán phân tích một số nguyên (Integer Partitions)
 
 Ta xét bài toán sau:
 
@@ -410,7 +410,7 @@ Ví dụ: $n=5$ có 7 cách phân tích:
 
 7. $5=5$
 
-Cách dễ nhất để đếm số cách phân tích số $n$ là định nghĩa hàm $f(n,k)$ là số cách phân tích số $n$ thành tổng của các số nguyên dương nhỏ hơn hoặc bằng $k$. Các cách phân tích số $n$ thành tổng cách số nguyên dương nhỏ hơn hoặc bằng $k$ có thể chia làm hai loại: chứa số $k$ trong phép phân tích và không chứa số $k$ trong phép phân tích, vì thế ta có $f(n,k)=f(n-k,k)+f(n,k-1)$. Ngoài ra, ta còn dễ dàng có được $f(1,1)=1$ và $f(n,k)=0$ với $k>n$. 
+Cách dễ nhất để đếm số cách phân tích số $n$ là định nghĩa hàm $f(n,k)$ là số cách phân tích số $n$ thành tổng của các số nguyên dương nhỏ hơn hoặc bằng $k$. Các cách phân tích số $n$ thành tổng cách số nguyên dương nhỏ hơn hoặc bằng $k$ có thể chia làm hai loại: chứa số $k$ trong phép phân tích và không chứa số $k$ trong phép phân tích, vì thế ta có $f(n,k)=f(n-k,k)+f(n,k-1)$. Ngoài ra, ta còn dễ dàng có được $f(1,1)=1$ và $f(n,k)=0$ với $k>n$.
 
 
 # Bài tập

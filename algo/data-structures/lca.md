@@ -12,7 +12,7 @@
 
 Bài viết này được đưa lên thư viện VNOI cũ và được mình khôi phục lại sau nhiều năm thất truyền.
 
-Trước khi đọc bài viết này, bạn cần đọc bài viết: [[Bài toán RMQ và bài toán LCA|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]] để nắm được những khái niệm cơ bản.
+Trước khi đọc bài viết này, bạn cần đọc bài viết: [Bài toán RMQ và bài toán LCA](/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor) để nắm được những khái niệm cơ bản.
 
 Để giải bài toán LCA ta có thể chuyển sang bài toán RMQ tương ứng và có thể giải bằng một số cách khác nhau. Trong bài viết này chúng ta sẽ đề cập tới một số phương pháp giải bài toán LCA một cách trực tiếp.
 
@@ -71,7 +71,7 @@ Thuật toán trên nếu chỉ thực hiện 2 trường hợp đầu thì đ�
 
 # Cách 4 - Heavy Light Decomposition
 
-Sử dụng [[Heavy Light Decomposition|algo/data-structures/heavy-light-decomposition]].
+Sử dụng [Heavy Light Decomposition](/algo/data-structures/heavy-light-decomposition).
 
 Xuất phát từ trường hợp suy biến của cây: mỗi nút của cây chỉ có đúng 1 con (trừ 1 nút lá không có con). Với một cây suy biến ta hoàn toàn có thể tìm $LCA(u,v)$ trong thời gian $O(1)$ (đỉnh nào gần gốc hơn trong 2 đỉnh $u$, $v$ sẽ là $LCA(u,v)$). Tư tưởng của Heavy Light Decomposition sẽ là chia cây ban đầu ra thành nhiều cây suy biến.
 

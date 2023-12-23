@@ -47,7 +47,7 @@ Khi ta phải làm việc với nhiều biến cố, có một vài quy tắc ta
 ### Quy tắc nhân xác suất (Multiplication Rule) ($AB$)
 $AB$ có nghĩa là giao của hai biến cố $A$ và $B$, và trong xác suất, $AB$ là biến cố "Cả $A$ và $B$ cùng xảy ra". Khi ta sử dụng từ "và", ta nghĩ đến phép nhân, vì vậy "$A$ và $B$" có thể được viết dưới dạng $A \times B$ và $A.B$.
 
-Nếu $A$ và $B$ là hai biến cố phụ thuộc, xác suất của biến cố $AB$ được tính bằng công thức: $P(AB) = P(A \cup B) - (P(\text{chỉ } A) + P(\text{chỉ } B))$ 
+Nếu $A$ và $B$ là hai biến cố phụ thuộc, xác suất của biến cố $AB$ được tính bằng công thức: $P(AB) = P(A \cup B) - (P(\text{chỉ } A) + P(\text{chỉ } B))$
 
 Nếu $A$ và $B$ là hai biến cố độc lập, xác suất của biến cố $AB$ được tính bằng công thức: $P(AB) = P(A).P(B)$.
 
@@ -116,7 +116,7 @@ Một bài toán có thể có nhiều lời giải, một số lời giải tro
 
 # Đọc thêm
 
-Các bạn cũng có thể đọc thêm [[bài này|translate/topcoder/Hieu-ve-xac-suat]] - có thêm 1 số kiến thức nâng cao và 1 số ví dụ về giải bài.
+Các bạn cũng có thể đọc thêm [bài này](/translate/topcoder/Hieu-ve-xac-suat) - có thêm 1 số kiến thức nâng cao và 1 số ví dụ về giải bài.
 
 
 # Bài tập

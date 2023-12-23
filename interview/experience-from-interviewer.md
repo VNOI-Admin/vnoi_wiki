@@ -95,7 +95,7 @@ Khi ứng viên trả lời theo hướng này, thường (tùy theo cảm hứn
 
 **3. Cách $O(N)$**
 
-Cách "chuẩn" $O(N)$ là sử dụng [[hash table|algo/data-structures/hash-table]] hoặc `map` trong C++ để lưu lại các phần tử của dãy, vừa lưu vừa đếm:
+Cách "chuẩn" $O(N)$ là sử dụng [hash table](/algo/data-structures/hash-table) hoặc `map` trong C++ để lưu lại các phần tử của dãy, vừa lưu vừa đếm:
 
 ```cpp
 map<int,int> count;

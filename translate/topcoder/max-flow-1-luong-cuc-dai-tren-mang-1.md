@@ -9,7 +9,7 @@
 
 # 0. Kiến thức cần biết
 
-Để có thể hiểu được bài viết bạn đọc cần biết các khái niệm về [lý thuyết đồ thị](https://vi.wikipedia.org/wiki/L%C3%BD_thuy%E1%BA%BFt_%C4%91%E1%BB%93_th%E1%BB%8B) và bài viết giới thiệu về bài toán [[luồng cực đại trên mạng|translate/wcipeg/Flows]]
+Để có thể hiểu được bài viết bạn đọc cần biết các khái niệm về [lý thuyết đồ thị](https://vi.wikipedia.org/wiki/L%C3%BD_thuy%E1%BA%BFt_%C4%91%E1%BB%93_th%E1%BB%8B) và bài viết giới thiệu về bài toán [luồng cực đại trên mạng](/translate/wcipeg/Flows)
 
 # 1. Ứng dụng
 
@@ -102,7 +102,7 @@ def dfs(int u, sink):
 def find_augment_from_to(int source, int sink):
     """
         brief: hàm này sẽ tìm một đường tăng luồng từ source đến sink
-        return: 
+        return:
             - Nếu có một đường tăng luồng trả về True
             - Nếu không có đường tăng luồng nào trả về False
     """
@@ -207,11 +207,11 @@ def bfs(int source, int sink):
                 queue.push(v)
                 visited[v] = True
                 trace[v] = u
-    
+
 def find_augment_from_to(int source, int sink):
     """
         brief: hàm này sẽ tìm một đường tăng luồng từ source đến sink
-        return: 
+        return:
             - Nếu có một đường tăng luồng trả về True
             - Nếu không có đường tăng luồng nào trả về False
     """
@@ -229,7 +229,7 @@ Thuật toán này tìm ra đường mở có thể tăng luồng lớn nhất t
 def pfs(int source, int sink):
     # khởi tạo mảng đánh dấu visited ( false nếu chưa thăm, true nếu đã thăm)
     fill(all(visited), False)
-    # 
+    #
     fill(all(minCapacity), 0)
 
     # đẩy source vào priority_queue pq với giá trị luồng cực đại là vô cùng lớn
@@ -248,11 +248,11 @@ def pfs(int source, int sink):
                 minCapacity[v] = c[u][v]-f[u][v]
                 queue.push([v, minCapacity[v]])
                 trace[v] = u
-    
+
 def find_augment_from_to(int source, int sink):
     """
         brief: hàm này sẽ tìm một đường tăng luồng từ source đến sink
-        return: 
+        return:
             - Nếu có một đường tăng luồng trả về True
             - Nếu không có đường tăng luồng nào trả về False
     """
@@ -290,10 +290,10 @@ Một lớp học khiêu vũ có N bạn nam $B_{1},B_{2},...,B_{N}$ và M bạn
 Cho một mạng với đỉnh phát A và đỉnh thu B. Mỗi cung (u, v) được gán khả năng thông qua c[u, v]. Mỗi đỉnh v khác với A và B được gán khả năng thông qua d[v]. Một luồng trên mạng được định nghĩa như trước và thêm điều kiện:
 
 - tổng luồng đi vào đỉnh v không được vượt quá khả năng thông qua d[v] của đỉnh đó.
- 
+
 Hãy tìm luồng cực đại trên mạng.
 
-## Lát cắt hẹp nhất: 
+## Lát cắt hẹp nhất:
 
 Cho một đồ thị liên thông gồm n đỉnh và m cạnh, hãy tìm cách bỏ đi một số ít nhất các cạnh để làm cho đồ thị mất đi tính liên thông
 

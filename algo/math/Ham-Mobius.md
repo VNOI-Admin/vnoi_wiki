@@ -4,7 +4,7 @@
 
 [[_TOC_]]
 
-Trong bài viết này mình sẽ tiếp tục giới thiệu về hàm Mobius. Ở trong bài viết về [[Hàm nhân tính|algo/math/multiplicative-function]] mình đã giới thiệu hàm Mobius là một hàm nhân tính và có ứng dụng trong những bài toán sử dụng nguyên lý bù trừ. Trong bài viết này mình sẽ đi sâu vào ứng dụng của hàm Mobius.
+Trong bài viết này mình sẽ tiếp tục giới thiệu về hàm Mobius. Ở trong bài viết về [Hàm nhân tính](/algo/math/multiplicative-function) mình đã giới thiệu hàm Mobius là một hàm nhân tính và có ứng dụng trong những bài toán sử dụng nguyên lý bù trừ. Trong bài viết này mình sẽ đi sâu vào ứng dụng của hàm Mobius.
 
 # Định nghĩa
 
@@ -79,4 +79,3 @@ Các bạn có thể tham khảo cài đặt [ở đây](http://codeforces.com/c
 
 
 # Công thức nghịch đảo Mobius
-

@@ -12,7 +12,7 @@
 [[_TOC_]]
 
 # Mở đầu
-- Bài viết này sẽ giúp bạn tìm hiểu về **bài toán sắp xếp Tô-pô** *(Topological Sort)*. Sắp xếp Tô-pô là một trong những bài toán có tính ứng dụng cao trong Tin học lẫn Toán học và cả trong đời sống. 
+- Bài viết này sẽ giúp bạn tìm hiểu về **bài toán sắp xếp Tô-pô** *(Topological Sort)*. Sắp xếp Tô-pô là một trong những bài toán có tính ứng dụng cao trong Tin học lẫn Toán học và cả trong đời sống.
 
 # Bài toán sắp xếp Tô-pô
 - **Thứ tự Tô-pô** của một đồ thị có hướng là một thứ tự sắp xếp của các đỉnh sao cho với mọi cung từ đỉnh $u$ đến đỉnh $v$ trong đồ thị, $u$ luôn nằm trước $v$.
@@ -22,10 +22,10 @@
 
 # Cảm hứng
 
-- Sắp xếp Tô-pô được áp dụng nhiều nhất đối với các bài toán biểu diễn mối quan hệ **phụ thuộc** giữa các đối tượng. 
+- Sắp xếp Tô-pô được áp dụng nhiều nhất đối với các bài toán biểu diễn mối quan hệ **phụ thuộc** giữa các đối tượng.
 - Ví dụ như nó có thể được áp dụng trong việc lập ra lịch trình công việc. Một tập hợp các công việc phụ thuộc lẫn nhau có thể được sắp xếp theo một thứ tự nhất định để chúng được thực hiện.
 - Ta có ví dụ thực tế như sau:
-    * Để có được bằng cấp, sinh viên phải hoàn thành một số khóa học bắt buộc. Các khóa học này không nhất thiết phải được hoàn thành theo bất kỳ trình tự nhất định  nào, nhưng có một số khóa học là **điều kiện tiên quyết** cho những khóa học khác. 
+    * Để có được bằng cấp, sinh viên phải hoàn thành một số khóa học bắt buộc. Các khóa học này không nhất thiết phải được hoàn thành theo bất kỳ trình tự nhất định  nào, nhưng có một số khóa học là **điều kiện tiên quyết** cho những khóa học khác.
     * Ví dụ, khóa học "Giới thiệu về thuật toán trong Tin học" có thể *phụ thuộc* vào các khóa học “Nhập môn thuật toán”, “Giới thiệu về cấu trúc dữ liệu”,  “Nhập môn lập trình”, … Đây là mối quan hệ *phụ thuộc*; việc tham gia các khóa học sau *phụ thuộc* vào việc tham gia các khóa học tiên quyết của nó.
     * Từ đó, ta có thể xây dựng một đồ thị với mỗi đỉnh tương ứng với một khóa học và mỗi cạnh có hướng từ đỉnh $u$ đến đỉnh $v$ khi và chỉ khi khóa học tương ứng với đỉnh $u$ là **điều kiện tiên quyết** cho khóa học tương ứng với đỉnh $v$. Việc sắp xếp thứ tự các đỉnh của đồ thị này sẽ cung cấp một thứ tự khả thi mà các khóa học có thể được thực hiện.
     * Tất nhiên, nó **không thể** được sử dụng để giải quyết vấn đề nghiêm trọng hơn về **xung đột lịch trình**.
@@ -36,18 +36,18 @@
 - Vậy câu hỏi đặt ra là liệu điều kiện này có đủ hay không? Có đúng là một đồ thị có thể được sắp xếp theo thứ tự Tô-pô khi và chỉ khi đồ thị đó là một $DAG$ ? Câu trả lời là ***đúng***.
 - **Định lý : *Một đồ thị tồn tại thứ tự Tô-pô khi và chỉ khi đồ thị đó là DAG. Đồng nghĩa, mọi DAG đều luôn tồn tại ít nhất một thứ tự Tô-pô, và có thuật toán để tìm thứ tự Tô-pô trong thời gian tuyến tính.***
 - **Chứng minh :**
-    * Rõ ràng, một $DAG$ chỉ gồm $1$ đỉnh duy nhất luôn có thể được sắp xếp theo thứ tự Tô-pô. Khi đó, danh sách Tô-pô trong trường hợp này chỉ bao gồm chính đỉnh đó. 
+    * Rõ ràng, một $DAG$ chỉ gồm $1$ đỉnh duy nhất luôn có thể được sắp xếp theo thứ tự Tô-pô. Khi đó, danh sách Tô-pô trong trường hợp này chỉ bao gồm chính đỉnh đó.
     * Giả sử rằng bất kỳ $DAG$ nào có $n$ đỉnh đều có thể được sắp xếp theo thứ tự Tô-pô. Bây giờ hãy xem xét các $DAG$ có $n+1$ đỉnh. Nhớ lại rằng mọi $DAG$ đều có ít nhất một **đỉnh nguồn** (đỉnh không có cung vào). Hãy để **đỉnh nguồn** này làm giá trị đầu tiên trong danh sách Tô-pô, rồi loại bỏ đỉnh này cùng cách cạnh kề với nó ra khỏi đồ thị. Khi đó, ta sẽ có được đồ thị mới gồm $n$ đỉnh là đồ thị con của đồ thị ban đầu. Rõ ràng, các chu trình không thể được tạo ra bằng cách loại bỏ các cạnh và đỉnh. Bằng giả thiết ban đầu, ta có thể sắp xếp đồ thị con này theo thứ tự Tô-pô. Sau đó, ta nối thứ tự Tô-pô của đồ thị con vào cuối danh sách hiện tại để có được danh sách thứ tự Tô-pô của đồ thị $n+1$ đỉnh với **đỉnh nguồn** là giá trị đầu tiên trong danh sách.
-    * **Ví dụ minh họa:** Để xác định thứ tự Tô-pô của $DAG$ gồm $7$ đỉnh, ta thêm đỉnh nguồn $0$ vào trong danh sách Tô-pô rồi nối thêm thứ tự Tô-pô của đồ thị con $6$ đỉnh. 
+    * **Ví dụ minh họa:** Để xác định thứ tự Tô-pô của $DAG$ gồm $7$ đỉnh, ta thêm đỉnh nguồn $0$ vào trong danh sách Tô-pô rồi nối thêm thứ tự Tô-pô của đồ thị con $6$ đỉnh.
     [[/uploads/topological_sort_img2.png]]
     * Bây giờ, với hai đỉnh bất kỳ $u$ và $v$ trong danh sách Tô-pô, giả sử $u$ đứng trước $v$:
-        * Nếu $u$ là giá trị đầu tiên trong danh sách (đỉnh nguồn), trong trường hợp đó, rõ ràng là **không thể** tồn tại cạnh nối từ $v \rightarrow u$. 
-        * Nếu cả hai đỉnh $u$ và $v$ đều không phải là giá trị đầu tiên trong danh sách, dù trong trường hợp nào thì chúng đều được sắp xếp đúng vì chúng thuộc phần đồ thị con được sắp xếp theo thứ tự Tô-pô. 
+        * Nếu $u$ là giá trị đầu tiên trong danh sách (đỉnh nguồn), trong trường hợp đó, rõ ràng là **không thể** tồn tại cạnh nối từ $v \rightarrow u$.
+        * Nếu cả hai đỉnh $u$ và $v$ đều không phải là giá trị đầu tiên trong danh sách, dù trong trường hợp nào thì chúng đều được sắp xếp đúng vì chúng thuộc phần đồ thị con được sắp xếp theo thứ tự Tô-pô.
     * Do đó, danh sách $n+1$ đỉnh mới này là một thứ tự Tô-pô của $DAG$ gồm $n+1$ đỉnh.
 - **Tính chất**
-    * **Thứ tự Tô-pô không nhất thiết phải là duy nhất**. Có thể có một số thứ tự Tô-pô khác nhau trong một đồ thị. 
+    * **Thứ tự Tô-pô không nhất thiết phải là duy nhất**. Có thể có một số thứ tự Tô-pô khác nhau trong một đồ thị.
     * Tuy nhiên, thứ tự Tô-pô sẽ là duy nhất khi $DAG$ có đường đi $Hamilton$.
-    
+
 # Bài toán 1 - Sắp xếp TOPO
 
 [TOPOSORT – Sắp xếp TOPO](http://csloj.ddns.net/problem/541)
@@ -99,7 +99,7 @@ Cho đồ thị có hướng không chu trình *(Directed Acyclic Graph - DAG)* 
     4. Nếu số đỉnh của $DAG$ lớn hơn $0$, hãy quay lại bước $2$.
 - Sau khi kết thúc, danh sách sẽ chứa một thứ tự Tô-pô của $DAG$.
 - Để thực hiện thuật toán này một cách hiệu quả, ta sẽ **không** thực sự loại bỏ các đỉnh khỏi đồ thị trong bước $3$, vì đây là một quá trình phức tạp nếu đồ thị được biểu diễn dưới dạng ma trận kề hoặc danh sách kề.
-- Ta cũng sẽ **không** duyệt qua toàn bộ đồ thị ở mỗi bước $2$ để tìm **đỉnh nguồn**. Điều này cũng tốn kém về mặt thời gian và tính toán. 
+- Ta cũng sẽ **không** duyệt qua toàn bộ đồ thị ở mỗi bước $2$ để tìm **đỉnh nguồn**. Điều này cũng tốn kém về mặt thời gian và tính toán.
 - Thay vào đó, ta có những **nhận xét** sau:
     * Một đỉnh là **đỉnh nguồn** khi và chỉ khi số lượng cung vào của nó bằng $0$.
 	* Nếu một đỉnh không phải là đỉnh nguồn, nó sẽ **trở thành đỉnh nguồn** sau khi tất cả các cung vào của nó đã bị xóa. Một cung vào của nó chỉ bị xóa khi đỉnh còn lại của cung đó bị xóa.
@@ -154,12 +154,12 @@ main() {
     	cout << "Error: graph contains a cycle";
     	return 0;
     }
-    
+
     /* Sau khi xác định được thứ tự Tô-pô của đồ thị, ta sử dụng
        mảng ans để đánh số lại các đỉnh */
     int cnt = 0;
     for (auto x : topo) ans[x] = ++cnt;
-    	
+
     for (int i = 1; i <= n; ++i) cout << ans[i] << ' ';
 }
 ```
@@ -173,13 +173,13 @@ main() {
 
 ### **Đánh giá**
 
-- Để thực hiện thuật toán này một cách hiệu quả, ta cần phải có khả năng duyệt qua các đỉnh kề của một đỉnh một cách hiệu quả. Điều này được thực hiện tốt nhất bằng cách sử dụng danh sách kề (vector `g[]`). 
-- Ngoài ra, `listSource` nên là một ngăn xếp *(stack)* hoặc một hàng đợi *(queue)* để việc thêm và loại bỏ các phần tử có thể được thực hiện trong thời gian không đổi. 
+- Để thực hiện thuật toán này một cách hiệu quả, ta cần phải có khả năng duyệt qua các đỉnh kề của một đỉnh một cách hiệu quả. Điều này được thực hiện tốt nhất bằng cách sử dụng danh sách kề (vector `g[]`).
+- Ngoài ra, `listSource` nên là một ngăn xếp *(stack)* hoặc một hàng đợi *(queue)* để việc thêm và loại bỏ các phần tử có thể được thực hiện trong thời gian không đổi.
 - Thuật toán sẽ luôn tìm ra một thứ tự Tô-pô nếu nó tồn tại. Còn nếu nó **không** tồn tại (nghĩa là đồ thị ban đầu **không phải** là $DAG$ ) thì danh sách `topo` sẽ không được điền đầy đủ và thông báo lỗi sẽ được in ra.
 - Thứ tự Tô-pô sẽ là duy nhất khi và chỉ khi `listSource` chứa chính xác một đỉnh ở đầu mỗi lần lặp của vòng lặp *while*.
 
 **Độ phức tạp**
-- Ở vòng lặp *while* để duyệt các đỉnh trong `listSource`, ta mất độ phức tạp $O(n)$ vì mỗi đỉnh chỉ được thêm vào nhiều nhất $1$ lần *(ở ban đầu hoặc ngay sau khi cạnh vào cuối cùng của nó bị loại bỏ)*. Và ta sẽ mất thêm độ phức tạp $O(m)$ để duyệt các cạnh vì mỗi cạnh chỉ được kiểm tra nhiều nhất $1$ lần trong vòng lặp while *(khi đỉnh nối với nó được lấy ra)*. 
+- Ở vòng lặp *while* để duyệt các đỉnh trong `listSource`, ta mất độ phức tạp $O(n)$ vì mỗi đỉnh chỉ được thêm vào nhiều nhất $1$ lần *(ở ban đầu hoặc ngay sau khi cạnh vào cuối cùng của nó bị loại bỏ)*. Và ta sẽ mất thêm độ phức tạp $O(m)$ để duyệt các cạnh vì mỗi cạnh chỉ được kiểm tra nhiều nhất $1$ lần trong vòng lặp while *(khi đỉnh nối với nó được lấy ra)*.
 - Nhìn chung, độ phức tạp của thuật toán này là $O(n+m)$.
 
 ## Thuật toán 2
@@ -189,7 +189,7 @@ main() {
 - Điều này tương đương với việc nếu tồn tại cung $u \rightarrow v$ thì $u$ có **số thứ tự cao hơn** $v$ trong **danh sách nghịch đảo Tô-pô**.
 - **Ví dụ minh họa:**
 [[/uploads/topological_sort_img4.png]]
-- **Chứng minh:** Hãy xem xét **cây *DFS*** của đồ thị *(tìm hiểu thêm về cây $DFS$ tại [[đây|algo/graph-theory/Depth-First-Search-Tree.md]])*:
+- **Chứng minh:** Hãy xem xét **cây *DFS*** của đồ thị *(tìm hiểu thêm về cây $DFS$ tại [đây](/algo/graph-theory/Depth-First-Search-Tree.md))*:
     * Nếu $u$ là tổ tiên của $v$ trong cây $DFS$, thì quá trình duyệt xong cây con gốc $v$ sẽ kết thúc sớm hơn quá trình duyệt xong cây con gốc $u$. Do đó, $u$ sẽ có số thứ tự cao hơn $v$ trong danh sách.
     * Nếu $u$ là tổ tiên của $v$ trong cây $DFS$ và tồn tại cung nối từ $1$ đỉnh thuộc cây con gốc $v$ đến đỉnh $u$ thì đồ thị có chu trình (không phải là *DAG*) nên sẽ không tồn tại thứ tự Tô-pô.
     * Nếu $u$ **không phải** là tổ tiên của $v$ và $v$ cũng **không phải** là tổ tiên của $u$ trong cây $DFS$ thì khi đó, $2$ đỉnh $u$ và $v$ sẽ nằm trên $2$ nhánh khác nhau của cây $DFS$. Do đó cung nối từ nhánh chứa đỉnh $u$ đến nhánh chứa đỉnh $v$ là **cung chéo** và đỉnh $u$ sẽ được duyệt sau $v$ nên sẽ có số thứ tự cao hơn $v$ trong danh sách.
@@ -254,7 +254,7 @@ main() {
        mảng ans để đánh số lại các đỉnh */
     int cnt = 0;
     while (!topo.empty()) {
-        ans[topo.top()] = ++cnt; 
+        ans[topo.top()] = ++cnt;
         topo.pop();
     }
 
@@ -273,7 +273,7 @@ main() {
 
 - **Thuật toán 2** đơn giản và dễ cài đặt so với hơn **thuật toán 1**.
 - Ta sử dụng ngăn xếp *(stack)* để có thể dễ dàng **đảo ngược** lại thứ tự hoàn tất duyệt của mỗi đỉnh. Nói cách khác là ta đảo ngược lại **danh sách nghịch đảo thứ tự Tô-pô** để có được thứ tự Tô-pô.
-- Với phương pháp sắp xếp Tô-pô bằng $DFS$, nếu đồ thị không phải là $DAG$ thì ta vẫn có thể tìm ra một thứ tự, nhưng ta lại có thế dùng $DFS$ để kiểm tra luôn xem đồ thị có là $DAG$ hay không. 
+- Với phương pháp sắp xếp Tô-pô bằng $DFS$, nếu đồ thị không phải là $DAG$ thì ta vẫn có thể tìm ra một thứ tự, nhưng ta lại có thế dùng $DFS$ để kiểm tra luôn xem đồ thị có là $DAG$ hay không.
 - Nếu đồ thị **không phải** là $DAG$ thì thông báo lỗi sẽ được in ra.
 
 **Độ phức tạp**
@@ -323,7 +323,7 @@ Tìm độ dài lớn nhất của đường đi có hướng trong $G$. Ở đ�
 
 - Sắp xếp Tô-pô có rất nhiều ứng dụng quan trọng, đặc biệt là áp dụng quy hoạch động trên mảng thứ tự Tô-pô.
 - Gọi $dp[i]$ là độ dài đường đi dài nhất bắt đầu từ đỉnh có chỉ số $i$. Ta có công thức quy hoạch động trên danh sách Tô-pô như sau:
-    * $dp[topo[i]]=max(dp[topo[j]] + 1)$ (Với $i = n \rightarrow 1$ và tồn tại cung từ $topo[i] \rightarrow topo[j]$). 
+    * $dp[topo[i]]=max(dp[topo[j]] + 1)$ (Với $i = n \rightarrow 1$ và tồn tại cung từ $topo[i] \rightarrow topo[j]$).
 - Theo định nghĩa của thứ tự Tô-pô, chỉ tồn tại các cung từ chỉ số nhỏ đến chỉ số lớn hơn. Nên khi ta tính toán đến $dp[topo[i]]$ thì chắc chắn $dp[topo[j]]$ đều đã được tính trước đó.
 - Kết quả độ dài đường đi dài nhất của đồ thị là $max(dp[i])$.
 
@@ -381,7 +381,7 @@ main() {
 - Do đó, thay vì sử dụng ngăn xếp *(stack)* để đảo ngược lại danh sách. Ta sử dụng mảng động *(vector)* `revTopo` để lưu trữ lại thứ tự nghịch đảo Tô-pô đó.
 - Với **đồ thị tổng quát**, bài này sẽ trở thành bài toán $NP$.
 - Với $DAG$, quy hoạch động trên thứ tự Tô-pô **có thể giải được** trong $O(n + m)$, kể cả với trọng số dương/âm, kể cả tìm đường đi ngắn nhất/dài nhất.
- 
+
 **Độ phức tạp**
 - Độ phức tạp của thuật toán là $O(n + m)$.
 
@@ -397,7 +397,7 @@ Sau khi kiểm tra, cô phát hiện ra rằng đôi khi điều đó không đ�
 
 Cô ấy muốn biết liệu có tồn tại thứ tự các chữ cái trong bảng chữ cái *Latin* sao cho các tên trên bài báo mà cô ấy định xuất bản được sắp xếp theo **thứ tự từ điển** hay không. Nếu có, bạn hãy giúp cô ấy tìm ra một thứ tự thỏa mãn bất kỳ.
 
-**Thứ tự từ điển** được xác định theo cách sau: Khi so sánh $2$ xâu kí tự $s$ và $t$, đầu tiên ta tìm vị trí ngoài cùng bên trái sao cho các ký tự khác nhau $(s_i≠t_i)$ rồi so sánh các ký tự $s_i$ và $t_i$ theo thứ tự của chúng trong *bảng chữ cái*, nếu $s_i < t_i$ thì $s$ có thứ tự từ điển nhỏ hơn $t$ và ngược lại. Còn nếu không có vị trí như vậy (tức là $s$ là tiền tố của $t$ hoặc ngược lại) thì chuỗi ngắn hơn sẽ có thứ tự từ điển nhỏ hơn. 
+**Thứ tự từ điển** được xác định theo cách sau: Khi so sánh $2$ xâu kí tự $s$ và $t$, đầu tiên ta tìm vị trí ngoài cùng bên trái sao cho các ký tự khác nhau $(s_i≠t_i)$ rồi so sánh các ký tự $s_i$ và $t_i$ theo thứ tự của chúng trong *bảng chữ cái*, nếu $s_i < t_i$ thì $s$ có thứ tự từ điển nhỏ hơn $t$ và ngược lại. Còn nếu không có vị trí như vậy (tức là $s$ là tiền tố của $t$ hoặc ngược lại) thì chuỗi ngắn hơn sẽ có thứ tự từ điển nhỏ hơn.
 
 **Input**
 
@@ -452,7 +452,7 @@ Impossible
     * Ví dụ: $s="abcxyz"$ và $t="abcuv"$. Để $s < t$ thì $'x'$ phải có thứ tự nhỏ hơn $'u'$ trong *bảng chữ cái*.
 * Nói cách khác, nó sẽ cho ta biết được kí tự nào sẽ phải đứng trước kí tự nào trong *bảng chữ cái*.
 * Do đó, ta có thể xây dựng một đồ thị với mỗi đỉnh tương ứng với $1$ kí tự ($'a'$ $-$ $'z'$) và mỗi cạnh có hướng từ đỉnh tương ứng với kí tự phải có thứ tự **nhỏ hơn** đến đỉnh tương ứng với kí tự phải có thứ tự **lớn hơn** đỉnh kia.
-* Từ đó, ta có thể sử dụng thuật toán sắp xếp Tô-pô để tìm ra $1$ thứ tự chữ cái thỏa mãn. 
+* Từ đó, ta có thể sử dụng thuật toán sắp xếp Tô-pô để tìm ra $1$ thứ tự chữ cái thỏa mãn.
 * Nếu đồ thị **không phải** là $DAG$ thì **không tồn tại** thứ tự chữ cái nào thỏa mãn.
 * **Lưu ý trường hợp**: Nếu $s$ đứng trước $t$ trong danh sách tên và $t$ là **tiền tố** của $s$ thì $s$ luôn luôn có thứ tự từ điển lớn hơn $t$ nên sẽ **không tồn tại** thứ tự chữ cái nào thỏa mãn.
 
@@ -501,7 +501,7 @@ void solve(string x, string y) {
             return;
         }
 
-    /* Trường hợp y là tiền tố của x => x luôn lớn hơn y 
+    /* Trường hợp y là tiền tố của x => x luôn lớn hơn y
          => không có cách xếp thỏa mãn */
     if (x.size() > y.size()) printImpossible();
 }
@@ -526,7 +526,7 @@ main() {
 ### Đánh giá
 
 - Để **tối ưu độ phức tạp**, với mỗi chuỗi kí tự ta không cần phải *so sánh* nó với tất cả các chuỗi còn lại. Mà ta chỉ cần *so sánh* $2$ chuỗi kí tự liên tiếp. Vì nó sẽ luôn đúng theo **tính chất bắc cầu**: Nếu $s < x$ và $x < t$ thì $s < t$.
- 
+
 **Độ phức tạp**
 - Ở vòng *for* đầu tiên để xây dựng các cạnh của đồ thị, ta mất độ phức tạp $O(n * \|name\|)$.
 - Ở vòng *for* thứ hai để xác định thứ tự Tô-pô, ta mất độ phức tạp $O(26 + m)$. Với $m$ là số cạnh của đồ thị. Trong **trường hợp xấu nhất**, với mỗi cặp kí tự liên tiếp đều tạo ra $1$ cạnh thì số lượng cạnh lớn nhất có thể tạo ra là $n-1$ cạnh.

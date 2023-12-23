@@ -1,6 +1,6 @@
 # Thuật toán đường quét
 
-**Nguời viết:** 
+**Nguời viết:**
 - Ngô Nhật Quang - HUS High School for Gifted Students
 - Bùi Nguyễn Ngọc Thắng - Carnegie Mellon University in Qatar
 - Trần Đình Khánh Dương - Michigan State University
@@ -30,7 +30,7 @@ Với hai điểm $P(x_P, y_P)$ và $Q(x_Q, y_Q)$:
 - **Khoảng cách Manhattan** giữa hai điểm $P$ và $Q$ là khoảng cách giữa nếu ta chỉ được đi dọc hoặc ngang khi từ điểm này qua điểm kia, được tính bằng công thức: $\lvert x_Q - x_P \rvert + \lvert y_Q - y_P \rvert$
 
 <center>
-[[/uploads/Sweep-Line_img1.png|width=300px]]
+[/uploads/Sweep-Line_img1.png](/width=300px)
 </center>
 
 <center>
@@ -63,21 +63,21 @@ Trước tiên, chúng ta sẽ sắp xếp lại danh sách điểm theo thứ t
 Giả sử chúng ta đã xử lí xong $N - 1$ điểm đầu tiên và khoảng cách ngắn nhất hiện có là $d$. Như vậy từ điểm thứ $N$ về sau, ta chỉ quan tâm đến các cặp điểm có khoảng cách bé hơn $d$. Gọi điểm thứ $N$ (cũng là điểm đang xét) là điểm $P$.
 
 > **Bổ đề 1**
-> 
+>
 > Tại mỗi bước trong thuật toán, để tìm một cặp điểm có khoảng cách bé hơn $d$, ta chỉ cần quan tâm đến tối đa $8$ điểm khác.
-> 
+>
 > **Chứng minh**
-> 
+>
 > Từ $P$, vẽ $8$ hình vuông xung quanh, mỗi hình vuông có cạnh đúng bằng $d/2$, như hình dưới (điểm màu xanh là $P$).
-> 
+>
 <center>
-> [[/uploads/Sweep-Line_img2.png|width=300px]]
+> [/uploads/Sweep-Line_img2.png](/width=300px)
 </center>
-> 
+>
 > Hiển nhiên tất cả các điểm từ $1$ đến $N - 1$ đều nằm về phía bên trái của điểm đang xét do ta duyệt danh sách theo thứ tự tăng dần về hoành độ. Nhận xét rằng từ $P$, ta không cần quan tâm đến những điểm $T$ không nằm trong $8$ hình vuông bên trên do khi đó khoảng cách giữa $P$ và $T$ lớn hơn $d$.
-> 
+>
 > Xét $8$ hình vuông ta vừa vẽ. Do $d$ là khoảng cách ngắn nhất giữa hai cặp điểm bất kì trong $N - 1$ điểm đầu tiên nên trong mỗi hình vuông, có nhiều nhất một điểm. Do đó, tối đa ta chỉ cần xét $8$ điểm trong $8$ hình vuông để cập nhật kết quả.
-> 
+>
 
 Từ bổ đề 1, ta nhận thấy cần duy trì một danh sách $L$ các điểm có hoành độ chênh lệch không quá $d$ so với điểm đang xét. Do $d$ giảm dần nên ta có thể thực hiện việc này bằng kĩ thuật hai con trỏ. Đồng thời, tại mỗi bước ta cần tìm các điểm có tung độ lân cận với điểm đang xét. Do đó các điểm trong $L$ cần được sắp xếp theo thứ tự tung độ tăng dần. Các tiêu chí trên có thể thoả mãn bằng cách cài đặt một cây nhị phân tìm kiếm như `std::set`.
 
@@ -103,7 +103,7 @@ using namespace std;
 struct Point{
     ll x, y;
     int id;
-    
+
     bool operator < (const Point& other) {
         if (x != other.x) return x < other.x;
         return y < other.y;
@@ -121,56 +121,56 @@ int n;
 vector<Point> points; // Vector chứa tất cả các điểm
 set<Point, cmp> T;
 
-ll squared_dist(Point a, Point b) { // Nhận vào hai điểm, trả vể 
+ll squared_dist(Point a, Point b) { // Nhận vào hai điểm, trả vể
                                      // bình phương khoảng cách giữa hai điểm
     return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
 }
 
 signed main() {
     ios_base::sync_with_stdio(false); cin.tie(NULL);
-    
+
     cin >> n;
     for (int i = 0; i < n; i++) {
         ll x, y;
         cin >> x >> y;
         points.push_back({x, y, i});
     }
-    
+
     ll squared_d = squared_dist(points[0], points[1]); // Lưu bình phương của d
     int res_id1 = 0, res_id2 = 1;
-    
+
     sort(points.begin(), points.end()); // Sắp xếp các điểm theo hoành độ
-    
+
     for (auto p : points) {
         ll x = p.x, y = p.y;
         int id = p.id;
-        
+
         ll d = sqrt(squared_d);
         Point cur = {-1000001, y - d, id};
-        
+
         while (1) { // Tìm tất cả các điểm có tung độ trong khoảng [y - d, y + d]
             auto it = T.upper_bound(cur);
-            
+
             if (it == T.end()) break;
-            
+
             cur = *it;
             if (cur.y > y + d) break; // Dừng lại nếu điểm có tung độ lớn hơn y + d
-            
+
             if (cur.x < x - d) {
                 T.erase(it);
                 continue;
             } // Xóa điểm nếu điểm này có hoành độ bé hơn x - d
-            
-            
+
+
             if (squared_dist(p, cur) < squared_d) {
                 squared_d = squared_dist(p, cur);
                 res_id1 = id; res_id2 = cur.id;
             } // Gán đáp án mới nếu tìm được d nhỏ hơn
         }
-        
+
         T.insert(p); // Thêm điểm hiện tại vào T
     }
-    
+
     if (res_id1 > res_id2) swap(res_id1, res_id2);
     cout << res_id1 << " " << res_id2 << " ";
     cout << fixed << setprecision(6) << sqrt(squared_d);
@@ -196,18 +196,18 @@ Ta bắt đầu với ý tưởng quét qua tất cả đoạn thẳng tương t
 
 Tuy nhiên, ta sẽ gặp phải vấn đề là một đoạn thẳng nằm ngang sẽ bao gồm các điểm có hoành độ khác nhau nên chúng ta khó có thể sắp xếp các đoạn thẳng theo một thứ tự nào đó liên quan đến hoành độ - giả sử có một đoạn thẳng nối $(0.5, 0.25)$ và $(0.5, 0.75)$ và một đoạn thẳng nối $(0.25, 0.5)$ và $(0.75, 0.5)$, chúng ta nên ưu tiên đoạn thẳng nào trước?
 
-Để giải quyết vấn đề trên, một ý tưởng thường được dùng là thay vì xem một đoạn thẳng nằm ngang là một phần tử duy nhất trong danh sách, ta sẽ tách nó ra thành hai phần tử riêng biệt - một phần tử biểu thị cho đầu mút bên trái và một phần tử biểu thị cho đầu mút bên phải của đoạn thẳng. Như vậy trong danh sách của chúng ta sẽ có ba loại phần tử: 
+Để giải quyết vấn đề trên, một ý tưởng thường được dùng là thay vì xem một đoạn thẳng nằm ngang là một phần tử duy nhất trong danh sách, ta sẽ tách nó ra thành hai phần tử riêng biệt - một phần tử biểu thị cho đầu mút bên trái và một phần tử biểu thị cho đầu mút bên phải của đoạn thẳng. Như vậy trong danh sách của chúng ta sẽ có ba loại phần tử:
 
 1. Đầu mút bên trái của một đoạn thẳng nằm ngang
 2. Đầu mút bên phải của một đoạn thẳng nằm ngang
-3. Một đoạn thẳng nằm dọc. 
+3. Một đoạn thẳng nằm dọc.
 
 Khi này ta sẽ có thể sắp xếp danh sách của chúng ta theo thứ tự tăng dần về hoành độ của các phần tử.
 
 Chúng ta sẽ quét từ trái sang phải. Khi đoạn quét di chuyển, ta duy trì một tập hợp $S$ các đoạn thẳng nằm ngang bị cắt ngang theo đoạn quét - tức là đoạn quét đang ở giữa hai đầu mút của đoạn ngang đó. Tập này được sắp xếp theo thứ tự $y$, và được tô màu đỏ trong hình dưới.
 
 <center>
-[[/uploads/Sweep-Line_img3.png|width=200px]]
+[/uploads/Sweep-Line_img3.png](/width=200px)
 </center>
 
 Với mỗi đoạn thẳng nằm dọc $v_i$, để đếm $t_i$ là số đoạn thẳng nằm ngang cắt $v_i$, ta chỉ việc tìm trong tập $S$ những đoạn thẳng có tung độ nằm giữa hai đầu mút của $v$. Hiển nhiên ta thấy rằng tổng của các $t_i$ cũng là số giao điểm ta cần tìm.
@@ -243,7 +243,7 @@ const double EPS = 1e-9;
 struct Event{
     double x;
     int y, y2, type;
-    
+
     bool operator < (const Event& other) const {
         return x < other.x;
     }
@@ -344,7 +344,7 @@ Giới hạn:
 Tương tự như bài toán tìm giao điểm của các đoạn thẳng, chúng ta có thể xử lí bằng cách biểu diễn mỗi hình chữ nhật thành hai "sự kiện" - một biểu thị cho cạnh bên trái và một biểu thị cho cạnh bên phải của hình chữ nhật - và duy trì một tập $S$ chứa các hình chữ nhật mà đoạn thẳng quét của chúng ta đang cắt qua. Khi chúng ta quét qua cạnh bên trái, ta thêm hình chữ nhật đó vào $S$, khi quét qua cạnh bên phải thì ta xoá hình chữ nhật tương ứng khỏi $S$.
 
 <center>
-[[/uploads/Sweep-Line_img4.png|width=300px]]
+[/uploads/Sweep-Line_img4.png](/width=300px)
 </center>
 
 Ta biết được những hình chữ nhật nào đang bị cắt bởi đường quét của chúng ta (màu đỏ). Để tìm tổng diện tích được bao phủ, ta sẽ tìm diện tích từng phần bị bao phủ giữa mỗi cặp hai "sự kiện" liền nhau và tính tổng của chúng. Để tìm phần diện tích được bao phủ giữa hai sự kiện liền nhau, ta cần biết tổng độ dài phần đường quét đi qua chúng (nét liền màu xanh trong hình trên). Nhân độ dài này với khoảng cách giữa hai sự kiện liền nhau, ta được diện tích của phần hình chữ nhật giữa hai "sự kiện" đó.
@@ -461,22 +461,22 @@ Giới hạn:
 Ý tưởng chính của thuật giải là nếu như số cạnh ta cần xét là $O(n)$ thì ta có thể sử dụng các thuật toán tìm cây khung nhỏ nhất như Kruskal hay Prim để giải bài toán trong $O(n \log{n})$.
 
 > **Bổ đề 2**
-> 
+>
 > Xét một điểm $P$ cho trước bất kì. Lấy gốc toạ độ tại $P$. Chia mặt phẳng toạ độ thành $8$ phần bằng nhau như hình dưới. Với mỗi phần tám, nối $P$ với một điểm bất kì trong phần tám đó có khoảng cách Manhattan gần nhất với $P$ (nếu có). Chẳng hạn trong ví dụ ở hình dưới, ta sẽ nối $P$ với $Q$.
-> 
+>
 <center>
 > [[/uploads/Sweep-Line_img5.png]]
 </center>
-> 
+>
 > Thực hiện thao tác trên với tất cả các điểm được cho, ta thu được một đồ thị $G$ có $O(n)$ cạnh. Ta sẽ chứng minh rằng cây khung nhỏ nhất trên đồ thị $G$ là một đáp án cho bài toán.
-> 
+>
 > **Chứng minh**
-> 
+>
 > Ta sẽ chứng minh rằng các cạnh trong cây khung nhỏ nhất $T$ của tập điểm ban đầu cũng thuộc đồ thị $G$.
-> 
+>
 > Xét cạnh $(u, v) \in T$. Không mất tính tổng quát, giả sử $v$ thuộc phần tám thứ nhất so với $u$. Giả sử tồn tại một điểm $w$ trong tập điểm ban đầu sao cho $d(u, w) < d(u, v)$. Đồng thời ta biết rằng $d(v, w) < d(u, v)$ (nhìn hình minh hoạ bên dưới). Do đó ta sẽ có một cây khung nhỏ hơn nếu ta bỏ $(u, v)$ và thay bằng một trong hai cạnh $(u, w)$ hay $(v, w)$. Điều này trái giả thiết $T$ là cây khung nhỏ nhất. Do đó, không tồn tại điểm $w$ sao cho $d(u, w) < d(u, v)$ - tức $v$ là điểm trong phần tám thứ nhất của $u$ có khoảng cách Manhattan gần nhất. Chứng minh tương tự với các trường hợp $v$ thuộc các phần tám còn lại của $u$.
 >
-> | [[/uploads/Sweep-Line_img6.png|width=300px]] |
+> | [/uploads/Sweep-Line_img6.png](/width=300px) |
 > | :--------: |
 > | $\forall w$ thuộc vùng màu xanh, $d(v, w) \leq d(u, v)$ |
 
@@ -485,7 +485,7 @@ Qua bổ đề 2, ta thấy bài toán đặt ra hiện tại là làm sao để
 > **Bổ để 3**
 >
 > Gọi $d(P, Q)$ là khoảng cách Manhattan giữa hai điểm $P$ và $Q$. Gọi $A(x_A, y_A)$, $B(x_B, y_B)$, $C(x_C, y_C)$, $D(x_D, y_D)$ là bốn điểm trên mặt phẳng sao cho $x_A, x_B \leqslant x_C, x_D$ và $y_A, y_B \leqslant y_C, y_D$. Ta có $d(A, C) \leqslant d(A, D)$ tương đương với $d(B, C) \leqslant d(B, D)$.
-> 
+>
 > **Chứng minh**
 > $$\begin{align}
 > d(A, C) &\leqslant d(A, D)\\
@@ -545,11 +545,11 @@ struct DSU {
     vector<int> par;
     DSU() {}
     DSU(int n): par(n, -1) {}
-    
+
     int find_set(int u) {
         return par[u] < 0 ? u : par[u] = find_set(par[u]);
     }
-    
+
     bool join(int u, int v) {
         u = find_set(u);
         v = find_set(v);
@@ -580,9 +580,9 @@ vector<Point> solve_single_recur(vector<Point> p) {
     auto upper = solve_single_recur({p.begin(), p.begin() + upper_size});
     auto lower = solve_single_recur({p.begin() + upper_size, p.end()});
     vector<Point> res;
-    
+
     Point min_diff_yx{0, INF, -1};
-    
+
     int upper_ptr = 0;
     for (auto lo : lower) {
         while (upper_ptr < upper_size and upper[upper_ptr].sum_xy() <= lo.sum_xy()) {
@@ -597,7 +597,7 @@ vector<Point> solve_single_recur(vector<Point> p) {
         }
         res.push_back(lo);
     }
-    
+
     res.insert(res.end(), upper.begin() + upper_ptr, upper.end());
     return res;
 }
@@ -641,7 +641,7 @@ int solve(vector<Point> p) {
         }
     }
     // Thuật toán kruskal
-    
+
     return ans;
 }
 

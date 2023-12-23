@@ -6,7 +6,7 @@
 
 # Giới thiệu
 
-Trước khi đọc bài này, bạn có thể đọc về các thuật ngữ trong xử lý xâu cũng như về bài toán so khớp chuỗi [[ở đây|algo/string/basic]]
+Trước khi đọc bài này, bạn có thể đọc về các thuật ngữ trong xử lý xâu cũng như về bài toán so khớp chuỗi [ở đây](/algo/string/basic)
 
 Thuật toán Knuth-Morris-Pratt (KMP) là một thuật toán với thời gian chạy tuyến tính nhằm giải quyết bài toán so khớp chuỗi.
 
@@ -71,7 +71,7 @@ Và tương tự, lại kết luận được:
 - $S_1 = T_3$
 - $S_2 = T_4$.
 
-Ta sau đó chỉ cần so $S_3$ với $T_5$, tìm được một đáp án nữa, cứ thế tiếp tục. Trong khi thuật toán duyệt cần đến $3$ phép tính cho mỗi lần so sánh $S$ với một xâu con của $T$, kĩ thuật của chúng ta chỉ cần $3$ phép tính ở lần lặp đầu và $1$ cho mỗi kết quả sau, và không xét lại các kí tự của $T$. (Đây cũng là cách con người giải quyết bài toán) 
+Ta sau đó chỉ cần so $S_3$ với $T_5$, tìm được một đáp án nữa, cứ thế tiếp tục. Trong khi thuật toán duyệt cần đến $3$ phép tính cho mỗi lần so sánh $S$ với một xâu con của $T$, kĩ thuật của chúng ta chỉ cần $3$ phép tính ở lần lặp đầu và $1$ cho mỗi kết quả sau, và không xét lại các kí tự của $T$. (Đây cũng là cách con người giải quyết bài toán)
 
 ### Ví dụ 2
 
@@ -165,7 +165,7 @@ Tổng quát, bảng $\pi$ cho ta biết, sau một lần khớp hoặc không k
 
 - Dãy $\pi_i^{\*} = i, \pi_i, \pi_{\pi_i}, \pi_{\pi_{\pi_i}}, ... ,0$ chứa toàn bộ những giá trị $j$ thỏa mãn $S^j \sqsupset S^i$.
 
-Vậy, ta có thể đếm toàn bộ những hậu tố của $S^i$ đồng thời là tiền tố của $S$ bằng cách bắt đầu với $i$, dò nó trong bảng $\pi$, dùng kết quả đó dò tiếp tục và tiếp tục, đến khi kết thúc bằng $0$. 
+Vậy, ta có thể đếm toàn bộ những hậu tố của $S^i$ đồng thời là tiền tố của $S$ bằng cách bắt đầu với $i$, dò nó trong bảng $\pi$, dùng kết quả đó dò tiếp tục và tiếp tục, đến khi kết thúc bằng $0$.
 
 *Chứng minh:*
 

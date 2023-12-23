@@ -14,7 +14,7 @@ Trong bài viết này, chúng ta sẽ cùng nhau điểm qua các loại cấu 
 
 - **CTDL lưu trữ**: thường có các thao tác như thêm 1 phần tử, xóa 1 phần tử. Có thể có thêm các thao tác như tìm kiếm 1 phần tử.
 - **CTDL truy vấn**: thường dùng cho các bài toán mà bạn phải duy trì một tập hợp các số và thực hiện 1 số truy vấn trên đó.
-- **CTDL xâu**: dùng cho các bài tập [[Xử lý xâu|algo/string/basic]].
+- **CTDL xâu**: dùng cho các bài tập [Xử lý xâu](/algo/string/basic).
 
 # 1. CTDL Lưu trữ
 
@@ -55,7 +55,7 @@ Mảng và danh sách liên kết là 2 cấu trúc dữ liệu nền tảng cho
 </tr>
 </table>
 
-Bạn có thể đọc thêm về mảng và danh sách liên kết [[ở đây|algo/data-structures/array-vs-linked-lists]]
+Bạn có thể đọc thêm về mảng và danh sách liên kết [ở đây](/algo/data-structures/array-vs-linked-lists)
 
 ## 1.2. Stack, Queue, Deque
 
@@ -97,7 +97,7 @@ Cả 2 thao tác đều có độ phức tạp $\mathcal{O}(1)$.
 Deque được sử dụng trong một số thuật toán như:
 
 - BFS 01
-- [[Tìm Min/Max trên đoạn tịnh tiến|algo/data-structures/deque-min-max]].
+- [Tìm Min/Max trên đoạn tịnh tiến](/algo/data-structures/deque-min-max).
 
 Trong C++ STL, có sẵn kiểu dữ liệu `deque`.
 
@@ -109,16 +109,16 @@ Heap là một cấu trúc dữ liệu cho phép thực hiện các thao tác:
 - Xóa một phần tử, với độ phức tạp $\mathcal{O}(\log{N})$.
 - Tìm $max$ của các phần tử, với độ phức tạp $\mathcal{O}(1)$.
 
-Bạn có thể đọc thêm về Heap [[ở đây|translate/wcipeg/Binary-Heap]]
+Bạn có thể đọc thêm về Heap [ở đây](/translate/wcipeg/Binary-Heap)
 
 
 **Fibonacci Heap** là một dạng heap có **độ phức tạp** bé hơn. Trong **C++**, CTDL **priority_queue** được cài đặt bằng Fibonacci Heap.
 
 ## 1.4. Cây Tìm Kiếm Nhị Phân
 
-**Cây Tìm Kiếm Nhị Phân** (**BST Binary Search Tree**) là một [[cây nhị phân|translate/wcipeg/tree]] có tính chất: Với mỗi giá trị trên đỉnh đang xét, giá trị của mọi đỉnh trên cây con trái luôn nhỏ hơn đỉnh đang xét và giá trị của mọi đỉnh trên cây con phải luôn lớn hơn đỉnh đang xét.
+**Cây Tìm Kiếm Nhị Phân** (**BST Binary Search Tree**) là một [cây nhị phân](/translate/wcipeg/tree) có tính chất: Với mỗi giá trị trên đỉnh đang xét, giá trị của mọi đỉnh trên cây con trái luôn nhỏ hơn đỉnh đang xét và giá trị của mọi đỉnh trên cây con phải luôn lớn hơn đỉnh đang xét.
 
-[[/uploads/bst1.png|bst1]]
+[/uploads/bst1.png](/bst1)
 
 Cây tìm kiếm nhị phân cho phép thực hiện các thao tác:
 
@@ -132,8 +132,8 @@ Trong trường hợp dữ liệu ngẫu nhiên, các thao tác trên có độ 
 Để khắc phục điều này, có rất nhiều CTDL cải tiến từ cây tìm kiếm nhị phân, thường được gọi là các cây nhị phân cân bằng. Khi đó, các thao tác trên có thể được thực hiện với độ phức tạp $\mathcal{O}(\log{N})$. Ví dụ:
 
 - **Cây Đỏ Đen** (Red-Black Tree) là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $O(log(N))$. CTDL **set** trong **C++** được cài đặt bằng cây đỏ đen.
-  [[/uploads/redblack1.png|redblack1]]
-- **Splay tree**, [[Skip list|algo/data-structures/Skip-Lists]], **Treap** thường được dùng trong các kỳ thi bởi cài đặt đơn giản.
+  [/uploads/redblack1.png](/redblack1)
+- **Splay tree**, [Skip list](/algo/data-structures/Skip-Lists), **Treap** thường được dùng trong các kỳ thi bởi cài đặt đơn giản.
 
 ## 1.5. Bảng băm (Hash Tables)
 
@@ -148,7 +148,7 @@ Trong trường hợp hàm Hash hoạt động tốt, mỗi bucket có rất ít
 - Tìm 1 khóa: $\mathcal{O}(1)$.
 - Thêm / xóa 1 khóa: $\mathcal{O}(1)$.
 
-Bạn có thể đọc thêm về Hash table [[ở đây|algo/data-structures/hash-table]]
+Bạn có thể đọc thêm về Hash table [ở đây](/algo/data-structures/hash-table)
 
 # 2. CTDL Truy vấn
 
@@ -210,11 +210,11 @@ Cho đồ thị có $N$ đỉnh. Ta cần thực hiện 2 loại truy vấn:
 
 Disjoint set cho phép ta thực hiện 2 thao tác trên với độ phức tạp $\mathcal{O}(\log{N})$.
 
-Bạn có thể đọc thêm về Disjoint Set ở [[bài viết này|algo/data-structures/disjoint-set]].
+Bạn có thể đọc thêm về Disjoint Set ở [bài viết này](/algo/data-structures/disjoint-set).
 
 ## 2.3. Sparse Table
 
-Sparse Table là cấu trúc dữ liệu được sử dụng trong [[bài toán LCA & RMQ|translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor]].
+Sparse Table là cấu trúc dữ liệu được sử dụng trong [bài toán LCA & RMQ](/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor).
 
 Với cả 2 bài toán, Sparse Table cho phép:
 
@@ -227,9 +227,9 @@ Segment Tree, còn được gọi là Interval Tree trong nhiều tài liệu ti
 
 Với dãy số độ dài $N$, Segment Tree cho phép thực hiện các thao tác với độ phức tạp $\mathcal{O}(\log{N})$.
 
-Bạn có thể đọc thêm về Segment Tree [[ở đây|algo/data-structures/segment-tree-extend]].
+Bạn có thể đọc thêm về Segment Tree [ở đây](/algo/data-structures/segment-tree-extend).
 
-Segment Tree cũng có một mở rộng với nhiều ứng dụng quan trọng là [[Segment Tree trên tập đoạn thẳng|algo/data-structures/interval-tree-tap-doan-thang]].
+Segment Tree cũng có một mở rộng với nhiều ứng dụng quan trọng là [Segment Tree trên tập đoạn thẳng](/algo/data-structures/interval-tree-tap-doan-thang).
 
 ## 2.5. Fenwick
 
@@ -243,19 +243,19 @@ Cũng giống như Segment Tree, Fenwick tree (còn được gọi là Binary In
 - Nhược điểm:
     - Không tổng quát bằng Segment Tree. Tất cả những bài giải được bằng Fenwick tree đều có thể giải được bằng Segment Tree. Nhưng chiều ngược lại không đúng.
 
-Bạn có thể đọc thêm về Fenwick Tree [[ở đây|algo/data-structures/fenwick]].
+Bạn có thể đọc thêm về Fenwick Tree [ở đây](/algo/data-structures/fenwick).
 
 ## 2.6. Heavy-light decomposition
 
 **Heavy Light Decomposition** là một thuật toán được áp dụng nhiều trong những bài cần xử lý các truy vấn trên cây. Heavy-light decomposition là kĩ thuật phân tách một cây thành nhiều chuỗi đỉnh (chain) rời nhau. Sau đó, chúng ta có thể áp dụng các cấu trúc dữ liệu như Interval Tree hay Binary-Indexed Tree lên những chuỗi này để có thể cập nhật dữ liệu hoặc trả lời các truy vấn trên một đường đi giữa 2 đỉnh trong cây.
 
-Bạn có thể đọc thêm ở: [[Thuật toán phân tách cây|algo/data-structures/heavy-light-decomposition]]
+Bạn có thể đọc thêm ở: [Thuật toán phân tách cây](/algo/data-structures/heavy-light-decomposition)
 
 ## 2.7. Persistent Data Structures
 
 Persistent Data Structures là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu.
 
-Bạn có thể  đọc thêm ở: [[Persistent Data Structures|algo/data-structures/persistent-data-structures]]
+Bạn có thể  đọc thêm ở: [Persistent Data Structures](/algo/data-structures/persistent-data-structures)
 
 
 # 3. CTDL xâu
@@ -270,7 +270,7 @@ Bạn có thể  đọc thêm ở: [[Persistent Data Structures|algo/data-struct
 
 Ngoài ra trên thực tế, trie cũng rất tiết kiệm bộ nhớ khi áp dụng để lưu các từ có nghĩa, vì vậy nó là một CTDL có ứng dụng rất lớn.
 
-Bạn có thể đọc thêm [[bài viết về trie|algo/data-structures/trie]].
+Bạn có thể đọc thêm [bài viết về trie](/algo/data-structures/trie).
 
 ## 3.2. Aho Corasick
 
@@ -280,7 +280,7 @@ Bài viết sẽ được cập nhật sau
 
 Suffix Array là một CTDL giúp sắp xếp các hậu tố của một xâu theo thứ tự từ điển. CTDL này thường được sử dụng trong các bài toán xử lý xâu.
 
-Bạn có thể đọc thêm về Suffix Array [[ở đây|algo/data-structures/suffix-array]].
+Bạn có thể đọc thêm về Suffix Array [ở đây](/algo/data-structures/suffix-array).
 
 ## 3.4. Suffix Automaton
 
@@ -290,7 +290,7 @@ Bài viết sẽ được cập nhật sau.
 
 Palindrome tree (còn được gọi là Eertree), là một CTDL mới được phổ biến vào năm 2014 nhờ bài thuyết trình của [Mikhail Rubinchik](http://codeforces.com/profile/MikhailRubinchik).
 
-Như tên gọi của nó, Palindrome tree là một CTDL giúp giải quyết các bài toán về Palindrome. Bạn có thể đọc thêm [[ở đây|translate/codeforces/palindrome-tree]]
+Như tên gọi của nó, Palindrome tree là một CTDL giúp giải quyết các bài toán về Palindrome. Bạn có thể đọc thêm [ở đây](/translate/codeforces/palindrome-tree)
 
 # Các tài liệu tham khảo:
 

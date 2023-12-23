@@ -17,7 +17,7 @@ Với những yêu cầu trên, ta có thể sử dụng nhiều cấu trúc, nh
 
 Cây là cấu trúc hữu hiệu nhất dùng cho DSU. Với mỗi đỉnh, ta lưu lại đỉnh cha của nó (đỉnh cha của đỉnh gốc là -1). Ban đầu, mọi đỉnh cha được set là -1. Có các truy vấn **tìm đỉnh gốc** của mỗi hộp (có được gốc, ta có thể truy ra vị trí của hộp) và các truy vấn yêu cầu **hợp** 2 cây lại. Để thuật toán nhanh hơn, mỗi lần tìm gốc của mỗi đỉnh, ta đặt đỉnh cha của nó là gốc cho truy vấn tiếp theo. Luôn muốn độ cao của cây là nhỏ nhất có thể, vì vậy, mỗi khi nhập các hộp lại với nhau, ta bỏ các bộ dụng cụ trong hộp có ít bộ hơn vào hộp còn lại.
 
-[[/uploads/tree1.png|tree1]]
+[/uploads/tree1.png](/tree1)
 
 _Code C++ ([bmerry](http://codeforces.com/profile/bmerry))_
 

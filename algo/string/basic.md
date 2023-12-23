@@ -29,9 +29,9 @@ Bài toán này còn được gọi là tìm kiếm **cây kim** (**needle**) tr
 
 Có 3 thuật toán chính để giải quyết bài này, đó là:
 
-- [[Thuật toán KMP|translate/wcipeg/kmp]]
-- [[Hash|algo/string/hash]]
-- [[Z Algorithm|translate/codeforces/z-algo]]
+- [Thuật toán KMP](/translate/wcipeg/kmp)
+- [Hash](/algo/string/hash)
+- [Z Algorithm](/translate/codeforces/z-algo)
 
 
 ## Xâu đối xứng (Palindrome)
@@ -40,15 +40,15 @@ Palindrome hay còn gọi là xâu đối xứng, xâu đối gương là tên g
 
 Có rất nhiều bài tập liên quan đến xâu đối xứng. Các bạn có thể tìm đọc ở trong các bài viết:
 
-- [[Một vài bài tập QHD về Palindrome|algo/dp/palindrome-problems]]
-- [[Hash|algo/string/hash]]
-- [[Palindrome Tree|translate/codeforces/palindrome-tree]]
+- [Một vài bài tập QHD về Palindrome](/algo/dp/palindrome-problems)
+- [Hash](/algo/string/hash)
+- [Palindrome Tree](/translate/codeforces/palindrome-tree)
 
 ## Cấu trúc dữ liệu
 
-- [[Trie|algo/data-structures/trie]] là CTDL cơ bản nhất trong xử lý xâu. Nó giúp giải quyết các bài toán về tìm kiếm xâu.
+- [Trie](/algo/data-structures/trie) là CTDL cơ bản nhất trong xử lý xâu. Nó giúp giải quyết các bài toán về tìm kiếm xâu.
 - Lớp CTDL được gọi chung là Suffix Structures gồm:
-    - [[Suffix Array|algo/data-structures/suffix-array]]
+    - [Suffix Array](/algo/data-structures/suffix-array)
     - Suffix Automaton
     - Suffix Tree
     - Aho Corasick

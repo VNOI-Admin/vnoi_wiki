@@ -33,11 +33,11 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
 ## 1.2. Cài đặt
 
 - Trong C++, bạn có thể sử dụng CTDL `priority_queue` hoặc `set`, vì vậy việc tự cài đặt lại là không cần thiết.
-- Với Pascal, bạn có thể tìm hiểu cách cài đặt trong [[quyển sách của thầy Lê Minh Hoàng|algo/basic/Tai-Lieu-Thuat-Toan]]
+- Với Pascal, bạn có thể tìm hiểu cách cài đặt trong [quyển sách của thầy Lê Minh Hoàng](/algo/basic/Tai-Lieu-Thuat-Toan)
 
 # 2. Các thao tác trên Binary Heap
 
-## 2.0. Các thao tác thường dùng với Binary Heap là 
+## 2.0. Các thao tác thường dùng với Binary Heap là
 
 * Tìm nhãn lớn nhất trên Binary Heap (nút gốc)
 * Thêm một nút vào Binary Heap
@@ -50,7 +50,7 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
 
 ## 2.1. Tìm phần tử lớn nhất
 
-* Rõ ràng gốc (root) luôn chứa nhãn lớn nhất theo **TC2** (các nút con luôn không nhỏ hơn nút cha) 
+* Rõ ràng gốc (root) luôn chứa nhãn lớn nhất theo **TC2** (các nút con luôn không nhỏ hơn nút cha)
 * **Độ phức tạp thuật toán:** $O(1)$.
     * Thông thường thao tác này sẽ đi kèm với thao tác xóa nút gốc để tìm nhãn tiếp theo (như khi sort). Thao tác xóa sẽ được miêu tả ở mục **2.3**
 
@@ -68,12 +68,12 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
 
 * **Độ phức tạp:**
    * Quá trình chọn vị trí cho nút chỉ mất $O(1)$
-   * Quá trình vun đống từ dưới lên (bottom-up heapify): ta có thể thấy số lần so sánh và đổi chỗ 2 phần tử không quá độ sâu $h$ của cây nhị phân hay ($\le log(N+1)$ với $N$ là số nút hiện có trên cây). 
+   * Quá trình vun đống từ dưới lên (bottom-up heapify): ta có thể thấy số lần so sánh và đổi chỗ 2 phần tử không quá độ sâu $h$ của cây nhị phân hay ($\le log(N+1)$ với $N$ là số nút hiện có trên cây).
    * Độ phức tạp của cả quá trình này là $O(logN)$
 
 ## 2.3. Xóa nút gốc khỏi cây
 
-* Ta chỉ có thể xóa phần tử lớn nhất hay góc của Binary Heap ra khỏi cây. 
+* Ta chỉ có thể xóa phần tử lớn nhất hay góc của Binary Heap ra khỏi cây.
     * Nếu cây chỉ có nút gốc ta xóa nó khỏi cây, nếu không
     * Gán nhãn nút góc bằng nhãn của nút phải nhất ở lớp sâu nhất
     * Xóa nút phải nhất ở lớp sâu nhất đi (nút này vừa được chuyển nhãn lên gốc)
@@ -121,4 +121,3 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
 * Nếu Heap không phải là một cây nhị phân mà là một cây tam phân, tứ phân, k-phân thì độ phức tạp của các thao tác sẽ thay đổi thế nào ?
 
 * **TC1** cần thêm điểu kiện tập nhãn phải là một [totally ordered set](http://wcipeg.com/wiki/Partial_order#Total_order) (2 giá trị bất kì trong tập đều có thể so sánh được và có tính chất bắc cầu trong các phép so sánh, ví dụ như tập số thực $\mathbb{R}$)
-

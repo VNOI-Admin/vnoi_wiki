@@ -50,7 +50,7 @@ Tables:
 
 Image from /uploads
 
-[[/uploads/topcoder_translate_tree1.png|alt=text]]
+[/uploads/topcoder_translate_tree1.png](/alt=text)
 
 Formula: $a^{21} + b_{12} = c$
 

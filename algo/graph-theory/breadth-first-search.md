@@ -1,11 +1,11 @@
 # BFS (Breadth-first search)
 
-**Nguồn:** [CP-Algorithms](https://cp-algorithms.com/graph/breadth-first-search.html), [[Giải thuật và lập trình - Lê Minh Hoàng|algo/basic/Tai-Lieu-Thuat-Toan]]
+**Nguồn:** [CP-Algorithms](https://cp-algorithms.com/graph/breadth-first-search.html), [Giải thuật và lập trình - Lê Minh Hoàng](/algo/basic/Tai-Lieu-Thuat-Toan)
 
 **Biên soạn:**
 - Nguyễn Châu Khanh - VNU University of Engineering and Technology (VNU-UET)
 
-**Reviewer:** 
+**Reviewer:**
 - Trần Quang Lộc - ITMO University
 - Hoàng Xuân Nhật - VNUHCM-University of Science
 - Trần Xuân Bách - HUS High School for Gifted Students
@@ -13,7 +13,7 @@
 [[_TOC_]]
 
 # Thuật toán duyệt đồ thị ưu tiên chiều rộng
- 
+
 Thuật toán **duyệt đồ thị ưu tiên chiều rộng** *(Breadth-first search - BFS)* là một trong những thuật toán tìm kiếm cơ bản và thiết yếu trên đồ thị. Mà trong đó, những đỉnh nào gần đỉnh xuất phát hơn sẽ được duyệt trước.
 
 Ứng dụng của $BFS$ có thể giúp ta giải quyết tốt một số bài toán trong thời gian và không gian **tối thiểu**. Đặc biệt là bài toán tìm kiếm đường đi ngắn nhất từ một đỉnh gốc tới tất cả các đỉnh khác. Trong đồ thị không có trọng số hoặc tất cả trọng số bằng nhau, thuật toán sẽ luôn trả ra đường đi ngắn nhất có thể. Ngoài ra, thuật toán này còn được dùng để tìm các thành phần liên thông của đồ thị, hoặc kiểm tra đồ thị hai phía, ...
@@ -26,14 +26,14 @@ Với đồ thị không trọng số và đỉnh nguồn $s$. Đồ thị này 
 
 Có thể hiểu thuật toán như một ngọn lửa lan rộng trên đồ thị:
 
-- Ở bước thứ $0$, chỉ có đỉnh nguồn $s$ đang cháy. 
+- Ở bước thứ $0$, chỉ có đỉnh nguồn $s$ đang cháy.
 - Ở mỗi bước tiếp theo, ngọn lửa đang cháy ở mỗi đỉnh lại lan sang tất cả các đỉnh kề với nó.
 
 Trong mỗi lần lặp của thuật toán, "vòng lửa" lại lan rộng ra theo chiều rộng. Những đỉnh nào gần $s$ hơn sẽ bùng cháy trước.
 
-Chính xác hơn, thuật toán có thể được mô tả như sau: 
+Chính xác hơn, thuật toán có thể được mô tả như sau:
 
-- Đầu tiên ta thăm đỉnh nguồn $s$. 
+- Đầu tiên ta thăm đỉnh nguồn $s$.
 - Việc thăm đỉnh $s$ sẽ phát sinh thứ tự thăm các đỉnh $(u_1, u_2, … u_p)$ kề với $s$ (những đỉnh gần $s$ nhất). Tiếp theo, ta thăm đỉnh $u_1$, khi thăm đỉnh $u_1$ sẽ lại phát sinh yêu cầu thăm những đỉnh $(v_1, v_2, …, v_q)$ kề với $u_1$. Nhưng rõ ràng những đỉnh $v$ này “xa” $s$ hơn những đỉnh $u$ nên chúng chỉ được thăm khi tất cả những đỉnh $u$ đều đã được thăm. Tức là thứ tự thăm các đỉnh sẽ là: $s, u_1, u_2, …, u_p, v_1, v_2, …, v_q, …$
 
 [[/uploads/breadth-first-search_img2.png]]
@@ -47,14 +47,14 @@ Thuật toán sử dụng một cấu trúc dữ liệu hàng đợi *(queue)* �
 **Bước 1:** Khởi tạo
 - Các đỉnh đều ở trạng thái chưa được đánh dấu. Ngoại trừ đỉnh nguồn $s$ đã được đánh dấu.
 - Một hàng đợi ban đầu chỉ chứa $1$ phần tử là $s$.
-    
+
 **Bước 2:** Lặp lại các bước sau cho đến khi hàng đợi rỗng:
 - Lấy đỉnh $u$ ra khỏi hàng đợi.
 - Xét tất cả những đỉnh $v$ kề với $u$ mà chưa được đánh dấu, với mỗi đỉnh $v$ đó:
     * Đánh dấu $v$ đã thăm.
     * Lưu lại vết đường đi từ $u$ đến $v$.
     * Đẩy $v$ vào trong hàng đợi (đỉnh $v$ sẽ chờ được duyệt tại những bước sau).
-        
+
 **Bước 3:** Truy vết tìm đường đi.
 
 ## Mô tả
@@ -119,7 +119,7 @@ else {
     for (int v = u; v != -1; v = par[v])
         path.push_back(v);
     reverse(path.begin(), path.end());
-    
+
     cout << "Path: ";
     for (auto v : path) cout << v << ' ';
 }
@@ -129,7 +129,7 @@ else {
 
 Nếu sử dụng một ngăn xếp *(stack)* thay vì hàng đợi *(queue)* thì ta sẽ thu được **thứ tự duyệt đỉnh** của thuật toán **tìm kiếm theo chiều sâu** *(Depth First Search – DFS)*. Đây chính là **phương pháp khử đệ quy** của $DFS$ để cài đặt thuật toán trên các ngôn ngữ không cho phép đệ quy.
 
-**Định lí:** Thuật toán $BFS$ cho ta độ dài đường đi ngắn nhất từ đỉnh nguồn tới mọi đỉnh (với khoảng cách tới đỉnh $u$ bằng $d[u]$). 
+**Định lí:** Thuật toán $BFS$ cho ta độ dài đường đi ngắn nhất từ đỉnh nguồn tới mọi đỉnh (với khoảng cách tới đỉnh $u$ bằng $d[u]$).
 Trong thuật toán $BFS$, nếu đỉnh $u$ xa đỉnh nguồn hơn đỉnh $v$, thì $u$ sẽ được thăm trước.
 
 - **Chứng minh:** Trong $BFS$, từ một đỉnh hiện tại, ta luôn đi thăm tất cả các đỉnh kề với nó trước, sau đó thăm tất cả các đỉnh cách nó một đỉnh, rồi các đỉnh cách nó hai đỉnh, v.v... Như vậy, nếu từ một đỉnh $u$ khi ta chạy $BFS$, quãng đường đến đỉnh $v$ luôn là quãng đường đi qua ít cạnh nhất.
@@ -141,23 +141,23 @@ Trong thuật toán $BFS$, nếu đỉnh $u$ xa đỉnh nguồn hơn đỉnh $v$
 - **Mô tả:** Cho đồ thị $G=(V,E)$ gồm $\|V\|$ đỉnh và $\|E\|$ cạnh. Khi đó, tổng tất cả các bậc của đỉnh trong $G$ bằng $2 \times \|E\|$ .
     Với $deg(v)$ là số bậc của đỉnh $v$, ta có: $\displaystyle\sum_{v \in V}deg(v) = 2 \times \|E\|$
     - **Ví dụ:** Cho đồ thị sau với $\|V\| = 8$ và $\|E\| = 7$
-    
+
         [[/uploads/breadth-first-search_img5.png]]
-        
-        - $\displaystyle\sum_{v \in V}deg(v) = 2 \times \|E\| = 2 \times 7 = 14$ 
-        
+
+        - $\displaystyle\sum_{v \in V}deg(v) = 2 \times \|E\| = 2 \times 7 = 14$
+
 - **Chứng minh:** Vì mỗi một cạnh nối với đúng hai đỉnh của đồ thị, nên một cạnh sẽ đóng góp $2$ đơn vị vào tổng số bậc của tất cả các đỉnh.
-        
+
 **Hệ quả:** Trong đồ thị, số lượng **đỉnh bậc lẻ** luôn là một số chẵn.
-- **Chứng minh:** Gọi $L$ và $C$ lần lượt là tập các đỉnh bậc lẻ và bậc chẵn của đồ thị $G=(V, E)$. Ta có: 
-    $2 \times \|E\| = \displaystyle\sum_{v \in V}deg(v) = \displaystyle\sum_{v \in L}deg(v) + \displaystyle\sum_{v \in C}deg(v)$ 
-    
+- **Chứng minh:** Gọi $L$ và $C$ lần lượt là tập các đỉnh bậc lẻ và bậc chẵn của đồ thị $G=(V, E)$. Ta có:
+    $2 \times \|E\| = \displaystyle\sum_{v \in V}deg(v) = \displaystyle\sum_{v \in L}deg(v) + \displaystyle\sum_{v \in C}deg(v)$
+
     - $2 \times \|E\|$ chẵn
     - $\displaystyle\sum_{v \in C}deg(v)$ chẵn
-    
+
     $\Rightarrow$ $\displaystyle\sum_{v \in L}deg(v)$ chẵn
 
-**Nhận xét:** 
+**Nhận xét:**
 - Trong quá trình duyệt đồ thị được biểu diễn bằng **danh sách kề**, mỗi cạnh sẽ được duyệt chính xác hai lần đối với **đồ thị vô hướng** (vì mỗi cạnh sẽ được lưu trong $2$ danh sách kề của $2$ đỉnh). Còn đối với **đồ thị có hướng**, mọi cạnh của đồ thị chỉ được duyệt chính xác một lần.
 
 **Tham khảo:** [Handshaking_lemma](https://en.wikipedia.org/wiki/Handshaking_lemma)
@@ -171,10 +171,10 @@ Gọi $\|V\|$ là số lượng đỉnh và $\|E\|$ là số lượng cạnh c�
 Trong quá trình $BFS$, cách biểu diễn đồ thị có ảnh hưởng lớn tới chi phí về thời gian thực hiện giải thuật :
 - Nếu đồ thị biểu diễn bằng **danh sách kề** (vector `g[]`) :
     - Ta có thể thực hiện thuật toán này một cách **tối ưu nhất** về mặt thời gian nhờ khả năng duyệt qua các đỉnh kề của mỗi đỉnh một cách **hiệu quả**.
-    - Vì ta sử dụng mảng `visit[]` để ngăn việc đẩy một đỉnh vào hàng đợi nhiều lần nên mỗi đỉnh sẽ được thăm **chính xác một lần** duy nhất. Do đó, ta mất độ phức tạp thời gian $O(\|V\|)$ dành cho việc thăm các đỉnh. 
+    - Vì ta sử dụng mảng `visit[]` để ngăn việc đẩy một đỉnh vào hàng đợi nhiều lần nên mỗi đỉnh sẽ được thăm **chính xác một lần** duy nhất. Do đó, ta mất độ phức tạp thời gian $O(\|V\|)$ dành cho việc thăm các đỉnh.
     - Bất cứ khi nào một đỉnh được thăm, mọi cạnh kề với đỉnh đó đều được duyệt, với thời gian dành cho mỗi cạnh là $O(1)$. Từ phần nhận xét của **định lý Bắt tay *(Handshaking lemma)***, ta sẽ mất độ phức tạp thời gian $O(\|E\|)$ dành cho việc duyệt các cạnh.
     - Nhìn chung, độ phức tạp thời gian của thuật toán này là $O(\|V\|+\|E\|)$. Đây là cách cài đặt tốt nhất.
-- Nếu đồ thị được biểu diễn bằng **ma trận kề** : 
+- Nếu đồ thị được biểu diễn bằng **ma trận kề** :
     - Ta cũng sẽ mất độ phức tạp thời gian $O(\|V\|)$ dành cho việc thăm các đỉnh *(giải thích tương tự như trên)*.
     - Với mỗi đỉnh được thăm, ta sẽ phải duyệt qua toàn bộ các đỉnh của đồ thị để kiểm tra đỉnh kề với nó. Do đó, thuật toán sẽ mất độ phức tạp $O(\|V\|^2)$.
 
@@ -285,7 +285,7 @@ Gọi là thuật toán loang vì nguyên lí của thuật toán này rất gi�
 
 ### **Đề bài**
 
-Một tai nạn hàng hải đã khiến dầu tràn ra biển. Để có được thông tin về mức độ nghiêm trọng của thảm họa này, người ta phải phân tích các hình ảnh chụp từ vệ tinh, từ đó tính toán chi phí khắc phục cho phù hợp. Đối với điều này, số lượng vết dầu loang trên biển và kích thước của mỗi vết loang phải được xác định. Vết loang là một mảng dầu nổi trên mặt nước. 
+Một tai nạn hàng hải đã khiến dầu tràn ra biển. Để có được thông tin về mức độ nghiêm trọng của thảm họa này, người ta phải phân tích các hình ảnh chụp từ vệ tinh, từ đó tính toán chi phí khắc phục cho phù hợp. Đối với điều này, số lượng vết dầu loang trên biển và kích thước của mỗi vết loang phải được xác định. Vết loang là một mảng dầu nổi trên mặt nước.
 
 Để tiện cho việc xử lí, hình ảnh được chuyển đổi thành một ma trận nhị phân kích thước $N \times M$ $(1 \le N, M \le 250)$. Với $1$ là ô bị nhiễm dầu, và $0$ là ô không bị nhiễm dầu. Vết dầu loang là tập hợp của một số ô bị nhiễm dầu có chung cạnh.
 
@@ -310,7 +310,7 @@ Nghĩa là, số lượng thành phần liên thông của đồ thị chính l�
     * Tăng số lượng vết dầu thêm $1$.
     * Thực hiện thủ tục $BFS$ xuất phát từ ô đó để loang ra các ô xung quanh như sau:
         * Khởi tạo kích thước của vết dầu đang xét là $1$.
-        * Tiếp tục thực hiện công việc sau cho đến khi không còn thực hiện được nữa: Từ một ô đã đánh dấu, ta đánh dấu tất cả các ô bị nhiễm dầu kề cạnh với ô đó mà chưa được đánh dấu. Mỗi lần đánh dấu lại một ô thì ta tăng kích thước của vết dầu thêm $1$. 
+        * Tiếp tục thực hiện công việc sau cho đến khi không còn thực hiện được nữa: Từ một ô đã đánh dấu, ta đánh dấu tất cả các ô bị nhiễm dầu kề cạnh với ô đó mà chưa được đánh dấu. Mỗi lần đánh dấu lại một ô thì ta tăng kích thước của vết dầu thêm $1$.
         * Sử dụng $1$ mảng để lưu lại kích thước của từng vết loang.
 - Nếu tất cả các ô bị nhiễm dầu đều đã được đánh dấu, trả ra kết quả và kết thúc thuật toán.
 
@@ -383,7 +383,7 @@ int main() {
 
         for (int i = 1; i <= n; ++i)
             for (int j = 1; j <= m; ++j)
-                if (a[i][j] && !visit[i][j]) 
+                if (a[i][j] && !visit[i][j])
                     slicks.push_back(bfs(i, j));
 
         cout << slicks.size() << '\n';
@@ -446,7 +446,7 @@ Hãy xem xét bài toán sau đây:
 
 ### **Đề bài**
 
-Cho một bảng hình chữ nhật chia thành lưới ô vuông kích thước $R \times C$ ($1 \le R, C \le 100$). Mỗi ô mang $1$ trong $4$ giá trị sau : `.` , `*` , `B` , `C`. Cô bò Bessie đang đứng ở ô `C` và cần đi đến ô `B`. Mỗi bước đi Bessie có thể đi từ $1$ ô vuông sang $4$ ô vuông khác kề cạnh nhưng không được đi vào ô `*` hay đi ra khỏi bảng. Hãy tìm số bước đi ít nhất để Bessie đến được ô `B`. 
+Cho một bảng hình chữ nhật chia thành lưới ô vuông kích thước $R \times C$ ($1 \le R, C \le 100$). Mỗi ô mang $1$ trong $4$ giá trị sau : `.` , `*` , `B` , `C`. Cô bò Bessie đang đứng ở ô `C` và cần đi đến ô `B`. Mỗi bước đi Bessie có thể đi từ $1$ ô vuông sang $4$ ô vuông khác kề cạnh nhưng không được đi vào ô `*` hay đi ra khỏi bảng. Hãy tìm số bước đi ít nhất để Bessie đến được ô `B`.
 
 Đảm bảo chỉ có duy nhất $1$ ô `B` và $1$ ô `C` trong bảng, và luôn tồn tại đường đi từ `C` đến `B`.
 
@@ -550,11 +550,11 @@ Mặc dù trong quá trình $BFS$, khi gặp được ô `B` thì thủ tục $B
 
 Trong một tòa nhà có $f$ tầng, các tầng được đánh số từ $1$ đến $f$, hiện tại bạn đang đứng tại tầng $s$ và cần đi đến tầng $g$. Tại mỗi tầng, thang máy chỉ có $2$ nút là "UP u" và "DOWN d" :
 - Nút "UP u" có thể đưa bạn lên đúng $u$ tầng nếu như có đủ số tầng phía trên.
-- Nút "DOWN d" có thể đưa bạn xuống đúng $d$ tầng nếu như có đủ số tầng phía dưới. 
+- Nút "DOWN d" có thể đưa bạn xuống đúng $d$ tầng nếu như có đủ số tầng phía dưới.
 
 Trường hợp không có đủ số tầng thì thang máy sẽ không lên hoặc không xuống. Hãy tính số lần phải bấm nút ít nhất để có thể đến được tầng $g$.
 
-$1 \le s, g \le f \le 10^6; 0 \le u, d \le 10^6$. 
+$1 \le s, g \le f \le 10^6; 0 \le u, d \le 10^6$.
 
 ### **Phân tích**
 
@@ -616,7 +616,7 @@ void bfs() {
         }
     }
 
-    // Kết thúc quá trình BFS mà ko đến được tầng đích 
+    // Kết thúc quá trình BFS mà ko đến được tầng đích
     number[g] = -1;
 }
 
@@ -624,7 +624,7 @@ int main() {
     cin >> f >> s >> g >> u >> d;
     bfs();
     if (number[g] != -1) cout << number[g];
-    else cout << "use the stairs";  
+    else cout << "use the stairs";
 }
 ```
 
@@ -646,7 +646,7 @@ Cho một đồ thị có hướng gồm $N$ đỉnh và $M$ cạnh $(1 \le N \l
 
 Đảm bảo luôn tồn tại ít nhất một đường đi từ $s$ đến $t$.
 
-### **Phân tích** 
+### **Phân tích**
 
 **Định lí:** Nếu ta sắp xếp các **danh sách kề** của mỗi đỉnh theo **thứ tự tăng dần** thì thuật toán $BFS$ luôn trả về đường đi có **thứ tự từ điển nhỏ nhất** trong số những đường đi ngắn nhất.
 
@@ -678,7 +678,7 @@ vector <int> g[maxN];
 void bfs(int s) {
     fill_n(par, n + 1, -1);
     fill_n(visit, n + 1, false);
-    
+
     queue <int> q;
     q.push(s);
     visit[s] = true;
@@ -702,19 +702,19 @@ int main() {
         cin >> u >> v;
         g[u].push_back(v);
     }
-    
+
     // Sắp xếp danh sách kề
-    for (int i = 1; i <= n; ++i) 
+    for (int i = 1; i <= n; ++i)
         sort(g[i].begin(), g[i].end());
 
     bfs(s);
-    
+
     // Truy vết
     vector <int> path;
     for (int v = t; v != -1; v = par[v])
         path.push_back(v);
     reverse(path.begin(), path.end());
-    
+
     for (auto v : path) cout << v << ' ';
 }
 ```
@@ -758,7 +758,7 @@ int main() {
 
 [CSES - Monsters](https://cses.fi/problemset/task/1194)
 
-# Ứng dụng BFS để tìm chu trình ngắn nhất trong đồ thị có hướng không trọng số 
+# Ứng dụng BFS để tìm chu trình ngắn nhất trong đồ thị có hướng không trọng số
 
 ## **Bài toán 6**
 
@@ -772,7 +772,7 @@ Ada đang có một chuyến đi ở Bugindia. Ở đó có nhiều thành phố
 
 - Dòng đầu tiên chứa số $N$ $(0 < N \le 200)$ là số lượng thành phố.
 - $N$ dòng tiếp theo, mỗi dòng chứa $N$ số nguyên $H_{ij}$ $(0 \le H_{ij} \le 1)$ . Nghĩa là, nếu $H_{ij} = 1$ thì tồn tại một con đường nối từ thành phố $i$ đến thành phố $j$. Ngược lại, nếu $H_{ij} = 0$ thì không tồn tại con đường.
- 
+
 **Output**
 
 - Gồm $N$ dòng: Dòng thứ $i$ in ra độ dài của con đường ngắn nhất bắt đầu từ thành phố $i$ và kết thúc ở thành phố $i$. Nếu không tồn tại con đường nào như vậy, hãy in ra "**NO WAY**" để thay thế.
@@ -783,11 +783,11 @@ Theo yêu cầu đề bài, với mỗi thành phố, ta phải tìm độ dài 
 
 Ta coi các thành phố là các đỉnh của đồ thị và các con đường $1$ chiều là các cạnh có hướng của đồ thị.
 
-Đồng nghĩa với việc, với mỗi đỉnh của đồ thị, ta phải tìm độ dài của **chu trình ngắn nhất** chứa đỉnh đó. Vì thứ tự duyệt các đỉnh của thuật toán $BFS$ luôn bắt đầu duyệt từ các đỉnh gần đỉnh nguồn nhất cho đến các đỉnh nằm ở xa đỉnh nguồn. Do đó, ta có thể áp dụng **tính chất** này của $BFS$ để có thể tìm ra đỉnh $u$ nằm gần đỉnh nguồn nhất sao cho có cạnh nối từ $u$ đến đỉnh nguồn. 
+Đồng nghĩa với việc, với mỗi đỉnh của đồ thị, ta phải tìm độ dài của **chu trình ngắn nhất** chứa đỉnh đó. Vì thứ tự duyệt các đỉnh của thuật toán $BFS$ luôn bắt đầu duyệt từ các đỉnh gần đỉnh nguồn nhất cho đến các đỉnh nằm ở xa đỉnh nguồn. Do đó, ta có thể áp dụng **tính chất** này của $BFS$ để có thể tìm ra đỉnh $u$ nằm gần đỉnh nguồn nhất sao cho có cạnh nối từ $u$ đến đỉnh nguồn.
 
 Đường đi ngắn nhất từ đỉnh nguồn đến đỉnh $u$, rồi từ $u$ trở lại đỉnh nguồn bằng $1$ cạnh có hướng, chính là **chu trình ngắn nhất** chứa đỉnh nguồn.
 
-### **Mô tả** 
+### **Mô tả**
 
 - Thực hiện $BFS$ bắt đầu tại đỉnh $S$ :
 
@@ -795,7 +795,7 @@ Ta coi các thành phố là các đỉnh của đồ thị và các con đườ
 
 ### **Thuật toán**
 
-Với mỗi đỉnh của đồ thị, ta thực hiện $BFS$ bắt đầu từ đỉnh đó. 
+Với mỗi đỉnh của đồ thị, ta thực hiện $BFS$ bắt đầu từ đỉnh đó.
 
 Trong quá trình $BFS$, ghi nhận khoảng cách từ đỉnh nguồn đến đỉnh đang duyệt, nếu gặp lại đỉnh nguồn thì đó là **chu trình ngắn nhất** chứa đỉnh nguồn. Lúc này, ta in ra độ dài chu trình và kết thúc $BFS$, rồi bắt đầu thực hiện một $BFS$ mới từ đỉnh tiếp theo.
 
@@ -811,15 +811,15 @@ Trong quá trình $BFS$, ghi nhận khoảng cách từ đỉnh nguồn đến �
 
 ``` cpp
 #include <bits/stdc++.h>
- 
+
 using namespace std;
- 
+
 const int maxN  = 210;
- 
+
 int n;
 int visit[maxN], d[maxN];
 vector <int> g[maxN];
- 
+
 int bfs(int s) {
     fill_n(d, n + 1, 0);
     fill_n(visit, n + 1, false);
@@ -831,10 +831,10 @@ int bfs(int s) {
         int u = q.front();
         q.pop();
         for (auto v : g[u]) {
-            
+
             // Nếu gặp lại đỉnh nguồn, trả ra độ dài chu trình và kết thúc BFS
             if (v == s) return d[u] + 1;
-            
+
             if (!visit[v]) {
                 d[v] = d[u] + 1;
                 visit[v] = true;
@@ -844,22 +844,22 @@ int bfs(int s) {
     }
     return 0;
 }
- 
+
 int main() {
     cin >> n;
     for (int i = 1; i <= n; ++i)
         for (int j = 1; j <= n; ++j) {
-            int h; 
+            int h;
             cin >> h;
             if (h) g[i].push_back(j);
         }
- 
+
     for (int i = 1; i <= n; ++i) {
         int ans = bfs(i);
         if (ans) cout << ans << '\n';
         else cout << "NO WAY\n";
     }
-} 
+}
 ```
 
 ### **Đánh giá**
@@ -901,11 +901,11 @@ Ta sử dụng **kĩ thuật 0-1 BFS** :
 
 Ta có thể chỉnh sửa một chút từ thuật toán $BFS$ để có được **kĩ thuật 0-1 BFS** :
 - Trong kĩ thuật này, thay vì sử dụng mảng *bool* để đánh dấu lại các đỉnh đã duyệt, ta sẽ kiểm tra điều kiện **khoảng cách ngắn nhất**. Nghĩa là, trong quá trình $BFS$, với mỗi đỉnh $v$ kề với $u$, đỉnh $v$ chỉ được đẩy vào hàng đợi khi và chỉ khi đường đi đi ngắn nhất từ đỉnh nguồn đến $v$ lớn hơn đường đi ngắn nhất từ đỉnh nguồn đến $u$ cộng với trọng số cạnh $u \to v$ (khoảng cách được giảm bớt khi sử dụng cạnh này) .
-- Ta sẽ sử dụng một [[hàng đợi hai đầu|algo/data-structures/Deque]] *(deque)* thay cho hàng đợi *(queue)* để lưu trữ các đỉnh.  Trong quá trình $BFS$, nếu ta gặp một cạnh có trọng số bằng $0$ thì đỉnh sẽ được đẩy vào **phía trước** của hàng đợi hai đầu. Ngược lại, nếu ta gặp một cạnh có trọng số bằng $1$ thì đỉnh sẽ được đẩy vào **phía sau** của hàng đợi hai đầu.
-    - **Giải thích:** Ta *push* đỉnh kết nối bởi cạnh có trọng số $0$ vào đầu *deque* để giữ cho hàng đợi luôn được sắp xếp theo khoảng cách từ đỉnh nguồn tại mọi thời điểm. Bởi vì, các đỉnh ở gần đầu *queue/deque* hơn thì nó phải có khoảng cách từ gốc gần hơn, mà đỉnh ta *push* vào đầu có khoảng cách bằng chính khoảng cách đỉnh vừa *pop* ra, nên *deque* lúc này thỏa mãn tính chất của *queue* trong $BFS$. 
+- Ta sẽ sử dụng một [hàng đợi hai đầu](/algo/data-structures/Deque) *(deque)* thay cho hàng đợi *(queue)* để lưu trữ các đỉnh.  Trong quá trình $BFS$, nếu ta gặp một cạnh có trọng số bằng $0$ thì đỉnh sẽ được đẩy vào **phía trước** của hàng đợi hai đầu. Ngược lại, nếu ta gặp một cạnh có trọng số bằng $1$ thì đỉnh sẽ được đẩy vào **phía sau** của hàng đợi hai đầu.
+    - **Giải thích:** Ta *push* đỉnh kết nối bởi cạnh có trọng số $0$ vào đầu *deque* để giữ cho hàng đợi luôn được sắp xếp theo khoảng cách từ đỉnh nguồn tại mọi thời điểm. Bởi vì, các đỉnh ở gần đầu *queue/deque* hơn thì nó phải có khoảng cách từ gốc gần hơn, mà đỉnh ta *push* vào đầu có khoảng cách bằng chính khoảng cách đỉnh vừa *pop* ra, nên *deque* lúc này thỏa mãn tính chất của *queue* trong $BFS$.
     - Từ tính chất trên, ta có nhận xét sau: **Kĩ thuật 0-1 BFS** vẫn đúng cho trường hợp đồ thị có trọng số cạnh là $0$ hoặc $x$ $(x \ge 0)$.
 
-Cách tiếp cận của **kĩ thuật 0-1 BFS** khá giống với thuật toán $BFS$ + [[Dijkstra|algo/graph-theory/shortest-path.md#2-thu%E1%BA%ADt-to%C3%A1n-dijkstra]].
+Cách tiếp cận của **kĩ thuật 0-1 BFS** khá giống với thuật toán $BFS$ + [Dijkstra](/algo/graph-theory/shortest-path.md#2-thu%E1%BA%ADt-to%C3%A1n-dijkstra).
 
 ### **Cài đặt**
 
@@ -969,7 +969,7 @@ int main() {
 
 ### **Đánh giá**
 
-Ta cũng có thể giải quyết bài toán này bằng thuật toán $Dijkstra$ với độ phức tạp $O(M \times logN)$. 
+Ta cũng có thể giải quyết bài toán này bằng thuật toán $Dijkstra$ với độ phức tạp $O(M \times logN)$.
 
 Trong khi sử dụng $BFS$, độ phức tạp sẽ là $O(N + M)$. Nó tuyến tính và hiệu quả hơn thuật toán $Dijkstra$.
 
@@ -997,7 +997,7 @@ Trong khi sử dụng $BFS$, độ phức tạp sẽ là $O(N + M)$. Nó tuyến
 
 ## **Định nghĩa**
 
-Trong *Lý thuyết đồ thị*, **đồ thị hai phía** (**đồ thị lưỡng phân** hay **đồ thị hai phần** - *Bipartite graph*) là một đồ thị đặc biệt, trong đó tập hợp các đỉnh của đồ thị có thể được chia làm hai tập hợp **không** giao nhau thỏa mãn điều kiện **không** có cạnh nối hai đỉnh bất kỳ thuộc cùng một tập. 
+Trong *Lý thuyết đồ thị*, **đồ thị hai phía** (**đồ thị lưỡng phân** hay **đồ thị hai phần** - *Bipartite graph*) là một đồ thị đặc biệt, trong đó tập hợp các đỉnh của đồ thị có thể được chia làm hai tập hợp **không** giao nhau thỏa mãn điều kiện **không** có cạnh nối hai đỉnh bất kỳ thuộc cùng một tập.
 
 Có rất nhiều tình huống thực tế có thể mô phỏng bằng đồ thị hai phía:
 - **Ví dụ:** Muốn biểu diễn mối quan hệ giữa một nhóm học sinh và một nhóm các trường học, ta có thể xây dựng một đồ thị với mỗi một học sinh và mỗi trường học là một đỉnh. Giữa một người $A$ và một trường $X$ sẽ có một cạnh nếu như $A$ đã hoặc đang đi học ở trường $X$. Kiểu đồ thị này sẽ là một **đồ thị hai phần**, với một nhóm đỉnh là người và nhóm kia là trường; sẽ không có cạnh nối giữa hai người hoặc giữa hai trường.

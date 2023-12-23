@@ -11,7 +11,7 @@ Cho một tập hợp chứa các đường thẳng có dạng $ax + b$, mỗi �
 1. Thêm một đường thẳng vào tập hợp.
 2. Trả lời xem tại hoành độ $q$, điểm nào thuộc ít nhất một đường thẳng trong tập có tung độ lớn nhất. Nói cách khác, đường thẳng $(a, b)$ nào có $aq + b$ lớn nhất.
 
-Để giải bài toán này, hai cách phổ biến là ứng dụng [[bao lồi|translate/wcipeg/Convex-Hull-Trick]] và sử dụng cây Interval Tree lưu đoạn thẳng. Sau đây là những ưu điểm và nhược điểm của IT đoạn thẳng so với bao lồi.
+Để giải bài toán này, hai cách phổ biến là ứng dụng [bao lồi](/translate/wcipeg/Convex-Hull-Trick) và sử dụng cây Interval Tree lưu đoạn thẳng. Sau đây là những ưu điểm và nhược điểm của IT đoạn thẳng so với bao lồi.
 
 ## Ưu điểm
 
