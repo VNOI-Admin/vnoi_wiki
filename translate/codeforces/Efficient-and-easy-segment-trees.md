@@ -187,7 +187,7 @@ int h = sizeof(int) * 8 - __builtin_clz(n);
 int d[N];
 ```
 
-$h$ là độ cao của cây và là bit cao nhất trong $n$. `d[i]` là thao tác được lưu lại để truyền cho các nút con của nút $i$ khi cần thiết (xem ví dụ để hiểu rõ hơn, hoặc đọc thêm [[Lazy Propagation trong bài viết về Segment Tree|http://vnoi.info/wiki/algo/data-structures/segment-tree-extend#2-lazy-propagation]]). Kích thước của mảng là $N$ vì ta không cần lưu thông tin này tại các nút lá (do các nút lá không có con). Do đó ta cần tất cả là $3\*N$ bộ nhớ sử dụng.
+$h$ là độ cao của cây và là bit cao nhất trong $n$. `d[i]` là thao tác được lưu lại để truyền cho các nút con của nút $i$ khi cần thiết (xem ví dụ để hiểu rõ hơn, hoặc đọc thêm [Lazy Propagation trong bài viết về Segment Tree](http://vnoi.info/wiki/algo/data-structures/segment-tree-extend#2-lazy-propagation)). Kích thước của mảng là $N$ vì ta không cần lưu thông tin này tại các nút lá (do các nút lá không có con). Do đó ta cần tất cả là $3\*N$ bộ nhớ sử dụng.
 
 Ở trên ta nói `t[i]` là giá trị tương ứng với đoạn của nó. Nhưng bây giờ điều này không hoàn toàn đúng:
 

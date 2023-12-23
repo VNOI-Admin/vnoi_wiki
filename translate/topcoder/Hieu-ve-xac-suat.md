@@ -3,7 +3,7 @@
 Nguồn: [Understanding Probabilities - Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/understanding-probabilities/)
  [[_TOC_]]
 
-Xác suất là một nhánh của Toán học có rất nhiều ứng dụng trong thực tế, chẳng hạn như trong phân tích giá cả thị trường, chuẩn bị chiến lược trong thi đấu thể thao, dự báo thời tiết.. Bạn có thể đọc thêm về ứng dụng của xác suất trên [[Quora|https://www.quora.com/What-are-the-real-life-applications-of-probability-in-math]].
+Xác suất là một nhánh của Toán học có rất nhiều ứng dụng trong thực tế, chẳng hạn như trong phân tích giá cả thị trường, chuẩn bị chiến lược trong thi đấu thể thao, dự báo thời tiết.. Bạn có thể đọc thêm về ứng dụng của xác suất trên [Quora](https://www.quora.com/What-are-the-real-life-applications-of-probability-in-math).
 
 Đa số các bài toán về xác suất đều được lấy ví dụ từ thực tế. Ví dụ:
 
