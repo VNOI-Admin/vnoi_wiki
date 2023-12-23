@@ -8,8 +8,6 @@ Bài viết được sưu tầm và bổ sung từ bài viết *"Một số bài
 * Hồ Ngọc Vĩnh Phát - Đại học Khoa học Tự nhiên, ĐHQG-HCM
 * Ngô Nhật Quang - Trường THPT chuyên Khoa học Tự Nhiên, ĐHQGHN
 
-[[_TOC_]]
-
 # Giới thiệu
 Ở phần trước, chúng ta đã được làm quen với khái niệm **Quy hoạch động** đồng thời xem xét một số bài toán điển hình. Bài viết này nhằm giới thiệu thêm một số bài toán quy hoạch động thường gặp khác.
 
@@ -23,7 +21,7 @@ Bài viết được sưu tầm và bổ sung từ bài viết *"Một số bài
 > * *Chèn kí tự $C$ vào sau kí tự thứ $i$: `I i C`, `i` có thể bằng $0$*
 > * *Thay thế kí tự ở vị trí thứ $i$ bằng kí tự $C$: `R i C`*
 > * *Xoá kí tự ở vị trí thứ $i$: `D i`*
-> 
+>
 > *Hãy tìm số ít nhất các phép biến đổi để biến xâu $A$ thành xâu $B$.*
 > **Điều kiện:** $1\le n \times m \le 10^6$.
 
@@ -109,11 +107,11 @@ int main()
     L.resize(m + 1);
     for (auto& i : L)
         i.resize(n + 1);
-    /* Vì a và b bắt đầu từ chỉ số 1 nên 
+    /* Vì a và b bắt đầu từ chỉ số 1 nên
      * chèn thêm 1 kí tự vào đầu 2 xâu */
     a = "_" + a;
     b = "_" + b;
-    
+
     for (int i = 0; i <= m; i++)
         L[i][0] = i;
     for (int j = 0; j <= n; j++)
@@ -144,10 +142,10 @@ int main()
 
 **Lời giải:**
 
-Gọi $L[i][j]$ là độ dài xâu con chung dài nhất của xâu $A_i$ gồm $i$ kí tự phần đầu của $A$ ($A_i = A[1..i]$) và xâu $B_j$ gồm $j$ kí tự phần đầu của $B$ ($B_j = B[1..j]$). 
+Gọi $L[i][j]$ là độ dài xâu con chung dài nhất của xâu $A_i$ gồm $i$ kí tự phần đầu của $A$ ($A_i = A[1..i]$) và xâu $B_j$ gồm $j$ kí tự phần đầu của $B$ ($B_j = B[1..j]$).
 
-* Nếu $A[i]=B[j]$ thì ta chỉ cần chọn xâu con dài nhất của $A_{i-1}$ và $B_{j-1}$, do đó độ dài xâu con dài nhất của $A_i$ và $B_j$ là $L[i-1][j-1]+1$. 
-* Nếu $A[i]\ne B[j]$ thì xâu con chung dài nhất sẽ là xâu con của $A_{i-1}$ và $B_j$ hoặc $A_i$ và $B_{i-1}$. 
+* Nếu $A[i]=B[j]$ thì ta chỉ cần chọn xâu con dài nhất của $A_{i-1}$ và $B_{j-1}$, do đó độ dài xâu con dài nhất của $A_i$ và $B_j$ là $L[i-1][j-1]+1$.
+* Nếu $A[i]\ne B[j]$ thì xâu con chung dài nhất sẽ là xâu con của $A_{i-1}$ và $B_j$ hoặc $A_i$ và $B_{i-1}$.
 
 Từ đó có công thức quy hoạch động như sau:
 
@@ -166,13 +164,13 @@ Nếu đề bài yêu cầu phải in ra xâu con dài nhất thì phải thực
 #include <vector>
 using namespace std;
 
-// Struct dùng để truy vết 
+// Struct dùng để truy vết
 struct Trace
 {
     // Vị trí của kí tự trước đó trong A và B
     int i;
-    int j;   
-    // Kí tự cần thêm vào xâu kết quả 
+    int j;
+    // Kí tự cần thêm vào xâu kết quả
     // (có thể là kí tự NULL)
     char c;
     Trace(int ii = 0, int jj = 0, char cc = '\0')
@@ -196,11 +194,11 @@ int main()
         i.resize(n + 1);
     for (auto& i : Tr)
         i.resize(n + 1);
-    // Vì a và b bắt đầu từ chỉ số 1 nên 
+    // Vì a và b bắt đầu từ chỉ số 1 nên
     // chèn thêm 1 kí tự vào đầu 2 xâu
     a = "_" + a;
     b = "_" + b;
-    
+
     for (int i = 0; i <= m; i++)
         L[i][0] = 0;
     for (int j = 0; j <= n; j++)
@@ -228,7 +226,7 @@ int main()
     Trace t = Tr[m][n];
     string ans = "";
     while (true)
-    {                 
+    {
         if (t.c != '\0')
             ans = t.c + ans;
         if (t.i == 0 && t.j == 0)
@@ -242,9 +240,9 @@ int main()
 
 Như vậy độ phức tạp bộ nhớ của bài toán là $\mathcal{O}(mn)$, độ phức tạp thời gian là $\mathcal{O}(mn)$.
 
-Có một phương pháp cài đặt tốt hơn, chỉ với độ phức tạp bộ nhớ $\mathcal{O}(\min(m, n))$ dựa trên nhận xét ở ví dụ đầu: 
-> Để tính $L[i][j]$, ta chỉ cần 3 ô $L[i-1][j-1]$, $L[i-1][j]$ và $L[i][j-1]$. 
-> 
+Có một phương pháp cài đặt tốt hơn, chỉ với độ phức tạp bộ nhớ $\mathcal{O}(\min(m, n))$ dựa trên nhận xét ở ví dụ đầu:
+> Để tính $L[i][j]$, ta chỉ cần 3 ô $L[i-1][j-1]$, $L[i-1][j]$ và $L[i][j-1]$.
+>
 Tức là để tính hàng $L[i]$ thì chỉ cần hàng $L[i-1]$ và $L[i][0] = 0$. Do đó ta chỉ cần 2 mảng 1 chiều để lưu hàng vừa tính $P$ và hàng đang tính $L$. Cách cài đặt mới như sau:
 
 ```cpp
@@ -264,7 +262,7 @@ for (int i = 1; i <= m; i++)
 
 ### 1.4.2. Bắc cầu
 
-> *Hai nước Alpha và Beta nằm ở hai bên bờ sông Omega, Alpha nằm ở bờ bắc và có $m$ thành phố được đánh số từ $1$ đến $m$, Beta nằm ở bờ nam và có $n$ thành phố được đánh số từ $1$ đến $n$ (theo vị trí từ tây sang đông). 
+> *Hai nước Alpha và Beta nằm ở hai bên bờ sông Omega, Alpha nằm ở bờ bắc và có $m$ thành phố được đánh số từ $1$ đến $m$, Beta nằm ở bờ nam và có $n$ thành phố được đánh số từ $1$ đến $n$ (theo vị trí từ tây sang đông).
 > Mỗi thành phố của nước này thường có quan hệ kết nghĩa với một số thành phố của nước kia. Để tăng cường tình hữu nghị, hai nước muốn xây các cây cầu bắc qua sông, mỗi cây cầu sẽ là nhịp cầu nối 2 thành phố kết nghĩa. Với yêu cầu là các cây cầu không được cắt nhau và mỗi thành phố chỉ là đầu cầu cho nhiều nhất là một cây cầu, hãy đếm số cây cầu nhiều nhất có thể xây dựng.*
 > **Điều kiện:** $1\le n \times m \le 10^6$.
 
@@ -293,7 +291,7 @@ Khi đó công thức QHĐ sẽ là:
 
 **Lời giải:**
 
-**Cách 1:** 
+**Cách 1:**
 Công thức QHĐ của bài này như sau:
 
 Gọi $L[i][j]$ là số kí tự ít nhất cần thêm vào xâu con $S[i..j]$ của $S$ để xâu đó trở thành đối xứng. Nhận xét đầu tiên là xâu thu được sau khi thêm một số kí tự vào $S[i..j]$ phải có kí tự đầu tiên và cuối cùng là $S[i]$ hoặc $S[j]$.
@@ -305,7 +303,7 @@ Tóm lại, công thức QHĐ là:
 * $L[i][j]=L[i+1][j-1]$ nếu $i < j$ và $S_i=S_j$
 * $L[i][j]=1 + \min(L[i+1][j], L[i][j-1])$ nếu $i < j$ và $S_i \ne S_j$
 
-Đáp số của bài toán sẽ là $L[1][n]$ với $n$ là số kí tự của $S$. 
+Đáp số của bài toán sẽ là $L[1][n]$ với $n$ là số kí tự của $S$.
 
 **Cài đặt:** Ta có thể cài đặt trực tiếp thuật toán trên mà không cần quan tâm đến thứ tự tính như sau:
 
@@ -646,8 +644,8 @@ Với hai cách cài đặt trên, độ phức tạp bộ nhớ là $\mathcal{O
 
 Để đơn giản ta coi mọi đoạn thẳng nối hai đỉnh bất kì đều là “đường chéo” (nếu nối hai đỉnh trùng nhau hoặc hai đỉnh liên tiếp thì có độ dài bằng $0$).
 
-Gọi $L[i][j], (i\le j)$ là tổng độ dài bé nhất có thể của các đường chéo dùng để chia đa giác gồm các đỉnh từ $i$ đến $j$ thành các tam giác. 
-* Nếu $j<i+3$ thì đa giác đó có ít hơn 4 đỉnh, không cần phải chia nên $L[i][j]=0$. 
+Gọi $L[i][j], (i\le j)$ là tổng độ dài bé nhất có thể của các đường chéo dùng để chia đa giác gồm các đỉnh từ $i$ đến $j$ thành các tam giác.
+* Nếu $j<i+3$ thì đa giác đó có ít hơn 4 đỉnh, không cần phải chia nên $L[i][j]=0$.
 * Ngược lại ta xét cách chia đa giác đó bằng cách chọn một đỉnh $k$ nằm giữa $i$, $j$ và nối $i$, $j$ với $k$. Khi đó $L[i][j]=L[i][k]+L[k][j]+d(i,k)+d(k,j)$ với $d(x,y)$ là độ dài đường chéo nối đỉnh $x$ với đỉnh $y$.
 
 Từ đó, ta rút ra công thức truy hồi sau:
@@ -699,13 +697,13 @@ int main()
 }
 ```
 
-### 3.4.2. Biểu thức số học 
+### 3.4.2. Biểu thức số học
 > *Cho $n$ số thực không âm $A_1,A_2,\ldots,A_n$ được viết thành một hàng ngang theo thứ tự đó. Giữa hai số liên tiếp có một dấu `+` hoặc `*` cho trước. Hãy đặt các dấu ngoặc vào biểu thức để giá trị thu được là lớn nhất.*
 > **Điều kiện:** $1\le n \le 300$.
 
 **Lời giải:**
 Giả sử biểu thức ban đầu là $A_1\cdot A_2\cdot\ldots\cdot A_n$, trong đó $\cdot$ là `+` hoặc `*` theo đề bài.
-Gọi $L[i,j]$ là giá trị lớn nhất có thể có của biểu thức $A_i \cdot A_{i+1} \cdot ... \cdot A_j$. 
+Gọi $L[i,j]$ là giá trị lớn nhất có thể có của biểu thức $A_i \cdot A_{i+1} \cdot ... \cdot A_j$.
 * Nếu $i=j$ thì $L[i][j]=A_i$
 * Nếu $j>i$ thì có thể tính biểu thức $A_i \cdot A_{i+1} \cdot ... \cdot A_j$ bằng cách chia thành 2 nhóm: $(A_i \cdot A_{i+1} \cdot ... \cdot A_k) \cdot (A_{k+1} \cdot ... \cdot A_j)(i\le k <j)$ (lập luận tương tự như bài toán nhân ma trận). Do $A_i\ge 0$ nên để $L[i,j]$ lớn nhất thì cách đặt ngoặc của hai biểu thức con cũng tối ưu. Khi đó $L[i][j]=L[i][k] \cdot L[k+1][j]$, trong đó $i\le k <j$ và $\cdot$ là phép toán giữa $A_k$ và $A_{k+1}$.
 
@@ -740,7 +738,7 @@ Tóm lại, công thức truy hồi của bài toán là:
 
 Đáp án của bài toán là $L[n][k]$.
 
-**Nhận xét:** 
+**Nhận xét:**
 * Ta chỉ cần điều kiện $1$ và $3$ vì điều kiện $2$ có thể được suy ra trực tiếp từ hai điều kiện trên.
 * Công thức QHĐ của bài này không có gì đặc biệt một khi ta tìm ra trạng thái của bài toán.
 
@@ -764,7 +762,7 @@ cout << L[k];
 
 ### 4.4.1. Xếp phòng học
 
-> *Một trường học có $n$ phòng học đánh số từ $1$ đến $n$ và $k$ nhóm học sinh đánh số từ $1$ đến $k$. Cần xếp $k$ nhóm học sinh vào các phòng học khác nhau sao cho với hai nhóm $i<j$ có $a, b$ lần lượt là phòng học của hai nhóm thì $a<b$. Nói cách khác, nhóm có số hiệu lớn hơn sẽ được ưu tiên phòng có số hiệu lớn hơn. 
+> *Một trường học có $n$ phòng học đánh số từ $1$ đến $n$ và $k$ nhóm học sinh đánh số từ $1$ đến $k$. Cần xếp $k$ nhóm học sinh vào các phòng học khác nhau sao cho với hai nhóm $i<j$ có $a, b$ lần lượt là phòng học của hai nhóm thì $a<b$. Nói cách khác, nhóm có số hiệu lớn hơn sẽ được ưu tiên phòng có số hiệu lớn hơn.
 > Nếu phòng học nào đó có chứa học sinh thì số ghế thừa phải được chuyển ra ngoài, nếu thiếu ghế thì phải lấy thêm. Biết số ghế có sẵn trong phòng thứ $i$ là $A_i$ và số học sinh nhóm thứ $j$ là $B_j(1\le i \le n,1\le j \le k).$ Tính số lần chuyển ghế ra vào ít nhất có thể.*
 > **Điều kiện:** $1\le n\times k\le10^6, 1\le A_i,B_j\le10^9$.
 
@@ -781,7 +779,7 @@ Khi xếp nhóm $i$ vào phòng $j$ thì số lần chuyển ghế chính là đ
 
 Bài này khác với bài **Xếp phòng học** ở trên ở chỗ: người có thứ tự nhỏ hơn không nhất thiết phải mua đôi giày thứ tự nhỏ hơn.
 
-Tuy nhiên, để đưa bài toán về dạng ghép cặp, ta có nhận xét sau: 
+Tuy nhiên, để đưa bài toán về dạng ghép cặp, ta có nhận xét sau:
 > *Cho $2$ dãy số nguyên dương sắp thứ tự $A_1\le A_2\le\ldots\le A_n$ và $B_1\le B_2\le\ldots\le B_n$. Gọi $C_1,C_2,\ldots,C_n$ là một hoán vị của $B_1,B_2,\ldots,B_n$. Khi đó:*
 > $|A_1-B_1|+|A_2-B_2|+\ldots+|A_n-B_n|\le|A_1-C_1|+|A_2-C_2|+\ldots+|A_n-C_n|$
 

@@ -4,8 +4,6 @@ Tác giả: **Lê Anh Đức** - A2K42-PBC
 
 Quy hoạch động (QHĐ) là một lớp thuật toán rất quan trọng và có nhiều ứng dụng trong ngành khoa học máy tính. Trong các cuộc thi Olympic tin học hiện đại, QHĐ luôn là một trong những chủ đề chính. Tuy vậy, theo tôi thấy, tài liệu nâng cao về QHĐ bằng tiếng Việt hiện còn cực kỳ khan hiếm, dẫn đến học sinh/sinh viên Việt Nam bị hạn chế khả năng tiếp cận với những kỹ thuật hiện đại. Trong bài viết này, tôi sẽ trình bày một vài kỹ thuật để tối ưu hóa độ phức tạp của một số thuật toán QHĐ.
 
-[[_TOC_]]
-
 # 1. Đổi biến
 
 Nhiều khi trong trạng thái QHĐ có một thành phần nào đấy với khoảng giá trị quá lớn, trong khi kết quả của hàm lại có khoảng giá trị nhỏ. Trong một vài trường hợp, ta có thể đảo nhãn để giảm số trạng thái.
@@ -255,7 +253,7 @@ int main() {
 #### Đề bài
 
 Có $n$ cây cổ thụ được trồng trên một con đường từ đỉnh đổi đến chân đồi. Chính phủ địa phương quyết định cắt bỏ chúng. Để tránh hoang phí, mỗi cái cây cần được chuyển đến một nhà máy cưa.
-	
+
 Cây chỉ có thể được vận chuyển theo một chiều duy nhất: hướng về chân đồi. Có một nhà máy cưa ở cuối con đường. Hai nhà máy cưa có thể được xây dựng dọc theo con đường. Hãy xác định vị trí tối ưu để xây dựng chúng, để cực tiểu hóa chi phí vận chuyển. Chi phí vận chuyển 1kg gỗ đi 1 mét là 1 cent.
 
 **Yêu cầu**
@@ -836,8 +834,8 @@ Trước hết ta gán $A[i] = A[i] - i$ với mọi $i$. Bài toán trở thàn
 **Thuật toán QHĐ cơ sở**
 
 Đặt $F(i, j) = $ số phép biến đổi ít nhất để biến đổi dãy $A[1..i]$ thành dãy không giảm sao cho $A[i] \le j$. Ta có:
- - Với $i = 1$: $F(i, j) = \|A[i] - j\|$ 
- - Với $i > 1$: $F(i, j) = min(F(i - 1, k) + \|A[i] - k\|)$ $\forall k \le j$ 
+ - Với $i = 1$: $F(i, j) = \|A[i] - j\|$
+ - Với $i > 1$: $F(i, j) = min(F(i - 1, k) + \|A[i] - k\|)$ $\forall k \le j$
 
 Kết hợp với nhận xét: Luôn tồn tại dãy cuối cùng với số phép biến đổi tối ưu mà chỉ chứa các giá trị có trong dãy ban đầu. Ta có thể giải công thức QHĐ này với độ phức tạp $O(N^2)$
 
@@ -927,7 +925,7 @@ Input
 Output
 6
 
-Vàng tìm được ở ô (1, 1). Chiến lược tốt nhất là làm việc tại đó. 
+Vàng tìm được ở ô (1, 1). Chiến lược tốt nhất là làm việc tại đó.
 
 
 Input

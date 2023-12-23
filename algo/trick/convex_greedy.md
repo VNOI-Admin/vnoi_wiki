@@ -6,8 +6,6 @@
 **Reviewer:**
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 
-[[_TOC_]]
-
 ## Giới thiệu
 
 Mục đích của bài viết này là để giới thiệu cho mọi người về một mô típ đã xuất hiện trong nhiều bài tập trung bình khó tới khó -- tối ưu tổng của một số hàm lồi cho trước. Ý tưởng giải chung của các bài toán này thường là như nhau: tham lam trên chi phí tăng của các hàm lồi này (ta sẽ định nghĩa chi phí tăng ở phần tiếp theo).
@@ -114,27 +112,27 @@ Bởi thế, ta có thể dùng ý tưởng tham lam được đề cập ở ph
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
- 
+
 struct carrot {
     int a, b;
- 
+
     carrot(int _a, int _b) : a(_a), b(_b) {}
- 
+
     long long value() const {
         // tính f_i(b). mỗi phần có độ dài là a / b hoặc là a / b + 1, và có a % b phần có độ dài là a / b + 1
         int cnt = a / b, ov = a % b;
         return 1LL * cnt * cnt * (b - ov) + 1LL * (cnt + 1) * (cnt + 1) * ov;
     }
- 
+
     long long next() const {
         return carrot(a, b).value() - carrot(a, b + 1).value();
     }
- 
+
     long long operator<(const carrot& oth) const {
         return next() < oth.next();
     }
 };
- 
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -338,7 +336,7 @@ using namespace std;
 long double log_prob(long double c, long double b) {
     return log(c) - log(b);
 }
- 
+
 long double cost(long double c, long double b, long double add) {
     return log_prob(c + add + 1, b + add + 1) - log_prob(c + add, b + add);
 }
@@ -351,7 +349,7 @@ long double solve(long double c, long double b, long double t) {
         return 0.5 * (sqrt(4 * (b - c) / t + (c - b) * (c - b)) - c - b);
     }
 }
- 
+
 int main() {
     int n, x; cin >> n >> x;
     vector<int> c(n);

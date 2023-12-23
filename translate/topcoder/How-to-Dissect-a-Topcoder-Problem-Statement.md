@@ -4,8 +4,6 @@
 
 **Nguồn**: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/how-to-dissect-a-topcoder-problem-statement/)
 
-[[_TOC_]]
-
 # Về Topcoder
 
 [Topcoder](https://topcoder.com) là một trang web tổ chức các kỳ thi thuật toán lâu đời và có uy tín nhất. Với hàng nghìn đề bài từ các kỳ thi đã diễn ra, Topcoder là một nguồn để luyện tập rất hiệu quả.
@@ -18,7 +16,7 @@ Bạn có thể vào [Web Arena](https://arena.topcoder.com) để tìm các bà
 
 Có thể điều ấy chưa bao giờ xảy ra với bạn. Bạn có thể may mắn, hoặc bạn đã có kĩ năng đọc đề vô địch. Tuy nhiên, rất nhiều người đầy kinh nghiệm (vâng, cả nick đỏ) có thể bó tay ngồi nhìn đề mà không hiểu gì. Vấn đề này rõ là nghiêm trọng. Làm sao bạn có thể giải bài khi không có bất cứ ý tưởng nào về việc mình đang làm chứ?
 
-May mắn thay, các bài toán trên Topcoder được viết theo một cách đặc biệt. 
+May mắn thay, các bài toán trên Topcoder được viết theo một cách đặc biệt.
 
 Biết được hướng làm của mình quanh các chủ đề khác nhau sẽ giúp bạn hiểu rõ nội dung của bài toán hơn.
 
@@ -40,7 +38,7 @@ Tiếp đến là phần địch nghĩa hàm. Đây là phần đặc biệt ch�
 
 ```
 Definition
-    	
+
 Class:             QuipuReader
 Method:            readKnots
 Parameters:        String[]

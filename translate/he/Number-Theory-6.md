@@ -4,9 +4,6 @@ Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-
 
 Người dịch: Bùi Việt Dũng
 
-[[_TOC_]]
-
-
 # Các kiến thức cơ bản về Xác suất (Probabilities)
 
 Làm việc với xác suất giống như làm một thí nghiệm. Một **kết quả (outcome)** là một kết quả của một phép thử hay sự xảy ra hay không xảy ra của một hiện tượng nào đó. Tập hợp tất cả các kết qủa có thể xảy ra của một phép thử được gọi là **không gian mẫu (sample space)**, thường được kí hiệu là $\Omega$. Mỗi kết quả có thể của một phép thử được biểu diễn bởi một và chỉ một điểm trong không gian mẫu.

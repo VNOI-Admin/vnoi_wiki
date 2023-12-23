@@ -1,9 +1,9 @@
 # Bài toán Luồng cực đại trên mạng
 
-**Tác giả:** 
+**Tác giả:**
 - Nguyễn Đức Kiên, Trường Đại học Công nghệ, ĐHQGHN.
 
-**Reviewer:** 
+**Reviewer:**
 - Phạm Công Minh - THPT chuyên Khoa học Tự Nhiên, ĐHQGHN
 - Đặng Đoàn Đức Trung - UT Austin
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
@@ -11,12 +11,10 @@
 
 ---
 
-[[_TOC_]]
-
 Luồng cực đại (Maximum Flow) và Lát cắt cực tiểu/hẹp nhất (Minimum Cut) là những bài toán quan trọng trong lớp các bài toán về đồ thị. Bài viết sau đây sẽ giới thiệu một vài nội dung cơ bản về bài toán luồng cực đại và các thuật toán liên quan.
 
 ## Một số khái niệm sử dụng trong bài viết
-Để hiểu hơn về phần này, bạn đọc nên có sẵn những kiến thức cơ bản về đồ thị, cũng như biểu diễn và duyệt (BFS, DFS, ...) chúng. 
+Để hiểu hơn về phần này, bạn đọc nên có sẵn những kiến thức cơ bản về đồ thị, cũng như biểu diễn và duyệt (BFS, DFS, ...) chúng.
 
 Bài viết sẽ không nêu lại các khái niệm cơ bản về đồ thị.
 
@@ -43,7 +41,7 @@ Một **luồng** (flow) trên mạng $G(V, E)$ là một phép gán cho mỗi c
 - Luồng trên mỗi cạnh có giá trị không vượt quá khả năng thông qua của cạnh đó:
 $0 \le f(u, v) \le c(u, v), \forall u, v \in V$
 - Với mọi đỉnh $v$ không trùng với đỉnh phát $s$ và đỉnh thu $t$, tổng luồng trên các cạnh đi vào $v$ bằng tổng luồng trên các cạnh đi ra $v$. Tính chất này tương đối giống với định luật I Kirchoff của dòng điện.
-$\sum\limits_{v \in V, \exists (v, u) \in E} f(v, u) = 
+$\sum\limits_{v \in V, \exists (v, u) \in E} f(v, u) =
 \sum\limits_{w \in V, \exists (u, w) \in E} f(u, w)$
 - Giá trị $f(u, v)$ được gọi là **luồng trên cạnh $(u, v)$**
 - **Giá trị của luồng** là tổng luồng trên các cạnh đi ra khỏi đỉnh phát, cũng chính là tổng luồng trên các cạnh đi vào đỉnh thu.
@@ -54,9 +52,9 @@ $\sum\limits_{v \in V, \exists (v, u) \in E} f(v, u) =
 
 Một **lát cắt** (cut) $(A, B)$ trên mạng là một cách chia các đỉnh trên đồ thị mạng thành hai tập hợp sao cho $s \in A, t \in B$.
 Tổng các giá trị khả năng thông qua trên các cạnh nối giữa một đỉnh thuộc $A$ và một đỉnh thuộc $B$ được gọi là **khả năng thông qua** (cut value) của lát cắt $(A, B)$
- 
+
  $c(A, B) = \sum\limits_{u \in A, v \in B} c(u, v)$
- 
+
  ![](https://hackmd.io/_uploads/BJm1po283.png)
 
 *Một lát cắt hợp lệ với hai tập $A = \{1, 2, 5\}$ và $B = \{3, 4, 6\}$. Mỗi tập con của lát cắt được đánh dấu bằng một màu khác nhau. Lát cắt này có khả năng thông qua là $6 + 5 + 1 + 6 = 17$.*
@@ -68,10 +66,10 @@ Tổng các giá trị khả năng thông qua trên các cạnh nối giữa m�
 <b>Chứng minh</b>
 </summary>
 <div>
-Xét luồng có giá trị $f$ và lát cắt $(A, B)$ trên một mạng bất kỳ. Ta có: 
+Xét luồng có giá trị $f$ và lát cắt $(A, B)$ trên một mạng bất kỳ. Ta có:
 
-$f = 
-\sum\limits_{u \in A, v \in B} f(u, v) - 
+$f =
+\sum\limits_{u \in A, v \in B} f(u, v) -
 \sum\limits_{u \in B, v \in A} f(u, v) \\
 \le
 \sum\limits_{
@@ -95,18 +93,18 @@ Nếu ta hiểu mạng như một hệ thống ống nước, nó sẽ như sau:
 - Còn một lát cắt là một cách bỏ đi các ống sao cho nước không thể chảy từ nguồn đến bể nữa bằng bất kỳ cách nào.
 
 ### Bài toán
-**Đề bài**: Cho mạng $G(V, E)$ với $m$ đỉnh và $n$ cạnh có đỉnh phát là $s$, đỉnh thu là $t$ ($n \le 1000, 1 \le s, t \le n$). Hãy tìm một luồng trong mạng sao cho giá trị của nó là lớn nhất. 
+**Đề bài**: Cho mạng $G(V, E)$ với $m$ đỉnh và $n$ cạnh có đỉnh phát là $s$, đỉnh thu là $t$ ($n \le 1000, 1 \le s, t \le n$). Hãy tìm một luồng trong mạng sao cho giá trị của nó là lớn nhất.
 Luồng này gọi là **luồng cực đại** trên mạng $G$.
 
 *Đề bài VNOI*: [NKFLOW](https://oj.vnoi.info/problem/nkflow)
 
 ## Phương pháp Ford-Fulkerson. Thuật toán Edmonds-Karp.
-<details> 
+<details>
 <summary>
 <b>Đôi lời về lịch sử thuật toán</b>
 </summary>
 <p>
-Năm 1956, L. R. Ford Jr. và D. R. Fulkerson đề xuất một phương pháp để tìm ra luồng cực đại trên mạng. Tuy nhiên, phương pháp này không chỉ rõ việc tìm *đường tăng luồng* như thế nào. Đến năm 1972, Jack Edmonds and Richard Karp đã hoàn thiện phương pháp trên bằng cách sử dụng thuật BFS để tìm *đường tăng luồng*. 
+Năm 1956, L. R. Ford Jr. và D. R. Fulkerson đề xuất một phương pháp để tìm ra luồng cực đại trên mạng. Tuy nhiên, phương pháp này không chỉ rõ việc tìm *đường tăng luồng* như thế nào. Đến năm 1972, Jack Edmonds and Richard Karp đã hoàn thiện phương pháp trên bằng cách sử dụng thuật BFS để tìm *đường tăng luồng*.
 </p>
 
 <p>
@@ -124,7 +122,7 @@ Lưu ý rằng ta **không** định nghĩa $c(v, u) = c(u, v)$, giá trị này
 
 $r(u, v) = c(u, v) - f(u, v)$
 
-Giá trị này cũng áp dụng cho cả các cạnh đảo (cạnh có luồng âm), khi đó 
+Giá trị này cũng áp dụng cho cả các cạnh đảo (cạnh có luồng âm), khi đó
 
 $r(v, u) = 0 - f(v, u) = f(u, v)$.
 
@@ -207,7 +205,7 @@ Nhưng theo định lý về luồng và lát cắt đã trình bày ở trên t
 </p>
 </details>
 
-**Hệ quả**: 
+**Hệ quả**:
 - Khả năng thông qua của lát cắt hẹp nhất trên một mạng bằng giá trị của luồng cực đại trên mạng đó. **Lát cắt hẹp nhất** (mincut) là lát cắt có khả năng thông qua nhỏ nhất trong số mọi lát cắt thuộc mạng.
 - Nếu mọi giá trị $c$ trên luồng đều là số nguyên thì giá trị luồng cực đại cũng là số nguyên.
 
@@ -308,10 +306,10 @@ Trong bài toán chúng ta xét, tất cả các khả năng thông qua của c�
 Với thuật toán Edmonds-Karp, khi sử dụng BFS, sau $O(EV)$ lần tìm đường tăng luồng, chúng ta sẽ tìm được kết quả. Độ phức tạp của thuật toán này là $O(E^2V)$.
 Bạn có thể tham khảo chứng minh độ phức tạp này tại [đây](https://brilliant.org/wiki/edmonds-karp-algorithm/).
 
-Khi thực hiện giải thuật Edmonds-Karp, các đánh giá ban đầu về độ phức tạp có thể sai lệch nhiều so với thực tế. Mặc dù độ phức tạp của thuật toán là tương đối lớn trong trường hợp tệ nhất, nó vẫn hoạt động hiệu quả trong hầu hết các trường hợp. 
+Khi thực hiện giải thuật Edmonds-Karp, các đánh giá ban đầu về độ phức tạp có thể sai lệch nhiều so với thực tế. Mặc dù độ phức tạp của thuật toán là tương đối lớn trong trường hợp tệ nhất, nó vẫn hoạt động hiệu quả trong hầu hết các trường hợp.
 
 ## Thuật toán Dinic
-Như đã nói ở trên, tuy đánh giá về độ phức tạp của thuật Edmonds-Karp không hề đẹp, nó vẫn chạy đủ nhanh trong thực tế. Tất nhiên, vẫn có những trường hợp thuật này chạy chưa được ổn lắm, điển hình là khi mạng có rất nhiều cạnh, ví dụ có dạng của đồ thị đầy đủ với $\frac{V(V - 1)}{2}$ cạnh thì độ phức tạp của thuật toán sẽ là $O(V^5)$, rất khủng khiếp. Thuật toán Dinic sẽ làm giảm độ phức tạp của thuật đi một chút. 
+Như đã nói ở trên, tuy đánh giá về độ phức tạp của thuật Edmonds-Karp không hề đẹp, nó vẫn chạy đủ nhanh trong thực tế. Tất nhiên, vẫn có những trường hợp thuật này chạy chưa được ổn lắm, điển hình là khi mạng có rất nhiều cạnh, ví dụ có dạng của đồ thị đầy đủ với $\frac{V(V - 1)}{2}$ cạnh thì độ phức tạp của thuật toán sẽ là $O(V^5)$, rất khủng khiếp. Thuật toán Dinic sẽ làm giảm độ phức tạp của thuật đi một chút.
 
 Thuật toán này được Yefim A. Dinitz (nhiều tài liệu để tên là E. A. Dinic) đề xuất năm 1970. Nó được chứng minh là có độ phức tạp $O(EV^2)$, tốt hơn thuật toán Edmonds-Karp.
 
@@ -343,7 +341,7 @@ Hình GIF trên mô tả thuật toán Dinic. Tất cả các cạnh có màu đ
 ### Tính đúng đắn
 **Định lý**: Thuật toán Dinic cho kết quả là luồng cực đại
 
-<details> 
+<details>
 <summary>
 <b>Chứng minh</b>
 </summary>
@@ -462,8 +460,8 @@ Gọi $d_i(u)$ là mức của đỉnh $u$ sau khi thực hiện $i$ lần BFS v
 </p>
 
 <p>
-Xét vòng BFS thứ $i$, đang xét đến đỉnh $u$. Xét đồ thị $G^R_i$ là đồ thị thặng dư ở lượt BFS thứ $i$. Dễ thấy $G^R_{i + 1}$ luôn bao gồm một số cạnh trong $G^R_i$ cùng với một số cạnh ngược trong $G^R_i$. 
-Tại vòng thứ $i + 1$, trường hợp đường đi từ $s$ đến $u$ không đi qua cạnh ngược, hiển nhiên đường đi này phải xuất hiện trên $G^R_i$, cho nên $d_{i + 1}(u) = d_{i}(u)$. 
+Xét vòng BFS thứ $i$, đang xét đến đỉnh $u$. Xét đồ thị $G^R_i$ là đồ thị thặng dư ở lượt BFS thứ $i$. Dễ thấy $G^R_{i + 1}$ luôn bao gồm một số cạnh trong $G^R_i$ cùng với một số cạnh ngược trong $G^R_i$.
+Tại vòng thứ $i + 1$, trường hợp đường đi từ $s$ đến $u$ không đi qua cạnh ngược, hiển nhiên đường đi này phải xuất hiện trên $G^R_i$, cho nên $d_{i + 1}(u) = d_{i}(u)$.
 </p>
 
 <p>
@@ -498,7 +496,7 @@ Tổng kết hai phần lại, chúng ta có độ phức tạp thuật toán Di
 ## Bài toán ví dụ
 *Đề bài VNOI*: [FLOW1](https://oj.vnoi.info/problem/flow1)
 
-**Tóm tắt đề bài**: Có $2n$ học sinh đến từ hai trường SP, TH và $m$ bài toán. Mỗi học sinh có thể giải tốt một số bài toán cho trước. Cần chọn $n$ bài toán sao cho: 
+**Tóm tắt đề bài**: Có $2n$ học sinh đến từ hai trường SP, TH và $m$ bài toán. Mỗi học sinh có thể giải tốt một số bài toán cho trước. Cần chọn $n$ bài toán sao cho:
 - Với mỗi bài toán, mỗi trường có đúng một học sinh giải được bài đó
 - Không có học sinh nào làm hai bài toán
 - Không có hai học sinh nào cùng trường làm cùng một bài toán.
@@ -558,7 +556,7 @@ Ngoài ra, bạn đọc có thể luyện tập bằng các bài tập khác có
 ## Tài liệu tham khảo
 - Lê Minh Hoàng (2003), *Giải thuật và lập trình*
 - Steven Halim, Felix Halim (2013), *Competitive Programing 3*
-- CP Algorithms: 
+- CP Algorithms:
 	- [Maximum flow - Ford-Fulkerson and Edmonds-Karp](https://cp-algorithms.com/graph/edmonds_karp.html)
 	- [Maximum flow - Dinic's algorithm](https://cp-algorithms.com/graph/dinic.html)
 - Wikipedia (về lịch sử của các thuật toán)

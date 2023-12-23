@@ -11,13 +11,11 @@
 * Hoàng Xuân Nhật - Đại học Khoa học Tự nhiên - ĐHQG-HCM
 * Ngô Nhật Quang - Trường THPT chuyên Khoa học Tự Nhiên - ĐHQGHN
 
-[[_TOC_]]
-
 # Giới thiệu
 
 Đường đi Euler trên cây (Euler tour on tree) là một phương pháp hữu dụng được dùng nhiều trong các bài toán trên cây. Đây có thể được hiểu là một cách trải phẳng cây, từ đó các thao tác với cây có thể chuyển về thao tác với dãy một chiều.
 
-# Bài toán 
+# Bài toán
 Trước khi tìm hiểu sâu hơn về đường đi Euler trên cây, mời bạn đọc xem qua bài toán sau đây.
 
 ## Truy vấn trên cây
@@ -42,7 +40,7 @@ Giới hạn: $n, q \leq 10^5$.
 <!-- ![](https://i.ibb.co/ykSMHwN/subtree-example.png) -->
 
 <center>
-    
+
 Hình $1$
 
 </center>
@@ -63,9 +61,9 @@ void change(int u, int x) { // thay đổi giá trị đỉnh u
     val[u] = x;
 }
 long long sum(int u) { // tổng các giá trị của cây con gốc u
-    long long s = val[u]; 
-    for (int v : adj[u]) { 
-        if (v != parent[u]) { 
+    long long s = val[u];
+    for (int v : adj[u]) {
+        if (v != parent[u]) {
             s += sum(v);
         }
     }
@@ -95,20 +93,20 @@ Thể hiện chu trình Euler (**) trên đồ thị $T'$ bằng một dãy các
 <!-- ![](https://i.ibb.co/dknd6Vn/simpletree.png) -->
 
 <center>
-    
+
 [[/uploads/euler-tour-on-tree_img2.png]]
 </center>
 
 <!-- ![](https://i.ibb.co/02Bf8tp/simpletree.png) -->
 
 <center>
-    
+
 $2a$ &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $2b$
 
 </center>
 
 <center>
-    
+
 Hình $2$
 
 </center>
@@ -212,7 +210,7 @@ Như đã giới thiệu, ứng dụng chính của Euler tour là trải phẳn
 
 Sau đây là một số tính chất cơ bản nhất của đường đi Euler.
 
-Đỉnh $v$ thuộc cây con gốc $u$ nếu và chỉ nếu $st[u] \leq st[v] \leq en[v] \leq en[u]$. 
+Đỉnh $v$ thuộc cây con gốc $u$ nếu và chỉ nếu $st[u] \leq st[v] \leq en[v] \leq en[u]$.
 
 Đỉnh $v$ không thuộc cây con gốc $u$ và $u$ không thuộc cây con gốc $v$, hay $u$ và $v$ không có quan hệ tổ tiên nếu và chỉ nếu hai đoạn $st[u]..en[u]$ và $st[v]..en[v]$ không giao nhau, nghĩa là $en[u] < st[v]$ hoặc $en[v] < st[u]$.
 
@@ -225,7 +223,7 @@ Từ hai tính chất trên ta nhận xét được rằng, với hai đỉnh $u
 
 
 <center>
-    
+
 Hình $3$
 
 </center>
@@ -240,7 +238,7 @@ Với hai đỉnh $u$ và $v$ không có quan hệ tổ tiên thì đỉnh $u$ �
 
 ## Cập nhật, truy vấn đối với đỉnh và cây con
 
-Đây là ứng dụng phổ biến nhất của đường đi Euler trên cây. 
+Đây là ứng dụng phổ biến nhất của đường đi Euler trên cây.
 
 Ở ứng dụng này, ta cần thay đổi đường đi Euler một chút.
 
@@ -263,13 +261,13 @@ Ta cũng có thể tìm trực tiếp dãy $tour$ (thay vì thay đổi từ dã
 void dfs(int u, int parent_of_u) {
     tour[++m] = u;
     st[u] = m;
-    
+
     for (int v : adj[u]) {
         if (v != parent_of_u) {
             dfs(v, u);
         }
     }
-    
+
     en[u] = m;
 }
 ```
@@ -295,7 +293,7 @@ Từ tính chất đó, dễ thấy rằng các thao tác với cây con có th�
 
 Cụ thể, thao tác cập nhật hoặc truy vấn đối với cây con gốc $u$ có thể chuyển thành thao tác tương ứng đối với đoạn $st[u]..en[u]$.
 
-Ví dụ: 
+Ví dụ:
 Trong đoạn code dưới đây, hàm $change(u, x)$ cho phép tăng giá trị của đỉnh $u$ thêm $x$ đơn vị. Hàm $sum(u)$ cho phép tính tổng giá trị các đỉnh thuộc cây con gốc $u$ (sử dụng kiểu dữ liệu [Fenwick Tree - cây BIT](https://vnoi.info/wiki/algo/data-structures/fenwick.md)).
 
 ```cpp
@@ -380,14 +378,14 @@ Cũng có thể cài đặt để đạt được mảng $tour$ trực tiếp nh
 ```cpp
 void dfs(int u, int parent_of_u) {
     tour[++m] = u;
-    st[u] = m;    
-    
+    st[u] = m;
+
     for (int v : adj[u]) {
         if (v != parent_of_u) {
             dfs(v, u);
         }
     }
-    
+
     tour[++m] = u;
     en[u] = m;
 }
@@ -411,7 +409,7 @@ Ví dụ:
 
 
 <center>
-    
+
 Hình $4$
 
 </center>
@@ -467,7 +465,7 @@ Ta có tính chất sau:
 
 Đối với hai đỉnh $u$, $v$ phân biệt mà $st[u] \leq st[v]$, tổ tiên chung gần nhất của hai đỉnh này là giá trị $p$ thuộc đoạn $st[u]..st[v]$ của dãy $tour$ sao cho khoảng cách từ $p$ đến gốc là nhỏ nhất có thể.
 
-### Giải thích 
+### Giải thích
 
 Gọi $p$ là cha chung gần nhất của $u$ và $v$.
 
@@ -479,7 +477,7 @@ Vậy đỉnh gần gốc nhất trên đoạn $st[u]..st[v]$ chính là đỉnh
 
 ### Thuật toán
 
-Gọi $h[u]$ là khoảng cách của đỉnh $u$ đến gốc của cây. Khi tìm $LCA(u, v)$, ta cần tìm đỉnh $p$ thuộc đoạn $st[u]..st[v]$ mà $h[p]$ là nhỏ nhất. 
+Gọi $h[u]$ là khoảng cách của đỉnh $u$ đến gốc của cây. Khi tìm $LCA(u, v)$, ta cần tìm đỉnh $p$ thuộc đoạn $st[u]..st[v]$ mà $h[p]$ là nhỏ nhất.
 
 Có thể áp dụng cấu trúc dữ liệu RMQ để tìm đỉnh $p$, độ phức tạp cho việc chuẩn bị là $O(M * log(M))$, độ phức tạp cho mỗi thao tác tìm $LCA$ là $O(1)$, trong đó, $M$ là độ dài của mảng lưu đường đi Euler.
 
@@ -536,9 +534,9 @@ void solve() {
     }
 
     while (q--) {
-    	int u, v; 
+    	int u, v;
     	cin >> u >> v;
-    	
+
     	int l = st[u], r = st[v];
     	if (l > r) swap(l, r);
 
@@ -564,7 +562,7 @@ int main() {
 
 [CSES - Path Queries](https://cses.fi/problemset/task/1138)
 
-[Codeforces - Hemose in ICPC ?](https://codeforces.com/problemset/problem/1592/D) 
+[Codeforces - Hemose in ICPC ?](https://codeforces.com/problemset/problem/1592/D)
 
 [Codeforces - Danil and a Part-time Job](https://codeforces.com/problemset/problem/877/E)
 

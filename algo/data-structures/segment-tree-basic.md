@@ -14,8 +14,6 @@
 - Ngô Nhật Quang - HUS High School for Gifted Students
 - Hồ Ngọc Vĩnh Phát - VNUHCM-University of Science
 
-[[_TOC_]]
-
 **LƯU Ý:** Mọi số thứ tự trong bài viết đều được đánh số bắt đầu từ $1$.
 
 # Mở đầu

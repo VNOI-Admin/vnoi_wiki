@@ -1,7 +1,5 @@
 # Suffix Automaton
 
-[[_TOC_]]
-
 **Tác giả**: Cao Xuân Hưng
 
 # Giới thiệu

@@ -1,20 +1,18 @@
 # Cây chỉ số nhị phân 2 chiều (BIT 2 chiều)
 
-**Tác giả:** 
-- Phạm Công Minh - THPT chuyên Khoa học Tự Nhiên, ĐHQGHN 
+**Tác giả:**
+- Phạm Công Minh - THPT chuyên Khoa học Tự Nhiên, ĐHQGHN
 
 **Reviewer:**
 - Lê Minh Hoàng - Đại học Khoa học Tự nhiên, ĐHQG-HCM
 - Phạm Hoàng Hiệp - University of Georgia
-- Ngô Nhật Quang - The University of Texas at Dallas 
+- Ngô Nhật Quang - The University of Texas at Dallas
 
 ---
 
-[[_TOC_]]
-
 # Giới thiệu
 
-BIT 2 chiều là cấu trúc dữ liệu mở rộng của BIT 1 chiều. Công dụng chính của BIT 2 chiều là xử lý các truy vấn lên hình chữ nhật con trên một mảng 2 chiều. 
+BIT 2 chiều là cấu trúc dữ liệu mở rộng của BIT 1 chiều. Công dụng chính của BIT 2 chiều là xử lý các truy vấn lên hình chữ nhật con trên một mảng 2 chiều.
 
 Bài viết yêu cầu người đọc hiểu rõ cách hoạt động của BIT 1 chiều. Các bạn có thể đọc về BIT 1 chiều tại đây: [VNOI - Cây chỉ số nhị phân](https://vnoi.info/wiki/algo/data-structures/fenwick.md#c%C3%A2y-ch%E1%BB%89-s%E1%BB%91-nh%E1%BB%8B-ph%C3%A2n).
 
@@ -36,7 +34,7 @@ Cho mảng 2 chiều $A$ có $N$ hàng $M$ cột (đánh số từ 1). Có $Q$ t
 * $1$ $u$ $v$ $x$: Cộng $x$ vào $A[u][v]$.
 * $2$ $u$ $v$: Tính $\sum A[1:u][1:v]$.
 
-Giới hạn: $1 \leq N, M \leq 10^3$, $1 \leq Q \leq 2 \times 10^5$ 
+Giới hạn: $1 \leq N, M \leq 10^3$, $1 \leq Q \leq 2 \times 10^5$
 
 ## Thuật toán ngây thơ 1
 
@@ -138,7 +136,7 @@ $$
 
 Như vậy phần tử thứ $j$ của BIT thứ $i$ trong BIT 2 chiều lưu tổng các phần tử trong hình chữ nhật con có góc trái trên là $(i - lsb(i) + 1, j-lsb(j) + 1)$ và góc phải dưới là $(i, j)$.
 
-Dưới đây là hình minh họa cho trường hợp $N = 3, M = 4$. 
+Dưới đây là hình minh họa cho trường hợp $N = 3, M = 4$.
 
 ![](https://hackmd.io/_uploads/r1jCazVqn.png)
 
@@ -304,7 +302,7 @@ int query(int u, int v){
 
 **Chú ý kĩ thuật này chỉ dùng được khi ta biết trước tất cả các truy vấn.**
 
-Ta thay đổi giới hạn bài toán ban đầu thành $1 \leq N, M, Q \leq 10^5$. 
+Ta thay đổi giới hạn bài toán ban đầu thành $1 \leq N, M, Q \leq 10^5$.
 
 Ta sẽ không thể lưu được toàn bộ BIT 2 chiều bằng một mảng $N \times M$, nếu sử dụng `std::map` hay `std::unordered_map` thì code sẽ không đủ nhanh để AC.
 
@@ -341,7 +339,7 @@ void compress(){
 }
 ```
 
-Khi đã rời rạc hóa xong, ta thực hiện các truy vấn như thường. Lưu ý lúc này mảng `pos` chỉ để ánh xạ lại index trên mảng đã được rời rạc hóa. 
+Khi đã rời rạc hóa xong, ta thực hiện các truy vấn như thường. Lưu ý lúc này mảng `pos` chỉ để ánh xạ lại index trên mảng đã được rời rạc hóa.
 
 ```cpp
 void add(int u, int v, int x){
@@ -373,14 +371,3 @@ void query(int u, int v){
 * [LQDOJ - Khu Rừng 5](https://lqdoj.edu.vn/problem/forest5)
 * [LQDOJ - Khu Rừng 6](https://lqdoj.edu.vn/problem/forest6)
 * [VNOJ - Another Longest Increasing Subsequence Problem](https://oj.vnoi.info/problem/lis2vn)
-
-
-
-
-
-
-
-
-
-
-

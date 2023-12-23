@@ -8,8 +8,6 @@
 - Cao Thanh Hậu, Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM.
 - Nguyễn Hoàng Vũ, Trường Đại học Công nghệ, ĐHQGHN.
 
-[[_TOC_]]
-
 # Mở đầu
 
 ![](https://hackmd.io/_uploads/BkRIUcdV2.jpg)
@@ -25,7 +23,7 @@ Trong cuộc sống, chúng ta đôi khi bắt gặp những hình ảnh về m�
 - Với $n!$ thì ta có $n! = (n - 1)! \times n$
 - Gọi $gcd(a, b)$ là ước chung lớn nhất của $a$ và $b$ ($a \geq b$) thì ta có $gcd(a, b) = gcd(b, a \bmod b)$ với $\bmod$ là phép lấy phần dư
 
-Nếu một bài toán $P$ có lời giải được thực hiện bằng một bài toán con $P'$ có dạng giống $P$ thì đó là một giải thuật đệ quy. Ở đây, $P'$ cần là một bài toán đơn giản hơn $P$ (có kích cỡ dữ liệu nhỏ hơn, hoặc độ phức tạp nhỏ hơn, ...), và đương nhiên không cần đến $P$ để giải nó. 
+Nếu một bài toán $P$ có lời giải được thực hiện bằng một bài toán con $P'$ có dạng giống $P$ thì đó là một giải thuật đệ quy. Ở đây, $P'$ cần là một bài toán đơn giản hơn $P$ (có kích cỡ dữ liệu nhỏ hơn, hoặc độ phức tạp nhỏ hơn, ...), và đương nhiên không cần đến $P$ để giải nó.
 
 Về cơ bản thì ta có thể gọi một hàm là đệ quy nếu hàm đó tự gọi chính nó, với các biến đầu vào có thể khác.
 
@@ -63,19 +61,19 @@ Nếu bạn chưa quen với cú pháp đệ quy như vậy thì có thể hiể
 //n = 0
 void factorial_0()
 {
-    return 1;    
+    return 1;
 }
 
 //n = 1
 void factorial_1()
-{   
-    return factorial_0() * 1;    
+{
+    return factorial_0() * 1;
 }
 
 //n = 2
 void factorial_2()
-{   
-    return factorial_1() * 2;    
+{
+    return factorial_1() * 2;
 }
 ```
 
@@ -110,7 +108,7 @@ Cần chú ý rằng ở chương trình này cần có tới 2 trường hợp 
 
 Đương nhiên, không phải bài toán đệ quy nào cũng để chúng ta nhìn thấy một công thức đệ quy đơn giản như vậy. Thậm chí, đôi khi chúng ta còn chẳng có một công thức cụ thể, mà chỉ đơn thuần là công việc được thực hiện sau đó có điểm tương đồng với phần trước thôi. Lúc này, ta cần giải đáp những câu hỏi:
 - Bài toán có thể được giải qua những bài toán con nào tương tự không? Nếu được, đó là gì?
-- Tới trạng thái nào, chúng ta sẽ dừng lại? 
+- Tới trạng thái nào, chúng ta sẽ dừng lại?
 
 # Thuật toán quay lui
 ## Khái niệm
@@ -125,19 +123,19 @@ Tóm gọn lại, chúng ta đang xây dựng một danh sách gồm tất cả 
 - Với mỗi trường hợp của ký tự thứ nhất, xét tiếp mọi trường hợp ký tự thứ hai. Ta được `00`, `01` từ `0` ở bước trước và `10`, `11` từ `1` ở bước trước.
 - Tương tự, với mỗi trường hợp của ký tự thứ hai, ta xét nốt mọi trường hợp ở ký tự thứ ba. Các dãy nhận được là `000`, `001`, `010`, `011`, `100`, `101`, `110`, `111`
 Nếu bạn vẫn chưa hiểu các dãy này được tạo dựng theo thứ tự như thế nào, hãy xem sơ đồ ở phần dưới.
- 
+
 Trên phương diện quy nạp, nếu cần dựng danh sách các tập hợp mà mỗi tập có dạng $\{x_1, x_2, ..., x_n\}$, ta xét mọi giá trị của $x_1$, rồi sau đó duyệt tiếp $\{x_2, x_3, ..., x_n\}$, tiếp tục xét mọi giá trị $x_2$, rồi lại duyệt $\{x_3, x_4, ..., x_n\}$, ..., cho đến khi nào tất cả các giá trị đều đã xác định. Lúc này, ta lưu tập vừa tạo lại vào danh sách và tiếp tục chuyển sang tập khác từ các giá trị khác của các $x_i$
 
 ```
 void backtrack(int pos)
-{	
+{
     // Trường hợp cơ sở
     if (<pos là vị trí cuối cùng>)
     {
         <output/lưu lại tập hợp đã dựng nếu thoả mãn>
         return;
     }
-	
+
     //Phần đệ quy
     for (<tất cả giá trị i có thể ở vị trí pos>)
     {
@@ -242,7 +240,7 @@ int main()
 
 **Mở rộng:** Vẫn đề bài trên nhưng giờ bỏ đi điều kiện "Hai tập con là hoán vị của nhau chỉ tính là một." thì chúng ta sẽ làm như thế nào? (gợi ý: lúc này thay vì có mọi số lớn hơn số liền trước, ta chỉ cần các số trong tập hợp khác nhau là đủ)
 
-Còn về hướng biểu diễn dãy nhị phân, bạn đọc hãy thử tự suy nghĩ và cài đặt. Trong lập trình thi đấu, khi phải duyệt mọi tập con, cách này dễ đọc và hiệu quả hơn hẳn. Nhưng đây là bài giới thiệu về đệ quy nên là... 
+Còn về hướng biểu diễn dãy nhị phân, bạn đọc hãy thử tự suy nghĩ và cài đặt. Trong lập trình thi đấu, khi phải duyệt mọi tập con, cách này dễ đọc và hiệu quả hơn hẳn. Nhưng đây là bài giới thiệu về đệ quy nên là...
 
 ## Bài toán phân tích số
 **Bài toán:** Ở một quốc gia có $n$ loại tiền gồm các mệnh giá $a_1, a_2, ..., a_n$ ($n \leq 10$). Có những cách nào để lấy các tờ tiền sao cho tổng mệnh giá của chúng là $S$? Biết rằng mỗi mệnh giá tiền có thể được lấy nhiều lần và hai cách lấy là hoán vị của nhau chỉ tính là một.
@@ -274,14 +272,14 @@ void genMoneySet(int pos)
         //Lấy thêm 1 tờ tiền mới vào tập hợp
         curMoneySet.push_back(i);
         curMoneySum += a[i];
-        
+
         //Gọi đệ quy
         if (curMoneySum >= S)
         {
             if (curMoneySum == S) printMoneySet();
         }
         else genMoneySet(pos + 1);
-        
+
         //Bỏ tờ tiền này ra khỏi tập hợp
         curMoneySet.pop_back();
         curMoneySum -= a[i];
@@ -316,11 +314,11 @@ Giả sử quân Hậu thứ $i$ nằm ở hàng $x_i$ và cột $y_i$. Cách g�
 Khi nào thì hai quân Hậu $A$ và $B$ ăn nhau?
 - Khi $A$ và $B$ nằm cùng hàng, tức là $x_A = x_B$.
 - Khi $A$ và $B$ nằm cùng cột, tức là $y_A = y_B$.
-- Khi $A$ và $B$ nằm trên cùng đường chéo. Lúc này có hai trường hợp: 
+- Khi $A$ và $B$ nằm trên cùng đường chéo. Lúc này có hai trường hợp:
     - $x_A + y_A = x_B + y_B$
     - $x_A - y_A = x_B - y_B$
 
-Đối với đường chéo, bạn đọc có thể tự kiểm chứng thấy rằng, hiệu hoặc tổng của chỉ số hàng và chỉ số cột luôn luôn là một số không đổi đối với hai phần tử cùng đường chéo, lần lượt ứng với đường chéo chính (hướng tây bắc - đông nam) và đường chéo phụ (hướng đông bắc - tây nam). 
+Đối với đường chéo, bạn đọc có thể tự kiểm chứng thấy rằng, hiệu hoặc tổng của chỉ số hàng và chỉ số cột luôn luôn là một số không đổi đối với hai phần tử cùng đường chéo, lần lượt ứng với đường chéo chính (hướng tây bắc - đông nam) và đường chéo phụ (hướng đông bắc - tây nam).
 
 Vậy thì, việc của chúng ta bây giờ chỉ là sinh ra những bộ toạ độ đôi một thoả mãn các điều kiện trên thôi. Chúng ta sẽ sinh các bộ toạ độ này lần lượt theo từng hàng, và đảm bảo rằng quân Hậu sau sẽ không cùng cột và cùng đường chéo với quân Hậu trước. Để khỏi phải `for` lại từ đầu tập đã sinh để kiểm tra trùng lặp, chúng ta sẽ duy trì một số mảng đánh dấu cột, đường chéo phụ, đường chéo chính: `isInCol[]`, `isInDiag1[]`, `isInDiag2[]`
 - `isInCol[k]` nhận giá trị `true` nếu đã có một quân Hậu đã nằm ở cột $k$.
@@ -358,19 +356,19 @@ void genQueensSet(int curRow)
         //Xác định đường chéo phụ và chính hiện tại
         int curDiag1 = curRow + curCol;
         int curDiag2 = curRow - curCol + 13;    //+13 để tránh chỉ số âm
-        
+
         //Kiểm tra toạ độ mới xem có thoả mãn không
         if (isInCol[curCol] == true) continue;
         if (isInDiag1[curDiag1] == true) continue;
         if (isInDiag2[curDiag2] == true) continue;
-        
+
         //Thêm nó vào tập hợp hiện tại nếu thoả mãn
         curQueensSetX.push_back(curRow);
         curQueensSetY.push_back(curCol);
         isInCol[curCol] = true;
         isInDiag1[curDiag1] = true;
         isInDiag2[curDiag2] = true;
-        
+
         //Gọi đệ quy thêm quân tiếp theo hoặc in kết quả
         if (curQueensSetX.size() == n) printQueensSet();
         else genQueensSet(curRow + 1);
@@ -474,13 +472,13 @@ Một hàm đệ quy có dạng như sau:
 void recursive(int x)
 {
     if (x > n) return;
-    for (int i = 1; i <= m; i ++) 
+    for (int i = 1; i <= m; i ++)
         recursive(x + 1);
 }
 ```
 Hàm trên được gọi đệ quy $n$ lần, mỗi lần phải thực hiện $m$ lần vòng lặp nên độ phức tạp sẽ là $O(m^n)$.
 
-Có thể thấy, các thuật toán đệ quy có thể có độ phức tạp rất lớn, nhiều khi lên tới hàm mũ, tuy vậy lại có lúc nhỏ cỡ $log$ như hàm tính ƯCLN. Do vậy, việc xác định số lần bị gọi của hàm đệ quy rất quan trọng. 
+Có thể thấy, các thuật toán đệ quy có thể có độ phức tạp rất lớn, nhiều khi lên tới hàm mũ, tuy vậy lại có lúc nhỏ cỡ $log$ như hàm tính ƯCLN. Do vậy, việc xác định số lần bị gọi của hàm đệ quy rất quan trọng.
 
 Những bài toán yêu cầu duyệt vét cạn như ở trên thường đòi hỏi phải duyệt trên mọi trạng thái chưa biết, và vì thế dữ liệu đầu vào rất nhỏ.
 
@@ -493,6 +491,6 @@ Ngoài ra, trong một số bài toán yêu cầu tính toán ta cũng có thể
 - [MNS](https://community.topcoder.com/stat?c=problem_statement&pm=1744&rd=4545)
 - [Bridge Crossing](https://community.topcoder.com/stat?c=problem_statement&pm=1599&rd=4535)
 - [Weird Rooks](https://community.topcoder.com/stat?c=problem_statement&pm=3998&rd=6533)
-- Giải Sudoku: Hãy thử vào [sudoku.com](https://sudoku.com), tìm một bảng Sudoku bất kì rồi thử viết một chương trình sử dụng đệ quy quay lui để giải nó. 
+- Giải Sudoku: Hãy thử vào [sudoku.com](https://sudoku.com), tìm một bảng Sudoku bất kì rồi thử viết một chương trình sử dụng đệ quy quay lui để giải nó.
 # Tài liệu tham khảo
-- Lê Minh Hoàng (2003), *Giải thuật và lập trình* 
+- Lê Minh Hoàng (2003), *Giải thuật và lập trình*

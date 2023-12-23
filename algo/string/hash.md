@@ -4,8 +4,6 @@
 
 **Chỉnh sửa**: Nguyễn *RR* Thành Trung, Phạm Văn Hạnh
 
-[[_TOC_]]
-
 # Giới thiệu
 
 ## Hoàn cảnh

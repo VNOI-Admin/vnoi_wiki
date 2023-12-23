@@ -1,8 +1,6 @@
 # Áp dụng bất ngờ của đạo hàm
 **Người viết:** Nguyễn Thành Trung - Singapore
 
-[[_TOC_]]
-
 Lúc học môn Toán có lẽ chúng ta thường hay tự hỏi: Học đạo hàm, tích phân.. để làm gì? Hôm nay chúng ta sẽ cùng nghiên cứu một áp dụng vô cùng bất ngờ và ảo ma của đạo hàm trong 1 bài toán.
 
 Bài toán như sau:

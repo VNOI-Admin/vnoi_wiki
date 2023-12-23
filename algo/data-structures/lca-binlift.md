@@ -1,6 +1,6 @@
 # Lowest Common Ancestor (LCA) - Binary Lifting
 
-**Tác giả:** 
+**Tác giả:**
 - Lê Minh Hoàng - Phổ thông Năng khiếu, ĐHQG-HCM
 
 **Reviewer:**
@@ -10,8 +10,6 @@
 - Trần Xuân Bách - THPT Chuyên Khoa học Tự nhiên, ĐHQGHN
 
 ---
-
-[[_TOC_]]
 
 # Giới thiệu
 
@@ -235,7 +233,7 @@ up[u][j] &= up[x][j - 1]
 - Ta có công thức truy hồi sau:
 
 $$\begin{cases}
-up[u][j] = par[u] & \text{ với } j = 0 \\ 
+up[u][j] = par[u] & \text{ với } j = 0 \\
 up[u][j] = up[up[u][j-1]][j-1] & \text{ với } j > 0 \text{ và } 2^j \leq h[u] \\
 up[u][j] = 0 \text{ (NULL)} & \text{ với } j > 0 \text{ và } 2^j > h[u]
 \end{cases}$$
@@ -304,7 +302,7 @@ int solve(int u, int x) {
     while (lo <= hi) {
         mid = (lo + hi) / 2;
         if (calc_dist(u, mid) <= x) {
-            ans = mid;    
+            ans = mid;
             lo = mid + 1;
         }
         else hi = mid - 1;
@@ -357,7 +355,7 @@ void dfs(int u) {
     for (int v : g[u]) {
         if (v == up[u][0]) continue;
         h[v] = h[u] + 1;
-        
+
         up[v][0] = u;
         for (int j = 1; j < 20; ++j)
             up[v][j] = up[up[v][j - 1]][j - 1];
@@ -378,7 +376,7 @@ Cách tìm LCA giống hệt thuật toán ngây thơ 1, nhưng để tăng tố
     - Nếu $u = v$ thì $LCA(u, v)$ chính là $u$ và $v$.
     - Nếu $u \neq v$ thì ta dùng Binary Lifting để tìm $k$ lớn nhất sao cho tổ tiên thứ $k$ của $u$ và $v$ khác nhau (không phải tổ tiên chung). Lúc này, tổ tiên thứ $k+1$ chính là tổ tiên chung của $u$ và $v$.
         - Ta duyệt $j$ từ $\log_2(h(u))$ về $0$
-        - Nếu tổ tiên thứ $2^j$ của $u$ và $v$ khác nhau thì ta cho cả $u$ và $v$ nhảy lên tổ tiên thứ $2^j$ của chúng. Cuối cùng thì $u$ và $v$ sẽ có cùng cha (tổ tiên thứ $k+1$ là cha của tổ tiên thứ $k$), vậy nên khi đó $LCA(u, v) = par[u] = par[v] = up[u][0] = up[v][0]$. 
+        - Nếu tổ tiên thứ $2^j$ của $u$ và $v$ khác nhau thì ta cho cả $u$ và $v$ nhảy lên tổ tiên thứ $2^j$ của chúng. Cuối cùng thì $u$ và $v$ sẽ có cùng cha (tổ tiên thứ $k+1$ là cha của tổ tiên thứ $k$), vậy nên khi đó $LCA(u, v) = par[u] = par[v] = up[u][0] = up[v][0]$.
 
 <!--864x666-->
 ![](https://i.imgur.com/iC7FKlw.gif =432x333)
@@ -388,7 +386,7 @@ int h[N], up[N][20];
 int lca(int u, int v) {
     if (h[u] != h[v]) {
         if (h[u] < h[v]) swap(u, v);
-    
+
         // Tìm tổ tiên u' của u sao cho h(u') = h(v)
         int k = h[u] - h[v];
         for (int j = 0; (1 << j) <= k; ++j)
@@ -396,7 +394,7 @@ int lca(int u, int v) {
                 u = up[u][j];
     }
     if (u == v) return u;
-    
+
     // Tìm lca(u, v)
     int k = __lg(h[u]);
     for (int j = k; j >= 0; --j)
@@ -426,7 +424,7 @@ Với mỗi đỉnh của cây, ta tính $f(u)$ là khoảng cách của mỗi �
 
 Với hai đỉnh $u$ và $v$ bất kì, xét đường đi từ gốc của cây đến hai đỉnh này. Ta nhận thấy:
 - Phần giao của hai đường đi chính là đường đi từ gốc của cây đến tổ tiên chung gần nhất của $u$ và $v$ - gọi đỉnh này là $p$.
-- Hiệu giữa phần giao và mỗi đường đi ban đầu là đường đi từ $u$ đến $p$ và đường đi từ $p$ đến $v$. 
+- Hiệu giữa phần giao và mỗi đường đi ban đầu là đường đi từ $u$ đến $p$ và đường đi từ $p$ đến $v$.
 
 Từ hai quan sát trên, thấy được chỉ cần ba giá trị $f(u)$, $f(v)$ và $f(p)$ để tính $dist(u, v)$. Khi cộng $f(u)$ và $f(v)$, các đỉnh thuộc phần giao bị tính đến 2 lần, vì vậy ta tính $dist(u, v) = f(u) + f(v) - 2 * f(p)$.
 
@@ -466,14 +464,14 @@ void dfs(int u) {
 int lca(int u, int v) {
     if (h[u] != h[v]) {
         if (h[u] < h[v]) swap(u, v);
-    
+
         int k = h[u] - h[v];
         for (int j = 0; (1 << j) <= k; ++j)
             if (k >> j & 1)
                 u = up[u][j];
     }
     if (u == v) return u;
-    
+
     int k = __lg(h[u]);
     for (int j = k; j >= 0; --j)
         if (up[u][j] != up[v][j])

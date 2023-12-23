@@ -1,7 +1,5 @@
 # Meet In The Middle (MITM)
 
-[[_TOC_]]
-
 # Giới thiệu
 MITM là một kỹ thuật tìm kiếm được sử dụng khi đầu vào nhỏ nhưng không đủ nhỏ để có thể quay lui (backtracking). Trước khi tiếp tục về kỹ thuật MITM, chúng ta cần xem xét bài toán đơn giản sau:
 
@@ -27,7 +25,7 @@ long long cnt;
 void Try(int i, int sum) {
     // tiếp tục quay lui với tập có sum > x là không cần thiết
     if (sum > x) return;
- 
+
     if (i > n) {
         if (sum == x) ++cnt;
     }
@@ -292,7 +290,7 @@ int main() {
     // solve
     for (int i = 1; i <= n; ++i)
         for (int j = i + 1; j <= n; ++j) {
-            // thay vì 2 vòng for, bây giờ ta chỉ cần 
+            // thay vì 2 vòng for, bây giờ ta chỉ cần
             // truy vấn trên std::map
             int X = x - a[i] - a[j];
             if (mp.count(X)) {

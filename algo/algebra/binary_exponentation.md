@@ -7,8 +7,6 @@
 * Nguyễn Minh Hiển - Trường Đại học Công nghệ, ĐHQGHN
 * Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 
-[[_TOC_]]
-
 # Lời nói đầu
 
 Phép tính lũy thừa là một trong những phép tính cơ bản nhất, xuất hiện rất nhiều trong các công thức toán học và tất nhiên cũng có hàng tá các ứng dụng trong tin học. Vậy đâu là cách tính lũy thừa hiệu quả nhất trong lập trình và những ứng dụng của lũy thừa là gì, mời bạn đọc cùng tìm hiểu.
@@ -25,11 +23,11 @@ Nếu tìm được số phép nhân ít nhất là $4$ thì xin chúc mừng b�
 
 Vậy chỉ cần $4$ phép nhân để tính $3^{10}$, nhỏ hơn nhiều so với số phép nhân cần thực hiện nếu tính theo định nghĩa (tích của $10$ thừa số $3$).
 
-Đây chính là ý tưởng cho thuật toán tính lũy thừa bằng phương pháp nhị phân. 
+Đây chính là ý tưởng cho thuật toán tính lũy thừa bằng phương pháp nhị phân.
 
 Với mọi số tự nhiên $b$, công thức tổng quát như sau:
 
-$a^b = 
+$a^b =
 \begin{cases}
     1                 ,& \text{nếu } b =0\\
     (a^{\frac{b - 1}{2}})^2 \times a,& \text{nếu } b \text{ lẻ}\\
@@ -42,9 +40,9 @@ Dựa vào công thức trên, ta có hàm tính $a^b$ như sau:
 long long Pow(long long a, long long b) {
     if (!b) return 1;
     long long x = Pow(a, b / 2);
-    if (b % 2 == 0) 
+    if (b % 2 == 0)
         return x * x;
-    else 
+    else
         return x * x * a;
 }
 ```
@@ -111,7 +109,7 @@ Tuy nhiên trong một số trường hợp giá trị $m$ khá lớn (ví dụ,
 
 Vì vậy ta cần "nhân nhị phân" (một số tài liệu gọi là "nhân Ấn Độ"), với ý tưởng tương tự như lũy thừa nhị phân. Công thức như sau:
 
-$a \times b = 
+$a \times b =
 \begin{cases}
     0                 ,& \text{nếu } b =0\\
     2 \times a \times \frac{b}{2},& \text{nếu } b \text{ chẵn và lớn hơn 0}\\
@@ -123,9 +121,9 @@ Cài đặt:
 long long Mul(long long a, long long b) {
     if (!b) return 0;
     long long x = Mul(a, b / 2);
-    if (b % 2 == 0) 
+    if (b % 2 == 0)
         return 2 * x % m;
-    else 
+    else
         return (2 * x + a) % m;
 }
 ```
@@ -138,7 +136,7 @@ long long Mul(long long a, long long b) {
 
 Dãy số Fibonacci được định nghĩa như sau:
 
-$f_i = 
+$f_i =
 \begin{cases}
     0                 ,& \text{nếu } i = 0\\
     1                 ,& \text{nếu } i = 1\\
@@ -151,7 +149,7 @@ Một trong những cách thực hiện điều này là áp dụng kiến thứ
 
 Từ ma trận $A$ gồm $2$ giá trị $f_i$ và $f_{i + 1}$ , xây dựng ma trận kích thước $2 \times 2$ sao cho ma trận này nhân với $A$ được ma trận mới gồm $2$ giá trị $f_{i + 1}$ và $f_{i + 2}$.
 
-$$\begin{pmatrix} F_{i} \cr F_{i - 1} \cr\end{pmatrix} 
+$$\begin{pmatrix} F_{i} \cr F_{i - 1} \cr\end{pmatrix}
 = \begin{pmatrix} 1 & 1 \cr 1 & 0 \cr\end{pmatrix}
 \begin{pmatrix} F_{i - 1} \cr F_{i - 2}\cr\end{pmatrix}
 $$

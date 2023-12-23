@@ -4,8 +4,6 @@ Bài viết bởi [leadhyena_inran](https://www.topcoder.com/members/leadhyena_i
 
 Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/planning-an-approach-to-a-topcoder-problem-part-1/)
 
-[[_TOC_]]
-
 Giải bài là một nghệ thuật, nó có thể gây khó khăn cho cả những coder kì cựu nhất cũng như những người mới học. Để tìm cách giải phù hợp, chúng ta phải biết kết hợp nhiều phương pháp khác nhau như cảm nhận bằng trực giác, sáng tạo và thậm chí là may mắn. Cảm giác bất lực trước những bài khó thường làm chúng ta nản chí, và có thể bỏ cuộc giữa chừng. Tuy nhiên, không gì là không thể nếu bạn có đủ quyết tâm cũng như kĩ năng cần thiết. Bởi lí do đó, bài hướng dẫn này sẽ đưa ra những kĩ năng để giúp các bạn chọn những hướng tiếp cận rõ ràng cho những bài toán như vậy.
 
 # Tư duy theo lối mòn (Pattern Mining and Wrong Mindset)

@@ -8,7 +8,7 @@
   - _Bỏ_ đi phần tử ở _đầu deque_, trả về giá trị của phần tử đó. **(Pop front)**
 
 Về ứng dụng, ta sẽ bổ sung thêm một số thao tác sau:
-  
+
   - _Xây dưng_ một deque rỗng. **(Construct)**
   - _Sao chép_ deque này sang một deque khác. **(Copy)**
   - _Lấy giá trị_ của phần tử cuối mà không xóa nó. **(Peek back)**
@@ -19,8 +19,6 @@ Về ứng dụng, ta sẽ bổ sung thêm một số thao tác sau:
 
 Hai thao tác _lấy giá trị_ thật sự không cần thiết, bởi _lấy giá trị phần tử đầu_ deque **(peek front)** tương đương với việc xóa đi phần tử đó **(pop front)** rồi lại thêm nó vào **(push front)**, và tương tự với _lấy giá trị phần tử cuối_ **(peek last)**. Cũng như  _kiểm tra rỗng_ **(Test empty)** thật ra cũng chỉ là _kiểm tra xem số lượng phần tử_ của deque có bằng 0 hay không.
 
-[[_TOC_]]
-
 # Thuật ngữ
 
 Thuật ngữ **deque** là cách gọn ngắn tắt của _double-ended queue_ (hàng đợi hai đầu). Sở dĩ là vì nó có thể thêm, bớt phần tử ở cả hai đầu; còn thuật ngữ **queue** ở đây là một lớp cấu trúc dữ liệu cho phép thêm, bớt phần tử (nhưng không thể tìm kiếm). Một phần tử được xem là **đứng trước** một phần tử khác nếu nó gần với phần tử đầu (**front**) hơn là phần tử còn lại; ngược, lại, một phần tử được xem là **đứng sau** một phần tử khác nếu nó xa với phần tử đầu (**front**) hơn là phần tử còn lại. **Push** một phần tử là thêm phần tử đó vào hàng đợi, **pop** đẩy ra một phần tử. Lưu ý rằng _điểm đầu_ (**front**) và _điểm cuối_ (**last**) là tương đương nhau, khi thay đổi toàn bộ điểm cuối và đầu trong giải thuật của chúng ta thì nó vẫn hoạt động tương tự như trước đó.
@@ -29,13 +27,13 @@ Thuật ngữ **deque** là cách gọn ngắn tắt của _double-ended queue_ 
 
 ## Cài đặt bằng mảng
 
-- Khi sử dụng mảng để biển diễn **deque**, thì giá trị của **deque** sẽ được lưu giữ bằng những phần tử liên tiếp trong mảng. Tuy nhiên, đối vấn cách cài đặt này, thì nếu ta muốn đặt phần tử có _chỉ số thấp nhất_ (**front**) luôn luôn cố định ở một chỉ số (ví dụ $0$ hoặc $1$), hay nói cách khác, chỉ số thấp nhất luôn là cố định thì: Khi ta muốn **pop front** (thêm phần tử phía trước vào đầu hàng đợi), ta sẽ phải tịnh tiến toàn bộ các phần tử về bên trái sao cho phần tử có _chỉ số thấp nhất_ (**front**) sẽ lưu giá trị của phần tử _tiếp theo_ (**next**) và tương tự với các phần tử còn lại. Cũng như đối với việc **push front** (thêm phần tử vào đầu hàng đợi), toàn bộ những phần tử hiện tại trong **deque** sẽ phải tịnh tiến về bên phải để phần tử _chỉ số thấp nhất_ (**front**) sẽ lưu giá trị của phần tử vừa thêm vào, trong khi các phần tử còn lại sẽ lưu phần tử _đứng trước_. Thế nên, với cách cài đặt thế này, mỗi thao tác thực hiện sẽ tốn chi phí là **$O(n)$** - với $n$ là số lượng phần tử hiện đang có của **deque**. 
+- Khi sử dụng mảng để biển diễn **deque**, thì giá trị của **deque** sẽ được lưu giữ bằng những phần tử liên tiếp trong mảng. Tuy nhiên, đối vấn cách cài đặt này, thì nếu ta muốn đặt phần tử có _chỉ số thấp nhất_ (**front**) luôn luôn cố định ở một chỉ số (ví dụ $0$ hoặc $1$), hay nói cách khác, chỉ số thấp nhất luôn là cố định thì: Khi ta muốn **pop front** (thêm phần tử phía trước vào đầu hàng đợi), ta sẽ phải tịnh tiến toàn bộ các phần tử về bên trái sao cho phần tử có _chỉ số thấp nhất_ (**front**) sẽ lưu giá trị của phần tử _tiếp theo_ (**next**) và tương tự với các phần tử còn lại. Cũng như đối với việc **push front** (thêm phần tử vào đầu hàng đợi), toàn bộ những phần tử hiện tại trong **deque** sẽ phải tịnh tiến về bên phải để phần tử _chỉ số thấp nhất_ (**front**) sẽ lưu giá trị của phần tử vừa thêm vào, trong khi các phần tử còn lại sẽ lưu phần tử _đứng trước_. Thế nên, với cách cài đặt thế này, mỗi thao tác thực hiện sẽ tốn chi phí là **$O(n)$** - với $n$ là số lượng phần tử hiện đang có của **deque**.
 
 - Tuy nhiên, để có thể thực hiện một số thuật toán quan trọng như [BFS](http://wcipeg.com/wiki/Breadth-first_search) trong _thời gian tuyến tính_, các thao tác **push, pop** phải được thực hiện với chi phí là **$O(1)$**. Đối với vấn đề này, thay vì phải thay thế phần tử bị **pop**, ta chỉ đơn thuần _thay đổi chỉ số_ của **front**, và khi **push** vào một phần tử, ta chỉ cần gán phần tử vào _chỉ số liền kề_ với phần tử đứng đầu và _thay đổi chỉ số_ của phần tử đầu. Tức là, ta chỉ cần quan tâm đến hai chỉ số của mảng, _đầu_ (**front**) và _cuối_ (**back**). Khi ta thêm một phần tử vào đầu (**push front**), ta chỉ cần giảm _chỉ số đầu_ (**front index**) rồi gán phần tử ấy vào chỉ số mới. Ngược lại khi ta thêm một phần tử vào cuối (**push back**), ta chỉ cần tăng _chỉ số đầu_ (**back index**) rồi gán phần tử ấy vào. Còn khi ta ta xóa một phần tử ở đầu (**pop front**), ta chỉ việc _tăng chỉ số đầu_, còn xóa phần tử ở cuối (**pop back**) thì ta sẽ _giảm chỉ số cuối_.
 
 - Hãy thử nghĩ xem, trong trường hợp ta thêm một phần tử vào đầu (**push front**), rồi lại xóa đi phần tử cuối (**pop back**), rồi thêm lại phần tử đầu (**push front**), ... Tiếp tục như vậy, **deque** mà ta xây dựng vẫn luôn luôn chỉ có tối đa một phần tử, thế nhưng hai _chỉ số đầu_ và _chỉ số cuối_ lại tăng lên liên tục dẫn tới việc bị tràn giới hạn mảng. Để khắc phục vấn đề này, ta sẽ cho phép các chỉ số được _xoay vòng_ (**hàng đợi hai đầu xoay vòng**). Thế nên, khi tăng **chỉ số cực hạn** lên, ta sẽ nhận được **chỉ số cực tiểu** và ngược lại, khi giảm **chỉ số cực tiểu** ta sẽ nhận được **chỉ số cực đại**. Việc này được thực hiện bằng cách sử dụng toán tử _mod_ (**modulo** - %). Dưới đây sẽ là một cách cài đặt mẫu bằng mã giả:
 
-``` 
+```
 cấu trúc deque
      thủ tục construct(max_size)
           gán A là một mảng có tối đa max_size+1 phần tử
@@ -82,7 +80,7 @@ cấu trúc deque
      hàm pop_front
           xóa phần tử đầu của L, trả về giá trị của phần tử đó
      hàm pop_back
-          xóa phần tử cuối của L, trả về giá trị của phần tử đó 
+          xóa phần tử cuối của L, trả về giá trị của phần tử đó
      hàm peek_front
           trả về giá trị của phần tử đầu L
      hàm peek_back

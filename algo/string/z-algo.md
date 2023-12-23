@@ -9,8 +9,6 @@
 
 **Tham khảo**: [cp-algorithm](https://cp-algorithms.com/string/z-function.html)
 
-[[_TOC_]]
-
 ## Định nghĩa
 Trong blog này, chúng ta sẽ tìm hiểu về hàm $Z$ (Z-function) của một chuỗi $S$ và những ứng dụng của nó.
 
@@ -62,7 +60,7 @@ vector<int> z_function(string s) {
     vector<int> z(n);
     for (int i = 1, l = 0, r = 0; i < n; ++i) {
         // khoi tao z[i] theo thuat toan toi uu
-        if (i <= r)  
+        if (i <= r)
             z[i] = min(r - i + 1, z[i - l]);
         // tinh z[i]
         while (i + z[i] < n && s[z[i]] == s[i + z[i]])
@@ -71,7 +69,7 @@ vector<int> z_function(string s) {
         if (i + z[i] - 1 > r) {
             l = i;
             r = i + z[i] - 1;
-        } 
+        }
     }
     return z;
 }
@@ -102,7 +100,7 @@ vector<int> string_matching(string s, string t) {
     int m = t.length();
     int n = s.length();
     vector<int> z = z_function(p);
-    
+
     vector<int> res;
     for (int i = m + 1; i <= m + n; ++i) {
         // tim duoc dap an va them vao vector res

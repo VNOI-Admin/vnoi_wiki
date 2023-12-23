@@ -4,8 +4,6 @@ Nguồn: [e-maxx](https://e-maxx-eng.appspot.com/algebra/module-inverse.html)
 
 Người dịch: Nguyễn Thành Trung (RR)
 
-[[_TOC_]]
-
 # Định nghĩa:
 
 Xét số nguyên dương $m$. Xét các số nguyên trên modulo $m$ (từ 0 đến $m-1$).

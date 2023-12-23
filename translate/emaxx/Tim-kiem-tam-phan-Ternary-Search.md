@@ -1,10 +1,8 @@
 # Tìm kiếm tam phân - Ternary Search
 
-[[_TOC_]]
+# Tìm kiếm tam phân - Ternary Search
 
-# Tìm kiếm tam phân - Ternary Search 
-
-Nguồn: [e-maxx](https://e-maxx-eng.appspot.com/num_methods/ternary_search.html) 
+Nguồn: [e-maxx](https://e-maxx-eng.appspot.com/num_methods/ternary_search.html)
 
 Người dịch: Đỗ Thanh Lam
 
@@ -26,7 +24,7 @@ Một hàm số thoả mãn tính chất này nếu tất cả các đoạn th�
 
 Một hàm số thoả mãn tính chất này nếu tất cả các đoạn thẳng nối 2 điểm của đồ thị hàm số, đều nằm "bên trên" của đồ thị.
 
-Trong bài viết này chúng tôi sẽ giải quyết trường hợp 1, trường hợp 2 sẽ làm tương tự nhưng ngược lại. 
+Trong bài viết này chúng tôi sẽ giải quyết trường hợp 1, trường hợp 2 sẽ làm tương tự nhưng ngược lại.
 
 
 # Bài toán
@@ -97,7 +95,7 @@ double max_f(double left, double right) {
 Tìm kiếm tam phân cũng có thể dùng để giải các bài toán trên 2D với hàm dạng $f(x, y)$ nếu hàm f là hàm lồi. Ví dụ bài [E trong đề ACM ICPC Vietnam National Round 2017](https://open.kattis.com/contests/vietnam-national17-open/problems/europeantrip), lời giải chi tiết [ở đây](https://docs.google.com/document/d/1cDQEaf_YabpefiG7PiQZErHbr7AJIFjt7IIiDv9n4N4/edit).
 
 
-# Bài tập tự luyện 
+# Bài tập tự luyện
 
 
 

@@ -11,8 +11,6 @@ Nguồn: [wcipeg](http://wcipeg.com/wiki/Convex_hull)
 
 ---
 
-[[_TOC_]]
-
 # Giới thiệu
 Trong **hình học tính toán (computational geometry)**, **bao lồi (convex hull)** của một tập điểm là tập lồi (convex set) **nhỏ nhất** (theo diện tích, thể tích, ...) mà tất cả các điểm đều nằm trong tập đó.
 

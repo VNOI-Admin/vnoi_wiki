@@ -2,8 +2,6 @@
 
 Tác giả: Nguyễn Thành Trung (RR)
 
-[[_TOC_]]
-
 # Bài toán mở đầu (TSP)
 
 Cho N điểm trên mặt phẳng, đánh số từ 1 đến N. Tìm một chu trình xuất phát từ điểm thứ 1, đi qua tất cả các điểm, mỗi đỉnh đúng 1 lần và quay trở về đỉnh ban đầu.

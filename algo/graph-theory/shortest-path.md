@@ -1,16 +1,14 @@
 # **Các thuật toán về tìm đường đi ngắn nhất**
 
-**Tác giả:** 
+**Tác giả:**
 - Trần Hoài An - THPT Hoàng Lê Kha, Tây Ninh
 
 **Reviewer:**
 - Nguyễn Xuân Tùng - Đại học Quốc Tế, Đại học Quốc gia Thành phố Hồ Chí Minh
 
-[[_TOC_]]
-
 # Giới thiệu
 
-Bài toán tìm đường đi ngắn nhất trên đồ thị là một trong những bài toán đa dạng, có nhiều ứng dụng thực tế (như trong Google Maps, hay các bài toán networking, ...). Các dạng bài về tìm đường đi ngắn nhất cũng thường xuyên có mặt trong các kì thi lập trình. 
+Bài toán tìm đường đi ngắn nhất trên đồ thị là một trong những bài toán đa dạng, có nhiều ứng dụng thực tế (như trong Google Maps, hay các bài toán networking, ...). Các dạng bài về tìm đường đi ngắn nhất cũng thường xuyên có mặt trong các kì thi lập trình.
 
 Bài viết này sẽ giới thiệu ba thuật toán cơ bản của dạng bài tìm đường đi ngắn nhất:
 * Thuật toán Bellman - Ford.
@@ -26,7 +24,7 @@ Cần lưu ý rằng, [có một thuật toán thông dụng khác](https://vnoi
 Thuật toán Bellman-Ford dùng để giải quyết bài toán **đường đi ngắn nhất một nguồn** (Single-source shortest path), đồ thị **có thể có trọng số âm**.
 
 ## Bài toán.
-Cho đồ thị có hướng $N$ đỉnh và $M$ cạnh, và một đỉnh nguồn là đỉnh $S$. Mỗi cạnh có trọng số nguyên. **Trọng số này có thể âm hoặc dương hoặc bằng 0**. Với mỗi đỉnh $u$ từ $1$ đến $N$. Yêu cầu xuất kết quả tại mỗi đỉnh $u$ như sau: 
+Cho đồ thị có hướng $N$ đỉnh và $M$ cạnh, và một đỉnh nguồn là đỉnh $S$. Mỗi cạnh có trọng số nguyên. **Trọng số này có thể âm hoặc dương hoặc bằng 0**. Với mỗi đỉnh $u$ từ $1$ đến $N$. Yêu cầu xuất kết quả tại mỗi đỉnh $u$ như sau:
 
 1. Nếu không tồn tại đường đi từ $S$ đến $u$ thì in ra: **Impossible**
 2. Nếu tồn tại đường đi từ $S$ đến $u$ nhưng không có đường đi ngắn nhất in ra: **-Infinity**
@@ -63,7 +61,7 @@ Impossible
 
 * Chu trình âm là một chu trình trong đó tổng trọng số các cạnh là số âm. Ví dụ trong hình dưới, ta có một chu trình âm $0 \rightarrow 1 \rightarrow 2$ có tổng trọng số là $7-9+1 = -1$
 
-![](https://i.ibb.co/jbkzpCB/dijsktra.png) 
+![](https://i.ibb.co/jbkzpCB/dijsktra.png)
 
 * Nếu trên đường đi từ $u$ đến $v$ chứa chu trình âm thì độ dài đường đi ngắn nhất từ $u$ đến $v$ sẽ là $-\infty$. Vì vậy nên sự xuất hiện của chu trình âm trong đồ thị sẽ khiến một số cặp đỉnh không tồn tại đường đi ngắn nhất (chỉ tồn tại đường đi có độ dài âm vô cực).
     * Ví dụ: Ở đồ thị trên, đường đi ngắn nhất từ $4$ đến $5$ sẽ có cách đi là vô hạn lần qua chu trình âm đã nhắc đến, sau đó mới đi đến $5$. Như vậy không có đường đi ngắn nhất.
@@ -84,9 +82,9 @@ Có thể chứng minh được rằng, vòng lặp trên cần thực hiện $N
 - **Chứng minh**: Nhận xét rằng một đường đi ngắn nhất bất kì sẽ không có đỉnh nào được đi lại quá một lần. Như vậy một đường đi ngắn nhất sẽ không có quá $N-1$ cạnh. Việc thực hiện phép tính $D_v = D_u + W_{u, v}$ cũng đồng nghĩa với thêm một cạnh $u \rightarrow v$ vào hành trình đi từ $s$ đến $v$. Vậy một $D_u$ chỉ có thể được tối ưu tối đa $N-1$ lần, và từ lần thứ $N$ trở đi sẽ không thể tối ưu hơn được nữa.
 
 ## Cài Đặt
-Ở thuật toán này, đồ thị thường được lưu ở dạng **danh sách cạnh**. 
+Ở thuật toán này, đồ thị thường được lưu ở dạng **danh sách cạnh**.
 
-* Định nghĩa $W[u, v]$ là trọng số cạnh nối từ đỉnh $u$ đến đỉnh $v$ (nếu có). 
+* Định nghĩa $W[u, v]$ là trọng số cạnh nối từ đỉnh $u$ đến đỉnh $v$ (nếu có).
 
 * Định nghĩa mảng $D[u]$ là đường đi ngắn nhất từ $s\rightarrow u$. Ban đầu, chưa có đường đi nào, $D[u] = \infty$ với mọi $u$, ngoại trừ $D[s] = 0$.
     * Nếu cần tìm lại chính đường đi ngắn nhất, ta có thể định nghĩa thêm một mảng truy vết $trace[u]$. Ban đầu mọi $trace[u]$ bằng $-1$ nghĩa là chưa có đường đi.
@@ -142,7 +140,7 @@ vector<int> trace_path(vector<int> &trace, int S, int u) {
         u = trace[u];
     }
     reverse(path.begin(), path.end()); // cần reverse vì đường đi lúc này là từ u về S
-    
+
     return path;
 }
 
@@ -159,7 +157,7 @@ Thuật toán Bellman-Ford có thể xử lí được thêm trường hợp nh�
 
 **Code:**
 ```cpp
-// sau khi chạy xong N-1 vòng lặp Bellman-Ford 
+// sau khi chạy xong N-1 vòng lặp Bellman-Ford
 for(int T = 0; T < n; T++){
     for (auto E : e) {
         int u = E.u;
@@ -181,12 +179,12 @@ Một số bài toán có thể yêu cầu ta tìm một chu trình âm bất k�
 - Tiến hành truy vết: Bắt đầu từ đỉnh $u$ bất kì có đường đi bằng $-\infty$, ta sẽ truy vết theo mảng $trace$:
     - Trước hết gán $u = trace[u]$ đủ $N$ lần.
         - Mục đích của bước này là để $u$ chắc chắn thuộc chu trình âm. Ban đầu có thể đỉnh $u$ có đường đi bằng $-\infty$ nhưng chưa chắc thuộc chu trình âm. Ví dụ trường hợp sau:
-        
+
         [![](https://i.imgur.com/PblptAC.png)
 ]()
 
         Ở đây, từ $0$ đến $1$ có độ dài đường đi ngắn nhất bằng $-\infty$, tuy nhiên đỉnh $1$ lại không thuộc chu trình âm nào.
-        
+
     - Sau đó, $u$ sẽ thuộc một chu trình âm. Ta chỉ cần truy vết đỉnh $u$ theo mảng $trace$ cho đến khi gặp lại chính nó, sẽ được một chu trình.
 - Chu trình vừa truy vết chính là một chu trình âm của đồ thị. Lưu ý ta vẫn phải đảo ngược kết quả truy vết, vì ta đang truy vết ngược so với đồ thị gốc.
 
@@ -200,7 +198,7 @@ bool findNegativeCycle(int n, vector<long long> &D, vector<int> &trace, vector<i
         int v = E.v;
         long long w = E.w;
         if (D[u] != INF && D[v] > D[u] + w) {
-            D[v] = -INF; 
+            D[v] = -INF;
             trace[v] = u;
             negStart = v; // đã tìm thấy -INF
         }
@@ -218,7 +216,7 @@ bool findNegativeCycle(int n, vector<long long> &D, vector<int> &trace, vector<i
         negCycle.push_back(v); // truy vết một vòng
     }
     reverse(negCycle.begin(), negCycle.end());
-    
+
     return true;
 }
 ```
@@ -256,13 +254,13 @@ Cho một đồ thị có hướng với $N$ đỉnh (được đánh số từ 
 -1
 ```
 
-Hình ảnh của Test ví dụ. Ở đồ thị này, đỉnh nguồn là đỉnh $0$, đường đi ngắn nhất từ $0$ đến các đỉnh $0$ đến $5$ là $[0, 1, 7, 4, 4, 10]$. Riêng đỉnh $6$ không có đường đi đến. 
+Hình ảnh của Test ví dụ. Ở đồ thị này, đỉnh nguồn là đỉnh $0$, đường đi ngắn nhất từ $0$ đến các đỉnh $0$ đến $5$ là $[0, 1, 7, 4, 4, 10]$. Riêng đỉnh $6$ không có đường đi đến.
 
 ![](https://i.imgur.com/UhI67bO.png)
 
 ## Ý tưởng của thuật toán.
 
-Giống như thuật toán Bellman-Ford, thuật toán Dijkstra cũng tối ưu hóa đường đi bằng cách xét các cạnh $(u, v)$, so sánh hai đường đi $S \rightarrow v$ sẵn có với đường đi $S \rightarrow u \rightarrow v$. 
+Giống như thuật toán Bellman-Ford, thuật toán Dijkstra cũng tối ưu hóa đường đi bằng cách xét các cạnh $(u, v)$, so sánh hai đường đi $S \rightarrow v$ sẵn có với đường đi $S \rightarrow u \rightarrow v$.
 
 Thuật toán hoạt động bằng cách duy trì một tập hợp các đỉnh trong đó ta đã biết **chắc chắn** đường đi ngắn nhất. Mỗi bước, thuật toán sẽ chọn ra một đỉnh $u$ mà chắc chắn sẽ không thể tối ưu hơn nữa, sau đó tiến hành tối ưu các đỉnh $v$ khác dựa trên các cạnh $(u, v)$ đi ra từ đỉnh $u$. Sau $N$ bước, tất cả các đỉnh đều sẽ được chọn, và mọi đường đi tìm được sẽ là ngắn nhất.
 
@@ -290,12 +288,12 @@ Sau bước này, $D = [0, \infty, 1, 4]$, $P = [true, false, false, false]$
     * Cạnh $(2, 3)$: cập nhật $D_3 = min(D_3, D_2 + W_{2, 3}) = min(4, 1+2) = 3$
 
 Sau bước này, $D = [0, 4, 1, 3]$, $P = [true, false, true, false]$
- 
+
 * Bước 3: thuật toán sẽ chọn ra đỉnh $3$, có $D_3 = 1$ là nhỏ nhất thỏa mãn $P_3 = false$. Tiến hành tối ưu các cạnh đi ra:
     * Cạnh $(3, 1)$: cập nhật $D_1 = min(D_1, D_3 + W_{3, 1}) = min(4, 3+2) = 4$
 
 Sau bước này, $D = [0, 4, 1, 3]$, $P = [true, false, true, true]$
-    
+
 * Bước 4: thuật toán sẽ chọn đỉnh $1$. Không có cạnh nào đi ra.
 
 
@@ -311,7 +309,7 @@ Sau bước này, $D = [0, 4, 1, 3]$, $P = [true, false, true, true]$
 
 Ta sẽ lặp $N$ lần quá trình sau:
 - Tìm đỉnh $u$ có $D[u]$ nhỏ nhất và $P[u] = false$.
-- Sau khi tìm được đỉnh $u$, ta xét các đỉnh $v$ kề với đỉnh $u$ và tiến hành tối ưu hóa $D[v]$: nếu $D[v] > D[u] + W[u,v]$ thì $D[v] = D[u] + W[u,v]$. 
+- Sau khi tìm được đỉnh $u$, ta xét các đỉnh $v$ kề với đỉnh $u$ và tiến hành tối ưu hóa $D[v]$: nếu $D[v] > D[u] + W[u,v]$ thì $D[v] = D[u] + W[u,v]$.
     * Nếu việc tối ưu hóa diễn ra, ta sẽ cập nhật $trace[v] = u$.
 - Đánh dấu $P[u] = true$, nghĩa là đỉnh $u$ đã được xử lí xong
 
@@ -331,10 +329,10 @@ struct Edge{
 void dijkstra(int n, int S, vector<vector<Edge>> E, vector<long long> &D, vector<int> &trace) {
     D.resize(n, INF);
     trace.resize(n, -1);
-    
+
     vector<bool> P(n, 0);
     D[S] = 0;
-    
+
     for (int i = 0; i < n; i++) {
         int uBest; // tìm đỉnh u chưa dùng, có khoảng cách nhỏ nhất
         long long Max = INF;
@@ -344,7 +342,7 @@ void dijkstra(int n, int S, vector<vector<Edge>> E, vector<long long> &D, vector
                 Max = D[u];
             }
         }
-        
+
         // cải tiến các đường đi qua u
         int u = uBest;
         P[u] = true;
@@ -362,7 +360,7 @@ void dijkstra(int n, int S, vector<vector<Edge>> E, vector<long long> &D, vector
 ## Cải tiến đối với đồ thị thưa
 
 * Nhận xét rằng bước đầu tiên: "Tìm đỉnh $u$ có $D_u$ nhỏ nhất và $P_u = false$", có thể được cải tiến. Ta có thể sử dụng cấu trúc dữ liệu [Heap](https://vnoi.info/wiki/translate/wcipeg/Binary-Heap.md) (cụ thể là Min Heap) hoặc cây nhị phân tìm kiếm để cải tiến bước này.
-    * Mỗi lần tối ưu hóa $D_v$, ta đẩy cặp $\{D_v, v\}$ vào trong Heap. 
+    * Mỗi lần tối ưu hóa $D_v$, ta đẩy cặp $\{D_v, v\}$ vào trong Heap.
     * Để tìm đỉnh có $D_u$ nhỏ nhất, ta chỉ cần liên tục lấy phần tử trên cùng trong Heap ra, cho đến khi gặp đỉnh $u$ thỏa mãn $P_u = false$.
 
 * Mỗi lần tối ưu $D_v$, ta phải push vào Heap một lần. Với mỗi lần push vào trong Heap, ta đều phải pop ra lại một lần. Do có tối đa $O(M)$ lần tối ưu, độ phức tạp của thuật toán là $O(MlogN)$.
@@ -396,24 +394,24 @@ void dijkstraSparse(int n, int s, vector<vector<Edge>> &E, vector<long long> &D,
     D.resize(n, INF);
     trace.resize(n, -1);
     vector<bool> P(n, 0);
-    
+
     D[s] = 0;
     priority_queue<Node, vector<Node>, cmp> h; // hàng đợi ưu tiên, sắp xếp theo dist[u] nhỏ nhất trước
     h.push({s, D[s]});
-    
+
     while(!h.empty()) {
         Node x = h.top();
         h.pop();
-        
+
         int u = x.u;
         if(P[u] == true) // Đỉnh u đã được chọn trước đó, bỏ qua
             continue;
-            
+
         P[u] = true; // Đánh dấu đỉnh u đã được chọn
         for(auto e : E[u]) {
             int v = e.v;
-            long long w = e.w; 
-            
+            long long w = e.w;
+
             if(D[v] > D[u] + w) {
                 D[v] = D[u] + w;
                 h.push({v, D[v]});
@@ -437,7 +435,7 @@ vector<int> trace_path(vector<int> &trace, int S, int u) {
         u = trace[u];
     }
     reverse(path.begin(), path.end()); // cần reverse vì đường đi lúc này là từ u về S
-    
+
     return path;
 }
 
@@ -455,7 +453,7 @@ Cho đồ thị gồm $N$ đỉnh và một ma trận trọng số $W$, trong đ
 
 Giới hạn bài toán: $1 \leq N \leq 100$
 
-**Input**: Dòng đầu tiên gồm số nguyên dương $N$, $N$ dòng tiếp theo, mỗi dòng gồm $N$ số biểu diễn một ma trận trong đó ô $(i,j)$ cho biết đường đi trực tiếp từ $i\rightarrow j$ có trọng số là $W[i, j]$. 
+**Input**: Dòng đầu tiên gồm số nguyên dương $N$, $N$ dòng tiếp theo, mỗi dòng gồm $N$ số biểu diễn một ma trận trong đó ô $(i,j)$ cho biết đường đi trực tiếp từ $i\rightarrow j$ có trọng số là $W[i, j]$.
 
 **Output**: Ma trận kết quả trong đó giá trị ô $(i,j)$ là đường đi ngắn nhất từ $i\rightarrow j$.
 
@@ -479,7 +477,7 @@ Giới hạn bài toán: $1 \leq N \leq 100$
 
 ## Ý tưởng của thuật toán.
 
-Ý tưởng của thuật toán này là: "Liệu chúng ta có thể chèn một đỉnh $k$ vào đường đi ngắn nhất giữa 2 đỉnh $u$ và $v$?". 
+Ý tưởng của thuật toán này là: "Liệu chúng ta có thể chèn một đỉnh $k$ vào đường đi ngắn nhất giữa 2 đỉnh $u$ và $v$?".
 
 * Ví dụ như có một đường đi ngắn nhất từ $0 \rightarrow 4$ như sau: $0\rightarrow 1\rightarrow 2\rightarrow 3 \rightarrow 4$. Vậy việc tính đường đi ngắn nhất từ $0\rightarrow 4$ hoàn toàn có thể được chia thành tính đường đi ngắn nhất từ $0\rightarrow 2$ sau đó cộng với đường đi ngắn nhất từ $2\rightarrow 4$. Tương tự thế đường đi ngắn nhất từ $0\rightarrow 2$ và $2\rightarrow 4$ lại tiếp tực được phân hoạch thành những đường đi ngắn nhất khác đơn giản hơn và tối ưu hơn.
 
@@ -500,8 +498,8 @@ Ta nhận thấy có một cấu trúc đệ quy, chia nhỏ bài toán ở đâ
     - $W[u, v]$ là giá trị đường đi trực tiếp từ $u\rightarrow v$.
     - $D[u, v]$ là giá trị đường đi ngắn nhất từ $u\rightarrow v$.
     - $trace[u, v]$ là mảng truy vết đường đi ngắn nhất từ $u\rightarrow v$
-    
-- Đồ thị sẽ được lưu dưới dạng **ma trận kề**. Ban đầu sẽ khởi tạo mọi $D[u, v] = W[u, v]$ vì khi chưa tối ưu gì thì đường đi trực tiếp luôn là đường đi ngắn nhất. 
+
+- Đồ thị sẽ được lưu dưới dạng **ma trận kề**. Ban đầu sẽ khởi tạo mọi $D[u, v] = W[u, v]$ vì khi chưa tối ưu gì thì đường đi trực tiếp luôn là đường đi ngắn nhất.
     - $trace[u, v]$ sẽ khởi tạo bằng $u$ với mọi cặp $u, v$.
     - Nếu không có cạnh nối giữa $u$ và $v$, coi như $W[u, v] = \infty$ .
 
@@ -526,7 +524,7 @@ void init_trace(vector<vector<int>> &trace) {
 void floydWarshall(int n, vector<vector<long long>> &w, vector<vector<long long>> &D, vector<vector<int>> &trace) {
     D = w;
     init_trace(trace); // nếu cần dò đường đi
-    
+
     for (int k = 0; k < n; k++) {
         for (int u = 0; u < n; u++) {
             for (int v = 0; v < n; v++) {
@@ -551,9 +549,9 @@ vector<int> trace_path(vector<vector<int>> &trace, int u, int v) {
         v = trace[u][v];
     }
     path.push_back(u);
-    
+
     reverse(path.begin(), path.end()); // cần reverse vì đường đi từ v ngược về u
-    
+
     return path;
 }
 
@@ -561,7 +559,7 @@ vector<int> trace_path(vector<vector<int>> &trace, int u, int v) {
 # 4. Lưu ý
 
 * Bảng so sánh các thuật toán được đề cập:
- 
+
 |  | Bellman-Ford |Dijkstra (cơ bản) | Dijkstra (trên đồ thị thưa) |Floyd-Warshall  |
 |-|-|-|-|-|
 |Bài toán giải quyết  | Đường đi ngắn nhất **một nguồn** |Đường đi ngắn nhất **một nguồn** |Đường đi ngắn nhất **một nguồn**  | Đường đi ngắn nhất **mọi cặp đỉnh** |
@@ -572,7 +570,7 @@ vector<int> trace_path(vector<vector<int>> &trace, int u, int v) {
 * Trong trường hợp có chu trình âm, thuật toán Floyd-Warshall có thể phải tính toán đến những giá trị rất nhỏ (về phía số âm), đủ để gây ra hiện tượng tràn số (thậm chí với $N$ tương đối nhỏ). Cần phải chú ý đặc biệt đến trường hợp này khi cài đặt.
     * Một cách thường dùng để giải quyết trường hợp này là gán `D[u][v] = max(D[u][v], -INF)` ngay sau mỗi lần tối ưu, chặn không cho $D[u, v]$ xuống dưới hằng số âm vô tận.
 
-* Thuật toán Floyd-Warshall có thứ tự 3 vòng lặp là $k \rightarrow u \rightarrow v$ thay vì $u\rightarrow v\rightarrow k$ (đỉnh trung gian phải được đặt ở vòng lặp ngoài cùng), đây là một nhầm lẫn tương đối phổ biến khi cài đặt. 
+* Thuật toán Floyd-Warshall có thứ tự 3 vòng lặp là $k \rightarrow u \rightarrow v$ thay vì $u\rightarrow v\rightarrow k$ (đỉnh trung gian phải được đặt ở vòng lặp ngoài cùng), đây là một nhầm lẫn tương đối phổ biến khi cài đặt.
 
 * Heap không phải là cấu trúc dữ liệu duy nhất có thể sử dụng khi cài đặt Dijkstra dành cho đồ thị thưa. Ta có thể sử dụng bất cứ cấu trúc dữ liệu nào hỗ trợ các thao tác *"xóa khỏi tập hợp"*, *"cập nhật phần tử trong tập hợp"*, *"tìm phần tử nhỏ nhất trong tập hợp"*. Thực tế cây nhị phân tìm kiếm (`std::set` trong C++) cũng là một lựa chọn phổ biến khi cài đặt thuật toán này.
 

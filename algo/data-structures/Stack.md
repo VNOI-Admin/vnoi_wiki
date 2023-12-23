@@ -6,8 +6,6 @@
 
 ---
 
-[[_TOC_]]
-
 # Giới thiệu
 
 Stack là một danh sách được bổ sung 2 thao tác: **thêm một phần tử vào cuối danh sách**, và **loại bỏ một phần tử ở cuối danh sách**. Ví trí cuối của Stack được gọi là đỉnh (**top**).
@@ -16,7 +14,7 @@ Có thể hình dung Stack như một chồng sách. Việc đặt một quyển
 
 Hình ảnh minh họa cho Stack chứa các phần tử kiểu `char`:
 ![](https://i.imgur.com/hMPdsl6.png)
-    
+
 Stack có khá nhiều ứng dụng trong lập trình thi đấu. Bài viết này sẽ xem xét các ứng dụng điển hình của Stack.
 
 # Cài đặt
@@ -152,7 +150,7 @@ int evaluate(string s)
             op.push_back(s[i]);
         }
     }
-    
+
     if (!op.empty())
     {
         process_op(val, op.back());
@@ -242,7 +240,7 @@ Quá trình xử lý danh sách toán tử \\(op\\):
 
 Cho xâu \\(S\\) chỉ gồm ký tự \\((\\) và \\()\\). Bạn cần kiểm tra xem \\(S\\) có phải là dãy ngoặc đúng không.
 
-Nếu \\(S\\) là dãy ngoặc đúng, với mỗi vị trí trong \\(S\\) bạn cần in ra vị trí của **dấu ngoặc tương ứng**. 
+Nếu \\(S\\) là dãy ngoặc đúng, với mỗi vị trí trong \\(S\\) bạn cần in ra vị trí của **dấu ngoặc tương ứng**.
 
 Định nghĩa:
 * Xâu rỗng là dãy ngoặc đúng
@@ -299,7 +297,7 @@ Dãy ngoặc đúng khi và chỉ khi số dấu ngoặc mở bằng số dấu 
 
 #### Hệ quả 1
 
-Dãy ngoặc không đúng sẽ có số dấu ngoặc mở lớn hơn số ngoặc đóng, hoặc có một tiền tố mà số dấu ngoặc mở nhỏ hơn số dấu ngoặc đóng. 
+Dãy ngoặc không đúng sẽ có số dấu ngoặc mở lớn hơn số ngoặc đóng, hoặc có một tiền tố mà số dấu ngoặc mở nhỏ hơn số dấu ngoặc đóng.
 
 #### Cách giải
 
@@ -388,13 +386,13 @@ void dfs(int start)
 {
     stack<int> st;
     st.push(start); // ta bắt đầu từ đỉnh "start"
-    
+
     while (!st.empty())
     {
         int v = st.top(); // thăm đỉnh v ở đỉnh Stack
         st.pop(); // loại bỏ đỉnh v khỏi Stack do đã thăm
         visited[v] = true; // đánh dấu v đã thăm
-        
+
         for (int u : adj[v]) // xét các đỉnh của đồ thị chung cạnh với v
         {
             if (visited[u]) // nếu đã thăm thì thôi
@@ -472,7 +470,7 @@ stack<int> st;
 for (int i = 1; i <= n; ++i)
 {
     while (!st.empty() && a[st.top()] <= a[i])
-        st.pop(); 
+        st.pop();
     int ans = -1;
     if (!st.empty())
         ans = st.top();

@@ -4,10 +4,8 @@ title: Kinh nghiệm thi VOI
 
 # Kinh nghiệm thi VOI
 
-**Tác giả**: 
+**Tác giả**:
 - Trần Xuân Bách - HUS High School for Gifted Students
-
-[[_TOC_]]
 
 Khác với các kì thi khác, bản chất thi offline của VOI khiến thí sinh phải rất cẩn trọng và tỉ mỉ khi code. Bài viết dưới đây sẽ chỉ ra các lỗi sai mà các bạn thường gặp, đồng thời chỉ ra cách khắc phục chúng.
 
@@ -59,9 +57,9 @@ Do thể thức đọc/ghi qua file của VOI khác với các trang thi như Co
       freopen("SEI.out", "w", stdout);
   }
   ```
-  
+
   **Lưu ý:** Chỉ nên dùng cách này nếu bạn chắc chắn bạn code đúng trong phòng thi.
-  
+
 <figure style="text-align: center">
 <img width="70%" src="https://i.imgur.com/GxDRlyX.png">
 <figcaption style="text-align:center">Nạn nhân xấu số khác</figcaption>
@@ -189,30 +187,30 @@ Vậy các lỗi nào các bạn hay gặp?
 - Quên mod sau từng phép tính
   ```cpp
   int a, b; cin >> a >> b;
-  
+
   int x1 = a + b; // Sai vì a + b có thể vượt quá mod
   int x2 = (a + b) % mod; // Đúng
-  
+
   int y1 = a * b; // Sai vì a * b có thể vượt quá mod
   int y2 = (a * b) % mod; // Sai vì a * b vẫn có thể tràn số
   int y3 = ((long long)a * b) % mod; // Đúng
-  
+
   int z1 = ((long long)a * b * c) % mod; // Sai vì a * b * c có thể tràn số
   int z2 = (((long long)a * b) % mod * c) % mod; // Đúng
   ```
-  
+
   Các phép tính `*`, `/`, `%` [có cùng thứ tự ưu tiên và được tính từ trái qua phải](https://en.cppreference.com/w/cpp/language/operator_precedence), nên cách code này cũng đúng:
-  
+
   ```cpp
   int z3 = (long long)a * b % mod * c % mod; // Đúng
   ```
-  
+
 - Số âm sau khi trừ
   ```cpp
   int x1 = (a - b) % mod; // Sai
   int x2 = ((a - b) % mod + mod) % mod; // Đúng
   ```
-  
+
   Lí do là vì phép mod số âm sẽ ra số âm, nên bạn phải cộng thêm mod để đảm bảo giá trị không âm trước khi mod thêm lần nữa.
 
 #### Cách giải quyết
@@ -339,7 +337,7 @@ int tests; cin >> tests; while (tests--){
 
 Nếu bài có $10^5$ test $n=1$, thì code trên chạy `memset` $10^5$ lần và do vậy độ phức tạp của code là $\mathcal O(10^{10})$!.
 
-Với các bài multitest, **tuyệt đối không được memset** (trừ khi bạn biết chính xác bạn đang làm gì). Bạn có thể dùng hàm `fill` hoặc for trâu để thay thế. 
+Với các bài multitest, **tuyệt đối không được memset** (trừ khi bạn biết chính xác bạn đang làm gì). Bạn có thể dùng hàm `fill` hoặc for trâu để thay thế.
 
 **Lưu ý:** Khi soát lại bài, hãy kiểm tra lại xem mình đã reset mọi biến trước mỗi test chưa.
 
@@ -357,7 +355,7 @@ Các bạn có thể đọc thêm tại [đây](https://stackoverflow.com/questi
 
 Để đẩy tốc độ nhập/xuất nhanh hơn nữa, thêm hai dòng này ở trên cùng hàm `main`:
 
-```cpp    
+```cpp
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
@@ -393,22 +391,22 @@ Mình thấy nhiều bạn khi lưu cạnh của đồ thị thường hay dùng
 ```cpp
 struct edge{
     int u, v, w;
-    
+
     // Default constructor, khi bạn khởi tạo edge mà không có thông tin gì thêm
     edge(): u(0), v(0), w(0){
-        
+
     }
-    
+
     // Constructor để bạn khởi tạo edge với hai đầu mút và trọng số của cạnh
     edge(int u, int v, int w): u(u), v(v), w(w){
-        
+
     }
 };
 
 // Input cạnh
 edge a[N];
 for (int i = 1; i <= n; i++){
-    int u, v, w; 
+    int u, v, w;
     cin >> u >> v >> w;
     a[i] = edge(u, v, w);
 }
@@ -425,7 +423,7 @@ struct edge{
         in >> e.u >> e.v >> e.w;
         return in;
     }
-    
+
     // Hàm xuất edge ra out
     ostream& operator<< (ostream& out, const edge& e){
         out << e.u << ' ' << e.v << ' ' << e.w;

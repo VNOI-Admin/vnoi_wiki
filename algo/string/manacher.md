@@ -7,17 +7,15 @@
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 - Ngô Nhật Quang - The University of Texas at Dallas
 
-[[_TOC_]]
-
 # Giới thiệu
 
-## Bài toán 
-Cho xâu $S$ có độ dài $n$. Hãy tìm tất cả các xâu con đối xứng (palindrome) trong xâu $S$. 
+## Bài toán
+Cho xâu $S$ có độ dài $n$. Hãy tìm tất cả các xâu con đối xứng (palindrome) trong xâu $S$.
 Thuật toán Manacher sẽ xử lý bài toán trên với độ phức tạp thời gian $O(n)$.
 
 ## Một số khái niệm và ký hiệu trong bài
-- Xâu đối xứng (palindrome) là xâu mà khi đọc ngược lại thì vẫn là chính nó, ví dụ như $tacocat$, $aaaaaaa$, $2002$ 
-- Điểm chính giữa của xâu đối xứng là vị trí mà khi lật ngược xâu đối xứng đó thì vị trí của điểm đó trong xâu đó không thay đổi. 
+- Xâu đối xứng (palindrome) là xâu mà khi đọc ngược lại thì vẫn là chính nó, ví dụ như $tacocat$, $aaaaaaa$, $2002$
+- Điểm chính giữa của xâu đối xứng là vị trí mà khi lật ngược xâu đối xứng đó thì vị trí của điểm đó trong xâu đó không thay đổi.
     - Trong xâu đối xứng có độ dài lẻ, điểm chính giữa là một chữ cái trong xâu. Ví dụ xâu $aabaa$ có điểm chính giữa là chữ $b$
     - Trong xâu đối xứng có độ dài chẵn, điểm chính giữa là khoảng trống (vị trí giữa của hai chữ cái liên tiếp). Ví dụ xâu $aabbaa$ có điểm chính giữa là khoảng trống giữa hai chữ $b$
     - Nếu điểm chính giữa của xâu $T$ nào đó là $i$, ta có thể nói xâu $T$ đối xứng qua $i$
@@ -31,9 +29,9 @@ Lưu ý, vì có thể có $O(n^2)$ xâu con đối xứng trong một xâu nên
 
 Cụ thể, giả sử xâu con $S_{i...j}$ là một xâu đối xứng. Nếu $i+1 \leq j-1$ thì ta có $S_{(i+1)...(j-1)}$ cũng là một xâu đối xứng. Ví dụ, xâu $abcdcba$ đối xứng thì có thể dễ dàng thấy được rằng các xâu $bcdcb$, $cdc$ hay $d$ đều đối xứng.
 
-Như vậy, với mỗi điểm chính giữa của một xâu con đối xứng $mid$, chúng ta có thể lưu lại độ dài dài nhất $d[mid]$ sao cho $S_{(mid-d)...(mid+d)}$ là một xâu đối xứng. 
+Như vậy, với mỗi điểm chính giữa của một xâu con đối xứng $mid$, chúng ta có thể lưu lại độ dài dài nhất $d[mid]$ sao cho $S_{(mid-d)...(mid+d)}$ là một xâu đối xứng.
 
-Điểm chính giữa là điểm mà khi đảo ngược trật tự của xâu thì vị trí của điểm này trong xâu không thay đổi. Điểm chính giữa này có thể là một chữ cái hoặc một khoảng trống, tương ứng với xâu đối xứng có độ dài lẻ hoặc chẵn. 
+Điểm chính giữa là điểm mà khi đảo ngược trật tự của xâu thì vị trí của điểm này trong xâu không thay đổi. Điểm chính giữa này có thể là một chữ cái hoặc một khoảng trống, tương ứng với xâu đối xứng có độ dài lẻ hoặc chẵn.
 
 ## Thuật toán ngây thơ
 Như vậy, từ quan sát trên, chúng ta có thể ngay lập tức đưa ra thuật toán có độ phức tạp $O(n^2)$. Xét tất cả các vị trí trong xâu (một chữ cái hoặc một khoảng trống), và chạy về hai phía đến khi nào xâu không còn đối xứng nữa.
@@ -41,18 +39,18 @@ Như vậy, từ quan sát trên, chúng ta có thể ngay lập tức đưa ra 
 Cũng như rất nhiều thuật toán liên quan đến xâu khác như *Z* hay *KMP*, khi xử lý ở từng vị trí trên xâu, kết quả ở những vị trí trước cho ta rất nhiều dữ liệu để xử lý ở vị trí tiếp theo. Trong bài toán này, chúng ta có thể tận dụng dữ kiện xâu đối xứng như hình vẽ dưới đây.
 
 $$
-    \ldots\ 
+    \ldots\
     \overbrace{
-        S_{l}\ \ldots\ 
+        S_{l}\ \ldots\
         \underbrace{
-            S_{l+i-d_[l+i]}\ \ldots\ S_{l+i}\ \ldots\ S_{l+i+d[l+i]}\ 
-        }_\text{đối xứng}\ 
+            S_{l+i-d_[l+i]}\ \ldots\ S_{l+i}\ \ldots\ S_{l+i+d[l+i]}\
+        }_\text{đối xứng}\
         \ldots\ S_{mid} \ldots\
         \underbrace{
-            S_{r-i-d[l+i]}\ \ldots\ S_{r-i}\ \ldots\ S_{r-i+d[l+i]}\ 
-        }_\text{đối xứng}\ 
-        \ldots\ S_{r}\ 
-    }^\text{đối xứng}\ 
+            S_{r-i-d[l+i]}\ \ldots\ S_{r-i}\ \ldots\ S_{r-i+d[l+i]}\
+        }_\text{đối xứng}\
+        \ldots\ S_{r}\
+    }^\text{đối xứng}\
     \ldots
 $$
 
@@ -118,38 +116,38 @@ Chúng ta sẽ tính giá trị $d$ với tất cả các vị trí chứa các 
 
 - Đặt $l=1$ và $r=0$ (chưa có xâu con đối xứng nào)
 - Duy trì giá trị $l$ và $r$ thỏa mãn xâu con từ $l$ đến $r$ là xâu đối xứng với $r$ lớn nhất đã được tìm thấy. Chúng ta luôn có $(l+r)/2 < i$ ($i$ nằm ở phía bên phải của xâu đối xứng)
-- Tại điểm $i$, 
+- Tại điểm $i$,
     - nếu $i > r$, thì chạy trâu để tìm $d[i]$ như trong thuật toán có độ phức tạp $O(n^2)$
     - nếu $i \leq r$, ta lấy giá trị $d[l+(r-i)]$ (điểm đối xứng với $i$ qua $mid$). Tại đây, trong phần lớn trường hợp, chúng ta có thể gán luôn $d[i] = d[l+(r-i)]$. Tuy vậy, vẫn có trường hợp đặc biệt sau đây cần lưu ý (Xem hình vẽ dưới)
 
 $$
-    \ldots\ 
+    \ldots\
     \overbrace{
         \underbrace{
-            S_{l}\ \ldots\ S_{l+(r-i)}\ \ldots\ S_{l+2*(r-i)}\ 
-        }_\text{đối xứng}\ 
+            S_{l}\ \ldots\ S_{l+(r-i)}\ \ldots\ S_{l+2*(r-i)}\
+        }_\text{đối xứng}\
         \underbrace{
         \ldots\ S_{mid} \ldots
         }_\text{Kiểm tra tiếp}
         \underbrace{
-            S_{i-(r-i)}\ \ldots\ S_{i}\ \ldots\ S_{r}\ 
-        }_\text{đối xứng}\ 
-    }^\text{đối xứng}\ 
+            S_{i-(r-i)}\ \ldots\ S_{i}\ \ldots\ S_{r}\
+        }_\text{đối xứng}\
+    }^\text{đối xứng}\
     \underbrace{
         \ldots \ldots \ldots \ldots \ldots
     }_\text{Kiểm tra tiếp}
 $$
-- Nếu xâu đối xứng dài nhất ở vị trí $l+r-i$ không kéo dài đến $l$, thì xâu đối xứng dài nhất tương ứng qua $mid$ ở vị trí $i$ cũng không kéo dài đến $r$. 
-- Từ đó ta có thể khẳng định, nếu tiếp tục mở rộng ra thì phạm vi của hai xâu này vẫn nằm trong xâu đối xứng to kéo từ $l$ đến $r$. 
+- Nếu xâu đối xứng dài nhất ở vị trí $l+r-i$ không kéo dài đến $l$, thì xâu đối xứng dài nhất tương ứng qua $mid$ ở vị trí $i$ cũng không kéo dài đến $r$.
+- Từ đó ta có thể khẳng định, nếu tiếp tục mở rộng ra thì phạm vi của hai xâu này vẫn nằm trong xâu đối xứng to kéo từ $l$ đến $r$.
 - Do vậy, khi tiếp tục mở rộng về hai phía thì xâu con được mở rộng ở vị trí $i$ vẫn sẽ giống với $(l+(r-i))$ và không còn đối xứng nữa.
 - Tuy nhiên, nếu xâu đối xứng dài nhất ở $(l+(r-i))$ kéo dài quá $l$, chúng ta chỉ có thể tạm thời xét $d[i] = r-i$ do không thể đảm bảo các chữ ở phía ngoài giống nhau.
-- Tại thời điểm này, chúng ta chạy trâu tiếp từ vị trí $r$ để tìm được $d[i]$.  
+- Tại thời điểm này, chúng ta chạy trâu tiếp từ vị trí $r$ để tìm được $d[i]$.
 - Cập nhật lại $l$ và $r$ nếu cần thiết.
 
 ## Tìm các xâu đối xứng có độ dài chẵn
-Hoàn toàn tương tự với việc tìm xâu có độ dài lẻ, chúng ta xét các khoảng ở giữa hai ký tự (có thể coi khoảng này là một ký tự).  Tuy nhiên, chi tiết cài đặt cần cẩn thận để có được kết quả chính xác. 
+Hoàn toàn tương tự với việc tìm xâu có độ dài lẻ, chúng ta xét các khoảng ở giữa hai ký tự (có thể coi khoảng này là một ký tự).  Tuy nhiên, chi tiết cài đặt cần cẩn thận để có được kết quả chính xác.
 
-Để tránh phải xử lý cẩn thận trong trường hợp xâu đối xứng độ dài chẵn, bạn đọc có thể cân nhắc sử dụng cách làm như sau. 
+Để tránh phải xử lý cẩn thận trong trường hợp xâu đối xứng độ dài chẵn, bạn đọc có thể cân nhắc sử dụng cách làm như sau.
 
 Thêm các ký tự đặc biệt giữa hai ký tự liên tiếp trong xâu, khi đó các xâu đối xứng độ dài chẵn sẽ là các xâu đối xứng độ dài lẻ với điểm chính giữa là một ký tự đặc biệt. Các xâu đối xứng độ dài lẻ vẫn là các xâu đối xứng độ dài lẻ với điểm chính giữa là các chữ cái ban đầu trong xâu.
 
@@ -181,7 +179,7 @@ void Calc_D_odd() {
         while(i - D_odd[i] - 1 > 0 && i + D_odd[i] + 1 <= N && S[i - D_odd[i] - 1] == S[i + D_odd[i] + 1]) {
             D_odd[i]++;
         }
-        
+
         if(i + D_odd[i] > R) {
             R = i + D_odd[i];
             L = i - D_odd[i];
@@ -236,7 +234,7 @@ Xác định số ma trận con **đẹp** trong ma trận đã cho.
 
 ## Gợi ý
 
-- Từ điều kiện đề bài, thử tìm cách sắp xếp một ma trận con và xác định điều kiện để tạo ra xâu đối xứng trên hàng và cột. 
+- Từ điều kiện đề bài, thử tìm cách sắp xếp một ma trận con và xác định điều kiện để tạo ra xâu đối xứng trên hàng và cột.
 - Do các chữ cái trên một hàng chỉ thay đổi thứ tự, khi nào thì hai hàng được coi là "bằng nhau"?
 
 ## Lời giải
@@ -317,10 +315,10 @@ signed main() {
             for(int i = 1 ; i <= N ; i++) {
                 int t = c[i][c2] - 'a';
                 Cnt[i][t]++;
-                
+
                 if(Cnt[i][t] & 1) Cnt_Odd[i]++;
                 else Cnt_Odd[i]--;
-                
+
                 if(Cnt_Odd[i] > ((c2 - c1 + 1) & 1)) Ok[i] = false;
                 else Ok[i] = true;
             }
@@ -330,7 +328,7 @@ signed main() {
         for(int i = 1 ; i <= N ; i++) {
             for(int j = 0 ; j < 26 ; j++) {
                 Cnt[i][j] = 0;
-            }    
+            }
             Cnt_Odd[i] = 0;
         }
     }
@@ -345,12 +343,10 @@ signed main() {
 
 ![](https://i.imgur.com/5AC7Eew.png)
 
-# Bài tập luyện tập 
+# Bài tập luyện tập
 - [CSES Longest palindrome](https://cses.fi/problemset/task/1111)
 - [UVA Extend to Palindrome](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=26&page=show_problem&problem=2470)
 - [Gym QueryreuQ](https://codeforces.com/gym/101806/problem/Q)
 - [CF Prefix-Suffix Palindrome](https://codeforces.com/contest/1326/problem/D2)
 - [SPOJ Number of Palindromes](https://www.spoj.com/problems/NUMOFPAL/)
 - [Kattis Palindromes](https://open.kattis.com/problems/palindromes)
-
-

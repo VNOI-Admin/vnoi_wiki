@@ -10,8 +10,6 @@
 - Hoàng Xuân Nhật - VNUHCM-University of Science
 - Trần Xuân Bách - HUS High School for Gifted Students
 
-[[_TOC_]]
-
 # Thuật toán duyệt đồ thị ưu tiên chiều rộng
 
 Thuật toán **duyệt đồ thị ưu tiên chiều rộng** *(Breadth-first search - BFS)* là một trong những thuật toán tìm kiếm cơ bản và thiết yếu trên đồ thị. Mà trong đó, những đỉnh nào gần đỉnh xuất phát hơn sẽ được duyệt trước.

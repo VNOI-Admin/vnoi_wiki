@@ -12,8 +12,6 @@
 - Lê Minh Hoàng - VNUHCM-University of Science
 - Nguyễn Phú Bình - VNUHCM-University of Science
 
-[[_TOC_]]
-
 # Giới thiệu
 
 Trong bài viết này, chúng ta sẽ đi tìm hiểu về thuật toán đường quét - một thuật toán khá hữu ích trong hình học tính toán. Thuật toán này được xây dựa trên một ý tưởng mạnh mà đơn giản: sử dụng một đường thẳng dọc và "quét" qua mặt phẳng.

@@ -1,8 +1,6 @@
 # Shortest Path DAG và ứng dụng
 **Người viết:** Nguyễn Đăng Quân - Đại học Công nghệ, Đại học Quốc gia Hà Nội
 
-[[_TOC_]]
-
 Trong một số bài toán liên quan đến đường đi ngắn nhất, tính chất của đồ thị khá khó nhận ra và cũng không dễ dàng để áp dụng. Hôm nay mình xin chia sẻ các bạn một kĩ thuật sử dụng phương pháp tính toán trên DAG (Directed Acyclic Graph) để giải một số bài toán về đường đi ngắn nhất.
 
 # Bài toán mở đầu
@@ -84,17 +82,17 @@ Link bài tập gốc: [https://vjudge.net/problem/Gym-406204J](https://vjudge.n
 
 ### Hướng tiếp cận
 
-Trước tiên; để đếm được số đường đi ngắn nhất, ta cần phải nắm được cách tìm giá trị đường đi đó. Mình xin phép không nhắc lại các thuật toán tìm kiếm đường đi ngắn nhất; nếu bạn chưa biết hoặc biết nhưng đã quên thì có thể đọc lại trên [VNOI wiki](https://vnoi.info/wiki/algo/graph-theory/shortest-path.md). 
+Trước tiên; để đếm được số đường đi ngắn nhất, ta cần phải nắm được cách tìm giá trị đường đi đó. Mình xin phép không nhắc lại các thuật toán tìm kiếm đường đi ngắn nhất; nếu bạn chưa biết hoặc biết nhưng đã quên thì có thể đọc lại trên [VNOI wiki](https://vnoi.info/wiki/algo/graph-theory/shortest-path.md).
 
 Trong bài toán này, ta sẽ gọi:
    - $d(i)$ là độ dài đường đi ngắn nhất từ đỉnh $1$ tới đỉnh $i$ trên đồ thị.
    - $f(i)$ là số đường đi ngắn nhất từ đỉnh $1$ tới đỉnh $i$.
 
-Vậy tại sao phải tính được trước độ dài đường đi ngắn nhất? 
+Vậy tại sao phải tính được trước độ dài đường đi ngắn nhất?
 
 Định hướng lại đồ thị $S$ như sau:
 - Giữ nguyên các đỉnh
-- Với mỗi cạnh $u-v\in E$ 
+- Với mỗi cạnh $u-v\in E$
     - Nếu $d(u)+w(u,v)=d(v)$, cạnh này sẽ biến thành cung $u\rightarrow v$.
     - Nếu $d(v)+w(u,v)=d(u)$, cạnh này sẽ biến thành cung $v\rightarrow v$.
     - Nếu hai điều kiện trên không thỏa mãn, cạnh này bị xóa bỏ khỏi đồ thị.
@@ -109,7 +107,7 @@ Khi đó, $f(i)$ chính là số đường đi từ $1$ đến $i$. Bài toán n
 
 ## Shortest Path DAG
 
-Cho một đồ thị vô hướng $S=(V,E)$. Gọi $d(i,j)$ là **độ dài** đường đi ngắn nhất từ $i$ đến $j$ (Nếu không tồn tại đường đi thì $d(i,j)=\infty$). 
+Cho một đồ thị vô hướng $S=(V,E)$. Gọi $d(i,j)$ là **độ dài** đường đi ngắn nhất từ $i$ đến $j$ (Nếu không tồn tại đường đi thì $d(i,j)=\infty$).
 
 Ta dựng ra một đồ thị *có hướng* $S'_u=(V,E'_u)$ như sau:
 - Mỗi đỉnh trong đồ thị $S$ sẽ ứng với một đỉnh trong $S'_u$.
@@ -117,7 +115,7 @@ Ta dựng ra một đồ thị *có hướng* $S'_u=(V,E'_u)$ như sau:
     - Nếu $d(u,i)+w(i,j)=d(u,j)$ thì dựng ra cung $i\rightarrow j$ trong $E'_u$.
     - Nếu $d(u,j)+w(i,j)=d(u,i)$ thì dựng ra cung $j\rightarrow i$ trong $E'_u$.
 
-Khi đó, ta gọi đồ thị $S'_u$ là Shortest Path DAG ứng với đỉnh $u$ trên $S$. 
+Khi đó, ta gọi đồ thị $S'_u$ là Shortest Path DAG ứng với đỉnh $u$ trên $S$.
 
 #### Tính chất
 
@@ -125,12 +123,12 @@ Khi đó, ta gọi đồ thị $S'_u$ là Shortest Path DAG ứng với đỉnh 
 
 
 > 1. Nếu tồn tại đường đi từ $u$ đến $v$ trên $S$ (Tức là $d(u,v)<\infty$) thì cũng tồn tại đường đi (có hướng) từ $u$ đến $v$ trên $S'_u$
-    
+
 Đây là một nhận xét hiển nhiên, bạn đọc có thể tự suy ngẫm về tính đúng.
 
 > 2. Mọi đường đi trên $S'_u$ đều là đường đi ngắn nhất trên $S$.
 
-*Chứng minh:* 
+*Chứng minh:*
 Gọi $f(i,j)$ là độ dài đường đi **dài nhất** từ $i$ đến $j$ trên $S'_u$ (Nếu không tồn tại thì $f(i,j)=\infty$). Điều kiện trên tương đương với một trong hai điều kiện sau thỏa mãn:
 - $f(i,j)=\infty$ (Không tồn tại đường đi)
 - $f(i,j)=d(i,j)$ (Nếu tồn tại đường đi thì đó phải là đường đi ngắn nhất)
@@ -175,11 +173,11 @@ Xét một **đường đi ngắn nhất** từ $i$ đến $j$ không xuất hi�
 
 Theo bất đẳng thức tam giác:
 $$
-\begin{cases} 
+\begin{cases}
 d(u,x_1)-d(u,i)\le d(i,x_1)\\
 d(u,x_2)-d(u,x_1)\le d(x_1, x_2)\\
 \dots \\
-d(u,j)-d(u,x_k)\le d(x_k,j) 
+d(u,j)-d(u,x_k)\le d(x_k,j)
 \end{cases}
 $$
 Cộng về với vế ta được:
@@ -197,11 +195,11 @@ $$
 Dấu bằng phải xảy ra, dẫn đến dấu bằng của bất đẳng thức tam giác phải xảy ra:
 
 $$
-\begin{cases} 
+\begin{cases}
 d(u,i)+d(i,x_1)=d(u,x_1)\\
 d(u,x_1)+d(x_1, x_2)=d(u,x_2)\\
 \dots\\
-d(u,x_k)+d(x_k,j)=d(u,j) 
+d(u,x_k)+d(x_k,j)=d(u,j)
 \end{cases}
 $$
 
@@ -222,7 +220,7 @@ Sử dụng các tính chất trên, ta có thể giải quyết một số bài
 
 Cho một đồ thị vô hướng gồm $n$ đỉnh và $m + k$ cạnh với trọng số duonwg; trong đó có $m$ cạnh loại 1 và $k$ cạnh loại 2. Các cạnh loại 2 chỉ nối giữa đỉnh $1$ và một đỉnh khác.
 
-**Yêu cầu:** Hãy đếm số cách xóa một số cạnh loại 2 (Có thể không xóa cạnh nào) sao cho đường đi ngắn nhất từ đỉnh $1$ tới các đỉnh khác là **không đổi**. 
+**Yêu cầu:** Hãy đếm số cách xóa một số cạnh loại 2 (Có thể không xóa cạnh nào) sao cho đường đi ngắn nhất từ đỉnh $1$ tới các đỉnh khác là **không đổi**.
 
 Bài toán có thể xem tại [https://oj.vnoi.info/problem/vnuoi22_delete](https://oj.vnoi.info/problem/vnuoi22_delete)
 
@@ -312,7 +310,7 @@ ll Pow(ll a, ll b) {
 }
 
 // Thuật toán tìm đường đi ngắn nhất
-// Kết quả trả về mảng d[], d[i] = đường đi ngắn nhất từ x đến i 
+// Kết quả trả về mảng d[], d[i] = đường đi ngắn nhất từ x đến i
 void ShortestPath(int x) {
   // Bạn đọc vui lòng tự cài đặt lại thuật toán
 }
@@ -371,10 +369,10 @@ Bài toán có thể xem tại [https://vjudge.net/problem/Gym-406204L](https://
 
 Bài toán yêu cầu với mỗi cạnh, đếm số cặp đỉnh $(u,v)$ mà $d(u,v)$ tăng lên khi xóa cạnh đó. Vậy cạnh này có điều kiện gì mà ảnh hưởng được đến đường đi ngắn nhất từ $u$ đến một đỉnh khác? Rõ ràng cạnh này phải thuộc một đường đi ngắn nhất xuất phát từ đỉnh $u$!
 
-Ta dựng ra Shortest Path DAG $S'_u$; gọi $cnt(i,j)$ là số đường đỉ từ đỉnh $i$ đến đỉnh $j$. 
+Ta dựng ra Shortest Path DAG $S'_u$; gọi $cnt(i,j)$ là số đường đỉ từ đỉnh $i$ đến đỉnh $j$.
 Nếu xóa cung $i\rightarrow j$ làm $d(u,v)$ tăng thì mọi đường đi từ $u$ đến $v$ phải thông qua cung này, tức là: $$cnt(u,i)\times cnt(j,v)=cnt(u,v)_{(*)}$$
 
-Từ nhận xét ở bài _DELETE_ ta có thể xóa bỏ các cung sao cho mỗi đỉnh trên $S'_u$ có bậc tối đa là 1 và đường đi ngắn nhất từ $u$ đến các đỉnh là không đổi. 
+Từ nhận xét ở bài _DELETE_ ta có thể xóa bỏ các cung sao cho mỗi đỉnh trên $S'_u$ có bậc tối đa là 1 và đường đi ngắn nhất từ $u$ đến các đỉnh là không đổi.
 
 $\Rightarrow$ Các "ứng cử viên" là các cung được giữ lại. Có thể chứng minh số cung của $S'_u$ khi ấy không quá $n-1$.
 
@@ -384,7 +382,7 @@ Ta dựng ra các Shortest Path DAG $S'_1,S'_2,\dots,S'_n$. Trên $S'_u$:
 - Ta duyệt qua các "ứng cử viên" mà trong phần nhận xét đã nói
 - Với mỗi ứng cử viên, ta lại duyệt các đỉnh $v$ nhằm đếm số lượng đường đi $d(u,v)$ bị tăng nếu xóa "ứng cử viên" đó (Dựa vào điều kiện $(*)$)
 
-**Chú ý:** 
+**Chú ý:**
 - Theo tính chất 4, $cnt(i,j)$ chính là số đường đi ngắn nhất từ $i$ đến $j$ trên đồ thị ban đầu $\Rightarrow$ Ta có thể tính trước đường đi ngắn nhất giữa mọi cặp đỉnh bằng cách thực hiện $n$ lần thuật toán Dijkstra cổ điển (Thuật toán Dijkstra với độ phức tạp $O(n^2+m)$)
 - $cnt(i,j)$ có thể rất lớn, nên bạn hãy lưu số này trong modulo một số nào đó (Hoặc có thể trong hai modulo); khi so sánh ta sử dụng đồng dư thay vì bằng nhau hoàn toàn.
 

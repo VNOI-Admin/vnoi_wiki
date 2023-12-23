@@ -4,18 +4,16 @@
 
 Con trỏ là một trong những tính năng quan trọng của mỗi ngôn ngữ lập trình. Thực tế, để được gọi là sử dụng thành thạo một ngôn ngữ lập trình như C/C++, lập trình viên cần biết cách sử dụng con trỏ. Tuy nhiên, do ít được sử dụng trong các bài toán lập trình ở các kỳ thi học sinh giỏi, nhiều bạn học sinh chuyên tin cấp ba không nắm chắc cách dùng con trỏ, hoặc thậm chỉ bỏ qua phần kiến thức này. Vì vậy, bài viết này giúp các bạn hiểu qua cách sử dụng con trỏ và các ý nghĩa của nó.
 
-Cần nói thêm rằng, để có cái nhìn toàn diện về con trỏ trong các ngôn ngữ lập trình, bạn cần có các kiến thức về kiến trúc máy tính, hệ điều hành, cách lưu trữ biến trong bộ nhớ máy tính. Bài viết dưới đây bỏ qua các khía cạnh này, chủ yếu nhắc đến cách sử dụng con trỏ, các lỗi hay mắc, lợi ích của con trỏ trong các bài toán lập trình thi đấu. 
+Cần nói thêm rằng, để có cái nhìn toàn diện về con trỏ trong các ngôn ngữ lập trình, bạn cần có các kiến thức về kiến trúc máy tính, hệ điều hành, cách lưu trữ biến trong bộ nhớ máy tính. Bài viết dưới đây bỏ qua các khía cạnh này, chủ yếu nhắc đến cách sử dụng con trỏ, các lỗi hay mắc, lợi ích của con trỏ trong các bài toán lập trình thi đấu.
 
 Bởi thế, bạn có thể yên tâm rằng bài viết dưới đây không khiến các bạn hại não, chỉ cần uống chút **sữa tươi chân trâu đường hổ** rồi bắt đầu đọc thôi :)
-
-[[_TOC_]]
 
 # 1. Con trỏ là gì?
 ## a. Biến "thông thường"
 Chúng ta đã quá quen thuộc với các biến (*variables*) trong C++. Một biến có thể mang một giá trị, ví dụ như biến dạng `bool`, `int` hay `double`. Mỗi biến thuộc các kiểu này dùng để lưu một **giá trị** nào đó. Các biến còn có thể là một đối tượng phức tạp hơn, ví dụ như các cấu trúc dữ liệu `vector<int>`, `queue<string>` hay `map<int, string>`. Các biến thuộc loại này có thể chứa một tập hợp nhiều giá trị nào đó. Dù đơn giản hay phức tạp, các biến thuộc một trong các dạng kể trên luôn giúp chúng ta lưu trữ dữ liệu. Tác giả tạm gọi những kiểu biến này là biến "thông thường".
 
-Như vậy, các biến "thông thường" là các biến **có thể lưu trữ dữ liệu**. Chúng có hai tính chất cơ bản sau: 
-- Dữ liệu của các biến này **hoàn toàn độc lập** với nhau: Giá trị của biến `a` không phụ thuộc vào giá trị của biến `b` và **ngược lại**. 
+Như vậy, các biến "thông thường" là các biến **có thể lưu trữ dữ liệu**. Chúng có hai tính chất cơ bản sau:
+- Dữ liệu của các biến này **hoàn toàn độc lập** với nhau: Giá trị của biến `a` không phụ thuộc vào giá trị của biến `b` và **ngược lại**.
 - Mỗi khi ta khai báo một biến "thông thường" `int x; string s; vector<double> v;...` ta có thêm một biến mới, và biến đó cho ta **thêm không gian lưu trữ dữ liệu**.
 
 ## b. Biến tham chiếu (*reference*)
@@ -107,7 +105,7 @@ first = &normal;
 second = first;
 
 ```
-Trong ví dụ trên, ta có `normal` là một biến "thông thường" kiểu `int`. `first` và `second` là các con trỏ mà đối tượng (biến) được trỏ tới có kiểu `int`. Dòng số 4 `first = &normal` giúp con trỏ first trỏ vào biến normal. Dòng số 5 `second = first` mang ý nghĩa rằng *con trỏ `second` trỏ vào nơi mà `first` đang trỏ vào, nghĩa là biến `normal`*. 
+Trong ví dụ trên, ta có `normal` là một biến "thông thường" kiểu `int`. `first` và `second` là các con trỏ mà đối tượng (biến) được trỏ tới có kiểu `int`. Dòng số 4 `first = &normal` giúp con trỏ first trỏ vào biến normal. Dòng số 5 `second = first` mang ý nghĩa rằng *con trỏ `second` trỏ vào nơi mà `first` đang trỏ vào, nghĩa là biến `normal`*.
 
 Chú ý rằng nếu bạn muốn trỏ vào một biến "thông thường", trước tên biến phải có dấu `&`. Còn nếu muốn một con trỏ trỏ vào đối tượng của một con trỏ khác, vế phải không cần có dấu `&`. Đồng thời, các con trỏ trỏ vào các đối tượng khác kiểu nhau không thể bị gán ghép với nhau. Do đó, các dòng code dưới đây đều gặp lỗi khi biên dịch:
 
@@ -159,8 +157,8 @@ printf("%d\n", *another_pointer); // 400
 ```
 
 Trong ví dụ trên:
-- Đầu tiên con trỏ `pointer` trỏ vào biến "thông thường" `normal_1`. Do đó, `normal_1` và `*pointer` lúc này **cùng là một biến**: Khi một lệnh làm thay đổi giá trị `normal_1`, giá trị của `*pointer` cũng thay đổi theo và ngược lại. 
-- Sau lệnh gán `pointer = &normal_2`, `pointer` lúc này trỏ vào `normal_2` và **không còn trỏ vào** `normal_1` nữa. Vì vậy, lện gán `*pointer_2 = 300` **làm thay đổi** `normal_2` nhưng **không làm thay đổi** `normal_1`. 
+- Đầu tiên con trỏ `pointer` trỏ vào biến "thông thường" `normal_1`. Do đó, `normal_1` và `*pointer` lúc này **cùng là một biến**: Khi một lệnh làm thay đổi giá trị `normal_1`, giá trị của `*pointer` cũng thay đổi theo và ngược lại.
+- Sau lệnh gán `pointer = &normal_2`, `pointer` lúc này trỏ vào `normal_2` và **không còn trỏ vào** `normal_1` nữa. Vì vậy, lện gán `*pointer_2 = 300` **làm thay đổi** `normal_2` nhưng **không làm thay đổi** `normal_1`.
 - Cuối cùng, con trỏ `another_pointer` được cho trỏ vào *nơi `pointer` đang trỏ vào*, tức là biến "thông thường" `normal_2`. Do đó lệnh gán `normal_2` làm thay đổi `*another_pointer`.
 
 **Chú ý**: Các lệnh gán các biến "thông thường" `normal_1` và `normal_2` ở trên kia làm thay đổi `*pointer`, **nhưng không thay đổi** `pointer`. Các bạn cần **phân biệt rất cẩn thận** hai lệnh `*another_pointer = *pointer` và `another_pointer = pointer`. Lệnh thứ nhất chỉ là phép gán giá trị giữa hai biến "thông thường", trong khi lệnh thứ hai làm thay đổi đối tượng mà `another_pointer` đại diện cho.
@@ -266,7 +264,7 @@ int main(void) {
    int a = 1, b = 2, c = 3;
    update(a, b, c);
    cout << a << " " << b << " " << c << endl; // 1 20 3
-   
+
    update(1 + 1, b, c); // OK
    update(a, 1 + 1, c); // COMPILATION ERROR
    update(a, b, 1 + 1); // OK
@@ -325,7 +323,7 @@ int main(void) {
 ### Tạo mảng động
 Các bạn đã biết, trong một số trường hợp bạn không thể khai báo mảng tĩnh vì như vậy kích thước mảng cần thiết sẽ quá lớn, vượt quá giới hạn bộ nhớ cho phép và thực tế không cần thiết tới vậy.
 
-Ví dụ, khi bạn cần nhập vào một bảng hai chiều kích thước $m \cdot n$ với $1 \leq m \cdot n \leq 10^5$, ta biết rằng cả $m$ và $n$ đều có thể lên tới $10^5$. Tuy nhiên, khai báo mảng tĩnh `int a[1e5][1e5]` là không khả thi vì kích thước mảng $10^{10}$ là quá to. 
+Ví dụ, khi bạn cần nhập vào một bảng hai chiều kích thước $m \cdot n$ với $1 \leq m \cdot n \leq 10^5$, ta biết rằng cả $m$ và $n$ đều có thể lên tới $10^5$. Tuy nhiên, khai báo mảng tĩnh `int a[1e5][1e5]` là không khả thi vì kích thước mảng $10^{10}$ là quá to.
 
 Một trường hợp khác khá quen thuộc với các bạn: Các bạn cần lưu mảng danh sách kề của một đồ thị có $10^5$ đỉnh và $10^5$ cạnh. Ta biết rằng một đỉnh có thể kề với tối đa $10^5-1$ đỉnh khác, do đó nếu dùng mảng tĩnh ta phải khai báo `int adj[1e5][1e5]`, nhưng điều này một lần nữa không khả thi. Nhưng chúng ta biết rằng, thực tế chỉ có $10^5$ cạnh, tức là tổng kích thước của danh sách kề ứng với các đỉnh là không quá $2 \cdot 10^5$, đó là lý do chúng ta sử dụng `vector<int> adj[1e5]`.
 
@@ -335,7 +333,7 @@ Theo quan điểm của mình, việc tạo mảng động bằng con trỏ khô
 
 Nói vắn tắt, một mảng các số nguyên kiểu `int` có bản chất giống như một **con trỏ** trỏ vào **phần tử đầu tiên** của mảng. Tức là, nếu ta khai báo `int a[100]` thì biến  `a` có kiểu `int*` (dù `a[0]`, `a[1]`,... có kiểu là `int`). Do `a` là con trỏ kiểu `int*`, `*a` là một biến "thông thường" kiểu `int`, và vì `a` trỏ vào phần tử đầu tiên `a[0]`, `*a` và `a[0]` **là cùng một biến** (gán `*a = 4` và `a[0] = 4` là như nhau).
 
-Tương tự, do mảng hai chiều là **mảng các mảng một chiều**, mảng hai chiều giống như **con trỏ trỏ vào một con trỏ. Nếu ta khai báo `int b[100][100]`, biến `b` có kiểu `int**`. 
+Tương tự, do mảng hai chiều là **mảng các mảng một chiều**, mảng hai chiều giống như **con trỏ trỏ vào một con trỏ. Nếu ta khai báo `int b[100][100]`, biến `b` có kiểu `int**`.
 
 Để tạo ra mảng một chiều có $100$ phần tử `int`, ta khai báo như sau:
 ```cpp
@@ -389,7 +387,7 @@ for (int i = 0; i < m; i++) {
 
 ```
 
-Một vector cần 24 bytes để lưu, còn một con trỏ chỉ cần 8 bytes. Ở mỗi cách, ta cần lưu $m + m \cdot n + m \cdot n \cdot 2 = 30.1 \cdot 10^6$ vector/con trỏ và $4 \cdot 10^7$ biến `int`. Do đó dùng vector sẽ tốn $882.4 \cdot 10^6$ bytes ~ $841.5$MB, nhưng dùng con trỏ chỉ tốn ~400MB. 
+Một vector cần 24 bytes để lưu, còn một con trỏ chỉ cần 8 bytes. Ở mỗi cách, ta cần lưu $m + m \cdot n + m \cdot n \cdot 2 = 30.1 \cdot 10^6$ vector/con trỏ và $4 \cdot 10^7$ biến `int`. Do đó dùng vector sẽ tốn $882.4 \cdot 10^6$ bytes ~ $841.5$MB, nhưng dùng con trỏ chỉ tốn ~400MB.
 
 Sau đây là hai lời khuyên cuối cùng về việc tạo mảng động:
 - Bất kể sử dụng vector hay con trỏ để khai báo mảng động, bạn cố gắng **chỉ tạo một chiều động**, còn các chiều còn lại tĩnh.
@@ -564,7 +562,7 @@ Các lỗi hay mắc khi cài đặt trie:
 ```cpp
 void addString(const string &s) {
    Node *p = root;
-   REP(i, s.size()) {      
+   REP(i, s.size()) {
       p = p->child[s[i] - 'a'];
       if (p == NULL) p = new Node();
       p->high = i + 1;

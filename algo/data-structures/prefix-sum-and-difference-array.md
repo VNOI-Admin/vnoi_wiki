@@ -1,6 +1,6 @@
 # Mảng cộng dồn và mảng hiệu
 
-**Tác giả:** 
+**Tác giả:**
 - Bùi Nguyễn Đức Tân - VNU-HCM, High School for the Gifted
 
 **Reviewer:**
@@ -9,8 +9,6 @@
 - Nguyễn Phú Bình - Hung Vuong High School for the Gifted, Binh Duong Province
 
 ---
-
-[[_TOC_]]
 
 ## Khái niệm
 
@@ -170,7 +168,7 @@ Mảng cộng dồn có một tính chất quan trọng: các phần tử đư�
 
 Theo định nghĩa: $S_i = c + \displaystyle \sum_{j = 0}^{i - 1} A_j$
 
-Khi này: 
+Khi này:
 
 $$
 \begin{align*}
@@ -194,9 +192,9 @@ Trước hết, ta tạo mảng $pref = S(0, A)$ để lưu mảng cộng dồn 
 
 $$
 \begin{align*}
-ans_r &= \max_{0 \, \le \, l \, < \, r} (pref_r - pref_l) \\ 
-&= pref_r + \max_{0 \, \le \, l \, < \, r} (- pref_l) \\ 
-&= pref_r - \min_{0 \, \le \, l \, < \, r} pref_l \\ 
+ans_r &= \max_{0 \, \le \, l \, < \, r} (pref_r - pref_l) \\
+&= pref_r + \max_{0 \, \le \, l \, < \, r} (- pref_l) \\
+&= pref_r - \min_{0 \, \le \, l \, < \, r} pref_l \\
 \end{align*}
 $$
 

@@ -4,8 +4,6 @@ Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-
 
 Người dịch: Bùi Việt Dũng
 
-[[_TOC_]]
-
 # Giới thiệu
 Các bài toán trong **lập trình thi đấu (competitive programming)** mà liên quan đến Toán học thường sẽ rơi vào hai mảng là **số học (number theory)** và hình học. Nếu bạn biết nhiều về số học, bạn sẽ có khả năng giải quyết nhiều bài toán khó và một nền tảng tốt để giải quyết nhiều bài toán khác.
 
@@ -126,7 +124,7 @@ Kết quả
 ```
 gcd(16, 10) = 2
 x, y: 2, -3
-``` 
+```
 
 Ban đầu, thuật toán Euclid mở rộng sẽ chạy như thuật toán Euclid cho đến khi ta có $GCD(A,B)$ hoặc cho đến khi $B$ bằng 0 và khi đó thuật toán sẽ đặt $x=1$ và $y=0$. Vì $B=0$ và $GCD(A,B)$ là $A$ trong thời điểm hiện tại nên phương trình $Ax+By=0$ trở thành $A.1+0.0=A$.
 

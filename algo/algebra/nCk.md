@@ -8,7 +8,6 @@
 - Nguyễn Đức Kiên - Trường Đại học Công nghệ, ĐHQGHN
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 
-[[_TOC_]]
 ## Tổ hợp (Combination)
 ### Giới thiệu về tổ hợp
 Trong toán học, tổ hợp là cách chọn các phần tử từ một nhóm mà không phân biệt thứ tự chọn. Mỗi tập con gồm $k$ phần tử khác nhau (không phân biệt thứ tự) của tập hợp $n$ phần tử đã cho ($0 ≤ k ≤ n$) được gọi là một tổ hợp chập $k$ của $n$ phần tử.
@@ -26,7 +25,7 @@ Ta quy ước:
 - Với mọi $n ≥ 1$ và $0 ≤ k ≤ n$, ta có:
     - $C_n^k = C_n^{n - k}$
     - $C_n^k = C_{n - 1}^{k - 1} + C_{n - 1}^{k}$
-    
+
 
 - $C_n^k$ còn được gọi là hệ số nhị thức (binomial coefficients) do $C_n^k$ là hệ số trong khai triển:
 $$(x + y)^n= \sum\limits_{k = 0}^{n} C_n^k \cdot x^k \cdot y ^ {n - k}$$
@@ -135,7 +134,7 @@ Rào cản lớn nhất cho việc sử dụng định nghĩa $C_n^k = \dfrac{n!
 - **Kiến thức sử dụng:**
     - *Nghịch đảo modulo (Modular Inverse)*: Tham khảo ở bài viết [Số học 4.5 - Nghịch đảo modulo](https://vnoi.info/wiki/algo/math/modular-inverse) của VNOI.
     - *Định lý Fermat nhỏ*
-    :::spoiler 
+    :::spoiler
     Cho $p$ là một số nguyên tố và số nguyên $a$ không chia hết cho $p$. Khi đó, ta có:
     $$a^{p - 1} \equiv 1 \pmod p$$
     Từ đó, ta rút ra:
@@ -143,33 +142,33 @@ Rào cản lớn nhất cho việc sử dụng định nghĩa $C_n^k = \dfrac{n!
     :::
     - *Lũy thừa nhanh*
 - **Ý tưởng:**
-    - Ta viết lại: 
+    - Ta viết lại:
 $$C_n^k = n! \times \left( k! \right)^{-1} \times \left( (n - k)! \right)^{-1} \mod M$$
     - Ta sử dụng hai mảng: mảng $\text{fact}[i]$ để lưu $i! \bmod M$ và mảng $\text{ifact}[i]$ để lưu $(i!)^{-1} \bmod M$. Sau đó dùng công thức (sử dụng định lý Fermat nhỏ):
 
         $$\text{ifact}[i] = (\text{fact}[i]) ^ {-1} \bmod M = (\text{fact}[i])^{M-2} \bmod M$$
 
         Chú ý rằng $\text{fact}[i] \equiv 0 \pmod M \;\;\forall i \ge M$ nên ta chỉ tính $\text{fact}[i]$ và $\text{ifact}[i]$ với $0 \le i \le M - 1$.
-        
+
     - Ta sẽ tính mảng $\text{fact}[i]$ như sau:
-    
+
     $$\begin{align}
         \begin{cases}
         \text{fact}[0] &= 1\\
         \text{fact}[i] &= (\text{fact}[i - 1] \times i ) \bmod M &\text{ nếu } 1 \le i \le n
         \end{cases}
     \end{align}$$
-    
+
     - Tiếp theo ta sử dụng thuật toán lũy thừa nhanh để tính $\text{ifact}[n] = \left( \text{fact}[n] \right)^{M-2} \mod M$ với độ phức tạp $O(\log M)$.
     - Còn mảng $\text{ifact}[i]$ thì tính như sau:
-    
+
     $$\begin{align}
         \begin{cases}
         \text{ifact}[n] &= \left( \text{fact}[n] \right)^{M-2} &\mod M\\
         \text{ifact}[i - 1] &= \text{ifact}[i] \times i  &\mod M  &\text{nếu } 1 \le i \le n
         \end{cases}
     \end{align}$$
-    
+
     - Cuối cùng, $C_n^k = \text{fact}[n] \times \text{ifact}[k] \times \text{ifact}[n - k] \mod M$.
 
 **Code C++ minh họa**
@@ -195,7 +194,7 @@ void prepare(){
     fact[0] = 1;
     for (int i = 1; i <= N; i++)
         fact[i] = 1LL * fact[i - 1] * i % MOD;
-        
+
     // Tính ifact[]
     ifact[N] = binpow(fact[N], MOD - 2);
     for (int i = N - 1; i >= 1; i--)
@@ -209,7 +208,7 @@ int C(int n, int k){
 }
 
 int main(){
-    prepare();        
+    prepare();
     // Truy vấn
     int q; cin >> q;
     while (q--){
@@ -266,7 +265,7 @@ void prepare(){
     fact[0] = 1;
     for (int i = 1; i < MOD; i++)
         fact[i] = 1LL * fact[i - 1] * i % MOD;
-        
+
     // Tính ifact[]
     ifact[MOD - 1] = binpow(fact[MOD - 1], MOD - 2);
     for (int i = MOD - 2; i >= 0; i--)
@@ -291,14 +290,14 @@ int comb(long long n, long long k){
 }
 
 int main(){
-    prepare();        
+    prepare();
     // Truy vấn
     int q; cin >> q;
     while (q--){
         long long n, k; cin >> n >> k;
         cout << comb(n, k) << '\n';
     }
-    
+
 }
 ```
 </details>
@@ -320,7 +319,7 @@ int main(){
         $$a^{-1} \equiv a^{\varphi(m)-1} \pmod p$$
     - *Mở rộng định lý Lucas cho modulo là lũy thừa số nguyên tố*:
         Andrew Granville đã chứng minh được công thức sau: (Xem bài báo tại [đây](https://web.archive.org/web/20170202003812/http://www.dms.umontreal.ca/~andrew/PDF/BinCoeff.pdf) hoặc tại [đây](http://www.cecm.sfu.ca/organics/papers/granville/paper/binomial/html/node2.html))
-    
+
         $$\dfrac{t^{e_q}}{p^{e_1}} C_n^k \equiv \dfrac{(n_0!)_p}{(k_0!)_p(r_0!)_p} \cdot \dfrac{(n_1!)_p}{(k_1!)_p(r_1!)_p} \ldots \dfrac{(n_d!)_p}{(k_d!)_p(r_d!)_p} \,(\bmod p^q)$$
 
         Trong đó:
@@ -405,35 +404,35 @@ long long calc(long long N, long long K, long long R) {
 Định lý thặng dư Trung Hoa là cầu nối giúp ta tính toán được khi $M$ không phải là số nguyên tố.
 - **Kiến thức sử dụng:**
     - *Định lý Thặng dư trung hoa - Chinese remainder theorem (CRT)*
-    
+
         Xét hệ:
-        
+
         $$\left\{\begin{array}{rcl}
             a & \equiv & a_1 \pmod{m_1} \\
             a & \equiv & a_2 \pmod{m_2} \\
               & \vdots & \\
             a & \equiv & a_k \pmod{m_k}
         \end{array}\right.$$
-        
+
         với $m_1, m_2, \ldots m_k$ đôi một nguyên tố cùng nhau.
-    
-        Ký hiệu: 
+
+        Ký hiệu:
         - $M = m_1 \cdot m_2 \ldots m_k$
-        
+
         - $M_i = \dfrac{M}{m_i}$
-        
+
         - $N_i = M_i^{-1} \mod m_i$
-    
+
         Từ đó nhận thấy:
-        
+
         $$\left\{\begin{array}{rcl}
             a_i M_i N_i & \equiv & a_i \pmod{m_i} \\
             a_j M_j N_j & \equiv & 0 \pmod{m_i} \,\,\forall j \neq i
         \end{array}\right.$$
-    
+
         Khi này chỉ cần cộng tất cả số hạng $a_i M_i N_i$ ta được một nghiệm thỏa mãn hệ:
         $$a = a_1 M_1 N_1 + a_2 M_2 N_2 + \ldots + a_k M_k N_k$$
-   
+
 
 Để minh họa rõ hơn này, ta sẽ giải quyết bài [nCr](https://www.hackerrank.com/challenges/ncr/problem) trên Hackerrank
 

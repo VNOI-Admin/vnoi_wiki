@@ -8,8 +8,6 @@
 - Cao Thanh Hậu - Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 
-[[_TOC_]]
-
 Khi cần tìm ra các số nguyên tố từ $1$ đến $n$, ta có thể duyệt từng số và kiểm tra tính nguyên tố của nó. Và ý tưởng đó cho ta một thuật toán $\boldsymbol{O\left(n\sqrt n\right)}$.
 
 Tuy nhiên, một nhà toán học cổ Hy Lạp tên là Eratosthenes đã "phát minh" ra một "thuật toán" hiệu quả hơn. Ban đầu, Eratosthenes đã lấy lá cọ và ghi tất cả các số từ $2$ cho đến $100$. Sau đó, ông đã chọc thủng các hợp số và giữ nguyên các số nguyên tố. Bảng số nguyên tố còn lại trông rất giống một cái sàng. Cho đến ngày nay, "thuật toán" này được phổ biến rộng rãi với cái tên **sàng nguyên tố Eratosthenes**.
@@ -19,7 +17,7 @@ Tuy nhiên, một nhà toán học cổ Hy Lạp tên là Eratosthenes đã "ph�
 ### Hướng tiếp cận
 - Ban đầu, ta cho tất cả các số từ $2$ đến $n$ vào sàng và đánh dấu tất cả các số. (Các số không được đánh dấu sau cùng sẽ bị loại khỏi sàng).
 - Duyệt lần lượt các số từ $2$ đến $n$. Nếu số đang xét:
-    - Đã được đánh dấu $\Rightarrow$ *số nguyên tố*: ta bỏ đánh dấu tất cả các bội (khác chính nó) của số nguyên tố này để loại các bội ấy ra khỏi sàng. 
+    - Đã được đánh dấu $\Rightarrow$ *số nguyên tố*: ta bỏ đánh dấu tất cả các bội (khác chính nó) của số nguyên tố này để loại các bội ấy ra khỏi sàng.
     - Không được đánh dấu $\Rightarrow$ *hợp số*: ta bỏ qua số này.
 - Sau khi duyệt xong, các số còn lại trong sàng, hay nói cách khác các số được đánh dấu là số nguyên tố.
 
@@ -43,7 +41,7 @@ void sieve(int n){
     }
 }
 ```
-Độ phức tạp thời gian là $O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right)$ với $p$ là số nguyên tố $\le  n$. 
+Độ phức tạp thời gian là $O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right)$ với $p$ là số nguyên tố $\le  n$.
 Đến đây, bạn đọc có thể tham khảo [Định lý Merten 2](https://en.wikipedia.org/wiki/Mertens%27_theorems#Proof) để rút gọn độ phức tạp:
 $$O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right) = O( n \log (\log n))$$
 
@@ -54,7 +52,7 @@ $$O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right
 ---
 
 
->**Nhận xét:** 
+>**Nhận xét:**
 >Xét $X = k \cdot p$ là bội của số nguyên tố $p$.
 >Nếu như $p < X < p^2$, ta có $1 < k < p$. Ta suy ra $k$ phải có một ước nguyên tố nhỏ hơn $p$.
 >Vì thế, $X = k \cdot p$ đã bị sàng loại đi trong các vòng lặp trước đó và ta **chỉ cần xét** $\boldsymbol{X \ge p^2}$.
@@ -85,7 +83,7 @@ void Eratosthenes(int n){
 
 ```cpp
     int nsqrt = sqrt(n);
-    for (int i = 2; i <= nsqrt; i++) 
+    for (int i = 2; i <= nsqrt; i++)
 ```
 
 Dưới đây là hình minh họa cho cải tiến trên. *Nguồn: [Wikipedia](https://vi.wikipedia.org/wiki/S%C3%A0ng_Eratosthenes)*
@@ -132,7 +130,7 @@ vector<int> factorize(int n) {
     return res;
 }
 ```
-Mỗi lần ta chia $n$ cho ước nguyên tố nhỏ nhất $\text{min_prime}[n]$ đến khi nào $n$ giảm về $1$. Trong trường hợp xấu nhất thì mỗi lần chia $\text{min_prime}[n]$ đều bằng $2$. Vì vậy, hàm phân tích trên **độ phức tạp thời gian** trường hợp xấu nhất là $\boldsymbol{O(\log n)}$. 
+Mỗi lần ta chia $n$ cho ước nguyên tố nhỏ nhất $\text{min_prime}[n]$ đến khi nào $n$ giảm về $1$. Trong trường hợp xấu nhất thì mỗi lần chia $\text{min_prime}[n]$ đều bằng $2$. Vì vậy, hàm phân tích trên **độ phức tạp thời gian** trường hợp xấu nhất là $\boldsymbol{O(\log n)}$.
 
 Tuy nhiên, phương pháp này có **độ phức tạp không gian** $\boldsymbol{O(n)}$ và thường sử dụng trong trường hợp cần phân tích nhiều số nguyên ra thừa số nguyên tố.
 
@@ -147,7 +145,7 @@ Theo định lý Legendre, ta có:
 $$
 v_p\left(n!\right) = \left\lfloor {\dfrac{n}{{{p^1}}}} \right\rfloor + \left\lfloor {\dfrac{n}{{{p^2}}}} \right\rfloor + \left\lfloor {\dfrac{n}{{{p^3}}}} \right\rfloor + \ldots < \dfrac{n}{{{p^1}}} + \dfrac{n}{{{p^2}}} + \dfrac{n}{{{p^3}}} + \ldots = \dfrac{n}{p-1}$$
 
-Như vậy, việc phân tích tất cả các số nguyên từ $1$ đến $n$ cũng như việc phân tích $n!$ cho ta tổng cộng tối đa 
+Như vậy, việc phân tích tất cả các số nguyên từ $1$ đến $n$ cũng như việc phân tích $n!$ cho ta tổng cộng tối đa
 $$\sum\limits_{p\text{ nguyên tố}} v_p\left(n!\right) < \sum\limits_{p\text{ nguyên tố}} \dfrac{n}{p-1} \sim n\ln \ln n + n + O(1) \text{ thừa số}$$
 </p>
 </details>
@@ -247,7 +245,7 @@ Ta cũng không cần phải sinh trước các số nguyên tố trong đoạn 
 ```cpp
 vector<bool> is_prime;
 void sieve(int L, int R){
-    is_prime.assign(R - L + 1, true); 
+    is_prime.assign(R - L + 1, true);
     // x là số nguyên tố khi và chỉ khi is_prime[x - l] == true
 
     for (long long i = 2; i * i <= R; ++i) {
@@ -268,14 +266,14 @@ void sieve(int L, int R){
     }
 }
 ```
-**Độ phức tạp thời gian** sẽ tệ hơn : $\boldsymbol{O(N \log (R) + \sqrt R)}$. 
+**Độ phức tạp thời gian** sẽ tệ hơn : $\boldsymbol{O(N \log (R) + \sqrt R)}$.
 Tuy nhiên, ta lại được lợi thế hơn về **độ phức tạp không gian: $\boldsymbol{O \left( N \right)}$**.
 
 Nguyên nhân là ta dùng tất cả các *số nguyên* trong đoạn $\left[ 2;\sqrt R \right]$ đó để đánh dấu trong đoạn $[L; R]$ nên sẽ mất $O \left( (R - L + 1) \cdot \left(\dfrac{1}{2} + \dfrac{1}{3} + \dfrac{1}{4} + \ldots + \dfrac{1}{\left\lfloor \sqrt R \right\rfloor} \right) \right) = O \left( N \log (R) \right)$.
 
 ## Một số ví dụ
 [VNOI - Phi hàm Euler](https://oj.vnoi.info/problem/etf)
-*Tóm tắt đề:* 
+*Tóm tắt đề:*
 Cho số nguyên dương $T$ và $T$ số nguyên dương $n_i$. Hãy tính phi hàm $\varphi(n_i)$ của $T$ số nguyên dương đã cho.
 $$\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p_1-1)(p_2 - 1) \ldots (p_k - 1)$$
 <details>
@@ -407,7 +405,7 @@ vector<int> prime_bits;
 void sieve_bits(int n){
     prime_bits.assign((n >> 3) + 5, 0);
     set(0); set(1);
-    for(int i = 2; i * i <= n; i++){  
+    for(int i = 2; i * i <= n; i++){
         if (!doc(i)){
             for(int j = i * i; j <= n; j += i){
                 set(j);
@@ -495,11 +493,11 @@ Xét code sàng Erathosenes sau:
     }
 ```
 
-Vì vòng lặp `j` bắt đầu từ `i * i` nên ta không cần phải giữ lại toàn bộ mảng `is_prime[1...n]` trong suốt quá trình sàng. Khi đó: 
+Vì vòng lặp `j` bắt đầu từ `i * i` nên ta không cần phải giữ lại toàn bộ mảng `is_prime[1...n]` trong suốt quá trình sàng. Khi đó:
 - Giữ lại các số nguyên tố $p$ trong đoạn $\left[1;\sqrt n\right]$: `prime[1..sqrt(n)]`
 - Chia $\left[1; n\right]$ thành các đoạn con (block) và sàng riêng từng đoạn (block).
 
-Gọi $S$ là kích thước của mỗi đoạn. Như thế, chúng ta sẽ có $\left\lceil \dfrac{n}{S} \right\rceil$ đoạn. Đoạn thứ $k$ $\left(k = 0 .. \left\lceil \dfrac{n}{S} \right\rceil - 1\right)$ là $\left[ kS; \min(kS + S - 1, n) \right]$. 
+Gọi $S$ là kích thước của mỗi đoạn. Như thế, chúng ta sẽ có $\left\lceil \dfrac{n}{S} \right\rceil$ đoạn. Đoạn thứ $k$ $\left(k = 0 .. \left\lceil \dfrac{n}{S} \right\rceil - 1\right)$ là $\left[ kS; \min(kS + S - 1, n) \right]$.
 
 Với mỗi đoạn, vòng lặp `for (int j = i * i; j <= n; j += i)` sẽ thay đổi sao cho `j` chỉ chạy trong đoạn đang xét.
 
@@ -560,7 +558,7 @@ Bản chất của bánh xe khi này là chỉ giữ lại các số $2, 3$ và 
 ![](https://hackmd.io/_uploads/r1w8o3OHn.png)
 
 Hoặc ví dụ khi chọn loại bỏ các bội của $2$ hoặc $3$ hoặc $5$, ta chọn $n = 2 \cdot 3 \cdot 5 = 30$
-Bản chất là ta chỉ giữ lại các số $2, 3, 5$ và các số có dạng $30k+i$ với $i <30$ và $i$ không chia hết cho $2,3,5$. 
+Bản chất là ta chỉ giữ lại các số $2, 3, 5$ và các số có dạng $30k+i$ với $i <30$ và $i$ không chia hết cho $2,3,5$.
 $\left(i \in \{1, 7, 11, 13, 17, 19, 23, 29 \}\right)$
 Trong trường hợp này, ta chỉ cần sử dụng mảng kiểm tra nguyên tố `is_prime` cho các số có dạng trên.
 Lý do người ta dùng bánh xe thì bạn đọc có thể xem ảnh dưới đây. *Nguồn: [Wikipedia](https://en.wikipedia.org/wiki/Sieve_of_Pritchard#Overview)*
@@ -626,7 +624,7 @@ Xét kích thước "bánh xe" là $mod = 2 \cdot 3 \cdot 5 \ldots$ có thể ch
 Và vì lý do bộ nhớ cache mà người ta chỉ thường chọn modulo $mod \in 30; 210$. Các số lọc được tiếp tục kiểm tra bằng cách khác như bên trên.
 
 ### Kết hợp các cải tiến
-Bên trên là một số cách cải tiến thường được sử dụng. Tuy nhiên bạn có thể kết hợp các cải tiến một cách hợp lý để tạo ra một sàng nguyên tố mạnh mẽ. 
+Bên trên là một số cách cải tiến thường được sử dụng. Tuy nhiên bạn có thể kết hợp các cải tiến một cách hợp lý để tạo ra một sàng nguyên tố mạnh mẽ.
 
 Dưới đây là một số sàng được sưu tầm bởi [*Code cùng RR*](https://www.facebook.com/code.cung.rr).
 
@@ -679,10 +677,10 @@ const int WHEEL = 3 * 5 * 7 * 11 * 13;
 const int N_SMALL_PRIMES = 6536;             // cnt primes less than 2^16
 const int SIEVE_SPAN = WHEEL * 64;           // one iteration of segmented sieve
 const int SIEVE_SIZE = SIEVE_SPAN / 128 + 1;
- 
+
 uint64_t ONES[64];                           // ONES[i] = 1<<i
 int small_primes[N_SMALL_PRIMES];            // primes less than 2^16
- 
+
 // each element of sieve is a 64-bit bitmask.
 // Each bit (0/1) stores whether the corresponding element is a prime number.
 // We only need to store odd numbers
@@ -691,10 +689,10 @@ uint64_t si[SIEVE_SIZE];
 // for each 'wheel', we store the sieve pattern (i.e. what numbers cannot
 // be primes)
 uint64_t pattern[WHEEL];
- 
+
 inline void mark(uint64_t* s, int o) { s[o >> 6] |= ONES[o & 63]; }
 inline int test(uint64_t* s, int o) { return (s[o >> 6] & ONES[o & 63]) == 0; }
- 
+
 // update_sieve
 void update_sieve(int offset) {
     // copy each wheel pattern to sieve
@@ -702,13 +700,13 @@ void update_sieve(int offset) {
         k = std::min(WHEEL, SIEVE_SIZE - i);
         memcpy(si + i, pattern, sizeof(*pattern) * k);
     }
- 
+
     // Correctly mark 1, 3, 5, 7, 11, 13 as not prime / primes
     if (offset == 0) {
         si[0] |= ONES[0];
         si[0] &= ~(ONES[1] | ONES[2] | ONES[3] | ONES[5] | ONES[6]);
     }
- 
+
     // sieve for primes >= 17 (stored in `small_primes`)
     for (int i = 0; i < N_SMALL_PRIMES; ++i) {
         int j = small_primes[i] * small_primes[i];
@@ -726,11 +724,11 @@ void update_sieve(int offset) {
     }
 }
 
- 
+
 void sieve() {
     // init small primes {{{
     for (int i = 0; i < 64; ++i) ONES[i] = 1ULL << i;
- 
+
     // sieve to find small primes
     for (int i = 3; i < 256; i += 2) {
         if (test(si, i >> 1)) {
@@ -747,19 +745,19 @@ void sieve() {
         assert(m == N_SMALL_PRIMES);
     }
     // }}}
- 
+
     // For primes 3, 5, 7, 11, 13: we initialize wheel pattern..
     for (int i = 1; i < WHEEL * 64; i += 3) mark(pattern, i);
     for (int i = 2; i < WHEEL * 64; i += 5) mark(pattern, i);
     for (int i = 3; i < WHEEL * 64; i += 7) mark(pattern, i);
     for (int i = 5; i < WHEEL * 64; i += 11) mark(pattern, i);
     for (int i = 6; i < WHEEL * 64; i += 13) mark(pattern, i);
- 
+
     // Segmented sieve
     long long sum_primes = 2;
     for (int offset = 0; offset < MAX; offset += SIEVE_SPAN) {
         update_sieve(offset);
- 
+
         for (uint32_t j = 0; j < SIEVE_SIZE; j++){
             uint64_t x = ~si[j];
             while (x){
@@ -876,7 +874,7 @@ Tuy nhiên, khi gặp các bộ dữ liệu $n$ vào khoảng $10^6$ thì các s
 ## Mở rộng
 - Sử dụng cách sàng như sàng nguyên tố chúng ta có thể xây dựng các sàng cho các số có tính chất đặc biệt khác, ví dụ như lưu ước chính phương lớn nhất, thay các số nguyên tố thành các số phân biệt có tính chất nào đó ... Ví dụ như [VNOI - Duyên Hải 2020 - Lớp 10 - Bài 2](https://oj.vnoi.info/problem/dhbb2020_square)
 - **Hàm** $\boldsymbol{\pi(x)}$ là hàm đếm số số nguyên tố không vượt quá số dương $x$.
-Và theo định lý số nguyên tố (Prime Number Theorem), ta có một công thức để ước lượng: 
+Và theo định lý số nguyên tố (Prime Number Theorem), ta có một công thức để ước lượng:
 $$\boldsymbol{\pi(x) \sim \dfrac{x}{\ln x}}$$
 Công thức này có thể hữu ích trong việc ước chừng các độ phức tạp liên quan đến số nguyên tố.
 - Khi tính số lượng các số nguyên tố hay tổng các số nguyên tố không vượt quá $n$, việc sử dụng Sàng nguyên tố là một phương pháp nhanh dễ hiểu. Tuy nhiên, với những bộ dữ liệu lớn, người ta thường sử dụng sử dụng [thuật toán Meissel–Lehmer](https://en.wikipedia.org/wiki/Meissel%E2%80%93Lehmer_algorithm) hay [thuật toán Lucy Hedgehog](https://projecteuler.net/thread=10;page=5#111677), có thể chạy với $n$ lên đến $10^{12}$ trong 1s.
@@ -930,10 +928,9 @@ Xem code bằng C++ tại [thuật toán Lehmer - đếm số lượng số nguy
 
 ## Nguồn tham khảo
 Bài viết được tổng hợp từ các nguồn dưới đây:
-* CP - Algorithms: 
+* CP - Algorithms:
     - [Sieve of Eratosthenes](https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html)
     - [Linear Sieve](https://cp-algorithms.com/algebra/prime-sieve-linear.html)
 * [Bài viết của Code cùng RR](https://www.facebook.com/story.php?story_fbid=pfbid0hmSeE2VMD69pvCfz7SufxBUr9kGSscEvKhvc4U8LreRsANv98C1iL3JYZMUrxhcCl&id=100066505638866&sfnsn=mo&mibextid=RUbZ1f)
 * [Bài viết 2 của Code cùng RR](https://www.facebook.com/story.php?story_fbid=pfbid02i8JQsWk96W5PmQh2dN8WnLWBcij8K4oqVmfc2cjnaJiEMELvStejCNeuGwddd8yzl&id=100066505638866&sfnsn=mo&mibextid=RUbZ1f)
 * [Wikipedia](https://vi.wikipedia.org/wiki/Trang_Ch%C3%ADnh)
-

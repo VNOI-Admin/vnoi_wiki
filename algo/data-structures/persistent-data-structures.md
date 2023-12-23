@@ -2,8 +2,6 @@
 
 **Tác giả:** Nguyễn *RR* Thành Trung
 
-[[_TOC_]]
-
 # 1. Mở đầu
 
 **Persistent Data Structures** là những cấu trúc dữ liệu được dùng khi chúng ta cần có **toàn bộ lịch sử** của các thay đổi trên 1 cấu trúc dữ liệu (CTDL). (Chú ý rằng từ **persistent** còn được dùng trong **persistent storage** với một nghĩa hoàn toàn khác).

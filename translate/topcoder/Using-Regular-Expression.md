@@ -1,7 +1,5 @@
 # Sử dụng Regex
 
-[[_TOC_]]
-
 Bài viết gốc: [Using Regular Expressions - đăng bởi Dan[Popovici] & mariusmuja trên Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/using-regular-expressions-2/)
 
 # Giới thiệu

@@ -4,11 +4,9 @@
 
 **Reviewer:** Nguyễn Khánh
 
-[[_TOC_]]
+# Lời mở đầu
 
-# Lời mở đầu 
- 
-Bài viết này sẽ giúp bạn tìm hiểu thêm về **kỹ thuật hai con trỏ**. Kỹ thuật này được sử dụng khá phổ biến, giúp chương trình tiết kiệm thời gian và không gian xử lý.  
+Bài viết này sẽ giúp bạn tìm hiểu thêm về **kỹ thuật hai con trỏ**. Kỹ thuật này được sử dụng khá phổ biến, giúp chương trình tiết kiệm thời gian và không gian xử lý.
 
 # Bài toán 1
 
@@ -18,7 +16,7 @@ Giới hạn: $n, m \leq 10^5$ và $0 \leq a_i, b_i \leq 10^{9}$.
 
 ## Phân tích
 
-Hãy cùng xem ví dụ sau đây. 
+Hãy cùng xem ví dụ sau đây.
 
 Cho trước hai dãy số $a$ và $b$ được sắp xếp không giảm:
 
@@ -28,13 +26,13 @@ $$b=[2,6,7,12,14,15]$$
 
 Làm cách nào để có thể ghép chúng thành một dãy số $c$ cũng được sắp xếp không giảm ?
 
-Trước tiên, hãy cùng xác định phần tử đầu tiên của dãy $c$. 
+Trước tiên, hãy cùng xác định phần tử đầu tiên của dãy $c$.
 
-Vì dãy $c$ được bố trí theo thứ tự không giảm, cho nên phần tử đầu tiên của dãy $c$ phải là phần tử có giá trị nhỏ nhất trong cả hai dãy $a$ và $b$. 
+Vì dãy $c$ được bố trí theo thứ tự không giảm, cho nên phần tử đầu tiên của dãy $c$ phải là phần tử có giá trị nhỏ nhất trong cả hai dãy $a$ và $b$.
 
 Ta có thể so sánh hai phần tử nhỏ nhất của hai dãy $a$, $b$ và đưa phần tử có giá trị nhỏ hơn vào vị trí đầu tiên của dãy $c$.
 
-Dãy $a$ và $b$ đã được sắp xếp không giảm, vì thế hai phần tử nhỏ nhất ở đây chính là hai phần tử ở vị trí đầu tiên ở mỗi dãy ($a[1]$ và $b[1]$). 
+Dãy $a$ và $b$ đã được sắp xếp không giảm, vì thế hai phần tử nhỏ nhất ở đây chính là hai phần tử ở vị trí đầu tiên ở mỗi dãy ($a[1]$ và $b[1]$).
 
 $$a=[\overset{\downarrow}{\color{red}1},3,6,8,10]$$
 
@@ -70,7 +68,7 @@ Sau khi đưa $a[2]$ vào dãy $c$, $a[3]$ trở thành phần tử nhỏ nhất
 
 Ta nhận thấy rằng
 * Tại mọi thời điểm, phần tử tiếp theo được đưa vào dãy $c$ sẽ là phần tử có giá trị nhỏ nhất trong các phần tử chưa được chọn.
-    * Bằng cách so sánh phần tử nhỏ nhất chưa được chọn ở dãy $a$ và phần tử nhỏ nhất chưa được chọn ở dãy $b$, phần tử nhỏ hơn sẽ được chọn vào dãy $c$.  
+    * Bằng cách so sánh phần tử nhỏ nhất chưa được chọn ở dãy $a$ và phần tử nhỏ nhất chưa được chọn ở dãy $b$, phần tử nhỏ hơn sẽ được chọn vào dãy $c$.
 * Ban đầu, lúc dãy $c$ chưa có phần tử nào
     * $a[1]$ là phần tử nhỏ nhất chưa được chọn trong dãy $a$.
     * $b[1]$ là phần tử nhỏ nhất chưa được chọn trong dãy $b$.
@@ -85,10 +83,10 @@ Dựa vào những phân tích ta có giải pháp sử dụng **hai con trỏ**
 - Dãy $a$ có con trỏ $i$, con trỏ này bắt đầu ở vị trí đầu dãy $a$.
     - Con trỏ $i$ này được thể hiện như phần tử nhỏ nhất chưa được chọn trong dãy $a$.
 - Dãy $b$ có con trỏ $j$, con trỏ này bắt đầu ở vị trí đầu dãy $b$.
-    - Con trỏ $j$ này được thể hiện như phần tử nhỏ nhất chưa được chọn trong dãy $b$. 
+    - Con trỏ $j$ này được thể hiện như phần tử nhỏ nhất chưa được chọn trong dãy $b$.
 - Ta sẽ lặp lại công việc này, cho đến khi đưa hết các phần tử trong dãy $a$ và $b$ vào dãy $c$:
     - Khi các phần tử trong một dãy nào đó, dãy $a$ hoặc dãy $b$, đều đã được đưa vào dãy $c$: đưa lần lượt các phần tử trong dãy còn lại vào dãy $c$.
-    - Ngược lại: 
+    - Ngược lại:
         - So sánh hai phần tử ở hai con trỏ.
         - Đưa phần tử có giá trị nhỏ hơn vào dãy $c$, nếu hai phần tử có giá trị như nhau thì chọn một trong hai.
         - Tăng vị trí con trỏ ở phần tử được đưa vào lên một đơn vị.
@@ -142,7 +140,7 @@ $a = [1, 3, 6, 8, 10]\overset{\underset{\downarrow}{\color{red}i}}{ }$\\
 $b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$\\
 $c = [1, 2, 3, 6, 6, 7, 8, 10]$
 
-* Vì tất cả các phần tử trong dãy $a$ đều đã được đưa vào dãy $c$ nên từ đưa lần lượt các phần tử chưa được chọn trong dãy $b$ vào trong dãy $c$ 
+* Vì tất cả các phần tử trong dãy $a$ đều đã được đưa vào dãy $c$ nên từ đưa lần lượt các phần tử chưa được chọn trong dãy $b$ vào trong dãy $c$
 $c = [1, 2, 3, 6, 6, 7, 8, 10, 12, 14,15]$
 
 ![](https://i.imgur.com/ZVXyx2n.gif)
@@ -155,7 +153,7 @@ vector<int> c;
 while (i <= n || j <= m){
     if (j == m + 1 || (i <= n && a[i] <= b[j]))
         c.push_back(a[i++]);
-    else 
+    else
         c.push_back(b[j++]);
 }
 for (auto it: c)
@@ -163,7 +161,7 @@ for (auto it: c)
 ```
 **Độ phức tạp**
 
-Vị trí con trỏ $i$ luôn tăng và tăng quá không quá $n$ lần, vị trí con trỏ $j$ cũng luôn tăng và tăng không quá $m$ lần. 
+Vị trí con trỏ $i$ luôn tăng và tăng quá không quá $n$ lần, vị trí con trỏ $j$ cũng luôn tăng và tăng không quá $m$ lần.
 
 Vì thế độ phức tạp của giải pháp là $O(n+m)$.
 
@@ -182,7 +180,7 @@ Giới hạn: $2 \leq n \leq 10^6$ và $0 \leq a_i, x \leq 10^9$
 
 ## Phân tích
 
-Hãy cùng xem ví dụ sau đây. 
+Hãy cùng xem ví dụ sau đây.
 
 Cho trước mảng số $a$ được sắp xếp tăng dần và $x=16$:
 
@@ -224,7 +222,7 @@ Ta có một số nhận xét sau:
 Từ những phân tích vừa rồi ta có giải pháp sử dụng hai con trỏ như sau:
 
 * Một con trỏ $(i)$ được đặt ở đầu mảng $A$, con trỏ còn lại $(j)$ được đặt ở cuối mảng $A$.
-* Nếu tổng của hai phần tử ở hai vị trí con trỏ 
+* Nếu tổng của hai phần tử ở hai vị trí con trỏ
     * Nhỏ hơn $X$: tăng vị trí con trỏ $i$ lên một đơn vị.
     * Lớn hơn $X$: giảm vị trí con trỏ $j$ đi một đơn vị.
 * Tiếp tục di chuyển cho đến khi hai con trỏ gặp nhau.
@@ -297,9 +295,9 @@ cout << "No solution";
 ```
 **Độ phức tạp**
 
-Vị trí con trỏ $i$ luôn tăng, vị trí con trỏ $j$ thì luôn giảm. 
+Vị trí con trỏ $i$ luôn tăng, vị trí con trỏ $j$ thì luôn giảm.
 
-Hơn nữa, sự thay đổi vị trí hai con trỏ này sẽ dừng lại khi tổng hai phần tử ở hai vị trí con trỏ có tổng là $X$ hay khi vị trí $i$ bằng vị trí $j$. 
+Hơn nữa, sự thay đổi vị trí hai con trỏ này sẽ dừng lại khi tổng hai phần tử ở hai vị trí con trỏ có tổng là $X$ hay khi vị trí $i$ bằng vị trí $j$.
 
 Vì thế, việc thay đổi vị trí hai con trỏ sẽ không quá $n$ lần, độ phức tạp của giải pháp là $O(n)$.
 
@@ -318,7 +316,7 @@ Giới hạn: $1\leq n \leq 10^6$, $1 \leq a_i \leq 10^9$ và $s \leq 10^{18}$.
 
 ## Phân tích
 
-Để dễ dàng phân tích, ta tạm gọi 
+Để dễ dàng phân tích, ta tạm gọi
 * $sum(l,r)$ là tổng các phần tử trong đoạn $[l,r]$.
 * Một đoạn con $[l,r]$ là đoạn con "tốt" nếu $sum(l,r) \leq s$
 
@@ -380,12 +378,12 @@ Qua ví dụ vừa rồi, ta thấy rằng, vị trí $l$ đối với các giá
 
 Thật vậy, với mọi $x<l$ thì $sum(x,r)>s \Rightarrow sum(x,r+1)>s$, vì thế giá trị $l$ đối với $r+1$ phải không quá giá trị $l$ đối với $r$.
 
-Hơn nữa vì các phần tử trong dãy $a$ đều có giá trị không quá $s$ cho nên luôn tồn tại vị trí $l \leq r$ sao cho đoạn $[l,r]$ là một đoạn "tốt". 
+Hơn nữa vì các phần tử trong dãy $a$ đều có giá trị không quá $s$ cho nên luôn tồn tại vị trí $l \leq r$ sao cho đoạn $[l,r]$ là một đoạn "tốt".
 ## Giải pháp
 
 Với những phân tích như trên, ta có giải quyết bài toán với phương pháp hai con trỏ như sau:
 * Hai con trỏ $l$ và $r$ sẽ đặt ở vị trí $1$.
-    * Hai con trỏ này được thể hiện như hai vị trí $l$, $r$ như ở trên phần phân tích. 
+    * Hai con trỏ này được thể hiện như hai vị trí $l$, $r$ như ở trên phần phân tích.
 * Di chuyển lần lượt con trỏ $r$ từ $1$ đến $n$.
     * Sau mỗi lần di chuyển con trỏ $r$, nếu
         *  $sum(l,r) \leq s$: giữ nguyên vị trí con trỏ $l$.
@@ -403,22 +401,22 @@ $a = [2, 6, 5, 3, 6, 8, 9]$ và $s=20$
     * $a = [\overset{\underset{\downarrow}{{\color{red}l},{\color{blue}r}}}{\color{green}2}, 6, 5, 3, 6, 8, 9]$
     * vì $a[1] \leq s$ nên đoạn $[1,1]$ là một đoạn "tốt".
     * $ans = max(ans, r - l + 1)$
-    
+
 * Tăng vị trí $r$ lên $1$ đơn vị
     * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 5, 3, 6, 8, 9]$
     * vì $sum(l,r) = 8 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = max(ans, r - l + 1)$
-    
+
 * Tăng vị trí $r$ lên $1$ đơn vị
     * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}5}, 3, 6, 8, 9]$
     * vì $sum(l,r) = 13 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = max(ans, r - l + 1)$
-    
+
 * Tăng vị trí $r$ lên $1$ đơn vị
     * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}5},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
     * vì $sum(l,r) = 16 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = max(ans, r - l + 1)$
-    
+
 * Tăng vị trí $r$ lên $1$ đơn vị
     * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{orange}2}, {\color{orange}6}, {\color{orange}5}, {\color{orange}3}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}6}, 8, 9]$
     * vì $sum(l,r) = 22 > s$ nên tăng vị trí $l$.
@@ -458,9 +456,9 @@ $a = [2, 6, 5, 3, 6, 8, 9]$ và $s=20$
 
 **Cài đặt**
 
-Để có thể tính được tổng các phần tử từ $l$ đến $r$ trong khi $l$ và $r$ đang di động, ta sẽ sử dụng biến $sum$ để lưu lại tổng của đoạn $[l,r]$ hiện tại. 
+Để có thể tính được tổng các phần tử từ $l$ đến $r$ trong khi $l$ và $r$ đang di động, ta sẽ sử dụng biến $sum$ để lưu lại tổng của đoạn $[l,r]$ hiện tại.
 
-Sau khi di chuyển $r$ sang phải, biến $sum$ sẽ cộng thêm giá trị $a[r]$. 
+Sau khi di chuyển $r$ sang phải, biến $sum$ sẽ cộng thêm giá trị $a[r]$.
 
 Trước khi di chuyển $l$ sang phải, biến $sum$ sẽ trừ đi giá trị $a[l]$.
 
@@ -478,9 +476,9 @@ cout << ans;
 ```
 **Độ phức tạp**
 
-Vị trí con trỏ $r$ luôn tăng, vị trí con trỏ $l$ luôn tăng và luôn tăng không giá trị $r$. 
+Vị trí con trỏ $r$ luôn tăng, vị trí con trỏ $l$ luôn tăng và luôn tăng không giá trị $r$.
 
-Hơn nữa, mỗi vị trí $l$ và $r$ tăng không quá $n$ lần. 
+Hơn nữa, mỗi vị trí $l$ và $r$ tăng không quá $n$ lần.
 
 Vì thế độ phức tạp của giải pháp là $O(n)$.
 
@@ -510,9 +508,9 @@ Dãy số của chúng ta sẽ có dạng
 
 $$x_0 = 1, x_1=f(x_0), x_2=f(x_1),...,x_i=f(x_{i-1}),...$$
 
-Với phép chia lấy dư cho $c$ thì mọi $i > 0$, giá trị của $x_i$ sẽ có giá trị nằm trong khoảng $[0, c-1] $. 
+Với phép chia lấy dư cho $c$ thì mọi $i > 0$, giá trị của $x_i$ sẽ có giá trị nằm trong khoảng $[0, c-1] $.
 
-Vì thế, dãy số với vô hạn phần tử này sẽ tồn tại $x_m = x_n$ với $m < n$. (theo nguyên lý [Dirichlet](https://vi.wikipedia.org/wiki/Nguy%C3%AAn_l%C3%BD_ng%C4%83n_k%C3%A9o_Dirichlet)) 
+Vì thế, dãy số với vô hạn phần tử này sẽ tồn tại $x_m = x_n$ với $m < n$. (theo nguyên lý [Dirichlet](https://vi.wikipedia.org/wiki/Nguy%C3%AAn_l%C3%BD_ng%C4%83n_k%C3%A9o_Dirichlet))
 
 Có thể thấy, khi dãy tồn tại $x_m = x_n$, dãy sẽ xuất hiện chu kỳ. Cụ thể như sau:
 
@@ -534,7 +532,7 @@ Cụ thể, xem ví dụ sau đây:
 
 $$a = 8, b = 2, c = 31$$
 
-Ta có dãy số 
+Ta có dãy số
 
 $${\color{blue}\underbrace{\color{black}1, 8, 6, 20, 15}_{}},{\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}}, {\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}}, {\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}},...$$
 
@@ -569,15 +567,15 @@ Tại mỗi thời điểm, ta tịnh tiến hai con trỏ này như sau:
     * Vì dãy số của chúng ta có chu kỳ nên ta có công thức tính giá trị của con trỏ $hare$ sau $t$ lần tịnh tiến:
         * $2t < \mu$: $x_{2t}$
         * $2t \geq \mu$: $x_{\mu+(2t-\mu) \ mod \ \lambda}$
-    
+
 Ngoài lúc ban đầu, hai con trỏ $tortoise$ và $hare$ sẽ luôn gặp nhau tại thời điểm nào đó. Thật vậy:
-* $2t < \mu$: 
-    * Sau $t$ lần tịnh tiến, $tortoise$ = $x_t$ và $hare$ = $x_{2t}$. 
-    * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $x_0$ đến $x_{\mu + \lambda - 1}$ phải đôi một khác nhau. 
+* $2t < \mu$:
+    * Sau $t$ lần tịnh tiến, $tortoise$ = $x_t$ và $hare$ = $x_{2t}$.
+    * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $x_0$ đến $x_{\mu + \lambda - 1}$ phải đôi một khác nhau.
     * Vì thế $x_t \neq x_{2t}$, $tortoise$ và $hare$ chưa gặp nhau lúc này.
 * $2t \geq \mu$ và $t < \mu$
     * Sau $t$ lần tịnh tiến, $tortoise$ = $x_t$ và $hare$ = $x_{\mu+(2t-\mu) \ mod \ \lambda}$.
-    * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $x_0$ đến $x_{\mu + \lambda - 1}$ phải đôi một khác nhau. 
+    * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $x_0$ đến $x_{\mu + \lambda - 1}$ phải đôi một khác nhau.
     * Vì thế $x_t \neq x_{\mu+(2t-\mu) \ mod \ \lambda}$, $tortoise$ và $hare$ chưa gặp nhau lúc này.
 * $t \geq \mu$
     * Sau $t$ lần tịnh tiến, $tortoise$ = $x_{\mu+(t-\mu) \ mod \ \lambda}$ và $hare$ = $x_{\mu+(2t-\mu) \ mod \ \lambda}$.
@@ -642,7 +640,7 @@ while (true) {
 
 $$a = 2, b = 2, c = 32$$
 
-Ta có dãy số 
+Ta có dãy số
 
 $${\color{blue}\underbrace{\color{black}1, 2, 5, 12}_{}},{\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}},...$$
 

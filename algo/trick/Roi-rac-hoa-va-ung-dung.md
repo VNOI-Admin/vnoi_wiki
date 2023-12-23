@@ -2,8 +2,6 @@
 
 **Tác giả**: Lê Hùng Sơn - Đại học FPT
 
-[[_TOC_]]
-
 # Giới thiệu
 
 **Rời rạc hóa** là một lĩnh vực lớn có đối tượng nghiên cứu là các tập hợp rời rạc trong khoa học máy tính. Ứng dụng của của phương pháp rất lớn và thường được sử dụng trong rất nhiều kỳ thi lớn. Trong phạm vi chuyên đề ta chỉ xét một số ví dụ để hiểu rõ thêm phương pháp này.

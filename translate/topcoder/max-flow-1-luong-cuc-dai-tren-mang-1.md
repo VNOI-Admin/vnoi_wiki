@@ -4,9 +4,6 @@
 
 **Email:** dovietanh.95@gmail.com
 
-[[_TOC_]]
-
-
 # 0. Kiến thức cần biết
 
 Để có thể hiểu được bài viết bạn đọc cần biết các khái niệm về [lý thuyết đồ thị](https://vi.wikipedia.org/wiki/L%C3%BD_thuy%E1%BA%BFt_%C4%91%E1%BB%93_th%E1%BB%8B) và bài viết giới thiệu về bài toán [luồng cực đại trên mạng](/translate/wcipeg/Flows)

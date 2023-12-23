@@ -5,7 +5,7 @@
 **Biên soạn:**
 - Bùi Nguyễn Ngọc Thắng - Carnegie Mellon University in Qatar
 
-**Reviewer:** 
+**Reviewer:**
 - Trần Quang Lộc - ITMO University
 - Hoàng Xuân Nhật - VNUHCM-University of Science
 - Nguyễn Nhật Minh Khôi - VNUHCM-University of Science
@@ -14,8 +14,6 @@
 
 **Chuẩn bị bài tập và bộ test**
 - Nguyễn Hoàng Vũ - THPT chuyên Phan Bội Châu - Nghệ An
-
-[[_TOC_]]
 
 Bài viết sẽ giới thiệu cho độc giả về đường đi và chu trình Euler, một khái niệm cơ bản có ứng dụng rộng rãi trong lý thuyết đồ thị và lập trình thi đấu. Phạm vi bài viết bao gồm các định lý liên quan đến sự tồn tại của đường đi và chu trình Euler trong đồ thị và chứng minh, thuật toán tìm chu trình Euler và ứng dụng trong một số bài tập.
 
@@ -96,13 +94,13 @@ Ta cần chứng minh nếu với mỗi đỉnh $u \in G$, $deg^+(u) = deg^-(u)$
 Dễ thấy nếu $G$ chỉ có $1$ đỉnh thì định lý đúng.
 
 > #### Bổ đề 1
-> 
+>
 > Với mọi đỉnh $u \in G$, tồn tại một chu trình chứa $u$.
-> 
+>
 > #### Chứng minh
-> 
+>
 > Ta dựng một chu trình bắt đầu từ $u$.
-> 
+>
 > Bắt đầu từ $u$ ta chọn một cạnh ra từ $u$ đến $u'$ chưa thăm bất kì để đi. Lặp lại thao tác này cho đến khi ta đến một đỉnh $v$ mà ta đã thăm hết tất cả cạnh ra của $v$. Nếu $v \neq u$ thì luôn tìm được một cạnh ra chưa thăm để đi tiếp vì khi đi vào thì ta giảm $deg^-(v)$ đi $1$, tức ban đầu $deg^-(v) > 0$. Do điều kiện mọi đỉnh thuộc $G$ đều có bán bậc vào bằng bán bậc ra nên $deg^+(v) > 0$, tức tồn tại cạnh ra chưa thăm. Suy ra $v = u$. Như vậy ta đã chỉ ra được một chu trình chứa $u$ trong đồ thị.
 
 Giả sử điều phải chứng minh đúng với mọi đồ thị con $G' \subset G$ thoả điều kiện. Tức là ta tìm được một chu trình Euler $C'$ trên mọi $G' \subset G$ sao cho với mọi $v \in G'$, $deg^-(v) = deg^+(v)$.
@@ -118,15 +116,15 @@ Theo giả sử thì với mọi $G_i$ ta tìm được một chu trình Euler $
 > Đồ thị ban đầu, dễ thấy tồn tại chu trình $C = 1 \to 2 \to 3 \to 4 \to 5 \to 6 \to 1$
 >
 > ![graph3](https://i.imgur.com/aUE68Hj.png)
-> 
+>
 > Xoá các cạnh thuộc $C$, ta nhận thấy có $2$ chu trình con là $C_1 = 3 \to 9 \to 5 \to 3$ và $C_2 = 6 \to 8 \to 7 \to 6$
 >
 > ![graph4](https://i.imgur.com/fwSS7hb.png)
-> 
+>
 > Nhận thấy giữa $C$ và $C_1$ có đỉnh chung $5$. Nối $2$ chu trình lại ta thu được một chu trình $C$ mới lớn hơn: $C = 1 \to 2 \to 3 \to 4 \to 5 \to 3 \to 9 \to 5 \to 6 \to 1$.
 >
 > ![graph5](https://i.imgur.com/sekE1zw.png)
-> 
+>
 > Tiếp tục, giữa $C$ và $C_2$ có đỉnh chung $6$. Nối $2$ chu trình lại ta thu được một chu trình $C$ mới: $C = 1 \to 2 \to 3 \to 4 \to 5 \to 3 \to 9 \to 5 \to 6 \to 7 \to 8 \to 6 \to 1$. Ta đã đi qua tất cả các cạnh và tìm được chu trình Euler trong đồ thị.
 >
 > ![graph6](https://i.imgur.com/l9EXMND.png)
@@ -222,15 +220,15 @@ Xét một đồ thị vô hướng $G$ có $n$ đỉnh thoả $\forall u \in G$
         - Do trên chu trình $C$, mỗi khi ta đi vào một đỉnh ta lập tức đi ra khỏi đỉnh ấy nên sau khi xoá cạnh, bậc của mọi đỉnh vẫn chẵn.
         - Với mỗi $G'$, do bậc của mọi đỉnh vẫn chẵn, tìm được chu trình Euler $C'$ đi qua tất cả các cạnh (giả thiết quy nạp).
         - Do tất cả các đỉnh có bậc lớn hơn $0$ trong $G$ thuộc cùng một thành phần liên thông nên mọi $G'$ có đỉnh chung với $C$. Lần lượt nối các chu trình nhỏ $C'$ vào $C$, ta thu được chu trình Euler của $G$.
-    
+
 > Đồ thị ban đầu, dễ thấy chu trình $C = 1 \to 2 \to 3 \to 4 \to 1$
 >
 > ![](https://i.imgur.com/cid4lgG.png)
-> 
+>
 > Xoá các cạnh thuộc $C$, ta dễ thấy một chu trình $C_1 = 7 \to 4 \to 8 \to 1 \to 5 \to 2 \to 6 \to 3 \to 7$.
 >
 > ![](https://i.imgur.com/3BgtAJ0.png)
-> 
+>
 > Nhận thấy $C$ và $C_1$ có đỉnh chung $2$, nối $C$ và $C_1$ để tạo ra chu trình mới lớn hơn: $1 \to 2 \to 6 \to 3 \to 7 \to 4 \to 8 \to 1 \to 5 \to 2 \to 3 \to 4 \to 1$. Ta đã đi qua tất cả các cạnh và tìm được chu trình Euler trong đồ thị.
 >
 > ![](https://i.imgur.com/Cv1oPJH.png)
@@ -273,7 +271,7 @@ Giả sử đồ thị thoả định lý 1. Các bước trong thuật toán c�
     1. Khởi tạo mảng kết quả $C$ là rỗng và xuất phát từ đỉnh $u$.
     2. Từ đỉnh đang đứng, chọn một cạnh ra chưa thăm để đi. Đánh dấu cạnh vừa đi qua và cập nhật vào $C$.
     3. Lặp lại bước (ii). Nếu không thể đi tiếp thì ta tìm được một chu trình $C$ và sang bước 2.
-2. Nếu ta đã đi qua tất cả cạnh, trả $C$ là kết quả. Nếu $C$ chưa đi qua tất cả các cạnh, các cạnh chưa thăm trong đồ thị tạo thành những thành phần liên thông yếu. Tìm một đỉnh $v$ trên đồ thị thuộc $C$ mà có cạnh ra chưa đi qua. 
+2. Nếu ta đã đi qua tất cả cạnh, trả $C$ là kết quả. Nếu $C$ chưa đi qua tất cả các cạnh, các cạnh chưa thăm trong đồ thị tạo thành những thành phần liên thông yếu. Tìm một đỉnh $v$ trên đồ thị thuộc $C$ mà có cạnh ra chưa đi qua.
 4. Gọi đệ quy thủ tục tìm chu trình Euler với tham số là đỉnh $v$. Sau khi hoàn thành ta thu được một chu trình Euler $D$ đi qua tất cả các cạnh trong đồ thị con chứa $v$.
 5. Nối hai chu trình $C$ và $D$ tại đỉnh chung $v$. Lặp lại bước 2.
 
@@ -289,7 +287,7 @@ Ngoài ra cài đặt mẫu sử dụng cấu trúc danh sách liên kết đôi
 
 struct Edge {
     int target, id;
-	
+
     Edge(int _target, int _id): target(_target), id(_id) {}
 };
 
@@ -299,50 +297,50 @@ bool used_edge[M]; // Mảng đánh dấu cạnh đã thăm
 list<int> euler_walk(int u) {
     // Sử dụng cấu trúc danh sách liên kết để lưu kết quả
     list<int> ans;
-    
+
     // Xuất phát từ đỉnh u
     ans.push_back(u);
-    
+
     while (!adj[u].empty()) {
         // Chọn một cạnh bất kì chưa thăm
         int v = adj[u].back().target;
         int eid = adj[u].back().id;
-        
+
         // Xoá cạnh vừa đi qua khỏi đồ thị
         // Lưu ý việc xoá cạnh có thể **ảnh hưởng** tới các
         // thao tác trên đồ thị về sau do việc xoá cạnh sẽ
         // **phá huỷ** hoàn toàn danh sách cạnh
         // Nên sao lưu danh sách cạnh ra biến khác nếu cần dùng lại
         adj[u].pop_back();
-        
+
         // Bỏ qua nếu cạnh đã thăm
         if (used_edge[eid]) continue;
-        
+
         // Đánh dấu cạnh đã đi qua
         used_edge[eid] = true;
-        
+
         // Di chuyển sang đỉnh mới
         u = v;
-        
+
         // Thêm cạnh vào đường đi hiện tại
-        // Có nhiều cách lưu chu trình như lưu đỉnh, cạnh, 
+        // Có nhiều cách lưu chu trình như lưu đỉnh, cạnh,
         // chỉ số cạnh, ...
         ans.push_back(u);
     }
-    
+
     // Tìm cạnh chưa thăm từ một đỉnh trên chu trình hiện tại
-    // Bắt đầu từ đỉnh thứ hai trong chu trình do ta biết 
+    // Bắt đầu từ đỉnh thứ hai trong chu trình do ta biết
     // rằng đỉnh đầu tiên trong chu trình (u) đã không còn
     // cạnh ra
     for (auto it = ++ans.begin(); it != ans.end(); ++it) {
         // Gọi đệ quy tiếp tục tìm chu trình mới
         auto t = euler_walk(*it);
-        
+
         // Nối chu trình tìm được vào chu trình hiện tại
-        t.pop_back();  
+        t.pop_back();
         ans.splice(it, t);
     }
-    
+
     return ans;
 }
 ```
@@ -376,7 +374,7 @@ const int N = 1e5 + 2, M = 2e5 + 2;
 
 struct Edge {
     int target, id;
-	
+
     Edge(int _target, int _id): target(_target), id(_id) {}
 };
 
@@ -394,7 +392,7 @@ bool check() {
     for (int i = 2; i < n; ++i)
         if (adj[i].size() != in_deg[i])
             return false;
-    
+
     return true;
 }
 
@@ -406,7 +404,7 @@ int main() {
         adj[u].emplace_back(v, i);
         ++in_deg[v];
     }
-    
+
     // Kiểm tra tồn tại đường đi Euler
     if (!check()) {
         cout << "IMPOSSIBLE";
@@ -419,7 +417,7 @@ int main() {
     // Tìm chu trình Euler
     list<int> ans = euler_walk(1);
 
-    // Kiểm tra xem đã đi qua hết tất cả cạnh chưa vì trong trường hợp đồ 
+    // Kiểm tra xem đã đi qua hết tất cả cạnh chưa vì trong trường hợp đồ
     // thị không liên thông ta không thể đi qua tất cả cạnh
     if (ans.size() < m + 1)
         cout << "IMPOSSIBLE";
@@ -482,7 +480,7 @@ const int M = 40002;
 
 struct Edge {
     int target, id;
-    
+
     Edge(int _target, int _id): target(_target), id(_id) {}
 };
 
@@ -497,37 +495,37 @@ int main() {
     for (int i = 0; i < m; ++i) {
         int u, v;
         cin >> u >> v >> w[i];
-        
+
         // Thêm cạnh vào đồ thị
         adj[u].emplace_back(v, i);
         adj[v].emplace_back(u, i);
-        
+
         edge_id[u][v] = i;
         edge_id[v][u] = i;
-        
+
         // Cập nhật bậc của đỉnh
         ++deg[u];
         ++deg[v];
     }
-    
+
     // Nếu đồ thị có đỉnh bậc lẻ hiển nhiên không tồn tại đáp án
     for (int i = 1; i <= n; ++i)
         if (deg[i] % 2 != 0) {
             cout << -1;
             return 0;
         }
-    
+
     // Tìm chu trình Euler
     list<int> cycle = euler_walk(1);
     int cycle_size = cycle.size();
-    
-    // Nếu các đỉnh có bậc lớn hơn 0 trong đồ thị không nằm cùng một TPLT 
+
+    // Nếu các đỉnh có bậc lớn hơn 0 trong đồ thị không nằm cùng một TPLT
     // thì không tồn tại đáp án
     if (cycle_size < m + 1) {
         cout << -1;
         return 0;
     }
-    
+
     // Tạo mảng S như đã đề cập
     fill(S, S + M, 0);
     int u = *cycle.begin();
@@ -537,12 +535,12 @@ int main() {
         S[i] = S[i - 1] + w[edge_id[u][v]];
         u = v;
     }
-    
+
     // Tìm k sao cho S[k] -> min
     int k = 0;
     for (int i = 1; i < cycle_size; ++i)
         if (S[i] < S[k]) k = i;
-   
+
     // Dịch chu trình sao cho bắt đầu ở u[k]
     list<int> ans;
     ans.clear();
@@ -551,9 +549,9 @@ int main() {
         ans.push_back(*it);
     ans.push_back(*it);
     ans.insert(ans.begin(), it, (--cycle.end()));
-    
+
     for (int i : ans) cout << i << " ";
-    
+
     return 0;
 }
 ```
@@ -609,7 +607,7 @@ struct Edge {
 vector<vector<Edge>> build_graph(int n) {
     vector<vector<Edge>> g(1 << n);
     for (int u = 0; u < (1 << n); ++u) {
-        // Lưu ý thêm cạnh có trọng số 1 trước để ưu tiên sử dụng cạnh 
+        // Lưu ý thêm cạnh có trọng số 1 trước để ưu tiên sử dụng cạnh
         // có trọng số 0 khi tìm chu trình
         g[u].emplace_back(((u << 1) + 1) & ((1 << n) - 1), 1);
         g[u].emplace_back((u << 1) & ((1 << n) - 1), 0);
@@ -627,7 +625,7 @@ list<Edge> euler_walk(int u, vector<vector<Edge>> &g) {
         u = v;
     }
 
-    // Duyệt chu trình hiện tại từ cuối về đầu và 
+    // Duyệt chu trình hiện tại từ cuối về đầu và
     // gọi đệ quy nếu cần thiết
     auto it = --ans.end();
     while (it != ans.begin())
@@ -655,10 +653,10 @@ int main() {
         if (ans[n].empty()) {
             // Dựng đồ thị de Bruijn n - 1 chiều
             vector<vector<Edge>> g = build_graph(n - 1);
-            
+
             // Tìm chu trình Euler trên đồ thị vừa dựng
             list<Edge> seq = euler_walk(0, g);
-            
+
             // Sinh dãy de Bruijn n chiều từ chu trình Euler tìm được
             int cur = 0;
             ans[n].clear();
@@ -819,7 +817,7 @@ int main() {
                 // Tìm chu trình Euler trên TPLT đang xét
                 list<Edge> cycle = euler_walk(Point(i, j), g);
 
-                // Chia chu trình tìm được thành các nét vẽ 
+                // Chia chu trình tìm được thành các nét vẽ
                 // riêng biệt dựa vào các cạnh ảo
                 vector<Point> stroke;
                 stroke.clear();

@@ -1,7 +1,5 @@
 # Cây DFS (Depth-First Search Tree) và ứng dụng
 
-[[_TOC_]]
-
 **Tác giả:**
 - **Nguyễn Châu Khanh** - THPT Chuyên Hùng Vương - Phú Thọ
 - **Bùi Minh Hoạt** - THPT Chuyên Hùng Vương - Phú Thọ

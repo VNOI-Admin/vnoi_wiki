@@ -1,7 +1,5 @@
 # Độ phức tạp tính toán - phần 2
 
-[[_TOC_]]
-
 Nguồn bài: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/computational-complexity-section-2/)
 
 [...đọc phần 1](http://vnoi.info/contributor/translate/topcoder/Computational-Complexity-Section-1)

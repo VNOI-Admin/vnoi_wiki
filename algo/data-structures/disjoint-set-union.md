@@ -8,8 +8,6 @@
 - Hoàng Xuân Nhật - VNUHCM-University of Science
 - Hồ Ngọc Vĩnh Phát - VNUHCM-University of Science
 
-[[_TOC_]]
-
 # Giới thiệu
 
 **Disjoint Set Union**, hay **DSU**, là một cấu trúc dữ liệu hữu dụng và thường xuyên được sử dụng trong các kì thi CP. DSU, đúng như tên gọi của nó, là một cấu trúc dữ liệu có thể quản lí một cách hiệu quả một tập hợp của các tập hợp.

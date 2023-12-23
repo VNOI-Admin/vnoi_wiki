@@ -1,7 +1,5 @@
 # Aho Corasick
 
-[[_TOC_]]
-
 **Nguồn**: [emaxx](https://cp-algorithms.com/string/aho_corasick.html#toc-tgt-3)
 
 ## Lưu ý

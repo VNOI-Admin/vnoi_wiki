@@ -1,7 +1,5 @@
 # Định lý Lucas
 
-[[_TOC_]]
-
 # Định lý
 
 Nếu $M$ là số nguyên tố thì $C_{N}^{K} \equiv C_{n_0}^{k_0}.C_{n_1}^{k_1}...C_{n_{p}}^{k_{p}} \ (mod \ M)$

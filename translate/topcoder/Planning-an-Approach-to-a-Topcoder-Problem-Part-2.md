@@ -4,8 +4,6 @@ Bài viết bởi [leadhyena_inran](https://www.topcoder.com/members/leadhyena_i
 
 Nguồn: [Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/planning-an-approach-to-a-topcoder-problem-part-2/)
 
-[[_TOC_]]
-
 # Tiếp cận từ dưới lên (Bottom-up Programming)
 
 Kỹ thuật này ngược với kỹ thuật chia nhỏ vấn đề đã được nói đến ở [bài viết trước](/translate/topcoder/Planning-an-Approach-to-a-Topcoder-Problem-Part-1), và nó nên là kỹ thuật đầu tiên bạn nghĩ tới khi bạn chưa tìm ra hướng giải. Bottom-up programming là phương pháp xuất phát từ những hàm cơ bản, chỉnh sửa, thêm tính năng, kết hợp chúng để giải được bài toán ban đầu. Nhiều lúc khi vừa đọc đề bạn sẽ thấy rằng bạn cần một hàm cụ thể nào đó để giải bài này, nếu nó đã atomic hay dễ dàng cài đặt thì bạn có thể có thể xây dựng thẳng lên từ những hàm cơ bản đó thay vì chia nhỏ ra.

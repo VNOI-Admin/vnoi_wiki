@@ -9,8 +9,6 @@
 **Reviewer:**
 - Hoàng Xuân Nhật
 
-[[_TOC_]]
-
 # Mở đầu
 - Bài viết này sẽ giúp bạn tìm hiểu về **bài toán sắp xếp Tô-pô** *(Topological Sort)*. Sắp xếp Tô-pô là một trong những bài toán có tính ứng dụng cao trong Tin học lẫn Toán học và cả trong đời sống.
 

@@ -1,7 +1,5 @@
 # Tất tần tật về Cây Phân Đoạn (Segment Tree)
 
-[[_TOC_]]
-
 **LƯU Ý**:
 
 - Khi Segment Tree mới được du nhập vào Việt Nam, một số tài liệu gọi là Interval Tree. Đây là cách gọi không chính xác, bởi [Interval Tree là một CTDL khác](https://en.wikipedia.org/wiki/Interval_tree).

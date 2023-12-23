@@ -8,8 +8,7 @@ Bài viết có tham khảo và bổ sung, chỉnh sửa từ [TopCoder](https:/
 * Hồ Ngọc Vĩnh Phát - Đại học Khoa học Tự nhiên, ĐHQG-HCM
 * Ngô Nhật Quang - Trường THPT chuyên Khoa học Tự Nhiên, ĐHQGHN
 
-[[_TOC_]]
- 
+
 # Giới thiệu
 __Quy hoạch động (QHĐ) (Dynamic Programming)__ là một trong những kĩ thuật quan trọng và cơ bản nhất trong lập trình thi đấu. Bài viết này sẽ trình bày và giải thích các khái niệm liên quan đến quy hoạch động đồng thời đưa ra các ví dụ minh họa.
 
@@ -30,7 +29,7 @@ Bây giờ ta sẽ xây dựng thuật giải:
 
 ### Thuật toán đệ quy
 
-Gọi số cách xếp $i$ cái ghế là $f[i]$. Ta xét chiếc ghế thứ $n$. 
+Gọi số cách xếp $i$ cái ghế là $f[i]$. Ta xét chiếc ghế thứ $n$.
 * Nếu nó có màu đen hoặc trắng thì chiếc ghế cạnh nó có thể có một trong ba màu. Do đó ta chỉ cần bố trí $n-1$ chiếc ghế còn lại thỏa mãn yêu cầu. Do có 2 cách chọn màu cho ghế thứ $n$ và $f[n-1]$ cách chọn màu cho các ghế còn lại nên số cách xếp trong trường hợp này là $2 * f[n-1]$.
 
 [[/uploads/basic-dynamic-programming-1_img2.png]]
@@ -169,15 +168,15 @@ Trạng thái của bài toán là số đồng xu nhỏ nhất có tổng giá 
 
 Cần một công thức truy hồi để tính $f[i]$ theo $f[1],f[2],\ldots,f[i-1]$.
 
-Để ý thấy với $i$ bất kì, nếu có một đồng xu giá trị $v_j \le i$ thì ta có thể thêm đồng đó vào các đồng có tổng giá trị là $i-v_j$. Giả sử $m$ là số đồng xu ít nhất có tổng là $i-v_j$, khi đó có $m+1$ đồng xu có tổng giá trị $i$. Nếu $f[i] = -1$ thì ta cập nhật $f[i] = m + 1$, nếu $f[i] \ne -1$ thì $f[i]=\min(f[i], m+1)$. 
+Để ý thấy với $i$ bất kì, nếu có một đồng xu giá trị $v_j \le i$ thì ta có thể thêm đồng đó vào các đồng có tổng giá trị là $i-v_j$. Giả sử $m$ là số đồng xu ít nhất có tổng là $i-v_j$, khi đó có $m+1$ đồng xu có tổng giá trị $i$. Nếu $f[i] = -1$ thì ta cập nhật $f[i] = m + 1$, nếu $f[i] \ne -1$ thì $f[i]=\min(f[i], m+1)$.
 
 Sau đây là ví dụ: ***Cho các đồng xu với giá tiền $1,3,5$. Và $S = 11$.***
 
 Đầu tiên, ta bắt đầu từ trạng thái cơ bản nhất: $f[0]=0$.
 
-Xét đến tổng $1$. Có duy nhất đồng xu $1$ nhỏ hơn hoặc bằng tổng $1$, nên ta có $f[1]=f[1−v_1]+1=f[0]+1=1$. 
+Xét đến tổng $1$. Có duy nhất đồng xu $1$ nhỏ hơn hoặc bằng tổng $1$, nên ta có $f[1]=f[1−v_1]+1=f[0]+1=1$.
 
-Xét đến tổng $2$. Cũng giống như tổng trước, chỉ có $1$ đổng xu không vượt quá $2$, suy ra $f[2]=f[2−v_1]+1=f[1]+1=2$. 
+Xét đến tổng $2$. Cũng giống như tổng trước, chỉ có $1$ đổng xu không vượt quá $2$, suy ra $f[2]=f[2−v_1]+1=f[1]+1=2$.
 
 Đến tổng $3$. Lần này có hai đồng xu không vượt quá $3$ là $1$ và $3$. Nếu ta chọn đồng $1$, ta có $f[3]=f[3−v_1]+1=f[2]+1=3$; nếu ta chọn đồng $3$, ta có $f[3]=f[3−v_2]+1=f[0]+1=1$. Rõ ràng $1 ≤ 3$ nên ta chọn đồng $3$ và $f[3]=1$.
 
@@ -275,7 +274,7 @@ int main()
 }
 ```
 
-**Ví dụ minh họa:** 
+**Ví dụ minh họa:**
 
 $i$|$1$ | $2$| $3$| $4$| $5$|
 :-:|:-:|:-:|:-:|:-:|:-:|
@@ -292,7 +291,7 @@ Bài toán tìm dãy con không giảm dài nhất là một ví dụ điển h�
 Một số biến thể:
 ### Tìm dãy con không giảm dài nhất
 
-Bài toán giống ví dụ 3, nhưng yêu cầu in ra dãy con đó. Ta có thể làm tương tự như trên, nhưng thêm mảng truy vết $d[i]$ lưu vị trí $j<i$ mà $f[i]=f[j]+1$. Ta có thể cài đặt như sau: 
+Bài toán giống ví dụ 3, nhưng yêu cầu in ra dãy con đó. Ta có thể làm tương tự như trên, nhưng thêm mảng truy vết $d[i]$ lưu vị trí $j<i$ mà $f[i]=f[j]+1$. Ta có thể cài đặt như sau:
 
 ```cpp
 #include <iostream>
@@ -534,7 +533,7 @@ int main()
 > *Dãy số nguyên $a_1,a_2,a_3,\ldots,a_k$ được gọi là dãy số WAVIO nếu tồn tại số tự nhiên $1\le m\le k$ sao cho:*
 > * $a_1\le a_2 \le \ldots \le a_m$
 > * $a_k\le a_{k-1} \le \ldots \le a_m$
-> 
+>
 > *Ví dụ dãy số `1 2 3 4 5 2 1` là 1 dãy WAVIO độ dài 7. Cho dãy $a$ gồm $n$ số nguyên, hãy chỉ ra một dãy con Wavio có độ dài lớn nhất trích ra từ dãy đó.*
 > **Điều kiện:** $1\le n\le 1000$ và $1\le a_1,a_2,\ldots,a_n\le10^9$ với mọi $i=1;2;\ldots;n$.
 
@@ -556,7 +555,7 @@ Khi đó, trong các dãy WAVIO có $i$ là đỉnh thì dãy dài nhất sẽ c
 
 [[/uploads/basic-dynamic-programming-1_img9.png]]
 
-**Ý tưởng:** 
+**Ý tưởng:**
 
 Bài toán này cũng tương tự như các ví dụ trước.
 
@@ -726,7 +725,7 @@ int main()
 
 **Hướng dẫn**
 
-Thực chất bài toán là tìm các số $S$ mà có một dãy con của dãy $a$ có tổng bằng $S$. 
+Thực chất bài toán là tìm các số $S$ mà có một dãy con của dãy $a$ có tổng bằng $S$.
 
 Ta có thể dùng phương pháp đánh dấu của bài chia kẹo ở trên rồi đếm các giá trị $t$ mà $L[n, t]=true$.
 

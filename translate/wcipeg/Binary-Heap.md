@@ -6,8 +6,6 @@
 
 **Nguồn:** [wcipeg.com/wiki](http://wcipeg.com/wiki/Binary_heap)
 
-[[_TOC_]]
-
 # 0. Kiến thức cần biết trước
 
 Để đọc và hiểu được bài viết các bạn cần có kiến thức về cấu trúc cây ([tree](http://wcipeg.com/wiki/Tree)) và cây nhị phân đầy đủ ([complete binary tree](http://wcipeg.com/wiki/Tree#Binary_and_k-ary_trees))

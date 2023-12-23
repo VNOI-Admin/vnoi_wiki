@@ -5,8 +5,6 @@
 * Ngô Nhật Quang - The University of Texas at Dallas
 * Phạm Hoàng Hiệp - University of Georgia
 
-[[_TOC_]]
-
 # Giới thiệu
 
 Trong bài viết này, chúng ta sẽ cùng tìm hiểu một số thuật toán và phương pháp kiểm tra một số tự nhiên bất kì có là số nguyên tố hay không.
@@ -21,7 +19,7 @@ Trong bài viết này, chúng ta sẽ tập trung vào việc kiểm tra **mộ
 
 ## 1.1. Ngây thơ 1
 
-Cách đơn giản nhất để kiểm tra tính nguyên tố của số tự nhiên $n$ là trực tiếp sử dụng định nghĩa số nguyên tố: 
+Cách đơn giản nhất để kiểm tra tính nguyên tố của số tự nhiên $n$ là trực tiếp sử dụng định nghĩa số nguyên tố:
 
 > Số tự nhiên $n\ge 2$ là số nguyên tố khi và chỉ khi $n$ không chia hết cho các số tự nhiên $2,3,\ldots,n-1$.
 
@@ -101,19 +99,19 @@ Do đó thuật toán này có thể không đủ nhanh để giải quyết gi�
 
 ## 2.1. Ý tưởng
 
-Theo định lí Fermat nhỏ, nếu $p$ là một số nguyên tố thì với mọi số nguyên $a$ thỏa mãn $\gcd\left(a,p\right)=1$, ta có: 
+Theo định lí Fermat nhỏ, nếu $p$ là một số nguyên tố thì với mọi số nguyên $a$ thỏa mãn $\gcd\left(a,p\right)=1$, ta có:
 $$
-a^{p-1}\equiv 1\mod{p} 
+a^{p-1}\equiv 1\mod{p}
 $$
 
-Từ định lý Fermat ta có ý tưởng kiểm tra tính nguyên tố của số nguyên dương $n$ như sau: 
+Từ định lý Fermat ta có ý tưởng kiểm tra tính nguyên tố của số nguyên dương $n$ như sau:
 
-* Xét số nguyên $a\in\left[2,n-1\right]$, nếu $a^{n-1}\not\equiv1\mod{n}$ thì ta **chắc chắn** $n$ là hợp số hoặc $n<2$. 
+* Xét số nguyên $a\in\left[2,n-1\right]$, nếu $a^{n-1}\not\equiv1\mod{n}$ thì ta **chắc chắn** $n$ là hợp số hoặc $n<2$.
 * Ngược lại, nếu $a^{n-1}\equiv 1\mod{n}$ thì $n$ **có thể** là số nguyên tố.
 
 **Chú ý:** Phần in đậm của phép thử nghĩa là tồn tại các giá trị của $n$ và $a$ sao cho $n$ là hợp số và $a^{n-1}\equiv 1 \mod{n}$. Ví dụ, nếu $n=15$ và $a=4$ thì $4^{14}\equiv 1 \mod{15}$. Trong trường hợp này, $n$ được gọi là số giả nguyên tố cơ sở $a$, hoặc số nguyên tố xác suất cơ sở $a$.
 
-Về lý thuyết, nếu ta kiểm tra đẳng thức Fermat với mọi số $a$, ta có thể kết luận chắc chắn tính nguyên tố của $n$. Tuy nhiên, việc kiểm tra đẳng thức với mọi $a$ sẽ phức tạp hơn cả thuật toán ngây thơ. Do đó, phép thử Fermat sẽ thực hiện một số lần thử với các số $a$ được lấy ngẫu nhiên. Trong các bài toán lập trình thi đấu, phép thử vẫn có độ chính xác đủ tốt. 
+Về lý thuyết, nếu ta kiểm tra đẳng thức Fermat với mọi số $a$, ta có thể kết luận chắc chắn tính nguyên tố của $n$. Tuy nhiên, việc kiểm tra đẳng thức với mọi $a$ sẽ phức tạp hơn cả thuật toán ngây thơ. Do đó, phép thử Fermat sẽ thực hiện một số lần thử với các số $a$ được lấy ngẫu nhiên. Trong các bài toán lập trình thi đấu, phép thử vẫn có độ chính xác đủ tốt.
 
 ## 2.2. Cài đặt
 Ta có thể cài đặt kết quả của phép tính $a^{n-1}\mod{n}$ bằng lũy thừa nhị phân.
@@ -142,7 +140,7 @@ bool isProbablyPrime(int n)
 {
     if (n < 7)
         return n == 2 || n == 3 || n == 5;
-    
+
     static const int repeatNum = 5;
     for (int i = 0; i < repeatNum; ++i)
     {
@@ -197,7 +195,7 @@ Khi đó độ phức tạp thuật toán là $\mathcal{O}\left(c\log^2{n}\right
 
 Tuy tốc độ cao và dễ cài đặt, vẫn có những trường hợp xác suất phép thử Fermat thất bại là rất cao. Ví dụ xét số $n=561 = 3 \times 11 \times 17$. Số này có tính chất với mọi số nguyên $a$ mà $\gcd(a,n)=1$ thì $a^{n-1}\equiv 1\mod n$. Do đó, trừ khi trong các lần thử ngẫu nhiên ta chọn được $a$ chia hết cho $3,11$ hoặc $17$ thì phép thử sẽ cho kết quả sai.
 
-Các số có tính chất trên được gọi là số *Carmichael*. 
+Các số có tính chất trên được gọi là số *Carmichael*.
 
 ## 2.3. Vấn đề với số Carmichael
 
@@ -236,7 +234,7 @@ Ví dụ: $6=2^1\times3,100=2^2\times25, 9=2^0\times9,\ldots$
 
 Do đó, xét số $n$, ta có thể phân tích $n-1$ thành $2^k\times m$, với $m$ là số lẻ.
 
-Theo định lý nhỏ Fermat, nếu $n$ là số nguyên tố thì với mọi $a$ sao cho $\gcd(a,n)=1$ ta có: 
+Theo định lý nhỏ Fermat, nếu $n$ là số nguyên tố thì với mọi $a$ sao cho $\gcd(a,n)=1$ ta có:
 
 $$
 a^{n-1}\equiv1\mod{n}\Leftrightarrow a^{2^k.m}-1\equiv0\mod{n} \\
@@ -258,7 +256,7 @@ Do đó, để áp dụng ý tưởng trên, ta có thể triển khai theo hai 
 
 ## 3.2. Phép thử xác suất (Probabilistic)
 
-Để tăng tính chính xác của thuật toán ta có thể lặp lại bước kiểm tra với nhiều cơ số $a$, giống như phép thử Fermat. Hơn thế nữa, chứng minh được nếu $n$ là hợp số, chỉ có $\approx25\%$ số cơ số $a$ trong đoạn $\left[2,n-1\right]$ thỏa mãn một trong hai điều kiện. 
+Để tăng tính chính xác của thuật toán ta có thể lặp lại bước kiểm tra với nhiều cơ số $a$, giống như phép thử Fermat. Hơn thế nữa, chứng minh được nếu $n$ là hợp số, chỉ có $\approx25\%$ số cơ số $a$ trong đoạn $\left[2,n-1\right]$ thỏa mãn một trong hai điều kiện.
 
 Nghĩa là với hợp số $n$ bất kì, xác suất để thuật toán chứng minh được $n$ là hợp số sau lần kiểm tra đầu tiên là $\ge75\%$, lần thứ hai là $\ge93.75\%$, lần thứ ba là $\ge98.43\%$, lần thứ $x$ là $\left(1-\frac{1}{4^x}\right)\times 100\%$. Có thể thấy độ chính xác của thuật toán Rabin-Miller cao hơn nhiều so với phép thử Fermat, và tất nhiên là đủ tốt cho các bài toán lập trình thi đấu.
 

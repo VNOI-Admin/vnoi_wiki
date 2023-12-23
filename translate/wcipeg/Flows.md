@@ -2,8 +2,6 @@
 
 **Nguồn:** [WCIPEG](http://wcipeg.com/wiki/Maximum_flow)
 
-[[_TOC_]]
-
 Trong bài viết này, tác giả sẽ giới thiệu với bạn 2 bài toán cơ bản: Bài toán luồng cực đại trên mạng và bài toán lát cắt hẹp nhất, cũng như mối liên hệ giữa 2 bài toán này.
 
 # Mạng luồng (Flow network)
@@ -77,7 +75,7 @@ foreach (u,v) in E: f[u,v]<-0
 while exist(augmenting_path):
     (u[1],u[2],...,u[k])<-augmenting_path
     m<-min(c[u[i],u[i+1]]-f[u[i],u[i+1]]) for i=1..k-1
-    for i=1..k-1: 
+    for i=1..k-1:
     	f[u[i],u[i+1]]+=m
         f[u[i+1],u[i]]-=m
 ```

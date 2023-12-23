@@ -1,12 +1,10 @@
 # Hàng đợi hai đầu (deque) và Bài toán tìm max-min trong đoạn tịnh tiến
 
-**Tác giả:** 
+**Tác giả:**
 - **Bùi Minh Hoạt** - Hung Vuong High School for the Gifted, Phu Tho Province
 - **Nguyễn Châu Khanh** - Hung Vuong High School for the Gifted, Phu Tho Province
 
 **Reviewer:** **Phạm Tuấn Nghĩa**
-
-[[_TOC_]]
 
 # **Định nghĩa**
 Deque (Double-ended queue) là một kiểu dữ liệu trừu tượng tổng quát hóa một hàng đợi. Nó là nó kiểu danh sách mà có thể bổ sung và loại bỏ một phần ở đầu hoặc cuối danh sách.
@@ -31,17 +29,17 @@ Cho một dãy $A$ gồm $N$ phần tử được đánh số từ 1 đến $N$.
 $minRange[i] =$ giá trị nhỏ nhất trong đoạn $[i - k + 1 … i]$
 
 **Input:**
-- $Dòng$ $1$: chứa hai số nguyên dương $N \le 10^5 , 𝑘 \le N$ cách nhau bởi dấu cách 
-- $Dòng$ $2$: chứa $N$ số nguyên dương $A_1, A_2, … , A_N$ $(∀𝑖: A_𝑖 ≤ 10^9)$ cách nhau bởi dấu cách 
+- $Dòng$ $1$: chứa hai số nguyên dương $N \le 10^5 , 𝑘 \le N$ cách nhau bởi dấu cách
+- $Dòng$ $2$: chứa $N$ số nguyên dương $A_1, A_2, … , A_N$ $(∀𝑖: A_𝑖 ≤ 10^9)$ cách nhau bởi dấu cách
 
-**Output:** In ra $N − 𝑘 + 1$ dòng: 
+**Output:** In ra $N − 𝑘 + 1$ dòng:
 - Dòng thứ $i$ in ra giá trị nhỏ nhất $minRange[i]$ của các phần tử trong đoạn từ $i - k + 1$ đến $i$.
 
-**Ví dụ:** 
+**Ví dụ:**
 
 **Input**
 ```
-8 4 
+8 4
 1 3 5 7 4 5 9 5
 ```
 
@@ -89,19 +87,19 @@ Do đó ta có thể làm như sau:
 
 **Minh họa test:** Cho $N$ $=$ $8$, $K$ $=$ $4$, dãy $A$ $=$ $[1, 3, 5, 7, 4, 5, 9, 5]$
 
-Đầu tiên chúng ta khởi tạo một hàng đợi hai đầu nhằm mục đích lưu vị trí của phần tử có giá trị nhỏ nhất. 
+Đầu tiên chúng ta khởi tạo một hàng đợi hai đầu nhằm mục đích lưu vị trí của phần tử có giá trị nhỏ nhất.
 
 Lúc đầu hàng đợi hai đầu của chúng ta rỗng
 ![](https://i.imgur.com/2SI3P7o.png)
 Đối với phần tử đầu tiên vì do hàng đợi rỗng nên ta sẽ đẩy phần tử này vào cuối hàng đợi
 ![](https://i.imgur.com/AiuYFLJ.png)
-Tiếp theo ta sẽ đẩy lần lượt các phần tử có vị trí $2$$;$ $3$ và $4$ vào cuối hàng đợi. 
+Tiếp theo ta sẽ đẩy lần lượt các phần tử có vị trí $2$$;$ $3$ và $4$ vào cuối hàng đợi.
 ![](https://i.imgur.com/w3AlnmP.png)
 Vì ta chỉ xét các đoạn trong khoảng từ $[i - k + 1 … i]$. Do đó khi ta xét đến phần tử thứ $5$ thì phần tử đầu tiên trong hàng đợi có vị trí $i = 1$ không còn ý nghĩa gì nữa. Vì vậy ta sẽ loại bỏ phần tử đầu tiên ra khỏi hàng đợi.
 Khi ta loại bỏ phần tử đầu tiên ra khỏi hàng đợi thì tất cả các phần tử đứng sau phần tử đó để được đẩy lên $1$ ô và hàng đợi sẽ được đánh số lại.
 ![](https://i.imgur.com/YsFpJBy.png)
 
-Tiếp đến khi ta chuẩn bị đẩy phần tử thứ $5$ vào hàng đợi thì nhận thấy rằng giá trị của nó nhỏ hơn giá trị của phần tử cuối trong hàng đợi. 
+Tiếp đến khi ta chuẩn bị đẩy phần tử thứ $5$ vào hàng đợi thì nhận thấy rằng giá trị của nó nhỏ hơn giá trị của phần tử cuối trong hàng đợi.
 
 **Liệu rằng phần tử cuối cùng trong hàng đợi kia còn ý nghĩa gì trong việc tính giá trị nhỏ nhất nữa không?**
 
@@ -116,7 +114,7 @@ Ta tiếp tục đẩy phần tử thứ $6$ vào deque
 ![](https://i.imgur.com/VPJM6Bd.png)
 Sau đó ta tiếp tục đẩy phần tử thứ $7$ vào deque
 ![](https://i.imgur.com/inVXc6C.png)
-Khi ta chuẩn bị đẩy phần tử thứ $8$ vào deque, ta nhận thấy rằng giá trị của nó nhỏ hơn giá trị của phần tử cuối trong hàng đợi. Do đó ta sẽ loại bỏ phần tử cuối cùng trong deque cho đến khi giá trị của phần tử cuối cùng nhỏ hơn giá trị ta chuẩn bị đẩy vào. 
+Khi ta chuẩn bị đẩy phần tử thứ $8$ vào deque, ta nhận thấy rằng giá trị của nó nhỏ hơn giá trị của phần tử cuối trong hàng đợi. Do đó ta sẽ loại bỏ phần tử cuối cùng trong deque cho đến khi giá trị của phần tử cuối cùng nhỏ hơn giá trị ta chuẩn bị đẩy vào.
 ![](https://i.imgur.com/puUB3j7.png)
 Ta có thể rút ra được các nhận xét quan trọng như sau:
 - Ở mọi thời điểm, giá trị $A[i]$ trong deque luôn tăng nghiêm ngặt. Khi ta đẩy phần tử thứ $i$ vào deque thì nó luôn là phần tử có giá trị lớn nhất.
@@ -147,19 +145,19 @@ deque <int> dq;
 while (dq.size()) dq.pop_front();
 
 /* Duyệt lần lượt các phần tử từ 1 đến N */
-for (int i = 1; i <= N; ++i) { 
+for (int i = 1; i <= N; ++i) {
     /* Loại bỏ các phần tử có giá trị lớn hơn hoặc bằng A[i] */
     while (dq.size() && A[dq.back()] >= A[i]) dq.pop_back();
-    
+
     /* Đẩy phần tử i vào queue */
-    dq.push_back(i); 
-    
-    /* Nếu phần tử đầu tiên trong deque nằm ngoài khoảng tính 
+    dq.push_back(i);
+
+    /* Nếu phần tử đầu tiên trong deque nằm ngoài khoảng tính
        thì ta sẽ loại bỏ ra khỏi deque */
-    if (dq.front() + k <= i) dq.pop_front(); 
-    
+    if (dq.front() + k <= i) dq.pop_front();
+
     /* minRange[i] là giá trị nhỏ nhất trong đoạn [i – k + 1 … i] */
-    if (i >= k) minRange[i] = A[dq.front()]; 
+    if (i >= k) minRange[i] = A[dq.front()];
 }
 ```
 
@@ -178,7 +176,7 @@ Ta sẽ tạo $1$ deque nhằm mục đích lưu vị trí của phần tử có
 Ở bước 1, thay vì loại bỏ các phần tử có giá trị lớn hơn hoặc bằng ra khỏi đầu deque thì ta sẽ loại bỏ các phần tử có giá trị nhỏ hơn hoặc bằng ra khỏi đầu deque. Lúc này, phần tử đầu deque luôn là phần tử lớn nhất. Và ở mọi thời điểm giá trị trong deque luôn là giảm nghiêm ngặt.
 ### **Tại sao ta không nên sử dụng cấu trúc dữ liệu cây phân đoạn?**
 
-Ta chỉ có thể giải quyết bài toán này bằng cấu trúc dữ liệu $Segment$ $Tree$. 
+Ta chỉ có thể giải quyết bài toán này bằng cấu trúc dữ liệu $Segment$ $Tree$.
 Để xây dựng được cây $Segment$ $Tree$ thì chúng ta sẽ phải chuẩn bị:
 - Bộ nhớ: $O(N)$
 - Khởi tạo: $O(log_{2}N)$
@@ -195,7 +193,7 @@ Với phương pháp dùng deque để tìm $max-min$ trong đoạn tịnh tiế
 
 Như đã trình bày ở trên thì độ phức tạp khi xây dựng kĩ thuật tìm $max-min$ trong đoạn tịnh tiến là $O(N)$
 
-Tuy nhiên thuật toán này chỉ thực sự hiệu quả khi chúng ta không có thao tác cập nhật lại giá trị của mảng. Nói cách khác thì với phương pháp này chúng ta chỉ có thể áp dụng khi bài toán là bài toán xử lý offine. Lý do là bởi giả sử chúng ta có M thao tác cập nhật giá trị mà mỗi khi cập nhật lại giá trị thì ta sẽ phải tính lại max và min trong từng vị trí $i$  $(1 ≤ i ≤ N)$. Lúc này thì độ phức tạp của thuật toán sẽ là $O(M \cdot N)$ và sẽ bị quá thời gian cho phép. 
+Tuy nhiên thuật toán này chỉ thực sự hiệu quả khi chúng ta không có thao tác cập nhật lại giá trị của mảng. Nói cách khác thì với phương pháp này chúng ta chỉ có thể áp dụng khi bài toán là bài toán xử lý offine. Lý do là bởi giả sử chúng ta có M thao tác cập nhật giá trị mà mỗi khi cập nhật lại giá trị thì ta sẽ phải tính lại max và min trong từng vị trí $i$  $(1 ≤ i ≤ N)$. Lúc này thì độ phức tạp của thuật toán sẽ là $O(M \cdot N)$ và sẽ bị quá thời gian cho phép.
 
 Để giải quyết được bài toán này thì chúng ta có thể sử dụng cấu trúc cây phân đoạn với độ phức tạp là $O(Mlog_{2}N)$.
 
@@ -204,7 +202,7 @@ Khi lấy giá trị trong deque ra thì bạn chưa kiểm tra hàng đợi c�
 
 # **Bài toán 2**
 ## **Đề bài**
-Trong một round đấu, rồng thần của Hoạt có thể khạc tối đa đạt $N$ phát chí mạng vào team địch. Sát thương chí mạng của lần khạc thứ $i$ gây ra là $A_i$. Tuy nhiên rồng thần cần có một khoảng thời gian để hồi lại mana. Vậy nên rồng thần không thể khạc $K$ lần chí mạng liên tiếp. 
+Trong một round đấu, rồng thần của Hoạt có thể khạc tối đa đạt $N$ phát chí mạng vào team địch. Sát thương chí mạng của lần khạc thứ $i$ gây ra là $A_i$. Tuy nhiên rồng thần cần có một khoảng thời gian để hồi lại mana. Vậy nên rồng thần không thể khạc $K$ lần chí mạng liên tiếp.
 Bạn hãy chỉ cho Hoạt cách điều khiển sức mạnh của rồng thần sao cho tổng sát thương chí mạng gây ra của rồng thần là lớn nhất.
 **Input:**
 - Dòng thứ nhất: chứa hai số nguyên $1 ≤ N ≤ 10^5; 2 ≤ K ≤ 10^5$
@@ -227,7 +225,7 @@ Bạn hãy chỉ cho Hoạt cách điều khiển sức mạnh của rồng th�
 Phân loại bài: data structures, dp
 
 Gọi $dp[i]$ là tổng sát thương nhỏ nhất mà rồng thần đã bỏ qua khi xét đến vị trí $i$ và sẽ tiếp tục bỏ qua phát khạc thứ $i$
-**Khởi tạo:** 
+**Khởi tạo:**
 - $dp[0] = 0$
 - $dp[i] = INF;$ với $\forall i: 1 ≤ i ≤ N + 1$
 
@@ -240,12 +238,12 @@ for (int i = 1; i <= N + 1; ++i) dp[i] = +INF;
 ans = 0;
 for (int i = 1; i <= N; ++i) ans += A[i];
 for (int i = 1; i <= N + 1; ++i)
-    for (int j = max(0, i - K); j <= i - 1; ++j) 
+    for (int j = max(0, i - K); j <= i - 1; ++j)
         dp[i] = min(dp[i], dp[j] + A[i]);
 cout << ans - dp[N + 1] << '\n';
 ```
 **Độ phức tạp:** $O(N \cdot K)$
-**Nhận xét:** 
+**Nhận xét:**
 Ta cập nhật giá trị $dp[i]$ bởi đoạn các giá trị $dp[j]$ liên tục. Do đó ta có thể dễ dàng cài đặt bằng cây phân đoạn với độ phức tạp: $O(N \cdot log_{2}N)$
 Tuy nhiên ta nhận thấy rằng, đây chính là **bài toán tìm min trong đoạn tịnh tiến**. Ta sẽ làm tương tự như bài toán $1$ với độ phức tạp: $O(N)$
 ## **Cài đặt**
@@ -276,7 +274,7 @@ cout << ans - dp[N + 1] << '\n';
 - $max(H[i + 1], …, H[j - 1]) < min(H[i], H[j])$
 - $max(H[i], H[j]) < min(H[i + 1], …, H[j - 1])$
 
-Hiện tại Gnar đang đứng trên tòa nhà $1$. Mục tiêu của anh ấy là nhảy đến tòa nhà thứ $N$ với số lần nhảy là ít nhất. Hãy giúp Gnar nhé!!! 
+Hiện tại Gnar đang đứng trên tòa nhà $1$. Mục tiêu của anh ấy là nhảy đến tòa nhà thứ $N$ với số lần nhảy là ít nhất. Hãy giúp Gnar nhé!!!
 **Đầu vào:**
 - Dòng đầu tiên chứa một số nguyên duy nhất $N$  $(2 ≤ N ≤ 3 \cdot 10^5)$ – tổng số lượng nhà chọc trời.
 - Dòng thứ hai chứa N số nguyên $H_1, H_2, …, H_N$ $(1 ≤ H_i ≤ 10^9)$ – chiều cao của các tòa nhà chọc trời.
@@ -287,7 +285,7 @@ Hiện tại Gnar đang đứng trên tòa nhà $1$. Mục tiêu của anh ấy 
 
 **Input**
 ```
-5 
+5
 1 3 1 4 5
 ```
 **Output**
@@ -296,7 +294,7 @@ Hiện tại Gnar đang đứng trên tòa nhà $1$. Mục tiêu của anh ấy 
 ```
 **Input**
 ```
-4 
+4
 4 2 2 4
 ```
 **Output**
@@ -318,13 +316,13 @@ Hiện tại Gnar đang đứng trên tòa nhà $1$. Mục tiêu của anh ấy 
 
 **Trường hợp 1:** Nếu $i + 1 = j$ thì ta có thể xây dựng đồ thị cạnh nối giữa $i$ và $j$.
 
-**Trường hợp 2:** Nếu tòa nhà thứ $i$ và $j$ thỏa mãn điều kiện $max(H[i + 1], …, H[j - 1]) < min(H[i], H[j])$ nghĩa là tất cả các tòa nhà nằm giữa $i$ và $j$ đều có chiều cao nhỏ hơn $min(H[i], H[j])$. 
+**Trường hợp 2:** Nếu tòa nhà thứ $i$ và $j$ thỏa mãn điều kiện $max(H[i + 1], …, H[j - 1]) < min(H[i], H[j])$ nghĩa là tất cả các tòa nhà nằm giữa $i$ và $j$ đều có chiều cao nhỏ hơn $min(H[i], H[j])$.
 
 Điều này có nghĩa là tồn tại tòa nhà $k$ $(i + 1 \le k \le j - 1)$ có độ cao lớn nhất trong các tòa nhà từ $i + 1$ đến $j - 1$. Nếu $H[k] < min(H[i], H[j])$ thì tất cả các tòa nhà từ $i + 1$ đến $j - 1$ đều nhỏ hơn $min(H[i], H[j])$.
 
 ![](https://i.imgur.com/Tl3DSul.png)
 
-**Làm thế nào để tìm được hai biên nhận tòa nhà k làm max?** 
+**Làm thế nào để tìm được hai biên nhận tòa nhà k làm max?**
 Vì $max(H[i + 1], …, H[j - 1]) < min(H[i], H[j])$ nên $H[k] < min(H[i], H[j])$. Điều này có nghĩa là cả $2$ tòa nhà $i$ và $j$ đều lớn hơn tòa nhà $k$ do đó tòa nhà $i$ và $j$ sẽ không nằm trong khoảng nhận tòa nhà $k$ là $max$.
 
 Gọi $L[k]$ là vị trí xa nhất tính từ vị trí $k$ về bên trái nhận độ cao $H[k]$ là $max$
@@ -341,7 +339,7 @@ Giả sử tòa nhà gần nhất bên trái, bên phải nhận tòa nhà $k$ l
 
 Vì vậy ta sẽ xét tất cả các tòa nhà $k$ để có thể tìm được tòa nhà $i$ và $j$ thỏa mãn yêu cầu đề bài.
 
-**Trường hợp 3:** Nếu tòa nhà thứ $i$ và $j$ thỏa mãn điều kiện $max(H[i], H[j]) < min(H[i + 1], …, H[j - 1])$ nghĩa là tất cả các tòa nhà nằm giữa $i$ và $j$ đều có độ cao lớn hơn hẳn $max(H[i], H[j])$. 
+**Trường hợp 3:** Nếu tòa nhà thứ $i$ và $j$ thỏa mãn điều kiện $max(H[i], H[j]) < min(H[i + 1], …, H[j - 1])$ nghĩa là tất cả các tòa nhà nằm giữa $i$ và $j$ đều có độ cao lớn hơn hẳn $max(H[i], H[j])$.
 ![](https://i.imgur.com/j5e9vEU.png)
 
 Lập luận tương tự. Ở trường hợp này ta sẽ xây dựng $2$ mảng $l$ và $r$.
@@ -354,7 +352,7 @@ Gọi $r[k]$ là vị trí xa nhất tính từ vị trí $k$ về bên phải n
 
 Do đó ta xây dựng đồ thị có cạnh nối giữa tòa nhà $l[k] - 1$ với tòa nhà $r[k] + 1$
 
-Khi đã xây dựng được đồ thị thì có thể quy hoạch động hoặc sử dụng thuật toán tìm đường đi ngắn nhất $BFS$ để tính số lần nhảy ít nhất. 
+Khi đã xây dựng được đồ thị thì có thể quy hoạch động hoặc sử dụng thuật toán tìm đường đi ngắn nhất $BFS$ để tính số lần nhảy ít nhất.
 ## **Cài đặt**
 
 **Xây dựng mảng L**

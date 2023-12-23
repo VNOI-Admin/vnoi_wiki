@@ -2,8 +2,6 @@
 
 **Tác giả**: Nguyễn Hoành Tiến
 
-[[_TOC_]]
-
 Palindrome hay còn gọi là xâu đối xứng, xâu đối gương là tên gọi của những xâu kí tự mà khi viết từ phải qua trái hay từ trái qua phải thì xâu đó không thay đổi. VD: MADAM, IOI,... Nhờ tính chất đặc biệt đó mà có khá nhiều bài tập có liên quan đến Palindrome, phần lớn trong chúng thường đi kèm với QHĐ. Tôi xin giới thiệu với các bạn một vài bài tập như vậy.
 
 # Bài 1: Kiểm tra Palindrome

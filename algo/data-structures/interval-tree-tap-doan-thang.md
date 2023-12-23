@@ -2,8 +2,6 @@
 
 **Tác giả**: Vũ *chipchip* Phúc Hoàng
 
-[[_TOC_]]
-
 # Bài toán
 
 Cho một tập hợp chứa các đường thẳng có dạng $ax + b$, mỗi đường thẳng được biểu diễn bằng một cặp số $(a, b)$. Cần thực hiện hai loại thao tác:

@@ -1,8 +1,6 @@
 # "Nhảy nhị phân" với bộ nhớ $\\mathcal O(n)$
 **Người viết**: Ngô Nhật Quang - Trường THPT Chuyên Khoa học Tự nhiên, Đại học Quốc gia Hà Nội
 
-[[_TOC_]]
-
 # Giới thiệu
 
 Trước khi đọc bài viết bài, người viết giả dụ bạn đọc đã đọc và hiểu về [binary lifting](https://vnoi.info/wiki/algo/data-structures/lca-binlift.md) (Nâng nhị phân).
@@ -38,12 +36,12 @@ Với định nghĩa trên, ta đã có thể dựng ra một đoạn code để
 ```cpp
 Node find(Node u, int d) {
   // Lặp đến khi độ sâu đỉnh hiện tại là d
-  while (u.depth > d) { 
-      // Nếu đỉnh jump có độ sâu 
+  while (u.depth > d) {
+      // Nếu đỉnh jump có độ sâu
       // bé hơn d thì ta chỉ nhảy lên cha
-      if (u.jump.depth < d) { 
+      if (u.jump.depth < d) {
         u = u.parent;
-      } 
+      }
       else {
         // Còn không ta sẽ nhảy lên qua con trỏ jump
         u = u.jump;
@@ -67,7 +65,7 @@ Node makeLeaf(Node p) {
 
   if (p.depth - p.jump.depth == p.jump.depth - p.jump.jump.depth) {
      leaf.jump = p.jump.jump;
-  } 
+  }
   else {
       leaf.jump = p;
   }
@@ -86,7 +84,7 @@ Chứng minh tính đúng đắn của nó khá dài, bạn đọc muốn tìm h
 Dưới đây sẽ là một số hình ảnh để bạn đọc có thể có một số ý tưởng tại sao nó lại đúng.
 
 [[/uploads/binary-lifting_img1.png]]
-    
+
 Ở đây, đỉnh `y` là lá ta vừa thêm vào cây. Các mũi tên màu đỏ thể hiện các cú nhảy qua con trỏ `jump`, còn mũi tên màu xanh là đi lên cha nó qua con trỏ `parent`. Dễ thấy khi xem lại hàm `find` của ta, nó sẽ thử nhảy bước $2d + 1$, nếu không được thì sẽ nhảy lên đỉnh cha. Bước nhảy ở đỉnh cha sẽ luôn luôn ngắn hơn bước nhảy của đỉnh con, ngắn hơn ít nhất $2$ lần.
 
 Nhớ lại, đây không phải giống hệt binary lifting mà ta biết hay sao? Chỉ là thay vì nhồi $\log$ bước nhảy vào trong một đỉnh, ta dàn đều nó ra khắp các đỉnh tổ tiên của nó.
@@ -125,7 +123,7 @@ Như cách ta định nghĩa con trỏ `jump` như trên, ta có thể thấy r�
 Node lca(Node u, Node v) {
   if (u.depth < v.depth) swap(u, v);
   u = find(u, v.depth);
-  
+
   while (u != v) {
       if (u.jump == v.jump) {
           u = u.parent;
@@ -136,7 +134,7 @@ Node lca(Node u, Node v) {
           v = v.jump;
       }
   }
-  
+
   return u;
 }
 ```

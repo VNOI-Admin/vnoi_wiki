@@ -4,14 +4,11 @@ Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-
 
 Người dịch: Bùi Việt Dũng
 
-[[_TOC_]]
-
-
 # Bao hàm - loại trừ (Inclusion-Exclusion)
 
 ## Phát biểu công thức
 
-Công thức bao hàm - loại trừ được phát biểu như sau: 
+Công thức bao hàm - loại trừ được phát biểu như sau:
 
 Để tính lực lượng của hợp của nhiều tập hợp, ta tính tổng lực lượng các tập hợp đó, rồi trừ đi lực lượng của giao của **các cặp hai** tập hợp khác nhau, rồi cộng lực lượng của giao các **bộ ba** tập hợp khác nhau, rồi trừ đi lực lượng của các **bộ bốn** tập hợp, và cứ thế cho đến khi ta xét đến giao của **tất cả các tập hợp**.
 
@@ -78,7 +75,7 @@ Vì vậy, số lần $x$ được đếm là $T = \binom{k}{1} - \binom{k}{2} +
 
 $(1-x)^k = \binom{k}{0} - \binom{k}{1}.x + \binom{k}{2}.x^2 - \binom{k}{3}.x^3 + ... + (-1)^k.\binom{k}{k}.x^k$.
 
-Ta thấy với $x=1$, $(1-x)^k = T-1$, do đó $T = (1-1)^k+1 = 1$ hay điều phải chứng minh. 
+Ta thấy với $x=1$, $(1-x)^k = T-1$, do đó $T = (1-1)^k+1 = 1$ hay điều phải chứng minh.
 
 ## Ứng dụng: Đếm số số nguyên tố cùng nhau với một số cho trước trong một đoạn
 
@@ -111,11 +108,11 @@ int solve (int n, int r) {
             ++bits;
             mult *= p[i];
         }
- 
+
         int cur = r / mult;
         if (bits % 2 == 1) sum += cur;
         else sum -= cur;
     }
     return r - sum;
 }
-```  
+```

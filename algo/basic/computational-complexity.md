@@ -8,8 +8,6 @@
 - Phạm Hoàng Hiệp - University of Georgia
 - Ngô Nhật Quang - The University of Texas at Dallas
 
-[[_TOC_]]
-
 # **Giới thiệu**
 Thông thường khi viết một thuật toán, ta thường quan tâm nó chạy nhanh hay chậm, tốn nhiều bộ nhớ hay không.
 
@@ -21,7 +19,7 @@ Thông thường khi viết một thuật toán, ta thường quan tâm nó ch�
 Trên thực tế, đa phần các thuật toán sẽ được đánh giá theo *trường hợp xấu nhất (worst case)* vì sự đơn giản và thực tế của nó.
 
 Một số khác vẫn được đánh theo *trường hợp trung bình (average case)*. Ví dụ như khi:
-- *Trường hợp xấu nhất* ít xảy ra. Ví dụ với thuật toán Quick Sort. 
+- *Trường hợp xấu nhất* ít xảy ra. Ví dụ với thuật toán Quick Sort.
 Trong *trường hợp xấu nhất* là khi ta luôn chọn phải phần tử chốt là phần tử lớn nhất hay nhỏ nhất của dãy, và ĐPT sẽ là $O(n^2)$, nhưng xác suất trường hợp này xảy ra rất nhỏ. Còn trong phần lớn các trường hợp khác, ĐPT là $O(n \log n)$.
 - Thuật toán có yếu tố ngẫu nhiên. Ví dụ như việc sử dụng sinh số ngẫu nhiên.
 
@@ -84,7 +82,7 @@ Tuy nhiên, việc có ĐPT đáp ứng bộ dữ liệu như trong bảng trên
 # Ví dụ
 ## Vòng lặp
 Dựa vào các quy tắc, ta rút ra được một số `mẹo` khi tính ĐPT các vòng lặp:
-    
+
     1. Tính số lần lặp tối đa của một vòng lặp
     2. Nếu các vòng lặp nối tiếp nhau thì cộng các cận đó với nhau
     3. Nếu các vòng lặp lồng nhau thì nhân các cận với nhau
@@ -96,9 +94,9 @@ int sum = 0;
 for (int i = 0; i < n; i++) sum += i;
 for (int j = 0; j < n; j++) sum += j;
 ```
-Hai vòng có tổng cộng $n \times 2$ phép cộng, nên ĐPT sẽ là $\boldsymbol{O(n)}$    
+Hai vòng có tổng cộng $n \times 2$ phép cộng, nên ĐPT sẽ là $\boldsymbol{O(n)}$
 
-**Ví dụ 2:** 
+**Ví dụ 2:**
 ```c++
 int sum = 0;
 for (int i = 0; i < n; i++){
@@ -109,9 +107,9 @@ for (int i = 0; i < n; i++){
     }
 }
 ```
-Hai vòng lặp lồng nhau, mỗi vòng lặp có ĐPT $O(n)$ nên ĐPT sẽ là $\boldsymbol{O(n^2)}$    
+Hai vòng lặp lồng nhau, mỗi vòng lặp có ĐPT $O(n)$ nên ĐPT sẽ là $\boldsymbol{O(n^2)}$
 
-**Ví dụ 3:** 
+**Ví dụ 3:**
 ```c++
 int sum = 0;
 for (int i = 0; i < n; i++){
@@ -120,7 +118,7 @@ for (int i = 0; i < n; i++){
     }
 }
 ```
-Vòng `i` lặp `n` lần, vòng `j` lặp tổng cộng $1 + 2 + \ldots + n = \dfrac{n \times (n + 1)}{2}$ lần, nên ĐPT chung vẫn sẽ là $\boldsymbol{O(n^2)}$ dù số phép tính đã được giảm đi khá nhiều.    
+Vòng `i` lặp `n` lần, vòng `j` lặp tổng cộng $1 + 2 + \ldots + n = \dfrac{n \times (n + 1)}{2}$ lần, nên ĐPT chung vẫn sẽ là $\boldsymbol{O(n^2)}$ dù số phép tính đã được giảm đi khá nhiều.
 
 ## Hai con trỏ
 Cho một mảng `a[]` đã được sắp xếp. Xác định xem liệu có tồn tại $2$ phần tử trong mảng mà cách nhau $d$ đơn vị hay không.
@@ -156,7 +154,7 @@ int binary_search(int a[], int sizeA, int target) {
     while (lo <= hi) {
         int mid = lo + (hi - lo)/2;
         if (a[mid] == target)
-            return mid;       	
+            return mid;
         else if (a[mid] < target)
             lo = mid+1;
         else
@@ -164,7 +162,7 @@ int binary_search(int a[], int sizeA, int target) {
     }
     // không tìm thấy giá trị target trong mảng A
     return -1;
-} 
+}
 ```
 
 Ở mỗi bước, kích thước của mảng cần tìm kiếm bị giảm đi một nửa. Sau $\lceil \log_2 n \rceil$ bước, thì số phần tử của mảng là $1$ và dừng tìm kiếm.
@@ -173,7 +171,7 @@ Từ đó ĐPT của thuật toán là $\boldsymbol{O(\log n)}$ với $n$ là s�
 ## Đệ quy
 ### **Thuật toán quay lui sinh cấu hình tổ hợp**
 
-Đây là một đoạn code sinh tất cả các hoán vị từ $1$ đến $n$ với $(n \le 10)$ 
+Đây là một đoạn code sinh tất cả các hoán vị từ $1$ đến $n$ với $(n \le 10)$
 ```c++
 #include <bits/stdc++.h>
 using namespace std;
@@ -211,7 +209,7 @@ int main()
 **Phân tích:**
     Ta gọi hàm `backtrack(1)` nên `i` sẽ bắt đầu từ `1`.
     Tại vòng lặp `j` đầu tiên, ta xét tất cả các giá trị có thể gán cho `a[1]` (số hạng thứ `1`) và đánh dấu đã sử dụng giá trị đó.
-    Và ta sẽ gán lần lượt `a[2], ..., a[n]`. 
+    Và ta sẽ gán lần lượt `a[2], ..., a[n]`.
     Đến `i = n + 1`, chúng ta sẽ in ra kết quả và xét đến cấu hình tiếp. Việc in kết quả sẽ tốn 1 vòng $O(n)$
     Vì thế ta có tổng cộng $n \times (n - 1) \times \ldots \times 1 \times n = n \times n!$ phép toán. Hay ĐPT bài toán là $\boldsymbol{O(n \times n!)}$.
 
@@ -256,11 +254,11 @@ f\left(\left\lfloor\dfrac{n}{2}\right\rfloor\right) + f\left(\left\lceil\dfrac{n
 
 ĐPT thuật toán này là $f(n) = \boldsymbol{O(n\log n)}$ trong cả *worst case* và *average case*.
 
-Để có được kết luận trên, ta đi chứng minh phát biểu sau: 
+Để có được kết luận trên, ta đi chứng minh phát biểu sau:
 >Tồn tại hằng số $c > 1$ nào đó mà với $\forall n \le T$ ta có $f(n)≤ n\log_2n + c\times n$
 >
 Bằng quy nạp, ta có:
-- Với $n = 1$, rõ ràng luôn tồn tại $c''>1$ để $f(1)<c'' \times 1$  
+- Với $n = 1$, rõ ràng luôn tồn tại $c''>1$ để $f(1)<c'' \times 1$
 - Giả sử điều này đúng đến $n = k - 1$ $(k \ge 2)$, ta cần chứng minh đúng với $n = k$:
 - Thật vậy,
 $\begin{align}
@@ -287,7 +285,7 @@ for (int i = 1; i <= n; i++){
     }
 }
 ```
- **Giải:** 
+ **Giải:**
 Rõ ràng, với mỗi biến $i$, vòng lặp $j$ sẽ chạy $\left\lfloor\dfrac{n}{i}\right\rfloor$ lần.
 Vì thế độ phức tạp sẽ là $O\left( n \times \left(\dfrac{1}{1} + \dfrac{1}{2} +\ldots+\dfrac{1}{n} \right) \right) = O\left(n \cdot \sum\limits_{i = 1}^{n} \dfrac{1}{i}\right)$.
 Và đến đây rút gọn thế nào nhỉ?
@@ -296,9 +294,9 @@ Và đến đây rút gọn thế nào nhỉ?
 $$\dfrac{1}{1} + \dfrac{1}{2} +\ldots+\dfrac{1}{n} \ge \log\dfrac{2}{1} + \log\dfrac{3}{2} +\ldots+ \log\dfrac{n+1}{n} = \log(n+1)$$
 
 * Lại có:
-$$\underbrace{\dfrac{1}{1}}_{=1} + \underbrace{\dfrac{1}{2} + \dfrac{1}{3}}_{< 2 \times \frac{1}{2} = 1} + 
+$$\underbrace{\dfrac{1}{1}}_{=1} + \underbrace{\dfrac{1}{2} + \dfrac{1}{3}}_{< 2 \times \frac{1}{2} = 1} +
 \underbrace{\dfrac{1}{4} + \ldots + \dfrac{1}{7}}_{< 4 \times \frac{1}{4} = 1} + \ldots +
-\underbrace{\dfrac{1}{2^{\lfloor \log_2n \rfloor}} + \ldots + \dfrac{1}{n}}_{<1} 
+\underbrace{\dfrac{1}{2^{\lfloor \log_2n \rfloor}} + \ldots + \dfrac{1}{n}}_{<1}
 < \lfloor\log_2n\rfloor + 1$$
 * Chặn được thế này thì ta được kết quả là $O\left(n \cdot \sum\limits_{i = 1}^{n} \dfrac{1}{i}\right) = \boldsymbol{O( n\log n)}$
 
@@ -321,7 +319,7 @@ for (int i = 2; i <= n; i++) if (is_prime[i]){
 ```
 **Giải:**
 Tương tự bài trên, nhưng chỉ khi biến $i$ là số nguyên tố thì biến $j$ sẽ chạy $n/i$ lần, ngược lại biến $j$ không phải chạy 1 vòng nào.
-Vì thế độ phức tạp thời gian là $O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right)$ với $p \style{font-family:Cambria Math}{\large\text{ là số nguyên tố}}\le  n$. 
+Vì thế độ phức tạp thời gian là $O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right)$ với $p \style{font-family:Cambria Math}{\large\text{ là số nguyên tố}}\le  n$.
 Đến đây việc tính toán độ phức tạp sẽ phải dùng đến kiến thức *Lý thuyết số giải tích*. Bạn đọc có thể tham khảo thêm [Định lý Merten 2](https://en.wikipedia.org/wiki/Mertens%27_theorems#Proof).
 $$O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right) = O\left(n \cdot \underset{{p \le n}}{\sum\limits_{p \style{font-family:Cambria Math}{\large\text{ nguyên tố}}}}\dfrac{1}{p}\right) = \boldsymbol{O( n \log (\log n))}$$
 
@@ -350,7 +348,7 @@ Nói cách khác: nếu hằng số quá lớn thì thường là các hằng s�
         - Ví dụ điển hình là hàm `std::sort` của C++. Thuật toán chủ yếu vẫn là `Quick-sort` - $O(n\log n)$. Và để tối ưu, thì với bộ dữ liệu nhỏ, hàm sẽ sử dụng `Insert-Sort` - $O(n^2)$. Còn khi chọn phần tử chốt của `Quick-sort` không đẹp, thì sẽ sử dụng `Heap-Sort` - $O(n\log n)$ thay thế.
 - Vì thế, trong từng trường hợp, ta nên chú ý chọn thuật toán cho phù hợp nhất để tối ưu thời gian chạy chương trình.
 Và đặc biệt khi sử dụng các hàm trong thư viện sẵn có hay các code sẵn có thì nên hiểu cơ bản cách hoạt động và tốc độ của nó.
-    
+
 # Lời kết
 Với lập trình viên, *độ phức tạp thời gian* là một công cụ hữu ích để ước chừng thời gian thực thi của một thuật toán, hay so sánh giữa các thuật toán với nhau.
 Trong các kỳ thi lập trình, kích cỡ của tập dữ liệu thường được cho trước trong đề bài. Dựa vào điều đó, thí sinh có thể ước chừng *độ phức tạp* rồi tìm ra thuật toán phù hợp. Hoặc là khi đã nghĩ ra một vài thuật toán thì liệu thuật toán nào đáng để cài đặt? Nên chọn những thuật toán nào để cài đặt?

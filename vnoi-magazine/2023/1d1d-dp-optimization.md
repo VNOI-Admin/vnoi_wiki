@@ -1,13 +1,11 @@
 # Tối ưu quy hoạch động 1 chiều
 **Người viết**: Nguyễn Tuấn Tài - Trường Đại học Khoa học Tự nhiên, Đại học Quốc gia TP.HCM
 
-[[_TOC_]]
-
 > *Giới thiệu: đây là kiến thức xuất hiện trong đề thi TST 2022, và đã lấy đi rất nhiều nước mắt của thí sinh. Nếu bạn muốn thử học một thuật toán mới lạ mà nhiều người chưa biết (ngay cả Trần Xuân Bách!), thì đây chính là bài viết dành cho bạn!*
 
 Khi làm những bài toán quy hoạch động, đôi khi ta sẽ nghĩ ra những thuật toán có độ phức tạp rất lớn, ví dụ:
 
-- $f[i][j] = \min \limits_{0 \le k < j} f[i - 1][k] + w(k, j)$ 
+- $f[i][j] = \min \limits_{0 \le k < j} f[i - 1][k] + w(k, j)$
 Công thức trên có độ phức tạp $O(n^3)$, có thể cải tiến xuống $O(n^2)$ hoặc $O(n^2 \log{n})$ bằng quy hoạch động bao lồi/chia để trị (trong một số điều kiện nhất định).
 - $f[i] = \min \limits_{0 \le j < i} f[j] + w(j, i)$
 Công thức trên có độ phức tạp $O(n^2)$, có thể cải tiến xuống $O(n \log{n})$ hoặc $O(n)$ (trong một số điều kiện nhất định).
@@ -43,12 +41,12 @@ $f[0] = 0$, $f[1] = f[2] = \ldots = f[n] = \infty$.
 Trước khi đi vào thuật toán chính, chúng ta sẽ xem xét qua thuật toán "ngây thơ" sau:
 
 - Ở thời điểm đầu tiên,
-    
+
   $h[1] = h[2] = \ldots = h[n] = 0$.
 - Ở thời điểm thứ $i$:
     - Vì $h[i]$ đã được cập nhật hoàn toàn, ta tính được $f[i] = f[h[i]] + w(h[i], i)$.
     - Sau khi tính được $f[i]$, ta sẽ cập nhật lại $h[i + 1], h[i + 2], \ldots, h[n]$.
-    
+
 Chúng ta có thể cài đặt thuật toán trên một cách đơn giản như sau:
 
 ```cpp
@@ -64,8 +62,8 @@ long long w(int j, int i) {
 void solve() {
   for (int i = 1; i <= n; ++i) {
     // cập nhật f[i]
-    f[i] = f[h[i]] + w(h[i], i); 
-    
+    f[i] = f[h[i]] + w(h[i], i);
+
     for (int j = i + 1; j <= n; ++j) {
       // cập nhật lại h[i + 1..n]
       if (
@@ -96,10 +94,10 @@ Chính vì thế, để cập nhật mảng $h$, ta sẽ tìm vị trí $z$ nh�
 
 Ta sẽ biểu diễn mảng $h$ thành $m$ đoạn $(l[i], r[i], p[i])$ thỏa mãn:
 $$\left\{\begin{array}{l}
-l[1] = 1\\ 
-r[m] = n\\ 
+l[1] = 1\\
+r[m] = n\\
 p[i] = h[l[i]] = h[l[i] + 1] = \ldots = h[r[i]]\\
-l[i + 1] = r[i] + 1,\ \forall\ 1 \le i < m\\ 
+l[i + 1] = r[i] + 1,\ \forall\ 1 \le i < m\\
 p[i] < p[i + 1],\ \forall\ 1 \le i < m
 \end{array}\right.$$
 
@@ -111,7 +109,7 @@ p[i] < p[i + 1],\ \forall\ 1 \le i < m
     - Sau khi tính được $f[i]$, ta sẽ cập nhật lại mảng $h$. Theo nhận xét phía trên, ta sẽ tìm vị trí $z$ nhỏ nhất thỏa mãn $f[i] + w(i, z) < f[h[z]] + w(h[z], z)$.
     Xét đoạn cuối cùng trong mảng $h$, giả sử đoạn đó là $(l, r, p)$.
         - Nếu $f[i] + w(i, l) < f[p] + w(p, l)$, ta sẽ xóa đoạn đó khỏi mảng $h$ và tiếp tục xét đoạn cuối cùng tiếp theo.
-        - Ngược lại, ta sẽ tìm vị trí $z$ nhỏ nhất thỏa mãn $f[i] + w(i, z) < f[p] + w(p, z)$ bằng tìm kiếm nhị phân, sau đó cập nhật lại $(l, r, p)$ thành $(l, z - 1, p)$, và thêm đoạn $(z, n, i)$ vào cuối mảng $h$. 
+        - Ngược lại, ta sẽ tìm vị trí $z$ nhỏ nhất thỏa mãn $f[i] + w(i, z) < f[p] + w(p, z)$ bằng tìm kiếm nhị phân, sau đó cập nhật lại $(l, r, p)$ thành $(l, z - 1, p)$, và thêm đoạn $(z, n, i)$ vào cuối mảng $h$.
 
 ## Cài đặt mẫu
 
@@ -139,7 +137,7 @@ void solve() {
     // deque chỉ lưu giá trị từ h[i + 1]
     // tới h[n]
     ++dq.front().l;
-    
+
     // nếu l > r, ta loại đoạn này khỏi deque
     if (dq.front().l > dq.front().r) {
       dq.pop_front();
@@ -200,8 +198,8 @@ Cho $n$ cây được đánh số hiệu từ $1$ tới $n$, mỗi cây có đ�
 Alob và Bice có một cái cưa máy, mỗi lần sử dụng cưa có thể giảm độ cao của một cây bất kì xuống $1$. Tuy nhiên, sau mỗi lần sử dụng, cưa máy cần được sạc lại. Chi phí để sạc phụ thuộc vào những cây đã được chặt hoàn toàn (những cây đã được giảm độ cao về $0$): trong những cây đã được chặt hoàn toàn, giả sử cây có số hiệu lớn nhất là $i$, chi phí để sạc cưa máy là $b_i$. Nếu không có cây nào đã được chặt hoàn toàn, ta không thể sạc lại cưa máy.
 
 Điều kiện bài toán:$$\left\{\begin{matrix}
-1 \le n \le 10^5\\ 
-1 = a_1 < a_2 < \ldots < a_n \le 10^9\\ 
+1 \le n \le 10^5\\
+1 = a_1 < a_2 < \ldots < a_n \le 10^9\\
 10^9 \ge b_1 > b_2 > \ldots > b_n = 0
 \end{matrix}\right.$$
 
@@ -223,7 +221,7 @@ $$\begin{array}{cl}
 = & (b_x - b_y)(a_z - a_t) \le 0
 \end{array}$$
 
-Vì vậy, 
+Vì vậy,
 $$w(x, z) + w(y, t) \le w(x, t) + w(y, z)$$
 
 Từ đây, ta có thể áp dụng thuật toán đã nêu trong bài.
@@ -251,7 +249,7 @@ void solve() {
   dq.push_back({2, n, 1});
   for (int i = 2; i <= n; ++i) {
     f[i] = f[dq.front().p] + w(dq.front().p, i);
-    ++dq.front().l; 
+    ++dq.front().l;
     if (dq.front().l > dq.front().r) {
       dq.pop_front();
     }
@@ -315,9 +313,9 @@ Hãy tìm cách chọn một số địa điểm sao cho tổng chi phí tổ ch
 
 Nói cách khác, nếu như ta chọn $m$ địa điểm, địa điểm thứ $i$ nằm cách nhà trưởng làng đúng $s_i$ km về phía đông, tổng chi phí tổ chức lễ hội và di chuyển sẽ là $k \cdot m + \sum \limits_{i = 1}^{n} \min \limits_{j = 1}^{m} \|a_i - s_j\|$.
 
-Điều kiện bài toán: 
+Điều kiện bài toán:
 $$\left\{\begin{array}{l}
-1 \le n \le 2 \cdot 10^5, 1 \le k \le 10^9\\ 
+1 \le n \le 2 \cdot 10^5, 1 \le k \le 10^9\\
 0 = a_1 < a_2 < \ldots < a_n \le 10^9
 \end{array}\right.$$
 
@@ -334,7 +332,7 @@ Ta sẽ chứng minh hàm $w$ thỏa mãn bất đẳng thức tứ giác.
 
 **Chứng minh.**
 
-Đặt số người dân trong đoạn $[l + 1, r]$ là $t = r - l$. 
+Đặt số người dân trong đoạn $[l + 1, r]$ là $t = r - l$.
 
 Đặt $p[i] = a_1 + a_2 + \ldots + a_i$. Ta có $2$ trường hợp sau:
 
@@ -360,7 +358,7 @@ $$\begin{array}{cl}
   & + 2 \cdot (a_d - a_c) \le 0
 \end{array}$$
 
-Vì vậy, 
+Vì vậy,
 $$w(x, z) + w(y, t) \le w(x, t) + w(y, z)$$
 
 ## Cài đặt mẫu
@@ -441,7 +439,7 @@ int main() {
 
 Ta sẽ chứng minh bằng cách phản chứng: giả sử tồn tại vị trí $i$ thỏa mãn $h[i] > h[i + 1]$. Để thuận tiện cho việc chứng minh, ta sẽ đặt $a = h[i],\ b = h[i + 1]$ ($a > b$). Điều này tương đương với:
 $$\left\{\begin{matrix}
-f[a] + w(a, i) < f[b] + w(b, i)\\ 
+f[a] + w(a, i) < f[b] + w(b, i)\\
 f[a] + w(a, i + 1) > f[b] + w(b, i + 1)
 \end{matrix}\right.$$
 

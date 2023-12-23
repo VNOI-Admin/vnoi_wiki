@@ -4,8 +4,6 @@ Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-
 
 Người dịch: Bùi Việt Dũng
 
-[[_TOC_]]
-
 Xét bài toán tính $a^b\%c$, với $\%$ là dấu đồng dư thức và $b$ có thể rất lớn (ví dụ $b \leq 10^{18}$).
 
 # Thuật toán "ngây thơ"
@@ -71,6 +69,6 @@ Giả sử ta có $a=2,b=5,c=5$, khi đó kết quả là $pow(2,5,5)$
 
 7. Quay lại hàm $pow(2,5,5)$: hàm này trả về giá trị $(2.4^2)\%5=32\%5=2$.
 
-Vậy ta có $2^5\%5=2$. 
+Vậy ta có $2^5\%5=2$.
 
 **Độ phức tạp của thuật toán:** $O(\log_{2}{b})$

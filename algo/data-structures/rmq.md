@@ -10,8 +10,6 @@
 
 ---
 
-[[_TOC_]]
-
 # Giới thiệu
 Bài toán $RMQ$ được phát biểu như sau:
 - Cho mảng $A$ gồm $N$ phần tử và $Q$ truy vấn có dạng $(l, r)$. Với mỗi truy vấn, in ra giá trị nhỏ nhất trong mảng $A$ từ $l$ đến $r$.

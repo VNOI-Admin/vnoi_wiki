@@ -4,8 +4,6 @@
 
 Bài viết này nhằm giúp bạn đọc nắm được ý tưởng cơ bản của các hệ **mã hóa khóa công khai** (**Public Key Cryptography**) và một số ứng dụng của chúng. Ngoài ra, chúng ta cũng sẽ tìm hiểu về thuật toán mã hóa RSA, một hệ mã hóa khóa công khai được sử dụng khá phổ biến hiện nay.
 
-[[_TOC_]]
-
 # 1. Một số khái niệm
 
 **Mã hóa** (Encryption): Quá trình chuyển đổi thông tin từ dạng thông thường (có thể đọc được) sang dạng không đọc được (nếu không có khóa bí mật), nhằm bảo mật thông tin.
@@ -18,7 +16,7 @@ Bài viết này nhằm giúp bạn đọc nắm được ý tưởng cơ bản 
 
 ## 2.1. Mã hóa khóa đối xứng (_Symmetric-key cryptography_)
 
-Cho đến trước năm 1976, các phương pháp mã hóa đều là mã hóa đối xứng. 
+Cho đến trước năm 1976, các phương pháp mã hóa đều là mã hóa đối xứng.
 
 Các hệ mã hóa đối xứng sử dụng **cùng một khóa** cho cả bên gửi lẫn bên nhận. Nói một cách chính xác hơn, hai khóa này có thể:
 
@@ -33,7 +31,7 @@ Các hệ mã hóa đối xứng sử dụng **cùng một khóa** cho cả bên
 
 ## 2.2. Mã hóa khóa công khai (_Public-key cryptography_)
 
-Vào năm 1874, William Stanley Jevons viết trong quyển _The Principles of Science_ về mối liên hệ giữa các hàm một chiều và mật mã học. Đặc biệt, ông đã đi sâu vào bài toán phân tích ra thừa số nguyên tố (sau này được sử dụng trong thuật toán RSA). 
+Vào năm 1874, William Stanley Jevons viết trong quyển _The Principles of Science_ về mối liên hệ giữa các hàm một chiều và mật mã học. Đặc biệt, ông đã đi sâu vào bài toán phân tích ra thừa số nguyên tố (sau này được sử dụng trong thuật toán RSA).
 
 > _Liệu rằng bạn đọc có thể đoán được 2 số nguyên nào có tích bằng 8,616,460,799? Tôi nghĩ rằng ngoài tôi ra thì không ai có thể biết kết quả được._
 
@@ -47,11 +45,11 @@ Khác với mã đối xứng, mã hóa khóa bất đối xứng sử dụng m�
 
 Mật mã hóa khóa công khai hay còn gọi là mã hóa bất đối xứng có 2 ứng dụng phổ biến sau:
 
-## 3.1. Mã hóa công khai (_Public-key encryption_): 
+## 3.1. Mã hóa công khai (_Public-key encryption_):
 
-Một thông điệp được mã hóa bằng khóa công khai của người nhận. Thông điệp này chỉ có thể giải mã được bằng khóa bí mật mà chỉ người nhận có. 
+Một thông điệp được mã hóa bằng khóa công khai của người nhận. Thông điệp này chỉ có thể giải mã được bằng khóa bí mật mà chỉ người nhận có.
 
-## 3.2. Chữ ký điện tử (_Digital signatures_): 
+## 3.2. Chữ ký điện tử (_Digital signatures_):
 
 Chữ ký điện tử là thông tin đi kèm với dữ liệu nhằm mục đích xác định chủ sở hữu của dữ liệu đó.
 
@@ -138,7 +136,7 @@ Không mất tính tổng quát, giả sử $gcd(m, n) = p$. Ta có:
 
 - $gcd(m, p) = p \\ \Rightarrow m \equiv 0 \pmod p \\ \Rightarrow m^{ed} \equiv 0 \equiv m \pmod p$
 
-- $gcd(m, q) = 1 \\ \Rightarrow m^{ed} \equiv m \pmod q$ 
+- $gcd(m, q) = 1 \\ \Rightarrow m^{ed} \equiv m \pmod q$
 (chứng mình tương tự trong trường hợp 1)
 
 
@@ -206,5 +204,5 @@ print 'Decrypted message: {0}'.format(decrypted_message)
 [Wiki - Public-key Cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography)
 
 [Wiki - RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
- 
+
 [Wiki - History of Cryptography](https://en.wikipedia.org/wiki/History_of_cryptography)

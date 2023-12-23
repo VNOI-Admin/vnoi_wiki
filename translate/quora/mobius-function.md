@@ -2,8 +2,6 @@
 
 Nguồn: [Quora](https://www.quora.com/profile/Surya-Kiran/Posts/A-Dance-with-Mobius-Function)
 
-[[_TOC_]]
-
 Trong bài viết này mình sẽ giới thiệu với các bạn một chủ đề vô cùng thú vị trong số học - Hàm nghịch đảo Mobius, cũng như cách ứng dụng để giải quyết một số bài toán.
 
 Một lời khuyên dành cho bạn đọc là các bạn nên tự chứng minh những công thức được đề cập để hiểu rõ hơn bản chất bài toán.
@@ -51,7 +49,7 @@ Vỡi mỗi $f(n)$, ta gọi hàm tổng $S_f(n)$ là tổng các $f(d)$ với $
 for (int i = 1; i <= N; i++) phi[i] = i;
 for (int i = 2; i <= N; i++)
     if (phi[i] == i)
-       for (int j = i; j <= N; j += i) 
+       for (int j = i; j <= N; j += i)
            phi[j] -= phi[j]/i;
 ```
 
@@ -160,7 +158,7 @@ Cho dãy số $a_1,a_2,...,a_n$. Tìm số bộ ba $(i,j,k)$ ($1 \leq i < j < k 
 
 Ta đưa đề bài này về bài toán: tính $G=\sum_{i=1}^{n}\sum_{j=i+1}^{n}\sum_{k=j+1}^{n}e(gcd(a_i,a_j,a_k))$
 
-1. Viết lại biểu thức trên: 
+1. Viết lại biểu thức trên:
 
 	$G=\sum_{g}^{maxA}h(g)*cnt[g]$, ở đây $cnt[g]$ là số lượng bộ ba $(i,j,k)$ có $gcd(a_i,a_j,a_k)=1$. $maxA=10^6$
 

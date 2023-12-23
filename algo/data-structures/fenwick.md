@@ -1,6 +1,6 @@
 # **Cây chỉ số nhị phân (Binary Indexed Tree)**
 
-**Tác giả:** 
+**Tác giả:**
 - Bùi Nguyễn Đức Tân - Phổ thông Năng khiếu, Đại học Quốc gia Thành phố Hồ Chí Minh
 - Lê Minh Hoàng - Phổ thông Năng khiếu, Đại học Quốc gia Thành phố Hồ Chí Minh
 
@@ -8,8 +8,6 @@
 - Nguyễn Xuân Tùng - Đại học Quốc Tế, Đại học Quốc gia Thành phố Hồ Chí Minh
 
 ---
-
-[[_TOC_]]
 
 # Giới thiệu
 Cây chỉ số nhị phân (tên tiếng Anh là Binary Indexed Tree) hay cây Fenwick là một cấu trúc dữ liệu được sử dụng khá phổ biến trong lập trình thi đấu vì có thể cài đặt nhanh, dễ dàng so với các CTDL khác.
@@ -55,7 +53,7 @@ Nhận thấy đây là một dạng của bài toán Range Sum Query, ta có th
 Khi cập nhật giá trị một phần tử, ta đồng thời cập nhật tất cả các prefix chứa phần tử đó.
 
 ```c++
-int sum[N]; 
+int sum[N];
 
 void preprocess() {
     sum[1] = a[1];
@@ -153,7 +151,7 @@ Mỗi lần cộng thêm, bit cuối luôn bị dịch lên ít nhất 1 lần, 
 ## Lưu ý
 Bằng cây chỉ số nhị phân (BIT), ta dễ dàng tính được prefix sum và cập nhật giá trị chỉ trong $\mathcal{O}(\log n)$, mặt khác so với các CTDL khác, BIT dễ dàng cài đặt hơn rất nhiều và không tốn quá nhiều thời gian để code.
 
-Quay lại bài toán đầu, nếu chúng ta thay đổi yêu cầu thành tìm tổng trên đoạn $[l \ldots r]$, tính chất của prefix sum dễ dàng cho ta tìm được kết quả thông qua phép $sum(r) - sum(l - 1)$. Tuy nhiên, không phải tất cả phép toán nào đều cho phép chúng ta dễ dàng lấy kết quả thông qua phép hiệu như vậy. Đối với các phép $min, gcd$, không tồn tại phép hiệu cho ta phép lấy kết quả của một đoạn dễ dàng, vì thế ta không thể áp dụng BIT đối với những bài toán loại này. 
+Quay lại bài toán đầu, nếu chúng ta thay đổi yêu cầu thành tìm tổng trên đoạn $[l \ldots r]$, tính chất của prefix sum dễ dàng cho ta tìm được kết quả thông qua phép $sum(r) - sum(l - 1)$. Tuy nhiên, không phải tất cả phép toán nào đều cho phép chúng ta dễ dàng lấy kết quả thông qua phép hiệu như vậy. Đối với các phép $min, gcd$, không tồn tại phép hiệu cho ta phép lấy kết quả của một đoạn dễ dàng, vì thế ta không thể áp dụng BIT đối với những bài toán loại này.
 
 Đây là một khuyết điểm mấu chốt của BIT, vì thế cần nắm rõ tính chất và những bài toán để quyết định có nên sử dụng BIT không.
 
@@ -168,7 +166,7 @@ Ta có thể cài đặt "ngây thơ" bằng cách áp dụng hàm `update()` tr
 ## Truy vấn từng phần tử
 Mảng hiệu (difference array) là một loại mảng lưu hiệu giữa các phần tử liền kề với nhau.
 
-Mảng hiệu được xây dựng bằng cách sau: 
+Mảng hiệu được xây dựng bằng cách sau:
 - Với $i = 1$ thì $diff[i] = A[i]$.
 - Với $2 \le i \le N$ thì $diff[i] = A[i] - A[i - 1]$.
 
@@ -180,7 +178,7 @@ int diff[N + 1];
 
 diff[1] = a[1];
 for (int i = 2; i <= n; ++i) {
-    diff[i] = a[i] - a[i - 1]; 
+    diff[i] = a[i] - a[i - 1];
     // lấy phần tử thứ i trừ cho phần tử trước nó
 }
 ```
@@ -245,7 +243,7 @@ Tuy nhiên, do sự biến động của hệ số khi nhân nên cách này kh�
 - $sum[3] = n \cdot diff[1] + (n - 1) \cdot diff[2] + (n - 2) \cdot diff[3] - (n - 3) \cdot (diff[1] + diff[2] + diff[3])$
 - $\ldots$
 - $sum[i] = n \cdot diff[1] + (n - 1) \cdot diff[2] + \ldots + (n - j + 1) \cdot diff[j] + \ldots + (n - i + 1) \cdot diff[i] - (n - i) \cdot (diff[1] + diff[2] + \ldots + diff[i])$
- 
+
 Tóm lại, ta thu được:
 $$
 sum[i] = \displaystyle \sum_{j = 1}^{i} (n - j + 1) \cdot diff[j] - (n - i) \cdot \sum_{j = 1}^{i} diff[j]
@@ -257,7 +255,7 @@ Thao tác cập nhật trên mảng $S_2$ giống với thao tác cập nhật �
 Code tham khảo:
 ```c++
 vector<int> bit1, bit2;
-/* 
+/*
     Các hàm update và sum cần làm việc trên một trong hai BIT riêng biệt.
     Sử dụng vector cho phép truyền BIT vào làm việc trực tiếp dễ dàng hơn.
 */

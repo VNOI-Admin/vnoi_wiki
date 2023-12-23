@@ -1,7 +1,5 @@
 # Định lý Wilson
 
-[[_TOC_]]
-
 Nguồn: [hackerearth](https://www.hackerearth.com/notes/lucas-theorem-wilsons-theorem/)
 
 # Định lý
@@ -52,7 +50,7 @@ a * a^{n-2} = a^{n-1} \equiv 1 \ mod\ n
 $$
 Đặt $b = a^{n-2} \bmod n$. Với mỗi $a$ thì $b$ là duy nhất và $b < n$ để $a*b\ (mod \ n) \ =1$, mặt khác $a=b$ khi và chỉ khi $a=1$ hoặc $a=n-1$ nên ta có thể tạo ra $(n-2) \over 2$ cặp số $a, b$ phân biệt như vậy. Nhân tất cả các cặp với nhau ta được
 
-$2.3.4...(n-2) \ mod \ n = 1$ 
+$2.3.4...(n-2) \ mod \ n = 1$
 
 $\Rightarrow \ 1.2.3..(n-1)\ mod \ n = n-1$
 

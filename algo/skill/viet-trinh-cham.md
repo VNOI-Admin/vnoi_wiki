@@ -4,8 +4,6 @@
 
 Bạn cảm thấy lo sợ trong những kì thi chấm offline? Bạn bình thường làm bài rất tốt nhưng khi chấm offline lại bị điểm kém vì sai những lỗi vớ vẩn? Bạn code sai một bài rất khó và debug mãi không được vì không có test sai? Tất cả những vấn đề đó sẽ được giải quyết đơn giản với một chương trình chấm bài tự động, giúp bạn tự kiểm tra bài mình và phát hiện test sai. Bài viết này sẽ giới thiệu với bạn những bước cơ bản nhất để viết trình chấm - một kĩ thuật mà bạn nên thành thạo trước khi thi HSG.
 
-[[_TOC_]]
-
 # Trình chấm là gì?
 
 Trình chấm là một bộ chương trình giúp bạn tự động sinh ra các test input ngẫu nhiên và tự động chạy hai chương trình lời giải khác nhau với các input đó để so sánh output. Về cơ bản, trình chấm gồm 4 chương trình là: lời giải 1, lời giải 2, trình sinh test, và trình so test. Thường thì lời giải 1 là cách chuẩn bạn sẽ sử dụng, còn lời giải 2 là một cách có hiệu quả kém hơn nhưng vẫn chính xác.
@@ -76,7 +74,7 @@ Chạy thử chương trình này, ta có thể sinh được một test sai nh�
 
 ```
 1 5
-6 6 
+6 6
 3 1 1 8
 1 1 1 1
 6 1 1

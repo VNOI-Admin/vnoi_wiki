@@ -1,14 +1,12 @@
 # Trie
 
-**Nguời viết:** 
+**Nguời viết:**
 - Ngô Nhật Quang - HUS High School for Gifted Students
 
 **Reviewer:**
 - Hồ Ngọc Vĩnh Phát - VNUHCM-University of Science
 - Lê Minh Hoàng - VNUHCM-University of Science
 - Cao Thanh Hậu - VNUHCM-University of Science
-
-[[_TOC_]]
 
 # Giới thiệu
 
@@ -26,7 +24,7 @@ Trie là một cấu trúc dữ liệu dạng cây dùng để lưu trữ một 
 Hãy xem xét một ví dụ sau:
 
 <center>
-    
+
 [[/uploads/trie_img1.png]]
 </center>
 
@@ -81,7 +79,7 @@ struct Trie{
         int pos = 0;
         for (auto f : s) {
             int c = f - 'a';
-            if (nodes[pos].child[c] == -1) { // Nếu cạnh tương ứng chữ cái c 
+            if (nodes[pos].child[c] == -1) { // Nếu cạnh tương ứng chữ cái c
                                              // chưa tồn tại thì ta tạo ra đỉnh mới
                 nodes[pos].child[c] = new_node();
             }
@@ -149,13 +147,13 @@ struct Trie{
             exist = cnt = 0;
         }
     };
- 
+
     int cur;
     Node* root;
     Trie() : cur(0) {
         root = new Node();
     };
- 
+
     void add_string(string s) {
         Node* p = root;
         for (auto f : s) {
@@ -186,13 +184,13 @@ struct Trie{
         }
         return false;
     }
- 
+
     void delete_string(string s) {
         if (find_string(s) == false) return;
 
         delete_string_recursive(root, s, 0);
     }
- 
+
     bool find_string(string s) {
         Node* p = root;
         for (auto f : s) {
@@ -227,7 +225,7 @@ Các số được thêm vào trie sẽ được chuyển thành dạng nhị ph
 Lưu ý rằng các ứng dụng của trie xâu (liệt kê bên dưới) đều có thể được áp dụng cho trie nhị phân.
 
 <center>
-    
+
 [[/uploads/trie_img2.png]]
 </center>
 
@@ -378,7 +376,7 @@ string find_kth_string(int k) {
                 break;
             }
             k -= nodes[nxt].cnt;
-        } 
+        }
     }
 
     return res;
@@ -446,13 +444,13 @@ Giới hạn:
 
 Nhìn thấy bài toán tìm $x_i \oplus v$ lớn nhất ngay lập tức gợi cho chúng ta lời giải sử dụng trie để giải. Vì vậy ta sẽ cố gắng thiết kế trie để truy vấn trên tập các số thỏa mãn hai điều kiện còn lại.
 
-Để $GCD(x_i, v)$ chia hết cho $k_i$, dễ nhận thấy cả $x_i$ và $v$ đều phải chia hết cho $k_i$. Do vậy, ta sẽ tạo $10^5$ trie, với trie thứ $i$ là các số trong mảng $a$ chia hết cho $i$. Để $x_i + v \le s_i$ thì dĩ nhiên $v \le s_i - x_i$, ta lưu với mỗi đỉnh trong trie số bé nhất trong cây con của đỉnh đó là bao nhiêu. 
+Để $GCD(x_i, v)$ chia hết cho $k_i$, dễ nhận thấy cả $x_i$ và $v$ đều phải chia hết cho $k_i$. Do vậy, ta sẽ tạo $10^5$ trie, với trie thứ $i$ là các số trong mảng $a$ chia hết cho $i$. Để $x_i + v \le s_i$ thì dĩ nhiên $v \le s_i - x_i$, ta lưu với mỗi đỉnh trong trie số bé nhất trong cây con của đỉnh đó là bao nhiêu.
 
 Vậy để giải quyết một truy vấn, ta sẽ tìm giá trị XOR lớn nhất trên trie thứ $k_i$ (cách giải đã trình bày ở [trên](#Xử-lí-truy-vấn-tìm-XOR-lớn-nhất-với-giá-trị-được-cho)) và chỉ đi vào một đỉnh con nếu như giá trị bé nhất của cây con đó bé hơn hoặc bằng $s_i - x_i$.
 
 <details>
 <summary>Code mẫu</summary>
-        
+
 ```cpp
 #include <bits/stdc++.h>
 using namespace std;
@@ -527,7 +525,7 @@ signed main() {
         if (t == 1) {
             int u;
             cin >> u;
-            for (auto x : d[u]) tries[x].add_number(u); 
+            for (auto x : d[u]) tries[x].add_number(u);
         }
         else {
             int x, k, s;
@@ -561,12 +559,12 @@ Với các truy vấn loại $1$, thay vì thay đổi cả dãy, ta nhận th�
 Giả dụ ta đã có một trie nhị phân của dãy số $a_1, a_2, \ldots, a_n$ và ta muốn tìm MEX của các số trong đó. Ta sẽ sử dụng thuật toán tương tự chặt nhị phân. Gọi độ cao của trie là $k$. Khởi đầu tại gốc trie, ta kiểm tra xem cây con bên trái (cạnh thể hiện bit $0$) có phải là cây nhị phân hoàn hảo hay không. Nói cách khác, tất cả các số trong khoảng $[0, 2^k - 1]$ có tồn tại hay không. Nếu có, ta chắc chắn MEX của dãy số nằm trong khoảng này. Nếu không, ta chắc chắn MEX của dãy số nằm trong khoảng $[2^k, 2^{k + 1} - 1]$. Sau đó, ta đi xuống đỉnh con tương ứng và tiếp tục xét hai đỉnh con của nó. Làm như vậy với tất cả các bit là sẽ tìm được đáp án.
 
 <center>
-    
+
 [[/uploads/trie_img4.png]]
 </center>
 
 Vậy phần còn lại phải xử lí là kết hợp thuật tìm MEX trên với việc cả mảng đang bị XOR bởi số $z$. Dễ nhận thấy là, nếu bit thứ $k$ của $z$ được bật, thì nó tương tự việc hai cây con trái và phải của đỉnh đang xét được đổi chỗ cho nhau. Vì vậy thuật toán cuối cùng tương tự với thuật toán tìm MEX trên, thêm việc xét bit thứ $k$ của $z$ mà ta sẽ xét cây con trái trước (nếu bit đó là $0$) hay cây con phải trước (nếu bit đó là $1$).
-    
+
 <details>
 <summary>Code mẫu</summary>
 
@@ -624,7 +622,7 @@ struct Trie{
 };
 
 signed main() {
-    
+
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
     int n, m;
@@ -647,7 +645,7 @@ signed main() {
         cur_xor ^= x;
         cout << trie.query(cur_xor) << "\n";
     }
-    
+
 }
 ```
 </details>
@@ -667,7 +665,7 @@ Giới hạn:
 
 Giả sử bài toán định nghĩa vẻ đẹp một cặp xâu là $l_p^2$, thì bài toán có thể dễ dàng được giải quyết bằng cách dfs trên trie các xâu đã cho.
 
-Tuy nhiên, vì đề bài định nghĩa vẻ đẹp một cặp xâu là $\min(l_p, l_s)^2$, ta cần một cách nào đó để so sánh cả tiền tố và hậu tố cùng một lúc trên trie. Ta có thể làm điều này bằng cách biến đổi các xâu $W$. Chính xác hơn, nếu $W = C_1C_2 \ldots C_M$ thì ta biến đổi $W = (C_1, C_M)(C_2, C_{M - 1}) \ldots (C_M, C_1)$ với $(C_1, C_M)$ là "kí tự" đầu tiên. Nói cách khác, ta thay đổi bảng chữ cái từ $26$ kí tự thành bảng chữ cái có $676$ kí tự $(a, a), (a, b), \ldots, (z, z)$. 
+Tuy nhiên, vì đề bài định nghĩa vẻ đẹp một cặp xâu là $\min(l_p, l_s)^2$, ta cần một cách nào đó để so sánh cả tiền tố và hậu tố cùng một lúc trên trie. Ta có thể làm điều này bằng cách biến đổi các xâu $W$. Chính xác hơn, nếu $W = C_1C_2 \ldots C_M$ thì ta biến đổi $W = (C_1, C_M)(C_2, C_{M - 1}) \ldots (C_M, C_1)$ với $(C_1, C_M)$ là "kí tự" đầu tiên. Nói cách khác, ta thay đổi bảng chữ cái từ $26$ kí tự thành bảng chữ cái có $676$ kí tự $(a, a), (a, b), \ldots, (z, z)$.
 
 Từ đó ta có thể thấy bài toán đã trở thành một cặp xâu có vẻ đẹp là $l_p^2$. Cách tính đáp án chi tiết bạn đọc có thể tham khảo trong code mẫu.
 
@@ -696,12 +694,12 @@ struct Trie{
             cnt = 0;
         }
     };
- 
+
     Node* root;
     Trie() {
         root = new Node();
     };
- 
+
     void add_string(string s) {
         Node* p = root;
         int n = (int)s.size();
@@ -727,7 +725,7 @@ struct Trie{
 };
 
 signed main() {
-    
+
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
     int t;
@@ -738,14 +736,14 @@ signed main() {
         cin >> n;
 
         for (int i = 1; i <= n; i++) {
-            string s; 
+            string s;
             cin >> s;
             trie.add_string(s);
         }
 
         cout << trie.solve(trie.root, 0) << "\n";
     }
-    
+
 }
 ```
 </details>
@@ -772,29 +770,29 @@ Xây một trie cho $N$ xâu đó. Không khó để nhận ra rằng với mỗ
 Xây một trie thứ hai cũng cho $N$ xâu này nhưng bị đảo ngược, tức mỗi đỉnh trên trie đó tương ứng với một hậu tố của một (hoặc nhiều) xâu nào đó. Với mỗi đỉnh trên trie, ta lưu một vector chứa thứ tự của các xâu có hậu tố là xâu thể hiện bởi đỉnh đó. Lưu ý không thể lưu $l, r$ như trie trước do nó có thể không liên tiếp vì ta đã đảo ngược các xâu.
 
 Với mỗi truy vấn $j$, ta tìm đỉnh trên trie thứ nhất thể hiện cho tiền tố $P_j$ và có được khoảng liên tiếp các xâu có tiền tố này. Tiếp theo, ta tìm đỉnh trên trie thứ hai thể hiện cho hậu tố $Q_j$ và có được vector chứa các xâu có hậu tố này. Tại đây, bài toán quy trở về cho một vector các số, tìm số số nằm trong khoảng $[l, r]$. Bài toán này có thể dễ dàng được giải quyết bằng thuật toán chặt nhị phân.
-    
+
 <details>
 <summary>Code mẫu</summary>
 
 ```cpp
 #include <bits/stdc++.h>
- 
+
 using namespace std;
- 
+
 int get_val(char f) {
     if (f == 'A') return 0;
     if (f == 'G') return 1;
     if (f == 'C') return 2;
     return 3;
 }
- 
+
 char get_char(int x) {
     if (x == 0) return 'A';
     if (x == 1) return 'G';
     if (x == 2) return 'C';
     return 'U';
 }
- 
+
 const int NUMBEROFNODES = 2e6 + 5;
 const int INF = 1e9;
 struct Trie{
@@ -803,14 +801,14 @@ struct Trie{
         int l, r;
         int exist;
     } nodes[numberOfNodes];
- 
+
     int cur;
     Trie() : cur(0) {
         memset(nodes[0].child, -1, sizeof(nodes[cur].child));
         nodes[0].l = INF; nodes[0].r = -INF;
         nodes[0].exist = 0;
     };
- 
+
     int new_node() {
         cur++;
         memset(nodes[cur].child, -1, sizeof(nodes[cur].child));
@@ -818,20 +816,20 @@ struct Trie{
         nodes[cur].exist = 0;
         return cur;
     }
- 
+
     void add_string(string s, int id) {
         int pos = 0;
         for (auto f : s) {
             int c = get_val(f);
             if (nodes[pos].child[c] == -1) nodes[pos].child[c] = new_node();
             pos = nodes[pos].child[c];
- 
+
             nodes[pos].l = min(nodes[pos].l, id);
             nodes[pos].r = max(nodes[pos].r, id);
         }
         nodes[pos].exist++;
     }
- 
+
     pair<int, int> get_range(string s) {
         int pos = 0;
         for (auto f : s) {
@@ -841,17 +839,17 @@ struct Trie{
         }
         return {nodes[pos].l, nodes[pos].r};
     }
- 
+
     void dfs(int pos, string& current_string, vector<string>& res) {
         for (int i = 1; i <= nodes[pos].exist; i++) res.push_back(current_string);
- 
+
         for (int i = 0; i < 4; i++) if (nodes[pos].child[i] != -1) {
             current_string += get_char(i);
             dfs(nodes[pos].child[i], current_string, res);
             current_string.pop_back();
         }
     }
- 
+
     vector<string> sort_strings() {
         vector<string> res;
         string current_string = "";
@@ -859,26 +857,26 @@ struct Trie{
         return res;
     }
 };
- 
+
 struct ReversedTrie{
     struct Node{
         int child[4];
         vector<int> ids;
     } nodes[NUMBEROFNODES];
- 
+
     int cur;
     ReversedTrie() : cur(0) {
         memset(nodes[0].child, -1, sizeof(nodes[cur].child));
         nodes[0].ids.clear();
     };
- 
+
     int new_node() {
         cur++;
         memset(nodes[cur].child, -1, sizeof(nodes[cur].child));
         nodes[cur].ids.clear();
         return cur;
     }
- 
+
     void add_string(string s, int id) {
         reverse(s.begin(), s.end());
         int pos = 0;
@@ -889,7 +887,7 @@ struct ReversedTrie{
             nodes[pos].ids.push_back(id);
         }
     }
- 
+
     int query(string s, pair<int, int> range) {
         reverse(s.begin(), s.end());
         int pos = 0;
@@ -898,27 +896,27 @@ struct ReversedTrie{
             if (nodes[pos].child[c] == -1) return 0;
             pos = nodes[pos].child[c];
         }
- 
+
         int l = lower_bound(nodes[pos].ids.begin(), nodes[pos].ids.end(), range.first) - nodes[pos].ids.begin();
         int r = upper_bound(nodes[pos].ids.begin(), nodes[pos].ids.end(), range.second) - nodes[pos].ids.begin() - 1;
- 
+
         return r - l + 1;
     }
 };
- 
+
 vector<string> sort_strings(vector<string> v) {
     Trie list;
     for (auto s : v) list.add_string(s, -1);
     return list.sort_strings();
 }
- 
+
 signed main() {
-    
+
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
- 
+
     int n, m;
     cin >> n >> m;
- 
+
     vector<string> v;
     for (int i = 1; i <= n; i++) {
         string s;
@@ -926,23 +924,23 @@ signed main() {
         v.push_back(s);
     }
     v = sort_strings(v);
- 
+
     Trie trie1;
     ReversedTrie trie2;
     for (int i = 1; i <= n; i++) {
         trie1.add_string(v[i - 1], i);
         trie2.add_string(v[i - 1], i);
     }
- 
+
     while (m--) {
         string p, q;
         cin >> p >> q;
- 
+
         pair<int, int> range = trie1.get_range(p);
         if (range.first == -1) cout << "0\n";
         else cout << trie2.query(q, range) << "\n";
     }
-    
+
 }
 ```
 </details>
@@ -970,7 +968,7 @@ Công thức quy hoạch động này có thể được tối ưu sử dụng m
 Dựa vào bit thứ $i$ của $a_i \oplus a_j$ và giá trị của $a_i$ ta hoàn toán có thể tính được bit thứ $i$ của $a_j$. Lưu ý mọi dãy con gồm $1$ phần tử đều thỏa mãn điều kiện của đề bài.
 
 Lúc này, bạn đọc có thể tưởng tượng trie như một [cây phân đoạn](https://vnoi.info/wiki/algo/data-structures/segment-tree-basic.md), truy vấn trên trie y hệt như truy vấn như cây phân đoạn nhưng điều kiện đi xuống cây con bên nào bị thay đổi.
-                         
+
 <details>
 <summary>Code mẫu</summary>
 
@@ -978,14 +976,14 @@ Lúc này, bạn đọc có thể tưởng tượng trie như một [cây phân 
 #include <bits/stdc++.h>
 
 #define ll long long
- 
+
 using namespace std;
 
 const int MOD = 998244353;
 void add(int& a, int b) {
     if ((a += b) >= MOD) a -= MOD;
 }
- 
+
 const int NUMBEROFNODES = 18000005;
 const int LG = 60;
 struct Trie{
@@ -993,20 +991,20 @@ struct Trie{
         int child[2];
         int sum;
     } nodes[NUMBEROFNODES];
- 
+
     int cur;
     Trie() : cur(0) {
         memset(nodes[0].child, -1, sizeof(nodes[cur].child));
         nodes[0].sum = 0;
     };
- 
+
     int new_node() {
         cur++;
         memset(nodes[cur].child, -1, sizeof(nodes[cur].child));
         nodes[cur].sum = 0;
         return cur;
     }
- 
+
     void add_value(ll x, int val) {
         int pos = 0;
         for (int i = LG; i >= 0; i--) {
@@ -1016,7 +1014,7 @@ struct Trie{
             add(nodes[pos].sum, val);
         }
     }
- 
+
     int query(ll x, ll k) {
         int pos = 0, res = 0;
         for (int i = LG; i >= 0; i--) {
@@ -1043,11 +1041,11 @@ const int N = 3e5 + 5;
 int n;
 ll k;
 ll a[N];
- 
+
 signed main() {
-    
+
     ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
- 
+
     cin >> n >> k;
     for (int i = 1; i <= n; i++) cin >> a[i];
     sort(a + 1, a + n + 1);
@@ -1061,7 +1059,7 @@ signed main() {
         add(res, val);
     }
     cout << res;
-    
+
 }
 ```
 </details>

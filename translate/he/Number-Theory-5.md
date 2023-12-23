@@ -4,9 +4,6 @@ Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-
 
 Người dịch: Bùi Việt Dũng
 
-[[_TOC_]]
-
-
 # Tập hợp (Set)
 
 ## Tập hợp (Set) là gì?

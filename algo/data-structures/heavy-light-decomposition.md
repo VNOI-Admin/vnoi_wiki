@@ -1,6 +1,6 @@
 # Heavy-Light Decomposition (HLD)
 
-**Tác giả:** 
+**Tác giả:**
 - Phạm Hoàng Hiệp – University of Georgia
 
 **Reviewer:**
@@ -8,13 +8,11 @@
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 - Đặng Đoàn Đức Trung - UT Austin
 
-[[_TOC_]]
-
 ## Mở đầu
 ### Giới thiệu về HLD
-**Heavy-Light Decomposition (HLD)**, dịch ra tiếng Việt là phân chia nặng nhẹ là một kỹ thuật thường được dùng trong những bài toán xử lý trên cây. 
+**Heavy-Light Decomposition (HLD)**, dịch ra tiếng Việt là phân chia nặng nhẹ là một kỹ thuật thường được dùng trong những bài toán xử lý trên cây.
 
-Trong bài viết này, để ngắn gọn và dễ nhớ, chúng ta sẽ gọi tên kỹ thuật là **HLD**. 
+Trong bài viết này, để ngắn gọn và dễ nhớ, chúng ta sẽ gọi tên kỹ thuật là **HLD**.
 
 Tuy nghe tên có vẻ kinh khủng nhưng trên thực tế, đây là một kỹ thuật có ý tưởng khá tự nhiên và có tính ứng dụng cao, có thể được sử dụng trong nhiều bài tập.
 
@@ -26,15 +24,15 @@ Tuy nghe tên có vẻ kinh khủng nhưng trên thực tế, đây là một k�
 - [Euler tour on tree](https://vnoi.info/wiki/algo/graph-theory/euler-tour-on-tree.md) (nên biết nhưng không bắt buộc)
 
 ### Bài toán
-Để trả lời câu hỏi HLD sẽ giúp chúng ta làm gì, chúng ta sẽ cùng giải một bài toán. 
+Để trả lời câu hỏi HLD sẽ giúp chúng ta làm gì, chúng ta sẽ cùng giải một bài toán.
 
-Trước hết, chúng ta sẽ đến với phiên bản dễ hơn của bài toán như sau. 
+Trước hết, chúng ta sẽ đến với phiên bản dễ hơn của bài toán như sau.
 
 Cho một mảng số nguyên dương gồm tối đa $10^5$ phần tử. Chúng ta cần xử lý tối đa $10^5$ truy vấn thuộc một trong hai loại sau:
 - Cập nhật giá trị của phần tử thứ $i$ thành $x$
 - Tính tổng XOR của tất cả các phần tử trong đoạn từ $l$ đến $r$
 
-Bài toán trên là một bài toán quen thuộc và có thể được xử lý đơn giản bằng cách sử dụng Segment Tree. Nhưng, giả sử thay vì mảng một chiều, chúng ta cần xử lý bài toán trên cây thì phải làm như thế nào? 
+Bài toán trên là một bài toán quen thuộc và có thể được xử lý đơn giản bằng cách sử dụng Segment Tree. Nhưng, giả sử thay vì mảng một chiều, chúng ta cần xử lý bài toán trên cây thì phải làm như thế nào?
 
 #### Phát biểu bài toán
 
@@ -64,7 +62,7 @@ Vì vậy, chúng ta sẽ đánh dấu cạnh nối giữa đỉnh $15$ và đ�
 
 Chúng ta sẽ gọi những cạnh màu đỏ là những **"cạnh nặng" (heavy edges)** vì chúng nối một đỉnh với đỉnh con **"nặng nhất"**. Những cạnh còn lại sẽ được gọi là những **"cạnh nhẹ" (light edges)**
 
-Có thể thấy rằng, những cạnh được đánh dấu sẽ tạo thành các **"chuỗi"** đi từ trên xuống dưới. Ví dụ như chuỗi $1-3-8-15-17-20$ hay chuỗi $5-11$. Các đỉnh là lá cũng có thể coi là một chuỗi riêng. 
+Có thể thấy rằng, những cạnh được đánh dấu sẽ tạo thành các **"chuỗi"** đi từ trên xuống dưới. Ví dụ như chuỗi $1-3-8-15-17-20$ hay chuỗi $5-11$. Các đỉnh là lá cũng có thể coi là một chuỗi riêng.
 
 Với cách quy ước trên, ta có thể thấy rằng hai chuỗi "liền nhau" được nối với nhau bởi một cạnh nhẹ. Hai chuỗi "liền nhau" là hai chuỗi mà tồn tại đỉnh $u$ nằm ở một chuỗi và $v$ nằm ở chuỗi còn lại sao cho $u$ và $v$ có cạnh nối trực tiếp với nhau. Do $u$ và $v$ khác chuỗi nên cạnh nối giữa $u$ và $v$ là cạnh nhẹ. Hai chuỗi không thể nối ở nhiều hơn một cặp điểm.
 
@@ -87,7 +85,7 @@ Như vậy, chúng ta đi qua không quá $O(\log(n))$ chuỗi, với mỗi chu�
 
 ### Chi tiết cài đặt
 
-Thông thường, do việc sử dụng HLD sẽ đi kèm với một cấu trúc dữ liệu nào đó và duyệt đồ thị, code có thể sẽ dài và gồm nhiều phần. Tuy nhiên, nếu nắm chắc ý tưởng chính thì cài đặt HLD rất đơn giản. 
+Thông thường, do việc sử dụng HLD sẽ đi kèm với một cấu trúc dữ liệu nào đó và duyệt đồ thị, code có thể sẽ dài và gồm nhiều phần. Tuy nhiên, nếu nắm chắc ý tưởng chính thì cài đặt HLD rất đơn giản.
 
 #### Tiền xử lý
 
@@ -137,9 +135,9 @@ void Hld(int s, int p = -1) {
 }
 ```
 $nxt$ là biến dùng để lưu lại đỉnh con "nặng nhất".
-$Arr$ là mảng dùng để lưu lại các chuỗi. 
-$ChainID$ là mảng lưu lại số thứ tự của các chuỗi. 
-$ChainHead$ là mảng lưu lại node đầu tiên ($Depth$ bé nhất) của từng chuỗi để biết khi nào cần nhảy sang chuỗi mới qua cạnh nhẹ. 
+$Arr$ là mảng dùng để lưu lại các chuỗi.
+$ChainID$ là mảng lưu lại số thứ tự của các chuỗi.
+$ChainHead$ là mảng lưu lại node đầu tiên ($Depth$ bé nhất) của từng chuỗi để biết khi nào cần nhảy sang chuỗi mới qua cạnh nhẹ.
 Mảng $Pos$ lưu lại vị trí của các đỉnh trên $Arr$ để tiện xử lý trên segment tree.
 $CurChain$ và $CurPos$ lần lượt là các biến lưu lại chỉ số của chuỗi và vị trí trong mảng $Arr$ để dùng cho chuỗi và đỉnh tiếp theo
 
@@ -240,7 +238,7 @@ int Query(int u, int v) {
 
 Do bài toán chỉ yêu cầu cập nhật trên điểm nên hàm $Update$ không có gì đáng chú ý. Độ phức tạp của hàm này là $O(\log(n))$.
 
-Hàm $Query$ dùng để trả lời truy vấn tổng XOR của các số trên đường đi từ $u$ đến $v$. Sau đó, chúng ta thực hiện chia đường đi này thành các đoạn trên các chain rồi thực hiện thao tác tính trên từng đoạn. 
+Hàm $Query$ dùng để trả lời truy vấn tổng XOR của các số trên đường đi từ $u$ đến $v$. Sau đó, chúng ta thực hiện chia đường đi này thành các đoạn trên các chain rồi thực hiện thao tác tính trên từng đoạn.
 
 Có thể thấy, cách nhảy trong khi tính toán Query chính là cách nhảy khi tìm LCA. Trên thực tế, chúng ta không cần tìm LCA trước mà có thể thực hiện việc đó ngay khi tính Query. Nhưng trong bài này, phần tìm LCA được code riêng một hàm để dễ hiểu và tiện giải thích.
 
@@ -265,7 +263,7 @@ int Depth[MaxN]; // do sau cua node
 int Sz[MaxN]; // kich thuoc cua cay con cho cac node
 int Pos[MaxN]; // vi tri trong mang cua node
 int Arr[MaxN]; // gia tri cua cac phan tu trong mang
-int ChainID[MaxN]; // ChainID[i]: Chain ma i nam trong 
+int ChainID[MaxN]; // ChainID[i]: Chain ma i nam trong
 int ChainHead[MaxN]; // ChainHead[i]: Node dau tien trong chain i
 int CurChain, CurPos;
 

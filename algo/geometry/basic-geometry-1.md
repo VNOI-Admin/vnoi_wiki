@@ -10,8 +10,6 @@
 
 ---
 
-[[_TOC_]]
-
 Hình học mặc dù là một chủ đề hết sức phổ biến, song vẫn còn rất nhiều người không thích giải các bài toán hình học vì chúng khá khó chịu và lằng nhằng. Do đó, trong bài viết này, ta sẽ cùng tìm hiểu một vài khái niệm nhằm giúp cho các bài toán hình học trở nên bớt đáng sợ hơn.
 
 Nếu đã nắm vững các khái niệm trong bài viết này, các bạn có thể chuyển sang [phần 2](/algo/geometry/basic-geometry-2).

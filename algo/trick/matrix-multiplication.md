@@ -14,8 +14,6 @@
 - Trần Xuân Bách - HUS High School for Gifted Students
 - Nguyễn Phú Bình - Hung Vuong High School for the Gifted, Binh Duong Province
 
-[[_TOC_]]
-
 # Mở đầu
 
 Thông thường, để đạt được độ phức tạp thuật toán như mong muốn, cách làm thường là tìm ra một thuật toán ban đầu làm cơ sở, rồi từ đó dùng các kỹ năng để giảm độ phức tạp của thuật toán. Trong bài viết này, tôi xin giới thiệu với bạn đọc một kỹ năng khá thông dụng: **Nhân ma trận**.

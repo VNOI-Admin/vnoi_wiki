@@ -2,8 +2,6 @@
 
 Bài viết sưu tầm trên mạng.
 
-[[_TOC_]]
-
 # 1. Dãy con đơn điệu dài nhất
 
 ## 1.1. Mô hình

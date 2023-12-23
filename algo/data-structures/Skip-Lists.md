@@ -2,15 +2,13 @@
 
 **Tác giả**: Vũ *chipchip* Phúc Hoàng
 
-A: *"Mày AC bài Z kiểu gì thế? Tao dùng set không được."*  
-B: *"Dễ mà mày, tao code Splay thôi. 400 dòng 20 phút ez gg."*  
+A: *"Mày AC bài Z kiểu gì thế? Tao dùng set không được."*
+B: *"Dễ mà mày, tao code Splay thôi. 400 dòng 20 phút ez gg."*
 A: *"-_-"*
 
 Câu chuyện thật tưởng như đùa trên cũng không phải là hiếm gặp. Splay Tree (hay nói rộng hơn, Balanced Binary Search Tree) là một cấu trúc dữ liệu toàn năng có thể giải quyết rất nhiều bài toán, tuy nhiên nó cũng là một thứ đáng khiếp sợ đối với dân competitive programmers vì độ khó code của nó. Trong một contest với áp lực thời gian căng thẳng, chẳng mấy ai dám code Balanced Binary Search Tree và còn đảm bảo code không bị bug nữa. Tuy nhiên, bạn không thể hoàn toàn tránh được nó, vẫn có những bài mà những thư viện có sẵn như std::set hay những cấu trúc đơn giản như Segment Tree, Fenwick Tree không thể giải được, và bạn vẫn phải nhờ cậy đến Splay Tree trong nỗi tuyệt vọng.
 
 May mắn thay, dân competitive programmers đã tìm ra cách sử dụng Skip Lists như một sự thay thế cho Balanced Binary Search Tree. Skip Lists với ý tưởng hết sức đơn giản dễ nhớ, cộng thêm với khả năng tùy biến tuyệt vời đã phần nào làm xua tan đi nỗi sợ code khó bug nhiều (trừ khi bạn có trình độ Da xua thượng thừa như nhân vật B trong đoạn hội thoại trên; trong trường hợp đó, bạn có thể bỏ qua bài viết này). Bài viết này sẽ giới thiệu cho các bạn những ý tưởng và cách sử dụng Skip Lists cơ bản nhất.
-
-[[_TOC_]]
 
 # Bài toán cơ bản
 
@@ -27,7 +25,7 @@ Ta sẽ xét một số cấu trúc dữ liệu (chưa đề cập đến Skip L
 * Sorted Array: Biểu diễn $S$ là một mảng các phần tử. Các phần tử trong mảng được sắp xếp theo thứ tự tăng dần.
   * Chèn: Dịch tất cả các phần tử bên phải vị trí cần chèn sang phải một chỉ số, rồi chèn phần tử cần chèn vào vị trí đó.
   * Xóa: Dịch tất cả các phần tử bên phải phần tử bị xóa sang trái một chỉ số.
-  * Tìm: Tìm kiếm nhị phân phần tử. 
+  * Tìm: Tìm kiếm nhị phân phần tử.
   * Độ phức tạp: $O(N*log(N))$ với thao tác khởi tạo, $O(N)$ với thao tác chèn/xóa, $O(log(N))$ với thao tác tìm kiếm.
 * Sorted Linked List: Biểu diễn $S$ là một danh sách liên kết chứa các phần tử. Các phần tử trong danh sách liên kết được sắp xếp theo thứ tự tăng dần.
   * Chèn: Thay đổi liên kết giữa phần tử cần chèn, phần tử đứng trước, và phần tử đứng sau.
@@ -37,7 +35,7 @@ Ta sẽ xét một số cấu trúc dữ liệu (chưa đề cập đến Skip L
 * Binary Search Tree: Biểu diễn $S$ là một cây nhị phân tìm kiếm chứa các phần tử. Cây này có tính chất tất cả các nút thuộc cây con bên trái đều nhỏ hơn nút cha, và tất cả các nút thuộc cây con bên phải đều lớn hơn nút cha.
   * Chèn (Nhiều cách làm): Đi từ trên gốc xuống, so sánh phần tử được chèn với hai nút con, nếu có thì đi vào nút con, còn không thì thêm một nút vào cây chứa phần tử cần chèn.
   * Xóa (Nhiều cách làm): Thay nút bị xóa bằng nút lớn nhất của cây con bên trái (và xóa nút đó đi), nếu không có cây con bên trái thì thay bằng nút nhỏ nhất của cây con bên phải, nếu không có con thì đơn giản là xóa đi.
-  * Tìm: Đi từ trên gốc xuống, so sánh phần tử cần tìm với hai nút con, đi vào cây con chứa nút cần tìm, cứ thế đến khi tìm được. 
+  * Tìm: Đi từ trên gốc xuống, so sánh phần tử cần tìm với hai nút con, đi vào cây con chứa nút cần tìm, cứ thế đến khi tìm được.
   * Độ phức tạp: Với trường hợp trung bình, các thao tác này có độ phức tạp $O(log(N))$. Còn với trường hợp xấu nhất là $O(N)$.
 * Balanced Binary Search Tree: Giống Binary Search Tree, nhưng cây có thêm cơ chế tự cần bằng để tránh việc cây bị suy biến, luôn giữ chiều cao cây ở mức ổn định (thường là $O(log(N)$).
 

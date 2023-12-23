@@ -2,8 +2,6 @@
 
 Nguồn: [wcipeg](http://wcipeg.com/wiki/Tree)
 
-[[_TOC_]]
-
 # Định nghĩa
 
 - **Cây** (**tree**) là một đồ thị vô hướng liên thông không có chu trình.

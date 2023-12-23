@@ -1,16 +1,14 @@
 # Thuật toán Euclid
 
-**Tác giả:** 
+**Tác giả:**
 - Nguyễn Đức Kiên, Trường Đại học Công nghệ, ĐHQGHN.
 
-**Reviewer:** 
+**Reviewer:**
 - Nguyễn Minh Hiển - Trường Đại học Công nghệ, ĐHQGHN
 - Phạm Hoàng Hiệp - University of Georgia
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 
 ---
-[[_TOC_]]
-
 ## Mở đầu
 
 ### Một số ký hiệu toán học sử dụng trong bài viết
@@ -47,7 +45,7 @@ Nếu $d'$ là ước của $b$ và $b - a$, hiển nhiên nó cũng là ước 
 
 Do vậy với ba số $a$, $b$, $a - b$, nếu một số $d$ bất kỳ là ước của một trong ba số trên thì sẽ là ước của hai số còn lại, tức là `ƯC(a, b) = ƯC(b, a - b)`. Điều này dẫn đến $\gcd(a, b) = \gcd(b, a - b)$.
 
-Phép tính $a - b$ sau khi thực hiện $\lfloor \frac{a}{b} \rfloor$ lần thì sẽ thoả mãn $a \leq b$.  Số $a$ sau khi trừ đi $\lfloor \frac{a}{b} \rfloor$ lần $b$ trở thành $a - b\lfloor \frac{a}{b} \rfloor = a \text{ mod } b$. 
+Phép tính $a - b$ sau khi thực hiện $\lfloor \frac{a}{b} \rfloor$ lần thì sẽ thoả mãn $a \leq b$.  Số $a$ sau khi trừ đi $\lfloor \frac{a}{b} \rfloor$ lần $b$ trở thành $a - b\lfloor \frac{a}{b} \rfloor = a \text{ mod } b$.
 
 Vậy $\gcd(a, b) = \gcd(b, a \text{ mod } b)$ (đpcm).
 
@@ -76,25 +74,25 @@ Thuật toán chạy chậm nhất khi $a = F_n$, $b = F_{n - 1}$, với $F_i$ l
 ### Cải tiến
 So với các phép toán khác, phép lấy phần dư (`%`) chậm hơn một chút dù vẫn có độ phức tạp là $O(1)$. Chúng ta có thể xây dựng một cách cài đặt khác không sử dụng phép toán này.
 
-Ta có một số tính chất sau: 
+Ta có một số tính chất sau:
 - $\gcd(2k, 2h) = 2\gcd(k, h)$
 - $\gcd(2k, 2h + 1) = \gcd(k, 2h + 1)$
 
 Kết hợp với $\gcd(a, b) = \gcd(b, a - b)$ ta cài đặt như sau (Code tham khảo từ CP Algorithms):
 ```cpp
-int gcd(int a, int b) 
+int gcd(int a, int b)
 {
     if (!a || !b) return a | b;
     int shift = __builtin_ctz(a | b);
     a >>= __builtin_ctz(a);
-    do 
+    do
 	{
         b >>= __builtin_ctz(b);
         if (a > b)
             swap(a, b);
         b -= a;
     } while (b);
-    
+
     return a << shift;
 }
 ```
@@ -103,15 +101,15 @@ int gcd(int a, int b)
 - Lúc này, ít nhất một trong hai số là lẻ. Liên tục chia số chẵn cho $2$ để nó trở thành số lẻ, sau đó áp dụng $(a, b) = (b, a - b)$. Lặp lại bước trên tới khi một trong hai số là $0$.
 - Nhân kết quả (tạm gọi là $ans$) với $shift$, vì ta đã chia cả hai số này cho $shift$, vì rõ ràng $(shift, ans) = 1$.
 
-Thuật toán cải tiến trên sẽ thực hiện chia $\text{log}(a) + \text{log}(b)$ lần trong trường hợp tệ nhất. Do vậy, độ phức tạp của thuật vẫn không đổi và là $O(\text{log}(a, b))$. 
+Thuật toán cải tiến trên sẽ thực hiện chia $\text{log}(a) + \text{log}(b)$ lần trong trường hợp tệ nhất. Do vậy, độ phức tạp của thuật vẫn không đổi và là $O(\text{log}(a, b))$.
 
 ### Vài chú ý
 - Thư viện `algorithm` của C++ có hỗ trợ hàm `__gcd(a, b)` để tìm ước chung lớn nhất của hai số $a$ và $b$, cũng sử dụng thuật Euclid. Kể từ phiên bản `C++17`, thư viện `numeric` hỗ trợ thêm hàm `gcd(a, b)` với mục đích tương tự. Các hàm có sẵn này có thể được sử dụng để code ngắn gọn.
 - Để tính bội chung nhỏ nhất (BCNN) của hai số, ta dùng công thức:
- 
-$$\text{lcm}(a, b) = \frac{a \times b}{\gcd(a, b)}$$ 
 
-Khi tính toán, công thức trên sẽ gây tràn số nếu $a \times b$ quá lớn, nhưng ta có thể giải quyết dễ dàng bằng cách thực hiện phép chia trước: 
+$$\text{lcm}(a, b) = \frac{a \times b}{\gcd(a, b)}$$
+
+Khi tính toán, công thức trên sẽ gây tràn số nếu $a \times b$ quá lớn, nhưng ta có thể giải quyết dễ dàng bằng cách thực hiện phép chia trước:
 
 $$\text{lcm}(a, b)=\frac{a}{\gcd(a, b)}\times b$$
 
@@ -122,13 +120,13 @@ Với hai số tự nhiên $a$ và $b$, thuật toán này được sử dụng 
 
 $$ax + by = d$$
 
-Ví dụ: 
+Ví dụ:
 
 $\gcd(55, 80) = 5 = 55 \times 3 + 80 \times (-2)$
 
 Các số $x, y$ thoả mãn đẳng thức trên luôn tồn tại theo bổ đề sau:
 
-**Bổ đề Bézout**: Với hai số nguyên $a$, $b$ có ƯCLN là $d$, tồn tại hai số nguyên $x$ và $y$ thoả mãn $ax + by = d$. Hơn nữa, tất cả các số nguyên $D$ có dạng $D = aX + bY$ đều là bội của $d$. 
+**Bổ đề Bézout**: Với hai số nguyên $a$, $b$ có ƯCLN là $d$, tồn tại hai số nguyên $x$ và $y$ thoả mãn $ax + by = d$. Hơn nữa, tất cả các số nguyên $D$ có dạng $D = aX + bY$ đều là bội của $d$.
 
 <details>
 <summary> Chứng minh </summary>
@@ -156,7 +154,7 @@ Xét $c$ là một ước chung bất kỳ khác $d'$ của $a$ và $b$. Đặt 
 &\Rightarrow d' = c(ux' + vy')
 \end{align}
 
-Suy ra $c \mid d'$. Vì $d'$ dương và khác $c$ nên $c < d'$. 
+Suy ra $c \mid d'$. Vì $d'$ dương và khác $c$ nên $c < d'$.
 
 Vậy $d'$ là ƯCLN của $a$ và $b$. Bổ đề được chứng minh.
 </p>
@@ -258,7 +256,7 @@ $$\begin{cases}
 #### Tìm nghiệm bằng thuật toán
 Ta đã biết phương trình chỉ có nghiệm nếu $\gcd(a, b)\mid  c$. Nếu điều kiện này không thoả mãn, ta kết luận phương trình vô nghiệm.
 
-Giả sử $a, b$ là các số dương. Đặt $d = \gcd(a, b)$. 
+Giả sử $a, b$ là các số dương. Đặt $d = \gcd(a, b)$.
 
 Sử dụng thuật toán Euclid mở rộng, ta có:
 
@@ -268,7 +266,7 @@ Nhân hai vế của phương trình với $\frac{c}{d}$ được:
 
 $$a\left(x' \times \frac{c}{d}\right) + b\left(y' \times \frac{c}{d}\right) = c$$
 
-Suy ra phương trình có nghiệm: 
+Suy ra phương trình có nghiệm:
 
 $$\begin{cases}
 	x_0 = x' \times \frac{c}{d}  \\
