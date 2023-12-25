@@ -1,4 +1,4 @@
-#Hướng dẫn cài đặt OpenCV trên Windows
+# Hướng dẫn cài đặt OpenCV trên Windows
 
 [Bài viết gốc](http://dangkhoasdc.github.io/cai-dat-opencv-tren-windows-visual-studio/)
 
@@ -39,8 +39,8 @@ Bước 1: Tạo một Project (Empty Project).
 ![](http://dangkhoasdc.github.io/images/install_opencv/new_project.png)
 
 Trước khi thực hiện tiếp các công việc cấu hình cho project. Ta cần xác định rõ sẽ cần cấu hình những thông tin gì:
-1. Nơi chứa header file của OpenCV. Dĩ nhiên ta cần làm điều này để include các đối tượng, hàm… của 
-2. Cấu hình các file cần thiết khi lập 
+1. Nơi chứa header file của OpenCV. Dĩ nhiên ta cần làm điều này để include các đối tượng, hàm… của
+2. Cấu hình các file cần thiết khi lập
 3. Cấu hình các file cần thiết cho quá trình thực thi. Bởi trong Visual Studio có 2 target khi run bao gồm Debug và Release, nên ta cần phải cấu hình riêng biệt cho mỗi target đó.
 
 ##Cấu hình header file

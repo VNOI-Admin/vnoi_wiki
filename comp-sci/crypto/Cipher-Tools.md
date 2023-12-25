@@ -1,8 +1,8 @@
-#Mật mã và Code
+# Mật mã và Code
 
-Giả sử rằng bạn muốn chuyển một bức thư cho một người bạn của mình, có thể là "cô ấy" hoặc "anh ấy", nhưng bạn không muốn người khác biết được nội dung của bức thư là gì. 
+Giả sử rằng bạn muốn chuyển một bức thư cho một người bạn của mình, có thể là "cô ấy" hoặc "anh ấy", nhưng bạn không muốn người khác biết được nội dung của bức thư là gì.
 
-Bạn có thể dùng một thuật toán mã hóa bá đạo sử dụng Hash và Public key Private key, nhưng nếu nội dung của bức thư ấy không quan trọng lắm thì bạn có thể mã hóa nó bằng tay, sử dụng những công cụ rất đơn giản. 
+Bạn có thể dùng một thuật toán mã hóa bá đạo sử dụng Hash và Public key Private key, nhưng nếu nội dung của bức thư ấy không quan trọng lắm thì bạn có thể mã hóa nó bằng tay, sử dụng những công cụ rất đơn giản.
 
 Hôm nay tôi sẽ gửi đến các bạn một vài công cụ mã hóa đối với câu chữ, hầu hết có thể dễ dàng thực hiện chỉ với bút và nháp.
 

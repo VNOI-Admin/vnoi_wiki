@@ -1,4 +1,4 @@
-#ROT13
+# ROT13
 
 ROT13 ("rotate by 13 places") là một loại mã hóa thay thế chữ cái, bằng cách thay mỗi chữ cái bằng chữ thứ 13 sau nó trong bảng chữ cái. Đây là một trường hợp đặc biệt của Caesar Cipher, được phát minh từ thời Rome cổ.
 

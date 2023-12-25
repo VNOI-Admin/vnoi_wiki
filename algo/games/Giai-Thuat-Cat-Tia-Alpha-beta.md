@@ -1,3 +1,4 @@
+# Giải Thuật Cắt Tỉa Alpha-beta
 Tác giả: Vũ Trọng Quang
 
 (Nguồn: https://www.stdio.vn/articles/giai-thuat-cat-tia-alpha-beta-564)
