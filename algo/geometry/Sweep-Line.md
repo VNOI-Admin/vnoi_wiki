@@ -28,7 +28,7 @@ Với hai điểm $P(x_P, y_P)$ và $Q(x_Q, y_Q)$:
 - **Khoảng cách Manhattan** giữa hai điểm $P$ và $Q$ là khoảng cách giữa nếu ta chỉ được đi dọc hoặc ngang khi từ điểm này qua điểm kia, được tính bằng công thức: $\lvert x_Q - x_P \rvert + \lvert y_Q - y_P \rvert$
 
 <center>
-[/uploads/Sweep-Line_img1.png](/width=300px)
+![](/uploads/Sweep-Line_img1.png =300x)
 </center>
 
 <center>
@@ -69,7 +69,7 @@ Giả sử chúng ta đã xử lí xong $N - 1$ điểm đầu tiên và khoản
 > Từ $P$, vẽ $8$ hình vuông xung quanh, mỗi hình vuông có cạnh đúng bằng $d/2$, như hình dưới (điểm màu xanh là $P$).
 >
 <center>
-> [/uploads/Sweep-Line_img2.png](/width=300px)
+> ![](/uploads/Sweep-Line_img2.png =300x)
 </center>
 >
 > Hiển nhiên tất cả các điểm từ $1$ đến $N - 1$ đều nằm về phía bên trái của điểm đang xét do ta duyệt danh sách theo thứ tự tăng dần về hoành độ. Nhận xét rằng từ $P$, ta không cần quan tâm đến những điểm $T$ không nằm trong $8$ hình vuông bên trên do khi đó khoảng cách giữa $P$ và $T$ lớn hơn $d$.
@@ -205,7 +205,7 @@ Khi này ta sẽ có thể sắp xếp danh sách của chúng ta theo thứ t�
 Chúng ta sẽ quét từ trái sang phải. Khi đoạn quét di chuyển, ta duy trì một tập hợp $S$ các đoạn thẳng nằm ngang bị cắt ngang theo đoạn quét - tức là đoạn quét đang ở giữa hai đầu mút của đoạn ngang đó. Tập này được sắp xếp theo thứ tự $y$, và được tô màu đỏ trong hình dưới.
 
 <center>
-[/uploads/Sweep-Line_img3.png](/width=200px)
+![](/uploads/Sweep-Line_img3.png =200x)
 </center>
 
 Với mỗi đoạn thẳng nằm dọc $v_i$, để đếm $t_i$ là số đoạn thẳng nằm ngang cắt $v_i$, ta chỉ việc tìm trong tập $S$ những đoạn thẳng có tung độ nằm giữa hai đầu mút của $v$. Hiển nhiên ta thấy rằng tổng của các $t_i$ cũng là số giao điểm ta cần tìm.
@@ -342,7 +342,7 @@ Giới hạn:
 Tương tự như bài toán tìm giao điểm của các đoạn thẳng, chúng ta có thể xử lí bằng cách biểu diễn mỗi hình chữ nhật thành hai "sự kiện" - một biểu thị cho cạnh bên trái và một biểu thị cho cạnh bên phải của hình chữ nhật - và duy trì một tập $S$ chứa các hình chữ nhật mà đoạn thẳng quét của chúng ta đang cắt qua. Khi chúng ta quét qua cạnh bên trái, ta thêm hình chữ nhật đó vào $S$, khi quét qua cạnh bên phải thì ta xoá hình chữ nhật tương ứng khỏi $S$.
 
 <center>
-[/uploads/Sweep-Line_img4.png](/width=300px)
+![](/uploads/Sweep-Line_img4.png =300x)
 </center>
 
 Ta biết được những hình chữ nhật nào đang bị cắt bởi đường quét của chúng ta (màu đỏ). Để tìm tổng diện tích được bao phủ, ta sẽ tìm diện tích từng phần bị bao phủ giữa mỗi cặp hai "sự kiện" liền nhau và tính tổng của chúng. Để tìm phần diện tích được bao phủ giữa hai sự kiện liền nhau, ta cần biết tổng độ dài phần đường quét đi qua chúng (nét liền màu xanh trong hình trên). Nhân độ dài này với khoảng cách giữa hai sự kiện liền nhau, ta được diện tích của phần hình chữ nhật giữa hai "sự kiện" đó.
@@ -474,7 +474,7 @@ Giới hạn:
 >
 > Xét cạnh $(u, v) \in T$. Không mất tính tổng quát, giả sử $v$ thuộc phần tám thứ nhất so với $u$. Giả sử tồn tại một điểm $w$ trong tập điểm ban đầu sao cho $d(u, w) < d(u, v)$. Đồng thời ta biết rằng $d(v, w) < d(u, v)$ (nhìn hình minh hoạ bên dưới). Do đó ta sẽ có một cây khung nhỏ hơn nếu ta bỏ $(u, v)$ và thay bằng một trong hai cạnh $(u, w)$ hay $(v, w)$. Điều này trái giả thiết $T$ là cây khung nhỏ nhất. Do đó, không tồn tại điểm $w$ sao cho $d(u, w) < d(u, v)$ - tức $v$ là điểm trong phần tám thứ nhất của $u$ có khoảng cách Manhattan gần nhất. Chứng minh tương tự với các trường hợp $v$ thuộc các phần tám còn lại của $u$.
 >
-> | [/uploads/Sweep-Line_img6.png](/width=300px) |
+> | ![](/uploads/Sweep-Line_img6.png =300x) |
 > | :--------: |
 > | $\forall w$ thuộc vùng màu xanh, $d(v, w) \leq d(u, v)$ |
 

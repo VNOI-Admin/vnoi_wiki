@@ -20,7 +20,7 @@ Trọng tâm của cây - centroid - là một đỉnh trên cây mà khi bỏ n
 
 <center>
 
-[/uploads/centroid-decomposition_img1.png](/width=300px)
+![](/uploads/centroid-decomposition_img1.png =300x)
 
 </center>
 

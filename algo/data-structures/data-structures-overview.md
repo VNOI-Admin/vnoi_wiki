@@ -116,7 +116,7 @@ Bạn có thể đọc thêm về Heap [ở đây](/translate/wcipeg/Binary-Heap
 
 **Cây Tìm Kiếm Nhị Phân** (**BST Binary Search Tree**) là một [cây nhị phân](/translate/wcipeg/tree) có tính chất: Với mỗi giá trị trên đỉnh đang xét, giá trị của mọi đỉnh trên cây con trái luôn nhỏ hơn đỉnh đang xét và giá trị của mọi đỉnh trên cây con phải luôn lớn hơn đỉnh đang xét.
 
-[/uploads/bst1.png](/bst1)
+![](/uploads/bst1.png)
 
 Cây tìm kiếm nhị phân cho phép thực hiện các thao tác:
 
@@ -130,7 +130,7 @@ Trong trường hợp dữ liệu ngẫu nhiên, các thao tác trên có độ 
 Để khắc phục điều này, có rất nhiều CTDL cải tiến từ cây tìm kiếm nhị phân, thường được gọi là các cây nhị phân cân bằng. Khi đó, các thao tác trên có thể được thực hiện với độ phức tạp $\mathcal{O}(\log{N})$. Ví dụ:
 
 - **Cây Đỏ Đen** (Red-Black Tree) là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $O(log(N))$. CTDL **set** trong **C++** được cài đặt bằng cây đỏ đen.
-  [/uploads/redblack1.png](/redblack1)
+  ![](/uploads/redblack1.png)
 - **Splay tree**, [Skip list](/algo/data-structures/Skip-Lists), **Treap** thường được dùng trong các kỳ thi bởi cài đặt đơn giản.
 
 ## 1.5. Bảng băm (Hash Tables)

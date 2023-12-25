@@ -123,7 +123,7 @@ Giả dụ ta gọi `find_set(v)` với một đỉnh `v` bất kì, chúng ta t
 Có thể thấy sau khi thực hiện một thao tác như vậy, cấu trúc cả cây có thể thay đổi. Ta có thể thấy điều này trong ví dụ sau đây:
 
 <center>
-[/uploads/disjoint-set-union_img2.png](/width=700px)
+![](/uploads/disjoint-set-union_img2.png =700x)
 </center>
 
 Bên trái là cây ban đầu và bên phải là cây bị nén sau khi ta sử dụng thao tác `find_set(7)`, nén đường đi tới gốc của các đỉnh $7, 5, 3, 2$.
@@ -249,14 +249,14 @@ Với mỗi vị trí, ta sẽ có một con trỏ. Nếu người đứng ở v
 Xét ví dụ sau với $n = 5$, ban đầu ta có:
 
 <center>
-[/uploads/disjoint-set-union_img3.png](/width=600px)
+![](/uploads/disjoint-set-union_img3.png =600x)
 </center>
 <br>
 
 Giả dụ người đứng ở vị trí $2$ và $3$ rời khỏi hàng:
 
 <center>
-[/uploads/disjoint-set-union_img4.png](/width=600px)
+![](/uploads/disjoint-set-union_img4.png =600x)
 </center>
 <br>
 
@@ -597,14 +597,14 @@ void dfs(int u, int p) {
 Với cây con gốc $u$ đang xét, ta sẽ dfs xuống giải bài toán với đỉnh $v$ là con trực tiếp của đỉnh $u$. Nếu giải như bài toán colquery, ở mỗi đỉnh ta sẽ lưu một cấu trúc dữ liệu map để lưu số lượng từng màu trong cây con đó. Sau đó ta sẽ gộp chúng lại để có được map chứa số lượng từng màu trong cây con gốc $u$ (Gộp các map của cây con không phải cây con lớn nhất vào map của cây con lớn nhất).
 
 <center>
-[/uploads/disjoint-set-union_img17.png](/width=400px)
+![](/uploads/disjoint-set-union_img17.png =400x)
 </center>
 <br>
 
 Tuy nhiên, sự tối ưu của kỹ thuật này chính là ta có thể đảo thứ tự dfs và trả lời các truy vấn offline.
 
 <center>
-[/uploads/disjoint-set-union_img16.png](/width=800px)
+![](/uploads/disjoint-set-union_img16.png =800x)
 </center>
 <br>
 
