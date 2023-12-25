@@ -1,9 +1,0 @@
-/* Gollum incorrectly detect invalid urls. Thus supressing highlight. */
-a.absent {
-        color: #4183c4 !important;
-}
-@media screen, (max-width: 900px) {
-    body {
-        padding: 3vw;
-    }
-}
