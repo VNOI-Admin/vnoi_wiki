@@ -20,38 +20,14 @@ Trong bài viết này, chúng ta sẽ cùng nhau điểm qua các loại cấu 
 
 Mảng và danh sách liên kết là 2 cấu trúc dữ liệu nền tảng cho tất cả các loại cấu trúc dữ liệu khác. Mảng và danh sách liên kết đều được dùng khi bạn muốn lưu nhiều dữ liệu (thường có cùng kiểu dữ liệu). Bảng dưới đây so sánh các thao tác về mảng và danh sách liên kết:
 
-<table>
-<tr>
-<th></th>
-<th>Mảng</th>
-<th>Danh sách liên kết</th>
-</tr>
-<tr>
-<th>Bộ nhớ</th>
-<td>Cố định (cần biết trước số phần tử)</td>
-<td>Có thể tăng giảm tùy ý</td>
-</tr>
-<tr>
-<th>Thêm/Xóa 1 phần tử</th>
-<td>$\mathcal{O}(N)$</td>
-<td>$\mathcal{O}(1)$, giả sử biết con trỏ tới phần tử đó</td>
-</tr>
-<tr>
-<th>Tìm kiếm 1 phần tử</th>
-<td>$\mathcal{O}(N)$</td>
-<td>$\mathcal{O}(N)$</td>
-</tr>
-<tr>
-<th>Truy cập phần tử</th>
-<td>$\mathcal{O}(1)$</td>
-<td>$\mathcal{O}(N)$</td>
-</tr>
-<tr>
-<th>Khác</th>
-<td>- Ít bộ nhớ hơn<br/>- Cache locality: các phần tử ở vị trí gần nhau trên bộ nhớ máy tính, nên khi truy cập các phần tử liên tiếp sẽ nhanh hơn</td>
-<td></td>
-</tr>
-</table>
+|                    | Mảng                                                                                                                                          | Danh sách liên kết                                   |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
+| Bộ nhớ             | Cố định (cần biết trước số phần tử)                                                                                                           | Có thể tăng giảm tùy ý                               |
+| Thêm/Xóa 1 phần tử | $\mathcal{O}(N)$                                                                                                                              | $\mathcal{O}(1)$, giả sử biết con trỏ tới phần tử đó |
+| Tìm kiếm 1 phần tử | $\mathcal{O}(N)$                                                                                                                              | $\mathcal{O}(N)$                                     |
+| Truy cập phần tử   | $\mathcal{O}(1)$                                                                                                                              | $\mathcal{O}(N)$                                     |
+| Khác               | - Ít bộ nhớ hơn<br/>- Cache locality: các phần tử ở vị trí gần nhau trên bộ nhớ máy tính, nên khi truy cập các phần tử liên tiếp sẽ nhanh hơn |
+
 
 Bạn có thể đọc thêm về mảng và danh sách liên kết [ở đây](/algo/data-structures/array-vs-linked-lists)
 

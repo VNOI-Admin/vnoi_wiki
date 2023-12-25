@@ -271,53 +271,53 @@ Dù cho có bị mất tiền đi chăng nữa thì công ty cũng buộc phải
 
 Bằng việc sử dụng phương pháp tham lam, ta sẽ phân tích xem cách một mỏ vàng bị khai thác triệt. Kinh nghiệm cho thấy, đối với dạng bài như tìm kiếm giá trị tối đa, thường ta có thể giải quyết bằng Tham lam. Trong trường hợp này, mục tiêu của ta là chỉ định những công nhân đến các mỏ vàng sao cho tổng lợi nhuận thu được là tối đa. Phân tích nhanh, ta thấy rằng cần phải biết lợi nhuận thu được từ các mỏ vàng trong tất cả các trường hợp (chỉ có 7 trường hợp - từ 0 đến 6 công nhân). Bảng dưới đây sẽ cho ta thấy lợi nhuận khả thi đối với hai mỏ ở ví dụ 0 trong bài:
 
-<table align="center">
-<tr> <td></td> <td>0 người</td> <td>1 người</td> <td>2 người</td> <td>3 người</td> <td>4 người</td> <td>5 người</td> <td>6 người</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$0$</td> <td>$57$</td> <td>$87$</td> <td>$87$</td> <td>$67$</td> <td>$47$</td> <td>$27$</td> </tr>
-<tr> <td>Mỏ 2</td> <td>$0$</td> <td>$52$</td> <td>$66$</td> <td>$75$</td> <td>$75$</td> <td>$66$</td> <td>$48$</td> </tr>
-</table>
+|      | 0 người | 1 người | 2 người | 3 người | 4 người | 5 người | 6 người |
+|:----:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|
+| Mỏ 1 | $0$     | $57$    | $87$    | $87$    | $67$    | $47$    | $27$    |
+| Mỏ 2 | $0$     | $52$    | $66$    | $75$    | $75$    | $66$    | $48$    |
+
 
 Nếu ta chỉ có duy nhất một công nhân, **lựa chọn tối ưu** chính là cho anh ta vào mỏ nơi mà anh ta mang lại nhiều lợi nhuận nhất. Nhưng nếu ta có nhiều công nhân, ta cần phải kiểm tra xem nếu phân công anh ở mỏ tương tự có mang lại **lợi nhuận cục bộ tối ưu** không.
 
 Trong ví dụ, ta có 4 công nhân cần được phân công. Bảng dưới đây sẽ cho biết lợi nhuận thu được của mỗi mỏ với từng công nhân được thêm vào.
 
-<table>
-<tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$-$</td> <td>$57$</td> <td>$30$</td> <td>$0$</td> <td>$-20$</td> <td>$-20$</td> <td>$-20$</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$-$</td> <td>$52$</td> <td>$14$</td> <td>$9$</td> <td>$  0$</td> <td>$-9 $</td> <td>$-20$</td> </tr>
-</table>
+|      | Ban đầu | Người 1 | Người 2 | Người 3 | Người 4 | Người 5 | Người 6 |
+|:----:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|
+| Mỏ 1 | $-$     | $57$    | $30$    | $0$     | $-20$   | $-20$   | $-20$   |
+| Mỏ 2 | $-$     | $52$    | $14$    | $9$     | $  0$   | $-9 $   | $-20$   |
+
 
 Ta để ý rằng, mỏ 1 sẽ tăng thêm 57 nếu ta thêm vào một công nhân, trong khi mỏ 2 chỉ tăng thêm 52. Thế nên, ta sẽ phân bố người đầu tiên vào mỏ 1.
 
-<table>
-<tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$57$</strong></td> <td>$30$</td> <td>$0$</td> <td>$-20$</td> <td>$-20$</td> <td>-20</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$-$</td> <td>$52$</td> <td>$14$</td> <td>$9$</td> <td>$  0$</td> <td>$-9 $</td> <td>$-20$</td> </tr>
-</table>
+|      | Ban đầu | Người 1       | Người 2 | Người 3 | Người 4 | Người 5 | Người 6 |
+|:----:|:-------:|:-------------:|:-------:|:-------:|:-------:|:-------:|:-------:|
+| Mỏ 1 | $-$     | $\textbf{57}$ | $30$    | $0$     | $-20$   | $-20$   | -20     |
+| Mỏ 2 | $-$     | $52$          | $14$    | $9$     | $  0$   | $-9 $   | $-20$   |
+
 
 Giờ, nếu ta thêm công nhân vào mỏ 1, ta chỉ tăng lợi nhuận được thêm 30. Bởi vậy nên ta sẽ thêm công nhân vào mỏ 2, lúc này lợi nhuận ta thu được sẽ tăng thêm 52.
 
-<table>
-<tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$57$</strong></td> <td>$30$</td> <td>$0$</td> <td>$-20$</td> <td>$-20$</td> <td>$-20$</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$52$</strong></td> <td>$14$</td> <td>$9$</td> <td>  $0$</td> <td>$-9 $</td> <td>$-20$</td> </tr>
-</table>
+|      | Ban đầu | Người 1       | Người 2 | Người 3 | Người 4 | Người 5 | Người 6 |
+|:----:|:-------:|:-------------:|:-------:|:-------:|:-------:|:-------:|:-------:|
+| Mỏ 1 | $-$     | $\textbf{57}$ | $30$    | $0$     | $-20$   | $-20$   | $-20$   |
+| Mỏ 2 | $-$     | $\textbf{52}$ | $14$    | $9$     | $0$     | $-9 $   | $-20$   |
+
 
 Công nhân thứ 3 sẽ có ích hơn khi làm ở mỏ 1 với lợi nhuận thu được là 30.
 
-<table>
-<tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$57$</strong></td> <td><strong>$30$</strong></td> <td>$0$</td> <td>$-20$</td> <td>$-20$</td> <td>$-20$</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$52$</strong></td> <td>$14$</td> <td>$9$</td> <td>  $0$</td> <td>$-9$ </td> <td>$-20$</td> </tr>
-</table>
+|      | Ban đầu | Người 1       | Người 2       | Người 3 | Người 4 | Người 5 | Người 6 |
+|:----:|:-------:|:-------------:|:-------------:|:-------:|:-------:|:-------:|:-------:|
+| Mỏ 1 | $-$     | $\textbf{57}$ | $\textbf{30}$ | $0$     | $-20$   | $-20$   | $-20$   |
+| Mỏ 2 | $-$     | $\textbf{52}$ | $14$          | $9$     | $0$     | $-9$    | $-20$   |
+
 
 Với công nhân thứ 4, ta có thể cho anh ta vào mỏ 1 (với lợi nhuận là 0) hoặc mỏ 2 (với lợi nhuận là 14). Dĩ nhiên, ta sẽ phân công anh ấy vào mỏ hai.
 
-<table>
-<tr> <td></td> <td>Ban đầu</td> <td>Người 1</td> <td>Người 2</td> <td>Người 3</td> <td>Người 4</td> <td>Người 5</td> <td>Người 6</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$57$</strong></td> <td><strong>$30$</strong></td> <td>$0$</td> <td>$-20$</td> <td>$-20$</td> <td>$-20$</td> </tr>
-<tr> <td>Mỏ 1</td> <td>$-$</td> <td><strong>$52$</strong></td> <td><strong>$14$</strong></td> <td>$9$</td> <td>  $0$</td> <td>$-9$ </td> <td>$-20$</td> </tr>
-</table>
+|      | Ban đầu | Người 1       | Người 2       | Người 3 | Người 4 | Người 5 | Người 6 |
+|:----:|:-------:|:-------------:|:-------------:|:-------:|:-------:|:-------:|:-------:|
+| Mỏ 1 | $-$     | $\textbf{57}$ | $\textbf{30}$ | $0$     | $-20$   | $-20$   | $-20$   |
+| Mỏ 2 | $-$     | $\textbf{52}$ | $\textbf{14}$ | $9$     | $0$     | $-9$    | $-20$   |
+
 
 Cuối cùng, hai công nhân còn lại sẽ được phân công bằng cách cho cả hai vào làm ở mỏ 2 hoặc mỗi người làm ở một mỏ riêng. Ví dụ cho ta thấy kết quả mà ta vừa tìm được chính là kết quả tối ưu. Nhưng câu hỏi đặt ra là liệu phương pháp này có luôn đúng hay không?
 
@@ -339,13 +339,13 @@ Trong trường hợp đầu tiên, ta sẽ có $a1+b1 \le a1+max(a2, b1)$.
 
 Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần phải chứng minh $b1+b2 \le a1+max(a2, b1)$. Mà ta luôn có $b1 \le b2$ vì **lợi nhuận thu được từ việc thêm một công nhân vào một mỏ luôn luôn lớn hơn hoặc bằng lợi nhuận thu được từ việc thêm một công nhân nữa vào mỏ đó**.
 
-<table>
-<tr> <td>Trạng thái của mỏ vàng</td> <td>Lợi nhuận từ việc thêm 1 người</td> <td>Lợi nhuận từ việc thêm 1 người</td> </tr>
-<tr> <td>Số lượng mỏ $>$số lượng người đào+2</td> <td>$60$</td> <td>$60$</td> </tr>
-<tr> <td>Số lượng mỏ $=$ số lượng người đào+2</td> <td>$60$</td> <td>$50$</td> </tr>
-<tr> <td>Số lượng mỏ $=$ số lượng người đào+1</td> <td>$50$</td> <td>$-20$</td> </tr>
-<tr> <td>Số lượng mỏ $<$ số lượng người đào+2</td> <td>$-20$</td> <td>$-20$</td> </tr>
-</table>
+| Trạng thái của mỏ vàng                  | Lợi nhuận từ việc thêm 1 người | Lợi nhuận từ việc thêm 1 người |
+|:---------------------------------------:|:------------------------------:|:------------------------------:|
+| Số lượng mỏ $&gt;$số lượng người đào+2  | $60$                           | $60$                           |
+| Số lượng mỏ $=$ số lượng người đào+2    | $60$                           | $50$                           |
+| Số lượng mỏ $=$ số lượng người đào+1    | $50$                           | $-20$                          |
+| Số lượng mỏ $&lt;$ số lượng người đào+2 | $-20$                          | $-20$                          |
+
 
 Vì $b1+b2 \le a1+a2 \le a1+b1 \le a1+max(a2, b1)$, **lựa chọn Tham lam** cũng chính là phương án tối ưu.
 

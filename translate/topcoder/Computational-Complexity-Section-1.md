@@ -54,28 +54,10 @@ Có thể kết luận được rằng trong hầu hết các trường hợp - 
 
 Nếu đối chiếu với hai thuật toán ví dụ 1, không khó để thấy rằng có một thuật toán với thời gian chạy tương tự với chúng trong bảng 2
 
-<table>
-<tbody>
-<tr>
-<td>Số lượng bản ghi</td>
-<td>10</td>
-<td>20</td>
-<td>50</td>
-<td>100</td>
-<td>1000</td>
-<td>5000</td>
-</tr>
-<tr>
-<td>Thuật toán 3</td>
-<td>$N$ 0.00s</td>
-<td>0.01s</td>
-<td>0.05s</td>
-<td>0.11s</td>
-<td>0.78s</td>
-<td>14.22s</td>
-</tr>
-</tbody>
-</table>
+| Số lượng bản ghi | 10        | 20    | 50    | 100   | 1000  | 5000   |
+|:----------------:|:---------:|:-----:|:-----:|:-----:|:-----:|:------:|
+| Thuật toán 3     | $N$ 0.00s | 0.01s | 0.05s | 0.11s | 0.78s | 14.22s |
+
 *Bảng 2: Thời gian chạy của thuật toán 3*
 
 Ý tưởng của thuât toán 3: nếu số lượng bản ghi nhỏ thì ta áp dụng thuật toán 1, ngược lại áp dụng thuật toán 2.
@@ -204,29 +186,16 @@ Ví dụ: bài toán yêu cầu đếm số lần xuất hiện của mỗi lo�
 
 Trong một kỳ thi trên TopCoder, một thuật toán thực thi 1 000 000 000 phép nhân hiếm khi chạy trong giới hạn thời gian cho phép. Thực tế này cộng với quan sát ở trên và một vài kinh nghiệm với các bài toán trên TopCoder giúp ta tổng kết bảng sau:
 
-<table>
-<tbody>
-<tr>
-<th>complexity</th>
-<th>maximum N</th>
-</tr>
-<tr>
-<td>$ \Theta(N)$ </td><td>100 000 000</td>
-</tr><tr>
-<td>$ \Theta(N log N)$</td><td> 	40 000 000</td>
-</tr><tr>
-<td>$ \Theta(N^2)$ </td><td>	10 000</td>
-</tr><tr>
-<td>$ \Theta(N^3)$ </td><td>	500</td>
-</tr><tr>
-<td>$ \Theta(N^4)$ </td><td>	90</td>
-</tr><tr>
-<td>$ \Theta(2^N)$ </td><td>	20</td>
-</tr><tr>
-<td>$ \Theta(N!)$ </td><td> 11</td>
-</tr>
-</tbody>
-</table>
+| complexity         | maximum N   |
+|:------------------:|:-----------:|
+| $ \Theta(N)$       | 100 000 000 |
+| $ \Theta(N log N)$ | 40 000 000  |
+| $ \Theta(N^2)$     | 10 000      |
+| $ \Theta(N^3)$     | 500         |
+| $ \Theta(N^4)$     | 90          |
+| $ \Theta(2^N)$     | 20          |
+| $ \Theta(N!)$      | 11          |
+
 Bảng 3: Giá trị $N$ lớn nhất để các thuật toán có độ phức tạp khác nhau chạy trong tối đa 8 giây
 
 # Lưu ý khi phân tích độ phức tạp thuật toán

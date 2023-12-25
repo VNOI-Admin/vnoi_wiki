@@ -250,24 +250,10 @@ Cây đệ quy sẽ có dạng sau:
 
 Thử tính toán độ phức tạp tại vài mức đầu tiên, ta có:
 
-<table>
-<tbody>
-<tr>
-<td>level</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>…</td>
-</tr>
-<tr>
-<td>work</td>
-<td>$cN$</td>
-<td>$ {3\over 8}cN^3 $</td>
-<td>$ {3^2 \over 8^2}cN^3 $</td>
-<td>...</td>
-</tr>
-</tbody>
-</table>
+| level | 1    | 2                  | 3                       | …   |
+|:-----:|:----:|:------------------:|:-----------------------:|:---:|
+| work  | $cN$ | $ {3\over 8}cN^3 $ | $ {3^2 \over 8^2}cN^3 $ | ... |
+
 
 
 Rõ ràng là ta càng đi sâu xuống cây thì tổng độ phức tạp càng giảm. Vậy tốc độ giảm là bao nhiêu? Khi ta đi xuống một mức thì sẽ phải giải số bài toán con gấp ba lần số bài toán ở mức hiện tại. Tuy nhiên, vì mỗi bài toán con chỉ phải giải có kích cỡ giảm một nửa, nên thời gian cần để giải bài toán con giảm còn bằng $1 \over 8$ bài toán cha. Như vậy tổng độ phức tạp giảm theo hệ số $3 \over 8$.
@@ -294,24 +280,10 @@ Cây đệ quy sẽ có dạng sau
 
 Như trên, thử tính số lệnh cần thực thi ở vài mức đầu tiên. Ta có:
 
-<table>
-<tbody>
-<tr>
-<td>level</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>…</td>
-</tr>
-<tr>
-<td>work</td>
-<td>$cN$</td>
-<td>${5\over 3}cN$</td>
-<td>${5^2 \over 3^2}cN$</td>
-<td>...</td>
-</tr>
-</tbody>
-</table>
+| level | 1    | 2              | 3                   | …   |
+|:-----:|:----:|:--------------:|:-------------------:|:---:|
+| work  | $cN$ | ${5\over 3}cN$ | ${5^2 \over 3^2}cN$ | ... |
+
 
 Ta có kết quả ngược với ví dụ 6: khi ta càng đi sâu xuống dưới thì tổng độ phức tạp lại càng tăng lên. Khi ta đi xuống một  mức, sẽ có gấp $5$ lần số bài toán con, mỗi bài toán con sẽ có kích cỡ bằng $1 \over 3$ bài toán cha. Vì thời gian xử lý là tuyến tính với kích cỡ bài toán nên ta có tổng độ phức tạp ở mức sau tăng gấp $5 \over 3 $ mức trước.
 
