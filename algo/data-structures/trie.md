@@ -25,6 +25,7 @@ Hãy xem xét một ví dụ sau:
 
 <center>
 
+
 ![](/uploads/trie_img1.png)
 </center>
 
@@ -45,6 +46,7 @@ Nếu định nghĩa cấu trúc như phần trước, ta chỉ có thể thực
 Với hàm thêm xâu vào trie, ta bắt đầu tại nút gốc. Ta duyệt qua lần lượt các kí tự trong xâu và đi xuống cạnh chứa kí tự tương ứng. Nếu như cạnh tương ứng đó chưa tồn tại thì ta tạo đỉnh mới rồi thêm nó vào mảng `child`. Dưới đây là ví dụ trie của tập hợp các xâu `aa`, `aba`, `ba`, `caaa`, `cab`, `cba`, `ca`.
 
 <center>
+
 <img src="https://i.imgur.com/U31qYb0.gif"  style="width: 60%">
 </center>
 
@@ -226,6 +228,7 @@ Lưu ý rằng các ứng dụng của trie xâu (liệt kê bên dưới) đề
 
 <center>
 
+
 ![](/uploads/trie_img2.png)
 </center>
 
@@ -311,6 +314,7 @@ Sau khi xây dựng trie gồm các xâu trong danh sách, ta dfs một lượt 
 Qua đó mà ta đạt được thuật toán sắp xếp một danh sách các xâu trong thời gian tuyến tính.
 
 <center>
+
 <img src="https://i.imgur.com/xJ7Xrm8.gif"  style="width: 60%">
 </center>
 
@@ -402,6 +406,7 @@ Xét lần lượt các bit từ lớn đến bé của đáp án. Coi bit đang
 Ta sẽ lần lượt xây đáp án bằng các đi xuống từ gốc của trie. Coi ta đang xây bit thứ $i$ của đáp án. Nếu đỉnh hiện tại đang xét có thể đi xuống cạnh có bit là $f(x, i) \oplus 1$ với $f(x, i)$ là bit thứ $i$ của số $x$, ta sẽ đi qua cạnh đó để có được bit $i$ trong đáp án là $1$. Nếu không, ta "đành" đi xuống cạnh còn lại của đỉnh đang xét và có được bit $i$ của đáp án là $0$.
 
 <center>
+
 
 ![](/uploads/trie_img3.png)
 </center>
@@ -559,6 +564,7 @@ Với các truy vấn loại $1$, thay vì thay đổi cả dãy, ta nhận th�
 Giả dụ ta đã có một trie nhị phân của dãy số $a_1, a_2, \ldots, a_n$ và ta muốn tìm MEX của các số trong đó. Ta sẽ sử dụng thuật toán tương tự chặt nhị phân. Gọi độ cao của trie là $k$. Khởi đầu tại gốc trie, ta kiểm tra xem cây con bên trái (cạnh thể hiện bit $0$) có phải là cây nhị phân hoàn hảo hay không. Nói cách khác, tất cả các số trong khoảng $[0, 2^k - 1]$ có tồn tại hay không. Nếu có, ta chắc chắn MEX của dãy số nằm trong khoảng này. Nếu không, ta chắc chắn MEX của dãy số nằm trong khoảng $[2^k, 2^{k + 1} - 1]$. Sau đó, ta đi xuống đỉnh con tương ứng và tiếp tục xét hai đỉnh con của nó. Làm như vậy với tất cả các bit là sẽ tìm được đáp án.
 
 <center>
+
 
 ![](/uploads/trie_img4.png)
 </center>

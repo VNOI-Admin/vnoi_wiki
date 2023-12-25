@@ -113,6 +113,7 @@ Do $k$ lớn nhất, ta phải có $k = \pi[\pi[i]-1]$. Nói cách khác, độ 
 
 Minh họa cho hai trường hợp trên:
 <center>
+
 <img src="https://i.imgur.com/zPJRhGA.gif"  style="width: 60%">
 </center>
 
@@ -131,6 +132,7 @@ Tổng kết lại, thuật toán của chúng ta hoạt động như sau:
 5. Nếu $j = 0$ mà vẫn chưa ghép cặp được với $s[i]$, ta đặt $\pi[i] = 0$ rồi tiếp tục tính $\pi[i + 1]$.
 
 <center>
+
 <img src="https://i.imgur.com/6LnQDXZ.gif"  style="width: 60%">
 </center>
 
@@ -223,6 +225,7 @@ Thuật toán trên có độ phức tạp lớn do mỗi tiền tố ta phải 
 
 Ví dụ: với xâu "$abcabcd$", ta có hàm tiền tố $[0, 1, 0, 1, 2, 2, 3]$, tương ứng với các cạnh $(1, 0), (2, 1), (3, 0), (4, 1), (5, 2), (6, 2), (7, 3)$ của cây:
 <center>
+
 
 ![](/uploads/kmp_img1.png)
 </center>

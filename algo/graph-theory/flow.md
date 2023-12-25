@@ -518,6 +518,7 @@ Mạng của chúng ta sẽ có dạng như thế này
 </p>
 
 <center>
+
 <img src="https://hackmd.io/_uploads/rkuCDQeOn.png"/>
 </center>
 

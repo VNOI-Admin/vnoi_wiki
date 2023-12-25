@@ -34,12 +34,14 @@ Giới hạn: $n, q \leq 10^5$.
 
 <center>
 
+
 ![](/uploads/euler-tour-on-tree_img1.png)
 </center>
 
 <!-- ![](https://i.ibb.co/ykSMHwN/subtree-example.png) -->
 
 <center>
+
 
 Hình $1$
 
@@ -94,6 +96,7 @@ Thể hiện chu trình Euler (**) trên đồ thị $T'$ bằng một dãy các
 
 <center>
 
+
 ![](/uploads/euler-tour-on-tree_img2.png)
 </center>
 
@@ -101,11 +104,13 @@ Thể hiện chu trình Euler (**) trên đồ thị $T'$ bằng một dãy các
 
 <center>
 
+
 $2a$ &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $2b$
 
 </center>
 
 <center>
+
 
 Hình $2$
 
@@ -218,11 +223,13 @@ Từ hai tính chất trên ta nhận xét được rằng, với hai đỉnh $u
 
 <center>
 
+
 ![](/uploads/euler-tour-on-tree_img3.png)
 </center>
 
 
 <center>
+
 
 Hình $3$
 
@@ -404,11 +411,13 @@ Ví dụ:
 
 
 <center>
+
   ![](/uploads/euler-tour-on-tree_img4.png)
 </center>
 
 
 <center>
+
 
 Hình $4$
 

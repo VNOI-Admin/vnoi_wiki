@@ -20,6 +20,7 @@ Trọng tâm của cây - centroid - là một đỉnh trên cây mà khi bỏ n
 
 <center>
 
+
 ![](/uploads/centroid-decomposition_img1.png =300x)
 
 </center>
@@ -181,6 +182,7 @@ Thêm vào $E'$ các cạnh nối trọng tâm của $T$ với trọng tâm củ
 Sau khi xóa tất cả đỉnh trong cây $T$, ta đã xây dựng được cây $T'$ gọi là cây trọng tâm của cây $T$ ban đầu.
 
 <center>
+
 <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmM2NjQyYWYyNGIyNTgyNWRlMTMzMmVmZjVmYjQxZDJiNzRkMTgwMiZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/WNYdDoVhmiZgoNKGld/giphy.gif">
 </center>
 

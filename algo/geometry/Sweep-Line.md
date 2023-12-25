@@ -28,10 +28,12 @@ Với hai điểm $P(x_P, y_P)$ và $Q(x_Q, y_Q)$:
 - **Khoảng cách Manhattan** giữa hai điểm $P$ và $Q$ là khoảng cách giữa nếu ta chỉ được đi dọc hoặc ngang khi từ điểm này qua điểm kia, được tính bằng công thức: $\lvert x_Q - x_P \rvert + \lvert y_Q - y_P \rvert$
 
 <center>
+
 ![](/uploads/Sweep-Line_img1.png =300x)
 </center>
 
 <center>
+
 Các đường màu đỏ, xanh lam, vàng biểu diễn khoảng cách Manhattan có cùng độ dài $(12)$, trong khi đường màu xanh lục biểu diễn khoảng cách Euclid với độ dài $6 * \sqrt2 \approx 8.48$.
 </center>
 
@@ -69,6 +71,7 @@ Giả sử chúng ta đã xử lí xong $N - 1$ điểm đầu tiên và khoản
 > Từ $P$, vẽ $8$ hình vuông xung quanh, mỗi hình vuông có cạnh đúng bằng $d/2$, như hình dưới (điểm màu xanh là $P$).
 >
 <center>
+
 > ![](/uploads/Sweep-Line_img2.png =300x)
 </center>
 >
@@ -205,6 +208,7 @@ Khi này ta sẽ có thể sắp xếp danh sách của chúng ta theo thứ t�
 Chúng ta sẽ quét từ trái sang phải. Khi đoạn quét di chuyển, ta duy trì một tập hợp $S$ các đoạn thẳng nằm ngang bị cắt ngang theo đoạn quét - tức là đoạn quét đang ở giữa hai đầu mút của đoạn ngang đó. Tập này được sắp xếp theo thứ tự $y$, và được tô màu đỏ trong hình dưới.
 
 <center>
+
 ![](/uploads/Sweep-Line_img3.png =200x)
 </center>
 
@@ -223,6 +227,7 @@ Dễ thấy thuật toán của chúng ta duyệt qua một danh sách có $O(n)
 Minh họa thuật toán:
 
 <center>
+
 <img src="https://i.imgur.com/xj1XD68.gif"  style="width: 60%">
 </center>
 
@@ -342,6 +347,7 @@ Giới hạn:
 Tương tự như bài toán tìm giao điểm của các đoạn thẳng, chúng ta có thể xử lí bằng cách biểu diễn mỗi hình chữ nhật thành hai "sự kiện" - một biểu thị cho cạnh bên trái và một biểu thị cho cạnh bên phải của hình chữ nhật - và duy trì một tập $S$ chứa các hình chữ nhật mà đoạn thẳng quét của chúng ta đang cắt qua. Khi chúng ta quét qua cạnh bên trái, ta thêm hình chữ nhật đó vào $S$, khi quét qua cạnh bên phải thì ta xoá hình chữ nhật tương ứng khỏi $S$.
 
 <center>
+
 ![](/uploads/Sweep-Line_img4.png =300x)
 </center>
 
@@ -353,6 +359,7 @@ Vấn đề đặt ra là làm thế nào để tìm tổng độ dài của cá
 
 Minh họa thuật toán:
 <center>
+
 <img src="https://i.imgur.com/h7RJef6.gif" style="width: 60%">
 </center>
 
@@ -463,6 +470,7 @@ Giới hạn:
 > Xét một điểm $P$ cho trước bất kì. Lấy gốc toạ độ tại $P$. Chia mặt phẳng toạ độ thành $8$ phần bằng nhau như hình dưới. Với mỗi phần tám, nối $P$ với một điểm bất kì trong phần tám đó có khoảng cách Manhattan gần nhất với $P$ (nếu có). Chẳng hạn trong ví dụ ở hình dưới, ta sẽ nối $P$ với $Q$.
 >
 <center>
+
 > ![](/uploads/Sweep-Line_img5.png)
 </center>
 >
