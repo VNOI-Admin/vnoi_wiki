@@ -790,22 +790,27 @@ Ta đặt: $f(P)=|A_1-P_1|+|A_2-P_2|+\ldots+|A_n-P_n|$.
 Giả sử trong hoán vị P tồn tại một nghịch thế $u,v$, tức là $u<v$ và $P_u\ge P_v.$ Đặt $P'=P_1,P_2,\ldots,P_{u-1},P_v,P_{u+1},\ldots,P_{v-1},P_u,P_{v+1},\ldots,P_n$.
 
 Xét hiệu:
+$$
 \begin{align}
 f(P)-f(P') & = |A_u-P_u|+|A_v-P_v|-|A_u-P_v|-|A_v-P_u|
 \end{align}
+$$
 **Trường hợp 1:** $P_u\ge A_v\ge A_u$, ta có:
+$$
 \begin{align}
 f(P)-f(P') & = P_u-A_u+|A_v-P_v|-|A_u-P_v|-P_u+A_v\\
 &= |A_v-A_u|+|A_v-P_v|-|A_u-P_v|\\
 &\ge0
 \end{align}
+$$
 **Trường hợp 2:** $A_v> P_u\ge P_v$, ta có:
+$$
 \begin{align}
 f(P)-f(P') & = |A_u-P_u|+A_v-P_v-|A_u-P_v|-A_v+P_u\\
 &= |A_v-P_u|+|P_u-P_v|-|A_u-P_v|\\
 &\ge0
 \end{align}
-
+$$
 Do đó ta luôn có $f(P')\le f(P)$. Từ đó suy ra với một hoán vị $P$ khác $B_1,B_2,\ldots,B_n$, ta luôn có thể đổi chỗ hai số hạng trong một cặp nghịch thế của $P$ để được một hoán vị $P'$ có giá trị $f(P')\le f(P)$. Suy ra $f(P)$ đạt $\min$ khi $P$ là $B_1,B_2,\ldots,B_n.$ Đến đây ta chứng minh được mệnh đề trên.
 
 Trở lại bài toán gốc, nếu ta sắp xếp các đôi giày và các người mua giày theo trình tự cỡ giày tăng dần, từ nhận xét đã chứng minh ta suy ra tổng độ lệch là nhỏ nhất khi người cần cỡ giày nhỏ hơn mua chiếc giày nhỏ hơn. Đến đây, bài toán giống với bài toán gốc và có thể giải bằng phương pháp QHĐ.

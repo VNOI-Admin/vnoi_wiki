@@ -43,7 +43,9 @@ Ma trận vuông là ma trận có số hàng và số cột bằng nhau. Ma tr�
 
 - **Ví dụ:** Ma trận vuông cấp $3$ (số hàng và số cột bằng $3$)
 
+$$
     \begin{bmatrix} 1 & 2 & 0 \newline 3 & 0 & 1 \newline 2 & 3 & 1 \end{bmatrix}
+$$
 
 ### Ma trận đơn vị (Identity Matrix)
 

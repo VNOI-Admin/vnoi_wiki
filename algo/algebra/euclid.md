@@ -135,12 +135,12 @@ Xét trường hợp $a = b = 0$. Với quy ước $(0, 0) = 0$ đã nói tới 
 
 Rõ ràng, luôn tồn tại các giá trị $x, y$ để $ax + by > 0$. Gọi $d'$ là số nguyên dương nhỏ nhất thoả mãn $d' = ax' + by'$ (với $x', y'$ là các số nguyên). Ta chứng minh rằng $d'$ là ƯCLN của $a$ và $b$.
 
-\begin{align}
+$$\begin{align}
 &a = d'q + r \ (0 \leq r < d')\\
 &\Rightarrow r = a - qd'\\
 &\Rightarrow r = a - q(ax' + by')\\
 &\Rightarrow r = a(1 - qx') + b(-qy')
-\end{align}
+\end{align}$$
 
 Do đó $r$ cũng có dạng $ax + by$. Tuy nhiên, số dương nhỏ nhất có dạng như vậy là $d'$, thế nhưng $0 \leq r < d'$ nên $r = 0$, đồng nghĩa với $d' \mid a$.
 
@@ -148,11 +148,11 @@ Chứng minh tương tự ta cũng được $d' \mid b$. Từ đó suy ra $d$ l�
 
 Xét $c$ là một ước chung bất kỳ khác $d'$ của $a$ và $b$. Đặt $a = cu, b = cv$ với $u, v$ là số nguyên. Ta có:
 
-\begin{align}
+$$\begin{align}
 &d' = ax' + bt'\\
 &\Rightarrow d' = cux' + cvy'\\
 &\Rightarrow d' = c(ux' + vy')
-\end{align}
+\end{align}$$
 
 Suy ra $c \mid d'$. Vì $d'$ dương và khác $c$ nên $c < d'$.
 
@@ -175,11 +175,11 @@ Lại giả sử trước bước đó sau khi áp dụng thuật toán Euclid m
 
 Ta cần tìm các hệ số $x_0, y_0$ để: $a_0x_0 + b_0y_0 = d$.
 
-\begin{align}
+$$\begin{align}
 &d = b_0x_1 + ry_1 \\
 &\Rightarrow d = b_0x_1 + (a_0 - b_0q)y_1 \\
 &\Rightarrow d = a_0y_1 + b_0(x_1 - qy_1) \\
-\end{align}
+\end{align}$$
 
 Liên tục cập nhật các hệ số $x, y$ theo công thức trên tới khi thu được $a = A, b = B$ như ban đầu, ta sẽ thu được kết quả.
 
