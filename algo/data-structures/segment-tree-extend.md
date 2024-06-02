@@ -864,4 +864,4 @@ Code này có một chút lạ, khác so với code ở **bài toán 2** một c
 # Các nguồn tham khảo:
 
 - [Codeforces](http://codeforces.com/blog/entry/15890)
-- [Một số vấn đề đáng chú ý trong môn Tin học](algo/basic/Tai-Lieu-Thuat-Toan)
+- [[Một số vấn đề đáng chú ý trong môn Tin học|algo/basic/Tai-Lieu-Thuat-Toan]]
