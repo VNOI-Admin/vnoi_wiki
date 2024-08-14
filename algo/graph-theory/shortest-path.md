@@ -17,7 +17,7 @@ Bài viết này sẽ giới thiệu ba thuật toán cơ bản của dạng bà
 * Thuật toán Dijkstra.
 * Thuật toán Floyd-Warshall (còn gọi là thuật toán Floyd).
 
-Cần lưu ý rằng, [có một thuật toán thông dụng khác](https://vnoi.info/wiki/algo/basic/two-pointers.md#gi%E1%BA%A3i-ph%C3%A1p-3) cũng có tên thường gọi là thuật toán Floyd, dùng để tìm chu trình trong đồ thị có hướng. Bài viết này sẽ chỉ đề cập đến thuật toán tìm đường đi ngắn nhất.
+Cần lưu ý rằng, [có một thuật toán thông dụng khác](https://wiki.vnoi.info/algo/basic/two-pointers.md#gi%E1%BA%A3i-ph%C3%A1p-3) cũng có tên thường gọi là thuật toán Floyd, dùng để tìm chu trình trong đồ thị có hướng. Bài viết này sẽ chỉ đề cập đến thuật toán tìm đường đi ngắn nhất.
 
 
 
@@ -361,7 +361,7 @@ void dijkstra(int n, int S, vector<vector<Edge>> E, vector<long long> &D, vector
 ```
 ## Cải tiến đối với đồ thị thưa
 
-* Nhận xét rằng bước đầu tiên: "Tìm đỉnh $u$ có $D_u$ nhỏ nhất và $P_u = false$", có thể được cải tiến. Ta có thể sử dụng cấu trúc dữ liệu [Heap](https://vnoi.info/wiki/translate/wcipeg/Binary-Heap.md) (cụ thể là Min Heap) hoặc cây nhị phân tìm kiếm để cải tiến bước này.
+* Nhận xét rằng bước đầu tiên: "Tìm đỉnh $u$ có $D_u$ nhỏ nhất và $P_u = false$", có thể được cải tiến. Ta có thể sử dụng cấu trúc dữ liệu [Heap](https://wiki.vnoi.info/translate/wcipeg/Binary-Heap.md) (cụ thể là Min Heap) hoặc cây nhị phân tìm kiếm để cải tiến bước này.
     * Mỗi lần tối ưu hóa $D_v$, ta đẩy cặp $\{D_v, v\}$ vào trong Heap. 
     * Để tìm đỉnh có $D_u$ nhỏ nhất, ta chỉ cần liên tục lấy phần tử trên cùng trong Heap ra, cho đến khi gặp đỉnh $u$ thỏa mãn $P_u = false$.
 

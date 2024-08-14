@@ -35,13 +35,13 @@ f(18) = 6 = f(2) * f(9)
 Ta có thể chứng minh hàm $f$ là hàm nhân tính như sau:
 
 - Xét $m$ và $n$ nguyên tố cùng nhau.
-- Để chứng minh $f(m \* n) = f(m) \* f(n)$, ta cần chứng minh 2 chiều:
+- Để chứng minh $f(m \times n) = f(m) \times f(n)$, ta cần chứng minh 2 chiều:
     1. Mỗi ước của $m * n$ ứng với 1 cặp $(a, b)$ với $a$ là ước của $m$ và $b$ là ước của $n$.
-        - Điều này đúng do mỗi ước của $m \* n$ ta luôn tách được thành tích của 2 số $a \* b$ với $a$ là ước của $m$ và $b$ là ước của $n$.
-    2. Mỗi cặp $(a, b)$ với $a$ là ước của $m$ và $b$ là ước của $n$ ứng với 1 ước của $m \* n$.
-        - Điều này đúng do với mỗi cặp $(a, b)$ thì $a \* b$ là ước của $m \* n$.
+        - Điều này đúng do mỗi ước của $m \times n$ ta luôn tách được thành tích của 2 số $a \times b$ với $a$ là ước của $m$ và $b$ là ước của $n$.
+    2. Mỗi cặp $(a, b)$ với $a$ là ước của $m$ và $b$ là ước của $n$ ứng với 1 ước của $m \times n$.
+        - Điều này đúng do với mỗi cặp $(a, b)$ thì $a \times b$ là ước của $m \times n$.
 
-Như vậy, $f(m \* n) = f(m) \* f(n)$.
+Như vậy, $f(m \times n) = f(m) \times f(n)$.
 
 
 # 2. Ứng dụng 1
@@ -54,7 +54,7 @@ Giờ ta xét bài toán sau:
 
 1. Chứng minh $f$ là hàm nhân tính.
 2. Tìm công thức cho $f(p^k)$ với p là số nguyên tố.
-3. Dùng sàng để tính $f$ trong $O(N*logN)$.
+3. Dùng sàng để tính $f$ trong $O(N \log N)$.
 
 Nếu bạn chưa biết sàng có thể đọc [[ở đây|translate/topcoder/Mathematics-for-Topcoders]].
 
@@ -140,11 +140,11 @@ Cũng như trên, ta sẽ làm theo 3 bước chính:
 
 1. Chứng minh $f$ là hàm nhân tính.
 2. Tìm công thức cho $f(p^k)$ với p là số nguyên tố.
-3. Phân tích $N$ thành thừa số nguyê tố để tính $f(N)$ trong $O(sqrt(N))$.
+3. Phân tích $N$ thành thừa số nguyê tố để tính $f(N)$ trong $O(\sqrt{N})$.
 
 Vì 2 bước đầu giống hệt phần trước nên mình sẽ không nhắc lại.
 
-Ở bước 3, bạn chỉ cần xét tất cả các số từ 1 đến $sqrt(N)$, từ đó phân tích được thành thừa số nguyên tố. Code như sau:
+Ở bước 3, bạn chỉ cần xét tất cả các số từ 1 đến $\sqrt{N}$, từ đó phân tích được thành thừa số nguyên tố. Code như sau:
 
 ```cpp
 int n;
@@ -178,13 +178,13 @@ Việc chứng minh trực tiếp một hàm là hàm nhân tính như ví dụ 
 Với 2 hàm $f$ và $g$ là hàm nhân tính, ta có một hàm nhân tính mới $f \times g$:
 
 $$
-(f \times g)(n) = \sum_{d_1 * d_2=n}{f(d_1) * g(d_2)}
+(f \times g)(n) = \sum_{d_1 \times d_2=n}{f(d_1) \times g(d_2)}
 $$
 
 Một cách biểu diễn khác là:
 
 $$
-(f \times g)(n) = \sum_{d | n}{f(d) * g(n/d)}
+(f \times g)(n) = \sum_{d | n}{f(d) \times g(n/d)}
 $$
 
 Các bạn chú ý kí hiệu $d \| n$ nghĩa là $n$ chia hết cho $d$.
@@ -217,7 +217,7 @@ $$
 (f \times g)(n) = \sum_{d | n}{f(d) * g(n/d)} = \sum_{d | n}{1}
 $$
 
-Như vậy $(f \* g)(n)$ là số ước của số $n$ và là hàm nhân tính.
+Như vậy $(f \times g)(n)$ là số ước của số $n$ và là hàm nhân tính.
 
 ## 4.2. Ví dụ 2
 

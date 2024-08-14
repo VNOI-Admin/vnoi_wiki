@@ -41,7 +41,7 @@ Trước hết để giải được bài toán ta biết hai khái niệm mạn
 
 ## 3.1 mạng thặng dư - residual network
 
-Mạng thặng dư $G'(E',V')$ của mạng $G(E,V)$ cho biết sức chứa còn lại trên mạng $G(E,V)$ khi đã gửi một số luồng $f^{\*}$ qua nó và được xây dựng như sau:
+Mạng thặng dư $G'(E',V')$ của mạng $G(E,V)$ cho biết sức chứa còn lại trên mạng $G(E,V)$ khi đã gửi một số luồng $f^{*}$ qua nó và được xây dựng như sau:
 
 - Tập đỉnh $V'= V$
 - Mỗi cạnh $e(u,v) ∈ E$ có giá trị luồng là $f[u,v]$ và sức chứa $c[u,v]$ tương ứng với 2 cạnh trong $E'$:
@@ -85,7 +85,7 @@ $bước (2)$: tìm một đường tăng luồng trên mạng thặng dư $G'$
   - nếu tồn một đường tăng luồng $\rightarrow$ thực hiện tăng luồng trên mạng thặng dư và quay trở lại $bước (2)$
 Khi thuật toán kết thúc $f(s,V')$ chính là giá trị luồng cực đại cần tìm.
 
-Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BFS(breath first search) để tìm đường tăng luồng và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{\*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(\|f^{\*}\|.E)$. Sau đâu là code của thuật toán trên:
+Đến đây bạn đã có thể dùng thuật toán tìm kiếm trên đồ thị DFS (deep first search) hoặc BFS(breath first search) để tìm đường tăng luồng và cập nhật mạng thặng dư thuật toán này có độ phức tạp bằng *số lần tăng luồng* ($f^{*}$) nhân với *độ phức tạp của thật toán tìm kiếm đồ thị-$O(E)$* và bằng $O(\|f^{*}\|.E)$. Sau đâu là code của thuật toán trên:
 
 **Lưu ý:** Trong các thuật toán dưới đây ta sẽ gọi trace[u] là điển đi đến được u trong đường tăng luồng, nếu không có đỉnh nào đến được u trace[u] sẽ có giá trị là $-1$
 
@@ -174,11 +174,11 @@ Chứng minh:
 - $(1) \rightarrow (2)$: vì nếu tồn tại đường tăng luồng thì ta có thể tăng luồng để được một luồng mới lớn hơn $\rightarrow$ trái với $(1)$
 - $(2) \rightarrow (3)$: nếu giả sử không tồn tại lát cắt hẹp nhất ta có thể tìm được đường tăng luồng $\rightarrow$ $(2)$ sai (phần này có thể coi như một bài tập cho bạn đọc)
 
-- $(3) \rightarrow (1)$: Ta có thể thấy $f(s,V') = f(X, Y) \le c(X, Y)$, do đó $f(s,V')$ là luồng cực đại vì nếu tồn tại một luồng $f^{\*} > f(s,V')$ sẽ vô lý với nhận xét trong mục lát cắt $s-t$ 3.5.1 .
+- $(3) \rightarrow (1)$: Ta có thể thấy $f(s,V') = f(X, Y) \le c(X, Y)$, do đó $f(s,V')$ là luồng cực đại vì nếu tồn tại một luồng $f^{*} > f(s,V')$ sẽ vô lý với nhận xét trong mục lát cắt $s-t$ 3.5.1 .
 
 ## 3.6 Các thuật toán tìm đường tăng luồng
 
-Như đã nói $O(\|f^{\*}\|.E)$ là độ phức tạp của thuật toán Ford-Fulkerson nó phụ thuộc 2 yếu tố là tìm đường tăng luồng $O(E)$ và số lần tăng luồng $f^{\*}$ do đó ta có thể tối ưu 1 trong 2 hoặc cả 2 nếu muốn thuật toán chạy nhanh hơn. Trong mục này ta sẽ tìm hiểu cách để có thể giảm được số lần tăng luồng $f^{\*}$ điều này phụ thuộc nhiều vào việc chọn đường tăng luồng nào để tăng, các phương pháp dưới đây đều có độ phức tạp là $O(\|f^{\*}\|.E)$ nhưng đa số các trường hợp sẽ có độ tốt tăng dần theo thứ tự trình bày sau:
+Như đã nói $O(\|f^{*}\|.E)$ là độ phức tạp của thuật toán Ford-Fulkerson nó phụ thuộc 2 yếu tố là tìm đường tăng luồng $O(E)$ và số lần tăng luồng $f^{*}$ do đó ta có thể tối ưu 1 trong 2 hoặc cả 2 nếu muốn thuật toán chạy nhanh hơn. Trong mục này ta sẽ tìm hiểu cách để có thể giảm được số lần tăng luồng $f^{*}$ điều này phụ thuộc nhiều vào việc chọn đường tăng luồng nào để tăng, các phương pháp dưới đây đều có độ phức tạp là $O(\|f^{*}\|.E)$ nhưng đa số các trường hợp sẽ có độ tốt tăng dần theo thứ tự trình bày sau:
 
 ### 3.6.1 Sử dụng thuật toán thuật toán tìm kiếm theo chiều sâu(Deep First Search-DFS)
 

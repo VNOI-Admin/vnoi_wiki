@@ -51,7 +51,7 @@ Mỗi truy vấn ta mất thời gian là $O(S + N/S)$. Ta cần tìm giá trị
 ## Cài đặt
 
 Ta cần phải lưu những cấu trúc sau: 
-* $\sqrt{N}$ mảng $cnt$, mỗi mảng có độ dài $max(A_i)$, tốn $O(\sqrt{N} * max(A_i)$) bộ nhớ.
+* $\sqrt{N}$ mảng $cnt$, mỗi mảng có độ dài $max(A_i)$, tốn $O(\sqrt{N} \times max(A_i)$) bộ nhớ.
 * Mảng $A$, tốn $O(N)$ bộ nhớ.
 
 Khi giải bài toán, ta thường chia thành các hàm tiền xử lý để dựng ra cấu trúc dữ liệu, và các hàm trả lời các truy vấn.
@@ -117,13 +117,13 @@ Tiếp nối bài toán đầu tiên, chúng ta hãy cùng đi sâu hơn vào c�
 
 Các bạn có thể nộp bài ở [đây](http://codeforces.com/group/FLVn1Sc504/contest/315912/problem/A)
 
-Cho một mảng $A$ gồm $N$ phần tử là các số nguyên. Bạn cần thực hiện $Q$ truy vấn có dạng $(l,r,oval,nval)$ là với các phần tử trong đoạn từ $l$ đến $r$, nếu $A[i] == oval$, gán $A[i] = nval$. Bạn cần in ra mảng sau khi thực hiện $Q$ truy vấn. Giới hạn $1 \le N,Q \le 2*10^5, 1 \le A_i \le 100$
+Cho một mảng $A$ gồm $N$ phần tử là các số nguyên. Bạn cần thực hiện $Q$ truy vấn có dạng $(l,r,oval,nval)$ là với các phần tử trong đoạn từ $l$ đến $r$, nếu $A[i] == oval$, gán $A[i] = nval$. Bạn cần in ra mảng sau khi thực hiện $Q$ truy vấn. Giới hạn $1 \le N,Q \le 2 \times 10^5, 1 \le A_i \le 100$
 
 Ghi chú: $oval,nval$ là viết tắt cho _old value_ và _new value_.
 
 ## Cách giải
 ### Giả sử các truy vấn đều có $l = 1, r=N$
-Với giả sử trên, ta sẽ giải bài toán với đpt $O(Q*100 + N)$. Ta sẽ tạo mảng $lazy[oval]$ với ý nghĩa là các số ban đầu là $oval$ thì hiện tại đã được đổi giá trị sang $lazy[oval]$. Ban đầu $lazy[oval] = oval$ với $1 \le oval \le 100$. Với mỗi truy vấn $(l,r,oval,nval)$, ta sẽ làm như sau: 
+Với giả sử trên, ta sẽ giải bài toán với đpt $O(Q \times 100 + N)$. Ta sẽ tạo mảng $lazy[oval]$ với ý nghĩa là các số ban đầu là $oval$ thì hiện tại đã được đổi giá trị sang $lazy[oval]$. Ban đầu $lazy[oval] = oval$ với $1 \le oval \le 100$. Với mỗi truy vấn $(l,r,oval,nval)$, ta sẽ làm như sau: 
 
 ```cpp
 for (int i = 1; i <= 100; ++i) {
@@ -138,7 +138,7 @@ for (int i = 1; i <= n; ++i) {
     a[i] = lazy[a[i]];
 }
 ```
-Vậy là chúng ta đã giải xong bài toán với độ phức tạp $O(Q*100 + N)$.
+Vậy là chúng ta đã giải xong bài toán với độ phức tạp $O(Q \times 100 + N)$.
 
 ### Giải bài toán gốc 
 Ta sẽ áp dụng ý tưởng trên vào để giải bài toán gốc. Ta cũng chia mảng thành $\sqrt{N}$ đoạn. Xét một truy vấn $(l,r,oval,nval)$ ta có:
@@ -147,9 +147,9 @@ Ta sẽ áp dụng ý tưởng trên vào để giải bài toán gốc. Ta cũn
 * Với mỗi block, ta sẽ có mảng $lazy$ với định nghĩa như trên. Ví dụ block $3$, các số đang có giá trị là $oval$ sẽ được đổi thành giá trị $nval$ $\Leftrightarrow$ $lazy[3][oval]=nval$
 
 Vậy truy vấn của chúng ta sẽ được chia làm 3 phần (có thể rỗng) như sau:
-* Phần dư bên trái: $[ l ... blockL * BLOCK\\_SIZE - 1 ]$ 
-* Phần dư bên phải: $[ blockR * BLOCK\\_SIZE ... r ]$
-* Phần đầy đủ các block: $[ blockL * BLOCK\\_SIZE ... blockR * BLOCK\\_SIZE - 1 ]$
+* Phần dư bên trái: $[ l ... blockL \times BLOCK\_SIZE - 1 ]$ 
+* Phần dư bên phải: $[ blockR \times BLOCK\_SIZE ... r ]$
+* Phần đầy đủ các block: $[ blockL \times BLOCK\_SIZE ... blockR \times BLOCK\_SIZE - 1 ]$
 
 #### Đầu tiên, chúng ta cập nhật *phần đầy đủ các block*:
 
@@ -198,7 +198,7 @@ void doLazy(int id) { // L R là đầu trái và đầu phải của phần dư
 }
 ```
 
-Vậy tổng kết lại, ta sẽ có hàm cập nhật cho *phần dư bên trái* (và cả *phần dư bên phải) như sau:
+Vậy tổng kết lại, ta sẽ có hàm cập nhật cho *phần dư bên trái* (và cả *phần dư bên phải*) như sau:
 
 ```cpp
 void manualUpdate(int L, int R, int oval, int nval) { // L R là đầu trái và đầu phải của phần dư bên trái
@@ -223,13 +223,13 @@ manualUpdate(blockR * BLOCK_SIZE, r, oval, nval);
 
 Ta sẽ cùng xem xét độ phức tạp của lời giải này:
 
-Dễ thấy hàm $blockUpdate$ có độ phức tạp là $O(100)$. Hàm này mỗi truy vấn có thể được gọi không quá $\sqrt{N}$ lần, và có $Q$ truy vấn nên tổng độ phức tạp của các lần gọi hàm này là $O(Q\*\sqrt{N}\*100)$. **(1)**
+Dễ thấy hàm $blockUpdate$ có độ phức tạp là $O(100)$. Hàm này mỗi truy vấn có thể được gọi không quá $\sqrt{N}$ lần, và có $Q$ truy vấn nên tổng độ phức tạp của các lần gọi hàm này là $O(Q\times \sqrt{N}\times 100)$. **(1)**
 
 Hàm $doLazy$ có độ phức tạp là $O(\sqrt{N} + 100)$ do các *phần dư* có độ lớn $\leq \sqrt{N}$. Cộng với phần `for (int i = L; i <= R; ++i)` có độ phức tạp $O(\sqrt{N})$, hàm $manualUpdate$ có độ phức tạp là $O(\sqrt{N} + \sqrt{N} + 100) = O(\sqrt{N})$.
 
-Dễ thấy hàm $manualUpdate$ sẽ được gọi đúng $2$ lần trong mỗi truy vấn. Vậy tổng độ phức tạp của việc gọi hàm này là $O(Q\*\sqrt{N})$. **(2)**
+Dễ thấy hàm $manualUpdate$ sẽ được gọi đúng $2$ lần trong mỗi truy vấn. Vậy tổng độ phức tạp của việc gọi hàm này là $O(Q\times \sqrt{N})$. **(2)**
 
-Vậy độ phức tạp của lời giải chia căn này sẽ là **(1)** + **(2)** = $O(Q\*\sqrt{N}\*100) + O(Q\*\sqrt{N})$.
+Vậy độ phức tạp của lời giải chia căn này sẽ là **(1)** + **(2)** = $O(Q\times \sqrt{N}\times 100) + O(Q\times \sqrt{N})$.
 
 Các bạn có thể xem code mẫu ở [đây](https://ideone.com/TA4XqI)
 
@@ -238,7 +238,7 @@ Các bạn có thể xem code mẫu ở [đây](https://ideone.com/TA4XqI)
 Các bạn có thể thử sức [tại đây](https://vnoi.info/problems/list/?tag=156&page=1).
 
 # Lưu ý
-* Trong phần lớn trường hợp, ta nên đặt $BLOCK\\_SIZE$ là hằng số, chứ không nên thực sự lấy căn của $N$ trong dữ liệu nhập vào. Lý do là việc chia cho hằng số, cũng như việc dùng mảng tĩnh sẽ giúp code của bạn chạy nhanh hơn nhiều so với việc chia cho biến và xài mảng động.
+* Trong phần lớn trường hợp, ta nên đặt $BLOCK\_SIZE$ là hằng số, chứ không nên thực sự lấy căn của $N$ trong dữ liệu nhập vào. Lý do là việc chia cho hằng số, cũng như việc dùng mảng tĩnh sẽ giúp code của bạn chạy nhanh hơn nhiều so với việc chia cho biến và xài mảng động.
 * Khi cài đặt, các bạn cần tránh việc thực hiện $O(Q \sqrt{N})$ phép chia (cả chia lấy nguyên lẫn chia lấy dư), vì phép chia là một thao tác chậm hơn nhiều so với các phép toán khác. Các bạn dễ làm điều này khi cần tính $id$ của các block lúc truy vấn/cập nhật. Phạm vào điều này nhiều khả năng sẽ khiến code bạn bị chạy quá thời gian (TLE).
 * Vì thường yêu cầu bộ nhớ lớn, các bạn cần tính toán để không bị quá bộ nhớ (MLE). Cách tính như sau: 1MB = $10^6$ byte, 1 int = $4$ byte, 1 long long = $8$ byte. Ví dụ, mảng $cnt$ trong code mẫu ở trên sẽ tốn $320 * 10^5 * 4 = 128 000 000 = 128 MB$.
 

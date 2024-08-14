@@ -97,10 +97,10 @@ Những đoạn cùng màu là một cây suy biến. Nếu coi mỗi cây suy b
 
     Mà:
 
-        - $F(x_1)  \le  F(N-1)  \le  LogN+1$
-        - $F(x_2) +1  \le  F(N/2)+1  \le  LogN+1$
-        - ...
-        - $F(x_k) +1  \le  F(N/2)+1  \le  LogN+1$
+    - $F(x_1)  \le  F(N-1)  \le  LogN+1$
+    - $F(x_2) +1  \le  F(N/2)+1  \le  LogN+1$
+    - ...
+    - $F(x_k) +1  \le  F(N/2)+1  \le  LogN+1$
 
 Vậy $F(N)  \le  LogN+1$ (Điều phải chứng minh).
 

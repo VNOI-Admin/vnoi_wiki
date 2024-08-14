@@ -97,49 +97,52 @@ Dựa vào những phân tích ta có giải pháp sử dụng **hai con trỏ**
 
 $a = [1, 3, 6, 8, 10], b = [2, 6, 7, 12, 14,15]$
 
-* Đặt $i = 1$ và $j = 1$. \\
-$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}1}, 3, 6, 8, 10]$\\
-$b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14,15]$\\
+* Đặt $i = 1$ và $j = 1$.
+
+$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}1}, 3, 6, 8, 10]$
+
+$b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14,15]$
+
 $c = []$
 
-* Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. \\
-$a = [1,\overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 6, 8, 10]$\\
-$b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14,15]$\\
+* Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. 
+$a = [1,\overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 6, 8, 10]$
+$b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14,15]$
 $c = [1]$
 
-* Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. \\
-$a = [1, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 6, 8, 10]$\\
-$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$\\
+* Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. 
+$a = [1, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 6, 8, 10]$
+$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$
 $c = [1, 2]$
 
-* Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. \\
-$a = [1, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 8, 10]$\\
-$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$\\
+* Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. 
+$a = [1, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 8, 10]$
+$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$
 $c = [1, 2, 3]$
 
-* Vì $a[i]=b[j]$ nên ta có thể đưa bất kỳ một trong hai phần tử. Ở đây ta đưa phần tử $a[i]$ vào $c$ và tăng vị trí $i$ lên một.\\
-$a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$\\
-$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$\\
+* Vì $a[i]=b[j]$ nên ta có thể đưa bất kỳ một trong hai phần tử. Ở đây ta đưa phần tử $a[i]$ vào $c$ và tăng vị trí $i$ lên một.
+$a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$
+$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$
 $c = [1, 2, 3, 6]$
 
-* Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. \\
-$a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$\\
-$b = [2, 6, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}7}, 12, 14,15]$\\
+* Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. 
+$a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$
+$b = [2, 6, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}7}, 12, 14,15]$
 $c = [1, 2, 3, 6, 6]$
 
-* Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. \\
-$a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$\\
-$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$\\
+* Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. 
+$a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$
+$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$
 $c = [1, 2, 3, 6, 6, 7]$
 
-* Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. \\
-$a = [1, 3, 6, 8, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}10}]$\\
-$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$\\
+* Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. 
+$a = [1, 3, 6, 8, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}10}]$
+$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$
 $c = [1, 2, 3, 6, 6, 7, 8]$
 
-* Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. \\
-$a = [1, 3, 6, 8, 10]\overset{\underset{\downarrow}{\color{red}i}}{ }$\\
-$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$\\
+* Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. 
+$a = [1, 3, 6, 8, 10]\overset{\underset{\downarrow}{\color{red}i}}{ }$
+$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$
 $c = [1, 2, 3, 6, 6, 7, 8, 10]$
 
 * Vì tất cả các phần tử trong dãy $a$ đều đã được đưa vào dãy $c$ nên từ đưa lần lượt các phần tử chưa được chọn trong dãy $b$ vào trong dãy $c$ 
@@ -169,8 +172,8 @@ Vì thế độ phức tạp của giải pháp là $O(n+m)$.
 
 ## Luyện tập
 
-[VNOJ - NKSGAME](https://oj.vnoi.info/problem/nksgame)\\
-[CODEFORCES - 1251C](https://codeforces.com/problemset/problem/1251/C)\\
+[VNOJ - NKSGAME](https://oj.vnoi.info/problem/nksgame)
+[CODEFORCES - 1251C](https://codeforces.com/problemset/problem/1251/C)
 [CODEFORCES - 1036D](https://codeforces.com/problemset/problem/1036/D)
 
 
@@ -234,19 +237,19 @@ Từ những phân tích vừa rồi ta có giải pháp sử dụng hai con tr�
 
 **Ví dụ 1:** $a = [2, 5, 6, 8, 10, 12, 15]$ và $x = 16$.
 
-* Đặt $i=1$ và $j=N$. \\
+* Đặt $i=1$ và $j=N$. 
 $a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, 12,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}15}]$
 
-* Vì $a[i]+a[j]=2+15=17>x$ nên giảm vị trí $j$ đi một đơn vị.\\
+* Vì $a[i]+a[j]=2+15=17>x$ nên giảm vị trí $j$ đi một đơn vị.
 $a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
 
-* Vì $a[i]+a[j]=2+12=14<x$ nên tăng vị trí $i$ lên một đơn vị.\\
+* Vì $a[i]+a[j]=2+12=14<x$ nên tăng vị trí $i$ lên một đơn vị.
 $a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 6, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
 
-* Vì $a[i]+a[j]=5+12=17>x$ nên giảm vị trí $j$ đi một đơn vị.\\
+* Vì $a[i]+a[j]=5+12=17>x$ nên giảm vị trí $j$ đi một đơn vị.
 $a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 6, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]$
 
-* Vì $a[i]+a[j]=5+10<x$ nên tăng vị trí $i$ lên một đơn vị.\\
+* Vì $a[i]+a[j]=5+10<x$ nên tăng vị trí $i$ lên một đơn vị.
 $a = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]$
 
 * Vì $a[i]+a[j]=6+10=x$ nên hai vị trí cần tìm là hai vị trí $i$ và $j$.
@@ -255,25 +258,25 @@ $a = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 8, \und
 
 **Ví dụ 2:** $a = [2, 3, 7, 8, 10, 12, 15]$ và $x = 16$.
 
-* Đặt $i=1$ và $j=N$. \\
+* Đặt $i=1$ và $j=N$. 
 $a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 3, 7, 8, 10, 12,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}15}]$
 
-* Vì $a[i]+a[j]=5+12=17>x$ nên giảm vị trí $j$ đi một đơn vị. \\
+* Vì $a[i]+a[j]=5+12=17>x$ nên giảm vị trí $j$ đi một đơn vị. 
 $a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 3, 7, 8, 10,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
 
-* Vì $a[i]+a[j]=2+12=14<x$ nên tăng vị trí $i$ lên một đơn vị. \\
+* Vì $a[i]+a[j]=2+12=14<x$ nên tăng vị trí $i$ lên một đơn vị. 
 $a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 7, 8, 10,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
 
-* Vì $a[i]+a[j]=3+12=15<x$ tăng vị trí $i$ lên một đơn vị. \\
+* Vì $a[i]+a[j]=3+12=15<x$ tăng vị trí $i$ lên một đơn vị. 
 $a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, 8, 10,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
 
-* Vì $a[i]+a[j]=7+12=19>x$ giảm vị trí $j$ đi một đơn vị. \\
+* Vì $a[i]+a[j]=7+12=19>x$ giảm vị trí $j$ đi một đơn vị. 
 $a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]$
 
-* Vì $a[i]+a[j]=7+10=17>x$ giảm vị trí $j$ đi một đơn vị. \\
+* Vì $a[i]+a[j]=7+10=17>x$ giảm vị trí $j$ đi một đơn vị. 
 $a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}8}, 10, 12, 15]$
 
-* Vì $a[i]+a[j]=7+8=15<x$ tăng vị trí $i$ lên một đơn vị. \\
+* Vì $a[i]+a[j]=7+8=15<x$ tăng vị trí $i$ lên một đơn vị. 
 $a = [2, 3, 7, \overset{\underset{\downarrow}{\color{red}i}}{ \underset{\overset{\uparrow}{\color{blue}j}}{\color{purple}8}}, 10, 12, 15]$
 
 * Vì $i=j$ nên không tìm được hai vị trí cần tìm.
@@ -304,9 +307,9 @@ Hơn nữa, sự thay đổi vị trí hai con trỏ này sẽ dừng lại khi 
 Vì thế, việc thay đổi vị trí hai con trỏ sẽ không quá $n$ lần, độ phức tạp của giải pháp là $O(n)$.
 
 ## Luyện tập
-[LQDOJ - FINDPAIR](https://lqdoj.edu.vn/problem/findpair) \\
-[LQDOJ - CNTPAIR02](https://lqdoj.edu.vn/problem/cntpair02) \\
-[VNOJ - NDCCARD](https://oj.vnoi.info/problem/ndccard) \\
+[LQDOJ - FINDPAIR](https://lqdoj.edu.vn/problem/findpair) 
+[LQDOJ - CNTPAIR02](https://lqdoj.edu.vn/problem/cntpair02) 
+[VNOJ - NDCCARD](https://oj.vnoi.info/problem/ndccard) 
 [VNOJ - TWOSUM](https://oj.vnoi.info/problem/twosum)
 
 # Bài toán 3
@@ -485,9 +488,9 @@ Hơn nữa, mỗi vị trí $l$ và $r$ tăng không quá $n$ lần.
 Vì thế độ phức tạp của giải pháp là $O(n)$.
 
 ## Luyện tập
-[VNOJ - SOPENP](https://oj.vnoi.info/problem/sopenp)\\
-[VNOJ - PRODUCT](https://oj.vnoi.info/problem/product)\\
-[VNOJ - KRECT](https://oj.vnoi.info/problem/krect)\\
+[VNOJ - SOPENP](https://oj.vnoi.info/problem/sopenp)
+[VNOJ - PRODUCT](https://oj.vnoi.info/problem/product)
+[VNOJ - KRECT](https://oj.vnoi.info/problem/krect)
 [VNOJ - VMQUABEO](https://oj.vnoi.info/problem/vmquabeo)
 
 # Bài toán 4
@@ -670,7 +673,7 @@ Kết luận: độ phức tạp của bài toán là $O(\mu + \lambda)$. (trong
 
 ## Luyện tập
 
-[LODOJ - TORHAR](https://lqdoj.edu.vn/problem/torhar)\\
-[CODEFORCES - Sequence analysis](https://codeforces.com/gym/100503/problem/D)\\
-[CODEFORCES - Pseudo-Random Number Generator](https://codeforces.com/gym/102501/problem/H)\\
+[LODOJ - TORHAR](https://lqdoj.edu.vn/problem/torhar)
+[CODEFORCES - Sequence analysis](https://codeforces.com/gym/100503/problem/D)
+[CODEFORCES - Pseudo-Random Number Generator](https://codeforces.com/gym/102501/problem/H)
 [CODEFORCES - Cooperative Game](https://codeforces.com/contest/1137/problem/D)

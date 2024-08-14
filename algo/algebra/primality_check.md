@@ -15,7 +15,7 @@ Một số tự nhiên $n$ được gọi là số nguyên tố khi và chỉ kh
 
 Ví dụ: $2,3,5,101$ là các số nguyên tố. $0,1,10,12$ không là số nguyên tố.
 
-Trong bài viết này, chúng ta sẽ tập trung vào việc kiểm tra **một** số nguyên dương có phải số nguyên tố hay không. Để kiểm tra tính nguyên tố của nhiều số nguyên trên một đoạn $\left[a,b\right]$, bạn đọc có thể tham khảo bài viết [Số nguyên tố và sàng Eratosthenes](https://vnoi.info/wiki/translate/he/Number-Theory-2.md).
+Trong bài viết này, chúng ta sẽ tập trung vào việc kiểm tra **một** số nguyên dương có phải số nguyên tố hay không. Để kiểm tra tính nguyên tố của nhiều số nguyên trên một đoạn $\left[a,b\right]$, bạn đọc có thể tham khảo bài viết [Số nguyên tố và sàng Eratosthenes](https://wiki.vnoi.info/translate/he/Number-Theory-2.md).
 
 # 1. Thuật toán ngây thơ
 

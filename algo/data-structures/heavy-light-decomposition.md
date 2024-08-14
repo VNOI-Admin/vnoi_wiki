@@ -21,9 +21,9 @@ Tuy nghe tên có vẻ kinh khủng nhưng trên thực tế, đây là một k�
 ### Kiến thức cần biết
 - Các thuật toán duyệt đồ thị cơ bản (DFS, BFS, ...)
 - Cây
-- [Lowest Common Ancestor (LCA) - Tổ tiên chung gần nhất](https://vnoi.info/wiki/algo/data-structures/lca.md)
-- [Segment Tree](https://vnoi.info/wiki/algo/data-structures/segment-tree-extend.md)
-- [Euler tour on tree](https://vnoi.info/wiki/algo/graph-theory/euler-tour-on-tree.md) (nên biết nhưng không bắt buộc)
+- [Lowest Common Ancestor (LCA) - Tổ tiên chung gần nhất](https://wiki.vnoi.info/algo/data-structures/lca.md)
+- [Segment Tree](https://wiki.vnoi.info/algo/data-structures/segment-tree-extend.md)
+- [Euler tour on tree](https://wiki.vnoi.info/algo/graph-theory/euler-tour-on-tree.md) (nên biết nhưng không bắt buộc)
 
 ### Bài toán
 Để trả lời câu hỏi HLD sẽ giúp chúng ta làm gì, chúng ta sẽ cùng giải một bài toán. 

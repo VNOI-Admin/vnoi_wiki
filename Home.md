@@ -47,7 +47,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 - [[Cài đặt Segment Tree chạy nhanh hơn (3*)|translate/codeforces/Efficient-and-easy-segment-trees.md]]
 - [[Chia căn - Part 1|algo/data-structures/sqrt-decomposition]]
 - [[Mo Algorithm (3*)|algo/data-structures/mo-algorithm]]
-- [[Segment Tree (Interval Tree) trên tập đoạn thẳng (4*)|algo/data-structures/interval-tree-tap-doan-thang]]
+- [[Interval Tree trên tập đoạn thẳng (4*)|algo/data-structures/interval-tree-tap-doan-thang]]
 - [[Fenwick Tree (Binary Indexed Tree) (2*)|algo/data-structures/fenwick]]
 - [[Heavy Light Decomposition|algo/data-structures/heavy-light-decomposition]]
 - [[Persistent Data Structures (3*)|algo/data-structures/persistent-data-structures]]
@@ -64,6 +64,7 @@ Hiện tại bọn mình chưa có bài viết về chủ đề Lý thuyết đ�
 
 - [[Tổng quan (2*)|algo/string/basic]]
 - [[KMP (2*)|algo/string/kmp]]
+- [[Manacher|algo/string/manacher]]
 - [[Trie (2*)|algo/data-structures/trie]]
 - [[Hash (2*)|algo/string/hash]]
 - [[Suffix Array (4*)|algo/data-structures/suffix-array]]

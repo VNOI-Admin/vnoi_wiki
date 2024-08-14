@@ -20,7 +20,7 @@ Với $N \le 1000$ bài này chỉ là vấn đề của code, không có thuậ
 Có một số bài yêu cầu bạn phải tìm kiếm 
 
 > **[TallPeople](http://community.topcoder.com/stat?c=problem_statement&pm=2923&rd=5854) - SRM 208 Div 1:**
-> Có một nhóm người được xếp thành một ma trận $R * C$, $R$ hàng, $C$ cột. Nhiệm vụ của bạn là trả về 2 số - Số thứ nhất là chiều cao của người cao nhất trong những người thấp nhất ở mỗi hàng, số thứ hai là chiều cao của người thấp nhất trong những người cao nhất ở mỗi cột.
+> Có một nhóm người được xếp thành một ma trận $R \times C$, $R$ hàng, $C$ cột. Nhiệm vụ của bạn là trả về 2 số - Số thứ nhất là chiều cao của người cao nhất trong những người thấp nhất ở mỗi hàng, số thứ hai là chiều cao của người thấp nhất trong những người cao nhất ở mỗi cột.
 
 Như bạn có thể thấy, đây là một bài toán tìm kiếm rất đơn giản. Bạn chỉ cần theo các bước được mô tả trong đề và tìm ra 2 giá trị yêu cầu. Những bài TC khác có thể yêu cầu sắp xếp các bộ theo quy luật nào đó. Bạn có thể làm với thuật toán sort $O(N^2)$ hoặc sử dụng các thư viên có sẵn.
 
@@ -30,7 +30,7 @@ Như bạn có thể thấy, đây là một bài toán tìm kiếm rất đơn 
 
 ### Tìm kiếm theo chiều rộng (Breadth First Search - BFS)
 
-Những bài sử dụng BFS thường yêu cầu tìm số bước ít nhất (hoặc đường đi ngắn nhất) từ điểm đầu đến điểm cuối. Bên cạnh đó, đường đi giữa 2 điểm bất kì thường có chung trọng số (và thường là 1). Phổ biến nhất là dạng bài cho bảng $N \* M$, có những ô đi qua được và những ô không đi qua được. Bảng này có thể là mê cung, sơ đồ, các thành phố hoặc các thứ các thứ tương đương. Có thể nói đây là những bài toàn BFS kinh điển (classic). Bởi vì độ phức tạp của BFS là tuyến tính trong hầu hết các trường hợp ($N^2$ hoặc $NlogN$), giới hạn của $N$ (hoặc $M$) có thể lớn, lên tới 1 triệu.
+Những bài sử dụng BFS thường yêu cầu tìm số bước ít nhất (hoặc đường đi ngắn nhất) từ điểm đầu đến điểm cuối. Bên cạnh đó, đường đi giữa 2 điểm bất kì thường có chung trọng số (và thường là 1). Phổ biến nhất là dạng bài cho bảng $N \times M$, có những ô đi qua được và những ô không đi qua được. Bảng này có thể là mê cung, sơ đồ, các thành phố hoặc các thứ các thứ tương đương. Có thể nói đây là những bài toàn BFS kinh điển (classic). Bởi vì độ phức tạp của BFS là tuyến tính trong hầu hết các trường hợp ($N^2$ hoặc $N \log{N}$), giới hạn của $N$ (hoặc $M$) có thể lớn, lên tới 1 triệu.
 
 > **[SmartWordToy](http://community.topcoder.com/stat?c=problem_statement&pm=3935&rd=6532) - SRM 233 Div 1:**
 > Cho một từ gồm 4 chữ cái Latin in thường. Với một lần click bạn có thể đổi bất kì chữ nào thành chữ cái trước hoặc sau nó trong bảng chữ cái (ví dụ 'c' có thể thành 'b' hoặc 'd'). Bảng chữ cái sẽ theo chu kì vòng lặp, tức là 'a' có thể thành 'z' và 'z' có thể thành 'a'.
@@ -79,7 +79,7 @@ Thỉnh thoảng bạn sẽ gặp phải bài toán cần tới Loang, một kĩ
 Ví dụ, có một mê cung, ô 1 là không đi được và 0 là đi được. Ban cần phải tìm tất cả các ô mà có thể đi đến từ ô góc trái trên. Bài này chỉ cần lấy ra một đỉnh đã thăm, nhét tất cả các đỉnh chưa thăm mà kề với đỉnh hiện tại vào queue rồi tiếp tục làm như vậy cho đến khi queue rỗng. Lưu ý rằng nếu số đỉnh lớn, cài đặt bằng DFS (Depth First Search) sẽ có thể bị tràn stack do đệ quy quá sâu và compile code không tăng kích thước stack (xem thêm giải thích [ở đây](http://stackoverflow.com/questions/214741/what-is-a-stackoverflowerror)). Tốt hơn hết là nên dùng BFS. Đây là một bài ví dụ:
 
 >**[grafixMask](http://community.topcoder.com/stat?c=problem_statement&pm=2998&rd=5857)** - SRM 211 Div 1: 
-Cho một bitmap $400 * 600$. Có một tập hình chữ nhật bao phủ bitmap này (các góc của chúng có tọa độ nguyên). Bạn cần phải tìm ra tất cả các vùng liên tiếp không bị phủ và kích thước của chúng.
+Cho một bitmap $400 \times 600$. Có một tập hình chữ nhật bao phủ bitmap này (các góc của chúng có tọa độ nguyên). Bạn cần phải tìm ra tất cả các vùng liên tiếp không bị phủ và kích thước của chúng.
 
 **Hints:**
 

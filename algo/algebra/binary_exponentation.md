@@ -132,7 +132,7 @@ long long Mul(long long a, long long b) {
 
 ## Tính số Fibonacci lớn - Phép nhân ma trận
 
-Để hiểu rõ phần này, bạn đọc cần nắm các kiến thức cơ bản về [nhân ma trận](https://vnoi.info/wiki/algo/trick/matrix-multiplication.md)
+Để hiểu rõ phần này, bạn đọc cần nắm các kiến thức cơ bản về [nhân ma trận](https://wiki.vnoi.info/algo/trick/matrix-multiplication.md)
 
 Ứng dụng lũy thừa nhị phân kết hợp với nhân ma trận là một ứng dụng phổ biến, điển hình là bài toán tính số Fibonacci thứ $n$.
 

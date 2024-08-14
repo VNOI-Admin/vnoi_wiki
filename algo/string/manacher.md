@@ -246,7 +246,7 @@ Xác định số ma trận con **đẹp** trong ma trận đã cho.
 - Như vậy, khi đã có cách so sánh hai hàng "bằng nhau", chúng ta sẽ có thể đếm số ma trận con thỏa mãn bằng cách cố định hai cột bất kỳ và đếm số xâu đối xứng.
 - Khi đó, chúng ta có thể sử dụng thuật toán Manacher trên các hàng.
 - Lưu ý, cần đảm bảo các điều kiện về hàng có thể đối xứng.
-- Như vậy độ phức tạp là $O(n^3 * 26)$, trong đó $O(n^2)$ là số cặp cột, $O(n)$ cho thuật toán Manacher và $O(26)$ để so sánh giữa 2 hàng (26 là kích thước bảng chữ cái).
+- Như vậy độ phức tạp là $O(n^3 \times 26)$, trong đó $O(n^2)$ là số cặp cột, $O(n)$ cho thuật toán Manacher và $O(26)$ để so sánh giữa 2 hàng (26 là kích thước bảng chữ cái).
 
 ## Code mẫu
 ```cpp
@@ -340,7 +340,7 @@ signed main() {
 
 # Nhận xét về thuật toán
 - Thuật toán Manacher là thuật toán có ý tưởng khá đơn giản: tận dụng các dữ liệu có sẵn để giảm độ phức tạp khi tính toán trên xâu.
-- Chúng ta đã từng gặp ý tưởng tương tự khi tính toán [*Z-function*](https://vnoi.info/wiki/algo/string/kmp.md) hay [*prefix function*](https://vnoi.info/wiki/algo/string/z-algo.md).
+- Chúng ta đã từng gặp ý tưởng tương tự khi tính toán [*Z-function*](https://wiki.vnoi.info/algo/string/kmp.md) hay [*prefix function*](https://wiki.vnoi.info/algo/string/z-algo.md).
 - Thuật toán Manacher có thể được sử dụng trong hơi ít các bài toán. Tuy nhiên, thuật toán có ý tưởng tự nhiên và dễ cài đặt nên có thể có ích khi thi đấu.
 
 ![](https://i.imgur.com/5AC7Eew.png)

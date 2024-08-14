@@ -149,9 +149,9 @@ begin
 end;
 ```
 
-Cách làm này có độ phức tạp: $max \* (N-max)$. Vì vậy nó chạy nhanh hơn cách QHĐ trên, thời gian chậm nhất khi tất cả các ký tự giống nhau (khi đó, $max = N/2$): cũng chỉ mất $N^2/4$ và nhanh gấp 4 lần cách dùng QHĐ. Nhờ vậy, chúng ta biết là: không phải lúc nào QHĐ cũng chấp nhận được về mặt thời gian và không phải lúc nào duyệt lúc nào cũng chậm.
+Cách làm này có độ phức tạp: $O(max \times (N-max))$. Vì vậy nó chạy nhanh hơn cách QHĐ trên, thời gian chậm nhất khi tất cả các ký tự giống nhau (khi đó, $max = N/2$): cũng chỉ mất $O(N^2/4)$ và nhanh gấp 4 lần cách dùng QHĐ. Nhờ vậy, chúng ta biết là: không phải lúc nào QHĐ cũng chấp nhận được về mặt thời gian và không phải lúc nào duyệt lúc nào cũng chậm.
 
-Bài này còn có một cách NlogN nữa là dùng [[Suffix Aray|algo/data-structures/suffix-array]], thậm chí có cách $O(N)$ là sử dụng Suffix Tree và [[thuật toán tìm LCA|algo/data-structures/lca]]. Đương nhiên cách cài đặt không hề dễ dàng, tôi sẽ thảo luận với các bạn vào một dịp khác.
+Bài này còn có một cách $O(N \log N)$ nữa là dùng [[Suffix Aray|algo/data-structures/suffix-array]], thậm chí có cách $O(N)$ là sử dụng Suffix Tree và [[thuật toán tìm LCA|algo/data-structures/lca]]. Đương nhiên cách cài đặt không hề dễ dàng, tôi sẽ thảo luận với các bạn vào một dịp khác.
 
 # Bài 3: Chia một xâu thành ít nhất các Palindrome
 

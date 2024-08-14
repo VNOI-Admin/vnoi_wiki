@@ -14,7 +14,7 @@ Trước khi bắt đầu, các bạn hãy ghi nhớ một số định nghĩa s
 
 Một hàm $f(n): N \rightarrow C$ được coi là **hàm nhân tính** ([Multiplicative Function](https://crypto.stanford.edu/pbc/notes/numbertheory/mult.html))  nếu với mọi cặp số nguyên tố cùng nhau $n, m \in N$ ta có $f(mn)=f(m)f(n)$
 
-Một số $n$ phân tích ra thừa số nguyên tố sẽ có dạng $n={p_1}^{a_1}\*{p_2}^{a_2}\*{p_3}^{a_3}\*...\*{p_r}^{a_r}$, với $p_i$ là ước nguyên tố của $n$.
+Một số $n$ phân tích ra thừa số nguyên tố sẽ có dạng $n={p_1}^{a_1} \times {p_2}^{a_2} \times {p_3}^{a_3} \times ... \times {p_r}^{a_r}$, với $p_i$ là ước nguyên tố của $n$.
 
 Ký hiệu $a\|b$ có nghĩa là $a$ là ước của $b$, hay $b$ chia hết cho $a$
 
@@ -34,15 +34,15 @@ $id(n)=n$ với mọi $n \in N$
 
 - $\mu(n)=0$ nếu tồn tại $a_i>1$
 
-- $\mu(n)=(-1)^r$ nếu $n={p_1}\*{p_2}\*{p_3}\*...\*{p_r}$, hay $a_i = 1$ với mọi $i$
+- $\mu(n)=(-1)^r$ nếu $n={p_1} \times {p_2} \times {p_3} \times ... \times {p_r}$, hay $a_i = 1$ với mọi $i$
 
 - Có thể chứng minh được rằng $\mu(n)=\sum_{d\|n,d < n}\mu(d)$ với $n>1$ và tính được $\mu(n)$ bằng cách sử dụng [Sàng](http://codeforces.com/blog/entry/8989):
-	```cpp
+```cpp
 mu[1] = 1;
 for (int i = 1; i <= N; i++)
     for (int j = 2*i; j <= N; j += i)
         mu[j] -= mu[i];
-	```
+```
 
 Vỡi mỗi $f(n)$, ta gọi hàm tổng $S_f(n)$ là tổng các $f(d)$ với $d$ là ước của $n$: $S_f(n)=\sum_{d\|n}{f(d)}$
 
@@ -59,11 +59,11 @@ for (int i = 2; i <= N; i++)
 
 Ta định nghĩa Dirichlet Convolution là một phép toán với 2 hàm $f(n)$ và $g(n)$:
 
-$f \circ g(n)=\sum_{d_1\*d_2=n}{f(d_1)\*g(d_2)}$
+$f \circ g(n)=\sum_{d_1 \times d_2=n}{f(d_1) \times g(d_2)}$
 
 hay
 
-$f \circ g(n)=\sum_{d\|n}{f(d)\*g(n/d)}$
+$f \circ g(n)=\sum_{d\|n}{f(d) \times g(n/d)}$
 
 Có thễ dễ dàng chứng minh phép toán này có tính giao hoán và kết hợp:
 
@@ -73,13 +73,13 @@ $(f\circ g)\circ h(n)=f\circ(g\circ h)(n)$
 
 Ta có nhận xét rằng:
 
-$S_f(n)=\sum_{d\|n}{f(d)}=\sum_{d\|n}{f(d)\*I(n/d)}=f\circ I(n)$
+$S_f(n)=\sum_{d\|n}{f(d)}=\sum_{d\|n}{f(d) \times I(n/d)}=f\circ I(n)$
 
 $S_{\phi}(n)=\sum_{d\|n}{\phi(d)}=id(n)$
 
 $S_{\mu}(n)=\sum_{d\|n}{\mu(d)}=I\circ \mu (n)=\mu \circ I(n)= e(n)$
 
-$f \circ e(n)=\sum_{d\|n}{f(n/d)\*e(d)}=f(n)$
+$f \circ e(n)=\sum_{d\|n}{f(n/d) \times e(d)}=f(n)$
 
 Từ đó suy ra:
 
@@ -87,7 +87,7 @@ $S_f \circ \mu(n)=(f \circ I)\circ \mu (n)=f\circ (I\circ\mu)(n)=f\circ e(n)=f(n
 
 hay
 
-$f(n)=\sum_{d\|n}{S_f(d)\*\mu (n/d)}$ - đây gọi là [Công thức nghịch đảo Mobius](https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
+$f(n)=\sum_{d\|n}{S_f(d) \times \mu (n/d)}$ - đây gọi là [Công thức nghịch đảo Mobius](https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
 
 # Ứng dụng
 
@@ -97,54 +97,54 @@ $f(n)=\sum_{d\|n}{S_f(d)\*\mu (n/d)}$ - đây gọi là [Công thức nghịch �
 
 Tính $G=\sum_{i=1}^{n} \sum_{j=i+1}^{n}gcd(i,j)$ (1).
 
-Dễ thấy cách tiếp cận đơn giản nhất cho bài toán này là duyệt tất cả các cặp $(i,j)$. Độ phức tạp của thuật toán này là $O(k\*n^2)$, với $k$ là số phép toán tối đa khi tính $gcd$. Chúng ta sẽ đi tìm một lời giải tối ưu hơn sử dụng những kiến thức ở trên.
+Dễ thấy cách tiếp cận đơn giản nhất cho bài toán này là duyệt tất cả các cặp $(i,j)$. Độ phức tạp của thuật toán này là $O(k \times n^2)$, với $k$ là số phép toán tối đa khi tính $gcd$. Chúng ta sẽ đi tìm một lời giải tối ưu hơn sử dụng những kiến thức ở trên.
 
 1. Nhận xét rằng $1 \leq gcd(i,j) \leq n$ với mọi $1 \leq i < j \leq n$.
 
 	Như vậy, biểu thức trên có thể viết lại thành
 
-	$G=\sum_{g=1}^{n}g\*cnt[g]$ (2). Với $cnt[g]$ là số lượng cặp $(i,j)$ có $gcd$ bằng $g$.
+	$G=\sum_{g=1}^{n}g \times cnt[g]$ (2). Với $cnt[g]$ là số lượng cặp $(i,j)$ có $gcd$ bằng $g$.
 
 	Công việc tính $cnt[g]$ thật sự không hề đơn giản. Ta để ý rằng $gcd(i,j)=g \Leftrightarrow gcd(i/g,j/g)=1$, hay nói cách khác, $i/g$ và $j/g$ phải là 2 số nguyên tố cùng nhau.
 
 2. Ta viết lại (2) thành
 
-	$G=\sum_{g=1}^{n}h(g)\*cnt[g]$ với $h(g)=g$
+	$G=\sum_{g=1}^{n}h(g) \times cnt[g]$ với $h(g)=g$
 
 3. Giờ chúng ta sẽ tìm cách phân tích $h(n)$ thành hàm tổng của hàm $f(n)$ nào đó, tức là $h(n)=S_f(n)=\sum_{d\|n}f(d)$.
 
-	Ứng dụng công thức nghịch đảo Mobius, bạn có thể tìm được $f(n)=\sum_{d\|n}{h(d)\*\mu (n/d)}$. Một kết quả rất đẹp trong bài toán này là $f(n)=\phi(n)$, việc chứng minh mình xin nhường bạn đọc.
+	Ứng dụng công thức nghịch đảo Mobius, bạn có thể tìm được $f(n)=\sum_{d\|n}{h(d) \times \mu (n/d)}$. Một kết quả rất đẹp trong bài toán này là $f(n)=\phi(n)$, việc chứng minh mình xin nhường bạn đọc.
 
 	Khi đã biết được $h(n)$ và $\mu(n)$, ta có thể tính $f(n)$ bằng sàng như sau:
 
-	```cpp
-for (int i = 1; i <= N; i++)
-    for (int j = i; j <= N; j += i)
-        f[j] += h[i] * mu[j/i];
-	```
+    ```cpp
+    for (int i = 1; i <= N; i++)
+        for (int j = i; j <= N; j += i)
+            f[j] += h[i] * mu[j/i];
+    ```
 
-	Đoạn code trên chạy trong thời gian $O(NlogN)$ vì với mỗi $i$ vòng lặp trong sẽ chạy $N/i$ lần (số bội của $i$), và $O(\sum_{i=1}^{N}N/i)=O(NlogN)$.
+	Đoạn code trên chạy trong thời gian $O(N \log N)$ vì với mỗi $i$ vòng lặp trong sẽ chạy $N/i$ lần (số bội của $i$), và $O(\sum_{i=1}^{N}N/i)=O(N \log N)$.
 
 4. Viết lại (2) một lần nữa ta được:
 
-	$G=\sum_{g=1}^{n}(\sum_{d\|g}f(d))\*cnt[g]$ (3)
+	$G=\sum_{g=1}^{n}(\sum_{d\|g}f(d)) \times cnt[g]$ (3)
 
-	$\Leftrightarrow G=\sum_{d=1}^{n}f(d)\*(\sum_{g:d\|g}cnt[g])$ (4)
+	$\Leftrightarrow G=\sum_{d=1}^{n}f(d) \times (\sum_{g:d\|g}cnt[g])$ (4)
 
-5. Đặt $cnt2[d]=\sum_{g:d\|g}cnt[g]$. Hàm này có ý nghĩa là số lượng cặp $(i,j)$ có $gcd$ là bội của $d$. Đến đây mọi việc đã đơn giản hơn rất nhiều. Các bạn chỉ cần tìm số lượng cặp $(i,j)$ mà $i$ và $j$ đều là bội của $d$. Có $n/d$ bội của $d$, nên sẽ có $n/d\*(n/d-1)/2$ cặp.
+5. Đặt $cnt2[d]=\sum_{g:d\|g}cnt[g]$. Hàm này có ý nghĩa là số lượng cặp $(i,j)$ có $gcd$ là bội của $d$. Đến đây mọi việc đã đơn giản hơn rất nhiều. Các bạn chỉ cần tìm số lượng cặp $(i,j)$ mà $i$ và $j$ đều là bội của $d$. Có $n/d$ bội của $d$, nên sẽ có $n/d \times (n/d-1)/2$ cặp.
 
-	Vậy (4) trở thành $G=\sum_{d=1}^{n}f(d)\*n/d\*(n/d-1)/2$.
+	Vậy (4) trở thành $G=\sum_{d=1}^{n}f(d) \times n/d \times (n/d-1)/2$.
 
-	Dễ dàng chứng minh là chỉ có $\sqrt n$ giá trị $n/d$ nên ta có thể duyệt từng giá trị của $n/d$ và cộng $n/d\*(n/d-1)/2\*\sum_{k:n/k=n/d}f(k)$ vào kết quả. Bằng tổng tiền tố các bạn có thể truy vấn được $\sum_{k:n/k=n/d}f(k)$ trong $O(1)$ và $G$ trong $O(\sqrt n)$:
+	Dễ dàng chứng minh là chỉ có $\sqrt n$ giá trị $n/d$ nên ta có thể duyệt từng giá trị của $n/d$ và cộng $n/d \times (n/d-1)/2 \times \sum_{k:n/k=n/d}f(k)$ vào kết quả. Bằng tổng tiền tố các bạn có thể truy vấn được $\sum_{k:n/k=n/d}f(k)$ trong $O(1)$ và $G$ trong $O(\sqrt n)$:
 
 	```cpp
-for (int i = 1,j; i <= n; i = j + 1) {
-    j = n / (n/i); //vị trí j xa i nhất mà n/i=n/j
-    res += n/i*(n/i - 1)/2 * (Sf[j] - Sf[i-1]);//Sf[i]=f[1]+f[2]+f[3]+...+f[i]
-}
+    for (int i = 1,j; i <= n; i = j + 1) {
+        j = n / (n/i); //vị trí j xa i nhất mà n/i=n/j
+        res += n/i*(n/i - 1)/2 * (Sf[j] - Sf[i-1]);//Sf[i]=f[1]+f[2]+f[3]+...+f[i]
+    }
 	```
 
-Như vậy thuật toán trên có độ phức tạp $O(NlogN+\sqrt N \*T)$ với $T$ là số test.
+Như vậy thuật toán trên có độ phức tạp $O(N \log N + \sqrt N  \times T)$ với $T$ là số test.
 
 ## Bài toán tổng quát
 
@@ -162,15 +162,15 @@ Ta đưa đề bài này về bài toán: tính $G=\sum_{i=1}^{n}\sum_{j=i+1}^{n
 
 1. Viết lại biểu thức trên: 
 
-	$G=\sum_{g}^{maxA}h(g)*cnt[g]$, ở đây $cnt[g]$ là số lượng bộ ba $(i,j,k)$ có $gcd(a_i,a_j,a_k)=1$. $maxA=10^6$
+	$G=\sum_{g}^{maxA}h(g) \times cnt[g]$, ở đây $cnt[g]$ là số lượng bộ ba $(i,j,k)$ có $gcd(a_i,a_j,a_k)=1$. $maxA=10^6$
 
 2. Tìm $f(n)$ bằng công thức nghịch đảo Mobius.
 
 	Ở bài toán này $f(n)$ chính bằng $\mu(n)$, việc chứng minh mình cũng xin nhường lại cho bạn đọc.
 
-	Lúc này $G=\sum_{g=1}^{maxA}(\sum_{d\|g}f(d))*cnt[g]$.
+	Lúc này $G=\sum_{g=1}^{maxA}(\sum_{d\|g}f(d)) \times cnt[g]$.
 
-	$\Leftrightarrow G=\sum_{d=1}^{maxA}f(d)*cnt2[g]$.
+	$\Leftrightarrow G=\sum_{d=1}^{maxA}f(d) \times cnt2[g]$.
 
 3. Tính $cnt2[d]$ là số bộ ba $(i,j,k)$ có $gcd(a_i,a_j,a_k)$ là bội của $d$.
 

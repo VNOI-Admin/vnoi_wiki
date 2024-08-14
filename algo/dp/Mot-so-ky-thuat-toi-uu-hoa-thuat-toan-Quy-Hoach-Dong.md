@@ -397,7 +397,7 @@ Chi phí là $11 * 3 + 11 * 3 + 11 * 3 + 24 * 2 + 26 * 2 + 100 * 1 = 299$.
 
 Để tìm công thức truy hồi cho hàm $F(g, i)$, ta sẽ quan tâm đến nhóm cuối cùng. Coi phần tử 0 là phần tử cầm canh ở trước phần tử thứ nhất, thì người cuối cùng không thuộc nhóm cuối có chỉ số trong đoạn $[0, i]$. Giả sử đó là người với chỉ số k, thì chi phí của cách phân hoạch sẽ là $F(g-1, k) + Cost(k+1, i)$, với $Cost(i, j)$ là chi phí nếu phân $j-i+1$ người có chỉ số $[i, j]$ vào một nhóm. Như vậy:
 
-$F(g, i) = min(F(g-1, k) + Cost(k+1, l))$ với $0 <= k <= i$.
+$F(g, i) = min(F(g-1, k) + Cost(k+1, l))$ với $0 \le k \le i$.
 
 Chú ý là công thức này chỉ được áp dụng với $g>1$, nếu $g=1, F(1, i) = Cost(1, i)$, đây là trường hợp cơ sở.
 

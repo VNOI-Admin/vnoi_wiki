@@ -25,7 +25,7 @@ Cho một cây có $n$ đỉnh đánh số từ $1$ đến $n$, đỉnh $1$ là 
 
 Thực hiện các truy vấn thuộc một trong hai loại sau:
 * $1$ $u$ $x$: Thay đổi giá trị đỉnh $u$ thành $x$.
-* $2$ $u$: Tính tổng giá trị các đỉnh thuộc cây con gốc $u$ (*).
+* $2$ $u$: Tính tổng giá trị các đỉnh thuộc cây con gốc $u$ (\*).
 
 Giới hạn: $n, q \leq 10^5$.
 
@@ -47,7 +47,7 @@ Hình $1$
 
 </center>
 
-(*): Cây con gốc $u$ là cây tạo bởi tất cả những đỉnh mà đường đi từ đỉnh đó đến đỉnh gốc của cây có chứa $u$, và tất cả những cạnh nối 2 đỉnh mà đường đi từ $2$ đỉnh đó đến đỉnh gốc có chứa đỉnh $u$. Ví dụ, cây trong hình $1$ có gốc cây là đỉnh $1$, với $u = 2$ thì cây con gốc $u$ bao gồm các phần màu xanh lá (cả cạnh và đỉnh).
+(\*): Cây con gốc $u$ là cây tạo bởi tất cả những đỉnh mà đường đi từ đỉnh đó đến đỉnh gốc của cây có chứa $u$, và tất cả những cạnh nối 2 đỉnh mà đường đi từ $2$ đỉnh đó đến đỉnh gốc có chứa đỉnh $u$. Ví dụ, cây trong hình $1$ có gốc cây là đỉnh $1$, với $u = 2$ thì cây con gốc $u$ bao gồm các phần màu xanh lá (cả cạnh và đỉnh).
 
 ## Thuật toán ngây thơ
 Ý tưởng khá đơn giản: duyệt qua tất cả các đỉnh con để tìm đáp án cho truy vấn loại $2$.
@@ -88,9 +88,9 @@ Phần sau đây sẽ giới thiệu về một phương pháp rất đặc bi�
 
 Từ đồ thị cây $T(V, E)$ tạo đồ thị có hướng $T'(V, E')$ theo cách sau: với mỗi cạnh $(u, v) \in E$, thêm vào $E'$ hai cạnh có hướng $(u, v)$ và $(v, u)$.
 
-Thể hiện chu trình Euler (**) trên đồ thị $T'$ bằng một dãy các đỉnh, dãy đỉnh này cũng biểu diễn đường đi Euler trên cây $T$.
+Thể hiện chu trình Euler (\*\*) trên đồ thị $T'$ bằng một dãy các đỉnh, dãy đỉnh này cũng biểu diễn đường đi Euler trên cây $T$.
 
-(**): [Chu trình Euler](https://vnoi.info/wiki/algo/graph-theory/euler-cycle.md) của một đồ thị là một đường đi trên đồ thị đó, trong đó đỉnh bắt đầu trùng với đỉnh kết thúc của đường đi, và mỗi cạnh của đồ thị được đường đi thăm qua đúng một lần.
+(\*\*): [Chu trình Euler](https://wiki.vnoi.info/algo/graph-theory/euler-cycle.md) của một đồ thị là một đường đi trên đồ thị đó, trong đó đỉnh bắt đầu trùng với đỉnh kết thúc của đường đi, và mỗi cạnh của đồ thị được đường đi thăm qua đúng một lần.
 
 <!-- ![](https://i.ibb.co/dknd6Vn/simpletree.png) -->
 
@@ -296,7 +296,7 @@ Từ tính chất đó, dễ thấy rằng các thao tác với cây con có th�
 Cụ thể, thao tác cập nhật hoặc truy vấn đối với cây con gốc $u$ có thể chuyển thành thao tác tương ứng đối với đoạn $st[u]..en[u]$.
 
 Ví dụ: 
-Trong đoạn code dưới đây, hàm $change(u, x)$ cho phép tăng giá trị của đỉnh $u$ thêm $x$ đơn vị. Hàm $sum(u)$ cho phép tính tổng giá trị các đỉnh thuộc cây con gốc $u$ (sử dụng kiểu dữ liệu [Fenwick Tree - cây BIT](https://vnoi.info/wiki/algo/data-structures/fenwick.md)).
+Trong đoạn code dưới đây, hàm $change(u, x)$ cho phép tăng giá trị của đỉnh $u$ thêm $x$ đơn vị. Hàm $sum(u)$ cho phép tính tổng giá trị các đỉnh thuộc cây con gốc $u$ (sử dụng kiểu dữ liệu [Fenwick Tree - cây BIT](https://wiki.vnoi.info/algo/data-structures/fenwick.md)).
 
 ```cpp
 
@@ -447,7 +447,7 @@ Thuật toán này dựa trên sự tự triệt tiêu của các đỉnh xuất
 
 ## Tổ tiên chung gần nhất - Lowest Common Ancestor
 
-Đường đi Euler trên cây cũng có thể được dùng để tìm tổ tiên chung gần nhất, kết hợp với cấu trúc dữ liệu [RMQ](https://vnoi.info/wiki/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor.md).
+Đường đi Euler trên cây cũng có thể được dùng để tìm tổ tiên chung gần nhất, kết hợp với cấu trúc dữ liệu [RMQ](https://wiki.vnoi.info/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor.md).
 
 Ứng dụng này không cần biến đổi đường đi Euler.
 

@@ -122,10 +122,10 @@ Gọi $f[i]$ là cách sắp xếp $i$ chiếc ghế thành một hàng dọc. K
 
 \begin{cases}
 f[1] = 3; f[2] = 8 \newline
-f[i] = 2f[i - 1] + 2f[i - 2], \forall i=3;4;\ldots;n(*)
+f[i] = 2f[i - 1] + 2f[i - 2], \forall i=3;4;\ldots;n(\*)
 \end{cases}
 
-Công thức $(*)$ được gọi là **công thức truy hồi**.
+Công thức $(\*)$ được gọi là **công thức truy hồi**.
 
 ### Tìm kết quả cuối cùng
 

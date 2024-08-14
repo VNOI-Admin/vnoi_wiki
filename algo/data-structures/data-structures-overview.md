@@ -218,7 +218,7 @@ Sparse Table là cấu trúc dữ liệu được sử dụng trong [[bài toán
 
 Với cả 2 bài toán, Sparse Table cho phép:
 
-- Khởi tạo với độ phức tạp: $\mathcal{O}(N\* \log{N})$.
+- Khởi tạo với độ phức tạp: $\mathcal{O}(N \times \log{N})$.
 - Trả lời truy vấn với độ phức tạp $\mathcal{O}(1)$.
 
 ## 2.4. Segment Tree

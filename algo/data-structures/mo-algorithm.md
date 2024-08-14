@@ -30,7 +30,7 @@ function mode(l, r):
   return res;
 ```
 
-Dễ thấy, thuật toán duyệt này có độ phức tạp $O(N \* Q)$. Có 2 lý do chính khiến thuật toán này chạy chậm:
+Dễ thấy, thuật toán duyệt này có độ phức tạp $O(N \times Q)$. Có 2 lý do chính khiến thuật toán này chạy chậm:
 
 1. Khởi tạo mảng count mỗi lần mất $O(N)$.
 2. Với mỗi truy vấn, phải tính lại mảng count từ đầu.
@@ -49,7 +49,7 @@ Như vậy, độ phức tạp của ta là tổng $\|l_i - l_{i-1}\| + \|r_i - 
 
 # Thuật toán Mo
 
-Thuật toán Mo là một cách sắp xếp lại các truy vấn, sao cho tổng $\|l_i - l_{i-1}\| + \|r_i - r_{i-1}\|$ không quá $O(N \* \sqrt{N} + Q \* \sqrt{N})$.
+Thuật toán Mo là một cách sắp xếp lại các truy vấn, sao cho tổng $\|l_i - l_{i-1}\| + \|r_i - r_{i-1}\|$ không quá $O(N \times \sqrt{N} + Q \times \sqrt{N})$.
 
 Thứ tự các truy vấn được định nghĩa qua hàm so sánh dưới đây.
 
@@ -73,20 +73,20 @@ bool cmp(Query A, Query B) // so sánh 2 truy vấn
 
 **Chứng minh**:
 
-Mo's algorithm có độ phức tạp là $O(N \* \sqrt{N} + Q \* \sqrt{N})$. Để hiểu tại sao độ phức tạp của thuật toán đạt được như vậy, chúng ta hãy cùng xem việc di chuyển các đoạn $[l_1,r_1]$ thành $[l_2,r_2]$:
+Mo's algorithm có độ phức tạp là $O(N \times \sqrt{N} + Q \times \sqrt{N})$. Để hiểu tại sao độ phức tạp của thuật toán đạt được như vậy, chúng ta hãy cùng xem việc di chuyển các đoạn $[l_1,r_1]$ thành $[l_2,r_2]$:
 
 - Di chuyển $l_1 \rightarrow l_2$:
-    - Nếu $l_1$ và $l_2$ cùng block: Với mỗi thao tác, độ phức tạp không quá $\sqrt{N}$. Do đó, độ phức tạp trong trường hợp này của cả $Q$ thao tác là $O(Q \* \sqrt{N})$.
-    - Nếu $l_1$ và $l_2$ khác block: Vì ta ưu tiên sort theo block chứa $l$, nên trường hợp này xảy ra không quá $\sqrt{N}$ lần. Ở trường hợp này, ta mất độ phức tạp tối đa là $O(N)$, nên với tất cả các thao tác, độ phức tạp là $O(N \* \sqrt{N})$.
+    - Nếu $l_1$ và $l_2$ cùng block: Với mỗi thao tác, độ phức tạp không quá $\sqrt{N}$. Do đó, độ phức tạp trong trường hợp này của cả $Q$ thao tác là $O(Q \times \sqrt{N})$.
+    - Nếu $l_1$ và $l_2$ khác block: Vì ta ưu tiên sort theo block chứa $l$, nên trường hợp này xảy ra không quá $\sqrt{N}$ lần. Ở trường hợp này, ta mất độ phức tạp tối đa là $O(N)$, nên với tất cả các thao tác, độ phức tạp là $O(N \times \sqrt{N})$.
 - Di chuyển $r_1 \rightarrow r_2$:
-    - Nếu $l_1$ và $l_2$ cùng block: Vì trong cùng một block $r$ được sắp xếp tăng dần, nên với mỗi block của $l$, ta chỉ mất độ phức tạp tổng là $O(N)$. Do có $\sqrt{N}$ block khác nhau của $l$, nên tổng độ phức tạp trong trường hợp này là $O(N \* \sqrt{N})$.
-    - Nếu $l_1$ và $l_2$ khác block: Như trên đã phân tích, ta chỉ có $\sqrt{N}$ lần đổi block, mỗi lần đổi block ta mất độ phức tạp $O(N)$ để di chuyển $r$. Do đó tổng độ phức tạp của trường hợp này là $O(N \* \sqrt{N})$.
+    - Nếu $l_1$ và $l_2$ cùng block: Vì trong cùng một block $r$ được sắp xếp tăng dần, nên với mỗi block của $l$, ta chỉ mất độ phức tạp tổng là $O(N)$. Do có $\sqrt{N}$ block khác nhau của $l$, nên tổng độ phức tạp trong trường hợp này là $O(N \times \sqrt{N})$.
+    - Nếu $l_1$ và $l_2$ khác block: Như trên đã phân tích, ta chỉ có $\sqrt{N}$ lần đổi block, mỗi lần đổi block ta mất độ phức tạp $O(N)$ để di chuyển $r$. Do đó tổng độ phức tạp của trường hợp này là $O(N \times \sqrt{N})$.
 
-Vậy, độ phức tạp là $O(N \* \sqrt{N} + Q \* \sqrt{N})$.
+Vậy, độ phức tạp là $O(N \times \sqrt{N} + Q \times \sqrt{N})$.
 
 # Áp dụng
 
-Sử dụng Mo's Algorithm, bạn đã có thể thu được một thuật toán hoàn chỉnh cho bài này với độ phức tạp $O(N \* \sqrt{N} + Q \* \sqrt{N})$:
+Sử dụng Mo's Algorithm, bạn đã có thể thu được một thuật toán hoàn chỉnh cho bài này với độ phức tạp $O(N \times \sqrt{N} + Q \times \sqrt{N})$:
 
 - Sort tất cả các truy vấn theo Mo's Algorithm.
 - Gọi $S(N)$ là một mảng gồm $N$ set (có thể cài bằng hash table (bảng băm)). $S(i)$ chứa tất cả các số xuất hiện đúng $i$ lần.
@@ -104,7 +104,7 @@ Sử dụng Mo's Algorithm, bạn đã có thể thu được một thuật toá
         - Thêm $v$ vào $S(A(v))$.
         - Nếu $S(max)$ rỗng, giảm $max$ đi 1.
 
-Vì tổng các thao tác thêm và xóa khi áp dụng Mo's Algorithm không quá $O(N \* \sqrt{N} + Q \* \sqrt{N})$, ta thu được một thuật toán với độ phức tạp này.
+Vì tổng các thao tác thêm và xóa khi áp dụng Mo's Algorithm không quá $O(N \times \sqrt{N} + Q \times \sqrt{N})$, ta thu được một thuật toán với độ phức tạp này.
 
 
 # Mở rộng

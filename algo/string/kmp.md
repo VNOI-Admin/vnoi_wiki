@@ -12,7 +12,7 @@
 
 Bài viết được dịch từ [đây](https://cp-algorithms.com/string/prefix-function.html) và đã được chỉnh sửa bổ sung thêm một số phần.
 
-**Kiến thức cần biết**: Xử lý xâu cơ bản. Bạn đọc có thể xem lại các thuật ngữ và bài tập về xâu [tại đây](https://vnoi.info/wiki/algo/string/basic).
+**Kiến thức cần biết**: Xử lý xâu cơ bản. Bạn đọc có thể xem lại các thuật ngữ và bài tập về xâu [tại đây](https://wiki.vnoi.info/algo/string/basic).
 
 # Giới thiệu
 
