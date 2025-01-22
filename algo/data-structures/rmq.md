@@ -66,7 +66,7 @@ Câu hỏi đặt ra là ta còn có thể tối ưu thời gian truy vấn đư
 - Nhận xét: Thay vì duyệt qua từng phần tử, ta có thể duyệt qua từng nhóm $2$ phần tử. Từ đó, ta có thể giảm thời gian truy vấn xuống còn $\mathcal{O}(\frac{N}2)$
 
 ### Thuật toán tối ưu 1.1
-- Ta xây dựng mảng $a2$ với công thức $$a2_i = min(a_i, a_{i+1})$$.
+- Ta xây dựng mảng $a2$ với công thức $a2_i = min(a_i, a_{i+1})$.
 ![](https://i.imgur.com/ORCwi7l.gif)
 - Khi truy vấn, nếu độ dài đoạn cần truy vấn $len = 1$ thì ta in ra $a[l]$, nếu $len > 1$ thì ra dùng mảng $a2$:
 ![](https://i.imgur.com/WE6aVdx.gif)
@@ -207,7 +207,7 @@ Nhận xét thêm:
 - Ví dụ:
     - $len=6\Rightarrow k=2$, vì $6 < 2^{k+1} = 8$
     - $len=8\Rightarrow k=3$, vì $8 < 2^{k+1}=16$
-- Vậy nên, $k$ còn có một cách tính khác là $$k=\_\_lg(len)$$ (phần nguyên của phép $\log_2(len)$)
+- Vậy nên, $k$ còn có một cách tính khác là $k=\_\_lg(len)$ (phần nguyên của phép $\log_2(len)$)
 - Từ đây, ta có thể giảm độ phức tạp truy vấn xuống còn $\mathcal{O}(1)!!!!!!!$
 
 ```cpp
@@ -239,13 +239,13 @@ Giới hạn: $N, Q \le 10^5$
 ### Ý tưởng
 Giống như RMQ, ta vẫn sẽ dựng mảng $st[LG+1][N]$.
 
-Nhưng lúc này, ta không thể lấy $$k = \_\_lg(len)$$ rồi $res = sum[l\ldots l+2^k-1] + sum[r-2^k+1\ldots r]$ như RMQ được nữa (vì $2$ đoạn chắc chắn giao nhau).
+Nhưng lúc này, ta không thể lấy $k = \_\_lg(len)$ rồi $res = sum[l\ldots l+2^k-1] + sum[r-2^k+1\ldots r]$ như RMQ được nữa (vì $2$ đoạn chắc chắn giao nhau).
 
 Nhận xét: Ta luôn có thể tách một số nguyên dương thành tổng các lũy thừa phân biệt của 2 (hệ nhị phân). Ví dụ: $25 = 2^4 + 2^3 + 2^0 = 11001_2$.
 
 Từ nhận xét trên, ta có thể tách $[l\ldots r]$ thành $\log_2$ đoạn có độ dài $2^x$ như sau:
 - Đặt $len = r - l + 1$
-- Duyệt $j$ từ $0$ đến $$\_\_lg(len)$$, nếu bit thứ $j$ của $len$ là $1$ thì:
+- Duyệt $j$ từ $0$ đến $\_\_lg(len)$, nếu bit thứ $j$ của $len$ là $1$ thì:
     - Ta tách $[l\ldots r]$ thành $[l\ldots l+2^j-1]$ và $[l+2^j\ldots r]$
     - $l = l + 2^j$ (tiếp tục tách $[l+2^j\ldots r]$ như $[l\ldots r]$)
 
