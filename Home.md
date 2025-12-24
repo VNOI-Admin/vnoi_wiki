@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2025-12-22T13:11:36.363Z
+date: 2025-12-24T15:32:26.132Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -213,7 +213,6 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 - [Giải thuật cắt tỉa Alpha-Beta - ⭐⭐⭐](/algo/games/Giai-Thuat-Cat-Tia-Alpha-beta)
 
 ## Tối ưu hoá
-
 - [Chia để trị - ⭐⭐](/algo/basic/divide-and-conquer)
 - [Chia để trị Chen Danqi - ⭐⭐](/algo/basic/chen-danqi-dnc)
 - [Chặt nhị phân song song - ⭐⭐⭐](/algo/search/parallel-binary-search)
