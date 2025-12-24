@@ -1,5 +1,11 @@
 ---
 title: Kinh nghiệm thi VOI
+description: 
+published: true
+date: 2024-10-02T01:19:20.371Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:04:09.118Z
 ---
 
 # Kinh nghiệm thi VOI
@@ -382,7 +388,7 @@ Dùng mảng so với dùng `vector` có thể làm code bạn nhanh hơn một 
 
 ### Khử đệ quy
 
-Các bạn có thể đọc bài viết [này](https://vnoi.info/wiki/algo%2Fdata-structures%2FStack.md?redirected_from=translate%2Fdata-structures%2FStack.md#s%E1%BB%AD-d%E1%BB%A5ng-stack-%C4%91%E1%BB%83-kh%E1%BB%AD-%C4%91%E1%BB%87-quy) trên VNOI wiki. Nếu có thể thì bạn hãy cài stack trong này bằng mảng như đã nói ở trên.
+Các bạn có thể đọc bài viết [này](/algo/data-structures/Stack#sử-dụng-stack-để-khử-đệ-quy) trên VNOI wiki. Nếu có thể thì bạn hãy cài stack trong này bằng mảng như đã nói ở trên.
 
 ## Dùng struct
 
@@ -443,7 +449,7 @@ Các bạn có thể đọc thêm tại [đây](https://en.cppreference.com/w/cp
 
 # Sinh test
 
-Trên VNOI đã có bài viết rất tốt tại [đây](https://vnoi.info/wiki/algo/skill/viet-trinh-cham.md). Mình muốn bổ sung thêm trường hợp khi các bạn cần viết checker:
+Trên VNOI đã có bài viết rất tốt tại [đây](/algo/skill/viet-trinh-cham). Mình muốn bổ sung thêm trường hợp khi các bạn cần viết checker:
 
 ```cpp
 ifstream out1(NAME + ".out"), out2(NAME + ".ans");

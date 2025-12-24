@@ -1,4 +1,12 @@
-# Tìm kiếm tam phân - Ternary Search
+---
+title: Tìm kiếm tam phân - Ternary Search
+description: 
+published: true
+date: 2024-07-03T09:11:30.346Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:05:57.783Z
+---
 
 # Tìm kiếm tam phân - Ternary Search
 
@@ -13,13 +21,13 @@ Cho một hàm F(x) chỉ có một cực trị duy nhất (unimodal). Có hai d
 
 * Phần đầu tăng chặt, đạt đến giá trị lớn nhất, sau đó giảm chặt. (concave)
 
-<img src="http://vnoi.info/wiki/uploads/ternary_search_concave_func.png" width="200px" height="200px" />
+<img src="/uploads/ternary_search_concave_func.png" width="200px" height="200px" />
 
 Một hàm số thoả mãn tính chất này nếu tất cả các đoạn thẳng nối 2 điểm của đồ thị hàm số, nằm "bên dưới" của đồ thị.
 
 * Phần đầu giảm chặt, đạt đến giá trị nhỏ nhất, sau đó tăng chặt. (convex)
 
-<img src="http://vnoi.info/wiki/uploads/ternary_search_convex_func.png" width="200px" height="200px" />
+<img src="/uploads/ternary_search_convex_func.png" width="200px" height="200px" />
 
 
 Một hàm số thoả mãn tính chất này nếu tất cả các đoạn thẳng nối 2 điểm của đồ thị hàm số, đều nằm "bên trên" của đồ thị.

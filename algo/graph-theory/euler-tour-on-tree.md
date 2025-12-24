@@ -1,3 +1,13 @@
+---
+title: Đường đi Euler trên cây
+description: 
+published: true
+date: 2024-09-06T03:07:25.638Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:03:18.370Z
+---
+
 # Đường đi Euler trên cây
 
 **Người viết:**
@@ -301,7 +311,7 @@ Từ tính chất đó, dễ thấy rằng các thao tác với cây con có th�
 Cụ thể, thao tác cập nhật hoặc truy vấn đối với cây con gốc $u$ có thể chuyển thành thao tác tương ứng đối với đoạn $st[u]..en[u]$.
 
 Ví dụ:
-Trong đoạn code dưới đây, hàm $change(u, x)$ cho phép tăng giá trị của đỉnh $u$ thêm $x$ đơn vị. Hàm $sum(u)$ cho phép tính tổng giá trị các đỉnh thuộc cây con gốc $u$ (sử dụng kiểu dữ liệu [Fenwick Tree - cây BIT](https://vnoi.info/wiki/algo/data-structures/fenwick.md)).
+Trong đoạn code dưới đây, hàm $change(u, x)$ cho phép tăng giá trị của đỉnh $u$ thêm $x$ đơn vị. Hàm $sum(u)$ cho phép tính tổng giá trị các đỉnh thuộc cây con gốc $u$ (sử dụng kiểu dữ liệu [Fenwick Tree - cây BIT](/algo/data-structures/fenwick.md)).
 
 ```cpp
 
@@ -454,7 +464,7 @@ Thuật toán này dựa trên sự tự triệt tiêu của các đỉnh xuất
 
 ## Tổ tiên chung gần nhất - Lowest Common Ancestor
 
-Đường đi Euler trên cây cũng có thể được dùng để tìm tổ tiên chung gần nhất, kết hợp với cấu trúc dữ liệu [RMQ](https://vnoi.info/wiki/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor.md).
+Đường đi Euler trên cây cũng có thể được dùng để tìm tổ tiên chung gần nhất, kết hợp với cấu trúc dữ liệu [RMQ](/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor.md).
 
 Ứng dụng này không cần biến đổi đường đi Euler.
 

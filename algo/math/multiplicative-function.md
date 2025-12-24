@@ -1,3 +1,13 @@
+---
+title: Hàm nhân tính
+description: 
+published: true
+date: 2024-09-06T12:16:42.207Z
+tags: math, number theory
+editor: markdown
+dateCreated: 2023-12-25T11:03:58.139Z
+---
+
 # Hàm nhân tính
 
 **Tác giả**: RR
@@ -33,13 +43,13 @@ f(18) = 6 = f(2) * f(9)
 Ta có thể chứng minh hàm $f$ là hàm nhân tính như sau:
 
 - Xét $m$ và $n$ nguyên tố cùng nhau.
-- Để chứng minh $f(m \* n) = f(m) \* f(n)$, ta cần chứng minh 2 chiều:
-    1. Mỗi ước của $m * n$ ứng với 1 cặp $(a, b)$ với $a$ là ước của $m$ và $b$ là ước của $n$.
-        - Điều này đúng do mỗi ước của $m \* n$ ta luôn tách được thành tích của 2 số $a \* b$ với $a$ là ước của $m$ và $b$ là ước của $n$.
-    2. Mỗi cặp $(a, b)$ với $a$ là ước của $m$ và $b$ là ước của $n$ ứng với 1 ước của $m \* n$.
-        - Điều này đúng do với mỗi cặp $(a, b)$ thì $a \* b$ là ước của $m \* n$.
+- Để chứng minh $f(m \times n) = f(m) \times f(n)$, ta cần chứng minh 2 chiều:
+    1. Mỗi ước của $m \times n$ ứng với 1 cặp $(a, b)$ với $a$ là ước của $m$ và $b$ là ước của $n$.
+        - Điều này đúng do mỗi ước của $m \times n$ ta luôn tách được thành tích của 2 số $a \times b$ với $a$ là ước của $m$ và $b$ là ước của $n$.
+    2. Mỗi cặp $(a, b)$ với $a$ là ước của $m$ và $b$ là ước của $n$ ứng với 1 ước của $m \times n$.
+        - Điều này đúng do với mỗi cặp $(a, b)$ thì $a \times b$ là ước của $m \times n$.
 
-Như vậy, $f(m \* n) = f(m) \* f(n)$.
+Như vậy, $f(m \times n) = f(m) \times f(n)$.
 
 
 # 2. Ứng dụng 1
@@ -52,7 +62,7 @@ Giờ ta xét bài toán sau:
 
 1. Chứng minh $f$ là hàm nhân tính.
 2. Tìm công thức cho $f(p^k)$ với p là số nguyên tố.
-3. Dùng sàng để tính $f$ trong $O(N*logN)$.
+3. Dùng sàng để tính $f$ trong $O(N\log N)$.
 
 Nếu bạn chưa biết sàng có thể đọc [ở đây](/translate/topcoder/Mathematics-for-Topcoders).
 
@@ -130,7 +140,7 @@ int main() {
 
 Ta xét bài toán sau:
 
-> Cho số N không quá 10^12. Tính f(N)
+> Cho số N không quá $10^{12}$. Tính $f(N)$
 
 Chú ý ở bài toán trước ta cần tính nhiều giá trị của $f(N)$ với $N$ nhỏ, còn trong bài này ta chỉ cần tính duy nhất 1 giá trị của $f(N)$ với $N$ lớn.
 
@@ -138,11 +148,11 @@ Cũng như trên, ta sẽ làm theo 3 bước chính:
 
 1. Chứng minh $f$ là hàm nhân tính.
 2. Tìm công thức cho $f(p^k)$ với p là số nguyên tố.
-3. Phân tích $N$ thành thừa số nguyê tố để tính $f(N)$ trong $O(sqrt(N))$.
+3. Phân tích $N$ thành thừa số nguyê tố để tính $f(N)$ trong $O(\sqrt N)$.
 
 Vì 2 bước đầu giống hệt phần trước nên mình sẽ không nhắc lại.
 
-Ở bước 3, bạn chỉ cần xét tất cả các số từ 1 đến $sqrt(N)$, từ đó phân tích được thành thừa số nguyên tố. Code như sau:
+Ở bước 3, bạn chỉ cần xét tất cả các số từ 1 đến $\sqrt N$, từ đó phân tích được thành thừa số nguyên tố. Code như sau:
 
 ```cpp
 int n;
@@ -169,87 +179,85 @@ if (n > 1) {  // giá trị hiện tại của n là số nguyên tố
 ```
 
 
-# 4. Dirichlet Convolution
+# 4. Tích chập Dirichlet
 
 Việc chứng minh trực tiếp một hàm là hàm nhân tính như ví dụ về hàm số ước ở trên không hề đơn giản. Chẳng hạn, bạn hãy thử chứng minh hàm $f(n)$ là hàm nhân tính với $f(n)$ là tổng các ước của số $n$. Dĩ nhiên bạn có thể chứng minh trâu bò bằng cách viết ra một đống công thức, tuy nhiên ở mục này mình sẽ hướng dẫn các bạn một phương pháp kỳ diệu hơn.
 
-Với 2 hàm $f$ và $g$ là hàm nhân tính, ta có một hàm nhân tính mới $f \times g$:
+Với 2 hàm $f$ và $g$ là hàm nhân tính, ta có một hàm nhân tính mới $f * g$ (gọi là [Tích chập Dirichlet (Dirichlet Convolution)](vi.wikipedia.org/wiki/Tích_chập_Dirichlet) giữa $f$ và $g$):
 
 $$
-(f \times g)(n) = \sum_{d_1 * d_2=n}{f(d_1) * g(d_2)}
+(f * g)(n) = \sum_{d_1 \times d_2=n}{f(d_1) \times g(d_2)}
 $$
 
 Một cách biểu diễn khác là:
 
 $$
-(f \times g)(n) = \sum_{d | n}{f(d) * g(n/d)}
+(f * g)(n) = \sum_{d \mid n}{f(d) \times g\left(\frac{n}{d}\right)}
 $$
 
-Các bạn chú ý kí hiệu $d \| n$ nghĩa là $n$ chia hết cho $d$.
+Các bạn chú ý kí hiệu $d \mid n$ nghĩa là $n$ chia hết cho $d$.
 
 **Chứng minh**
 
-Xét $a$ và $b$ nguyên tố cùng nhau. Mỗi ước $d$ của $ab$ có thể phân tích duy nhất dưới dạng $d = rs$ trong đó $r \| a$ và $s \| b$, do $gcd(a, b) = 1$.
+Xét $a$ và $b$ nguyên tố cùng nhau. Mỗi ước $d$ của $ab$ có thể phân tích duy nhất dưới dạng $d = rs$ trong đó $r \mid a$ và $s \mid b$, do $\gcd(a, b) = 1$.
 
 Do đó:
 
-$(f \times g)(ab)$
+$\begin{aligned}
+(f * g)(ab) &= \sum\limits_{r \mid a,\; s\mid b}{f(rs) \times g\left(\frac{ab}{rs}\right)}\\
+&= \sum\limits_{r \mid a,\; s\mid b}{f(r) \times f(s) \times g\left(\frac{a}{r}\right) \times g\left(\frac{b}{s}\right)}\\
+&= \sum\limits_{r \mid a}{f(r) \times g\left(\frac{a}{r}\right)} \sum\limits_{s\mid b}{f(s) \times g\left(\frac{b}{s}\right)}\\
+&= (f * g)(a) (f * g)(b)
+\end{aligned}$
 
-$= \sum_{r\|a, s\|b}{f(rs) g(ab/rs)}$
+Như vậy, $(f * g)$ cũng là hàm nhân tính.
 
-$ = \sum_{r\|a, s\|b}{f(r) f(s) g(a/r) g(b/s)}$
-
-$ = \sum_{r\|a}{f(r) g(a/r)} \sum_{s\|b}{f(s) g(b/s)}$
-
-$ = (f \times g)(a) (f \times g)(b)$
-
-Như vậy, $(f \times g)$ cũng là hàm nhân tính.
-
-Để hiểu thêm về Dirichlet Convolution, ta xét vài ví dụ:
+Để hiểu thêm về Tích chập Dirichlet, ta xét vài ví dụ:
 
 ## 4.1. Ví dụ 1
 
 Xét hàm $f(n) = 1$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
 
 $$
-(f \times g)(n) = \sum_{d | n}{f(d) * g(n/d)} = \sum_{d | n}{1}
+(f * g)(n) = \sum_{d \mid n}{f(d) \times g\left(\frac{n}{d}\right)} = \sum_{d | n}{1} = \tau(n)
 $$
 
-Như vậy $(f \* g)(n)$ là số ước của số $n$ và là hàm nhân tính.
+Như vậy $(f * g)(n)$ là số ước của số $n$ và là hàm nhân tính.
 
 ## 4.2. Ví dụ 2
 
 Xét hàm $f(n) = n$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
 
 $$
-(f \times g)(n) = \sum_{d | n}{f(d) * g(n/d)} = \sum_{d | n}{d}
+(f * g)(n) = \sum_{d \mid n}{f(d) \times g\left(\frac{n}{d}\right)} = \sum_{d \mid n}{d}=\sigma(n)
 $$
 
-Như vậy $(f \times g)(n)$ là tổng các ước của $n$ và là hàm nhân tính.
+Như vậy $(f * g)(n)$ là tổng các ước của $n$ và là hàm nhân tính.
 
-Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum_{d \| n}{d^k}$ là hàm nhân tính.
+Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum\limits_{d \mid n}{d^k}$ là hàm nhân tính.
 
 ## 4.3. Các hàm nhân tính thường gặp
 
-Sau đây là các hàm nhân tính thường gặp. Bạn có thể thử chứng minh những hàm này là hàm nhân tính dựa theo định nghĩa hoặc Dirichlet Convolution. Việc nắm được những hàm này sẽ giúp thuận lợi hơn trong việc gỉai những bài liên quan đến hàm nhân tính.
+Sau đây là các hàm nhân tính thường gặp. Bạn có thể thử chứng minh những hàm này là hàm nhân tính dựa theo định nghĩa hoặc Tích chập Dirichlet. Việc nắm được những hàm này sẽ giúp thuận lợi hơn trong việc gỉai những bài liên quan đến hàm nhân tính.
 
 - $I(n) = 1$, hàm $f$ luôn bằng 1 với tất cả các giá trị của $n$.
 - $id(n) = n$
 - $id_k(n) = n^k$
-- $gcd(n, k)$ với k là hằng số
-- $phi(n)$: số số nguyên tố cùng nhau với $n$ và nhỏ hơn hoặc bằng $n$ (Phi hàm Euler)
-- $mobius(n)$: Hàm mobius thường được dùng trong các bài toán đếm sử dụng nguyên lý bù trừ:
-  - Nếu $n$ có ước là số chính phương khác 1, $mobius(n) = 0$.
-  - Nếu $n$ có lẻ ước nguyên tố, $mobius(n) = -1$.
-  - Nếu $n$ có chẵn ước nguyên tố, $mobius(n) = 1$. Chú ý $mobius(1) = 1$.
-- $f(n) = \sum_{d \|n}{d}$ là tổng các ước của $n$.
-- $f_k(n) = \sum_{d \| n}{d^k}$ với $k$ là hằng số.
+- $\gcd(n, k)$ với k là hằng số
+- $\varphi(n)$: số số nguyên tố cùng nhau với $n$ và nhỏ hơn hoặc bằng $n$ (Phi hàm Euler)
+- $\mu(n)$: Hàm Mobius thường được dùng trong các bài toán đếm sử dụng nguyên lý bù trừ:
+  - Nếu $n$ có ước là số chính phương khác 1, $\mu(n) = 0$.
+  - Nếu $n$ có lẻ ước nguyên tố, $\mu(n) = -1$.
+  - Nếu $n$ có chẵn ước nguyên tố, $\mu(n) = 1$. Chú ý $\mu(1) = 1$.
+- $f_k(n) = \sum\limits_{d \mid n}{d^k}$ với $k$ là hằng số. Trong đó:
+	- $\tau(n) = f_0(n) = \sum\limits_{d \mid n}{1}$ là đếm số ước của $n$.
+	- $\sigma(n) = f_1(n) = \sum\limits_{d \mid n}{d}$ là tổng các ước của $n$.
 
 
 
 # 5. Tổng kết
 
-Như vậy, nếu bạn chứng minh được một hàm $f$ là hàm nhân tính, và tìm được công thức $O(1)$ cho $f(p^k)$ thì sẽ dễ dàng tính được tất cả các giá trị $f(i), i \le N$ trong $O(N*logN)$.
+Như vậy, nếu bạn chứng minh được một hàm $f$ là hàm nhân tính, và tìm được công thức $O(1)$ cho $f(p^k)$ thì sẽ dễ dàng tính được tất cả các giá trị $f(i), i \le N$ trong $O(N \log N)$.
 
 Bạn cũng nên nắm được những hàm nhân tính thường gặp, từ đó giúp nhận dạng bài toán dễ dàng hơn.
 
@@ -258,7 +266,7 @@ Bạn cũng nên nắm được những hàm nhân tính thường gặp, từ �
 
 - [VNOJ - GCDSUM](https://oj.vnoi.info/problem/gcdsum/)
 
-Gợi ý: Xét $f(n) = \sum_{1 \le i \le n}{gcd(n, i)}$.
+Gợi ý: Xét $f(n) = \sum\limits_{1 \le i \le n}{\gcd(n, i)}$.
 
 - [CF #391 - E](http://codeforces.com/contest/757/problem/E)
 

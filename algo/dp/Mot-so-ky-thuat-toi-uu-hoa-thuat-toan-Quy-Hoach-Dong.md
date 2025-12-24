@@ -1,3 +1,13 @@
+---
+title: Một số kĩ thuật tối ưu hoá thuật toán Quy Hoạch Động
+description: 
+published: true
+date: 2024-09-16T08:55:11.433Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:02:16.517Z
+---
+
 # Một số kĩ thuật tối ưu hoá thuật toán Quy Hoạch Động
 
 Tác giả: **Lê Anh Đức** - A2K42-PBC
@@ -46,7 +56,7 @@ Kết quả bài toán là $F(m, n)$.
 
 **Đổi biến**
 
-Đặt $L = min(m, n)$
+Đặt $L = \min(m, n)$
 
 Để ý rằng trong hàm QHĐ trên, các giá trị của $F(i, j)$ sẽ không vượt quá $L$, trong khi đó chiều thứ hai của trạng thái có thể khá lớn (lên tới $MAXM = 10^6$).
 
@@ -130,11 +140,11 @@ Là một lập trình viên giỏi nhưng lại thuộc phòng ban có mức đ
 
 **Yêu cầu**
 
-Cho x, a, y, b, n. Hãy tính tổng giá trị máy tính mà phòng Thắng nhận được.
+Cho $x, a, y, b, n$. Hãy tính tổng giá trị máy tính mà phòng Thắng nhận được.
 
 **Input**
 
-x, a, y, b, n không quá 1000
+$x, a, y, b, n$ không quá $1000$
 
 **Ví dụ**
 
@@ -322,7 +332,7 @@ Tuy nhiên lời giải $O(N^2)$ là chưa đủ tốt để có thể giải qu
 
 Gọi $best(i)$ là vị trí $j > i$ tốt nhất nếu ta đã đặt một nhà máy ở i.
 
-Như vậy kết quả của bài toán sẽ là $min(eval(i, best_i)$ với $1 \le i < n$.
+Như vậy kết quả của bài toán sẽ là $\min(eval(i, best_i))$ với $1 \le i < n$.
 
 Nhận xét:
 
@@ -346,7 +356,7 @@ void solve(int L, int R, int from, int to) {
 }
 ```
 
-Đánh giá độ phức tạp thuật toán: vì mỗi lần gọi để quy khoảng $[L,R]$ được chia đôi, nên sẽ có $O(logN)$ tầng, mỗi tầng vòng for chỉ chạy qua $O(N)$ phần tử, vì vậy độ phức tạp của thuật toán là $O(NlogN)$.
+Đánh giá độ phức tạp thuật toán: vì mỗi lần gọi để quy khoảng $[L,R]$ được chia đôi, nên sẽ có $O(\log N)$ tầng, mỗi tầng vòng for chỉ chạy qua $O(N)$ phần tử, vì vậy độ phức tạp của thuật toán là $O(N\log N)$.
 
 ### SEQPART - [Hackerrank](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
 #### Đề bài
@@ -395,7 +405,7 @@ Chi phí là $11 * 3 + 11 * 3 + 11 * 3 + 24 * 2 + 26 * 2 + 100 * 1 = 299$.
 
 Để tìm công thức truy hồi cho hàm $F(g, i)$, ta sẽ quan tâm đến nhóm cuối cùng. Coi phần tử 0 là phần tử cầm canh ở trước phần tử thứ nhất, thì người cuối cùng không thuộc nhóm cuối có chỉ số trong đoạn $[0, i]$. Giả sử đó là người với chỉ số k, thì chi phí của cách phân hoạch sẽ là $F(g-1, k) + Cost(k+1, i)$, với $Cost(i, j)$ là chi phí nếu phân $j-i+1$ người có chỉ số $[i, j]$ vào một nhóm. Như vậy:
 
-$F(g, i) = min(F(g-1, k) + Cost(k+1, l))$ với $0 <= k <= i$.
+$F(g, i) = \min(F(g-1, k) + Cost(k+1, l))$ với $0 <= k <= i$.
 
 Chú ý là công thức này chỉ được áp dụng với $g>1$, nếu $g=1, F(1, i) = Cost(1, i)$, đây là trường hợp cơ sở.
 
@@ -516,7 +526,7 @@ int main() {
 
 Chú ý rằng ta không thể đảm bảo rằng $P(g,mid)$ chia đôi đoạn $[optL, optR]$, thực tế một vài hàm $solve()$ sẽ chạy chậm hơn nhiều hàm $solve()$ khác.
 
-Tuy nhiên ta có thể chứng minh được, xét về tổng thế thuật toán này chạy đủ nhanh. Mỗi lần ta chia đôi đoạn $[L, R]$, nên ta sẽ đảm bảo có tối đa $O(log(L))$ tầng đệ quy, như vậy với mỗi hàng $g$, ta chỉ mất $O(L \* logL)$ để tính. Toàn bộ thuật toán có độ phức tạp là $O(G \* L \* logL)$.
+Tuy nhiên ta có thể chứng minh được, xét về tổng thế thuật toán này chạy đủ nhanh. Mỗi lần ta chia đôi đoạn $[L, R]$, nên ta sẽ đảm bảo có tối đa $O(\log L)$ tầng đệ quy, như vậy với mỗi hàng $g$, ta chỉ mất $O(L\log L)$ để tính. Toàn bộ thuật toán có độ phức tạp là $O(G \cdot L \cdot \log L)$.
 
 ![](/uploads/dp_optimization_img2.png)
 
@@ -543,7 +553,7 @@ ta cũng có thể sử dụng QHĐ chia để trị.
 
 # 3. Bao lồi đường thẳng
 
-Các bạn có thể đọc thêm về kỹ thuật bao lồi ở link [này](https://vnoi.info/wiki/translate/wcipeg/Convex-Hull-Trick.md)
+Các bạn có thể đọc thêm về kỹ thuật bao lồi ở link [này](/translate/wcipeg/Convex-Hull-Trick.md)
 
 # 4. Tối ưu bằng stack
 
@@ -591,7 +601,7 @@ Output
 
 **Thuật toán QHĐ cơ sở**
 
-Gọi $F(i, j)$ là tổng trọng số nhỏ nhất để chia $j$ số đầu tiên của dãy thành $i$ nhóm. Công thức truy hồi là $F(i, j) = min[F(i-1, j’) + max(a[j’+1 .. j])]$ với $j’<j$.
+Gọi $F(i, j)$ là tổng trọng số nhỏ nhất để chia $j$ số đầu tiên của dãy thành $i$ nhóm. Công thức truy hồi là $F(i, j) = \min[F(i-1, j’) + \max(a[j’+1 .. j])]$ với $j’<j$.
 
 Công thức QHĐ này có thể giải trong $O(N^2 * K)$, tuy nhiên như vậy cũng chưa đạt yêu cầu.
 
@@ -602,7 +612,7 @@ Ta thấy rằng chi phí chuyển trạng thái của công thức QHĐ trên �
 Với mỗi vị trí $i$, ta gọi $L[i]$ là vị trí $j < i$ lớn nhất thỏa mãn $a[j] > a[i]$.
 Như vậy trong công thức chuyển trạng thái trên, ta không cần phải for $j’ < L[i]$ vì khi đó ta chuyển trực tiếp $F(i, j) = F(i, L[j])$.
 
-Giờ ta chỉ cần quan tâm tới các $j’$ thuộc đoạn $[L[j], j)$. Lúc này $max(a[j’+1..j) = a[j]$, nên ta chỉ cần tìm $min(F(i-1, j’))$. Đây là bài toán truy vấn đoạn có thể giải trong $O(logN)$ mỗi truy vấn. Độ phức tạp bài toán đến đây là $O(N*K*logN)$.
+Giờ ta chỉ cần quan tâm tới các $j’$ thuộc đoạn $[L[j], j)$. Lúc này $\max(a[j’+1..j]) = a[j]$, nên ta chỉ cần tìm $\min(F(i-1, j’))$. Đây là bài toán truy vấn đoạn có thể giải trong $O(\log N)$ mỗi truy vấn. Độ phức tạp bài toán đến đây là $O(N*K*\log N)$.
 
 Ta vẫn có thể tối ưu hơn nữa bằng cách sử dụng stack để hỗ trợ xử lí các truy vấn. Ta duy trì môt stack, mỗi phần tử chứa hai tham số là $minF$ và $index$. Stack luôn chứa các $a[index]$ giảm dần, còn $minF$ được cập nhật lại để chứa $minF$ trong đoạn $[L[index]..index-1]$.
 
@@ -726,7 +736,7 @@ OUTPUT
 
 Ta sẽ xây dựng hai mảng $L[]$ và $R[]$, trong đó $L[i]$ là vị trí $j$ nhỏ nhất mà bị cây $i$ làm đổ nếu đẩy về bên trái, tương tự với $R$.
 
-$L[i] = min[ i, min(L[j]) với i-h[i] < j < i ]$
+$L[i] = \min[i, \min(L[j])]$ với $i-h[i] < j < i$
 
 Để tính $L[]$ ta duy trì một $stack$ chứa các chỉ số tăng dần. Trước khi thêm một cây $i$ mới vào, các cây bị nó trực tiếp làm đổ sẽ bị $pop$ ra, đồng thời ta cập nhật $L[i]$.
 
@@ -736,17 +746,17 @@ Gọi $F(i)$ là số cây cần phải đổ nhỏ nhất để các cây có c
 
 Để tính $F(i)$ cần xét 2 trường hợp:
  - Nếu ta đẩy cây $i$ qua trái:
-$F(i) = min[ F(j-1) + 1 ]$ với $L[i] \le j \le i$              $(1)$
+$F(i) = \min[ F(j-1) + 1 ]$ với $L[i] \le j \le i$              $(1)$
  - Nếu cây $i$ bị đẩy qua phải bởi cây $j$
-$F(i) = min[ F(j-1) + 1 ]$ với $1 \le j \le i$ và $R[j] \ge i$    $(2)$
+$F(i) = \min[ F(j-1) + 1 ]$ với $1 \le j \le i$ và $R[j] \ge i$    $(2)$
 
-Có thể dễ dàng tính các $F[]$ trong $O(N^2)$. Có thể dùng các cấu trúc dữ liệu quản lí đoạn để giảm xuống $O(NlogN)$.
+Có thể dễ dàng tính các $F[]$ trong $O(N^2)$. Có thể dùng các cấu trúc dữ liệu quản lí đoạn để giảm xuống $O(N\log N)$.
 
 Ta có thể sử dụng $stack$ để giảm độ phức tạp xuống $O(N)$.
 
 Để xử lí $(1)$ ta có thể sử dụng kỹ thuật tương tự như bài BLOCK đã trình bày, tuy nhiên ta có thể đánh giá để cài đặt được ngắn gọn hơn:
 
-$F[L[i]-1] = min[ F(j-1) + 1 ]$ với $L[i] \le j \le i$
+$F[L[i]-1] = \min[ F(j-1) + 1 ]$ với $L[i] \le j \le i$
 (phần chứng minh xin dành lại cho độc giả)
 
 Để xử lí $(2)$ ta sẽ sử dụng một $stack$ để lưu các vị trí có $R[]$ giảm dần, đồng thời luôn duy trì sao cho giá trị ở $top$ của $stack$ luôn là tốt nhất. Chú ý là với $j < i$ và $R[j] \ge i$ thì $R[j] \ge R[i]$. Như vậy nếu tại mỗi bước ta $pop$ các vị trí $j$ có $R[j] < i$ ra khỏi $stack$, thì sẽ luôn duy trì được tính chất của $stack$ vì lúc này đảm bảo được $R[i]$ là nhỏ hơn các $R[]$ đang ở trong $stack$, đồng thời nếu $F(i-1)$ không tốt bằng giá trị ở đầu $stack$ thì ta sẽ không đẩy $i$ vào (để đảm bảo giá trị ở $top$ luôn là tốt nhất).
@@ -835,7 +845,7 @@ Trước hết ta gán $A[i] = A[i] - i$ với mọi $i$. Bài toán trở thàn
 
 Đặt $F(i, j) = $ số phép biến đổi ít nhất để biến đổi dãy $A[1..i]$ thành dãy không giảm sao cho $A[i] \le j$. Ta có:
  - Với $i = 1$: $F(i, j) = \|A[i] - j\|$
- - Với $i > 1$: $F(i, j) = min(F(i - 1, k) + \|A[i] - k\|)$ $\forall k \le j$
+ - Với $i > 1$: $F(i, j) = \min(F(i - 1, k) + \|A[i] - k\|)$ $\forall k \le j$
 
 Kết hợp với nhận xét: Luôn tồn tại dãy cuối cùng với số phép biến đổi tối ưu mà chỉ chứa các giá trị có trong dãy ban đầu. Ta có thể giải công thức QHĐ này với độ phức tạp $O(N^2)$
 
@@ -853,7 +863,7 @@ Hãy cố gắng phác họa hàm $F$ trên giấy để có thể dễ dàng h�
 
 Các thao tác chèn xóa và lấy $max$ của tập hợp có thể dễ dàng cài đặt bằng std::multiset<int> trong C++, hay sử dụng Binary Heap nếu code Pascal.
 
-Như vậy độ phức tạp của lời giải trên là $O(NlogN)$.
+Như vậy độ phức tạp của lời giải trên là $O(N\log N)$.
 
 ```cpp
 #include <bits/stdc++.h>
@@ -985,19 +995,19 @@ Ta có thể coi hàm QHĐ $F(i, x)$ ở trên là một hàm $f_i(x)$ nhận $x
 
 Xét hàm số $f_{k-1}(x) = N - \|e_k-1 – x\|$. Đồ thị của nó sẽ có dạng:
 
-<img src="https://vnoi.info/wiki/uploads/dp_optimization_img4.png" width="40%"/>
+<img src="/uploads/dp_optimization_img4.png" width="40%"/>
 
-Vấn đề trở nên phức tạp hơn với hàm $f_{k-2}$. Đặt $g_{k-1}(x) = max(f_{k-1}(x’))$ với $\|x’ – x\| \le d_{k-2}$. Đồ thị của hàm số này có dạng tương tự như đồ thị của hàm số $f_{k-1}(x)$:
+Vấn đề trở nên phức tạp hơn với hàm $f_{k-2}$. Đặt $g_{k-1}(x) = \max(f_{k-1}(x’))$ với $\|x’ – x\| \le d_{k-2}$. Đồ thị của hàm số này có dạng tương tự như đồ thị của hàm số $f_{k-1}(x)$:
 
-<img src="https://vnoi.info/wiki/uploads/dp_optimization_img5.png" width="40%"/>
+<img src="/uploads/dp_optimization_img5.png" width="40%"/>
 
 Ta cộng thêm $N-\|e_{k-2} – x\|$ vào hàm $g_{k-1}(x)$, ta sẽ được đồ thị dạng:
 
-<img src="https://vnoi.info/wiki/uploads/dp_optimization_img6.png" width="40%"/>
+<img src="/uploads/dp_optimization_img6.png" width="40%"/>
 
 Tương tự như vậy, ý tưởng ở đây là ta sẽ duy trì đồ thị của các hàm số $f_i(x)$ với $i$ từ $k$ về $0$. Để làm được điều này ta cần phải thực hiện một vài thao tác:
 
- - Tịnh tiến về hai phía: Để tìm được hàm $f(x)$ thì trước hết cần xây dựng được hàm $g(x) = max(f_i(x’) : \|x’ – x\| \le d)$. Ta chỉ cần tìm được đỉnh của hàm số, rồi tịnh tiến cả hai phía trái phải của hàm thêm một khoảng $d$.
+ - Tịnh tiến về hai phía: Để tìm được hàm $f(x)$ thì trước hết cần xây dựng được hàm $g(x) = \max(f_i(x’) : \|x’ – x\| \le d)$. Ta chỉ cần tìm được đỉnh của hàm số, rồi tịnh tiến cả hai phía trái phải của hàm thêm một khoảng $d$.
 
 ![](/uploads/dp_optimization_img7.png)
 

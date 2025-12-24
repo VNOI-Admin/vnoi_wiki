@@ -1,3 +1,13 @@
+---
+title: Cây DFS (Depth-First Search Tree) và ứng dụng
+description: 
+published: true
+date: 2024-09-25T15:35:52.974Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:02:59.451Z
+---
+
 # Cây DFS (Depth-First Search Tree) và ứng dụng
 
 **Tác giả:**
@@ -525,10 +535,12 @@ $1 \le N, M \le 200000$
 
 Vì đồ thị ban đầu liên thông và có $N - 1$ cạnh nên đây là đồ thị dạng [cây](https://vi.wikipedia.org/wiki/C%C3%A2y_(l%C3%BD_thuy%E1%BA%BFt_%C4%91%E1%BB%93_th%E1%BB%8B)).
 
-Để đánh dấu các cạnh thuộc đường đi từ đỉnh $u$ đến đỉnh $v$ trên cây, thì ta có thể thêm một cạnh $(u,v)$ vào đồ thị. Khi đó, các cạnh thuộc đường đi từ $u \rightarrow v$ trên cây sẽ nằm trong $1$ chu trình. Từ đó, bài toán sẽ quy về thành bài toán đếm số lượng cạnh cầu của đồ thị.
+Để tối ưu việc đánh dấu các cạnh "đã kiểm tra" thuộc đường đi từ đỉnh $u$ đến đỉnh $v$ trên cây, ta sẽ thêm một cạnh $(u,v)$ vào đồ thị. Khi đó, các cạnh thuộc đường đi từ $u \rightarrow v$ trên cây sẽ nằm trong $1$ chu trình. Từ đó, bài toán sẽ quy về thành bài toán đếm số lượng cạnh cầu của đồ thị.
 - **Ví dụ minh họa:** Để dánh dấu đường đi từ đỉnh $3 \rightarrow 6$ và đường đi từ đỉnh $5 \rightarrow 6$, ta thêm cạnh $(3, 6)$, $(5, 6)$ vào đồ thị. Khi đó, đồ thị có một cạnh cầu là cạnh $(1, 2)$.
 
     ![](/uploads/Depth-First-Search-Tree_img13.png)
+    
+Tuy nhiên, có một trường hợp cần chú ý: cạnh thêm vào có thể đã có sẵn trong đồ thị. Khi đó, ta cần tìm cạnh cầu trong một đa đồ thị, ta sẽ phải đánh dấu nếu cạnh đó đã sử dụng.
 
 ### **Cài đặt**
 
@@ -541,51 +553,74 @@ Vì đồ thị ban đầu liên thông và có $N - 1$ cạnh nên đây là đ
 
 ``` cpp
 #include <bits/stdc++.h>
-
 using namespace std;
 
 const int maxN = 2e5 + 10;
 
-int n, m;
-int timeDfs = 0, bridge = 0;
-int low[maxN], num[maxN];
-vector <int> g[maxN];
+struct edge {
+    int u, v;
+    bool used;
+    int other(int x) {
+        return u ^ v ^ x;
+    }
+};
 
-void dfs(int u, int pre) {
+int n, m, timeDfs = 0, bridge = 0;
+int low[maxN], num[maxN];
+vector<int> g[maxN];
+edge E[maxN * 2];
+
+void minimize(int &a, int b) {
+    if (a > b) a = b;
+}
+
+void dfs(int u) {
     num[u] = low[u] = ++timeDfs;
-    for (int v : g[u]) {
-        if (v == pre) continue;
+    for (int i : g[u]) {
+        edge &e = E[i];
+        if (e.used) continue;
+        e.used = true;
+        int v = e.other(u);
         if (!num[v]) {
-            dfs(v, u);
-            low[u] = min(low[u], low[v]);
-            if (low[v] == num[v]) bridge++;
+            dfs(v);
+            minimize(low[u], low[v]);
+            if (low[v] > num[u]) bridge++;
+        } else {
+            minimize(low[u], num[v]);
         }
-        else low[u] = min(low[u], num[v]);
     }
 }
 
 int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
     cin >> n;
     for (int i = 1; i < n; i++) {
-        int a, b;
-        cin >> a >> b;
-        g[a].push_back(b);
-        g[b].push_back(a);
+        int u, v;
+        cin >> u >> v;
+        g[u].push_back(i);
+        g[v].push_back(i);
+        E[i] = {u, v};
     }
+
     cin >> m;
-    while (m--) {
-        int a, b;
-        cin >> a >> b;
-        g[a].push_back(b);
-        g[b].push_back(a);
+    m += n - 1;
+    for (int i = n; i <= m; i++) {
+        int u, v;
+        cin >> u >> v;
+        g[u].push_back(i);
+        g[v].push_back(i);
+        E[i] = {u, v};
     }
-    dfs(1, 1);
+
+    dfs(1);
     cout << bridge;
 }
 ```
 
 ### **Đánh giá**
-- Độ phức tạp của bài toán là $O(N + (N - 1 + M))$.
+- Độ phức tạp của bài toán là $O(2N + M)$.
 
 # Ứng dụng cây DFS trong bài toán liệt kê thành phần liên thông mạnh
 ## Định nghĩa

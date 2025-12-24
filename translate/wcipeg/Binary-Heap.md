@@ -1,3 +1,13 @@
+---
+title: Binary Heap
+description: 
+published: true
+date: 2024-12-24T14:50:19.461Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:07:59.211Z
+---
+
 # Binary Heap
 
 **Biên soạn:** Đỗ Việt Anh (lion_it)
@@ -8,7 +18,7 @@
 
 # 0. Kiến thức cần biết trước
 
-Để đọc và hiểu được bài viết các bạn cần có kiến thức về cấu trúc cây ([tree](http://wcipeg.com/wiki/Tree)) và cây nhị phân đầy đủ ([complete binary tree](http://wcipeg.com/wiki/Tree#Binary_and_k-ary_trees))
+Để đọc và hiểu được bài viết các bạn cần có kiến thức về cấu trúc cây ([tree](http://wcipeg.com/wiki/Tree)) và cây nhị phân hoàn chỉnh ([complete binary tree](http://wcipeg.com/wiki/Tree#Binary_and_k-ary_trees))
 
 
 # 1. Giới thiệu chung
@@ -17,7 +27,7 @@
 
 Một cấu trúc Binary Heap thỏa mãn 2 điều kiện sau:
 
-   * **Tính chất 1 - Binary** (**TC1**): Là một cây nhị phân đầy đủ ([complete binary tree](http://wcipeg.com/wiki/Tree#Binary_and_k-ary_trees))
+   * **Tính chất 1 - Binary** (**TC1**): Là một cây nhị phân hoàn chỉnh ([complete binary tree](http://wcipeg.com/wiki/Tree#Binary_and_k-ary_trees))
 
    * **Tính chất 2 - Heap** (**TC2**) Mỗi nút (node) trên cây đều chứa một nhãn lớn hơn hoặc bằng các con của nó (nếu có) và nhỏ hơn hoặc bằng nút cha (trừ nút gốc là và nó là nút lớn nhất).
 
@@ -60,14 +70,14 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
     * Nếu Binary Heap không rỗng thêm nó vào vị trí phải nhất ở của lớp đáy, nếu lớp đáy đã đủ (số phần tử đúng bằng $2^h$) thêm nút này vào lớp mới.
 
 * Vun đống từ dưới lên (bottom-up heapify):
-    * Việc thêm như trên sẽ đảm bảo được tính chất **TC1** cây nhị phân đầy đủ (complete binary tree) nhưng **TC2** có thể không được thỏa mãn.
+    * Việc thêm như trên sẽ đảm bảo được tính chất **TC1** cây nhị phân hoàn chỉnh (complete binary tree) nhưng **TC2** có thể không được thỏa mãn.
     * Nếu nút mới này nhỏ hơn nút cha của nó ta không cần phải làm gì thêm nữa.
     * Ngược lại nếu phần tử mới lớn hơn nút cha ta đổi chỗ 2 nút cho nhau, so sánh với nút cha mới đổi chỗ nếu nó lớn hơn nút cha cứ thế đến khi nó nhỏ hoặc bằng nút cha hoặc nó là gốc (không còn nút cha nào nữa).
 
 * **Độ phức tạp:**
    * Quá trình chọn vị trí cho nút chỉ mất $O(1)$
-   * Quá trình vun đống từ dưới lên (bottom-up heapify): ta có thể thấy số lần so sánh và đổi chỗ 2 phần tử không quá độ sâu $h$ của cây nhị phân hay ($\le log(N+1)$ với $N$ là số nút hiện có trên cây).
-   * Độ phức tạp của cả quá trình này là $O(logN)$
+   * Quá trình vun đống từ dưới lên (bottom-up heapify): ta có thể thấy số lần so sánh và đổi chỗ 2 phần tử không quá độ sâu $h$ của cây nhị phân hay ($\le \log(N+1)$ với $N$ là số nút hiện có trên cây).
+   * Độ phức tạp của cả quá trình này là $O(\log N)$
 
 ## 2.3. Xóa nút gốc khỏi cây
 
@@ -83,7 +93,7 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
     * Nếu cây chỉ có duy nhất nút gốc độ phức tạp là $O(1)$.
     * Nếu cây có $N$ nút:
         * Xóa nút phải nhất ở lớp sâu nhất khỏi cây có độ phức tạp $O(1)$
-        * Vun đống từ trên xuống (top-down heapify) cũng như bottom-up heapify không vượt quá độ sâu $h$ của cây nên có độ phức tạp là $O(logN)$
+        * Vun đống từ trên xuống (top-down heapify) cũng như bottom-up heapify không vượt quá độ sâu $h$ của cây nên có độ phức tạp là $O(\log N)$
 
 
 ## 2.4. Tăng, giảm nhãn của một nút
@@ -94,27 +104,27 @@ Binary Heap được dùng để cài đặt [priority queue](https://en.wikiped
     * Nếu nhãn tăng so với nhãn trước đó cần thực hiện bottom-up heapify như khi thêm nút
     * Nếu nhãn giảm đi so với nhãn trước đó cần thưc hiện top-down heapify như khi xóa nút.
 
-* **Độ phức tạp:** độ thức tạp của thao tác này bằng độ phức tạp của top-down heapify hoặc bottom-up heapify hay bằng $O(logN)$
+* **Độ phức tạp:** độ thức tạp của thao tác này bằng độ phức tạp của top-down heapify hoặc bottom-up heapify hay bằng $O(\log N)$
 
 
 ## 2.5. Xây đựng Binary Heap từ tập $N$ phần tử
 
 * Một cách đơn giản ta có thể thực hiện $N$ phép thêm nút. Nhưng có một kĩ thuật hiệu quả hơn để xây dựng binary heap được gọi là **bottom-up construction**.
-* **Bottom-up construction:** Kỹ thuật này yêu cầu xây dựng một cây nhị phân đầy đủ trước và thực hiện top-down heapify các nút trên cây theo tứ tự giảm dần độ cao của cây (từ các nút lá lên các nút cha và tiếp tục cho đến gốc). Chứng minh kết quả của cách xây dựng là một Binary Heap không phải là khó.
+* **Bottom-up construction:** Kỹ thuật này yêu cầu xây dựng một cây nhị phân hoàn chỉnh trước và thực hiện top-down heapify các nút trên cây theo tứ tự giảm dần độ cao của cây (từ các nút lá lên các nút cha và tiếp tục cho đến gốc). Chứng minh kết quả của cách xây dựng là một Binary Heap không phải là khó.
 
 * **Độ phức tạp:**
-   * Khi thực hiện $N$ bước thêm nút ta có thể thấy độ phức tạp là $O(log{1} + log{2} + ... + log{N}) = O(NlogN)$.
-   * Ở cách xây dựng thứ 2 ta thấy nếu một nút ở độ xâu $k$ nó sẽ mất không quá $h - k$ lần so sánh với nút con (nhắc lại $h$ là độ sâu của cây và số nút của cây $N < 2^{h+1}$) và một nửa số nút trên cây là lá và sẽ không phải so sánh với nút con nào cả, ta suy ra được:
-      * Ở độ sâu $k = h-1$ có $2^{h-1}$ nút số phép so sánh là $1 \* 2^{h-1} = 1/4 \* N$
-      * Ở độ sâu $k = h-2$ có $2^{h-2}$ nút số phép so sánh là $2 \* 2^{h-2} = 2/8 \* N$
-      * Ở độ sâu $k = h-3$ có $2^{h-3}$ nút số phép so sánh là $3 \* 2^{h-3} = 3/16 \* N$
+   * Khi thực hiện $N$ bước thêm nút ta có thể thấy độ phức tạp là $O(\log{1} + \log{2} + ... + \log{N}) = O(N\log N)$.
+   * Ở cách xây dựng thứ 2 ta thấy nếu một nút ở độ xâu $k$ nó sẽ mất không quá $h - k$ lần so sánh với nút con (nhắc lại số nút của cây $2^h \le N < 2^{h+1}$ nên độ sâu của cây $h \le \log_2 N$) và một nửa số nút trên cây là lá và sẽ không phải so sánh với nút con nào cả, ta suy ra được:
+      * Ở độ sâu $k = h-1$ có $2^{h-1}$ nút số phép so sánh là $1 \times 2^{h-1} = \frac{1}{4} \times N$
+      * Ở độ sâu $k = h-2$ có $2^{h-2}$ nút số phép so sánh là $2 \times 2^{h-2} = \frac{2}{8} \times N$
+      * Ở độ sâu $k = h-3$ có $2^{h-3}$ nút số phép so sánh là $3 \times 2^{h-3} = \frac{3}{16} \times N$
         ...
-      * Ở độ sâu $k = 0$ (gốc) có $1$ nút số phép so sánh là $h \* 1 = h/N \* N$
-      * Tổng hợp lại ta có: $1/4 \* N + 2/8 \* N + 3/16 \* N + ... + h/N \* N = N$ phép so sánh
+      * Ở độ sâu $k = 0$ (gốc) có $1$ nút số phép so sánh là $h \times 1 = \frac{h}{N} \times N$
+      * Tổng hợp lại ta có: $\frac{1}{4} \times N + \frac{2}{8} \times N + \frac{3}{16} \times N + ... + \frac{h}{N} \times N = N$ phép so sánh
 
 # 3. Câu hỏi thêm cho bạn đọc ##
 
-* Tại sao Binary Heap nên là một cây nhị phân đầy đủ **TC1** ?
+* Tại sao Binary Heap nên là một cây nhị phân hoàn chỉnh **TC1** ?
 
 * Nếu Heap không phải là một cây nhị phân mà là một cây tam phân, tứ phân, k-phân thì độ phức tạp của các thao tác sẽ thay đổi thế nào ?
 

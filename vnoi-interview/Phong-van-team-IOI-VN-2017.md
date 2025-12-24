@@ -1,3 +1,13 @@
+---
+title: Phỏng vấn team IOI Việt Nam 2017
+description: 
+published: true
+date: 2024-09-26T02:33:20.738Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:59:08.670Z
+---
+
 # Phỏng vấn team IOI Việt Nam 2017
 Vừa qua, đoàn IOI Việt Nam đã xuất sắc đem về cho Việt Nam những kết quả rực rỡ trong kì thi IOI 2017 tại Tehran. Sau đây là 4 khuôn mặt chắc chắn quen thuộc với mọi người trong cộng đồng CP Việt Nam:
 
@@ -83,7 +93,7 @@ Mỗi lần cảm thấy mệt mỏi, lười biếng, mình thường tạm ng�
 **Lâm**: Khi mà thất vọng thì thường mình sẽ đi ngủ, ngủ dậy xong là tự reset hết cảm xúc. Khi mà cảm thấy lười biếng mình sẽ kiếm mấy bài code max dài và lằng nhằng ra để code, rồi vừa code vừa chửi, tới lúc AC thì sẽ sung sướng và có động lực để học tiếp. Hoặc là mình sẽ mở hình Astolfo ra xem, động lực sẽ được auto refill.
 
 
-#####6. Điều gì mà các bạn cho là quan trọng NHẤT để có được thành công như ngày hôm nay (ex: kiên nhẫn, ký luật, đam mê....)?
+##### 6. Điều gì mà các bạn cho là quan trọng NHẤT để có được thành công như ngày hôm nay (ex: kiên nhẫn, ký luật, đam mê....)?
 
 
 **Tuấn**: Theo mình thì mình thấy đây chẳng phải thành công. Còn yếu tố quan trọng nhất để được Vàng IOI ? Theo mình thì Vàng IOI đã được chọn từ trước rồi, các bạn chỉ cần hiểu tai sao mình được thôi, tất cả là số cả rồi.
@@ -124,7 +134,7 @@ Mỗi lần cảm thấy mệt mỏi, lười biếng, mình thường tạm ng�
 **Quang**: Theo mình thì người học competitive programming sẽ có lợi ở chỗ xuất phát điểm cao hơn (đã nắm vững về tư duy lập trình, các cấu trúc dữ liệu cơ bản, có kinh nghiệm về debug, ...). Nhưng đây cũng là những thứ mà các bạn chưa từng học competitive programming có thể học được thông qua quá trình làm việc, tìm hiểu.
 
 **Lâm**: Mình chỉ thấy là dân CP thì sẽ có nhiều kinh nghiệm về code và debug hơn thôi.
-#####10. Dạo này rộ lên chuyện bàn luận về gà chọi. Các bạn có nghĩ mình là gà chọi ko? :)) các bạn suy nghĩ thế nào về quãng thời gian học đội tuyển?
+##### 10. Dạo này rộ lên chuyện bàn luận về gà chọi. Các bạn có nghĩ mình là gà chọi ko? :)) các bạn suy nghĩ thế nào về quãng thời gian học đội tuyển?
 **Tuấn**: Mình nghĩ mình không phải là Gà. Mình học Tin vì niềm đam mê yêu thích của mình. Kể cả thi có thọt, thì mình vẫn học tin thôi. Học đội tuyển cho ta nhiều kỉ niệm, trải nghiệm đáng nhớ mà ít ai được trải qua. Được toàn tâm toàn ý theo đuổi một giấc mơ, được sống bên những người bạn, người đồng hành cùng trang lứa. Đấy là luyện gà chọi ư ?
 
 **Nguyên**: Gà chọi quá ý chứ :)) Nhưng gà chọi thì có gì sai đâu. Ít nhất con gà chọi vẫn giỏi đặc biệt ở môn chọi. Có gì sai ở việc cố gắng giỏi ở một môn có ích cho tương lai chứ.
@@ -133,7 +143,7 @@ Mỗi lần cảm thấy mệt mỏi, lười biếng, mình thường tạm ng�
 
 **Lâm**: Mình không nghĩ mình là gà chọi. Thứ nhất là vì mình gà vkl :'( Thứ hai là nhà trường và gia đình cũng không đặt áp lực gì cho mình.
 
-#####11. Ngồi trong phòng thi VOI, V2, APIO với IOI có gì khác nhau? cảm giác nộp offline khác nộp online thế nào. Áp lực khi biết tất cả moi người xem điểm mình ? Việc thi hai ngày có ảnh hưởng gì đến tâm lý các anh
+##### 11. Ngồi trong phòng thi VOI, V2, APIO với IOI có gì khác nhau? cảm giác nộp offline khác nộp online thế nào. Áp lực khi biết tất cả moi người xem điểm mình ? Việc thi hai ngày có ảnh hưởng gì đến tâm lý các anh
 **Tuấn**: VOI 2016 là kì thi mà mình tuyệt vọng kinh khủng, vì chả biết làm gì cả. Nộp offline thì rõ là sợ, nên không có nhiều thời gian để nghĩ hay làm những thứ đột phá. Theo mình thì thấy là mình chả có áp lực gì cả, cứ vào thi là quên hết tất cả ấy mà, đâm đầu vào làm. Thế nhưng nộp online mình nghĩ có 2 chiều hướng : may mắn AC, tâm lý hứng lên nghĩ ra làm tiếp, AC tiếp, càng ngày càng hưng phấn hoặc nộp mãi vẫn 0 điểm, sửa đi sửa lại vẫn 0 điểm, càng ngày càng tuyệt vọng, thọt.
 
 **Nguyên**: Mỗi cái thi lại căng thẳng 1 kiểu khác nhau. Ở VOI thì lúc nào làm cũng phải đặc biệt cẩn thận, thiếu 1 kí tự là chết như chơi. Bài cũng không phải là dễ, càng không phải là dễ cắn. Vòng 2 thì khác một chút, chấm online mà lại chấm lẻ test nên dễ ăn điểm hơn. Dù vậy bài cũng lằng nhằng hơn, theo như mình thấy phần lớn là các bài khó chịu hơn là khó. Thêm nữa học tổng hợp bị bệnh ngộ thuật chuẩn nên nhiều lúc thọt vì không nghĩ ra thuật bậy bạ cắn test. APIO thì chắc là căng thẳng nhất, vì chấm subtask, lại có mỗi 1 ngày thi - không có cơ hội sửa sai. IOI thì chắc căng vì biết rằng tất cả đang theo dõi mình thi đấu? Hơn nữa, vào đọc đề IOI bao giờ cũng sẽ thấy bài rất khó, phải có tâm lí vững chãi, nghĩ dần dần mới có thể tiến đến số điểm mong muốn.
@@ -156,10 +166,10 @@ Giữa nộp offline và online thì mình chỉ thấy nộp online nó đỡ s
 
 Câu hỏi riêng
 =======================
-#####12. Câu này hỏi riêng cho Tuấn :)) gần đây có 1 số báo đưa tin là Tuấn chơi game rất nhiều, 2h mỗi ngày, điều này có đúng ko? :)) Tuấn nghĩ sao về việc chơi game?
+##### 12. Câu này hỏi riêng cho Tuấn :)) gần đây có 1 số báo đưa tin là Tuấn chơi game rất nhiều, 2h mỗi ngày, điều này có đúng ko? :)) Tuấn nghĩ sao về việc chơi game?
 **Tuấn**: Mình hiện tại chơi 2 game là Liên Minh Huyền Thoại và Candy Crush. Thực ra thì mình không chơi nhiều mà mình xem các giải đấu chuyên nghiệp thì nhiều, mỗi ngày tầm 1 tiếng thật. Còn chơi game thì tuỳ từng giai đoạn, nếu không phải thi thì mình chơi hàng ngày mỗi ngày 2 trận. Còn vào đội tuyển thì mình chỉ chơi vào ngày chủ nhật. Mình đã từng là con nghiện game hồi cấp 2, nên mình đã học được cách kiểm soát thời gian chơi của bản thân. Theo mình biết thì anh Phan Đức Nhật Minh hồi cấp 2 cũng đã từng chơi Võ Lâm Chi Mộng hết sức bá đạo . Theo mình chơi game là tốt nếu chơi hợp lý, vì có thể được chơi cùng bạn bè, được chửi nhau, khá là vui.
 
-#####13. Theo mình biết vào năm lớp 10 Quang đã tham dự kì thi học sinh giỏi quốc gia và đạt giải 3 và năm 11 cũng có kết quả tương tức nhưng lớp 12 lại vùng lên thủ khoa quốc gia và vào đội IOI. Điều này cũng là điều tuong tự với rating codeforces của Quang trong kì TST và APIO. Cho hỏi điều gì năm 12 đã làm Quang bức phá và đièu gì khiến Quang bị kẹt trong một khoảng thời gian dài như vậy ?
+##### 13. Theo mình biết vào năm lớp 10 Quang đã tham dự kì thi học sinh giỏi quốc gia và đạt giải 3 và năm 11 cũng có kết quả tương tức nhưng lớp 12 lại vùng lên thủ khoa quốc gia và vào đội IOI. Điều này cũng là điều tuong tự với rating codeforces của Quang trong kì TST và APIO. Cho hỏi điều gì năm 12 đã làm Quang bức phá và đièu gì khiến Quang bị kẹt trong một khoảng thời gian dài như vậy ?
 **Quang**: Theo mình tự nhận thấy thì trình độ mình tăng đều qua các năm, và tăng mạnh nhất kể từ lúc học TST (do trong quá trình đó thì mình học được rất nhiều từ các bạn trong đội tuyển). Ngoài ra thì may mắn cũng là một nhân tố ảnh hưởng không nhỏ trong các kì thi.
 
 Năm lớp 10 thì được giải ba quốc gia là nhờ vét hết tất cả các subtask nhỏ của tất cả các bài (chứ lúc đó mình còn gà lắm, không giải trọn vẹn bài nào hết). Năm lớp 11 thì mình đọc sai đề bài 4 nên tạch mất 6 điểm nên chỉ được giải ba (không bị cái đấy thì có lẽ mình đã được giải nhì). Năm lớp 12 thì mình nghĩ mình được thủ khoa có một phần do may mắn (mình nghĩ là khả năng của mình sẽ đủ để vào TST nhưng không nghĩ là sẽ được thủ khoa).
@@ -167,11 +177,11 @@ Năm lớp 10 thì được giải ba quốc gia là nhờ vét hết tất cả
 Việc rating Codeforces của mình tăng đột biến kể từ lúc học APIO (trong khi lúc học TST thọt tới nỗi xuống Div 2) thì… mình cũng không biết tại sao.
 Mà cũng kể từ lúc xuống Div 2 sau kì 406, mình đã đổi profile picture thành ảnh Marisa (nhân vật yêu thích trong game Touhou). Kể từ đó thì rating mình tăng liên tục hơn 500 điểm, gần đạt mức đỏ luôn. Có lẽ cô ấy đã đem lại sự may mắn cho mình.
 
-#####14. Câu hỏi cho bạn Nguyên, Bạn có nghĩ việc mình được vàng IOI năm ngoái đã phần nào đó đặt một áp lực lên bạn không ?
+##### 14. Câu hỏi cho bạn Nguyên, Bạn có nghĩ việc mình được vàng IOI năm ngoái đã phần nào đó đặt một áp lực lên bạn không ?
 **Nguyên**: Có chứ, ai mà chả thế. May mà có ngày 1 thọt để được mấy ngày đi chơi xả láng.
-#####15. Mình nghe đồn bạn đã trải qua nhiều cuộc friendzone, tỏ tình 10 lần thì 11 lần fail. Bạn có cảm thấy điều này là may mắn khi có thể tập trung ăn vàng IOI? Sau IOI bạn có định dùng vàng của mình để thay đổi tình trạng này ko, hay vẫn tiếp tục giữ vững phong độ để thêm nhiều thành tích khủng trong tương lai?
+##### 15. Mình nghe đồn bạn đã trải qua nhiều cuộc friendzone, tỏ tình 10 lần thì 11 lần fail. Bạn có cảm thấy điều này là may mắn khi có thể tập trung ăn vàng IOI? Sau IOI bạn có định dùng vàng của mình để thay đổi tình trạng này ko, hay vẫn tiếp tục giữ vững phong độ để thêm nhiều thành tích khủng trong tương lai?
 **Tuấn**: Bạn lấy thông tin ở đâu mà bảo mình bị friendzone nhiều như vậy. Theo mình thì vàng IOI cũng không thể đưa 2 người đến với nhau được. Còn mình thì đã có gấu rồi nhé. Mình thấy anh Phát vừa code vừa skype  mà thi vẫn khủng đấy thôi, việc có bạn gái mình nghĩ không ảnh hưởng gì đến việc học lắm.
-#####16. Bạn Lâm và Quang có thấy áp lực khi bản thân hai bạn là những người đầu tiên của trường, thành phố và tỉnh mình đi tham dự một kì thi lớn như vậy không ?
+##### 16. Bạn Lâm và Quang có thấy áp lực khi bản thân hai bạn là những người đầu tiên của trường, thành phố và tỉnh mình đi tham dự một kì thi lớn như vậy không ?
 **Quang**: Là người Cần Thơ đầu tiên dược dự thi IOI nên mình cũng mong muốn là người mang về tấm huy chương quốc tế môn Tin học đầu tiên cho Cần Thơ. Nhưng cũng chính vì vậy mà mình đã tự gây áp lực lên bản thân mình trong cả 2 ngày thi (dù Tuấn và Nguyên đã khuyên mình rằng mục đích chính của kì thi là giao lưu, không có huy chương thì cũng không ai ăn thịt mình). Giờ mới thấy lẽ ra mình không nên tự gây áp lực cho bản thân như vậy.
 
 **Lâm**: áp lực duy nhất của mình là huy chương càng thấp thì tiền thưởng càng ít, tiền thưởng ít thì khổ bố mẹ mình, thế thôi.

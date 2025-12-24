@@ -1,7 +1,17 @@
-# Bài toán [LUBENICA](https://oj.vnoi.info/problem/lubenica)
+---
+title: Bài toán LUBENICA
+description: 
+published: true
+date: 2024-09-19T04:05:51.348Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:03:30.226Z
+---
+
+# Bài toán LUBENICA
 
 ## Thuật toán
-Bài này có nhiều hướng giải, một trong số đó là sử dụng kỹ thuật [Heavy Light Decomposition](https://vnoi.info/wiki/algo/data-structures/heavy-light-decomposition.md), tuy nhiên có 1 cách làm đơn giản hơn cho bài này là sử dụng [LCA và RMQ](https://vnoi.info/wiki/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor)
+[Bài toán LUBENICA](https://oj.vnoi.info/problem/lubenica) có nhiều hướng giải, một trong số đó là sử dụng kỹ thuật [Heavy Light Decomposition](/algo/data-structures/heavy-light-decomposition.md). Tuy nhiên, do không có truy vấn cập nhật (xử lý offline) nên có một lời giải đơn giản hơn cho bài toán này sử dụng [LCA và RMQ](/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor)
 
 ## Giải bằng LCA  
 

@@ -1,8 +1,21 @@
-# Lý thuyết trò chơi
+---
+title: Trò chơi Nim & Định lý Sprague-Grundy
+description: 
+published: true
+date: 2025-03-24T17:58:11.411Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:03:49.943Z
+---
 
-Người viết: Nguyễn Nhật Minh Khôi
+# Trò chơi Nim & Định lý Sprague-Grundy
 
-Reviewer chính: Trần Quang Lộc, Hồ Ngọc Vĩnh Phát
+**Người viết:**
+- Nguyễn Nhật Minh Khôi
+
+**Reviewers**:
+- Trần Quang Lộc
+- Hồ Ngọc Vĩnh Phát
 
 Trong thực tế, có rất nhiều loại trò chơi khác nhau, tuy nhiên trong bài viết này, chúng ta sẽ chỉ giới hạn trong các **trò chơi tổ hợp cân bằng** vì độ phổ biến của nó trong lập trình thi đấu.
 

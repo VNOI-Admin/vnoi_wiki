@@ -1,3 +1,13 @@
+---
+title: Số học 1 - Modulo & gcd
+description: 
+published: false
+date: 2024-09-29T09:22:31.240Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:06:28.632Z
+---
+
 # Số học 1 - Modulo & gcd
 
 Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-1/) và 1 số bài viết trên Wikipedia
@@ -87,7 +97,7 @@ $GCD(4, 2) = GCD(2, 4 \% 2) = GCD(2, 0)$
 
 Vì $B=0$ nên $GCD(2,0)$ sẽ trả về giá trị 2.
 
-**Độ phức tạp của thuật toán:** $O(\log{max(A,B)})$.
+**Độ phức tạp của thuật toán:** $O(\log{min(A,B)})$.
 
 ## Thuật toán Euclid mở rộng (Extended Euclid Algorithm)
 

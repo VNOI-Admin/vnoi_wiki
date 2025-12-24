@@ -1,4 +1,14 @@
-# Số học 7 - Bao hàm - Loại trừ (Inclusion-Exclusion)
+---
+title: Bao hàm - Loại trừ (Inclusion-Exclusion)
+description: 
+published: true
+date: 2024-09-29T09:29:36.158Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:06:24.705Z
+---
+
+# Bao hàm - Loại trừ (Inclusion-Exclusion)
 
 Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-ii/)
 

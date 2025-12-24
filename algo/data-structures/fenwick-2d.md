@@ -1,3 +1,13 @@
+---
+title: Cây chỉ số nhị phân 2 chiều (BIT 2 chiều)
+description: 
+published: true
+date: 2025-01-31T09:50:13.074Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:01:02.159Z
+---
+
 # Cây chỉ số nhị phân 2 chiều (BIT 2 chiều)
 
 **Tác giả:**
@@ -320,7 +330,7 @@ void fakeAdd(int u, int v, int x){
 }
 
 void fakeQuery(int u, int v){
-    for(u; u <= n; u += u&(-u)){
+    for(u; u > 0; u -= u&(-u)){
         pos[u].push_back(v);
     }
 }

@@ -1,3 +1,13 @@
+---
+title: Shortest Path DAG và ứng dụng
+description: 
+published: true
+date: 2025-08-03T15:11:45.124Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:08:34.867Z
+---
+
 # Shortest Path DAG và ứng dụng
 **Người viết:** Nguyễn Đăng Quân - Đại học Công nghệ, Đại học Quốc gia Hà Nội
 
@@ -11,7 +21,7 @@ Cho đồ thị có hướng không chu trình gồm $n$ đỉnh và $m$ cung. V
 
 ### Thuật toán
 
-Bài toán trên khá quen thuộc với đa số mọi người, cách giải là sử dụng qui hoạch động trên [Thứ tự topo](https://vnoi.info/wiki/algo/graph-theory/topological-sort.md):
+Bài toán trên khá quen thuộc với đa số mọi người, cách giải là sử dụng qui hoạch động trên [Thứ tự topo](/algo/graph-theory/topological-sort.md):
 
 - Đầu tiên, các bạn sắp xếp các đỉnh theo thứ tự Topo: $v_1,v_2,\dots,v_n$.
 - Gọi $f(i)$ là số lượng đường đi từ $1$ tới $i$ trên đồ thị, ta có:
@@ -60,6 +70,8 @@ int main() {
 
   // Sau khi dfs xong, ta được thứ tự trong v là thứ tự ngược topo
   reverse(v + 1, v + nTopo + 1);
+  
+  f[1] = 1;
 
   /* Qui hoạch động trên DAG */
   for (int i = 1; i <= n; ++i)
@@ -134,7 +146,7 @@ Gọi $f(i,j)$ là độ dài đường đi **dài nhất** từ $i$ đến $j$ 
 - $f(i,j)=d(i,j)$ (Nếu tồn tại đường đi thì đó phải là đường đi ngắn nhất)
 
 Trước tiên, ta chứng minh đường đi xuất phát từ đỉnh $u$ đều là đường đi ngắn nhất.
-Giả sử nhận xét trên là sai, tức là tồn tại một đỉnh $v$ và đường đi $$u\rightarrow x_1 \rightarrow x_2 \rightarrow\dots\rightarrow x_k$$ mà $w(u,x_1)+w(x_1,x_2) + \dots + w(x_k,v)>d(u,v)$.
+Giả sử nhận xét trên là sai, tức là tồn tại một đỉnh $v$ và đường đi $u\rightarrow x_1 \rightarrow x_2 \rightarrow\dots\rightarrow x_k$ mà $w(u,x_1)+w(x_1,x_2) + \dots + w(x_k,v)>d(u,v)$.
 
 Theo đó:
 
@@ -153,8 +165,8 @@ Nếu tồn tại đường đi từ $i$ đến $j$, ta biết $d(u,i)<\infty$; 
 
 Mặt khác, theo [bất đẳng thức tam giác](https://sharmaeklavya2.github.io/theoremdep/nodes/graph-theory/shortest-paths/triangle-inequality.html):
 $$d(u,i)+d(i,j)\ge d(u,j)$$
-hay $$d(u,i)+d(i,j) \ge d(u,i)+f(i,j)$$
-suy ra $$d(i,j)\ge f(i,j)$$
+hay $d(u,i)+d(i,j) \ge d(u,i)+f(i,j)$
+suy ra $d(i,j)\ge f(i,j)$
 
 Dấu bằng phải xảy ra, hay $f(i,j)=d(i,j)$.
 Ta hoàn tất chứng minh.
@@ -169,7 +181,8 @@ Nếu đồ thị có chu trình chứa một đỉnh $v$ nào đó, ta có $d(v
 *Chứng minh:*
 Vì tồn tại một đường đi từ $i$ đến $j$ trên $S'_u$ nên theo tính chất 2: $d(u,i)+d(i,j)=d(u,i)+f(i,j)=d(u,j)$
 
-Xét một **đường đi ngắn nhất** từ $i$ đến $j$ không xuất hiện trong đồ thị: $$i\rightarrow x_1 \rightarrow x_2 \rightarrow \dots \rightarrow x_k \rightarrow j$$
+Xét một **đường đi ngắn nhất** từ $i$ đến $j$ không xuất hiện trong đồ thị: 
+$$i\rightarrow x_1 \rightarrow x_2 \rightarrow \dots \rightarrow x_k \rightarrow j$$
 
 Theo bất đẳng thức tam giác:
 $$
@@ -181,7 +194,8 @@ d(u,j)-d(u,x_k)\le d(x_k,j)
 \end{cases}
 $$
 Cộng về với vế ta được:
-$$d(u,j)-d(u,i)\le d(i,x_1)+d(x_1,x_2)+\dots+d(x_k,j)$$ $$\Leftrightarrow d(i,j)\le d(i,x_1)+d(x_1,x_2)+\dots+d(x_k,j)$$
+$$d(u,j)-d(u,i)\le d(i,x_1)+d(x_1,x_2)+\dots+d(x_k,j)$$ 
+$$\Leftrightarrow d(i,j)\le d(i,x_1)+d(x_1,x_2)+\dots+d(x_k,j)$$
 
 Mặt khác ta có đường đi trên là đường đi ngắn nhất nên $d(i,j)=w(i,x_1)+w(x_1,x_2)+\dots+w(x_k,j)$
 Theo đó:
@@ -370,7 +384,7 @@ Bài toán có thể xem tại [https://vjudge.net/problem/Gym-406204L](https://
 Bài toán yêu cầu với mỗi cạnh, đếm số cặp đỉnh $(u,v)$ mà $d(u,v)$ tăng lên khi xóa cạnh đó. Vậy cạnh này có điều kiện gì mà ảnh hưởng được đến đường đi ngắn nhất từ $u$ đến một đỉnh khác? Rõ ràng cạnh này phải thuộc một đường đi ngắn nhất xuất phát từ đỉnh $u$!
 
 Ta dựng ra Shortest Path DAG $S'_u$; gọi $cnt(i,j)$ là số đường đỉ từ đỉnh $i$ đến đỉnh $j$.
-Nếu xóa cung $i\rightarrow j$ làm $d(u,v)$ tăng thì mọi đường đi từ $u$ đến $v$ phải thông qua cung này, tức là: $$cnt(u,i)\times cnt(j,v)=cnt(u,v)_{(*)}$$
+Nếu xóa cung $i\rightarrow j$ làm $d(u,v)$ tăng thì mọi đường đi từ $u$ đến $v$ phải thông qua cung này, tức là: $cnt(u,i)\times cnt(j,v)=cnt(u,v)_{(*)}$
 
 Từ nhận xét ở bài _DELETE_ ta có thể xóa bỏ các cung sao cho mỗi đỉnh trên $S'_u$ có bậc tối đa là 1 và đường đi ngắn nhất từ $u$ đến các đỉnh là không đổi.
 

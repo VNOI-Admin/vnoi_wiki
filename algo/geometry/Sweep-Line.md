@@ -1,3 +1,13 @@
+---
+title: Thuật toán đường quét
+description: 
+published: true
+date: 2024-08-28T16:37:44.553Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:02:47.450Z
+---
+
 # Thuật toán đường quét
 
 **Nguời viết:**
@@ -37,9 +47,9 @@ Với hai điểm $P(x_P, y_P)$ và $Q(x_Q, y_Q)$:
 Các đường màu đỏ, xanh lam, vàng biểu diễn khoảng cách Manhattan có cùng độ dài $(12)$, trong khi đường màu xanh lục biểu diễn khoảng cách Euclid với độ dài $6 * \sqrt2 \approx 8.48$.
 </center>
 
-Như đã đề cập ở phía trên, khi ứng dụng thuật toán đường quét, việc quét qua tất cả các điểm trên mặt phẳng là bất khả thi, và chúng ta cần sử dụng một số kĩ thuật hay cấu trúc dữ liệu khác - chẳng hạn, *[kĩ thuật hai con trỏ](https://vnoi.info/wiki/algo/basic/two-pointers.md), [kĩ thuật nén số](https://vnoi.info/wiki/algo/trick/Roi-rac-hoa-va-ung-dung.md), [cây phân đoạn](https://vnoi.info/wiki/algo/data-structures/segment-tree-basic.md), [cây Fenwick (cây chỉ số nhị phân)](https://vnoi.info/wiki/algo/data-structures/fenwick.md)* - để lọc ra và xử lí các điểm thiết yếu cần quan tâm. Do đó, độc giả nên nắm kĩ các chủ đề liên quan nêu trên trước khi đọc bài viết.
+Như đã đề cập ở phía trên, khi ứng dụng thuật toán đường quét, việc quét qua tất cả các điểm trên mặt phẳng là bất khả thi, và chúng ta cần sử dụng một số kĩ thuật hay cấu trúc dữ liệu khác - chẳng hạn, *[kĩ thuật hai con trỏ](/algo/basic/two-pointers.md), [kĩ thuật nén số](/algo/trick/Roi-rac-hoa-va-ung-dung.md), [cây phân đoạn](/algo/data-structures/segment-tree-basic.md), [cây Fenwick (cây chỉ số nhị phân)](/algo/data-structures/fenwick.md)* - để lọc ra và xử lí các điểm thiết yếu cần quan tâm. Do đó, độc giả nên nắm kĩ các chủ đề liên quan nêu trên trước khi đọc bài viết.
 
-Ngoài ra, bài viết gốc có đề cập tới bài toán bao lồi, nhưng chủ đề này sẽ không được đề cập trong bài viết này này bởi VNOI Wiki đã có một bài viết khá hoàn thiện ở [đây](https://vnoi.info/wiki/translate/wcipeg/Convex-Hull.md).
+Ngoài ra, bài viết gốc có đề cập tới bài toán bao lồi, nhưng chủ đề này sẽ không được đề cập trong bài viết này này bởi VNOI Wiki đã có một bài viết khá hoàn thiện ở [đây](/translate/wcipeg/Convex-Hull.md).
 
 # Bài toán tìm cặp điểm gần nhất
 
@@ -70,10 +80,10 @@ Giả sử chúng ta đã xử lí xong $N - 1$ điểm đầu tiên và khoản
 >
 > Từ $P$, vẽ $8$ hình vuông xung quanh, mỗi hình vuông có cạnh đúng bằng $d/2$, như hình dưới (điểm màu xanh là $P$).
 >
-<center>
-
+><center>
+>
 > ![](/uploads/Sweep-Line_img2.png =300x)
-</center>
+></center>
 >
 > Hiển nhiên tất cả các điểm từ $1$ đến $N - 1$ đều nằm về phía bên trái của điểm đang xét do ta duyệt danh sách theo thứ tự tăng dần về hoành độ. Nhận xét rằng từ $P$, ta không cần quan tâm đến những điểm $T$ không nằm trong $8$ hình vuông bên trên do khi đó khoảng cách giữa $P$ và $T$ lớn hơn $d$.
 >
@@ -469,10 +479,10 @@ Giới hạn:
 >
 > Xét một điểm $P$ cho trước bất kì. Lấy gốc toạ độ tại $P$. Chia mặt phẳng toạ độ thành $8$ phần bằng nhau như hình dưới. Với mỗi phần tám, nối $P$ với một điểm bất kì trong phần tám đó có khoảng cách Manhattan gần nhất với $P$ (nếu có). Chẳng hạn trong ví dụ ở hình dưới, ta sẽ nối $P$ với $Q$.
 >
-<center>
-
+><center>
+>
 > ![](/uploads/Sweep-Line_img5.png)
-</center>
+></center>
 >
 > Thực hiện thao tác trên với tất cả các điểm được cho, ta thu được một đồ thị $G$ có $O(n)$ cạnh. Ta sẽ chứng minh rằng cây khung nhỏ nhất trên đồ thị $G$ là một đáp án cho bài toán.
 >
@@ -513,7 +523,7 @@ Dùng con trỏ 1 để duyệt các điểm trong $L$. Gọi điểm đang đư
 
 Nhờ có tính chất được đề cập trong bổ đề 3, ta nhận thấy vòng lặp trên sẽ cho chúng ta đáp án chính xác. Cả ba con trỏ đều "thăm" mỗi điểm trong $L$ hoặc $R$ đúng một lần nên độ phức tập của mỗi "tầng" trong cây đệ quy của chúng ta sẽ là $O(n)$. Do ta sẽ có $O(\log{n})$, độ phức tạp của thuật toán trên là $O(n \log{n})$.
 
-<!-- Trước hết, chúng ta sẽ chia bài toán này thành những bài toán nhỏ hơn. Bài toán cây khung nhỏ nhất trong đồ thị bình thường (bạn có thể tìm hiểu ở [đây](https://vnoi.info/wiki/algo/graph-theory/minimum-spanning-tree.md)) có một số thuật toán để giải (như Prim chẳng hạn). Prim có thể giúp chúng ta giải quyết bài toán trong độ phức tạp $O((E + N)\log N)$ với $E$ cạnh. Tuy vậy, nếu chúng ta tận dụng được yếu tố hình học, ta có thể đưa số cạnh về $O(N)$, tức là thuật toán sẽ gần như là $O(N\log N)$.
+<!-- Trước hết, chúng ta sẽ chia bài toán này thành những bài toán nhỏ hơn. Bài toán cây khung nhỏ nhất trong đồ thị bình thường (bạn có thể tìm hiểu ở [đây](/algo/graph-theory/minimum-spanning-tree.md)) có một số thuật toán để giải (như Prim chẳng hạn). Prim có thể giúp chúng ta giải quyết bài toán trong độ phức tạp $O((E + N)\log N)$ với $E$ cạnh. Tuy vậy, nếu chúng ta tận dụng được yếu tố hình học, ta có thể đưa số cạnh về $O(N)$, tức là thuật toán sẽ gần như là $O(N\log N)$.
 
 Trên thực tế, với mỗi điểm $P$, ta có thể xét những điểm gần $P$ nhất trong những góc phần tám của mặt phẳng (xem hình dưới). Hình vẽ mô tả việc xử lí trong 1 góc của hình: Tây - Tây Bắc. Giả sử điểm $Q$ là điểm gần nhất, với đường nét đứt là những điểm có khoảng cách Manhattan cùng với $Q$, và $R$ là một điểm bất kì khác nằm trong góc phần tám đó. Nếu $PR$ là một cạnh trong cây khung, chúng ta có thể bỏ nó đi, bởi $PQ$ hoặc $QR$ sẽ cho ra cây khung tốt hơn.
 

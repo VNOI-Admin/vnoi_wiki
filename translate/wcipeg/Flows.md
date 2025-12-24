@@ -1,3 +1,13 @@
+---
+title: Bài toán luồng cực đại
+description: 
+published: true
+date: 2024-10-17T15:04:56.291Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:08:11.964Z
+---
+
 # Bài toán luồng cực đại
 
 **Nguồn:** [WCIPEG](http://wcipeg.com/wiki/Maximum_flow)
@@ -144,4 +154,4 @@ Ta cũng có thể sử dụng thuật toán luồng để giải các bài toá
 - [VNOJ - ASSIGN1](https://oj.vnoi.info/problem/assign1/)
 - [VNOJ - KWAY](https://oj.vnoi.info/problem/kway/)
 - [VNOJ - STNODE](https://oj.vnoi.info/problem/stnode/)
-- [codeforces - flows](http://codeforces.com/problemset/tags/flows)
+- [codeforces - flows](https://codeforces.com/problemset?tags=flows)

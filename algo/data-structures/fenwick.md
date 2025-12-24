@@ -1,3 +1,13 @@
+---
+title: Cây chỉ số nhị phân (Binary Indexed Tree)
+description: 
+published: true
+date: 2025-06-26T05:28:54.895Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:01:07.165Z
+---
+
 # **Cây chỉ số nhị phân (Binary Indexed Tree)**
 
 **Tác giả:**
@@ -43,7 +53,7 @@ int getSum(int p) {
 - Độ phức tạp khi update: $\mathcal{O}(1)$.
 - Độ phức tạp khi truy vấn: $\mathcal{O}(p) = \mathcal{O}(N)$. <!--đpt tương đương với số ptu của mảng-->
 - Có $Q$ truy vấn, vì thế độ phức tạp là $\mathcal{O}(Q + Q \cdot N) = \mathcal{O}(Q \cdot N)$
-- Nếu chưa biết về độ phức tạp tính toán, các bạn có thể đọc ở [đây](https://vnoi.info/wiki/translate/topcoder/Computational-Complexity-Section-1.md).
+- Nếu chưa biết về độ phức tạp tính toán, các bạn có thể đọc ở [đây](/algo/basic/computational-complexity.md).
 
 Đối chiếu giới hạn, cách "ngây thơ" trên tỏ ra chậm chạp, không đủ để xử lí yêu cầu bài toán.
 
@@ -115,7 +125,7 @@ int bit[N];
 
 Để tìm tổng các phần tử trong đoạn $[1 \ldots n]$, ta sẽ lần lượt đi qua tất cả bit của $n$ theo giá trị tăng dần. Mỗi lần đi qua $n$, ta sẽ cộng $bit[n]$ vào kết quả hiện tại, rồi trừ đi bit nhỏ nhất của $n$ khỏi chính nó; quá trình lặp lại cho đến khi $n = 0$.
 
-Để lấy bit nhỏ nhất của một số $n$, ta có thể sử dụng công thức `n & ~(n - 1)` được đề cập tại bài tại [đây](https://vnoi.info/wiki/translate/topcoder/fun-with-bits.md#t%C3%A1ch-t%E1%BB%ABng-bit/). Khi thao tác bit với số âm, C++ sử dụng phép bù 2: `~n = - n - 1`; vì vậy ta có phép biến đổi: `n & ~(n - 1) = n & (-(n - 1) - 1) = n & (-n)` dễ sử dụng hơn.
+Để lấy bit nhỏ nhất của một số $n$, ta có thể sử dụng công thức `n & ~(n - 1)` được đề cập tại bài tại [đây](/translate/topcoder/fun-with-bits.md#t%C3%A1ch-t%E1%BB%ABng-bit/). Khi thao tác bit với số âm, C++ sử dụng phép bù 2: `~n = - n - 1`; vì vậy ta có phép biến đổi: `n & ~(n - 1) = n & (-(n - 1) - 1) = n & (-n)` dễ sử dụng hơn.
 
 ```c++
 int getSum(int p) {
@@ -161,7 +171,7 @@ Ta thay đổi nội dung bài toán ban đầu như sau:
 - $2$ $u$: tìm giá trị hiện tại của $A[u]$.
 - $3$ $l$ $r$: tính tổng các phần tử từ $A[l]$, $A[l + 1]$, $A[l + 2]$, ..., $A[r]$.
 
-Ta có thể cài đặt "ngây thơ" bằng cách áp dụng hàm `update()` trên tất cả phần tử cần được cập nhật, độ phức tạp khi này là $\mathcal{O}(Q \cdot N \log N)$. Dĩ nhiên cách này quá chậm, đòi hỏi ta cần tìm một cách cập nhật đoạn một cách nhanh hơn để giữ nguyên độ phức tạp $\mathcal{O}(N \log N)$.
+Ta có thể cài đặt "ngây thơ" bằng cách áp dụng hàm `update()` trên tất cả phần tử cần được cập nhật, độ phức tạp khi này là $\mathcal{O}(Q \cdot N \log N)$. Dĩ nhiên cách này còn chậm hơn việc không sử dụng Fenwick Tree, đòi hỏi ta cần tìm một cách cập nhật đoạn một cách nhanh hơn để giữ được độ phức tạp $\mathcal{O}(Q \log N)$.
 
 ## Truy vấn từng phần tử
 Mảng hiệu (difference array) là một loại mảng lưu hiệu giữa các phần tử liền kề với nhau.
@@ -303,4 +313,4 @@ int rangeSum(int l, int r) {
 - [VNOJ - NKINV](https://oj.vnoi.info/problem/nkinv)
 - [VNOJ - INCVN](https://oj.vnoi.info/problem/incvn)
 
-VNOI Online Judge có phân loại riêng các bài tập về BIT, các bạn có thể tham khảo tại [đây](https://oj.vnoi.info/problems/?type=14&point_start=&point_end=).
+VNOI Online Judge có phân loại riêng các bài tập về BIT, các bạn có thể tham khảo tại [đây](https://oj.vnoi.info/problems/?type=68&point_start=&point_end=).

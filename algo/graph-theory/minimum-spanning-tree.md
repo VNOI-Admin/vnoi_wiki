@@ -1,3 +1,13 @@
+---
+title: Bài toán tìm cây khung nhỏ nhất trong đồ thị
+description: 
+published: true
+date: 2024-09-06T03:14:08.755Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:03:33.615Z
+---
+
 # Bài toán tìm cây khung nhỏ nhất trong đồ thị
 
 **Tác giả**: 
@@ -9,8 +19,8 @@ Vương Hoàng Long - Đại học Quốc Gia Singapore
 
 ## Một số kiến thức cần biết
 Vì bài viết nói về cây khung nhỏ nhất, các bạn nên đọc một số kiến thức liên quan đến cây trước mà mình liệt kê dưới đây vì đây là những kiến thức rất thường gặp trong những bài tập về cây khung, trong khuôn khổ bài viết mình sẽ không giải thích lại về những kiến thức này nữa:
-* [Lowest Common Accessor](https://vnoi.info/wiki/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor.md#b%C3%A0i-to%C3%A1n-lowest-common-ancestor-lca)
-* [Disjoin Set Union](https://vnoi.info/wiki/algo/data-structures/disjoint-set.md)
+* [Lowest Common Accessor](/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor.md#b%C3%A0i-to%C3%A1n-lowest-common-ancestor-lca)
+* [Disjoin Set Union](/algo/data-structures/disjoint-set.md)
 
 **Lưu ý:** Toàn bộ phần code phía dưới sử dụng cho `C++11` trở lên, các bạn lưu ý kiểm tra trình biên dịch của mình.
 
@@ -106,7 +116,7 @@ Ví dụ các bước giải bài toán tìm cây khung nhỏ nhất với thu�
 ![](https://i.imgur.com/gAZe9Uq.png)
 -->
 
-Để thực hiện thao tác kiểm tra cạnh và hợp nhất 2 cây một cách nhanh chóng, ta sử dụng cấu trúc **[Disjoint Set](https://vnoi.info/wiki/algo/data-structures/disjoint-set.md)**, dưới đây là đoạn code dùng để cài đặt thuật toán:
+Để thực hiện thao tác kiểm tra cạnh và hợp nhất 2 cây một cách nhanh chóng, ta sử dụng cấu trúc **[Disjoint Set](/algo/data-structures/disjoint-set.md)**, dưới đây là đoạn code dùng để cài đặt thuật toán:
 ```cpp
 /*input
 4 4
@@ -203,22 +213,22 @@ Trong chứng minh này, mình có quy ước sử dụng một số kí hiệu:
 * $A - B$ : tập hợp các phần tử thuộc $A$ mà không thuộc $B$
 
 Giờ cùng đi vào chi tiết chứng minh nhé (づ◔ ͜ʖ◔)づ
-- Gọi $T$ là cây khung đầu ra của thuật toán Kruskal và $T^\*$ là một cây khung nhỏ nhất, ta sẽ chứng minh tổng trọng số trên $T$ và $T^\*$ bằng nhau : $c(T)$ = $c(T^\*)$
-- Nếu $c(T)$ = $c(T^\*)$ ⇒ hiển nhiên đúng
-- Nếu $c(T)$ ≠ $c(T^\*)$ gọi $(u, v)$ là cạnh $\in$ $T$ mà $\notin$ $T^\*$ hay thuộc $T - T^\*$. Gọi $S$ là thành phần liên thông chứa u tại thời điểm $(u, v)$ được thêm vào $T$.
+- Gọi $T$ là cây khung đầu ra của thuật toán Kruskal và $T^*$ là một cây khung nhỏ nhất, ta sẽ chứng minh tổng trọng số trên $T$ và $T^*$ bằng nhau : $c(T)$ = $c(T^*)$
+- Nếu $c(T)$ = $c(T^*)$ ⇒ hiển nhiên đúng
+- Nếu $c(T)$ ≠ $c(T^*)$ gọi $(u, v)$ là cạnh $\in$ $T$ mà $\notin$ $T^*$ hay thuộc $T - T^*$. Gọi $S$ là thành phần liên thông chứa u tại thời điểm $(u, v)$ được thêm vào $T$.
     **Nhận xét:** 
     Dễ thấy nếu xóa cạnh $(u, v)$ trên $T$ thì sẽ tách thành 2 **thành phần liên thông** $S$ và $G - S$. 
     Đây là một **lát cắt**, ta có thể thêm bất cứ cạnh nào nối giữa 2 **thành phần liên thông** này để tạo thành một cây mới ⇒ $(u, v)$ $\in$ lát cắt $(S, G - S)$.
-    > **Định nghĩa :** Một lát cắt $s$ - $t$ là một tập con của 𝐸 mà khi loại bỏ những cạnh này thì không còn đường đi từ $s$ tới $t$. ([Bài toán lát cắt hẹp nhất](https://vnoi.info//wiki/translate/wcipeg/Flows#bài-toán-lát-cắt-hẹp-nhất-minimun-s-t-cut))
+    > **Định nghĩa :** Một lát cắt $s$ - $t$ là một tập con của 𝐸 mà khi loại bỏ những cạnh này thì không còn đường đi từ $s$ tới $t$. ([Bài toán lát cắt hẹp nhất](/translate/wcipeg/Flows#bài-toán-lát-cắt-hẹp-nhất-minimun-s-t-cut))
    
     Ta sẽ chứng minh $(u, v)$ thuộc **lát cắt nhỏ nhất** $(S, G - S)$
     - Nếu tồn tại đường đi trọng số $e$ từ $S$ đến $G - S$ có trọng số nhỏ hơn $(u, v)$, thuật toán kruskal sẽ chọn $e$ thay vì $(u, v)$ ⇒ vô lý.
     ⇒ *Ta khẳng định $(u, v)$ có **trọng số nhỏ nhất** trong các cạnh từ $S$ đến $(G - S)$.* **(1)**
-    - Mặt khác, bởi vì $T^\*$ là 1 cây khung nhỏ nhất nên  có một đường từ $S$ tới $G - S$, gọi cạnh thuộc đường này là $(x, y)$. Xét cây khung :
-    ${T^\*}' = T^\* \cup (u, v) - (x, y)$ ⇒ $c({T^\*}') = c(T^\*) + c(u, v) - c(x, y)$
-    - Do theo **(1)** có:  $c(u, v) ≤ c(x, y)$ nên $c({T^\*}') ≤ c(T^\*)$ mà $T^\*$ là cây khung nhỏ nhất ⇒ $c({T^\*}')$ = $c(T^\*)$ và ${T^\*}'$ cũng là **cây khung nhỏ nhất** ⇒ $|T - {T^\*}'|$ = $|T - T^\*| - 1$
-    ***Ý nghĩa :** Như vậy ta đã biến đổi được **cây khung nhỏ nhất** ${T^\*}$ thành cây khung ${T^\*}'$ cũng là **cây khung nhỏ nhất** mà làm giảm số cạnh khác nhau của $T$ và ${T^\*}$ đi 1 cạnh*
-    - Lặp lại cách chứng minh với mỗi cạnh thuộc $T - {T^\*}'$, ta sẽ biến đổi được ${T^\*}'$ thành ${T}$, hay nói cách khác đã đã biến đổi cây khung nhỏ nhất ban đầu về cây khung đầu ra của Kruskal : $c(T) = c(T^\*)$.
+    - Mặt khác, bởi vì $T^*$ là 1 cây khung nhỏ nhất nên  có một đường từ $S$ tới $G - S$, gọi cạnh thuộc đường này là $(x, y)$. Xét cây khung :
+    ${T^*}' = T^* \cup (u, v) - (x, y)$ ⇒ $c({T^*}') = c(T^*) + c(u, v) - c(x, y)$
+    - Do theo **(1)** có:  $c(u, v) ≤ c(x, y)$ nên $c({T^*}') ≤ c(T^*)$ mà $T^*$ là cây khung nhỏ nhất ⇒ $c({T^*}')$ = $c(T^*)$ và ${T^*}'$ cũng là **cây khung nhỏ nhất** ⇒ $|T - {T^*}'|$ = $|T - T^*| - 1$
+    ***Ý nghĩa :** Như vậy ta đã biến đổi được **cây khung nhỏ nhất** ${T^*}$ thành cây khung ${T^*}'$ cũng là **cây khung nhỏ nhất** mà làm giảm số cạnh khác nhau của $T$ và ${T^*}$ đi 1 cạnh*
+    - Lặp lại cách chứng minh với mỗi cạnh thuộc $T - {T^*}'$, ta sẽ biến đổi được ${T^*}'$ thành ${T}$, hay nói cách khác đã đã biến đổi cây khung nhỏ nhất ban đầu về cây khung đầu ra của Kruskal : $c(T) = c(T^*)$.
 
 **Đánh giá độ phức tạp thuật toán:** 
 Gọi $n$ là số đỉnh, $m$ là số cạnh của đồ thị
@@ -242,7 +252,7 @@ Thuật toán bao gồm các bước sau:
     *  Xét tất cả các đỉnh $v$ kề $u$, cập nhật $D_v = min(D_v, w_{u,v})$ với $w_{u,v}$ là trọng số cạnh $u-v$. Nếu $D_v$ được cập nhật theo $w_{u,v}$ thì đánh dấu $trace_v = u$.
     *  Thêm cạnh $u-trace[u]$ vào tập cạnh thuộc cây khung nhỏ nhất.
     
-Mặc dù không bắt buộc, các bạn có thể đọc chứng minh tính đúng đắn thuật toán của Wiki tại [đây](https://vi.wikipedia.org/wiki/Thu%E1%BA%ADt_to%C3%A1n_Prim#Ch%E1%BB%A9ng_minh).
+Mặc dù không bắt buộc, các bạn có thể đọc chứng minh tính đúng đắn thuật toán của Wikipedia tại [đây](https://vi.wikipedia.org/wiki/Thu%E1%BA%ADt_to%C3%A1n_Prim#Ch%E1%BB%A9ng_minh).
 
 Khi hoàn thành xong $n$ bước trên, ta thu được cây khung nhỏ nhất của đồ thị gồm $n$ đỉnh và $n - 1$ cạnh.
 
@@ -584,7 +594,7 @@ Cho đồ thị vô hướng có trọng số $G$ gồm $n$ đỉnh và $m$ cạ
 - Kết luận : 
     -  Các **cạnh cầu** sẽ nằm trong **mọi** cây khung nhỏ nhất của đồ thị
     -  Các cạnh còn lại **không phải cạnh cầu** sẽ thuộc **một số** cây khung nhỏ nhất
-    - **Xem thêm** : [Tìm cạnh cầu](https://vnoi.info/wiki/algo/graph-theory/Depth-First-Search-Tree.md#tìm-cạnh-cầu)
+    - **Xem thêm** : [Tìm cạnh cầu](/algo/graph-theory/Depth-First-Search-Tree.md#tìm-cạnh-cầu)
 
 #### Độ phức tạp
 - Đầu tiên, ta phải sắp xếp lại các cạnh theo trọng số tăng dần mất đpt $O(m\log{m})$. Sau đó, ta phải duy trì 1 đồ thị hiện tại trong quá trình lần lượt thêm các nhóm cạnh vào đồ thị, ở đây ta sử dụng **Disjoint Set** để kiểm tra 2 đỉnh nối 2 TPLT nào cũng như thêm các cạnh vào đồ thị hiện tại.

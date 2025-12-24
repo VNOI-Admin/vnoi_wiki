@@ -1,3 +1,13 @@
+---
+title: Áp dụng bất ngờ của đạo hàm
+description: 
+published: true
+date: 2024-09-23T13:49:52.937Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:08:31.143Z
+---
+
 # Áp dụng bất ngờ của đạo hàm
 **Người viết:** Nguyễn Thành Trung - Singapore
 
@@ -45,9 +55,9 @@ Ví dụ: trong ảnh mình vẽ hàm $F(x)$ màu đỏ là tổng của 3 hàm 
 
 ![](/uploads/derivative-application_img1.png)
 
-Do đó ta có thể sử dụng [tìm kiếm tam phân](https://vnoi.info/wiki/translate/emaxx/Tim-kiem-tam-phan-Ternary-Search.md) để tìm giá trị nhỏ nhất của $F(x)$.
+Do đó ta có thể sử dụng [tìm kiếm tam phân](/translate/emaxx/Tim-kiem-tam-phan-Ternary-Search.md) để tìm giá trị nhỏ nhất của $F(x)$.
 
-$\Rightarrow$ đến đây ta đã có thuật toán với độ phức tạp $O(N*log(max_H))$.
+$\Rightarrow$ đến đây ta đã có thuật toán với độ phức tạp $O(N\log(max_H))$.
 
 # Lời giải $O(N+max_H)$
 
@@ -58,15 +68,20 @@ $$
 f'(x) = f(x) - f(x-1)$$
 
 Áp dụng công thức trên vào bài toán ban đầu: ta tính đạo hàm của hàm chi phí:
-$$
+<center>
+  
+$
 f'_i(x) = \left\lbrace \begin{array}{rl}
 -C(i) & \text{nếu }x \leq H(i) \\
 C(i) & \text{nếu }x > H(i)
-\end{array} \right.$$.
+\end{array} \right.$.
+</center>
 
 Cũng theo tính chất của đạo hàm:
-
-$F'(x) = \sum_{i=1..n}{f'_i(x)}$
+<center>
+  
+$F'(x) = \sum\limits_{i=1}^n {f'_i(x)}$
+</center>
 
 Ví dụ: hàm màu tím là đạo hàm của hàm màu xanh
 
@@ -78,7 +93,7 @@ $f''_i(x) = 2*C(i)$ nếu $x = H(i+1)$, ngược lại $f''_i(x) = 0$.
 
 Cũng theo tính chất của đạo hàm:
 
-$F''(x) = \sum_{i=1..n}{f''_i(x)}$
+$F''(x) = \sum\limits_{i=1}^n{f''_i(x)}$
 
 Hàm $f''_i(x)$ chính là mấu chốt để giải bài toán này: hàm $f''_i(x)$ chỉ khác $0$ tại đúng 1 điểm, do đó ta dễ dàng "tính" được $f''_i(x)$ trong $O(1)$.
 

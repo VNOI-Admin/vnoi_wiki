@@ -1,3 +1,13 @@
+---
+title: Kiểm tra số nguyên tố
+description: 
+published: true
+date: 2024-11-09T16:31:49.812Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:59:33.778Z
+---
+
 # Kiểm tra số nguyên tố
 **Người viết:** Nguyễn Anh Bảo - Đại học Bách Khoa Hà Nội
 
@@ -13,7 +23,7 @@ Một số tự nhiên $n$ được gọi là số nguyên tố khi và chỉ kh
 
 Ví dụ: $2,3,5,101$ là các số nguyên tố. $0,1,10,12$ không là số nguyên tố.
 
-Trong bài viết này, chúng ta sẽ tập trung vào việc kiểm tra **một** số nguyên dương có phải số nguyên tố hay không. Để kiểm tra tính nguyên tố của nhiều số nguyên trên một đoạn $\left[a,b\right]$, bạn đọc có thể tham khảo bài viết [Số nguyên tố và sàng Eratosthenes](https://vnoi.info/wiki/translate/he/Number-Theory-2.md).
+Trong bài viết này, chúng ta sẽ tập trung vào việc kiểm tra **một** số nguyên dương có phải số nguyên tố hay không. Để kiểm tra tính nguyên tố của nhiều số nguyên trên một đoạn $\left[a,b\right]$, bạn đọc có thể tham khảo bài viết [Sàng nguyên tố](/algo/algebra/prime_sieve.md).
 
 # 1. Thuật toán ngây thơ
 
@@ -336,9 +346,11 @@ Do đó, ta có phiên bản thuật toán (độ chính xác $100\%$) của ph�
 ```cpp
 bool MillerRabin(long long n)
 {
-    if (n == 2 || n == 3 || n == 5 || n == 7)
-        return true;
-    if (n < 11)
+    static vector<int> checkSet = {2,3,5,7,11,13,17,19,23,29,31,37};
+    for (auto a : checkSet)
+        if (n == a)
+            return true;
+    if (n < 41)
         return false;
 
     long long k = 0, m = n - 1;
@@ -348,7 +360,6 @@ bool MillerRabin(long long n)
         k++;
     }
 
-    static vector<int> checkSet = {2,3,5,7,11,13,17,19,23,29,31,37};
     for (auto a : checkSet)
         if (!test(a, n, k, m))
             return false;

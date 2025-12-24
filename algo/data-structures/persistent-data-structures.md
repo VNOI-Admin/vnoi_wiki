@@ -1,3 +1,15 @@
+---
+title: Persistent Data Structures
+description: 
+published: true
+date: 2025-02-19T11:22:49.233Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:01:39.630Z
+---
+
+**Kính mời độc giả tham khảo bài viết mới của VNOI tại [đây](/algo/data-structures/persistent-data-structures-2).**
+
 # Persistent Data Structures
 
 **Tác giả:** Nguyễn *RR* Thành Trung
@@ -24,10 +36,10 @@ Trong một số cách cài đặt, Persistent Data Structures còn có thể ch
 
 Cần hiểu rằng Persistent Data Structures không phải là một loại CTDL mới. Nó là một số kĩ năng tổng quát giúp thêm thông tin về lịch sử thay đổi vào CTDL thông thường một cách hiệu quả. Ví dụ:
 
-- IT + Persistent --> Persistent IT
-- BIT + Persistent --> Persistent BIT
+- IT + Persistent $\rightarrow$ Persistent IT
+- BIT + Persistent $\rightarrow$ Persistent BIT
 
-Tại sao lại là **một cách hiệu quả**? Bởi vì ta hoàn toàn có thể có một Persistent Data Structures bằng cách trâu bò: khi cập nhật, ta tạo một bản sao hoàn toàn mới của CTDL, thay đổi một số dữ liệu trên nó và lưu lại. Như vậy ta luôn có được một thuật toán với độ phức tạp $O(Q \* N \* T)$ và bộ nhớ $O(Q \* N)$, với $Q$ là số thao tác cần thực hiện, và $N$ là độ lớn của CTDL, và $T$ là thời gian để thực hiện thao tác trên CTDL.
+Tại sao lại là **một cách hiệu quả**? Bởi vì ta hoàn toàn có thể có một Persistent Data Structures bằng cách trâu bò: khi cập nhật, ta tạo một bản sao hoàn toàn mới của CTDL, thay đổi một số dữ liệu trên nó và lưu lại. Như vậy ta luôn có được một thuật toán với độ phức tạp $O(Q \cdot N \cdot T)$ và bộ nhớ $O(Q \cdot N)$, với $Q$ là số thao tác cần thực hiện, và $N$ là độ lớn của CTDL, và $T$ là thời gian để thực hiện thao tác trên CTDL.
 
 Trong các phần dưới đây, mình sẽ trình bày về 2 kĩ thuật thông thường của Persistent Data Structures.
 
@@ -35,7 +47,7 @@ Trong các phần dưới đây, mình sẽ trình bày về 2 kĩ thuật thôn
 
 ## Tư tưởng
 
-Quay trở lại bài toán. Chúng ta biết rằng mỗi thao tác update trên IT chỉ mất $O(logN)$. Điều này tương đương với việc mỗi thao tác update chỉ làm thay đổi $O(logN)$ nút trên cây. Như vậy ta hoàn toàn có thể lưu lại tất cả các thay đổi trên tất cả các nút trong $O(Q*logN)$.
+Quay trở lại bài toán. Chúng ta biết rằng mỗi thao tác update trên IT chỉ mất $O(\log N)$. Điều này tương đương với việc mỗi thao tác update chỉ làm thay đổi $O(\log N)$ nút trên cây. Như vậy ta hoàn toàn có thể lưu lại tất cả các thay đổi trên tất cả các nút trong $O(Q\log N)$.
 
 Từ đó, ta rút ra được một tư tưởng cài đặt thuật toán:
 
@@ -123,7 +135,7 @@ Giải thích:
 
 ## Phân tích
 
-- Cách cài đặt Persistent Data Structures trong mục này rất hiệu quả. Nó hoàn toàn không làm tăng thêm độ phức tạp (persistent IT có độ phức tạp mỗi thao tác là $O(logN)$), và bộ nhớ cần thêm là tối ưu: $O(Q \* logN)$.
+- Cách cài đặt Persistent Data Structures trong mục này rất hiệu quả. Nó hoàn toàn không làm tăng thêm độ phức tạp (persistent IT có độ phức tạp mỗi thao tác là $O(\log N)$), và bộ nhớ cần thêm là tối ưu: $O(Q \log N)$.
 - Tuy nhiên, cách cài đặt này không dễ áp dụng với những CTDL khác. Chẳng hạn sẽ rất khó để cài đúng BIT với phương pháp này. Ở mục tiếp theo, mình sẽ trình bày một phương pháp cài đặt khác có thể dùng cho BIT, tuy nhiên có độ phức tạp lớn hơn.
 
 
@@ -187,7 +199,7 @@ int get(int time, int x, int y) {
 
 ## Phân tích:
 
-- Độ phức tạp cho mỗi thao tác update không thay đổi (ví dụ với BIT, vẫn là $O(logN)$). Nhưng độ phức tạp cho mỗi thao tác query bị tăng lên $logN$ (ví dụ với BIT, độ phức tạp cho mỗi thao tác là $O(log^2(N)$) thay vì $O(logN)$.
+- Độ phức tạp cho mỗi thao tác update không thay đổi (ví dụ với BIT, vẫn là $O(\log N)$). Nhưng độ phức tạp cho mỗi thao tác query bị tăng lên $\log N$ (ví dụ với BIT, độ phức tạp cho mỗi thao tác là $O(\log^2(N)$) thay vì $O(\log N)$).
 - Tuy nhiên, cách cài đặt này tổng quát hơn, dễ dàng được áp dụng cho nhiều CTDL khác nhau, ví dụ cả BIT và IT.
 
 # 4. Retroactive Data Structures

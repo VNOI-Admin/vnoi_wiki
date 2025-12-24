@@ -1,3 +1,13 @@
+---
+title: Thuật toán Knuth-Morris-Pratt (KMP)
+description: 
+published: true
+date: 2025-06-10T11:36:35.352Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:08:15.540Z
+---
+
 # Thuật toán Knuth-Morris-Pratt (KMP)
 
 **Nguồn**: [wcipeg](http://wcipeg.com/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)
@@ -14,7 +24,7 @@ Thuật toán được xây dựng dựa vào quan sát rằng một xâu con ch
 
 Cụ thể hơn, ta muốn tính toán trước cách xâu $S$ tự khớp với chính nó. Nhờ vậy thuật toán sẽ *không quay nhìn lại* và chỉ duyệt qua $T$ một lần duy nhất.
 
-Cùng với quá trình tiền xử lí tuyến tính $O(\|T\|)$ (với $\|T\|$ là độ dài xâu $T$), thuật toán có thời gian chạy tuyến tính.
+Cùng với quá trình tiền xử lí tuyến tính $O(|T|)$ (với $|T|$ là độ dài xâu $T$), thuật toán có thời gian chạy tuyến tính.
 
 ## Cảm hứng
 

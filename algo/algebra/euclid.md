@@ -1,3 +1,13 @@
+---
+title: Thuật toán Euclid
+description: 
+published: true
+date: 2025-06-01T11:06:26.518Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:59:25.099Z
+---
+
 # Thuật toán Euclid
 
 **Tác giả:**
@@ -14,7 +24,7 @@
 ### Một số ký hiệu toán học sử dụng trong bài viết
 - Cho hai số nguyên $a$ và $b$ $(b \neq 0)$. Nếu tồn tại số nguyên $q$ sao cho $a = bq$ thì ta nói $a$ chia hết cho $b$ (ký hiệu $a\ \vdots\ b$) hoặc $b$ là ước của $a$ (ký hiệu $b\mid a$).
 - Cho ba số nguyên $a$, $b$ và $m$ $(m \neq 0)$. Nếu tồn tại một số nguyên $r$ sao cho $a = mq_1 + r$ và $b = mq_2 + r$ với $q_1, q_2$ là các số nguyên thì ta nói $a$ đồng dư với $b$ theo modulo $m$. Ký hiệu là $a \equiv b \pmod m$.
-- Ký hiệu $\text{log}_a(b)$ được hiểu là logarit cơ số $a$ của $b$. Bài viết này sẽ sử dụng $\text{log}(x)$ để thay cho $\text{log}_2(x)$.
+- Ký hiệu $\log_a(b)$ được hiểu là logarit cơ số $a$ của $b$. Bài viết này sẽ sử dụng $\log(x)$ để thay cho $\log_2(x)$.
 
 ### Ước chung lớn nhất
 Đây là khái niệm tương đối quen thuộc với chúng ta.
@@ -25,7 +35,7 @@ $$\gcd(a, b) = \max\{d \in \mathbb{N}^* : (d \mid a),  (d\mid b)\}$$
 
 Về mặt toán học, với $k \neq 0$ thì $\gcd(0, k) = k$, và $\gcd(0, 0)$ không xác định. Tuy nhiên, để lập trình tiện lợi ta quy ước $\gcd(0, 0) = 0$.
 
-Định nghĩa ƯCLN cũng có thể mở rộng cho số nguyên. Khi đó $\gcd(a, b) = \gcd(\|a\|, \|b\|)$.
+Định nghĩa ƯCLN cũng có thể mở rộng cho số nguyên. Khi đó $\gcd(a, b) = \gcd(|a|, |b|)$.
 
 Có một vài cách để tìm ƯCLN của hai số $a$ và $b$. Cách đơn giản nhất là ... duyệt từng số tự nhiên $d$ một đến $\min\{a, b\}$ để kiểm tra điều kiện $d\mid a$ và $d\mid b$. Ngoài ra, trong toán học, ta cũng sử dụng phương pháp phân tích thành thừa số nguyên tố để tìm ƯCLN. Phương pháp này không hiệu quả lắm khi lập trình. Thay vào đó, chúng ta sẽ sử dụng thuật toán Euclid.
 
@@ -34,8 +44,8 @@ Thuật toán này được trình bày trong tác phẩm "Cơ sở" (Elements) 
 
 Thuật toán được thực hiện bằng cách liên tục áp dụng công thức sau cho tới khi ra kết quả:
 $$\gcd(a, b) = \begin{cases}
-   a &\style{font-family:Segoe UI}{\text{, nếu }} b = 0\\
-   \gcd(b, a \text{ mod } b) &\style{font-family:Segoe UI}{\text{, trong trường hợp còn lại }}
+   a &\text{ nếu } b = 0\\
+   \gcd(b, a \text{ mod } b) &\text{ nếu } b \neq 0
 \end{cases}$$
 
 ### Chứng minh
@@ -101,7 +111,7 @@ int gcd(int a, int b)
 - Lúc này, ít nhất một trong hai số là lẻ. Liên tục chia số chẵn cho $2$ để nó trở thành số lẻ, sau đó áp dụng $(a, b) = (b, a - b)$. Lặp lại bước trên tới khi một trong hai số là $0$.
 - Nhân kết quả (tạm gọi là $ans$) với $shift$, vì ta đã chia cả hai số này cho $shift$, vì rõ ràng $(shift, ans) = 1$.
 
-Thuật toán cải tiến trên sẽ thực hiện chia $\text{log}(a) + \text{log}(b)$ lần trong trường hợp tệ nhất. Do vậy, độ phức tạp của thuật vẫn không đổi và là $O(\text{log}(a, b))$.
+Thuật toán cải tiến trên sẽ thực hiện chia $\log(a) + \log(b)$ lần trong trường hợp tệ nhất. Do vậy, độ phức tạp của thuật vẫn không đổi và là $O(\log \min(a, b))$.
 
 ### Vài chú ý
 - Thư viện `algorithm` của C++ có hỗ trợ hàm `__gcd(a, b)` để tìm ước chung lớn nhất của hai số $a$ và $b$, cũng sử dụng thuật Euclid. Kể từ phiên bản `C++17`, thư viện `numeric` hỗ trợ thêm hàm `gcd(a, b)` với mục đích tương tự. Các hàm có sẵn này có thể được sử dụng để code ngắn gọn.
@@ -130,7 +140,7 @@ Các số $x, y$ thoả mãn đẳng thức trên luôn tồn tại theo bổ đ
 
 <details>
 <summary> Chứng minh </summary>
-<p>
+  
 Xét trường hợp $a = b = 0$. Với quy ước $(0, 0) = 0$ đã nói tới ở trên, mọi giá trị nguyên của $x, y$ đều thoả mãn đẳng thức $ax + by = 0$. Bây giờ ta sẽ giải quyết bài toán với $a, b$ không đồng thời bằng $0$.
 
 Rõ ràng, luôn tồn tại các giá trị $x, y$ để $ax + by > 0$. Gọi $d'$ là số nguyên dương nhỏ nhất thoả mãn $d' = ax' + by'$ (với $x', y'$ là các số nguyên). Ta chứng minh rằng $d'$ là ƯCLN của $a$ và $b$.
@@ -157,10 +167,9 @@ $$\begin{align}
 Suy ra $c \mid d'$. Vì $d'$ dương và khác $c$ nên $c < d'$.
 
 Vậy $d'$ là ƯCLN của $a$ và $b$. Bổ đề được chứng minh.
-</p>
 </details>
 
-Ứng dụng trực tiếp của thuật toán này là các phương trình Diophantus, sẽ được thảo luận ở phần sau.
+Ứng dụng trực tiếp của thuật toán này là các phương trình Diophantine, sẽ được thảo luận ở phần sau.
 
 ### Mô tả thuật toán
 Xét bài toán với hai số ban đầu là $a = A$ và $b = B$. Gọi $d$ là ƯCLN của $A$ và $B$.
@@ -205,16 +214,16 @@ int extEuclid(int a, int b, int& x, int& y)
 ```
 
 ### Độ phức tạp
-Thuật toán Euclid mở rộng thực tế chỉ là thêm một vài bước tính toán vào thuật toán Euclid thường nên độ phức tạp vẫn là $O(\text{log}(\text{min}\{a, b\}))$.
+Thuật toán Euclid mở rộng thực tế chỉ là thêm một vài bước tính toán vào thuật toán Euclid thường nên độ phức tạp vẫn là $O(\log\min(a, b))$.
 
-## Phương trình Diophantus tuyến tính hai ẩn
-Phương trình Diophantus (Diophantine function) tuyến tính hai ẩn có dạng như sau:
+## Phương trình Diophantine tuyến tính hai ẩn
+Phương trình Diophantine (Diophantine function) tuyến tính hai ẩn có dạng như sau:
 
 $$ax + by = c \  (a, b, c \in \mathbb{Z})$$
 
 Phương trình trên có vô số nghiệm $(x, y)$ thực (trừ khi $a = b = 0, c \neq 0$, khi đó phương trình vô nghiệm). Tuy nhiên, ta chỉ quan tâm đến các nghiệm nguyên của phương trình.
 
-Để cho ngắn gọn, bài viết sẽ sử dụng cụm từ "phương trình Diophantus" để chỉ phương trình Diophantus tuyến tính hai ẩn.
+Để cho ngắn gọn, bài viết sẽ sử dụng cụm từ "phương trình Diophantine" để chỉ phương trình Diophantine tuyến tính hai ẩn.
 
 *Bài tập áp dụng trực tiếp*: [CEQU](https://www.spoj.com/problems/CEQU/)
 
@@ -229,28 +238,27 @@ Bây giờ ta chỉ xét các trường hợp $a \neq 0, b \neq 0$.
 **Lưu ý**: Phần dưới đây không thực sự liên quan tới thuật toán để giải bài này, đồng thời kết quả cũng khá phức tạp và không phải thứ chúng ta cần lúc này. Bạn đọc cân nhắc trước khi xem.
 <details>
 <summary> Tìm nghiệm tổng quát bằng phương pháp số học </summary>
-<p>
+
 Từ $ax + by = c$ ta rút ra:
 
-$$ax \equiv c \ (\text{mod } b)$$
+$$ax \equiv c \pmod b$$
 
 Vế trái và modulo của đồng dư thức trên cùng chia hết cho $d = \gcd(a, b)$. Do vậy, $d\mid  c$. Nếu điều ngược lại xảy ra, phương trình vô nghiệm.
 
 Chia hai vế và modulo của đồng dư thức cho $d$ được:
 
-$$\frac{a}{d} \times x \equiv \frac{c}{d} \ \left(\text{mod } \dfrac{b}{d}\right)$$
+$$\frac{a}{d} \times x \equiv \frac{c}{d} \ \left(\bmod \dfrac{b}{d}\right)$$
 
 Vì $(\frac{a}{d}, \frac{b}{d}) = 1$ nên tồn tại nghịch đảo modulo $\frac{b}{d}$ của $\frac{a}{d}$. Nhân hai vế của đồng dư thức với giá trị này được:
 
-$$x \equiv \frac{c}{d} \times \left(\dfrac{a}{d}\right) ^{-1} \ \left(\text{mod } \dfrac{b}{d}\right)$$
+$$x \equiv \frac{c}{d} \times \left(\dfrac{a}{d}\right) ^{-1} \ \left(\bmod \dfrac{b}{d}\right)$$
 
 Do đó họ các nghiệm của phương trình là:
 
 $$\begin{cases}
-	x = \frac{b}{d} \times k + \frac{c}{d} \times \gamma &\left(k, \gamma \in \mathbb{Z}, \frac{a}{d} \times \gamma \equiv 1 \ \left(\text{mod } \dfrac{b}{d}\right)\right) \\
+	x = \frac{b}{d} \times k + \frac{c}{d} \times \gamma &\left(k, \gamma \in \mathbb{Z}, \frac{a}{d} \times \gamma \equiv 1 \ \left(\bmod \dfrac{b}{d}\right)\right) \\
 	y = \frac{c - ax}{b}
 \end{cases}$$
-</p>
 </details>
 
 #### Tìm nghiệm bằng thuật toán
@@ -287,7 +295,7 @@ $$\begin{cases}
 	y = y_0 - k \times \frac{a}{d}
 \end{cases} \ (k \in \mathbb{Z})$$
 
-Chốt lại, để tìm nghiệm của một phương trình Diophantus, ta tìm các hệ số $x', y'$ từ thuật toán Euclid mở rộng, rồi từ các hệ số này áp dụng vào các công thức trên để tính ra kết quả.
+Chốt lại, để tìm nghiệm của một phương trình Diophantine, ta tìm các hệ số $x', y'$ từ thuật toán Euclid mở rộng, rồi từ các hệ số này áp dụng vào các công thức trên để tính ra kết quả.
 
 ### Cài đặt
 Đoạn chương trình sau tìm **một** nghiệm nguyên của phương trình $ax + by = c$, với $a, b \neq 0$:
@@ -328,7 +336,7 @@ pair <int, int> diophantineSolve(int a, int b, int c)
 ```
 
 ### Một số bài toán liên quan
-#### Đếm số nghiệm của phương trình Diophantus trong một khoảng cho trước
+#### Đếm số nghiệm của phương trình Diophantine trong một khoảng cho trước
 *Bài tập áp dụng trực tiếp*: [SGU 106](https://codeforces.com/problemsets/acmsguru/problem/99999/106)
 
 **Tóm tắt đề bài**: Đếm số cặp số nguyên $x, y$ thoả mãn:
@@ -340,7 +348,7 @@ $\begin{cases}
 
 Các trường hợp có $a = 0$ hoặc $b = 0$ là tầm thường. Ta chỉ xét $a \neq 0$ và $b \neq 0$.
 
-Ở phần trước, ta đã có công thức nghiệm tổng quát của các phương trình Diophantus từ một nghiệm bất kỳ:
+Ở phần trước, ta đã có công thức nghiệm tổng quát của các phương trình Diophantine từ một nghiệm bất kỳ:
 
 $\begin{cases}
 	x = x_0 + k \times \frac{b}{d} \\
@@ -363,18 +371,18 @@ Dễ thấy nghiệm nhỏ nhất khi $k\times\frac{b - a}{d}$ nhỏ nhất. Tu�
 *Bài tập áp dụng*: [Euclid Problem](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045). Ở bài này $c = d$.
 
 ## Nghịch đảo modulo
-Số tự nhiên $\gamma$ được gọi là **nghịch đảo modulo** theo modulo $m$ của một số tự nhiên $a$ nếu $a\gamma \equiv 1 \ (\text{mod } m)$. Ký hiệu là $a^{-1} \ (\text{mod } m)$.
+Số tự nhiên $\gamma$ được gọi là **nghịch đảo modulo** theo modulo $m$ của một số tự nhiên $a$ nếu $a\gamma \equiv 1 \pmod M$. Ký hiệu là $a^{-1} \pmod M$.
 
-Ví dụ: $3 \equiv 7^{-1} \ (\text{mod } 10)$
+Ví dụ: $3 \equiv 7^{-1} \pmod 10$
 
 Không phải số tự nhiên nào cũng có nghịch đảo modulo; chẳng hạn, không có nghịch đảo modulo $4$ của $2$.
 
-Xét phương trình Diophantus $ax + by = 1$. Khi phương trình có nghiệm $(x_0, y_0)$, ta có:
+Xét phương trình Diophantine $ax + by = 1$. Khi phương trình có nghiệm $(x_0, y_0)$, ta có:
 
 $ax_0 + by_0 = 1\\
 \Rightarrow ax_0 = 1 - by_0\\
-\Rightarrow ax_0 \equiv 1 \ (\text{mod } b)\\
-\Rightarrow x_0 \equiv a^{-1} \ (\text{mod } b)$
+\Rightarrow ax_0 \equiv 1 \pmod b\\
+\Rightarrow x_0 \equiv a^{-1} \pmod b$
 
 Ta thấy nghiệm $x$ của phương trình là nghịch đảo modulo $b$ của $a$. Qua đó ta cũng thấy, nghịch đảo modulo chỉ tồn tại khi và chỉ khi $(a, b) = 1$.
 
@@ -384,7 +392,7 @@ $$\text{C}^k_n = \frac{n!}{k!\times (n - k)!} \equiv n!\times (k!\times (n - k)!
 
 (Lưu ý rằng công thức trên chỉ đúng nếu $k!\times (n - k)!$ nguyên tố cùng nhau với $M$ với mọi $k, n$ thoả mãn dữ liệu của đề)
 
-Khi modulo $M$ là số nguyên tố, để tiện lợi ta thường dùng định lý Fermat nhỏ để suy ra $x^{-1} \equiv x^{M - 2} \ (\text{mod } M)$ rồi dùng luỹ thừa nhanh để tính. Còn nếu $M$ không nguyên tố, ta lại áp dụng thuật toán Euclid mở rộng để tìm nghịch đảo modulo qua phương trình $a\gamma + My = 1$.
+Khi modulo $M$ là số nguyên tố, để tiện lợi ta thường dùng định lý Fermat nhỏ để suy ra $x^{-1} \equiv x^{M - 2} \pmod M$ rồi dùng luỹ thừa nhanh để tính. Còn nếu $M$ không nguyên tố, ta lại áp dụng thuật toán Euclid mở rộng để tìm nghịch đảo modulo qua phương trình $a\gamma + My = 1$.
 
 ## Bài tập áp dụng
 - [UVA - Gift Dilemma](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628)

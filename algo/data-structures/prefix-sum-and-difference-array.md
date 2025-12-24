@@ -1,3 +1,13 @@
+---
+title: Mảng cộng dồn và mảng hiệu
+description: 
+published: true
+date: 2024-10-28T01:44:11.525Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:01:43.014Z
+---
+
 # Mảng cộng dồn và mảng hiệu
 
 **Tác giả:**
@@ -301,7 +311,9 @@ Ta có thể mở rộng mảng cộng dồn và mảng hiệu để thao tác t
 
 ### Mảng cộng dồn hai chiều
 
-Cho mảng hai chiều $A$ có kích thước $m \times n$ (chỉ số hàng và cột đầu tiên đều là 1), mảng cộng dồn $S(A)$ được dựng theo công thức sau: $$S_{i,j}=\displaystyle \sum_{t_i\,=\,1}^{i} \sum_{t_j\,=\,1}^{j} A_{t_i,t_j}$$
+Cho mảng hai chiều $A$ có kích thước $m \times n$ (chỉ số hàng và cột đầu tiên đều là 1), mảng cộng dồn $S(A)$ được dựng theo công thức sau: 
+
+$$S_{i,j}=\displaystyle \sum_{t_i\,=\,1}^{i} \sum_{t_j\,=\,1}^{j} A_{t_i,t_j}$$
 
 Các phần tử trong mảng cộng dồn lưu tổng của toàn bộ phần tử chứa trong hình chữ nhật $[1, i] \times [1, j]$.
 Điểm khác biệt so với mảng cộng dồn 1 chiều ở đây là sự lược bỏ của hằng số $C$, ta ngầm quy ước: $S_{0,x} = S_{y,0} = 0$ với $x, y$ nguyên không âm khi dựng mảng cộng dồn.
@@ -360,7 +372,8 @@ Phần chứng minh công thức trên xin được nhường lại cho bạn đ
 
 ### Mảng cộng dồn ba chiều
 
-Giả sử ta có mảng $A$ trong không gian 3 chiều với kích thước $m \times n \times p$, ta dựng mảng $S(A)$ theo quy tắc sau: $$S_{i, j, k}=\displaystyle \sum_{t_i\,=\,1}^{i} \sum_{t_j\,=\,1}^{j} \sum_{t_k\,=\,1}^{k} A_{t_i,t_j,t_k}$$
+Giả sử ta có mảng $A$ trong không gian 3 chiều với kích thước $m \times n \times p$, ta dựng mảng $S(A)$ theo quy tắc sau: 
+$$S_{i, j, k}=\displaystyle \sum_{t_i\,=\,1}^{i} \sum_{t_j\,=\,1}^{j} \sum_{t_k\,=\,1}^{k} A_{t_i,t_j,t_k}$$
 
 Công thức sau được sử dụng để dựng mảng cộng dồn 3 chiều:
 
@@ -383,7 +396,7 @@ $$
 \end{align*}
 $$
 
-Hai công thức trên được xây dựng thông qua phương pháp bao hàm - loại trừ. Bạn đọc có thể tham khảo bài viết [Bao hàm - Loại trừ](https://vnoi.info/wiki/translate/he/Number-Theory-7.md) trên VNOI Wiki để hiểu rõ hơn lý do có được công thức trên.
+Hai công thức trên được xây dựng thông qua phương pháp bao hàm - loại trừ. Bạn đọc có thể tham khảo bài viết [Bao hàm - Loại trừ](/translate/he/Number-Theory-7.md) trên VNOI Wiki để hiểu rõ hơn lý do có được công thức trên.
 
 Ta cũng có thể áp dụng phương pháp này để mở rộng cho các mảng $n$-chiều. Tuy nhiên, do số lượng bài toán liên quan đến mảng trong không gian từ 4 chiều trở lên là cực hiếm, mảng cộng dồn trong không gian này gần như không có ứng dụng thực tiễn. Vì thế, bài viết xin giới hạn lại tại mảng cộng dồn trong không gian 3 chiều trở xuống.
 
@@ -470,7 +483,7 @@ $$
 
 ![](https://i.imgur.com/jO0h9zp.png)
 
-Hình trên minh họa những vị trí mà ta cần cập nhật trên mảng hiệu. Tương tự mảng cộng dồn, phương pháp [bao hàm - loại trừ](https://vnoi.info/wiki/translate/he/Number-Theory-7.md) được áp dụng để đưa đến kết luận này.
+Hình trên minh họa những vị trí mà ta cần cập nhật trên mảng hiệu. Tương tự mảng cộng dồn, phương pháp [bao hàm - loại trừ](/translate/he/Number-Theory-7.md) được áp dụng để đưa đến kết luận này.
 
 ## Mở rộng sang mảng động
 
@@ -481,9 +494,9 @@ Có hai dạng bài toán liên quan đến mảng cộng dồn và mảng hiệ
 - **Dạng 1:** Cập nhật giá trị của $A_i$ hoặc tính tổng của $i$ phần tử đầu tiên.
 - **Dạng 2:** Cập nhật toàn bộ giá trị từ $A_i$ đến $A_j$ $(i \le j)$ hoặc cho biết giá trị hiện tại của $A_i$.
 
-Nếu bài toán chỉ xử lý một trong hai dạng nói trên, ta có thể áp dụng cấu trúc dữ liệu [Binary Indexed Tree](https://vnoi.info/wiki/algo/data-structures/fenwick.md) để giải quyết các truy vấn trên. Độ phức tạp của từng truy vấn sẽ phụ thuộc vào số chiều của mảng, thí dụ, thao tác trên mảng 1D sẽ cho độ phức tạp $\mathcal{O}(\log n)$ còn trên mảng 2D sẽ là $\mathcal{O}(\log^2 n)$.
+Nếu bài toán chỉ xử lý một trong hai dạng nói trên, ta có thể áp dụng cấu trúc dữ liệu [Binary Indexed Tree](/algo/data-structures/fenwick.md) để giải quyết các truy vấn trên. Độ phức tạp của từng truy vấn sẽ phụ thuộc vào số chiều của mảng, thí dụ, thao tác trên mảng 1D sẽ cho độ phức tạp $\mathcal{O}(\log n)$ còn trên mảng 2D sẽ là $\mathcal{O}(\log^2 n)$.
 
-Trong một số bài toán yêu cầu xử lý kết hợp 2 dạng (cập nhật đoạn và tính tổng đoạn), ta thường áp dụng [Segment Tree](https://vnoi.info/wiki/algo/data-structures/segment-tree-extend.md) có lazy propagation (cập nhật lười). Mặc dù có chung độ phức tạp, cách cài đặt này thường khó hơn, có thời gian chạy lâu hơn và dùng nhiều bộ nhớ hơn so với cài đặt Binary Indexed Tree. Nếu ta làm việc trên mảng 1 chiều, ta cũng có thể biến đổi hệ thức giữa mảng hiệu và mảng cộng dồn để cài đặt trực tiếp BIT làm việc trên các truy vấn này. Bạn đọc có thể tham khảo thêm cách cài đặt này tại [đây](https://vnoi.info/wiki/algo/data-structures/fenwick.md#truy-v%E1%BA%A5n-tr%C3%AAn-%C4%91o%E1%BA%A1n).
+Trong một số bài toán yêu cầu xử lý kết hợp 2 dạng (cập nhật đoạn và tính tổng đoạn), ta thường áp dụng [Segment Tree](/algo/data-structures/segment-tree-extend.md) có lazy propagation (cập nhật lười). Mặc dù có chung độ phức tạp, cách cài đặt này thường khó hơn, có thời gian chạy lâu hơn và dùng nhiều bộ nhớ hơn so với cài đặt Binary Indexed Tree. Nếu ta làm việc trên mảng 1 chiều, ta cũng có thể biến đổi hệ thức giữa mảng hiệu và mảng cộng dồn để cài đặt trực tiếp BIT làm việc trên các truy vấn này. Bạn đọc có thể tham khảo thêm cách cài đặt này tại [đây](/algo/data-structures/fenwick.md#truy-v%E1%BA%A5n-tr%C3%AAn-%C4%91o%E1%BA%A1n).
 
 ## Bài tập
 

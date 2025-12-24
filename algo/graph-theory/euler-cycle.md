@@ -1,3 +1,13 @@
+---
+title: Đường đi - Chu trình Euler
+description: 
+published: true
+date: 2025-02-12T04:21:04.350Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:03:13.830Z
+---
+
 # Đường đi - Chu trình Euler
 
 **Nguồn:** [Eulerian path - Wikipedia](https://en.wikipedia.org/wiki/Eulerian_path) và một số nguồn khác
@@ -258,7 +268,7 @@ Giả sử đồ thị vô hướng tồn tại đường đi Euler xuất phát
 
 Qua phần chứng minh trên, ta có thể thấy nếu có thuật toán tìm chu trình Euler thì hoàn toàn có thể dễ dàng sử dụng để tìm đường đi Euler nên trong phần này chúng ta sẽ tập trung vào thuật toán tìm chu trình Euler.
 
-Hai thuật toán tìm chu trình Euler được biết đến rộng rãi là thuật toán Fluery và thuật toán Hierholzer. Bài viết sẽ tập trung vào thuật toán Hierholzer do tính phổ biến và độ hiệu quả của thuật toán này so với thuật toán Fluery.
+Hai thuật toán tìm chu trình Euler được biết đến rộng rãi là thuật toán Fleury và thuật toán Hierholzer. Bài viết sẽ tập trung vào thuật toán Hierholzer do tính phổ biến và độ hiệu quả của thuật toán này so với thuật toán Fleury.
 
 ## Thuật toán Hierholzer cho đồ thị có hướng
 

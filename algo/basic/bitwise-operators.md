@@ -1,3 +1,13 @@
+---
+title: Phép toán bit
+description: 
+published: true
+date: 2024-10-24T14:28:27.758Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:59:55.638Z
+---
+
 # Phép toán bit
 
 Người viết: Nguyễn Minh Nhật - HUS High School for Gifted Students
@@ -130,36 +140,36 @@ Nếu bạn tới đây để đọc lại tên hàm, đây là bảng TL;DR:
 
 |Tên thao tác           |Tên hàm                            |Giá trị trả về                 |Trường hợp UB  |
 |----                   |----                               |----                           |----           |
-|Population Count       |```std::__builtin_popcountll(x)``` |Số Bit bật                     |               |
-|Parity                 |```std::__builtin_parityll(x)```   |Số Bit bật modulo $2$          |               |
-|Count Leading Zeroes   |```std::__builtin_clzll(x)```      |Số Bit $0$ ở đầu               |```x == 0```   |
+|Population Count       |```__builtin_popcountll(x)``` |Số Bit bật                     |               |
+|Parity                 |```__builtin_parityll(x)```   |Số Bit bật modulo $2$          |               |
+|Count Leading Zeroes   |```__builtin_clzll(x)```      |Số Bit $0$ ở đầu               |```x == 0```   |
 |Log2                   |```std::__lg(x)```                 |$\lfloor\log_2(x)\rfloor$      |               |
-|Count Trailing Zeroes  |```std::__builtin_ctzll(x)```      |Số Bit $0$ ở cuối              |```x == 0```   |
-|Find First Set         |```std::__builtin_ffsll(x)```      |Số thứ tự của Bit $1$ đầu tiên |               |
+|Count Trailing Zeroes  |```__builtin_ctzll(x)```      |Số Bit $0$ ở cuối              |```x == 0```   |
+|Find First Set         |```__builtin_ffsll(x)```      |Số thứ tự của Bit $1$ đầu tiên |               |
 
-Chú ý: Đối với các hàm có dạng ```std::__builtin```, thêm đuôi ```ll``` sẽ gọi hàm đó với kiểu đầu vào là ```unsigned long long```. Để thuận tiện, người viết sẽ bỏ qua đuôi này trong phần tiếp theo.
+Chú ý: Đối với các hàm có dạng ```__builtin```, thêm đuôi ```ll``` sẽ gọi hàm đó với kiểu đầu vào là ```unsigned long long```. Để thuận tiện, người viết sẽ bỏ qua đuôi này trong phần tiếp theo.
 
 ## Hàm Population Count và Parity
 
-GCC cung cấp hàm ```std::__builtin_popcount(x)``` (population count) trả về số lượng bit bật trong bitmask $x$. Chẳng hạn, ```std::__builtin_popcount(0b100101) = 3```.
+GCC cung cấp hàm ```__builtin_popcount(x)``` (population count) trả về số lượng bit bật trong bitmask $x$. Chẳng hạn, ```__builtin_popcount(0b100101) = 3```.
 
-Ngoài ra, cũng có hàm ```std::__builtin_parity(x)``` trả về ```std::__builtin_popcount(x) % 2```. Hàm này thường được sử dụng trong các bài toán liên quan tới bao hàm loại trừ.
+Ngoài ra, cũng có hàm ```__builtin_parity(x)``` trả về ```__builtin_popcount(x) % 2```. Hàm này thường được sử dụng trong các bài toán liên quan tới bao hàm loại trừ.
 
 ## Hàm Count Leading Zeroes và Log2
 
-GCC cung cấp hàm ```std::__builtin_clz(x)```Trả về số lượng bit $0$ ở bên trái bit $1$ cao nhất của biến đầu vào. Chú ý, hàm này trả về kết quả không xác định đối với ```x == 0```.
+GCC cung cấp hàm ```__builtin_clz(x)```Trả về số lượng bit $0$ ở bên trái bit $1$ cao nhất của biến đầu vào. Chú ý, hàm này trả về kết quả không xác định đối với ```x == 0```.
 
-Chẳng hạn, ```std::__builtin_clz(0b10) == 30```. Kết quả này là do kiểu ```int``` có 32 bit. Cụ thể, số ```0b10``` khi lưu dưới dạng ```int``` sẽ có thể được biểu diễn là:
+Chẳng hạn, ```__builtin_clz(0b10) == 30```. Kết quả này là do kiểu ```int``` có 32 bit. Cụ thể, số ```0b10``` khi lưu dưới dạng ```int``` sẽ có thể được biểu diễn là:
 
 `0b 0000 0000 0000 0000 0000 0000 0000 0010`
 
-Ngoài ra cũng có hàm ```std::__lg(x) == 31 - std::__builtin_clz(x) == 63 - std::__builtin_clzll(x)```. Hàm này trả về $\lfloor \log_2(x) \rfloor$, thường được sử dụng trong cài đặt của Bảng thưa (Sparse Table).
+Ngoài ra cũng có hàm ```std::__lg(x) == 31 - __builtin_clz(x) == 63 - __builtin_clzll(x)```. Hàm này trả về $\lfloor \log_2(x) \rfloor$, thường được sử dụng trong cài đặt của Bảng thưa (Sparse Table).
 
 ## Hàm Count Trailing Zeroes và Find First Set
 
-GCC cung cấp hàm ```std::__builtin_ctz(x)``` trả về số lượng bit $0$ ở bên phải bit $1$ thấp nhất của biến đầu vào. Chú ý, hàm này cũng trả về kết quả không xác định đối với ```x == 0```. Chẳng hạn, ```std::__builtin_ctz(0b100100) = 2```.
+GCC cung cấp hàm ```__builtin_ctz(x)``` trả về số lượng bit $0$ ở bên phải bit $1$ thấp nhất của biến đầu vào. Chú ý, hàm này cũng trả về kết quả không xác định đối với ```x == 0```. Chẳng hạn, ```__builtin_ctz(0b100100) = 2```.
 
-GCC cũng cung cấp một hàm khác là ```std::__builtin_ffs(x) == std::__builtin_ctz(x) + 1```. Trong trường hợp ```x == 0```, hàm này trả về $0$.
+GCC cũng cung cấp một hàm khác là ```__builtin_ffs(x) == __builtin_ctz(x) + 1```. Trong trường hợp ```x == 0```, hàm này trả về $0$.
 
 # Ứng dụng
 
@@ -257,7 +267,7 @@ void loop_subset(const vector<int> &s){
 
 ## Cài đặt cấu trúc dữ liệu Fenwick Tree
 
-Cách cài đặt [Fenwick Tree](https://vnoi.info/wiki/algo/data-structures/fenwick.md) tối ưu cũng là một trong những ứng dụng thú vị của các toán tử Bit.
+Cách cài đặt [Fenwick Tree](/algo/data-structures/fenwick.md) tối ưu cũng là một trong những ứng dụng thú vị của các toán tử Bit.
 
 ## Giải các bài toán bao hàm loại trừ
 
@@ -269,7 +279,7 @@ Cho một tập $S$ gồm các số nguyên tố phân biệt. Gọi $a$ là tí
 
 Ta lặp qua mọi tập con $T$ của $S$. Gọi $b$ là tích các số trong tập $T$, và $x$ là số số trong khoảng $[0, n]$ chia hết cho $b$. Nếu $T$ có chẵn phần tử, ta cộng $x$ vào đáp án. Ngược lại, ta trừ $x$ vào đáp án.
 
-Phần chứng minh cho bài toán này bạn đọc có thể tham khảo ở bài viết về [bao hàm loại trừ](https://vnoi.info/wiki/translate/he/Number-Theory-7.md).
+Phần chứng minh cho bài toán này bạn đọc có thể tham khảo ở bài viết về [bao hàm loại trừ](/translate/he/Number-Theory-7.md).
 
 ### Cài đặt
 

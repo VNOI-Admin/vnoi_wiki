@@ -1,3 +1,13 @@
+---
+title: Thuật toán phân tách trọng tâm - Centroid decomposition
+description: 
+published: true
+date: 2024-11-10T14:35:05.392Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:03:09.591Z
+---
+
 # Thuật toán phân tách trọng tâm - Centroid decomposition
 
 **Tác giả:**
@@ -147,6 +157,7 @@ long long solve(int u) {
 
 	updateAns(root, n); // bước 2
 
+	ans = 0;
 	del[root] = 1;
 	for (int v : adj[root]) if (!del[v])
             ans += solve(v); // bước 3
@@ -313,7 +324,7 @@ bool CD(int u, int n)
             }
     }
 
-    childCounting(u, 0);
+    countChild(u, 0);
 
     if (dfs(u, 0, 1, 0, 0)) return true;
 

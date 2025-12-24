@@ -1,3 +1,13 @@
+---
+title: Mảng hậu tố (Suffix Array)
+description: 
+published: true
+date: 2024-09-04T04:33:06.341Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:02:05.381Z
+---
+
 # Mảng hậu tố (Suffix Array)
 
 **Mảng Hậu Tố** là một CTDL giúp **sort** các **hậu tố** theo **thứ tự từ điển**.

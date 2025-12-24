@@ -1,3 +1,13 @@
+---
+title: Nhân ma trận (Matrix multiplication)
+description: 
+published: true
+date: 2025-06-04T14:22:21.042Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:04:53.820Z
+---
+
 # Nhân ma trận (Matrix multiplication)
 
 **Nguồn**: Biên soạn lại từ bài viết của Nguyễn *RR* Thành Trung, Nguyễn Mạnh Quân.
@@ -681,9 +691,13 @@ Gọi $X_1, X_2, ..., X_m$ là các ma trận tương ứng với các phép bi�
 
 Đặt $S = [1, 1, ..., 1]$ (dãy số lượng vi khuẩn tại thời điểm đầu tiên).
 
-Như vậy, $Y = S \times X^t \times X_1 \times X_2 \times ... \times X_r$ là ma trận thể hiện số lượng vi khuẩn tại thời điểm $M \times t + r$.
+Như vậy, $Y = S \times X^t \times X_1 \times X_2 \times ... \times X_r$ là ma trận thể hiện số lượng vi khuẩn tại thời điểm $T = m \times t + r$.
 
-Như vậy, thuật toán đến đây đã rõ. Ta phân tích $T = M \times t + r$, nhờ đó, ta có thể giải quyết bài toán trong $\mathcal{O}(N^3 \times M)$ cho bước tính ma trận $X$ và $\mathcal{O}(N^3 \times (\log{T/M} + M))$ cho bước tính $Y$. Bài toán được giải quyết.
+Như vậy, thuật toán đến đây đã rõ. Ta phân tích $T = m \times t + r$, nhờ đó, ta có thể giải quyết bài toán với độ phức tạp:
+- $\mathcal{O}(N^3 \times m)$ cho bước tính ma trận $X$
+- $\mathcal{O}\left(N^3 \times \log\frac{T}{m}\right)$ cho bước tính $Y$. Chú ý tận dụng $X_1 \times X_2 \times ... \times X_r$ từ bước tính $X$.
+
+Ngoài ra, có thể nhận thấy rằng $X_i$ là các ma trận thưa với chỉ khoảng $N$ phần tử khác $0$. Do đó, bạn đọc có thể tìm hiểu cách tối ưu thêm để tính ma trận $X$ trong $\mathcal{O}(N^2 \times m)$.
 
 # Ví dụ 4
 

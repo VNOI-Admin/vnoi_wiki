@@ -1,3 +1,13 @@
+---
+title: Đệ quy và Thuật toán quay lui
+description: 
+published: true
+date: 2024-08-26T09:35:00.358Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:59:48.774Z
+---
+
 # Đệ quy và Thuật toán quay lui
 
 **Người viết**:
@@ -13,7 +23,7 @@
 ![](https://hackmd.io/_uploads/BkRIUcdV2.jpg)
 *Búp bê Matryoshka (ảnh trên Google Images)*
 
-Trong cuộc sống, chúng ta đôi khi bắt gặp những hình ảnh về một vật mà chứa bên trong nó là một vật khác giống hệt nó, như búp bê Matryoska, cửa sổ OBS khi bạn cố dùng nó để quay màn hình của chính nó, sách giáo khoa Toán lớp 3 cũ, [link này](https://hackmd.io/@kiennguyen246/Sy8rkeYQn), ... Tương tự như vậy, trong khoa học máy tính và lập trình, chúng ta xây dựng khái niệm về đệ quy.
+Trong cuộc sống, chúng ta đôi khi bắt gặp những hình ảnh về một vật mà chứa bên trong nó là một vật khác giống hệt nó, như búp bê Matryoska, cửa sổ OBS khi bạn cố dùng nó để quay màn hình của chính nó, sách giáo khoa Toán lớp 3 cũ, hoặc [link này](/algo/basic/backtracking), ... Tương tự như vậy, trong khoa học máy tính và lập trình, chúng ta xây dựng khái niệm về đệ quy.
 
 # Đệ quy và giải thuật đệ quy
 ## Khái niệm
@@ -94,7 +104,7 @@ Văn vẻ hơn thì trong dãy này, mỗi số hạng bằng tổng của hai s
 Dựa vào công thức truy hồi đã cho và lập luận kiểu "để tính $f$ này thì ta cần có $f$ kia" như trên, chúng ta có thể cài đặt như sau:
 
 ``` cpp
-void fibo(int n)
+int fibo(int n)
 {
     if (n == 0) return 0;    //trường hợp cơ sở
     if (n == 1) return 1;    //trường hợp cơ sở

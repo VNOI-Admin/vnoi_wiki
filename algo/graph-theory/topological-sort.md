@@ -1,3 +1,13 @@
+---
+title: Sắp xếp Tô-pô (Topological Sort)
+description: 
+published: true
+date: 2025-01-05T09:01:18.466Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:03:42.067Z
+---
+
 # Sắp xếp Tô-pô (Topological Sort)
 
 **Nguồn:** [wcipeg](http://wcipeg.com/wiki/Topological_sort)
@@ -126,7 +136,7 @@ int indegree[maxN], ans[maxN];
 vector <int> g[maxN], topo;
 queue <int> listSource;
 
-main() {
+int main() {
     cin >> n >> m;
     while (m--) {
     	int u, v;
@@ -238,7 +248,7 @@ void dfs(int u) {
     visit[u] = 2;
 }
 
-main() {
+int main() {
     cin >> n >> m;
     while (m--) {
         int u, v;
@@ -353,7 +363,7 @@ void dfs(int u) {
     visit[u] = 2;
 }
 
-main() {
+int main() {
     cin >> n >> m;
     while (m--) {
         int u, v;
@@ -504,7 +514,7 @@ void solve(string x, string y) {
     if (x.size() > y.size()) printImpossible();
 }
 
-main() {
+int main() {
     cin >> n;
     for (int i = 0; i < n; ++i) {
         cin >> s[i];

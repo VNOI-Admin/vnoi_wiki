@@ -1,7 +1,17 @@
+---
+title: Tối ưu quy hoạch động 1 chiều
+description: 
+published: true
+date: 2024-09-16T08:45:29.043Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:08:23.084Z
+---
+
 # Tối ưu quy hoạch động 1 chiều
 **Người viết**: Nguyễn Tuấn Tài - Trường Đại học Khoa học Tự nhiên, Đại học Quốc gia TP.HCM
 
-> *Giới thiệu: đây là kiến thức xuất hiện trong đề thi TST 2022, và đã lấy đi rất nhiều nước mắt của thí sinh. Nếu bạn muốn thử học một thuật toán mới lạ mà nhiều người chưa biết (ngay cả Trần Xuân Bách!), thì đây chính là bài viết dành cho bạn!*
+> *Giới thiệu: đây là kiến thức xuất hiện trong đề thi TST 2022, và đã lấy đi rất nhiều nước mắt của thí sinh. Nếu bạn muốn thử học một thuật toán mới lạ mà nhiều người chưa biết, thì đây chính là bài viết dành cho bạn!*
 
 Khi làm những bài toán quy hoạch động, đôi khi ta sẽ nghĩ ra những thuật toán có độ phức tạp rất lớn, ví dụ:
 
@@ -15,7 +25,14 @@ Công thức trên có độ phức tạp $O(n^2)$, có thể cải tiến xuố
 # Giới thiệu bài toán
 
 Gọi $w(j, i)$ là một hàm tính cost thỏa mãn bất đẳng thức tứ giác (quadrangle inequality):
-$$w(a, c) + w(b, d) \le w(a, d) + w(b, c)$$ với mọi $a < b \le c < d$. Ta sẽ tính toán công thức quy hoạch động sau với độ phức tạp nhanh hơn $O(n^2)$:$$f[i] = \min \limits_{0 \le j < i} f[j] + w(j, i)$$
+<center>
+  
+$w(a, c) + w(b, d) \le w(a, d) + w(b, c)$ với mọi $a < b \le c < d$. 
+
+</center>
+
+Ta sẽ tính toán công thức quy hoạch động sau với độ phức tạp nhanh hơn $O(n^2)$:
+$$f[i] = \min \limits_{0 \le j < i} f[j] + w(j, i)$$
 
 Một số ví dụ về hàm $w$ thỏa mãn bất đẳng thức tứ giác (bạn đọc có thể tự chứng minh):
 
@@ -28,8 +45,14 @@ Một số ví dụ về hàm $w$ thỏa mãn bất đẳng thức tứ giác (b
 > *Nhưng... làm sao để tối ưu công thức quy hoạch động trên? Có cách nào để nhanh chóng tìm được vị trí mà $f[j] + w(j, i)$ đạt giá trị nhỏ nhất không?*
 
 Ta định nghĩa mảng $h$ như sau
-$$h[i] = \mathop{\arg\min} \limits_{0 \le j < i} f[j] + w(j, i)$$
 
+<center>
+  
+$h[i] = \mathop{\arg\min} \limits_{0 \le j < i} f[j] + w(j, i)$ 
+
+</center>
+  
+với $\mathop{\arg\min}\limits_{t} f(t)$ là chỉ số $t$ để $f(t)$ đạt giá trị nhỏ nhất.
 Nói cách khác, $h[i]$ là vị trí $j$ nhỏ nhất thỏa mãn $f[j] + w(j, i)$ đạt giá trị cực tiểu.
 
 Để thuận tiện cho việc biểu diễn thuật toán, ta sẽ quy ước
@@ -113,7 +136,7 @@ p[i] < p[i + 1],\ \forall\ 1 \le i < m
 
 ## Cài đặt mẫu
 
-Ta có thể cài đặt thuật toán trên bằng cách sử dụng deque. Để thuận tiện cho việc cài đặt, ta sẽ không lưu lại các giá trị $h[i]$ đã qua sử dụng.
+Ta có thể cài đặt thuật toán trên bằng cách sử dụng `deque`. Để thuận tiện cho việc cài đặt, ta sẽ không lưu lại các giá trị $h[i]$ đã qua sử dụng.
 
 ```cpp
 struct item {
@@ -197,7 +220,8 @@ Cho $n$ cây được đánh số hiệu từ $1$ tới $n$, mỗi cây có đ�
 
 Alob và Bice có một cái cưa máy, mỗi lần sử dụng cưa có thể giảm độ cao của một cây bất kì xuống $1$. Tuy nhiên, sau mỗi lần sử dụng, cưa máy cần được sạc lại. Chi phí để sạc phụ thuộc vào những cây đã được chặt hoàn toàn (những cây đã được giảm độ cao về $0$): trong những cây đã được chặt hoàn toàn, giả sử cây có số hiệu lớn nhất là $i$, chi phí để sạc cưa máy là $b_i$. Nếu không có cây nào đã được chặt hoàn toàn, ta không thể sạc lại cưa máy.
 
-Điều kiện bài toán:$$\left\{\begin{matrix}
+Điều kiện bài toán:
+$$\left\{\begin{matrix}
 1 \le n \le 10^5\\
 1 = a_1 < a_2 < \ldots < a_n \le 10^9\\
 10^9 \ge b_1 > b_2 > \ldots > b_n = 0

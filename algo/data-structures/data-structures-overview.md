@@ -1,3 +1,13 @@
+---
+title: Tổng quan về Cấu Trúc Dữ Liệu
+description: 
+published: true
+date: 2025-06-01T11:11:49.163Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:00:45.532Z
+---
+
 # Tổng quan về Cấu Trúc Dữ Liệu
 
 Mặc dù máy tính đã có thể xử lý hàng triệu phép tính mỗi giây, nhưng khi một bài toán trở phức tạp, cách tổ chức dữ liệu vẫn vô cùng quan trọng.
@@ -40,7 +50,7 @@ Stack là CTDL cho phép thực hiện các thao tác:
 - Thêm 1 phần tử vào **cuối** CTDL
 - Xóa 1 phần tử khỏi **cuối** CTDL
 
-Cả 2 thao tác trên đều có độ phức tạp $\mathcal{O}(1)$. Chú ý ta chỉ có thể xóa phần tử ở cuối CTDL, nói cách khác là phần tử mà mới được thêm vào gần nhất. Vì vậy, Stack còn được gọi là **FIFO** (First In First Out).
+Cả 2 thao tác trên đều có độ phức tạp $\mathcal{O}(1)$. Chú ý ta chỉ có thể xóa phần tử ở cuối CTDL, nói cách khác là phần tử mà mới được thêm vào gần nhất. Vì vậy, Stack còn được gọi là **LIFO** (Last In First Out).
 
 Stack có cài đặt đơn giản và được sử dụng trong nhiều thuật toán như DFS, tìm chu trình Euler, tìm khớp của đồ thị.
 
@@ -53,7 +63,7 @@ Queue là CTDL cho phép thực hiện các thao tác:
 - Thêm 1 phần tử vào **cuối** CTDL
 - Xóa 1 phần tử khỏi **đầu** CTDL.
 
-Cả 2 thao tác đều có độ phức tạp $\mathcal{O}(1)$. Chú ý ta chỉ có thể xóa phần tử ở đầu CTDL, nói cách khác là phần tử mà đã được thêm vào lâu nhất. Vì vậy, Stack còn được gọi là **LIFO** (Last In First Out).
+Cả 2 thao tác đều có độ phức tạp $\mathcal{O}(1)$. Chú ý ta chỉ có thể xóa phần tử ở đầu CTDL, nói cách khác là phần tử mà đã được thêm vào lâu nhất. Vì vậy, Queue còn được gọi là **FIFO** (First In First Out).
 
 Queue có cài đặt đơn giản và được sử dụng trong BFS.
 
@@ -173,7 +183,7 @@ $f(i, j) = f(i-1, j) + f(i, j-1) - f(i-1, j-1) + A(i, j)$
 
 ## 2.2. Disjoint Sets
 
-**Disjoint Sets** là cấu trúc dữ liệu được sử dụng trong thuật toán **Kruskal** và thuật toán **Prim** - 2 thuật toán tìm cây khung nhỏ nhất của đồ thị. Như tên gọi của nó, Disjoint Set được dùng để quản lý các tập hợp không giao nhau.
+**Disjoint Sets** là cấu trúc dữ liệu được sử dụng trong thuật toán **Kruskal** - một thuật toán tìm cây khung nhỏ nhất của đồ thị. Như tên gọi của nó, Disjoint Set được dùng để quản lý các tập hợp không giao nhau.
 
 **Bài toán**
 
@@ -192,7 +202,7 @@ Sparse Table là cấu trúc dữ liệu được sử dụng trong [bài toán 
 
 Với cả 2 bài toán, Sparse Table cho phép:
 
-- Khởi tạo với độ phức tạp: $\mathcal{O}(N\* \log{N})$.
+- Khởi tạo với độ phức tạp: $\mathcal{O}(N \log{N})$.
 - Trả lời truy vấn với độ phức tạp $\mathcal{O}(1)$.
 
 ## 2.4. Segment Tree
@@ -244,17 +254,17 @@ Bạn có thể  đọc thêm ở: [Persistent Data Structures](/algo/data-struc
 
 Ngoài ra trên thực tế, trie cũng rất tiết kiệm bộ nhớ khi áp dụng để lưu các từ có nghĩa, vì vậy nó là một CTDL có ứng dụng rất lớn.
 
-Bạn có thể đọc thêm [bài viết về trie](/algo/data-structures/trie).
+Bạn có thể đọc thêm [bài viết về trie](/algo/string/trie).
 
 ## 3.2. Aho Corasick
 
-Bài viết sẽ được cập nhật sau
+Bạn có thể đọc thêm [ở đây](/algo/string/aho-corasick)
 
 ## 3.3. Mảng Hậu Tố (Suffix Array)
 
 Suffix Array là một CTDL giúp sắp xếp các hậu tố của một xâu theo thứ tự từ điển. CTDL này thường được sử dụng trong các bài toán xử lý xâu.
 
-Bạn có thể đọc thêm về Suffix Array [ở đây](/algo/data-structures/suffix-array).
+Bạn có thể đọc thêm về Suffix Array [ở đây](/algo/string/suffix-array).
 
 ## 3.4. Suffix Automaton
 

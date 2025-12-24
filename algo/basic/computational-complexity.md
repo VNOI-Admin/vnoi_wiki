@@ -1,3 +1,13 @@
+---
+title: Độ phức tạp thời gian
+description: 
+published: true
+date: 2025-12-06T09:04:04.322Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:59:59.368Z
+---
+
 # Độ phức tạp thời gian
 
 **Người viết:**
@@ -30,6 +40,7 @@ Xét 2 hàm số dương $f(n)$ và $g(n)$
 Ta ký hiệu: $f(n) = O(g(n))$
 >Theo định nghĩa giải tích, ký hiệu trên tương đương với:
 $$\lim\limits_{n \rightarrow \infty} \sup\dfrac{f(n)}{g(n)} < \infty$$
+  
 >Gọi là "hàm $f$ không tăng (tiệm cận) nhanh hơn $g$".
 
 **Nói một cách dễ hiểu:** $f(n) = O(g(n))$ thì tồn tại hằng số $c > 0$ để khi $n$ đủ to $($với mọi $n \ge n_0$ nào đó$)$ thì $f(n) \le c\times g(n)$.
@@ -54,7 +65,9 @@ $E$ là một biểu thức logic.
 
 ## Một số chú ý quan trọng
 - Tất cả các bài toán có ĐPT đa thức bậc $k$ thì có ĐPT là $O(n^k)$. Các hằng số, hệ số đa thức thường (không phải luôn luôn) được bỏ qua.
->Ký hiệu $\log n$ là logarit của $n$ theo cơ số $X$ *(với $X$ được định nghĩa bằng $2, e, 10$ tùy sách)*. Tuy nhiên với phép chuyển cơ số $\log_ab = \dfrac{\log b}{\log a}$ và $\log b$ là một hằng số nhỏ nên ta sẽ không cần quá quan tâm $X$ là cơ số bao nhiêu nữa).
+>Trong một số tài liệu, ký hiệu $\log n$ là logarit của $n$ theo cơ số $2, e$ hoặc $10$ tùy theo quy ước của tài liệu đó. Và cơ số đó chính xác là bao nhiêu không thật sự quan trọng bởi:
+>- Ta có phép chuyển đổi cơ số: $\log_ab = \frac{\log b}{\log a}$
+>- Với $a=2, e, 10$ thì $\frac{1}{\log a}$ đều là một hằng số nhỏ không đáng để quan tâm.
 - Coi $\log n \sim n^\alpha$ với $0 < \alpha < 1$
 - Dựa vào định nghĩa *BigO*, khi gặp một thuật toán có ĐPT là $O(n)$, thì nói "thuật toán đó có ĐPT $O(n^2)$" không hề sai. Hay tổng quát hơn là một thuật toán có ĐPT là $O(n^k)$ mà ta bảo "nó có ĐPT $O(n^{k + \alpha})$" cũng không hề sai $(\alpha > 0$ tùy ý$)$.
 Tuy nhiên, khi tính toán ĐPT, ta nên chọn $k$ nhỏ nhất sao cho thuật toán có ĐPT $O(n^k)$. Điều này sẽ giúp ta có cái nhìn chính xác hơn để đánh giá thuật toán.
@@ -82,11 +95,11 @@ Tuy nhiên, việc có ĐPT đáp ứng bộ dữ liệu như trong bảng trên
 # Ví dụ
 ## Vòng lặp
 Dựa vào các quy tắc, ta rút ra được một số `mẹo` khi tính ĐPT các vòng lặp:
-
-    1. Tính số lần lặp tối đa của một vòng lặp
-    2. Nếu các vòng lặp nối tiếp nhau thì cộng các cận đó với nhau
-    3. Nếu các vòng lặp lồng nhau thì nhân các cận với nhau
-
+:::success
+**1.** Tính số lần lặp tối đa của một vòng lặp
+**2.** Nếu các vòng lặp nối tiếp nhau thì cộng các cận đó với nhau
+**3.** Nếu các vòng lặp lồng nhau thì nhân các cận với nhau
+:::
 
 **Ví dụ 1:**
 ```c++
@@ -219,19 +232,22 @@ int main()
 Đôi khi ĐPT của một thuật toán đệ quy không quá lớn như $O(n!)$.
 Bạn đọc có thể thấy rõ với thuật toán sắp xếp *Merge Sort (Sắp xếp trộn)* sau đây:
 
+```cpp=
     MergeSort(mảng S) {
-        1. if (số phần tử của S <= 1)
+        if (số phần tử của S <= 1)
             return S;
-        2. chia đôi S thành hai mảng con S1 và S2 với số phần tử gần bằng nhau;
-        3. MergeSort(S1);
-        4. MergeSort(S2);
-        5. trộn S1 và S2 đã sắp xếp để thu được S mới đã sắp xếp;
-        6. return S mới;
+        Chia đôi S thành hai mảng con S1 và S2 với số phần tử gần bằng nhau;
+        MergeSort(S1);
+        MergeSort(S2);
+        Trộn S1 và S2 đã sắp xếp để thu được S mới đã sắp xếp;
+        return S mới;
     }
+```
 
-*Minh họa về cách thuật toán Merge Sort hoạt động:*
-
-![](https://i.imgur.com/aqQU9hE.png)
+<center>
+		<img src="/algo/basic/time-complexity.png" width="50%">
+    <figcaption>Minh họa về cách thuật toán Merge Sort hoạt động</figcaption>
+</center>
 
 **Phân tích:**
 Gọi $f(n)$ là ĐPT của hàm `MergeSort(S)` với $n = |S|$
@@ -244,13 +260,14 @@ Dễ thấy:
 *$\lfloor x \rfloor$ là số nguyên lớn nhất $\le x$ (phần nguyên dưới).*
 *$\lceil x \rceil$ là số nguyên nhỏ nhất $\ge x$ (phần nguyên trên).*
 
-Từ đó, ta có : $\begin{align}
+Từ đó, ta có : 
+$$\begin{align}
 \begin{cases}
 f(1) = 1\\
 f(n)=
 f\left(\left\lfloor\dfrac{n}{2}\right\rfloor\right) + f\left(\left\lceil\dfrac{n}{2}\right\rceil\right)+ \alpha n \, (\alpha \ge 1)
 \end{cases}
-\end{align}$
+\end{align}$$
 
 ĐPT thuật toán này là $f(n) = \boldsymbol{O(n\log n)}$ trong cả *worst case* và *average case*.
 
@@ -261,14 +278,14 @@ Bằng quy nạp, ta có:
 - Với $n = 1$, rõ ràng luôn tồn tại $c''>1$ để $f(1)<c'' \times 1$
 - Giả sử điều này đúng đến $n = k - 1$ $(k \ge 2)$, ta cần chứng minh đúng với $n = k$:
 - Thật vậy,
-$\begin{align}
+$$\begin{align}
 f(k) &= f\left(\left\lfloor\frac{k}{2}\right\rfloor\right)+f\left(\left\lceil\frac{k}{2}\right\rceil\right) + \alpha k\\
 \Rightarrow f(k) &\le 2f\left(\left\lceil\frac{k}{2}\right\rceil\right) + \alpha k\\
 &\le \left( 2 \left\lceil\frac{k}{2}\right\rceil \times \log_2\left(\left\lceil\frac{k}{2}\right\rceil\right) + c' k \right) + \alpha k\\
 &\le \left( 2 \times\frac{k}{2}\times \log_2\left(\frac{k}{2}\right) + \beta k \right) + (c'+\alpha) k\\
 &= k \log_2 k - k + (c' + \alpha + \beta)\times k\\
 &= k \log_2 k + c''\times k\\
-\end{align}$
+\end{align}$$
 
 Chọn $c = \max\limits_{n \le T}(c'')$, ta được đpcm.
 
@@ -319,9 +336,9 @@ for (int i = 2; i <= n; i++) if (is_prime[i]){
 ```
 **Giải:**
 Tương tự bài trên, nhưng chỉ khi biến $i$ là số nguyên tố thì biến $j$ sẽ chạy $n/i$ lần, ngược lại biến $j$ không phải chạy 1 vòng nào.
-Vì thế độ phức tạp thời gian là $O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right)$ với $p \style{font-family:Cambria Math}{\large\text{ là số nguyên tố}}\le  n$.
+Vì thế độ phức tạp thời gian là $O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right)$ với $p$ là số nguyên tố $\le  n$.
 Đến đây việc tính toán độ phức tạp sẽ phải dùng đến kiến thức *Lý thuyết số giải tích*. Bạn đọc có thể tham khảo thêm [Định lý Merten 2](https://en.wikipedia.org/wiki/Mertens%27_theorems#Proof).
-$$O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right) = O\left(n \cdot \underset{{p \le n}}{\sum\limits_{p \style{font-family:Cambria Math}{\large\text{ nguyên tố}}}}\dfrac{1}{p}\right) = \boldsymbol{O( n \log (\log n))}$$
+$$O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right) = O\left(n \cdot \sum\limits_{\substack{p \text{ prime} \\ p \le n}} \dfrac{1}{p}\right) = \boldsymbol{O( n \log (\log n))}$$
 
 
 # Mở rộng
@@ -345,7 +362,7 @@ Nói cách khác: nếu hằng số quá lớn thì thường là các hằng s�
         - Tuy nhiên khi so sánh về thời gian chạy thì `std::sort` $<$ `std::priority_queue` $<$ `std::set`/`std::map`
 
     - **Thuật toán có ĐPT bậc cao hơn không có nghĩa là chúng chạy chậm hơn trong mọi bộ dữ liệu.**
-        - Ví dụ điển hình là hàm `std::sort` của C++. Thuật toán chủ yếu vẫn là `Quick-sort` - $O(n\log n)$. Và để tối ưu, thì với bộ dữ liệu nhỏ, hàm sẽ sử dụng `Insert-Sort` - $O(n^2)$. Còn khi chọn phần tử chốt của `Quick-sort` không đẹp, thì sẽ sử dụng `Heap-Sort` - $O(n\log n)$ thay thế.
+        - Ví dụ điển hình là hàm `std::sort` của C++. Thuật toán chính được sử dụng là **Intro Sort**, bắt đầu với **Quick Sort**. Để tối ưu, khi kích thước mảng nhỏ, hàm sẽ sử dụng **Insertion Sort**. Trong trường hợp độ sâu đệ quy vượt quá ngưỡng nhất định (khi chọn phần tử chốt của Quick-sort không hiệu quả), hàm sẽ chuyển sang **Heap Sort** để duy trì độ phức tạp $O(n \log n)$ trong trường hợp xấu nhất.
 - Vì thế, trong từng trường hợp, ta nên chú ý chọn thuật toán cho phù hợp nhất để tối ưu thời gian chạy chương trình.
 Và đặc biệt khi sử dụng các hàm trong thư viện sẵn có hay các code sẵn có thì nên hiểu cơ bản cách hoạt động và tốc độ của nó.
 

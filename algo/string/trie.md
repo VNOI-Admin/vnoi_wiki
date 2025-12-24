@@ -1,3 +1,13 @@
+---
+title: Trie
+description: 
+published: true
+date: 2024-09-23T03:55:12.193Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:02:12.433Z
+---
+
 # Trie
 
 **Nguời viết:**
@@ -349,7 +359,7 @@ Cho một danh sách các xâu. Hãy trả lời các truy vấn tìm độ dài
 
 Với hai xâu bất kì trong danh sách, ta có thể thấy tiền tố chung dài nhất của chúng cũng có thể được thể hiện bằng một đỉnh trong trie. Nhìn hình vẽ ta có dễ dàng nhận ra đỉnh cần tìm này cũng chính là tổ tiên chung thấp nhất của hai đỉnh thể hiện cho hai xâu đã cho.
 
-Do vậy bài toán quy về xử lí truy vấn tìm tổ tiên chung thấp nhất của hai đỉnh bất kì trên cây, bạn đọc có thể tham khảo lời giải ở blog [này](https://vnoi.info/wiki/algo/data-structures/lca-binlift.md).
+Do vậy bài toán quy về xử lí truy vấn tìm tổ tiên chung thấp nhất của hai đỉnh bất kì trên cây, bạn đọc có thể tham khảo lời giải ở blog [này](/algo/data-structures/lca-binlift.md).
 
 ## Xử lí truy vấn tìm xâu có thứ tự từ điển thứ k
 
@@ -973,7 +983,7 @@ Công thức quy hoạch động này có thể được tối ưu sử dụng m
 
 Dựa vào bit thứ $i$ của $a_i \oplus a_j$ và giá trị của $a_i$ ta hoàn toán có thể tính được bit thứ $i$ của $a_j$. Lưu ý mọi dãy con gồm $1$ phần tử đều thỏa mãn điều kiện của đề bài.
 
-Lúc này, bạn đọc có thể tưởng tượng trie như một [cây phân đoạn](https://vnoi.info/wiki/algo/data-structures/segment-tree-basic.md), truy vấn trên trie y hệt như truy vấn như cây phân đoạn nhưng điều kiện đi xuống cây con bên nào bị thay đổi.
+Lúc này, bạn đọc có thể tưởng tượng trie như một [cây phân đoạn](/algo/data-structures/segment-tree-basic.md), truy vấn trên trie y hệt như truy vấn như cây phân đoạn nhưng điều kiện đi xuống cây con bên nào bị thay đổi.
 
 <details>
 <summary>Code mẫu</summary>

@@ -1,4 +1,14 @@
-# Cách tính số tổ hợp
+---
+title: Cách tính nCk
+description: 
+published: true
+date: 2025-02-07T12:04:26.131Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:59:29.380Z
+---
+
+# Cách tính nCk
 
 **Người viết:**
 - Nguyễn Minh Hiển - Trường Đại học Công nghệ, ĐHQGHN
@@ -97,7 +107,7 @@ Dưới đây là một số cách sử dụng để tính $C_n^k$ theo modulo $
 |        [Sử dụng định lý Lucas mở rộng](#Sử-dụng-định-lý-Lucas-mở-rộng)        |     $O(M)$      | $O\big(\log_p(n)\big)$ |  $O(M)$  | Trung bình | $M = p^q$ với $p$ nguyên tố, $M \sim 10^6$ |
 | [Sử dụng định lý thặng dư Trung Hoa](#Sử-dụng-định-lý-thặng-dư-Trung-Hoa) |                 |                        |          | Trung bình |                 $M$ bất kỳ                 |
 
-Ngoài ra còn có hai cách tính dựa trên cách tính giai thừa modulo $M$ khá hiệu quả. Tham khảo thêm tại [đây](https://hackmd.io/vEuqGacrS-iS9SCBJ_5anQ?view). Dưới đây là đánh giá về hai cách đó:
+Ngoài ra còn có hai cách tính dựa trên cách tính giai thừa modulo $M$ khá hiệu quả. Tham khảo thêm tại [Giai thừa modulo p](/algo/math/factorial-modulo-prime) . Dưới đây là đánh giá về hai cách đó:
 
 |     Cách     |         Tiền xử lý          |           Truy vấn            |           Bộ nhớ            | Độ khó |              Giới hạn              |
 |:------------:|:---------------------------:|:-----------------------------:|:---------------------------:|:------:|:----------------------------------:|
@@ -132,9 +142,9 @@ Rào cản lớn nhất cho việc sử dụng định nghĩa $C_n^k = \dfrac{n!
 
 - **Điều kiện sử dụng:** $M$ nguyên tố và $n < M$
 - **Kiến thức sử dụng:**
-    - *Nghịch đảo modulo (Modular Inverse)*: Tham khảo ở bài viết [Số học 4.5 - Nghịch đảo modulo](https://vnoi.info/wiki/algo/math/modular-inverse) của VNOI.
+    - *Nghịch đảo modulo (Modular Inverse)*: Tham khảo ở bài viết [Số học 4.5 - Nghịch đảo modulo](/algo/math/modular-inverse) của VNOI.
     - *Định lý Fermat nhỏ*
-    :::spoiler
+    :::spoiler *Chứng minh*
     Cho $p$ là một số nguyên tố và số nguyên $a$ không chia hết cho $p$. Khi đó, ta có:
     $$a^{p - 1} \equiv 1 \pmod p$$
     Từ đó, ta rút ra:
@@ -143,7 +153,7 @@ Rào cản lớn nhất cho việc sử dụng định nghĩa $C_n^k = \dfrac{n!
     - *Lũy thừa nhanh*
 - **Ý tưởng:**
     - Ta viết lại:
-$$C_n^k = n! \times \left( k! \right)^{-1} \times \left( (n - k)! \right)^{-1} \mod M$$
+    $$C_n^k = n! \times \left( k! \right)^{-1} \times \left( (n - k)! \right)^{-1} \mod M$$
     - Ta sử dụng hai mảng: mảng $\text{fact}[i]$ để lưu $i! \bmod M$ và mảng $\text{ifact}[i]$ để lưu $(i!)^{-1} \bmod M$. Sau đó dùng công thức (sử dụng định lý Fermat nhỏ):
 
         $$\text{ifact}[i] = (\text{fact}[i]) ^ {-1} \bmod M = (\text{fact}[i])^{M-2} \bmod M$$
@@ -151,7 +161,6 @@ $$C_n^k = n! \times \left( k! \right)^{-1} \times \left( (n - k)! \right)^{-1} \
         Chú ý rằng $\text{fact}[i] \equiv 0 \pmod M \;\;\forall i \ge M$ nên ta chỉ tính $\text{fact}[i]$ và $\text{ifact}[i]$ với $0 \le i \le M - 1$.
 
     - Ta sẽ tính mảng $\text{fact}[i]$ như sau:
-
     $$\begin{align}
         \begin{cases}
         \text{fact}[0] &= 1\\
@@ -161,7 +170,6 @@ $$C_n^k = n! \times \left( k! \right)^{-1} \times \left( (n - k)! \right)^{-1} \
 
     - Tiếp theo ta sử dụng thuật toán lũy thừa nhanh để tính $\text{ifact}[n] = \left( \text{fact}[n] \right)^{M-2} \mod M$ với độ phức tạp $O(\log M)$.
     - Còn mảng $\text{ifact}[i]$ thì tính như sau:
-
     $$\begin{align}
         \begin{cases}
         \text{ifact}[n] &= \left( \text{fact}[n] \right)^{M-2} &\mod M\\
@@ -226,7 +234,7 @@ int main(){
 ### Sử dụng định lý Lucas
 Đây là cải tiến của cách sử dụng định nghĩa để có thể sử dụng cho $n > M$
 - **Điều kiện sử dụng:** $M$ nguyên tố
-- **Ý tưởng:** Các bạn có thể tham khảo tại bài viết [Định lý Lucas của VNOI](https://vnoi.info/wiki/translate/he/Lucas-theorem.md)
+- **Ý tưởng:** Các bạn có thể tham khảo tại bài viết [Định lý Lucas của VNOI](/translate/he/Lucas-theorem.md)
 
 **Code C++ minh họa**
 ```cpp
@@ -244,6 +252,7 @@ int comb(long long n, long long k){
 
 <details>
 <summary>Bạn đọc tham khảo thêm code đầy đủ ở đây</summary>
+
 ```cpp
 const int MOD = 1e6 + 3;
 int fact[MOD + 5], ifact[MOD + 5];
@@ -477,6 +486,7 @@ long long calc(long long N, long long K, long long R) {
 
 <details>
 <summary> Bạn đọc tham khảo code nộp AC bài nCr ở đây </summary>
+
 ```cpp
 #include <bits/stdc++.h>
 const int MOD = 142857;
@@ -615,7 +625,11 @@ int main()
 * [Codeforces 239C Div. 1](https://codeforces.com/problemset/problem/407/C)
 <br/>
 * [VNOJ - Xông nhà ngày Tết](https://oj.vnoi.info/problem/c11TCT)
-* [LQDOJ - Tổ hợp nCk](https://lqdoj.edu.vn/problem/ckn2)
+* [LQDOJ - Tổ hợp nCk](https://lqdoj.edu.vn/problem/ckn)
+* [LQDOJ - Tổ hợp nCk 1](https://lqdoj.edu.vn/problem/ckn2)
+* [LQDOJ - Tổ hợp nCk 2](https://lqdoj.edu.vn/problem/ckn3)
+* [LQDOJ - Tổ hợp nCk 3](https://lqdoj.edu.vn/problem/ckn4)
+* [LQDOJ - Hệ số nhị thức](https://lqdoj.edu.vn/problem/binomialcoefficient)
 * [Hackerrank - nCr](https://www.hackerrank.com/challenges/ncr/problem)
 * [Hackerearth - Army parade](https://www.hackerearth.com/fr/problem/algorithm/army-parade-7bcfea8e/)
 * [Library Checker - Binomial Coefficient](https://judge.yosupo.jp/problem/binomial_coefficient)

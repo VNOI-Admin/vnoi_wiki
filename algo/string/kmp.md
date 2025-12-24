@@ -1,3 +1,13 @@
+---
+title: Thuật toán KMP
+description: 
+published: true
+date: 2024-10-08T12:12:14.789Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:04:23.949Z
+---
+
 # Thuật toán KMP
 
 **Người viết:** Trịnh Quang Anh - University of Melbourne
@@ -10,7 +20,7 @@
 
 Bài viết được dịch từ [đây](https://cp-algorithms.com/string/prefix-function.html) và đã được chỉnh sửa bổ sung thêm một số phần.
 
-**Kiến thức cần biết**: Xử lý xâu cơ bản. Bạn đọc có thể xem lại các thuật ngữ và bài tập về xâu [tại đây](https://vnoi.info/wiki/algo/string/basic).
+**Kiến thức cần biết**: Xử lý xâu cơ bản. Bạn đọc có thể xem lại các thuật ngữ và bài tập về xâu [tại đây](/algo/string/basic).
 
 # Giới thiệu
 
@@ -119,7 +129,7 @@ Minh họa cho hai trường hợp trên:
 
 Nếu $s[k] \neq s[i+1]$, lập luận tương tự, độ dài lớn thứ ba cho hậu tố kết thúc tại $i$ khớp với tiền tố là $\pi[\pi[\pi[i]-1]-1]$, độ dài lớn thứ tư là $\pi[\pi[\pi[\pi[i]-1]-1]-1]$,...
 
-Từ đó, ta có thể duyệt qua mọi hậu tố kết thúc tại $i$ khớp với tiền tố độ dài $j$ như sau: Ban đầu đặt $j = \pi[i]$, để đến độ dài tiếp theo thỏa mãn, ta gán $j = \pi[j-1]$. Tương tự lập luận ở phần [phép tối ưu đầu tiên](#Phép-tối-ưu-đầu-tiên), khi chuyển từ $i$ sang $i+1$ ta gán $j = \pi[i] = j+1$ nên $j$ tăng tối đa $1$, và khi cập nhật $j = \pi[j-1]$ thì $j$ giảm ít nhất $1$. Do đó, ta chỉ duyệt qua $O(n)$ giá trị của $j$ và mỗi lần thao tác so sánh hai ký tự mất $O(1)$, đẫn đến độ phức tạp tổng là $O(n)$.
+Từ đó, ta có thể duyệt qua mọi hậu tố kết thúc tại $i$ khớp với tiền tố độ dài $j$ như sau: Ban đầu đặt $j = \pi[i]$, để đến độ dài tiếp theo thỏa mãn, ta gán $j = \pi[j-1]$. Tương tự lập luận ở phần [phép tối ưu đầu tiên](#phép-tối-ưu-đầu-tiên), khi chuyển từ $i$ sang $i+1$ ta gán $j = \pi[i] = j+1$ nên $j$ tăng tối đa $1$, và khi cập nhật $j = \pi[j-1]$ thì $j$ giảm ít nhất $1$. Do đó, ta chỉ duyệt qua $O(n)$ giá trị của $j$ và mỗi lần thao tác so sánh hai ký tự mất $O(1)$, đẫn đến độ phức tạp tổng là $O(n)$.
 
 
 ## Thuật toán cuối cùng
@@ -223,11 +233,11 @@ Thuật toán trên có độ phức tạp lớn do mỗi tiền tố ta phải 
 
 Để ý rằng nếu ta xét đồ thị cho $n + 1$ đỉnh $0, 1, 2, \dots, n$, trong đó đỉnh $i ~ (i \leq 1)$ ứng với tiền tố thứ $i$, và có các cạnh nối từ $i + 1$ đến $\pi[i]$ với mọi $i$ từ $0$ đến $n - 1$, thì đồ thị này là một cây có hướng.
 
-Ví dụ: với xâu "$abcabcd$", ta có hàm tiền tố $[0, 1, 0, 1, 2, 2, 3]$, tương ứng với các cạnh $(1, 0), (2, 1), (3, 0), (4, 1), (5, 2), (6, 2), (7, 3)$ của cây:
+Ví dụ: với xâu "$abcabcd$", ta có hàm tiền tố $[0, 0, 0, 1, 2, 3, 0]$, tương ứng với các cạnh $(1, 0), (2, 0), (3, 0), (4, 1), (5, 2), (6, 3), (7, 0)$ của cây:
 <center>
 
 
-![](/uploads/kmp_img1.png)
+![](/uploads/kmp.png)
 </center>
 
 Ý tưởng này phần nào giúp chúng ta dễ hình dung hơn cách giải: việc tính $ans$ đưa về bài toán cập nhật truy vấn cộng **$1$ vào các nút trên đường đi từ một nút đến gốc** và tìm giá trị tại tất cả các nút sau mọi truy vấn - một bài toán có cách giải dùng mảng cộng dồn.
@@ -421,6 +431,6 @@ Test code KMP: [VNOJ - SUBSTR](https://oj.vnoi.info/problem/substr)
 * [Codeforces - Password](https://codeforces.com/problemset/problem/126/B)
 * [Codeforces - Lucky Common Subsequence](https://codeforces.com/contest/346/problem/B)
 * [SPOJ - PSTRING](https://www.spoj.com/problems/PSTRING/)
-* [AtCoder Beginner Contest 257 - Prefix Concatenation](https://atcoder.jp/contests/abc257/editorial/4203)
+* [AtCoder Beginner Contest 257 - Prefix Concatenation](https://atcoder.jp/contests/abc257/tasks/abc257_g)
 * [NOI 2014 Problem 4 - Zoo](https://dmoj.ca/problem/noi14p4)
 * [LightOJ - Unlucky Strings](https://lightoj.com/problem/unlucky-strings)

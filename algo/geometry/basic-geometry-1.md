@@ -1,3 +1,13 @@
+---
+title: Hình học tính toán phần 1: Những khái niệm cơ bản
+description: 
+published: true
+date: 2024-09-23T09:14:01.021Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:02:51.368Z
+---
+
 # Hình học tính toán phần 1: Những khái niệm cơ bản
 
 **Tác giả:**
@@ -85,7 +95,7 @@ Tích vô hướng có thể được định nghĩa bằng đại số hoặc h
 
 - Theo đại số, tích vô hướng là tổng các tích tọa độ tương ứng giữa chúng. Ví dụ: tích vô hướng của $\overrightarrow{\rm u}(x_1, y_1)$ và $\overrightarrow{\rm v}(x_2, y_2)$ là $\overrightarrow{\rm u} \cdot \overrightarrow{\rm v} = x_1x_2+y_1y_2$.
 - Theo hình học, tích vô hướng là tích độ lớn của $2$ vector và $\cos$ của góc giữa chúng. Ví dụ: tích vô hướng của $\overrightarrow{\rm u}(x_1, y_1)$ và $\overrightarrow{\rm v}(x_2, y_2)$ là
-$$\overrightarrow{\rm u} \cdot \overrightarrow{\rm v} = | \overrightarrow{\rm u} | \cdot | \overrightarrow{\rm v} | \cdot \cos(\theta)$$ với $\theta$ là góc hợp bởi $\overrightarrow{\rm u}$ và $\overrightarrow{\rm v}$.
+$\overrightarrow{\rm u} \cdot \overrightarrow{\rm v} = | \overrightarrow{\rm u} | \cdot | \overrightarrow{\rm v} | \cdot \cos(\theta)$ với $\theta$ là góc hợp bởi $\overrightarrow{\rm u}$ và $\overrightarrow{\rm v}$.
 
 ![](https://i.imgur.com/iHks23u.png)
 
@@ -93,6 +103,7 @@ $$\overrightarrow{\rm u} \cdot \overrightarrow{\rm v} = | \overrightarrow{\rm u}
 Tính tích vô hướng của 2 vector $\overrightarrow{\rm u}(5,12)$ và $\overrightarrow{\rm v}(-6,8)$
 
 ![](https://i.imgur.com/Qm8P625.png)
+
 
 $$\begin{align}
 \overrightarrow{\rm u} \cdot \overrightarrow{\rm v} &= x_1x_2+y_1y_2 \\
@@ -109,8 +120,8 @@ $$\begin{align}
 ---
 
 Từ $2$ định nghĩa, ta có thể tính góc $\theta$ giữa $\overrightarrow{\rm u}(x_1,y_1)$ và $\overrightarrow{\rm v}(x_2,y_2)$ như sau:
-$$\cos(\theta) = \dfrac{\overrightarrow{\rm u} \cdot \overrightarrow{\rm v}}{|\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}|}
-\Longrightarrow \theta = \arccos\left(\dfrac{\overrightarrow{\rm u} \cdot \overrightarrow{\rm v}}{|\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}|}\right) = \arccos\left(\dfrac{x_1x_2+y_1y_2}{\sqrt{x_1^2+y_1^2} \cdot \sqrt{x_2^2+y_2^2}}\right)$$
+$\cos(\theta) = \dfrac{\overrightarrow{\rm u} \cdot \overrightarrow{\rm v}}{|\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}|}
+\Longrightarrow \theta = \arccos\left(\dfrac{\overrightarrow{\rm u} \cdot \overrightarrow{\rm v}}{|\overrightarrow{\rm u}| \cdot |\overrightarrow{\rm v}|}\right) = \arccos\left(\dfrac{x_1x_2+y_1y_2}{\sqrt{x_1^2+y_1^2} \cdot \sqrt{x_2^2+y_2^2}}\right)$
 
 **Lưu ý:** tích vô hướng không chỉ giới hạn trong hình học phẳng, nghĩa là ta có thể sử dụng tích vô hướng cho các vector có số chiều tuỳ ý, và đẳng thức trên vẫn đúng.
 
@@ -159,7 +170,7 @@ $$\begin{align}
 ---
 
 **Lưu ý:** Một tích chất hữu dụng của tích có hướng trong hình học phẳng là
-$$| \overrightarrow{\rm a} \times \overrightarrow{\rm b}| = | \overrightarrow{\rm a}| \cdot| \overrightarrow{\rm b}| \cdot\sin(\theta)$$ bằng diện tích của hình bình hành có 2 cạnh bên là $\overrightarrow{\rm a}$ và $\overrightarrow{\rm b}$.
+$| \overrightarrow{\rm a} \times \overrightarrow{\rm b}| = | \overrightarrow{\rm a}| \cdot| \overrightarrow{\rm b}| \cdot\sin(\theta)$ bằng diện tích của hình bình hành có 2 cạnh bên là $\overrightarrow{\rm a}$ và $\overrightarrow{\rm b}$.
 
 ![](https://i.imgur.com/50a2Cp7.png)
 

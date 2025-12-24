@@ -1,3 +1,13 @@
+---
+title: Sàng nguyên tố
+description: 
+published: true
+date: 2024-10-23T15:51:55.688Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:59:37.703Z
+---
+
 # Sàng nguyên tố
 
 **Người viết:**
@@ -139,6 +149,7 @@ Tuy nhiên, phương pháp này có **độ phức tạp không gian** $\boldsym
 <details>
 <summary><i>Chứng minh tổng độ phức tạp khi phân tích tất cả các số nguyên từ 1 đến n</i></summary>
 <p>
+
 Xét số nguyên tố $p$ và hàm định giá $p$-adic: $v_p(n)$ là số nguyên lớn nhất thỏa mãn $p^{v_p(n)} | n$. Nói cách khác $v_p(n)$ là số thừa số $p$ nhận được khi phân tích $n$ ra thừa số nguyên tố.
 
 Theo định lý Legendre, ta có:
@@ -279,6 +290,7 @@ $$\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p
 <details>
 <summary><i>Gợi ý</i></summary>
 <p>
+
 Giả sử khi phân tích ra thừa số nguyên tố, $n = p_1^{\alpha_1}p_2^{\alpha_2} \ldots p_k^{\alpha_k}$ với $\alpha_i > 0$. Khi đó:
 
 $$\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p_1-1)(p_2 - 1) \ldots (p_k - 1)$$
@@ -288,6 +300,7 @@ $$\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p
 <details>
 <summary><i>Lời giải</i></summary>
 <p>
+
 $$
 \varphi(n) = p_1^{\alpha_1 - 1} . p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} . (p_1-1)(p_2 - 1) \ldots (p_k - 1)
 = n \dfrac{p_1-1}{p_1} \dfrac{p_2-1}{p_2} \ldots \dfrac{p_k-1}{p_k}$$
@@ -466,6 +479,7 @@ void linear_sieve(int n){
 <details>
 <summary><i>Giải thích về ĐPT của thuật toán</i></summary>
 <p>
+
 Mỗi số $x$ có <b>duy nhất</b> một cách biểu diễn:
 $$x = \text{min_prime}[x] \cdot i$$
 trong đó $\text{min_prime}[x]$ là ước nguyên tố nhỏ nhất của $x$.
@@ -778,12 +792,12 @@ void sieve() {
 
 <details>
 <summary><i> Cải tiến của Kim Walisch</i></summary>
-<p>
+
 Xem code gốc tại <a href="https://github.com/kimwalisch/primesieve">đây</a>.
 Sàng nguyên tố của Kim Walisch sử dụng kết hợp rất nhiều phương pháp nhằm tối ưu hóa sàng nguyên tố từ nhưng trường hợp nhỏ đến những trường hợp lớn. Tham khảo các tối ưu hóa được sử dụng tại <a href="https://github.com/kimwalisch/primesieve/blob/master/doc/ALGORITHMS.md#optimizations-used-in-primesieve">đây</a>.
 
 Dưới đây là một phần code được tối giản cho trường hợp $n$ lớn và phù hợp hơn với lập trình thi đấu.
-</p>
+
 ```cpp
 // Source: RR Code
 const int lim = 1e9;

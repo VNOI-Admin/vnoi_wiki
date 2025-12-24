@@ -1,4 +1,14 @@
-# Số học 6 - Xác suất (Probabilities)
+---
+title: Xác suất (Probabilities)
+description: 
+published: true
+date: 2024-09-29T09:29:15.271Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:06:21.049Z
+---
+
+# Xác suất (Probabilities)
 
 Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-ii/)
 
@@ -32,9 +42,9 @@ Nếu hai biến cố $A$ và $B$ độc lập với nhau, không biến cố n�
 
 ## Xác suất có điều kiện (Conditional Probability)
 
-Xác suất có điều kiện là xác suất của một biến cố $B$ nào đó, biết rằng một biến cố $A$ khác xảy ra. Kí hiệu là $P(B\|A)$, đọc là xác suất của $B$, biết $A$.
+Xác suất có điều kiện là xác suất của một biến cố $B$ nào đó, biết rằng một biến cố $A$ khác xảy ra. Kí hiệu là $P(B| A)$, đọc là xác suất của $B$, biết $A$.
 
-Sử dụng toán học, ta định nghĩa $P(B\|A) = \frac{P(AB)}{P(A)}$.
+Sử dụng toán học, ta định nghĩa $P(B| A) = \frac{P(AB)}{P(A)}$.
 
 
 ## Các quy tắc tính xác suất (Rules of Probability)
@@ -48,7 +58,7 @@ Nếu $A$ và $B$ là hai biến cố phụ thuộc, xác suất của biến c�
 
 Nếu $A$ và $B$ là hai biến cố độc lập, xác suất của biến cố $AB$ được tính bằng công thức: $P(AB) = P(A).P(B)$.
 
-Do đó, xác suất có điều kiện của hai biến cố độc lập có thể được tính bằng công thức: $P(B\|A) = \frac{P(AB)}{P(A)} \Leftrightarrow P(B\|A) = \frac{P(A).P(B)}{P(A)} \Leftrightarrow P(B\|A) = P(B)$.
+Do đó, xác suất có điều kiện của hai biến cố độc lập có thể được tính bằng công thức: $P(B|A) = \frac{P(AB)}{P(A)} \Leftrightarrow P(B|A) = \frac{P(A).P(B)}{P(A)} \Leftrightarrow P(B|A) = P(B)$.
 
 Công thức trên phù hợp với định nghĩa xác suất có điều kiện, biến cố $A$ có xảy ra hay không không làm ảnh hưởng đến xác suất xảy ra biến cố $B$, do đó xác suất biến cố $B$ xảy ra biết biến cố $A$ xảy ra bằng xác suất xảy ra biến cố $B$.
 
@@ -82,21 +92,21 @@ Từ quy tắc cộng, ta suy ra được quy tắc trừ hai biến cố xung k
 
 ## Xác suất có điều kiện của hai biến cố xung khắc
 
-Ta đã định nghĩa xác suất có điều kiện bằng công thức sau: $P(B\|A) = \frac{P(AB)}{P(A)}$
+Ta đã định nghĩa xác suất có điều kiện bằng công thức sau: $P(B|A) = \frac{P(AB)}{P(A)}$
 
 Mà với hai biến cố xung khắc $A$ và $B$, ta lại có: $P(AB) = 0$
 
-Do đó $P(B\|A) = \frac{0}{P(A)} = 0$.
+Do đó $P(B|A) = \frac{0}{P(A)} = 0$.
 
 ## Định lí Bayes (Bayes’ Theorem)
 
 Trong xác suất và thống kê, định lí Bayes mô tả xác suất của một biến cố dựa trên các biến cố có liên quan đến biến cố đó.
 
-Công thức của định lí Bayes như sau: $P(A\|B) = \frac{P(A).P(B\|A)}{P(B)}$, với $A$, $B$ là hai biến cố, $P(A)$, $P(B)$ là xác suất của hai biến cố, $P(A\|B)$ là xác suất có điều kiện: xác suất của $A$ biết $B$ xảy ra, $P(B\|A)$ là xác suất của $B$ biết $A$ xảy ra.
+Công thức của định lí Bayes như sau: $P(A|B) = \frac{P(A).P(B|A)}{P(B)}$, với $A$, $B$ là hai biến cố, $P(A)$, $P(B)$ là xác suất của hai biến cố, $P(A|B)$ là xác suất có điều kiện: xác suất của $A$ biết $B$ xảy ra, $P(B|A)$ là xác suất của $B$ biết $A$ xảy ra.
 
 ### Dạng mở rộng (Extended Form)
 
-Cho $n$ biến cố $A_1, A_2, ..., A_n$, khi đó nếu $P(B) = \sum_{i=1}^n P(B\|A_i)P(A_i)$ thì $P(A_i\|B) = \frac{P(B\|A_i)P(A_i)}{\sum_{j=1}^n P(B\|A_j)P(A_j)}$.
+Cho $n$ biến cố $A_1, A_2, ..., A_n$, khi đó nếu $P(B) = \sum_{i=1}^n P(B|A_i)P(A_i)$ thì $P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum\limits_{j=1}^n P(B|A_j) \times P(A_j)}$.
 
 ## Thuật toán ngẫu nhiên (Randomized Algorithms)
 

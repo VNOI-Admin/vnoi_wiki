@@ -1,3 +1,13 @@
+---
+title: Khử nhân ma trận
+description: 
+published: true
+date: 2024-09-23T04:23:48.683Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:04:49.966Z
+---
+
 # Khử nhân ma trận
 
 **Tác giả**: [Nguyễn Tiến Trung Kiên](http://news.zing.vn/thay-giao-sinh-nam-1997-cua-cac-cao-thu-hsg-quoc-gia-post480645.html)
@@ -10,7 +20,7 @@ Nguyễn Tiến Trung Kiên là cựu học sinh Chuyên Tổng Hợp, với 1 H
 
 [Nhân ma trận](/algo/trick/matrix-multiplication) thật sự hữu dụng. Có nhiều bài toán khi $n$ nhỏ, ta dùng **DP** (**Dynamic Programming - Quy Hoạch Động**) để giải. Nhưng khi $n$ lớn (khoảng $10^9$), ta phải dùng nhân ma trận để giảm **độ phức tạp**. Trong quá trình code nhân ma trận, việc sinh ra ma trận gốc không phải lúc nào cũng đơn giản. Tôi đã tìm ra một phương pháp tốt để giải những bài toán này mà không cần nhân ma trận.
 
-Khi dùng phương pháp này, ta không cần phải sinh ma trận gốc và không cần cài phép toán nhân hai ma trận $A \* B$ và luỹ thừa ma trận $A^k$. Tuy nhiên, phương pháp này chỉ dùng được trong các bài toán đếm, nghĩa là nó không thể hoàn toàn thay thế nhân ma trận.
+Khi dùng phương pháp này, ta không cần phải sinh ma trận gốc và không cần cài phép toán nhân hai ma trận $A \times B$ và luỹ thừa ma trận $A^k$. Tuy nhiên, phương pháp này chỉ dùng được trong các bài toán đếm, nghĩa là nó không thể hoàn toàn thay thế nhân ma trận.
 
 # Bắt đầu bằng ví dụ đơn giản nhất
 
@@ -34,16 +44,16 @@ Bây giờ, gọi $f(n, h, h_0)$ là số dãy độ dài $n$ bắt đầu từ 
 Xét các trường hợp:
 
 - Nếu $n = 0$: trả về 1 nếu $h=h_0$, trả về 0 nếu ngược lại.
-- Nếu $n = 2 \* k$: $f(2 \* k, h, h_0) = \sum{f(k, h, i) \* f(k, i, h_0)}$ với mọi $i$ trong khoảng $[0, L]$.
-- Nếu $n = 2 \* k + 1$: $f(2 \* k+1, h, h_0) = f(2 \* k, h-1, h_0) + f(2 \* k, h+1, h_0)$.
+- Nếu $n = 2 \times k$: $f(2 \times k, h, h_0) = \sum{f(k, h, i) \times f(k, i, h_0)}$ với mọi $i$ trong khoảng $[0, L]$.
+- Nếu $n = 2 \times k + 1$: $f(2 \times k+1, h, h_0) = f(2 \times k, h-1, h_0) + f(2 \times k, h+1, h_0)$.
 
 Ngoài ra, chú ý đến trường hợp sau: nếu $h<0$ hoặc $h>L$ thì trả về 0.
 
 Mục tiêu của ta là tính $f(n, 0, 0)$.
 
-Độ phức tạp của phương pháp này là $\mathcal{O}(L^3 log n)$, nhanh bằng với nhân ma trận. Chú ý rằng ta chỉ có $\mathcal{O}(L^2 log n)$ trạng thái, không phải là $\mathcal{O}(L^2 n)$. Chẳng hạn khi $n=100$, các giá trị của $n$ sẽ nằm trong tập sau: ${100, 50, 25, 24, 12, 6, 3, 2, 1, 0}$. Thế nên $n$ chỉ nhận khoảng $2*log n$ giá trị trong tập hợp đó. Ta có thể dùng độ sâu của hàm $f$ để đại diện cho $n$.
+Độ phức tạp của phương pháp này là $\mathcal{O}(L^3 \log n)$, nhanh bằng với nhân ma trận. Chú ý rằng ta chỉ có $\mathcal{O}(L^2 \log n)$ trạng thái, không phải là $\mathcal{O}(L^2 n)$. Chẳng hạn khi $n=100$, các giá trị của $n$ sẽ nằm trong tập sau: ${100, 50, 25, 24, 12, 6, 3, 2, 1, 0}$. Thế nên $n$ chỉ nhận khoảng $2*\log n$ giá trị trong tập hợp đó. Ta có thể dùng độ sâu của hàm $f$ để đại diện cho $n$.
 
-```
+```javascript
 function f(n, h, h_0, Depth):
     if h < 0 or h > L:
       return 0
@@ -115,8 +125,8 @@ cout << f(n, ::p, 0) << endl;
 
 Ta có các trường hợp:
 
-- Nếu $n=0$ hoặc $n=2 \* k+1$, ta viết như hàm $f$ cũ. Nếu $n \ne 0$, nó sẽ gọi đến một trạng thái khác mà lúc này $n$ chẵn.
-- Ngược lại, $n=2 \* k$, $f(2 \*k, p, Just, p_0, Just_0) = \sum{f(k, p, Just, i, j) \* f(k, i, j, p_0, Just_0)}$ với tất cả bộ $i$, $j$ hợp lệ (tức là $i$ nằm trong khoảng [0, p], $j$ nằm trong khoảng $[0, 2]$).
+- Nếu $n=0$ hoặc $n=2 \times k+1$, ta viết như hàm $f$ cũ. Nếu $n \ne 0$, nó sẽ gọi đến một trạng thái khác mà lúc này $n$ chẵn.
+- Ngược lại, $n=2 \times k$, $f(2 \times k, p, Just, p_0, Just_0) = \sum{f(k, p, Just, i, j) \times f(k, i, j, p_0, Just_0)}$ với tất cả bộ $i$, $j$ hợp lệ (tức là $i$ nằm trong khoảng [0, p], $j$ nằm trong khoảng $[0, 2]$).
 
 Chú ý tại trường hợp $n=0$, việc $n=0$ không có nghĩa đó là kết thúc của một dãy. Vì ta chia dãy thành các phần nhỏ hơn, $n=0$ chỉ có nghĩa là kết thúc của một phần nhỏ. Vì thế ta sẽ thêm một biến $Stop$ thuộc kiểu boolean. Khi $Stop=true$, $f(n,p,Just,p_0,Just_0) = f(n,p,Just)$, ngược lại, tức là $Stop=false$, $f(n,p,Just,p_0,Just_0,Stop) = f(n,p,Just,p_0,Just_0)$.
 
@@ -157,7 +167,7 @@ cout << g(n, ::p, 0, rand()%21, rand()%3, true) << endl;
 
 Chú ý ở code trên, `::p` và `p` là khác nhau. `::p` là biến `p` toàn cục, tức là `p` được nhập từ input. Còn `p` là tham số ở trong hàm `g`. `Rand()%21` và `rand()%3` là hai số mà ta có thể bỏ qua giá trị của chúng (khi nào mà `Stop=true` thì `p0` và `Just0` không có ý nghĩa).
 
-Độ phức tạp ở code trên là $\mathcal{O}(p^3 log^2 n)$. Thực tế, ta có thể không dùng `map`, bằng cách thêm một tham số là `Depth` đại diện cho độ sâu của hàm quy hoạch động. Khi đó, độ phức tạp mất đi một thừa số $log n$, giảm xuống còn $\mathcal{O}(p^3 log n)$. Code trên tôi dùng `map` cho nó dễ hiểu.
+Độ phức tạp ở code trên là $\mathcal{O}(p^3 \log^2 n)$. Thực tế, ta có thể không dùng `map`, bằng cách thêm một tham số là `Depth` đại diện cho độ sâu của hàm quy hoạch động. Khi đó, độ phức tạp mất đi một thừa số $\log n$, giảm xuống còn $\mathcal{O}(p^3 \log n)$. Code trên tôi dùng `map` cho nó dễ hiểu.
 
 # $f(n) = f(n-1) + f(n-2)$
 
@@ -169,16 +179,16 @@ Không khó để nhận ra $f(n) = f(n-1) + f(n-2)$, trong đó $f(0)=1$ và $f
 
 Có hai trường hợp:
 
-- $n=2 \* k$, ta có hai lựa chọn:
-  - Lựa chọn thứ nhất là nhảy từ $2 \* k$ đến $k$ rồi nhảy từ $k$ đến 0.
-  - Lựa chon thứ hai là nhảy từ $2 \* k$ đến $k+1$, sau đó di chuyển sang trái 2 bước, tức là từ $k+1$ đến $k-1$, rồi nhảy từ $k-1$ đến 0 (chú ý ta không hề nhảy vào ô thứ $k$).
-  Thế nên, $f(2 \* k) = f(k) \* f(k) + f(k-1) \* f(k-1)$.
+- $n=2 \times k$, ta có hai lựa chọn:
+  - Lựa chọn thứ nhất là nhảy từ $2 \times k$ đến $k$ rồi nhảy từ $k$ đến 0.
+  - Lựa chon thứ hai là nhảy từ $2 \times k$ đến $k+1$, sau đó di chuyển sang trái 2 bước, tức là từ $k+1$ đến $k-1$, rồi nhảy từ $k-1$ đến 0 (chú ý ta không hề nhảy vào ô thứ $k$).
+  Thế nên, $f(2 \times k) = f(k) \times f(k) + f(k-1) \times f(k-1)$.
 
-- $n=2 \* k+1$, bây giờ ta chia dãy thành hai đoạn $0..k$ và $k..n$ (đoạn thứ nhất độ dài $k+1$, đoạn thứ hai dài $k$), ta lại có hai lựa chọn:
+- $n=2 \times k+1$, bây giờ ta chia dãy thành hai đoạn $0..k$ và $k..n$ (đoạn thứ nhất độ dài $k+1$, đoạn thứ hai dài $k$), ta lại có hai lựa chọn:
   - Lựa chọn thứ nhất là nhảy từ $n$ đến $k$ rồi nhảy từ $k$ đến 0.
-  - Lựa chọn thứ hai là nhảy từ $n$ đến $k+1$, di chuyển sang trái 2 bước, rồi nhảy từ $k-1$ đến 0. Thế nên $f(2 \* k+1) = f(k) \* f(k+1) + f(k-1) \* f(k)$.
+  - Lựa chọn thứ hai là nhảy từ $n$ đến $k+1$, di chuyển sang trái 2 bước, rồi nhảy từ $k-1$ đến 0. Thế nên $f(2 \times k+1) = f(k) \times f(k+1) + f(k-1) \times f(k)$.
 
-Lúc này độ phức tạp là $\mathcal{O}(log n)$. Bởi vì với mỗi độ sâu, chỉ có tối đa 4 giá trị $n$.
+Lúc này độ phức tạp là $\mathcal{O}(\log n)$. Bởi vì với mỗi độ sâu, chỉ có tối đa 4 giá trị $n$.
 
 ```cpp
 map<long, long> F;

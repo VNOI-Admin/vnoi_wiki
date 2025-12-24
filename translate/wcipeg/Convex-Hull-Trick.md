@@ -1,4 +1,15 @@
-# **Kĩ thuật bao lồi (Convex Hull Trick)**
+---
+title: Convex Hull Trick
+description: 
+published: true
+date: 2024-12-24T15:16:57.521Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:08:03.287Z
+---
+
+Bài viết hiện tại đã được thay thế bởi bài viết mới: [Kĩ thuật bao lồi (Convex Hull Trick)](/algo/dp/cht)
+# Convex Hull Trick
 
 **Nguồn**: [P3G](http://wcipeg.com/wiki/Convex_hull_trick)
 
@@ -168,7 +179,7 @@ Do dễ thấy $\delta(n)>\delta(n-1)$, giống như bài "acquire" các truy v�
 
 ## Bài toán
 
-Ngày xửa ngày xưa, có $N$ trị trấn kiểu trung cỏ trong khu tự trị Moldavian. Các trhị trấn này được đánh số từ $1$ đến $N$. Thị trấn $1$ là thủ đô. Các thị trấn được nối với nhau bằng $N-1$ con đường hai chiểu, mỗi con đường có độ dài được đo bằng km. Có duy nhất một tuyến đường nối giữa hai điểm bất kỳ (đồ thị các con đường là hình cây). Mỗi thị trấn không phải trung tâm có một người truyền tin.
+Ngày xửa ngày xưa, có $N$ trị trấn kiểu trung cỏ trong khu tự trị Moldavian. Các trhị trấn này được đánh số từ $1$ đến $N$. Thị trấn $1$ là thủ đô. Các thị trấn được nối với nhau bằng $N-1$ con đường hai chiều, mỗi con đường có độ dài được đo bằng km. Có duy nhất một tuyến đường nối giữa hai điểm bất kỳ (đồ thị các con đường là hình cây). Mỗi thị trấn không phải trung tâm có một người truyền tin.
 
 Khi một thị trấn bị tấn công, tình hình chiến sự cần được bảo về thủ đô càng sớm càng tốt. Mội thông điệp được truyền bằng các người truyền tin. Mỗi người truyền tin được đặc trưng bởi lượng thời gian khởi động và vận tốc không đổi sau khi xuất phát.
 

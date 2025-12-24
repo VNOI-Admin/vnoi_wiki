@@ -1,4 +1,14 @@
-# Số học 4 - Phi hàm Euler
+---
+title: Phi hàm Euler
+description: 
+published: true
+date: 2024-09-29T09:26:01.383Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:06:13.366Z
+---
+
+# Phi hàm Euler
 
 Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-iii/) và 1 số bài viết trên Wikipedia
 
@@ -6,7 +16,7 @@ Người dịch: Bùi Việt Dũng
 
 # Phi hàm Euler (Euler's totient function)
 
-**Định nghĩa:** $\phi(N)$ là số số nguyên tố cùng nhau với $N$ trong đoạn từ 1 đến $N$.
+**Định nghĩa:** $\varphi(N)$ là số số nguyên tố cùng nhau với $N$ trong đoạn từ 1 đến $N$.
 
 **Cách tính:**
 
@@ -48,13 +58,13 @@ int phi(int n) {
 
 Một công thức thường gặp để tính phi:
 
-$\phi(N) = n \* \prod_{p\|n}(1 - 1/p) $
+$\varphi(N) = n \times \prod\limits_{p\mid n}\left(1 - \frac{1}{p}\right) $
 
-(p là các ước nguyên tố của n).
+($p$ là các ước nguyên tố của $n$).
 
 Ví dụ:
 
-$\phi(6) = 6 \* (1 - 1/2) \* (1 - 1/3) = 2$
+$\varphi(6) = 6 \times (1 - 1/2) \times (1 - 1/3) = 2$
 
 Cài đặt:
 
@@ -73,7 +83,7 @@ int eulerPhi(int n) { // = n (1-1/p1) ... (1-1/pn)
 }
 ```
 
-Trong trường hợp đặc biệt, $N = p^{k}, \phi(N) = p^{k-1} \* (p-1)$.
+Trong trường hợp đặc biệt, $N = p^{k}, \varphi(N) = p^{k-1} (p-1)$.
 
 # Hàm Nhân tính
 

@@ -1,3 +1,13 @@
+---
+title: Interval Tree trên tập đoạn thẳng
+description: 
+published: true
+date: 2024-08-26T09:43:46.993Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:01:18.606Z
+---
+
 # Interval Tree trên tập đoạn thẳng
 
 **Tác giả**: Vũ *chipchip* Phúc Hoàng
@@ -71,7 +81,7 @@ int Query(int node, int pos)
 }
 ```
 
-Độ phức tạp: $O(log(MAXX))$
+Độ phức tạp: $O(\log(MAXX))$
 
 # Update
 
@@ -94,74 +104,74 @@ void Update(int node, int l, int h, line val)
 }
 ```
 
-Độ phức tạp của phần chia khoảng này là: $O(log(MAXX))$, giống như IT cơ bản. Nếu đoạn cần Update là đường thẳng $(l = low[1], h = high[1])$ thì không mất thời gian chia khoảng, độ phức tạp chỉ là $O(1)$.
+Độ phức tạp của phần chia khoảng này là: $O(\log(MAXX))$, giống như IT cơ bản. Nếu đoạn cần Update là đường thẳng $(l = low[1], h = high[1])$ thì không mất thời gian chia khoảng, độ phức tạp chỉ là $O(1)$.
 
 Bây giờ việc phải làm là điền vào chỗ `// Do Something`. Ta có một đường thẳng `val` và đường thẳng `it[node]`, cả hai đều chỉ được xét trong khoảng từ `low[node]` đến `high[node]`. Lấy `mid` là điểm giữa của khoảng `(mid = (low[node] + high[node]) / 2)`. Ta sẽ thay đổi nút `it[node]` và cả các con của nó. Có 6 trường hợp có thể xảy ra:
 
 1. `it[node]` hoàn toàn nằm trên `val`. Trường hợp này ta chỉ bỏ qua mà không làm gì, vì `val` chắc chắn không bao giờ đạt max trong khoảng `low[node]` đến `high[node]`.
 
-   ```cpp
+```cpp
 if(Get(it[node], low[node]) >= Get(val, low[node]) && Get(it[node], high[node]) >= Get(val, high[node]))
 {
     return;
 }
-   ```
+```
 
 2. `it[node]` hoàn toàn nằm dưới `val`. Trường hợp này ta gán `it[node]` bằng `val`, `it[node]` cũ không còn giá trị khi tìm max.
 
-    ```cpp
+```cpp
 if(Get(it[node], low[node]) <= Get(val, low[node]) && Get(it[node], high[node]) <= Get(val, high[node]))
 {
     it[node] = val;
     return;
 }
-    ```
+```
 
 3. Nửa bên trái của `it[node]` hoàn toàn nằm trên nửa bên trái của `val`. Vậy `val` chắc chắn không bao giờ đạt max tại nửa trái của khoảng `node`, ta giữ lại `it[node]` tại `node` và down `val` xuống con phải `(node * 2 + 1)`.
 
-    ```cpp
+```cpp
 if(Get(it[node], low[node]) >= Get(val, low[node]) && Get(it[node], mid) >= Get(val, mid))
 {
     Update(node * 2 + 1, l, h, val);
     return;
 }
-    ```
+```
 
 4. Nửa bên trái của `it[node]` hoàn toàn nằm dưới nửa bên trái của `val`. Tương tự như trên, ta down `it[node]` xuống con phải của node và update `it[node]` bằng `val`.
 
-    ```cpp
+```cpp
 if(Get(it[node], low[node]) <= Get(val, low[node]) && Get(it[node], mid) <= Get(val, mid))
 {
     Update(node * 2 + 1, l, h, it[node]);
     it[node] = val;
     return;
 }
-    ```
+```
 
 5. Nửa bên phải của `it[node]` hoàn toàn nằm trên nửa bên phải của `val`.
 
-    ```cpp
+```cpp
 if(Get(it[node], mid + 1) >= Get(val, mid + 1) && Get(it[node], high[node]) >= Get(val, high[node]))
 {
     Update(node * 2, l, h, val);
     return;
 }
-    ```
+```
 
 6. Nửa bên phải của `it[node]` hoàn toàn nằm dưới nửa bên phải của `val`.
 
-    ```cpp
+```cpp
 if(Get(it[node], mid + 1) <= Get(val, mid + 1) && Get(it[node], high[node]) <= Get(val, high[node]))
 {
     Update(node * 2, l, h, it[node]);
     it[node] = val;
     return;
 }
-    ```
+```
 
-Sau khi xét xong 6 trường hợp ở trên, ta đã xử lí xong việc Update đoạn val trong một khoảng `low[node]`, `high[node]`. Độ phức tạp của thao tác này là $O(log(MAXX))$, vì có thể phải đi từ `node` cho đến lá. Có thể thấy, cây IT có đầy đủ thông tin về đoạn thằng đạt max tại một hoành độ nhất định, vì ta chỉ loại những đoạn thẳng mà hoàn toàn không còn giá trị (trường hợp 1 và trường hợp 2), còn những đoạn thẳng vẫn có thể đạt max tại một vị trí nào đấy luôn được bảo tồn.
+Sau khi xét xong 6 trường hợp ở trên, ta đã xử lí xong việc Update đoạn val trong một khoảng `low[node]`, `high[node]`. Độ phức tạp của thao tác này là $O(\log(MAXX))$, vì có thể phải đi từ `node` cho đến lá. Có thể thấy, cây IT có đầy đủ thông tin về đoạn thằng đạt max tại một hoành độ nhất định, vì ta chỉ loại những đoạn thẳng mà hoàn toàn không còn giá trị (trường hợp 1 và trường hợp 2), còn những đoạn thẳng vẫn có thể đạt max tại một vị trí nào đấy luôn được bảo tồn.
 
-Độ phức tạp: $O(log^2(MAXX))$. $O(log(MAXX))$ khi chia khoảng, $O(log(MAXX))$ khi update trên một khoảng. Nếu update đường thẳng thì không mất thời gian chia khoảng, độ phức tạp tổng cộng là $O(log(MAXX))$.
+Độ phức tạp: $O(\log^2(MAXX))$. $O(\log(MAXX))$ khi chia khoảng, $O(\log(MAXX))$ khi update trên một khoảng. Nếu update đường thẳng thì không mất thời gian chia khoảng, độ phức tạp tổng cộng là $O(\log(MAXX))$.
 
 # Mở rộng
 
@@ -171,7 +181,7 @@ Có nhiều cách để biểu diễn đoạn thẳng trong cây IT ngoài $ax +
 
 # Ứng dụng
 
-Bài toán tìm max, min của $ax + b$ thường đi kèm với thuật toán quy hoạch động, chẳng hạn như bài toán quy hoạch động có công thức $f[i] = max(a[j] * x[i] + b[j] + c)$, ta cần tìm $j < i$ sao cho hàm đó đạt max. Bao lồi cũng là phương pháp thường được sử dụng trong bài toán này. Hạn chế của bao lồi là $a[j]$ phải tăng dần hoặc giảm dần (nếu không sẽ phải sử dụng cấu trúc khác stack để biểu diễn bao lồi, code rất khó khăn). Hạn chế của IT đoạn thẳng là $x[i]$ phải nguyên và nhỏ để có thể biểu diễn trên IT (nếu không sẽ phải sử dụng IT động hoặc rời rạc hóa).
+Bài toán tìm max, min của $ax + b$ thường đi kèm với thuật toán quy hoạch động, chẳng hạn như bài toán quy hoạch động có công thức $f[i] = \max(a[j] \times x[i] + b[j] + c)$, ta cần tìm $j < i$ sao cho hàm đó đạt max. Bao lồi cũng là phương pháp thường được sử dụng trong bài toán này. Hạn chế của bao lồi là $a[j]$ phải tăng dần hoặc giảm dần (nếu không sẽ phải sử dụng cấu trúc khác stack để biểu diễn bao lồi, code rất khó khăn). Hạn chế của IT đoạn thẳng là $x[i]$ phải nguyên và nhỏ để có thể biểu diễn trên IT (nếu không sẽ phải sử dụng IT động hoặc rời rạc hóa).
 
 Ngoài ra, có một số bài toán yêu cầu tìm max, min trên tập đoạn thẳng. Đây là những bài toán IT đoạn thẳng gần như là cách làm duy nhất.
 
@@ -194,7 +204,7 @@ Ngoài ra, có một số bài toán yêu cầu tìm max, min trên tập đoạ
 - [SPOJ - ACQUIRE](http://www.spoj.com/problems/ACQUIRE/)
 - [SPOJ - APIO10A](http://www.spoj.com/problems/APIO10A/)
 
-Để làm những bài tập này, đầu tiên ta sẽ giải bằng cách quy hoạch động với độ phức tạp $O(N^2)$. Công thức quy hoạnh động sẽ có dạng là $f[i] = max/min(a[j] * x[i] + b[j] + c)$, với mọi $j$ từ 1 đến $i - 1$. Để giảm độ phức tạp xuống $O(N \log{N})$, ta sẽ sử dụng bao lồi hoặc IT đoạn thẳng. Lưu ý là với cách bao lồi, stack bao lồi phải đảm bảo $a[j]$ tăng dần hoặc giảm dần, nếu không phải lọc ra sao cho tính chất này thỏa mãn. Lưu ý rằng bao lồi chỉ có thể làm được khi hệ số góc tăng dần hoặc giảm dần.
+Để làm những bài tập này, đầu tiên ta sẽ giải bằng cách quy hoạch động với độ phức tạp $O(N^2)$. Công thức quy hoạnh động sẽ có dạng là $f[i] = \max/\min(a[j] \times x[i] + b[j] + c)$, với mọi $j$ từ 1 đến $i - 1$. Để giảm độ phức tạp xuống $O(N \log{N})$, ta sẽ sử dụng bao lồi hoặc IT đoạn thẳng. Lưu ý là với cách bao lồi, stack bao lồi phải đảm bảo $a[j]$ tăng dần hoặc giảm dần, nếu không phải lọc ra sao cho tính chất này thỏa mãn. Lưu ý rằng bao lồi chỉ có thể làm được khi hệ số góc tăng dần hoặc giảm dần.
 
 ## [USACO - Fencing the Herd](http://usaco.org/index.php?page=viewproblem2&cpid=534)
 
@@ -206,7 +216,7 @@ Còn với IT đoạn thẳng, ta cũng gặp khó khăn vì query không phải
 
 ## [VNOJ - VOMARIO](https://oj.vnoi.info/problem/vomario/)
 
-Bài "độc quyền" của IT đoạn thẳng. Trong bài này, ta cũng tìm công thức quy hoạch động $O(N^2)%: $f[i] = max(a[j] * x[i] + b[j] + c)$.
+Bài "độc quyền" của IT đoạn thẳng. Trong bài này, ta cũng tìm công thức quy hoạch động $O(N^2)$: $f[i] = \max(a[j] \times x[i] + b[j] + c)$.
 
 Tuy nhiên, đáng lưu ý là mỗi cặp $(a[j], b[j])$ chỉ được tính trong một khoảng $x[i]$ nào đó, còn $x[i]$ nằm ngoài khoảng đó thì cặp $(a[j], b[j])$ này không được phép chọn để lấy max. Đây chính là tính chất "đoạn thẳng" thay vì "đường thẳng". Bài này không thể sử dụng bao lồi để giải được.
 

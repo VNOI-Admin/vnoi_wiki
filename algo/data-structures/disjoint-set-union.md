@@ -1,3 +1,13 @@
+---
+title: Disjoint Set Union
+description: 
+published: true
+date: 2025-01-31T09:45:46.763Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:00:54.406Z
+---
+
 # Disjoint Set Union
 
 **Nguời viết:**
@@ -170,7 +180,7 @@ Nếu như `lab[v]` âm thì $u$ là gốc của một cây và `-lab[v]` là s�
 
 ```cpp
 void make_set(int v) {
-    lab[u] = -1;
+    lab[v] = -1;
 }
 
 int find_set(int v) {
@@ -412,13 +422,13 @@ Chúng ta hoàn toàn có thể sử dụng cấu trúc dữ liệu DSU để l�
 ```cpp
 pair<int, int> find_set(int v) {
     if (v == parent[v]) return {v, 0};
-    pair<int, int> val = get(parent[v]);
+    pair<int, int> val = find_set(parent[v]);
     parent[v] = val.first;
     dist[v] = (dist[v] + val.second) % 2;
         // độ dài từ đỉnh đến cha mới
         // = độ dài đến đỉnh cha cũ
         // + độ dài từ cha cũ tới cha mới (gốc của cây)
-    return {p[a], dist[a]};
+    return {parent[a], dist[a]};
 }
 ```
 

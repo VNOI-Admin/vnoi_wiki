@@ -1,3 +1,13 @@
+---
+title: Sum-constrained convex optimization
+description: 
+published: true
+date: 2024-09-04T07:27:10.151Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:04:45.515Z
+---
+
 # Sum-constrained convex optimization
 
 **Người viết:**
@@ -10,7 +20,7 @@
 
 Mục đích của bài viết này là để giới thiệu cho mọi người về một mô típ đã xuất hiện trong nhiều bài tập trung bình khó tới khó -- tối ưu tổng của một số hàm lồi cho trước. Ý tưởng giải chung của các bài toán này thường là như nhau: tham lam trên chi phí tăng của các hàm lồi này (ta sẽ định nghĩa chi phí tăng ở phần tiếp theo).
 
-*Bài viết này là phần 1 của một chuỗi 2 bài viết; phần 2 của chuỗi bài viết này mình sẽ giới thiệu thuật toán tìm tổng Minkowski của các bao lồi.*
+*Bài viết này là phần 1 của một chuỗi 2 bài viết; phần 2 của chuỗi bài viết này mình sẽ giới thiệu thuật toán tìm [tổng Minkowski](/algo/trick/minkowski-sum) của các bao lồi.*
 
 ### Lưu ý trước khi đọc
 

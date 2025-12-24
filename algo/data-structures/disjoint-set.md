@@ -1,3 +1,15 @@
+---
+title: Disjoints Sets
+description: 
+published: true
+date: 2025-02-19T11:16:04.158Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:00:58.677Z
+---
+
+**Kính mời độc giả tham khảo bài viết mới của VNOI tại [đây](/algo/data-structures/disjoint-set-union).**
+
 # Disjoints Sets
 
 **Disjoint Sets** là 1 CTDL rất hữu dụng, sử dụng rất nhanh, gọn và dễ dàng. Nó được dùng làm nền tảng cho một số thuật toán, như **Kruskal’s** và **Prim’s**, 2 thuật toán tìm **cây khung** nhỏ nhất trên đồ thị.

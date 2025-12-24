@@ -1,4 +1,14 @@
-# "Nhảy nhị phân" với bộ nhớ $\\mathcal O(n)$
+---
+title: "Nhảy nhị phân" với bộ nhớ O(n)
+description: 
+published: true
+date: 2025-02-19T11:04:56.740Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:08:27.643Z
+---
+
+# "Nhảy nhị phân" với bộ nhớ $\mathcal O(n)$
 **Người viết**: Ngô Nhật Quang - Trường THPT Chuyên Khoa học Tự nhiên, Đại học Quốc gia Hà Nội
 
 # Giới thiệu

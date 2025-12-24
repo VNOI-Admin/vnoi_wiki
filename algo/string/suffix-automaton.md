@@ -1,4 +1,15 @@
+---
+title: Suffix Automaton
+description: 
+published: true
+date: 2025-08-11T16:12:27.505Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:02:08.901Z
+---
+
 # Suffix Automaton
+Bài viết vẫn chưa hoàn thiện, mong bạn đọc thông cảm. Để tham khảo thêm, bạn đọc có thể tham khảo bài viết tiếng anh tại [CP-Algorihtms](https://cp-algorithms.com/string/suffix-automaton.html).
 
 **Tác giả**: Cao Xuân Hưng
 

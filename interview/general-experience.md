@@ -1,3 +1,13 @@
+---
+title: Những kinh nghiệm khi phỏng vấn
+description: 
+published: true
+date: 2025-05-29T09:18:24.637Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:58:15.293Z
+---
+
 # Những kinh nghiệm khi phỏng vấn
 
 Tác giả: Đinh Hoàng Phong
@@ -39,7 +49,7 @@ Ví dụ: [một resume được trình bày rõ ràng](https://drive.google.com
 - Nếu như trong vòng 2 đến 3 phút và bạn không có một ý tưởng để trả lời câu hỏi thì bạn có thể yêu cầu một gợi ý để bạn có thể giải quyết bài toán. Đây là một điều chấp nhận được và rất bình thường trong phỏng vấn.
 - Điều quan trọng nhất của một cuộc phỏng vấn đó là hãy xem nó như một cuộc trò chuyện về một bài toán giữa hai lập trình viên với nhau. Bạn cần phải thoải mái bởi vì họ cũng sẽ đánh giá ở tiêu chí này. Người phỏng vấn cần biết được rằng bạn có thể là một người đồng nghiệp của họ trong tương lai được hay không.
 
-Bạn cũng có thể tham khảo thêm [hướng dẫn phỏng vấn của Google](https://www.youtube.com/watch?time_continue=1&v=oWbUtlUhwa8)
+Bạn cũng có thể tham khảo thêm [hướng dẫn phỏng vấn của Google](https://web.archive.org/web/20210721120700/https://www.youtube.com/watch?v=oWbUtlUhwa8).
 
 
 ## Những dạng câu hỏi và cách luyện tập trả lời

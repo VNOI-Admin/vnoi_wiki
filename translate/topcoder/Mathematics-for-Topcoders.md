@@ -1,3 +1,13 @@
+---
+title: Toán học trong Tin học
+description: 
+published: false
+date: 2024-09-30T04:54:12.272Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:07:18.522Z
+---
+
 # Toán học trong Tin học
 
 Bài viết gốc: [Mathematics for Topcoders - đăng bởi dimkadimon trên Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/mathematics-for-topcoders/)

@@ -1,3 +1,13 @@
+---
+title: Xác suất
+description: 
+published: true
+date: 2024-11-01T06:51:35.759Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:07:05.737Z
+---
+
 # Xác suất
 
 Nguồn: [Understanding Probabilities - Topcoder](https://www.topcoder.com/community/data-science/data-science-tutorials/understanding-probabilities/)
@@ -32,7 +42,7 @@ Cái chúng ta quan tâm nhất là xác suất để một biến cố nhất �
 
 Như đã đề cập, mỗi kết quả khả thi được biểu diễn bởi đúng một điểm trong không gian mẫu. Điều này đưa ta đến công thức:
 
-$P(E) = \frac{\left \| E \right \|}{\left \| S \right \|}$
+$P(E) = \frac{\left  \mid  E \right  \mid }{\left  \mid  S \right  \mid }$
 
 Nói cách khác, ta có thể tính xác suất để một biến cố xảy ra bằng cách chia **số kết quả thuộc biến cố $E$** cho **tổng số kết quả có thể xảy ra** (theo không gian mẫu $S$). Để diễn tả mối quan hệ giữa các biến cố, bạn có thể dùng các quy ước từ lý thuyết về tập hợp. Xét trường hợp tung con xúc sắc một lần. Như trên, ta có $S = \{1,2,3,4,5,6\}$. Xem xét những biến cố dưới đây:
 
@@ -125,11 +135,11 @@ Xét $n$ biến cố độc lập (*independent events*): $ E_1, E_2, ..., E_n$ 
 
 Vì xác suất được định nghĩa là một số thực nằm trong khoảng từ 0 đến 1, ta tổng hợp được xác suất để tất cả các biến cố xảy ra bằng công thức dưới đây:
 
-  $P(all) = P(E_1) \* P(E_2) \* ... \* P(En) $
+  $P(all) = P(E_1) \times P(E_2) \times ... \times P(En) $
 
 Cách tốt nhất để trả lời câu hỏi thứ hai là tìm xác suất để không có biến cố nào diễn ra và lấy phần bù.
 
-  $P(any) = 1 - P(E_1') \* P(E_2') \* ... \* P(E_n') $
+  $P(any) = 1 - P(E_1') \times P(E_2') \times ... \times P(E_n') $
 
 Những công thức trên được ứng dụng rất nhiều, cần nắm chắc để đi đền phần tiếp theo.
 
@@ -205,7 +215,7 @@ Xét riêng từng xúc sắc:
 - Đặt $E(X1)$ là expected value của giá trị xúc sắc 1
 - Đặt $E(X2)$ là expected value của giá trị xúc sắc 2
 
-$E(X1) = E(X2) = (1/6) \* 1 + (1/6) \* 2 + ... + (1/6) \* 6 = 3.5$.
+$E(X1) = E(X2) = (1/6) \times 1 + (1/6) \times 2 + ... + (1/6) \times 6 = 3.5$.
 
 Linearity of Expectation cho ta công thức sau:
 
@@ -215,7 +225,7 @@ Phát biểu chính xác:
 
 Nếu $X1$, $X2$, ..., $Xk$ là các random variable có cùng không gian mẫu:
 
-$E(X1 \* a1 + X2 \* a2 + ... + Xk \* ak) = a1 \* E(X1) + a2 \* E(X2) + ... + ak \* E(Xk)$.
+$E(X1 \times a1 + X2 \times a2 + ... + Xk \times ak) = a1 \times E(X1) + a2 \times E(X2) + ... + ak \times E(Xk)$.
 
 Chú ý rằng các biến không cần độc lập.
 
@@ -299,13 +309,13 @@ Bài tập tương tự:
 
 > Xác suất có điều kiện là xác suất để một biến cố A nào đó xảy ra, biết rằng một biến cố B khác đã xảy ra.
 
-Ký hiệu $P(A\|B)$, và đọc là "xác suất của A, biết B". Nếu $A$ và $B$ là các biến cố, và $P(B) > 0$, thì xác suất có điều kiện của $A$ nếu biết $B$ là:
+Ký hiệu $P(A \mid B)$, và đọc là "xác suất của A, biết B". Nếu $A$ và $B$ là các biến cố, và $P(B) > 0$, thì xác suất có điều kiện của $A$ nếu biết $B$ là:
 
-$P(A\|B) = \frac{P(A \cap B)}{P(B)}$
+$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$
 
 Tương đương, ta có
 
-$P(A \cap B) = P(A\|B) P(B)$
+$P(A \cap B) = P(A \mid B) P(B)$
 
 ### Tóm tắt đề bài
 
@@ -329,7 +339,7 @@ Từ những dữ liệu trên, bạn cần xuất ra giá trị kì vọng cầ
    - 13 : 0.1875
    - 9   : 0.25
 
-Vậy giá trị kì vọng của chất lượng con giống sẽ là $17 \* 0.5625 + 13 \* 0.1875 + 9 \* 0.25 = 14.25$)
+Vậy giá trị kì vọng của chất lượng con giống sẽ là $17 \times 0.5625 + 13 \times 0.1875 + 9 \times 0.25 = 14.25$)
 
 ### Phân tích
 

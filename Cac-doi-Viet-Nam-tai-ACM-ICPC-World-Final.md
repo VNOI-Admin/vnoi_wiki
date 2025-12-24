@@ -1,4 +1,14 @@
-# Các đội Việt Nam tại ACM ICPC World Final
+---
+title: Các đội Việt Nam tại ACM ICPC World Finals
+description: 
+published: true
+date: 2024-10-03T13:40:59.786Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:57:50.373Z
+---
+
+# Các đội Việt Nam tại ACM ICPC World Finals
 
 # Giới thiệu
 
@@ -10,7 +20,7 @@ Mỗi team gồm 3 người, giải 10-12 bài trong vòng 5h.
 
 Các đội Việt Nam muốn được thi Regional ở Việt Nam cần phải vượt qua vòng National.
 
-# Các đội Việt Nam tại ACM ICPC World Final
+# Các đội Việt Nam tại ACM ICPC World Finals
 
 Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và chỉ liệt kê các đội đã vào top 50.
 
@@ -54,3 +64,8 @@ Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và ch
   - Nguyễn Diệp Xuân Quang: [xuanquang1999](https://cphof.org/profile/codeforces:xuanquang1999)
   - Lê Quý Khôi: [GreymaneSilverfang](https://cphof.org/profile/icpc:Quy-Khoi%20Le)
   - Nguyễn Quang Thức: [ZigonK](https://cphof.org/profile/icpc:Quang-Thuc%20Nguyen)
+
+9. [2024](https://scoreboard.icpc.global/2024/scoreboard/) - ĐH Công Nghệ (UET - VNU) - rank 49:
+- Phạm Xuân Trung: [trungnotchung](https://www.cphof.org/profile/icpc:Trung%20Xuan%20Pham)
+- Hoàng Ngọc Bảo Khuê: [khuepr123](https://www.cphof.org/profile/icpc:Khue%20Hoang%20Ngoc%20Bao)
+- Phạm Quốc Hùng: [HollwoQ_Pelw](https://www.cphof.org/profile/icpc:Hung%20Pham)

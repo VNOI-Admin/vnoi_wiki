@@ -1,479 +1,603 @@
-# FFT
+---
+title: FFT - Biến đổi Fourier nhanh
+description: 
+published: true
+date: 2025-01-05T09:02:28.819Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:04:37.397Z
+---
 
-Tác giả: ngmq
+# Biến đổi Fourier nhanh
+**Người viết:**
+- Nguyễn Hoàng Vũ - Trường Đại học Công nghệ, ĐHQGHN
 
-Trong bài này chúng ta sẽ tìm hiểu về thuật toán nhân nhanh hai đa thức sử dụng phép biến đổi Fourier nhanh (*Fast Fourier Transform - FFT*) và cách cài đặt của nó. Bài viết này sẽ chỉ nêu chứng minh sơ lược của một vài tính chất được sử dụng. Các chứng minh chi tiết có thể tìm thấy ở mục tài liệu tham khảo phía cuối của bài viết.
+**Reviewer:**
+- Trần Xuân Bách - Đại học Chicago
+- Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 
-# Vài nét lịch sử
+Các bài toán tổ hợp ngày càng xuất hiện nhiều trong các cuộc thi lập trình thi đấu và thường xuyên nắm giữ các vị trí khó nhất. Bài viết này sẽ giới thiệu về một công cụ quan trọng để giải các bài toán tổ hợp, đó là **Biến đổi Fourier nhanh - Fast Fourier transform**, hay còn được viết tắt là **FFT**.
 
-Phép biến đổi Fourier (*Fourier Transform*) là một trong số những phát kiến toán học đặc sắc có lịch sử hào hùng, gắn liền với những phát kiến khoa học và chiến tranh quân sự ở thế kỷ 19 và 20. **Joseph Fourier** (1768-1830) là một nhà khoa học làm việc trong đội quân thám hiểm Ai Cập của Napoleon từ năm 1798. Sau khi cách mạng Pháp kết thúc năm 1799, Fourier trở về Pháp và tham gia xây dựng lại đất nước trong vai trò một giáo sư của đại học École Polytechnique. Trong quá trình làm việc với các công trình xây dựng cầu đường và đóng tàu, ông đặc biệt quan tâm tới bài toán mô tả quá trình truyền dẫn nhiệt trong kim loại, điều dẫn tới sự ra đời của phép biến đổi Fourier liên tục vào năm 1807 trong một báo cáo của ông tại viện hoàng gia Paris. Trong đó, ông mô tả mọi hàm số, kể cả các hàm số không liên tục đều có thể được biểu diễn dưới dạng tổng của một số vô hạn các hàm số lượng giác. Phát biểu này của Fourier gây chấn động và ấn tượng tới mức nhà toán học Pháp cùng thời là **Lagrange** cho rằng việc nghĩ ra phát kiến này là *gần như không thể* ("nothing short of impossible") [1]. Trong hơn một trăm năm sau đó phép biến đổi Fourier trở thành một đối tượng nghiên cứu phổ biến và liên tục được phát triển, hoàn thiện bởi vô số các tên tuổi lớn của toán lý thuyết [2].
+## 1. Các kiến thức cần biết
 
-Trong khi phiên bản nguyên thủy có lịch sử hoành tráng như vậy, phép biến đổi Fourier nhanh, dù được cho là ra đời trước, lại được quan tâm chậm hơn nhiều. Người ta cho rằng những ý tưởng đầu tiên về biến đổi Fourier nhanh được phát triển bởi nhà toán học Đức **Carl Friedrich Gauss** (1777 - 1855) vào năm 1805 khi ông cố gắng xác định quỹ đạo của các thiên thạch [3], nhưng khi đó ông không công bố kết quả của mình. Mối liên hệ giữa Gauss và phép biến đổi Fourier nhanh chỉ được phát hiện khi các công trình của ông được tập hợp và công bố vào năm 1866. Mặc dù vậy, vào thời đó không có ai quan tâm tới công trình này vì lý thuyết độ phức tạp tính toán chưa phát triển (mãi tới năm 1936 **Alan Turing** mới phát triển mô hình tính toán đầu tiên, và phải tới năm 1965 thì lịch sử ngành nghiên cứu về độ phức tạp tính toán mới bắt đầu với công trình của **Hartmanis** và **Stearns** [4]). Cũng trong năm 1965 hai nhà toán học trong ban cố vấn khoa học của tổng thống Mỹ Kennedy là **James Cooley** và **John Tukey** đã tự tìm ra phép biến đổi nhanh Fourier trong khi thiết kế hệ thống phát hiện các vụ thử hạt nhân của chính quyền Xô Viết [3]. Kể từ thời điểm đó phép biến đổi nhanh Fourier mới chính thức được quan tâm và nghiên cứu ứng dụng trong rất nhiều các lĩnh vực nghiên cứu khác nhau của vật lý, sinh học, điện tử, y tế, điều khiển học...
+### 1.1. Số phức (Complex number)
 
-Nghiên cứu chỉ ra rằng mắt và tai người, động vật có "cài đặt" sẵn thuật toán biến đổi Fourier để giúp chúng ta nhìn và nghe, vì vậy nó được GS **Ronald Coifman** của đại học Yale gọi là *Phương pháp phân tích dữ liệu của tự nhiên* ("Nature's way of analyzing data") [1].
+#### Định nghĩa
 
-# Phép nhân hai đa thức
+Số phức là các số có dạng $z=a+bi$ trong đó $a,b\in \mathbb{R}$ và $i^2=-1$. Số $i$ được gọi là đơn vị ảo. Tập hợp tất cả các số phức được kí hiệu là $\mathbb{C}$.
 
-Cho hai đa thức $p(x), q(x)$ có bậc $d, e$ như sau:
+Ta có thể biểu diễn số phức $z$ trên mặt phẳng toạ độ bằng vectơ $(a,b)$.
+- Phần thực (Real) và phần ảo (Imaginary): $Re(z)=a,Im(z)=b$.
+- Số phức liên hợp (Conjugate): $\overline{z}=a-bi$.
+- Môđun (Modulus): $|z|=r=\sqrt{a^2+b^2}$.
+- Acgumen (Argument): Góc có hướng từ trục thực $Ox$ đến vectơ $(a,b)$, tức góc $\varphi$ trong hình dưới đây.
+- Dạng lượng giác (Polar form): $z=r(\cos\varphi + i\sin\varphi)=re^{i\varphi}=r\exp(i\varphi)$.
 
-$$
-p(x) = a_0 + a_1 x + a_2 x^2 + ... + a_d x^d
-$$
-$$
-q(x) = b_0 + b_1 x + b_2 x^2 + ... + b_e x^e
-$$
+Về biểu diễn $z=r\exp(i\varphi)$, các bạn có thể tìm hiểu ở [Công thức Euler (Wikipedia)](https://vi.wikipedia.org/wiki/C%C3%B4ng_th%E1%BB%A9c_Euler). 
 
-Ta cần tìm tích $c(x)$ của hai đa thức trên, có dạng:
-$$
-c(x) = p(x)q(x) = c_0 + c_1 x + c_x x^2 + ... + c_{d+e} x^{d+e}
-$$
+<figure style="text-align: center;">
 
-trong đó
+<img width="450" src="/algo/math/fft1.png">
+<figcaption>
+    Hình 1. Biểu diễn số phức trên mặt phẳng
+</figcaption>
 
-$$
-c_{j} = \sum_{i=0}^j a_ib_{j-i} \qquad j = 0, 1, ..., d+e
-$$
-
-Cách làm theo định nghĩa là ta nhân mỗi hệ số của $p(x)$ với tất cả các hệ số của $q(x)$ rồi cộng các hệ số của cùng tổng số mũ. Vì hai đa thức có $d+1$ và $e+1$ hệ số nên cách làm này có độ phức tạp là $O((d+1)(e+1)) = O(de)$. Khi $d$ và $e$ tương đối lớn cỡ $10^3$ hoặc $10^4$ trở lên thì độ phức tạp này là quá lớn để chạy trên máy tính, đặc biệt là các máy tính nhúng đòi hỏi tốc độ tính toán nhanh. Phép biến đổi FFT giúp thực hiện phép nhân nói trên trong độ phức tạp $O(N*logN)$ trong đó $N$ là lũy thừa của $2$ nhỏ nhất lớn hơn $d$ và $e$.
+</figure>
 
 
-# Biểu diễn đa thức qua ma trận Vandermonde
 
-*Kể từ phần này trở về sau, ta quy ước $n$ là số hệ số của đa thức (bậc $n-1$) và $n$ là một lũy thừa của 2 ($n = 2, 4, 8, 16, 32, 64...$).*
+#### Các phép toán
 
-Xét đa thức $p(x) = a_0 + a_1 x + a_2 x^2 + ... + a_{n-1} x^{n-1}$ với bậc $n-1$ và các hệ số phức $a_i \in \mathbb{C}$. Biểu thức tính $n$ giá trị của $p(x)$ tại $n$ điểm $z_0, z_1, ... z_{n-1}$ có thể biểu diễn qua phép nhân ma trận như sau:
+Xét hai số phức $z_1=a_1+b_1i=r_1\exp(i\varphi_1)$ và $z_2=a_2+b_2i=r_2\exp(i\varphi_2)$:
+
+- Phép cộng: $z_1+z_2=(a_1+a_2)+(b_1+b_2)i$.
+- Phép trừ: $z_1-z_2=(a_1-a_2)+(b_1-b_2)i$.
+- Phép nhân: $z_1z_2=(a_1a_2-b_1b_2)+(a_1b_2+a_2b_1)i=r_1r_2\exp(i(\varphi_1+\varphi_2))$.
+- Phép chia: $\dfrac{z_1}{z_2}=\dfrac{z_1\overline{z_2}}{z_2\overline{z_2}}=\dfrac{z_1\overline{z_2}}{|z_2|^2}$.
+
+Phép cộng (trừ) hai số phức tương đương với phép cộng (trừ) hai vectơ biểu diễn chúng. Khi nhân hai số phức, ta nhân môđun của chúng và cộng acgumen của chúng.
+
+#### Căn đơn vị (Root of unity)
+
+Xét một số nguyên dương $n$:
+
+- Căn đơn vị cấp $n$ là các số phức $z$ thoả mãn $z^n=1$.
+- Công thức tổng quát cho các căn đơn vị cấp $n$: $z_{n,i}=\exp(\frac{2k\pi i}{n})$ với $k$ từ $0$ đến $n-1$. Kí hiệu $\omega_n=z_{n,1}$ thì ta còn có thể viết dưới dạng $\omega_n^0,\omega_n^1,\ldots,\omega_n^{n-1}$.
+- Các căn đơn vị nằm trên đường tròn đơn vị tạo thành một đa giác đều $n$ đỉnh.
+
+<figure style="text-align: center;">
+
+<img width="450" src="/algo/math/fft2.png">
+<figcaption>
+    Hình 2. Biểu diễn các căn đơn vị cấp 8 trên mặt phẳng
+</figcaption>
+
+</figure>
+
+
+
+#### Một số tính chất của căn đơn vị
+- $\omega_n^j=\omega_n^{j\bmod n}$.
+- Với $n$ chẵn, $\omega_n^{n/2}=-1$, từ đây suy ra $\omega_n^{j+n/2}=-\omega_n^j$.
+- Với $n$ chẵn, $\omega_n^2=\omega_{n/2}$.
+
+### 1.2. Ma trận
+
+Các bạn có thể tham khảo bài viết [Nhân ma trận (VNOI)](/algo/trick/matrix-multiplication.md).
+
+## 2. Thuật toán FFT
+
+### 2.1. Bài toán
+
+Cho hai dãy $a=(a_0,a_1,\ldots,a_{n-1})$ và $b=(b_0,b_1,\ldots,b_{n-1})$. Tính dãy $c=(c_0,c_1,\ldots,c_{2n-2})$ được cho bởi công thức: $c_k=\displaystyle\sum a_jb_{k-j}$ với $k$ từ $0$ đến $2n-2$.
+
+Dãy $c$ được định nghĩa như trên được gọi là tích chập (convolution) của hai dãy $a$ và $b$.
+
+### 2.2. Ý tưởng
+
+Biểu thức của dãy $c$ phía trên gợi lại cho chúng ta về phép nhân đa thức. Cụ thể, định nghĩa:
+
+$$\begin{align}
+A(z)&=a_0 z^0 + a_1 z^1 + \ldots + a_{n-1} z^{n-1}\\
+B(z)&=b_0 z^0 + b_1 z^1 + \ldots + b_{n-1} z^{n-1}
+\end{align}$$
+
+thì $c$ chính là dãy hệ số của đa thức $C(z)=A(z)\cdot B(z)$.
+
+Có thể thấy rằng việc tính đa thức $C$ theo định nghĩa sẽ có độ phức tạp thời gian $\mathcal{O}(n^2)$, không đủ nhanh khi độ dài $n$ khá lớn, ta cần một hướng tiếp cận khác. Giả sử ta tính được giá trị của $A$ và $B$ tại $m$ điểm khác nhau:
+
+$$\begin{align*}
+A(z_0),A(z_1),\ldots,A({z_{m-1})}\\
+B(z_0),B(z_1),\ldots,B({z_{m-1})}
+\end{align*}$$
+
+thì giá trị của $C$ tại các điểm tương ứng là: $C(z_j)=A(z_j)\cdot B(z_j)$.
+
+Ta có định lý quan trọng sau đây:
+
+**Định lý nội suy đa thức.** Cho $m$ cặp số phức $(u_0,v_0),(u_1,v_1),\ldots,(u_{m-1},v_{m-1})$ thoả mãn $z_i\ne z_j$ với mọi $0\le i<j<m$, tồn tại duy nhất một đa thức $P$ có bậc không quá $m-1$ thoả mãn $P(u_i)=v_i$ với mọi $0\le i<m$.
+
+Ví dụ:
+
+- Có duy nhất một đường thẳng (đa thức bậc $1$) đi qua hai điểm bất kì trên mặt phẳng.
+- Có duy nhất một parabol (đa thức bậc $2$) đi qua ba điểm bất kì trên mặt phẳng.
+
+Ý tưởng của thuật toán FFT là chọn ra một tập điểm $z_0,z_1,\ldots,z_{m-1}$ sao cho ta có thể tính nhanh giá trị của đa thức $A$ và $B$ trên đó, đồng thời có thể khôi phục được đa thức $C$ dựa trên $C(z_0),C(z_1),\ldots,C(z_{m-1})$.
+
+### 2.3. Thuật toán
+
+#### Biến đổi xuôi
+
+Ta có một đa thức $A(z)=a_0z^0 + a_1z^1+\ldots+a_{n-1}z^{n-1}$. Không mất tính tổng quát, giả sử $n$ là một luỹ thừa của $2$ hay $n=2^k$ với $k\in \mathbb{N}$. Nếu $n$ không phải là một lũy thừa của $2$, ta thêm các số hạng $a_i z^i$ bị thiếu và cho các hệ số $a_i$ bằng $0$. 
+
+Tập số mà FFT chọn để tính là tập các căn đơn vị cấp $n$, tức $\{\omega_n^0,\omega_n^1,\ldots,\omega_n^{n-1}\}$ (nhắc lại $\omega_n=\exp(\frac{2\pi i}{n})$).
+
+**Định nghĩa.** Cho một dãy $a_0,a_1,\ldots,a_{n-1}$, **Biến đổi Fourier nhanh - Fast Fourier Transform - FFT** là bất kì thuật toán nào tính dãy $A(\omega_n^0),A(\omega_n^1),\ldots,A(\omega_n^{n-1})$ trong thời gian $O(n\log n)$. Phép biến đổi này bản thân nó được gọi là **Biến đổi Fourier rời rạc - Discrete Fourier Transform - DFT**.
+$$\text{DFT}(a_0,a_1,\ldots,a_{n-1})=(A(\omega_n^0),A(\omega_n^1),\ldots,A(\omega_n^{n-1}))$$
+
+Bài viết này sẽ giới thiệu về một thuật toán FFT thông dụng là thuật toán *Cooley-Tukey*.
+
+
+Ta sẽ biểu diễn bài toán dưới dạng ma trận:
 
 $$
 \begin{bmatrix}
-    1       & z_0^1 & z_0^2 & \dots & z_0^{n-1} \newline
-       1      & z_1 & z_1^2 & \dots & z_1^{n-1} \newline
-    \ldots & \ldots & \ldots & \ldots & \ldots\newline
-       1       & z_{n-1}^1 & z_{n-1}^2 & \dots & z_{n-1}^{n-1}
+A(\omega^0)\\A(\omega^1)\\ \vdots \\ A(\omega^{n-1})
+\end{bmatrix}
+=\begin{bmatrix}
+\omega^0 & \omega^0 & \omega^0 & \ldots & \omega^0 \\
+\omega^0 & \omega^1 & \omega^2 & \ldots & \omega^{n-1} \\
+\omega^0 & \omega^2 & \omega^4 & \ldots & \omega^{2(n-1)} \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+\omega^0 & \omega^{n-1} & \omega^{2(n-1)} & \ldots & \omega^{(n-1)(n-1)}
 \end{bmatrix}
 \begin{bmatrix}
-    a_0 \newline a_1 \newline \vdots  \newline a_{n-1}
+a_0\\
+a_1\\
+a_2\\
+\vdots\\
+a_{n-1}
 \end{bmatrix}
 $$
 
-$=$
+Trước khi đi vào trường hợp tổng quát, ta sẽ xem xét một ví dụ với $n=8$:
 
 $$
 \begin{bmatrix}
-    p(z_0) \newline p(z_1) \newline \vdots  \newline p(z_{n-1})
-\end{bmatrix} \space (1)
+\color{red}{\omega^0} & \color{blue}{\omega^0} & \color{red}{\omega^0} & \color{blue}{\omega^0} & \color{red}{\omega^0} & \color{blue}{\omega^0} & \color{red}{\omega^0} & \color{blue}{\omega^0} \\
+\color{red}{\omega^0} & \color{blue}{\omega^1} & \color{red}{\omega^2} & \color{blue}{\omega^3} & \color{red}{\omega^4} & \color{blue}{\omega^5} & \color{red}{\omega^6} & \color{blue}{\omega^7} \\
+\color{red}{\omega^0} & \color{blue}{\omega^2} & \color{red}{\omega^4} & \color{blue}{\omega^6} & \color{red}{\omega^0} & \color{blue}{\omega^2} & \color{red}{\omega^4} & \color{blue}{\omega^6} \\
+\color{red}{\omega^0} & \color{blue}{\omega^3} & \color{red}{\omega^6} & \color{blue}{\omega^1} & \color{red}{\omega^4} & \color{blue}{\omega^7} & \color{red}{\omega^2} & \color{blue}{\omega^5} \\
+\color{red}{\omega^0} & \color{blue}{\omega^4} & \color{red}{\omega^0} & \color{blue}{\omega^4} & \color{red}{\omega^0} & \color{blue}{\omega^4} & \color{red}{\omega^0} & \color{blue}{\omega^4} \\
+\color{red}{\omega^0} & \color{blue}{\omega^5} & \color{red}{\omega^2} & \color{blue}{\omega^7} & \color{red}{\omega^4} & \color{blue}{\omega^1} & \color{red}{\omega^6} & \color{blue}{\omega^3} \\
+\color{red}{\omega^0} & \color{blue}{\omega^6} & \color{red}{\omega^4} & \color{blue}{\omega^2} & \color{red}{\omega^0} & \color{blue}{\omega^6} & \color{red}{\omega^4} & \color{blue}{\omega^2} \\
+\color{red}{\omega^0} & \color{blue}{\omega^7} & \color{red}{\omega^6} & \color{blue}{\omega^5} & \color{red}{\omega^4} & \color{blue}{\omega^3} & \color{red}{\omega^2} & \color{blue}{\omega^1} \\
+\end{bmatrix}
+\begin{bmatrix}
+\color{red}{a_0} \\
+\color{blue}{a_1} \\
+\color{red}{a_2} \\
+\color{blue}{a_3} \\
+\color{red}{a_4} \\
+\color{blue}{a_5} \\
+\color{red}{a_6} \\
+\color{blue}{a_7}
+\end{bmatrix}
 $$
 
-Ma trận vuông $V$ kích cỡ $n*n$ của $z_{0:{n-1}}$ ở trên được gọi là ma trận Vandermonde.
-Ta có các định lý sau:
-
-**Định lý 1:** Định thức của ma trận Vandermonde là
-$$det(V) = \prod_{0 \leq i < j \leq n-1}(z_j - z_i)$$
-
-**Chứng minh (sơ lược):**
-Với mỗi hàng $i = 0, 1, ...n-2$ của định thức ta liên tục thay hàng $j = i+1, i+2, ...n-1$ bằng hiệu của các hệ số của hàng $j$ trừ đi hàng $i$. Đây là phép biến đổi cơ bản (*elementary operation*) nên giá trị định thức cần tính không đổi. Lấy nhân tử chung $z_j - z_i$ ở tất cả các hàng ra ngoài và xét tiếp hàng $i+1$. Sau khi xét xong $i = n-2$ ta được một ma trận chéo có đường chéo chỉ gồm $z_{ii} = 1$, định thức của ma trận này hiển nhiên bằng 1. Vì vậy định thức cần tính là tích của tất cả các nhân tử chung bỏ ra ngoài ở các bước trước đó.
-
-Phép chứng minh bằng quy nạp có thể xem thêm tại [đây](https://proofwiki.org/wiki/Vandermonde_Determinant)
-
-**Định lý 2:** Đa thức $p(x)$ được xác định duy nhất bởi các giá trị của nó $p(z_0), p(z_1), ... p(z_{n-1})$ khi $n$ giá trị $z_0, z_1, ... z_{n-1}$ phân biệt. Ta gọi đây là *phép biến đổi ngược*.
-
-**Chứng minh:**
-
-Coi phương trình $(1)$ là một hệ phương trình $n$ ẩn với bộ nghiệm $a_0, a_1, ...a_{n-1}$. Để đa thức $p(x)$ xác định và duy nhất thì định thức của ma trận $V$ ở trên phải khác $0$. Theo **Định lý 1** ta có điều phải chứng minh.
-
-**Hệ quả:** khi $V$ khả nghịch, hệ số $a_0, a_1, ...a_{n-1}$ được xác định thông qua tích của ma trận nghịch đảo $V^{-1}$ của $V$ và $p(z_0), p(z_1), ...p(z_{n-1})$.
-
-Từ định lý 2, ta thấy rằng 1 đa thức bất kỳ có 2 cách biểu diễn:
-
-1. Dùng $n$ hệ số $a_i$
-2. Dùng $n$ cặp giá trị $z_i, p(z_i)$.
-
-Đây chính là nền tảng của việc tính nhanh tích của 2 đa thức sử dụng FFT:
-
-1. Chọn 1 dãy $z_i$ gồm $N$ phần tử. $z_i$ có thể chọn tuỳ ý miễn sao giá trị của chúng là đôi một khác nhau để các đa thức $p(x)$, $q(x)$ và $c(x)$ là xác định và duy nhất.
-2. Chuyển 2 đa thức $p(x)$ và $q(x)$ sang cách biểu diễn 2. (dùng FFT)
-3. Tính tích của 2 đa thức trong cách biểu diễn 2 trong $O(N)$. Điều này cực kỳ đơn giản, vì khi ta đã cố định dãy $z_i$, ta có thể tính tất cả $c(z_i) = p(z_i) q(z_i)$ trong $O(N)$.
-4. Chuyển đa thức $c(x)$ về cách biểu diễn 1 (dùng FFT).
-
-
-# Nghiệm nguyên thủy
-
-Như đã phân tích ở trên, ta cần chọn dãy $z_i$ sao cho việc biến đổi đa thức giữa 2 cách biểu diễn có thể thực hiện một cách hiệu quả. Nếu ta chọn $z_i$ là các **nghiệm nguyên thủy** thoả mãn:
+Các số mũ trên bảng đã được lấy dư cho $8$. Ta sẽ đưa các cột màu đỏ (chỉ số chẵn) về bên trái, các cột màu xanh (chỉ số lẻ) về bên phải và chia ma trận thành bốn ma trận con như dưới đây. Chú ý rằng việc này cũng thay đổi thứ tự của vectơ hệ số.
 
 $$
-z^n = 1 \qquad z \in \mathbb{C} \qquad (2)
+\begin{bmatrix}
+\color{red}{\omega^0} & \color{red}{\omega^0} & \color{red}{\omega^0} & \color{red}{\omega^0} & \color{blue}{\omega^0} & \color{blue}{\omega^0} & \color{blue}{\omega^0} & \color{blue}{\omega^0} \\
+\color{red}{\omega^0} & \color{red}{\omega^2} & \color{red}{\omega^4} & \color{red}{\omega^6} & \color{blue}{\omega^1} & \color{blue}{\omega^3} & \color{blue}{\omega^5} & \color{blue}{\omega^7} \\
+\color{red}{\omega^0} & \color{red}{\omega^4} & \color{red}{\omega^0} & \color{red}{\omega^4} & \color{blue}{\omega^2} & \color{blue}{\omega^6} & \color{blue}{\omega^2} & \color{blue}{\omega^6} \\
+\color{red}{\omega^0} & \color{red}{\omega^6} & \color{red}{\omega^4} & \color{red}{\omega^2} & \color{blue}{\omega^3} & \color{blue}{\omega^1} & \color{blue}{\omega^7} & \color{blue}{\omega^5} \\
+\hline
+\color{red}{\omega^0} & \color{red}{\omega^0} & \color{red}{\omega^0} & \color{red}{\omega^0} & \color{blue}{\omega^4} & \color{blue}{\omega^4} & \color{blue}{\omega^4} & \color{blue}{\omega^4} \\
+\color{red}{\omega^0} & \color{red}{\omega^2} & \color{red}{\omega^4} & \color{red}{\omega^6} & \color{blue}{\omega^5} & \color{blue}{\omega^7} & \color{blue}{\omega^1} & \color{blue}{\omega^3} \\
+\color{red}{\omega^0} & \color{red}{\omega^4} & \color{red}{\omega^0} & \color{red}{\omega^4} & \color{blue}{\omega^6} & \color{blue}{\omega^2} & \color{blue}{\omega^6} & \color{blue}{\omega^2} \\
+\color{red}{\omega^0} & \color{red}{\omega^6} & \color{red}{\omega^4} & \color{red}{\omega^2} & \color{blue}{\omega^7} & \color{blue}{\omega^5} & \color{blue}{\omega^3} & \color{blue}{\omega^1} \\
+\end{bmatrix}
+
+\begin{bmatrix}
+\color{red}{a_0} \\
+\color{red}{a_2} \\
+\color{red}{a_4} \\
+\color{red}{a_6} \\
+\hline 
+\color{blue}{a_1} \\
+\color{blue}{a_3} \\
+\color{blue}{a_5} \\
+\color{blue}{a_7}
+\end{bmatrix}
 $$
 
-với $n$ như đã quy ước và cũng là số nghiệm của phương trình $(2)$ mà ta cần. Công thức Euler xác định nghiệm thứ $k$ của phương trình $(2)$ là
+Nhận thấy rằng các hệ số tương ứng ở hai ma trận con bên trái bằng nhau và các hệ số tương ứng ở hai ma trận con bên phải trái dấu, do tính chất $\omega^{n/2}=-1$.
+
+Vậy biểu thức cần tính có dạng:
 
 $$
-z_k = w_n^k = (e^{ {2\pi i}\over n})^k = e^{ {2\pi i}k\over n} = cos{{2\pi k}\over n} + isin{{2\pi k}\over n} \qquad k = 0, 1, ... n - 1
+\begin{bmatrix}
+\color{red}{A} & \color{blue}{B} \\
+\color{red}{A} & \color{blue}{-B} \\
+\end{bmatrix}
+\begin{bmatrix}
+\color{red}{X} \\
+\color{blue}{Y} \\
+\end{bmatrix}
+=\begin{bmatrix}
+\color{red}{AX}+\color{blue}{BY} \\
+\color{red}{AX}-\color{blue}{BY}
+\end{bmatrix}
 $$
 
-trong đó $w_n$ là nghiệm mũ 1:
-
+Để ý rằng:
 $$
-w_n = e^{ {2\pi i}\over n} = cos{{2\pi}\over n} + isin{{2\pi}\over n}
-$$
-
-Dễ thấy là nghiệm nguyên thủy thứ $k$ có thể được tính trong $O(1)$ với $n$ đã biết.
-
-## Một số tính chất đặc biệt của ma trận Vandermonde nghiệm nguyên thủy
-
-**Tính chất 1:** Ma trận nghịch đảo $V^{-1}$ được tính theo công thức: $V^{-1}[i,j] = {V[i,j]^{-1} \over n}$ với $i, j = 0, 1,...n-1$ là chỉ số hàng và cột của ma trận.
-
-**Chứng minh (sơ lược):** gọi $B$ là ma trận kích cỡ $n * n$ tạo bởi
-
-$$
-B[i, j] = V[i,j]^{-1} \qquad \forall i, j = 0, 1,...n-1
-$$
-
-Ta sẽ chứng minh tích $P = B * V = V * B = n * I$, trong đó $I$ là ma trận đơn vị.
-
-Xét phép nhân hàng $i$ của ma trận $V$ và cột $k$ của ma trận $B$, ta có:
-$$
-P[i, k] = \sum_{j=0}^{n-1}w_n^{ij}w_n^{-jk} = \sum_{j=0}^{n-1}w_n^{j(i-k)}
+\color{blue}{B}=
+\begin{bmatrix}
+\color{blue}{\omega^0} & \color{blue}{\omega^0} & \color{blue}{\omega^0} & \color{blue}{\omega^0} \\
+\color{blue}{\omega^1} & \color{blue}{\omega^3} & \color{blue}{\omega^5} & \color{blue}{\omega^7} \\
+\color{blue}{\omega^2} & \color{blue}{\omega^6} & \color{blue}{\omega^2} & \color{blue}{\omega^6} \\
+\color{blue}{\omega^3} & \color{blue}{\omega^1} & \color{blue}{\omega^7} & \color{blue}{\omega^5} \\
+\end{bmatrix}
+=\begin{bmatrix}
+\omega^0 & & & \\
+ & \omega^1 & & \\
+ & & \omega^2 & \\
+ & & & \omega^3 \\
+\end{bmatrix}
+\begin{bmatrix}
+\color{red}{\omega^0} & \color{red}{\omega^0} & \color{red}{\omega^0} & \color{red}{\omega^0} \\
+\color{red}{\omega^0} & \color{red}{\omega^2} & \color{red}{\omega^4} & \color{red}{\omega^6} \\
+\color{red}{\omega^0} & \color{red}{\omega^4} & \color{red}{\omega^0} & \color{red}{\omega^4} \\
+\color{red}{\omega^0} & \color{red}{\omega^6} & \color{red}{\omega^4} & \color{red}{\omega^2} \\
+\end{bmatrix}
 $$
 
-- Nếu $i = k:$ $P[i, k] = P[i, i] = \sum_{j=0}^{n-1}w_n^0 = n \qquad \forall i = 0, 1, ...n-1$.
-- Nếu $i \neq k:$ $P[i, k] = \sum_{j=0}^{n-1}{w_n^{i-k}}^j = {1 - {w_n^{i-k}}^n \over {1-w_n^{i-k}}} = 0$
+Vậy ta chỉ cần tính $\color{red}{AX}$ và $\color{red}{A}\color{blue}{Y}$ là đủ để tính kết quả. Mặt khác, có thể thấy tính $\color{red}{AX}$ và $\color{red}{A}\color{blue}{Y}$ tương đương với tính $\text{DFT}(a_0,a_2,a_4,a_6)$ và $\text{DFT}(a_1,a_3,a_5,a_7)$.
 
-Vậy $P = nI$ hay là $V * B/n = B/n * V = I$, vậy $B = V^{-1}$.
+Xét trường hợp tổng quát, với $0\le i<\frac{n}{2}$, ta có (chú ý $i$ ở đây là chỉ số, không phải đơn vị ảo):
+$$\begin{align}
+A(\omega_n^i)&=\sum_ja_j\omega_n^{ij}=\sum_k a_{2k}\omega_n^{2k i}+\sum_k a_{2k+1}\omega_n^{(2k+1)i}\\&=\sum_k a_{2k}(\omega_n^2)^{ik}+\omega_n^i\sum_k a_{2k+1}(\omega_n^2)^{ik}\\
+&= \sum_k a_{2k}\omega_{n/2}^{ik}+\omega_n^i\sum_k a_{2k+1}\omega_{n/2}^{ik}
+\end{align}$$
 
-**Hệ quả:** Độ phức tạp tính toán cho $V^{-1}$ bằng với độ phức tạp tính $V$.
+$$\begin{align}
+A(\omega_n^{i+n/2})&=\sum_ja_j\omega_n^{(i+n/2)j}=\sum_k a_{2k}\omega_n^{2k(i+n/2)}+\sum_k a_{2k+1}\omega_n^{(2k+1)(i+n/2)}\\
+&=\sum_k a_{2k}\omega_n^{2ki}+\sum_k a_{2k+1}\omega_n^{2ki+i+n/2}\\
+&=\sum_k a_{2k}(\omega_n^2)^{ik}-\omega_n^i\sum_k a_{2k+1}(\omega_n^2)^{ik}\\
+&= \sum_k a_{2k}\omega_{n/2}^{ik}-\omega_{n}^i\sum_k a_{2k+1}\omega_{n/2}^{ik}
+\end{align}$$
 
-**Tính chất 2:** Chia ma trận $V$ thành $4$ phần bằng nhau kích cỡ $n/2 * n/2$ theo $2$ tiêu chí: độ lớn của hàng so với $n/2$ và tính chẵn lẻ của các cột.
+Nếu coi $\text{DFT}(a_0,a_2,\ldots,a_{n/2-2})=A_0$ và $\text{DFT}(a_1,a_3,\ldots,a_{n/2-1})=A_1$ thì hai biểu thức trên có thể viết lại thành:
 
-- Phần $I$ gồm các phần tử có chỉ số hàng   $0, 1,...n/2 - 1$ và chỉ số cột là chẵn $0, 2, 4, ...n-2$.
-- Phần $II$ gồm các phần tử có chỉ số hàng  $0, 1,...n/2 - 1$ và chỉ số cột là lẻ   $1, 3, 5, ...n-1$.
-- Phần $III$ gồm các phần tử có chỉ số hàng $n/2, n/2+1,...n-1$ và chỉ số cột là chẵn  $0, 2, 4, ...n-2$.
-- Phần $IV$ gồm các phần tử có chỉ số hàng  $n/2, n/2+1,...n-1$ và chỉ số cột là lẻ  $1, 3, 5, ...n-1$.
+$$\begin{align}
+A(\omega_n^i)&=A_0(\omega_{n/2}^i)+\omega_n^iA_1(\omega_{n/2}^i)\\
+A(\omega_n^{i+n/2})&=A_0(\omega_{n/2}^i)-\omega_n^iA_1(\omega_{n/2}^i)
+\end{align}$$
 
-<img src='/wiki/uploads/img4.png' height="250" width="500"/>
-(*Image Courtesy of Aalto University*)
+Vậy ta cần tính $A_0$ và $A_1$ là hai bài toán với kích thước giảm đi một nửa.
 
-Nói cách khác, ta tạo một ma trận mới $K$ bằng cách chuyển tất cả các cột có chỉ số chẵn của ma trận $V$ lên trước, các cột có chỉ số lẻ về sau, giữ nguyên thứ tự tương đối của các cột cùng chỉ số chẵn hoặc cùng chỉ số lẻ. Ở ma trận $K$ này cột $n-2$ của $V$ nằm ngay trước cột $1$ của $V$. Bốn phần $I, II, III, IV$ được tạo bởi cắt đều ma trận $K$ thành 4 phần bằng nhau.
+**Độ phức tạp.** Thuật toán FFT là một thuật toán chia để trị nên ta dễ thấy nó có độ phức tạp $O(n\log_2n)$.
 
-Ký hiệu $K_I, K_{II}, K_{III}, K_{IV}$ là bốn ma trận con của $K$. Tất cả các phần tử trong phần $II, III, IV$ đều có thể tính được từ phần $I$ theo công thức sau:
+#### Biến đổi ngược
 
-$$
-K_{II}[i, j] = w_n^i K_I[i,j] \qquad \forall i, j = 0, 1, ...n/2 - 1
-$$
-$$
-K_{III}[i,j] = K_{I}[i,j] \qquad \forall i, j = 0, 1, ...n/2 - 1
-$$
-$$
-K_{IV}[i, j] = -w_n^i K_I[i,j] \qquad \forall i, j = 0, 1, ...n/2 - 1
-$$
+**Bổ đề.** $\text{DFT}(\text{DFT}(a_0,a_1,\ldots,a_{n-2},a_{n-1}))=(na_0,na_{n-1},na_{n-2}\ldots,na_1)$.
 
-**Chứng minh:** các bạn tự chứng minh hoặc xem slide số 23 trong tài liệu của trường DH Aalto ở phần tài liệu tham khảo.
+*Chứng minh:*
+Đặt $(b_0,b_1,\ldots,b_{n-1})=\text{DFT}(a_0,a_1,\ldots,a_{n-1})$ và $(c_0,c_1,\ldots,c_{n-1})=\text{DFT}(b_0,b_1,\ldots,b_{n-1})$.
 
-**Tính chất 3:** ma trận nghịch đảo $V^{-1}$ cũng có thể chia thành $4$ phần bằng nhau với các phần $II, III, IV$ tính được qua phần $I$ giống như **Tính chất 2**.
+Ta có:
 
-**Hệ quả:** Phép biến đổi Fourier ngược (*inverse Fourier transform*) có cùng độ phức tạp với phép biển đổi Fourier.
+$$c_l=\sum_k c_k\omega^{kl}=\sum_k \omega^{kl}\sum_ja_j\omega^{jk}=\sum_ja_j\sum_k\omega^{k(j+l)}$$
 
-# Phép biến đổi Fourier nhanh
+Xét $j+l\not \equiv 0\pmod n$, ta có:
+$$\sum_k\omega^{k(j+l)}=\frac{(\omega^{j+l})^n-1}{\omega^{j+l}-1}=0$$
+bởi $w^{j+l}$ là một căn đơn vị.
 
-Trong phần trên ta đã thấy vai trò của ma trận Vandermonde $V$ là biến đổi một vector cột $a_0, a_1, ...a_{n-1}$ thành một vector cột khác cùng kích cỡ $p(z_0), p(z_1), ...p(z_{n-1})$. Phép biến đổi này được gọi là "Biến đổi Fourier rời rạc" (*Discrete Fourier Transform*). Lưu ý là mặc dù hai khái niệm "Biến đổi Fourier rời rạc" (*DFT*) và "Phép biến đổi Fourier nhanh" (*FFT*) là khác nhau nhưng vì khi cài đặt DFT người ta luôn sử dụng FFT nên hai khái niệm này được coi như đồng nhất.
+Từ đây ta suy ra $c_l=na_j$ với $j+l\equiv 0\pmod n$.
 
-**Định lý 3:** Tồn tại thuật toán biến đổi Fourier rời rạc có độ phức tạp là $O(nlog_2n)$.
+Ngoài ra, nếu ta sử dụng $\omega^{-1}=\exp(\frac{-2\pi i}{n})$ thay cho $\omega$ ở lần $\text{DFT}$ thứ hai, kết quả ta nhận được sẽ là $(na_0,na_1,\ldots,na_{n-1})$ (bạn đọc tự chứng minh).
 
-**Chứng minh:** Sử dụng lại ký hiệu trong hình vẽ ở phần trên, ta gọi $X$ là vector cần biến đổi Fourier và $Y$ là vector kết quả tương ứng. Thay vì sử dụng ma trận $V$ để nhân với $X$, ta sử dụng ma trận $K$ là kết quả của phép biến đổi như trong **Định lý 2** để nhân với $X$. Lưu ý là vì $V$ đã đổi thứ tự cột nên $X$ cũng phải đổi thứ tự hàng: tất cả các hàng có chỉ số chẵn của $X$ được chuyển lên trên và các hàng chỉ số lẻ chuyển xuống dưới. Hình minh họa với $n = 4$ và $4$ nghiệm để thay vào ma trận Vandermonde là $1, i, -1, -i$:
-
-<img src='/wiki/uploads/img5.png' height="250" width="400"/>
-(*Image Courtesy: Aalto University*)
-
-Tách vector kết quả $Y$ thành hai phần theo $n/2$, ta được:
-
-<img src='/wiki/uploads/img6.png' height="300" width="500"/>
-(*Image Courtesy: Aalto University*)
-
-Ta quan sát là công thức tính nửa trên và nửa dưới của vector cột kết quả $Y$ sử dụng chung hai hạng tử và chỉ khác nhau về dấu của hạng tử thứ hai. Nói cách khác, chỉ cần tính được hai hạng tử tạo thành kết quả của vector kích cỡ $n/2$ là ta thu được kết quả của cả vector kích cỡ $n$ trong $O(n)$. Theo định lý tổng quát, độ phức tạp của cả quá trình là $O(nlog_2n)$
-
-**Công thức truy hồi:**
-Từ tính chất đặc biệt của ma trận $K$, ta có công thức truy hồi để biến đổi một vector cột $X$ thành vector cột $Y$ như sau:
-
-$$
-FFT(x_{i=0, 1, 2,...n/2 - 1}) = FFT(x_{i=0, 2, 4, ...x_{n-2}}) + w_n^i FFT(x_{i=1, 3, 5...n-1})
-$$
-$$
-FFT(x_{i=n/2, n/2+1, n/2+2,...n-1}) = FFT(x_{i=0, 2, 4, ...x_{n-2}}) - w_n^i FFT(x_{i=1, 3, 5...n-1})
-$$
-
-## Thuật toán nhân hai đa thức
-
-Đến đây ta đã có thể hoàn thiện chương trình nhân 2 đa thức $p(x), q(x)$ và lưu kết quả thành $h(x)$:
-```
-function NhânĐaThức( p(x), q(x), n )
-
-// Lưu ý: n là số hệ số của đa thức kết quả
-// Nếu p(x) có bậc d và q(x) có bậc e thì n = d + e + 1
-
-fp[] = FFT(p(x), n) // biến đổi Fourier cho p(x) và lưu các giá trị vào mảng fp
-fq[] = FFT(q(x), n) // biến đổi Fourier cho q(x) và lưu các giá trị vào mảng fq
-
-for(i = 0; i < n; ++i)
-   fh[i] = fp[i] * fq[i]; // nhân tương ứng các giá trị của fp và fq, lưu vào mảng fh
-
-h(x) = FFT_ngược(fh) // biến đổi Fourier ngược và lưu vào kết quả
-
-end function
-```
-
-# Lưu ý về kỹ thuật cài đặt
-
-Vì FFT đòi hỏi phải sử dụng số phức và (trong nhiều trường hợp) khử đệ quy nên có thể gây khó khăn cho các bạn chưa quen, phần này sẽ hướng dẫn sơ lược về cách cài đặt sử dụng `C++`.
-
-## Khai báo
-
-Để sử dụng số phức trong `C++` ta cần khai báo thư viện `complex`:
+Ta sẽ cài đặt chung cả biến đổi xuôi và ngược:
 
 ```cpp
-#include <complex>
-```
-Vì `C++` cài đặt `complex` là một lớp (`class`) gồm 2 trường thực (`real()`) và ảo (`imag()`) nên khi sử dụng ta cần chỉ định kiểu dữ liệu cho hai trường này. Hai kiểu dữ liệu thông dụng là `double` hoặc `long double`:
+using cd = complex<long double>;
 
-```cpp
-typedef complex<double> base;
-typedef vector<base> vb;
-```
-
-Sau khi được định nghĩa bằng lệnh `typedef` thì để khai báo biến và vector kiểu phức, ta chỉ cần viết `base x` và `vb v` là được.
-
-Một số phiên bản cài đặt tự định nghĩa lớp số ảo bằng một `struct` hoặc `class`. Nếu lớp tự viết này không có chức năng đặc biệt nào thì việc này là không cần thiết vì bản thân `<complex>` đã là một lớp rồi. Bạn có thể xem qua file thư viện trong thư mục cài đặt trình biên dịch, ví dụ với CodeBlocks thì đường dẫn có dạng `CodeBlocks\MinGW\lib\gcc\mingw32\4.7.1\include\c++\complex` (file ko có phần mở rộng).
-
-## Chuẩn hóa bậc đa thức
-
-Trong các phần trên ta đã giả sử rằng $n$ là lũy thừa của $2$. Để đảm bảo tính đối xứng và thuận tiện khi cài đặt, nếu đề bài không cho trước $n$ bậc của đa thức là lũy thừa của $2$ thì ta cần chuẩn hóa thành số lũy thừa nhỏ nhất mà lớn hơn $n$. Chẳng hạn với $n = 10^5$ thì giá trị chuẩn hóa là $2^{17} = 131072$ vì $2^{16} = 65536 < 10^5$. Các hệ số của bậc cao hơn giá trị $n$ ban đầu gán bằng $0$.
-
-## Đệ quy và Khử đệ quy
-
-**Đệ quy:**
-
-Xét một đoạn mã `C++` cài đặt hàm FFT sử dụng đệ quy như sau:
-
-```cpp
-void fft_slow(int n, vb& a) // biến đổi fft của vector a, lưu kết quả vào chính nó
-{
-    if(n == 1)
-    {
-        return;
+void fft(vector<cd> &a, bool invert) {
+    /// invert = true tương ứng với biến đổi ngược
+    int n = a.size();
+    if (n == 1) return;
+    vector<cd> a0, a1;
+    for (int i = 0; i < n / 2; i++) {
+        a0.push_back(a[2 * i]);
+        a1.push_back(a[2 * i + 1]);
     }
-    int i, j, k;
-
-    // Bước 1. Khai báo kết quả fft chẵn và lẻ
-    vb a_even(n / 2), a_odd (n / 2);
-
-    // Bước 2. Tách hàng chẵn và hàng lẻ
-    for(i = j = 0; i < n; i += 2)
-    {
-        a_even[j] = a[i];
-        a_odd[j]  = a[i+1];
-        ++j;
-    }
-
-    // Bước 3. Biến đổi FFT với các hàng chẵn, lẻ
-    fft_slow(n / 2, a_even);
-    fft_slow(n / 2, a_odd);
-
-   // Bước 4: Ghép hoàn chỉnh kết quả
-    double ang = 2*PI/n;
-    base w (1),  wn (cos(ang), sin(ang));
-
-    for(i = 0; i < n / 2; ++i)
-    {
-        a[i]         = a_even[i] + w * a_odd[i];
-        a[i + n / 2] = a_even[i] - w * a_odd[i];
+    fft(a0, invert); fft(a1, invert);
+    cd w = 1, wn = polar(1.0L, acos(-1.0L) / n * (invert ? -2 : 2));
+    /// polar(r, t) = r * exp(it) và acos(-1.0L) = pi
+    /// thay wn = wn^-1 ở biến đổi ngược
+    for (int i = 0; i < n / 2; i++) {
+        a[i] = a0[i] + w * a1[i];
+        a[i + n / 2] = a0[i] - w * a1[i];
+        /// Ta sẽ chia 2 ở mỗi tầng đệ quy thay cho việc chia n ở cuối
+        if (invert) {
+            a[i] /= 2; a[i + n / 2] /= 2;
+        }
         w *= wn;
     }
 }
 ```
 
-Có nhiều nguyên nhân làm cho FFT đệ quy chạy chậm, như trong **Bước 1** thì khai báo hai vector kích cỡ $n/2$ lớn như vậy và lại khai báo liên tục ở các mức đệ quy. Bản thân chương trình đệ quy cũng chạy chậm vì chương trình phải lưu rất nhiều con trỏ stack và liên tục giải phóng bộ nhớ của biến cục bộ ở mỗi mức đệ quy. Nhìn chung đệ quy chỉ có ý nghĩa như trong thuật toán Quy Hoạch Động khi ta muốn tìm kết quả của một công thức truy hồi mà chỉ duyệt qua những trạng thái liên quan trực tiếp tới kết quả. Trong FFT ta luôn phải thăm hết các ma trận con nên cài đặt FFT bằng đệ quy không có lợi về tốc độ thực hiện.
-
-Để cho đầy đủ thì ta cũng có hàm biến đổi FFT ngược như sau:
-
+Dưới đây là cài đặt để tính tích chập của hai dãy số:
 ```cpp
-void inverse_fft_slow(int n, vb& a)
-{
-    if(n == 1)
-    {
-        return;
-    }
-    int i, j, k;
-    vb a_even, a_odd;
-    for(i = 0; i < n; ++i)
-    {
-        if(i & 1) a_odd.push_back(a[i]);
-        else      a_even.push_back(a[i]);
-    }
-    inverse_fft_slow(n / 2, a_even);
-    inverse_fft_slow(n / 2, a_odd);
-
-    double ang = -2*PI/n;
-    base w (1),  wn (cos(ang), sin(ang));
-
-    for(i = 0; i < n/ 2; ++i)
-    {
-        a[i]         = a_even[i] + w * a_odd[i];
-        a[i]         /= 2;
-        a[i + n / 2] = a_even[i] - w * a_odd[i];
-        a[i + n / 2] /= 2;
-        w *= wn;
-    }
+vector<int> conv(const vector<int> &a, const vector<int> &b) {
+    if (a.empty() || b.empty()) return {};
+    vector<cd> fa(a.begin(), a.end());
+    vector<cd> fb(b.begin(), b.end());
+    int n = 1;
+    while (n < int(a.size() + b.size()) - 1) n <<= 1;
+    fa.resize(n); fb.resize(n);
+    fft(fa, false); fft(fb, false);
+    for (int i = 0; i < n; i++)
+        fa[i] *= fb[i];
+    fft(fa, true);
+    vector<int> res(n);
+    for (int i = 0; i < n; i++)
+        res[i] = int(real(fa[i]) + 0.5);
+    return res;
 }
 ```
 
-**Khử đệ quy:**
+#### Cài đặt khử đệ quy
 
-Để khử đệ quy thì ta cần phân tích mối liên hệ giữa các lời gọi đệ quy và xem các phần tử được tính theo thứ tự nào. Hình vẽ sau đây minh họa trường hợp $n = 8$:
+Ta xét các tầng đệ quy với $n=8$:
+- Tầng $3$: $(a_0,a_1,a_2,a_3,a_4,a_5,a_6,a_7)$
+- Tầng $2$: $(a_0,a_2,a_4,a_6), (a_1,a_3,a_5,a_7)$
+- Tầng $1$: $(a_0,a_4),(a_2,a_6),(a_1,a_5),(a_3,a_7)$
 
-![](/uploads/fft_tree.png)
+Vậy nếu ta sắp xếp dãy $a$ lại thành $(a_0,a_4,a_2,a_6,a_1,a_5,a_3,a_7)$ thì mỗi lần gọi đệ quy ở tầng thứ $i$ sẽ thực hiện trên một đoạn dài $2^i$.
 
-Màu đỏ là các nhóm chẵn và màu xanh là các nhóm lẻ. Các bạn hãy dựa vào tính chẵn lẻ và để ý các số nhị phân $0, 1$ trong hình vẽ để tự viết chương trình FFT khử đệ quy hoặc giải thích tính đúng đắn của đoạn mã sau (đây là hàm FFT đã được dùng để giải bài POST2)
+Viết lại dãy chỉ số dưới dạng nhị phân:
+$$(000,100,010,110,001,101,011,111)$$
 
+Có thể thấy rằng nếu ta đảo ngược thứ tự bit thì, ví dụ $100\rightarrow 001$ thì ta nhận được dãy tăng dần từ $0$ đến $n-1$.
+
+Gọi $rev(i)$ là số nhận được sau khi đảo ngược thứ tự bit của $i$, ta có $rev(i)=\dfrac{rev(i / 2) | [(i \bmod 2) \cdot n]}{2}$ với $|$ thể hiện phép toán bitwise OR (bạn đọc tự chứng minh).
+
+Ta có cài đặt sau:
 ```cpp
-#define PI acos(-1)
-const int NBIT = 18;
-const int N = 1<<18; // chuẩn hóa bậc của đa thức là 18
-base W[N]; // mảng lưu các nghiệm nguyên thủy
-
-// Hàm reverse bit: Đảo ngược nbit đầu tiên trong mã nhị phân của số mask
-int revBit(int nbit, int mask)
-{
-    int i, j;
-    for(i = 0, j = nbit - 1; i <= j; ++i, --j)
-    {
-        if( (mask >> i & 1) != (mask >> j & 1) )
-        {
-            mask ^= 1<<i;
-            mask ^= 1<<j;
-        }
+void fft(vector<cd> &a, bool invert) {
+    int n = a.size(), L = __builtin_ctz(n);
+    vector<int> rev(n);
+    for (int i = 0; i < n; i++) {
+        rev[i] = (rev[i >> 1] | (i & 1) << L) >> 1;
+        if (i < rev[i]) swap(a[i], a[rev[i]]);
     }
-    return mask;
-}
-
-// Biến đổi FFT của mảng a
-void fft(int n, vb& a)
-{
-    if(n == 1)
-        return;
-
-    int i, j, k;
-
-    // Đi từ dưới lên trên của cây đệ quy: Hàng cuối cùng giá trị bằng với mảng được cho ban đầu nhưng hóa đổi vị trí
-    // theo số có biểu diễn nhị phân ngược với chỉ số
-    for(i = 0; i < n; ++i)
-    {
-        j = revBit(NBIT, i);
-        if(i < j) swap(a[i], a[j]);
-    }
-    vb anext(n); // hàng tiếp theo
-
-    // chiều cao cây bằng Log(n)
-    // biến "step" lưu số phần tử nằm trong một nhóm chẵn hoặc lẻ
-    for(int step = 1; step < n; step <<= 1)
-    {
-        double ang = PI / step ; //2*PI/(step * 2);
-        base w (1),  wn (cos(ang), sin(ang));
-
-        // Lưu trước mảng nghiệm nguyên thủy
-        for(i = 0; i < step; ++i)
-        {
-            W[i] = w;
-            w *= wn;
-        }
-
-       // Cứ một nhóm chẵn và một nhóm lẻ cạnh nhau thì tạo thành kết quả cho hàng ở trên
-       // Duyệt qua tất cả các nhóm chẵn và nhóm lẻ cạnh nó
-       // even = chẵn, odd = lẻ
-        int start_even = 0;
-        int start_odd  = start_even + step;
-        while(start_even < n)
-        {
-            for(i = 0; i < step; ++i)
-            {
-                anext[start_even + i]        = a[start_even + i] + W[i] * a[start_odd + i];
-                anext[start_even + i + step] = a[start_even + i] - W[i] * a[start_odd + i];
+    for (int len = 2; len <= n; len <<= 1) {
+        cd wlen = polar(1.0L, acos(-1.0L) / len * (invert ? -2 : 2));
+        for (int i = 0; i < n; i += len) {
+            cd w = 1;
+            for (int j = 0; j < len / 2; j++) {
+                cd u = a[i + j];
+                cd v = a[i + j + len / 2] * w;
+                a[i + j] = u + v;
+                a[i + j + len / 2] = u - v;
+                w *= wlen;
             }
-            start_even += 2*step;
-            start_odd   = start_even + step;
         }
-        for(i = 0; i < n; ++i)
-            a[i] = anext[i];
-    }
-}
-```
-
-Sau đây là cài đặt cho cả FFT xuôi và ngược. Biến `invert = true` cho FFT ngược.
-
-```cpp
-void fft(int n, vb& a, bool invert)
-{
-    if(n == 1)
-        return;
-
-    int i, j, k;
-    for(i = 0; i < n; ++i)
-    {
-        j = revBit(NBIT, i);
-        if(i < j) swap(a[i], a[j]);
-    }
-    vb anext(n);
-
-    for(int step = 1; step < n; step <<= 1)
-    {
-        double ang = PI / step;
-        if (invert) ang = -ang;
-
-        base w (1),  wn (cos(ang), sin(ang));
-
-        for(i = 0; i < step; ++i)
-        {
-            W[i] = w;
-            w *= wn;
-        }
-
-        int start_even = 0;
-        int start_odd  = start_even + step;
-        while(start_even < n)
-        {
-            for(i = 0; i < step; ++i)
-            {
-                anext[start_even + i]        = a[start_even + i] + W[i] * a[start_odd + i];
-                anext[start_even + i + step] = a[start_even + i] - W[i] * a[start_odd + i];
-            }
-            start_even += 2*step;
-            start_odd   = start_even + step;
-        }
-        for(i = 0; i < n; ++i)
-            a[i] = anext[i];
     }
     if (invert) {
-        for(i = 0; i < n; ++i)
-            a[i] /= n;
+        for (auto &x : a) x /= n;
     }
 }
 ```
 
-Một số cách cài đặt khác sử dụng con trỏ cũng làm tăng tốc độ thực thi, có thể xem thêm trong trang của **emaxx** phần tài liệu tham khảo. Cũng trong trang của **emaxx** có thể tìm thấy cách cài đặt gộp hai hàm `fft` và `inverse_fft` lại làm một sử dụng một biến bool invert làm cho code ngắn gọn hơn.
+#### Vấn đề về độ chính xác
+Ở cài đặt phía trên ta có viết ```w *= wlen``` để tính luỹ thừa của căn đơn vị. Việc nhân nhiều lần sẽ ảnh hưởng rất lớn đến độ chính xác của thuật toán vì ta đang thực hiện tính toán trên số thực.
 
+Nhận xét rằng với mỗi $len$ ta chỉ cần tính $\omega_{len}^0,\omega_{len}^1,\ldots,\omega_{len}^{len/2-1}$.
 
-# Bài tập luyện tập
+Định nghĩa một mảng $root$ sao cho với mỗi $len$ và với mỗi $0\le j<\frac{len}{2}$ ta có $root(\frac{len}{2}+j)=\omega_{len}^j$.
 
-- [VNOJ POST2](https://oj.vnoi.info/problem/post2/)
-- [FFT problems on Codeforces](http://codeforces.com/problemset/tags/fft)
-- [FFT problems by a2oj.com](https://a2oj.com/Category.jsp?ID=42)
-- [SumOfArrays - Topcoder SRM 603](https://community.topcoder.com/stat?c=problem_statement&pm=12910&rd=15836) và [Hướng dẫn giải](https://apps.topcoder.com/wiki/display/tc/SRM+603)
+Cài đặt để tính mảng $root$:
+```cpp
+vector<cd> root(n);
+root[1] = 1;
+for (int k = 2; k < n; k *= 2) {
+    cd z = polar(1.0l, acos(-1.0l) / k * (invert ? 1 : -1));
+    for (int j = k / 2; j < k; j++) {
+        root[2 * j] = root[j];
+        root[2 * j + 1] = root[j] * z;
+    }
+}
+```
 
+Sau khi có mảng $root$ ta có thể sửa cài đặt FFT như sau:
+```cpp
+for (int k = 1; k < n; k *= 2)
+    for (int i = 0; i < n; i += 2 * k)
+        for (int j = 0; j < k; j++) {
+            cd z = root[j + k] * a[i + j + k];
+            a[i + j + k] = a[i + j] - z;
+            a[i + j] += z;
+        }
+```
 
-# Tài liệu tham khảo
+Thử nghiệm với $n=2^{20}$, sai số chỉ rơi vào khoảng $5.5511\cdot 10^{-16}$. 
 
-- [1] Rohit Thummalapalli. Fourier Transform: Nature’s Way of Analyzing Data. *Yale Scientific*, 2010. [Link](http://www.yalescientific.org/2010/12/fourier-transform-natures-way-of-analyzing-data/)
-- [2] Alejandro Dominguez. Highlights in the History of the Fourier Transform. IEEE Pulse, 2016. [Link](http://pulse.embs.org/january-2016/highlights-in-the-history-of-the-fourier-transform/)
-- [3] Stefan Woerner. Fast Fourier Transform. *Numerical Analysis Seminar*, Swiss Federal Institute of Technology Zurich, 2008. [Link](http://www2.math.ethz.ch/education/bachelor/seminars/fs2008/nas/woerner.pdf)
-- [4] Fortnow and Homer. A Short History of Computational Complexity. *Bulletin of the European
-Association for Theoretical Computer Science 80*, June 2003. [Link](http://people.cs.uchicago.edu/~fortnow/beatcs/column80.pdf)
-- [Bài toán nhân đa thức, phép biến đổi Fourier nhanh trên csstudyfun.wordpress.com (có chứng minh các tính chất được đề cập trong bài](https://csstudyfun.wordpress.com/2009/01/12/bai-toan-nhan-da-thuc-phep-bien-doi-fourier-nhanh-fast-fourier-transform-fft/)
-- [Bài giảng của trường DH Aalto, Phần Lan](https://drive.google.com/open?id=0BxCwa-q7x3eWT3ZfakNHMWVveTg)
-- [Code cài đặt của e-maxx](http://e-maxx.ru/algo/fft_multiply)
-- ["Tutorial on FFT — The tough made simple." trên Codeforces](http://codeforces.com/blog/entry/43499)
+#### FFT hai dãy cùng một lúc
+
+Ta có thể tính $\text{DFT}$ của hai dãy $a$ và $b$ cùng một lúc bằng cách tính $\text{DFT}$ của dãy $c$ với $c_j=a_j+b_j\cdot i$.
+
+Gọi $A,B,C$ lần lượt là các biến đổi $\text{DFT}$ tương ứng. Ta có:
+$$\overline{C(\omega^{-j})}=\overline{A(\omega^{-j})}+\overline{B(\omega^{-j})\cdot i}=A(\overline{\omega^{-j}})-i\cdot B(\overline{\omega^{-j}})=A(\omega^j)-B(\omega^j)\cdot i$$
+
+kết hợp với $C(\omega^j)=A(\omega^j)+B(\omega^j)\cdot i$ suy ra:
+$$\begin{align}
+A(\omega^j) &= \frac{C(\omega^j)+\overline{C(\omega^{-j})}}{2}\\
+B(\omega^j) &= \frac{C(\omega^j)-\overline{C(\omega^{-j})}}{2i} \\
+A(\omega^j)B(\omega^j) &=\frac{C^2(\omega^j)-\overline{C^2(\omega^{-j})}}{4i}
+\end{align}$$
+
+Sử dụng công thức này ta có thể tính tích chập chỉ dùng hai lần gọi hàm `fft`:
+```cpp
+vector<int> conv(const vector<int> &a, const vector<int> &b) {
+    if (a.empty() || b.empty()) return {};
+    int n = 1;
+    while (n < int(a.size() + b.size()) - 1) n <<= 1;
+    vector<cd> in(n), out(n);
+    for (int i = 0; i < int(a.size()); i++)
+        in[i].real(a[i]);
+    for (int i = 0; i < int(b.size()); i++)
+        in[i].image(b[i]);
+    fft(in, false);
+    for (int i = 0; i < n; i++)
+        in[i] *= in[i];
+    for (int i = 0; i < n; i++) {
+        /// (n - i) mod n
+        int j = -i & (n - 1);
+        out[i] = in[i] - conj(in[j]);
+    }
+    fft(out, true)
+    vector<int> res(n);
+    /// ở trên ta không chia cho 4i nên kết quả sẽ nằm trong phần ảo
+    for (int i = 0; i < n; i++)
+        res[i] = int(imag(out[i]) / 4 + 0.5);
+    return res;
+}
+```
+
+## 3. Thuật toán NTT
+
+Xét bài toán nhân đa thức nhưng lần này ta muốn các hệ số của đa thức chia lấy dư cho một số nguyên tố $p$. Nếu ta sử dụng thuật toán FFT thông thường có thể gây ra sai số lớn vì hệ số của đa thức kết quả có thể rất lớn. Thuật toán NTT cho phép ta tính toán chỉ dùng số nguyên, từ đó kết quả luôn đảm bảo chính xác.
+
+Thuật toán FFT dựa trên các tính chất của căn đơn vị. Các tính chất này cũng xuất hiện trên căn đơn vị trong số học modulo. Cụ thể ta gọi căn đơn vị cấp $n$ modulo $p$ là một số nguyên $\omega_n$ thoả mãn:
+$$\begin{align}
+&(\omega_n)^n=1\pmod p\\
+&(\omega_n)^j \ne (\omega_n)^k, \forall\ 0\le j<k<n
+\end{align}$$
+
+Điều kiện thứ hai có thể được viết lại thành: $(\omega_n)^k\ne 1$ với mọi $1\le k<n$.
+
+Các căn đơn vị cấp $n$ khác được biểu diễn bằng một luỹ thừa của $\omega_n$.
+
+Để áp dụng thuật toán FFT, ta cần các căn đơn vị cho các luỹ thừa nhỏ hơn của $2$. Ta có thể chứng minh tính chất sau:
+$$\begin{align}
+&(\omega_n^2)^{n/2}=1\pmod p\\
+&(\omega_n^2)^k\ne 1\pmod p,\forall\ 1\le k<\frac{n}{2}
+\end{align}$$
+
+Từ đây ta có nếu $\omega_n$ là căn đơn vị cấp $n$, thì $\omega_n^2$ là căn đơn vị cấp $\frac{n}{2}$ và do đó ta tính được căn đơn vị cho các luỹ thừa của $2$ nhỏ hơn.
+
+Để tính biến đổi ngược ta cần [nghịch đảo modulo](/algo/math/modular-inverse.md) $\omega_n^{-1}$ tồn tại, điều này là hiển nhiên vì $p$ là số nguyên tố.
+
+Ta chứng minh được rằng với một số nguyên tố có dạng $p=c2^k+1$, tồn tại $\omega_{2^k}=g^c$ với $g$ là một [căn nguyên thuỷ](https://vi.wikipedia.org/wiki/C%C4%83n_nguy%C3%AAn_th%E1%BB%A7y_modulo_n) modulo $p$. Lấy ví dụ với $p=998244353=119\cdot 2^{23}+1$ có căn nguyên thuỷ $g=3$ và $\omega_{2^{23}}=3^{119} \bmod p=15311432$.
+
+Cài đặt với $p=998244353$ (các hằng số ```root, root_pw``` thể hiện căn đơn vị và số mũ tương ứng, ```root_1``` là nghịch đảo của căn đơn vị, hàm ```inverse``` tính nghịch đảo modulo của một số):
+```cpp
+const int mod = 998244353;
+const int root = 15311432;
+const int root_1 = 469870224;
+const int root_pw = 1 << 23;
+
+void fft(vector<int> & a, bool invert) {
+    int n = a.size(), L = __builtin_ctz(n);
+    
+    vector<int> rev(n);
+    for (int i = 0; i < n; i++) {
+        rev[i] = (rev[i >> 1] | (i & 1) << L) >> 1;
+        if (i < rev[i]) swap(a[i], a[rev[i]]);
+    }
+
+    for (int len = 2; len <= n; len <<= 1) {
+        int wlen = invert ? root_1 : root;
+        for (int i = len; i < root_pw; i <<= 1)
+            wlen = (int)(1LL * wlen * wlen % mod);
+
+        for (int i = 0; i < n; i += len) {
+            int w = 1;
+            for (int j = 0; j < len / 2; j++) {
+                int u = a[i + j];
+                int v = 1ll * a[i + j + len / 2] * w % mod;
+                a[i + j] = u + v < mod ? u + v : u + v - mod;
+                a[i + j + len / 2] = u - v >= 0 ? u - v : u - v + mod;
+                w = 1ll * w * wlen % mod;
+            }
+        }
+    }
+
+    if (invert) {
+        int n_1 = inverse(n, mod);
+        for (int & x : a)
+            x = 1ll * x * n_1 % mod;
+    }
+}
+```
+
+### Nhân đa thức với modulo bất kì
+
+Có thể thấy rằng thuật toán NTT chỉ hoạt động với nếu căn đơn vị tồn tại. Với các modulo không thoả mãn ta có hai cách sau:
+
+#### Sử dụng định lý thặng dư Trung Hoa
+
+Nếu kết quả của phép nhân đa thức có hệ số nhỏ hơn $M_1\cdot M_2$, với $M_1,M_2$ là hai số nguyên tố có dạng $c2^k+1$, ta có thể thực hiện NTT trên hai modulo này và dùng [định lý thặng dư Trung Hoa](https://vi.wikipedia.org/wiki/%C4%90%E1%BB%8Bnh_l%C3%BD_s%E1%BB%91_d%C6%B0_Trung_Qu%E1%BB%91c) để khôi phục kết quả.
+
+#### Chia nhỏ đa thức
+
+Ta cần tính $A(x)\cdot B(x)$ với hệ số modulo $M$, thực hiện tách hai đa thức như sau:
+$$
+A(x) = A_0(x) + A_1(x) \cdot C \\
+B(x) = B_0(x) + B_1(x) \cdot C \\
+$$
+với $C \approx \sqrt{M}$.
+
+Khi đó tích của hai đa thức được biểu diễn thành:
+
+$$A_0(x)B_0(x)+(A_0(x)B_1(x)+A_1(x)B_0(x))\cdot C + A_1(x)B_1(x)\cdot C^2$$
+
+Sử dụng kĩ thuật tương tự với [FFT hai dãy cùng một lúc](), ta có thể tính biểu thức trên với chỉ $4$ lần gọi FFT.
+
+Cài đặt:
+```cpp 
+using ll = long long;
+
+vector<int> convMod(const vector<int> &a, const vector<int> &b, int M) {
+    if (a.empty() || b.empty()) return {};
+    vector<int> res(a.size() + b.size() - 1);
+    int B = 32 - __builtin_clz(res.size());
+    int n = 1 << B, cut = sqrt(M);
+    
+    vector<cd> L(n), R(n), outs(n), outl(n);
+    
+    for (int i = 0; i < int(a.size()); i++)
+        L[i] = cd(a[i] / cut, a[i] % cut);
+    for (int i = 0; i < int(b.size()); i++)
+        R[i] = cd(b[i] / cut, b[i] % cut);
+    fft(L, false); fft(R, false);
+
+    for (int i = 0; i < n; i++) {
+        /// j = (n - i) % n
+        int j = -i & (n - 1);
+        outl[i] = (L[i] + conj(L[j])) * R[i] / 2.0l;
+        outs[i] = (L[i] - conj(L[j])) * R[i] / 2il;
+    }
+    fft(outl, true), fft(outs, true);
+
+    for (int i = 0; i < int(res.size()); i++) {
+        ll av = ll(real(outl[i]) + 0.5);
+        ll cv = ll(imag(outs[i]) + 0.5);
+        ll bv = ll(imag(outl[i]) + 0.5) + ll(real(outs[i]) + 0.5);
+        res[i] = ((av % M * cut + bv) % M * cut + cv) % M;
+    }
+    return res;
+}
+```
+
+## 4. Bài tập tham khảo
+- [Codeforces - Nikita and Order Statistics](https://codeforces.com/problemset/problem/993/E)
+- [AtCoder - Product Modulo](https://atcoder.jp/contests/agc047/tasks/agc047_c)
+- [CodeChef - Power Sum](https://www.codechef.com/SEPT19A/problems/PSUM)
+- [Kattis - A + B Problem](https://open.kattis.com/problems/aplusb)
+- [Codeforces - Rusty String](https://codeforces.com/contest/827/submission/109719530)

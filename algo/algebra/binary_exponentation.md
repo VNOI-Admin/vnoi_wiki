@@ -1,3 +1,13 @@
+---
+title: Lũy thừa nhị phân
+description: 
+published: true
+date: 2024-08-26T03:01:58.421Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T10:59:21.537Z
+---
+
 # Lũy thừa nhị phân
 
 **Tác giả:**
@@ -130,7 +140,7 @@ long long Mul(long long a, long long b) {
 
 ## Tính số Fibonacci lớn - Phép nhân ma trận
 
-Để hiểu rõ phần này, bạn đọc cần nắm các kiến thức cơ bản về [nhân ma trận](https://vnoi.info/wiki/algo/trick/matrix-multiplication.md)
+Để hiểu rõ phần này, bạn đọc cần nắm các kiến thức cơ bản về [nhân ma trận](/algo/trick/matrix-multiplication.md)
 
 Ứng dụng lũy thừa nhị phân kết hợp với nhân ma trận là một ứng dụng phổ biến, điển hình là bài toán tính số Fibonacci thứ $n$.
 

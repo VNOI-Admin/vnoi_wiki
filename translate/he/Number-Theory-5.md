@@ -1,4 +1,14 @@
-# Số học 5 - Các kiến thức cơ bản về Tổ hợp (Combinatorics)
+---
+title: Các kiến thức cơ bản về Tổ hợp (Combinatorics)
+description: 
+published: true
+date: 2024-09-29T09:28:57.616Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:06:16.848Z
+---
+
+# Các kiến thức cơ bản về Tổ hợp (Combinatorics)
 
 Nguồn: [HackerEarth](https://www.hackerearth.com/practice/notes/number-theory-ii/)
 

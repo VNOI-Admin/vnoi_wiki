@@ -1,3 +1,13 @@
+---
+title: Tự code, tự chấm, tự sướng - Bí kíp thi offline
+description: 
+published: true
+date: 2024-11-15T07:19:29.845Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:04:13.067Z
+---
+
 # Tự code, tự chấm, tự sướng - Bí kíp thi offline
 
 **Tác giả**: Vũ *chipchip* Phúc Hoàng
@@ -113,13 +123,15 @@ const string NAME = "template";
 // Số test kiểm tra
 const int NTEST = 100;
 
-mt19937 rd(chrono::steady_clock::now().time_since_epoch().count());
+mt19937_64 rd(chrono::steady_clock::now().time_since_epoch().count());
 #define rand rd
 
-// Viết lại hàm random để sử dụng cho thuận tiện. Hàm random này sinh ngẫu nhiên số trong phạm vi long long, số sinh ra >= l và <= h.
-long long Rand(long long l, long long h) {
-    assert(l <= h);
-    return l + rd() * 1LL * rd() % (h - l + 1);
+// Viết lại hàm random để sử dụng cho thuận tiện. 
+// Hàm random này sinh ngẫu nhiên số trong phạm vi long long
+// Số sinh ra nằm trong [L;R].
+long long Rand(long long L, long long R) {
+    assert(L <= R);
+    return L + rd() % (R - L + 1);
 }
 
 int main()

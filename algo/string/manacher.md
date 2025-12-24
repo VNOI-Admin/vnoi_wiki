@@ -1,3 +1,13 @@
+---
+title: Thuật toán Manacher
+description: 
+published: true
+date: 2024-09-23T04:18:10.840Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:04:29.630Z
+---
+
 # Thuật toán Manacher
 
 **Người viết:** Phạm Hoàng Hiệp - University of Georgia
@@ -338,7 +348,7 @@ signed main() {
 
 # Nhận xét về thuật toán
 - Thuật toán Manacher là thuật toán có ý tưởng khá đơn giản: tận dụng các dữ liệu có sẵn để giảm độ phức tạp khi tính toán trên xâu.
-- Chúng ta đã từng gặp ý tưởng tương tự khi tính toán [*Z-function*](https://vnoi.info/wiki/algo/string/kmp.md) hay [*prefix function*](https://vnoi.info/wiki/algo/string/z-algo.md).
+- Chúng ta đã từng gặp ý tưởng tương tự khi tính toán [*Z-function*](/algo/string/z-algo.md) hay [*prefix function*](/algo/string/suffix-array).
 - Thuật toán Manacher có thể được sử dụng trong hơi ít các bài toán. Tuy nhiên, thuật toán có ý tưởng tự nhiên và dễ cài đặt nên có thể có ích khi thi đấu.
 
 ![](https://i.imgur.com/5AC7Eew.png)

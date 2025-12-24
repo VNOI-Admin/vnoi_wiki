@@ -1,3 +1,13 @@
+---
+title: Tất tần tật về Cây Phân Đoạn (Segment Tree)
+description: 
+published: true
+date: 2024-12-24T14:52:06.964Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:01:56.816Z
+---
+
 # Tất tần tật về Cây Phân Đoạn (Segment Tree)
 
 **LƯU Ý**:
@@ -10,7 +20,7 @@
 
 Segment Tree là một cấu trúc dữ liệu được sử dụng rất nhiều trong các kỳ thi, đặc biệt là trong những bài toán xử lý trên dãy số.
 
-Segment Tree là một [cây](/translate/wcipeg/tree). Cụ thể hơn, nó là một cây nhị phân đầy đủ (mỗi nút là lá hoặc có đúng 2 nút con), với mỗi nút quản lý một đoạn trên dãy số. Với một dãy số gồm $N$ phần tử, nút gốc sẽ lưu thông tin về đoạn $[1, N]$, nút con trái của nó sẽ lưu thông tin về đoạn $[1, ⌊N/2⌋]$ và nút con phải sẽ lưu thông tin về đoạn $[⌊N/2⌋+1, N]$. Tổng quát hơn: nếu nút $A$ lưu thông tin đoạn $[i, j]$, thì 2 con của nó: $A1$ và $A2$ sẽ lưu thông tin của các đoạn $[i, ⌊(i+j)/2⌋]$ và đoạn $[⌊(i+j)/2⌋ + 1, j]$.
+Segment Tree là một [cây](/translate/wcipeg/tree). Cụ thể hơn, nó là *một cây nhị phân đầy đủ (full binary tree)* (mỗi nút là lá hoặc có đúng 2 nút con), với mỗi nút quản lý một đoạn trên dãy số. Với một dãy số gồm $N$ phần tử, nút gốc sẽ lưu thông tin về đoạn $[1, N]$, nút con trái của nó sẽ lưu thông tin về đoạn $[1, ⌊N/2⌋]$ và nút con phải sẽ lưu thông tin về đoạn $[⌊N/2⌋+1, N]$. Tổng quát hơn: nếu nút $A$ lưu thông tin đoạn $[i, j]$, thì 2 con của nó: $A1$ và $A2$ sẽ lưu thông tin của các đoạn $[i, ⌊(i+j)/2⌋]$ và đoạn $[⌊(i+j)/2⌋ + 1, j]$.
 
 ## Ví dụ
 
@@ -824,7 +834,7 @@ int query(int root, int l, int r, int lowerbound, int k) {
     //nếu cây con trái không tìm được kết quả <=> min nằm ngoài lowerbound
     //thì ta sẽ tìm kết quả ở cây con phải
     if (res == -1)
-        res = query(root * 2, mid + 1, r, lowerbound, k);
+        res = query(root * 2 + 1, mid + 1, r, lowerbound, k);
     return res;
 }
 //cout << query(1, 1, n, l, k);
@@ -851,7 +861,7 @@ Code này có một chút lạ, khác so với code ở **bài toán 2** một c
 - [PATULJCI](http://www.spoj.com/problems/PATULJCI)
 - [New Year Domino](http://codeforces.com/problemset/problem/500/E)
 - [Copying Data](http://codeforces.com/problemset/problem/292/E)
-- [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/)
+- [DZY Loves Fibonacci Numbers](http://codeforces.com/problemset/problem/446/C)
 - [FRBSUM](http://www.codechef.com/JAN14/problems/FRBSUM)
 
 # Đọc thêm:
@@ -862,4 +872,4 @@ Code này có một chút lạ, khác so với code ở **bài toán 2** một c
 # Các nguồn tham khảo:
 
 - [Codeforces](http://codeforces.com/blog/entry/15890)
-- [[Một số vấn đề đáng chú ý trong môn Tin học|algo/basic/Tai-Lieu-Thuat-Toan]]
+- [Một số vấn đề đáng chú ý trong môn Tin học](/algo/basic/Tai-Lieu-Thuat-Toan)

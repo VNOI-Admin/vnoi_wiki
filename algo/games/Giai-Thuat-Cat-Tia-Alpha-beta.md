@@ -1,7 +1,15 @@
+---
+title: Giải Thuật Cắt Tỉa Alpha-beta
+description: 
+published: true
+date: 2024-09-24T13:49:48.014Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:02:44.221Z
+---
+
 # Giải Thuật Cắt Tỉa Alpha-beta
 Tác giả: Vũ Trọng Quang
-
-(Nguồn: https://www.stdio.vn/articles/giai-thuat-cat-tia-alpha-beta-564)
 
 Giải thuật cắt tỉa Alpha-beta cực kỳ quan trọng khi lập trình các trò chơi như cờ vua hay cờ tướng, khi các không gian trạng thái của những trò chơi này có độ phức tạp cao. Cắt tỉa Alpha-beta sẽ giúp loại bỏ những không gian trạng thái không cần thiết và hỗ trợ tối ưu hóa thuật toán tìm kiếm Minimax.
 
@@ -10,9 +18,9 @@ Giải thuật cắt tỉa Alpha-beta cực kỳ quan trọng khi lập trình c
 Giải thuật cắt tỉa Alpha-beta từng được nhiều nhà khoa học máy tính đề xuất ý tưởng và không ngừng được cải tiến cho đến ngày nay. Giải thuật này thường sử dụng chung với thuật toán tìm kiếm Minimax nhằm hỗ trợ giảm bớt các không gian trạng thái trong cây trò chơi, giúp thuật toán Minimax có thể tìm kiếm sâu và nhanh hơn. Giải thuật cắt tỉa Alpha-beta có nguyên tắc đơn giản "Nếu biết là trường hợp xáu thì không cần phải xét thêm".
 
 ## Tiền đề bài viết
-Trong thời gian tìm hiểu và thực thi thuật toán Minimax, nguồn tài liệu của STDIO luôn là ưu tiên tìm kiếm đầu tiên của tôi. Trong lúc thực hiện việc tối ưu thuật toán, các tài liệu nói về Minimax đều nói về thuật toán cắt tỉa Alpha-beta và đây là động lực để tôi viết bài viết này nhằm giúp hoàn thiện phần còn lại của bài viết [Giải Thuật Tìm Kiếm Minimax](https://www.stdio.vn/articles/read/283/giai-thuat-tim-kiem-minimax) trên STDIO.
+Trong thời gian tìm hiểu và thực thi thuật toán Minimax, nguồn tài liệu của STDIO luôn là ưu tiên tìm kiếm đầu tiên của tôi. Trong lúc thực hiện việc tối ưu thuật toán, các tài liệu nói về Minimax đều nói về thuật toán cắt tỉa Alpha-beta và đây là động lực để tôi viết bài viết này nhằm giúp hoàn thiện phần còn lại của bài viết Giải Thuật Tìm Kiếm Minimax trên STDIO.
 
-Đây cũng là lời cảm ơn đến anh [La Kiến Vinh](https://www.stdio.vn/users/index/1/la-kien-vinh), người thầy đã mang lại nhiều cảm hứng và ấn tượng cho tôi.
+Đây cũng là lời cảm ơn đến anh La Kiến Vinh, người thầy đã mang lại nhiều cảm hứng và ấn tượng cho tôi.
 
 ## Đối tượng hướng đến
 Bài viết dành cho các bạn đã vững lập trình và có kiến thức về các giải thuật tìm kiếm. Bài viết cũng yêu cầu bạn đọc xem qua Giải Thuật Tìm Kiếm Minimax trước khi tiếp tục.
@@ -26,7 +34,7 @@ Khi chưa có alpha và beta xác định thì thực hiện tìm kiếm sâu (d
 ### Cắt tỉa như thế nào?
 Một số sách và tài liệu có đề cập với việc cắt tỉa alpha và cắt tỉa beta, ở đây tôi cũng sẽ nói về việc đó và dùng một cách khác đó là dùng các khoảng trong toán học. Hãy nhìn cây trò chơi phía dưới để hình dung cách để cắt tỉa.
 
-![cay_tro_choi](https://www.stdio.vn/statics/external_data/files/pages/articles/2017/564/content/cay_tro_choi.png)
+![alpha-beta1.png](/algo/game/alpha-beta1.png)
 
 Chắc hẳn những bạn đang đọc bài này sẽ đều thắc mắc vấn đề tại sao chúng ta có thể cắt bỏ toàn bộ những nút con của C trên cây trò chơi trên.
 
@@ -39,7 +47,7 @@ Sau khi xác định được alpha và beta, chúng ta có thể dễ dàng xá
 Nếu nói theo khoảng thì hiện tại chúng ta chỉ nhận khoảng ≥ 10 tại nút gốc  S, vậy thì đâu cần bận tâm đến việc khoảng ≤ 3 tại nút C.
 
 Ví dụ với một cây trò chơi trung bình
-![cay_tro_choi_2](https://www.stdio.vn/statics/external_data/files/pages/articles/2017/564/content/cay_tro_choi_2.png)
+![alpha-beta2.png](/algo/game/alpha-beta2.png)
 
 Ở đây chúng ta cũng xét từ trái qua phải bắt đầu từ nút gốc và nút con bên trái sẽ được ưu tiên duyệt trước. Duyệt nguyên cây này sẽ khá dài dòng nhưng để bạn hiểu tôi sẽ viết ra các bước sau.
 

@@ -1,3 +1,13 @@
+---
+title: Heavy-Light Decomposition (HLD)
+description: 
+published: true
+date: 2024-12-24T14:47:44.392Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:01:14.862Z
+---
+
 # Heavy-Light Decomposition (HLD)
 
 **Tác giả:**
@@ -19,9 +29,9 @@ Tuy nghe tên có vẻ kinh khủng nhưng trên thực tế, đây là một k�
 ### Kiến thức cần biết
 - Các thuật toán duyệt đồ thị cơ bản (DFS, BFS, ...)
 - Cây
-- [Lowest Common Ancestor (LCA) - Tổ tiên chung gần nhất](https://vnoi.info/wiki/algo/data-structures/lca.md)
-- [Segment Tree](https://vnoi.info/wiki/algo/data-structures/segment-tree-extend.md)
-- [Euler tour on tree](https://vnoi.info/wiki/algo/graph-theory/euler-tour-on-tree.md) (nên biết nhưng không bắt buộc)
+- [Lowest Common Ancestor (LCA) - Tổ tiên chung gần nhất](/algo/data-structures/lca.md)
+- [Segment Tree](/algo/data-structures/segment-tree-extend.md)
+- [Euler tour on tree](/algo/graph-theory/euler-tour-on-tree.md) (nên biết nhưng không bắt buộc)
 
 ### Bài toán
 Để trả lời câu hỏi HLD sẽ giúp chúng ta làm gì, chúng ta sẽ cùng giải một bài toán.
@@ -50,7 +60,7 @@ Cho một cây (một đồ thị có $n$ đỉnh và $n-1$ cạnh và giữa ha
 Vậy chính xác thì HLD sẽ làm gì để giúp chúng ta giải được phiên bản "trên cây" của bài toán trên? Liệu chúng ta có thể biến cây cho trước thành một mảng để giải bài toán trên đó? Câu trả lời là không. Tuy nhiên chúng ta có thể chia cây thành một số phần, và giải bài toán trên từng phần đó.
 Cụ thể như sau, giả sử có cây sau đây
 
-![](https://hackmd.io/_uploads/SyW0NnFB3.png)
+![hld1.png](/algo/graph/hld/hld1.png)
 
 Không mất tính tổng quát, có thể coi đỉnh $1$ là gốc của cây. Với mỗi đỉnh không phải lá trên cây, chúng ta sẽ đánh dấu những cạnh nối đỉnh đó với con có kích thước cây con lớn nhất của của nó.
 
@@ -58,7 +68,7 @@ Ví dụ, xét đỉnh $15$ có ba đỉnh con lần lượt là đỉnh $17$, $
 
 Vì vậy, chúng ta sẽ đánh dấu cạnh nối giữa đỉnh $15$ và đỉnh $17$ (tô màu đỏ). Làm tương tự với các đỉnh còn lại, chúng ta được cây như hình vẽ dưới đây.
 
-![](https://hackmd.io/_uploads/H1I6U3YH2.png)
+![hld2.png](/algo/graph/hld/hld2.png)
 
 Chúng ta sẽ gọi những cạnh màu đỏ là những **"cạnh nặng" (heavy edges)** vì chúng nối một đỉnh với đỉnh con **"nặng nhất"**. Những cạnh còn lại sẽ được gọi là những **"cạnh nhẹ" (light edges)**
 
@@ -71,6 +81,7 @@ Khi đó, chúng ta có thể chứng minh được rằng đường đi giữa 
 <details>
 <summary>Chứng minh</summary>
 <p>
+
 Xét một đỉnh $v$ được nối với đỉnh cha của nó là $p$ bởi một cạnh nhẹ. Giả sử kích thước cây con của $v$ là $x$ và kích thước cây con của $p$ là $y$. Do cạnh nặng đi từ $p$ không được nối xuống $v$ nên chắc chắn tồn tại một con khác của $p$ là $u$ có kích thước cây con $\geq x$. Vì vậy, $y \geq 2 * x$
 
 Do với mỗi lần nhảy qua cạnh nhẹ, kích thước của cây con ở đỉnh sau khi nhảy sẽ tăng ít nhất là gấp đôi nên ta có thể kết luận rằng để đi lên một tổ tiên bất kỳ ở phía trên thì có thể nhảy qua không quá $\log_2(n)$ cạnh nhẹ. Do mỗi lần đi qua cạnh nhẹ chính là một lần nhảy sang chuỗi mới nên từ một đỉnh $v$ lên tổ tiên bất kỳ của nó sẽ chỉ đi qua $O(\log(n))$ chuỗi.
@@ -414,6 +425,7 @@ signed main() {
 }
 ```
 </details>
+  
 ### Bài viết tham khảo và bài tập luyện tập
 
 Bài viết trên được tham khảo từ bài viết gốc [Hybrid Tutorial 1: Heavy-Light Decomposition](https://codeforces.com/blog/entry/81317). Bạn đọc có thể tham khảo và xem video hướng dẫn kèm theo của galen_colin. Ngoài ra có thể tham khảo bài viết của [CP algo](https://cp-algorithms.com/graph/hld.html).
