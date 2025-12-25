@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2025-12-24T15:32:26.132Z
+date: 2025-12-25T13:18:50.920Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -24,7 +24,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 | ⭐⭐⭐⭐ | Kiến thức rất khó |
 | ⭐⭐⭐⭐⭐ | Kiến thức rất chuyên sâu về một vấn đề nào đó, chỉ áp dụng được với rất ít bài khó |
 
-# VNOI Roadmap
+# VNOI Roadmap 
 🔥VNOI Roadmap là một lộ trình hoàn chỉnh bao gồm các chủ đề được đánh giá độ khó từ 1 đến 5 sao, dành cho mọi đối tượng từ học sinh đến sinh viên, đặc biệt là các bạn mới bắt đầu tiếp xúc với Tin học.
 ❤️‍🔥 Được đúc kết từ kinh nghiệm của các thế hệ đi trước đã vượt qua nhiều cuộc thi, đóng góp cho nền Tin học Việt Nam trong suốt những năm vừa qua, chúng mình tin rằng VNOI Roadmap sẽ là một hành trang bổ ích trên con đường chinh phục Tin học của các bạn đấy!
 🔗 Link roadmap: https://roadmap.sh/r/vnoi-roadmap 
