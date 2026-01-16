@@ -2,7 +2,7 @@
 title: Hình học tính toán phần 3: Đa giác
 description: 
 published: true
-date: 2025-03-24T17:54:32.000Z
+date: 2026-01-16T10:44:37.023Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T16:51:02.046Z
@@ -99,16 +99,10 @@ struct Polygon {
     Polygon();
     
     // Khởi tạo tam giác từ các đỉnh
-    Polygon(Point A, Point B, Point C) {
-        vertices.push_back(A);
-        vertices.push_back(B);
-        vertices.push_back(C);
-    }
+    Polygon(Point A, Point B, Point C) : vertices({A, B, C}), nVertices(3) {}
 
     // Khởi tạo đa giác từ danh sách đỉnh
-    Polygon(vector <Point> __vertices) {
-        vertices = __vertices;
-    }
+    Polygon(const vector <Point> &__vertices) : vertices(__vertices), nVertices(__vertices.size()) {}
     
     // Diện tích, được cài đặt tại phần Diện tích đa giác
     double area();
