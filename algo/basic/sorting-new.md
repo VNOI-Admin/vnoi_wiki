@@ -2,7 +2,7 @@
 title: Thuật toán sắp xếp
 description: 
 published: true
-date: 2026-01-16T01:12:07.695Z
+date: 2026-01-16T02:01:31.965Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-19T01:32:35.401Z
@@ -131,7 +131,11 @@ void insertionSort(int a[], int n){
 :::
 Độ phức tạp: $\mathcal{O}(n^2)$.
 
-![InsertionSortScene](https://hackmd.io/_uploads/S1dd--RCgl.gif)
+<center>
+<video controls width="80%">
+  <source src="/algo/sorting/insertionsort.mp4" type="video/mp4">
+</video>
+</center>
 
 ### Sắp xếp đếm phân phối (Counting Sort)
 
@@ -168,7 +172,11 @@ Nhận xét: Vòng lặp ngoài ta sẽ chạy từ $0$ đến $\max a_{i}$, vò
 
 __Nhược điểm__: Mảng không thể chứa các $a_{i}$ có giá trị âm hay quá lớn (vượt quá $10^{7}$).
 
-![CountingSortScene (1)](https://hackmd.io/_uploads/ByMyefp0le.gif)
+<center>
+<video controls width="80%">
+  <source src="/algo/sorting/countingsortnew.mp4" type="video/mp4">
+</video>
+</center>
 
 ### Sắp xếp trộn (Merge Sort)
 
@@ -314,7 +322,12 @@ void quicksort(int l, int r){
 }
 ```
 :::
-![QuickSortLomuto](https://hackmd.io/_uploads/rJ-a-W0Cxx.gif)
+
+<center>
+<video controls width="80%">
+  <source src="/algo/sorting/quicksort.mp4" type="video/mp4">
+</video>
+</center>
 
 #### Phân hoạch Hoare
 
@@ -356,7 +369,11 @@ void quicksort(int l, int r){
 :::
 Độ phức tạp: $\mathcal{O}(n \times \log n)$
 
-![QuickSortHoare](https://hackmd.io/_uploads/S1vCbZCRex.gif)
+<center>
+<video controls width="80%">
+  <source src="/algo/sorting/quicksorthoare.mp4" type="video/mp4">
+</video>
+</center>
 
 Nhược điểm: Qua 2 ví dụ minh họa trên, ta thấy trong trường hợp tệ nhất, Quick Sort có thể chạy lên tới $\mathcal{O}(n^2)$.
 
