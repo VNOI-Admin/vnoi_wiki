@@ -2,7 +2,7 @@
 title: Thuật toán sắp xếp
 description: 
 published: true
-date: 2026-01-16T01:04:34.125Z
+date: 2026-01-16T01:12:07.695Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-19T01:32:35.401Z
@@ -99,7 +99,11 @@ void bubbleSort(int a[], int n){
 
 Ta quan sát thấy mỗi lần ta hoán đổi của Bubble Sort sẽ làm **giảm đúng $1$ nghịch thế**. Hơn nữa, dãy cuối cùng đã được sắp xếp là một dãy không có nghịch thế nào. Từ đó, ta có thể kết luận quá trình giảm số nghịch thế xuống $0$ sẽ tốn số lần hoán đổi đúng bằng số nghịch thế ban đầu. 
 
-![BubbleSortScene](https://hackmd.io/_uploads/rk5WMbCCle.gif)
+<center>
+<video controls width="80%">
+  <source src="/algo/sorting/bubblesort.mp4" type="video/mp4">
+</video>
+</center>
 
 ### Sắp xếp chèn (Insertion Sort)
 
