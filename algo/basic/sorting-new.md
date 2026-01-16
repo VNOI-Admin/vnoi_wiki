@@ -2,7 +2,7 @@
 title: Thuật toán sắp xếp
 description: 
 published: true
-date: 2026-01-16T02:01:31.965Z
+date: 2026-01-16T02:04:46.057Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-19T01:32:35.401Z
@@ -221,7 +221,11 @@ Nhận xét: Mỗi lần chia đôi có $\log n$ tầng chia để trị, ở m�
 
 Độ phức tạp: $\mathcal{O}(n \times \log n)$.
 
-![MergeSortScene](https://hackmd.io/_uploads/BkscW-AAxe.gif)
+<center>
+<video controls width="80%">
+  <source src="/algo/sorting/mergesortclean.mp4" type="video/mp4">
+</video>
+</center>
 
 ### Sắp xếp vun đống (Heap Sort)
 
