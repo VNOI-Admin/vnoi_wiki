@@ -2,7 +2,7 @@
 title: Thuật toán sắp xếp
 description: 
 published: true
-date: 2026-01-16T01:04:19.179Z
+date: 2026-01-16T01:04:34.125Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-19T01:32:35.401Z
@@ -58,9 +58,11 @@ void selectionSort(int a[], int n){
 :::
 Độ phức tạp: $\mathcal{O}(n^2)$.
 
+<center>
 <video controls width="80%">
   <source src="/algo/sorting/selectionsort.mp4" type="video/mp4">
 </video>
+</center>
 
 ### Sắp xếp nổi bọt (Bubble Sort)
 
