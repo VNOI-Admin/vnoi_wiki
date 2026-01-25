@@ -2,7 +2,7 @@
 title: Quy hoạch động SOS - Phần 2
 description: 
 published: true
-date: 2025-03-21T15:44:25.898Z
+date: 2026-01-25T10:43:15.275Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-21T13:38:01.273Z
@@ -706,7 +706,7 @@ int main()
 
 [Link đề gốc](https://codeforces.com/contest/1906/problem/K)
 
-Cho dãy $a$ gồm $n$ phần tử. Đếm số cách chọn hai dãy con không có phần chung (có thể chọn tập rỗng) sao cho tổng XOR$^\dagger$ của hai dãy con này là bằng nhau. In đáp án modulo $988 \space 244 \space 353$.
+Cho dãy $a$ gồm $n$ phần tử. Đếm số cách chọn hai dãy con không có phần chung (có thể chọn tập rỗng) sao cho tổng XOR$^\dagger$ của hai dãy con này là bằng nhau. In đáp án modulo $998 \space 244 \space 353$.
 
 $\dagger$ Tổng XOR của một dãy $b_1, b_2, \dots, b_m$ là $b_1 \oplus b_2 \oplus \dots \oplus b_m$.
 
