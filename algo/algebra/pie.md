@@ -2,7 +2,7 @@
 title: Bao hàm loại trừ
 description: 
 published: true
-date: 2026-02-07T15:28:59.507Z
+date: 2026-02-07T15:43:13.519Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-07T15:28:59.507Z
@@ -11,7 +11,7 @@ dateCreated: 2026-02-07T15:28:59.507Z
 # Bao hàm loại trừ
 
 **Người viết**:
-- Phạm Vũ Phương - Trường THPT Chuyên Hà Tĩnh.
+- Phạm Vũ Phương - Trường THPT Chuyên Hà Tĩnh, Hà Tĩnh.
 
 **Reviewer:**
 - Đoàn Quang Huy - THPT Chuyên Nguyễn Tất Thành, Quãng Ngãi.
