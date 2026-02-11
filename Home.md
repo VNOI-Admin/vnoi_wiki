@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2026-02-11T13:26:00.453Z
+date: 2026-02-11T13:26:29.727Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -155,7 +155,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 
 ## Tham lam
 
-- [Tham lam (bài viết mới) - ⭐⭐](/algo/greedy-new)
+- [Tham lam - <big>:new:</big> - ⭐⭐](/algo/greedy-new)
 - [Tham lam - ⭐⭐](/translate/topcoder/Greedy-is-Good)
 - [Matroid - ⭐⭐⭐⭐](/algo/math/matroid)
 
