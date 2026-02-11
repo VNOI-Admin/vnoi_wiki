@@ -2,7 +2,7 @@
 title: Home Wiki
 description: 
 published: false
-date: 2026-02-11T12:52:58.045Z
+date: 2026-02-11T12:53:34.943Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-11T12:48:55.842Z
@@ -66,4 +66,18 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 	<div style="font-size: 70%; opacity: 0.5; margin: 0">Tác giả · <strong>Bài viết mới</strong></div>
 	<strong>Tên bài viết</strong> ⭐⭐
 </div>
+</a>
+
+<a href="https://stephango.com/" 
+   target="_self" 
+   style="text-decoration: none; color: inherit; display: block; margin: 12px 0;">
+  <div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; background: transparent; transition: 0.3s;"
+       onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" 
+       onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
+      <div style="font-size: 70%; opacity: 0.5; margin: 0; line-height: 1;">Nguyễn Tấn Minh</div>
+      <div style="margin-top: 4px; display: flex; align-items: center; gap: 8px;">
+          <strong style="font-size: 110%; line-height: 1;">Lucian's Trick</strong>
+          <span style="font-size: 14px; letter-spacing: -2px;">⭐⭐⭐⭐⭐⭐</span>
+      </div>
+  </div>
 </a>
