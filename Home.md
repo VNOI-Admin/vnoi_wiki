@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2025-12-25T13:51:43.484Z
+date: 2026-02-11T13:26:00.453Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -38,7 +38,10 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 - [Nghệ thuật giải bài - ⭐](/translate/topcoder/How-to-Find-a-Solution)
 - [Những cách tiếp cận bài toán - ⭐](/translate/topcoder/Planning-an-Approach-to-a-Topcoder-Problem-Part-1)
 - [Độ phức tạp thời gian - ⭐](/algo/basic/computational-complexity.md)
-- [Thuật toán sắp xếp - ⭐](/algo/basic/sorting)
+
+## Các kỹ thuật cơ bản
+
+- [Thuật toán sắp xếp - <big>:new:</big> - ⭐](https://wiki.vnoi.info/vi/algo/basic/sorting-new)
 - [Tìm kiếm nhị phân - ⭐](/algo/basic/Binary-Search)
 - [Hai con trỏ - ⭐](/algo/basic/two-pointers)
 - [Phép toán bit - ⭐](/algo/basic/bitwise-operators.md)
@@ -186,10 +189,12 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
   - [Giai thừa modulo nguyên tố - ⭐⭐⭐](/algo/math/factorial-modulo-prime)
   - [Căn bậc hai modulo - ⭐⭐⭐](/algo/math/sqrt-mod-p)
   - [Logarit rời rạc - ⭐⭐⭐](/algo/math/discrete-log)
+  
 ### Tổ hợp và Xác suất
 - [Các kiến thức cơ bản về Tổ hợp (Combinatorics) - ⭐⭐](/translate/he/Number-Theory-5)
 - [Xác suất - ⭐⭐](/translate/topcoder/Hieu-ve-xac-suat)
 - [Xác suất (Probabilities) - ⭐⭐](/translate/he/Number-Theory-6)
+- [Bao hàm - Loại trừ (Principle of Inclusion-Exclusion) - <big>:new:</big> - ⭐⭐](/algo/algebra/pie)
 - [Bao hàm - Loại trừ (Inclusion-Exclusion) - ⭐⭐](/translate/he/Number-Theory-7)
 
 ### Hình học
