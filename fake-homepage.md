@@ -2,7 +2,7 @@
 title: Home Wiki
 description: 
 published: false
-date: 2026-02-11T12:58:37.002Z
+date: 2026-02-11T12:59:27.573Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-11T12:48:55.842Z
@@ -31,15 +31,9 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 
 # Thuật toán
 
-<style>
-  a.external::after {
-      display: none !important;
-  }
-</style>
-
 ## Nhập môn
 
-<a href="https://stephango.com/" style="text-decoration: none; color: inherit; display: block;" target="_self">
+<a href="https://stephango.com/" style="text-decoration: none; color: inherit; display: none;" target="_self">
 <div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 12px 0px">
 	<div style="font-size: 70%; opacity: 0.5; margin: 0">Nguyễn Tấn Minh</div>
 	<strong>Lucian's Trick</strong> ⭐⭐⭐⭐⭐⭐
