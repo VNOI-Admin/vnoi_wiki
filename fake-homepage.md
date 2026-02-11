@@ -2,7 +2,7 @@
 title: Home Wiki
 description: 
 published: false
-date: 2026-02-11T13:02:16.657Z
+date: 2026-02-11T13:04:21.290Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-11T12:48:55.842Z
@@ -33,9 +33,30 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 
 ## Nhập môn
 
-<a href="https://stephango.com/" style="text-decoration: none; color: inherit; display: block;">
+<a href="/translate/topcoder/The-Importance-of-Algorithm" style="text-decoration: none; color: inherit; display: block;">
 <div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
-	<div style="font-size: 70%; opacity: 0.5; margin: 0">Nguyễn Tấn Minh</div>
-	<strong>Lucian's Trick</strong> ⭐⭐⭐⭐⭐⭐
+  <div style="font-size: 70%; opacity: 0.5; margin: 0">Tên tác giả · <strong>Bài viết mới</strong></div>
+	<strong>Tên bài viết</strong> ⭐⭐⭐⭐⭐⭐
+</div>
+</a>
+
+<a href="/translate/topcoder/The-Importance-of-Algorithm" style="text-decoration: none; color: inherit; display: block;">
+<div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
+  <div style="font-size: 70%; opacity: 0.5; margin: 0">Tên tác giả · <strong>Bài viết mới</strong></div>
+	<strong>Tên bài viết</strong> ⭐⭐⭐⭐⭐⭐
+</div>
+</a>
+
+<a href="/translate/topcoder/The-Importance-of-Algorithm" style="text-decoration: none; color: inherit; display: block;">
+<div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
+  <div style="font-size: 70%; opacity: 0.5; margin: 0">Tên tác giả · <strong>Bài viết mới</strong></div>
+	<strong>Tên bài viết</strong> ⭐⭐⭐⭐⭐⭐
+</div>
+</a>
+
+<a href="/translate/topcoder/The-Importance-of-Algorithm" style="text-decoration: none; color: inherit; display: block;">
+<div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
+  <div style="font-size: 70%; opacity: 0.5; margin: 0">Tên tác giả · <strong>Bài viết mới</strong></div>
+	<strong>Tên bài viết</strong> ⭐⭐⭐⭐⭐⭐
 </div>
 </a>
