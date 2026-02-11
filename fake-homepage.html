@@ -2,35 +2,68 @@
 title: Fake homepage
 description: 
 published: false
-date: 2026-02-11T12:34:47.925Z
+date: 2026-02-11T12:36:06.864Z
 tags: 
 editor: code
 dateCreated: 2026-02-11T12:33:40.334Z
 -->
 
-<style>
-  .card {
-    border: 1px solid #adb5bd;
-    padding: 16px;
-    border-radius: 8px;
-    transition: border-color 0.3s ease;
-  }
-  .card:hover {
-    border-color: #343a40;
-    background: #e9ecef;
-  }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Card</title>
+    <style>
+        /* Base page styling to make it look clean */
+        body {
+            background-color: #f8f9fa; /* Light background for the e9ecef hover to pop */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-<a href="https://stephango.com/" style="text-decoration: none; color: inherit; display: block; margin: 10px">
-<div class="card" style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px">
-    <div style="font-size: 70%; opacity: 0.5; margin: 0px">Nguyễn Tấn Minh</div>
-    <strong>Lucian's Trick</strong>
-</div>
-</a>
+        /* Your Card Styling */
+        .card {
+            border: 1px solid #adb5bd;
+            padding: 16px;
+            border-radius: 8px;
+            background-color: white; /* Starts white */
+            transition: all 0.3s ease; /* Transitioning 'all' handles background too */
+            max-width: 300px; /* Optional: limits width like a real blog list */
+        }
 
-<a href="https://stephango.com/" style="text-decoration: none; color: inherit; display: block; margin: 10px">
-<div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px">
-    <div style="font-size: 70%; opacity: 0.5; margin: 0px">Nguyễn Tấn Minh</div>
-    <strong>Lucian's Trick</strong>
-</div>
-</a>
+        .card:hover {
+            border-color: #343a40;
+            background-color: #e9ecef;
+            transform: translateY(-2px); /* Subtle 'lift' effect */
+        }
+
+        .card-meta {
+            font-size: 70%;
+            opacity: 0.5;
+            margin-bottom: 2px; /* Small gap between name and title */
+            text-transform: uppercase; /* Makes metadata look more technical */
+            letter-spacing: 0.5px;
+        }
+
+        .card-title {
+            font-size: 110%;
+            display: block; /* Ensures it acts like a block-level element */
+        }
+    </style>
+</head>
+<body>
+
+    <a href="https://stephango.com/" style="text-decoration: none; color: inherit; display: block; margin: 10px">
+        <div class="card">
+            <div class="card-meta">Nguyễn Tấn Minh</div>
+            <strong class="card-title">Lucian's Trick</strong>
+        </div>
+    </a>
+
+</body>
+</html>
