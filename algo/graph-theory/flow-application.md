@@ -2,7 +2,7 @@
 title: Ứng dụng của luồng trên mạng
 description: 
 published: true
-date: 2026-02-25T06:04:03.168Z
+date: 2026-02-25T06:17:11.176Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T05:49:41.942Z
@@ -37,7 +37,7 @@ Ta có một đồ thị có hướng, và nhiệm vụ của ta là tìm $k$ đ
 
 Để giải quyết bài toán, ta xây dựng *mạng đơn vị* từ đồ thị có hướng trên (mạng đơn vị là mạng với các cạnh có sức chứa $1$). Nếu ta có thể cho $k$ luồng đi qua mạng này thì tức là ta đã tìm được $k$ đường đi phân biệt cạnh. 
 
-Nếu ta được yêu cầu in ra các đường đi thì sau khi cho $k$ luồng $0 - 1$ (mỗi cạnh hoặc là không có luồng đi qua, hoặc là có đúng $1$ đơn vị luồng) đi qua mạng, ta có thể sử dụng các cạnh $e$ có $f(e) = 1$ để tìm các đường đi phân biệt cạnh:
+Nếu ta được yêu cầu in ra các đường đi thì sau khi cho $k$ luồng $0 - 1$ (mỗi cạnh hoặc là không có luồng đi qua, hoặc là có đúng $1$ đơn vị luồng đi qua mạng), ta có thể sử dụng các cạnh $e$ có $f(e) = 1$ để tìm các đường đi phân biệt cạnh:
 - Bắt đầu từ đỉnh nguồn, xét đỉnh $u$ hiện tại, chọn cạnh $\{u, v\}$ có $f(\{u, v\}) = 1$ và di chuyển đến đỉnh $v$.
 - Nếu đỉnh hiện tại không phải đỉnh thu, lặp lại bước trên.
 
