@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2026-02-11T13:26:29.727Z
+date: 2026-02-25T05:51:40.604Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -142,6 +142,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
   - [Bài toán luồng cực đại - WCIPEG - ⭐⭐⭐](/translate/wcipeg/Flows)
   - [Luồng với chi phí cực tiểu - ⭐⭐⭐](/algo/graph-theory/min-cost-flow)
   - [Cặp ghép cực đại - ⭐⭐⭐](/algo/graph-theory/max-matching)
+  - [Ứng dụng của luồng trên mạng - <big>:new:</big> - ⭐⭐⭐](/algo/graph-theory/flow-application)
 
 ### Đồ thị dạng cây
 - [Đường đi Euler trên cây - ⭐⭐](/algo/graph-theory/euler-tour-on-tree.md)
