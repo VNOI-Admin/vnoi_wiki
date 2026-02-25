@@ -2,7 +2,7 @@
 title: Ứng dụng của luồng trên mạng
 description: 
 published: true
-date: 2026-02-25T06:03:13.896Z
+date: 2026-02-25T06:04:03.168Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T05:49:41.942Z
@@ -230,7 +230,9 @@ Ta xác định mạng $G$ có thể thực hiện lưu thông nếu giá trị 
 
 ### Trường hợp có cận dưới
 
-Một số bài toán lưu thông theo cung cầu sẽ cho ta thêm điều kiện cận dưới cho các cung trên đồ thị. Cụ thể hơn, gọi giá trị $l(e)$ là cận dưới của cạnh $e = \{u, v\}$. Khi này, lượng luồng $f(e)$ đi qua cạnh $e$ phải thoả mãn: $$l(e) \le f(e) \le c(e)$$
+Một số bài toán lưu thông theo cung cầu sẽ cho ta thêm điều kiện cận dưới cho các cung trên đồ thị. Cụ thể hơn, gọi giá trị $l(e)$ là cận dưới của cạnh $e = \{u, v\}$. Khi này, lượng luồng $f(e)$ đi qua cạnh $e$ phải thoả mãn:
+
+$$l(e) \le f(e) \le c(e)$$
 
 <center>
 <img src="/algo/flow-application/flow_8.png" alt="Trường hợp có cận dưới">
