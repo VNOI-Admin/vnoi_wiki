@@ -2,7 +2,7 @@
 title: Ứng dụng của luồng trên mạng
 description: 
 published: true
-date: 2026-02-25T05:55:46.171Z
+date: 2026-02-25T06:02:59.282Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T05:49:41.942Z
@@ -181,7 +181,7 @@ Số tiền ta thu được, đồng thời cũng là lợi nhuận tối đa, b
 
 Ta có $C = 17$, $c(S^*, T^*) = 6$, suy ra lợi nhuận tối đa sẽ bằng $11$.
 
-Ta có thể chứng minh lí do vì sao lợi nhuận tối đa của các dự án được chọn lại có giá trị bằng $C - c(S^*, T^*)$ và $\sum_{u \in S^*} p_u$:
+Ta có thể chứng minh lí do vì sao hai công thức $C - c(S^*, T^*)$ và $\sum_{u \in S^*} p_u$ lại cùng trả về đáp án.
 
 :::spoiler Chứng minh
 Vì mạng tồn tại các cạnh có sức chứa $\infty$, nên lát cắt cực tiểu sẽ chỉ bao gồm các cung $\{s, u\}$ và $\{v, t\}$. Khi này, $c(S^*, T^*)$ sẽ bằng: 
