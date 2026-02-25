@@ -2,7 +2,7 @@
 title: Ứng dụng của luồng trên mạng
 description: 
 published: true
-date: 2026-02-25T05:49:41.942Z
+date: 2026-02-25T05:55:46.171Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T05:49:41.942Z
@@ -184,15 +184,18 @@ Ta có $C = 17$, $c(S^*, T^*) = 6$, suy ra lợi nhuận tối đa sẽ bằng $
 Ta có thể chứng minh lí do vì sao lợi nhuận tối đa của các dự án được chọn lại có giá trị bằng $C - c(S^*, T^*)$ và $\sum_{u \in S^*} p_u$:
 
 :::spoiler Chứng minh
-Vì mạng tồn tại các cạnh có sức chứa $\infty$, nên lát cắt cực tiểu sẽ chỉ bao gồm các cung $\{s, u\}$ và $\{v, t\}$. Khi này, $c(S^*, T^*)$ sẽ bằng: $$\sum_{u \in T^*, p_u > 0} p_u + \sum_{u \in S^*, p_u < 0} (-p_u)$$
-Từ đây, với $C = \sum_{p_u > 0} p_u$, ta suy ra: 
+Vì mạng tồn tại các cạnh có sức chứa $\infty$, nên lát cắt cực tiểu sẽ chỉ bao gồm các cung $\{s, u\}$ và $\{v, t\}$. Khi này, $c(S^*, T^*)$ sẽ bằng: 
+
+$$\sum_{u \in T^*, p_u > 0} p_u + \sum_{u \in S^*, p_u < 0} (-p_u)$$
+Từ đây, với $C = \sum_{p_u > 0} p_u$, ta suy ra:
+
 $$
-\begin{align}
+\begin{align*}
 C - c(S^*, T^*) &= \sum_{p_u > 0} p_u - \left(\sum_{u \in T^*, p_u > 0} p_u + \sum_{u \in S^*, p_u < 0} (-p_u)\right) \\\\
 &= \left(\sum_{p_u > 0} p_u - \sum_{u \in T^*, p_u > 0} p_u\right) - \sum_{u \in S^*, p_u < 0} (-p_u) \\\\
 &= \sum_{u \in S^*, p_u > 0} p_u - \sum_{u \in S^*, p_u < 0} p_u \\\\
 &= \sum_{u \in S^*} p_u
-\end{align}
+\end{align*}
 $$
 :::
 
@@ -214,7 +217,9 @@ Khi thực hiện **lưu thông** trên mạng, ta cần thoả mãn hai điều
 1. Với mỗi cạnh $e \in E$, $0 \le f(e) \le c(e)$
 2. Với mỗi đỉnh $u \in V$, $f^{in}(u) - f^{out}(u) = d(u)$
  
-Dễ thấy, điều kiện để có lưu thông trên mạng là: $$\sum_{u, d(u) > 0} d(u) = \sum_{u, d(u) < 0} -d(u) = D$$
+Dễ thấy, điều kiện để có lưu thông trên mạng là:
+
+$$\sum_{u, d(u) > 0} d(u) = \sum_{u, d(u) < 0} -d(u) = D$$
 
 Từ đây, ta xây dựng một mạng mới $G^{'} = G$ với các thay đổi:
 - Thêm đỉnh siêu nguồn $S$ và đỉnh siêu thu $T$
