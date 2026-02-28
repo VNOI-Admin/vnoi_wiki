@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2026-02-28T07:54:37.079Z
+date: 2026-02-28T07:55:57.400Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -79,7 +79,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 
 ## Các kỹ thuật cơ bản
 
-- [Thuật toán sắp xếp - ⭐](https://wiki.vnoi.info/algo/basic/sorting-new)
+- [Sắp xếp - ⭐](/algo/basic/sorting-new)
 - [Tìm kiếm nhị phân - ⭐](/algo/basic/Binary-Search)
 - [Hai con trỏ - ⭐](/algo/basic/two-pointers)
 - [Phép toán bit - ⭐](/algo/basic/bitwise-operators.md)
