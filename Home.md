@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2026-02-28T07:49:45.652Z
+date: 2026-02-28T07:54:37.079Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -79,7 +79,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 
 ## Các kỹ thuật cơ bản
 
-- [Thuật toán sắp xếp - <big>:new:</big> - ⭐](https://wiki.vnoi.info/vi/algo/basic/sorting-new)
+- [Thuật toán sắp xếp - ⭐](https://wiki.vnoi.info/algo/basic/sorting-new)
 - [Tìm kiếm nhị phân - ⭐](/algo/basic/Binary-Search)
 - [Hai con trỏ - ⭐](/algo/basic/two-pointers)
 - [Phép toán bit - ⭐](/algo/basic/bitwise-operators.md)
@@ -180,7 +180,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
   - [Bài toán luồng cực đại - WCIPEG - ⭐⭐⭐](/translate/wcipeg/Flows)
   - [Luồng với chi phí cực tiểu - ⭐⭐⭐](/algo/graph-theory/min-cost-flow)
   - [Cặp ghép cực đại - ⭐⭐⭐](/algo/graph-theory/max-matching)
-  - [Ứng dụng của luồng trên mạng - <big>:new:</big> - ⭐⭐⭐](/algo/graph-theory/flow-application)
+  - [Ứng dụng của luồng trên mạng - ⭐⭐⭐](/algo/graph-theory/flow-application)
 
 ### Đồ thị dạng cây
 - [Đường đi Euler trên cây - ⭐⭐](/algo/graph-theory/euler-tour-on-tree.md)
@@ -194,8 +194,8 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 
 ## Tham lam
 
-- [Tham lam - <big>:new:</big> - ⭐⭐](/algo/greedy-new)
-- [Tham lam - ⭐⭐](/translate/topcoder/Greedy-is-Good)
+- [Tham lam - ⭐⭐](/algo/greedy-new)
+<!--- [Tham lam - ⭐⭐](/translate/topcoder/Greedy-is-Good)-->
 - [Matroid - ⭐⭐⭐⭐](/algo/math/matroid)
 
 
@@ -233,8 +233,8 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 - [Các kiến thức cơ bản về Tổ hợp (Combinatorics) - ⭐⭐](/translate/he/Number-Theory-5)
 - [Xác suất - ⭐⭐](/translate/topcoder/Hieu-ve-xac-suat)
 - [Xác suất (Probabilities) - ⭐⭐](/translate/he/Number-Theory-6)
-- [Bao hàm - Loại trừ (Principle of Inclusion-Exclusion) - <big>:new:</big> - ⭐⭐](/algo/algebra/pie)
-- [Bao hàm - Loại trừ (Inclusion-Exclusion) - ⭐⭐](/translate/he/Number-Theory-7)
+- [Bao hàm - Loại trừ (Principle of Inclusion-Exclusion) - ⭐⭐](/algo/algebra/pie)
+<!--- [Bao hàm - Loại trừ (Inclusion-Exclusion) - ⭐⭐](/translate/he/Number-Theory-7)-->
 
 ### Hình học
 
