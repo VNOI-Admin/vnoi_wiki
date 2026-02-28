@@ -2,7 +2,7 @@
 title: Home Wiki
 description: 
 published: false
-date: 2026-02-11T13:04:21.290Z
+date: 2026-02-28T07:36:59.393Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-11T12:48:55.842Z
@@ -29,9 +29,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 ❤️‍🔥 Được đúc kết từ kinh nghiệm của các thế hệ đi trước đã vượt qua nhiều cuộc thi, đóng góp cho nền Tin học Việt Nam trong suốt những năm vừa qua, chúng mình tin rằng VNOI Roadmap sẽ là một hành trang bổ ích trên con đường chinh phục Tin học của các bạn đấy!
 🔗 Link roadmap: https://roadmap.sh/r/vnoi-roadmap 
 
-# Thuật toán
-
-## Nhập môn
+# Các bài viết mới
 
 <a href="/translate/topcoder/The-Importance-of-Algorithm" style="text-decoration: none; color: inherit; display: block;">
 <div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
