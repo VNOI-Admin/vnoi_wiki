@@ -2,7 +2,7 @@
 title: Home Wiki
 description: 
 published: false
-date: 2026-02-28T07:36:59.393Z
+date: 2026-02-28T07:47:52.533Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-11T12:48:55.842Z
@@ -31,30 +31,47 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 
 # Các bài viết mới
 
-<a href="/translate/topcoder/The-Importance-of-Algorithm" style="text-decoration: none; color: inherit; display: block;">
+<a href="/algo/graph-theory/flow-application" style="text-decoration: none; color: inherit; display: block;">
 <div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
-  <div style="font-size: 70%; opacity: 0.5; margin: 0">Tên tác giả · <strong>Bài viết mới</strong></div>
-	<strong>Tên bài viết</strong> ⭐⭐⭐⭐⭐⭐
+  <div style="font-size: 70%; opacity: 0.5; margin: 0">Võ Đức Đoàn · <strong>Bài viết mới</strong></div>
+	<strong>Ứng dụng của luồng trên mạng</strong> ⭐⭐⭐
 </div>
 </a>
 
-<a href="/translate/topcoder/The-Importance-of-Algorithm" style="text-decoration: none; color: inherit; display: block;">
+<a href="/algo/algebra/pie" style="text-decoration: none; color: inherit; display: block;">
 <div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
-  <div style="font-size: 70%; opacity: 0.5; margin: 0">Tên tác giả · <strong>Bài viết mới</strong></div>
-	<strong>Tên bài viết</strong> ⭐⭐⭐⭐⭐⭐
+  <div style="font-size: 70%; opacity: 0.5; margin: 0">Phạm Vũ Phương · <strong>Bài viết mới</strong></div>
+	<strong>Bao hàm loại trừ</strong> ⭐⭐
 </div>
 </a>
 
-<a href="/translate/topcoder/The-Importance-of-Algorithm" style="text-decoration: none; color: inherit; display: block;">
+<a href="/algo/skill/sinh-test-new" style="text-decoration: none; color: inherit; display: block;">
 <div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
-  <div style="font-size: 70%; opacity: 0.5; margin: 0">Tên tác giả · <strong>Bài viết mới</strong></div>
-	<strong>Tên bài viết</strong> ⭐⭐⭐⭐⭐⭐
+  <div style="font-size: 70%; opacity: 0.5; margin: 0">Nguyễn Quang Minh · <strong>Bài viết mới</strong></div>
+	<strong>Kỹ thuật sinh test, tự kiểm tra code</strong>
 </div>
 </a>
 
-<a href="/translate/topcoder/The-Importance-of-Algorithm" style="text-decoration: none; color: inherit; display: block;">
+
+<a href="/algo/basic/sorting-new" style="text-decoration: none; color: inherit; display: block;">
+<div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
+  <div style="font-size: 70%; opacity: 0.5; margin: 0">Đoàn Quang Huy · <strong>Bài viết mới</strong></div>
+	<strong>Sắp xếp</strong> ⭐
+</div>
+</a>
+
+<a href="/algo/basic/sorting-new" style="text-decoration: none; color: inherit; display: block;">
+<div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
+  <div style="font-size: 70%; opacity: 0.5; margin: 0">Nguyễn Hoàng Dương · <strong>Bài viết mới</strong></div>
+	<strong>Tham lam</strong> ⭐⭐
+</div>
+</a>
+
+<!--
+<a href="" style="text-decoration: none; color: inherit; display: block;">
 <div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
   <div style="font-size: 70%; opacity: 0.5; margin: 0">Tên tác giả · <strong>Bài viết mới</strong></div>
 	<strong>Tên bài viết</strong> ⭐⭐⭐⭐⭐⭐
 </div>
 </a>
+-->
