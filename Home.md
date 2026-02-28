@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2026-02-28T07:55:57.400Z
+date: 2026-02-28T08:00:48.784Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -55,7 +55,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 </div>
 </a>
 
-<a href="/algo/basic/sorting-new" style="text-decoration: none; color: inherit; display: block;">
+<a href="/algo/greedy-new" style="text-decoration: none; color: inherit; display: block;">
 <div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
   <div style="font-size: 70%; opacity: 0.5; margin: 0">Nguyễn Hoàng Dương · <strong>Bài viết mới</strong></div>
 	<strong>Tham lam</strong> ⭐⭐
