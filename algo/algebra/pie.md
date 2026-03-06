@@ -2,7 +2,7 @@
 title: Bao hàm loại trừ
 description: 
 published: true
-date: 2026-02-07T15:43:13.519Z
+date: 2026-03-06T06:37:46.749Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-07T15:28:59.507Z
@@ -231,7 +231,7 @@ Có thể thấy, nếu bài toán chỉ có một điều kiện cận trên (v
 
 Tuy nhiên trong bài toán này ta có tới $K$ điều kiện cận trên $x_i \le U_i$ đồng thời. Việc xử lý từng điều kiện một sẽ khiến việc tính toán là vô cùng phức tạp, do đó, ta phải dùng nguyên lý bao hàm – loại trừ. 
 
-#### Áp dụng Bao hàm -- loại trừ
+#### Áp dụng Bao hàm - loại trừ
 
 Ta biến đổi bài toán thành đếm số cách chia kẹo bị vi phạm **ít nhất một** trong các điều kiện $x_i \leq U_i$. Do đây là phần bù của tập nghiệm cần tìm, nên ta chỉ việc lấy tổng số cách chia, trừ đi số lượng cách chia bị vi phạm là có được đáp án cần tìm.
 
