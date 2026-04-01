@@ -2,7 +2,7 @@
 title: Một số Tài liệu hay về Thuật Toán
 description: 
 published: true
-date: 2026-04-01T14:00:10.391Z
+date: 2026-04-01T14:44:12.224Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:59:45.760Z
@@ -118,7 +118,6 @@ Ngoài ra, nếu bạn đọc là người mới bắt đầu, trang [Learn C++]
 ### Các tài liệu khác
 
 - [Channel guide của anh Phạm Văn Hạnh](https://docs.google.com/spreadsheets/d/1bOfb3m5P641p0pcXen9CAZSCkLvIXD3VUl8QbYEv4NQ/edit?usp=sharing): Nguồn tổng hợp các tài liệu Lập trình thi đấu theo chủ đề, kèm video hướng dẫn chi tiết tại kênh YouTube của anh.
-- [Cẩm nang Lập trình thi đấu của bạn Võ Đức Đoàn](https://smollemon.github.io/SmolBook/): Cẩm nang lập trình thi đấu chứa đựng nhiều chủ đề lý thuyết, kinh nghiệm thi đấu và nhiều bài viết thú vị khác về Lập trình thi đấu do bạn Võ Đức Đoàn - Tình nguyện viên của VNOI Wiki xây dựng.
 - [Một số vấn đề đáng chú ý trong môn Tin học](https://drive.google.com/file/d/0BwcTB8a10LBwZHh0c3p0M2NqZ1E/view?usp=sharing&resourcekey=0-sGBMwRWJQF0-oV27ula5Mg): Cuốn sách được viết bởi các cựu học sinh trường chuyên Phan Bội Châu - Nghệ An. Bạn đọc có thể tìm đọc các chủ đề ít được đề cập trong nhiều tài liệu giáo khoa như duyệt ưu tiên, thuật toán tìm kiếm chuỗi KMP, quy hoạch động trạng thái, quy hoạch động vị trí cấu hình, quy hoạch động trên cây, tô màu đồ thị, thuật toán Dijkstra với đỉnh ảo,...
 - [KC Book (Quyển 1)](https://drive.google.com/file/d/0B6O77opfHxDDV1lxdF9jWHVUZDA/view?usp=sharing&resourcekey=0-bLURXsP9BNX7O6W1izMEjQ): Tài liệu giới thiệu nhiều kỹ thuật thú vị thường gặp trong các bài toán Lập trình thi đấu như các thuật toán duyệt, xử lý bit, quy hoạch động,...
 - [KC Book (Quyển 3)](https://drive.google.com/file/d/0BwcTB8a10LBwSmZFdGhSY1lMNVU/view?usp=sharing&resourcekey=0-POIEScAwD22aQFyr2mBfaw): Tương tự quyển 1, KC Book quyển 3 giới thiệu các kỹ thuật Lập trình thi đấu và được chia thành 3 phần: Quy hoạch động, Cấu trúc dữ liệu và Đồ thị.
