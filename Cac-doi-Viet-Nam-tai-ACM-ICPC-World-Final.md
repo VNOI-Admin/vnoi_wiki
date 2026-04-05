@@ -2,7 +2,7 @@
 title: Các đội Việt Nam tại ACM ICPC World Finals
 description: 
 published: true
-date: 2026-04-05T03:22:39.102Z
+date: 2026-04-05T03:40:29.518Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:50.373Z
@@ -24,7 +24,20 @@ Các đội Việt Nam muốn được thi Regional ở Việt Nam cần phải 
 
 Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và chỉ liệt kê các đội đã vào top 50.
 
-1. [2021](https://zibada.guru/finals/2021) - ĐH Công Nghệ (UET - VNU), team EggCentroy2 - rank 12: **Đội đầu tiên của Việt Nam dành huy chương ICPC World Final**
+| Năm | Trường Đại học | Tên đội | Hạng | Thành viên 1 | Thành viên 2 | Thành viên 3 | Ghi chú |
+| :---: | :--- | :--- | :---: | :--- | :--- | :--- | :--- |
+| [2021](https://zibada.guru/finals/2021) | ĐH Công Nghệ (UET - VNU) | EggCentroy2 | **12** | [Bùi Hồng Đức](https://cphof.org/profile/codeforces:user202729_) | [Vũ Hoàng Kiên](https://cphof.org/profile/codeforces:Maripium) | [Nguyễn Hải Bình](https://cphof.org/profile/codeforces:Negativez2) | **Đội đầu tiên của VN dành huy chương ICPC WF**. Đức HCV IOI 2019/20, Kiên HCB IOI 2019/20. |
+| [2018](http://zibada.ru/finals/2018) | ĐH Công Nghệ (UET - VNU) | unsigned | **15** | [Phạm Cao Nguyên](http://codeforces.com/profile/natsukagami) ([IOI](http://stats.ioinformatics.org/people/6056)) | [Lê Quang Tuấn](http://codeforces.com/profile/alexa0704) ([IOI](http://stats.ioinformatics.org/people/6055)) | [Nguyễn Đinh Quang Minh](http://codeforces.com/profile/MofK) | [Phỏng vấn team trên VNOI wiki](https://vnoi.info/wiki/vnoi-interview/Phong-van-team-IOI-VN-2017). |
+| [2016](http://static.kattis.com/icpc/wf2016/) | National University of Singapore | RRwatameda | **15** | [Nguyễn Tấn Sỹ Nguyên](http://codeforces.com/profile/flashmt) ([IOI](http://stats.ioinformatics.org/people/2226)) | [Nguyễn Hùng Tâm](https://www.imo-official.org/participant_r.aspx?id=21580) | [Nguyễn Thành Trung](http://codeforces.com/profile/I_love_Hoang_Yen) | Sỹ Nguyên (#49 WF 2013), Hùng Tâm (HCB IMO 2012), Thành Trung (#17 WF 2012). |
+| [2011](https://zibada.guru/finals/2011/) | Nanyang Technological University | NTU Ares | **17** | [Khúc Anh Tuấn](http://codeforces.com/profile/ktuan) ([IOI/TC](https://www.topcoder.com/members/ktuan/details/?track=DATA_SCIENCE&subTrack=SRM)) | [Phạm Quang Vũ](http://codeforces.com/profile/ConanKudo) | Đoàn Tuấn Anh | Khúc Anh Tuấn là đỏ target duy nhất của VN, Rank 2 Facebook Hackercup 2011, 2 lần chung kết GCJ. Phạm Quang Vũ đạt rank #17 tại ACM WF 2012. |
+| [2016](http://static.kattis.com/icpc/wf2016/) | ĐH Công Nghệ (UET - VNU) | | **29** | [Phạm Văn Hạnh](http://codeforces.com/profile/skyvn97) ([IOI](http://stats.ioinformatics.org/people/5815)) | [N. Tiến Trung Kiên](http://codeforces.com/profile/kien_coi_1997) ([IOI](http://stats.ioinformatics.org/people/5245)) | [Đỗ Ngọc Khánh](http://codeforces.com/profile/dnk) |  |
+| [2025](https://worldfinals.icpc.global/scoreboard/2025/finals/index.html) | ĐH Khoa học Tự nhiên (HCMUS) | AtCoder | **32** | [Võ Khắc Triệu](https://codeforces.com/profile/DeMen100ns) | [Vũ Quốc Lâm](https://codeforces.com/profile/kriz_wu) | [Lê Nguyễn Hữu An](https://codeforces.com/profile/ann) | |
+| [2021](https://zibada.guru/finals/2021/) | ĐH Bách Khoa Hà Nội | - | **37** | [Lê Minh Quang](https://cphof.org/profile/topcoder:LeMinhQuang) | [Đỗ Đình Đắc](https://cphof.org/profile/icpc:Dinh%20Dac%20Do) | [Lê Anh Đức](https://cphof.org/profile/icpc:Anh%20Duc%20Le) | |
+| [2017](http://static.kattis.com/icpc/wf2017/) | ĐH Công Nghệ (UET - VNU) | | **39** | [Phạm Văn Hạnh](http://codeforces.com/profile/skyvn97) ([IOI](http://stats.ioinformatics.org/people/5815)) | [Phan Đức Nhật Minh](http://codeforces.com/profile/minh141198) ([IOI](http://stats.ioinformatics.org/people/5816)) | [Nguyễn Đức Duy](http://codeforces.com/profile/duyboy135) | |
+| [2021](https://zibada.guru/finals/2021/) | ĐH Khoa học Tự nhiên (HCMUS) | | **46** | [N. Diệp Xuân Quang](https://cphof.org/profile/codeforces:xuanquang1999) | [Lê Quý Khôi](https://cphof.org/profile/icpc:Quy-Khoi%20Le) | [N. Quang Thức](https://cphof.org/profile/icpc:Quang-Thuc%20Nguyen) | - |
+| [2024](https://scoreboard.icpc.global/2024/scoreboard/) | ĐH Công Nghệ (UET - VNU) | | **49** | [Phạm Xuân Trung](https://www.cphof.org/profile/icpc:Trung%20Xuan%20Pham) | [H. Ngọc Bảo Khuê](https://www.cphof.org/profile/icpc:Khue%20Hoang%20Ngoc%20Bao) | [Phạm Quốc Hùng](https://www.cphof.org/profile/icpc:Hung%20Pham) | |
+
+<!--1. [2021](https://zibada.guru/finals/2021) - ĐH Công Nghệ (UET - VNU), team EggCentroy2 - rank 12: **Đội đầu tiên của Việt Nam dành huy chương ICPC World Final**
   - Bùi Hồng Đức [HCV IOI 2019 và 2020](https://cphof.org/profile/codeforces:user202729_)
   - Vũ Hoàng Kiên [HCB IOI 2019 và 2020](https://cphof.org/profile/codeforces:Maripium)
   - Nguyễn Hải Bình: CF: [Negativez2](https://cphof.org/profile/codeforces:Negativez2)
@@ -73,4 +86,4 @@ Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và ch
 10. [2025](https://worldfinals.icpc.global/scoreboard/2025/finals/index.html) - ĐH Khoa học Tự nhiên, ĐHQG HCM - rank 32:
 - Võ Khắc Triệu: [DeMen100ns](https://codeforces.com/profile/DeMen100ns)
 - Vũ Quốc Lâm: [Kriz_Wu](https://codeforces.com/profile/kriz_wu)
-- Lê Nguyễn Hữu An: [Ann](https://codeforces.com/profile/ann)
+- Lê Nguyễn Hữu An: [Ann](https://codeforces.com/profile/ann)-->
