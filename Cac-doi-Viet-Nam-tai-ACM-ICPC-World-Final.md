@@ -2,7 +2,7 @@
 title: Các đội Việt Nam tại ACM ICPC World Finals
 description: 
 published: true
-date: 2024-10-03T13:40:59.786Z
+date: 2026-04-05T03:22:39.102Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:50.373Z
@@ -69,3 +69,8 @@ Trong phần này mình chỉ liệt kê các đội gồm 3 người VN, và ch
 - Phạm Xuân Trung: [trungnotchung](https://www.cphof.org/profile/icpc:Trung%20Xuan%20Pham)
 - Hoàng Ngọc Bảo Khuê: [khuepr123](https://www.cphof.org/profile/icpc:Khue%20Hoang%20Ngoc%20Bao)
 - Phạm Quốc Hùng: [HollwoQ_Pelw](https://www.cphof.org/profile/icpc:Hung%20Pham)
+
+10. [2025](https://worldfinals.icpc.global/scoreboard/2025/finals/index.html) - ĐH Khoa học Tự nhiên, ĐHQG HCM - rank 32:
+- Võ Khắc Triệu: [DeMen100ns](https://codeforces.com/profile/DeMen100ns)
+- Vũ Quốc Lâm: [Kriz_Wu](https://codeforces.com/profile/kriz_wu)
+- Lê Nguyễn Hữu An: [Ann](https://codeforces.com/profile/ann)
