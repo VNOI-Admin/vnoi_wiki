@@ -2,7 +2,7 @@
 title: Sàng nguyên tố
 description: 
 published: true
-date: 2026-04-10T13:21:40.868Z
+date: 2026-04-10T13:23:14.363Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:59:37.703Z
@@ -481,13 +481,13 @@ void linear_sieve(int n){
 <p>
 
 Mỗi số $x$ có <b>duy nhất</b> một cách biểu diễn:
-$$x = \text{min_prime}[x] \cdot i$$
-trong đó $\text{min_prime}[x]$ là ước nguyên tố nhỏ nhất của $x$.
-Suy ra $i$ không có ước nguyên tố nào nhỏ hơn $\text{min_prime}[x]$, tức là
-$$\text{min_prime}[x] \le \text{min_prime}[i]$$
-Với mỗi $i$, ta duyệt tất cả các số nguyên tố lên đến $\text{min_prime}[i]$ thì sẽ duyệt được các số có dạng đã cho ở trên.
+$$x = \text{min\_prime}[x] \cdot i$$
+trong đó $\text{min\_prime}[x]$ là ước nguyên tố nhỏ nhất của $x$.
+Suy ra $i$ không có ước nguyên tố nào nhỏ hơn $\text{min\_prime}[x]$, tức là
+$$\text{min\_prime}[x] \le \text{min\_prime}[i]$$
+Với mỗi $i$, ta duyệt tất cả các số nguyên tố lên đến $\text{min\_prime}[i]$ thì sẽ duyệt được các số có dạng đã cho ở trên.
 
-Vì có duy nhất một cách biểu diễn $x = \text{min_prime}[x] \cdot i$ nên thuật toán sẽ đi qua mỗi số hợp số đúng một lần để gán các giá trị $\text{min_prime}[]$ tại đó. Hay thuật toán có ĐPT thời gian $O(n)$.
+Vì có duy nhất một cách biểu diễn $x = \text{min\_prime}[x] \cdot i$ nên thuật toán sẽ đi qua mỗi số hợp số đúng một lần để gán các giá trị $\text{min\_prime}[]$ tại đó. Hay thuật toán có ĐPT thời gian $O(n)$.
 </p>
 ---
 </details>
