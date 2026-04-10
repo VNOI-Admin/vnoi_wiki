@@ -2,7 +2,7 @@
 title: Sàng nguyên tố
 description: 
 published: true
-date: 2024-10-23T15:51:55.688Z
+date: 2026-04-10T13:21:40.868Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:59:37.703Z
@@ -140,7 +140,7 @@ vector<int> factorize(int n) {
     return res;
 }
 ```
-Mỗi lần ta chia $n$ cho ước nguyên tố nhỏ nhất $\text{min_prime}[n]$ đến khi nào $n$ giảm về $1$. Trong trường hợp xấu nhất thì mỗi lần chia $\text{min_prime}[n]$ đều bằng $2$. Vì vậy, hàm phân tích trên **độ phức tạp thời gian** trường hợp xấu nhất là $\boldsymbol{O(\log n)}$.
+Mỗi lần ta chia $n$ cho ước nguyên tố nhỏ nhất $\text{min\_prime}[n]$ đến khi nào $n$ giảm về $1$. Trong trường hợp xấu nhất thì mỗi lần chia $\text{min\_prime}[n]$ đều bằng $2$. Vì vậy, hàm phân tích trên **độ phức tạp thời gian** trường hợp xấu nhất là $\boldsymbol{O(\log n)}$.
 
 Tuy nhiên, phương pháp này có **độ phức tạp không gian** $\boldsymbol{O(n)}$ và thường sử dụng trong trường hợp cần phân tích nhiều số nguyên ra thừa số nguyên tố.
 
@@ -440,15 +440,15 @@ Trên thực tế, `int/unsigned int` chứa $4$ bytes hay $32$ bits. Nhờ đó
 >- Sàng $O(n)$ này có lưu lại các ước nguyên tố nhỏ nhất của các số không vượt quá $n$ nên sẽ phù hợp cho các bài toán liên quan đến phân tích thừa số nguyên tố.
 
 #### Hướng tiếp cận
-Xét $\text{min_prime}[i]$ là ước nguyên tố nhỏ nhất của $i$
+Xét $\text{min\_prime}[i]$ là ước nguyên tố nhỏ nhất của $i$
 Mảng $\text{primes}[]$ sẽ lưu tất cả các số nguyên tố đã tìm được.
 Duyệt các số từ $2$ đến $n$. Ta có $2$ trường hợp:
-- $\text{min_prime}[i] = 0 \Rightarrow i$ là số nguyên tố. Vì thế, ta gán $\text{min_prime} [i] = i$ và thêm $i$ vào cuối mảng $\text{primes}[]$.
-- Ngược lại, $\text{min_prime}[i] \neq 0$, ta phải tính được $\text{min_prime} [i]$ trong các vòng lặp trước đó.
+- $\text{min\_prime}[i] = 0 \Rightarrow i$ là số nguyên tố. Vì thế, ta gán $\text{min\_prime} [i] = i$ và thêm $i$ vào cuối mảng $\text{primes}[]$.
+- Ngược lại, $\text{min\_prime}[i] \neq 0$, ta phải tính được $\text{min\_prime} [i]$ trong các vòng lặp trước đó.
 
-Trong cả hai trường hợp, ta đều cần cập nhật giá trị của $\text{min_prime}[]$ cho các bội của $i$. Và mục tiêu của ta là gán giá trị $\text{min_prime}[]$ tối đa một lần cho mỗi số.
+Trong cả hai trường hợp, ta đều cần cập nhật giá trị của $\text{min\_prime}[]$ cho các bội của $i$. Và mục tiêu của ta là gán giá trị $\text{min\_prime}[]$ tối đa một lần cho mỗi số.
 
-Chúng ta có thể làm như sau: Duyệt các số nguyên $i$ từ $2$ đến $n$. Với mỗi số nguyên $i$, ta sẽ gán $\text{min_prime} [i * p_j] = p_j$ với $p_j$ là các số nguyên tố $\le \text{min_prime} [i]$.
+Chúng ta có thể làm như sau: Duyệt các số nguyên $i$ từ $2$ đến $n$. Với mỗi số nguyên $i$, ta sẽ gán $\text{min\_prime} [i * p_j] = p_j$ với $p_j$ là các số nguyên tố $\le \text{min\_prime} [i]$.
 
 
 #### Code C++ minh họa
@@ -635,7 +635,7 @@ void sieve_with_wheel(int n){
 
 Xét kích thước "bánh xe" là $mod = 2 \cdot 3 \cdot 5 \ldots$ có thể chọn $mod$ vào khoảng $\sqrt n$ thì ĐPT sẽ còn là $O\left( \dfrac{n}{\log \log n} \right)$. Nhìn thì ĐPT thấp hơn sàng Eratosthenes thông thường, nhưng vì phương pháp trên mỗi vòng lặp đều sử dụng phép nhân/chia nên thời gian chạy có thể chậm hơn nhiều so với sàng Eratosthenes thông thường với bộ dữ liệu nhỏ $\left(n \le 10^6 \right)$.
 
-Và vì lý do bộ nhớ cache mà người ta chỉ thường chọn modulo $mod \in 30; 210$. Các số lọc được tiếp tục kiểm tra bằng cách khác như bên trên.
+Và vì lý do bộ nhớ cache mà người ta chỉ thường chọn modulo $mod \in [30; 210]$. Các số lọc được tiếp tục kiểm tra bằng cách khác như bên trên.
 
 ### Kết hợp các cải tiến
 Bên trên là một số cách cải tiến thường được sử dụng. Tuy nhiên bạn có thể kết hợp các cải tiến một cách hợp lý để tạo ra một sàng nguyên tố mạnh mẽ.
