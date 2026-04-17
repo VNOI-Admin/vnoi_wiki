@@ -2,7 +2,7 @@
 title: Cặp ghép cực đại trên đồ thị hai phía
 description: 
 published: true
-date: 2025-03-25T04:19:39.634Z
+date: 2026-04-17T09:33:39.791Z
 tags: 
 editor: markdown
 dateCreated: 2025-03-24T17:38:46.163Z
@@ -12,11 +12,11 @@ dateCreated: 2025-03-24T17:38:46.163Z
 
 **Author**:
 - Trần Quang Trường - Trường đại học Công nghệ Thông tin - ĐHQGHCM.
+- Nguyễn Tấn Minh - THPT Chuyên Lê Hồng Phong, TPHCM
 
 **Reviewers**:
 - Nguyễn Quang Minh - Michigan State University, USA
 - Lê Minh Hoàng - Đại học Khoa học Tự nhiên, ĐHQG-HCM
-- Nguyễn Tấn Minh - THPT Chuyên Lê Hồng Phong, TPHCM
 
 ---
 Cặp ghép cực đại trên đồ thị hai phía là một trong những bài toán thuộc lớp bài toán về đồ thị. Bài viết sau đây sẽ giới thiệu nội dung cơ bản của bài toán và các thuật toán liên quan.
