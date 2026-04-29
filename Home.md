@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2026-04-29T11:10:07.237Z
+date: 2026-04-29T11:10:20.875Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -108,7 +108,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 - [Persistent Data Structures - <big>:new:</big> - ⭐⭐⭐](/algo/data-structures/persistent-data-structures-2)
 - [Skip List - ⭐⭐⭐](/algo/data-structures/Skip-Lists)
 - ["Nhảy nhị phân" với bộ nhớ $\mathcal O(n)$ - ⭐⭐⭐](/vnoi-magazine/2023/binary-lifting)
-- [Static Wavelet Tree - ⭐⭐⭐](/algo/data-structures/static-wavelet-tree)
+- [Static Wavelet Tree - <big>:new:</big> - ⭐⭐⭐](/algo/data-structures/static-wavelet-tree)
 
 ### Cấu trúc dữ liệu dạng cây
 - [Cây Phân Đoạn - Segment Tree - Part 1 - ⭐⭐](/algo/data-structures/segment-tree-basic.md)
