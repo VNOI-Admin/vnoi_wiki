@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2026-04-27T11:16:08.154Z
+date: 2026-04-29T11:10:07.237Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -25,6 +25,13 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 | ⭐⭐⭐⭐⭐ | Kiến thức rất chuyên sâu về một vấn đề nào đó, chỉ áp dụng được với rất ít bài khó |
 
 # Các bài viết mới
+
+<a href="/algo/data-structures/static-wavelet-tree" style="text-decoration: none; color: inherit; display: block;">
+<div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
+  <div style="font-size: 70%; opacity: 0.5; margin: 0">Nguyễn Tiến Mạnh, Nguyễn Tấn Minh · <strong>Bài viết mới</strong></div>
+	<strong>Static Wavelet Tree</strong> ⭐⭐⭐
+</div>
+</a>
 
 <a href="/algo/graph-theory/flow-application" style="text-decoration: none; color: inherit; display: block;">
 <div style="border: 1px solid #adb5bd; padding: 16px; border-radius: 8px; margin: 12px 0px 0px 0px; background: transparent; transition: 0.3s;" onmouseover="this.style.borderColor='#343a40'; this.style.backgroundColor='#e9ecef';" onmouseout="this.style.borderColor='#adb5bd'; this.style.backgroundColor='transparent';">
@@ -101,6 +108,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 - [Persistent Data Structures - <big>:new:</big> - ⭐⭐⭐](/algo/data-structures/persistent-data-structures-2)
 - [Skip List - ⭐⭐⭐](/algo/data-structures/Skip-Lists)
 - ["Nhảy nhị phân" với bộ nhớ $\mathcal O(n)$ - ⭐⭐⭐](/vnoi-magazine/2023/binary-lifting)
+- [Static Wavelet Tree - ⭐⭐⭐](/algo/data-structures/static-wavelet-tree)
 
 ### Cấu trúc dữ liệu dạng cây
 - [Cây Phân Đoạn - Segment Tree - Part 1 - ⭐⭐](/algo/data-structures/segment-tree-basic.md)
