@@ -2,7 +2,7 @@
 title: Static Wavelet Tree
 description: 
 published: true
-date: 2026-04-27T11:21:44.122Z
+date: 2026-04-29T11:06:43.750Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-27T11:21:44.122Z
@@ -510,7 +510,7 @@ Ta có thể thực hiện một phép so sánh nhỏ giữa 3 lời giải cho 
 | Thời gian | $692 \text{ ms}$ | $350 \text{ ms}$ | $111 \text{ ms}$ |
 | Bộ nhớ | $31.86 \text{ MB}$ | $1.54 \text{ MB}$ | $1.04 \text{ MB}$ |
 
-## Ví dụ
+## Bài tập ứng dụng
 
 ### [Dãy nghịch thế (NKINV)](https://oj.vnoi.info/problem/nkinv)
 
@@ -531,60 +531,9 @@ $$\text{Inversions} = \sum_{j=1}^{N} \Big( (j - 1) - \texttt{LTE}(1, j-1, A[j]) 
 
 using namespace std;
 
-struct Wavelet_Tree
-{
-    int low, high;
-    Wavelet_Tree *L = NULL, *R = NULL;
-    vector <int> B;
-
-    Wavelet_Tree() {}
-    Wavelet_Tree(int *From, int *To, int x, int y)
-    {
-        low = x, high = y;
-        if (low == high || From >= To) return;
-        int mid = (low + high) / 2;
-        auto F = [mid](int x)
-        {
-            return x <= mid;
-        };
-        B.reserve(To - From + 1);
-        B.push_back(0);
-        for (auto it = From; it != To; ++it)
-            B.push_back(B.back() + F(*it));
-        auto pivot = stable_partition(From, To, F);
-        L = new Wavelet_Tree(From, pivot, low, mid);
-        R = new Wavelet_Tree(pivot, To, mid + 1, high);
-    }
-
-    // Phần tử nhỏ thứ k trong [l; r]
-    int FindKth(int l, int r, int K)
-    {
-        if (l > r) return 0;
-        if (low == high) return low;
-        int cnt_left = B[r] - B[l - 1];
-        if (K <= cnt_left) return L->FindKth(B[l - 1] + 1, B[r], K);
-        return R->FindKth(l - B[l - 1], r - B[r], K - cnt_left);
-    }
-
-    // số lượng phần tử trong [l; r] = K
-    int Count(int l, int r, int K)
-    {
-        if (l > r || K < low || K > high) return 0;
-        if (low == high) return r - l + 1;
-        int mid = (low + high) / 2;
-        if (K <= mid) return L->Count(B[l - 1] + 1, B[r], K);
-        return R->Count(l - B[l - 1], r - B[r], K);
-    }
-
-    // số lượng phần tử trong [l; r] <= K
-    int Count_LTE(int l, int r, int K)
-    {
-        if (l > r || K < low) return 0;
-        if (high <= K) return r - l + 1;
-        return L->Count_LTE(B[l - 1] + 1, B[r], K) + R->Count_LTE(l - B[l - 1], r - B[r], K);
-    }
-
-}wvl;
+struct Wavelet_Tree {
+		// ...
+} wvl;
 
 
 const int N = 6e4 + 4;
@@ -652,38 +601,9 @@ int n, MAX, MIN, ID[N];
 long long K, sum[N], MAX2, MIN2;
 vector <long long> C;
 
-struct Wavelet_Tree
-{
-    int low, high;
-    vector <int> B;
-    Wavelet_Tree *L, *R;
-    Wavelet_Tree() {}
-    Wavelet_Tree(int *From, int *To, int x, int y)
-    {
-        low = x, high = y;
-        if (low == high || From >= To) return;
-        int mid = low + high >> 1;
-        auto F = [mid](int x)
-        {
-            return x <= mid;
-        };
-        B.reserve(To - From + 1);
-        B.push_back(0);
-        for (auto it = From; it != To; ++it)
-            B.push_back(B.back() + F(*it));
-        auto pivot = stable_partition(From, To, F);
-        L = new Wavelet_Tree(From, pivot, low, mid);
-        R = new Wavelet_Tree(pivot, To, mid + 1, high);
-    }
-
-    int Count_LTE(int l, int r, int K)
-    {
-        if (l > r || K < low) return 0;
-        if (high <= K) return r - l + 1;
-        return L->Count_LTE(B[l - 1] + 1, B[r], K) + R->Count_LTE(l - B[l - 1], r - B[r], K);
-    }
-
-}wvl;
+struct Wavelet_Tree {
+		// ...
+} wvl;
 
 bool Check(long long mid)
 {
@@ -763,38 +683,8 @@ const int N = 1e5 + 2;
 int n, q, a[N], MAX;
 
 struct Wavelet_Tree {
-    int low, high;
-    Wavelet_Tree *l, *r;
-    vector<int> B;
-
-    Wavelet_Tree() {}
-    Wavelet_Tree(int *from, int *to, int x, int y) {
-        low = x, high = y;
-        if (low == high || from >= to) return;
-
-        int mid = (low + high) / 2;
-        auto f = [mid](int x) { return x <= mid; };
-
-        B.reserve(to - from + 1);
-        B.push_back(0);
-        for (auto it = from; it != to; ++it)
-            B.push_back(B.back() + f(*it));
-
-        auto pivot = stable_partition(from, to, f);
-
-        l = new Wavelet_Tree(from, pivot, low, mid);
-        r = new Wavelet_Tree(pivot, to, mid + 1, high);
-    }
-    int kth(int l, int r, int k)
-    {
-        if (l > r) return 0;
-        if (low == high) return low;
-        int cnt_left = B[r] - B[l - 1];
-        if (k <= cnt_left) return this->l->kth(B[l - 1] + 1, B[r], k);
-        return this->r->kth(l - B[l - 1], r - B[r], k - cnt_left);
-    }
-
-}wvl;
+		// ...
+} wvl;
 
 int B[N];
 
@@ -843,60 +733,10 @@ Ta có số phần tử $\ge h$ trong đoạn $A_l, A_{l+1}, \dots, A_r$ là `(r
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Wavelet_Tree
-{
-    int low, high;
-    Wavelet_Tree *L = NULL, *R = NULL;
-    vector <int> B;
-
-    Wavelet_Tree() {}
-    Wavelet_Tree(int *From, int *To, int x, int y)
-    {
-        low = x, high = y;
-        if (low == high || From >= To) return;
-        int mid = (low + high) / 2;
-        auto F = [mid](int x)
-        {
-            return x <= mid;
-        };
-        B.reserve(To - From + 1);
-        B.push_back(0);
-        for (auto it = From; it != To; ++it)
-            B.push_back(B.back() + F(*it));
-        auto pivot = stable_partition(From, To, F);
-        L = new Wavelet_Tree(From, pivot, low, mid);
-        R = new Wavelet_Tree(pivot, To, mid + 1, high);
-    }
-
-    // Phần tử nhỏ thứ k trong [l; r]
-    int FindKth(int l, int r, int K)
-    {
-        if (l > r) return 0;
-        if (low == high) return low;
-        int cnt_left = B[r] - B[l - 1];
-        if (K <= cnt_left) return L->FindKth(B[l - 1] + 1, B[r], K);
-        return R->FindKth(l - B[l - 1], r - B[r], K - cnt_left);
-    }
-
-    // số lượng phần tử trong [l; r] = K
-    int Count(int l, int r, int K)
-    {
-        if (l > r || K < low || K > high) return 0;
-        if (low == high) return r - l + 1;
-        int mid = (low + high) / 2;
-        if (K <= mid) return L->Count(B[l - 1] + 1, B[r], K);
-        return R->Count(l - B[l - 1], r - B[r], K);
-    }
-
-    // số lượng phần tử trong [l; r] <= K
-    int Count_LTE(int l, int r, int K)
-    {
-        if (l > r || K < low) return 0;
-        if (high <= K) return r - l + 1;
-        return L->Count_LTE(B[l - 1] + 1, B[r], K) + R->Count_LTE(l - B[l - 1], r - B[r], K);
-    }
-
+struct Wavelet_Tree {
+		// ...
 } wvl;
+
 const int N = 2e5 + 4;
 int n, a[N], MAX, q;
 
@@ -955,59 +795,8 @@ Trước tiên ta nén số, sau đó với mỗi phần tử phân biệt ta l�
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Wavelet_Tree
-{
-    int low, high;
-    Wavelet_Tree *L = NULL, *R = NULL;
-    vector <int> B;
-
-    Wavelet_Tree() {}
-    Wavelet_Tree(int *From, int *To, int x, int y)
-    {
-        low = x, high = y;
-        if (low == high || From >= To) return;
-        int mid = (low + high) / 2;
-        auto F = [mid](int x)
-        {
-            return x <= mid;
-        };
-        B.reserve(To - From + 1);
-        B.push_back(0);
-        for (auto it = From; it != To; ++it)
-            B.push_back(B.back() + F(*it));
-        auto pivot = stable_partition(From, To, F);
-        L = new Wavelet_Tree(From, pivot, low, mid);
-        R = new Wavelet_Tree(pivot, To, mid + 1, high);
-    }
-
-    // Phần tử nhỏ thứ k trong [l; r]
-    int FindKth(int l, int r, int K)
-    {
-        if (l > r) return 0;
-        if (low == high) return low;
-        int cnt_left = B[r] - B[l - 1];
-        if (K <= cnt_left) return L->FindKth(B[l - 1] + 1, B[r], K);
-        return R->FindKth(l - B[l - 1], r - B[r], K - cnt_left);
-    }
-
-    // số lượng phần tử trong [l; r] = K
-    int Count(int l, int r, int K)
-    {
-        if (l > r || K < low || K > high) return 0;
-        if (low == high) return r - l + 1;
-        int mid = (low + high) / 2;
-        if (K <= mid) return L->Count(B[l - 1] + 1, B[r], K);
-        return R->Count(l - B[l - 1], r - B[r], K);
-    }
-
-    // số lượng phần tử trong [l; r] <= K
-    int Count_LTE(int l, int r, int K)
-    {
-        if (l > r || K < low) return 0;
-        if (high <= K) return r - l + 1;
-        return L->Count_LTE(B[l - 1] + 1, B[r], K) + R->Count_LTE(l - B[l - 1], r - B[r], K);
-    }
-
+struct Wavelet_Tree {
+		// ...
 } wvl;
 
 const int N = 1e5 + 2;
