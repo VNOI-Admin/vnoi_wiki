@@ -2,7 +2,7 @@
 title: Static Wavelet Tree
 description: 
 published: true
-date: 2026-04-29T11:06:43.750Z
+date: 2026-05-18T16:34:36.688Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-27T11:21:44.122Z
