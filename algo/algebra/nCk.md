@@ -2,7 +2,7 @@
 title: Cách tính nCk
 description: 
 published: true
-date: 2026-05-19T14:32:17.937Z
+date: 2026-05-19T14:34:20.787Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:59:29.380Z
@@ -17,6 +17,18 @@ dateCreated: 2023-12-25T10:59:29.380Z
 - Phạm Công Minh - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 - Nguyễn Đức Kiên - Trường Đại học Công nghệ, ĐHQGHN
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
+
+<style>
+  .katex .mord.rule,
+  span.mord.rule {
+    height: 0px !important;
+    min-height: 0px !important;
+    max-height: 0px !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    content: none !important;
+  }
+</style>
 
 ## Tổ hợp (Combination)
 
@@ -490,14 +502,6 @@ long long calc(long long N, long long K, long long R) {
 
 :::spoiler Định lý Thặng dư Trung hoa
 Xét hệ:
-
-<style>
-  /* Strip the forced theme background off KaTeX's rule element */
-  .katex .mord.rule {
-    background: transparent !important;
-    background-color: transparent !important;
-  }
-</style>
 
 $$
 \begin{cases}
