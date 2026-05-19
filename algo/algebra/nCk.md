@@ -2,7 +2,7 @@
 title: Cách tính nCk
 description: 
 published: true
-date: 2026-05-19T14:25:17.571Z
+date: 2026-05-19T14:29:51.080Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:59:29.380Z
@@ -492,12 +492,12 @@ long long calc(long long N, long long K, long long R) {
 Xét hệ:
 
 $$
-\left\{\begin{array}{rcl}
-    a & \equiv & a_1 \pmod{m_1} \\
+\begin{cases}
+		a & \equiv & a_1 \pmod{m_1} \\
     a & \equiv & a_2 \pmod{m_2} \\
-      & \vdots & \\
+    & \vdots \\
     a & \equiv & a_k \pmod{m_k}
-\end{array}\right.
+\end{cases}
 $$
 
 với $m_1, m_2, \ldots m_k$ đôi một nguyên tố cùng nhau.
