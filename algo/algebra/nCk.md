@@ -2,7 +2,7 @@
 title: Cách tính nCk
 description: 
 published: true
-date: 2026-05-19T14:22:55.766Z
+date: 2026-05-19T14:23:43.834Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:59:29.380Z
@@ -202,21 +202,25 @@ Chú ý rằng $\text{fact}[i] \equiv 0 \pmod M \;\;\forall i \ge M$ nên ta ch�
     
 Ta sẽ tính mảng $\text{fact}[i]$ như sau:
 
+$$
 \begin{align}
     \begin{cases}
     \text{fact}[0] &= 1\\
     \text{fact}[i] &= (\text{fact}[i - 1] \times i ) \bmod M &\text{ nếu } 1 \le i \le n
     \end{cases}
 \end{align}
+$$
 
 Tiếp theo ta sử dụng thuật toán lũy thừa nhanh để tính $\text{ifact}[n]$ với độ phức tạp $O(\log M)$. Còn mảng $\text{ifact}[i]$ thì tính như sau:
 
+$$
 \begin{align}
     \begin{cases}
     \text{ifact}[n] &= \left( \text{fact}[n] \right)^{M-2} &\mod M\\
     \text{ifact}[i - 1] &= \text{ifact}[i] \times i  &\mod M  &\text{nếu } 1 \le i \le n
     \end{cases}
 \end{align}
+$$
 
 Cuối cùng, $C_n^k = \text{fact}[n] \times \text{ifact}[k] \times \text{ifact}[n - k] \mod M$
 
