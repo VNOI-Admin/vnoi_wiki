@@ -2,7 +2,7 @@
 title: Cách tính nCk
 description: 
 published: true
-date: 2026-05-19T14:29:51.080Z
+date: 2026-05-19T14:32:17.937Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:59:29.380Z
@@ -490,6 +490,14 @@ long long calc(long long N, long long K, long long R) {
 
 :::spoiler Định lý Thặng dư Trung hoa
 Xét hệ:
+
+<style>
+  /* Strip the forced theme background off KaTeX's rule element */
+  .katex .mord.rule {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+</style>
 
 $$
 \begin{cases}
