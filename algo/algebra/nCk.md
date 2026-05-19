@@ -2,7 +2,7 @@
 title: Cách tính nCk
 description: 
 published: true
-date: 2026-05-19T14:23:43.834Z
+date: 2026-05-19T14:25:17.571Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:59:29.380Z
@@ -394,7 +394,7 @@ a^{-1} \equiv a^{\varphi(m)-1} \pmod p
 $$
 :::
 
-:::spoiler Định lý Fermat nhỏ mở rộng
+:::spoiler Định lý Lucas mở rộng
 *Andrew Granville* đã chứng minh được công thức sau: *(Xem bài báo tại [đây](https://web.archive.org/web/20170202003812/http://www.dms.umontreal.ca/~andrew/PDF/BinCoeff.pdf) hoặc tại [đây](http://www.cecm.sfu.ca/organics/papers/granville/paper/binomial/html/node2.html))*
 
 $$
@@ -402,12 +402,7 @@ $$
 $$
 
 Trong đó:
-- $t = \begin{align}
-\begin{cases}
-1 &\text{ nếu } p = 2 \text{ và } q \ge 3\\
--1&\text{ còn lại}
-\end{cases}
-\end{align}$
+- $t = \begin{cases} 1 &\text{ nếu } p = 2 \text{ và } q \ge 3\\-1&\text{ còn lại}\end{cases}$
 - $e_j = \sum\limits_{i \ge j} \left( \left\lfloor \dfrac{n}{p^i} \right\rfloor - \left\lfloor \dfrac{k}{p^i} \right\rfloor - \left\lfloor \dfrac{r}{p^i} \right\rfloor \right)$
 *Bạn đọc có thể thấy, $e_1$ là số mũ của $p$ khi phân tích $C_n^k$ ra thừa số nguyên tố.*
 - $\left( n! \right)_p$ là tích tất cả các số từ $1$ đến $n$ và không bao gồm các số chia hết cho $p$ (với $p$ là số nguyên tố).
