@@ -1,3 +1,13 @@
+---
+title: Range Minimum Query (RMQ) - Sparse Table
+description: 
+published: true
+date: 2026-05-21T13:42:58.119Z
+tags: 
+editor: markdown
+dateCreated: 2023-12-25T11:01:47.736Z
+---
+
 # Range Minimum Query (RMQ) - Sparse Table
 
 **Tác giả:**
@@ -64,7 +74,7 @@ Câu hỏi đặt ra là ta còn có thể tối ưu thời gian truy vấn đư
 - Nhận xét: Thay vì duyệt qua từng phần tử, ta có thể duyệt qua từng nhóm $2$ phần tử. Từ đó, ta có thể giảm thời gian truy vấn xuống còn $\mathcal{O}(\frac{N}2)$
 
 ### Thuật toán tối ưu 1.1
-- Ta xây dựng mảng $a2$ với công thức $$a2_i = min(a_i, a_{i+1})$$.
+- Ta xây dựng mảng $a2$ với công thức $a2_i = min(a_i, a_{i+1})$.
 ![](https://i.imgur.com/ORCwi7l.gif)
 - Khi truy vấn, nếu độ dài đoạn cần truy vấn $len = 1$ thì ta in ra $a[l]$, nếu $len > 1$ thì ra dùng mảng $a2$:
 ![](https://i.imgur.com/WE6aVdx.gif)
@@ -108,7 +118,7 @@ Từ đó, ta có thể giảm thời gian truy vấn xuống còn $\mathcal{O}(
 Khi truy vấn:
 - Nếu độ dài đoạn cần truy vấn $len = 1$ thì ta in ra $a[l]$
 - Nếu độ dài đoạn cần truy vấn $len$ thoả mãn $1 < len < 4$ thì ta in ra $min(a2[l], a2[r - 1])$
-- nếu $len >= 4$ thì ra dùng mảng $a4$:
+- nếu $len \geq 4$ thì ra dùng mảng $a4$:
 ![](https://i.imgur.com/MsQwG4J.gif)
 
 ```cpp
@@ -185,7 +195,7 @@ int queryMin(int l, int r) {
 ### Thuật toán tối ưu 1.n
 Nếu ta làm tiếp như thuật toán tối ưu $1.3$ (tiếp tục tạo các mảng $a16, a32, \dots, a65536$) ta sẽ có $\log_2(N)$ mảng $a$, độ phức tạp bài toán lúc này như sau:
 - Độ phức tạp tiền xử lý: $\mathcal{O}(N \log N)$ ($\log_2$ mảng $a$)
-- Độ phức tạp truy vấn: $\mathcal{O}\left(\dfrac{N}{2^{\log N}} + \log N\right) = \mathcal{O}(\log N)$ ($1$ vòng for và $log_2$ lệnh if cho biến $len$)
+- Độ phức tạp truy vấn: $\mathcal{O}\left(\dfrac{N}{2^{\log N}} + \log N\right) = \mathcal{O}(\log N)$ ($1$ vòng for và $\log_2$ lệnh if cho biến $len$)
 - Có $Q$ truy vấn, vì thế tổng độ phức tạp thời gian là $\mathcal{O}(N\log N + Q\log N)$
 - Độ phức tạp bộ nhớ: $\mathcal{O}(N\log N)$ (mảng $a$ ban đầu và $\log_2$ mảng $a$ tiền xử lý)
 
@@ -205,7 +215,7 @@ Nhận xét thêm:
 - Ví dụ:
     - $len=6\Rightarrow k=2$, vì $6 < 2^{k+1} = 8$
     - $len=8\Rightarrow k=3$, vì $8 < 2^{k+1}=16$
-- Vậy nên, $k$ còn có một cách tính khác là $$k=\_\_lg(len)$$ (phần nguyên của phép $\log_2(len)$)
+- Vậy nên, $k$ còn có một cách tính khác là $k=\texttt{\_\_lg}(len)$ (phần nguyên của phép $\log_2(len)$)
 - Từ đây, ta có thể giảm độ phức tạp truy vấn xuống còn $\mathcal{O}(1)!!!!!!!$
 
 ```cpp
@@ -237,13 +247,13 @@ Giới hạn: $N, Q \le 10^5$
 ### Ý tưởng
 Giống như RMQ, ta vẫn sẽ dựng mảng $st[LG+1][N]$.
 
-Nhưng lúc này, ta không thể lấy $$k = \_\_lg(len)$$ rồi $res = sum[l\ldots l+2^k-1] + sum[r-2^k+1\ldots r]$ như RMQ được nữa (vì $2$ đoạn chắc chắn giao nhau).
+Nhưng lúc này, ta không thể lấy $k = \texttt{\_\_lg}(len)$ rồi $res = sum[l\ldots l+2^k-1] + sum[r-2^k+1\ldots r]$ như RMQ được nữa (vì $2$ đoạn chắc chắn giao nhau).
 
 Nhận xét: Ta luôn có thể tách một số nguyên dương thành tổng các lũy thừa phân biệt của 2 (hệ nhị phân). Ví dụ: $25 = 2^4 + 2^3 + 2^0 = 11001_2$.
 
 Từ nhận xét trên, ta có thể tách $[l\ldots r]$ thành $\log_2$ đoạn có độ dài $2^x$ như sau:
 - Đặt $len = r - l + 1$
-- Duyệt $j$ từ $0$ đến $$\_\_lg(len)$$, nếu bit thứ $j$ của $len$ là $1$ thì:
+- Duyệt $j$ từ $0$ đến $\texttt{\_\_lg}(len)$, nếu bit thứ $j$ của $len$ là $1$ thì:
     - Ta tách $[l\ldots r]$ thành $[l\ldots l+2^j-1]$ và $[l+2^j\ldots r]$
     - $l = l + 2^j$ (tiếp tục tách $[l+2^j\ldots r]$ như $[l\ldots r]$)
 
