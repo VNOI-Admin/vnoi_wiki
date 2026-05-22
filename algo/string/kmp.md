@@ -2,7 +2,7 @@
 title: Thuật toán KMP
 description: 
 published: true
-date: 2024-10-08T12:12:14.789Z
+date: 2026-05-22T17:39:20.978Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T11:04:23.949Z
@@ -310,7 +310,7 @@ Ví dụ minh họa:
 
 $$\overbrace{s_0 ~ s_1 ~ s_2 ~ s_3 ~ s_4}^p ~ \overbrace{s_0 ~ s_1 ~ s_2 ~ s_3 ~ s_4}^p ~ \overbrace{s_{0} ~ s_{1} ~ s_{2} ~ s_{3} ~ s_{4}}^p$$
 
-$$\underbrace{s_0 ~ s_1}_k ~ \rlap{\underbrace{\phantom{s_2 ~ s_3 ~ s_4 ~ s_5 ~ s_6 s_7 ~ s_8 ~ s_9 ~ s_{0} ~ s_{1} ~ s_{2} ~ s_{3} ~ s_{4}}}_{\pi[15]=13}} \overbrace{s_2 ~ s_3 ~ s_4 ~ s_0 ~ s_1}^p ~ s_2 ~ s_3 ~ s_4 ~ s_{0} ~ s_{1} ~ s_{2} ~ s_{3} ~ s_{4}$$
+$$\underbrace{s_0 ~ s_1}_k ~ \mathrlap{\underbrace{\phantom{s_2 ~ s_3 ~ s_4 ~ s_5 ~ s_6 s_7 ~ s_8 ~ s_9 ~ s_{0} ~ s_{1} ~ s_{2} ~ s_{3} ~ s_{4}}}_{\pi[15]=13}} \overbrace{s_2 ~ s_3 ~ s_4 ~ s_0 ~ s_1}^p ~ s_2 ~ s_3 ~ s_4 ~ s_{0} ~ s_{1} ~ s_{2} ~ s_{3} ~ s_{4}$$
 
 $$s_0 = s_2, s_1 = s_3, s_2 = s_4, s_3 = s_0, s_4 = s_1 \\ \Rightarrow s_0 = s_1 = s_2 = s_3 = s_4  \\ \Rightarrow s_0 ~ \text{nén được } s$$
 
