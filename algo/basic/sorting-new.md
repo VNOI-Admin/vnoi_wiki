@@ -2,7 +2,7 @@
 title: Thuật toán sắp xếp
 description: 
 published: true
-date: 2026-01-16T02:04:46.057Z
+date: 2026-06-11T15:24:57.224Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-19T01:32:35.401Z
@@ -304,11 +304,10 @@ Trước hết, ta chọn một phần tử làm $\texttt{pivot}$, sau đó phâ
 
 :::spoiler Code tham khảo
 ```cpp=
-int vi_tri(int l, int r){
-    int pivot = a[r];
-    int i = l - 1;
-    for(int j = l; j < r; j++){
-        if(a[j] <= pivot){
+int selectPivot (vector<int> &a, int l, int r) {
+    int pivot = a[r], i = l - 1;
+    for (int j = l; j < r; j++) {
+        if (a[j] <= pivot) {
             i++;
             swap(a[i], a[j]);
         }
@@ -318,11 +317,15 @@ int vi_tri(int l, int r){
     return i;
 }
 
-void quicksort(int l, int r){
-    if(l >= r) return;
-    int pos = vi_tri(l, r);
-    quicksort(l, pos);
-    quicksort(pos + 1, r);
+void quickSort (vector<int> &a, int l, int r){
+    if (l >= r) return;
+    int pos = selectPivot(a, l, r);
+    if (l < pos - 1) quickSort(a, l, pos - 1);
+    if (pos + 1 < r) quickSort(a, pos + 1, r);
+}
+
+void quickSort (vector<int> &a) {
+    quickSort(a, 0, (int)a.size() - 1);
 }
 ```
 :::
