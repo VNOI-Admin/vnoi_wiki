@@ -2,7 +2,7 @@
 title: Hướng dẫn viết bài trên VNOI Wiki
 description: 
 published: true
-date: 2026-08-16T16:01:30.609Z
+date: 2026-08-16T16:03:00.191Z
 tags: 
 editor: markdown
 dateCreated: 2026-08-16T04:54:50.473Z
@@ -218,7 +218,7 @@ Nhằm đảm bảo tính học thuật và giáo dục cao cho các bài viết
 
 - Lưu ý, đối với các mã giả (pseudocode), ta sử dụng format của python.
 
-## Tổng quan quy trình tham khảo khi viết một bài
+## Quy trình tham khảo khi viết một bài
 >1. Tìm hiểu tài liệu và xác minh kiến thức.
 >2. Xây dựng cấu trúc bài và hoàn thiện bản nháp đầu tiên
 >3. Hoàn thiện nội dung, viết mã nguồn (chú ý test lại mã nguồn bằng cách nộp AC trên một OJ uy tín). Hiệu đính và thực hiện animation.
