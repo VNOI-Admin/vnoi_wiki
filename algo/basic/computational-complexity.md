@@ -2,7 +2,7 @@
 title: Độ phức tạp thời gian
 description: 
 published: true
-date: 2025-12-06T09:04:04.322Z
+date: 2026-08-21T04:03:28.709Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:59:59.368Z
@@ -338,7 +338,7 @@ for (int i = 2; i <= n; i++) if (is_prime[i]){
 Tương tự bài trên, nhưng chỉ khi biến $i$ là số nguyên tố thì biến $j$ sẽ chạy $n/i$ lần, ngược lại biến $j$ không phải chạy 1 vòng nào.
 Vì thế độ phức tạp thời gian là $O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right)$ với $p$ là số nguyên tố $\le  n$.
 Đến đây việc tính toán độ phức tạp sẽ phải dùng đến kiến thức *Lý thuyết số giải tích*. Bạn đọc có thể tham khảo thêm [Định lý Merten 2](https://en.wikipedia.org/wiki/Mertens%27_theorems#Proof).
-$$O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right) = O\left(n \cdot \sum\limits_{\substack{p \text{ prime} \\ p \le n}} \dfrac{1}{p}\right) = \boldsymbol{O( n \log (\log n))}$$
+$$O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right) = O\left(n \cdot \sum\limits_{\substack{p \text{ nguyên tố} \\ p \le n}} \dfrac{1}{p}\right) = \boldsymbol{O( n \log (\log n))}$$
 
 
 # Mở rộng
