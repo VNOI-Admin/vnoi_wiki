@@ -2,7 +2,7 @@
 title: Cách tính nCk
 description: 
 published: true
-date: 2026-05-19T14:35:06.510Z
+date: 2026-08-21T04:06:52.374Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T10:59:29.380Z
@@ -85,9 +85,9 @@ Hai cách tiếp cận trên rất tự nhiên, dễ nghĩ, dễ thực hiện n
 $$
 \begin{align*}
 C_n^k=\begin{cases}
-1 &{\large\text{nếu }} k = 0 \style{font-family: Cambria Math}{\large\text{ và }} n \ge 0\\
-0 &{\large\text{nếu }} k > n\\
-C_{n - 1}^{k - 1} + C_{n - 1}^{k} &\style{font-family: Cambria Math}{\large\text{trong các trường hợp còn lại}}
+1 &{\text{nếu } k = 0 \text{ và } n \ge 0}\\
+0 &{\text{nếu } k > n}\\
+C_{n - 1}^{k - 1} + C_{n - 1}^{k} &\text{trong các trường hợp còn lại}
 \end{cases}
 \end{align*}
 $$
