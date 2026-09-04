@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-04T18:29:37.633Z
+date: 2026-09-04T18:31:46.724Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -604,8 +604,8 @@ Hàm `std::sort` trong C++ có cú pháp như sau:
 
 ```cpp
 // ví dụ, với vector s
-sort(s.begin(), s.end(), func) // sort không giảm
-sort(s.rbegin(), s.rend(), func) // sort không tăng
+sort(s.begin(), s.end(), func)   // sắp xếp theo func
+sort(s.rbegin(), s.rend(), func) // sắp xếp theo thứ tự ngược lại của func
 ```
 
 với `func` là hàm so sánh (comparator) tuỳ chọn giữa 2 phần tử bất kì trong mảng. Nếu ta không thiết lập hàm `func` này, thì kiểu dữ liệu mà ta sử dụng phải có định nghĩa phép toán `<` của nó. Chẳng hạn, trong bài toán Chia vàng ở phần Exchange Argument, ta có thể cài đặt như sau:
