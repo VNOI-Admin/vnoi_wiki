@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2025-12-21T10:07:00.493Z
+date: 2026-09-04T11:42:33.814Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -22,23 +22,25 @@ dateCreated: 2025-12-05T15:52:25.934Z
 
 Tham lam là một ý tưởng cơ bản và phổ biến trong giải thuật và lập trình, chủ yếu trong việc giải các bài toán tối ưu hoá. Ở mỗi bước chạy, thuật toán tham lam sẽ luôn chọn lựa chọn "tốt nhất" hiện tại (theo tiêu chí người thiết kế giải thuật đề ra), và không xét đến ảnh hưởng của nó đến những lựa chọn tiếp theo.
 
-Từ những bài dễ cho đến rất khó, từ những dạng bài đơn giản cho đến đặc biệt, trong bất cứ một bước suy luận nào của bài toán, đều có thể xuất hiện tư tưởng tham lam. Điều quan trọng nhất khi áp dụng tham lam vào lời giải, là chứng minh được tính đúng đắn của quy luật tham lam -- phần tương đối khó và cũng là tinh tế, sáng tạo nhất, đòi hỏi ở người thiết kế giải thuật năng lực Toán, kinh nghiệm và ý tưởng, khả năng suy luận tốt và phán đoán nhanh nhạy.
+Từ những bài dễ cho đến rất khó, trong bất cứ một bước suy luận nào của bài toán, đều có thể xuất hiện tư tưởng tham lam. Điều quan trọng nhất khi áp dụng tham lam vào lời giải, là chứng minh được tính đúng đắn của quy luật tham lam -- đây thường là phần khó và tinh tế nhất, đòi hỏi kinh nghiệm, khả năng suy luận và sự nhạy bén.
 
 :::spoiler Fun fact
 Chứng minh bằng thực nghiệm (proof by AC): Trong thi đấu (đặc biệt trong ICPC), nếu ý tưởng tham lam là đủ ngắn, đủ đơn giản và ta tin rằng nó đúng (hoặc nghĩ mãi vẫn không tìm ra cách để nó sai) thì ta sẽ code luôn và chứng minh bằng việc có AC hay không.
 :::
 
-Trong bài viết này, ở mỗi mục có các phần Ví dụ và Bài tập. Đối với các phần Bài tập, các bạn hãy cố gắng suy nghĩ thật kỹ và thử giải bài tập trước khi đọc lời giải. 
+Trong bài viết này, ở mỗi mục có các phần Ví dụ và Bài tập. Đối với các phần Bài tập, các bạn hãy cố gắng suy nghĩ thật kỹ và thử giải bài tập trước khi đọc lời giải.
 
 ## Những ý tưởng tham lam cơ bản
 
-### Ví dụ: [Movie Festival - CSES](https://cses.fi/problemset/task/1629)
+### Nguyên lý cực hạn và cách tìm phản ví dụ
+
+Đặc điểm chính của tham lam là nguyên lý cực hạn: lời giải tối ưu thường sẽ nằm ở các trường hợp biên, hoặc một nhóm nhỏ các trường hợp đặc biệt. Cách làm việc tự nhiên nhất là liệt kê một vài chiến lược ứng với các trường hợp biên đó, rồi tìm phản ví dụ để loại dần. Chiến lược nào sống sót thì ta mới ngồi xuống chứng minh.
+
+#### Ví dụ: [Movie Festival - CSES](https://cses.fi/problemset/task/1629)
 
 Cho $N$ bộ phim, mỗi bộ phim kéo dài từ thời điểm $s_i$ đến $t_i$. Bạn có thể xem được trọn vẹn nhiều nhất bao nhiêu bộ phim ?
 
-#### Phân tích
-
-Đặc điểm chính của tham lam là nguyên lý cực hạn: lời giải tối ưu thường sẽ nằm ở các trường hợp biên, hoặc một nhóm nhỏ các trường hợp đặc biệt. Ta thử nghĩ một số trường hợp như vậy:
+Ta thử nghĩ một số trường hợp biên như vậy:
 
 1. Luôn chọn bộ phim bắt đầu sớm nhất. Ở đây ta sẽ chọn A, rồi chọn D, rồi chọn E.
 
@@ -57,19 +59,14 @@ Dưới đây là phản ví dụ cho 2 trường hợp 1 và 2:
 
 ![counter-case.png](/algo/greedy/counter-case.png)
 
-Ở trường hợp 1, khi xem bộ phim bắt đầu sớm nhất, nó hoàn toàn có thể dài đến mức đè hết lên các bộ phim còn lại, còn ở trường hợp 2, nếu bộ phim ngắn nhất ấy giao nhau với quá nhiều bộ phim khác, thì cũng khiến lựa chọn không tối ưu. Việc xét trường hợp cẩn thận, tự phản biện và tìm ra phản ví dụ là một kĩ năng quan trọng khi tiếp cận bài toán bằng tham lam.
+Chiến lược thứ 3 là lời giải đúng cho bài toán cổ điển này.
 
-Trường hợp thứ 3 là lời giải đúng cho bài toán cổ điển này.
+Thật vậy, xét thời điểm ta đang chọn bộ phim tiếp theo, và gọi $X$ là bộ phim kết thúc sớm nhất trong số các bộ phim còn có thể xem. Giả sử một lời giải nào đó chọn bộ phim $Y \ne X$, tức $Y$ kết thúc muộn hơn $X$. Nếu ta có thể chọn một bộ phim để xem sau $Y$, thì bộ phim đó cũng có thể xem sau $X$, bởi vì $X$ kết thúc trước. Do đó, tập hợp các bộ phim có thể xem sau $Y$ là một tập con của các bộ phim có thể xem sau $X$: thay $Y$ bằng $X$ trong lời giải đó, ta được một lời giải không ít phim hơn. Hay nói cách khác, luôn tồn tại một lời giải tối ưu bắt đầu bằng $X$.
 
-Thật vậy, giả sử có hai bộ phim $E_1$ và $E_2$, và $E_2$ kết thúc muộn hơn $E_1$. Ta xét 2 trường hợp, chọn xem $E_1$ hoặc $E_2$.
-
-1. Nếu ta chọn xem $E_2$ thì sau đó ta chỉ có thể xem những bộ phim bắt đầu sau $E_2$.
-2. Ngược lại, ta có thể xem những bộ phim bắt đầu sau $E_1$. Hiển nhiên rằng số bộ phim tiếp theo ta có thể chọn xem ở trường hợp này sẽ không ít hơn trường hợp 1, nên kết quả sẽ tối ưu hơn.
-
-Hay nói cách khác, nếu ta có thể chọn một bộ phim để xem sau $E_2$, thì bộ phim đó cũng có thể xem sau $E_1$, bởi vì $E_1$ kết thúc trước. Do đó, tập hợp các bộ phim có thể xem sau $E_2$ là một tập con của các bộ phim có thể xem sau $E_1$, khiến cho $E_1$ trở thành lựa chọn tối ưu hơn.
+Sau khi chọn $X$, bài toán còn lại trên các bộ phim bắt đầu sau khi $X$ kết thúc có đúng dạng của bài toán ban đầu, nên ta áp dụng lại lập luận trên. Quy nạp theo số bộ phim, ta có điều phải chứng minh.
 :::
 
-### Ví dụ: [Tasks and Deadlines - CSES](https://cses.fi/problemset/task/1630)
+#### Ví dụ: [Tasks and Deadlines - CSES](https://cses.fi/problemset/task/1630)
 
 Bạn có $n$ công việc cần xử lý. Mỗi công việc có thời lượng $t_i$ và hạn chót $d_i$. Bạn sẽ xử lý chúng liên tiếp và tuần tự theo thứ tự tuỳ chọn, bắt đầu từ thời điểm $0$. Phần thưởng của một công việc là $d_i - f_i$ điểm (có thể âm) với $f_i$ là thời điểm hoàn thành công việc đó. 
 
@@ -80,69 +77,16 @@ Quy luật tham lam đúng là làm các công việc theo thời lượng tăng
 
 ![task_schedule.png](/algo/greedy/task_schedule.png)
 
-Khi này bằng việc đảo thứ tự $X$ và $Y$, ta sẽ thiệt $b$ điểm từ $X$ nhưng sẽ được thêm $a$ điểm từ $Y$ nên tổng điểm sẽ tăng thêm $a - b > 0$, do đó đáp án sẽ tối ưu hơn. Ta có điều phải chứng minh.
+Khi này bằng việc đảo thứ tự $X$ và $Y$, ta sẽ thiệt $b$ điểm từ $X$ nhưng sẽ được thêm $a$ điểm từ $Y$ nên tổng điểm sẽ tăng thêm $a - b > 0$, do đó đáp án sẽ tối ưu hơn. Mọi thứ tự chưa được sắp tăng dần theo thời lượng đều có một cặp công việc kề nhau như vậy, và mỗi lần đổi chỗ tổng điểm lại tăng, nên thứ tự sắp xếp đề ra là tối ưu. Ta có điều phải chứng minh.
+
+Lập luận "chỉ cần xét hai phần tử kề nhau" này sẽ được nhắc đến kĩ hơn ở phần sau.
 :::
 
-### Ví dụ: Cực tiểu hoá tổng
+### Tìm cận và dựng nghiệm
 
-Cho một mảng $N$ số $a_1 \le a_2 \le \dots \le a_n$. Tìm $x$ sao cho biểu thức sau đạt giá trị nhỏ nhất:
+Một cách khác để áp dụng nguyên lý cực hạn, là tìm cận trên/cận dưới của đáp án theo yêu cầu đề bài, và chỉ ra cách dựng ra một nghiệm thoả mãn cận đó. Khi đó tính tối ưu của nghiệm là hiển nhiên.
 
-$$S = \sum_{i = 1}^{N} |a_i - x|^k$$
-
-Ta sẽ tập trung vào hai trường hợp cơ bản và phổ biến nhất, có nhiều ứng dụng trong các bài toán: $k = 1$ và $k = 2$.
-
-#### Trường hợp 1: $k = 1, S = \sum_{i = 1}^{N} |a_i - x|$
-
-Giá trị $x$ tối ưu khi này nằm trong **khoảng trung vị** của mảng $a$. Nói như vậy vì khi $n$ chẵn thì mảng sẽ có 2 trung vị, khi này tất cả $x$ nằm giữa 2 trung vị này cũng sẽ tối ưu. Nếu $n$ lẻ thì $x$ là trung vị đúng của mảng.
-
-:::spoiler Chứng minh
-Ta viết lại tổng $S$ bằng cách gom cặp các phần tử đầu và cuối:
-
-$$
-S = (|x - a_1| + |x - a_n|) + (|x - a_2| + |x - a_{n-1}|) + \dots
-$$
-
-Xét một cặp bất kỳ $(a_i, a_j)$ với $a_i \le a_j$. Theo bất đẳng thức giá trị tuyệt đối, ta luôn có:
-
-$$
-|x - a_i| + |x - a_j| = |x - a_i| + |a_j - x| \ge |a_j - a_i|
-$$
-
-Dấu "$=$" xảy ra khi và chỉ khi $a_i \le x \le a_j$. Do đó để $S$ nhỏ nhất toàn cục, $x$ phải thỏa mãn dấu bằng xảy ra cho tất cả các cặp $(a_1, a_n), (a_2, a_{n-1}), \dots$ 
-
-Điều này nghĩa là $x$ phải thuộc giao của tất cả các đoạn $[a_i, a_{n-i+1}]$. Giao của các đoạn lồng nhau này chính là trung vị của mảng (nếu $n$ lẻ) hoặc khoảng trung vị của mảng (nếu $n$ chẵn). Tổng kết lại, ta có $x$ phải nằm trong khoảng trung vị của dãy $a$, tức điều phải chứng minh.
-:::
-
-<center>
-<img src="https://hackmd.io/_uploads/ByeQnGSCxl.png">
-
-
-<i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, hai đường thẳng màu xanh thể hiện hai trung vị của dãy</i>
-</center>
-
-#### Trường hợp 2: $k = 2, S = \sum_{i = 1}^{N} (a_i - x)^2$
-
-Giá trị $x$ tối ưu khi này sẽ là **trung bình cộng** của mảng $a$. 
-
-:::spoiler Chứng minh
-Thật vậy, ta khai triển $S$ thành
-
-$$S = nx^2 - 2x \sum a_i + \sum a_i^2$$
-
-Đây là tam thức bậc hai dạng $S = Ax^2 + Bx + C$ với $A = n > 0$ và có dạng một parabol với bề lõm quay lên trên. Theo kiến thức toán lớp 9, đỉnh của parabol ứng với cực tiểu của $S$ đạt tại:
-
-$$
-x = \frac{-B}{2A} = \frac{-(-2 \sum a_i)}{2n} = \frac{2 \sum a_i}{2n} = \frac{\sum a_i}{n}
-$$
-:::
-
-<center>
-<img src="https://hackmd.io/_uploads/rJPE2zrCge.png">
-
-<i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, đường thẳng màu xanh thể hiện trung bình cộng của dãy</i>
-</center>
-
-### Ví dụ: [ARC120D - Bracket Score 2](https://atcoder.jp/contests/arc120/tasks/arc120_d)
+#### Ví dụ: [ARC120D - Bracket Score 2](https://atcoder.jp/contests/arc120/tasks/arc120_d)
 
 Cho dãy số nguyên $a$ có $2N$ phần tử. Xét một dãy ngoặc đúng $S$ bất kì độ dài $2N$, với mỗi vị trí $i$ có ngoặc mở ta tìm vị trí ngoặc đóng $j$ tương ứng với nó và giá trị của $S$ tăng thêm một lượng $|a_i - a_j|$. Dựng dãy ngoặc đúng ứng với dãy $a$ có giá trị lớn nhất.
 
@@ -158,8 +102,6 @@ $$
 
 
 :::spoiler Lời giải và chứng minh
-
-Một cách khác để áp dụng nguyên lý cực hạn, là thử tìm cận trên/cận dưới của đáp án theo yêu cầu đề bài, và chứng minh/chỉ ra cách dựng ra trường hợp thoả mãn cận đó.
 
 **Phần 1: Cận trên**
 
@@ -182,18 +124,11 @@ Ta sử dụng cấu trúc dữ liệu `stack`. Xét phần tử thứ $i$ trong
 
 **Phần 3: Chứng minh** 
 
-Ta chứng minh cách dựng trên thoả mãn tính chất của dãy ngoặc đúng và cận trên của bài toán:
+Ta chứng minh cách dựng trên cho ra một dãy ngoặc đúng và đạt cận trên.
 
-1. Ở mọi thời điểm, stack chỉ chứa các phần tử của cùng 1 tập, hoặc cùng thuộc $\mathbf{0}$ hoặc cùng thuộc $\mathbf{1}$. Ta chỉ ghép 2 phần tử lại nếu chúng khác tập, do đó khi kết thúc việc dựng dãy, stack sẽ rỗng. Thật vậy... Ta đã ghép hết được $N$ cặp phần tử, mỗi cặp gồm 2 phần tử thuộc 2 tập khác nhau nên giá trị thu được chính là cận trên của bài toán.
-2. Thuật toán dựng dãy ngoặc ở phần 2 có các tính chất sau:
-- Số phần tử của stack ở mỗi thời điểm đại diện cho độ sâu hiện tại đang duyệt đến của dãy ngoặc.
-- Mỗi thao tác duyệt phần tử đều làm thay đổi độ sâu của stack, hoặc $-1$ nếu ghép được, hoặc $+1$ nếu đẩy thêm vào stack. Stack không bao giờ `pop` (xóa) phần tử khi đang ở trạng thái rỗng.
-- Stack bắt đầu và kết thúc ở trạng thái rỗng (đã chứng minh ở 1).
-3. Từ nhận xét 2, ta thấy rằng số phần tử trong stack ở mỗi thời điểm đại diện cho độ sâu của dãy ngoặc ở thời điểm đó và luôn không âm, stack luôn bắt đầu và kết thúc ở trạng thái rỗng, do đó dãy ngoặc tương ứng dựng được thoả mãn tính chất của dãy ngoặc đúng. Ta có điều phải chứng minh.
+Trước hết, ở mọi thời điểm stack chỉ chứa các phần tử của cùng một tập, vì ta chỉ đẩy thêm vào khi phần tử mới cùng tập với đỉnh stack. Tiếp theo, khi kết thúc stack phải rỗng. Thật vậy, giả sử còn $t > 0$ phần tử, chúng cùng thuộc một tập, gọi là $T$. Ta đã ghép được $(2N - t)/2$ cặp, mỗi cặp chứa đúng một phần tử của $T$, nên $|T| = (2N - t)/2 + t = N + t/2 > N$, mâu thuẫn với việc mỗi tập có đúng $N$ phần tử.
 
-3 tính chất trên thoả mãn các tính chất của dãy ngoặc đúng, nên dãy ngoặc mà thuật toán dựng ra là dãy ngoặc đúng.
-
-Ta có điều phải chứng minh.
+Thuật toán in ra ngoặc mở mỗi khi đẩy vào stack, ngoặc đóng mỗi khi lấy ra, không bao giờ lấy ra khi stack rỗng, và kết thúc với stack rỗng. Điều này thoả mãn tính chất của dãy ngoặc đúng. Cuối cùng, ta đã ghép đủ $N$ cặp, mỗi cặp gồm hai phần tử thuộc hai tập khác nhau, nên giá trị thu được chính là cận trên của bài toán. Ta có điều phải chứng minh.
 :::
 
 :::spoiler Code
@@ -249,21 +184,60 @@ int main() {
 
 :::
 
-## Cấu trúc con tối ưu
+## Cấu trúc con tối ưu và tính chất lựa chọn tham lam
 
-Một bài toán có cấu trúc con tối ưu nếu như nghiệm tối ưu của nó có thể thu được từ nghiệm tối ưu của các bài toán con.
+### Hai tính chất
 
-Cấu trúc con tối ưu gọi là có tính chất tham lam nếu như ở mỗi bài toán con ta đều có thể chọn đi theo hướng tối ưu cục bộ mà dẫn đến tối ưu toàn cục ở bài toán ban đầu. Tính chất trên gợi mở rằng ta có thể dùng tư tưởng quy nạp để tìm ra bản chất tham lam của bài toán, cũng như  chứng minh tính đúng đắn của thuật toán tham lam.
+Một bài toán có **cấu trúc con tối ưu** nếu như nghiệm tối ưu của nó có thể thu được từ nghiệm tối ưu của các bài toán con. Tính chất này là nền của cả quy hoạch động lẫn tham lam, nên tự nó chưa nói lên điều gì về việc tham lam có đúng hay không.
 
-### Ví dụ: Chia tiền xu
+Cái làm nên tham lam là tính chất thứ hai, **tính chất lựa chọn tham lam**: ở mỗi bước, tồn tại một nghiệm tối ưu toàn cục chứa lựa chọn tối ưu cục bộ mà ta đang định thực hiện. Khi có tính chất này, ta được phép chọn trước rồi mới giải bài toán con, và sau khi chọn thì chỉ còn lại đúng một bài toán con. Tính chất trên cũng gợi mở rằng ta có thể dùng tư tưởng quy nạp để tìm ra bản chất tham lam của bài toán, cũng như chứng minh tính đúng đắn của thuật toán tham lam.
+
+### Tham lam so với quy hoạch động
+
+Hai tính chất trên cho ta một cách nhìn gọn về quan hệ giữa tham lam và quy hoạch động. Quy hoạch động chỉ cần cấu trúc con tối ưu: ở mỗi bước nó giải mọi bài toán con ứng với mọi lựa chọn, rồi mới quyết định. Tham lam cần thêm tính chất lựa chọn tham lam để đảo ngược thứ tự ấy: quyết định trước, giải bài toán con sau.
+
+Vì thế cùng một bài toán có thể vừa làm được bằng quy hoạch động vừa làm được bằng tham lam (điển hình là thuật toán Kadane tìm đoạn con có tổng lớn nhất -- cài đặt tham lam thường rất gọn, còn cài đặt quy hoạch động lại linh hoạt với nhiều biến thể), nhưng cũng có những bài mà chỉ cần đổi một ràng buộc nhỏ là tính chất lựa chọn tham lam biến mất, và ta buộc phải quay về quy hoạch động. Hai cặp ví dụ đối chứng bên dưới sẽ minh hoạ điều này.
+
+### Ví dụ đối chứng 1: Chia tiền xu
 
 Tìm số đồng xu ít nhất cần để trả được $x$ đồng bằng các đồng tiền có mệnh giá $c = [1, 2, 5]$.
 
 :::spoiler Lời giải
 Với tập $c$ như trên, việc tham lam luôn chọn mệnh giá lớn nhất để trả sẽ cho kết quả tối ưu. Chẳng hạn với mệnh giá $n$, chừng nào $n \ge 5$ thì ta sẽ luôn trả bằng 5 đồng, đưa về bài toán con với mệnh giá $n - 5$. Rồi ta làm tương tự với các mệnh giá nhỏ hơn cho đến hết.
 
-Tập các mệnh giá mà ta có thể tham lam để trả được ít đồng xu nhất gọi là hệ chuẩn tắc (canonical system), các bạn có thể dễ thấy sự hữu ích và tiện lợi của nó trong hệ thống tiền tệ của các quốc gia hiện tại. Còn với các tập mệnh giá khác (không phải chuẩn tắc), việc tham lam như trên sẽ không cho kết quả tối ưu, mà ta phải sử dụng Quy hoạch động.
+Bây giờ đổi tập mệnh giá thành $c = [1, 3, 4]$ và trả 6 đồng. Tham lam cho $4 + 1 + 1$, ta cần 3 đồng; còn tối ưu là $3 + 3$, chỉ cần hai đồng. Cấu trúc con tối ưu vẫn còn nguyên -- trả $n$ tối ưu vẫn bao gồm trả $n - c$ tối ưu với $c$ là đồng đầu tiên nào đó, và đó là lý do quy hoạch động vẫn giải được -- nhưng tính chất lựa chọn tham lam đã mất: không có nghiệm tối ưu nào chứa đồng 4.
+
+Tập các mệnh giá mà ta có thể tham lam để trả được ít đồng xu nhất gọi là hệ chuẩn tắc (canonical system), các bạn có thể dễ thấy sự hữu ích và tiện lợi của nó trong hệ thống tiền tệ của các quốc gia hiện tại. Việc kiểm tra một hệ mệnh giá có chuẩn tắc hay không cũng là một bài toán thú vị (các bạn có thể đọc thêm trong Phụ lục), còn với các tập mệnh giá không chuẩn tắc thì ta phải sử dụng Quy hoạch động.
 :::
+
+### Ví dụ đối chứng 2: Cái túi phân số và cái túi 0/1
+
+Có $n$ món đồ, món $i$ có khối lượng $w_i$ và giá trị $v_i$, và một cái túi sức chứa $W$. Ở bài toán **cái túi phân số**, ta được lấy một phần bất kỳ của mỗi món (lấy tỉ lệ $x$ của món $i$ thì được $x v_i$ giá trị và tốn $x w_i$ sức chứa); ở bài toán **cái túi 0/1**, mỗi món chỉ được lấy nguyên hoặc không lấy. Cả hai đều hỏi giá trị lớn nhất bỏ được vào túi.
+
+:::spoiler Lời giải và chứng minh
+
+Với cái túi phân số, tham lam theo tỉ lệ giá trị trên khối lượng $v_i / w_i$ giảm dần, lấy trọn từng món cho tới khi món nào không còn đủ chỗ thì lấy một phần là lời giải tối ưu. Gọi món $1$ là món có tỉ lệ cao nhất. Giả sử một nghiệm tối ưu chưa lấy hết món $1$ dù túi đã đầy; khi đó nó có lấy một lượng khối lượng $\delta > 0$ nào đó của một món $j$ khác. Bỏ $\delta$ khối lượng của món $j$, thay bằng $\delta$ khối lượng của món $1$, giá trị thay đổi một lượng $\delta (v_1 / w_1 - v_j / w_j) \ge 0$. Vậy tồn tại nghiệm tối ưu lấy trọn món $1$ (hoặc lấy đầy túi bằng món $1$ nếu $w_1 \ge W$), phần còn lại là bài toán con cùng dạng.
+
+Với cái túi 0/1, lập luận trên sẽ sai ở chỗ "thay $\delta$ khối lượng" vì khi này ta không còn được lấy một phần nữa. Với phản ví dụ sau: $W = 50$, ba món $(w, v) = (10, 60), (20, 100), (30, 120)$. Tỉ lệ giảm dần là $6, 5, 4$, tham lam lấy hai món đầu được $160$, nhưng lấy hai món sau được $220$. Bài toán khi này có cấu trúc con tối ưu và có thể giải bằng quy hoạch động $O(nW)$ quen thuộc nhưng không có tính chất lựa chọn tham lam.
+:::
+
+:::spoiler Đọc thêm: Matroid
+
+Câu hỏi "khi nào tham lam theo trọng số luôn đúng" có một câu trả lời tổng quát. Nếu họ các tập "hợp lệ" (chẳng hạn các tập cạnh không chứa chu trình) thoả mãn ba điều kiện:
+
+1. Tập rỗng hợp lệ
+2. Tập con của tập hợp lệ cũng hợp lệ
+3. Với hai tập hợp lệ $A, B$ mà $|A| < |B|$ thì luôn có một phần tử của $B$ thêm được vào $A$ để vẫn hợp lệ 
+
+thì họ đó gọi là một **matroid**, và tham lam theo trọng số sẽ cho nghiệm tối ưu với mọi hàm trọng số. Ngược lại, nếu tham lam đúng với mọi hàm trọng số thì họ đó phải là matroid (định lý Rado - Edmonds).
+
+Các bạn có thể đọc thêm ở phần Phụ lục hoặc bài Matroid của VNOI Wiki.
+
+:::
+
+## Bất biến
+
+Nhiều lời giải tham lam không có dạng "chọn một thứ rồi giải bài toán con" mà là một vòng lặp cập nhật trạng thái. Với những bài như vậy, công cụ tự nhiên là **bất biến**: một tính chất của trạng thái mà ta chứng minh đúng lúc khởi đầu và được bảo toàn qua mỗi bước cập nhật. Khi vòng lặp dừng, bất biến cộng với điều kiện dừng của thuật toán cho ta nghiệm tối ưu. Điều làm nên một bất biến tốt là nó phải **nén** được toàn bộ những gì cần biết về quá khứ vào một lượng thông tin nhỏ -- thường chỉ là một, một vài con số hay một đoạn.
 
 ### Bài tập: [Missing Coin Sum - CSES](https://cses.fi/problemset/task/2183)
 
@@ -304,13 +278,31 @@ $\Rightarrow$ Ta vẫn tạo được mọi giá trị từ $1$ đến $S_{i+1}$
 2. $c_{i+1} > S_i + 1$. Ta có $S_i + 1$ không nằm trong đoạn $[0, S_i]$ và $S_i + 1$ nhỏ hơn $c_{i+1}$ (theo giả thiết trường hợp này), nên nó cũng không nằm trong đoạn $[c_{i+1}, S_{i+1}]$. Suy ra không có cách nào tạo ra được $S_i + 1$. Theo giả thiết quy nạp, ta đã có cách tạo được hết các giá trị $1 \dots S_i$, nên $S_i + 1$ chính là giá trị nhỏ nhất không thể tạo được. Ta có điều phải chứng minh.
 :::
 
-Trong thực tế, có nhiều bài toán phổ biến tồn tại cấu trúc con tham lam, và lời giải cho các bài toán đó là những thuật toán đẹp mà chúng ta đang sử dụng hằng ngày. Chẳng hạn như thuật toán Kruskal tìm cây khung nhỏ nhất, thuật toán Dijkstra tìm đường đi đơn tối ưu trên đồ thị không có cạnh âm, cho đến các thuật toán luồng như Ford-Fulkerson, Dinic. Cũng có những bài toán mà chúng ta có thể giải dưới cả góc nhìn của Tham lam và Quy hoạch động, điển hình là thuật toán tìm đoạn con có tổng lớn nhất Kadane. Khi này, cài đặt tham lam thường rất gọn và đẹp, còn cài đặt Quy hoạch động lại có thể linh hoạt với nhiều biến thể khác nhau của cùng một bài toán.
+### Bài tập: Missing Coin Sum Queries - CSES
+
+Vẫn $n$ đồng xu $x_1, \dots, x_n$ như trên, nhưng có thêm $q$ truy vấn, mỗi truy vấn cho một đoạn $[a, b]$ và hỏi: nếu chỉ dùng các đồng xu $x_a, \dots, x_b$ thì tổng nhỏ nhất không tạo được là bao nhiêu ? 
+
 
 ## Exchange Argument - Lập luận hoán đổi
 
 Ở các bài toán cơ bản chúng ta đã biết về thứ tự tham lam đơn giản. Tuy nhiên có những bài toán mà cấu trúc thứ tự của đáp án tối ưu không dễ để nhìn ra ngay. Khi này, ta sẽ đi từ trường hợp đơn giản khi chỉ có $N = 2$ phần tử. Bằng việc hoán đổi 2 phần tử và biến đổi tương đương các đại lượng, ta có thể biện luận được thứ tự phức tạp và tối ưu để xử lý các phần tử. Đây cũng là phương pháp phổ biến để chứng minh tính đúng đắn của thuật toán tham lam.
 
-### Ví dụ: Chia vàng
+### Từ hoán đổi kề đến thứ tự toàn cục
+
+Trước khi vào ví dụ, ta phát biểu bổ đề mà mọi lập luận hoán đổi đều dựa vào, và cũng đã dùng ở phần trước.
+
+**Bổ đề.** Giả sử ta có một quan hệ "$x$ nên đứng trước $y$" giữa các phần tử, thoả hai điều kiện: 
+
+1. Nó là một quan hệ thứ tự hợp lệ, tức có thể sắp xếp theo nó (chính xác là strict weak ordering, xem mục Kĩ thuật cài đặt)
+2. Trong bất kỳ dãy nào, đổi chỗ hai phần tử **kề nhau** đang đứng sai thứ tự không làm đáp án xấu đi. 
+
+Khi đó dãy đã sắp xếp theo quan hệ này là tối ưu.
+
+**Chứng minh.** Lấy một dãy tối ưu bất kỳ. Nếu nó chưa được sắp xếp, phải tồn tại hai phần tử kề nhau đứng sai thứ tự (nếu mọi cặp kề đều đúng thứ tự thì theo tính bắc cầu cả dãy đã đúng thứ tự). Đổi chỗ cặp đó: theo (2) đáp án không xấu đi, nên dãy mới vẫn tối ưu, và số cặp nghịch thế giảm đi đúng một. Lặp lại, sau hữu hạn bước ta thu được dãy đã sắp xếp mà vẫn tối ưu. Ta có điều phải chứng minh.
+
+Vậy việc còn lại ở mỗi bài chỉ là: viết ra điều kiện để "$x$ trước $y$" tốt hơn "$y$ trước $x$" khi chúng kề nhau, rồi kiểm tra điều kiện đó có phải một quan hệ thứ tự hợp lệ hay không. Điều kiện thứ hai hay bị bỏ qua, và ví dụ dưới đây sẽ minh hoạ điều này:
+
+### Ví dụ: Chia vàng (NOIP Trung Quốc 2012)
 
 Có một ông vua và $N$ ông quan. Ông vua muốn chia thưởng cho các ông quan theo quy tắc sau:
 
@@ -321,21 +313,25 @@ Có một ông vua và $N$ ông quan. Ông vua muốn chia thưởng cho các ô
 Tìm cách để ông vua xếp thứ tự $N$ ông quan đứng sau mình sao cho **số vàng của ông quan được thưởng nhiều nhất là ít nhất**.
 
 :::spoiler Ý tưởng và lời giải
-Gọi $m = \prod a_j$ đứng trước $i$, khi này ông quan thứ $i$ nhận được $\dfrac{m}{b_i}$ vàng còn ông quan thứ $i + 1$ nhận được $\dfrac{m \times a_i}{b_{i + 1}}$ vàng.
+Gọi $m = \prod a_j$ với $j$ đứng trước $i$, khi này ông quan thứ $i$ nhận được $\dfrac{m}{b_i}$ vàng còn ông quan thứ $i + 1$ nhận được $\dfrac{m \times a_i}{b_{i + 1}}$ vàng.
 
-Nếu ta đảo chỗ hai ông quan $i$ và $i + 1$ thì khi này ông $i$ nhận $\dfrac{m}{b_{i + 1}}$ vàng còn ông $i + 1$ nhận được $\dfrac{m \times a_{i + 1}}{b_i}$ vàng.
+Nếu ta đảo chỗ hai ông quan $i$ và $i + 1$ thì khi này ông $i$ nhận $\dfrac{m}{b_{i + 1}}$ vàng còn ông $i + 1$ nhận được $\dfrac{m \times a_{i + 1}}{b_i}$ vàng. Những ông quan khác không bị ảnh hưởng, vì tích các số bên tay trái đứng trước họ không đổi.
 
-Việc đảo vị trí sẽ khiến đáp án tối ưu hơn nếu và chỉ nếu: 
+Thứ tự $(i, i + 1)$ không tệ hơn thứ tự $(i + 1, i)$ khi và chỉ khi:
 
-$$\max \left(\dfrac{m}{b_i}, \dfrac{m \times a_i}{b_{i + 1}} \right) < \max \left (\dfrac{m}{b_{i + 1}}, \dfrac{m \times a_{i + 1}}{b_i} \right)$$
+$$\max \left(\dfrac{m}{b_i}, \dfrac{m \times a_i}{b_{i + 1}} \right) \le \max \left (\dfrac{m}{b_{i + 1}}, \dfrac{m \times a_{i + 1}}{b_i} \right)$$
 
-tương đương với:
+tương đương với (nhân hai vế với $b_i b_{i+1} / m$):
 
-$$\max \left(\dfrac{1}{b_i}, \dfrac{a_i}{b_{i + 1}} \right) < \max \left(\dfrac{1}{b_{i + 1}}, \dfrac{a_{i + 1}}{b_i} \right)$$
+$$\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$$
 
-Trong thực tế, khi cài đặt, ta sẽ viết lại để biểu thức không có phép chia, qua đó loại bỏ được vấn đề so sánh số thực hoặc chia cho 0:
+Phép làm tròn xuống không ảnh hưởng, vì $\max$ của các số đã làm tròn bằng làm tròn của $\max$.
 
-$$\max(b_{i + 1}, a_i \times b_i) < \max(b_i, a_{i + 1} \times b_{i + 1})$$
+Đến đây, việc dùng luôn bất đẳng thức trên làm hàm so sánh khi cài đặt sắp xếp có thể dẫn đến kết quả sai vì đây **không phải** một quan hệ thứ tự hợp lệ: chẳng hạn với ba ông quan $(1, 2), (1, 12), (2, 3)$, cặp thứ nhất và thứ hai "bằng nhau" theo bất đẳng thức, cặp thứ hai và thứ ba cũng "bằng nhau", nhưng để tối ưu thì $(1, 2)$ lại phải đứng hẳn trước $(2, 3)$.
+
+Cách sửa là tìm một khoá sắp xếp thực sự. Ta chứng minh: **sắp xếp theo $a_i b_i$ tăng dần** thì mọi cặp kề nhau đều thoả bất đẳng thức trên. Thật vậy, nếu $a_i b_i \le a_{i+1} b_{i+1}$ thì $a_i b_i \le a_{i+1} b_{i+1} \le \max(b_i, a_{i+1} b_{i+1})$, và $b_{i+1} \le a_{i+1} b_{i+1} \le \max(b_i, a_{i+1} b_{i+1})$ (do $a_{i+1} \ge 1$). Vậy $\max(b_{i+1}, a_i b_i) \le \max(b_i, a_{i+1} b_{i+1})$. Theo bổ đề ở trên, thứ tự sắp theo $a_i b_i$ tăng dần là tối ưu. Ta có điều phải chứng minh.
+
+Trong thực tế, khi cài đặt, ta sắp xếp theo tích $a_i b_i$ rồi duyệt một lượt để tính đáp án.
 
 :::
 
@@ -749,6 +745,66 @@ Do đó độ phức tạp của bước tính này là $\sum \texttt{freq}(m) +
 ## Lời kết
 
 Tham lam không chỉ là một dạng bài. Nó là một hệ tư tưởng luôn len lỏi trong giải thuật, và có thể xuất hiện bất cứ đâu trong các bài toán, trong một bước, nhiều bước giải hoặc toàn bộ bài toán. Đây thường là phần hay, độc đáo trong các kì thi, thử thách sự nhanh nhạy, kinh nghiệm và sáng tạo của thí sinh, cũng như trí tuệ của người ra đề. Hi vọng bài viết này đã phần nào đó truyền tải được nét đẹp của tư tưởng tham lam, để các bạn hào hứng chinh phục những bài toán hay hơn và khó hơn trong tương lai.
+
+### Ví dụ: Cực tiểu hoá tổng
+
+Cho một mảng $N$ số $a_1 \le a_2 \le \dots \le a_n$. Tìm $x$ sao cho biểu thức sau đạt giá trị nhỏ nhất:
+
+$$S = \sum_{i = 1}^{N} |a_i - x|^k$$
+
+Ta sẽ tập trung vào hai trường hợp cơ bản và phổ biến nhất, có nhiều ứng dụng trong các bài toán: $k = 1$ và $k = 2$.
+
+#### Trường hợp 1: $k = 1, S = \sum_{i = 1}^{N} |a_i - x|$
+
+Giá trị $x$ tối ưu khi này nằm trong **khoảng trung vị** của mảng $a$. Nói như vậy vì khi $n$ chẵn thì mảng sẽ có 2 trung vị, khi này tất cả $x$ nằm giữa 2 trung vị này cũng sẽ tối ưu. Nếu $n$ lẻ thì $x$ là trung vị đúng của mảng.
+
+:::spoiler Chứng minh
+Ta viết lại tổng $S$ bằng cách gom cặp các phần tử đầu và cuối:
+
+$$
+S = (|x - a_1| + |x - a_n|) + (|x - a_2| + |x - a_{n-1}|) + \dots
+$$
+
+Xét một cặp bất kỳ $(a_i, a_j)$ với $a_i \le a_j$. Theo bất đẳng thức giá trị tuyệt đối, ta luôn có:
+
+$$
+|x - a_i| + |x - a_j| = |x - a_i| + |a_j - x| \ge |a_j - a_i|
+$$
+
+Dấu "$=$" xảy ra khi và chỉ khi $a_i \le x \le a_j$. Do đó để $S$ nhỏ nhất toàn cục, $x$ phải thỏa mãn dấu bằng xảy ra cho tất cả các cặp $(a_1, a_n), (a_2, a_{n-1}), \dots$ 
+
+Điều này nghĩa là $x$ phải thuộc giao của tất cả các đoạn $[a_i, a_{n-i+1}]$. Giao của các đoạn lồng nhau này chính là trung vị của mảng (nếu $n$ lẻ) hoặc khoảng trung vị của mảng (nếu $n$ chẵn). Tổng kết lại, ta có $x$ phải nằm trong khoảng trung vị của dãy $a$, tức điều phải chứng minh.
+:::
+
+<center>
+<img src="https://hackmd.io/_uploads/ByeQnGSCxl.png">
+
+
+<i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, hai đường thẳng màu xanh thể hiện hai trung vị của dãy</i>
+</center>
+
+#### Trường hợp 2: $k = 2, S = \sum_{i = 1}^{N} (a_i - x)^2$
+
+Giá trị $x$ tối ưu khi này sẽ là **trung bình cộng** của mảng $a$. 
+
+:::spoiler Chứng minh
+Thật vậy, ta khai triển $S$ thành
+
+$$S = nx^2 - 2x \sum a_i + \sum a_i^2$$
+
+Đây là tam thức bậc hai dạng $S = Ax^2 + Bx + C$ với $A = n > 0$ và có dạng một parabol với bề lõm quay lên trên. Theo kiến thức toán lớp 9, đỉnh của parabol ứng với cực tiểu của $S$ đạt tại:
+
+$$
+x = \frac{-B}{2A} = \frac{-(-2 \sum a_i)}{2n} = \frac{2 \sum a_i}{2n} = \frac{\sum a_i}{n}
+$$
+:::
+
+<center>
+<img src="https://hackmd.io/_uploads/rJPE2zrCge.png">
+
+<i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, đường thẳng màu xanh thể hiện trung bình cộng của dãy</i>
+</center>
+
 
 ## Bài tập vận dụng
 
