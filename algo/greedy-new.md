@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-04T18:17:45.610Z
+date: 2026-09-04T18:28:23.036Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -58,6 +58,8 @@ Ta thử nghĩ một số trường hợp biên như vậy:
 Dưới đây là phản ví dụ cho 2 trường hợp 1 và 2:
 
 ![counter-case.png](/algo/greedy/counter-case.png)
+
+Ở chiến lược 1, khi xem bộ phim bắt đầu sớm nhất, nó hoàn toàn có thể dài đến mức đè hết lên các bộ phim còn lại, còn ở chiến lược 2, nếu bộ phim ngắn nhất ấy giao nhau với quá nhiều bộ phim khác, thì cũng khiến lựa chọn không tối ưu. Việc xét trường hợp cẩn thận, tự phản biện và tìm ra phản ví dụ là một kĩ năng quan trọng khi tiếp cận bài toán bằng tham lam.
 
 Chiến lược thứ 3 là lời giải đúng cho bài toán cổ điển này.
 
@@ -261,7 +263,7 @@ Một bài toán có **cấu trúc con tối ưu** nếu như nghiệm tối ưu
 
 Hai tính chất trên cho ta một cách nhìn về quan hệ giữa tham lam và quy hoạch động. Quy hoạch động chỉ cần cấu trúc con tối ưu: ở mỗi bước nó *giải mọi bài toán con ứng với mọi lựa chọn, rồi mới quyết định*. Tham lam ngoài điều kiện đó còn cần thêm tính chất lựa chọn tham lam để đảo ngược thứ tự ấy: *quyết định lựa chọn trước, rồi giải bài toán con ứng với lựa chọn đó*. Do đó về lý thuyết, một bài toán có thể giải được bằng tham lam cũng có thể giải được bằng quy hoạch động, nhưng không phải ngược lại. 
 
-Tính chất lựa chọn tham lam chính là mấu chốt giúp giảm được không gian trạng thái của bài toán xuống đáng kể, nên một lời giải tham lam đúng sẽ có độ phức tạp thấp hơn và nhanh hơn so với lời giải quy hoạch động cho cùng một bài toán. Nhưng cũng có những bài mà chỉ cần đổi một ràng buộc nhỏ là tính chất lựa chọn tham lam biến mất, và ta buộc phải giải bằng quy hoạch động.
+Tính chất lựa chọn tham lam chính là mấu chốt giúp giảm được không gian trạng thái của bài toán xuống đáng kể, nên một lời giải tham lam đúng sẽ có độ phức tạp thấp hơn và nhanh hơn so với lời giải quy hoạch động cho cùng một bài toán. Trong thực tế, có những bài toán biến thể mà chỉ cần đổi một ràng buộc nhỏ là tính chất lựa chọn tham lam biến mất, và ta buộc phải giải bằng quy hoạch động.
 
 > Ví dụ, bài toán tìm đường đi ngắn nhất trên đồ thị trọng số không âm có thể giải bằng tham lam sử dụng thuật toán Dijkstra với độ phức tạp $\mathcal{O}((V + E) \log V)$, cũng như có thể giải bằng quy hoạch động sử dụng thuật toán Bellman-Ford với độ phức tạp $\mathcal{O}(E V)$. Ta biết rằng thuật toán Dijkstra sẽ luôn chạy nhanh hơn, tuy nhiên nếu đồ thị có trọng số âm thì Dijkstra sẽ không thể giải được mà phải sử dụng Bellman-Ford.
 
