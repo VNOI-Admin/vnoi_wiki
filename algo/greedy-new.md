@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-04T11:42:33.814Z
+date: 2026-09-04T18:17:45.610Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -184,21 +184,90 @@ int main() {
 
 :::
 
+### Các bổ đề tối ưu hoá thường dùng
+
+#### Ví dụ: Bất đẳng thức hoán vị
+
+Cho hai dãy $a_1 \le a_2 \le \dots \le a_n$ và $b_1 \le b_2 \le \dots \le b_n$. Trong mọi cách ghép cặp $a_i$ với $b_{\sigma(i)}$ ($\sigma$ là một hoán vị), tổng $\sum a_i b_{\sigma(i)}$ lớn nhất khi ghép cùng chiều ($\sigma$ là hoán vị đồng nhất) và nhỏ nhất khi ghép ngược chiều ($a_i$ với $b_{n-i+1}$).
+
+:::spoiler Chứng minh
+Giả sử trong cách ghép có $i < j$ mà $a_i$ ghép với $b_p$, $a_j$ ghép với $b_q$ với $p > q$ (ghép chéo). Đổi lại cho $a_i$ ghép $b_q$, $a_j$ ghép $b_p$, tổng thay đổi một lượng $(a_i b_q + a_j b_p) - (a_i b_p + a_j b_q) = (a_j - a_i)(b_p - b_q) \ge 0$. Vậy mỗi khi ta tháo một cặp chéo thì tổng không giảm, và khi không còn cặp chéo nào thì ta đang ghép cùng chiều và có luôn điều phải chứng minh. Ý nhỏ nhất chứng minh tương tự.
+:::
+
+#### Ví dụ: Cực tiểu hoá tổng
+
+Cho một mảng $N$ số $a_1 \le a_2 \le \dots \le a_n$. Tìm $x$ sao cho biểu thức sau đạt giá trị nhỏ nhất:
+
+$$S = \sum_{i = 1}^{N} |a_i - x|^k$$
+
+Ta sẽ tập trung vào hai trường hợp cơ bản và phổ biến nhất, có nhiều ứng dụng trong các bài toán: $k = 1$ và $k = 2$.
+
+**Trường hợp 1:** $k = 1, S = \sum_{i = 1}^{N} |a_i - x|$
+
+Giá trị $x$ tối ưu khi này nằm trong **khoảng trung vị** của mảng $a$. Nói như vậy vì khi $n$ chẵn thì mảng sẽ có 2 trung vị, khi này tất cả $x$ nằm giữa 2 trung vị này cũng sẽ tối ưu. Nếu $n$ lẻ thì $x$ là trung vị đúng của mảng.
+
+:::spoiler Chứng minh
+Ta viết lại tổng $S$ bằng cách gom cặp các phần tử đầu và cuối:
+
+$$
+S = (|x - a_1| + |x - a_n|) + (|x - a_2| + |x - a_{n-1}|) + \dots
+$$
+
+Xét một cặp bất kỳ $(a_i, a_j)$ với $a_i \le a_j$. Theo bất đẳng thức giá trị tuyệt đối, ta luôn có:
+
+$$
+|x - a_i| + |x - a_j| = |x - a_i| + |a_j - x| \ge |a_j - a_i|
+$$
+
+Dấu "$=$" xảy ra khi và chỉ khi $a_i \le x \le a_j$. Do đó để $S$ nhỏ nhất toàn cục, $x$ phải thỏa mãn dấu bằng xảy ra cho tất cả các cặp $(a_1, a_n), (a_2, a_{n-1}), \dots$ 
+
+Điều này nghĩa là $x$ phải thuộc giao của tất cả các đoạn $[a_i, a_{n-i+1}]$. Giao của các đoạn lồng nhau này chính là trung vị của mảng (nếu $n$ lẻ) hoặc khoảng trung vị của mảng (nếu $n$ chẵn). Tổng kết lại, ta có $x$ phải nằm trong khoảng trung vị của dãy $a$, tức điều phải chứng minh.
+:::
+
+<center>
+<img src="https://hackmd.io/_uploads/ByeQnGSCxl.png">
+
+
+<i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, hai đường thẳng màu xanh thể hiện hai trung vị của dãy</i>
+</center>
+
+**Trường hợp 2:** $k = 2, S = \sum_{i = 1}^{N} (a_i - x)^2$
+
+Giá trị $x$ tối ưu khi này sẽ là **trung bình cộng** của mảng $a$. 
+
+:::spoiler Chứng minh
+Thật vậy, ta khai triển $S$ thành
+
+$$S = nx^2 - 2x \sum a_i + \sum a_i^2$$
+
+Đây là tam thức bậc hai dạng $S = Ax^2 + Bx + C$ với $A = n > 0$ và có dạng một parabol với bề lõm quay lên trên. Theo kiến thức toán lớp 9, đỉnh của parabol ứng với cực tiểu của $S$ đạt tại:
+
+$$
+x = \frac{-B}{2A} = \frac{-(-2 \sum a_i)}{2n} = \frac{2 \sum a_i}{2n} = \frac{\sum a_i}{n}
+$$
+:::
+
+<center>
+<img src="https://hackmd.io/_uploads/rJPE2zrCge.png">
+
+<i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, đường thẳng màu xanh thể hiện trung bình cộng của dãy</i>
+</center>
+
 ## Cấu trúc con tối ưu và tính chất lựa chọn tham lam
 
-### Hai tính chất
+Một bài toán có **cấu trúc con tối ưu** nếu như nghiệm tối ưu của nó có thể thu được từ nghiệm tối ưu của các bài toán con. Tính chất này là nền của cả quy hoạch động lẫn tham lam, nên tự nó chưa nói lên điều gì về việc tham lam có đúng hay không. Điều quyết định tính đúng đắn của thuật toán tham lam là tính chất thứ hai, **tính chất lựa chọn tham lam**: ở mỗi bước, tồn tại một nghiệm tối ưu toàn cục chứa lựa chọn tối ưu cục bộ mà ta đang định thực hiện. 
 
-Một bài toán có **cấu trúc con tối ưu** nếu như nghiệm tối ưu của nó có thể thu được từ nghiệm tối ưu của các bài toán con. Tính chất này là nền của cả quy hoạch động lẫn tham lam, nên tự nó chưa nói lên điều gì về việc tham lam có đúng hay không.
+### Tham lam vs. quy hoạch động
 
-Cái làm nên tham lam là tính chất thứ hai, **tính chất lựa chọn tham lam**: ở mỗi bước, tồn tại một nghiệm tối ưu toàn cục chứa lựa chọn tối ưu cục bộ mà ta đang định thực hiện. Khi có tính chất này, ta được phép chọn trước rồi mới giải bài toán con, và sau khi chọn thì chỉ còn lại đúng một bài toán con. Tính chất trên cũng gợi mở rằng ta có thể dùng tư tưởng quy nạp để tìm ra bản chất tham lam của bài toán, cũng như chứng minh tính đúng đắn của thuật toán tham lam.
+Hai tính chất trên cho ta một cách nhìn về quan hệ giữa tham lam và quy hoạch động. Quy hoạch động chỉ cần cấu trúc con tối ưu: ở mỗi bước nó *giải mọi bài toán con ứng với mọi lựa chọn, rồi mới quyết định*. Tham lam ngoài điều kiện đó còn cần thêm tính chất lựa chọn tham lam để đảo ngược thứ tự ấy: *quyết định lựa chọn trước, rồi giải bài toán con ứng với lựa chọn đó*. Do đó về lý thuyết, một bài toán có thể giải được bằng tham lam cũng có thể giải được bằng quy hoạch động, nhưng không phải ngược lại. 
 
-### Tham lam so với quy hoạch động
+Tính chất lựa chọn tham lam chính là mấu chốt giúp giảm được không gian trạng thái của bài toán xuống đáng kể, nên một lời giải tham lam đúng sẽ có độ phức tạp thấp hơn và nhanh hơn so với lời giải quy hoạch động cho cùng một bài toán. Nhưng cũng có những bài mà chỉ cần đổi một ràng buộc nhỏ là tính chất lựa chọn tham lam biến mất, và ta buộc phải giải bằng quy hoạch động.
 
-Hai tính chất trên cho ta một cách nhìn gọn về quan hệ giữa tham lam và quy hoạch động. Quy hoạch động chỉ cần cấu trúc con tối ưu: ở mỗi bước nó giải mọi bài toán con ứng với mọi lựa chọn, rồi mới quyết định. Tham lam cần thêm tính chất lựa chọn tham lam để đảo ngược thứ tự ấy: quyết định trước, giải bài toán con sau.
+> Ví dụ, bài toán tìm đường đi ngắn nhất trên đồ thị trọng số không âm có thể giải bằng tham lam sử dụng thuật toán Dijkstra với độ phức tạp $\mathcal{O}((V + E) \log V)$, cũng như có thể giải bằng quy hoạch động sử dụng thuật toán Bellman-Ford với độ phức tạp $\mathcal{O}(E V)$. Ta biết rằng thuật toán Dijkstra sẽ luôn chạy nhanh hơn, tuy nhiên nếu đồ thị có trọng số âm thì Dijkstra sẽ không thể giải được mà phải sử dụng Bellman-Ford.
 
-Vì thế cùng một bài toán có thể vừa làm được bằng quy hoạch động vừa làm được bằng tham lam (điển hình là thuật toán Kadane tìm đoạn con có tổng lớn nhất -- cài đặt tham lam thường rất gọn, còn cài đặt quy hoạch động lại linh hoạt với nhiều biến thể), nhưng cũng có những bài mà chỉ cần đổi một ràng buộc nhỏ là tính chất lựa chọn tham lam biến mất, và ta buộc phải quay về quy hoạch động. Hai cặp ví dụ đối chứng bên dưới sẽ minh hoạ điều này.
+Ta cùng đến với một số ví dụ khác.
 
-### Ví dụ đối chứng 1: Chia tiền xu
+### Ví dụ: Chia tiền xu
 
 Tìm số đồng xu ít nhất cần để trả được $x$ đồng bằng các đồng tiền có mệnh giá $c = [1, 2, 5]$.
 
@@ -210,34 +279,21 @@ Bây giờ đổi tập mệnh giá thành $c = [1, 3, 4]$ và trả 6 đồng. 
 Tập các mệnh giá mà ta có thể tham lam để trả được ít đồng xu nhất gọi là hệ chuẩn tắc (canonical system), các bạn có thể dễ thấy sự hữu ích và tiện lợi của nó trong hệ thống tiền tệ của các quốc gia hiện tại. Việc kiểm tra một hệ mệnh giá có chuẩn tắc hay không cũng là một bài toán thú vị (các bạn có thể đọc thêm trong Phụ lục), còn với các tập mệnh giá không chuẩn tắc thì ta phải sử dụng Quy hoạch động.
 :::
 
-### Ví dụ đối chứng 2: Cái túi phân số và cái túi 0/1
+### Ví dụ: Cái túi phân số và cái túi 0/1
 
 Có $n$ món đồ, món $i$ có khối lượng $w_i$ và giá trị $v_i$, và một cái túi sức chứa $W$. Ở bài toán **cái túi phân số**, ta được lấy một phần bất kỳ của mỗi món (lấy tỉ lệ $x$ của món $i$ thì được $x v_i$ giá trị và tốn $x w_i$ sức chứa); ở bài toán **cái túi 0/1**, mỗi món chỉ được lấy nguyên hoặc không lấy. Cả hai đều hỏi giá trị lớn nhất bỏ được vào túi.
 
 :::spoiler Lời giải và chứng minh
 
-Với cái túi phân số, tham lam theo tỉ lệ giá trị trên khối lượng $v_i / w_i$ giảm dần, lấy trọn từng món cho tới khi món nào không còn đủ chỗ thì lấy một phần là lời giải tối ưu. Gọi món $1$ là món có tỉ lệ cao nhất. Giả sử một nghiệm tối ưu chưa lấy hết món $1$ dù túi đã đầy; khi đó nó có lấy một lượng khối lượng $\delta > 0$ nào đó của một món $j$ khác. Bỏ $\delta$ khối lượng của món $j$, thay bằng $\delta$ khối lượng của món $1$, giá trị thay đổi một lượng $\delta (v_1 / w_1 - v_j / w_j) \ge 0$. Vậy tồn tại nghiệm tối ưu lấy trọn món $1$ (hoặc lấy đầy túi bằng món $1$ nếu $w_1 \ge W$), phần còn lại là bài toán con cùng dạng.
+Với bài toán cái túi phân số, ta có thuật toán sau: 
 
-Với cái túi 0/1, lập luận trên sẽ sai ở chỗ "thay $\delta$ khối lượng" vì khi này ta không còn được lấy một phần nữa. Với phản ví dụ sau: $W = 50$, ba món $(w, v) = (10, 60), (20, 100), (30, 120)$. Tỉ lệ giảm dần là $6, 5, 4$, tham lam lấy hai món đầu được $160$, nhưng lấy hai món sau được $220$. Bài toán khi này có cấu trúc con tối ưu và có thể giải bằng quy hoạch động $O(nW)$ quen thuộc nhưng không có tính chất lựa chọn tham lam.
+1. Sắp xếp các món đồ theo tỉ lệ giá trị trên khối lượng $v_i / w_i$ giảm dần
+2. Với mỗi món, nếu còn đủ chỗ thì ta lấy hết cả món đó, nếu không thì lấy một phần. 
+
+**Chứng minh:** Gọi món $1$ là món có tỉ lệ cao nhất. Giả sử một nghiệm tối ưu chưa lấy hết món $1$ dù túi đã đầy; khi đó nó có lấy một lượng khối lượng $\delta > 0$ nào đó của một món $j$ khác. Bỏ $\delta$ khối lượng của món $j$, thay bằng $\delta$ khối lượng của món $1$, giá trị thay đổi một lượng $\delta (v_1 / w_1 - v_j / w_j) \ge 0$. Vậy tồn tại nghiệm tối ưu lấy hết món $1$ (hoặc lấy đầy túi bằng món $1$ nếu $w_1 \ge W$), phần còn lại là bài toán con cùng dạng.
+
+Với cái túi 0/1, lập luận trên sẽ sai ở chỗ "thay $\delta$ khối lượng" vì khi này ta không còn được lấy một phần nữa. Với phản ví dụ sau: $W = 50$, ba món $(w, v) = (10, 60), (20, 100), (30, 120)$. Tỉ lệ giảm dần là $6, 5, 4$, tham lam lấy hai món đầu được $160$, nhưng lấy hai món sau được $220$. Bài toán khi này có cấu trúc con tối ưu và có thể giải bằng quy hoạch động $O(nW)$ quen thuộc nhưng không còn tính chất lựa chọn tham lam nữa.
 :::
-
-:::spoiler Đọc thêm: Matroid
-
-Câu hỏi "khi nào tham lam theo trọng số luôn đúng" có một câu trả lời tổng quát. Nếu họ các tập "hợp lệ" (chẳng hạn các tập cạnh không chứa chu trình) thoả mãn ba điều kiện:
-
-1. Tập rỗng hợp lệ
-2. Tập con của tập hợp lệ cũng hợp lệ
-3. Với hai tập hợp lệ $A, B$ mà $|A| < |B|$ thì luôn có một phần tử của $B$ thêm được vào $A$ để vẫn hợp lệ 
-
-thì họ đó gọi là một **matroid**, và tham lam theo trọng số sẽ cho nghiệm tối ưu với mọi hàm trọng số. Ngược lại, nếu tham lam đúng với mọi hàm trọng số thì họ đó phải là matroid (định lý Rado - Edmonds).
-
-Các bạn có thể đọc thêm ở phần Phụ lục hoặc bài Matroid của VNOI Wiki.
-
-:::
-
-## Bất biến
-
-Nhiều lời giải tham lam không có dạng "chọn một thứ rồi giải bài toán con" mà là một vòng lặp cập nhật trạng thái. Với những bài như vậy, công cụ tự nhiên là **bất biến**: một tính chất của trạng thái mà ta chứng minh đúng lúc khởi đầu và được bảo toàn qua mỗi bước cập nhật. Khi vòng lặp dừng, bất biến cộng với điều kiện dừng của thuật toán cho ta nghiệm tối ưu. Điều làm nên một bất biến tốt là nó phải **nén** được toàn bộ những gì cần biết về quá khứ vào một lượng thông tin nhỏ -- thường chỉ là một, một vài con số hay một đoạn.
 
 ### Bài tập: [Missing Coin Sum - CSES](https://cses.fi/problemset/task/2183)
 
@@ -278,10 +334,6 @@ $\Rightarrow$ Ta vẫn tạo được mọi giá trị từ $1$ đến $S_{i+1}$
 2. $c_{i+1} > S_i + 1$. Ta có $S_i + 1$ không nằm trong đoạn $[0, S_i]$ và $S_i + 1$ nhỏ hơn $c_{i+1}$ (theo giả thiết trường hợp này), nên nó cũng không nằm trong đoạn $[c_{i+1}, S_{i+1}]$. Suy ra không có cách nào tạo ra được $S_i + 1$. Theo giả thiết quy nạp, ta đã có cách tạo được hết các giá trị $1 \dots S_i$, nên $S_i + 1$ chính là giá trị nhỏ nhất không thể tạo được. Ta có điều phải chứng minh.
 :::
 
-### Bài tập: Missing Coin Sum Queries - CSES
-
-Vẫn $n$ đồng xu $x_1, \dots, x_n$ như trên, nhưng có thêm $q$ truy vấn, mỗi truy vấn cho một đoạn $[a, b]$ và hỏi: nếu chỉ dùng các đồng xu $x_a, \dots, x_b$ thì tổng nhỏ nhất không tạo được là bao nhiêu ? 
-
 
 ## Exchange Argument - Lập luận hoán đổi
 
@@ -293,14 +345,14 @@ Trước khi vào ví dụ, ta phát biểu bổ đề mà mọi lập luận ho
 
 **Bổ đề.** Giả sử ta có một quan hệ "$x$ nên đứng trước $y$" giữa các phần tử, thoả hai điều kiện: 
 
-1. Nó là một quan hệ thứ tự hợp lệ, tức có thể sắp xếp theo nó (chính xác là strict weak ordering, xem mục Kĩ thuật cài đặt)
+1. Nó là một quan hệ thứ tự hợp lệ (strict weak ordering)
 2. Trong bất kỳ dãy nào, đổi chỗ hai phần tử **kề nhau** đang đứng sai thứ tự không làm đáp án xấu đi. 
 
 Khi đó dãy đã sắp xếp theo quan hệ này là tối ưu.
 
-**Chứng minh.** Lấy một dãy tối ưu bất kỳ. Nếu nó chưa được sắp xếp, phải tồn tại hai phần tử kề nhau đứng sai thứ tự (nếu mọi cặp kề đều đúng thứ tự thì theo tính bắc cầu cả dãy đã đúng thứ tự). Đổi chỗ cặp đó: theo (2) đáp án không xấu đi, nên dãy mới vẫn tối ưu, và số cặp nghịch thế giảm đi đúng một. Lặp lại, sau hữu hạn bước ta thu được dãy đã sắp xếp mà vẫn tối ưu. Ta có điều phải chứng minh.
+**Chứng minh.** Lấy một dãy tối ưu bất kỳ. Nếu nó chưa được sắp xếp, phải tồn tại hai phần tử kề nhau đứng chưa đúng thứ tự (nếu mọi cặp kề đều đúng thứ tự thì theo tính bắc cầu cả dãy đã đúng thứ tự). Ta đổi chỗ cặp đó: theo (2) đáp án không xấu đi, nên dãy mới vẫn tối ưu, và số cặp nghịch thế (tính theo quan hệ) giảm đi đúng một. Lặp lại thao tác trên sau hữu hạn bước ta thu được dãy đã sắp xếp theo quan hệ mà vẫn tối ưu. Ta có điều phải chứng minh.
 
-Vậy việc còn lại ở mỗi bài chỉ là: viết ra điều kiện để "$x$ trước $y$" tốt hơn "$y$ trước $x$" khi chúng kề nhau, rồi kiểm tra điều kiện đó có phải một quan hệ thứ tự hợp lệ hay không. Điều kiện thứ hai hay bị bỏ qua, và ví dụ dưới đây sẽ minh hoạ điều này:
+Để áp dụng Exchange Argument trong các bài toán, ta cần chỉ ra điều kiện để "$x$ trước $y$" tốt hơn "$y$ trước $x$" khi chúng kề nhau, rồi sau đó phải kiểm tra điều kiện đó có phải một quan hệ thứ tự hợp lệ hay không. Điều kiện thứ hai hay bị bỏ qua, và ví dụ dưới đây sẽ minh hoạ điều này.
 
 ### Ví dụ: Chia vàng (NOIP Trung Quốc 2012)
 
@@ -321,17 +373,17 @@ Thứ tự $(i, i + 1)$ không tệ hơn thứ tự $(i + 1, i)$ khi và chỉ k
 
 $$\max \left(\dfrac{m}{b_i}, \dfrac{m \times a_i}{b_{i + 1}} \right) \le \max \left (\dfrac{m}{b_{i + 1}}, \dfrac{m \times a_{i + 1}}{b_i} \right)$$
 
-tương đương với (nhân hai vế với $b_i b_{i+1} / m$):
+tương đương với (nhân hai vế với $\frac{b_i b_{i+1}}{m}$):
 
 $$\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$$
 
-Phép làm tròn xuống không ảnh hưởng, vì $\max$ của các số đã làm tròn bằng làm tròn của $\max$.
 
-Đến đây, việc dùng luôn bất đẳng thức trên làm hàm so sánh khi cài đặt sắp xếp có thể dẫn đến kết quả sai vì đây **không phải** một quan hệ thứ tự hợp lệ: chẳng hạn với ba ông quan $(1, 2), (1, 12), (2, 3)$, cặp thứ nhất và thứ hai "bằng nhau" theo bất đẳng thức, cặp thứ hai và thứ ba cũng "bằng nhau", nhưng để tối ưu thì $(1, 2)$ lại phải đứng hẳn trước $(2, 3)$.
 
-Cách sửa là tìm một khoá sắp xếp thực sự. Ta chứng minh: **sắp xếp theo $a_i b_i$ tăng dần** thì mọi cặp kề nhau đều thoả bất đẳng thức trên. Thật vậy, nếu $a_i b_i \le a_{i+1} b_{i+1}$ thì $a_i b_i \le a_{i+1} b_{i+1} \le \max(b_i, a_{i+1} b_{i+1})$, và $b_{i+1} \le a_{i+1} b_{i+1} \le \max(b_i, a_{i+1} b_{i+1})$ (do $a_{i+1} \ge 1$). Vậy $\max(b_{i+1}, a_i b_i) \le \max(b_i, a_{i+1} b_{i+1})$. Theo bổ đề ở trên, thứ tự sắp theo $a_i b_i$ tăng dần là tối ưu. Ta có điều phải chứng minh.
+Đến đây, việc dùng luôn bất đẳng thức trên làm hàm so sánh khi cài đặt sắp xếp có thể dẫn đến kết quả sai vì đây **không phải** một quan hệ thứ tự hợp lệ: chẳng hạn với ba ông quan $(1, 2), (1, 12), (2, 3)$, cặp thứ nhất và thứ hai "bằng nhau" theo bất đẳng thức, cặp thứ hai và thứ ba cũng "bằng nhau", nhưng để tối ưu thì $(1, 2)$ lại phải đứng ngay trước $(2, 3)$.
 
-Trong thực tế, khi cài đặt, ta sắp xếp theo tích $a_i b_i$ rồi duyệt một lượt để tính đáp án.
+Để giải quyết vấn đề này, ta cần tìm một khoá sắp xếp thực sự ứng với mỗi phân tử. Ta chứng minh bổ đề sau: **sắp xếp theo $a_i b_i$ tăng dần** thì mọi cặp kề nhau đều thoả bất đẳng thức trên. Thật vậy, nếu $a_i b_i \le a_{i+1} b_{i+1}$ thì $a_i b_i \le a_{i+1} b_{i+1} \le \max(b_i, a_{i+1} b_{i+1})$, và $b_{i+1} \le a_{i+1} b_{i+1} \le \max(b_i, a_{i+1} b_{i+1})$ (do $a_{i+1} \ge 1$). Do đó suy ra $\max(b_{i+1}, a_i b_i) \le \max(b_i, a_{i+1} b_{i+1})$ (điều phải chứng minh). 
+
+Tổng kết lại, thứ tự sắp xếp theo $a_i b_i$ tăng dần là tối ưu. Khi cài đặt, ta chỉ cần sắp xếp theo tích $a_i b_i$ rồi duyệt một lượt để tính đáp án.
 
 :::
 
@@ -430,16 +482,16 @@ int main() {
 
 ##  Regrettable Greedy - Sửa lại lựa chọn
 
-Có một số lúc mà việc ta liên tục tham lam tối ưu hoá lựa chọn ở hiện tại có thể vi phạm ràng buộc của bài toán hoặc bị chệch ra khỏi nghiệm tối ưu. Nhưng bằng việc tạo ra cơ chế để sửa lại lựa chọn thì lại có thể đạt được lời giải không chỉ hợp lệ và tối ưu, mà còn đẹp và tinh tuý.
+Ta đã biết rằng thuật toán tham lam sẽ không bao giờ xét lại các lựa chọn đã đưa ra. Tuy nhiên, ở cấp độ nâng cao hơn, Regrettable Greedy là một dạng thuật toán **vẫn mang bản chất tham lam** - tại mỗi bước, thuật toán vẫn luôn đưa ra một quyết định tối ưu cục bộ ngay lập tức. Nhưng ngoài ra, nó có một cơ chế cho phép **"hối tiếc" (Regret)**: nếu ở các bước sau, thuật toán nhận ra quyết định tham lam trước đó làm ảnh hưởng đến kết quả toàn cục, nó có một cơ chế đặc biệt cho phép thu hồi một phần quyết định cũ để nhường chỗ cho lựa chọn tốt hơn.
 
 ### Ví dụ: [Time Travel](https://codeforces.com/group/7Dn3ObOpau/contest/513385/problem/A)
 
 Cho một mảng các số **nguyên dương**. Tìm cách gán dấu âm cho nhiều phần tử nhất có thể sao cho vẫn đảm bảo **mọi tổng tiền tố** của mảng đều **dương**.
 
 :::spoiler Ý tưởng và lời giải
-Khi duyệt qua từng phần tử của mảng, ta ban đầu luôn ưu tiên gán dấu âm cho nó để tăng số lượng phần tử âm, đồng thời đẩy giá trị âm này vào một Priority Queue và cập nhật tổng tiền tố hiện tại.
+Khi duyệt qua từng phần tử của mảng, ta ban đầu luôn ưu tiên gán dấu âm cho nó để tăng số lượng phần tử âm, đồng thời đẩy giá trị âm này vào một Priority Queue min (do đó sẽ trả về số âm có giá trị tuyệt đối lớn nhất) và cập nhật tổng tiền tố hiện tại.
 
-Nếu tại bất kỳ bước nào việc đổi dấu vi phạm điều kiện tổng tiền tố dương, ta có thể quay lại, đưa những phần tử ta vừa gán dấu âm trước đó về như cũ. Để tối ưu thì ta sẽ chọn số âm trong Priority Queue đang có giá trị tuyệt đối lớn nhất và đổi lại nó về dương, khi này ta sẽ có nhiều khả năng hơn để gán dấu âm cho các phần tử tiếp theo.
+Nếu tại bất kỳ bước nào việc đổi dấu vi phạm điều kiện tổng tiền tố dương, ta có thể quay lại, đưa những phần tử ta vừa gán dấu âm trước đó về như cũ. Để tối ưu thì ta sẽ chọn số âm trong Priority Queue đang có giá trị tuyệt đối lớn nhất và đổi lại nó về dương, khi này ta sẽ có nhiều khả năng hơn để gán dấu âm cho các phần tử tiếp theo. Để ý rằng ta chỉ cần đổi đúng một phần tử là đủ: phần tử bị đổi có giá trị tuyệt đối không nhỏ hơn phần tử vừa thêm, nên tổng tiền tố sau khi đổi ít nhất bằng tổng tiền tố ở bước trước, vốn đã dương.
 
 Sau khi duyệt hết mảng, số lượng phần tử còn lại trong Priority Queue chính là số lượng số âm tối đa thỏa mãn đề bài. Độ phức tạp là $\mathcal{O}(N \log N)$.
 :::
@@ -451,12 +503,11 @@ Sau khi duyệt hết mảng, số lượng phần tử còn lại trong Priorit
 Bạn có thông tin giá cổ phiếu của $N$ ngày tiếp theo. Mỗi ngày bạn có thể chọn bán 1 đơn vị cổ phiếu với giá của ngày hôm đó, hoặc mua tích trữ 1 đơn vị cổ phiếu với giá của ngày hôm đó để bán sau, hoặc không làm gì. Lúc bắt đầu bạn không có cổ phiếu và sau $N$ ngày phải giao dịch được hết cổ phiếu đang có. Hỏi lợi nhuận tối đa thu được là bao nhiêu?
 
 :::spoiler Ý tưởng và lời giải
-Đây là bài toán kinh điển của kĩ thuật Quản lý đồ thị hàm Quy hoạch động (hay còn gọi là Slope Trick). Tuy nhiên bài toán này lại có 1 góc nhìn khác, một hướng giải rất đẹp bằng kĩ thuật sửa lại lựa chọn (và cách cài đặt trùng hợp thay lại rất giống Slope Trick).
 
 Trong bài toán này, chúng ta sẽ "thử" giao dịch nếu thấy có lãi, nhưng sẽ lưu lại thông tin để hoàn tác giao dịch này và sửa sai trong tương lai. Ta dựng một Priority Queue thể hiện danh sách quyền mua. Tại ngày $i$ với giá $p_i$, ta làm như sau:
 
 1. Ta luôn coi $p_i$ là một cơ hội mua tiềm năng và thêm vào PQ. Nếu $p_i$ lớn hơn quyền mua thấp nhất hiện có trong quá khứ ($p_{min}$), ta thực hiện khớp lệnh mua tại $p_{min}$ và bán tại $p_i$ để kiếm lời ngay lập tức: $p_i - p_{min}$. Việc ưu tiên chọn $p_{min}$ để khớp lệnh là chiến lược tốt nhất vì nó không chỉ tối đa hóa lợi nhuận tức thời mà còn an toàn hơn về điều kiện giao dịch (vì $p_{min}$ dễ khớp lệnh hơn). Quan trọng nhất, việc "chốt lãi" sớm này không làm mất nghiệm tối ưu toàn cục, bởi bất kỳ lợi ích tiềm năng nào của việc để dành $p_{min}$ cho tương lai đều có thể được bù đắp bởi cơ chế sửa sai ở bước sau.
-2. Đây là điểm mấu chốt. Khi ta quyết định khớp lệnh mua ở $p_{min}$ với lệnh bán ở $p_i$, ta vẫn đẩy $p_i$ lại vào PQ. Thao tác này đóng vai trò như một công cụ toán học biến đổi trạng thái từ "vừa bán tại $p_i$" thành một "quyền mua ảo tại $p_i$". Nếu trong tương lai xuất hiện giá bán lời hơn $p_j > p_i$, ta sẽ dùng chính quyền mua ảo này để khớp lệnh (sửa lại lựa chọn). Khi đó, tổng lợi nhuận của chuỗi giao dịch sẽ là tổng đại số: $(p_i - p_{min}) + (p_j - p_i) = p_j - p_{min}$. Điều này chứng tỏ việc sửa lại lựa chọn tương đương với việc ta đã đưa ra quyết định đúng đắn (bán ở $p_j$) ngay từ đầu mà không vi phạm ràng buộc nào của bài toán.
+2. Khi ta quyết định khớp lệnh mua ở $p_{min}$ với lệnh bán ở $p_i$, **ta vẫn đẩy $p_i$ lại vào PQ**. Thao tác này đóng vai trò như một công cụ toán học biến đổi trạng thái từ "vừa bán tại $p_i$" thành một "quyền mua ảo tại $p_i$". Nếu trong tương lai xuất hiện giá bán lời hơn $p_j > p_i$, ta sẽ dùng chính quyền mua ảo này để khớp lệnh (sửa lại lựa chọn). Khi đó, tổng lợi nhuận của chuỗi giao dịch sẽ là tổng đại số: $(p_i - p_{min}) + (p_j - p_i) = p_j - p_{min}$. Tức là việc sửa lại lựa chọn tương đương với việc ta đã đưa ra quyết định lời hơn (bán ở $p_j$) ngay từ đầu mà không vi phạm ràng buộc nào của bài toán.
 :::
 
 :::spoiler Cài đặt
@@ -513,10 +564,29 @@ int main() {
 
 :::
 
-:::spoiler Bonus
+:::spoiler Đọc thêm: Liên hệ với bài toán Luồng cực đại
 
-Vì có cùng bản chất, kĩ thuật sửa lại lựa chọn có thể được chứng minh và tổng quát hoá bằng việc mô hình hoá bài toán thành dạng luồng cực đại chi phí cực tiểu. Ngược lại, trong bài toán mà đồ thị luồng min-cost dựng ra có dạng đặc biệt, ta có thể giải nó một cách hiệu quả bằng kĩ thuật sửa lại lựa chọn với độ phức tạp thấp hơn hẳn. Các bạn có thể đọc thêm về chuyên đề này trong tài liệu phụ lục.
+Kĩ thuật sửa lại lựa chọn này có liên hệ với bài toán tìm luồng cực đại (và thậm chí là luồng min-cost). Cách làm ngây thơ (và sai) là lặp lại việc tìm một đường đi bất kì từ nguồn đến đích còn sức chứa, rồi đẩy luồng theo đường đó. Một phản ví dụ có thể kể đến là xét đồ thị bốn đỉnh $s, u, v, t$ với các cạnh $s \to u$, $s \to v$, $u \to t$, $v \to t$ đều có sức chứa 1 và thêm cạnh $u \to v$ sức chứa 1. Nếu đường đầu tiên tìm được là $s \to u \to v \to t$, ta đẩy được 1 đơn vị và sau đó không còn đường nào: $s \to u$ đã đầy, $v \to t$ đã đầy. Nhưng luồng cực đại là 2 ($s \to u \to t$ và $s \to v \to t$).
 
+Thuật toán cơ bản và dễ tiếp cận nhất của bài toán luồng cực đại là Ford-Fulkerson sửa điều này bằng cách thêm **cạnh ngược**: mỗi khi đẩy $f$ đơn vị qua cạnh $u \to v$, ta thêm cạnh ngược $v \to u$ với sức chứa $f$. Đường tăng luồng đi qua cạnh ngược có nghĩa là "rút lại" một phần luồng đã đẩy trước đó. Trong ví dụ trên, sau bước đầu ta có đường $s \to v \to u \to t$, trong đó $v \to u$ là cạnh ngược: nó huỷ quyết định đẩy luồng qua $u \to v$, và kết quả là hai đường $s \to u \to t$, $s \to v \to t$ như mong muốn. Toàn bộ mục này là những bài toán mà ta có thể cài đặt một cơ chế "cạnh ngược" như vậy một cách gọn hơn nhiều so với việc dựng đồ thị luồng thật sự.
+
+:::
+
+## Tham lam và tìm kiếm nhị phân
+
+Một kiểu mẫu rất phổ biến khác trong lập trình thi đấu là tham lam không đứng một mình mà đóng vai trò hàm kiểm tra cho tìm kiếm nhị phân. Nếu đáp án có tính đơn điệu -- "làm được với $X$" kéo theo "làm được với mọi $X' \ge X$" -- thì ta có thể giải bài toán bằng tìm kiếm nhị phân trên $X$, với mỗi $X$ cần trả lời nhanh câu hỏi có/không. Câu hỏi có/không này thường dễ hơn hẳn bài toán tìm $X$ tối ưu ban đầu, và tham lam là một trong những công cụ tự nhiên để trả lời nó.
+
+### Ví dụ: Array Division - CSES
+
+Cho mảng $n$ số nguyên dương, chia mảng thành $k$ đoạn liên tiếp sao cho tổng lớn nhất trong các đoạn là nhỏ nhất. In ra tổng nhỏ nhất này.
+
+:::spoiler Lời giải và chứng minh
+
+Ta giải bài toán này bằng tìm kiếm nhị phân đáp án. Với $X$ cố định, câu hỏi là: có chia được thành không quá $k$ đoạn, mỗi đoạn tổng $\le X$ hay không? Ta có thể giải bài toán này bằng tham lam đơn giản: duyệt từ trái sang phải, cứ thêm phần tử vào đoạn hiện tại chừng nào tổng còn $\le X$, nếu không được nữa thì mở đoạn mới. Nếu số đoạn $\le k$ thì trả lời có. (Chia được thành ít đoạn hơn $k$ thì cũng chia được thành đúng $k$ đoạn, bằng cách tách nhỏ một đoạn nào đó.) 
+
+Vì sao tham lam trả lời đúng? Gọi $r_1 < r_2 < \dots$ là các vị trí kết thúc đoạn của tham lam, và $r'_1 < r'_2 < \dots$ là của một cách chia hợp lệ bất kỳ. Ta chứng minh $r_j \ge r'_j$ với mọi $j$ bằng quy nạp: đoạn thứ $j$ của tham lam bắt đầu tại $r_{j-1} + 1 \ge r'_{j-1} + 1$, tức không sớm hơn đoạn thứ $j$ của cách chia kia. Vì các phần tử đều dương, đoạn $[r_{j-1} + 1, r'_j]$ là một phần của đoạn $[r'_{j-1} + 1, r'_j]$ nên có tổng $\le X$, và tham lam kéo dài tối đa nên kết thúc không sớm hơn $r'_j$. Do đó tham lam dùng số đoạn ít nhất trong mọi cách chia hợp lệ; nếu tham lam cần nhiều hơn $k$ đoạn thì không có cách chia mảng thoả mãn.
+
+Độ phức tạp của bài toán là $O(n \log \sum a_i)$.
 :::
 
 ## Kĩ thuật cài đặt
@@ -540,15 +610,26 @@ với `func` là hàm so sánh (comparator) tuỳ chọn giữa 2 phần tử b�
 
 ```cpp=
 struct Info {
-  int a, b;
-  bool operator<(const Info &x) const {
-    return max(x.b, a * b) < max(b, x.a * x.b);
-  } // so sánh phần tử này với một phần tử khác (gọi là x)
+    int a, b;
+    bool operator<(const Info &x) const {
+        return 1LL * a * b < 1LL * x.a * x.b;
+    } // so sánh phần tử này với một phần tử khác (gọi là x)
 };
 ```
 
-> **Lưu ý**
-> Nếu hai phần tử được so sánh bằng nhau, thì cài đặt hàm so sánh **phải trả về `false`**, nếu không thứ tự các phần tử có thể không khớp với thứ tự so sánh.
+### Hàm so sánh phải là thứ tự nghiêm ngặt dạng yếu (strict weak ordering)
+
+Hàm so sánh `cmp(x, y)` (đọc là "$x$ phải đứng trước $y$" hay $x < y$) dùng cho `std::sort` và các cấu trúc STL phải là một **thứ tự yếu nghiêm ngặt** (strict weak ordering), tức thoả mãn ba điều kiện:
+
+1. Không phản xạ: `cmp(x, x)` luôn là `false`. Nói riêng, hai phần tử "bằng nhau" thì hàm so sánh **phải trả về `false`**.
+2. Bắc cầu: `cmp(x, y)` và `cmp(y, z)` kéo theo `cmp(x, z)`.
+3. Quan hệ "không so sánh được" (cả `cmp(x, y)` và `cmp(y, x)` đều `false`) cũng phải bắc cầu.
+
+Điều kiện thứ ba là điều kiện hay bị quên nhất. Hàm so sánh $\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$ rút thẳng từ bất đẳng thức của bài Chia vàng vi phạm đúng điều kiện này: với $(a, b) = (1, 2), (1, 12), (2, 3)$, phần tử thứ nhất và thứ hai không so sánh được, thứ hai và thứ ba không so sánh được, nhưng thứ nhất lại nhỏ hơn thứ ba. 
+
+> Qua kiểm nghiệm của tác giả, khi thử trên các bộ dữ liệu nhỏ và so với vét cạn, hàm so sánh này cho đáp án sai ở khoảng 0.2% số test -- đủ hiếm để qua được các test ví dụ sơ sài, và đủ nhiều để không qua được bộ test chính thức (vốn sẽ được sinh nhiều trường hợp hiểm). Do đó việc viết hàm so sánh sai có thể gây ra lỗi rất khó debug (nhất là trong ICPC khi bạn phải đúng tất cả các test hiểm thì mới qua được bài).
+
+Vi phạm thứ tự yếu nghiêm ngặt có thể gây ra hành vi không xác định (undefined behavior) trong C++: `std::sort` có thể cho thứ tự sai, và trong một số cài đặt thậm chí truy cập ngoài mảng, do đó sẽ khó debug hơn bình thường. Cách phòng tránh tốt nhất là đưa hàm so sánh về dạng so sánh một khoá `f(x) < f(y)` như đã bàn ở mục Exchange Argument.
 
 ### Sử dụng STL
 
@@ -561,7 +642,7 @@ Chẳng hạn, `priority_queue` bình thường sẽ luôn trả về phần t�
 
 Khi khai báo 1 struct, việc định nghĩa phép toán thứ tự `<` hoặc `>` trong struct sẽ giúp ta có thể sử dụng chúng ngay lập tức trong các cấu trúc dữ liệu STL.
 
-Đối với C++11 trở đi, ngoài cách khai báo functor như ở trên, ta có thể khai báo dưới dạng lambda rất gọn và nhúng vào bằng từ khoá `decltype` (declared type):
+Đối với C++11 trở đi, ngoài cách khai báo functor như ở trên, ta có thể khai báo dưới dạng lambda rất gọn và nhúng vào bằng từ khoá `decltype` (declared type). Lưu ý với các chuẩn C++ trước C++20 (từ C++11 đến C++17), ta phải truyền lambda vào constructor khi khai báo cấu trúc dữ liệu do ở các chuẩn đó lambda không có constructor mặc định:
 
 ```cpp
 auto cmp = [](int a, int b) { return ... };
@@ -588,7 +669,7 @@ Giới hạn: $s \le 10^9, q \le 2 \times 10^5, 1 \le l, v \le 10^6$.
 
 :::spoiler Lời giải
 
-Qua cảm nhận, ta có thể rút ra 2 nhận xét tham lam đầu tiên về đáp án tối ưu:
+Trước tiên ta có thể rút ra 2 nhận xét tham lam đầu tiên về đáp án tối ưu:
 
 1. Nếu 2 tàu có cùng vận tốc, thì chúng có thể đi nối đuôi nhau như là 1 tàu (vẫn thoả mãn điều kiện không xảy ra tai nạn), nên ta có thể giả sử vận tốc của tất cả các tàu đều khác nhau.
 2. Để tối thiểu hoá tổng thời gian, các tàu cần di chuyển nối tiếp nhau khít nhất có thể, tàu chậm sẽ đi trước, rồi sau một khoảng thời gian tối ưu ta sẽ cho tàu nhanh hơn xuất phát và đuổi theo sau. Một cách để chứng minh nhận xét này, là tàu đi sau đã tận dụng triệt để khoảng thời gian tàu đi trước chiếm dụng đường ray để tranh thủ di chuyển được một khoảng cách nhất định.
@@ -605,6 +686,10 @@ $$
 $$
 \dfrac{s}{v_1} - \dfrac{s}{v_n} + \sum_{i = 1}^{n - 1} \dfrac{l_i}{v_i} + \dfrac{s + l_n}{v_n} = \dfrac{s}{v_1} + \sum_{i = 1}^{n} \dfrac{l_i}{v_i}
 $$
+
+Để khẳng định nó tối ưu, ta cần chỉ ra một cách xếp lịch đạt được cận dưới này. Gọi $T_1$ là tàu chậm nhất. Các tàu xuất phát trước $T_1$: đuôi của mỗi tàu phải rời vạch xuất phát trước khi mui tàu kế tiếp chạm vạch (nếu không hai tàu chồng lên nhau ngay tại vạch), nên tàu $i$ chiếm vạch xuất phát ít nhất $\frac{l_i}{v_i}$, và $T_1$ xuất phát không sớm hơn tổng các $\frac{l_i}{v_i}$ đó. Bản thân $T_1$ cần thêm $\frac{s + l_1}{v_1}$ để ra khỏi đường ray. Các tàu xuất phát sau $T_1$ đều nhanh hơn nó, mui của chúng luôn nằm sau đuôi $T_1$, nên chúng chỉ băng qua vạch kết thúc sau khi $T_1$ đã ra hẳn; tại vạch kết thúc mỗi lúc chỉ có một tàu băng qua và tàu $i$ chiếm vạch đúng $\frac{l_i}{v_i}$. Cộng lại, tổng thời gian $\ge \frac{s}{v_1} + \sum_{i = 1}^{n} \frac{l_i}{v_i}$ với mọi cách sắp xếp. Vậy công thức là tối ưu.
+
+Để ý rằng chặn dưới không phụ thuộc thứ tự của các tàu khác ngoài $T_1$: thật ra cho tàu nhanh đi trước cũng đạt được đúng giá trị này. Nhận xét "tàu chậm đi trước" chỉ là một cách dựng, không phải điều bắt buộc.
 
 Do đó ta chỉ cần duy trì 2 giá trị sau qua các thao tác thêm và xoá tàu khỏi danh sách:
 1. Vận tốc $v_1$ của tàu chậm nhất trong danh sách hiện tại, có thể dùng `multiset` hoặc `priority queue`.
@@ -639,7 +724,7 @@ $$ f(m) = \sum_{i = 1}^{n} \left \lceil \frac{l_i}{m} \right \rceil + [l_i \bmod
 $[x]$ là kí hiệu Iverson của biểu thức boolean $x$, với $[x] = 1$ nếu $x$ đúng và $0$ nếu $x$ sai.
 
 2. Ta nhận thấy rằng đáp án tối ưu có cận dưới và cận trên hiển nhiên là $n$ và $2n - 1$. Cận dưới xảy ra khi toàn bộ $l_i$ bằng nhau, khi đó ta chọn $m = l_i$, còn cận trên xảy ra khi ta cho $m = l_n$. 
-3. $f(m)$ tối ưu khi và chỉ khi $m$ là một trong các $l_i$. Thật vậy, giả sử giá trị $m$ tối ưu là $m_1$ không trùng với bất cứ $l_i$ nào. Khi này với các $l_i < m_1$ thì ta sẽ mất đúng $2$ giây để đi qua, còn với $l_i > m_1$ thì ta sẽ mất ít nhất $2$ giây để đi qua. Do đó $f(m_1) \ge 2n > 2n - 1 \ge f(l_n)$. do đó $m_1$ không tối ưu. Ta có điều phải chứng minh.
+3. Luôn tồn tại $m$ tối ưu là một trong các $l_i$, nên ta chỉ cần xét $m \in \{l_1, l_2, \dots, l_n\}$. Thật vậy, giả sử giá trị $m$ tối ưu là $m_1$ không trùng với bất cứ $l_i$ nào. Khi này với các $l_i < m_1$ thì ta sẽ mất đúng $2$ giây để đi qua, còn với $l_i > m_1$ thì ta sẽ mất ít nhất $2$ giây để đi qua. Do đó $f(m_1) \ge 2n > 2n - 1 \ge f(l_n)$, mâu thuẫn với việc $m_1$ tối ưu. Ta có điều phải chứng minh.
 
 Nhận xét thứ 3 gợi ý rằng chúng ta cần duyệt qua tất cả các $l_i$ khác nhau và tính nhanh được $f(l_i)$. Chúng ta chia mảng thành 3 phần:
 
@@ -732,78 +817,19 @@ int main() {
 
 Ý tưởng tóm gọn như sau: Ở một thời điểm bất kì, giá trị của `min_total_time` là ngưỡng quyết định xem `l[i]` hiện tại có tối ưu hơn không. Để có thể quyết định nhanh, ta duyệt qua các giá trị từ lớn đến nhỏ, nếu đến một lúc nào đó `current_time` lớn hơn ngưỡng tối ưu hiện tại thì ta có thể loại luôn `l[i]`.
 
-Độ phức tạp của 2 vòng lặp khi này không phải $\mathcal{O}(n^2)$ mà là $\mathcal{O}(n)$. Để chứng minh nhận định này, ta sẽ đánh giá về tổng số lần duyệt trung bình cần để kết thúc thuật toán:
+Độ phức tạp của 2 vòng lặp khi này không phải $\mathcal{O}(n^2)$ mà là $\mathcal{O}(n)$. Thật vậy, xét một độ dài phân biệt $m$ với tần suất $\texttt{freq}(m)$:
 
-1. Với mỗi độ dài phân biệt $m = l_i$, tất cả các hành lang có độ dài thuộc 2 khoảng $(m, 2m)$ và $(2m, +\infty)$ sẽ tốn $\ge 3$ giây để di chuyển.
-2. Số hành lang có thể di chuyển trong $1$ giây là $\texttt{freq}(m)$, còn lại với độ dài $l = 2m$ ta sẽ tốn đúng $2$ giây để di chuyển.
-3. Từ 2 điều trên, kết hợp với nhận xét 3 đã chứng minh, ta thấy rằng với mỗi $m$ phân biệt, ta sẽ chỉ duyệt qua nhiều nhất là $\texttt{freq}(m) + \texttt{freq}(2m)$ giá trị $> m$ để biết được là $m$ đang xét có tối ưu hơn không.
+1. `current_time` khởi đầu bằng $2n - \texttt{freq}(m)$ (mọi hành lang $> m$ được tạm tính $2$ giây).
+2. `min_total_time` luôn $\le 2n - 1$ sau lần xét đầu tiên (nhận xét 2).
+3. Mỗi hành lang có độ dài $l > m$ và $l \ne 2m$ tốn ít nhất $3$ giây: nếu $m < l < 2m$ thì $\lceil l/m \rceil = 2$ và không chia hết, nếu $l > 2m$ thì $\lceil l/m \rceil \ge 3$. Mỗi hành lang như vậy cộng thêm ít nhất $1$ vào `current_time`. Hành lang $l = 2m$ tốn đúng $2$ giây, cộng thêm $0$.
 
-Do đó độ phức tạp của bước tính này là $\sum \texttt{freq}(m) + \texttt{freq}(2m)$ với mọi $m$ phân biệt của mảng và là $\mathcal{O}(n)$. Độ phức tạp cuối cùng của bài là $\mathcal{O}(n \log n)$ do sắp xếp.
+Do đó sau khi duyệt qua không quá $\texttt{freq}(m)$ hành lang loại thứ nhất, `current_time` đã đạt `min_total_time` và vòng lặp trong dừng; xen giữa có thể có thêm không quá $\texttt{freq}(2m)$ hành lang loại thứ hai. Vậy với mỗi $m$ phân biệt, vòng lặp trong chạy không quá $\texttt{freq}(m) + \texttt{freq}(2m) + 1$ lần, và tổng đại lượng này trên mọi $m$ phân biệt là $\mathcal{O}(n)$. Độ phức tạp cuối cùng của bài là $\mathcal{O}(n \log n)$ do sắp xếp.
 
 :::
 
 ## Lời kết
 
-Tham lam không chỉ là một dạng bài. Nó là một hệ tư tưởng luôn len lỏi trong giải thuật, và có thể xuất hiện bất cứ đâu trong các bài toán, trong một bước, nhiều bước giải hoặc toàn bộ bài toán. Đây thường là phần hay, độc đáo trong các kì thi, thử thách sự nhanh nhạy, kinh nghiệm và sáng tạo của thí sinh, cũng như trí tuệ của người ra đề. Hi vọng bài viết này đã phần nào đó truyền tải được nét đẹp của tư tưởng tham lam, để các bạn hào hứng chinh phục những bài toán hay hơn và khó hơn trong tương lai.
-
-### Ví dụ: Cực tiểu hoá tổng
-
-Cho một mảng $N$ số $a_1 \le a_2 \le \dots \le a_n$. Tìm $x$ sao cho biểu thức sau đạt giá trị nhỏ nhất:
-
-$$S = \sum_{i = 1}^{N} |a_i - x|^k$$
-
-Ta sẽ tập trung vào hai trường hợp cơ bản và phổ biến nhất, có nhiều ứng dụng trong các bài toán: $k = 1$ và $k = 2$.
-
-#### Trường hợp 1: $k = 1, S = \sum_{i = 1}^{N} |a_i - x|$
-
-Giá trị $x$ tối ưu khi này nằm trong **khoảng trung vị** của mảng $a$. Nói như vậy vì khi $n$ chẵn thì mảng sẽ có 2 trung vị, khi này tất cả $x$ nằm giữa 2 trung vị này cũng sẽ tối ưu. Nếu $n$ lẻ thì $x$ là trung vị đúng của mảng.
-
-:::spoiler Chứng minh
-Ta viết lại tổng $S$ bằng cách gom cặp các phần tử đầu và cuối:
-
-$$
-S = (|x - a_1| + |x - a_n|) + (|x - a_2| + |x - a_{n-1}|) + \dots
-$$
-
-Xét một cặp bất kỳ $(a_i, a_j)$ với $a_i \le a_j$. Theo bất đẳng thức giá trị tuyệt đối, ta luôn có:
-
-$$
-|x - a_i| + |x - a_j| = |x - a_i| + |a_j - x| \ge |a_j - a_i|
-$$
-
-Dấu "$=$" xảy ra khi và chỉ khi $a_i \le x \le a_j$. Do đó để $S$ nhỏ nhất toàn cục, $x$ phải thỏa mãn dấu bằng xảy ra cho tất cả các cặp $(a_1, a_n), (a_2, a_{n-1}), \dots$ 
-
-Điều này nghĩa là $x$ phải thuộc giao của tất cả các đoạn $[a_i, a_{n-i+1}]$. Giao của các đoạn lồng nhau này chính là trung vị của mảng (nếu $n$ lẻ) hoặc khoảng trung vị của mảng (nếu $n$ chẵn). Tổng kết lại, ta có $x$ phải nằm trong khoảng trung vị của dãy $a$, tức điều phải chứng minh.
-:::
-
-<center>
-<img src="https://hackmd.io/_uploads/ByeQnGSCxl.png">
-
-
-<i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, hai đường thẳng màu xanh thể hiện hai trung vị của dãy</i>
-</center>
-
-#### Trường hợp 2: $k = 2, S = \sum_{i = 1}^{N} (a_i - x)^2$
-
-Giá trị $x$ tối ưu khi này sẽ là **trung bình cộng** của mảng $a$. 
-
-:::spoiler Chứng minh
-Thật vậy, ta khai triển $S$ thành
-
-$$S = nx^2 - 2x \sum a_i + \sum a_i^2$$
-
-Đây là tam thức bậc hai dạng $S = Ax^2 + Bx + C$ với $A = n > 0$ và có dạng một parabol với bề lõm quay lên trên. Theo kiến thức toán lớp 9, đỉnh của parabol ứng với cực tiểu của $S$ đạt tại:
-
-$$
-x = \frac{-B}{2A} = \frac{-(-2 \sum a_i)}{2n} = \frac{2 \sum a_i}{2n} = \frac{\sum a_i}{n}
-$$
-:::
-
-<center>
-<img src="https://hackmd.io/_uploads/rJPE2zrCge.png">
-
-<i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, đường thẳng màu xanh thể hiện trung bình cộng của dãy</i>
-</center>
+Tham lam không chỉ là một dạng bài. Nó là một tư tưởng luôn len lỏi trong giải thuật, và có thể xuất hiện bất cứ đâu trong các bài toán, trong một bước, nhiều bước giải hoặc toàn bộ bài toán. Đây thường là phần hay, độc đáo trong các kì thi, thử thách sự nhanh nhạy, kinh nghiệm và sáng tạo của thí sinh, cũng như trí tuệ của người ra đề. Hi vọng bài viết này đã phần nào đó truyền tải được cái hay của tư tưởng tham lam, để các bạn hào hứng chinh phục những bài toán hay hơn và khó hơn trong tương lai.
 
 
 ## Bài tập vận dụng
@@ -848,5 +874,6 @@ $$
 5. [Chuyên đề tham lam nâng cao - HKOI 2023](https://assets.hkoi.org/training2023/adv-greedy.pdf)
 6. [Lecture 3 - Exchange Argument by Errichto](https://codeforces.com/blog/entry/63533)
 7. [Algorithms Live! - Exchange Argument](https://www.youtube.com/watch?v=Oq1seKJvfQU)
+8. [Kozen, Zaks - Hệ mệnh giá chuẩn tắc](https://www.cs.cornell.edu/~kozen/Papers/change.pdf)
 
 
