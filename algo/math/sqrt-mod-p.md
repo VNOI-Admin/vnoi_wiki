@@ -2,7 +2,7 @@
 title: Căn bậc hai modulo
 description: 
 published: true
-date: 2026-09-04T18:50:14.558Z
+date: 2026-09-04T18:56:22.955Z
 tags: math, number theory
 editor: markdown
 dateCreated: 2024-09-04T06:31:48.123Z
@@ -19,8 +19,10 @@ dateCreated: 2024-09-04T06:31:48.123Z
 $$F_n = \dfrac{1}{\sqrt5}\left[\left(\frac{1 + \sqrt 5}{2}\right)^n - \left(\frac{1 - \sqrt 5}{2}\right)^n \right]$$
 Việc xuất hiện $\sqrt5$ đặt ra nhiều thách thức cho việc tính toán nhanh $F_n$, nhưng đồng thời cũng mở ra những phương pháp mới để chinh phục được bài toán $F_n \bmod p$
 ## Một số định nghĩa
-- Số nguyên dương $a$ được gọi là **thặng dư bình phương** modulo $p$ nếu tồn tại $x$ sao cho $x^2 \equiv a \pmod p$. Khi này, $x$ được gọi là căn bậc hai của $a$ modulo $p$.
-- **Ký hiệu Legendre**: với $p$ là số nguyên tố lẻ
+- Số nguyên dương $a$ được gọi là **thặng dư bình phương** modulo $p$ nếu:
+    $$\exists x:\; x^2 \equiv a \pmod p$$
+    Khi này, $x$ được gọi là căn bậc hai của $a$ modulo $p$.
+- **Ký hiệu Legendre**: với  $p$ là số nguyên tố lẻ
 
 <center>
 
@@ -50,7 +52,6 @@ int legendre_symbol(int a, int p) {
 ## Thặng dư bình phương modulo nguyên tố
 ### Bài toán
 [VNOJ - Số học 1](https://oj.vnoi.info/problem/jacobi)
-
 Tìm tất cả $x$ thỏa mãn phương trình:
 $$x^2 \equiv a \pmod p$$
 - Với $p = 2$, phương trình có đúng $1$ nghiệm: $x \equiv 1 \pmod p$
@@ -135,21 +136,25 @@ int Tonelli_Shanks(int a, int p) {
 
 ## Trường hữu hạn
 ### Định nghĩa
+- Như các bạn đã biết: 
+$$\left(a + b \sqrt k\right)^n = u + v \sqrt k$$
+Trong đó $a, b, u, v, k \in \mathbb{Z}$ và  $\sqrt k \notin \mathbb{Z}$.
+> Bạn đọc có thể thấy nó khá giống số phức, chỉ thay $i = \sqrt{-1}$ bằng $\sqrt k$ mà thôi.
 
-Ta có một kết quả quen thuộc sau: $\left(a + b \sqrt k\right)^n = u + v \sqrt k$. Trong đó $a, b, u, v, k \in \mathbb{Z}$ và  $\sqrt k \notin \mathbb{Z}$. Bạn đọc có thể thấy nó khá giống số phức, chỉ thay $i = \sqrt{-1}$ bằng $\sqrt k$ mà thôi. 
+Mục đích của chúng ta là tính $u, v$ theo $\bmod p$. Như các bạn nghĩ đến, chúng ta sẽ sử dụng phép lũy thừa nhanh và có chút thay đổi cho phù hợp bài toán:
 
-Mục đích của chúng ta là tính $u, v$ theo modulo $p$. Như các bạn nghĩ đến, chúng ta sẽ sử dụng phép lũy thừa nhanh và có chút thay đổi cho phù hợp bài toán:
-
-- Ký hiệu: $\left<a, b\right> = a + b\sqrt k$
+- Ký hiệu: $\langle a, b \rangle = a + b\sqrt{k}$
 - Phần tử đơn vị:
-    $$\left<a, b\right> \times \left<1, 0\right> = \left<a, b\right>$$
-- Xét phép nhân $2$ số
-    $$\begin{align}
-    \left<a, b\right> \times \left<u, v\right> &= \Big<(au + bvk),\; (av+bu)\Big>\\
-    &= \Big<(au + bvk) \bmod p,\; (av+bu) \bmod p \Big>
-    \end{align}$$
-- Phép lũy thừa: 
-    $$\left<a, b\right>^k=\underbrace{\left<a, b\right>\times\cdots\times\left<a, b\right>}_{k {\large\text{ thừa số}}}$$
+    $$\langle a, b \rangle \times \langle 1, 0 \rangle = \langle a, b \rangle$$
+- Xét phép nhân $2$ số:
+    $$\begin{aligned}
+    \langle a, b \rangle \times \langle u, v \rangle &= \big\langle au + bvk,\; av + bu \big\rangle \\
+    &= \big\langle (au + bvk) \bmod p,\; (av + bu) \bmod p \big\rangle
+    \end{aligned}$$
+- Phép lũy thừa:
+    $$\langle a, b \rangle^n = \underbrace{\langle a, b \rangle \times \cdots \times \langle a, b \rangle}_{n\ \text{thừa số}}$$
+
+    
 > Các phép toán trên chỉ là một số tính chất của trường hữu hạn $\mathbb{F}_{p^2}=\mathbb{F}_{p}\left(\sqrt{k}\right)$. Để có kiến thức đầy đủ hơn, bạn đọc tham khảo trên [Wikipedia](https://vi.wikipedia.org/wiki/Tr%C6%B0%E1%BB%9Dng_h%E1%BB%AFu_h%E1%BA%A1n).
 ### Thuật toán Cipolla
 $$x^2 \equiv a \pmod p$$
