@@ -2,7 +2,7 @@
 title: Căn bậc hai modulo
 description: 
 published: true
-date: 2024-09-22T13:42:05.474Z
+date: 2026-09-04T18:48:47.944Z
 tags: math, number theory
 editor: markdown
 dateCreated: 2024-09-04T06:31:48.123Z
@@ -19,10 +19,8 @@ dateCreated: 2024-09-04T06:31:48.123Z
 $$F_n = \dfrac{1}{\sqrt5}\left[\left(\frac{1 + \sqrt 5}{2}\right)^n - \left(\frac{1 - \sqrt 5}{2}\right)^n \right]$$
 Việc xuất hiện $\sqrt5$ đặt ra nhiều thách thức cho việc tính toán nhanh $F_n$, nhưng đồng thời cũng mở ra những phương pháp mới để chinh phục được bài toán $F_n \bmod p$
 ## Một số định nghĩa
-- Số nguyên dương $a$ được gọi là **thặng dư bình phương** modulo $p$ nếu:
-    $$\exists x:\; x^2 \equiv a \pmod p$$
-    Khi này, $x$ được gọi là căn bậc hai của $a$ modulo $p$.
-- **Ký hiệu Legendre**: với  $p$ là số nguyên tố lẻ
+- Số nguyên dương $a$ được gọi là **thặng dư bình phương** modulo $p$ nếu tồn tại $x$ sao cho $x^2 \equiv a \pmod p$. Khi này, $x$ được gọi là căn bậc hai của $a$ modulo $p$.
+- **Ký hiệu Legendre**: với $p$ là số nguyên tố lẻ
 
 <center>
 
@@ -52,6 +50,7 @@ int legendre_symbol(int a, int p) {
 ## Thặng dư bình phương modulo nguyên tố
 ### Bài toán
 [VNOJ - Số học 1](https://oj.vnoi.info/problem/jacobi)
+
 Tìm tất cả $x$ thỏa mãn phương trình:
 $$x^2 \equiv a \pmod p$$
 - Với $p = 2$, phương trình có đúng $1$ nghiệm: $x \equiv 1 \pmod p$
