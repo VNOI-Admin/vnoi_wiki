@@ -2,7 +2,7 @@
 title: Căn bậc hai modulo
 description: 
 published: true
-date: 2026-09-04T18:56:22.955Z
+date: 2026-09-04T18:56:59.251Z
 tags: math, number theory
 editor: markdown
 dateCreated: 2024-09-04T06:31:48.123Z
