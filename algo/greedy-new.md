@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-04T18:28:23.036Z
+date: 2026-09-04T18:29:37.633Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -578,7 +578,7 @@ Thuật toán cơ bản và dễ tiếp cận nhất của bài toán luồng c�
 
 Một kiểu mẫu rất phổ biến khác trong lập trình thi đấu là tham lam không đứng một mình mà đóng vai trò hàm kiểm tra cho tìm kiếm nhị phân. Nếu đáp án có tính đơn điệu -- "làm được với $X$" kéo theo "làm được với mọi $X' \ge X$" -- thì ta có thể giải bài toán bằng tìm kiếm nhị phân trên $X$, với mỗi $X$ cần trả lời nhanh câu hỏi có/không. Câu hỏi có/không này thường dễ hơn hẳn bài toán tìm $X$ tối ưu ban đầu, và tham lam là một trong những công cụ tự nhiên để trả lời nó.
 
-### Ví dụ: Array Division - CSES
+### Ví dụ: [Array Division - CSES](https://cses.fi/alon/task/1085)
 
 Cho mảng $n$ số nguyên dương, chia mảng thành $k$ đoạn liên tiếp sao cho tổng lớn nhất trong các đoạn là nhỏ nhất. In ra tổng nhỏ nhất này.
 
@@ -591,7 +591,7 @@ Vì sao tham lam trả lời đúng? Gọi $r_1 < r_2 < \dots$ là các vị tr�
 Độ phức tạp của bài toán là $O(n \log \sum a_i)$.
 :::
 
-## Kĩ thuật cài đặt
+## Kĩ thuật và lưu ý khi cài đặt
 
 Việc tạo ra cấu trúc thứ tự cho dữ liệu trong thuật toán tham lam có 2 cách phổ biến sau:
 
