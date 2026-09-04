@@ -2,7 +2,7 @@
 title: Căn bậc hai modulo
 description: 
 published: true
-date: 2026-09-04T18:48:47.944Z
+date: 2026-09-04T18:50:14.558Z
 tags: math, number theory
 editor: markdown
 dateCreated: 2024-09-04T06:31:48.123Z
@@ -135,13 +135,12 @@ int Tonelli_Shanks(int a, int p) {
 
 ## Trường hữu hạn
 ### Định nghĩa
-- Như các bạn đã biết: 
-$$\left(a + b \sqrt k\right)^n = u + v \sqrt k$$
-Trong đó $a, b, u, v, k \in \mathbb{Z}$ và  $\sqrt k \notin \mathbb{Z}$.
-> Bạn đọc có thể thấy nó khá giống số phức, chỉ thay $i = \sqrt{-1}$ bằng $\sqrt k$ mà thôi.
 
-Mục đích của chúng ta là tính $u, v$ theo $\bmod p$. Như các bạn nghĩ đến, chúng ta sẽ sử dụng phép lũy thừa nhanh và có chút thay đổi cho phù hợp bài toán:
-    - Ký hiệu: $\left<a, b\right> = a + b\sqrt k$
+Ta có một kết quả quen thuộc sau: $\left(a + b \sqrt k\right)^n = u + v \sqrt k$. Trong đó $a, b, u, v, k \in \mathbb{Z}$ và  $\sqrt k \notin \mathbb{Z}$. Bạn đọc có thể thấy nó khá giống số phức, chỉ thay $i = \sqrt{-1}$ bằng $\sqrt k$ mà thôi. 
+
+Mục đích của chúng ta là tính $u, v$ theo modulo $p$. Như các bạn nghĩ đến, chúng ta sẽ sử dụng phép lũy thừa nhanh và có chút thay đổi cho phù hợp bài toán:
+
+- Ký hiệu: $\left<a, b\right> = a + b\sqrt k$
 - Phần tử đơn vị:
     $$\left<a, b\right> \times \left<1, 0\right> = \left<a, b\right>$$
 - Xét phép nhân $2$ số
