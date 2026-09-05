@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-04T18:31:46.724Z
+date: 2026-09-05T03:40:58.209Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -379,8 +379,6 @@ tương đương với (nhân hai vế với $\frac{b_i b_{i+1}}{m}$):
 
 $$\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$$
 
-
-
 Đến đây, việc dùng luôn bất đẳng thức trên làm hàm so sánh khi cài đặt sắp xếp có thể dẫn đến kết quả sai vì đây **không phải** một quan hệ thứ tự hợp lệ: chẳng hạn với ba ông quan $(1, 2), (1, 12), (2, 3)$, cặp thứ nhất và thứ hai "bằng nhau" theo bất đẳng thức, cặp thứ hai và thứ ba cũng "bằng nhau", nhưng để tối ưu thì $(1, 2)$ lại phải đứng ngay trước $(2, 3)$.
 
 Để giải quyết vấn đề này, ta cần tìm một khoá sắp xếp thực sự ứng với mỗi phân tử. Ta chứng minh bổ đề sau: **sắp xếp theo $a_i b_i$ tăng dần** thì mọi cặp kề nhau đều thoả bất đẳng thức trên. Thật vậy, nếu $a_i b_i \le a_{i+1} b_{i+1}$ thì $a_i b_i \le a_{i+1} b_{i+1} \le \max(b_i, a_{i+1} b_{i+1})$, và $b_{i+1} \le a_{i+1} b_{i+1} \le \max(b_i, a_{i+1} b_{i+1})$ (do $a_{i+1} \ge 1$). Do đó suy ra $\max(b_{i+1}, a_i b_i) \le \max(b_i, a_{i+1} b_{i+1})$ (điều phải chứng minh). 
@@ -619,13 +617,13 @@ struct Info {
 };
 ```
 
-### Hàm so sánh phải là thứ tự nghiêm ngặt dạng yếu (strict weak ordering)
+### Điều kiện hợp lệ của hàm so sánh
 
 Hàm so sánh `cmp(x, y)` (đọc là "$x$ phải đứng trước $y$" hay $x < y$) dùng cho `std::sort` và các cấu trúc STL phải là một **thứ tự yếu nghiêm ngặt** (strict weak ordering), tức thoả mãn ba điều kiện:
 
 1. Không phản xạ: `cmp(x, x)` luôn là `false`. Nói riêng, hai phần tử "bằng nhau" thì hàm so sánh **phải trả về `false`**.
 2. Bắc cầu: `cmp(x, y)` và `cmp(y, z)` kéo theo `cmp(x, z)`.
-3. Quan hệ "không so sánh được" (cả `cmp(x, y)` và `cmp(y, x)` đều `false`) cũng phải bắc cầu.
+3. Quan hệ "không so sánh được" (cả `cmp(x, y)` và `cmp(y, x)` đều `false`) cũng phải thoả mãn tính chất bắc cầu: nếu có `z` sao cho cả `cmp(y, z)` và `cmp(z, y)` đều `false` thì ta cũng phải có cả `cmp(x, z)` và `cmp(z, x)` đều `false`.
 
 Điều kiện thứ ba là điều kiện hay bị quên nhất. Hàm so sánh $\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$ rút thẳng từ bất đẳng thức của bài Chia vàng vi phạm đúng điều kiện này: với $(a, b) = (1, 2), (1, 12), (2, 3)$, phần tử thứ nhất và thứ hai không so sánh được, thứ hai và thứ ba không so sánh được, nhưng thứ nhất lại nhỏ hơn thứ ba. 
 
