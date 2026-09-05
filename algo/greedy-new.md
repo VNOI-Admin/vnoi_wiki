@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-05T03:50:57.465Z
+date: 2026-09-05T03:58:09.300Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -693,11 +693,11 @@ $$
 \dfrac{s}{v_1} - \dfrac{s}{v_n} + \sum_{i = 1}^{n - 1} \dfrac{l_i}{v_i} + \dfrac{s + l_n}{v_n} = \dfrac{s}{v_1} + \sum_{i = 1}^{n} \dfrac{l_i}{v_i}
 $$
 
-Để khẳng định nó tối ưu, ta cần chỉ ra một cách xếp lịch đạt được cận dưới này. Gọi $T_1$ là tàu chậm nhất. Các tàu xuất phát trước $T_1$: đuôi của mỗi tàu phải rời vạch xuất phát trước khi mui tàu kế tiếp chạm vạch (nếu không hai tàu chồng lên nhau ngay tại vạch), nên tàu $i$ chiếm vạch xuất phát ít nhất $\frac{l_i}{v_i}$, và $T_1$ xuất phát không sớm hơn tổng các $\frac{l_i}{v_i}$ đó. Bản thân $T_1$ cần thêm $\frac{s + l_1}{v_1}$ để ra khỏi đường ray. Các tàu xuất phát sau $T_1$ đều nhanh hơn nó, mui của chúng luôn nằm sau đuôi $T_1$, nên chúng chỉ băng qua vạch kết thúc sau khi $T_1$ đã ra hẳn; tại vạch kết thúc mỗi lúc chỉ có một tàu băng qua và tàu $i$ chiếm vạch đúng $\frac{l_i}{v_i}$. Cộng lại, tổng thời gian $\ge \frac{s}{v_1} + \sum_{i = 1}^{n} \frac{l_i}{v_i}$ với mọi cách sắp xếp. Vậy công thức là tối ưu.
+**Chứng minh:** Gọi $T_1$ là tàu chậm nhất. Với các tàu xuất phát trước $T_1$, ta có đuôi của mỗi tàu phải rời vạch xuất phát trước khi mui tàu kế tiếp chạm vạch (nếu không hai tàu chồng lên nhau ngay tại vạch), nên tàu $i$ chiếm vạch xuất phát ít nhất $\frac{l_i}{v_i}$, và $T_1$ xuất phát không sớm hơn tổng các $\frac{l_i}{v_i}$ đó. Bản thân $T_1$ cần thêm $\frac{s + l_1}{v_1}$ để ra khỏi đường ray. Các tàu xuất phát sau $T_1$ đều nhanh hơn nó, mui của chúng luôn nằm sau đuôi $T_1$, nên chúng chỉ băng qua vạch kết thúc sau khi $T_1$ đã ra hẳn; tại vạch kết thúc mỗi lúc chỉ có một tàu băng qua và tàu $i$ chiếm vạch đúng $\frac{l_i}{v_i}$. Cộng lại, tổng thời gian $\ge \frac{s}{v_1} + \sum_{i = 1}^{n} \frac{l_i}{v_i}$ với mọi cách sắp xếp. Vậy công thức là tối ưu.
 
-Để ý rằng chặn dưới không phụ thuộc thứ tự của các tàu khác ngoài $T_1$: thật ra cho tàu nhanh đi trước cũng đạt được đúng giá trị này. Nhận xét "tàu chậm đi trước" chỉ là một cách dựng, không phải điều bắt buộc.
+Để ý rằng chặn dưới không phụ thuộc thứ tự của các tàu khác ngoài $T_1$, nên qua chứng minh ở trên ta thấy rằng thật ra cho tàu nhanh đi trước cũng có thể đạt được đúng giá trị này. Nhận xét "tàu chậm đi trước" chỉ là một cách dựng, không phải điều bắt buộc.
 
-Do đó ta chỉ cần duy trì 2 giá trị sau qua các thao tác thêm và xoá tàu khỏi danh sách:
+Tổng kết lại, thuật toán cuối cùng của bài chỉ cần duy trì 2 giá trị sau qua các thao tác thêm và xoá tàu khỏi danh sách:
 1. Vận tốc $v_1$ của tàu chậm nhất trong danh sách hiện tại, có thể dùng `multiset` hoặc `priority queue`.
 2. Tổng $\dfrac{l_i}{v_i}$ của các tàu đang có trong danh sách hiện tại.
 
