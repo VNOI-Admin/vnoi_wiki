@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-05T03:46:10.347Z
+date: 2026-09-05T03:48:00.609Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -629,7 +629,7 @@ Hàm so sánh `cmp(x, y)` (đọc là "$x$ phải đứng trước $y$" hay $x <
 
 Vi phạm thứ tự yếu nghiêm ngặt có thể gây ra hành vi không xác định (undefined behavior) trong C++: `std::sort` có thể cho thứ tự sai, và trong một số cài đặt thậm chí truy cập ngoài mảng, do đó sẽ khó debug hơn bình thường. Cách phòng tránh tốt nhất là đưa hàm so sánh về dạng so sánh một khoá `f(i) < f(j)` như đã bàn ở mục Exchange Argument.
 
-> Qua kiểm nghiệm của tác giả, khi thử trên các bộ dữ liệu nhỏ và so với vét cạn, hàm so sánh  $\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$ cho đáp án sai ở khoảng 0.2% số test -- đủ hiếm để qua được các test ví dụ sơ sài, và đủ nhiều để không qua được bộ test chính thức (vốn sẽ được sinh nhiều trường hợp hiểm). Do đó việc viết hàm so sánh sai có thể gây ra lỗi rất khó nhận ra và debug (nhất là trong ICPC khi bạn phải đúng tất cả các test hiểm thì mới qua được bài).
+> Qua kiểm nghiệm của tác giả, khi thử trên các bộ dữ liệu nhỏ và so với vét cạn, hàm so sánh  $\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$ cho đáp án sai ở khoảng 0.2% số test -- đủ hiếm để qua được các test ví dụ sơ sài, và đủ nhiều để không qua được bộ test chính thức (vốn sẽ được sinh nhiều trường hợp hiểm). Do đó việc viết hàm so sánh sai có thể gây ra lỗi rất khó nhận ra và debug (nhất là khi bạn thi những kì thi mà phải đúng hết test trong 1 bài/subtask thì mới qua được bài/subtask đó).
 
 ### Sử dụng STL
 
