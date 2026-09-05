@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-05T03:48:00.609Z
+date: 2026-09-05T03:50:57.465Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -645,6 +645,12 @@ Khi khai báo 1 struct, việc định nghĩa phép toán thứ tự `<` hoặc 
 Đối với C++11 trở đi, ngoài cách khai báo functor như ở trên, ta có thể khai báo dưới dạng lambda rất gọn và nhúng vào bằng từ khoá `decltype` (declared type). Lưu ý với các chuẩn C++ trước C++20 (từ C++11 đến C++17), ta phải truyền lambda vào constructor khi khai báo cấu trúc dữ liệu do ở các chuẩn đó lambda không có constructor mặc định:
 
 ```cpp
+// Trước C++20:
+auto cmp = [](int a, int b) { return ... };
+std::set<int, decltype(cmp)> s(cmp);
+std::priority_queue<int, vector<int>, decltype(cmp)> pq(cmp);
+
+// Sau C++20:
 auto cmp = [](int a, int b) { return ... };
 std::set<int, decltype(cmp)> s;
 std::priority_queue<int, vector<int>, decltype(cmp)> pq;
