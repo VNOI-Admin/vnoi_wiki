@@ -54,11 +54,11 @@ Trò chơi ở trên chính là một ví dụ điển hình cho trò chơi tổ
 
 > Trong trò chơi ví dụ, giả sử $n = 8$ thì mỗi trạng thái sẽ là số sỏi còn lại hiện tại của trò chơi. Do đó tập trạng thái của trò chơi là $S = \{0,1,\ldots, 8\}$ (hình dưới).
 >
-> ![](/uploads/game_theory_decrease_state.png)
+> ![](/uploads/algo/math/game-theory/game_theory_decrease_state.png)
 >
 > Giả sử đang ở trạng thái $x = 7$, ta có thể di chuyển hợp lệ đến trạng thái $x' = 6$ (lấy ra $1$ viên sỏi), $x' = 5$ (lấy ra $2$ viên sỏi) hoặc $x' = 4$ (lấy ra $3$ viên sỏi). Do đó ta có các phần tử $(7, 6), (7,5), (7,4)$ thuộc tập di chuyển hợp lệ $Q$ (hình dưới).
 >
-> ![](/uploads/game_theory_decrease_transition.png)
+> ![](/uploads/algo/math/game-theory/game_theory_decrease_transition.png)
 >
 > Từ đó, ta nhận xét được tập các bước di chuyển hợp lệ $Q$ của cả hai người chơi sẽ là tất cả những cặp số nguyên $(x,x - c)$ ($0 \leq x \leq n$) sao cho $c \in \{1, 2, 3\}$ (từ trạng thái có số sỏi $x$ chỉ có thể lấy ra $1$, $2$, hoặc $3$ viên sỏi) và $x - c \geq 0$ (số sỏi lấy ra không được phép lớn hơn số sỏi đang có).
 >
@@ -244,7 +244,7 @@ Vì $g > 0$ nên  biểu diễn nhị phân của $g$ luôn tồn tại bit trá
 
 > Ví dụ, nếu trò chơi Nim hiện tại có $4$ cột có số sỏi lần lượt là $7$, $10$, $12$, $5$, thì thao tác tính tổng Nim và chọn cột để lấy sỏi ra sẽ diễn ra như hình dưới
 >
-> ![](/uploads/game_theory_bouton_proof_2.png)
+> ![](/uploads/algo/math/game-theory/game_theory_bouton_proof_2.png)
 
 Cuối cùng, với một trạng thái thuộc $\hat{P}$ (tức $g = 0$), mọi cách đi đều dẫn tới trạng thái thuộc $\hat{N}$ (tức $g > 0$). Ta có thể chứng minh dễ dàng bằng phương pháp phản chứng. Giả sử trạng thái trò chơi hiện tại là $(p_1, \ldots, p_n)$ có tổng Nim $g = 0$ và tồn tại một đống sỏi $i$ sao cho khi lấy bớt sỏi từ $i$ ra trạng thái trò chơi mới có tổng Nim $g' = 0$. Khi đó
 
@@ -261,7 +261,7 @@ $$
 Điều này có nghĩa là ta không bốc viên sỏi nào từ đống $p_i$ ra cả, mà theo giả thuyết ta phải bốc ít nhất một viên ($p'_i < p_i$), vì vậy không thể tồn tại đống sỏi $i$ nào thỏa mãn yêu cầu.
 > Ví dụ, nếu trò chơi Nim hiện tại có $3$ đống có số sỏi lần lượt là $5$, $6$, $3$, thì tổng Nim $g = 0$. Xét bit đầu tiên từ phải qua, ta thấy được số lượng bit được bật tại vị trí này là số chẵn ($2$, tương ứng với bit đầu tiên của $5$ và $3$). Tương tự, số lượng các bit được bật tại các vị trị khác đều có tính chất này. Điều này không phải là trùng hợp mà do tính chất của phép XOR, nếu muốn bit thứ $i$ trong kết quả bằng $0$ thì số lượng bit thứ $i$ được bật trong các toán hạng phải là số chẵn. Từ đây ta nhận thấy, việc bỏ sỏi ở một đống sỏi chỉ có thể làm thay đổi số lượng bit được bật tại mỗi vị trí $i$ lên hoặc xuống 1 đơn vị, do đó dù cho lấy sỏi ở cột nào đi nữa thì vẫn sẽ xuất hiện một vị trí có số bit được bật là lẻ.
 >
-> ![](/uploads/game_theory_bouton_proof_3.png)
+> ![](/uploads/algo/math/game-theory/game_theory_bouton_proof_3.png)
 
 Rõ ràng $\hat{P}$ và $\hat{N}$ thỏa mãn ba điều kiện theo định nghĩa của tập $P$ và $N$ trong trò chơi tổng quát, vì vậy $P = \hat{P}$ và $N = \hat{N}$. $\square$
 
@@ -292,7 +292,7 @@ Nếu xem mỗi trạng thái trong tập trạng thái $S$ là một đỉnh, m
 
 > Ví dụ: trong trò chơi bốc sỏi ở phần đầu, giả sử ta chỉ có một đống sỏi $4$ viên, thì đồ thị của trò chơi sẽ như hình dưới, trạng thái kết thúc $0$ có bậc ra bằng $0$.
 >
-> ![](/uploads/game_theory_graph_state.png)
+> ![](/uploads/algo/math/game-theory/game_theory_graph_state.png)
 
 Cũng cần chú ý rằng các trò chơi được xem xét trong phần định lý Sprague-Grundy có một tính chất quan trọng, đó là chúng sẽ **kết thúc trong hữu hạn bước**. Khi đó, hiển nhiên đồ thị trò chơi phải không tồn tại chu trình, vì nếu tồn tại chu trình, sẽ tồn tại trường hợp người chơi cố tình đi theo chu trình đó và sẽ không bao giờ đến được đỉnh kết thúc, nghĩa là khi đó trò chơi sẽ lặp vĩnh viễn. Loại đồ thị có hướng không có chu trình như trên còn có thể gọi tắt là DAG ([Directed Acyclic Graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph)).
 
@@ -316,10 +316,10 @@ Hãy lấy ví dụ với một biến thể của trò chơi Nim chuẩn, trong
 Đầu tiên, ta cũng xét trò chơi ở dạng đơn giản nhất: chỉ có một đống sỏi duy nhất với $p$ viên. Vậy làm thế nào để bạn biết đó là trạng thái thuộc $P$ hay trạng thái thuộc $N$?
 
 Hãy nhìn trò chơi dưới góc độ đồ thị. Đồ thị này có $p + 1$ đỉnh có nhãn lần lượt là các số nguyên từ $0$ đến $p$. Mỗi đỉnh đồ thị tương ứng với một trạng thái trò chơi, trong đó nhãn của nó cho biết có bao nhiêu sỏi còn lại trong đống hiện tại. Hình dưới là ví dụ trò chơi với một đống sỏi có số sỏi $p = 5$.
-![](/uploads/game_theory_custom-nim.png)
+![](/uploads/algo/math/game-theory/game_theory_custom-nim.png)
 
 Rõ ràng đỉnh $0$ là đỉnh kết thúc, do đó nó là đỉnh thuộc $P$. Các đỉnh tiếp theo có thể xác định là thuộc $P$ hay $N$ như hình dưới
-![](/uploads/game_theory_custom_nim_PN.gif)
+![](/uploads/algo/math/game-theory/game_theory_custom_nim_PN.gif)
 
 Tuy nhiên, cách làm ở trên chỉ cho ta trạng thái định tính của từng trạng thái, để phục vụ cho việc ghép các trò chơi lại, ta cần một hàm định lượng. Hàm mà chúng ta sẽ dùng có tên là hàm Sprague-Grundy, với một trạng thái $x \in S$ thì giá trị Sprague-Grundy được định nghĩa như sau:
 $$
@@ -331,7 +331,7 @@ Trong định nghĩa trên có dùng hàm mex (minimum excludant), hàm này s�
 Câu hỏi đặt ra là: tại sao lại là hàm Sprague-Grundy? Hàm này có ý nghĩa gì trong việc giải các trò chơi tổ hợp cân bằng?
 
 Để thấy rõ hơn ý nghĩa của hàm Sprague-Grundy, ta có thể ví dụ biến thể của trò chơi Nim ở trên.
-![](/uploads/game_theory_custom_nim_spfunc.png)
+![](/uploads/algo/math/game-theory/game_theory_custom_nim_spfunc.png)
 
 Quan sát ví dụ ở trên, ta có nhận xét rằng các trạng thái $u$ thuộc $P$ đều có $g(u) = 0$ và các trạng thái $u$ thuộc $N$ đều có $g(u) > 0$. Điều này làm ta nhận ra sự tương đồng của giá trị Sprague-Grundy với một đại lượng ở phần trước - giá trị Nim. Đó là cảm nhận ban đầu để có định lý sau.
 
@@ -351,7 +351,7 @@ Hai định lý 1 và 2 trong phần này có ý nghĩa rất quan trọng, nó 
 
 Như vậy, ta thấy rằng thực ra cách giải trò chơi Nim cũng chỉ là một trường hợp riêng của cách giải với giá trị Sprague-Grundy này, trong đó giá trị Nim của trò chơi Nim chỉ có một đống $n$ viên sỏi tương đương với giá trị Sprague-Grundy $\operatorname{mex}(\{0,1,\ldots,n-1\}) = n$
 > Ví dụ với trò chơi Nim chỉ có một đống $3$ viên sỏi
-> ![](/uploads/game_theory_nim_SP.gif)
+> ![](/uploads/algo/math/game-theory/game_theory_nim_SP.gif)
 
 và định lý Bouton tương đương định lý 2.
 
@@ -369,7 +369,7 @@ Ta sẽ ví dụ với trò chơi sau
 
 Cho bàn cờ $N \times N$ với $K$ quân mã trên đó. Không giống như quân mã trong cờ vua truyền thống, những quân mã này chỉ có thể di chuyển như thể hiện trong hình bên dưới (vì vậy tọa độ của các con sẽ chỉ bị giảm chứ không tăng, đảm bảo trò chơi kết thúc trong hữu hạn bước). Cùng một lúc có thể có nhiều quân ở cùng một ô của bàn cờ. Hai người chơi thay phiên nhau di chuyển. Khi tới lượt, người chơi chọn một trong các quân mã và di chuyển nó. Người chơi không thể thực hiện nước đi ở lượt của mình là người thua.
 
-![](/uploads/game_theory_sp_exercise.png)
+![](/uploads/algo/math/game-theory/game_theory_sp_exercise.png)
 
 Đầu tiên, vì luật chơi cho phép có nhiều quân mã trên cùng ô nên các quân mã có thể di chuyển độc lập với nhau, như vậy ta có thể coi trò chơi có $K$ quân mã là trò chơi tổng của $K$ trò chơi thành phần, trong đó trò chơi thành phần thứ $i$ chỉ có quân mã thứ $i$ trên bàn cờ.
 

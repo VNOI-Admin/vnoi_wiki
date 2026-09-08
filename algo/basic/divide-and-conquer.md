@@ -66,7 +66,7 @@ void P(<input kích thước n>)
 
 Nếu ta coi mỗi bài toán con là một nút trên một cây và mỗi lần gọi đệ quy từ một bài toán con ta nối thêm một nút con vào nút biểu diễn bài toán nói trên thì bài toán lớn của chúng ta sẽ có dạng như sau:
 
-![problem tree](https://hackmd.io/_uploads/SJGSaKEk6.png)
+![problem tree](/uploads/algo/basic/divide-and-conquer/SJGSaKEk6.png)
 
 Tại mỗi nút của cây trên, nếu việc kết hợp kết quả các bài toán con mất $f(n)$ thời gian, thì thời gian chạy tại một nút với kích thước dữ liệu là $n$ có thể được tính theo công thức truy hồi:
 
@@ -108,7 +108,7 @@ Các bài toán áp dụng Chia để trị chỉ có chung một phương pháp
 
 Đây là một thuật toán sắp xếp nổi tiếng và cũng hay được áp dụng (nếu không được phép sử dụng các thư viện có sẵn). Thuật toán này sử dụng phương pháp đệ quy. Tại mỗi vòng đệ quy, giả sử đang cần sắp xếp một đoạn $[l, r]$ ta chia dãy làm hai phần bằng nhau, $[l, mid]$ và $[mid + 1, r]$ với $mid = \left\lfloor \frac{l + r}{2} \right\rfloor$. Sau khi đã gọi đệ quy các đoạn con, ta tiến hành hợp nhất hai đoạn này. Việc hợp nhất hai đoạn đã sắp xếp được tiến hành bằng phương pháp [hai con trỏ](/algo/basic/two-pointers.md), có độ phức tạp là $\mathcal{O}(n)$. Trong trường hợp một đoạn chỉ có một phần tử duy nhất, ta coi như nó đã được sắp xếp.
 
-![Minh hoạ MergeSort](https://hackmd.io/_uploads/Skh8YzQxa.png)
+![Minh hoạ MergeSort](/uploads/algo/basic/divide-and-conquer/Skh8YzQxa.png)
 
 
 #### Cài đặt
@@ -164,7 +164,7 @@ Ta có thể sử dụng một thuật toán "ngây thơ" cho bài này: xét t�
 
 Ta nghĩ đến việc sử dụng chia để trị. Trước hết, ta sắp xếp các điểm trong tập hợp theo hoành độ $x$. Tại mỗi vòng đệ quy, ta chia tập điểm hiện tại thành hai phần bên trái và bên phải vị trí $mid$ ta chọn. Base case (trường hợp cơ bản) lúc này thay vì là $l = r$ thì sẽ là $r - l \leq 2$, do ta không thể xác định khoảng cách với $1$ điểm, và cũng cần đảm bảo rằng khi chạy đệ quy không tồn tại tập nào có độ lớn như vậy. Ngoài trường hợp đó, ta thu được kết quả của 2 tập trái và phải. Tuy nhiên, việc kết hợp kết quả không đơn giản, vì một điểm ở bên trái $A_{mid}$ vẫn có thể tạo ra khoảng cách ngắn nhất với một điểm bên phải. Ta cũng không thể chạy hết từng cặp điểm một trong hai tập này, vì khi đó theo Định lý Thợ độ phức tạp trung bình sẽ lên đến $\mathcal{O}(n^{2})$.
 
-![nearest1](https://hackmd.io/_uploads/ryCGGq4kT.png)
+![nearest1](/uploads/algo/basic/divide-and-conquer/ryCGGq4kT.png)
 
 Ở hình vẽ trên, hai màu xanh và đỏ tượng trưng cho hai nửa phải và trái. Điểm $A_4$ đóng vai trò là $A_{mid}$, thuộc tập bên phải.
 
@@ -176,7 +176,7 @@ Khi đó, trong cùng một tập hợp, không tồn tại một cặp điểm 
 
 Xét các điểm có hoành độ cách $A_{mid}$ một khoảng không vượt quá $d$. Các điểm này nằm giữa các đường thẳng $x = x_{mid} - d$ và $x = x_{mid} + d$:
 
-![nearest2](https://hackmd.io/_uploads/rysgQc4yT.png)
+![nearest2](/uploads/algo/basic/divide-and-conquer/rysgQc4yT.png)
 
 Đến đây, ta có một nhận xét quan trọng: Với mỗi điểm $A_m$ nằm trong miền nằm giữa hai đường thẳng nói trên (vùng được tô màu), tồn tại không quá 7 điểm khác $A_m$ có tung độ $y$ lớn hơn không quá $d$ so với $y_m$.
 
@@ -184,11 +184,11 @@ Xét các điểm có hoành độ cách $A_{mid}$ một khoảng không vượt
 
 Khoảng các điểm thoả mãn điều kiện trên được giới hạn bởi hình vẽ sau:
 
-![window](https://hackmd.io/_uploads/rkqqL9V1p.png)
+![window](/uploads/algo/basic/divide-and-conquer/rkqqL9V1p.png)
 
 Khoảng trên là hình tạo bởi hai hình vuông có cạnh là $d$ nằm cạnh nhau. Các điểm thoả mãn nằm trong hoặc trên cạnh của hai hình vuông này, và khoảng cách giữa hai điểm bất kỳ trong cùng một hình vuông không nhỏ hơn $d$. Không thể xếp quá $4$ điểm như vậy vào trong một hình vuông. Thật vậy, với mỗi điểm ta vẽ một đường tròn có tâm tại điểm đó và bán kính bằng $\frac{d}{2}$. Hai đường tròn bất kỳ không thể có nhiều hơn 1 điểm chung, vì nếu không khoảng cách giữa chúng sẽ nhỏ hơn $d$.
 
-![window2](https://hackmd.io/_uploads/BJaKDqE16.png)
+![window2](/uploads/algo/basic/divide-and-conquer/BJaKDqE16.png)
 
 Ta thấy mỗi hình tròn có diện tích giao với hình vuông là $\geq \frac{\pi d^{2}}{4} = \frac{\pi}{16} d^{2}$, do khi tịnh tiến hình tròn dọc theo cả hai phương $x$ và $y$ ta đều thu được các hình có diện tích lớn hơn. Vì hình vuông có diện tích là $d^{2}$, số miền diện tích như vậy có thể đặt vào hình tròn là $d^{2} : \frac{\pi}{16}d^{2} \approx 5.1$. Tuy nhiên, không tồn tại cách đặt 5 điểm vào hình vuông thoả mãn yêu cầu của đề bài, nên số điểm đặt được tối đa là 4.
 
@@ -198,7 +198,7 @@ Với 4 điểm ở mỗi hình vuông, số điểm đặt được tối đa l
 
 Nếu ta sắp xếp các điểm trong miền này theo thứ tự $y$ tăng dần, với một điểm bất kỳ ta chỉ cần xét một số điểm lân cận thoả mãn chênh lệch tung độ không vượt quá $d$, rồi tính khoảng cách giữa chúng.
 
-![nearest3](https://hackmd.io/_uploads/r1deOc4kp.png)
+![nearest3](/uploads/algo/basic/divide-and-conquer/r1deOc4kp.png)
 
 Khi cài đặt, sau khi tiến hành tìm khoảng cách ngắn nhất giữa hai điểm ta có thể giữ nguyên trạng thái sau khi sắp xếp theo $y$ của đoạn đó, rồi dùng phép `merge()` như bài MergeSort ở trên để sắp xếp nhanh đoạn lớn trong $\mathcal{O}(n)$.
 
@@ -349,7 +349,7 @@ Bằng cách sử dụng cách chia để trị như đã nói ở trên, ta d�
 
 Giả sử độ sâu $lvl$ của một vòng đệ quy là số lần phải gọi đệ quy từ đoạn $[1, n]$, ta thấy hai đoạn có cùng độ sâu không có điểm chung. Do đó ta có thể lưu các giá trị $acc$ đi kèm với độ sâu mà không sợ bị trùng lặp.
 
-![srq1](https://hackmd.io/_uploads/H1ZBwmiJp.png)
+![srq1](/uploads/algo/basic/divide-and-conquer/H1ZBwmiJp.png)
 
 Quay lại với truy vấn `lq rq`, ta cần phải tìm một độ sâu sao cho $lq$ và $rq$ nằm về hai phía của $mid$ của độ sâu này. Để giải quyết vấn đề này, ta gọi $mask[i]$ là một dãy bit, sao cho bit thứ $j$ của dãy này bằng $0$ nếu vị trí $i$ nằm về bên trái $mid$ (tính cả $mid$) ở độ sâu $j$, và $1$ nếu vị trí này nằm về bên phải của $mid$ (không tính $mid$). Ví dụ với dãy bằng $8$ như trên hình, $mask[3] = (010)_2$, $mask[7] = (011)_2$. Như vậy, độ sâu thoả mãn $lq$ và $rq$ nằm về hai phía của $mid$ ở độ sâu này là vị trí của bit đầu tiên bằng $1$ từ phải qua trái trong dãy $mask[lq] \oplus mask[rq]$, với $\oplus$ là phép xor.
 

@@ -31,7 +31,7 @@ Khác với hai thuật toán bài trước, hai thuật toán này có thể gi
 
 * Chu trình âm là một chu trình trong đó tổng trọng số các cạnh là số âm. Ví dụ trong hình dưới, ta có một chu trình âm $0 \rightarrow 1 \rightarrow 2$ có tổng trọng số là $7-9+1 = -1$
 
-![](https://i.ibb.co/jbkzpCB/dijsktra.png)
+![](/uploads/algo/graph-theory/shortest-path-2/dijsktra.png)
 
 * Nếu trên đường đi từ $u$ đến $v$ chứa chu trình âm thì độ dài đường đi ngắn nhất từ $u$ đến $v$ sẽ là $-\infty$. Vì vậy nên sự xuất hiện của chu trình âm trong đồ thị sẽ khiến một số cặp đỉnh không tồn tại đường đi ngắn nhất (chỉ tồn tại đường đi có độ dài âm vô cực).
     * Ví dụ: Ở đồ thị trên, đường đi ngắn nhất từ $4$ đến $5$ sẽ có cách đi là vô hạn lần qua chu trình âm đã nhắc đến, sau đó mới đi đến $5$. Như vậy không có đường đi ngắn nhất.
@@ -84,7 +84,7 @@ Thuật toán Bellman-Ford sẽ thực hiện nhiều bước lặp. Ở mỗi b
 
 - Ví dụ đồ thị sau:
 
-![](https://i.imgur.com/YMKQtKM.png)
+![](/uploads/algo/graph-theory/shortest-path-2/YMKQtKM.png)
 
 - Giả sử ta tìm được đường đi từ $1\rightarrow 3$ có độ dài là $4$, và đường đi từ $1 \rightarrow 2$ có độ dài là $2$. Như vậy ta có thể sử dụng cạnh $(2, 3)$ để nối dài đường đi $1 \rightarrow 2$ thành $1 \rightarrow 2 \rightarrow 3$ có độ dài bằng $3$, tốt hơn đường đi trực tiếp $1 \rightarrow 3$ ta đã tìm được.
 
@@ -198,7 +198,7 @@ Một số bài toán có thể yêu cầu ta tìm một chu trình âm bất k�
     - Trước hết gán $u = \texttt{trace}[u]$ đủ $N$ lần để $u$ chắc chắn thuộc chu trình âm nào đó.
     :::spoiler Giải thích
     Ban đầu có thể đỉnh $u$ có đường đi bằng $-\infty$ nhưng chưa chắc thuộc chu trình âm. Ví dụ trường hợp sau:
-    [![](https://i.imgur.com/PblptAC.png)
+    [![](/uploads/algo/graph-theory/shortest-path-2/PblptAC.png)
     ]()
     Ở đây, từ $0$ đến $1$ có độ dài đường đi ngắn nhất bằng $-\infty$, tuy nhiên đỉnh $1$ lại không thuộc chu trình âm nào.
     :::

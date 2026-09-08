@@ -27,11 +27,11 @@ Nếu đã nắm vững các khái niệm trong bài viết này, các bạn có
 # Vector
 Vector là một đối tượng có cả độ lớn và hướng. Hướng của vector là hướng từ điểm đầu đến điểm cuối của nó.
 
-![](https://i.imgur.com/JdJPAOc.png)
+![](/uploads/algo/geometry/basic-geometry-1/JdJPAOc.png)
 
 Một vector thường được biểu diễn bằng một tia (một đoạn thẳng có hướng), hoặc bằng đồ thị dưới dạng một mũi tên nối từ điểm đầu $A$ tới điểm cuối $B$, và được ký hiệu là $\overrightarrow{\mathrm{AB}}$.
 
-![](https://i.imgur.com/H7bIO9o.png)
+![](/uploads/algo/geometry/basic-geometry-1/H7bIO9o.png)
 
 Trong hình học phẳng, vector $\overrightarrow{\mathrm{AB}}$ có thể được biểu diễn bởi một cặp số $(x, y)$ cho biết tọa độ của vector, được xác định bằng hiệu các tọa độ tương ứng của điểm cuối $B$ với điểm đầu $A$:
 
@@ -44,13 +44,13 @@ $$
 
 **Ví dụ:** một vector từ $A(3, 1)$ đến $B(2, 3)$ có thể được biểu diễn bởi $\overrightarrow{\mathrm{u}} = (-1, 2)$.
 
-![](https://i.imgur.com/5ddR4P4.gif)
+![](/uploads/algo/geometry/basic-geometry-1/5ddR4P4.gif)
 
 ## Độ lớn của vector
 Độ lớn của $1$ vector được xác định bằng khoảng cách giữa điểm đầu và điểm cuối của nó.
 **Ví dụ:** Độ lớn của $\overrightarrow{\mathrm{AB}}(x,y)$ kí hiệu là $|\overrightarrow{\mathrm{AB}}|$ và được xác định bằng:
 
-![](https://i.imgur.com/1rQrzkN.png)
+![](/uploads/algo/geometry/basic-geometry-1/1rQrzkN.png)
 
 # Phép cộng trừ vector
 Có một số phép toán có thể thực hiện trên vector, đơn giản nhất là phép cộng trừ vector: bạn có thể cộng trừ 2 vector với nhau để được một vector mới.
@@ -59,34 +59,34 @@ Xuyên suốt bài viết, chúng ta sẽ dùng dấu cộng (**+**) và trừ (
 
 ## Phép cộng 2 vector
 
-![](https://i.imgur.com/Lblu42q.png)
+![](/uploads/algo/geometry/basic-geometry-1/Lblu42q.png)
 
 Giả sử ta có $2$ vector $\overrightarrow{\mathrm{u}}(x_1, y_1)$ và $\overrightarrow{\mathrm{v}}(x_2, y_2)$, tổng $\overrightarrow{\mathrm{u}}$ và $\overrightarrow{\mathrm{v}}$ được tính bằng công thức: $\overrightarrow{\mathrm{u}} + \overrightarrow{\mathrm{v}} = (x_1+x_2,y_1+y_2)$.
 
-![](https://i.imgur.com/PYkqiVG.gif)
+![](/uploads/algo/geometry/basic-geometry-1/PYkqiVG.gif)
 
 **Lưu ý:** Thứ tự cộng các vector không quan trọng, cũng giống như phép cộng trên số (tính giao hoán).
 
-![](https://i.imgur.com/sKDldWR.png)
+![](/uploads/algo/geometry/basic-geometry-1/sKDldWR.png)
 
 ## Phép trừ 2 vector
-![](https://i.imgur.com/p1QmwFb.png)
+![](/uploads/algo/geometry/basic-geometry-1/p1QmwFb.png)
 
 ### Vector đối
 Cho vector $\overrightarrow{\mathrm{a}}$, vector có cùng độ lớn và ngược hướng với vector $\overrightarrow{\mathrm{a}}$ được gọi là vector đối của vector $\overrightarrow{\mathrm{a}}$, kí hiệu là $-\overrightarrow{\mathrm{a}}$.
 Mỗi vector đều có vector đối, chẳng hạn vector đối của $\overrightarrow{\mathrm{AB}}$ là $\overrightarrow{\mathrm{BA}}$, nghĩa là $-\overrightarrow{\mathrm{AB}} = \overrightarrow{\mathrm{BA}}$.
 
-![](https://i.imgur.com/SY5FFFo.png)
+![](/uploads/algo/geometry/basic-geometry-1/SY5FFFo.png)
 
 ### Định nghĩa hiệu của 2 vector
 Hiệu của vector $\overrightarrow{\mathrm{u}}$ với vector $\overrightarrow{\mathrm{v}}$ chính là tổng của $\overrightarrow{\mathrm{u}}$ và $-\overrightarrow{\mathrm{v}}$.
 
-![](https://i.imgur.com/z9pRvDQ.png)
+![](/uploads/algo/geometry/basic-geometry-1/z9pRvDQ.png)
 
 Nếu 2 vector có chung điểm đầu thì vector hiệu có hướng từ điểm cuối của $\overrightarrow{\mathrm{v}}$ đến điểm cuối của $\overrightarrow{\mathrm{u}}$. **Ví dụ:** $\overrightarrow{\mathrm{OA}} - \overrightarrow{\mathrm{OB}} = \overrightarrow{\mathrm{BA}}$.
 Nếu 2 vector có chung điểm cuối thì vector hiệu có hướng từ điểm đầu của $\overrightarrow{\mathrm{u}}$ đến điểm đầu của $\overrightarrow{\mathrm{v}}$. **Ví dụ:** $\overrightarrow{\mathrm{AO}} - \overrightarrow{\mathrm{BO}} = \overrightarrow{\mathrm{AB}}$.
 
-![](https://i.imgur.com/Au2Yjk4.png)
+![](/uploads/algo/geometry/basic-geometry-1/Au2Yjk4.png)
 
 Nhấn vào [**đây**](https://www.desmos.com/calculator/po7zxtgzxw) để tương tác với hình trên Desmos.
 
@@ -99,12 +99,12 @@ Tích vô hướng có thể được định nghĩa bằng đại số hoặc h
 - Theo hình học, tích vô hướng là tích độ lớn của $2$ vector và $\cos$ của góc giữa chúng. Ví dụ: tích vô hướng của $\overrightarrow{\mathrm{u}}(x_1, y_1)$ và $\overrightarrow{\mathrm{v}}(x_2, y_2)$ là
 $\overrightarrow{\mathrm{u}} \cdot \overrightarrow{\mathrm{v}} = | \overrightarrow{\mathrm{u}} | \cdot | \overrightarrow{\mathrm{v}} | \cdot \cos(\theta)$ với $\theta$ là góc hợp bởi $\overrightarrow{\mathrm{u}}$ và $\overrightarrow{\mathrm{v}}$.
 
-![](https://i.imgur.com/iHks23u.png)
+![](/uploads/algo/geometry/basic-geometry-1/iHks23u.png)
 
 ## Ví dụ
 Tính tích vô hướng của 2 vector $\overrightarrow{\mathrm{u}}(5,12)$ và $\overrightarrow{\mathrm{v}}(-6,8)$
 
-![](https://i.imgur.com/Qm8P625.png)
+![](/uploads/algo/geometry/basic-geometry-1/Qm8P625.png)
 
 
 $$
@@ -141,7 +141,7 @@ Tích có hướng được định nghĩa bằng công thức: $\overrightarrow
 - $\theta$ là góc giữa $\overrightarrow{\mathrm{a}}$ và $\overrightarrow{\mathrm{b}}$ $(0° \le \theta \le 180°)$
 - $\overrightarrow{n}$ là vectơ đơn vị vuông góc với $\overrightarrow{\mathrm{a}}$ và $\overrightarrow{\mathrm{b}}$. Thực tế có 2 vector thỏa điều kiện vuông góc là $\overrightarrow{n}$ và $-\overrightarrow{n}$, do đó hướng của vector đơn vị $\overrightarrow{n}$ phụ thuộc vào quy tắc bàn tay phải.
 
-|![](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Cross_product_vector.svg/220px-Cross_product_vector.svg.png)|![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Right_hand_rule_cross_product.svg/330px-Right_hand_rule_cross_product.svg.png)|
+|![](/uploads/algo/geometry/basic-geometry-1/220px-Cross_product_vector.svg.png)|![](/uploads/algo/geometry/basic-geometry-1/330px-Right_hand_rule_cross_product.svg.png)|
 
 ## Trong không gian 2 chiều (mặt phẳng)
 Nếu xét trong hình học phẳng thì vector kết quả lúc này vuông góc và có hướng đi vào/ra mặt phẳng đang xét, do đó ta có thể bỏ qua đặc điểm về hướng, và sử dụng tích có hướng như là một đại lượng vô hướng.
@@ -156,14 +156,14 @@ $$
 - Theo hình học, tích có hướng giữa 2 vector $\overrightarrow{\mathrm{u}}$ và $\overrightarrow{\mathrm{v}}$ được định nghĩa bằng công thức: $\overrightarrow{\mathrm{u}} \times \overrightarrow{\mathrm{v}} = |\overrightarrow{\mathrm{u}}| \cdot |\overrightarrow{\mathrm{v}}| \cdot \sin(\theta)$ với $\theta$ là góc hợp bởi 2 vector tính từ $\overrightarrow{\mathrm{u}}$ đến $\overrightarrow{\mathrm{v}}$ và **ngược chiều kim đồng hồ**.
 Với góc $\alpha$ thỏa mãn $0° < \alpha < 180°$ thì $\sin(\alpha) > 0$ nên nếu $\theta < 180°$ thì tích có hướng **dương**, ngược lại tích có hướng **âm**.
 
-![](https://i.imgur.com/idZv0Xz.png)
+![](/uploads/algo/geometry/basic-geometry-1/idZv0Xz.png)
 
 Ta cũng có thể xác định dấu của tích có hướng bằng quy tắc bàn tay phải nhưng về bản chất thì cũng giống với việc xét góc theo chiều ngược kim đồng hồ.
 
 ## Ví dụ
 Tính tích có hướng của 2 vector $\overrightarrow{\mathrm{u}}(5,12)$ và $\overrightarrow{\mathrm{v}}(-6,8)$
 
-![](https://i.imgur.com/Qm8P625.png)
+![](/uploads/algo/geometry/basic-geometry-1/Qm8P625.png)
 
 $$
 \begin{align}
@@ -186,14 +186,14 @@ $$
 **Lưu ý:** Một tích chất hữu dụng của tích có hướng trong hình học phẳng là
 $| \overrightarrow{\mathrm{a}} \times \overrightarrow{\mathrm{b}}| = | \overrightarrow{\mathrm{a}}| \cdot| \overrightarrow{\mathrm{b}}| \cdot\sin(\theta)$ bằng diện tích của hình bình hành có 2 cạnh bên là $\overrightarrow{\mathrm{a}}$ và $\overrightarrow{\mathrm{b}}$.
 
-![](https://i.imgur.com/50a2Cp7.png)
+![](/uploads/algo/geometry/basic-geometry-1/50a2Cp7.png)
 
 Do đó, **diện tích của một tam giác** còn bằng một nửa giá trị tuyệt đối của tích có hướng với 2 vector thành phần là 2 cạnh của tam giác.
 
 # Khoảng cách giữa điểm và đường thẳng
 Tìm khoảng cách giữa điểm và đường thẳng rất thường gặp trong các bài toán hình học.
 
-![](https://i.imgur.com/WBPuzNU.png)
+![](/uploads/algo/geometry/basic-geometry-1/WBPuzNU.png)
 
 Ví dụ bạn có 3 điểm $A, B, C$ và bạn muốn tìm khoảng cách từ $C$ đến đường thẳng đi qua $A$ và $B$. Bước đầu tiên là tính $\overrightarrow{\mathrm{AB}}$ và $\overrightarrow{\mathrm{AC}}$. Tiếp theo tính tích có hướng $\overrightarrow{\mathrm{AB}}\times\overrightarrow{\mathrm{AC}}$ và lấy trị tuyệt đối, rồi chia cho $AB$. Kết quả có được là khoảng cách cần tìm. Công thức này được giải thích như sau:
 

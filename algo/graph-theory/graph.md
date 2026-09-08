@@ -16,7 +16,7 @@ dateCreated: 2024-09-19T11:09:15.064Z
 Trước khi đến với lí thuyết đồ thị, ta có một câu hỏi nhỏ như sau:
 
 > Thành phố Königsberg thuộc Phổ, nay là Kaliningrad thuộc Nga, là một thành phố nằm ở 2 bên sông Pregel và có 2 hòn đảo lớn Kneiphof và Lomse. Trước kia, 2 hòn đảo được kết nối với nhau và với 2 bên bờ sông bằng 7 cây cầu.
-> ![graph1.png](/algo/graph/graph1.png)
+> ![graph1.png](/uploads/algo/graph-theory/graph/graph1.png)
 >
 > Bài toán đặt ra ở đây là: Hãy tìm một con đường đi qua 7 cây cầu ít nhất một lần và chỉ một lần duy nhất.
 
@@ -29,7 +29,7 @@ Trong bài viết này, ta sẽ tìm hiểu về lý thuyết đồ thị: đị
 Hình ảnh dưới đây là một ví dụ về một đồ thị:
 
 <center>
-<img src="/algo/graph/graph2.png" alt="Đồ thị"/>
+<img src="/uploads/algo/graph-theory/graph/graph2.png" alt="Đồ thị"/>
 </center>
 
 Những vòng tròn được gọi là các **đỉnh (vertices)** hoặc các **nút (nodes)**, và những đường thẳng nối những vòng tròn được gọi là các **cạnh (edges)**.
@@ -61,7 +61,7 @@ Các dạng đồ thị được nói đến dưới đây là một số dạng
 Một đồ thị không có **khuyên**, không có các cạnh song song, vô hướng và không có trọng số được gọi là **đơn đồ thị** (hay chỉ đơn giản là đồ thị).
 
 <center>
-<img src="/algo/graph/graph3.png" alt="Đơn đồ thị"/>
+<img src="/uploads/algo/graph-theory/graph/graph3.png" alt="Đơn đồ thị"/>
 </center>
 
 Note: 
@@ -75,7 +75,7 @@ Một đồ thị tồn tại các cạnh song song được gọi là **đa đ�
 Đơn đồ thị là một dạng đặc biệt của đa đồ thị.
 
 <center>
-<img src="/algo/graph/graph4.png" alt="Đa đồ thị"/>
+<img src="/uploads/algo/graph-theory/graph/graph4.png" alt="Đa đồ thị"/>
 </center>
 
 ### Đồ thị vô hướng
@@ -83,7 +83,7 @@ Một đồ thị tồn tại các cạnh song song được gọi là **đa đ�
 Một đồ thị là **vô hướng (undirected)** khi cạnh không được chỉ định hướng. Nếu đồ thị tồn tại một cạnh $uv$, ta có thể đi theo hướng $u \rightarrow v$ và hướng $v \rightarrow u$. Khi này, việc viết 2 cạnh $uv$ và $vu$ là như nhau và ta chỉ cần viết 1 trong 2 cạnh.
 
 <center>
-<img src="/algo/graph/graph5.png" alt="Đồ thị vô hướng"/>
+<img src="/uploads/algo/graph-theory/graph/graph5.png" alt="Đồ thị vô hướng"/>
 </center>
 
 ### Đồ thị có hướng
@@ -91,7 +91,7 @@ Một đồ thị là **vô hướng (undirected)** khi cạnh không được c
 Một đồ thị là **có hướng (directed)** khi cạnh được chỉ định hướng. Điều này có nghĩa rằng nếu đồ thị tồn tại một cạnh $uv$, ta chỉ có thể đi theo hướng $u \rightarrow v$. Khi này, 2 cạnh $uv$ và $vu$ phân biệt.
 
 <center>
-<img src="/algo/graph/graph6.png" alt="Đồ thị có hướng"/>
+<img src="/uploads/algo/graph-theory/graph/graph6.png" alt="Đồ thị có hướng"/>
 </center>
 
 ### Đồ thị có trọng số
@@ -99,7 +99,7 @@ Một đồ thị là **có hướng (directed)** khi cạnh được chỉ đ�
 Một đồ thị **có trọng số (weighted)** là một đồ thị có các cạnh được gán một giá trị. Các giá trị có thể tượng trưng cho khoảng cách, chi phí di chuyển,... 
 
 <center>
-<img src="/algo/graph/graph7.png" alt="Đồ thị có trọng số"/>
+<img src="/uploads/algo/graph-theory/graph/graph7.png" alt="Đồ thị có trọng số"/>
 </center>
 
 ### Đồ thị không có trọng số
@@ -121,7 +121,7 @@ Một đồ thị là **đầy đủ** khi tất cả các cặp đỉnh của �
 Nếu một đồ thị $G$ có $|V|$ đỉnh vô hướng và đầy đủ, số cạnh của $G$ sẽ là $|E| = \frac{|V| \times (|V| - 1)}{2}$.
 
 <center>
-<img src="/algo/graph/graph8.png" alt="Đồ thị đầy đủ"/>
+<img src="/uploads/algo/graph-theory/graph/graph8.png" alt="Đồ thị đầy đủ"/>
 </center>
 
 ### Đồ thị hai phía
@@ -129,7 +129,7 @@ Nếu một đồ thị $G$ có $|V|$ đỉnh vô hướng và đầy đủ, s�
 Một đồ thị là **hai phía (bipartite)** khi tập đỉnh của nó có thể chia làm hai tập $X$ và $Y$ rời nhau sao cho mỗi cạnh trong đồ thị phải nối một đỉnh trong tập $X$ với một đỉnh trong tập $Y$, và không cặp đỉnh nào liên thông nhau với mỗi tập. 
 
 <center>
-<img src="/algo/graph/graph9.png" alt="Đồ thị hai phía"/>
+<img src="/uploads/algo/graph-theory/graph/graph9.png" alt="Đồ thị hai phía"/>
 </center>
 
 ### Directed acyclic graph (DAG)
@@ -137,7 +137,7 @@ Một đồ thị là **hai phía (bipartite)** khi tập đỉnh của nó có 
 **DAG** là một đồ thị *có hướng __không có chu trình__* . Một đồ thị có hướng được gọi là một DAG khi và chỉ khi đồ thị tồn tại [thứ tự tô pô](/algo/graph-theory/topological-sort.md).
 
 <center>
-<img src="/algo/graph/graph10.png" alt="DAG"/>
+<img src="/uploads/algo/graph-theory/graph/graph10.png" alt="DAG"/>
 </center>
 
 ### Cây
@@ -145,7 +145,7 @@ Một đồ thị là **hai phía (bipartite)** khi tập đỉnh của nó có 
 Một đồ thị được gọi là một **cây** khi nó là một đồ thị *vô hướng, liên thông và không có chu trình*.
 
 <center>
-<img src="/algo/graph/graph11.png" alt="Cây"/>
+<img src="/uploads/algo/graph-theory/graph/graph11.png" alt="Cây"/>
 </center>
 
 ## Các khái niệm, tính chất
@@ -191,8 +191,8 @@ Ta cùng điểm qua một số khái niệm, tính chất liên quan đến đ�
 >
 > 1. Một **chu trình (cycle)** của $G$ là một đường đi khép kín $(v_0, v_1, v_2, \ldots, v_k)$ với $k \ge 3$ và các đỉnh $(v_0, v_1, v_2, \ldots, v_{k - 1})$ đôi một phân biệt.
 >      Một số trường hợp đặc biệt:
->      - Nếu $G$ là một đồ thị có hướng hoặc là một đa đồ thị, $G$ tồn tại chu trình có 2 đỉnh khi trong đồ thị tồn tại hai đỉnh $a$ và $b$ được nối với nhau bởi 2 cạnh song song. Ví dụ: ![2_node_cycle](/algo/graph/graph12.png)
->      - $G$ tồn tại chu trình có 1 đỉnh nếu trong đồ thị tồn tại cạnh khuyên. Ví dụ: ![1_node_cycle](/algo/graph/graph13.png)
+>      - Nếu $G$ là một đồ thị có hướng hoặc là một đa đồ thị, $G$ tồn tại chu trình có 2 đỉnh khi trong đồ thị tồn tại hai đỉnh $a$ và $b$ được nối với nhau bởi 2 cạnh song song. Ví dụ: ![2_node_cycle](/uploads/algo/graph-theory/graph/graph12.png)
+>      - $G$ tồn tại chu trình có 1 đỉnh nếu trong đồ thị tồn tại cạnh khuyên. Ví dụ: ![1_node_cycle](/uploads/algo/graph-theory/graph/graph13.png)
 >
 > 1. Một đường đi (chu trình) là *sơ cấp* nếu nó không đi qua đỉnh nào hai lần trở lên. Một đường đi (chu trình) là *đơn giản* nếu nó không đi qua cạnh nào hai lần trở lên.
 
@@ -263,7 +263,7 @@ Ta giả sử dữ liệu nhập của một đồ thị là một danh sách c�
 Đồ thị ví dụ:
 
 <center>
-<img src="/algo/graph/graph2.png" alt="Đồ thị"/>
+<img src="/uploads/algo/graph-theory/graph/graph2.png" alt="Đồ thị"/>
 </center>
 
 
@@ -441,7 +441,7 @@ Thông tin về luồng cực đại/lát cắt cực tiểu sẽ được cập
 **Lowest Common Ancestor (LCA)** hay *tổ tiên chung gần nhất* của hai hay nhiều đỉnh là đỉnh sâu nhất là tổ tiên của tất cả các đỉnh.
 
 <center>
-<img src="/algo/graph/translate_topcoder_lca_rmq.png" alt="LCA"/>
+<img src="/uploads/algo/graph-theory/graph/translate_topcoder_lca_rmq.png" alt="LCA"/>
 </center>
 
 Bạn có thể đọc thêm một số phương pháp giải LCA qua bài viết [sau](/algo/data-structures/lca).

@@ -37,18 +37,18 @@ Thực hiện các truy vấn thuộc một trong hai loại sau:
 
 Giới hạn: $n, q \leq 10^{5}$.
 
-<!-- ![](https://i.ibb.co/9gLGk24/subtree-example.png) -->
+<!-- ![](/uploads/algo/graph-theory/euler-tour-on-tree/subtree-example.png) -->
 
-<!-- ![](https://i.ibb.co/bbn7YL0/subtree-example.png) -->
+<!-- ![](/uploads/algo/graph-theory/euler-tour-on-tree/subtree-example-2.png) -->
 
 
 <center>
 
 
-![](/uploads/euler-tour-on-tree_img1.png)
+![](/uploads/algo/graph-theory/euler-tour-on-tree/euler-tour-on-tree_img1.png)
 </center>
 
-<!-- ![](https://i.ibb.co/ykSMHwN/subtree-example.png) -->
+<!-- ![](/uploads/algo/graph-theory/euler-tour-on-tree/subtree-example-3.png) -->
 
 <center>
 
@@ -102,15 +102,15 @@ Thể hiện chu trình Euler (**) trên đồ thị $T'$ bằng một dãy các
 
 (**): [Chu trình Euler](https://vnoi.info/wiki/algo/graph-theory/euler-cycle.md) của một đồ thị là một đường đi trên đồ thị đó, trong đó đỉnh bắt đầu trùng với đỉnh kết thúc của đường đi, và mỗi cạnh của đồ thị được đường đi thăm qua đúng một lần.
 
-<!-- ![](https://i.ibb.co/dknd6Vn/simpletree.png) -->
+<!-- ![](/uploads/algo/graph-theory/euler-tour-on-tree/simpletree-2.png) -->
 
 <center>
 
 
-![](/uploads/euler-tour-on-tree_img2.png)
+![](/uploads/algo/graph-theory/euler-tour-on-tree/euler-tour-on-tree_img2.png)
 </center>
 
-<!-- ![](https://i.ibb.co/02Bf8tp/simpletree.png) -->
+<!-- ![](/uploads/algo/graph-theory/euler-tour-on-tree/simpletree.png) -->
 
 <center>
 
@@ -131,11 +131,11 @@ Hình $2$
 Với đồ thị cây hình $2a$, đường đi Euler biểu diễn bằng dãy các đỉnh: ```1 2 3 2 4 2 1 5 1```, cũng là dãy các đỉnh biểu diễn chu trình Euler trên đồ thị hình $2b$.
 
 <!-- <p align="center">
-  <img src="https://media.giphy.com/media/CoqMdAJtE2zpG46Fbp/giphy.gif" alt="animated" />
+  <img src="/uploads/algo/graph-theory/euler-tour-on-tree/giphy.gif" alt="animated" />
 </p> -->
 
 <p align="center">
-  <img src="https://i.imgur.com/j2uWJHk.gif" width="150%" height="150%"/>
+  <img src="/uploads/algo/graph-theory/euler-tour-on-tree/j2uWJHk.gif" width="150%" height="150%"/>
 </p>
 
 
@@ -234,7 +234,7 @@ Từ hai tính chất trên ta nhận xét được rằng, với hai đỉnh $u
 <center>
 
 
-![](/uploads/euler-tour-on-tree_img3.png)
+![](/uploads/algo/graph-theory/euler-tour-on-tree/euler-tour-on-tree_img3.png)
 </center>
 
 
@@ -422,7 +422,7 @@ Ví dụ:
 
 <center>
 
-  ![](/uploads/euler-tour-on-tree_img4.png)
+  ![](/uploads/algo/graph-theory/euler-tour-on-tree/euler-tour-on-tree_img4.png)
 </center>
 
 
@@ -433,7 +433,7 @@ Hình $4$
 
 </center>
 
-<!-- ![](https://i.ibb.co/THr5fDt/twice.png) -->
+<!-- ![](/uploads/algo/graph-theory/euler-tour-on-tree/twice.png) -->
 
 Các đỉnh được tô màu khác màu đen là các đỉnh xuất hiện trong đoạn $\texttt{st}[1] \ldots \texttt{st}[4]$ của dãy.
 
@@ -470,7 +470,7 @@ Thuật toán này dựa trên sự tự triệt tiêu của các đỉnh xuất
 
 
 <p align="center">
-  <img src="https://i.imgur.com/j2uWJHk.gif" width="150%" height="150%"/>
+  <img src="/uploads/algo/graph-theory/euler-tour-on-tree/j2uWJHk.gif" width="150%" height="150%"/>
 </p>
 
 

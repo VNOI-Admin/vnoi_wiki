@@ -35,7 +35,7 @@ Ví dụ, cho các đường thẳng $y=4$ (đỏ), $y=\frac{2}{3}x+\frac{4}{3}$
 Sau khi vẽ các đường thẳng lên hệ trục tọa độ (Hình 1), bài toán trở thành: với $x=1$ thì đường thẳng nào trả về tọa độ $y$ nhỏ nhất. Trong trường hợp này là đường màu xanh dương $y=\frac{2}{3}x+\frac{4}{3}$ với giá trị $y$ nhỏ nhất là $2$.
 
 <!-- https://i.imgur.com/rCYJk3W.png -->
-|![cht1.png](/algo/dp_/cht/cht1.png)|
+|![cht1.png](/uploads/algo/dp/cht/cht1.png)|
 |:-:|
 |**Hình 1:** hình vẽ chứa 5 đường thẳng $y=4$ (đỏ), $y=\frac{2}{3}x+\frac{4}{3}$ (xanh dương), $y=-3x+12$ (xanh lá), $y=-\frac{1}{2}x+3$ (tím) và $x=1$ (đen).<br>Không tính đường thẳng $x=1$ (đen), phần thuộc bao lồi dưới là phần được vẽ bằng nét liền, còn lại (không thuộc bao lồi dưới) được vẽ bằng nét đứt.|
 
@@ -79,7 +79,7 @@ Tiếp theo, ta lần lượt thêm từng đường thẳng đã được sắp
 Khi thêm đường thẳng mới, một vài (có thể là không có) đường thẳng ở cuối Stack sẽ không còn "tiềm năng" (không trả về giá trị $y$ nhỏ nhất ở bất kỳ giá trị $x$ nào) và cần bị loại bỏ khỏi Stack (minh hoạ ở Hình 2).
 Rõ ràng rằng đường thẳng cuối cùng trong Stack luôn "tiềm năng".
 
-|![cht2.png](/algo/dp_/cht/cht2.png)|
+|![cht2.png](/uploads/algo/dp/cht/cht2.png)|
 |:-:|
 |**Hình 2:** Sau khi thêm $l3$, $l2$ cần bị loại bỏ khỏi Stack vì $l2$ không còn "tiềm năng" nữa.|
 
@@ -109,7 +109,7 @@ Cho $N(N \le 3\times10^{5})$ hình chữ nhật khác nhau về hình dạng (c�
 
 Giả sử tồn tại hai hình chữ nhật A và B mà mà cả chiều ngang và chiều dọc của hình B đều bé hơn hình A thì ta có thể nói hình B là không quan trọng vì ta có thể để hình B chung với hình A từ đó chi phí của hình B không còn quan trọng. Sau khi đã loại hết tất cả hình không quan trọng đi và sắp xếp lại các hình theo chiều ngang giảm dần thì chiều dọc các hình đã được sắp xếp sẽ theo chiều tăng dần.
 
-|![cht3.png](/algo/dp_/cht/cht3.png)|
+|![cht3.png](/uploads/algo/dp/cht/cht3.png)|
 |:-:|
 |**Hình 3:** Sau khi loại bỏ hình chữ nhật không quan trọng (xanh lá) và sắp xếp 3 hình chữ nhật còn lại theo chiều ngang giảm dần (đỏ, xanh dương, đen) thì (đỏ, xanh dương, đen) cũng là thứ tự tăng dần theo chiều dọc.|
 
@@ -533,7 +533,7 @@ Hàm `add(int a, int b)` sẽ hoạt động như sau:
 Để đơn giản hoá quá trình cài đặt, ta xây dựng hàm `bool isect(x, y)` với `x` và `y` là 2 con trỏ `multiset<Line>::iterator` liền kề (`x` là liền trước của `y`).
 Hàm trả về `true` nếu `x->p >= y->p`, tức là `y` không còn là một đường thẳng "tiềm năng" nữa (Hình 4).
 
-|![cht4.png](/algo/dp_/cht/cht4.png)|
+|![cht4.png](/uploads/algo/dp/cht/cht4.png)|
 |:-:|
 |**Hình 4:** Sau khi thêm $x$, $y$ không còn "tiềm năng" nữa (vì `y->p < x->p`).|
 
@@ -588,9 +588,9 @@ Cài đặt hàm `add(int a, int b)` gồm 4 bước:
 
 **Lưu ý:** Lý do ta thực hiện bước 3 sau bước 2 là vì khi ở bước 2, ta chưa có `x->p` nên không thể kiểm tra tính "tiềm năng" của `x` được. Hơn nữa, nếu `x` là "không tiềm năng" thì dễ thấy rằng `x` sẽ không ảnh hưởng đến các đường thẳng "tiềm năng" liền sau `x` (vì chỉ có `x->p` được tính trong bước 2). Do đó, hàm `add` sẽ vẫn hoạt động bình thường.
 
-<!-- |![image](https://i.imgur.com/t40h27O.png)| -->
+<!-- |![image](/uploads/algo/dp/cht/t40h27O.png)| -->
 
-|![cht5.png](/algo/dp_/cht/cht5.png)|
+|![cht5.png](/uploads/algo/dp/cht/cht5.png)|
 |:-:|
 |**Hình 5:** Sau khi thêm $x$, $pre1$ và $pre2$ lần lượt không còn "tiềm năng" nữa (vì `pre1->p < pre2->p`, sau đó, `pre2->p < pre3->p`).|
 

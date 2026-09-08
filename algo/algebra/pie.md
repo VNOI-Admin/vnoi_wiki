@@ -32,7 +32,7 @@ $$
 |A \cap B| + |A \cap C| + |B \cap C|
 $$
 
-![pie_3_element_1.png](/algo/pie/pie_3_element_1.png)
+![pie_3_element_1.png](/uploads/algo/algebra/pie/pie_3_element_1.png)
 
 Lúc này phép đếm đã gần đúng, ngoại trừ các phần tử thuộc $A \cap B \cap C$ — sau khi được cộng 3 lần lại bị trừ ba lần. Do đó, ta cần cộng lại một lần nữa. Kết quả là:
 
@@ -40,7 +40,7 @@ $$
 |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|
 $$
 
-![pie_3_element_2.png](/algo/pie/pie_3_element_2.png)
+![pie_3_element_2.png](/uploads/algo/algebra/pie/pie_3_element_2.png)
 
 <!--Hoặc, viết tương đương:
 $$

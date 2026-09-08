@@ -43,7 +43,7 @@ Ta có thể xử lí các thao tác một cách hiệu quả này với các t�
 
 Cấu trúc của cây được thể hiện qua ví dụ sau đây:
 
-![](/uploads/disjoint-set-union_img1.png)
+![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img1.png)
 
 Ban đầu, mỗi phần tử thuộc một tập hợp riêng biệt, vậy mỗi đỉnh là một cây riêng biệt. Bước tiếp theo, ta gộp hai tập hợp chứa phần tử $1$ và $2$. Sau đó, ta gộp hai tập hợp chứa phần tử $3$ và $4$. Cuối cùng, ta gộp hai tập hợp chứa phần tử $1$ và $3$.
 
@@ -138,7 +138,7 @@ Có thể thấy sau khi thực hiện một thao tác như vậy, cấu trúc c
 
 <center>
 
-![](/uploads/disjoint-set-union_img2.png =700x)
+![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img2.png =700x)
 </center>
 
 Bên trái là cây ban đầu và bên phải là cây bị nén sau khi ta sử dụng thao tác `find_set(7)`, nén đường đi tới gốc của các đỉnh $7, 5, 3, 2$.
@@ -266,7 +266,7 @@ Xét ví dụ sau với $n = 5$, ban đầu ta có:
 
 <center>
 
-![](/uploads/disjoint-set-union_img3.png =600x)
+![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img3.png =600x)
 </center>
 <br>
 
@@ -274,7 +274,7 @@ Giả dụ người đứng ở vị trí $2$ và $3$ rời khỏi hàng:
 
 <center>
 
-![](/uploads/disjoint-set-union_img4.png =600x)
+![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img4.png =600x)
 </center>
 <br>
 
@@ -627,7 +627,7 @@ Với cây con gốc $u$ đang xét, ta sẽ dfs xuống giải bài toán với
 
 <center>
 
-![](/uploads/disjoint-set-union_img17.png =400x)
+![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img17.png =400x)
 </center>
 <br>
 
@@ -635,7 +635,7 @@ Tuy nhiên, sự tối ưu của kỹ thuật này chính là ta có thể đả
 
 <center>
 
-![](/uploads/disjoint-set-union_img16.png =800x)
+![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img16.png =800x)
 </center>
 <br>
 
@@ -649,15 +649,15 @@ Ta có thể thấy rõ hơn thông tin mà mảng $\texttt{cnt}$ lưu trữ tro
 
 | Chú thích | Minh họa |
 | -------- | -------- |
-| dfs xuống cây con $v_1$, lúc này trong mảng $\texttt{cnt}$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img5.png) |
-| $v_1$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img6.png) |
-| dfs xuống cây con $v_3$, lúc này trong mảng $\texttt{cnt}$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img7.png) |
-| $v_3$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img8.png) |
-| dfs xuống cây con $v_2$, lúc này trong mảng $\texttt{cnt}$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img9.png) |
-| $v_2$ là `bigChild`,  do đó ta giữ nguyên các màu trong cây con này trong mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img10.png) |
-| Thêm các màu trong cây con $v_1$ vào mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img11.png) |
-| Thêm các màu trong cây con $v_3$ vào mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img12.png) |
-| Thêm đỉnh $u$ vào mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img13.png) |
+| dfs xuống cây con $v_1$, lúc này trong mảng $\texttt{cnt}$ chứa các màu trong cây con này | ![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img5.png) |
+| $v_1$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $\texttt{cnt}$ | ![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img6.png) |
+| dfs xuống cây con $v_3$, lúc này trong mảng $\texttt{cnt}$ chứa các màu trong cây con này | ![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img7.png) |
+| $v_3$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $\texttt{cnt}$ | ![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img8.png) |
+| dfs xuống cây con $v_2$, lúc này trong mảng $\texttt{cnt}$ chứa các màu trong cây con này | ![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img9.png) |
+| $v_2$ là `bigChild`,  do đó ta giữ nguyên các màu trong cây con này trong mảng $\texttt{cnt}$ | ![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img10.png) |
+| Thêm các màu trong cây con $v_1$ vào mảng $\texttt{cnt}$ | ![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img11.png) |
+| Thêm các màu trong cây con $v_3$ vào mảng $\texttt{cnt}$ | ![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img12.png) |
+| Thêm đỉnh $u$ vào mảng $\texttt{cnt}$ | ![](/uploads/algo/data-structures/disjoint-set-union/disjoint-set-union_img13.png) |
 
 Lúc này mảng $\texttt{cnt}$ đã có đủ các màu trong cây con gốc $u$ và ta có thể trả lời các truy vấn của đỉnh $u$.
 

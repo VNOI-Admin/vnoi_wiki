@@ -24,9 +24,9 @@ Hai lỗi đầu tiên rất dễ tránh nếu bạn làm như sau:
 ## Dịch lỗi
 
 <figure style="text-align: center">
-<img width="70%" src="https://i.imgur.com/imtNf6p.png">
-<img width="70%" src="https://i.imgur.com/KIPhy94.png">
-<img width="70%" src="https://i.imgur.com/E997wjd.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/imtNf6p.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/KIPhy94.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/E997wjd.png">
 <figcaption>Các nạn nhân xấu số :(</figcaption>
 </figure>
 
@@ -35,7 +35,7 @@ Một trong những lỗi "ngớ ngẩn" nhất có thể xảy ra trong kì thi
 Để phòng tránh thì đơn giản thôi: Trước khi bạn hoàn thành một bài, hãy compile lại nó một lần nữa để kiểm tra, sau đó đóng nó lại và không sửa gì nữa.
 
 <figure style="text-align: center">
-<img width="70%" src="https://i.imgur.com/qFKDGvI.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/qFKDGvI.png">
 <figcaption>Đừng thêm #define int long long lúc cuối giờ...</figcaption>
 </figure>
 
@@ -46,8 +46,8 @@ Do thể thức đọc/ghi qua file của VOI khác với các trang thi như Co
 - **Đọc kĩ (ít nhất hai lần) tên file dữ liệu** ở trang đầu tiên của đề thi.
 
 <figure style="text-align: center">
-<img width="70%" src="https://i.imgur.com/JRWhTaC.png">
-<img width="70%" src="https://i.imgur.com/mFoGwjK.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/JRWhTaC.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/mFoGwjK.png">
 <figcaption>Bạn có thấy lỗi sai không?</figcaption>
 </figure>
 
@@ -67,7 +67,7 @@ Do thể thức đọc/ghi qua file của VOI khác với các trang thi như Co
   **Lưu ý:** Chỉ nên dùng cách này nếu bạn chắc chắn bạn code đúng trong phòng thi.
 
 <figure style="text-align: center">
-<img width="70%" src="https://i.imgur.com/GxDRlyX.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/GxDRlyX.png">
 <figcaption style="text-align:center">Nạn nhân xấu số khác</figcaption>
 </figure>
 

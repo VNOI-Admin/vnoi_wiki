@@ -33,7 +33,7 @@ Phần dưới đây liệt kê một số thuật ngữ quen thuộc với đa 
 - **Đa giác** (**polygon**) là một đường gấp khúc khép kín. Nghĩa là, nó là một tập hợp các đoạn thẳng, sao cho hai đoạn thẳng liên tiếp nhau (đoạn cuối cùng và đoạn đầu tiên cũng tính là hai đoạn liên tiếp) cắt nhau tại một đầu mút của hai đoạn thẳng đó.
 - **Cạnh** (**edge** hoặc **side**) của đa giác là các đoạn thẳng tạo nên đa giác
 - **Đỉnh** (**vertex**, số nhiều **vertices**) của đa giác là các đầu mút của các đoạn thẳng tạo nên đa giác. Hiển nhiên, đa giác có $n$ đỉnh thì sẽ có $n$ cạnh và ngược lại. Do vậy, người ta thường nhóm các loại đa giác lại theo số cạnh (cũng là số đỉnh) và gọi nó bằng những cái tên quen thuộc như tam giác (triangle), tứ giác (quadrilateral), ngũ giác (pentagon), lục giác (hexagon), ... cho đến hình $n$-cạnh ($n$-gon). Các đa giác được gọi tên bằng các đỉnh theo thứ tự cùng hoặc ngược chiều kim đồng hồ, chẳng hạn dưới đây ta có hình 7 cạnh $ABCDEFG$:
-![geo1.png](/algo/geometry/p3/geo1.png)
+![geo1.png](/uploads/algo/geometry/basic-geometry-3/geo1.png)
 - **Đa giác lồi** (**convex polygon**) là loại đa giác mà trong đó với hai đỉnh bất kỳ thuộc đa giác, đoạn thẳng nối hai đỉnh đó nằm hoàn toàn trong đa giác. Nói cách khác, nếu kéo dài tất cả các cạnh của đa giác ra thì chúng sẽ không cắt nhau ở vị trí nào nằm bên trong đa giác. $ABCDEFG$ trong hình trên là một đa giác lồi.
 - **Đường chéo** (**diagonal**) của một đa giác là đoạn thẳng nối hai đỉnh không kề nhau của đa giác. Với đa giác trên, nếu nối $A$ và $E$ lại ta có một đường chéo
 - **Đa giác đều** (**regular polygon**) là đa giác có tất cả các cạnh và các góc giữa hai cạnh kề nhau là bằng nhau. 
@@ -124,7 +124,7 @@ struct Polygon {
 
 **Tóm tắt đề bài**: Cho đa giác lồi được tạo thành từ $n$ điểm cho trước theo đúng thứ tự đó, điểm thứ $i$ trong số đó có toạ độ là $(x_i, y_i)$. Tính diện tích đa giác trên.
 
-![geo1.png](/algo/geometry/p3/geo2.png)
+![geo1.png](/uploads/algo/geometry/basic-geometry-3/geo2.png)
 
 ### Ý tưởng
 
@@ -135,7 +135,7 @@ Các công thức tính diện tích cho tam giác và một số dạng tứ gi
 #### Công thức Shoelace (công thức tam giác)
 
 Nếu bài toán trên xuất hiện trong đề thi vào THPT, với một hình vẽ chẳng có tính chất gì đặc biệt cả, ta đành phải chọn cách chia đơn giản nhất: đường chéo. Tại một đỉnh của đa giác, vẽ các đường chéo đến tất cả các đỉnh không kề với nó: 
-![geo1.png](/algo/geometry/p3/geo3.png)
+![geo1.png](/uploads/algo/geometry/basic-geometry-3/geo3.png)
 
 Bây giờ, hình đa giác đã chuyển thành một loạt các tam giác. Mà tam giác thì số công thức tính diện tích nhiều vô kể:
 - $S_{ABC} = \frac{1}{2} \times BC \times d(A, BC)$, trong đó $d(M, l)$ là khoảng cách từ điểm $M$ đến đường thẳng $l$.
@@ -214,7 +214,7 @@ Xét trường hợp các đỉnh được cho ngược chiều kim đồng hồ
 
 **Trường hợp 1**: $Ox$ có không quá 1 giao điểm với các cạnh của đa giác
 
-![geo1.png](/algo/geometry/p3/geo4.png)
+![geo1.png](/uploads/algo/geometry/basic-geometry-3/geo4.png)
 
 Xét hình thang $A_1H_1H_2A_2$ (đây là hình thang vì $A_1H_1$ song song với $A_2H_2$ do cùng vuông góc với $Ox$). Diện tích hình thang trên là: 
 $$
@@ -233,7 +233,7 @@ $$
 
 **Trường hợp 2**: $Ox$ có 2 giao điểm với các cạnh của đa giác
 
-![geo1.png](/algo/geometry/p3/geo5.png)
+![geo1.png](/uploads/algo/geometry/basic-geometry-3/geo5.png)
 
 Giả sử giá trị $y_i$ nhỏ nhất trong tất cả các điểm $A_i$ là $\zeta$. Ta tịnh tiến đa giác theo vector có toạ độ $(0, Y)$, trong đó $Y > \zeta$. Tức là, ta biến đa giác $A_1A_2 \ldots A_n$ thành đa giác $B_1B_2 \ldots B_n$, trong đó $B_i$ có toạ độ là $(x_i, y_i + Y)$. Do $Y > \zeta$, có thể khẳng định mọi giá trị $y_i + Y$ đều dương. Như vậy, đa giác $B_1B_2 \ldots B_n$ không có cạnh nào cắt trục $Ox$. Theo trường hợp thứ nhất, diện tích của đa giác mới tạo thành là: 
 $$
@@ -347,7 +347,7 @@ b) Đa giác đã cho là đa giác không tự cắt bất kỳ (tức là có 
 
 #### Kiểm tra bằng diện tích
 
-![geo1.png](/algo/geometry/p3/geo6.png)
+![geo1.png](/uploads/algo/geometry/basic-geometry-3/geo6.png)
 
 Kiểm tra bằng diện tích là phương pháp đơn giản nhất để xem một điểm có nằm trong đa giác không. 
 
@@ -380,7 +380,7 @@ Do đa giác đã cho là đa giác lồi, nên nếu một điểm $P_j$ nằm 
 - Tồn tại một giá trị $k < n$ để $P_j$ nằm trong hoặc nằm trên cạnh của tam giác $A_1A_kA_{k + 1}$
 - Điểm $P_j$ nằm trên cạnh $A_nA_1$.
 
-![geo1.png](/algo/geometry/p3/geo7.png)
+![geo1.png](/uploads/algo/geometry/basic-geometry-3/geo7.png)
 
 Ta có thể dễ dàng kiểm tra trường hợp thứ hai bằng cách kiểm tra xem hai vector $\overrightarrow{P_jA_1}$ và $\overrightarrow{P_jA_n}$ có cùng phương không (hoặc bất kỳ cách nào bạn thích để kiểm tra ba điểm thẳng hàng).
 
@@ -395,7 +395,7 @@ Tóm lại, để kiểm tra vị trí tương đối của một điểm $P_j$,
 - Với mỗi điểm $P_j$, tìm số $k$ nhỏ nhất sao cho $A_1A_k$ nằm bên trái hoặc trùng với $A_1P_j$, sử dụng tìm kiếm nhị phân và tích có hướng. Nếu $P_j$ đã được sắp xếp theo thứ tự ngược chiều kim đồng hồ với $A_1$, có thể sử dụng phương pháp hai con trỏ. Nếu không có số $k$ như vậy thì kết luận $P_j$ nằm ngoài đa giác.
 - Kiểm tra xem điểm $P_j$ có nằm trên cạnh $A_kA_{k-1}$ không, nếu có thì kết luận điểm $P_j$ nằm trên cạnh của đa giác. Nếu không, kiểm tra xem điểm $P_j$ có nằm trong tam giác $A_1A_kA_{k-1}$ không, nếu nằm bên trong thì ta kết luận $P_j$ nằm trong đa giác, còn nếu không thì ta kết luận $P_j$ nằm ngoài đa giác.
 
-![geo1.png](/algo/geometry/p3/geo8.png)
+![geo1.png](/uploads/algo/geometry/basic-geometry-3/geo8.png)
 
 
 ```cpp=
@@ -455,7 +455,7 @@ Nếu đa giác có "góc lõm", hai phương pháp trên sẽ không sử dụn
 
 Đề kiểm tra điểm thuộc miền trong hay ngoài đa giác đơn (không tự cắt), có một thuật toán rất nổi tiếng. Đó là thuật toán **chiếu tia** (**ray casting**). Theo đó, từ mỗi điểm $P_j$, ta dựng một tia theo một hướng bất kỳ. Sau đó, ta đếm số giao điểm của tia này với các cạnh thuộc đa giác. Nếu số giao điểm là chẵn, điểm này bên ngoài đa giác, ngược lại nó nằm trong đa giác. Trường hợp điểm thuộc cạnh đa giác được xét riêng.
 
-![geo1.png](/algo/geometry/p3/geo9.png)
+![geo1.png](/uploads/algo/geometry/basic-geometry-3/geo9.png)
 
 Với dữ kiện đầu vào của bài toán, các đỉnh của đa giác đã được cho theo thứ tự. Như vậy, ta chỉ cần duyệt qua toàn bộ các cặp đỉnh để đểm số giao điểm. Về phần điểm $P_j$, ta sẽ sử dụng tia theo phương song song với trục hoành, chiều hướng về chiều dương. 
 
@@ -505,7 +505,7 @@ PointPolygonPosition position(Polygon plg, Point p) {
 **Bài toán**: [CSES - Polygon Lattice Points](https://cses.fi/problemset/task/2193)
 **Tóm tắt đề bài**: Cho đa giác $A_1A_2 \ldots A_n$ với các đỉnh có toạ độ nguyên cho trước. Đếm số điểm có toạ độ nguyên nằm bên trong và trên các cạnh của đa giác.
 
-![geo1.png](/algo/geometry/p3/geo10.png)
+![geo1.png](/uploads/algo/geometry/basic-geometry-3/geo10.png)
 
 
 ### Đếm số điểm nguyên nằm trên cạnh của đa giác

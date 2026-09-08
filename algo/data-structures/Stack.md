@@ -23,7 +23,7 @@ Stack là một danh sách được bổ sung 2 thao tác: **thêm một phần 
 Có thể hình dung Stack như một chồng sách. Việc đặt một quyển sách lên trên cùng chính là thao tác thêm phần tử, và lấy ra quyển sách ở trên đầu là thao tác loại bỏ phần tử. Như vậy, quyển sách được đặt vào sau cùng sẽ luôn được lấy ra trước tiên. Vì tính chất này, Stack còn được gọi là danh sách **LIFO** (Last In - First Out, hay vào sau - ra trước).
 
 Hình ảnh minh họa cho Stack chứa các phần tử kiểu `char`:
-![](/algo/data-structures/stack/stack_(0).png)
+![](/uploads/algo/data-structures/Stack/stack_0_.png)
 
 Stack có khá nhiều ứng dụng trong lập trình thi đấu. Bài viết này sẽ xem xét các ứng dụng điển hình của Stack.
 
@@ -88,7 +88,7 @@ int main()
     return 0;
 }
 ```
-![](/algo/data-structures/stack/stack_(1).png)
+![](/uploads/algo/data-structures/Stack/stack_1_.png)
 
 Ngoài ra, ta có thể dùng `vector` để biểu diễn một Stack. Các hàm `push`, `top` và `pop` sẽ được thay bằng `push_back`, `pop_back` và `back` khi sử dụng `vector`.
 
@@ -244,10 +244,10 @@ int evaluate(string s) {
 Xét ví dụ: $S = 2 \times 3 - 4 \times 5$.
 
 Giá trị của $\texttt{val}$ và $\texttt{op}$ sau khi xử lý xâu $S$:
-![](/algo/data-structures/stack/stack_(2).png)
+![](/uploads/algo/data-structures/Stack/stack_2_.png)
 
 Quá trình xử lý danh sách toán tử $\texttt{op}$:
-![](/algo/data-structures/stack/stack_(3).png)
+![](/uploads/algo/data-structures/Stack/stack_3_.png)
 
 ### Bài toán 2
 
@@ -261,7 +261,7 @@ Nếu $S$ là dãy ngoặc đúng, với mỗi vị trí trong $S$ bạn cần i
 * Nếu xâu $A$ và $B$ đều là dãy ngoặc đúng thì xâu $A + B$ cũng là dãy ngoặc đúng
 
 Hình ảnh minh họa cho một dãy ngoặc đúng. Các cặp dấu ngoặc tương ứng được tô cùng màu:
-![](/algo/data-structures/stack/stack_(4).png)
+![](/uploads/algo/data-structures/Stack/stack_4_.png)
 
 #### Nhận xét
 
@@ -374,7 +374,7 @@ Bài toán 2 có thể được mở rộng thêm: dãy có thể có cả ngo�
 
 Minh họa cho quá trình với $S = $ "$([\{\}])()$":
 
-![](/algo/data-structures/stack/stack_(5).png)
+![](/uploads/algo/data-structures/Stack/stack_5_.png)
 
 ## Sử dụng Stack để khử đệ quy
 
@@ -428,7 +428,7 @@ Stack đơn điệu là ngăn xếp mà các phần tử của nó xét từ đ�
 
 Hình ảnh minh họa cho một Stack đơn điệu giảm:
 
-![](/algo/data-structures/stack/stack_(6).png)
+![](/uploads/algo/data-structures/Stack/stack_6_.png)
 
 ### Bài toán
 
@@ -451,7 +451,7 @@ Theo mô hình này, giá trị $j$ gần $i$ nhất $(j < i)$ mà $a_i < a_j$ c
 
 Hình ảnh minh họa, số ở hàng trên là chiều cao mỗi người, ở hàng dưới là chỉ số người gần nhất ở bên trái cao hơn họ:
 
-![](/algo/data-structures/stack/stack_(7).png)
+![](/uploads/algo/data-structures/Stack/stack_7_.png)
 
 Ta có thể cải tiến mô hình bằng việc chỉnh sửa cách thức xếp hàng.
 Khi người thứ $i$ xếp hàng, họ sẽ thực hiện các thao tác sau:
@@ -466,7 +466,7 @@ Như vậy, số mà mỗi người nhớ lại chính là **chỉ số của ng
 
 Giả sử mảng $A = [1, 2, 7, 4, 3, 6]$. Các bước diễn ra như sau:
 
-![](/algo/data-structures/stack/stack_(8).png)
+![](/uploads/algo/data-structures/Stack/stack_8_.png)
 
 Dễ thấy chiều cao của người trong hàng luôn tạo thành một dãy đơn điệu.
 
@@ -514,7 +514,7 @@ $$
 
 Hình chữ nhật lớn nhất có diện tích $10$
 
-![](/algo/data-structures/stack/stack_(9).png)
+![](/uploads/algo/data-structures/Stack/stack_9_.png)
 
 ##### Cách giải
 

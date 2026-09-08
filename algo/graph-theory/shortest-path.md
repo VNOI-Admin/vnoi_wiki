@@ -176,7 +176,7 @@ Cho một đồ thị có hướng với $N$ đỉnh (được đánh số từ 
 
 Hình ảnh của Test ví dụ. Ở đồ thị này, đỉnh nguồn là đỉnh $0$, đường đi ngắn nhất từ $0$ đến các đỉnh $0$ đến $5$ là $[0, 1, 7, 4, 4, 10]$. Riêng đỉnh $6$ không có đường đi đến.
 
-![](https://i.imgur.com/UhI67bO.png)
+![](/uploads/algo/graph-theory/shortest-path/UhI67bO.png)
 
 ### Ý tưởng của thuật toán.
 
@@ -191,7 +191,7 @@ Ta sẽ minh họa thuật toán bằng một đồ thị như hình. Định ng
 
 **Đỉnh được tô đen (đỉnh 0) sẽ là đỉnh nguồn.**
 
-![](https://i.imgur.com/FPDbyq9.png)
+![](/uploads/algo/graph-theory/shortest-path/FPDbyq9.png)
 
 Ban đầu, $D = [0, \infty, \infty, \infty]$, $P = [\texttt{false}, \texttt{false}, \texttt{false}, \texttt{false}]$
 

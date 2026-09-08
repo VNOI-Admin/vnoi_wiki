@@ -103,9 +103,9 @@ Nếu bỏ qua $opt(i,mid)$ thì rõ ràng là $[optl,opt(i,mid)]$ và $[opt(i,m
 - Tổng độ phức tạp của thuật toán sau $m$ lần tính $dp$ là $\mathcal{O}(mn\log n)$.
 
 Dưới đây là hình minh hoạ về tổng độ phức tạp để tính $opt(i)$:
-![image](https://hackmd.io/_uploads/B1-6YBwIp.png)
+![image](/uploads/algo/dp/dpdnc/B1-6YBwIp.png)
 <!--
-![](https://vnoi.info/wiki/uploads/dp_optimization_img2.png)
+![](/uploads/algo/dp/dpdnc/dp_optimization_img2.png)
  -->
 ## Cài đặt
 Mặc dù việc triển khai có thể khác nhau tùy theo từng bài toán nhưng chúng đều có một cấu trúc chung.

@@ -54,7 +54,7 @@ Giới hạn: $N, Q \le 10^{5}$
 
 ### Thuật toán ngây thơ
 Ta duyệt qua tất cả phần tử.
-![](https://i.imgur.com/x2DCggl.gif)
+![](/uploads/algo/data-structures/rmq/x2DCggl.gif)
 ```cpp
 int a[N];
 int queryMin(int l, int r) {
@@ -75,9 +75,9 @@ Câu hỏi đặt ra là ta còn có thể tối ưu thời gian truy vấn đư
 
 ### Thuật toán tối ưu 1.1
 - Ta xây dựng mảng $a2$ với công thức $a2_i = \min(a_i, a_{i+1})$.
-![](https://i.imgur.com/ORCwi7l.gif)
+![](/uploads/algo/data-structures/rmq/ORCwi7l.gif)
 - Khi truy vấn, nếu độ dài đoạn cần truy vấn $\texttt{len} = 1$ thì ta in ra $a[l]$, nếu $\texttt{len} > 1$ thì ra dùng mảng $a2$:
-![](https://i.imgur.com/WE6aVdx.gif)
+![](/uploads/algo/data-structures/rmq/WE6aVdx.gif)
 
 ```cpp
 int a[N], a2[N];
@@ -112,14 +112,14 @@ int queryMin(int l, int r) {
 
 ### Thuật toán tối ưu 1.2
 Tương tự 1.1, ta có nhận xét: Thay vì duyệt qua từng nhóm $2$ phần tử, ta có thể duyệt qua từng nhóm $4$ phần tử.
-![](https://i.imgur.com/dUAc0gY.gif)
+![](/uploads/algo/data-structures/rmq/dUAc0gY.gif)
 
 Từ đó, ta có thể giảm thời gian truy vấn xuống còn $\mathcal{O}(\frac{N}4)$
 Khi truy vấn:
 - Nếu độ dài đoạn cần truy vấn $\texttt{len} = 1$ thì ta in ra $a[l]$
 - Nếu độ dài đoạn cần truy vấn $\texttt{len}$ thoả mãn $1 < \texttt{len} < 4$ thì ta in ra $\min(a2[l], a2[r - 1])$
 - nếu $\texttt{len} \geq 4$ thì ra dùng mảng $a4$:
-![](https://i.imgur.com/MsQwG4J.gif)
+![](/uploads/algo/data-structures/rmq/MsQwG4J.gif)
 
 ```cpp
 int a[N], a2[N], a4[N];
@@ -156,7 +156,7 @@ int queryMin(int l, int r) {
 
 ### Thuật toán tối ưu 1.3
 Ta vẫn có thể tối ưu thời gian truy vấn bằng cách duyệt qua các nhóm lớn hơn (nhóm độ lớn $8$ phần tử).
-![](https://i.imgur.com/8SxlpId.gif)
+![](/uploads/algo/data-structures/rmq/8SxlpId.gif)
 
 ```cpp
 int a[N], a2[N], a4[N], a8[N];
@@ -211,7 +211,7 @@ a[i] & \text{ với } j = 0 \\
 
 Nhận xét thêm:
 - $\log$ lệnh if trong $\texttt{queryMin}$ lúc này thật ra chỉ thực hiện nhiệm vụ: tìm $k$ nhỏ nhất thoả mãn $\texttt{len} < 2^{k+1} = 2^{k} + 2^{k}$ (hay nói cách khác là để chắc chắn $2$ đoạn $[l\ldots l+2^{k}-1]$ và $[r-2^{k}+1,r]$ giao nhau nhưng vẫn nằm trong đoạn $[l,r]$).
-![](https://i.imgur.com/Wh92peP.png)
+![](/uploads/algo/data-structures/rmq/Wh92peP.png)
 - Ví dụ:
     - $\texttt{len}=6\Rightarrow k=2$, vì $6 < 2^{k+1} = 8$
     - $\texttt{len}=8\Rightarrow k=3$, vì $8 < 2^{k+1}=16$
@@ -328,9 +328,9 @@ Với giới hạn như trên, rõ ràng cả $2$ thuật toán đều không đ
 - Xem mỗi Sparse Table 1D của mỗi hàng như $1$ "nhóm" phần tử.
 - Để gộp $2$ "nhóm" phần tử, ta thực hiện gộp từng "phần tử" trong "nhóm".
 
-| ![](https://i.imgur.com/MPrrpbW.gif)          |
+| ![](/uploads/algo/data-structures/rmq/MPrrpbW.gif)          |
 | :-------------------------------------------: |
-| ![](https://i.imgur.com/MnTNZ41.png)          |
+| ![](/uploads/algo/data-structures/rmq/MnTNZ41.png)          |
 | Gộp $2$ "nhóm" Sparse Table                   |
 
 Từ ý tưởng trên, ta xây dựng công thức như sau:

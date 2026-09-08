@@ -16,7 +16,7 @@ Thuật toán **duyệt đồ thị ưu tiên chiều rộng** *(Breadth-first s
 
 Ứng dụng của $\texttt{BFS}$ có thể giúp ta giải quyết tốt một số bài toán trong thời gian và không gian **tối thiểu**. Đặc biệt là bài toán tìm kiếm đường đi ngắn nhất từ một đỉnh gốc tới tất cả các đỉnh khác. Trong đồ thị không có trọng số hoặc tất cả trọng số bằng nhau, thuật toán sẽ luôn trả ra đường đi ngắn nhất có thể. Ngoài ra, thuật toán này còn được dùng để tìm các thành phần liên thông của đồ thị, hoặc kiểm tra đồ thị hai phía, ...
 
-![](/uploads/breadth-first-search_img1.png)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_img1.png)
 
 ## Ý tưởng
 
@@ -34,7 +34,7 @@ Chính xác hơn, thuật toán có thể được mô tả như sau:
 - Đầu tiên ta thăm đỉnh nguồn $s$.
 - Việc thăm đỉnh $s$ sẽ phát sinh thứ tự thăm các đỉnh $(u_1, u_2, \ldots u_p)$ kề với $s$ (những đỉnh gần $s$ nhất). Tiếp theo, ta thăm đỉnh $u_1$, khi thăm đỉnh $u_1$ sẽ lại phát sinh yêu cầu thăm những đỉnh $(v_1, v_2, \ldots, v_q)$ kề với $u_1$. Nhưng rõ ràng những đỉnh $v$ này “xa” $s$ hơn những đỉnh $u$ nên chúng chỉ được thăm khi tất cả những đỉnh $u$ đều đã được thăm. Tức là thứ tự thăm các đỉnh sẽ là: $s, u_1, u_2, \ldots, u_p, v_1, v_2, \ldots, v_q, \ldots$
 
-![](/uploads/breadth-first-search_img2.png)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_img2.png)
 
 Thuật toán tìm kiếm theo chiều rộng sử dụng một danh sách để chứa những đỉnh đang “chờ” thăm. Tại mỗi bước, ta thăm một đỉnh đầu danh sách, loại nó ra khỏi danh sách và cho những đỉnh kề với nó chưa được thăm xếp hàng vào cuối danh sách. Thuật toán sẽ kết thúc khi danh sách rỗng.
 
@@ -59,12 +59,12 @@ Thuật toán sử dụng một cấu trúc dữ liệu hàng đợi *(queue)* �
 
 - Xét đồ thị sau đây, với đỉnh nguồn $s=1$ :
 
-![](/uploads/breadth-first-search_img3.png)
-![](/uploads/breadth-first-search_img4.png)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_img3.png)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_img4.png)
 
 - **Quá trình:**
 
-![](/uploads/breadth-first-search_gif1.gif)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_gif1.gif)
 
 ## Cài đặt
 
@@ -142,7 +142,7 @@ Trong thuật toán $\texttt{BFS}$, nếu đỉnh $u$ xa đỉnh nguồn hơn đ
     Với $\deg(v)$ là số bậc của đỉnh $v$, ta có: $\displaystyle\sum_{v \in V}\deg(v) = 2 \times \|E\|$
     - **Ví dụ:** Cho đồ thị sau với $\|V\| = 8$ và $\|E\| = 7$
 
-        ![](/uploads/breadth-first-search_img5.png)
+        ![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_img5.png)
 
         - $\displaystyle\sum_{v \in V}\deg(v) = 2 \times \|E\| = 2 \times 7 = 14$
 
@@ -207,7 +207,7 @@ Thuật toán ứng dụng $\texttt{BFS}$ để xác định thành phần liên
 
 ### **Mô tả**
 
-![](/uploads/breadth-first-search_gif2.gif)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_gif2.gif)
 
 ### **Cài đặt**
 
@@ -317,7 +317,7 @@ Nghĩa là, số lượng thành phần liên thông của đồ thị chính l�
 
 ### **Mô tả**
 
-![](/uploads/breadth-first-search_gif3.gif)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_gif3.gif)
 
 ### **Cài đặt**
 
@@ -803,7 +803,7 @@ Ta coi các thành phố là các đỉnh của đồ thị và các con đườ
 
 - Thực hiện $\texttt{BFS}$ bắt đầu tại đỉnh $S$ :
 
-![](/uploads/breadth-first-search_gif4.gif)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_gif4.gif)
 
 ### **Thuật toán**
 
@@ -1020,7 +1020,7 @@ Có rất nhiều tình huống thực tế có thể mô phỏng bằng đồ t
 
 Một tính chất thú vị của đồ thị hai phía là ta có thể tô màu các đỉnh đồ thị với hai màu sao cho không có hai đỉnh nào cùng màu kề nhau.
 
-![](/uploads/breadth-first-search_img6.png)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_img6.png)
 
 Bạn có thể tìm hiểu thêm về **đồ thị hai phía** tại [**đây**](https://vi.wikipedia.org/wiki/%C4%90%E1%BB%93_th%E1%BB%8B_hai_ph%C3%ADa).
 
@@ -1046,11 +1046,11 @@ Thuật toán này đúng với đồ thị liên thông. Với đồ thị gồ
 
 - Ví dụ mô tả đồ thị **không phải** là đồ thị hai phía:
 
-![](/uploads/breadth-first-search_gif5.gif)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_gif5.gif)
 
 - Ví dụ mô tả **đồ thị hai phía**:
 
-![](/uploads/breadth-first-search_gif6.gif)
+![](/uploads/algo/graph-theory/breadth-first-search/breadth-first-search_gif6.gif)
 
 ### **Thuật toán**
 

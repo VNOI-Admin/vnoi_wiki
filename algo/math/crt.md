@@ -24,7 +24,7 @@ dateCreated: 2025-01-05T09:26:30.948Z
 - [Thuật toán Euclid và thuật toán Euclid mở rộng](/algo/algebra/euclid)
 
 ## Mở đầu
-![crt1.jpg](/algo/math/crt1.jpg)
+![crt1.jpg](/uploads/algo/math/crt/crt1.jpg)
 _Ảnh lấy từ báo Danviet_
 
 Bài viết sẽ mở đầu bằng bài toán "Hàn Tín điểm binh", được chép lại trong quyển hạ sách "Tôn Tử toán kinh". Đây cũng là lý do cách giải bài toán lại được gọi là "Định lý Thặng dư Trung Hoa".

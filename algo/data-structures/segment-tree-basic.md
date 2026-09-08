@@ -48,12 +48,12 @@ Có nhiều giải pháp khác nhau để giải quyết bài toán này nhưng 
     - Nếu không, ta chia dãy đó thành hai dãy con liên tiếp nhỏ hơn, mỗi dãy con gần bằng một nửa kích thước của dãy ban đầu, và tìm giá trị nhỏ nhất tương ứng của chúng. Giá trị nhỏ nhất của dãy ban đầu chính là giá trị nhỏ hơn giữa hai giá trị nhỏ nhất của các dãy con.
         - Ví dụ mô tả thuật toán chia để trị với mảng $A = \{9,2,6,3,1,5,7\}$:
 
-        ![](/uploads/segment-tree-basic_img1.png)
+        ![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_img1.png)
 
 - Nhận thấy rằng, khi ta sửa đổi giá trị của một phần tử bất kỳ trong mảng thì số lượng đoạn cần tính lại không nhiều. Vậy nên ta sẽ lưu lại kết quả và chỉ tính lại khi thực sự cần thiết.
     - **Ví dụ:** Trong ví dụ bên trên, khi sửa đổi phần tử có giá trị $1$ thành giá trị $8$ thì ta chỉ cần tính lại giá trị nhỏ nhất của các đoạn $[1, 7]$, $[5, 7]$, $[5, 6]$ và $[5, 5]$.
 
-    ![](/uploads/segment-tree-basic_img2.png)
+    ![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_img2.png)
 
 **Tổng quát**
 
@@ -74,7 +74,7 @@ Nếu ta biểu diễn các hàm gọi đệ quy này bằng cấu trúc [cây](
 
 - **Ví dụ:** Ta có mảng $A = \{9,2,6,3,1,5,7\}$ được kiểm soát bởi cây phân đoạn sau:
 
-![](/uploads/segment-tree-basic_img3.png)
+![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_img3.png)
 
 # Cấu trúc
 
@@ -121,7 +121,7 @@ Bây giờ ta muốn sửa đổi một phần tử cụ thể trong mảng, gi�
 Nói cách khác, tất cả các nút nằm trên đường đi đơn từ gốc đến nút lá tương ứng đều bị ảnh hưởng. Ngoài ra, **không còn nút nào khác bị ảnh hưởng**. Do đó, với một dãy số gồm $N$ phần tử thì chiều cao của cây phân đoạn tương ứng sẽ là $\mathcal{O}(\log{N})$ nên chỉ có $\mathcal{O}(\log{N})$ nút cần được cập nhật.
 - **Ví dụ:** Cho mảng $A = \{9,2,6,3,1,5,7\}$. Phần tử có giá trị $1$ được thay đổi thành giá trị $8$ trong cây phân đoạn lấy giá trị nhỏ nhất.
 
-![](/uploads/segment-tree-basic_gif1.gif)
+![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_gif1.gif)
 
 Thao tác cập nhật cây phân đoạn có thể được thực hiện bằng cách sử dụng một hàm đệ quy:
 - Để thực hiện cập nhật từ trên xuống, ta bắt đầu từ nút gốc; điều này dẫn đến lệnh gọi đệ quy tới một nút con quản lí đoạn chứa phần tử cần sửa đổi (nút con còn lại và cây con của nó không bị ảnh hưởng); v.v... Cho đến trường hợp cơ sở là nút lá được liên kết với phần tử cần cập nhật, ta sửa lại giá trị của nút lá đó.
@@ -136,7 +136,7 @@ Bây giờ, ta cần phải trả lời các truy vấn lấy giá trị. Ví d�
 Do thao tác lấy giá trị này phức tạp hơn thao tác cập nhật cây phân đoạn nên ta sẽ lấy một ví dụ minh họa để dễ hình dung:
 - Giả sử, cho mảng $A = \{9,2,6,3,1,5,7\}$ và ta muốn biết phần tử nhỏ nhất trong đoạn $[1, 6]$ của mảng $A$.
 
-![](/uploads/segment-tree-basic_img4.png)
+![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_img4.png)
 
 - Gọi $f(l,r)$ là phần tử có giá trị nhỏ nhất trong đoạn $[l, r]$. Ta thấy rằng mỗi nút trong cây phân đoạn đều quản lí  một đoạn nào đó, ví dụ như nút gốc chứa $f(1,7)$, nút con bên trái là $f(1,4)$, nút bên phải là $f(5,7)$, v.v...; và mỗi nút lá chứa $f(i, i) = a_i$. Nhưng không có nút nào chứa $f(1,6)$; tuy nhiên, ta nhận thấy rằng $f(1,6) = \min(f (1,4), f (5,6))$, và có tồn tại các nút trong cây phân đoạn chứa hai giá trị đó *(được hiển thị bằng màu xanh dương trong hình trên)*.
 
@@ -160,7 +160,7 @@ Thay vào đó, ta sẽ sử dụng một thủ thuật đơn giản để làm 
 
 - **Ví dụ minh họa:** Cho mảng $A = \{9,2,6,3,1,5,7\}$, ta có $st[] = \{1, 2, 1, 2, 3, 1, 7, 9, 2, 6, 3, 1, 5\}$ (với $st[]$ là mảng biểu diễn cho **Segment Tree**, lưu lại thông tin của mỗi nút).
 
-    ![](/uploads/segment-tree-basic_img5.png)
+    ![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_img5.png)
 
     - Chỉ số trên mảng được viết bằng màu đỏ bên cạnh mỗi nút, ví dụ như nút có chỉ số $id = 2$ sẽ quản lí đoạn $[1, 4]$ và nút con bên trái của nó có chỉ số $4$, còn nút con bên phải có chỉ số $5$.
 
@@ -320,7 +320,7 @@ Ta có thể chứng minh rằng mệnh đề này *(truy cập nhiều nhất b
 - Vì vậy, giả sử rằng ta truy cập $3$ hoặc $4$ nút trong độ sâu hiện tại. Từ các nút đó, ta sẽ phân tích kỹ hơn các nút nằm ở giữa (nghĩa là nút thứ hai từ trái sang với số lượng nút đang được truy cập là $3$ và nút thứ $2, \ 3$ với số nút đang được truy cập là $4$) . Vì truy vấn yêu cầu lấy giá trị của một đoạn con liên tục, ta biết rằng các phân đoạn tương ứng với các nút đã thăm ở giữa sẽ được bao phủ hoàn toàn bởi phân đoạn của truy vấn. Do đó các nút này sẽ không thực hiện bất kỳ lệnh gọi đệ quy nào tới các nút con nữa. Vì vậy, chỉ nút bên trái nhất và nút bên phải nhất mới có khả năng tiếp tục gọi đệ quy. Và hai nút đó sẽ chỉ tạo ra nhiều nhất $4$ lệnh gọi đệ quy, vì vậy độ sâu tiếp theo cũng sẽ đáp ứng đúng mệnh đề.
     - **Ví dụ:** Giả sử, đoạn cần truy vấn là đoạn $[2, 5]$. Ở độ sâu thứ $3$, ta sẽ truy cập vào ba nút quản lí các đoạn $[1, 2]$, $[3, 4]$ và $[5, 6]$ *(được đánh dấu bằng màu xanh dương)*. Khi đó, vì nút quản lí đoạn $[3, 4]$ nằm hoàn toàn bên trong đoạn $[2, 5]$ nên hàm đệ quy sẽ trả ra luôn giá trị của nút đó, mà **không** gọi đệ quy tới các nút con. Chỉ có hai nút là nút bên trái nhất quản lí đoạn $[1, 2]$ và nút bên phải nhất quản lí đoạn $[5, 6]$ mới được tiếp tục gọi đệ quy.
 
-    ![](/uploads/segment-tree-basic_img6.png)
+    ![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_img6.png)
 
 - Ta cũng có thể nói rằng một nhánh cây phân đoạn sẽ tiếp cận dần tới giới hạn bên trái của truy vấn và nhánh thứ hai tiếp cận tới giới hạn bên phải.
 
@@ -430,7 +430,7 @@ Bây giờ, ta cần phải xác định các phép toán để "hợp nhất" h
 - `pre` : Dễ thấy rằng tiền tố lớn nhất của nút cha sẽ bằng *max* tiền tố của nút con bên trái và tổng giá trị của nút con bên trái cộng với tiền tố của nút con bên phải.
     - **Minh họa:** $\texttt{pre}[l, r] = \max(\texttt{pre}[l, \texttt{mid}], \ \texttt{sum}[l, \texttt{mid}] + \texttt{pre}[\texttt{mid} + 1, r])$ với $\texttt{mid} = \big\lfloor \frac{l + r}{2} \big\rfloor$.
 
-    ![](/uploads/segment-tree-basic_img7.png)
+    ![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_img7.png)
 
 - `suf` : Hậu tố lớn nhất của nút cha sẽ bằng *max* hậu tố của nút con bên phải và tổng giá trị của nút con bên phải cộng với hậu tố của nút con bên trái. *Cách tính hậu tố tương tự như với tiền tố nên sẽ không minh họa lại nữa.*
 - `sum` : Ta có thể dễ dàng tính toán giống như ở **[Ví dụ 1](/algo/data-structures/segment-tree-basic)** bằng cách lấy tổng giá trị $2$ nút con.
@@ -443,7 +443,7 @@ Bây giờ, ta cần phải xác định các phép toán để "hợp nhất" h
     - Ở trường hợp thứ $3$, giá trị của đoạn con lớn nhất sẽ là tổng hậu tố lớn nhất của nút con bên trái với tiền tố lớn nhất của nút con bên phải.
         - **Minh họa:** Trường hợp $3$, với $\texttt{mid} = \big\lfloor \frac{l + r}{2} \big\rfloor$ :
 
-        ![](/uploads/segment-tree-basic_img8.png)
+        ![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_img8.png)
 
     - Khi đó, giá trị của đoạn con lớn nhất nằm trong đoạn được quản lí bởi nút cha sẽ là giá trị lớn nhất của cả ba trường hợp trên.
 
@@ -666,7 +666,7 @@ void update(int i, int val) {
 Với thao tác xây dựng cây phân đoạn, ta thấy rằng, ở mỗi độ sâu của cây, ta sẽ phải duyệt hết toàn bộ phần tử trong dãy để *insert* vào *multiset* của các nút cha.
 - **Ví dụ:** Xét trường hợp tổng quát, với $N = 8$ là lũy thừa của $2$, ta có cây phân đoạn đầy đủ sau:
 
-    ![](/uploads/segment-tree-basic_img9.png)
+    ![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_img9.png)
 
     - Ở độ sâu thứ $4$, mỗi nút là nút lá của cây nên ta có thể lấy trực tiếp giá trị từ các phần tử tương ứng trong dãy số. Vì có $N$ nút lá nên ta sẽ mất độ phức tạp $\mathcal{O}(N)$.
     - Ở độ sâu thứ $3$, để cập nhật giá trị cho nút quản lí đoạn $[1, 2]$ ta sẽ phải duyệt tất cả các phần tử của cả hai nút con, nghĩa là ta sẽ phải duyệt hết các phần tử trong đoạn $[1, 1]$ và $[2, 2]$. Tương tự với các nút quản lí đoạn $[3, 4]$, $[5, 6]$, $[7, 8]$. Do đó, ta cũng sẽ mất thêm độ phức tạp $\mathcal{O}(N)$.
@@ -690,7 +690,7 @@ Giả sử ta cần cập nhật đoạn $[u, v]$. Dễ thấy rằng, việc c�
 Vậy nên, trong quá trình cập nhật, ta chỉ thay đổi giá trị ở các nút gần gốc nhất sao cho tổng tất cả các phạm vi mà các nút đó quản lí đúng bằng đoạn $[u, v]$.
 - **Ví dụ:**  Cho mảng $A = \{9,2,6,3,1,5,7\}$ và ta cần cập nhật đoạn $[1, 6]$ :
 
-    ![](/uploads/segment-tree-basic_img10.png)
+    ![](/uploads/algo/data-structures/segment-tree-basic/segment-tree-basic_img10.png)
 
     - Ta chỉ cập nhật giá trị ở các nút quản lý đoạn $[1, 4]$ và $[5, 6]$. Giá trị của các nút quản lý đoạn $[1, 2]$, $[3, 4]$, $[1, 1]$, $[2, 2]$, $[3, 3]$, $[4, 4]$, $[5, 5]$, $[6, 6]$ sẽ không đúng. Ta sẽ chỉ cập nhật lại giá trị của các nút này khi thật sự cần thiết (Do đó kĩ thuật này được gọi là lazy - lười biếng).
 

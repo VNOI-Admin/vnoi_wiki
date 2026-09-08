@@ -44,20 +44,20 @@ Ta thử nghĩ một số trường hợp biên như vậy:
 
 1. Luôn chọn bộ phim bắt đầu sớm nhất. Ở đây ta sẽ chọn A, rồi chọn D, rồi chọn E.
 
-![schedule-case-1.png](/algo/greedy/schedule-case-1.png)
+![schedule-case-1.png](/uploads/algo/greedy-new/schedule-case-1.png)
 
 2. Luôn chọn bộ phim ngắn nhất, nếu có nhiều bộ phim ngắn nhất thì chọn bộ phim bắt đầu sớm hơn. Ở đây ta sẽ chọn bộ phim C, rồi đến A, rồi đến B.
 
-![schedule-case-2.png](/algo/greedy/schedule-case-2.png)
+![schedule-case-2.png](/uploads/algo/greedy-new/schedule-case-2.png)
 
 3. Luôn chọn bộ phim kết thúc sớm nhất. Ở đây ta sẽ chọn 3 bộ phim C, rồi đến D, rồi đến E.
 
-![schedule-case-4.png](/algo/greedy/schedule-case-4.png)
+![schedule-case-4.png](/uploads/algo/greedy-new/schedule-case-4.png)
 
 :::spoiler Lời giải và chứng minh
 Dưới đây là phản ví dụ cho 2 trường hợp 1 và 2:
 
-![counter-case.png](/algo/greedy/counter-case.png)
+![counter-case.png](/uploads/algo/greedy-new/counter-case.png)
 
 Ở chiến lược 1, khi xem bộ phim bắt đầu sớm nhất, nó hoàn toàn có thể dài đến mức đè hết lên các bộ phim còn lại, còn ở chiến lược 2, nếu bộ phim ngắn nhất ấy giao nhau với quá nhiều bộ phim khác, thì cũng khiến lựa chọn không tối ưu. Việc xét trường hợp cẩn thận, tự phản biện và tìm ra phản ví dụ là một kĩ năng quan trọng khi tiếp cận bài toán bằng tham lam.
 
@@ -77,7 +77,7 @@ Nếu hành động tối ưu, phần thưởng tối đa là bao nhiêu?
 :::spoiler Lời giải và chứng minh
 Quy luật tham lam đúng là làm các công việc theo thời lượng tăng dần và không quan tâm đến hạn chót. Thật vậy, xét 2 công việc $X, Y$ liên tiếp có thời lượng lần lượt là $a, b$ và $a > b$:
 
-![task_schedule.png](/algo/greedy/task_schedule.png)
+![task_schedule.png](/uploads/algo/greedy-new/task_schedule.png)
 
 Khi này bằng việc đảo thứ tự $X$ và $Y$, ta sẽ thiệt $b$ điểm từ $X$ nhưng sẽ được thêm $a$ điểm từ $Y$ nên tổng điểm sẽ tăng thêm $a - b > 0$, qua đó ta nhận được kết quả tốt hơn. Mọi thứ tự công việc chưa được sắp xếp tăng dần theo thời lượng đều tồn tại ít nhất một cặp công việc kề nhau như vậy, và mỗi lần đổi chỗ như trên thì ta được kết quả tốt hơn. Qua đó ta suy ra được thứ tự sắp xếp tăng dần theo thời lượng cho kết quả tối ưu, tức điều phải chứng minh.
 :::
@@ -92,7 +92,7 @@ Cho dãy số nguyên $a$ có $2N$ phần tử. Xét một dãy ngoặc đúng $
 
 Ví dụ, với dãy số và dãy ngoặc sau:
 
-![bracket_sample.png](/algo/greedy/bracket_sample.png)
+![bracket_sample.png](/uploads/algo/greedy-new/bracket_sample.png)
 
 Ta có giá trị là:
 
@@ -227,7 +227,7 @@ Dấu "$=$" xảy ra khi và chỉ khi $a_i \le x \le a_j$. Do đó để $S$ nh
 :::
 
 <center>
-<img src="https://hackmd.io/_uploads/ByeQnGSCxl.png">
+<img src="/uploads/algo/greedy-new/ByeQnGSCxl.png">
 
 
 <i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, hai đường thẳng màu xanh thể hiện hai trung vị của dãy</i>
@@ -252,7 +252,7 @@ $$
 :::
 
 <center>
-<img src="https://hackmd.io/_uploads/rJPE2zrCge.png">
+<img src="/uploads/algo/greedy-new/rJPE2zrCge.png">
 
 <i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, đường thẳng màu xanh thể hiện trung bình cộng của dãy</i>
 </center>

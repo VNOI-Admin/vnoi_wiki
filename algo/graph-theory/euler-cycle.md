@@ -31,7 +31,7 @@ Khái niệm về đường đi và chu trình Euler lần đầu tiên được
 
 > Thành phố Konigsberg thuộc Phổ (nay là Kaliningrad thuộc Nga), được chia làm 4 vùng bằng các nhánh sông Pregel. Các vùng này gồm 2 vùng bên bờ sông (B, C), đảo Kneiphof (A) và một miền nằm giữa hai nhánh sông Pregel (D). Vào thế kỷ XVIII, người ta đã xây 7 chiếc cầu nối những vùng này với nhau. Người dân ở đây tự hỏi: Liệu có cách nào xuất phát tại một địa điểm trong thành phố, đi qua 7 chiếc cầu, mỗi chiếc đúng 1 lần rồi quay trở về nơi xuất phát không?
 >
-> | ![seven-bridges](https://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png) |
+> | ![seven-bridges](/uploads/algo/graph-theory/euler-cycle/Konigsberg_bridges.png) |
 > |:--:|
 > | Minh hoạ 7 cây cầu ở Konigsberg - Nguồn: Wikipedia |
 
@@ -70,13 +70,13 @@ Ta thấy rằng mọi đỉnh $u$ thuộc đồ thị đều có bán bậc ra 
 
 Do đó ta kết luận đồ thị 1 là đồ thị Euler. Thật vậy, $2 \to 1 \to 5 \to 3 \to 4 \to 5 \to 2$ là một chu trình Euler trên đồ thị.
 
-|![graph1](https://i.imgur.com/neNBMhl.png)|
+|![graph1](/uploads/algo/graph-theory/euler-cycle/neNBMhl.png)|
 |:--:|
 |Đồ thị 1|
 
 Đồ thị 2 dưới có những đỉnh mà bán bậc vào khác bán bậc ra. Chẳng hạn, đỉnh $1$ có $1$ cạnh vào và $3$ cạnh ra, tức $\deg^+(1) = 1 \ne 3 = \deg^-(1)$. Do đó ta kết luận đồ thị 2 không phải là đồ thị Euler.
 
-|![graph2](https://i.imgur.com/MoCKbAl.png)|
+|![graph2](/uploads/algo/graph-theory/euler-cycle/MoCKbAl.png)|
 |:--:|
 |Đồ thị 2|
 
@@ -125,19 +125,19 @@ Theo giả sử thì với mọi $G_i$ ta tìm được một chu trình Euler $
 
 > Đồ thị ban đầu, dễ thấy tồn tại chu trình $C = 1 \to 2 \to 3 \to 4 \to 5 \to 6 \to 1$
 >
-> ![graph3](https://i.imgur.com/aUE68Hj.png)
+> ![graph3](/uploads/algo/graph-theory/euler-cycle/aUE68Hj.png)
 >
 > Xoá các cạnh thuộc $C$, ta nhận thấy có $2$ chu trình con là $C_1 = 3 \to 9 \to 5 \to 3$ và $C_2 = 6 \to 8 \to 7 \to 6$
 >
-> ![graph4](https://i.imgur.com/fwSS7hb.png)
+> ![graph4](/uploads/algo/graph-theory/euler-cycle/fwSS7hb.png)
 >
 > Nhận thấy giữa $C$ và $C_1$ có đỉnh chung $5$. Nối $2$ chu trình lại ta thu được một chu trình $C$ mới lớn hơn: $C = 1 \to 2 \to 3 \to 4 \to 5 \to 3 \to 9 \to 5 \to 6 \to 1$.
 >
-> ![graph5](https://i.imgur.com/sekE1zw.png)
+> ![graph5](/uploads/algo/graph-theory/euler-cycle/sekE1zw.png)
 >
 > Tiếp tục, giữa $C$ và $C_2$ có đỉnh chung $6$. Nối $2$ chu trình lại ta thu được một chu trình $C$ mới: $C = 1 \to 2 \to 3 \to 4 \to 5 \to 3 \to 9 \to 5 \to 6 \to 7 \to 8 \to 6 \to 1$. Ta đã đi qua tất cả các cạnh và tìm được chu trình Euler trong đồ thị.
 >
-> ![graph6](https://i.imgur.com/l9EXMND.png)
+> ![graph6](/uploads/algo/graph-theory/euler-cycle/l9EXMND.png)
 
 
 # Đường đi Euler trên đồ thị có hướng
@@ -165,13 +165,13 @@ Các đỉnh khác ngoài $4$ và $6$ đều có bán bậc ra bằng bán bậc
 
 Do đó, ta kết luận tồn tại đường đi Euler trên đồ thị 3. Thật vậy, $4 \to 2 \to 3 \to 1 \to 2 \to 6$ là một đường đi Euler trên đồ thị.
 
-|![](https://i.imgur.com/qUYJzQW.png)|
+|![](/uploads/algo/graph-theory/euler-cycle/qUYJzQW.png)|
 |:--:|
 | Đồ thị 3 |
 
 Đồ thị 4 có hướng không tồn tại đường đi Euler do có các đỉnh có bậc ra khác bậc vào là $1$, $2$, $4$, $6$.
 
-|![](https://i.imgur.com/f3LfsIy.png)|
+|![](/uploads/algo/graph-theory/euler-cycle/f3LfsIy.png)|
 |:--:|
 | Đồ thị 4 |
 
@@ -237,15 +237,15 @@ Xét một đồ thị vô hướng $G$ có $n$ đỉnh thoả $\forall u \in G$
 
 > Đồ thị ban đầu, dễ thấy chu trình $C = 1 \to 2 \to 3 \to 4 \to 1$
 >
-> ![](https://i.imgur.com/cid4lgG.png)
+> ![](/uploads/algo/graph-theory/euler-cycle/cid4lgG.png)
 >
 > Xoá các cạnh thuộc $C$, ta dễ thấy một chu trình $C_1 = 7 \to 4 \to 8 \to 1 \to 5 \to 2 \to 6 \to 3 \to 7$.
 >
-> ![](https://i.imgur.com/3BgtAJ0.png)
+> ![](/uploads/algo/graph-theory/euler-cycle/3BgtAJ0.png)
 >
 > Nhận thấy $C$ và $C_1$ có đỉnh chung $2$, nối $C$ và $C_1$ để tạo ra chu trình mới lớn hơn: $1 \to 2 \to 6 \to 3 \to 7 \to 4 \to 8 \to 1 \to 5 \to 2 \to 3 \to 4 \to 1$. Ta đã đi qua tất cả các cạnh và tìm được chu trình Euler trong đồ thị.
 >
-> ![](https://i.imgur.com/Cv1oPJH.png)
+> ![](/uploads/algo/graph-theory/euler-cycle/Cv1oPJH.png)
 
 # Đường đi Euler trên đồ thị vô hướng
 

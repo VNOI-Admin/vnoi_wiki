@@ -61,7 +61,7 @@ Ví dụ, với tập $\{2, 4, 5\}$ ứng với dãy trạng thái $[0, 1, 0, 1,
 
 Tuy nhiên, với việc thêm trạng thái mới vào đầu dãy, ta có hai tập mới là $\{3, 5, 6\}$ và $\{1, 3, 5, 6\}$.
 
-![state_prepend.png](/algo/dp_/knapsack/state_prepend.png)
+![state_prepend.png](/uploads/algo/dp/dp-knapsack-2/state_prepend.png)
 
 Nói một cách toán học hơn, từ tập $S = \{1\}$, ta sẽ sinh ra tất cả các tập số tự nhiên khác rỗng theo hai thao tác sau:
 
@@ -253,7 +253,7 @@ $$
 
 Bên cạnh đó, ta gọi **lời giải tại điểm cắt** là phương án chọn tất cả các món đồ từ $1$ đến $b$ và không chọn các món đồ còn lại. Ngoài ra, từ điểm cắt $b$, ta tách các món đồ thành hai nhóm $A, B$ lần lượt là các món đồ từ $1$ đến $b$ và từ $b + 1$ đến $n$.
 
-![break_solution.png](/algo/dp_/knapsack/break_solution.png)
+![break_solution.png](/uploads/algo/dp/dp-knapsack-2/break_solution.png)
 
 **Định nghĩa 2.** Ta định nghĩa một trạng thái chọn/không chọn các món đồ là **trạng thái cân bằng** nếu trạng thái này có thể được biến đổi từ lời giải tại điểm cắt thông qua hai thao tác:
 
@@ -264,7 +264,7 @@ Lưu ý, tại mọi thời điểm, việc chọn loại thao tác để thực
 
 Ví dụ, từ lời giải tại điểm cắt như hình trên, ta có thể thêm một món đồ có trọng số $8$ và bỏ đi hai món đồ có trọng số $1$ và $3$ để cho ra một trạng thái cân bằng như sau:
 
-![balanced_filling.png](/algo/dp_/knapsack/balanced_filling.png)
+![balanced_filling.png](/uploads/algo/dp/dp-knapsack-2/balanced_filling.png)
 
 **Tính chất 1.** Với cách định nghĩa như trên, ta có thể chứng minh rằng mọi lời giải tối ưu/hợp lệ của bài toán 0/1 Knapsack và Subset sum đều là một trạng thái cân bằng.
 
@@ -298,7 +298,7 @@ Có thể thấy, ý tưởng của thuật toán quy hoạch động của Davi
 
 Đây là đồ thị mô phỏng sự thay đổi của tổng trọng số theo hướng tiếp cận của thuật toán này so với hướng tiếp cận của lời giải quy hoạch động truyền thống:
 
-![weight_to_time_graph.png](/algo/dp_/knapsack/weight_to_time_graph.png)
+![weight_to_time_graph.png](/uploads/algo/dp/dp-knapsack-2/weight_to_time_graph.png)
 
 ### Lời giải cho bài toán Subset sum
 
@@ -413,7 +413,7 @@ Từ công thức truy hồi cho $\texttt{exist}$ ở lời giải  $\mathcal{O}
 - $\texttt{exist}(i + 1, j, \sigma - w_{i+1}) = 1$, nếu $\sigma > C$.
 - $\texttt{exist}(i, j + 1, \sigma + w_{b+j+1}) = 1$, nếu $\sigma \leq C$.
 
-![transition_2.png](/algo/dp_/knapsack/transition_2.png)
+![transition_2.png](/uploads/algo/dp/dp-knapsack-2/transition_2.png)
 
 Từ đó, nếu cố định $i, \sigma$ và cùng lúc các vị trí $\texttt{exist}(i, j, \sigma) = 1$ với $j \in [\delta; n - b]$, nó sẽ kéo theo:
 

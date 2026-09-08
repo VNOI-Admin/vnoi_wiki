@@ -34,7 +34,7 @@ Khi chưa có alpha và beta xác định thì thực hiện tìm kiếm sâu (d
 ### Cắt tỉa như thế nào?
 Một số sách và tài liệu có đề cập với việc cắt tỉa alpha và cắt tỉa beta, ở đây tôi cũng sẽ nói về việc đó và dùng một cách khác đó là dùng các khoảng trong toán học. Hãy nhìn cây trò chơi phía dưới để hình dung cách để cắt tỉa.
 
-![alpha-beta1.png](/algo/game/alpha-beta1.png)
+![alpha-beta1.png](/uploads/algo/games/Giai-Thuat-Cat-Tia-Alpha-beta/alpha-beta1.png)
 
 Chắc hẳn những bạn đang đọc bài này sẽ đều thắc mắc vấn đề tại sao chúng ta có thể cắt bỏ toàn bộ những nút con của C trên cây trò chơi trên.
 
@@ -47,7 +47,7 @@ Sau khi xác định được alpha và beta, chúng ta có thể dễ dàng xá
 Nếu nói theo khoảng thì hiện tại chúng ta chỉ nhận khoảng $\ge 10$ tại nút gốc  S, vậy thì đâu cần bận tâm đến việc khoảng $\le 3$ tại nút C.
 
 Ví dụ với một cây trò chơi trung bình
-![alpha-beta2.png](/algo/game/alpha-beta2.png)
+![alpha-beta2.png](/uploads/algo/games/Giai-Thuat-Cat-Tia-Alpha-beta/alpha-beta2.png)
 
 Ở đây chúng ta cũng xét từ trái qua phải bắt đầu từ nút gốc và nút con bên trái sẽ được ưu tiên duyệt trước. Duyệt nguyên cây này sẽ khá dài dòng nhưng để bạn hiểu tôi sẽ viết ra các bước sau.
 

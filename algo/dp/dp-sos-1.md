@@ -98,7 +98,7 @@ Tuy nhiên, cách làm này vẫn còn 2 điểm yếu lớn:
 
 Để khắc phục điều này, khi truy hồi thay vì chọn dấu $\texttt{?}$ bất kì, ta quy ước chọn dấu $\texttt{?}$ bên trái nhất (chỉ số cao nhất). Khi đó, ta chỉ cần xét các pattern mà các giá trị $\texttt{1}$ và $\texttt{?}$ nằm ở hai bên của pattern.
 
-![mask example recolored](/algo/dp_/sos/dpsos1.png)
+![mask example recolored](/uploads/algo/dp/dp-sos-1/dpsos1.png)
 
 :::info
 Ta lưu thêm một biến $k$ cho biết vị trí tách phần chứa $\texttt{1}$ và phần chứa $\texttt{?}$ (giá trị $\texttt{0}$ xuất hiện trong cả hai phần). Lúc này, để biểu diễn một pattern, ta chỉ cần một cặp bitmask và số nguyên $(\texttt{mask}, k)$:
@@ -145,7 +145,7 @@ $$
 
 Sau đây là cây biểu diễn các trạng thái mà ta sẽ gọi khi tính $f(\texttt{1011})$:
 
-![sos tree recolored](/algo/dp_/sos/dpsos2.png)
+![sos tree recolored](/uploads/algo/dp/dp-sos-1/dpsos2.png)
 
 Lưu ý, khi vẽ hết các trạng thái của Quy hoạch động ra, đồ thị không còn là cây nữa mà là một đồ thị có hướng không chu trình (DAG).
 

@@ -168,11 +168,11 @@ Ta thậm chí còn có thể bỏ hẳn một chiều của bảng `dp` bằng 
 
 Lưu ý rằng việc duyệt $j$ từ $0$ đến $C$ sẽ cho ra giá trị sai, ta có thể quan sát ví dụ sau: do trạng thái $\texttt{dp}(i, j - w_i)$ đã được xử lý trước nên việc lấy lại ô nhớ thứ $j - w_i$ để cập nhật ô nhớ $j$ lại trở thành lấy $\texttt{dp}(i, j - w_i)$ để tính $\texttt{dp}(i, j)$.
 
-![dp_knapsack_opt_mem_1.png](/algo/dp_/knapsack/dp_knapsack_opt_mem_1.png)
+![dp_knapsack_opt_mem_1.png](/uploads/algo/dp/dp-knapsack-1/dp_knapsack_opt_mem_1.png)
 
 Thay vào đó, ta cần lấy $\texttt{dp}(i - 1, j - w_i)$ để tính $\texttt{dp}(i, j)$.
 
-![dp_knapsack_opt_mem_2.png](/algo/dp_/knapsack/dp_knapsack_opt_mem_2.png)
+![dp_knapsack_opt_mem_2.png](/uploads/algo/dp/dp-knapsack-1/dp_knapsack_opt_mem_2.png)
 
 :::spoiler Code tham khảo 2
 ```cpp=
@@ -287,11 +287,11 @@ cout << dp[C];
 
 Xét các truy hồi trên dòng thứ $i$ của bảng Quy hoạch động, ta thấy mọi ô ở dòng $i$ cột $j$ đều lấy giá trị từ dòng $i - 1$ cột $j$ và $j - w_i$ theo công thức truy hồi $\texttt{exist}(i - 1, j) \lor \texttt{exist}(i - 1, j - w_i)$:
 
-![dp_transition.png](/algo/dp_/knapsack/dp_transition.png)
+![dp_transition.png](/uploads/algo/dp/dp-knapsack-1/dp_transition.png)
 
 Điều này cũng tương tự với việc dịch chuyển toàn bộ các phần tử của $\texttt{dp}_{i-1}$ sang phải $w_i$ lần, rồi thực hiện bitwise OR với các phần tử ban đầu:
 
-![bitset_transition.png](/algo/dp_/knapsack/bitset_transition.png)
+![bitset_transition.png](/uploads/algo/dp/dp-knapsack-1/bitset_transition.png)
 
 Nếu lưu mỗi dòng của bảng Quy hoạch động dưới dạng cấu trúc dữ liệu [`bitset`](http://www.en.cppreference.com/w/cpp/utility/bitset.html), ta có thể biến đổi thao tác dịch chuyển các phần tử thành phép dịch bit sang trái. Khi đó, công thức truy hồi là:
 
@@ -510,7 +510,7 @@ $$
 
 Để đơn giản hóa bài toán, ta tạm bỏ qua giới hạn $k_i$. Khi đó, với mỗi trạng thái $(i, j)$ trên bảng quy hoạch động, ta truy hồi về các trạng thái trên dòng $i - 1$, cột $j - w_i, j - 2w_i, j - 3w_i, \dots$ tức các cột có chỉ số đồng dư với $j$ theo modulo $w_i$.
 
-![dp_transition_2.png](/algo/dp_/knapsack/dp_transition_2.png)
+![dp_transition_2.png](/uploads/algo/dp/dp-knapsack-1/dp_transition_2.png)
 
 Như vậy, ta có thể biến đổi công thức lại thành:
 
@@ -629,7 +629,7 @@ Ta sẽ lần lượt giải quyết từng yêu cầu của bài toán, bắt �
 
 Ví dụ, với chu trình gồm $7$ đỉnh, thứ tự xóa cạnh sau là tối ưu:
 
-![del_edge.png](/algo/dp_/knapsack/del_edge.png)
+![del_edge.png](/uploads/algo/dp/dp-knapsack-1/del_edge.png)
 
 Cụ thể hơn, xét một chu trình gồm $n$ đỉnh, khi xóa $\left\lfloor \frac{n}{2} \right\rfloor$ cạnh đầu tiên, ta xóa được $2$ đỉnh đặc biệt cho mỗi cạnh. Với $n \bmod 2$ cạnh tiếp theo, ta xóa được $1$ đỉnh đặc biệt cho mỗi cạnh. Các cạnh còn lại không đóng góp gì vào đáp án.
 

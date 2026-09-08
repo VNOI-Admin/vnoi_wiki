@@ -30,7 +30,7 @@ Việc xuất hiện $\sqrt5$ đặt ra nhiều thách thức cho việc tính t
 
 <center>
 
-<img src="/algo/math/legendre.png" width=475></img>
+<img src="/uploads/algo/math/sqrt-mod-p/legendre.png" width=475></img>
 </center>
 
 <!-- $$\left(\frac{a}{p}\right) = \begin{cases}

@@ -17,7 +17,7 @@ Cho một chuỗi $S$ độ dài $n$, ký hiệu là $S[0\ldots n - 1]$, ta có 
 Ở đây, ta sẽ quy ước hai điều: một là chuỗi và mảng sẽ mặc định bắt đầu từ $0$, hai là $z[0] = 0$, ta có thể hiểu quy ước này nghĩa là chuỗi con xét ở đây phải là *chuỗi con nghiêm ngặt* (tức không tính chính nó).
 
 Ví dụ hàm $z$ với $S = aaabaab$:
-<!-- ![](https://i.imgur.com/J3z6AuG.png) -->
+<!-- ![](/uploads/algo/string/z-algo/J3z6AuG.png) -->
 
 | i | S[0..n-1] | S[i..n-1] | z[i]        |
 |---|-----------|-----------|-------------|
@@ -49,7 +49,7 @@ vector<int> z_function(string s) {
 $$
 z[i] = \min(r - i + 1, z[i - l])
 $$
-![](/uploads/z-algo-visualize.png)
+![](/uploads/algo/string/z-algo/z-algo-visualize.png)
 - $i > r$: khi đó $i$ nằm ngoài vùng ta đã kiểm tra, khi đó ta không thể tận dụng gì nên chỉ khởi tạo $z[i] = 0$ và làm theo thuật toán ngây thơ.
 
 

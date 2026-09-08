@@ -32,7 +32,7 @@ Bài toán luồng với chi phí cực tiểu là các bài toán yêu cầu ta
 Giả sử ta được cho một **mạng (network)** là một đồ thị có hướng $G = (V, E)$ gồm các đỉnh và các cung nối các đỉnh lại với nhau. Mỗi cung $e$ trên mạng sẽ có hai trọng số $c(e)$ và $a(e)$ chỉ lượng luồng có thể đi qua và chi phí khi gửi một đơn vị luồng đi qua cung này.
 
 <center>
-<img src="/algo/graph/flow/min_cost_flow_1.png" alt="Mạng kèm theo chi phí"/>
+<img src="/uploads/algo/graph-theory/min-cost-flow/min_cost_flow_1.png" alt="Mạng kèm theo chi phí"/>
 <p>Số bên trái là sức chứa, số bên phải là chi phí</p>
 </center>
 
@@ -56,7 +56,7 @@ Ta sẽ xây dựng thuật toán giải quyết bài toán này dựa theo phư
 - **Cạnh ngược**: Với mỗi cung $uv$ có trong $G$, sẽ tồn tại một cạnh có hướng $vu$ trong $G^f$ có sức chứa thặng dư bằng $f(uv)$ và có chi phí bằng $-a(uv)$. 
 
 <center>
-<img src="/algo/graph/flow/min_cost_flow_2.png" alt="Đồ thị thặng dư kèm theo chi phí"/>
+<img src="/uploads/algo/graph-theory/min-cost-flow/min_cost_flow_2.png" alt="Đồ thị thặng dư kèm theo chi phí"/>
 </center>
 
 Sở dĩ ta cho cạnh ngược có chi phí $-a(uv)$ là bởi cạnh ngược là các cạnh được dùng để hủy luồng đi qua cung trên mạng, và vì luồng đã bị hủy nên ta cũng loại bỏ chi phí khi đi qua cung ấy. 

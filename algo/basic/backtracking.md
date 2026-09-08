@@ -20,7 +20,7 @@ dateCreated: 2023-12-25T10:59:48.774Z
 
 # Mở đầu
 
-![](https://hackmd.io/_uploads/BkRIUcdV2.jpg)
+![](/uploads/algo/basic/backtracking/BkRIUcdV2.jpg)
 *Búp bê Matryoshka (ảnh trên Google Images)*
 
 Trong cuộc sống, chúng ta đôi khi bắt gặp những hình ảnh về một vật mà chứa bên trong nó là một vật khác giống hệt nó, như búp bê Matryoska, cửa sổ OBS khi bạn cố dùng nó để quay màn hình của chính nó, sách giáo khoa Toán lớp 3 cũ, hoặc [link này](/algo/basic/backtracking), ... Tương tự như vậy, trong khoa học máy tính và lập trình, chúng ta xây dựng khái niệm về đệ quy.
@@ -55,7 +55,7 @@ Lý thuyết suông thì quá khó hiểu, hãy cùng xem một số ví dụ:
 
 Lựa chọn thứ nhất có vẻ không khả thi, phần vì $(-1)!$ không xác định, mặt khác nếu thay tiếp thì chúng ta cũng chẳng biết dừng ở đâu cả. Với $0! = 1$, ta có thể thay vào để tính $1!$ rồi. Có $1!$ ta lại thay nó vào tiếp để tính $2!$, và chúng ta có thứ chúng ta cần.
 
-![Mô hình tính giai thừa đệ quy](https://i.imgur.com/OMVG6I2.png)
+![Mô hình tính giai thừa đệ quy](/uploads/algo/basic/backtracking/OMVG6I2.png)
 
 Phân tích thì dài dòng vậy thôi, còn cài đặt thì rất đơn giản:
 ```cpp
@@ -167,7 +167,7 @@ Ví dụ, với $n = 3$ ta có các dãy $000, 001, 010, 011, 100, 101, 110, 111
 **Phân tích:**
 Ở ví dụ phía trên, chúng ta đã nói về việc xét mọi trường hợp để xây dựng các dãy này như thế nào. Khi cài đặt đệ quy, sử dụng tư duy quy nạp "xây tập sau từ tập trước", thuật toán sẽ hoạt động như sau:
 
-![](https://i.imgur.com/QqypRGl.png)
+![](/uploads/algo/basic/backtracking/QqypRGl.png)
 
 Tại hàm `gen(1)`, ta xét từng giá trị của ký tự hiện tại, sau đó gọi `gen(2)` với từng ký tự đó. Tương tự như vậy, ta gọi `gen(3)` từ các ký tự ở `gen(2)` và rồi `gen(4)`. Tới `gen(4)`, ta đã duyệt hết các vị trí và không thể thử thêm nữa, nên có thể in ra xâu.
 
@@ -318,7 +318,7 @@ Nếu bạn đọc để ý kỹ thì chúng ta không sử dụng tham số `po
 
 **Bài toán:** Tìm tất cả các cách xếp $n$ ($n \leq 12$) quân Hậu lên một bàn cờ $n \times n$ sao cho không có hai quân Hậu nào có thể ăn được nhau. Nếu có hai cách là hoán vị của nhau (về vị trí) thì chỉ tính là một, ví dụ hai tập hợp $\{(1, 2), (3, 4), (5, 6)\}$ và $\{(1, 2), (5, 6), (3, 4)\}$ chỉ lấy $1$. Hai quân Hậu được gọi là có thể ăn được nhau nếu chúng nằm cùng hàng, cột hoặc đường chéo của bàn cờ.
 
-![](https://i.imgur.com/FQTQrW0.png)
+![](/uploads/algo/basic/backtracking/FQTQrW0.png)
 (Hình ảnh tìm trên Google Images)
 
 **Phân tích:**

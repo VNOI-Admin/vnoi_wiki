@@ -6,9 +6,9 @@ Bài viết gốc: [Seam Carving Algorithm - K. Lykov Blog](http://kirilllykov.g
 
 **Seam carving** là một thuật toán dùng để thay đổi kích thước hình ảnh, nó được giới thiệu trong bài báo cáo khoa học của [S. Avidan & A. Shamir](http://www.win.tue.nl/~wstahw/edu/2IV05/seamcarving.pdf). Trong bài báo, việc thay đổi kích thước ảnh được thực hiện bằng cách loại bỏ đi các điểm ảnh ít quan trọng và giữ lại các điểm ảnh quan trọng. Bức ảnh dưới đây là minh họa điều này (ảnh bên trên là ảnh gốc với kích thước 332x480 và ảnh bên dưới là ảnh sau khi áp dụng thuật toán seam carving đẻ thu nhỏ còn lại kích thước là 272x400).
 
-![](http://kirilllykov.github.io/images/seamcarving/sea-thai.jpg) 
+![](/uploads/comp-sci/imageprocessing/Seam-Carving/sea-thai.jpg) 
 
-![](http://kirilllykov.github.io/images/seamcarving/sea-thai-reduced.jpg)
+![](/uploads/comp-sci/imageprocessing/Seam-Carving/sea-thai-reduced.jpg)
 
 Thuật toán này khá phổ biến nên có thể dễ dàng tìm thấy rất nhiều bài viết nói về nó. Tuy nhiên hầu hết đa số các tác giả đã không đọc bài báo cáo ban đầu và chỉ cung cấp cách cài đặt thuật toán khá cơ bản. Trong bài viết này tôi sẽ mô tả thuật toán đầy đủ các chi tiết như trong bài viết của Avidan & Shamir, dưới góc nhìn của một lập trình viên. Ở đây ta sẽ sử dụng matlab để cài đặt thuật toán. Phần chứng minh cụ thể các bạn xem ở phần tham khảo.
 
@@ -46,7 +46,7 @@ end
 
 Năng lượng thu được:
 
-![](http://kirilllykov.github.io/images/seamcarving/sea-thai-energy.jpg)
+![](/uploads/comp-sci/imageprocessing/Seam-Carving/sea-thai-energy.jpg)
 
 
 ## Seam
@@ -55,7 +55,7 @@ Nếu chúng ta xóa đi các điểm ảnh có nặng lượng thấp nhất �
 
 Thuật toán Seam Carving xóa các hàng và cột tổng quát (được gọi là đường seam). Cụ thể hơn, gọi $I$ là một bức ảnh có kích thước $n \times m$, một đường seam dọc là $(s^{x})i = (i, x(i)) \text{ s.t. } \forall i, \|x(i) - x(i - 1)\| \leq 1$ trong đó $x[1 \ldots n] \to [1 \ldots m]$. Nói một cách dễ hiểu hơn, một đường seam dọc (**vertical seam**) là một đường đi từ biên trên của bức ảnh xuống biên dưới của bức ảnh với độ dài đường đi bằng chiều cao của bức ảnh, và với mỗi phần vị trí $(i, j)$ của đường seam, ta có thể đi tiếp đến các phần tử $(i + 1, j - 1)$, $(i + 1, j)$, $(i + 1, j + 1)$. Tương tự ta cũng có thể định nghĩa cho đường seam ngang (**horizontal seam**). Ví dụ về các đường màu đen là các đường seam trong hình dưới đây.
 
-![](http://kirilllykov.github.io/images/seamcarving/sea-thai-seams.jpg)
+![](/uploads/comp-sci/imageprocessing/Seam-Carving/sea-thai-seams.jpg)
 
 Chúng ta sẽ tìm kiếm một đường seam sao cho có tổng giá trị năng lượng là nhỏ nhất (theo chiều chúng ta chọn): $s^{*}= \left[ \min \limits_{s} \sum\limits_{i=1}^n e(I(s_{i})) \right]$. Cách để tìm được kết quả tối ưu cho bài toàn là sử dụng phương pháp quy hoạch động.
 

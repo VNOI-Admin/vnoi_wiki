@@ -107,7 +107,7 @@ Ta hoàn toàn có thể mở rộng thêm với nhiều số nguyên tố hơn 
 
 <center>
   
-![wheelfactorizationgrid.gif](/algo/math/wheelfactorizationgrid.gif)
+![wheelfactorizationgrid.gif](/uploads/algo/math/integer-factorization/wheelfactorizationgrid.gif)
 
 $d \bmod 30 \in \{1, 7, 11, 13, 17, 19, 23, 29\}$
 hay $d = 7, 11, 13, 17, 19, 23, 29,\quad 31, 37, 41, \ldots$
@@ -150,7 +150,7 @@ vector<long long> trial_division3(long long n) {
 ```
 
 Mở rộng cho càng nhiều số nguyên tố thì thuật toán càng tốt hơn. Tuy nhiên mảng $\texttt{increments}$ sẽ càng dài hơn trong khi tỷ lệ phần tử cần xét so với ban đầu cũng không giảm nhiều:
-![prime_wheel.png](/algo/math/prime_wheel.png)
+![prime_wheel.png](/uploads/algo/math/integer-factorization/prime_wheel.png)
 
 Thuật toán này cũng đã được đề cập đến trong bài viết về [Sàng nguyên tố - VNOI](/algo/algebra/prime_sieve.md#b%C3%A1nh-xe-ph%C3%A2n-t%C3%ADch-wheel-factorization). 
 
@@ -254,7 +254,7 @@ Dưới đây là minh họa cho dãy $\{x_i \bmod p\}$ với $N = 2206637$, $p 
 
 <center>
 
-![pollardrho.png](/algo/math/pollardrho.png)
+![pollardrho.png](/uploads/algo/math/integer-factorization/pollardrho.png)
 
 </center>
 
@@ -347,7 +347,7 @@ long long mult(long long a, long long b, long long mod) {
 
 Minh họa cho $N = 2206637$, $x_0 = 2$ và $f(x) = (x^{2} + 1) \bmod N$:
 
-  ![floyd.gif](/algo/math/floyd.gif)
+  ![floyd.gif](/uploads/algo/math/integer-factorization/floyd.gif)
 
 </center>
 
@@ -381,7 +381,7 @@ Sau đó, ta sẽ tìm $x_s, x_t$ bằng cách cho $s=\texttt{power}$ và tìm v
 
 Minh họa cho $N = 2206637$, $x_0 = 2$ và $f(x) = (x^{2} + 1) \bmod N$:
 
-  ![brent.gif](/algo/math/brent.gif)
+  ![brent.gif](/uploads/algo/math/integer-factorization/brent.gif)
 </center>
 
 **Mô tả:**

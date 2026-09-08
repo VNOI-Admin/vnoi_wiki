@@ -290,11 +290,11 @@ Giới hạn: $1 < N, M \le 50$ mỗi ô có từ 0 đến 1000 quả táo.
 
 Đọc đến đây, hẳn bạn sẽ thấy cái đề này quen quen, nó chính là bài mở rộng của bài toán phần Intermediate. Ta có thể thử đưa bài toán này về thành bài toán trên. Để ý thấy đường đi từ ô góc phải dưới lên trái trên cũng có thể coi là một đường đi từ góc trái trên xuống. Như vậy, chúng ta phải xử lý bài toán với 3 đường đi từ trái trên xuống. Gọi 3 đường này là trái, giữa và phải. Khi 2 đường giao nhau (như hình dưới):
 
-![enter image description here](https://www.topcoder.com/i/education/dynProg_1.gif)
+![enter image description here](/uploads/translate/topcoder/dynamic-programming/dynProg_1.gif)
 
 thì nó cũng tương đương với hình sau:
 
-![enter image description here](https://www.topcoder.com/i/education/dynProg_2.gif)
+![enter image description here](/uploads/translate/topcoder/dynamic-programming/dynProg_2.gif)
 
 Bằng cách này, chúng ta đã có một cái nhìn khác về bài toán. Các đường này sẽ không giao nhau (trừ ô góc trái trên và phải dưới). Với mỗi hàng y (không phải hàng đầu và cuối), tọa độ x ở mỗi đường sẽ là ($x_1[y]$ , $x_2[y]$ và $x_3[y]$ ) : $x_1[y] < x_2[y] < x_3[y]$ . Ta xét hàng thứ y. Giả sử, ta xét $x_1[y-1]$ , $x_2[y-1]$ and $x_3[y-1]$ và số táo hiện giờ thu được là nhiều nhất. Từ đó ta có thể tối ưu cho hàng $y$. Chúng ta cần tìm cách chuyển trạng thái. Gọi $\texttt{Max}[i][j][k]$ là lượng táo nhiều nhất thu được đến hàng $y-1$ với 3 đường đang dừng ở cột $i$, $j$, và $k$. Với hàng $y$, thêm vào $\texttt{Max}[i][j][k]$  số lượng táo ở các ô $(y,i)$ , $(y,j)$ and $(y,k)$. Vì chúng ta đang đi xuống. Sau đó, chúng ta xét đến những đường có thể sang phải. Để tránh việc giao nhau, ta xét lần lượt các bước ở trái, phải rồi giữa.
 

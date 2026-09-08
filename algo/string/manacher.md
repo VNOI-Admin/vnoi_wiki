@@ -31,7 +31,7 @@ Thuật toán Manacher sẽ xử lý bài toán trên với độ phức tạp t
     - Nếu điểm chính giữa của xâu $T$ nào đó là $i$, ta có thể nói xâu $T$ đối xứng qua $i$
 - $S_i$ là chữ cái thứ $i$ của xâu $S$. $S_{i\ldots j}$ là xâu con từ vị trí thứ $i$ đến $j$ của $S$, bao gồm cả $i$ và $j$
 
-![](https://i.imgur.com/bSE3TvQ.jpg)
+![](/uploads/algo/string/manacher/bSE3TvQ.jpg)
 
 # Thuật toán ngây thơ
 ## Sai lầm thường gặp
@@ -351,7 +351,7 @@ signed main() {
 - Chúng ta đã từng gặp ý tưởng tương tự khi tính toán [*Z-function*](/algo/string/z-algo.md) hay [*prefix function*](/algo/string/suffix-array).
 - Thuật toán Manacher có thể được sử dụng trong hơi ít các bài toán. Tuy nhiên, thuật toán có ý tưởng tự nhiên và dễ cài đặt nên có thể có ích khi thi đấu.
 
-![](https://i.imgur.com/5AC7Eew.png)
+![](/uploads/algo/string/manacher/5AC7Eew.png)
 
 # Bài tập luyện tập
 - [CSES Longest palindrome](https://cses.fi/problemset/task/1111)

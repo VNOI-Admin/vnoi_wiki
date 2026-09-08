@@ -79,7 +79,7 @@ Trước tiên, giả sử ta đang ở nút cha với đoạn $[1; i]$, khi đ�
 - Khi đi sang cây con trái, đoạn $[l_0; r_0]$ sẽ được thay thành đoạn $[B_{l_0-1} + 1; B_{r_0}]$.
 - Khi đi sang cây con phải, đoạn $[l_0; r_0]$ sẽ được thay thành đoạn $[l_0 - B_{l_0 - 1}; r_0 - B_{r_0}]$.
 
-![range_split.png](/algo/data-structures/wavelet-tree/range_split.png)
+![range_split.png](/uploads/algo/data-structures/static-wavelet-tree/range_split.png)
 
 Ở ví dụ trên, đoạn $[3; 7]$ ở nút cha (quản lý miền giá trị $[1; 9]$) ứng với đoạn $[2; 3]$ ở nút con trái (quản lý miền giá trị $[1; 4]$) và đoạn $[2; 4]$ ở nút con phải (quản lý miền giá trị $[5; 9]$).
 
@@ -123,7 +123,7 @@ Dãy số được tách thành hai phần, giữ nguyên thứ tự tương đ�
  
 Quá trình này lặp lại đệ quy. Mô hình cây sẽ có dạng như sau:
  
-![upload_734b36e81682244536d3fb85e7bd5dce.png](/algo/data-structures/wavelet-tree/upload_734b36e81682244536d3fb85e7bd5dce.png)
+![upload_734b36e81682244536d3fb85e7bd5dce.png](/uploads/algo/data-structures/static-wavelet-tree/upload_734b36e81682244536d3fb85e7bd5dce.png)
 
 ### Cài đặt
 
@@ -388,7 +388,7 @@ Một cách cài đặt đơn giản cho hướng tiếp cận này là ta ghép
 
 Ví dụ, với mảng $[4, 1, 6, 0, 5, 7, 2, 3, 1, 4]$, quá trình thực hiện Offline Wavelet Tree diễn ra như sau:
 
-![offline_wavelet_tree_split_1.png](/algo/data-structures/wavelet-tree/offline_wavelet_tree_split_1.png)
+![offline_wavelet_tree_split_1.png](/uploads/algo/data-structures/static-wavelet-tree/offline_wavelet_tree_split_1.png)
 
 Thông thường, ta sẽ cài đặt offline Wavelet Tree với mảng đánh số từ $0$. Khi đó, công thức xác định đoạn mới sẽ là:
 
@@ -471,7 +471,7 @@ Tuy nhiên, cách xử lý như trên khá bất lợi cho việc cài đặt, c
 
 Để dễ hình dung hơn, xét mảng $B$ ứng với một tầng của Wavelet Tree có hai nút quản lý miền giá trị $[0; 2^{d})$ và $[2^{d}; 2^{d+1})$. Thông thường, ta sẽ tách hai nút này thành 4 nút và giữ lại giá trị tương đối của nó (tức là thứ tự trái-trái, trái-phải, phải-trái, phải-phải). Tuy nhiên, nếu ta chuyển toàn bộ phần tử có bit thứ $d - 1$ tắt sang trái và phần còn lại sang phải (tức là thứ tự trái-trái, phải-trái, trái-phải, phải-phải), các truy vấn vẫn được ánh xạ đúng:
 
-![offline_wavelet_tree_transformation.png](/algo/data-structures/wavelet-tree/offline_wavelet_tree_transformation.png)
+![offline_wavelet_tree_transformation.png](/uploads/algo/data-structures/static-wavelet-tree/offline_wavelet_tree_transformation.png)
 
 Ví dụ, đoạn màu hồng $[0; 3]$ nếu đi sang cây con trái sẽ được ánh xạ xuống đoạn $[0; 1]$, ngược lại, nếu đi sang cây con phải sẽ được đánh xạ xuống đoạn $[7; 8]$ (ứng với khoảng $[0; 1]$ của nút). Điều tương tự cũng xảy ra với đoạn màu tím.
 

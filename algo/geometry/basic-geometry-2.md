@@ -109,18 +109,18 @@ Ngoài ra, ta còn có thể sử dụng tích có hướng để kiểm tra hai
 - Nếu $\overrightarrow{\mathrm{AB}} \times \overrightarrow{\mathrm{AC}} < 0$ thì $A,B,C$ cùng chiều kim đồng hồ (CW).
 - Nếu $\overrightarrow{\mathrm{AB}} \times \overrightarrow{\mathrm{AC}} = 0$ thì $A,B,C$ thẳng hàng.
 
-|![](https://i.imgur.com/Qz3w0Wg.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/Qz3w0Wg.png)|
 
 ### **Kiểm tra giao điểm của 2 đoạn thẳng**
 #### Tồn tại 3 điểm thẳng hàng
 Nếu tồn tại 3 trong 4 điểm đầu mút thẳng hàng, ta kiểm tra xem có tồn tại đầu mút của đoạn thẳng này thuộc đoạn thẳng kia hay không:
 - Nếu có thì rõ ràng là 2 đoạn thẳng giao nhau tại ít nhất 1 điểm (tại đầu mút vừa xét).
 
-|![](https://i.imgur.com/ikP58hq.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/ikP58hq.png)|
 
 - Nếu không thì rõ ràng là 2 đoạn thẳng không thể giao nhau.
 
-|![](https://i.imgur.com/wc6dups.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/wc6dups.png)|
 
 #### Không tồn tại 3 điểm thẳng hàng
 Nếu không tồn tại 3 trong 4 điểm đầu mút thẳng hàng thì 2 đoạn thẳng $AB$ và $CD$ giao nhau khi:
@@ -142,7 +142,7 @@ $$
 \end{cases}
 $$
 
-|![](https://i.imgur.com/c5v5L4d.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/c5v5L4d.png)|
 
 Nhấn vào [**đây**][intersect] để tương tác với hình trên Desmos.
 
@@ -183,7 +183,7 @@ Từ $3$ điểm không thẳng hàng, có duy nhất một đường tròn đi 
 
 Chúng ta sẽ tìm đường trung trực của 2 đoạn $XY$ và $YZ$, sau đó tìm giao điểm của hai đường này, điểm đó chính là tâm của đường tròn.
 
-![](https://i.imgur.com/bQrxrA8.png)
+![](/uploads/algo/geometry/basic-geometry-2/bQrxrA8.png)
 
 Nhấn vào [**đây**][circle] để tương tác với hình trên Desmos.
 
@@ -194,7 +194,7 @@ Các bước để tìm đường trung trực của đoạn $XY$:
 - **Bước 2:** tìm trung điểm $M$ của đoạn $XY$ bằng cách lấy trung bình cộng của $2$ hoành độ và trung bình cộng của $2$ tung độ.
 - **Bước 3:** viết phương trình đường thẳng của đường thẳng vuông góc với đường thẳng $XY$ có dạng là $-Bx + Ay = D$.
 
-![](https://i.imgur.com/jYRUgh8.png =700x500)
+![](/uploads/algo/geometry/basic-geometry-2/jYRUgh8.png =700x500)
 
 Nhấn vào [**đây**][pendicular] để tương tác với hình trên Desmos.
 
@@ -317,7 +317,7 @@ X'_y = 2Y_y - X_y = 2 \cdot (-0.84) - (-3) = 1.32
 \end{cases}
 $$
 
-|![](https://i.imgur.com/wDQu2gx.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/wDQu2gx.png)|
 
 Nhấn vào [**đây**][symmetry] để tương tác với hình trên Desmos.
 
@@ -371,7 +371,7 @@ Bảng chuyển đổi một số giá trị thường dùng:
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Radian|0 |$\frac{\pi}{12}$| $\frac{\pi}6$| $\frac{\pi}4$| $\frac{\pi}3$| $\frac{5\pi}{12}$| $\frac{\pi}2$| $\pi$|
 
-![](https://i.imgur.com/7iEnloB.png)
+![](/uploads/algo/geometry/basic-geometry-2/7iEnloB.png)
 
 Nhấn vào [**đây**][rotation1] để tương tác với hình trên Desmos.
 
@@ -401,7 +401,7 @@ $$
 B\left( -\frac{3\sqrt{2}}{2}+2, \frac{\sqrt{2}}{2}+2 \right)
 $$
 
-|![](https://i.imgur.com/t66DtWV.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/t66DtWV.png)|
 
 Nhấn vào [**đây**][rotation2] để tương tác với hình trên Desmos.
 

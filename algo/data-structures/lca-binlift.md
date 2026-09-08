@@ -40,7 +40,7 @@ Cho một cây gồm $N$ đỉnh có gốc tại đỉnh $1$. Có $Q$ truy vấn
 Giới hạn: $N, Q \leq 2 \cdot 10^{5}$
 
 <!--430x678-->
-![](https://i.imgur.com/f5rB83v.png =215x339)
+![](/uploads/algo/data-structures/lca-binlift/f5rB83v.png =215x339)
 
 ## Ngây thơ
 
@@ -50,7 +50,7 @@ Giới hạn: $N, Q \leq 2 \cdot 10^{5}$
     - **Bước 2:** lặp lại thao tác cho $u$ và $v$ nhảy lên cha của chúng đến khi $u$ và $v$ trùng nhau (đỉnh đó là LCA của $u$ và $v$ ban đầu).
 
 <!--590x670-->
-![](https://i.imgur.com/05jxDTf.gif =295x335)
+![](/uploads/algo/data-structures/lca-binlift/05jxDTf.gif =295x335)
 
 Ví dụ:
 - Ta cần tìm LCA của $u$ và $v$. Ban đầu $h(u) > h(v)$.
@@ -339,7 +339,7 @@ Ta có nhận xét:
 - Từ đó, ta có thể nhảy theo từng bước $2^{j}$ để tính khoảng cách trong $\mathcal{O}(1)$
 
 <!--915x570-->
-![](https://i.imgur.com/DQaPNFx.gif =610x380)
+![](/uploads/algo/data-structures/lca-binlift/DQaPNFx.gif =610x380)
 
 ```cpp
 int dist[N][17];
@@ -397,7 +397,7 @@ Cách tìm LCA giống hệt thuật toán ngây thơ 1, nhưng để tăng tố
         - Nếu tổ tiên thứ $2^{j}$ của $u$ và $v$ khác nhau thì ta cho cả $u$ và $v$ nhảy lên tổ tiên thứ $2^{j}$ của chúng. Cuối cùng thì $u$ và $v$ sẽ có cùng cha (tổ tiên thứ $k+1$ là cha của tổ tiên thứ $k$), vậy nên khi đó $\texttt{LCA}(u, v) = \texttt{par}[u] = \texttt{par}[v] = \texttt{up}[u][0] = \texttt{up}[v][0]$.
 
 <!--864x666-->
-![](https://i.imgur.com/iC7FKlw.gif =432x333)
+![](/uploads/algo/data-structures/lca-binlift/iC7FKlw.gif =432x333)
 
 ```cpp
 int h[N], up[N][20];
@@ -438,7 +438,7 @@ Chọn đỉnh $1$ làm gốc của cây.
 Với mỗi đỉnh của cây, ta tính $f(u)$ là khoảng cách của mỗi đỉnh đến đỉnh $1$ bằng cách duyệt qua tất cả các đỉnh trong cây.
 
 <!--406x622-->
-![](https://i.imgur.com/71qRbBP.png =203x311)
+![](/uploads/algo/data-structures/lca-binlift/71qRbBP.png =203x311)
 
 Với hai đỉnh $u$ và $v$ bất kì, xét đường đi từ gốc của cây đến hai đỉnh này. Ta nhận thấy:
 - Phần giao của hai đường đi chính là đường đi từ gốc của cây đến tổ tiên chung gần nhất của $u$ và $v$ - gọi đỉnh này là $p$.

@@ -39,7 +39,7 @@ Năm 1976, Whitfield Diffie và Martin Hellman công bố bài báo [New Directi
 
 Khác với mã đối xứng, mã hóa khóa bất đối xứng sử dụng một cặp khóa: **khóa công khai** (**public key**) và **khóa bí mật** (**private key**). Hai khóa này được xây dựng sao cho từ một khóa, rất khó có cách sinh ra được khóa còn lại. Một khóa sẽ dành để mã hóa, khóa còn lại dùng để giải mã. Chỉ có người sở hữu nắm được khóa bí mật trong khi khóa công khai được phổ biến rộng rãi. Hình vẽ sau minh họa việc mã hóa và giải mã:
 
-![Hình minh họa](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Public_key_encryption.svg/500px-Public_key_encryption.svg.png)
+![Hình minh họa](/uploads/comp-sci/crypto/Public-Key-Cryptography/500px-Public_key_encryption.svg.png)
 
 # 3. Ứng dụng
 

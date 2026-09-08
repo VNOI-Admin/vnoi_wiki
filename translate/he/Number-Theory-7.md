@@ -40,7 +40,7 @@ $$
 
 Ta có biểu đồ sau biểu diễn ba tập hợp $A$, $B$ và $C$.
 
-![](/uploads/number-theory-venn-diagram.png)
+![](/uploads/translate/he/Number-Theory-7/number-theory-venn-diagram.png)
 
 Khi đó ta thấy lực lượng của $A \cup B \cup C$ bằng lực lượng của $A$, $B$, $C$ trừ đi lực lượng của $A \cap B$, $B \cap C$, $C \cap A$ rồi cộng thêm lực lượng của $A \cap B \cap C$.
 

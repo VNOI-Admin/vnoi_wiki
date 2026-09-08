@@ -49,21 +49,21 @@ Từ đó, Skip Lists, một phiên bản nâng cấp của Sorted Linked List, 
 
 Skip Lists là một phiên bản nâng cấp của Sorted Linked Lists. Ta hãy bắt đầu với một ví dụ về Sorted Linked List chứa 8 số và nghĩ cách cải thiện vấn đề của nó.
 
-![Paint 1](http://i.imgur.com/oHPvH3A.png)
+![Paint 1](/uploads/algo/data-structures/Skip-Lists/oHPvH3A.png)
 
 Sorted Linked List có ưu điểm lớn khi thao tác chèn xóa chỉ mất $\mathcal{O}(1)$ (ta chỉ việc chỉnh sửa liên kết giữa phần tử được chèn/xóa và các phần tử đằng trước/sau). Tuy nhiên thao tác tìm kiếm lại mất $\mathcal{O}(N)$ do phải duyệt từ đầu đến cuối.
 
-![Paint 2](http://i.imgur.com/rRXWDjb.png)
+![Paint 2](/uploads/algo/data-structures/Skip-Lists/rRXWDjb.png)
 
 Một ý tưởng để cân bằng điều này là ta thêm nhiều tầng liên kết, cứ lên một tầng số liên kết lại giảm còn một nửa. Khi tìm phần tử, ta sẽ duyệt từ trái sang phải nhưng sẽ nhảy xa hơn nhờ những liên kết trên các tầng cao, khi nào không nhảy được mới xuống tầng thấp hơn. Ý tưởng này khá giống với phương pháp nhảy lên tổ tiên thứ $2^{K}$ khi tìm Lowest Common Ancestor (LCA).
 
-![Paint 3](http://i.imgur.com/VWUnxgd.png)
+![Paint 3](/uploads/algo/data-structures/Skip-Lists/VWUnxgd.png)
 
 Trong hình trên, để tìm số $7$, ta sẽ nhảy thẳng từ $0$ đến $5$ bằng liên kết trên tầng thứ ba, sau đó nhảy từ $5$ đến $6$ bằng liên kết trên tầng thứ nhất. Ta tìm được $6$ là số gần nhất với $7$.
 
 Với cấu trúc này, ta có thể thực hiện thao tác tìm trong $\mathcal{O}(\log(N))$. Tuy nhiên việc chèn và xóa một phần tử vào sẽ làm thay đổi cấu trúc này. Chẳng hạn nếu ta chèn số $7$:
 
-![Paint 4](http://i.imgur.com/d7VVpxt.png)
+![Paint 4](/uploads/algo/data-structures/Skip-Lists/d7VVpxt.png)
 
 Như hình trên, cấu trúc của ta không còn "chuẩn", có nghĩa là chính xác tầng thứ nhất liên kết cách $2^{0}$, tầng thứ hai liên kết cách $2^{1}$, tầng thứ ba liên kết cách $2^{2}$, ... Tuy nhiên, với cấu trúc như hình trên vẫn chạy tốt - chỉ có điều ở mỗi tầng ta có thể phải nhảy nhiều hơn một lần (chẳng hạn, muốn tìm số $7$, ở tầng thứ nhất ta phải nhảy đến hai lần $5$ ~> $6$ ~> $7$).
 
@@ -71,13 +71,13 @@ Từ đó ta có nhận xét sau: Các liên kết trên mỗi tầng không nh�
 
 ***Mỗi lần chèn một nút vào, đầu tiên ta xây dựng liên kết ở tầng thứ nhất cho nó. Sau đó ta tung đồng xu, nếu ngửa thì ta xây dựng liên kết ở tầng trên và tiếp tục tung đồng xu, còn nếu sấp ta dừng việc xây dựng liên kết lại.***
 
-![Paint 5](http://i.imgur.com/cRT7Bpe.png)
+![Paint 5](/uploads/algo/data-structures/Skip-Lists/cRT7Bpe.png)
 
 Đây chính là Skip Lists - một cấu trúc dữ liệu được xây dựng bằng nhiều tầng Sorted Linked List được xây dựng một cách ngẫu nhiên, trong đó tầng cao chứa những bước nhảy dài hơn và tầng thấp chứa những bước nhảy ngắn hơn. Skip Lists cho phép ta thực hiện thao tác tìm kiếm với độ phức tạp xấp xỉ $\mathcal{O}(\log(N))$.
 
 # So sánh các cấu trúc dữ liệu
 
-![Table](http://i.imgur.com/HupUh3y.png)
+![Table](/uploads/algo/data-structures/Skip-Lists/HupUh3y.png)
 
 # Hướng dẫn chi tiết
 
@@ -87,7 +87,7 @@ CPPSET, đúng như tên gọi của nó, bạn có thể AC trong một nốt n
 
 Trước tiên ta cần xây dựng các struct biểu diễn Skip Lists. Ta sẽ có 3 struct: `SkipLists`, `Column`, `Cell`. `SkipLists` là một danh sách các `Column` liên kết với nhau. `Column` là một cột gồm các `Cell`, biểu diễn cho cột liên kết của một phần tử trong set của ta với các phần tử đằng trước và đằng sau. `Cell` là một liên kết cơ bản nhất trên một tầng của `Column`, chứa hai liên kết đến `Column` đằng trước và đằng sau. Để cho dễ hiểu, bạn hãy xem hình dưới.
 
-![Paint 6](http://i.imgur.com/jzabi8g.png)
+![Paint 6](/uploads/algo/data-structures/Skip-Lists/jzabi8g.png)
 
 ```cpp
 #include <vector>

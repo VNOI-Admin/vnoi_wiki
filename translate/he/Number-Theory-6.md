@@ -36,7 +36,7 @@ Hai biến cố được gọi là độc lập với nhau nếu việc xảy ra
 
 Ví dụ bạn gieo một con súc sắc và một đồng xu. Xác suất nhận được một số nào đó từ con súc sắc không làm ảnh hưởng đến xác suất đồng xu lật sấp hay lật ngửa. Do đó biến cố gieo con súc sắc được 6 điểm và biến cố đồng xu lật ngửa là hai biến cố độc lập với nhau.
 
-![](/uploads/number-theory-prob-1.gif)
+![](/uploads/translate/he/Number-Theory-6/number-theory-prob-1.gif)
 
 Nếu hai biến cố $A$ và $B$ độc lập với nhau, không biến cố nào ảnh hưởng đến biến cố nào, khi đó ta có thể viết: $P(AB) = P(A) \times P(B)$.
 
@@ -74,7 +74,7 @@ Hai biến cố được gọi là xung khắc hoặc rời nhau nếu không c�
 
 Nếu ba biến cố $A$, $B$, $C$ xung khắc với nhau, ta cũng có $A \cap B \cap C = \varnothing$.
 
-![](/uploads/number-theory-mutually-exclusive-img.png)
+![](/uploads/translate/he/Number-Theory-6/number-theory-mutually-exclusive-img.png)
 
 ## Quy tắc tính xác suất của các biến cố xung khắc
 

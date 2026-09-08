@@ -227,7 +227,7 @@ $$
 c = [1, 2, 3, 6, 6, 7, 8, 10, 12, 14,15]
 $$
 
-![](/algo/basic/two-pointers/two-pointers_(0).gif)
+![](/uploads/algo/basic/two-pointers/two-pointers_0_.gif)
 
 
 **Cài đặt**
@@ -351,7 +351,7 @@ $$
 
 * Vì $a[i]+a[j]=6+10=x$ nên hai vị trí cần tìm là hai vị trí $i$ và $j$.
 
-![](/algo/basic/two-pointers/two-pointers_(1).gif)
+![](/uploads/algo/basic/two-pointers/two-pointers_1_.gif)
 
 **Ví dụ 2:** $a = [2, 3, 7, 8, 10, 12, 15]$ và $x = 16$.
 
@@ -392,7 +392,7 @@ $$
 
 * Vì $i=j$ nên không tìm được hai vị trí cần tìm.
 
-![](/algo/basic/two-pointers/two-pointers_(2).gif)
+![](/uploads/algo/basic/two-pointers/two-pointers_2_.gif)
 
 **Cài đặt**
 ```cpp
@@ -568,7 +568,7 @@ $a = [2, 6, 5, 3, 6, 8, 9]$ và $s=20$
     * vì $\operatorname{sum}(l,r) = 17 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
     * $ans = \max(ans, r - l + 1)$
 
-![](/algo/basic/two-pointers/two-pointers_(3).gif)
+![](/uploads/algo/basic/two-pointers/two-pointers_3_.gif)
 
 **Cài đặt**
 
@@ -649,7 +649,7 @@ $$
 
 Dãy số có thể biễu diễn như hình sau đây:
 
-![](/algo/basic/two-pointers/two-pointers.png)
+![](/uploads/algo/basic/two-pointers/two-pointers.png)
 
 Bài toán có thể giải quyết nếu chúng ta phần tử bắt đầu chu kỳ ($x_{\mu}$) và độ dài của chu kỳ $\lambda$.
 
@@ -787,7 +787,7 @@ Ta có thể tính được giá trị này bằng cách xác định
 
 Giá trị $n = \mu + \lambda = 4 + 8 = 12$.
 
-![](/algo/basic/two-pointers/two-pointers_(4).gif)
+![](/uploads/algo/basic/two-pointers/two-pointers_4_.gif)
 
 **Độ phức tạp**
 

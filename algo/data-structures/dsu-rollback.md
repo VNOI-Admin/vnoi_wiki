@@ -71,8 +71,8 @@ Xem xét ví dụ với bộ dữ liệu như sau
 - Tương tự với các cạnh còn lại
 
 Dưới đây là Segment Tree khi ta thêm cạnh $(1, 2)$ các khoảng thời gian $[1, 4]$ và $[7, 9]$ (Những đỉnh ta thêm cạnh được tô màu xanh lá cây)
-![image](https://hackmd.io/_uploads/SJambv_j0.png)
-![image](https://hackmd.io/_uploads/S1FLfvdiR.png)
+![image](/uploads/algo/data-structures/dsu-rollback/SJambv_j0.png)
+![image](/uploads/algo/data-structures/dsu-rollback/S1FLfvdiR.png)
 
 ### Code mẫu
 

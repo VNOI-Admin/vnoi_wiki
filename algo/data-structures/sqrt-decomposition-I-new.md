@@ -265,7 +265,7 @@ Ta sẽ chia hình vuông $10^{6} \times 10^{6}$ ban đầu thành $1000$ hình 
 Ví dụ như hình dưới đây. Để dễ hình dung, hình mẫu sử dụng hình vuông $25 \times 25$ và chia thành $5$ hình chữ nhật $5 \times 25$. Các đường nối thể hiện **thứ tự** của các điểm, không phải khoảng cách Manhattan.
 <center>
   
-![sqrt0.png](/algo/sqrt/sqrt0.png)
+![sqrt0.png](/uploads/algo/data-structures/sqrt-decomposition-I-new/sqrt0.png)
 </center>
 
 Để tính được độ dài đường đi, ta thấy số bước đi theo trục tung và số bước đi theo trục hoành là độc lập:

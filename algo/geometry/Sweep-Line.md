@@ -39,7 +39,7 @@ Với hai điểm $P(x_P, y_P)$ và $Q(x_Q, y_Q)$:
 
 <center>
 
-![](/uploads/Sweep-Line_img1.png =300x)
+![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img1.png =300x)
 </center>
 
 <center>
@@ -82,7 +82,7 @@ Giả sử chúng ta đã xử lí xong $N - 1$ điểm đầu tiên và khoản
 >
 ><center>
 >
-> ![](/uploads/Sweep-Line_img2.png =300x)
+> ![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img2.png =300x)
 ></center>
 >
 > Hiển nhiên tất cả các điểm từ $1$ đến $N - 1$ đều nằm về phía bên trái của điểm đang xét do ta duyệt danh sách theo thứ tự tăng dần về hoành độ. Nhận xét rằng từ $P$, ta không cần quan tâm đến những điểm $T$ không nằm trong $8$ hình vuông bên trên do khi đó khoảng cách giữa $P$ và $T$ lớn hơn $d$.
@@ -219,7 +219,7 @@ Chúng ta sẽ quét từ trái sang phải. Khi đoạn quét di chuyển, ta d
 
 <center>
 
-![](/uploads/Sweep-Line_img3.png =200x)
+![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img3.png =200x)
 </center>
 
 Với mỗi đoạn thẳng nằm dọc $v_i$, để đếm $t_i$ là số đoạn thẳng nằm ngang cắt $v_i$, ta chỉ việc tìm trong tập $S$ những đoạn thẳng có tung độ nằm giữa hai đầu mút của $v$. Hiển nhiên ta thấy rằng tổng của các $t_i$ cũng là số giao điểm ta cần tìm.
@@ -238,7 +238,7 @@ Minh họa thuật toán:
 
 <center>
 
-<img src="https://i.imgur.com/xj1XD68.gif"  style="width: 60%">
+<img src="/uploads/algo/geometry/Sweep-Line/xj1XD68.gif"  style="width: 60%">
 </center>
 
 ## Cài đặt mẫu
@@ -358,7 +358,7 @@ Tương tự như bài toán tìm giao điểm của các đoạn thẳng, chún
 
 <center>
 
-![](/uploads/Sweep-Line_img4.png =300x)
+![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img4.png =300x)
 </center>
 
 Ta biết được những hình chữ nhật nào đang bị cắt bởi đường quét của chúng ta (màu đỏ). Để tìm tổng diện tích được bao phủ, ta sẽ tìm diện tích từng phần bị bao phủ giữa mỗi cặp hai "sự kiện" liền nhau và tính tổng của chúng. Để tìm phần diện tích được bao phủ giữa hai sự kiện liền nhau, ta cần biết tổng độ dài phần đường quét đi qua chúng (nét liền màu xanh trong hình trên). Nhân độ dài này với khoảng cách giữa hai sự kiện liền nhau, ta được diện tích của phần hình chữ nhật giữa hai "sự kiện" đó.
@@ -370,7 +370,7 @@ Vấn đề đặt ra là làm thế nào để tìm tổng độ dài của cá
 Minh họa thuật toán:
 <center>
 
-<img src="https://i.imgur.com/h7RJef6.gif" style="width: 60%">
+<img src="/uploads/algo/geometry/Sweep-Line/h7RJef6.gif" style="width: 60%">
 </center>
 
 <br>
@@ -481,7 +481,7 @@ Giới hạn:
 >
 ><center>
 >
-> ![](/uploads/Sweep-Line_img5.png)
+> ![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img5.png)
 ></center>
 >
 > Thực hiện thao tác trên với tất cả các điểm được cho, ta thu được một đồ thị $G$ có $\mathcal{O}(n)$ cạnh. Ta sẽ chứng minh rằng cây khung nhỏ nhất trên đồ thị $G$ là một đáp án cho bài toán.
@@ -492,7 +492,7 @@ Giới hạn:
 >
 > Xét cạnh $(u, v) \in T$. Không mất tính tổng quát, giả sử $v$ thuộc phần tám thứ nhất so với $u$. Giả sử tồn tại một điểm $w$ trong tập điểm ban đầu sao cho $d(u, w) < d(u, v)$. Đồng thời ta biết rằng $d(v, w) < d(u, v)$ (nhìn hình minh hoạ bên dưới). Do đó ta sẽ có một cây khung nhỏ hơn nếu ta bỏ $(u, v)$ và thay bằng một trong hai cạnh $(u, w)$ hay $(v, w)$. Điều này trái giả thiết $T$ là cây khung nhỏ nhất. Do đó, không tồn tại điểm $w$ sao cho $d(u, w) < d(u, v)$ - tức $v$ là điểm trong phần tám thứ nhất của $u$ có khoảng cách Manhattan gần nhất. Chứng minh tương tự với các trường hợp $v$ thuộc các phần tám còn lại của $u$.
 >
-> | ![](/uploads/Sweep-Line_img6.png =300x) |
+> | ![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img6.png =300x) |
 > | :--------: |
 > | $\forall w$ thuộc vùng màu xanh, $d(v, w) \leq d(u, v)$ |
 
@@ -529,7 +529,7 @@ Nhờ có tính chất được đề cập trong bổ đề 3, ta nhận thấy
 
 Trên thực tế, với mỗi điểm $P$, ta có thể xét những điểm gần $P$ nhất trong những góc phần tám của mặt phẳng (xem hình dưới). Hình vẽ mô tả việc xử lí trong 1 góc của hình: Tây - Tây Bắc. Giả sử điểm $Q$ là điểm gần nhất, với đường nét đứt là những điểm có khoảng cách Manhattan cùng với $Q$, và $R$ là một điểm bất kì khác nằm trong góc phần tám đó. Nếu $PR$ là một cạnh trong cây khung, chúng ta có thể bỏ nó đi, bởi $PQ$ hoặc $QR$ sẽ cho ra cây khung tốt hơn.
 
-![Image](https://images.ctfassets.net/piwi0eufbb2g/5CCfXOgbKPyavwlhCdfQmW/1f393c0e52220f20583f4f95ecc104c8/octants.png)
+![Image](/uploads/algo/geometry/Sweep-Line/octants.png)
 
 Bài toán bây giờ trở thành tìm điểm gần nhất với $P$ ở mỗi góc phần tám. Chúng ta sẽ chỉ xử lí ở góc trong hình, bởi những góc còn lại có thể giải quyết tương tự. Ta có thể thấy rõ ràng rằng bài toán tìm điểm gần nhất tương đương với việc tìm điểm có $x - y$ đạt lớn nhất, với chặn trên và chặn dưới lần lượt là $x + y$ và $y$.
 

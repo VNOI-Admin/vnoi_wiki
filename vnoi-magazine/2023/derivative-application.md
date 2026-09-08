@@ -57,7 +57,7 @@ Hàm $F(x)$ là tổng của các hàm lồi (strictly convex) nên nó cũng l�
 
 Ví dụ: trong ảnh mình vẽ hàm $F(x)$ màu đỏ là tổng của 3 hàm $f_1(x)$, $f_2(x)$ và $f_3(x)$. Có thể thấy $F(x)$ là hàm lồi
 
-![](/uploads/derivative-application_img1.png)
+![](/uploads/vnoi-magazine/2023/derivative-application/derivative-application_img1.png)
 
 Do đó ta có thể sử dụng [tìm kiếm tam phân](/translate/emaxx/Tim-kiem-tam-phan-Ternary-Search.md) để tìm giá trị nhỏ nhất của $F(x)$.
 
@@ -93,7 +93,7 @@ $$
 
 Ví dụ: hàm màu tím là đạo hàm của hàm màu xanh
 
-![](/uploads/derivative-application_img2.png)
+![](/uploads/vnoi-magazine/2023/derivative-application/derivative-application_img2.png)
 
 Ta tính đạo hàm thêm lần nữa:
 

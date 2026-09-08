@@ -15,13 +15,13 @@ Trong bài này, khi viết $\log{N}$, chúng ta hiểu là log cơ số 2 của
 
 Cho mảng $A[0, N-1]$. Bạn cần trả lời $Q$ truy vấn. Mỗi truy vấn gồm 2 số $i$, $j$ và bạn cần đưa ra vị trí của phần tử có giá trị nhỏ nhất trong đoạn từ $i$ đến $j$ của mảng $A$, ký hiệu là $\texttt{RMQ}_A(i, j)$.
 
-![](http://community.topcoder.com/i/education/lca/RMQ_001.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/RMQ_001.gif)
 
 ## Bài toán Lowest Common Ancestor (LCA)
 
 Cho cây có gốc $T$. Bạn cần trả lời $Q$ truy vấn. Mỗi truy vấn gồm 2 số $u$, $v$ và bạn cần tìm nút xa gốc nhất mà là tổ tiên của cả 2 nút $u$ và $v$, ký hiệu là $\texttt{LCA}_T(u, v)$.
 
-![](http://community.topcoder.com/i/education/lca/LCA_001.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/LCA_001.gif)
 
 
 
@@ -55,7 +55,7 @@ Có thể thấy thuật toán này khá chậm và tốn bộ nhớ $\mathcal{O
 
 Ta có thể chia mảng thành $\sqrt N$ phần. Ta sử dụng một mảng $M[0, \sqrt N]$ để lưu giá trị mỗi phần. $M$ có thể dễ dàng tính được trong $\mathcal{O}(N)$:
 
-![](http://community.topcoder.com/i/education/lca/RMQ_002.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/RMQ_002.gif)
 
 Để tính $\texttt{RMQ}_A(i, j)$, chúng ta xét giá trị $M$ của $\sqrt N$ phần nằm trong đoạn $[i,j]$, và những phần tử ở đầu và cuối đoạn $[i,j]$ là giao giữa các phần. Ví dụ, để tính $\texttt{RMQ}_A(2, 7)$ ta chỉ cần so sánh $A[2]$, $A[M[1]]$, $A[6]$ và $A[7]$.
 
@@ -67,11 +67,11 @@ Dễ thấy thuật toán không sử dụng quá $3\sqrt N$ phép toán cho m�
 
 Ta sử dụng mảng $M[0, N-1][0, \log N]$ với $M[i][j]$ là chỉ số của phần tử có giá trị nhỏ nhất trong đoạn có độ dài $2^j$ và bắt đầu ở $i$. Ví dụ:
 
-![](http://community.topcoder.com/i/education/lca/RMQ_003.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/RMQ_003.gif)
 
 Để tính $M[i][j]$, ta xét $M$ của 2 nửa đầu và nửa cuối của đoạn, mỗi phần sẽ có độ dài $2^{j-1}$:
 
-![](http://community.topcoder.com/i/education/lca/RMQ_007.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/RMQ_007.gif)
 
 ```cpp
 void process2(int M[MAXN][LOGMAXN], int A[MAXN], int N) {
@@ -93,7 +93,7 @@ void process2(int M[MAXN][LOGMAXN], int A[MAXN], int N) {
 
 Để tính $\texttt{RMQ}_A(i, j)$ ta dựa vào 2 đoạn con độ dài $2^k$ phủ hết $[i,j]$, với $k = \lfloor \log(j-i+1) \rfloor$:
 
-![](http://community.topcoder.com/i/education/lca/RMQ_005.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/RMQ_005.gif)
 
 Độ phức tạp tổng quát của thuật toán này là $< \mathcal{O}(N \log N), \mathcal{O}(1) >$
 
@@ -102,7 +102,7 @@ void process2(int M[MAXN][LOGMAXN], int A[MAXN], int N) {
 
 Ta biểu diễn cây bằng một mảng $M[1, 2 \times 2^{\lfloor \log N \rfloor + 1}]$ với $M[i]$ là vị trí có giá trị nhỏ nhất trong đoạn mà nút $i$ quản lý.
 
-![](http://community.topcoder.com/i/education/lca/RMQ_004.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/RMQ_004.gif)
 
 Khởi tạo:
 
@@ -168,7 +168,7 @@ Thuật toán đơn giản nhất như sau:
   - Ta đi từ $u$ đến $u'$, với $u'$ là tổ tiên của $u$ và $h(u') = h(v)$.
   - Ta đồng thời đi từ $u$ và $v$ lên cha của nó, đến khi 2 đỉnh này trùng nhau (lúc đó cả 2 đỉnh đều ở LCA).
 
-![](/uploads/translate_topcoder_lca_rmq.png)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/translate_topcoder_lca_rmq.png)
 
 Ví dụ:
 
@@ -198,11 +198,11 @@ function LCA(u, v):
 
 Ý tưởng chia input thành các phần bằng nhau như trong bài toán $\texttt{RMQ}$ cũng có thể được sử dụng với $\texttt{LCA}$. Chúng ta sẽ chia cây thành $\sqrt H$ phần, với $H$ là chiều cao cây. Phần đầu bao gồm các tầng từ $0$ đến $\sqrt H-1$, phần 2 sẽ gồm các tầng từ $\sqrt H$ đến $2\sqrt H-1$,...:
 
-![](http://community.topcoder.com/i/education/lca/LCA_002.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/LCA_002.gif)
 
 Giờ với mỗi nút chúng ta có thể biết được nút tổ tiên ở phần ngay trên nó. Ta sẽ tính giá trị này sử dụng mảng $P[1,MAXN]$:
 
-![](http://community.topcoder.com/i/education/lca/LCA_003.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/LCA_003.gif)
 
 Ta có thể tính $P$ bằng DFS ($T[i]$ là cha của $i$, $nr = \sqrt H$ và $L[i]$ là tầng của nút $i$)
 
@@ -255,7 +255,7 @@ Hàm này sử dụng tối đa $2\sqrt H$ phép toán. Với cách tiếp cận
 
 Ứng dụng Sparse Table chúng ta có một thuật toán nhanh hơn. Đầu tiên chúng ta tính một bảng $P[1, N][1, \log N]$ với $P[i][j]$ là tổ tiên thứ $2^j$ của $i$:
 
-![](https://community.topcoder.com/i/education/lca/LCA_005.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/LCA_005.gif)
 
 Code:
 
@@ -325,9 +325,9 @@ Bài toán LCA còn có nhiều cách giải thú vị khác. Các bạn có th�
 
 Ta có thể biến đổi bài toán LCA thành bài toán RMQ trong thời gian tuyến tính, do đó mà mọi thuật toán để giải bài toán RMQ đều có thể sử dụng để giải bài toán LCA. Hãy cùng xét ví dụ sau:
 
-![](http://community.topcoder.com/i/education/lca/LCA_006.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/LCA_006.gif)
 
-![](http://community.topcoder.com/i/education/lca/LCA_007.gif)
+![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/LCA_007.gif)
 
 Để ý rằng $\texttt{LCA}_T(u, v)$ là nút gần gốc nhất xuất hiện giữa lúc thăm $u$ và $v$ trong phép duyệt DFS. Vì thế ta có thể xét tất cả các phần tử giữa các cặp chỉ số bất kì của $u$ và $v$ trong dãy Euler Tour và tìm nút cao nhất. Ta xây dựng 3 mảng:
 
@@ -339,7 +339,7 @@ Ta có thể biến đổi bài toán LCA thành bài toán RMQ trong thời gia
 
 Gỉa sử $H[u] < H[v]$. Dễ thấy việc cần làm lúc này là tìm nút có $L$ nhỏ nhất trên $E[H[u] \ldots H[v]]$. Do đó $\texttt{LCA}_T(u, v) = E[\texttt{RMQ}_L(H[u], H[v])]$. Ví dụ:
 
- ![](http://community.topcoder.com/i/education/lca/LCA_008.gif)
+ ![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/LCA_008.gif)
 
 Cũng dễ thấy là mỗi 2 phần tử liên tiếp trong $L$ đều hơn kém nhau đúng 1 đơn vị.
 
@@ -349,9 +349,9 @@ Một [**cây Cartesian**](http://wcipeg.com/wiki/Cartesian_tree) của một d�
 
 Dễ thấy rằng $\texttt{RMQ}_A(i, j) = \texttt{LCA}_C(i, j)$.
 
- ![](http://community.topcoder.com/i/education/lca/LCA_009.gif)
+ ![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/LCA_009.gif)
 
- ![](http://community.topcoder.com/i/education/lca/LCA_010.gif)
+ ![](/uploads/translate/topcoder/Range-Minimum-Query-and-Lowest-Common-Ancestor/LCA_010.gif)
 
 Bây giờ việc cần làm chỉ còn là tính $C(A)$ trong thời gian tuyến tính. Chúng ta sẽ sử dụng một cái stack.
 

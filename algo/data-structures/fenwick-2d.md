@@ -150,7 +150,7 @@ Như vậy phần tử thứ $j$ của BIT thứ $i$ trong BIT 2 chiều lưu t�
 
 Dưới đây là hình minh họa cho trường hợp $N = 3, M = 4$.
 
-![](https://hackmd.io/_uploads/r1jCazVqn.png)
+![](/uploads/algo/data-structures/fenwick-2d/r1jCazVqn.png)
 
 
 
@@ -229,9 +229,9 @@ Khi ta thực hiện truy vấn $1$, có $4$ giá trị của $D$ thay đổi:
 
 Nếu vẫn chưa rõ, bạn đọc có thể tham khảo hình minh họa sau:
 
-![](https://hackmd.io/_uploads/rkJVfmvw3.png)
+![](/uploads/algo/data-structures/fenwick-2d/rkJVfmvw3.png)
 
-![](https://hackmd.io/_uploads/r1_4NmvPh.png)
+![](/uploads/algo/data-structures/fenwick-2d/r1_4NmvPh.png)
 
 ### Cài đặt
 

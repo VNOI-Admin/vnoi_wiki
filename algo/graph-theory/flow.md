@@ -43,7 +43,7 @@ Một đồ thị $G(V, E)$ được gọi là **mạng** (network) nếu nó l�
 - Tồn tại một đỉnh $t$ không có cạnh đi ra, gọi là **đỉnh thu/đích** (sink)
 - Mỗi cạnh $(u, v)$ được gán một trọng số $c(u, v)$, gọi là **khả năng thông qua/dung lượng** (capacity) của cạnh.
 
-![](https://hackmd.io/_uploads/rkBl97iL3.png)
+![](/uploads/algo/graph-theory/flow/rkBl97iL3.png)
 
 *Một mạng hợp lệ. Đỉnh phát và đỉnh thu được đánh dấu bằng hai màu khác.*
 
@@ -61,7 +61,7 @@ $$
 - Giá trị $f(u, v)$ được gọi là **luồng trên cạnh $(u, v)$**
 - **Giá trị của luồng** là tổng luồng trên các cạnh đi ra khỏi đỉnh phát, cũng chính là tổng luồng trên các cạnh đi vào đỉnh thu.
 
-![](https://hackmd.io/_uploads/Syb-57oL2.png)
+![](/uploads/algo/graph-theory/flow/Syb-57oL2.png)
 
 *Một luồng hợp lệ. Giá trị `f/c` trên cạnh biểu diễn luồng/khả năng thông qua.*
 
@@ -72,7 +72,7 @@ $$
 c(A, B) = \sum\limits_{u \in A, v \in B} c(u, v)
 $$
 
- ![](https://hackmd.io/_uploads/BJm1po283.png)
+ ![](/uploads/algo/graph-theory/flow/BJm1po283.png)
 
 *Một lát cắt hợp lệ với hai tập $A = \{1, 2, 5\}$ và $B = \{3, 4, 6\}$. Mỗi tập con của lát cắt được đánh dấu bằng một màu khác nhau. Lát cắt này có khả năng thông qua là $6 + 5 + 1 + 6 = 18$.*
 
@@ -154,11 +154,11 @@ Với các giá trị $r(u, v)$ này, ta có thể xây dựng một **đồ th�
 
 Một **đường tăng luồng** (augmenting path) là một đường đi đơn trên đồ thị thặng dư. Đối chiếu lại với đồ thị gốc, đó sẽ là một đường đi đơn (có thể đi ngược chiều cạnh) qua những cạnh có $r(u, v) > 0$. Trên đường này, chúng ta có thể thực hiện tăng giá trị của luồng trên mỗi cạnh.
 
-![](https://hackmd.io/_uploads/r1pDeY0v2.png)
+![](/uploads/algo/graph-theory/flow/r1pDeY0v2.png)
 
 Đường màu xanh là một đường tăng luồng trên đồ thị thặng dư trên. Các cạnh đứt chính là các cạnh "ngược" so với mạng ban đầu; chúng có giá trị $f$ âm.
 
-![](https://hackmd.io/_uploads/Bk0Wlt0w2.png)
+![](/uploads/algo/graph-theory/flow/Bk0Wlt0w2.png)
 
 Đem đối chiếu đồ thị thặng dư trên về đồ thị gốc, ta được đường tăng luồng như hình trên. Trong hình dưới, giá trị của luồng ($f$) trên các cạnh thuộc đường tăng luồng đã được tăng $1$ đơn vị so với đồ thị thặng dư bên trên.
 
@@ -177,7 +177,7 @@ Một cách dễ hiểu hơn thì tại bước này, ta tăng giá trị của 
 
 Ta lặp đi lặp lại việc tăng luồng cho đến khi nào không thể tìm được đường tăng luồng nữa thì thôi. Khi đó, giá trị của luồng trong cả mạng chính là luồng cực đại mà ta cần tìm.
 
-![upload_8b6e4036651cb9b372cf7d1592220a2e.gif](/algo/graph/flow/upload_8b6e4036651cb9b372cf7d1592220a2e.gif)
+![upload_8b6e4036651cb9b372cf7d1592220a2e.gif](/uploads/algo/graph-theory/flow/upload_8b6e4036651cb9b372cf7d1592220a2e.gif)
 [Link GIF](/algo/graph/flow/upload_8b6e4036651cb9b372cf7d1592220a2e.gif)
 
 Hình GIF trên mô tả phương pháp Ford-Fulkerson trên mạng ta vừa lấy ví dụ trong bài viết này. Chú ý rằng có một bước, chúng ta đã phải sử dụng cạnh ngược.
@@ -348,7 +348,7 @@ Thuật toán Dinic sử dụng nhiều ý tưởng của phương pháp Ford-Fu
 - Một **luồng cản** (blocked flow) là một tập các cạnh trên đồ thị có dạng giống như luồng trên mạng sao cho mọi đường đi từ $s$ đến $t$ đều chứa ít nhất một cạnh thuộc tập này.
 - Gọi $d(u)$ là **mức/cấp** (level) của đỉnh $u$ - đường đi ngắn nhất (tính bằng số cạnh) để đi từ $s$ đến $u$ trên đồ thị thặng dư. Định nghĩa **đồ thị phân cấp** (layered network) của đồ thị ban đầu là đồ thị chỉ chứa các cạnh $(u, v)$ **có trọng số dương** thoả mãn $d(v) = d(u) + 1$, tức là các cạnh tham gia tạo thành đường đi ngắn nhất đến tất cả các đỉnh.
 
-![](https://hackmd.io/_uploads/S1bhMtRD2.png)
+![](/uploads/algo/graph-theory/flow/S1bhMtRD2.png)
 
 *Đồ thị phân cấp (tất cả các đường có màu) và luồng cản (xanh lam) của đồ thị thặng dư*
 
@@ -361,7 +361,7 @@ Ta dựng đồ thị phân cấp của đồ thị thặng dư. Trên đồ th�
 - Không dựng đồ thị thặng dư và đồ thị phân cấp. Cũng như thuật toán Edmonds-Karp, ta hoàn toàn có thể sử dụng thêm các "cạnh" ngược với giá trị luồng âm để biểu diễn các cạnh ngược trong đồ thị thặng dư. Việc sử dụng đồ thị phân cấp thì chỉ là đánh các nhãn $d(u)$ cho các đỉnh $u$ của đồ thị, rồi kiểm tra $c(u, v) - f(u, v) > 0$ và $d(u) + 1 = d(v)$ để biết cạnh $(u, v)$ (kể cả ngược) có thuộc đồ thị phân cấp không.
 - Tại mỗi đỉnh, chỉ DFS từ cạnh cuối cùng được xét trong lần tìm đường cản trước đó với cùng một bộ $d$ (hay cùng một đồ thị phân cấp) (xem code để hiểu phần này hơn). Việc tiếp tục sử dụng một cạnh nào đó của các đường trước đó để tăng luồng là vô nghĩa, vì trong những lần tìm trước đó, ta đã khẳng định là chúng không thể tạo ra đường cản mới rồi. Khi không tìm được bất kỳ đường cản nào nữa, luồng cản hiện tại coi như đã xong. Ta tăng luồng và đánh lại $d$ cho các đỉnh.
 
-![](https://hackmd.io/_uploads/rk_v4KRv3.gif)
+![](/uploads/algo/graph-theory/flow/rk_v4KRv3.gif)
 
 Hình GIF trên mô tả thuật toán Dinic. Tất cả các cạnh có màu đều là các cạnh nằm trên đồ thị phân cấp. Các cạnh màu xanh và đỏ là các cạnh nằm trên luồng cản tìm được sau mỗi bước.
 
@@ -560,7 +560,7 @@ Mạng của chúng ta sẽ có dạng như thế này
 
 <center>
 
-<img src="https://hackmd.io/_uploads/rkuCDQeOn.png"/>
+<img src="/uploads/algo/graph-theory/flow/rkuCDQeOn.png"/>
 </center>
 
 <p>

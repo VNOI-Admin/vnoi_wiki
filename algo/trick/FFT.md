@@ -37,7 +37,7 @@ Về biểu diễn $z=r\exp(i\varphi)$, các bạn có thể tìm hiểu ở [C�
 
 <figure style="text-align: center;">
 
-<img width="450" src="/algo/math/fft1.png">
+<img width="450" src="/uploads/algo/trick/FFT/fft1.png">
 <figcaption>
     Hình 1. Biểu diễn số phức trên mặt phẳng
 </figcaption>
@@ -67,7 +67,7 @@ Xét một số nguyên dương $n$:
 
 <figure style="text-align: center;">
 
-<img width="450" src="/algo/math/fft2.png">
+<img width="450" src="/uploads/algo/trick/FFT/fft2.png">
 <figcaption>
     Hình 2. Biểu diễn các căn đơn vị cấp 8 trên mặt phẳng
 </figcaption>

@@ -147,7 +147,7 @@ Giả sử gốc hiện tại đang là $V$, ta cần tìm cách chuyển gốc 
 * Ngoài đỉnh $V$ và $v_i$, tất cả các đỉnh khác đều có cây con không thay đổi, do đó trạng thái quy hoạch động của chúng cũng không thay đổi.
 * Đối với đỉnh $V$, cây con của $V$ sẽ bỏ đi cây con $v_i$. Khi thành gốc mới, cây con $v_i$ sẽ bao gồm thêm cây con mới của $V$.
 
-![](https://hackmd.io/_uploads/BJ1dhmMh2.png)
+![](/uploads/algo/dp/treedp/BJ1dhmMh2.png)
 
 Ta gọi $\texttt{dp}_{old}$ và $\texttt{dp}_{new}$ lần lượt là trạng thái quy hoạch động trước và sau khi đổi gốc, $\texttt{sz}_{old}$ và $\texttt{sz}_{new}$ lần lượt là số đỉnh trong cây con trước và sau khi đổi gốc. Dựa vào các nhận xét trên, ta có:
 
@@ -309,7 +309,7 @@ Số cặp duyệt này tương đương với số cặp đỉnh $a, b$ sao cho
 
 Do 2 đỉnh $a$ và $b$ nằm ở 2 cây con khác nhau của đỉnh $V$, $V$ sẽ là tổ tiên chung thấp nhất của $a$ và $b$. Mỗi cặp đỉnh chỉ có duy nhất một tổ tiên chung thấp nhất, do đó với cách duyệt này mỗi cặp đỉnh chỉ được duyệt tối đa $1$ lần. Có $\frac{N \times (N-1)}{2}$ cặp đỉnh khác nhau, do đó độ phức tạp của cách duyệt này là $\mathcal{O}(N^{2})$!
 
-![](https://hackmd.io/_uploads/SkRzxNfhn.png)
+![](/uploads/algo/dp/treedp/SkRzxNfhn.png)
 
 
 ## Cài đặt 2

@@ -2,7 +2,7 @@
 
 **Nguồn**: [Medium - So you want to be a functional programmer (part 1)](https://medium.com/@cscalfani/so-you-want-to-be-a-functional-programmer-part-1-1f15e387e536#.70yyalovu)
 
-![translate_fp_revolution](https://cdn-images-1.medium.com/max/1600/1*AM83LP9sGGjIul3c5hIsWg.png)
+![translate_fp_revolution](/uploads/translate/functional-programming-part-1/1_AM83LP9sGGjIul3c5hIsWg.png)
 
 Nếu bạn muốn trở thành một **functional programmer**, bước đầu tiên để hiểu thế nào là **Functional Programming** là bước quan trọng nhất, và đôi khi cũng là bước khó khăn nhất. Nhưng mọi chuyện sẽ dễ dàng hơn nếu bạn có một góc nhìn đúng đắn. Chuỗi bài viết này hi vọng có thể mang lại cho bạn điều đó.
 
@@ -93,7 +93,7 @@ Tới đây, có thể bạn sẽ thắc mắc: "Làm thế quái nào để là
 Trong Functional Programming, bạn không chỉ viết các hàm thuần khiết. Functional Programming không thể loại trừ hết các side effects mà chỉ có thể cô lập chúng. Vì chương trình phải tương tác với thế giới bên ngoài, nên một phần nào đó của chương trình phải là không thuần khiết (impure). Mục tiêu của Functional Programming là giảm thiểu tối đa lượng mã nguồn không thuần khiết và tách biệt chúng ra khỏi phần còn lại của chương trình.
 
 ### Immutability (tính bất biến)
-![translate_fp_immutability](https://cdn-images-1.medium.com/max/1600/1*wKAhKZPXmcSwnq2AcLN-9Q.jpeg)
+![translate_fp_immutability](/uploads/translate/functional-programming-part-1/1_wKAhKZPXmcSwnq2AcLN-9Q.jpeg)
 
 Bạn có nhớ khi lần đầu nhìn thấy những dòng code như thế này:
 ```

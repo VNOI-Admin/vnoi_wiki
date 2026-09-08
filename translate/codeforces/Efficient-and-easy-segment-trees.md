@@ -25,7 +25,7 @@ Cây phân đoạn được sử dụng khi chúng ta có một mảng $A$, th�
 
 Ta cài đặt Segment Tree bằng một cây nhị phân hoàn chỉnh có dạng như sau:
 
-![](http://i.imgur.com/GGBmcEP.png)
+![](/uploads/translate/codeforces/Efficient-and-easy-segment-trees/GGBmcEP.png)
 
 Trong hình vẽ trên:
 
@@ -102,7 +102,7 @@ Phần giải thích sẽ phức tạp hơn, trước hết hãy xem qua những
 
 Bạn có thể bỏ qua đoạn giải thích này và xem code để thấy tính đúng đắn của nó. Nếu hứng thú với phần giải thích, đây là hình ảnh cây của mảng có kích thước $n=13$:
 
-![](http://imgur.com/cwKpYH1.png)
+![](/uploads/translate/codeforces/Efficient-and-easy-segment-trees/cwKpYH1.png)
 
 Nó không phải là một cây đơn lẻ nữa, nhưng là tập các cây nhị phân bao gồm:
 
@@ -429,7 +429,7 @@ void modify(int l, int r, int value) {
 Biến boolean dùng để đánh dấu xem ta đã thực hiện biến đổi nào ở bên trái và ở bên phải. Xem một ví dụ:
 <center>
   
-![](http://i.imgur.com/CG6aftV.png)
+![](/uploads/translate/codeforces/Efficient-and-easy-segment-trees/CG6aftV.png)
  </center>
 
 Gọi *modify* trên $[4,13)$:

@@ -24,7 +24,7 @@ Ví dụ, 2, 4, 6 được coi là các phần tử phân biệt khi ta xét t�
 
 Tập hợp là một trong những khái niệm cơ bản trong Toán học.
 
-![](/uploads/number-theory-set-1.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-1.png)
 
 Tập hợp các hình đa giác được biểu diễn trong biểu đồ Venn.
 
@@ -50,7 +50,7 @@ Ví dụ:
 
 - $A \subset A$.
 
-![](/uploads/number-theory-set-2.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-2.png)
 
 $A$ là tập con của tập $B$.
 
@@ -68,7 +68,7 @@ Ví dụ:
 - $\{1,2\} \cup \{2,3\} = \{1,2,3\}$
 - $\{1,2,3\} \cup \{3,4,5\} = \{1,2,3,4,5\}$
 
-![](/uploads/number-theory-set-3.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-3.png)
 
 Hợp của hai tập hợp $A$ và $B$, kí hiệu là $A \cup B$.
 
@@ -93,7 +93,7 @@ Ví dụ:
 - $\{1,2\} \cap \{1,2\} = \{1,2\}$.
 - $\{1,2\} \cap \{2,3\} = \{2\}$.
 
-![](/uploads/number-theory-set-intersection.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-intersection.png)
 
 Giao của hai tập hợp $A$ và $B$, kí hiệu là $A \cap B$.
 
@@ -125,11 +125,11 @@ Ví dụ:
 
 - Nếu $U$ là tập hợp các số nguyên, $E$ là tập hợp các số nguyên chẵn, $O$ là tập hợp các số nguyên lẻ, khi đó $U \backslash E = E' = O$.
 
-![](/uploads/number-theory-set-diff-1.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-diff-1.png)
 
 Hiệu của hai tập hợp $A$ và $B$.
 
-![](/uploads/number-theory-set-diff-2.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-diff-2.png)
 
 Phần bù của $A$ trong $U$.
 
@@ -392,7 +392,7 @@ Các ứng dụng của dãy số Catalan:
 
 - $C_n$ còn là số cây nhị phân đầy đủ có $n$ là (một cây nhị phân được gọi là đầy đủ nếu mọi nút của nó có hai nút con hoặc không có nút con nào).
 
-![](https://upload.wikimedia.org/wikipedia/commons/0/01/Catalan_number_binary_tree_example.png)
+![](/uploads/translate/he/Number-Theory-5/Catalan_number_binary_tree_example.png)
 
 [Và còn nhiều ứng dụng khác...](https://en.wikipedia.org/wiki/Catalan_number#Applications_in_combinatorics)
 
@@ -400,7 +400,7 @@ Các ứng dụng của dãy số Catalan:
 
 Số Euler $\big \langle^{n}_k \big \rangle$ là số lượng hoán vị các số từ 1 đến $n$ mà có đúng $k$ phần tử lớn hơn phần tử đứng trước nó. Hệ thức truy hồi tính số Euler được lập bằng cách xét mỗi hoán vị $p$ của 1,2,...,$n-1$. Có $n$ vị trí để thêm số $n$ vào hoán vị, và một cách thêm số $n$ có thể làm tăng số phần tử lớn hơn phần tử đứng trước nó của $p$, hoặc bảo toàn số phần tử lớn hơn phần tử đứng trước nó. Vì vậy,
 
-![](/uploads/number-theory-euler-number.gif)
+![](/uploads/translate/he/Number-Theory-5/number-theory-euler-number.gif)
 
 ### Bài toán phân tích một số nguyên (Integer Partitions)
 

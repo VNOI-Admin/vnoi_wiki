@@ -23,7 +23,7 @@ __Quy hoạch động (QHĐ) (Dynamic Programming)__ là một trong những kĩ
 
 ***Lưu ý**: hai cách xếp được xem là khác nhau khi tồn tại một vị trí mà hai cách có hai loại ghế khác nhau.*
 
-![](/uploads/basic-dynamic-programming-1_img1.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img1.png)
 
 Bây giờ ta sẽ xây dựng thuật giải:
 
@@ -32,11 +32,11 @@ Bây giờ ta sẽ xây dựng thuật giải:
 Gọi số cách xếp $i$ cái ghế là $f[i]$. Ta xét chiếc ghế thứ $n$.
 * Nếu nó có màu đen hoặc trắng thì chiếc ghế cạnh nó có thể có một trong ba màu. Do đó ta chỉ cần bố trí $n-1$ chiếc ghế còn lại thỏa mãn yêu cầu. Do có 2 cách chọn màu cho ghế thứ $n$ và $f[n-1]$ cách chọn màu cho các ghế còn lại nên số cách xếp trong trường hợp này là $2 \times f[n-1]$.
 
-![](/uploads/basic-dynamic-programming-1_img2.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img2.png)
 
 * Nếu nó có màu đỏ thì chiếc ghế cạnh nó chỉ có thể có màu trắng hoặc đen. Do vậy nên chiếc ghế thứ $n-2$ có thể có một trong ba màu. Khi đó ta cũng chỉ cần bố trí $n-2$ chiếc ghế còn lại thỏa mãn yêu cầu. Số cách xếp trong trường hợp này là $1 \times 2 \times f[n-2]$.
 
-![](/uploads/basic-dynamic-programming-1_img3.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img3.png)
 
 Với ý tưởng trên, ta có thể giải bài toán này như các bài toán đệ quy đơn giản. Cài đặt như sau:
 
@@ -66,7 +66,7 @@ Giả sử cần tính `solve(1000)`. Khi đó cần tính `solve(999)` và `sol
 $\ldots$
 Ta có thể biểu diễn các hàm được gọi bằng một sơ đồ như sau:
 
-![](/uploads/basic-dynamic-programming-1_img4.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img4.png)
 
 Từ sơ đồ trên ta thấy có nhiều hàm bị gọi rất nhiều lần một cách không cần thiết:
 * `solve(998)` được gọi $2$ lần
@@ -335,12 +335,12 @@ int main()
 > **Input:** Số nguyên $n$ và $n$ dòng tiếp theo có dòng thứ $i$ là thời điểm bắt đầu $A_i$ và kết thúc $B_i$ của cuộc họp thứ $i$.
 > **Output:** một dòng gồm số thứ tự ban đầu của các cuộc họp được bố trí, theo thứ tự thời gian.
 
-![](/uploads/basic-dynamic-programming-1_img5.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img5.png)
 **Hướng dẫn**:
 
 Sắp xếp các cuộc họp tăng dần theo thời điểm bắt đầu $A_i$. Thế thì cuộc họp $i$ sẽ bố trí được sau cuộc họp $j$ khi và chỉ khi $j<i$ và $B_j \le A_i$. Yêu cầu bố trí được nhiều cuộc họp nhất có thể đưa về việc tìm dãy các cuộc họp dài nhất thoả mãn điều kiện trên.
 
-![](/uploads/basic-dynamic-programming-1_img6.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img6.png)
 
 ```cpp
 #include <algorithm>
@@ -453,7 +453,7 @@ int main() {
 > *Cho $n$ tam giác trên mặt phẳng. Tam giác $i$ bao tam giác $j$ nếu 3 đỉnh của tam giác $j$ đều nằm trong tam giác $i$ (có thể nằm trên cạnh). Hãy tìm dãy tam giác bao nhau có nhiều tam giác nhất.*
 > **Điều kiện:** $1\le n\le 1000$ và tọa độ các đỉnh của các tam giác thuộc đoạn ${-10}^{6}$ đến $10^{6}$.
 
-![](/uploads/basic-dynamic-programming-1_img7.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img7.png)
 
 **Hướng dẫn**:
 
@@ -466,7 +466,7 @@ Việc kiểm tra điểm $M$ có nằm trong tam giác $ABC$ không có thể d
 * Tính diện tích: điểm $M$ nằm trong nếu $S(ABC) = S(ABM) + S(ACM) + S(BCM)$.
 * Kẻ một tia song song $Ox$ từ $M$ và đếm số giao điểm với $3$ đoạn $AB,BC,CA$. Nếu số giao điểm là số lẻ thì $M$ nằm trong tam giác.
 
-![](/uploads/basic-dynamic-programming-1_img8.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img8.png)
 
 ### Dãy đổi dấu
 
@@ -543,7 +543,7 @@ Khi đó, trong các dãy WAVIO có $i$ là đỉnh thì dãy dài nhất sẽ c
 > *Cho một bảng ô vuông gồm $m$ hàng và $n$ cột. Kí hiệu $(i, j)$ là ô ở hàng $i$, cột $j$. Giả sử $(i, j)$ có $a_{i,j}$ quả táo. Bạn An muốn đi từ $(1, 1)$ đến $(m, n)$. Ở mỗi bước, An đi sang phải hoặc xuống dưới đúng một ô. Khi An ở ô $(i, j)$, An có thể lấy hết các quả táo ở ô đó. Tính số quả táo nhiều nhất mà An có thể lấy được.*
 > **Điều kiện:** $1\le mn\le10^{6}$ và $1\le a_{i, j}\le 10^{9}$ với mọi $i,j$.
 
-![](/uploads/basic-dynamic-programming-1_img9.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img9.png)
 
 **Ý tưởng:**
 
@@ -553,11 +553,11 @@ Bài toán này cũng tương tự như các ví dụ trước.
 
 Đầu tiên ta khởi tạo $f[1][1] = a_{1,1}$.
 
-<!--![Minh họa](https://raw.githubusercontent.com/Ryu204/Picture/main/table2.png)-->
+<!--![Minh họa](/uploads/algo/dp/basic-dynamic-programming-1/table2.png)-->
 
 Với mọi $i,j\ge 2$, để đi từ $(1, 1)$ đến $(i, j)$ An có hai lựa chọn: đi qua $(i - 1, j)$ hoặc đi qua $(i, j - 1)$. An sẽ chọn đường đi thu được nhiều táo nhất, do đó $f[i][j] = a_{i, j} + \max(f[i][j - 1], f[i - 1][j])$.
 
-![](/uploads/basic-dynamic-programming-1_img10.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img10.png)
 
 ```cpp
 #include <iostream>
@@ -593,7 +593,7 @@ QHĐ hai chiều được áp dụng nhiều trong những bài toán phức t�
 
 Có $n$ đồ vật, vật thứ $i$ có trọng lượng $A_i$ và giá trị $B_i$. Hãy chọn ra một số các đồ vật, mỗi vật một cái để xếp vào 1 vali có trọng lượng tối đa $W$ sao cho tổng giá trị của vali là lớn nhất.
 
-![](/uploads/basic-dynamic-programming-1_img11.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img11.png)
 
 ## Công thức
 
@@ -748,7 +748,7 @@ Bài này có một biến thể là đặt dấu sao cho kết quả là một 
 
 > *Một người có $N$ mảnh đất và $M$ dải đất. Các mảnh đất có thể coi là một tứ giác và các dải đất thì coi như một đường thẳng. Dọc theo các dải đất ông ta trồng các cây bách, dải đất thứ $i$ có $A_i$ cây bách. Ông ta cũng trồng các cây bách trên viền của các mảnh đất, mảnh đất thứ $j$ có $B_j$ cây bách. Cả ở trên các mảnh đất và dải đất, xen giữa 2 cây bách ông ta trồng một cây ôliu. Ông ta cho con trai được chọn các mảnh đất và dải đất tuỳ ý với điều kiện tổng số cây bách không vượt quá $Q$. Người con trai phải chọn thế nào để có nhiều cây ôliu (loài cây mà anh ta thích) nhất.*
 
-![](/uploads/basic-dynamic-programming-1_img12.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img12.png)
 
 **Hướng dẫn**
 

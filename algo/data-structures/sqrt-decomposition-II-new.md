@@ -111,14 +111,14 @@ Ví dụ với bảng sau:
 
 <center>
   
-![sqrt1.png](/algo/sqrt/sqrt1.png)
+![sqrt1.png](/uploads/algo/data-structures/sqrt-decomposition-II-new/sqrt1.png)
 </center>
 
 Khoảng cách từ ô trắng mang dấu *\** đến ô đen gần nhất là $2$, vì có thể đi sang bên trái hai bước để đến một ô đen. Sau đó tô đen ô này:
 
 <center>
 
-![sqrt2.png](/algo/sqrt/sqrt2.png)
+![sqrt2.png](/uploads/algo/data-structures/sqrt-decomposition-II-new/sqrt2.png)
 </center>
 
 #### Chia căn truy vấn
@@ -368,7 +368,7 @@ Trước khi đến với thuật toán Mo trên cây, bạn đọc cần nắm 
 
 <center>
 
-![sqrt3.png](/algo/sqrt/sqrt3.png)
+![sqrt3.png](/uploads/algo/data-structures/sqrt-decomposition-II-new/sqrt3.png)
 </center>
 <br>
 
@@ -439,7 +439,7 @@ Giới hạn:
 Ta sẽ lưu một tập hợp (có thể cài dặt bằng `std::set`) những giá trị hiện đang **không tồn tại** trong đoạn đang xét. Đồng thời sẽ sử dụng thêm một mảng đếm để đếm số lượng của mỗi giá trị để thêm xóa tập hợp cho phù hợp.
 
 <center>
-<img src="https://codeforces.com/predownloaded/6f/0c/6f0c27b758e3c337768027e110dbed7602a37f80.png">
+<img src="/uploads/algo/data-structures/sqrt-decomposition-II-new/6f0c27b758e3c337768027e110dbed7602a37f80.png">
 
 <i style="font-size:small">Nguồn: Codeforces</i>
 </center>

@@ -136,7 +136,7 @@ Giả sử đã xây dựng được liên kết hậu tố cho tất cả các 
 
   <center>
  
-![ahocorasickanimate.gif](/algo/ahocorasickanimate.gif)
+![ahocorasickanimate.gif](/uploads/algo/string/aho-corasick/ahocorasickanimate.gif)
     <a href="/algo/ahocorasickanimate.mp4">Download video</a>
     
   </center>

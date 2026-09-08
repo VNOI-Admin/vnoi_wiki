@@ -108,7 +108,7 @@ Lưu ý rằng mặc dù vòng lặp thực hiện $\frac{N \times (N+1)}{2}$ l�
 
 Xét một cây nhị phân cân bằng 4 levels:
 
-![cay-nhi-phan-can-bang-4-cap](https://s-media-cache-ak0.pinimg.com/564x/88/81/a1/8881a15ab475ed5adf771592871565a5.jpg)
+![cay-nhi-phan-can-bang-4-cap](/uploads/translate/USACO/Crafting-Winning-Solutions/8881a15ab475ed5adf771592871565a5.jpg)
 
 Một thuật toán tìm kiếm trên một cây nhị phân thông thường sẽ có độ phức tạp $\mathcal{O}(2^{N})$.
 

@@ -37,7 +37,7 @@ Ngoài ra, ta gọi một cạnh $e \in E$ là một **cạnh tự do** nếu n�
 Ví dụ, đồ thị sau mô tả một cặp ghép $M$ với các đỉnh và cạnh được tô màu xanh dương là cạnh và đỉnh tự do:
 
 <center>
-    <img src="/algo/graph/matching/matching-1.png" width="50%">
+    <img src="/uploads/algo/graph-theory/max-matching/matching-1.png" width="50%">
     <p><i>Hình 1: Cặp ghép trên một đồ thị vô hướng</i></p>
 </center>
 
@@ -56,7 +56,7 @@ Một đường tăng luồng là một đường đi bắt đầu và kết th�
 Ví dụ, với đồ thị và cặp ghép như trên, ta có đường đi $1 - 2 - 3 - 8 - 9 - 10$ là một đường tăng luồng:
 
 <center>
-    <img src="/algo/graph/matching/matching-2.png" width="50%">
+    <img src="/uploads/algo/graph-theory/max-matching/matching-2.png" width="50%">
     <p><i>Hình 2: Đường tăng luồng</i></p>
 </center>
 
@@ -80,7 +80,7 @@ là một cặp ghép và $|M'| = |M| + 1$.
 Hình ảnh minh họa của cặp ghép $M'$ được tạo từ cặp ghép $M$ và đường tăng luồng $\pi$ như hình trên:
 
 <center>
-    <img src="/algo/graph/matching/matching-3.png" width="60%">
+    <img src="/uploads/algo/graph-theory/max-matching/matching-3.png" width="60%">
     <p><i>Hình 3: Cặp ghép sau khi thực hiện phép hiệu đối xứng với đường tăng luồng</i></p>
 </center>
 
@@ -113,7 +113,7 @@ Cuối cùng, ta nối các đỉnh thuộc tập $Y$ tới đỉnh thu $T$ vớ
 <!-- ![image](https://hackmd.io/_uploads/HJpvxAEKye.png) -->
 
 <center>
-    <img src="/algo/graph/matching/matching-4.png" width="50%">
+    <img src="/uploads/algo/graph-theory/max-matching/matching-4.png" width="50%">
     <p><i>Hình 4: Đồ thị luồng cho bài toán cặp ghép cực đại</i></p>
 </center>
 
@@ -192,7 +192,7 @@ Vậy tại sao đồ thị đạt cực đại khi không tìm được thêm �
 Vì chúng ta luôn cố gắng tìm đường tăng luồng tại từng đỉnh thuộc tập bên trái, nên sau khi tìm kiếm tại tất cả các đỉnh này thì đồ thị không còn bất cứ đường tăng luồng nào. Nói cách khác, số cặp ghép tìm được lúc này là cực đại.
 
 <figure align="center">
-    <img src="/algo/graph/matching/matching-gif.gif" width="70%">
+    <img src="/uploads/algo/graph-theory/max-matching/matching-gif.gif" width="70%">
     <figcaption>Minh hoạ quy trình thuật toán Kuhn</figcaption>
 </figure>
 
@@ -324,14 +324,14 @@ Ta sẽ thực hiện thuật toán BFS đa nguồn trên đồ thị $H(X, Y, E
 + Các cạnh có hướng $(v, u) \in E$, $u \in X, v \in Y$ mà cạnh $(u, v) \in M$.
 
 <center>
-    <img src="/algo/graph/matching/matching-5.png" width="40%">
+    <img src="/uploads/algo/graph-theory/max-matching/matching-5.png" width="40%">
     <p><i>Hình 5: Thực hiện BFS đa nguồn trên đồ thị hai phía</i></p>
 </center>
 
 Nếu sắp xếp lại các đỉnh của đồ thị, ta có thể thấy rõ hơn hình ảnh của một DAG như sau:
 
 <center>
-    <img src="/algo/graph/matching/matching-6.png" width="70%">
+    <img src="/uploads/algo/graph-theory/max-matching/matching-6.png" width="70%">
     <p><i>Hình 6: Đồ thị sau khi sắp xếp</i></p>
 </center>
 
@@ -343,7 +343,7 @@ Cuối cùng, ta sẽ tìm kiếm các đường tăng luồng trên cây BFS đ
 **Bổ đề 2:** Nếu $\pi$ là đường tăng luồng ngắn nhất tương ứng với cặp ghép $M$ và $\pi'$ là đường tăng luồng bất kỳ tương ứng với $M' = M \oplus \pi$. Thì $|\pi'| \ge |\pi|$. Cụ thể hơn, ta sẽ có $|\pi'| \ge |\pi| + 2|\pi \cap \pi'|$.
 <br>
 <center>
-    <img src="/algo/graph/matching/matching-7.jpg" width="80%">
+    <img src="/uploads/algo/graph-theory/max-matching/matching-7.jpg" width="80%">
     <p><i>Hình 7: Hai đường tăng luồng ngắn nhất tương ứng cặp ghép M và M'</i></p>
 </center>
 

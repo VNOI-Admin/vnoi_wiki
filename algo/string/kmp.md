@@ -135,7 +135,7 @@ Do $k$ lớn nhất, ta phải có $k = \pi[\pi[i]-1]$. Nói cách khác, độ 
 Minh họa cho hai trường hợp trên:
 <center>
 
-<img src="https://i.imgur.com/zPJRhGA.gif"  style="width: 60%">
+<img src="/uploads/algo/string/kmp/zPJRhGA.gif"  style="width: 60%">
 </center>
 
 Nếu $s[k] \neq s[i+1]$, lập luận tương tự, độ dài lớn thứ ba cho hậu tố kết thúc tại $i$ khớp với tiền tố là $\pi[\pi[\pi[i]-1]-1]$, độ dài lớn thứ tư là $\pi[\pi[\pi[\pi[i]-1]-1]-1]$,...
@@ -154,7 +154,7 @@ Tổng kết lại, thuật toán của chúng ta hoạt động như sau:
 
 <center>
 
-<img src="https://i.imgur.com/6LnQDXZ.gif"  style="width: 60%">
+<img src="/uploads/algo/string/kmp/6LnQDXZ.gif"  style="width: 60%">
 </center>
 
 ## Cài đặt
@@ -248,7 +248,7 @@ Ví dụ: với xâu "$abcabcd$", ta có hàm tiền tố $[0, 0, 0, 1, 2, 3, 0]
 <center>
 
 
-![](/uploads/kmp.png)
+![](/uploads/algo/string/kmp/kmp.png)
 </center>
 
 Ý tưởng này phần nào giúp chúng ta dễ hình dung hơn cách giải: việc tính $ans$ đưa về bài toán cập nhật truy vấn cộng **$1$ vào các nút trên đường đi từ một nút đến gốc** và tìm giá trị tại tất cả các nút sau mọi truy vấn - một bài toán có cách giải dùng mảng cộng dồn.

@@ -8,7 +8,7 @@
 
 # **Định nghĩa**
 Deque (Double-ended queue) là một kiểu dữ liệu trừu tượng tổng quát hóa một hàng đợi. Nó là nó kiểu danh sách mà có thể bổ sung và loại bỏ một phần ở đầu hoặc cuối danh sách.
-![](https://i.imgur.com/0f5hQR9.png)
+![](/uploads/algo/data-structures/deque-min-max/0f5hQR9.png)
 
 **Các thao tác deque hỗ trợ:**
 - push_front($x$): Đẩy $x$ vào đầu deque
@@ -55,7 +55,7 @@ $\texttt{minRange}[i] =$ giá trị nhỏ nhất trong đoạn $[i - k + 1 \ldot
 ## **Phân tích**
 
 Với bài toán này ta có thể duyệt tất cả các đoạn gồm $k$ phần tử liên tiếp trong mảng $A$ để tìm giá trị nhỏ nhất.
-![](https://i.imgur.com/nI9T8t3.png)
+![](/uploads/algo/data-structures/deque-min-max/nI9T8t3.png)
 
 ```cpp
 const int MAXN = 1e5 + 105;
@@ -74,11 +74,11 @@ Mỗi lần gán $\texttt{minRange} = \min(\texttt{minRange}, A[j])$ thì mấu 
 
 **Minh họa**
 
-![](https://i.imgur.com/ECBlewQ.png)
+![](/uploads/algo/data-structures/deque-min-max/ECBlewQ.png)
 
 Các ô được tô màu đỏ là các ô làm thay đổi giá trị $\texttt{minRange}$. Ô thứ $2$ có giá trị $A[2] = 2$ ta không cần quan tâm vì ngay từ $A[3] = 2$ nó đã không nằm trong danh sách các ô màu đỏ.
 
-![](https://i.imgur.com/MpAwBtt.png)
+![](/uploads/algo/data-structures/deque-min-max/MpAwBtt.png)
 
 Tương tự, đối với đoạn $[2 \ldots 5]$ ta cũng không cần quan tâm đến ô thứ $2$ có giá trị $A[2] = 2$.
 Do đó ta có thể làm như sau:
@@ -90,14 +90,14 @@ Do đó ta có thể làm như sau:
 Đầu tiên chúng ta khởi tạo một hàng đợi hai đầu nhằm mục đích lưu vị trí của phần tử có giá trị nhỏ nhất.
 
 Lúc đầu hàng đợi hai đầu của chúng ta rỗng
-![](https://i.imgur.com/2SI3P7o.png)
+![](/uploads/algo/data-structures/deque-min-max/2SI3P7o.png)
 Đối với phần tử đầu tiên vì do hàng đợi rỗng nên ta sẽ đẩy phần tử này vào cuối hàng đợi
-![](https://i.imgur.com/AiuYFLJ.png)
+![](/uploads/algo/data-structures/deque-min-max/AiuYFLJ.png)
 Tiếp theo ta sẽ đẩy lần lượt các phần tử có vị trí $2$; $3$ và $4$ vào cuối hàng đợi.
-![](https://i.imgur.com/w3AlnmP.png)
+![](/uploads/algo/data-structures/deque-min-max/w3AlnmP.png)
 Vì ta chỉ xét các đoạn trong khoảng từ $[i - k + 1 \ldots i]$. Do đó khi ta xét đến phần tử thứ $5$ thì phần tử đầu tiên trong hàng đợi có vị trí $i = 1$ không còn ý nghĩa gì nữa. Vì vậy ta sẽ loại bỏ phần tử đầu tiên ra khỏi hàng đợi.
 Khi ta loại bỏ phần tử đầu tiên ra khỏi hàng đợi thì tất cả các phần tử đứng sau phần tử đó để được đẩy lên $1$ ô và hàng đợi sẽ được đánh số lại.
-![](https://i.imgur.com/YsFpJBy.png)
+![](/uploads/algo/data-structures/deque-min-max/YsFpJBy.png)
 
 Tiếp đến khi ta chuẩn bị đẩy phần tử thứ $5$ vào hàng đợi thì nhận thấy rằng giá trị của nó nhỏ hơn giá trị của phần tử cuối trong hàng đợi.
 
@@ -109,13 +109,13 @@ Vì vậy ta sẽ loại bỏ tất cả các phần tử cuối cùng trong deq
 
 Sau khi loại bỏ tất cả các phần tử cuối cùng và đẩy phần tử $i = 5$ vào thì hàng đợi sẽ có những giá trị sau:
 
-![](https://i.imgur.com/yZG8HOO.png)
+![](/uploads/algo/data-structures/deque-min-max/yZG8HOO.png)
 Ta tiếp tục đẩy phần tử thứ $6$ vào deque
-![](https://i.imgur.com/VPJM6Bd.png)
+![](/uploads/algo/data-structures/deque-min-max/VPJM6Bd.png)
 Sau đó ta tiếp tục đẩy phần tử thứ $7$ vào deque
-![](https://i.imgur.com/inVXc6C.png)
+![](/uploads/algo/data-structures/deque-min-max/inVXc6C.png)
 Khi ta chuẩn bị đẩy phần tử thứ $8$ vào deque, ta nhận thấy rằng giá trị của nó nhỏ hơn giá trị của phần tử cuối trong hàng đợi. Do đó ta sẽ loại bỏ phần tử cuối cùng trong deque cho đến khi giá trị của phần tử cuối cùng nhỏ hơn giá trị ta chuẩn bị đẩy vào.
-![](https://i.imgur.com/puUB3j7.png)
+![](/uploads/algo/data-structures/deque-min-max/puUB3j7.png)
 Ta có thể rút ra được các nhận xét quan trọng như sau:
 - Ở mọi thời điểm, giá trị $A[i]$ trong deque luôn tăng nghiêm ngặt. Khi ta đẩy phần tử thứ $i$ vào deque thì nó luôn là phần tử có giá trị lớn nhất.
 - Vì đây là dãy tăng nghiêm ngặt thế nên phần tử đầu tiên luôn là phần tử nhỏ nhất. **(Đây chính là min trong đoạn $[i - k + 1 \ldots i]$)**
@@ -326,7 +326,7 @@ Hiện tại Gnar đang đứng trên tòa nhà $1$. Mục tiêu của anh ấy 
 
 Điều này có nghĩa là tồn tại tòa nhà $k$ $(i + 1 \le k \le j - 1)$ có độ cao lớn nhất trong các tòa nhà từ $i + 1$ đến $j - 1$. Nếu $H[k] < \min(H[i], H[j])$ thì tất cả các tòa nhà từ $i + 1$ đến $j - 1$ đều nhỏ hơn $\min(H[i], H[j])$.
 
-![](https://i.imgur.com/Tl3DSul.png)
+![](/uploads/algo/data-structures/deque-min-max/Tl3DSul.png)
 
 **Làm thế nào để tìm được hai biên nhận tòa nhà k làm max?**
 Vì $\max(H[i + 1], \ldots, H[j - 1]) < \min(H[i], H[j])$ nên $H[k] < \min(H[i], H[j])$. Điều này có nghĩa là cả $2$ tòa nhà $i$ và $j$ đều lớn hơn tòa nhà $k$ do đó tòa nhà $i$ và $j$ sẽ không nằm trong khoảng nhận tòa nhà $k$ là $\max$.
@@ -346,7 +346,7 @@ Giả sử tòa nhà gần nhất bên trái, bên phải nhận tòa nhà $k$ l
 Vì vậy ta sẽ xét tất cả các tòa nhà $k$ để có thể tìm được tòa nhà $i$ và $j$ thỏa mãn yêu cầu đề bài.
 
 **Trường hợp 3:** Nếu tòa nhà thứ $i$ và $j$ thỏa mãn điều kiện $\max(H[i], H[j]) < \min(H[i + 1], \ldots, H[j - 1])$ nghĩa là tất cả các tòa nhà nằm giữa $i$ và $j$ đều có độ cao lớn hơn hẳn $\max(H[i], H[j])$.
-![](https://i.imgur.com/j5e9vEU.png)
+![](/uploads/algo/data-structures/deque-min-max/j5e9vEU.png)
 
 Lập luận tương tự. Ở trường hợp này ta sẽ xây dựng $2$ mảng $l$ và $r$.
 

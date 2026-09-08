@@ -85,7 +85,7 @@ Sử dụng [Heavy Light Decomposition](/algo/data-structures/heavy-light-decomp
 
 Xuất phát từ trường hợp suy biến của cây: mỗi nút của cây chỉ có đúng 1 con (trừ 1 nút lá không có con). Với một cây suy biến ta hoàn toàn có thể tìm $\texttt{LCA}(u, v)$ trong thời gian $\mathcal{O}(1)$ (đỉnh nào gần gốc hơn trong 2 đỉnh $u$, $v$ sẽ là $\texttt{LCA}(u, v)$). Tư tưởng của Heavy Light Decomposition sẽ là chia cây ban đầu ra thành nhiều cây suy biến.
 
-![Hình minh họa](http://i.imgur.com/8nNHG8K.jpg)
+![Hình minh họa](/uploads/algo/data-structures/lca/8nNHG8K.jpg)
 
 Những đoạn cùng màu là một cây suy biến. Nếu coi mỗi cây suy biến là một đỉnh thì ta sẽ được một cây mới gọi là cây rút gọn. Sau đây là một cách chia cây để cây rút gọn thu được có độ cao $\mathcal{O}(\log N)$ với $N$ là số nút của cây ban đầu:
 

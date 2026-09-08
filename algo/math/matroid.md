@@ -41,11 +41,11 @@ Xét ví dụ sau: cho đồ thị vô hướng liên thông $G$ gồm $n$ đỉ
 
 Ta dễ dàng nhận ra được là dưới định nghĩa tập độc lập như trên, nếu tập $T$ là cở sở của $E$, các cạnh trong $T$ dựng nên một cây khung của đồ thị $G$. Nói cách khác, các cây khung của $G$ dựng nên các cơ sở cho định nghĩa tập độc lập như trên. Đây là một cách định nghĩa tập độc lập trên tập các cạnh của đồ thị khá hữu ích.
 
-|![Figure_1](/algo/math/matroid1.png) |
+|![Figure_1](/uploads/algo/math/matroid/matroid1.png) |
 |:--:|
 |*Một tập cạnh độc lập. Đây còn là một cơ sở.*|
 
-|![Figure_2](/algo/math/matroid2.png)|
+|![Figure_2](/uploads/algo/math/matroid/matroid2.png)|
 |:--:|
 |*Một tập cạnh không độc lập.*|
 

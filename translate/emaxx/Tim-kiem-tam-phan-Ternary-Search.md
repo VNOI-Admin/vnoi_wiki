@@ -21,13 +21,13 @@ Cho một hàm F(x) chỉ có một cực trị duy nhất (unimodal). Có hai d
 
 * Phần đầu tăng chặt, đạt đến giá trị lớn nhất, sau đó giảm chặt. (concave)
 
-<img src="/uploads/ternary_search_concave_func.png" width="200px" height="200px" />
+<img src="/uploads/translate/emaxx/Tim-kiem-tam-phan-Ternary-Search/ternary_search_concave_func.png" width="200px" height="200px" />
 
 Một hàm số thoả mãn tính chất này nếu tất cả các đoạn thẳng nối 2 điểm của đồ thị hàm số, nằm "bên dưới" của đồ thị.
 
 * Phần đầu giảm chặt, đạt đến giá trị nhỏ nhất, sau đó tăng chặt. (convex)
 
-<img src="/uploads/ternary_search_convex_func.png" width="200px" height="200px" />
+<img src="/uploads/translate/emaxx/Tim-kiem-tam-phan-Ternary-Search/ternary_search_convex_func.png" width="200px" height="200px" />
 
 
 Một hàm số thoả mãn tính chất này nếu tất cả các đoạn thẳng nối 2 điểm của đồ thị hàm số, đều nằm "bên trên" của đồ thị.
@@ -46,16 +46,16 @@ Xét hai vị trí $m_1$ và $m_2$ trong đoạn $[l, r]$ sao cho $l < m_1 < m_2
 
 *   $[l, m_1]$. Khi đó, ta biết chắc chắn $F(m_1) > F(m_2)$.
 
-![](/uploads/ternary_search_case_1.png)
+![](/uploads/translate/emaxx/Tim-kiem-tam-phan-Ternary-Search/ternary_search_case_1.png)
 
 *   $[m_1, m_2]$. Ta không thể rút ra kết luận gì về $F(m_1)$ và $F(m_2)$.
 
-![](/uploads/ternary_search_case_2.png)
+![](/uploads/translate/emaxx/Tim-kiem-tam-phan-Ternary-Search/ternary_search_case_2.png)
 
 
 *   $[m_2, R]$. Tương tự trường hợp đầu, ta biết chắc chắn $F(m_1) < F(m_2)$.
 
-![](/uploads/ternary_search_case_3.png)
+![](/uploads/translate/emaxx/Tim-kiem-tam-phan-Ternary-Search/ternary_search_case_3.png)
 
 
 Ngược lại, bằng việc so sánh $F(m_1)$ và $F(m_2)$, ta có thể rút ra kết luận như sau:

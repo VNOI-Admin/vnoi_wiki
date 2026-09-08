@@ -305,7 +305,7 @@ Output
 26
 ```
 
-![](/uploads/dp_optimization_img1.png)
+![](/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img1.png)
 
 Hình vẽ trên minh họa cho test ví dụ. Các hình tròn được tô đen là các vị trí có nhà máy. Kết quả sẽ là:
 
@@ -534,7 +534,7 @@ Chú ý rằng ta không thể đảm bảo rằng $P(g,mid)$ chia đôi đoạn
 
 Tuy nhiên ta có thể chứng minh được, xét về tổng thế thuật toán này chạy đủ nhanh. Mỗi lần ta chia đôi đoạn $[L, R]$, nên ta sẽ đảm bảo có tối đa $\mathcal{O}(\log L)$ tầng đệ quy, như vậy với mỗi hàng $g$, ta chỉ mất $\mathcal{O}(L\log L)$ để tính. Toàn bộ thuật toán có độ phức tạp là $\mathcal{O}(G \cdot L \cdot \log L)$.
 
-![](/uploads/dp_optimization_img2.png)
+![](/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img2.png)
 
 ### Điều kiện để Chia để trị đúng
 
@@ -1001,21 +1001,21 @@ Ta có thể coi hàm QHĐ $F(i, x)$ ở trên là một hàm $f_i(x)$ nhận $x
 
 Xét hàm số $f_{k-1}(x) = N - \|e_k-1 - x\|$. Đồ thị của nó sẽ có dạng:
 
-<img src="/uploads/dp_optimization_img4.png" width="40%"/>
+<img src="/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img4.png" width="40%"/>
 
 Vấn đề trở nên phức tạp hơn với hàm $f_{k-2}$. Đặt $g_{k-1}(x) = \max(f_{k-1}(x’))$ với $\|x’ - x\| \le d_{k-2}$. Đồ thị của hàm số này có dạng tương tự như đồ thị của hàm số $f_{k-1}(x)$:
 
-<img src="/uploads/dp_optimization_img5.png" width="40%"/>
+<img src="/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img5.png" width="40%"/>
 
 Ta cộng thêm $N-\|e_{k-2} - x\|$ vào hàm $g_{k-1}(x)$, ta sẽ được đồ thị dạng:
 
-<img src="/uploads/dp_optimization_img6.png" width="40%"/>
+<img src="/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img6.png" width="40%"/>
 
 Tương tự như vậy, ý tưởng ở đây là ta sẽ duy trì đồ thị của các hàm số $f_i(x)$ với $i$ từ $k$ về $0$. Để làm được điều này ta cần phải thực hiện một vài thao tác:
 
  - Tịnh tiến về hai phía: Để tìm được hàm $f(x)$ thì trước hết cần xây dựng được hàm $g(x) = \max(f_i(x’) : \|x’ - x\| \le d)$. Ta chỉ cần tìm được đỉnh của hàm số, rồi tịnh tiến cả hai phía trái phải của hàm thêm một khoảng $d$.
 
-![](/uploads/dp_optimization_img7.png)
+![](/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img7.png)
 
  - Tịnh tiến theo trục tung: Ta biểu diễn hàm số bằng danh sách các đỉnh của đường gấp khúc thì thao tác này có thể dễ dàng thực hiện.
 

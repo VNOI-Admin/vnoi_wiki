@@ -60,7 +60,7 @@ Hãy thử một mánh khóe khác. Giờ ta sẽ bỏ những hoạt động ti
 Trong 10 hành động, ta đã lựa ra được 6 hành động, không tệ chút nào! Giờ thì thuật toán của ta vẫn chạy rất nhanh và đáng tin cậy hơn chút. Và quả thực, đáp án chính xác trong trường hợp này là 6. John rất hài lòng về sự hỗ trợ của chúng ta, nhưng sau khi trở về từ kỳ nghỉ với kế hoạch thông minh này, John đã phải đối mặt với những rắc rối nghiêm trọng khác:
 
 <div align="center">
-	<img src="http://community.topcoder.com/i/education/greedyAlg1.gif" alt="" border="0">
+	<img src="/uploads/translate/topcoder/Greedy-is-Good/greedyAlg1.gif" alt="" border="0">
 </div>
 
 Áp dụng thuật toán của ta, John đã tham gia một cuộc hẹn hò chóng vánh (màu đỏ), để rồi anh ấy đã bỏ lỡ cả bài thi trong trường (màu xanh da trời) lẫn trận đấu bóng rổ của đội anh ấy yêu thích (màu xanh lá). Là một **Topcoder**, chúng ta cần phải viết ra một chương trình hoàn toàn chính xác, chứ không phải chỉ đúng trong 1 số trường hợp. Chỉ cần một trường hợp duy nhất chúng ta không giải quyết được sẽ dẫn tới một thất bại toàn diện.
@@ -72,7 +72,7 @@ Những gì mà chúng ta thường làm trong tình huống này là phân tíc
 Để đảm bảo rằng phương pháp này hoàn toàn đúng đắn, lần này ta hãy thử chứng minh. Giờ giả sử ta đã lựa chọn hoạt động X, ta sẽ thử kiểm tra xem ta có thể lựa chọn hoạt động A và B (những hoạt động bị trùng lặp với X) thay vì X được hay không. Và A, B cũng không được trùng lặp nhau, nếu không ta cũng không thể tối ưu hóa kết quả. Bây giờ, ta sẽ quay về trường hợp trước đó (X trùng với 2 hoạt động, A và B trùng với 1 hoạt động). Trong trường hợp này, ta sẽ chọn A và B ngay từ đầu tiên. Một trong những cách để phản bác lại giả thiết này chính là cho hoạt động A và B trùng lặp với nhiều hoạt động hơn nữa chứ không chỉ hoạt động X. Nghe nó có vẻ không trực quan cho lắm, nhưng (thật không may) ta vẫn có thể xây dựng trường hợp đó như sau:
 
 <div align="center">
-	<img src="http://community.topcoder.com/i/education/greedyAlg2.gif" alt="" border="0">
+	<img src="/uploads/translate/topcoder/Greedy-is-Good/greedyAlg2.gif" alt="" border="0">
 </div>
 
 Nhưng hoạt động được biểu diễn bằng gạch màu xanh chính là những lựa chọn tối ưu trong thời gian biểu trên. Nhưng hoạt động tô màu đỏ trùng lặp với 2 hoạt động nên nó sẽ được chọn trước. Vẫn còn 4 hoạt động thích hợp khác trước hoạt động đỏ, nhưng chúng đều bị trùng lặp lẫn nhau, thế nên ta chỉ có thể lựa chọn thêm 1 hoạt động. Điều tương tự cũng xảy ra đối với 4 hoạt động sau hoạt động màu đỏ, nhưng ta vẫn chỉ có thể chọn 1. Vậy tổng cộng theo phương pháp này, ta vẫn chỉ có thể chọn 3 hoạt động, trong khi kết quả tối ưu là 4.
@@ -158,7 +158,7 @@ Việc đầu tiên mà ta cần làm là xây dựng một ma trận cho biết
 
 Ví dụ, hãy xét bộ `{"ACTAGAGAC", "AAAAAAAAA", "TAGTCATAC", "GCAGCATTC"}` được sử dụng ở ví dụ thứ 2.
 
-![Ví dụ](http://community.topcoder.com/i/education/greedyAlg3.gif)
+![Ví dụ](/uploads/translate/topcoder/Greedy-is-Good/greedyAlg3.gif)
 
 Ở góc phải - dưới của hình minh họa trên, ta có thể thấy kết quả của ma trận tần số đối với bộ đã cho. Tạm gọi nó là $F$. Giờ việc mà ta cần làm là tìm ra một ma trận $S$ sao cho tổng của các tích: $F[i, j] \times S[i, j]$ với $(1 \le i, j \le 4)$ là lớn nhất.
 
@@ -430,13 +430,13 @@ Không tồn tại một công thức chung nào cho việc áp dụng Tham lam,
 
 * Mặc dù nó có vẻ rùng rợn, nhưng bạn nên nhìn thuật toán tham lam dưới đôi mắt của một thám tử chứ không phải là dưới cặp kính của một nhà toán học.
 
-![a](http://community.topcoder.com/i/education/greedyAlg4.gif)
+![a](/uploads/translate/topcoder/Greedy-is-Good/greedyAlg4.gif)
 **Một thám tử giỏi tham lam.**
 
-![b](http://community.topcoder.com/i/education/greedyAlg5.gif)
+![b](/uploads/translate/topcoder/Greedy-is-Good/greedyAlg5.gif)
 **Một người tham lam may mắn.**
 
-![c](http://community.topcoder.com/i/education/greedyAlg6.gif)
+![c](/uploads/translate/topcoder/Greedy-is-Good/greedyAlg6.gif)
 **Một người tham lam không may mắn.**
 
 * Ngoài ra, việc học tập một số thuật toán có sử dụng Tham lam sẽ giúp nắm vững phương pháp này hơn ([thuật toán Prim](http://weierstrass.is.tokushima-u.ac.jp/ikeda/suuri/dijkstra/Prim.shtml), [thuật toán Kruskal](http://weierstrass.is.tokushima-u.ac.jp/ikeda/suuri/kruskal/Kruskal.shtml), [thuật toán Dijkstra](http://www-b2.is.tokushima-u.ac.jp/~ikeda/suuri/dijkstra/Dijkstra.shtml))

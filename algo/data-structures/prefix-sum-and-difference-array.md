@@ -31,7 +31,7 @@ Cho một mảng $A$ có $n$ phần tử được đánh số từ $0$ đến $n
 
 Mảng $S(A)$ được gọi là **mảng cộng dồn (tiền tố)** theo $c$ của $A$, gọi cách khác là prefix sum của $A$. Từ một mảng $A$, ta có thể sinh ra vô hạn mảng $S(A)$ bằng cách chọn một số thực $c$ tùy ý; trên thực tế, ta thường chọn $c = 0$ để thuận tiện hơn khi tính toán.
 
-![](https://i.imgur.com/lzBYJ89.gif)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/lzBYJ89.gif)
 
 ### Mảng hiệu (difference array)
 
@@ -39,7 +39,7 @@ Cũng với mảng $A$, ta có thể dựng mảng $D(A)$ theo quy tắc: $D_i =
 
 Mảng $D(A)$ được gọi là **mảng hiệu** của $A$, có tên tiếng Anh là difference array.
 
-![](https://i.imgur.com/3IQ1YlB.gif)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/3IQ1YlB.gif)
 
 ## Cài đặt
 
@@ -167,7 +167,7 @@ Cho mảng cộng dồn $S(c, A)$ và mảng hiệu $D(A)$, ta có thể dễ d�
 - $D(S(c, A)) = A$ với mọi $c$ thực
 
 Hình dưới đây mô tả rõ hơn mối liên hệ giữa mảng gốc, mảng hiệu và mảng cộng dồn sinh ra từ nó:
-![](https://i.imgur.com/agrVFdU.png)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/agrVFdU.png)
 
 Hàm `partial_sum` và `adjacent_difference` trong C++ STL cũng tuân theo quy tắc này trên. Tuy nhiên, các thao tác trên hai hàm này có phần phức tạp hơn so với thao tác trên mảng mà ta cài đặt thủ công.
 
@@ -321,7 +321,7 @@ $$
 Các phần tử trong mảng cộng dồn lưu tổng của toàn bộ phần tử chứa trong hình chữ nhật $[1, i] \times [1, j]$.
 Điểm khác biệt so với mảng cộng dồn 1 chiều ở đây là sự lược bỏ của hằng số $C$, ta ngầm quy ước: $S_{0,x} = S_{y,0} = 0$ với $x, y$ nguyên không âm khi dựng mảng cộng dồn.
 
-![](https://i.imgur.com/FhmEVv3.png)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/FhmEVv3.png)
 
 Từ công thức quy ước trên, ta thực hiện biến đổi sau để dựng mảng cộng dồn:
 
@@ -339,9 +339,9 @@ $$
 
 Để hình dung rõ hơn công thức biến đổi trên, bạn đọc có thể tham khảo hình ảnh dưới:
 
-| ![](https://i.imgur.com/3vhyF37.gif)                                                            |
+| ![](/uploads/algo/data-structures/prefix-sum-and-difference-array/3vhyF37.gif)                                                            |
 | :---------------------------------------------------------------------------------------------: |
-| ![](https://i.imgur.com/TlZhWxX.png)                                                            |
+| ![](/uploads/algo/data-structures/prefix-sum-and-difference-array/TlZhWxX.png)                                                            |
 | Các phần tử $A_i$ tô màu xanh nhạt được đánh dấu 1 lần, tô màu xanh đậm được đánh dấu tới 2 lần |
 
 Code dưới đây dựng mảng cộng dồn hai chiều:
@@ -368,9 +368,9 @@ $$
 
 Phần chứng minh công thức trên xin được nhường lại cho bạn đọc. Hình ảnh dưới minh họa vì sao công thức trên cho kết quả chính xác:
 
-|                   ![](https://i.imgur.com/aqfFaz3.gif)                    |
+|                   ![](/uploads/algo/data-structures/prefix-sum-and-difference-array/aqfFaz3.gif)                    |
 | :-----------------------------------------------------------------------: |
-|                   ![](https://i.imgur.com/3qzbjwL.png)                    |
+|                   ![](/uploads/algo/data-structures/prefix-sum-and-difference-array/3qzbjwL.png)                    |
 | Các phần tử $A_i$ tô màu đỏ bị trừ tới 2 lần, vì thế cần phải cộng bù lại |
 
 ### Mảng cộng dồn ba chiều
@@ -441,7 +441,7 @@ $$
 
 Ta kết luận rằng $S(D) = A'$, mảng $D$ ta vừa dựng chính là mảng hiệu của $A$.
 
-![](https://i.imgur.com/w7txGHE.png)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/w7txGHE.png)
 
 Từ các quan sát trên, ta có thể dựng mảng hiệu của $A$ bằng hai cách:
 
@@ -491,7 +491,7 @@ $$
 
 Để xử lý truy vấn cập nhật toàn bộ phần tử trong không gian $[x_1, x_2] \times [y_1, y_2] \times [z_1, z_2]$, ta cần cập nhật giá trị tại $8$ vị trí, các vị trí đều nằm tại biên của không gian. Nếu ta coi mảng $n$-chiều như một hình lập phương chứa số, vị trí cần cập nhật sẽ tương ứng với đỉnh của hình lập phương đại diện cho không gian cần cập nhật. Ta sẽ tô xen kẽ các đỉnh này theo hai màu đen - trắng, đỉnh có tọa độ $(x_1, y_1, z_1)$ được tô màu trắng. Phần tử $D$ ứng với các đỉnh trắng được cộng thêm lượng $k$, ngược lại, phần tử ứng với đỉnh đen thì trừ đi lượng $k$.
 
-![](https://i.imgur.com/jO0h9zp.png)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/jO0h9zp.png)
 
 Hình trên minh họa những vị trí mà ta cần cập nhật trên mảng hiệu. Tương tự mảng cộng dồn, phương pháp [bao hàm - loại trừ](/translate/he/Number-Theory-7.md) được áp dụng để đưa đến kết luận này.
 

@@ -32,7 +32,7 @@ Giả sử ta được cho một mạng $G = (V, E)$ với vô số đỉnh ngu�
 Ta có một đồ thị có hướng, và nhiệm vụ của ta là tìm $k$ đường đi từ đỉnh $s$ đến đỉnh $t$ sao cho các đường đi phân biệt cạnh (các cung trên đồ thị xuất hiện nhiều nhất một lần trong tất cả các đường đi). Ở ví dụ dưới đây, ta tìm được hai đường đi phân biệt cạnh được tô hai màu lục và đỏ trên đồ thị sau:
 
 <center>
-<img src="/algo/flow-application/flow_1.png" alt="Hai đường đi phân biệt cạnh">
+<img src="/uploads/algo/graph-theory/flow-application/flow_1.png" alt="Hai đường đi phân biệt cạnh">
 </center>
 
 Để giải quyết bài toán, ta xây dựng *mạng đơn vị* từ đồ thị có hướng trên (mạng đơn vị là mạng với các cạnh có sức chứa $1$). Nếu ta có thể cho $k$ luồng đi qua mạng này thì tức là ta đã tìm được $k$ đường đi phân biệt cạnh. 
@@ -62,7 +62,7 @@ Một số mạng không những có sức chứa cạnh mà nó còn có cả s
 Để giải quyết trường hợp này, ta có thể biến đổi mạng này thành một mạng thông thường bằng cách tạo hai đỉnh mới $u_{\texttt{in}}$, $u_{\texttt{out}}$ với mỗi đỉnh $u$ trong mạng. Ta nối hai đỉnh này bằng một cung có sức chứa bằng với sức chứa đỉnh.
 
 <center>
-<img src="/algo/flow-application/flow_2.png" alt="Sức chứa đỉnh">
+<img src="/uploads/algo/graph-theory/flow-application/flow_2.png" alt="Sức chứa đỉnh">
 </center>
 
 Các cạnh $\{u, v\}$ trong mạng từ đây cũng được nối lại thành các cạnh $\{u_{\texttt{out}}, v_{\texttt{in}}\}$.
@@ -83,7 +83,7 @@ Ta sẽ tập trung giải quyết một biến thể của bài toán này: tì
 - Nối các đỉnh $v \in Y$ với đỉnh thu $t$ bằng một cung.
 
 <center>
-<img src="/algo/flow-application/flow_3.png" alt="Cặp ghép cực đại">
+<img src="/uploads/algo/graph-theory/flow-application/flow_3.png" alt="Cặp ghép cực đại">
 </center>
 
 Khi này, giá trị luồng cực đại của đồ thị bằng giá trị cặp ghép cực đại, với các cạnh $\{u, v\}$ thoả mãn $f(\{u, v\}) = 1$ là các cạnh trong cặp ghép.
@@ -135,7 +135,7 @@ Dễ nhất, ta có thể xác định đội $x$ không có khả năng vô đ�
 - Nối các đỉnh $i$ với đỉnh thu $t$ bằng một cung có sức chứa $w_x + r_x - w_i$.
 
 <center>
-<img src="/algo/flow-application/flow_4.png" alt="Vòng loại bóng chày">
+<img src="/uploads/algo/graph-theory/flow-application/flow_4.png" alt="Vòng loại bóng chày">
 </center>
 
 Đội $x$ không có khả năng vô địch nếu tập $S^*$ trong lát cắt cực tiểu $(S^*, T^*)$ (sau khi thực hiện lát cắt cực tiểu $s - t$, tập hợp đỉnh được chia làm $2$ phần: tập $S^*$ là một tập con chứa đỉnh nguồn $s$, tập $T^*$ là tập chứa các đỉnh còn lại) tồn tại một tập con $R$ sao cho $R \subseteq Y$ và điều kiện dưới đây thoả mãn:
@@ -159,7 +159,7 @@ Nếu bài toán có điều kiện rằng nhiều đội đồng hạng nhất 
 Bài toán chọn dự án được phát biểu như sau: hiện tại có một công ty đang thực hiện $n$ dự án $P$, mỗi dự án sẽ đem về số tiền $p_i$. Các dự án có thể sinh lời ($p_i > 0$ - các khoá học, khu vui chơi, mở cửa hàng, v.v.) hoặc thu lỗ ($p_i < 0$ - xây dựng cơ sở hạ tầng, cập nhật trang thiết bị, v.v.). Các dự án có thể phụ thuộc lẫn nhau, được biểu thị bằng các cặp trong $E$, ví dụ: nếu $\{u, v\} \in E$, thì nếu thực hiện dự án $u$ thì trước tiên ta cần phải thực hiện dự án $v$. Nhiệm vụ của ta là chọn các dự án sao cho thoả mãn điều kiện, đồng thời số tiền thu được từ các dự án phải lớn nhất có thể.
 
 <center>
-<img src="/algo/flow-application/flow_5.png" alt="Các dự án và các yêu cầu">
+<img src="/uploads/algo/graph-theory/flow-application/flow_5.png" alt="Các dự án và các yêu cầu">
 
 <sup>Các dự án sinh lời là các ô tròn, các dự án thu lỗ là các ô vuông, các mũi tên chỉ sự phụ thuộc của các dự án</sup>
 </center>
@@ -176,7 +176,7 @@ Số tiền ta thu được, đồng thời cũng là lợi nhuận tối đa, b
 - $\sum_{u \in S^*} p_u$ với $S^*$ là tập hợp các đỉnh trong lát cắt cực tiểu $(S^*, T^*)$.
 
 <center>
-<img src="/algo/flow-application/flow_6.png" alt="Các dự án được chọn giúp tối ưu hoá lợi nhuận">
+<img src="/uploads/algo/graph-theory/flow-application/flow_6.png" alt="Các dự án được chọn giúp tối ưu hoá lợi nhuận">
 
 <sup>Các dự án sinh lời là các ô tròn, các dự án thu lỗ là các ô vuông, các mũi tên chỉ sự phụ thuộc của các dự án</sup>
 </center>
@@ -214,7 +214,7 @@ $$
 **Bài toán lưu thông theo cung cầu (circulation with demands)** là một bài toán về một mạng $G = (V, E)$ nhiều đỉnh nguồn và đỉnh thu. Mỗi đỉnh nguồn $s_i$, hay đỉnh "cung" theo cách gọi của bài toán, sẽ có giá trị $d(s_i) < 0$, tức là đỉnh nguồn này có khả năng gửi đi $-d(s_i)$ đơn vị luồng. Các đỉnh thu $t_j$, hay đỉnh "cầu", sẽ có giá trị $d(t_j) > 0$, tức là các đỉnh thu này có khả năng nhận $d(t_j)$ đơn vị luồng. Các đỉnh còn lại trong đồ thị sẽ có giá trị $d = 0$.
 
 <center>
-<img src="/algo/flow-application/flow_7.png" alt="lưu thông theo cung cầu">
+<img src="/uploads/algo/graph-theory/flow-application/flow_7.png" alt="lưu thông theo cung cầu">
 </center>
 
 Khi thực hiện **lưu thông** trên mạng, ta cần thoả mãn hai điều kiện:
@@ -243,13 +243,13 @@ l(e) \le f(e) \le c(e)
 $$
 
 <center>
-<img src="/algo/flow-application/flow_8.png" alt="Trường hợp có cận dưới">
+<img src="/uploads/algo/graph-theory/flow-application/flow_8.png" alt="Trường hợp có cận dưới">
 </center>
 
 Ý tưởng của bài toán này khá đơn giản: ta sẽ cho đỉnh $u$ cung cấp một lượng luồng $l(e)$ đi qua cạnh $e$. Sau khi đã cho $l(e)$ đơn vị luồng đi qua, ta cập nhật lại các giá trị liên quan: $d(u)$ thành $d(u) - l(e)$, $d(v)$ thành $d(v) + l(e)$, $c(e)$ thành $c(e) - l(e)$.
 
 <center>
-<img src="/algo/flow-application/flow_9.png" alt="Giải pháp cho trường hợp có cận dưới">
+<img src="/uploads/algo/graph-theory/flow-application/flow_9.png" alt="Giải pháp cho trường hợp có cận dưới">
 </center>
 
 Sau khi đã cập nhật xong, ta thực hiện việc giải quyết bài toán này như bình thường.

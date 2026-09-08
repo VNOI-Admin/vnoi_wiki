@@ -94,7 +94,7 @@ Nếu bài toán không có truy vấn cập nhật, độ phức tạp là $\ma
 # Cây chỉ số nhị phân
 Cấu trúc prefix sum được biểu diễn qua sơ đồ sau:
 
-![](https://i.imgur.com/hllVMYY.png)
+![](/uploads/algo/data-structures/fenwick/hllVMYY.png)
 
 **Nhận xét:** Mỗi phần tử $\texttt{sum}[i]$ chứa tổng của tất cả phần tử từ $[1\ldots i]$; vì thế, phần tử $\texttt{sum}[i]$ sẽ chứa phần tử $a[j]$ nếu thỏa $i \ge j$, số phần tử $\texttt{sum}$ cần cập nhật là $j - i + 1$, gần tương đương độ dài của mảng.
 
@@ -104,12 +104,12 @@ Mỗi chỉ số $n$ đều có thể biểu diễn bằng tổng của các lũ
 
 Cụ thể, đặt $n = 2^{i_1} + 2^{i_2} + \ldots + 2^{i_k}$ $(i_1 > i_2 > \ldots > i_k \ge 0)$. Để tính tổng từ $[1 \ldots n]$, ta tính tổng các phần tử thuộc đoạn $[1;2^{i_1}]$, sau đó tính tiếp tổng của đoạn $[2^{i_1} + 1;2^{i_1} + 2^{i_2}]$, lặp lại quá trình này cho đến khi ta đến đoạn cuối cùng là $[2^{i_1} + 2^{i_2} + \ldots + 2^{i_{k - 1}} + 1;n]$. $n$ có thể có tối đa $\log_2 n$ bits, vì thế độ phức tạp khi tính tổng theo cách này là $\mathcal{O}(C \log n)$, trong đó $\mathcal{O}(C)$ là độ phức tạp khi lấy tổng một đoạn.
 
-![](https://i.imgur.com/brL1XCD.png)
+![](/uploads/algo/data-structures/fenwick/brL1XCD.png)
 
 Từ cách chia block trên, ta quan sát được rằng block cuối cùng đối với mỗi $n$ (là block tổng chứa phần tử ở chỉ số $n$) có độ dài bằng với bit nhỏ nhất trong biểu diễn nhị phân của $n$. Đây chính là ý tưởng của cây BIT, ta sẽ lưu thông tin về block cuối của từng phần tử và thực hiện thao tác truy vấn trên đấy.
 
 Dưới đây là hình ảnh minh họa cây BIT:
-![](https://i.imgur.com/SH4tJPN.png)
+![](/uploads/algo/data-structures/fenwick/SH4tJPN.png)
 
 Trong hình trên, những đoạn được tô đậm là đoạn của phần tử chỉ số $n$ được BIT lưu trữ; những đoạn được tô nét mảnh không được lưu trữ trực tiếp mà sẽ được truy cập gián tiếp.
 
@@ -181,7 +181,7 @@ Mảng hiệu được xây dựng bằng cách sau:
 - Với $2 \le i \le N$ thì $\texttt{diff}[i] = A[i] - A[i - 1]$.
 
 Bạn có thể theo dõi hình dưới và code minh họa để hiểu rõ hơn:
-![](https://i.imgur.com/UaDoTx9.png)
+![](/uploads/algo/data-structures/fenwick/UaDoTx9.png)
 
 ```cpp
 int diff[N + 1];
@@ -207,7 +207,7 @@ $$
 Từ tính chất này, khi tính được mảng hiệu, để tính được giá trị của $a[i]$ ta chỉ cần lấy tổng của $i$ phần tử $\texttt{diff}$ đầu tiên. Khi này, bài toán của chúng ta thực chất được đưa về tính tổng trên mảng $\texttt{diff}$, vấn đề hiện tại là thao tác `update()` cần được xử lí như thế nào.
 
 Hình dưới đây minh họa thao tác cập nhật trên một đoạn $[l \ldots r]$ - từ mảng trên, ta cộng $\Delta = 4$ vào đoạn $[4\ldots 7]$:
-![](https://i.imgur.com/8CQUuuv.png)
+![](/uploads/algo/data-structures/fenwick/8CQUuuv.png)
 
 Khi cập nhật, do các phần tử liền kề trong đoạn $[l\ldots r]$ đều được cộng cùng một giá trị $\Delta$ nên hiệu giữa chúng thực chất vẫn không đổi. Khác biệt duy nhất khi cập nhật nằm ở 2 biên của đoạn: giữa $(a_{l - 1}, a_l)$ và $(a_r, a_{r+1})$; vì thế ta chỉ cần cập nhật điểm tại 2 biên trên mảng hiệu và dùng truy vấn lấy tổng để tính giá trị hiện tại của $a_i$.
 
@@ -235,7 +235,7 @@ int get(int u) {
 }
 ```
 ## Truy vấn trên đoạn
-![](https://i.imgur.com/K4d4qmh.png)
+![](/uploads/algo/data-structures/fenwick/K4d4qmh.png)
 
 Hình trên sẽ giúp ta minh họa trực quan hơn mối quan hệ về tổng các phần tử với mảng $A$ và mảng hiệu $\texttt{diff}$.
 

@@ -249,7 +249,7 @@ Bạn đọc có thể thấy rõ với thuật toán sắp xếp *Merge Sort (S
 ```
 
 <center>
-		<img src="/algo/basic/time-complexity.png" width="50%">
+		<img src="/uploads/algo/basic/computational-complexity/time-complexity.png" width="50%">
     <figcaption>Minh họa về cách thuật toán Merge Sort hoạt động</figcaption>
 </center>
 

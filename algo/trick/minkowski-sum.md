@@ -27,7 +27,7 @@ Một số bài toán trung bình khó yêu cầu người giải phải thực 
 Để nhắc lại từ phần giới thiệu, ta định nghĩa tổng Minkowski $A + B$ của hai bao lồi $A$ và $B$ như sau:
 - Với mọi điểm $c \in A + B$, tồn tại hai điểm $a \in A$ và $b \in B$ sao cho $a + b = c$.
 
-| ![minkowski_1.png](/algo/minkowski_1.png) | 
+| ![minkowski_1.png](/uploads/algo/trick/minkowski-sum/minkowski_1.png) | 
 |:--:| 
 | *Ví dụ của tổng Minkowski của hai bao lồi $A$ và $B$* |
 
@@ -37,7 +37,7 @@ Như ta thấy ở ví dụ trên, $A + B$ cũng là một bao lồi và có s�
 
 Lấy ví dụ vừa nêu trên, ta có thể nhìn $A + B$ dưới một góc nhìn khác như sau.
 
-![minkowski_2.png](/algo/minkowski_2.png)
+![minkowski_2.png](/uploads/algo/trick/minkowski-sum/minkowski_2.png)
 
 Ta có hai nhận xét sau:
 - Đỉnh trái dưới của $A + B$ bằng đỉnh trái dưới của $A$ cộng đỉnh trái dưới của $B$.

@@ -38,7 +38,7 @@ Hoặc ta cũng có thể biến đổi điều kiện này thành $f(x)$ cắt 
 
 Trong bài viết này, ta chỉ quan tâm đến phương trình đường thẳng, loại phương trình thỏa tính chất nêu trên:
 
-![function property no bg](/algo/data-structures/lichao/lichao1.png)
+![function property no bg](/uploads/algo/data-structures/lichao-tree/lichao1.png)
 
 Ngoài ra, ta giả sử thao tác loại $2$ sẽ thực hiện tìm $\min$, thao tác tìm $\max$ được thực hiện tương tự.
 
@@ -51,14 +51,14 @@ Trong toán học, ta đã biết một đường thẳng có thể biểu diễ
 - **Hệ số góc hay độ dốc (slope) $a$** thể hiện mức độ tăng/giảm nhanh/chậm của hàm. Ví dụ, hàm $3x + 2$ tăng nhanh hơn hàm $2x + 10$ do có hệ số dốc lớn hơn. Tương tự, hàm $-10x + 1$ giảm nhanh hơn hàm $-8x - 9$ do có hệ số góc bé hơn.
 - **Hệ số tự do (y-intercept) $b$** cho biết phương trình cắt trục $Oy$ tại điểm $(0, b)$.
 
-![linear equation no bg](/algo/data-structures/lichao/lichao2.png)
+![linear equation no bg](/uploads/algo/data-structures/lichao-tree/lichao2.png)
 
 
 ### Tính chất của tập đường thẳng
 
 Nếu vẽ một tập đường thẳng bất kì ra, ta thấy những đoạn đóng góp vào đáp án, tạm gọi là "min-line", sẽ tạo thành nửa trên của một bao lồi[^[2]^](https://en.wikipedia.org/wiki/Convex_hull) (upper hull) như sau:
 
-![min line no bg](/algo/data-structures/lichao/lichao3.png)
+![min line no bg](/uploads/algo/data-structures/lichao-tree/lichao3.png)
 
 Mỗi đường thẳng đóng góp vào min-line duy nhất **một đoạn liên tiếp** và từ trái qua phải, thứ tự xuất hiện của các đường thẳng là thứ tự **giảm dần theo hệ số góc** của chúng. Một số đường thẳng có thể không đóng góp gì vào min-line.
 
@@ -72,7 +72,7 @@ Giả sử ta có mảng $\texttt{best}$ gồm $M$ phần tử với $\texttt{be
 
 Ví dụ, sau đây là ảnh minh họa cho mảng $\texttt{best}$ quản lý một upper hull tại các vị trí $x = 1, 2, 3, \ldots, 8$.
 
-![best array no bg](/algo/data-structures/lichao/lichao4.png)
+![best array no bg](/uploads/algo/data-structures/lichao-tree/lichao4.png)
 
 :::spoiler Lưu ý
 Chúng ta phải lưu cả phương trình đường thẳng thay vì chỉ đơn giản là giá trị của hàm tại điểm đó. Nếu $\texttt{best}[i]$ chỉ lưu giá trị của hàm tại điểm $i$, thao tác cập nhật sẽ không còn đơn giản là gán một đoạn cho cùng một phương trình đường thẳng, mà là gán giá trị theo bậc thang.
@@ -156,7 +156,7 @@ Khi đó, đoạn $[a; b]$ chỉ nằm ở **một trong hai** khoảng $[l; \te
 - Nếu hệ số góc của $f$ bé hơn $\texttt{tr}_k$, hàm $f$ sẽ được đưa xuống cây con bên phải và chia để trị tiếp cho đoạn tương ứng là $(\texttt{mid}; r]$.
 - Nếu hệ số góc của $f$ và $\texttt{tr}_k$ bằng nhau, khi đó đường thẳng $f$ nằm song song và ở phía trên $\texttt{tr}_k$ nên chắc chắn sẽ không đóng góp gì vào min-line. Ta có thể không làm gì cả hoặc gộp trường hợp này vào một trong hai trường hợp nêu trên.
 
-![slope comparison 1 no bg](/algo/data-structures/lichao/lichao5.png)
+![slope comparison 1 no bg](/uploads/algo/data-structures/lichao-tree/lichao5.png)
 
 
 #### Trường hợp 2
@@ -173,7 +173,7 @@ Tuy phép gán cho cả đoạn $[l; r]$ có thể sẽ thừa so với đoạn 
 
 Đường thẳng $\texttt{tr}_k$ ban đầu vẫn còn có thể đóng góp vào min-line ở một trong hai khoảng $[l; \texttt{mid}]$ hoặc $(\texttt{mid}; r]$. Do đó, ta đưa đường thẳng này xuống một trong hai cây con. Việc chọn cây con tương tự trường hợp 1 nhưng bây giờ hàm $f$ và $\texttt{tr}_k$ đổi vai trò cho nhau.
 
-![slope comparison 2 no bg](/algo/data-structures/lichao/lichao6.png)
+![slope comparison 2 no bg](/uploads/algo/data-structures/lichao-tree/lichao6.png)
 
 #### Xử lý tổng quát
 
@@ -546,7 +546,7 @@ Thoạt đầu, ta sẽ nghĩ đến cách lưu $k$ đường thẳng tối ưu 
 
 Tuy nhiên, sẽ có một số trường hợp đường thẳng tệ nhất này còn phải đưa xuống cả hai cây con, ví dụ, với trường hợp sau:
 
-![k-th optimal line no bg](/algo/data-structures/lichao/lichao8.png)
+![k-th optimal line no bg](/uploads/algo/data-structures/lichao-tree/lichao8.png)
 Như vậy, phải lưu bao nhiêu đường thẳng mới đủ?
 
 Ta biết rằng, khi một đường thẳng $f(x)$ nằm dưới $g(x)$ tại $x = \texttt{mid}$, nó sẽ nằm dưới $g(x)$ trong khoảng $(-\infty; \texttt{mid}]$ hoặc $[\texttt{mid}; \infty)$.
@@ -677,11 +677,11 @@ Với thao tác loại $1$ và $3$, chúng ta có thể cài đặt tương tự
 
 Ta đã biết, một thao tác tăng theo dạng bậc thang có thể biểu diễn dưới dạng một phương trình đường thẳng, tạm gọi là *hàm cập nhật*. Hơn nữa, tổng của hai phương trình đường thẳng, cũng là một phương trình đường thẳng. Cụ thể, với hàm $f(x) = a_1x + b_1$ và $g(x) = a_2x + b_2$, tổng của chúng là hàm $h(x) = (a_1 + a_2)x + (b_1 + b_2)$.
 
-![line add no bg](/algo/data-structures/lichao/lichao9.png)
+![line add no bg](/uploads/algo/data-structures/lichao-tree/lichao9.png)
 
 Như vậy, ta có thể tưởng tượng một thao tác tăng đoạn $[l; r]$ theo dạng bậc thang lên một đoạn thẳng chính là "bẻ gãy" đoạn thẳng này tại điểm $l, r$ rồi thay đoạn ở giữa thành tổng của nó và hàm cập nhật.
 
-![line add 2 no bg](/algo/data-structures/lichao/lichao10.png)
+![line add 2 no bg](/uploads/algo/data-structures/lichao-tree/lichao10.png)
 
 #### Ý tưởng
 
@@ -862,7 +862,7 @@ Trong đó, $a_i, b_i, c_i$ là các giá trị được xác định từ $\tex
 
 Cho $n$ cột đá có độ cao $h_1, h_2, \ldots, h_n$ và chi phí tháo dỡ là $w_1, w_2, \ldots, w_n$. Chọn ra một số cột đá để xây dựng cầu với chi phí là tổng bình phương của chênh lệch độ cao hai cột đá liên tiếp được chọn, cộng cho tổng chi phí tháo dỡ các cột đá không được chọn.
 
-![bridge visualization no bg](/algo/data-structures/lichao/lichao11.png)
+![bridge visualization no bg](/uploads/algo/data-structures/lichao-tree/lichao11.png)
 
 Nói cách khác, gọi $S$ là dãy các vị trí được chọn, ta có công thức tính chi phí là:
 
@@ -1045,12 +1045,12 @@ Gọi vị trí của phần tử được chọn là $j$ và vị trí mới m�
 
 - **Trường hợp 1:** $j < i$. Tức là phần tử được chọn sẽ được di chuyển sang phải. Khi đó, chỉ số của các phần tử trong đoạn $[j + 1; i]$ sẽ được giảm $1$ đơn vị và chỉ số của $a[j]$ biến thành $i$.
 
-![product sum case 1 no bg](/algo/data-structures/lichao/lichao12.png)
+![product sum case 1 no bg](/uploads/algo/data-structures/lichao-tree/lichao12.png)
 
 
 - **Trường hợp 2:** $j > i$. Tức là phần tử được chọn sẽ được di chuyển sang trái. Khi đó, chỉ số của các phần tử trong đoạn $[i; j - 1]$ sẽ được tăng $1$ đơn vị và chỉ số của $a[j]$ biến thành $i$.
 
-![product sum case 2 no bg](/algo/data-structures/lichao/lichao13.png)
+![product sum case 2 no bg](/uploads/algo/data-structures/lichao-tree/lichao13.png)
 
 - **Trường hợp 3:** $i = j$. Tức mảng được giữ nguyên.
 
@@ -1211,11 +1211,11 @@ $$
 
 Để dễ hiểu hơn, ta có thể xem hình ảnh sau:
 
-![sum of prefix sums no bg](/algo/data-structures/lichao/lichao14.png)
+![sum of prefix sums no bg](/uploads/algo/data-structures/lichao-tree/lichao14.png)
 
 Với ý tưởng này, để tính $f(u, v)$, ta có thể tách đường đi này thành hai phần $u \rightarrow \texttt{lca}$ và $\texttt{lca}' \rightarrow v$ với $\texttt{lca}'$ là nút con của $\texttt{lca}$ nếu đi theo hướng xuống nút $v$. Việc tính riêng $f(u, \texttt{lca}), f(\texttt{lca}', v)$ rồi gộp lại thành $f(u, v)$ dựa trên công thức trên sẽ thuận tiện hơn nhiều so với việc tính trực tiếp $f(u, v)$.
 
-![split path no bg](/algo/data-structures/lichao/lichao15.png)
+![split path no bg](/uploads/algo/data-structures/lichao-tree/lichao15.png)
 
 #### Tìm đường đi tối ưu qua nút gốc
 
@@ -1412,7 +1412,7 @@ Dễ thấy, do hệ số $K \geq 1$ nên đường kính của cây chỉ có t
 
 Với mỗi nút con $v$ của $r$, gọi $\texttt{dp}[v]$ là độ dài đường đi dài nhất từ $v$ xuống một nút lá bất kỳ của cây con gốc $v$. Để tìm độ dài đường đi dài nhất đi qua $r$, ta chọn ra tối đa $2$ nút con có $w_{r, v} \cdot K + \texttt{dp}[v]$ lớn nhất, đáp án là tổng của hai giá trị này.
 
-![keen tree no bg](/algo/data-structures/lichao/lichao17.png)
+![keen tree no bg](/uploads/algo/data-structures/lichao-tree/lichao17.png)
 
 Để thực hiện nhiều truy vấn như vậy, ta để ý biểu thức trên có dạng phương trình đường thẳng. Do đó, ta có thể xây dựng Li-chao tree quản lý tập đường thẳng $\{w_{r, v} \cdot x + \texttt{dp}[v]\}$. Với mỗi truy vấn, ta tìm hai phương trình có giá trị lớn nhất tại $x = K$. Thao tác này có thể thực hiện với biến thể Li-chao tree tìm hàm tối ưu thứ $k$ được giới thiệu ở phần trước.
 
@@ -1813,7 +1813,7 @@ Giới hạn:
 
 Thay vì thao tác trên mảng $d$, ta sẽ thao tác trên mảng $p$, tức mảng tổng tiền tố của $d$. Lúc này, thao tác loại 1 sẽ được biến đổi thành một thao tác gán phương trình đường thẳng và tăng/giảm một đoạn cho cùng một giá trị:
 
-![ioi mountain no bg](/algo/data-structures/lichao/lichao18.png)
+![ioi mountain no bg](/uploads/algo/data-structures/lichao-tree/lichao18.png)
 
 Như vậy, ta cần một cấu trúc dữ liệu hỗ trợ các thao tác sau:
 
