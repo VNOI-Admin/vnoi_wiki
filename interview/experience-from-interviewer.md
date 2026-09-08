@@ -61,24 +61,24 @@ Với nhóm 1 và 2 (và thỉnh thoảng là nhóm 3), mình hỏi cùng 1 câu
 Sau khi nghe xong câu hỏi thì thường bạn sẽ phải nói cho mình cách làm, sau khi mình thấy hợp lý thì bạn có thể bắt đầu code. Mình chọn câu hỏi này vì nó có nhiều cách làm:
 
 
-**1. Cách $O(N^2)$**
+**1. Cách $\mathcal{O}(N^{2})$**
 
-Cách hiển nhiên nhất $O(N^2)$: Dùng 2 vòng `for` để đếm. Đây là cách cơ bản nhất và ứng viên buộc phải trả lời được. Cài đặt cũng rất đơn giản như sau:
+Cách hiển nhiên nhất $\mathcal{O}(N^{2})$: Dùng 2 vòng `for` để đếm. Đây là cách cơ bản nhất và ứng viên buộc phải trả lời được. Cài đặt cũng rất đơn giản như sau:
 
 ```cpp
 int result = 0;
 for (int i = 0; i < n; i++)
-  for (int j = i + 1; j < n; j++)
-    if (A[i] + A[j] == S)
-      result += 1;
+    for (int j = i + 1; j < n; j++)
+        if (A[i] + A[j] == S)
+            result += 1;
 ```
 
 Chú ý vòng `for` bên trong chạy từ `i+1` để tránh đếm trùng. Điều này tưởng như rất đơn giản nhưng nhiều thí sinh thuộc nhóm 1 không làm được (các bạn thường `for` từ 0 và không xử lý được khi thấy đếm bị trùng).
 
 
-**2. Cách $O(N \* logN)$**
+**2. Cách $\mathcal{O}(N \times \log{N})$**
 
-Một cách cài đặt "trâu bò" hơn là $O(N \* logN)$:
+Một cách cài đặt "trâu bò" hơn là $\mathcal{O}(N \times \log{N})$:
 
 Sắp xếp lại rồi với mỗi $A_i$, chặt nhị phân để đếm số lượng giá trị $j$. Cách này có nhược điểm là dễ bị đếm trùng. Để khắc phục thì có 2 cách:
 
@@ -91,18 +91,18 @@ Khi ứng viên trả lời theo hướng này, thường (tùy theo cảm hứn
 
 - Bạn biết những thuật toán `sort` nào?
 - Ngôn ngữ lập trình bạn đang dùng cài đặt thuật toán `sort` nào?
-- Bạn có thể tự cài đặt 1 thuật toán `sort` với độ phức tạp $O(N \* logN)$ không?
+- Bạn có thể tự cài đặt 1 thuật toán `sort` với độ phức tạp $\mathcal{O}(N \times \log{N})$ không?
 
-**3. Cách $O(N)$**
+**3. Cách $\mathcal{O}(N)$**
 
-Cách "chuẩn" $O(N)$ là sử dụng [hash table](/algo/data-structures/hash-table) hoặc `map` trong C++ để lưu lại các phần tử của dãy, vừa lưu vừa đếm:
+Cách "chuẩn" $\mathcal{O}(N)$ là sử dụng [hash table](/algo/data-structures/hash-table) hoặc `map` trong C++ để lưu lại các phần tử của dãy, vừa lưu vừa đếm:
 
 ```cpp
-map<int,int> count;
+map<int, int> count;
 int result = 0;
 for (int i = 0; i < n; i++) {
-  result += count[S - a[i]];
-  count[a[i]] += 1;
+    result += count[S - A[i]];
+    count[A[i]] += 1;
 }
 ```
 
@@ -137,12 +137,12 @@ Với nhóm 3, thường mình sẽ hỏi câu như sau:
 
 > Cho 1 xâu S. Đếm số substring của S là Palindrome
 
-Bài này cũng có 2 cách làm chính với độ phức tạp $O(N^2)$:
+Bài này cũng có 2 cách làm chính với độ phức tạp $\mathcal{O}(N^{2})$:
 
 1. Quy hoạch động
 2. Xét tâm của Palindrome và duyệt sang 2 bên.
 
-Thỉnh thoảng, với nhóm 1 hoặc 2, nếu bạn trả lời câu trước quá kém và mình thấy còn thời gian, mình sẽ cho "gỡ gạc" bằng câu này, tuy nhiên mình chỉ yêu cầu làm cách duyệt toàn bộ với độ phức tạp $O(N^3)$ là đủ.
+Thỉnh thoảng, với nhóm 1 hoặc 2, nếu bạn trả lời câu trước quá kém và mình thấy còn thời gian, mình sẽ cho "gỡ gạc" bằng câu này, tuy nhiên mình chỉ yêu cầu làm cách duyệt toàn bộ với độ phức tạp $\mathcal{O}(N^{3})$ là đủ.
 
 Đánh giá của mình cũng dựa trên những tiêu chí như phần trên.
 

@@ -19,19 +19,27 @@ Giá trị của một số bằng tổng của hai số liền trước nó tr�
 
 Trong toán học phổ thông mà tôi được học, tôi sẽ cố gắng tìm ra một công thức tổng quát cho số Fibonacci thứ $N$:
 
-$F(n) = \frac{\phi ^n - \psi ^ n}{\phi - \psi} = \frac{\phi ^n - \psi ^n}{\sqrt{5}}$,
+$$
+F(n) = \frac{\phi ^{n} - \psi^{n}}{\phi - \psi} = \frac{\phi ^{n} - \psi ^{n}}{\sqrt{5}}
+$$,
 
 với:
 
-$\phi = \frac{1 + \sqrt{5} }{2}$
+$$
+\phi = \frac{1 + \sqrt{5} }{2}
+$$
 
 và
 
-$\psi = -\frac{1}{\phi}$
+$$
+\psi = -\frac{1}{\phi}
+$$
 
 Mục đích của điều này là để giảm thiểu số phép tính. Ví dụ tôi muốn tính số thứ 1000 của dãy trên, việc thay giá trị $n = 1000$ và công thức tổng quát trên của dãy sẽ nhanh hơn việc áp dụng số công thức truy hồi:
 
-$F_n = F_{n – 1} + F_{n – 2}$
+$$
+F_n = F_{n - 1} + F_{n - 2}
+$$
 
 và tính ra 999 số trước đó!
 

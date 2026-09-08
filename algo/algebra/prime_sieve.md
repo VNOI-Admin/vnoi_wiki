@@ -18,7 +18,7 @@ dateCreated: 2023-12-25T10:59:37.703Z
 - Cao Thanh Hậu - Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM
 - Nguyễn Minh Nhật - Trường THPT chuyên Khoa học Tự nhiên, ĐHQGHN
 
-Khi cần tìm ra các số nguyên tố từ $1$ đến $n$, ta có thể duyệt từng số và kiểm tra tính nguyên tố của nó. Và ý tưởng đó cho ta một thuật toán $\boldsymbol{O\left(n\sqrt n\right)}$.
+Khi cần tìm ra các số nguyên tố từ $1$ đến $n$, ta có thể duyệt từng số và kiểm tra tính nguyên tố của nó. Và ý tưởng đó cho ta một thuật toán $\boldsymbol{\mathcal{O}\left(n\sqrt n\right)}$.
 
 Tuy nhiên, một nhà toán học cổ Hy Lạp tên là Eratosthenes đã "phát minh" ra một "thuật toán" hiệu quả hơn. Ban đầu, Eratosthenes đã lấy lá cọ và ghi tất cả các số từ $2$ cho đến $100$. Sau đó, ông đã chọc thủng các hợp số và giữ nguyên các số nguyên tố. Bảng số nguyên tố còn lại trông rất giống một cái sàng. Cho đến ngày nay, "thuật toán" này được phổ biến rộng rãi với cái tên **sàng nguyên tố Eratosthenes**.
 
@@ -37,27 +37,29 @@ Dưới đây là hình minh họa cho thuật toán trên. *Nguồn: [CP-Algori
 ### Code C++ minh họa
 ```cpp
 const int maxn = 1000000 + 5; //10^6 + 5
-bool is_prime[maxn]; // mảng bool khởi tạo với các giá trị false
-void sieve(int n){
+bool is_prime[maxn];          // mảng bool khởi tạo với các giá trị false
+void sieve(int n) {
     // Đánh dấu các số từ 2 đến n đều là số nguyên tố
     for (int i = 2; i <= n; i++)
         is_prime[i] = true;
     for (int i = 2; i <= n; i++) {
         if (is_prime[i]) {
             for (int j = i * 2; j <= n; j += i)
-            // Bỏ đánh dấu tất cả các số không phải số nguyên tố
+                // Bỏ đánh dấu tất cả các số không phải số nguyên tố
                 is_prime[j] = false;
         }
     }
 }
 ```
-Độ phức tạp thời gian là $O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right)$ với $p$ là số nguyên tố $\le  n$.
+Độ phức tạp thời gian là $\mathcal{O}\left( n \times \left(\frac{1}{2} + \frac{1}{3} +\ldots+\frac{1}{p} \right) \right)$ với $p$ là số nguyên tố $\le  n$.
 Đến đây, bạn đọc có thể tham khảo [Định lý Merten 2](https://en.wikipedia.org/wiki/Mertens%27_theorems#Proof) để rút gọn độ phức tạp:
-$$O\left( n \times \left(\dfrac{1}{2} + \dfrac{1}{3} +\ldots+\dfrac{1}{p} \right) \right) = O( n \log (\log n))$$
+$$
+\mathcal{O}\left( n \times \left(\frac{1}{2} + \frac{1}{3} +\ldots+\frac{1}{p} \right) \right) = \mathcal{O}( n \log (\log n))
+$$
 
-**Độ phức tạp thời gian: $\boldsymbol{O(n \log \log n)}$**
+**Độ phức tạp thời gian: $\boldsymbol{\mathcal{O}(n \log \log n)}$**
 
-**Độ phức tạp không gian: $\boldsymbol{O(n)}$**
+**Độ phức tạp không gian: $\boldsymbol{\mathcal{O}(n)}$**
 
 ---
 
@@ -73,7 +75,7 @@ Dựa vào *Nhận xét* trên, ta có cải tiến như sau:
 ```cpp
 const int maxn = 1000000 + 5; //10^6 + 5
 bool is_prime[maxn];
-void Eratosthenes(int n){
+void Eratosthenes(int n) {
     for (int i = 2; i <= n; i++)
         is_prime[i] = true;
     for (int i = 2; i * i <= n; i++) {
@@ -85,15 +87,15 @@ void Eratosthenes(int n){
     }
 }
 ```
-**Độ phức tạp thời gian sau khi cải tiến vẫn là $\boldsymbol{O(n \log \log n)}$.** Tuy nhiên, số phép tính đã giảm đi đáng kể.
+**Độ phức tạp thời gian sau khi cải tiến vẫn là $\boldsymbol{\mathcal{O}(n \log \log n)}$.** Tuy nhiên, số phép tính đã giảm đi đáng kể.
 
 **Lưu ý:**
 - Trong đoạn code trên, vì $j$ chạy từ $i\times i$ đến $n$, nên $i$ chỉ chạy từ $1$ đến $\sqrt n$. Ngoài ra, ở đây, ta sử dụng điều kiện `i * i <= n` thay vì sử dụng `i <= sqrt(n)` bởi hàm `sqrt()` chạy lâu hơn so với phép nhân số nguyên.
 - Nếu vẫn muốn sử dụng hàm `sqrt()`, ta phải tránh việc phải tính lại `sqrt(n)` mỗi lần lặp:
 
 ```cpp
-    int nsqrt = sqrt(n);
-    for (int i = 2; i <= nsqrt; i++)
+int nsqrt = sqrt(n);
+for (int i = 2; i <= nsqrt; i++)
 ```
 
 Dưới đây là hình minh họa cho cải tiến trên. *Nguồn: [Wikipedia](https://vi.wikipedia.org/wiki/S%C3%A0ng_Eratosthenes)*
@@ -107,12 +109,12 @@ Dưới đây là hình minh họa cho cải tiến trên. *Nguồn: [Wikipedia]
 ## **Ứng dụng**
 ### Phân tích thừa số nguyên tố
 #### Phân tích số nguyên nhỏ
-Khi phân tích các số nhỏ $i \approx 10^6$, thay vì lưu kết quả kiểm tra tính nguyên tố của $i$ ở mảng `is_prime[i]`, ta có thể sử dụng `min_prime[i]` lưu ước nguyên tố nhỏ nhất của số `i`.
+Khi phân tích các số nhỏ $i \approx 10^{6}$, thay vì lưu kết quả kiểm tra tính nguyên tố của $i$ ở mảng `is_prime[i]`, ta có thể sử dụng `min_prime[i]` lưu ước nguyên tố nhỏ nhất của số `i`.
 
 ```cpp
 const int maxn = 1000000 + 5; //10^6 + 5
 int min_prime[maxn];
-void sieve(int n){
+void sieve(int n) {
     for (int i = 2; i * i <= n; ++i) {
         if (min_prime[i] == 0) { //nếu i là số nguyên tố
             for (int j = i * i; j <= n; j += i) {
@@ -140,11 +142,11 @@ vector<int> factorize(int n) {
     return res;
 }
 ```
-Mỗi lần ta chia $n$ cho ước nguyên tố nhỏ nhất $\text{min\_prime}[n]$ đến khi nào $n$ giảm về $1$. Trong trường hợp xấu nhất thì mỗi lần chia $\text{min\_prime}[n]$ đều bằng $2$. Vì vậy, hàm phân tích trên **độ phức tạp thời gian** trường hợp xấu nhất là $\boldsymbol{O(\log n)}$.
+Mỗi lần ta chia $n$ cho ước nguyên tố nhỏ nhất $\texttt{min\_prime}[n]$ đến khi nào $n$ giảm về $1$. Trong trường hợp xấu nhất thì mỗi lần chia $\texttt{min\_prime}[n]$ đều bằng $2$. Vì vậy, hàm phân tích trên **độ phức tạp thời gian** trường hợp xấu nhất là $\boldsymbol{\mathcal{O}(\log n)}$.
 
-Tuy nhiên, phương pháp này có **độ phức tạp không gian** $\boldsymbol{O(n)}$ và thường sử dụng trong trường hợp cần phân tích nhiều số nguyên ra thừa số nguyên tố.
+Tuy nhiên, phương pháp này có **độ phức tạp không gian** $\boldsymbol{\mathcal{O}(n)}$ và thường sử dụng trong trường hợp cần phân tích nhiều số nguyên ra thừa số nguyên tố.
 
-Đặc biệt, khi phân tích tất cả các số nguyên từ $1$ đến $n$, tổng độ phức tạp chỉ còn lại $\boldsymbol{O(n\log\log n)}$.
+Đặc biệt, khi phân tích tất cả các số nguyên từ $1$ đến $n$, tổng độ phức tạp chỉ còn lại $\boldsymbol{\mathcal{O}(n\log\log n)}$.
 
 <details>
 <summary><i>Chứng minh tổng độ phức tạp khi phân tích tất cả các số nguyên từ 1 đến n</i></summary>
@@ -154,28 +156,32 @@ Xét số nguyên tố $p$ và hàm định giá $p$-adic: $v_p(n)$ là số ngu
 
 Theo định lý Legendre, ta có:
 $$
-v_p\left(n!\right) = \left\lfloor {\dfrac{n}{{{p^1}}}} \right\rfloor + \left\lfloor {\dfrac{n}{{{p^2}}}} \right\rfloor + \left\lfloor {\dfrac{n}{{{p^3}}}} \right\rfloor + \ldots < \dfrac{n}{{{p^1}}} + \dfrac{n}{{{p^2}}} + \dfrac{n}{{{p^3}}} + \ldots = \dfrac{n}{p-1}$$
+v_p\left(n!\right) = \left\lfloor {\frac{n}{{{p^1}}}} \right\rfloor + \left\lfloor {\frac{n}{{{p^2}}}} \right\rfloor + \left\lfloor {\frac{n}{{{p^3}}}} \right\rfloor + \ldots < \frac{n}{{{p^1}}} + \frac{n}{{{p^2}}} + \frac{n}{{{p^3}}} + \ldots = \frac{n}{p-1}
+$$
 
 Như vậy, việc phân tích tất cả các số nguyên từ $1$ đến $n$ cũng như việc phân tích $n!$ cho ta tổng cộng tối đa
-$$\sum\limits_{p\text{ nguyên tố}} v_p\left(n!\right) < \sum\limits_{p\text{ nguyên tố}} \dfrac{n}{p-1} \sim n\ln \ln n + n + O(1) \text{ thừa số}$$
+$$
+\sum\limits_{p\text{ nguyên tố}} v_p\left(n!\right) < \sum\limits_{p\text{ nguyên tố}} \frac{n}{p-1} \sim n\ln \ln n + n + \mathcal{O}(1) \text{ thừa số}
+$$
 </p>
 </details>
 
 #### Phân tích số nguyên lớn hơn
 > Nhận xét: Nếu tất cả các số nguyên trong đoạn $\left[ 2;\sqrt{n} \right]$ đều không phải là ước của $n$ thì $n$ là số nguyên tố.
 
-Dựa vào `Nhận xét` trên, để phân tích một số nguyên $n$ lớn (khoảng $10^9$ hay $10^{12}$), ta xây dựng được thuật toán với độ phức tạp $\boldsymbol{O \left(\sqrt n \right)}$ dưới đây:
+Dựa vào `Nhận xét` trên, để phân tích một số nguyên $n$ lớn (khoảng $10^{9}$ hay $10^{12}$), ta xây dựng được thuật toán với độ phức tạp $\boldsymbol{\mathcal{O} \left(\sqrt n \right)}$ dưới đây:
 
 ```cpp
 vector<long long> factorize(long long n) {
     vector<long long> res;
-    for (long long i = 2; i * i <= n; i++){
-        while (n % i == 0){
+    for (long long i = 2; i * i <= n; i++) {
+        while (n % i == 0) {
             res.push_back(i);
             n /= i;
         }
     }
-    if (n > 1) res.push_back(n);
+    if (n > 1)
+        res.push_back(n);
     return res;
 }
 ```
@@ -188,20 +194,22 @@ vector<int> primes;
 
 vector<long long> factorize(long long n) {
     vector<long long> res;
-    for (int p : primes){
-        if (1LL * p * p > n) break;
-        while (n % p == 0){
+    for (int p : primes) {
+        if (1LL * p * p > n)
+            break;
+        while (n % p == 0) {
             res.push_back(p);
             n /= p;
         }
     }
-    if (n > 1) res.push_back(n);
+    if (n > 1)
+        res.push_back(n);
     return res;
 }
 ```
 <!-- https://ideone.com/sKDrOw -->
 
-Phân tích sẽ mất độ phức tạp cho trường hợp xấu nhất là $\boldsymbol{O \left(\pi \left( \sqrt n \right)\right) \sim O \left( \dfrac{\sqrt n}{\log\log n}\right)}$.
+Phân tích sẽ mất độ phức tạp cho trường hợp xấu nhất là $\boldsymbol{\mathcal{O} \left(\pi \left( \sqrt n \right)\right) \sim \mathcal{O} \left( \frac{\sqrt n}{\log\log n}\right)}$.
 Trong đó $\pi\left( x \right)$ là số số nguyên tố trong đoạn $\left[ 2;x \right]$. Bạn đọc tham khảo thêm hàm này ở phần **Mở rộng** của bài viết.
 
 
@@ -211,7 +219,7 @@ Trong đó $\pi\left( x \right)$ là số số nguyên tố trong đoạn $\left
 ### Tìm số nguyên tố trong đoạn [L; R]
 
 Đôi khi bạn phải tìm tất cả các số không phải trên đoạn $[1;N]$ mà là trên đoạn $[L;R]$ có kích thước nhỏ nhưng $R$ lớn.
-Ví dụ như $R - L + 1 \approx 1e6$ và $R \approx 10^{12}$.
+Ví dụ như $R - L + 1 \approx 10^{6}$ và $R \approx 10^{12}$.
 
 Ta đặt $N = R - L + 1$ là độ dài đoạn $[L;R]$ để tiện theo dõi.
 
@@ -242,31 +250,31 @@ vector<bool> sieve(long long L, long long R) {
 }
 ```
 
-**Độ phức tạp thời gian: $\boldsymbol{O \left( N \log \log (R) + \sqrt R \log \log \sqrt R \right)}$**
+**Độ phức tạp thời gian: $\boldsymbol{\mathcal{O} \left( N \log \log (R) + \sqrt R \log \log \sqrt R \right)}$**
 
-**Độ phức tạp không gian: $\boldsymbol{O \left( N + \sqrt R \right)}$**
+**Độ phức tạp không gian: $\boldsymbol{\mathcal{O} \left( N + \sqrt R \right)}$**
 
 Trong đó:
-- Tìm các số nguyên tố trong đoạn $\left[ 1;\sqrt R \right]$ mất $O \left( \sqrt R \log \log \sqrt R \right)$.
-- Dùng các số nguyên tố đó để đánh dấu trong đoạn $[L; R]$ mất $O \left( N \log \log R \right)$.
+- Tìm các số nguyên tố trong đoạn $\left[ 1;\sqrt R \right]$ mất $\mathcal{O} \left( \sqrt R \log \log \sqrt R \right)$.
+- Dùng các số nguyên tố đó để đánh dấu trong đoạn $[L; R]$ mất $\mathcal{O} \left( N \log \log R \right)$.
 
 
 Ta cũng không cần phải sinh trước các số nguyên tố trong đoạn $\left[ 1;\sqrt R \right]$:
 
 ```cpp
 vector<bool> is_prime;
-void sieve(int L, int R){
+void sieve(int L, int R) {
     is_prime.assign(R - L + 1, true);
     // x là số nguyên tố khi và chỉ khi is_prime[x - l] == true
 
     for (long long i = 2; i * i <= R; ++i) {
-    // Lưu ý: (L + i - 1) / i * i là bội nhỏ nhất của i mà >= L
+        // Lưu ý: (L + i - 1) / i * i là bội nhỏ nhất của i mà >= L
         for (long long j = max(i * i, (L + i - 1) / i * i); j <= R; j += i) {
             is_prime[j - L] = false;
         }
     }
 
-    if (1 >= L) {  // Xét riêng trường hợp số 1
+    if (1 >= L) { // Xét riêng trường hợp số 1
         is_prime[1 - L] = false;
     }
 
@@ -277,23 +285,27 @@ void sieve(int L, int R){
     }
 }
 ```
-**Độ phức tạp thời gian** sẽ tệ hơn : $\boldsymbol{O(N \log (R) + \sqrt R)}$.
-Tuy nhiên, ta lại được lợi thế hơn về **độ phức tạp không gian: $\boldsymbol{O \left( N \right)}$**.
+**Độ phức tạp thời gian** sẽ tệ hơn : $\boldsymbol{\mathcal{O}(N \log (R) + \sqrt R)}$.
+Tuy nhiên, ta lại được lợi thế hơn về **độ phức tạp không gian: $\boldsymbol{\mathcal{O} \left( N \right)}$**.
 
-Nguyên nhân là ta dùng tất cả các *số nguyên* trong đoạn $\left[ 2;\sqrt R \right]$ đó để đánh dấu trong đoạn $[L; R]$ nên sẽ mất $O \left( (R - L + 1) \cdot \left(\dfrac{1}{2} + \dfrac{1}{3} + \dfrac{1}{4} + \ldots + \dfrac{1}{\left\lfloor \sqrt R \right\rfloor} \right) \right) = O \left( N \log (R) \right)$.
+Nguyên nhân là ta dùng tất cả các *số nguyên* trong đoạn $\left[ 2;\sqrt R \right]$ đó để đánh dấu trong đoạn $[L; R]$ nên sẽ mất $\mathcal{O} \left( (R - L + 1) \cdot \left(\frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \ldots + \frac{1}{\left\lfloor \sqrt R \right\rfloor} \right) \right) = \mathcal{O} \left( N \log (R) \right)$.
 
 ## Một số ví dụ
 [VNOI - Phi hàm Euler](https://oj.vnoi.info/problem/etf)
 *Tóm tắt đề:*
 Cho số nguyên dương $T$ và $T$ số nguyên dương $n_i$. Hãy tính phi hàm $\varphi(n_i)$ của $T$ số nguyên dương đã cho.
-$$\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p_1-1)(p_2 - 1) \ldots (p_k - 1)$$
+$$
+\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p_1-1)(p_2 - 1) \ldots (p_k - 1)
+$$
 <details>
 <summary><i>Gợi ý</i></summary>
 <p>
 
 Giả sử khi phân tích ra thừa số nguyên tố, $n = p_1^{\alpha_1}p_2^{\alpha_2} \ldots p_k^{\alpha_k}$ với $\alpha_i > 0$. Khi đó:
 
-$$\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p_1-1)(p_2 - 1) \ldots (p_k - 1)$$
+$$
+\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p_1-1)(p_2 - 1) \ldots (p_k - 1)
+$$
 </p>
 </details>
 
@@ -302,10 +314,11 @@ $$\varphi(n) = p_1^{\alpha_1 - 1}p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} (p
 <p>
 
 $$
-\varphi(n) = p_1^{\alpha_1 - 1} . p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} . (p_1-1)(p_2 - 1) \ldots (p_k - 1)
-= n \dfrac{p_1-1}{p_1} \dfrac{p_2-1}{p_2} \ldots \dfrac{p_k-1}{p_k}$$
+\varphi(n) = p_1^{\alpha_1 - 1} \times p_2^{\alpha_2 - 1} \ldots p_k^{\alpha_k - 1} \times (p_1-1)(p_2 - 1) \ldots (p_k - 1)
+= n \frac{p_1-1}{p_1} \frac{p_2-1}{p_2} \ldots \frac{p_k-1}{p_k}
+$$
 
-Dựa vào công thức trên, đầu tiên ta sẽ gán <code>f[i] = i</code>. Sau đó, ta chỉ cần duyệt tất cả các số nguyên tố. Với mỗi số nguyên tố <code>p</code>, ta sẽ duyệt các bội <code>j</code> của chúng, rồi nhân <code>f[j]</code> với $\dfrac{p-1}{p}$
+Dựa vào công thức trên, đầu tiên ta sẽ gán <code>f[i] = i</code>. Sau đó, ta chỉ cần duyệt tất cả các số nguyên tố. Với mỗi số nguyên tố <code>p</code>, ta sẽ duyệt các bội <code>j</code> của chúng, rồi nhân <code>f[j]</code> với $\frac{p-1}{p}$
 </p>
 
 ```cpp
@@ -315,42 +328,41 @@ using namespace std;
 const int maxn = 1e6;
 int ntest, f[maxn + 5];
 
-int main(){
+int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(NULL);
-    for (int i = 1; i <= maxn; i++){
+    for (int i = 1; i <= maxn; i++) {
         f[i] = i;
     }
-    for (int i = 2; i <= maxn; i++){
-        if (f[i] == i){
-            for (int j = i; j <= maxn; j += i){
-                f[j] = f[j] / i * (i-1);
+    for (int i = 2; i <= maxn; i++) {
+        if (f[i] == i) {
+            for (int j = i; j <= maxn; j += i) {
+                f[j] = f[j] / i * (i - 1);
             }
         }
     }
     cin >> ntest;
-    while (ntest--){
+    while (ntest--) {
         int n;
         cin >> n;
         cout << f[n] << '\n';
     }
 }
-
 ```
 </details>
 
 ## Một số cải tiến của sàng nguyên tố Eratosthenes
-> Sàng nguyên tố Eratosthenes với ĐPT thời gian $\boldsymbol{O(n \log \log n)}$ đã khá phù hợp với hầu hết các bài toán lập trình thi đấu. Tuy nhiên điểm yếu chí mạng của nó chính là ĐPT không gian $\boldsymbol{O(n)}$.
+> Sàng nguyên tố Eratosthenes với ĐPT thời gian $\boldsymbol{\mathcal{O}(n \log \log n)}$ đã khá phù hợp với hầu hết các bài toán lập trình thi đấu. Tuy nhiên điểm yếu chí mạng của nó chính là ĐPT không gian $\boldsymbol{\mathcal{O}(n)}$.
 > Một số cải tiến dưới đây có thể không phù hợp với những bạn mới chỉ biết đến sàng nguyên tố. Các bạn hãy luyện tập với các bài tập luyện tập trước khi đến với các cải tiến bên dưới nha!
 
 ### So sánh mảng bool và vector<bool>
 - Một biến `bool` chỉ có hai giá trị `true/false` nên về mặt lý thuyết chỉ cần 1 bit để lưu trữ nó. Nhưng bình thường, các máy tính hiện nay khi lưu trữ biến `bool` sẽ sử dụng $1$ byte (tương đương với $8$ bits) để truy cập nhanh chóng. Vì thế một mảng `bool a[n]` sẽ cần đến $n$ bytes.
-- `vector<bool>` được tối ưu để lưu trữ $1$ biến `bool` trong $1$ bit thay vì $1$ byte, ngoài ra còn có $40$ bytes sử dụng cho khởi tạo `vector<bool>` ban đầu. Tuy nhiên, việc tối ưu về bộ nhớ khiến ta phải truy cập bit một các gián tiếp: mỗi lần truy cập, đọc, ghi bit ta cần tách nhỏ từng bit của byte đó. Trong trường hợp bộ dữ liệu nhỏ (khoảng $10^6$), truy cập như vậy sẽ chậm hơn so với việc truy cập trực tiếp.
+- `vector<bool>` được tối ưu để lưu trữ $1$ biến `bool` trong $1$ bit thay vì $1$ byte, ngoài ra còn có $40$ bytes sử dụng cho khởi tạo `vector<bool>` ban đầu. Tuy nhiên, việc tối ưu về bộ nhớ khiến ta phải truy cập bit một các gián tiếp: mỗi lần truy cập, đọc, ghi bit ta cần tách nhỏ từng bit của byte đó. Trong trường hợp bộ dữ liệu nhỏ (khoảng $10^{6}$), truy cập như vậy sẽ chậm hơn so với việc truy cập trực tiếp.
 - Tóm lại, ta có bảng dưới đây
 
 |                        | bool a[n] |                   vector<bool>                   |
 | ---------------------- |:---------:|:------------------------------------------------:|
-| Không gian lưu trữ     | $n$ bytes | $40 + \left\lceil\dfrac{n}{8}\right\rceil$ bytes |
+| Không gian lưu trữ     | $n$ bytes | $40 + \left\lceil\frac{n}{8}\right\rceil$ bytes |
 | Truy cập, đọc, ghi bit | Trực tiếp |                   Gián tiếp                      |
 
 
@@ -363,22 +375,22 @@ Một cải tiến khác cũng có thể được sử dụng đó là chỉ ti�
 
 ```cpp
 vector<bool> is_prime;
-void sieve_odd(int n){
+void sieve_odd(int n) {
     is_prime.assign(n / 2 + 1, true);
     //is_prime[t] = true nghĩa là 2*t+1 là số nguyên tố
     is_prime[0] = false;
     for (int t = 1; t * t <= n / 4; t++) {
         int i = 2 * t + 1;
-        if (is_prime[t]){
+        if (is_prime[t]) {
             for (int j = i * i; j <= n; j += i * 2)
                 is_prime[j / 2] = false;
         }
     }
 }
 ```
-**Độ phức tạp thời gian: $\boldsymbol{O\left(\dfrac{n}{2} \cdot \log \log n\right)}$**
+**Độ phức tạp thời gian: $\boldsymbol{\mathcal{O}\left(\frac{n}{2} \cdot \log \log n\right)}$**
 
-**Độ phức tạp không gian: $\boldsymbol{O\left(\dfrac{n}{2}\right)}$**
+**Độ phức tạp không gian: $\boldsymbol{\mathcal{O}\left(\frac{n}{2}\right)}$**
 
 ---
 ### **Sử dụng bitset**
@@ -389,21 +401,22 @@ Trong C++, `std::bitset` là một công cụ hữu hiệu trong việc lưu tr�
 ```cpp
 const int maxn = 1e6;
 bitset<maxn + 1> is_prime;
-void sieve_bitset(int n){
+void sieve_bitset(int n) {
     is_prime.set(); // gán tất cả các bit là true
     is_prime[0] = is_prime[1] = 0;
-    for (int i = 2; i*i <= n; i = is_prime._Find_next(i)) {
+    // Lưu ý: _Find_next là hàm nội bộ của libstdc++ (chỉ dùng được với GCC)
+    for (int i = 2; i * i <= n; i = is_prime._Find_next(i)) {
         if (is_prime[i]) {
-            for (int j = i*i; j <= n; j += i) {
+            for (int j = i * i; j <= n; j += i) {
                 is_prime[j] = 0;
             }
         }
     }
 }
 ```
-**Độ phức tạp thời gian: $\boldsymbol{O(n \log \log n)}$**
+**Độ phức tạp thời gian: $\boldsymbol{\mathcal{O}(n \log \log n)}$**
 
-**Độ phức tạp không gian: $\boldsymbol{O\left(\dfrac{n}{32}\right)}$**
+**Độ phức tạp không gian: $\boldsymbol{\mathcal{O}\left(\frac{n}{32}\right)}$**
 
 
 Một cách khác, vì biến `bool` lưu trong bộ nhớ thường là $1$ byte ($8$ bits), tuy nhiên thực chất chỉ cần sử dụng $1$ bit. Vì thế ta có thể sử dụng một biến `int` để lưu nhiều biến `bool`. Để code được nhanh chóng, ở đây ta nên sử dụng các [phép toán trên bit](https://vi.wikipedia.org/wiki/Ph%C3%A9p_to%C3%A1n_thao_t%C3%A1c_bit#C%C3%A1c_to%C3%A1n_t%E1%BB%AD_thao_t%C3%A1c_bit).
@@ -413,49 +426,53 @@ Một cách khác, vì biến `bool` lưu trong bộ nhớ thường là $1$ byt
 
 ```cpp
 #define doc(n) (prime_bits[n >> 3] & (1 << (n & 7)))
-#define set(n) {prime_bits[n >> 3] |= (1 << (n & 7));}
+#define set(n)                                \
+    {                                         \
+        prime_bits[n >> 3] |= (1 << (n & 7)); \
+    }
 vector<int> prime_bits;
-void sieve_bits(int n){
+void sieve_bits(int n) {
     prime_bits.assign((n >> 3) + 5, 0);
-    set(0); set(1);
-    for(int i = 2; i * i <= n; i++){
-        if (!doc(i)){
-            for(int j = i * i; j <= n; j += i){
+    set(0);
+    set(1);
+    for (int i = 2; i * i <= n; i++) {
+        if (!doc(i)) {
+            for (int j = i * i; j <= n; j += i) {
                 set(j);
             }
         }
     }
 }
 ```
-**Độ phức tạp thời gian: $\boldsymbol{O(n \log \log n)}$**
+**Độ phức tạp thời gian: $\boldsymbol{\mathcal{O}(n \log \log n)}$**
 
-**Độ phức tạp không gian: $\boldsymbol{O\left(\dfrac{n}{8}\right)}$**
+**Độ phức tạp không gian: $\boldsymbol{\mathcal{O}\left(\frac{n}{8}\right)}$**
 
 Trong code bên trên, `int` được sử dụng để lưu $8$ giá trị `bool`.
 Trên thực tế, `int/unsigned int` chứa $4$ bytes hay $32$ bits. Nhờ đó, một số `int/unsigned int` có thể lưu trữ đến $32$ giá trị `bool`. Và bạn đọc có thể thử cách lưu $32$ giá trị thay vì $8$ vào code bên trên.
 
 ---
 ### **Sàng nguyên tố tuyến tính - Linear Sieve**
->- Sàng nguyên tố này được cải tiến từ Sàng Eratosthenes. Tuy có ĐPT thời gian là $\boldsymbol{O(n)}$ nhưng với những bộ dữ liệu khoảng $10^6$ thì không nhanh hơn Sàng Eratosthenes là mấy.
->- Sàng $O(n)$ này có lưu lại các ước nguyên tố nhỏ nhất của các số không vượt quá $n$ nên sẽ phù hợp cho các bài toán liên quan đến phân tích thừa số nguyên tố.
+>- Sàng nguyên tố này được cải tiến từ Sàng Eratosthenes. Tuy có ĐPT thời gian là $\boldsymbol{\mathcal{O}(n)}$ nhưng với những bộ dữ liệu khoảng $10^{6}$ thì không nhanh hơn Sàng Eratosthenes là mấy.
+>- Sàng $\mathcal{O}(n)$ này có lưu lại các ước nguyên tố nhỏ nhất của các số không vượt quá $n$ nên sẽ phù hợp cho các bài toán liên quan đến phân tích thừa số nguyên tố.
 
 #### Hướng tiếp cận
-Xét $\text{min\_prime}[i]$ là ước nguyên tố nhỏ nhất của $i$
-Mảng $\text{primes}[]$ sẽ lưu tất cả các số nguyên tố đã tìm được.
+Xét $\texttt{min\_prime}[i]$ là ước nguyên tố nhỏ nhất của $i$
+Mảng $\texttt{primes}[]$ sẽ lưu tất cả các số nguyên tố đã tìm được.
 Duyệt các số từ $2$ đến $n$. Ta có $2$ trường hợp:
-- $\text{min\_prime}[i] = 0 \Rightarrow i$ là số nguyên tố. Vì thế, ta gán $\text{min\_prime} [i] = i$ và thêm $i$ vào cuối mảng $\text{primes}[]$.
-- Ngược lại, $\text{min\_prime}[i] \neq 0$, ta phải tính được $\text{min\_prime} [i]$ trong các vòng lặp trước đó.
+- $\texttt{min\_prime}[i] = 0 \Rightarrow i$ là số nguyên tố. Vì thế, ta gán $\texttt{min\_prime} [i] = i$ và thêm $i$ vào cuối mảng $\texttt{primes}[]$.
+- Ngược lại, $\texttt{min\_prime}[i] \neq 0$, ta phải tính được $\texttt{min\_prime} [i]$ trong các vòng lặp trước đó.
 
-Trong cả hai trường hợp, ta đều cần cập nhật giá trị của $\text{min\_prime}[]$ cho các bội của $i$. Và mục tiêu của ta là gán giá trị $\text{min\_prime}[]$ tối đa một lần cho mỗi số.
+Trong cả hai trường hợp, ta đều cần cập nhật giá trị của $\texttt{min\_prime}[]$ cho các bội của $i$. Và mục tiêu của ta là gán giá trị $\texttt{min\_prime}[]$ tối đa một lần cho mỗi số.
 
-Chúng ta có thể làm như sau: Duyệt các số nguyên $i$ từ $2$ đến $n$. Với mỗi số nguyên $i$, ta sẽ gán $\text{min\_prime} [i * p_j] = p_j$ với $p_j$ là các số nguyên tố $\le \text{min\_prime} [i]$.
+Chúng ta có thể làm như sau: Duyệt các số nguyên $i$ từ $2$ đến $n$. Với mỗi số nguyên $i$, ta sẽ gán $\texttt{min\_prime} [i \times p_j] = p_j$ với $p_j$ là các số nguyên tố $\le \texttt{min\_prime} [i]$.
 
 
 #### Code C++ minh họa
 
 ```cpp
 vector<int> min_prime, primes;
-void linear_sieve(int n){
+void linear_sieve(int n) {
     min_prime.assign(n + 1, 0);
 
     for (int i = 2; i <= n; ++i) {
@@ -472,22 +489,26 @@ void linear_sieve(int n){
     }
 }
 ```
-**Độ phức tạp thời gian: $\boldsymbol{O(n)}$**
+**Độ phức tạp thời gian: $\boldsymbol{\mathcal{O}(n)}$**
 
-**Độ phức tạp không gian: $\boldsymbol{O(n)}$**
+**Độ phức tạp không gian: $\boldsymbol{\mathcal{O}(n)}$**
 
 <details>
 <summary><i>Giải thích về ĐPT của thuật toán</i></summary>
 <p>
 
 Mỗi số $x$ có <b>duy nhất</b> một cách biểu diễn:
-$$x = \text{min\_prime}[x] \cdot i$$
-trong đó $\text{min\_prime}[x]$ là ước nguyên tố nhỏ nhất của $x$.
-Suy ra $i$ không có ước nguyên tố nào nhỏ hơn $\text{min\_prime}[x]$, tức là
-$$\text{min\_prime}[x] \le \text{min\_prime}[i]$$
-Với mỗi $i$, ta duyệt tất cả các số nguyên tố lên đến $\text{min\_prime}[i]$ thì sẽ duyệt được các số có dạng đã cho ở trên.
+$$
+x = \texttt{min\_prime}[x] \cdot i
+$$
+trong đó $\texttt{min\_prime}[x]$ là ước nguyên tố nhỏ nhất của $x$.
+Suy ra $i$ không có ước nguyên tố nào nhỏ hơn $\texttt{min\_prime}[x]$, tức là
+$$
+\texttt{min\_prime}[x] \le \texttt{min\_prime}[i]
+$$
+Với mỗi $i$, ta duyệt tất cả các số nguyên tố lên đến $\texttt{min\_prime}[i]$ thì sẽ duyệt được các số có dạng đã cho ở trên.
 
-Vì có duy nhất một cách biểu diễn $x = \text{min\_prime}[x] \cdot i$ nên thuật toán sẽ đi qua mỗi số hợp số đúng một lần để gán các giá trị $\text{min\_prime}[]$ tại đó. Hay thuật toán có ĐPT thời gian $O(n)$.
+Vì có duy nhất một cách biểu diễn $x = \texttt{min\_prime}[x] \cdot i$ nên thuật toán sẽ đi qua mỗi số hợp số đúng một lần để gán các giá trị $\texttt{min\_prime}[]$ tại đó. Hay thuật toán có ĐPT thời gian $\mathcal{O}(n)$.
 </p>
 ---
 </details>
@@ -498,20 +519,20 @@ Vì có duy nhất một cách biểu diễn $x = \text{min\_prime}[x] \cdot i$ 
 Xét code sàng Erathosenes sau:
 
 ```cpp
-    for (int i = 2; i * i <= n; i++) {
-        if (is_prime[i]) {
-            // j sẽ bắt đầu chạy từ i * i
-            for (int j = i * i; j <= n; j += i)
-                is_prime[j] = false;
-        }
+for (int i = 2; i * i <= n; i++) {
+    if (is_prime[i]) {
+        // j sẽ bắt đầu chạy từ i * i
+        for (int j = i * i; j <= n; j += i)
+            is_prime[j] = false;
     }
+}
 ```
 
 Vì vòng lặp `j` bắt đầu từ `i * i` nên ta không cần phải giữ lại toàn bộ mảng `is_prime[1...n]` trong suốt quá trình sàng. Khi đó:
 - Giữ lại các số nguyên tố $p$ trong đoạn $\left[1;\sqrt n\right]$: `prime[1..sqrt(n)]`
 - Chia $\left[1; n\right]$ thành các đoạn con (block) và sàng riêng từng đoạn (block).
 
-Gọi $S$ là kích thước của mỗi đoạn. Như thế, chúng ta sẽ có $\left\lceil \dfrac{n}{S} \right\rceil$ đoạn. Đoạn thứ $k$ $\left(k = 0 .. \left\lceil \dfrac{n}{S} \right\rceil - 1\right)$ là $\left[ kS; \min(kS + S - 1, n) \right]$.
+Gọi $S$ là kích thước của mỗi đoạn. Như thế, chúng ta sẽ có $\left\lceil \frac{n}{S} \right\rceil$ đoạn. Đoạn thứ $k$ $\left(k = 0 \ldots \left\lceil \frac{n}{S} \right\rceil - 1\right)$ là $\left[ kS; \min(kS + S - 1, n) \right]$.
 
 Với mỗi đoạn, vòng lặp `for (int j = i * i; j <= n; j += i)` sẽ thay đổi sao cho `j` chỉ chạy trong đoạn đang xét.
 
@@ -553,9 +574,9 @@ void segmented_sieve(int n) {
     cout << result << '\n'; // In ra số số nguyên tố tìm được
 }
 ```
-**Độ phức tạp thời gian: $\boldsymbol{O \left( n \log \log n +  \dfrac{n \cdot \pi(\sqrt n)}{S} \right)}$**
+**Độ phức tạp thời gian: $\boldsymbol{\mathcal{O} \left( n \log \log n +  \frac{n \cdot \pi(\sqrt n)}{S} \right)}$**
 
-**Độ phức tạp không gian: $\boldsymbol{O\left(\sqrt{n} + S\right)}$**
+**Độ phức tạp không gian: $\boldsymbol{\mathcal{O}\left(\sqrt{n} + S\right)}$**
 
 Chú ý rằng ta phải chọn $S$ sao cho cân bằng giữa độ phức tạp không gian và thời gian. Thông thường thì ta hay chọn $S = \sqrt n$.
 
@@ -629,13 +650,13 @@ void sieve_with_wheel(int n){
     }
 }
 ```
-**Độ phức tạp thời gian: $\boldsymbol{O\left(\dfrac{4}{15} n \log \log n \right)}$**
+**Độ phức tạp thời gian: $\boldsymbol{\mathcal{O}\left(\frac{4}{15} n \log \log n \right)}$**
 
-**Độ phức tạp không gian: $\boldsymbol{O\left(\dfrac{4}{15} n \right)}$**
+**Độ phức tạp không gian: $\boldsymbol{\mathcal{O}\left(\frac{4}{15} n \right)}$**
 
-Xét kích thước "bánh xe" là $mod = 2 \cdot 3 \cdot 5 \ldots$ có thể chọn $mod$ vào khoảng $\sqrt n$ thì ĐPT sẽ còn là $O\left( \dfrac{n}{\log \log n} \right)$. Nhìn thì ĐPT thấp hơn sàng Eratosthenes thông thường, nhưng vì phương pháp trên mỗi vòng lặp đều sử dụng phép nhân/chia nên thời gian chạy có thể chậm hơn nhiều so với sàng Eratosthenes thông thường với bộ dữ liệu nhỏ $\left(n \le 10^6 \right)$.
+Xét kích thước "bánh xe" là $\texttt{mod} = 2 \cdot 3 \cdot 5 \ldots$ có thể chọn $\texttt{mod}$ vào khoảng $\sqrt n$ thì ĐPT sẽ còn là $\mathcal{O}\left( \frac{n}{\log \log n} \right)$. Nhìn thì ĐPT thấp hơn sàng Eratosthenes thông thường, nhưng vì phương pháp trên mỗi vòng lặp đều sử dụng phép nhân/chia nên thời gian chạy có thể chậm hơn nhiều so với sàng Eratosthenes thông thường với bộ dữ liệu nhỏ $\left(n \le 10^{6} \right)$.
 
-Và vì lý do bộ nhớ cache mà người ta chỉ thường chọn modulo $mod \in [30; 210]$. Các số lọc được tiếp tục kiểm tra bằng cách khác như bên trên.
+Và vì lý do bộ nhớ cache mà người ta chỉ thường chọn modulo $\texttt{mod} \in [30; 210]$. Các số lọc được tiếp tục kiểm tra bằng cách khác như bên trên.
 
 ### Kết hợp các cải tiến
 Bên trên là một số cách cải tiến thường được sử dụng. Tuy nhiên bạn có thể kết hợp các cải tiến một cách hợp lý để tạo ra một sàng nguyên tố mạnh mẽ.
@@ -688,12 +709,12 @@ void block_sieve_odd() {
 ```cpp
 // Source: RR Code
 const int WHEEL = 3 * 5 * 7 * 11 * 13;
-const int N_SMALL_PRIMES = 6536;             // cnt primes less than 2^16
-const int SIEVE_SPAN = WHEEL * 64;           // one iteration of segmented sieve
+const int N_SMALL_PRIMES = 6536;   // cnt primes less than 2^16
+const int SIEVE_SPAN = WHEEL * 64; // one iteration of segmented sieve
 const int SIEVE_SIZE = SIEVE_SPAN / 128 + 1;
 
-uint64_t ONES[64];                           // ONES[i] = 1<<i
-int small_primes[N_SMALL_PRIMES];            // primes less than 2^16
+uint64_t ONES[64];                // ONES[i] = 1<<i
+int small_primes[N_SMALL_PRIMES]; // primes less than 2^16
 
 // each element of sieve is a 64-bit bitmask.
 // Each bit (0/1) stores whether the corresponding element is a prime number.
@@ -801,19 +822,18 @@ Dưới đây là một phần code được tối giản cho trường hợp $n
 ```cpp
 // Source: RR Code
 const int lim = 1e9;
-typedef unsigned char byte;
+typedef unsigned char byte_t;
 
 int count = 0;
-void sieve()
-{
+void sieve() {
     long long sum_primes = 0;
 
     int sqrt = std::sqrt(lim);
     int sieve_size = max(sqrt, (1 << 15));
     int segment_size = sieve_size * 16;
 
-    vector<byte> mark(sieve_size);
-    vector<byte> is_prime(sqrt + 1, true);
+    vector<byte_t> mark(sieve_size);
+    vector<byte_t> is_prime(sqrt + 1, true);
     vector<int> seg_prime;
     vector<int> seg_multi;
 
@@ -871,25 +891,27 @@ void sieve()
 ```
 </details>
 
-So sánh *độ dài code* và *thời gian chạy* với $n = 10^9$ của một số sàng nguyên tố (*Nguồn: [Code cùng RR](https://www.facebook.com/photo/?fbid=483129447247239&set=pcb.483147020578815)*)
+So sánh *độ dài code* và *thời gian chạy* với $n = 10^{9}$ của một số sàng nguyên tố (*Nguồn: [Code cùng RR](https://www.facebook.com/photo/?fbid=483129447247239&set=pcb.483147020578815)*)
 
 ![](https://hackmd.io/_uploads/HJNmI2Br3.png)
 
 
 ## Một số sàng nguyên tố khác
 Ngoài Sàng Eratosthenes, còn có một số sàng nguyên tố khác như:
-- [Sàng nguyên tố Atkin](https://en.wikipedia.org/wiki/Sieve_of_Atkin) với ĐPT $O(n)$
-- [Sàng nguyên tố Sundaram](https://en.wikipedia.org/wiki/Sieve_of_Sundaram) với ĐPT $O(n\log n)$
-- [Sàng Pritchard](https://en.wikipedia.org/wiki/Sieve_of_Pritchard) với ĐPT $O\left( \dfrac{n}{\log \log n} \right)$
+- [Sàng nguyên tố Atkin](https://en.wikipedia.org/wiki/Sieve_of_Atkin) với ĐPT $\mathcal{O}(n)$
+- [Sàng nguyên tố Sundaram](https://en.wikipedia.org/wiki/Sieve_of_Sundaram) với ĐPT $\mathcal{O}(n\log n)$
+- [Sàng Pritchard](https://en.wikipedia.org/wiki/Sieve_of_Pritchard) với ĐPT $\mathcal{O}\left( \frac{n}{\log \log n} \right)$
 - ...
-Tuy nhiên, khi gặp các bộ dữ liệu $n$ vào khoảng $10^6$ thì các sàng này hầu như chạy chậm hơn so với Sàng Eratosthenes thông thường.
+Tuy nhiên, khi gặp các bộ dữ liệu $n$ vào khoảng $10^{6}$ thì các sàng này hầu như chạy chậm hơn so với Sàng Eratosthenes thông thường.
 
 
 ## Mở rộng
 - Sử dụng cách sàng như sàng nguyên tố chúng ta có thể xây dựng các sàng cho các số có tính chất đặc biệt khác, ví dụ như lưu ước chính phương lớn nhất, thay các số nguyên tố thành các số phân biệt có tính chất nào đó ... Ví dụ như [VNOI - Duyên Hải 2020 - Lớp 10 - Bài 2](https://oj.vnoi.info/problem/dhbb2020_square)
 - **Hàm** $\boldsymbol{\pi(x)}$ là hàm đếm số số nguyên tố không vượt quá số dương $x$.
 Và theo định lý số nguyên tố (Prime Number Theorem), ta có một công thức để ước lượng:
-$$\boldsymbol{\pi(x) \sim \dfrac{x}{\ln x}}$$
+$$
+\boldsymbol{\pi(x) \sim \frac{x}{\ln x}}
+$$
 Công thức này có thể hữu ích trong việc ước chừng các độ phức tạp liên quan đến số nguyên tố.
 - Khi tính số lượng các số nguyên tố hay tổng các số nguyên tố không vượt quá $n$, việc sử dụng Sàng nguyên tố là một phương pháp nhanh dễ hiểu. Tuy nhiên, với những bộ dữ liệu lớn, người ta thường sử dụng sử dụng [thuật toán Meissel–Lehmer](https://en.wikipedia.org/wiki/Meissel%E2%80%93Lehmer_algorithm) hay [thuật toán Lucy Hedgehog](https://projecteuler.net/thread=10;page=5#111677), có thể chạy với $n$ lên đến $10^{12}$ trong 1s.
 Xem code bằng C++ tại [thuật toán Lehmer - đếm số lượng số nguyên tố](https://replit.com/@truongxuannam/Lehmer?fbclid=IwAR2EAkO4EJ5wv-xVBHSvZauRVwaD7kmTB0Cm-V8P5QT4ugr-QbeboZhhQw0) và [thuật toán Lucy Hedgehog - tính tổng các số nguyên tố](https://replit.com/@truongxuannam/Lucid?fbclid=IwAR00x9OOZh8nLUggt_PFrBvy0sUsXrYp3HbmwkCf5FtAcsFXLFyXpVdWhb0#main.cpp).

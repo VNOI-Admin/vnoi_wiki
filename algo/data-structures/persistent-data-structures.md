@@ -23,7 +23,7 @@ Xét bài toán ví dụ:
 - Cho một dãy $A$ gồm $N$ phần tử.
 - Có 2 loại truy vấn:
     1. Update: Gán $A_i = v$
-    2. Query: Tìm $max(A_i, ..., A_j)$ tại thời điểm sau phép gán thứ $K$.
+    2. Query: Tìm $\max(A_i, \ldots, A_j)$ tại thời điểm sau phép gán thứ $K$.
 
 Nếu không có đoạn **tại thời điểm sau phép gán thứ K**, bài toán là 1 bài cơ bản trên **Interval Tree**. Đoạn **tại thời điểm sau phép gán thứ K** buộc chúng ta phải lưu lại các thông tin về lịch sử cập nhật CTDL - việc này được giải quyết bằng các Persistent Data Structures.
 
@@ -39,7 +39,7 @@ Cần hiểu rằng Persistent Data Structures không phải là một loại CT
 - IT + Persistent $\rightarrow$ Persistent IT
 - BIT + Persistent $\rightarrow$ Persistent BIT
 
-Tại sao lại là **một cách hiệu quả**? Bởi vì ta hoàn toàn có thể có một Persistent Data Structures bằng cách trâu bò: khi cập nhật, ta tạo một bản sao hoàn toàn mới của CTDL, thay đổi một số dữ liệu trên nó và lưu lại. Như vậy ta luôn có được một thuật toán với độ phức tạp $O(Q \cdot N \cdot T)$ và bộ nhớ $O(Q \cdot N)$, với $Q$ là số thao tác cần thực hiện, và $N$ là độ lớn của CTDL, và $T$ là thời gian để thực hiện thao tác trên CTDL.
+Tại sao lại là **một cách hiệu quả**? Bởi vì ta hoàn toàn có thể có một Persistent Data Structures bằng cách trâu bò: khi cập nhật, ta tạo một bản sao hoàn toàn mới của CTDL, thay đổi một số dữ liệu trên nó và lưu lại. Như vậy ta luôn có được một thuật toán với độ phức tạp $\mathcal{O}(Q \cdot N \cdot T)$ và bộ nhớ $\mathcal{O}(Q \cdot N)$, với $Q$ là số thao tác cần thực hiện, và $N$ là độ lớn của CTDL, và $T$ là thời gian để thực hiện thao tác trên CTDL.
 
 Trong các phần dưới đây, mình sẽ trình bày về 2 kĩ thuật thông thường của Persistent Data Structures.
 
@@ -47,7 +47,7 @@ Trong các phần dưới đây, mình sẽ trình bày về 2 kĩ thuật thôn
 
 ## Tư tưởng
 
-Quay trở lại bài toán. Chúng ta biết rằng mỗi thao tác update trên IT chỉ mất $O(\log N)$. Điều này tương đương với việc mỗi thao tác update chỉ làm thay đổi $O(\log N)$ nút trên cây. Như vậy ta hoàn toàn có thể lưu lại tất cả các thay đổi trên tất cả các nút trong $O(Q\log N)$.
+Quay trở lại bài toán. Chúng ta biết rằng mỗi thao tác update trên IT chỉ mất $\mathcal{O}(\log N)$. Điều này tương đương với việc mỗi thao tác update chỉ làm thay đổi $\mathcal{O}(\log N)$ nút trên cây. Như vậy ta hoàn toàn có thể lưu lại tất cả các thay đổi trên tất cả các nút trong $\mathcal{O}(Q\log N)$.
 
 Từ đó, ta rút ra được một tư tưởng cài đặt thuật toán:
 
@@ -63,14 +63,16 @@ Tư tưởng này còn được gọi là **Path Copy** trong các tài liệu t
 ```cpp
 
 struct Node {
-    int left, right;    // ID of left child & right child
-    long long ln;       // Max value of node
-    Node() {}
-    Node(long long ln, int left, int right) : ln(ln), left(left), right(right) {}
-} it[11000111];         // Each node has a position in this array, called ID
+    int left, right; // ID of left child & right child
+    long long ln;    // Max value of node
+    Node() {
+    }
+    Node(long long ln, int left, int right) : ln(ln), left(left), right(right) {
+    }
+} it[11000111]; // Each node has a position in this array, called ID
 int nNode;
 
-int ver[MN];            // ID of root in each version
+int ver[MN]; // ID of root in each version
 
 // Update max value of a node
 inline void refine(int cur) {
@@ -104,21 +106,21 @@ int update(int l, int r, int u, int x, int oldId) {
 
 // Get max of range. Same as usual IT
 int get(int nodeId, int l, int r, int u, int v) {
-    if (v < l || r < u) return -1;
-    if (u <= l && r <= v) return it[nodeId].ln;
+    if (v < l || r < u)
+        return -1;
+    if (u <= l && r <= v)
+        return it[nodeId].ln;
 
     int mid = (l + r) >> 1;
-    return max(get(it[nodeId].left, l, mid, u, v), get(it[nodeId].right, mid+1, r, u, v));
+    return max(get(it[nodeId].left, l, mid, u, v), get(it[nodeId].right, mid + 1, r, u, v));
 }
 
-
 // When update:
-    ++nVer;
-    ver[nVer] = update(1, n, u, x, ver[nVer-1]);
+++nVer;
+ver[nVer] = update(1, n, u, x, ver[nVer - 1]);
 
 // When query:
-    res = get(ver[t], 1, n, u, v);
-
+res = get(ver[t], 1, n, u, v);
 ```
 
 Giải thích:
@@ -135,7 +137,7 @@ Giải thích:
 
 ## Phân tích
 
-- Cách cài đặt Persistent Data Structures trong mục này rất hiệu quả. Nó hoàn toàn không làm tăng thêm độ phức tạp (persistent IT có độ phức tạp mỗi thao tác là $O(\log N)$), và bộ nhớ cần thêm là tối ưu: $O(Q \log N)$.
+- Cách cài đặt Persistent Data Structures trong mục này rất hiệu quả. Nó hoàn toàn không làm tăng thêm độ phức tạp (persistent IT có độ phức tạp mỗi thao tác là $\mathcal{O}(\log N)$), và bộ nhớ cần thêm là tối ưu: $\mathcal{O}(Q \log N)$.
 - Tuy nhiên, cách cài đặt này không dễ áp dụng với những CTDL khác. Chẳng hạn sẽ rất khó để cài đúng BIT với phương pháp này. Ở mục tiếp theo, mình sẽ trình bày một phương pháp cài đặt khác có thể dùng cho BIT, tuy nhiên có độ phức tạp lớn hơn.
 
 
@@ -178,28 +180,24 @@ void update(int x, int y, int val, int time) {
 // Get the sum of square (1,1) --> (x, y) at time = time
 int get(int time, int x, int y) {
     int res = 0;
-    for(int u = x; u > 0; u -= _(u))
-        for(int v = y; v > 0; v -= _(v)) {
+    for (int u = x; u > 0; u -= _(u))
+        for (int v = y; v > 0; v -= _(v)) {
             if (bit[u][v].empty()) {
-            }
-            else if (bit[u][v][bit[u][v].size()-1].first <= time) {
-                res += bit[u][v][bit[u][v].size()-1].second;
-            }
-            else {
-                int pos = upper_bound(bit[u][v].begin(), bit[u][v].end(), make_pair(time, 2000111000))
-                        - bit[u][v].begin() - 1;
+            } else if (bit[u][v][bit[u][v].size() - 1].first <= time) {
+                res += bit[u][v][bit[u][v].size() - 1].second;
+            } else {
+                int pos = upper_bound(bit[u][v].begin(), bit[u][v].end(), make_pair(time, 2000111000)) - bit[u][v].begin() - 1;
                 if (pos >= 0)
                     res += bit[u][v][pos].second;
             }
         }
     return res;
 }
-
 ```
 
 ## Phân tích:
 
-- Độ phức tạp cho mỗi thao tác update không thay đổi (ví dụ với BIT, vẫn là $O(\log N)$). Nhưng độ phức tạp cho mỗi thao tác query bị tăng lên $\log N$ (ví dụ với BIT, độ phức tạp cho mỗi thao tác là $O(\log^2(N)$) thay vì $O(\log N)$).
+- Độ phức tạp cho mỗi thao tác update không thay đổi (ví dụ với BIT, vẫn là $\mathcal{O}(\log N)$). Nhưng độ phức tạp cho mỗi thao tác query bị tăng lên $\log N$ (ví dụ với BIT, độ phức tạp cho mỗi thao tác là $\mathcal{O}(\log^{2}(N))$ thay vì $\mathcal{O}(\log N)$).
 - Tuy nhiên, cách cài đặt này tổng quát hơn, dễ dàng được áp dụng cho nhiều CTDL khác nhau, ví dụ cả BIT và IT.
 
 # 4. Retroactive Data Structures

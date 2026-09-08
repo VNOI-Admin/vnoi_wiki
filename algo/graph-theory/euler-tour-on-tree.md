@@ -35,7 +35,7 @@ Thực hiện các truy vấn thuộc một trong hai loại sau:
 * $1$ $u$ $x$: Thay đổi giá trị đỉnh $u$ thành $x$.
 * $2$ $u$: Tính tổng giá trị các đỉnh thuộc cây con gốc $u$ (*).
 
-Giới hạn: $n, q \leq 10^5$.
+Giới hạn: $n, q \leq 10^{5}$.
 
 <!-- ![](https://i.ibb.co/9gLGk24/subtree-example.png) -->
 
@@ -65,8 +65,8 @@ Hình $1$
 ```cpp
 const int N = 100000 + 5;
 
-int val[N]; // val[u] là giá trị đỉnh u
-int parent[N]; // parent[u] là đỉnh cha của đỉnh u
+int val[N];         // val[u] là giá trị đỉnh u
+int parent[N];      // parent[u] là đỉnh cha của đỉnh u
 vector<int> adj[N]; // adj[u] là danh sách các đỉnh kề với đỉnh u
 
 void change(int u, int x) { // thay đổi giá trị đỉnh u
@@ -84,10 +84,10 @@ long long sum(int u) { // tổng các giá trị của cây con gốc u
 ```
 
 Độ phức tạp của thuật toán:
-* Với các truy vấn loại $1$, ta chỉ thay đổi giá trị của đỉnh nên độ phức tạp cho truy vấn này là $O(1)$.
-* Với các truy vấn loại $2$, ta cần duyệt qua tất cả các đỉnh thuộc cây con gốc $u$, trong trường hợp tệ nhất, độ phức tạp cho mỗi truy vấn như thế lên đến $O(n)$.
+* Với các truy vấn loại $1$, ta chỉ thay đổi giá trị của đỉnh nên độ phức tạp cho truy vấn này là $\mathcal{O}(1)$.
+* Với các truy vấn loại $2$, ta cần duyệt qua tất cả các đỉnh thuộc cây con gốc $u$, trong trường hợp tệ nhất, độ phức tạp cho mỗi truy vấn như thế lên đến $\mathcal{O}(n)$.
 
-Vậy thuật toán có độ phức tạp $O(n \times q)$, quá lớn để giải được bài toán này.
+Vậy thuật toán có độ phức tạp $\mathcal{O}(n \times q)$, quá lớn để giải được bài toán này.
 
 Phần sau đây sẽ giới thiệu về một phương pháp rất đặc biệt, có thể được dùng để giải quyết bài toán "hóc búa" trên.
 
@@ -161,7 +161,7 @@ Từ $(1)$ và $(2)$ có thể khẳng định, $T'$ là đồ thị Euler.
 
 Tham khảo đoạn code c++ dưới đây:
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -212,7 +212,7 @@ int main() {
 
 Mỗi khi truy cập một đỉnh bất kỳ, ta thêm đỉnh đó vào đường đi. Trước khi rời khỏi một đỉnh (trở về cha), nếu đỉnh đó khác gốc của cây, ta thêm cha của đỉnh vào đường đi.
 
-Áp dụng code trên vào đồ thị hình $2a$, mảng $tour$ cuối cùng chứa các giá trị: ```1 2 3 2 4 2 1 5 1```, đây chính là đường đi Euler theo định nghĩa ban đầu.
+Áp dụng code trên vào đồ thị hình $2a$, mảng $\texttt{tour}$ cuối cùng chứa các giá trị: ```1 2 3 2 4 2 1 5 1```, đây chính là đường đi Euler theo định nghĩa ban đầu.
 
 
 # Tính chất
@@ -225,11 +225,11 @@ Như đã giới thiệu, ứng dụng chính của Euler tour là trải phẳn
 
 Sau đây là một số tính chất cơ bản nhất của đường đi Euler.
 
-Đỉnh $v$ thuộc cây con gốc $u$ nếu và chỉ nếu $st[u] \leq st[v] \leq en[v] \leq en[u]$.
+Đỉnh $v$ thuộc cây con gốc $u$ nếu và chỉ nếu $\texttt{st}[u] \leq \texttt{st}[v] \leq \texttt{en}[v] \leq \texttt{en}[u]$.
 
-Đỉnh $v$ không thuộc cây con gốc $u$ và $u$ không thuộc cây con gốc $v$, hay $u$ và $v$ không có quan hệ tổ tiên nếu và chỉ nếu hai đoạn $st[u]..en[u]$ và $st[v]..en[v]$ không giao nhau, nghĩa là $en[u] < st[v]$ hoặc $en[v] < st[u]$.
+Đỉnh $v$ không thuộc cây con gốc $u$ và $u$ không thuộc cây con gốc $v$, hay $u$ và $v$ không có quan hệ tổ tiên nếu và chỉ nếu hai đoạn $\texttt{st}[u] \ldots \texttt{en}[u]$ và $\texttt{st}[v] \ldots \texttt{en}[v]$ không giao nhau, nghĩa là $\texttt{en}[u] < \texttt{st}[v]$ hoặc $\texttt{en}[v] < \texttt{st}[u]$.
 
-Từ hai tính chất trên ta nhận xét được rằng, với hai đỉnh $u$, $v$ bất kì, hai đoạn $st[u]..en[u]$ và $st[v]..en[v]$ hoặc là không giao nhau, hoặc một đoạn hoàn toàn bao đoạn còn lại.
+Từ hai tính chất trên ta nhận xét được rằng, với hai đỉnh $u$, $v$ bất kì, hai đoạn $\texttt{st}[u] \ldots \texttt{en}[u]$ và $\texttt{st}[v] \ldots \texttt{en}[v]$ hoặc là không giao nhau, hoặc một đoạn hoàn toàn bao đoạn còn lại.
 
 <center>
 
@@ -247,9 +247,9 @@ Hình $3$
 
 ### Giải thích
 
-Từ khi thăm đỉnh $u$ lần đầu tiên đến khi thăm đỉnh $u$ lần cuối cùng, đường đi Euler đi qua và chỉ đi qua các đỉnh thuộc cây con gốc $u$. Vậy với mọi đỉnh $v$ thuộc cây con gốc $u$, mọi vị trí của $v$ đều thuộc  đoạn $st[u]..en[u]$ (tính chất thứ nhất).
+Từ khi thăm đỉnh $u$ lần đầu tiên đến khi thăm đỉnh $u$ lần cuối cùng, đường đi Euler đi qua và chỉ đi qua các đỉnh thuộc cây con gốc $u$. Vậy với mọi đỉnh $v$ thuộc cây con gốc $u$, mọi vị trí của $v$ đều thuộc  đoạn $\texttt{st}[u] \ldots \texttt{en}[u]$ (tính chất thứ nhất).
 
-Với hai đỉnh $u$ và $v$ không có quan hệ tổ tiên thì đỉnh $u$ được thăm lần cuối cùng trước khi đỉnh $v$ được thăm lần đầu tiên (hoặc ngược lại, đỉnh $v$ được thăm lần cuối cùng trước khi đỉnh $u$ được thăm lần đầu tiên). Vậy trong trường hợp này $en[u] < st[v]$ hoặc $en[v] < st[u]$ (tính chất thứ hai).
+Với hai đỉnh $u$ và $v$ không có quan hệ tổ tiên thì đỉnh $u$ được thăm lần cuối cùng trước khi đỉnh $v$ được thăm lần đầu tiên (hoặc ngược lại, đỉnh $v$ được thăm lần cuối cùng trước khi đỉnh $u$ được thăm lần đầu tiên). Vậy trong trường hợp này $\texttt{en}[u] < \texttt{st}[v]$ hoặc $\texttt{en}[v] < \texttt{st}[u]$ (tính chất thứ hai).
 
 # Ứng dụng
 
@@ -259,20 +259,20 @@ Với hai đỉnh $u$ và $v$ không có quan hệ tổ tiên thì đỉnh $u$ �
 
 Ở ứng dụng này, ta cần thay đổi đường đi Euler một chút.
 
-Gọi $tour$ là dãy biểu diễn đường đi Euler. Với mỗi đỉnh $u$, xóa tất cả các giá trị $u$ xuất hiện trong $tour$ ngoại trừ giá trị $u$ đầu tiên.
+Gọi $\texttt{tour}$ là dãy biểu diễn đường đi Euler. Với mỗi đỉnh $u$, xóa tất cả các giá trị $u$ xuất hiện trong $\texttt{tour}$ ngoại trừ giá trị $u$ đầu tiên.
 
-Ví dụ, có dãy $tour$ ban đầu gồm các giá trị:
+Ví dụ, có dãy $\texttt{tour}$ ban đầu gồm các giá trị:
 
-```
+```text
 1 2 3 2 4 2 1 5 1
 => 1 2 3 (2) 4 (2) (1) 5 (1)
 ```
-Các phần tử trong ngoặc là các phần tử cần xóa, sau khi xóa, dãy $tour$ còn lại:
-```
+Các phần tử trong ngoặc là các phần tử cần xóa, sau khi xóa, dãy $\texttt{tour}$ còn lại:
+```text
 1 2 3 4 5
 ```
 
-Ta cũng có thể tìm trực tiếp dãy $tour$ (thay vì thay đổi từ dãy đường đi Euler ban đầu) như sau:
+Ta cũng có thể tìm trực tiếp dãy $\texttt{tour}$ (thay vì thay đổi từ dãy đường đi Euler ban đầu) như sau:
 
 ```cpp
 void dfs(int u, int parent_of_u) {
@@ -288,30 +288,30 @@ void dfs(int u, int parent_of_u) {
     en[u] = m;
 }
 ```
-Trong đó, $en[u]$ là vị trí **cuối cùng nhất** của một đỉnh thuộc cây con gốc $u$.
+Trong đó, $\texttt{en}[u]$ là vị trí **cuối cùng nhất** của một đỉnh thuộc cây con gốc $u$.
 
 ### Cơ sở
 
-Trong dãy $tour$, tất cả các đỉnh thuộc cây con gốc $u$ nằm liên tiếp từ vị trí $st[u]$ đến vị trí $en[u]$. Tất cả các đỉnh có vị trí thuộc đoạn $st[u]..en[u]$ đều thuộc cây con gốc $u$.
+Trong dãy $\texttt{tour}$, tất cả các đỉnh thuộc cây con gốc $u$ nằm liên tiếp từ vị trí $\texttt{st}[u]$ đến vị trí $\texttt{en}[u]$. Tất cả các đỉnh có vị trí thuộc đoạn $\texttt{st}[u] \ldots \texttt{en}[u]$ đều thuộc cây con gốc $u$.
 
-Lưu ý rằng sau khi thay đổi như trên, mỗi đỉnh chỉ xuất hiện trong $tour$ đúng $1$ lần, và ý nghĩa mảng $en$ cũng đã được thay đổi.
+Lưu ý rằng sau khi thay đổi như trên, mỗi đỉnh chỉ xuất hiện trong $\texttt{tour}$ đúng $1$ lần, và ý nghĩa mảng $\texttt{en}$ cũng đã được thay đổi.
 
 ### Giải thích
 
-Đây thực chất là một cách phát biểu khác của tính chất đầu tiên được nêu ở phần trước: Đỉnh $v$ thuộc cây con gốc $u$ nếu và chỉ nếu $st[u] \leq st[v] \leq en[v] \leq en[u]$.
+Đây thực chất là một cách phát biểu khác của tính chất đầu tiên được nêu ở phần trước: Đỉnh $v$ thuộc cây con gốc $u$ nếu và chỉ nếu $\texttt{st}[u] \leq \texttt{st}[v] \leq \texttt{en}[v] \leq \texttt{en}[u]$.
 
-Và nhận xét rằng tính chất này giữ nguyên tính đúng đắn với dãy $tour$ đã thay đổi.
+Và nhận xét rằng tính chất này giữ nguyên tính đúng đắn với dãy $\texttt{tour}$ đã thay đổi.
 
-Vậy về cơ bản, mục đích của việc biến đổi dãy $tour$ nêu trên là để mỗi đỉnh chỉ xuất hiện đúng $1$ lần, sẽ tiện hơn trong xử lý.
+Vậy về cơ bản, mục đích của việc biến đổi dãy $\texttt{tour}$ nêu trên là để mỗi đỉnh chỉ xuất hiện đúng $1$ lần, sẽ tiện hơn trong xử lý.
 
 ### Thuật toán
 
 Từ tính chất đó, dễ thấy rằng các thao tác với cây con có thể chuyển thành thao tác với đoạn.
 
-Cụ thể, thao tác cập nhật hoặc truy vấn đối với cây con gốc $u$ có thể chuyển thành thao tác tương ứng đối với đoạn $st[u]..en[u]$.
+Cụ thể, thao tác cập nhật hoặc truy vấn đối với cây con gốc $u$ có thể chuyển thành thao tác tương ứng đối với đoạn $\texttt{st}[u] \ldots \texttt{en}[u]$.
 
 Ví dụ:
-Trong đoạn code dưới đây, hàm $change(u, x)$ cho phép tăng giá trị của đỉnh $u$ thêm $x$ đơn vị. Hàm $sum(u)$ cho phép tính tổng giá trị các đỉnh thuộc cây con gốc $u$ (sử dụng kiểu dữ liệu [Fenwick Tree - cây BIT](/algo/data-structures/fenwick.md)).
+Trong đoạn code dưới đây, hàm $\texttt{change}(u, x)$ cho phép tăng giá trị của đỉnh $u$ thêm $x$ đơn vị. Hàm $\texttt{sum}(u)$ cho phép tính tổng giá trị các đỉnh thuộc cây con gốc $u$ (sử dụng kiểu dữ liệu [Fenwick Tree - cây BIT](/algo/data-structures/fenwick.md)).
 
 ```cpp
 
@@ -346,15 +346,15 @@ long long sumSubtree(int u) {
 Trong một bài toán cần các thao tác thay đổi giá trị các đỉnh trên đường đi và tính giá trị của đỉnh, ta cũng có thể áp dụng ứng dụng trên để giải quyết.
 
 Gọi:
-+ $par[u]$ là cha trực tiếp của đỉnh $u$.
-+ $LCA(u, v)$ là tổ tiên chung gần nhất của $u$ và $v$.
++ $\texttt{par}[u]$ là cha trực tiếp của đỉnh $u$.
++ $\texttt{LCA}(u, v)$ là tổ tiên chung gần nhất của $u$ và $v$.
 + $b[u]$ là một giá trị khác của đỉnh $u$. Ban đầu, $b[u] = 0$ với mọi $u$.
 
 Giả sử cần tăng giá trị mỗi đỉnh thuộc đường đi từ $u$ đến $v$ thêm $x$ đơn vị, thực hiện các bước như sau:
 1. **Tăng** $b[u]$ thêm $x$ đơn vị.
 2. **Tăng** $b[v]$ thêm $x$ đơn vị
-3. **Giảm** $b[LCA(u, v)]$ đi $x$ đơn vị.
-4. **Giảm** $b[par[LCA(u, v)]]$ đi $x$ đơn vị
+3. **Giảm** $b[\texttt{LCA}(u, v)]$ đi $x$ đơn vị.
+4. **Giảm** $b[\texttt{par}[\texttt{LCA}(u, v)]]$ đi $x$ đơn vị
 
 Để tính giá trị của đỉnh $u$, ta tính tổng các giá trị $b[v]$ mà $v$ thuộc cây con gốc $u$.
 
@@ -362,9 +362,9 @@ Với cách tính như vậy, thì việc cập nhật bên trên sẽ tăng gi�
 
 Thật vậy, sau mỗi lần tăng đường đi từ $u$ đến $v$, xét đỉnh $p$:
 
-+ Nếu $p$ = $LCA(u, v)$, giá trị đỉnh $p$ tăng thêm $x$ đơn vị do ảnh hưởng của các bước $1, 2, 3$.
-+ Nếu $p$ thuộc đường đi từ $u$ đến $v$ nhưng không phải $LCA(u, v)$, giá trị đỉnh $p$ tăng thêm $x$ đơn vị do ảnh hưởng của một trong hai bước $1, 2$.
-+ Nếu $p$ là tổ tiên của $LCA(u, v)$ ($p \ne LCA(u, v)$), giá trị của đỉnh $p$ không thay đổi do chịu ảnh hưởng của cả bốn bước $1, 2, 3, 4$.
++ Nếu $p$ = $\texttt{LCA}(u, v)$, giá trị đỉnh $p$ tăng thêm $x$ đơn vị do ảnh hưởng của các bước $1, 2, 3$.
++ Nếu $p$ thuộc đường đi từ $u$ đến $v$ nhưng không phải $\texttt{LCA}(u, v)$, giá trị đỉnh $p$ tăng thêm $x$ đơn vị do ảnh hưởng của một trong hai bước $1, 2$.
++ Nếu $p$ là tổ tiên của $\texttt{LCA}(u, v)$ ($p \ne \texttt{LCA}(u, v)$), giá trị của đỉnh $p$ không thay đổi do chịu ảnh hưởng của cả bốn bước $1, 2, 3, 4$.
 + Các trường hợp còn lại, giá trị đỉnh $p$ không thay đổi vì không bị ảnh hưởng bởi bất kì bước nào.
 
 Lưu ý rằng, giá trị đỉnh $u$ bị thay đổi khi một giá trị $b[v]$ mà $v$ thuộc cây con gốc $u$ bị thay đổi.
@@ -375,22 +375,22 @@ Các thao tác đối với $b$ là các thao tác dạng "cập nhật đỉnh,
 
 Ứng dụng cho phép thay đổi giá trị đỉnh và tính tổng giá trị các đỉnh thuộc đường đi (ngắn nhất) giữa hai đỉnh bất kì trên cây.
 
-Bài toán này có một cách giải khá phổ biến như sau: tạo mảng $f$, trong đó $f[u]$ là tổng giá trị các đỉnh trên đường đi từ đỉnh gốc đến đỉnh $u$. Vậy khi tăng giá trị đỉnh $u$, ta cần tăng các giá trị $f[v]$ mà $v$ thuộc cây con gốc $u$. Và tổng giá trị các đỉnh thuộc đường đi giữa hai đỉnh $u$, $v$ bất kì là $f[u] + f[v] - f[par[LCA(u, v)]$, trong đó $par[LCA(u, v)]$ là cha của tổ tiên chung gần nhất của $u$ và $v$.
+Bài toán này có một cách giải khá phổ biến như sau: tạo mảng $f$, trong đó $f[u]$ là tổng giá trị các đỉnh trên đường đi từ đỉnh gốc đến đỉnh $u$. Vậy khi tăng giá trị đỉnh $u$, ta cần tăng các giá trị $f[v]$ mà $v$ thuộc cây con gốc $u$. Và tổng giá trị các đỉnh thuộc đường đi giữa hai đỉnh $u$, $v$ bất kì là $f[u] + f[v] - f[\texttt{par}[\texttt{LCA}(u, v)]]$, trong đó $\texttt{par}[\texttt{LCA}(u, v)]$ là cha của tổ tiên chung gần nhất của $u$ và $v$.
 
 Tuy nhiên ứng dụng này muốn đề cập đến một phương pháp khác khá thú vị, mời bạn đọc cùng tìm hiểu.
 
 Trước hết, ta cũng cần thay đổi đường đi Euler như ứng dụng trước, cụ thể:
 
-Theo đường đi Euler, ta thêm đỉnh $u$ vào dãy $tour$ khi thăm đỉnh $u$ lần đầu tiên và khi thăm đỉnh $u$ lần cuối cùng.
+Theo đường đi Euler, ta thêm đỉnh $u$ vào dãy $\texttt{tour}$ khi thăm đỉnh $u$ lần đầu tiên và khi thăm đỉnh $u$ lần cuối cùng.
 
 (Nếu đỉnh $u$ là lá, ta thêm đỉnh $u$ hai lần liên tiếp vì lần thăm đầu tiên cũng là lần thăm cuối cùng).
 
 Ví dụ
-```
+```text
 1 2 3 2 4 2 1 5 1
 => 1 2 3 3 4 4 2 5 5 1
 ```
-Cũng có thể cài đặt để đạt được mảng $tour$ trực tiếp như sau:
+Cũng có thể cài đặt để đạt được mảng $\texttt{tour}$ trực tiếp như sau:
 
 ```cpp
 void dfs(int u, int parent_of_u) {
@@ -408,11 +408,11 @@ void dfs(int u, int parent_of_u) {
 }
 ```
 
-$st[u]$ là vị trí đầu tiên của đỉnh $u$, $en[u]$ là vị trí thứ hai của đỉnh $u$. Mỗi đỉnh xuất hiện đúng $2$ lần.
+$\texttt{st}[u]$ là vị trí đầu tiên của đỉnh $u$, $\texttt{en}[u]$ là vị trí thứ hai của đỉnh $u$. Mỗi đỉnh xuất hiện đúng $2$ lần.
 
 ### Cơ sở
 
-Với hai đỉnh $u$, $v$ bất kì mà $u$ là **tổ tiên** của $v$, xét đoạn các giá trị từ vị trí $st[u]$ đến vị trí $st[v]$ của dãy $tour$, ta có:
+Với hai đỉnh $u$, $v$ bất kì mà $u$ là **tổ tiên** của $v$, xét đoạn các giá trị từ vị trí $\texttt{st}[u]$ đến vị trí $\texttt{st}[v]$ của dãy $\texttt{tour}$, ta có:
 
 + Các đỉnh thuộc đường đi từ $u$ đến $v$ xuất hiện đúng $1$ lần trong đoạn, cũng chính là lần đầu tiên đỉnh đó xuất hiện trong dãy $d$.
 + Các đỉnh không thuộc đường đi từ $u$ đến $v$ sẽ không xuất hiện lần nào, hoặc xuất hiện đúng hai lần trong đoạn.
@@ -435,28 +435,28 @@ Hình $4$
 
 <!-- ![](https://i.ibb.co/THr5fDt/twice.png) -->
 
-Các đỉnh được tô màu khác màu đen là các đỉnh xuất hiện trong đoạn $st[1]..st[4]$ của dãy.
+Các đỉnh được tô màu khác màu đen là các đỉnh xuất hiện trong đoạn $\texttt{st}[1] \ldots \texttt{st}[4]$ của dãy.
 
 ### Giải thích
 
-Do $u$ là **tổ tiên** của $v$ ta có $st[u] \leq st[v] \leq en[v] \leq en[u]$.
+Do $u$ là **tổ tiên** của $v$ ta có $\texttt{st}[u] \leq \texttt{st}[v] \leq \texttt{en}[v] \leq \texttt{en}[u]$.
 
-Trước tiên, ta không cần quan tâm đến những đỉnh không xuất hiện trong đoạn $st[u]..st[v]$ của dãy $d$, vì những đoạn thuộc đường đi từ $u$ đến $v$ trên cây thì chắc chắn xuất hiện trong đoạn này.
+Trước tiên, ta không cần quan tâm đến những đỉnh không xuất hiện trong đoạn $\texttt{st}[u] \ldots \texttt{st}[v]$ của dãy $d$, vì những đoạn thuộc đường đi từ $u$ đến $v$ trên cây thì chắc chắn xuất hiện trong đoạn này.
 
-Xét đỉnh $p$ xuất hiện trong đoạn $st[u]..st[v]$ của dãy $d$:
+Xét đỉnh $p$ xuất hiện trong đoạn $\texttt{st}[u] \ldots \texttt{st}[v]$ của dãy $d$:
 
-+ Nếu $p$ thuộc đường đi từ $u$ đến $v$ trên cây, nghĩa là $v$ thuộc cây con gốc $p$ và $p$ thuộc cây con gốc $u$, vậy $st[u] \leq st[p] \leq st[v] < en[p]$, $p$ xuất hiện đúng $1$ lần trên đoạn $st[u]..st[v]$, cũng là lần thứ nhất đỉnh $p$ xuất hiện trong dãy $d$.
-+ Nếu $p$ không thuộc đường đi từ $u$ đến $v$ trên cây, nghĩa là $p$ không có quan hệ tổ tiên với $v$, ta có $st[u] < st[p] < en[p] < st[v]$, vậy $p$ xuất hiện đủ $2$ lần trên đoạn.
++ Nếu $p$ thuộc đường đi từ $u$ đến $v$ trên cây, nghĩa là $v$ thuộc cây con gốc $p$ và $p$ thuộc cây con gốc $u$, vậy $\texttt{st}[u] \leq \texttt{st}[p] \leq \texttt{st}[v] < \texttt{en}[p]$, $p$ xuất hiện đúng $1$ lần trên đoạn $\texttt{st}[u] \ldots \texttt{st}[v]$, cũng là lần thứ nhất đỉnh $p$ xuất hiện trong dãy $d$.
++ Nếu $p$ không thuộc đường đi từ $u$ đến $v$ trên cây, nghĩa là $p$ không có quan hệ tổ tiên với $v$, ta có $\texttt{st}[u] < \texttt{st}[p] < \texttt{en}[p] < \texttt{st}[v]$, vậy $p$ xuất hiện đủ $2$ lần trên đoạn.
 
 ### Thuật toán
 
-Ý tưởng của thuật toán này là tạo mảng $f$ với $f[st[u]]$ là giá trị của đỉnh $u$, và $f[en[u]] = -f[st[u]]$. Vì vậy khi tính tổng giá trị đoạn $st[u]..st[v]$ của mảng $f$, các đỉnh $p$ xuất hiện $2$ lần sẽ tự "triệt tiêu" do $f[st[p]] + f[en[p]] = 0$, chỉ còn lại tổng các đỉnh xuất hiện một lần - các đỉnh thuộc đường đi từ $u$ đến $v$.
+Ý tưởng của thuật toán này là tạo mảng $f$ với $f[\texttt{st}[u]]$ là giá trị của đỉnh $u$, và $f[\texttt{en}[u]] = -f[\texttt{st}[u]]$. Vì vậy khi tính tổng giá trị đoạn $\texttt{st}[u] \ldots \texttt{st}[v]$ của mảng $f$, các đỉnh $p$ xuất hiện $2$ lần sẽ tự "triệt tiêu" do $f[\texttt{st}[p]] + f[\texttt{en}[p]] = 0$, chỉ còn lại tổng các đỉnh xuất hiện một lần - các đỉnh thuộc đường đi từ $u$ đến $v$.
 
 Ta có thuật toán như sau:
-+ Khi tăng giá trị đỉnh $u$ thêm $x$ đơn vị, ta tăng giá trị tại vị trí $st[u]$ thêm $x$ đơn vị, giảm giá trị tại vị trí $en[u]$ đi $x$ đơn vị.
-+ Để tính tổng giá trị các đỉnh trên đường đi từ $u$ đến $v$, ta tính tổng các giá trị thuộc đoạn $st[u]..st[v]$ (giả sử $u$ là tổ tiên của $v$).
++ Khi tăng giá trị đỉnh $u$ thêm $x$ đơn vị, ta tăng giá trị tại vị trí $\texttt{st}[u]$ thêm $x$ đơn vị, giảm giá trị tại vị trí $\texttt{en}[u]$ đi $x$ đơn vị.
++ Để tính tổng giá trị các đỉnh trên đường đi từ $u$ đến $v$, ta tính tổng các giá trị thuộc đoạn $\texttt{st}[u] \ldots \texttt{st}[v]$ (giả sử $u$ là tổ tiên của $v$).
 
-Thuật toán chỉ áp dụng đối với đường đi từ một tổ tiên của một đỉnh về đỉnh đó. Đối với trường hợp tổng quát của $u$ và $v$, cần chia đường đi thành 2 phần là $[LCA(u, v)..u]$ và $[LCA(u, v)..v]$, hai đường đi này thỏa điều kiện trên.
+Thuật toán chỉ áp dụng đối với đường đi từ một tổ tiên của một đỉnh về đỉnh đó. Đối với trường hợp tổng quát của $u$ và $v$, cần chia đường đi thành 2 phần là $[\texttt{LCA}(u, v) \ldots u]$ và $[\texttt{LCA}(u, v) \ldots v]$, hai đường đi này thỏa điều kiện trên.
 
 <!-- ### Nhận xét
 
@@ -477,30 +477,30 @@ Thuật toán này dựa trên sự tự triệt tiêu của các đỉnh xuất
 ### Cơ sở
 
 Gọi:
-+ $tour$ là dãy đỉnh biểu diễn đường đi Euler.
-+ $st[u]$ là vị trí đầu tiên của đỉnh $u$ trong dãy $tour$.
++ $\texttt{tour}$ là dãy đỉnh biểu diễn đường đi Euler.
++ $\texttt{st}[u]$ là vị trí đầu tiên của đỉnh $u$ trong dãy $\texttt{tour}$.
 
 Ta có tính chất sau:
 
-Đối với hai đỉnh $u$, $v$ phân biệt mà $st[u] \leq st[v]$, tổ tiên chung gần nhất của hai đỉnh này là giá trị $p$ thuộc đoạn $st[u]..st[v]$ của dãy $tour$ sao cho khoảng cách từ $p$ đến gốc là nhỏ nhất có thể.
+Đối với hai đỉnh $u$, $v$ phân biệt mà $\texttt{st}[u] \leq \texttt{st}[v]$, tổ tiên chung gần nhất của hai đỉnh này là giá trị $p$ thuộc đoạn $\texttt{st}[u] \ldots \texttt{st}[v]$ của dãy $\texttt{tour}$ sao cho khoảng cách từ $p$ đến gốc là nhỏ nhất có thể.
 
 ### Giải thích
 
 Gọi $p$ là cha chung gần nhất của $u$ và $v$.
 
-Xét các đỉnh xuất hiện trên đoạn $st[u]..st[v]$ của dãy $tour$:
+Xét các đỉnh xuất hiện trên đoạn $\texttt{st}[u] \ldots \texttt{st}[v]$ của dãy $\texttt{tour}$:
 + Theo định nghĩa, đoạn này thể hiện một đoạn của đường đi Euler, bắt đầu từ đỉnh $u$ và đi đến đỉnh $v$, vì vậy chắc chắn có chứa đỉnh $p$.
 + Vì $v$ là con của $p$ nên đoạn này không thể chứa bất cứ đỉnh nào là tổ tiên của $p$.
 
-Vậy đỉnh gần gốc nhất trên đoạn $st[u]..st[v]$ chính là đỉnh $p$ - tổ tiên chung gần nhất của $u$ và $v$.
+Vậy đỉnh gần gốc nhất trên đoạn $\texttt{st}[u] \ldots \texttt{st}[v]$ chính là đỉnh $p$ - tổ tiên chung gần nhất của $u$ và $v$.
 
 ### Thuật toán
 
-Gọi $h[u]$ là khoảng cách của đỉnh $u$ đến gốc của cây. Khi tìm $LCA(u, v)$, ta cần tìm đỉnh $p$ thuộc đoạn $st[u]..st[v]$ mà $h[p]$ là nhỏ nhất.
+Gọi $h[u]$ là khoảng cách của đỉnh $u$ đến gốc của cây. Khi tìm $\texttt{LCA}(u, v)$, ta cần tìm đỉnh $p$ thuộc đoạn $\texttt{st}[u] \ldots \texttt{st}[v]$ mà $h[p]$ là nhỏ nhất.
 
-Có thể áp dụng cấu trúc dữ liệu RMQ để tìm đỉnh $p$, độ phức tạp cho việc chuẩn bị là $O(M * log(M))$, độ phức tạp cho mỗi thao tác tìm $LCA$ là $O(1)$, trong đó, $M$ là độ dài của mảng lưu đường đi Euler.
+Có thể áp dụng cấu trúc dữ liệu RMQ để tìm đỉnh $p$, độ phức tạp cho việc chuẩn bị là $\mathcal{O}(M \times \log(M))$, độ phức tạp cho mỗi thao tác tìm $\texttt{LCA}$ là $\mathcal{O}(1)$, trong đó, $M$ là độ dài của mảng lưu đường đi Euler.
 
-Lưu ý rằng, độ dài của mảng lưu đường đi Euler có thể lớn hơn $n$, cụ thể $M = 2 * (n - 1) + 1$, vì mỗi cạnh được đi qua $2$ lần, mỗi lần qua một cạnh thì thêm một đỉnh vào đường đi, ngoại trừ cạnh đầu tiên thêm hai đỉnh vào đường đi.
+Lưu ý rằng, độ dài của mảng lưu đường đi Euler có thể lớn hơn $n$, cụ thể $M = 2 \times (n - 1) + 1$, vì mỗi cạnh được đi qua $2$ lần, mỗi lần qua một cạnh thì thêm một đỉnh vào đường đi, ngoại trừ cạnh đầu tiên thêm hai đỉnh vào đường đi.
 
 Bài tập ví dụ: [Company Queries II](https://cses.fi/problemset/task/1688)
 
@@ -508,7 +508,7 @@ Một công ty nọ có $n$ thành viên. Ngoại trừ  tổng giám đốc, m�
 
 Cho thông tin về số thành viên và sếp của mỗi người, hãy trả lời $q$ truy vấn dạng $a$ $b$ với câu hỏi: ai là sếp chung thấp nhất của $a$ và $b$.
 
-Giới hạn: $n, q \leq 2 \times 10^5$
+Giới hạn: $n, q \leq 2 \times 10^{5}$
 
 Dưới đây là đoạn code mẫu cho bài tập trên:
 
@@ -572,7 +572,6 @@ int main() {
 
     return 0;
 }
-
 ```
 
 # Luyện tập

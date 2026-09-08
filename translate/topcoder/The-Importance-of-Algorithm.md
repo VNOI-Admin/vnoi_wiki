@@ -21,33 +21,33 @@ Một số thuật toán, như thuật để tính dãy Fibonacci, khá trực q
 
 ## Phân tích thời gian thực hiện thuật toán
 
-Một trong những yếu tố quan trọng nhất của một thuật toán là việc nó chạy nhanh hay chậm. Nghĩ ra một thuật để giải một bài toán là việc dễ, nhưng để nó có ý nghĩa trong thực tế, thì thuật toán phải chạy đủ nhanh. Tốc độ của một thuật tùy thuộc vào tốc độ máy cũng như chi tiết cài đặt, các nhà khoa học máy tính thường đề cập đến **runtime** (thời gian chạy) tương ứng với kích thước input. Ví dụ, nếu input gồm $N$ số, một thuật toán có thời gian chạy tỉ lệ thuận với $N^2$ được kí hiệu là $O(N^2)$. Ký hiệu này nghĩa là, khi máy tính chạy một chương trình cài đặt thuật toán trên với độ lớn input là $N$, chương trình sẽ tốn $C*N^2$ giây, với $C$ là một hằng số không phụ thuộc vào kích thước input.
+Một trong những yếu tố quan trọng nhất của một thuật toán là việc nó chạy nhanh hay chậm. Nghĩ ra một thuật để giải một bài toán là việc dễ, nhưng để nó có ý nghĩa trong thực tế, thì thuật toán phải chạy đủ nhanh. Tốc độ của một thuật tùy thuộc vào tốc độ máy cũng như chi tiết cài đặt, các nhà khoa học máy tính thường đề cập đến **runtime** (thời gian chạy) tương ứng với kích thước input. Ví dụ, nếu input gồm $N$ số, một thuật toán có thời gian chạy tỉ lệ thuận với $N^{2}$ được kí hiệu là $\mathcal{O}(N^{2})$. Ký hiệu này nghĩa là, khi máy tính chạy một chương trình cài đặt thuật toán trên với độ lớn input là $N$, chương trình sẽ tốn $C \times N^{2}$ giây, với $C$ là một hằng số không phụ thuộc vào kích thước input.
 
 Tuy nhiên, thời gian chạy thực tế của nhiều thuật toán phức tạp còn phụ thuộc nhiều yếu tố khác ngoài độ lớn input. Ví dụ, một thuật toán sắp xếp sẽ chạy nhanh hơn nhiều khi được xử lí một dãy số đã sắp xếp sẵn so với khi phải giải quyết một dãy số lộn xộn. Từ đó sinh ra hai khái niệm: thời gian chạy tối đa và thời gian chạy trung bình. Thời gian chạy tối đa là thời gian thuật toán cần để xử lí input trong trường hợp tồi nhất. Thời gian chạy trung bình là thời gian trung bình cho mọi input có thể xuất hiện. Trong 2 thuật ngữ, thời gian tối đa thường dễ phân tích hơn, nên nó thường được sử dụng để đánh giá các thuật toán. Việc tính toán độ phức tạp nhiều lúc không đơn giản vì ta không thể kiểm tra được hết mọi trường hợp. Bạn có thể tìm đọc thêm về một số kĩ năng tính toán độ phức tạp ở các nguồn khác.
 
 **Ước tính thời gian chạy của các thuật, $N = 100$**
 
-* $O(\log{N})$: $10^{-7}$ giây
-* $O(N)$: $10^{-6}$ giây
-* $O(N\log{N})$: $10^{-5}$ giây
-* $O(N^2)$: $10^{-4}$ giây
-* $O(N^6)$: $3$ phút
-* $O(2^N)$: $10^{14}$ năm
-* $O(N!)$: $10^{142}$ năm
+* $\mathcal{O}(\log{N})$: $10^{-7}$ giây
+* $\mathcal{O}(N)$: $10^{-6}$ giây
+* $\mathcal{O}(N\log{N})$: $10^{-5}$ giây
+* $\mathcal{O}(N^{2})$: $10^{-4}$ giây
+* $\mathcal{O}(N^{6})$: $3$ phút
+* $\mathcal{O}(2^{N})$: $10^{14}$ năm
+* $\mathcal{O}(N!)$: $10^{142}$ năm
 
 
 ## Sắp xếp
 
-Thuật toán sắp xếp là một thuật toán rất hay được sử dụng trong khoa học máy tính. Cách đơn giản nhất để sắp xếp một nhóm đồ vật là lấy ra món đồ nhỏ nhất và đặt lên đầu. Ta lại lấy ra món đồ nhỏ thứ hai và đặt cạnh món đầu tiên; cứ thế tiếp tục. Đáng tiếc, độ phức tạp của thuật toán này là $O(N^2)$, tức thời gian chạy của thuật sẽ tương ứng với bình phương độ lớn input. Nếu cần sắp xếp 1 tỉ số, thuật sẽ cần $10^{18}$ **câu lệnh máy tính** (instructions). Để dễ hình dung thì một chiếc máy tính hiện đại mỗi giây chỉ giải quyết được gần $10^9$ câu lệnh, và sẽ cần nhiều năm mới sắp xếp xong 1 tỉ con số nói trên.
+Thuật toán sắp xếp là một thuật toán rất hay được sử dụng trong khoa học máy tính. Cách đơn giản nhất để sắp xếp một nhóm đồ vật là lấy ra món đồ nhỏ nhất và đặt lên đầu. Ta lại lấy ra món đồ nhỏ thứ hai và đặt cạnh món đầu tiên; cứ thế tiếp tục. Đáng tiếc, độ phức tạp của thuật toán này là $\mathcal{O}(N^{2})$, tức thời gian chạy của thuật sẽ tương ứng với bình phương độ lớn input. Nếu cần sắp xếp 1 tỉ số, thuật sẽ cần $10^{18}$ **câu lệnh máy tính** (instructions). Để dễ hình dung thì một chiếc máy tính hiện đại mỗi giây chỉ giải quyết được gần $10^{9}$ câu lệnh, và sẽ cần nhiều năm mới sắp xếp xong 1 tỉ con số nói trên.
 
-May thay, có nhiều thuật toán sắp xếp khác hiệu quả hơn như [Quick Sort](https://en.wikipedia.org/wiki/Quicksort), [Heap Sort](https://en.wikipedia.org/wiki/Heapsort), [Merge Sort](https://en.wikipedia.org/wiki/Merge_sort),... Nhiều thuật có độ phức tạp chỉ $O(N\log{N})$. Độ phức tạp nhỏ hơn rút ngắn rất nhiều thời gian để sắp xếp 1 tỉ con số, đến mức một chiếc máy tính bình thường nhất cũng thực hiện được trong chưa đến một phút. Thay vì $10^{18}$ câu lệnh, máy chỉ phải thực hiện $10^{10}$.
+May thay, có nhiều thuật toán sắp xếp khác hiệu quả hơn như [Quick Sort](https://en.wikipedia.org/wiki/Quicksort), [Heap Sort](https://en.wikipedia.org/wiki/Heapsort), [Merge Sort](https://en.wikipedia.org/wiki/Merge_sort),... Nhiều thuật có độ phức tạp chỉ $\mathcal{O}(N\log{N})$. Độ phức tạp nhỏ hơn rút ngắn rất nhiều thời gian để sắp xếp 1 tỉ con số, đến mức một chiếc máy tính bình thường nhất cũng thực hiện được trong chưa đến một phút. Thay vì $10^{18}$ câu lệnh, máy chỉ phải thực hiện $10^{10}$.
 
 
 ## Đường đi ngắn nhất
 
-Thuật toán tìm đường đi ngắn nhất giữa hai điểm đã được nghiên cứu từ rất lâu. Ứng dụng của thuật toán này rất nhiều, nhưng tạm thời hãy xét bài toán cơ bản nhất: tìm đường đi ngắn nhất từ A đến B trong một thành phố với một số con đường và giao lộ. Có rất nhiều thuật toán được phát triển để giải quyết các bài kiểu này, với mỗi phương pháp có ưu nhược điểm riêng. Trước khi tìm hiểu về chúng, hãy xem thử "thuật trâu" - xét hết các khả năng - sẽ mất bao lâu để giải. Đáng tiếc, ta sẽ không sống đủ lâu để biết kết quả từ phương pháp này - cho dù A và B đều ở trong một thị trấn nhỏ, bởi độ phức tạp của thuật là $O(C ^ N)$, với $C$ là hằng số. Dù $C$ có nhỏ, $C ^ N$ sẽ trở nên lớn khủng khiếp ngay cả với các giá trị vừa phải của $N$.
+Thuật toán tìm đường đi ngắn nhất giữa hai điểm đã được nghiên cứu từ rất lâu. Ứng dụng của thuật toán này rất nhiều, nhưng tạm thời hãy xét bài toán cơ bản nhất: tìm đường đi ngắn nhất từ A đến B trong một thành phố với một số con đường và giao lộ. Có rất nhiều thuật toán được phát triển để giải quyết các bài kiểu này, với mỗi phương pháp có ưu nhược điểm riêng. Trước khi tìm hiểu về chúng, hãy xem thử "thuật trâu" - xét hết các khả năng - sẽ mất bao lâu để giải. Đáng tiếc, ta sẽ không sống đủ lâu để biết kết quả từ phương pháp này - cho dù A và B đều ở trong một thị trấn nhỏ, bởi độ phức tạp của thuật là $\mathcal{O}(C^{N})$, với $C$ là hằng số. Dù $C$ có nhỏ, $C^{N}$ sẽ trở nên lớn khủng khiếp ngay cả với các giá trị vừa phải của $N$.
 
-Một trong những thuật toán nhanh nhất để giải quyết bài toán này có độ phức tạp $O(E  \log{V})$, với $E$ là số đường đi, $V$ là số giao lộ. Để  dễ hình dung, thuật toán sẽ mất 2 giây để tìm đường đi ngắn nhất trong thành phố có 10000 giao lộ và 20000 con đường. Thuật toán này - **[Djikstra](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)** - khá phức tạp và đòi hỏi sử dụng cấu trúc dữ liệu **[Hàng đợi ưu tiên (Priority Queue)](https://en.wikipedia.org/wiki/Priority_queue)**. Tuy nhiên có những trường hợp mà ngay cả **Djisktra** cũng trở nên quá chậm (ví dụ đường đi ngắn nhất từ Hà Nội đến Sillicon Valley - có đến hàng tỉ giao lộ), các lập trình viên sẽ sử dụng **heuristics**. Heuristics là một hàm xấp xỉ của một tính chất của bài toán. Ví dụ, trong bài toán này, 1 heuristic có thể là khoảng cách đường chim bay giữa 2 điểm. Sử dụng heuristic, chúng ta có thể tìm được lời giải nhanh hơn, ví dụ **[thuật toán A*](https://en.wikipedia.org/wiki/A*_search_algorithm)** có thể chạy nhanh hơn Dijkstra trong nhiều trường hợp. Phương pháp này không phải lúc nào cũng rút ngắn thời gian chạy của thuật trong trường hợp tệ nhất, nhưng nó hiệu quả với phần lớn trường hợp trong thực tế.
+Một trong những thuật toán nhanh nhất để giải quyết bài toán này có độ phức tạp $\mathcal{O}(E \log{V})$, với $E$ là số đường đi, $V$ là số giao lộ. Để  dễ hình dung, thuật toán sẽ mất 2 giây để tìm đường đi ngắn nhất trong thành phố có 10000 giao lộ và 20000 con đường. Thuật toán này - **[Djikstra](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)** - khá phức tạp và đòi hỏi sử dụng cấu trúc dữ liệu **[Hàng đợi ưu tiên (Priority Queue)](https://en.wikipedia.org/wiki/Priority_queue)**. Tuy nhiên có những trường hợp mà ngay cả **Djisktra** cũng trở nên quá chậm (ví dụ đường đi ngắn nhất từ Hà Nội đến Sillicon Valley - có đến hàng tỉ giao lộ), các lập trình viên sẽ sử dụng **heuristics**. Heuristics là một hàm xấp xỉ của một tính chất của bài toán. Ví dụ, trong bài toán này, 1 heuristic có thể là khoảng cách đường chim bay giữa 2 điểm. Sử dụng heuristic, chúng ta có thể tìm được lời giải nhanh hơn, ví dụ **[thuật toán A*](https://en.wikipedia.org/wiki/A*_search_algorithm)** có thể chạy nhanh hơn Dijkstra trong nhiều trường hợp. Phương pháp này không phải lúc nào cũng rút ngắn thời gian chạy của thuật trong trường hợp tệ nhất, nhưng nó hiệu quả với phần lớn trường hợp trong thực tế.
 
 
 ## Thuật toán xấp xỉ 
@@ -60,11 +60,11 @@ Một ví dụ nổi tiếng của NP-hard là bài toán [**Người bán hàng
 
 ## Thuật toán ngẫu nhiên 
 
-Một cách tiếp cận vấn đề khác đó là thử "random" theo một cách nào đó. Tuy không cải thiện tốc độ trong trường hợp xấu nhất, biện pháp này sẽ có hiệu quả với những trường hợp bình thường. **[QuickSort](https://en.wikipedia.org/wiki/Quicksort)** là một ví dụ điển hình cho việc random như vậy. Khi "suy biến", QuickSort sẽ sắp xếp một dãy trong $O(N^2)$, với $N$ là số phần tử của dãy. Nhưng nếu áp dụng random vào thuật toán, xác suất xảy ra suy biến là cực kì thấp, và độ phức tạp trung bình của QuickSort trở thành $O(N\log{N})$. Có những thuật có độ phức tạp $O(N\log{N})$ kể cả ở trường hợp xấu, nhưng chúng sẽ chậm hơn ở trường hợp bình thường. Dù độ phức tạp cùng là $O(N\log{N})$, QuickSort có hằng số $C$ nhỏ hơn nhiều, tức số phép tính cần thực hiện nhỏ hơn.
+Một cách tiếp cận vấn đề khác đó là thử "random" theo một cách nào đó. Tuy không cải thiện tốc độ trong trường hợp xấu nhất, biện pháp này sẽ có hiệu quả với những trường hợp bình thường. **[QuickSort](https://en.wikipedia.org/wiki/Quicksort)** là một ví dụ điển hình cho việc random như vậy. Khi "suy biến", QuickSort sẽ sắp xếp một dãy trong $\mathcal{O}(N^{2})$, với $N$ là số phần tử của dãy. Nhưng nếu áp dụng random vào thuật toán, xác suất xảy ra suy biến là cực kì thấp, và độ phức tạp trung bình của QuickSort trở thành $\mathcal{O}(N\log{N})$. Có những thuật có độ phức tạp $\mathcal{O}(N\log{N})$ kể cả ở trường hợp xấu, nhưng chúng sẽ chậm hơn ở trường hợp bình thường. Dù độ phức tạp cùng là $\mathcal{O}(N\log{N})$, QuickSort có hằng số $C$ nhỏ hơn nhiều, tức số phép tính cần thực hiện nhỏ hơn.
 
-Một thuật toán khác dùng random để tìm trung vị của một dãy với độ phức tạp trung bình $O(N)$. Đây là cải tiến rất lớn so với việc sắp xếp lại dãy và chọn ra phần tử giữa vốn có độ phức tạp $O(N\log{N})$. Thêm nữa, cho dù vẫn có các thuật toán tìm trung vị không-random với độ phức tạp $O(N)$, thuật toán này vẫn được áp dụng nhiều hơn nhờ cài đặt đơn giản và tốc độ chạy nhanh hơn.
+Một thuật toán khác dùng random để tìm trung vị của một dãy với độ phức tạp trung bình $\mathcal{O}(N)$. Đây là cải tiến rất lớn so với việc sắp xếp lại dãy và chọn ra phần tử giữa vốn có độ phức tạp $\mathcal{O}(N\log{N})$. Thêm nữa, cho dù vẫn có các thuật toán tìm trung vị không-random với độ phức tạp $\mathcal{O}(N)$, thuật toán này vẫn được áp dụng nhiều hơn nhờ cài đặt đơn giản và tốc độ chạy nhanh hơn.
 
-Ý tưởng chính của Thuật toán trung vị này là chọn ngẫu nhiên một số $X$ bất kì trong dãy, và đếm xem có bao nhiêu số nhỏ hơn nó. Giả sử dãy có $N$ số, và có $K$ số nhỏ hơn hoặc bằng $X$. Nếu $K<N/2$, vậy ta biết trung vị sẽ là số thứ $(N/2 - K)$ lớn hơn $X$. Ta bỏ đi $K$ số nhỏ hơn hoặc bằng $X$. Bây giờ ta phải tìm số nhỏ thứ $(N/2-K)$, thay vì số trung vị. Ta tiếp tục random một số $X$ khác, và lặp lại. 
+Ý tưởng chính của Thuật toán trung vị này là chọn ngẫu nhiên một số $X$ bất kì trong dãy, và đếm xem có bao nhiêu số nhỏ hơn nó. Giả sử dãy có $N$ số, và có $K$ số nhỏ hơn hoặc bằng $X$. Nếu $K < \frac{N}{2}$, vậy ta biết trung vị sẽ là số thứ $\left( \frac{N}{2} - K \right)$ lớn hơn $X$. Ta bỏ đi $K$ số nhỏ hơn hoặc bằng $X$. Bây giờ ta phải tìm số nhỏ thứ $\left( \frac{N}{2} - K \right)$, thay vì số trung vị. Ta tiếp tục random một số $X$ khác, và lặp lại. 
 
 ## Compression - Nén
 
@@ -101,7 +101,7 @@ Nhiều coder đi làm cả đời mà không từng phải cài một thuật t
 
 Ví dụ, có 2 xâu "AABAA" và "AAAB". Để chuyển xâu đầu thành xâu sau, đơn giản nhất là xóa kí tự 'B' ở giữa rồi chuyển 'A' cuối xâu thành 'B'. Thuật toán này có rất nhiều ứng dụng, ví dụ như trong các vấn đề liên quan đến DNA hay chống đạo văn. Với các lập trình viên, thuật toán này thường được dùng trong việc so sánh 2 phiên bản source code (mã nguồn) của cùng 1 file. Nếu các phần tử của chuỗi là các dòng của file, thuật sẽ cho ta biết dòng code nào bị xóa, dòng nào bị thêm vào hay sửa đi trong các phiên bản đó.
 
-Không có quy hoạch động, ta sẽ phải xét các trường hợp theo cấp số mũ để biến một xâu thành xâu khác. Với quy hoạch động, bài toán này được giải quyết với độ phức tạp chỉ $O(NM)$, trong đó $N$ và $M$ là số phần tử của mỗi xâu.
+Không có quy hoạch động, ta sẽ phải xét các trường hợp theo cấp số mũ để biến một xâu thành xâu khác. Với quy hoạch động, bài toán này được giải quyết với độ phức tạp chỉ $\mathcal{O}(NM)$, trong đó $N$ và $M$ là số phần tử của mỗi xâu.
 
 ## Kết luận
 

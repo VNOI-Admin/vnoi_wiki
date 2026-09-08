@@ -33,6 +33,8 @@ Stack có khá nhiều ứng dụng trong lập trình thi đấu. Bài viết n
 
 Ta có thể biểu diễn Stack bằng một mảng, cùng với biến `top` biểu diễn vị trí của phần tử nằm ở đỉnh Stack. Dưới đây là một cách cài đặt Stack chứa các phần tử thuộc kiểu `int`:
 ```cpp
+#include <cassert>
+
 const int MAXN = 1e5 + 2;
 
 int st[MAXN];
@@ -96,11 +98,11 @@ Do Stack có thể được cài đặt bằng `vector` nên các thao tác trê
 
 ### Độ phức tạp thời gian
 
-Các hàm `push`, `pop`, `top`, `size` và `empty` của Stack đều hoạt động trong $O(1)$. Hơn nữa, như ta đã thấy ở cách cài đặt thủ công, bản chất của Stack chính là mảng, nên tất cả các thao tác trên Stack đều hoạt động trong $O(1)$.
+Các hàm `push`, `pop`, `top`, `size` và `empty` của Stack đều hoạt động trong $\mathcal{O}(1)$. Hơn nữa, như ta đã thấy ở cách cài đặt thủ công, bản chất của Stack chính là mảng, nên tất cả các thao tác trên Stack đều hoạt động trong $\mathcal{O}(1)$.
 
 ### Độ phức tạp bộ nhớ
 
-Độ phức tạp bộ nhớ của Stack là $O(N)$, với $N$ là số phần tử được đưa vào Stack.
+Độ phức tạp bộ nhớ của Stack là $\mathcal{O}(N)$, với $N$ là số phần tử được đưa vào Stack.
 
 # Ứng dụng
 
@@ -120,40 +122,37 @@ Xét bài toán đơn giản hơn: trong xâu $S$ chỉ có các dấu $+$ và $
 
 ```cpp
 // xử lý toán tử và cập nhật trực tiếp vào mảng val
-void process_op(vector<int>& val, char op)
-{
+void process_op(vector<int> &val, char op) {
     // l, r là 2 toán hạng, op là dấu giữa chúng
-    int r = val.back(); val.pop_back();
-    int l = val.back(); val.pop_back();
-    switch(op)
-    {
-    case '+':  val.push_back(l + r); break;
-    case '-': val.push_back(l - r); break;
+    int r = val.back();
+    val.pop_back();
+    int l = val.back();
+    val.pop_back();
+    switch (op) {
+    case '+':
+        val.push_back(l + r);
+        break;
+    case '-':
+        val.push_back(l - r);
+        break;
     }
 }
 
 // tính giá trị của biểu thức biểu diễn bởi s
-int evaluate(string s)
-{
+int evaluate(string s) {
     vector<int> val;
     vector<char> op;
-    for (int i = 0; i < (int)s.size(); ++i)
-    {
-        if (isdigit(s[i]))
-        {
+    for (int i = 0; i < (int)s.size(); ++i) {
+        if (isdigit(s[i])) {
             int number = 0; // giá trị của toán hạng đang xét
-            while (i < (int)s.size() && isdigit(s[i]))
-            {
+            while (i < (int)s.size() && isdigit(s[i])) {
                 number = number * 10 + s[i] - '0';
                 ++i;
             }
             val.push_back(number);
             --i; // cẩn thận với index!
-        }
-        else
-        {
-            if (!op.empty())
-            {
+        } else {
+            if (!op.empty()) {
                 process_op(val, op.back()); // xử lý biểu thức từ trái sang phải
                 op.pop_back();
             }
@@ -171,17 +170,18 @@ int evaluate(string s)
 }
 ```
 
-Do các toán tử có cùng độ ưu tiên, ta có thể xử lý chúng lần lượt theo danh sách đã xây dựng. Tuy nhiên, nếu danh sách $op$ có các toán tử khác độ ưu tiên, thì ta vẫn có thể xử lý bài toán bằng việc luôn giữ cho danh sách toán tử $op$ chứa các toán tử có độ ưu tiên *tăng dần*, sau đó xử lý danh sách toán tử từ dưới lên để đảm bảo các dấu có độ ưu tiên lớn hơn luôn được xử lý trước.
+Do các toán tử có cùng độ ưu tiên, ta có thể xử lý chúng lần lượt theo danh sách đã xây dựng. Tuy nhiên, nếu danh sách $\texttt{op}$ có các toán tử khác độ ưu tiên, thì ta vẫn có thể xử lý bài toán bằng việc luôn giữ cho danh sách toán tử $\texttt{op}$ chứa các toán tử có độ ưu tiên *tăng dần*, sau đó xử lý danh sách toán tử từ dưới lên để đảm bảo các dấu có độ ưu tiên lớn hơn luôn được xử lý trước.
 
 Trong bài toán gốc, xâu $S$ còn chứa ký tự $\times$ và $\div$. Ta cần xử lý danh sách toán tử sao cho các phép tính có độ ưu tiên lớn hơn luôn được thực hiện trước.
 
 Ta định nghĩa một thứ tự ưu tiên cho các dấu:
 ```cpp
 // Trả về 2 nếu là nhân hoặc chia, 1 nếu là cộng hoặc trừ
-int priority(char op)
-{
-    if (op == '+' || op == '-') return 1;
-    else return 2;
+int priority(char op) {
+    if (op == '+' || op == '-')
+        return 1;
+    else
+        return 2;
 }
 ```
 
@@ -190,30 +190,33 @@ Giống với bài toán đơn giản, ta vẫn duyệt xâu $S$ từ trái sang
 Để ý rằng bản chất của danh sách ta sử dụng chính là Stack. Việc thêm toán tử/toán hạng vào danh sách chính là thao tác `push`; cách ta xử lý toán tử gợi đến việc `top` và `pop` do trong các bước của lời giải, ta chỉ cần quan tâm tới những phần tử ở cuối danh sách. Lời giải sử dụng `vector` để biểu diễn Stack.
 
 ```cpp
-void process_op(vector<int>& val, char op)
-{
-    int r = val.back(); val.pop_back();
-    int l = val.back(); val.pop_back();
-    switch(op)
-    {
-    case '+': val.push_back(l + r); break;
-    case '-': val.push_back(l - r); break;
-    case '*': val.push_back(l * r); break;
-    case '/': val.push_back(l / r); break;
+void process_op(vector<int> &val, char op) {
+    int r = val.back();
+    val.pop_back();
+    int l = val.back();
+    val.pop_back();
+    switch (op) {
+    case '+':
+        val.push_back(l + r);
+        break;
+    case '-':
+        val.push_back(l - r);
+        break;
+    case '*':
+        val.push_back(l * r);
+        break;
+    case '/':
+        val.push_back(l / r);
+        break;
     }
 }
 
-int evaluate(string s)
-{
+int evaluate(string s) {
     // ...
-    for (int i = 0; i < (int)s.size(); ++i)
-    {
-        if (isdigit(s[i]))
-        {
+    for (int i = 0; i < (int)s.size(); ++i) {
+        if (isdigit(s[i])) {
             // ...
-        }
-        else
-        {
+        } else {
             char cur_op = s[i]; // toán tử hiện tại
             while (!op.empty() && priority(op.back()) >= priority(cur_op))
             // xử lý các toán tử ngay trước nó có độ ưu tiên bằng hoặc lớn hơn
@@ -240,10 +243,10 @@ int evaluate(string s)
 
 Xét ví dụ: $S = 2 \times 3 - 4 \times 5$.
 
-Giá trị của $val$ và $op$ sau khi xử lý xâu $S$:
+Giá trị của $\texttt{val}$ và $\texttt{op}$ sau khi xử lý xâu $S$:
 ![](/algo/data-structures/stack/stack_(2).png)
 
-Quá trình xử lý danh sách toán tử $op$:
+Quá trình xử lý danh sách toán tử $\texttt{op}$:
 ![](/algo/data-structures/stack/stack_(3).png)
 
 ### Bài toán 2
@@ -269,7 +272,7 @@ Từ các định nghĩa, có thể rút ra các tính chất của dãy ngoặc
 * **Tính chất 1**: Giữa một cặp dấu ngoặc tương ứng là một dãy ngoặc đúng
 * **Tính chất 2**: Một dãy ngoặc đúng độ dài $2 \times n$ có $n$ cặp dấu ngoặc tương ứng, tương ứng với $n$ dấu ngoặc mở và $n$ dấu ngoặc đóng. Dấu ngoặc tương ứng của một dấu ngoặc mở phải nằm ở sau nó trong dãy, và dấu ngoặc tương ứng của một dấu ngoặc đóng phải nằm trước nó. Do đó, dãy ngoặc đúng không thể bắt đầu bằng dấu đóng ngoặc, hay kết thúc bằng dầu mở ngoặc.
 * **Tính chất 3**: Xét một dãy ngoặc đúng $S$. Nếu một tiền tố hoặc hậu tố $A$ của $S$ là một dãy ngoặc đúng, thì dãy $S \setminus A$, hay dãy con của $S$ không chứa $A$, cũng là một dãy ngoặc đúng.
-* **Tính chất 4**: Nếu $S$ là dãy ngoặc đúng thì nó có thể được tách ra thành tổng của các dãy ngoặc đúng độc lập nhau, hay $S = s_1 + s_2 + ... + s_k$, với $s_1, s_2, ..., s_k$ đều là dãy ngoặc đúng *cơ bản*.
+* **Tính chất 4**: Nếu $S$ là dãy ngoặc đúng thì nó có thể được tách ra thành tổng của các dãy ngoặc đúng độc lập nhau, hay $S = s_1 + s_2 + \cdots + s_k$, với $s_1, s_2, \ldots, s_k$ đều là dãy ngoặc đúng *cơ bản*.
 * **Tính chất 5**: Ký tự đầu và cuối của dãy ngoặc đúng cơ bản tạo thành một cặp dấu ngoặc tương ứng.
 
 Ta có các bổ đề và hệ quả sau:
@@ -287,9 +290,13 @@ Giả sử dấu ngoặc ở vị trí $k$ là dấu ngoặc đóng và có th�
 * Dãy ngoặc con từ vị trí $i + 1$ đến $k - 1$ của dãy gốc là dãy ngoặc đúng.
 * Dãy ngoặc con từ vị trí $j + 1$ đến $k - 1$ của dãy gốc là dãy ngoặc đúng.
 
-$......(......(...)$
+$$
+\ldots(\ldots(\ldots(
+$$
 
-$......i......j...k$
+$$
+\ldots i \ldots j \ldots k
+$$
 
 Theo **tính chất 3**, dãy ngoặc từ vị trí $i + 1$ đến $j$ cũng là dãy ngoặc đúng. Mà dãy ngoặc từ vị trí $i + 1$ đến $j$ lại kết thúc bằng dấu mở ngoặc, trái với **tính chất 2**. Vậy giả thiết tồn tại một dấu ngoặc tương ứng với nhiều hơn một dấu ngoặc khác là sai.
 
@@ -327,7 +334,7 @@ Từ bây giờ, ta mặc định $S$ là dãy ngoặc đúng, và chứng minh 
 
 Quan sát quá trình trên, ta có một nhận xét quan trọng: sau khi xử lý một dãy ngoặc đúng trên Stack $st$ thì Stack sẽ giữ nguyên trạng thái. Điều này là đúng do mỗi dấu mở ngoặc được `push` vào Stack và `pop` khỏi Stack đúng một lần.
 
-Theo **tính chất 4**, $S$ có thể được tách thành tổng của các dãy ngoặc đúng cơ bản $s_1 + s_2 + ... + s_k$. Theo **tính chất 5**, $s_i = ( \ + s' + \ )$, với $s'$ là dãy ngoặc đúng, có thể là xâu rỗng. Vì sau khi xử lý các dãy $s_1, s_2, ...$ thì Stack sẽ trở về trạng thái rỗng, nên ta chỉ cần xem xét quá trình với dãy ngoặc đúng cơ bản $s_i$:
+Theo **tính chất 4**, $S$ có thể được tách thành tổng của các dãy ngoặc đúng cơ bản $s_1 + s_2 + \cdots + s_k$. Theo **tính chất 5**, $s_i = ( \ + s' + \ )$, với $s'$ là dãy ngoặc đúng, có thể là xâu rỗng. Vì sau khi xử lý các dãy $s_1, s_2, \ldots$ thì Stack sẽ trở về trạng thái rỗng, nên ta chỉ cần xem xét quá trình với dãy ngoặc đúng cơ bản $s_i$:
 
 * Đẩy dấu ngoặc mở vào Stack
 * Xử lý dãy ngoặc đúng $s'$ để tìm các cặp dấu ngoặc tương ứng trong đó. Sau bước này, ta tìm được tất cả cặp dấu tương ứng trong $s'$.
@@ -344,21 +351,20 @@ Ta có thể cài đặt bài toán đúng như mô tả của quá trình nêu 
 stack<int> st;
 vector<pair<int, int>> matches; // lưu các cặp dấu ngoặc tương ứng
 
-bool solve(string s)
-{
+bool solve(string s) {
     int n = (int)s.size();
-    for (int i = 0; i < n; ++i)
-    {
+    for (int i = 0; i < n; ++i) {
         if (s[i] == '(') // chỉ đẩy dấu ngoặc mở vào Stack
             st.push(i);
-        else
-        {
-            if (st.empty()) return false; // dãy không phải là dãy ngoặc đúng
+        else {
+            if (st.empty())
+                return false;                 // dãy không phải là dãy ngoặc đúng
             matches.push_back({st.top(), i}); // tìm thấy một cặp tương ứng
             st.pop();
         }
     }
-    if (!st.empty()) return false; // nếu Stack không rỗng thì dãy không đúng
+    if (!st.empty())
+        return false; // nếu Stack không rỗng thì dãy không đúng
     return true;
 }
 ```
@@ -377,9 +383,8 @@ Vì tính chất **LIFO** của Stack, nó có thể được sử dụng để 
 Xét thuật toán DFS với cách cài đặt sử dụng đệ quy:
 
 ```cpp
-void dfs(int start)
-{
-    visited[start] = true; // đánh dầu đỉnh đã thăm
+void dfs(int start) {
+    visited[start] = true;   // đánh dầu đỉnh đã thăm
     for (int u : adj[start]) // với các đỉnh thuộc danh sách kề của đỉnh đang xét
     {
         if (visited[u])
@@ -392,15 +397,13 @@ void dfs(int start)
 Ta có thể cài đặt DFS sử dụng Stack:
 
 ```cpp
-void dfs(int start)
-{
+void dfs(int start) {
     stack<int> st;
     st.push(start); // ta bắt đầu từ đỉnh "start"
 
-    while (!st.empty())
-    {
-        int v = st.top(); // thăm đỉnh v ở đỉnh Stack
-        st.pop(); // loại bỏ đỉnh v khỏi Stack do đã thăm
+    while (!st.empty()) {
+        int v = st.top();  // thăm đỉnh v ở đỉnh Stack
+        st.pop();          // loại bỏ đỉnh v khỏi Stack do đã thăm
         visited[v] = true; // đánh dấu v đã thăm
 
         for (int u : adj[v]) // xét các đỉnh của đồ thị chung cạnh với v
@@ -417,7 +420,7 @@ Trong cách cài đặt DFS đệ quy, một nhánh đệ quy luôn phải đư�
 
 Việc dùng Stack để khử đệ quy có thể áp dụng với mọi hàm có tính chất đệ quy. Trên lý thuyết, độ phức tạp thời gian và bộ nhớ của 2 cách cài đặt dùng Stack và dùng đệ quy là như nhau, nhưng trên thực tế, cách cài đặt dùng Stack thường hiệu quả hơn về mặt bộ nhớ, do việc gọi đệ quy chịu ảnh hưởng bởi [Function Overhead](https://en.wikipedia.org/wiki/Overhead_(computing)). Đổi lại, cách cài đặt dùng Stack thường khiến code trở nên phức tạp và thiếu trực quan hơn.
 
-Trong lập trình thi đấu, ta có thể sử dụng đệ quy thông thường trong hầu hết các trường hợp. Ta chỉ cần dùng Stack khi hàm đệ quy quá sâu và có nguy cơ bị [tràn bộ nhớ](https://vi.wikipedia.org/wiki/L%E1%BB%97i_tr%C3%A0n_b%E1%BB%99_nh%E1%BB%9B_%C4%91%E1%BB%87m). Theo kinh nghiệm của người viết, ta cần khử đệ quy khi hàm có thể đạt độ sâu khoảng $10^7$.
+Trong lập trình thi đấu, ta có thể sử dụng đệ quy thông thường trong hầu hết các trường hợp. Ta chỉ cần dùng Stack khi hàm đệ quy quá sâu và có nguy cơ bị [tràn bộ nhớ](https://vi.wikipedia.org/wiki/L%E1%BB%97i_tr%C3%A0n_b%E1%BB%99_nh%E1%BB%9B_%C4%91%E1%BB%87m). Theo kinh nghiệm của người viết, ta cần khử đệ quy khi hàm có thể đạt độ sâu khoảng $10^{7}$.
 
 ## Stack đơn điệu
 
@@ -429,13 +432,13 @@ Hình ảnh minh họa cho một Stack đơn điệu giảm:
 
 ### Bài toán
 
-Cho mảng $A$ có $n$ phần tử $a_1, a_2, \dots, a_n$, $n \leq 10^6$. Với mỗi $i$ từ $1$ đến $n$ ta cần tìm $j$ sao cho $a_j > a_i$, và $\lvert i - j \rvert$ nhỏ nhất. Nếu không tồn tại $j$, in ra $-1$.
+Cho mảng $A$ có $n$ phần tử $a_1, a_2, \dots, a_n$, $n \leq 10^{6}$. Với mỗi $i$ từ $1$ đến $n$ ta cần tìm $j$ sao cho $a_j > a_i$, và $\lvert i - j \rvert$ nhỏ nhất. Nếu không tồn tại $j$, in ra $-1$.
 
 #### Nhận xét
 
 Ta sẽ bài toán đơn giản hơn: với mỗi $i$ ta chỉ cần tìm $j$ thỏa mãn điều kiện gốc, *mà $j < i$*. Rõ ràng, nếu ta giải được bài toán này thì bài toán gốc cũng có thể dễ dàng giải được, vì nếu $j > i$ thì ta có thể duyệt ngược lại mảng $A$, đưa bài toán về dạng đơn giản như đã nói.
 
-Do $n \leq 10^6$ nên cách giải hồn nhiên: với mỗi $i$ ta lại xét $j$ từ $1$ đến $n$ là chưa đủ để giải quyết bài toán, do độ phức tạp thời gian lên tới $O(n^2)$.
+Do $n \leq 10^{6}$ nên cách giải hồn nhiên: với mỗi $i$ ta lại xét $j$ từ $1$ đến $n$ là chưa đủ để giải quyết bài toán, do độ phức tạp thời gian lên tới $\mathcal{O}(n^{2})$.
 
 #### Mô hình lại bài toán
 
@@ -477,8 +480,7 @@ Từ các bước nêu trong mô hình, có thể cài đặt lời giải như 
 ```cpp
 stack<int> st;
 
-for (int i = 1; i <= n; ++i)
-{
+for (int i = 1; i <= n; ++i) {
     while (!st.empty() && a[st.top()] <= a[i])
         st.pop();
     int ans = -1;
@@ -491,9 +493,9 @@ for (int i = 1; i <= n; ++i)
 
 #### Đánh giá độ phức tạp
 
-Độ phức tạp bộ nhớ của lời giải là $O(n)$ do sử dụng Stack và một mảng chứa $n$ phần tử.
+Độ phức tạp bộ nhớ của lời giải là $\mathcal{O}(n)$ do sử dụng Stack và một mảng chứa $n$ phần tử.
 
-Thoạt nhìn, độ phức tạp tính toán của lời giải có vẻ là $O(n^2)$ do có vòng lặp `while` lồng trong vòng `for`. Tuy nhiên, để ý rằng mỗi phần tử $a_i$ đều được `push()` vào Stack đúng một lần, và bị `pop()` khỏi Stack tối đa 1 lần, nên độ phức tạp tính toán vẫn là $O(n)$
+Thoạt nhìn, độ phức tạp tính toán của lời giải có vẻ là $\mathcal{O}(n^{2})$ do có vòng lặp `while` lồng trong vòng `for`. Tuy nhiên, để ý rằng mỗi phần tử $a_i$ đều được `push()` vào Stack đúng một lần, và bị `pop()` khỏi Stack tối đa 1 lần, nên độ phức tạp tính toán vẫn là $\mathcal{O}(n)$
 
 ### Mở rộng
 
@@ -506,7 +508,9 @@ Bài toán gốc nêu trên có nhiều ứng dụng và mở rộng. Sau đây 
 Vẽ $n$ cột hình chữ nhật sát nhau. Cột thứ $i$ có chiều rộng $1$ và chiều cao $h_i$. Tìm hình chữ nhật có diện tích lớn nhất tạo bởi các cột.
 
 Ví dụ:
-$h = \{2, 4, 4, 3, 2\}$
+$$
+h = \{2, 4, 4, 3, 2\}
+$$
 
 Hình chữ nhật lớn nhất có diện tích $10$
 
@@ -518,11 +522,11 @@ Hình chữ nhật lớn nhất có diện tích $10$
 
 Với mỗi cột $i$, ký hiệu $L_i$, $R_i$ là cột gần nhất ở bên trái/phải $i$ có chiều cao **nhỏ hơn $i$**. Việc tìm cột gần nhất ở bên trái/phải cột $i$ mà thấp hơn $h_i$ chính là bài toán gốc nêu ở mục trước. Ta chỉ cần sửa đổi thay vì tìm cột cao hơn thì phải tìm cột thấp hơn.
 
-Khi đã xác định các mảng $L$ và $R$, ta có thể xét từng cột $i$ từ $1$ đến $n$. Giả sử hình chữ nhật có chiều cao bằng với cột đang xét. Khi đó, chiều dài lớn nhất của hình chữ nhật là từ cột gần nhất bên trái thấp hơn cột $i$ đến cột gần nhất bên phải thấp hơn cột $i$. Diện tích của hình chữ nhật lớn nhất qua cột $i$ là: $(R_i - L_i - 1) * h_i$.
+Khi đã xác định các mảng $L$ và $R$, ta có thể xét từng cột $i$ từ $1$ đến $n$. Giả sử hình chữ nhật có chiều cao bằng với cột đang xét. Khi đó, chiều dài lớn nhất của hình chữ nhật là từ cột gần nhất bên trái thấp hơn cột $i$ đến cột gần nhất bên phải thấp hơn cột $i$. Diện tích của hình chữ nhật lớn nhất qua cột $i$ là: $(R_i - L_i - 1) \times h_i$.
 
-Vậy diện tích hình chữ nhật lớn nhất chính là giá trị $(R_i - L_i - 1) * h_i$ lớn nhất với mọi $i$ từ $1$ đến $n$.
+Vậy diện tích hình chữ nhật lớn nhất chính là giá trị $(R_i - L_i - 1) \times h_i$ lớn nhất với mọi $i$ từ $1$ đến $n$.
 
-Độ phức tạp thời gian và bộ nhớ của lời giải là $O(n)$.
+Độ phức tạp thời gian và bộ nhớ của lời giải là $\mathcal{O}(n)$.
 
 #### Hình chữ nhật lớn nhất trong lưới ô vuông
 
@@ -537,19 +541,20 @@ Ta có thể chia bài toán thành hai trường hợp riêng biệt: tìm hìn
 Ta xét lưới ô vuông con của lưới gốc, kích thước $k \times m$. Nói cách khác, lưới ô vuông con này chính là $k$ hàng đầu tiên của lưới gốc. Với mỗi $k$ từ $1$ đến $n$, ta xét chiều cao của các cột chứa toàn số $1$ dựng trên từng vị trí trong hàng. Sau đó, ta có thể áp dụng bài toán tìm hình chữ nhật lớn nhất tạo bởi các cột để giải quyết vấn đề.
 
 ```cpp
-for (int i = 1; i <= m; ++i) h[i] = 0;
-for (int k = 1; k <= n; ++k)
-{
-    for (int j = 1; j <= m; ++j)
-    {
-        if (grid[k][j] == 1) ++h[j];
-        else h[j] = 0;
+for (int i = 1; i <= m; ++i)
+    h[i] = 0;
+for (int k = 1; k <= n; ++k) {
+    for (int j = 1; j <= m; ++j) {
+        if (grid[k][j] == 1)
+            ++h[j];
+        else
+            h[j] = 0;
     }
     // giải bài toán tìm hình chữ nhật lớn nhất trong các cột...
 }
 ```
 
-Độ phức tạp thời gian và bộ nhớ của lời giải là $O(n \times m)$.
+Độ phức tạp thời gian và bộ nhớ của lời giải là $\mathcal{O}(n \times m)$.
 
 # Bài tập áp dụng
 * [JNEXT](https://www.spoj.com/problems/JNEXT/)

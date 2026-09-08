@@ -50,25 +50,43 @@ Cho một mạng, chúng ta cần tìm một luồng hợp lệ sao cho tổng l
 
 Ta có:
 
-$\sum_{u \in V} \sum_{v \in V} f(u,v)$
+$$
+\sum_{u \in V} \sum_{v \in V} f(u,v)
+$$
 
-$=\sum_{u \in V} \sum_{v \in V} \frac{1}{2} (f(u,v)+f(u,v))$
+$$
+=\sum_{u \in V} \sum_{v \in V} \frac{1}{2} (f(u,v)+f(u,v))
+$$
 
-$=\sum_{u \in V} \sum_{v \in V} \frac{1}{2} (f(u,v)-f(v,u))$
+$$
+=\sum_{u \in V} \sum_{v \in V} \frac{1}{2} (f(u,v)-f(v,u))
+$$
 
-$=\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(u,v)-\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(v,u)$
+$$
+=\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(u,v)-\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(v,u)
+$$
 
-$=\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(u,v)-\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(u,v)$
+$$
+=\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(u,v)-\frac{1}{2}\sum_{u \in V} \sum_{v \in V} f(u,v)
+$$
 
-$=0$
+$$
+=0
+$$
 
 Lại có:
 
-$\sum_{u \in V} \sum_{v \in V} f(u,v)$
+$$
+\sum_{u \in V} \sum_{v \in V} f(u,v)
+$$
 
-$=\sum_{u \in V \setminus \{s,t\}} \sum_{v \in V} f(u,v)+\sum_{v \in V}f(s,v)+\sum_{v \in V}f(t,v)$
+$$
+=\sum_{u \in V \setminus \{s,t\}} \sum_{v \in V} f(u,v)+\sum_{v \in V}f(s,v)+\sum_{v \in V}f(t,v)
+$$
 
-$=\sum_{v \in V}f(s,v)-\sum_{v \in V}f(v,t)$
+$$
+=\sum_{v \in V}f(s,v)-\sum_{v \in V}f(v,t)
+$$
 
 Vậy: $\sum_{v \in V}f(s,v)=\sum_{v \in V}f(v,t)$
 
@@ -123,7 +141,7 @@ relabel(v):
 
 ## Các hướng tiếp cận khác
 
-Một số phương pháp tinh vi hơn đã được giới thiệu bởi King, Rao và Tarjan (1994) và Orlin (2012). Kết hợp hai phương pháp cho ta một thuật toán tổng quát có độ phức tạp $O(VE)$, tối ưu nhất cho đến giờ phút này.
+Một số phương pháp tinh vi hơn đã được giới thiệu bởi King, Rao và Tarjan (1994) và Orlin (2012). Kết hợp hai phương pháp cho ta một thuật toán tổng quát có độ phức tạp $\mathcal{O}(VE)$, tối ưu nhất cho đến giờ phút này.
 
 # Bài toán lát cắt hẹp nhất (Minimun $s-t$ cut)
 

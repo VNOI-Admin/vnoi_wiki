@@ -22,15 +22,15 @@ Người dịch: Bùi Việt Dũng
 
 Ta đã biết **phân tích một số ra thừa số nguyên tố (factorization)** là biểu diễn số đó dưới dạng tích của các số nguyên tố. Dễ dàng chứng minh rằng cách biểu diễn là duy nhất. Ví dụ:
 
-- $8 = 2^3$.
+- $8 = 2^{3}$.
 
 - $11 = 11$.
 
-- $36 = 2^2.3^3$.
+- $36 = 2^{2} \times 3^{3}$.
 
-- $935 = 5.11.17$.
+- $935 = 5 \times 11 \times 17$.
 
-- $5136 = 2^4.3.107$.
+- $5136 = 2^{4} \times 3 \times 107$.
 
 Từ cách phân tích một số ra thừa số nguyên tố, ta tính được phi hàm Euler của số đó.
 
@@ -52,33 +52,40 @@ int phi(int n) {
 }
 ```
 
-**Độ phức tạp của thuật toán:** $O(\sqrt{N})$.
+**Độ phức tạp của thuật toán:** $\mathcal{O}(\sqrt{N})$.
 
 # Công thức
 
 Một công thức thường gặp để tính phi:
 
-$\varphi(N) = n \times \prod\limits_{p\mid n}\left(1 - \frac{1}{p}\right) $
+$$
+\varphi(N) = n \times \prod\limits_{p\mid n}\left(1 - \frac{1}{p}\right)
+$$
 
 ($p$ là các ước nguyên tố của $n$).
 
 Ví dụ:
 
-$\varphi(6) = 6 \times (1 - 1/2) \times (1 - 1/3) = 2$
+$$
+\varphi(6) = 6 \times \left(1 - \frac{1}{2}\right) \times \left(1 - \frac{1}{3}\right) = 2
+$$
 
 Cài đặt:
 
 ```cpp
 int eulerPhi(int n) { // = n (1-1/p1) ... (1-1/pn)
-    if (n == 0) return 0;
+    if (n == 0)
+        return 0;
     int ans = n;
-    for (int x = 2; x*x <= n; ++x) {
+    for (int x = 2; x * x <= n; ++x) {
         if (n % x == 0) {
             ans -= ans / x;
-            while (n % x == 0) n /= x;
+            while (n % x == 0)
+                n /= x;
         }
     }
-    if (n > 1) ans -= ans / n;
+    if (n > 1)
+        ans -= ans / n;
     return ans;
 }
 ```

@@ -38,7 +38,7 @@ Tuy nghe tên có vẻ kinh khủng nhưng trên thực tế, đây là một k�
 
 Trước hết, chúng ta sẽ đến với phiên bản dễ hơn của bài toán như sau.
 
-Cho một mảng số nguyên dương gồm tối đa $10^5$ phần tử. Chúng ta cần xử lý tối đa $10^5$ truy vấn thuộc một trong hai loại sau:
+Cho một mảng số nguyên dương gồm tối đa $10^{5}$ phần tử. Chúng ta cần xử lý tối đa $10^{5}$ truy vấn thuộc một trong hai loại sau:
 - Cập nhật giá trị của phần tử thứ $i$ thành $x$
 - Tính tổng XOR của tất cả các phần tử trong đoạn từ $l$ đến $r$
 
@@ -52,7 +52,7 @@ Cho một cây (một đồ thị có $n$ đỉnh và $n-1$ cạnh và giữa ha
 - Cập nhật giá trị của đỉnh $i$ thành $x$
 - Tính tổng XOR của tất cả các giá trị trên đường đi từ đỉnh $u$ đến đỉnh $v$
 
-Đường đi từ $u$ đến $v$ trên đồ thị được định nghĩa là một chuỗi các đỉnh $u, w_1, w_2, ..., w_k, v$ trong đó tồn tại một cạnh nối giữa $u$ và $w_1$, $w_1$ và $w_2$, ..., $w_{k-1}$ đến $w_k$, $w_k$ đến $v$. Với mỗi cặp đỉnh $u$, $v$ bất kỳ trên cây tồn tại một và chỉ một đường đi từ $u$ đến $v$.
+Đường đi từ $u$ đến $v$ trên đồ thị được định nghĩa là một chuỗi các đỉnh $u, w_1, w_2, \ldots, w_k, v$ trong đó tồn tại một cạnh nối giữa $u$ và $w_1$, $w_1$ và $w_2$, ..., $w_{k-1}$ đến $w_k$, $w_k$ đến $v$. Với mỗi cặp đỉnh $u$, $v$ bất kỳ trên cây tồn tại một và chỉ một đường đi từ $u$ đến $v$.
 
 ## HLD
 ### Ý tưởng chính
@@ -76,23 +76,23 @@ Có thể thấy rằng, những cạnh được đánh dấu sẽ tạo thành 
 
 Với cách quy ước trên, ta có thể thấy rằng hai chuỗi "liền nhau" được nối với nhau bởi một cạnh nhẹ. Hai chuỗi "liền nhau" là hai chuỗi mà tồn tại đỉnh $u$ nằm ở một chuỗi và $v$ nằm ở chuỗi còn lại sao cho $u$ và $v$ có cạnh nối trực tiếp với nhau. Do $u$ và $v$ khác chuỗi nên cạnh nối giữa $u$ và $v$ là cạnh nhẹ. Hai chuỗi không thể nối ở nhiều hơn một cặp điểm.
 
-Khi đó, chúng ta có thể chứng minh được rằng đường đi giữa hai đỉnh **bất kỳ** trên cây đi qua không quá **$O(\log(n))$** chuỗi. Bạn đọc có thể tự chứng minh nhận xét trên trước khi đọc chứng minh bên dưới.
+Khi đó, chúng ta có thể chứng minh được rằng đường đi giữa hai đỉnh **bất kỳ** trên cây đi qua không quá **$\mathcal{O}(\log(n))$** chuỗi. Bạn đọc có thể tự chứng minh nhận xét trên trước khi đọc chứng minh bên dưới.
 
 <details>
 <summary>Chứng minh</summary>
 <p>
 
-Xét một đỉnh $v$ được nối với đỉnh cha của nó là $p$ bởi một cạnh nhẹ. Giả sử kích thước cây con của $v$ là $x$ và kích thước cây con của $p$ là $y$. Do cạnh nặng đi từ $p$ không được nối xuống $v$ nên chắc chắn tồn tại một con khác của $p$ là $u$ có kích thước cây con $\geq x$. Vì vậy, $y \geq 2 * x$
+Xét một đỉnh $v$ được nối với đỉnh cha của nó là $p$ bởi một cạnh nhẹ. Giả sử kích thước cây con của $v$ là $x$ và kích thước cây con của $p$ là $y$. Do cạnh nặng đi từ $p$ không được nối xuống $v$ nên chắc chắn tồn tại một con khác của $p$ là $u$ có kích thước cây con $\geq x$. Vì vậy, $y \geq 2 \times x$
 
-Do với mỗi lần nhảy qua cạnh nhẹ, kích thước của cây con ở đỉnh sau khi nhảy sẽ tăng ít nhất là gấp đôi nên ta có thể kết luận rằng để đi lên một tổ tiên bất kỳ ở phía trên thì có thể nhảy qua không quá $\log_2(n)$ cạnh nhẹ. Do mỗi lần đi qua cạnh nhẹ chính là một lần nhảy sang chuỗi mới nên từ một đỉnh $v$ lên tổ tiên bất kỳ của nó sẽ chỉ đi qua $O(\log(n))$ chuỗi.
+Do với mỗi lần nhảy qua cạnh nhẹ, kích thước của cây con ở đỉnh sau khi nhảy sẽ tăng ít nhất là gấp đôi nên ta có thể kết luận rằng để đi lên một tổ tiên bất kỳ ở phía trên thì có thể nhảy qua không quá $\log_2(n)$ cạnh nhẹ. Do mỗi lần đi qua cạnh nhẹ chính là một lần nhảy sang chuỗi mới nên từ một đỉnh $v$ lên tổ tiên bất kỳ của nó sẽ chỉ đi qua $\mathcal{O}(\log(n))$ chuỗi.
 
-Khi đó, từ hai đỉnh $u$, $v$ bất kỳ, chúng ta có thể tìm LCA của $u$, $v$ và đi từ $u$, $v$ đến LCA. Số chuỗi đi qua sẽ không quá $O(\log(n))$
+Khi đó, từ hai đỉnh $u$, $v$ bất kỳ, chúng ta có thể tìm LCA của $u$, $v$ và đi từ $u$, $v$ đến LCA. Số chuỗi đi qua sẽ không quá $\mathcal{O}(\log(n))$
 </p>
 </details>
 
-Ngoài ra, nếu ta duyệt cây bằng DFS *ưu tiên các đỉnh liền trong chuỗi trước*, ta có thể nhận thấy là các đỉnh trên cùng một chuỗi sẽ nằm kế tiếp nhau trên thứ tự DFS, và vì thế việc truy vấn một đoạn con bất kì trên một chuỗi nào đó có thể được thực hiện trên Segment tree với độ phức tạp là $O(\log(n))$.
+Ngoài ra, nếu ta duyệt cây bằng DFS *ưu tiên các đỉnh liền trong chuỗi trước*, ta có thể nhận thấy là các đỉnh trên cùng một chuỗi sẽ nằm kế tiếp nhau trên thứ tự DFS, và vì thế việc truy vấn một đoạn con bất kì trên một chuỗi nào đó có thể được thực hiện trên Segment tree với độ phức tạp là $\mathcal{O}(\log(n))$.
 
-Như vậy, chúng ta đi qua không quá $O(\log(n))$ chuỗi, với mỗi chuỗi chúng ta có thể thực hiện trả lời truy vấn hoặc update trong $O(\log(n))$ trên Segment tree nên độ phức tạp cho việc trả lời các truy vấn và cập nhật trên một đường đi giữa hai đỉnh bất kỳ trên cây là $O(\log^2(n))$
+Như vậy, chúng ta đi qua không quá $\mathcal{O}(\log(n))$ chuỗi, với mỗi chuỗi chúng ta có thể thực hiện trả lời truy vấn hoặc update trong $\mathcal{O}(\log(n))$ trên Segment tree nên độ phức tạp cho việc trả lời các truy vấn và cập nhật trên một đường đi giữa hai đỉnh bất kỳ trên cây là $\mathcal{O}(\log^{2}(n))$
 
 ### Chi tiết cài đặt
 
@@ -105,8 +105,9 @@ Thông thường, do việc sử dụng HLD sẽ đi kèm với một cấu trú
 ```cpp
 void Dfs(int s, int p = -1) {
     Sz[s] = 1;
-    for(int u: AdjList[s]) {
-        if(u == p) continue;
+    for (int u : AdjList[s]) {
+        if (u == p)
+            continue;
         Par[u] = s;
         Depth[u] = Depth[s] + 1;
         Dfs(u, s);
@@ -114,8 +115,8 @@ void Dfs(int s, int p = -1) {
     }
 }
 ```
-mảng $Sz, Depth$ và $Par$ lần luợt lưu kích thuớc cây con, độ sâu và cha (tổ tiên trực tiếp) của các đỉnh trên cây
-mảng $AdjList$ là mảng vector để lưu lại thông tin về đồ thị. $AdjList[s]$ là vector gồm các đỉnh kề với $s$.
+mảng $\texttt{Sz}, \texttt{Depth}$ và $\texttt{Par}$ lần luợt lưu kích thuớc cây con, độ sâu và cha (tổ tiên trực tiếp) của các đỉnh trên cây
+mảng $\texttt{AdjList}$ là mảng vector để lưu lại thông tin về đồ thị. $\texttt{AdjList}[s]$ là vector gồm các đỉnh kề với $s$.
 
 #### Tìm cạnh nặng, cạnh nhẹ và tạo các chuỗi
 
@@ -123,7 +124,7 @@ Sau đó chúng ta thực hiện phân chia các đỉnh vào các chuỗi. Vớ
 
 ```cpp
 void Hld(int s, int p = -1) {
-    if(!ChainHead[CurChain]) {
+    if (!ChainHead[CurChain]) {
         ChainHead[CurChain] = s;
     }
     ChainID[s] = CurChain;
@@ -145,20 +146,20 @@ void Hld(int s, int p = -1) {
     }
 }
 ```
-$nxt$ là biến dùng để lưu lại đỉnh con "nặng nhất".
-$Arr$ là mảng dùng để lưu lại các chuỗi.
-$ChainID$ là mảng lưu lại số thứ tự của các chuỗi.
-$ChainHead$ là mảng lưu lại node đầu tiên ($Depth$ bé nhất) của từng chuỗi để biết khi nào cần nhảy sang chuỗi mới qua cạnh nhẹ.
-Mảng $Pos$ lưu lại vị trí của các đỉnh trên $Arr$ để tiện xử lý trên segment tree.
-$CurChain$ và $CurPos$ lần lượt là các biến lưu lại chỉ số của chuỗi và vị trí trong mảng $Arr$ để dùng cho chuỗi và đỉnh tiếp theo
+$\texttt{nxt}$ là biến dùng để lưu lại đỉnh con "nặng nhất".
+$\texttt{Arr}$ là mảng dùng để lưu lại các chuỗi.
+$\texttt{ChainID}$ là mảng lưu lại số thứ tự của các chuỗi.
+$\texttt{ChainHead}$ là mảng lưu lại node đầu tiên ($\texttt{Depth}$ bé nhất) của từng chuỗi để biết khi nào cần nhảy sang chuỗi mới qua cạnh nhẹ.
+Mảng $\texttt{Pos}$ lưu lại vị trí của các đỉnh trên $\texttt{Arr}$ để tiện xử lý trên segment tree.
+$\texttt{CurChain}$ và $\texttt{CurPos}$ lần lượt là các biến lưu lại chỉ số của chuỗi và vị trí trong mảng $\texttt{Arr}$ để dùng cho chuỗi và đỉnh tiếp theo
 
-Như vậy, với mỗi đỉnh, chúng ta sẽ tìm cạnh nặng và đi xuống cạnh đó trước. Sau đó, chúng ta sẽ lần lượt tạo ra các chuỗi mới và nhảy sang các đỉnh nhẹ. Như vậy, thứ tự duyệt đồ thị sẽ đảm bảo mỗi chuỗi được lưu đúng thứ tự từ trên xuống dưới trong một đoạn liên tiếp trên mảng $Arr$.
+Như vậy, với mỗi đỉnh, chúng ta sẽ tìm cạnh nặng và đi xuống cạnh đó trước. Sau đó, chúng ta sẽ lần lượt tạo ra các chuỗi mới và nhảy sang các đỉnh nhẹ. Như vậy, thứ tự duyệt đồ thị sẽ đảm bảo mỗi chuỗi được lưu đúng thứ tự từ trên xuống dưới trong một đoạn liên tiếp trên mảng $\texttt{Arr}$.
 
 #### Tìm LCA
 
 Trong phần lớn các bài toán sử dụng HLD để thực hiện truy vấn trên đường đi, chúng ta cần tìm tổ tiên chung gần nhất và thực hiện thao tác lần lượt từ hai đỉnh đến tổ tiên chung này. Rất may là chúng ta có thể sử dụng chính những thông tin đã lưu để tìm ra LCA một cách nhanh chóng.
 
-Khi nhảy từ một node $v$ qua một cạnh nhẹ lên cha của nó, chúng ta luôn nhảy sang một chuỗi có số thứ tự bé hơn (do thứ tự duyệt đồ thị trong hàm $HLD$) nên để tìm LCA của hai đỉnh, chúng ta sẽ tìm chuỗi chứa LCA đó.
+Khi nhảy từ một node $v$ qua một cạnh nhẹ lên cha của nó, chúng ta luôn nhảy sang một chuỗi có số thứ tự bé hơn (do thứ tự duyệt đồ thị trong hàm HLD) nên để tìm LCA của hai đỉnh, chúng ta sẽ tìm chuỗi chứa LCA đó.
 
 Liên tục thực hiện nhảy từ chuỗi có số thứ tự lớn hơn lên một chuỗi có số thứ tự bé hơn (Để đảm bảo không bị nhảy quá, luôn chọn đỉnh đang ở chuỗi có số thứ tự lớn hơn để nhảy) cho đến khi hai đỉnh nằm trên cùng một chuỗi.
 
@@ -166,15 +167,15 @@ Liên tục thực hiện nhảy từ chuỗi có số thứ tự lớn hơn lê
 
 ```cpp
 int LCA(int u, int v) {
-    while(ChainID[u] != ChainID[v]) {
-        if(ChainID[u] > ChainID[v]) {
+    while (ChainID[u] != ChainID[v]) {
+        if (ChainID[u] > ChainID[v]) {
             u = Par[ChainHead[ChainID[u]]];
-        }
-        else {
+        } else {
             v = Par[ChainHead[ChainID[v]]];
         }
     }
-    if(Depth[u] < Depth[v]) return u;
+    if (Depth[u] < Depth[v])
+        return u;
     return v;
 }
 ```
@@ -186,7 +187,7 @@ Duới đây là các thao tác xử lý trên segment tree. Phần này sẽ đ
 ```cpp
 int ST[MaxN * 4];
 void Build(int id, int l, int r) {
-    if(l == r) {
+    if (l == r) {
         ST[id] = Val[Arr[l]];
         return;
     }
@@ -247,9 +248,9 @@ int Query(int u, int v) {
 }
 ```
 
-Do bài toán chỉ yêu cầu cập nhật trên điểm nên hàm $Update$ không có gì đáng chú ý. Độ phức tạp của hàm này là $O(\log(n))$.
+Do bài toán chỉ yêu cầu cập nhật trên điểm nên hàm $\texttt{Update}$ không có gì đáng chú ý. Độ phức tạp của hàm này là $\mathcal{O}(\log(n))$.
 
-Hàm $Query$ dùng để trả lời truy vấn tổng XOR của các số trên đường đi từ $u$ đến $v$. Sau đó, chúng ta thực hiện chia đường đi này thành các đoạn trên các chain rồi thực hiện thao tác tính trên từng đoạn.
+Hàm $\texttt{Query}$ dùng để trả lời truy vấn tổng XOR của các số trên đường đi từ $u$ đến $v$. Sau đó, chúng ta thực hiện chia đường đi này thành các đoạn trên các chain rồi thực hiện thao tác tính trên từng đoạn.
 
 Có thể thấy, cách nhảy trong khi tính toán Query chính là cách nhảy khi tìm LCA. Trên thực tế, chúng ta không cần tìm LCA trước mà có thể thực hiện việc đó ngay khi tính Query. Nhưng trong bài này, phần tìm LCA được code riêng một hàm để dễ hiểu và tiện giải thích.
 
@@ -261,7 +262,7 @@ Dưới đây là code đầy đủ cho bài toán (kết hợp của tất cả
 <summary><b>Code</b></summary>
 
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 const int MaxN = 1e5 + 5;
 

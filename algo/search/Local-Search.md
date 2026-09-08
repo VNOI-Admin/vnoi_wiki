@@ -21,26 +21,31 @@ Cài đặt 1 số phần chính:
 ```cpp
 struct Point {
     double x, y;
-    Point(double x = 0, double y = 0) : x(x), y(y) {}
+    Point(double x = 0, double y = 0) : x(x), y(y) {
+    }
 
-    Point operator - (Point a) { return Point(x-a.x, y-a.y); }
-    double len() { return sqrt(x*x + y*y); }
+    Point operator-(Point a) {
+        return Point(x - a.x, y - a.y);
+    }
+    double len() {
+        return sqrt(x * x + y * y);
+    }
 } a[MAXN];
 
-bool used[MAXN];  // Đánh dấu điểm đã được đi qua.
-int id[MAXN];  // Lưu chỉ số của các điểm trong kết quả tìm được.
+bool used[MAXN]; // Đánh dấu điểm đã được đi qua.
+int id[MAXN];    // Lưu chỉ số của các điểm trong kết quả tìm được.
 
 void solve() {
     memset(used, false, sizeof used);
     used[1] = true;
     id[1] = 1;
 
-    for(int i = 2; i <= n; ++i) {
+    for (int i = 2; i <= n; ++i) {
         double bestDist = 1e6;
         int save = -1;
 
-        for(int j = 1; j <= n; ++j) {
-            double curDist = (a[current.id[i-1]] - a[j]).len();
+        for (int j = 1; j <= n; ++j) {
+            double curDist = (a[id[i - 1]] - a[j]).len();
             if (!used[j] && curDist < bestDist) {
                 bestDist = curDist;
                 save = j;
@@ -50,7 +55,6 @@ void solve() {
         used[save] = true;
     }
 }
-
 ```
 
 Dưới đây là kết quả khi mình chạy với một bộ test được sinh random gồm 50 đỉnh:
@@ -61,7 +65,7 @@ Khi quan sát kết quả của thuật toán trên, dễ thấy có rất nhi�
 
 # Local Search
 
-Xét một chu trình ban đầu bất kỳ. Xét tất cả $N^2$ cặp cạnh, với mỗi cặp cạnh u, v, ta có chu trình `1 --> u-1 --> u --> v-1 --> v --> 1`, ta thử đổi nó thành `1 --> u-1 --> v-1 --> u --> v --> 1`. Nếu việc đổi này cho ta một chu trình có trọng số nhỏ hơn, ta giữ lại chu trình mới này.
+Xét một chu trình ban đầu bất kỳ. Xét tất cả $N^{2}$ cặp cạnh, với mỗi cặp cạnh u, v, ta có chu trình `1 --> u-1 --> u --> v-1 --> v --> 1`, ta thử đổi nó thành `1 --> u-1 --> v-1 --> u --> v --> 1`. Nếu việc đổi này cho ta một chu trình có trọng số nhỏ hơn, ta giữ lại chu trình mới này.
 
 Cài đặt:
 
@@ -69,23 +73,22 @@ Cài đặt:
 void optimize() {
     while (true) {
         bool stop = true;
-        for(int u = 2; u <= n; ++u) {
-            for(int v = n-1; v > u; --v) {
+        for (int u = 2; u <= n; ++u) {
+            for (int v = n - 1; v > u; --v) {
                 // t1 = (cạnh (u-1) --> u) + (cạnh (v --> (v+1))
-                double t1 = (a[id[u-1]] - a[id[u]]).len()
-                        + (a[id[v]] - a[id[v+1]]).len();
+                double t1 = (a[id[u - 1]] - a[id[u]]).len() + (a[id[v]] - a[id[v + 1]]).len();
                 // t2 = (cạnh (u-1) --> v) + (cạnh (u --> (v+1))
-                double t2 = (a[id[u-1]] - a[id[v]]).len()
-                        + (a[id[u]] - a[id[v+1]]).len();
-                if (t1 > t2) {  // Nếu đổi chu trình cho kết quả tốt hơn
-                    for(int i = u, j = v; i <= j; ++i, --j) {
+                double t2 = (a[id[u - 1]] - a[id[v]]).len() + (a[id[u]] - a[id[v + 1]]).len();
+                if (t1 > t2) { // Nếu đổi chu trình cho kết quả tốt hơn
+                    for (int i = u, j = v; i <= j; ++i, --j) {
                         swap(id[i], id[j]);
                     }
                     stop = false;
                 }
             }
         }
-        if (stop) break;
+        if (stop)
+            break;
     }
 }
 ```

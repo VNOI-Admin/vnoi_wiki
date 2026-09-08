@@ -59,13 +59,13 @@ Chúc các bạn thi tốt :D
 
 Nguồn: [Facebook VNOI](https://www.facebook.com/groups/163215593699283/permalink/1334546679899496/)
 
-Sau khi nghĩ ra một thuật toán, bạn biết được độ phức tạp của nó. Nhưng câu hỏi đặt ra là, làm thế nào để biết một thuật toán là đủ nhanh hay chưa. Nếu biết trước timelimit, thông thường, một thuật toán được coi là đủ nhanh nếu giá trị độ phức tạp ứng với test max là dưới timelimit * 1e8.
+Sau khi nghĩ ra một thuật toán, bạn biết được độ phức tạp của nó. Nhưng câu hỏi đặt ra là, làm thế nào để biết một thuật toán là đủ nhanh hay chưa. Nếu biết trước timelimit, thông thường, một thuật toán được coi là đủ nhanh nếu giá trị độ phức tạp ứng với test max là dưới timelimit * $10^{8}$.
 
-Ví dụ, nếu có một thuật toán $O(Nlog^2N)$ và bài toán có giới hạn $N \le 3e5$ thì khi đó Nlog^2N ~ 11e7, nghĩa là nếu timelimt 1s thì sẽ hơi chậm một chút, còn nếu timelimit 2s thì có thể chấp nhận được.
+Ví dụ, nếu có một thuật toán $\mathcal{O}(N\log^{2} N)$ và bài toán có giới hạn $N \le 3 \times 10^{5}$ thì khi đó $N\log^{2}N \sim 1.1 \times 10^{8}$, nghĩa là nếu timelimt 1s thì sẽ hơi chậm một chút, còn nếu timelimit 2s thì có thể chấp nhận được.
 
-Tuy nhiên, cách đánh giá trên khá phiến diện, vì nhiều lý do: Hàm đánh giá độ phức tạp không thể hiện chính xác thời gian chạy (không tính hằng số), cách cài đặt và tốc độ của mỗi máy chấm một khác. Tệ hại hơn, nếu không biết trước timelimit, thì cũng còn chẳng biết đánh giá ra làm sao. Tuy nhiên, theo mình nghĩ, nếu một thuật toán có độ phức tạp tầm 3e8 trở xuống có thể coi là chấp nhận được. Chấp nhận được ở đây không có nghĩa là thuật toán đó là đủ hiệu quả để đạt điểm tối đa, mà có nghĩa là, bạn nên bắt tay vào việc code thuật toán đó thay vì cố gắng tối ưu thêm. Đôi khi, việc tối ưu thuật toán từ NlogN xuống N hay Nlog^2N xuống NlogN là không đơn giản, tốn nhiều thời gian và đôi khi sự tăng độ khó trong cài đặt sẽ khiến bạn thiếu thời gian làm bài. Chưa kể, những thuật toán có độ phức tạp khoảng tầm 3e8 trở xuống thường chỉ bị TLE một vài test, chứ không phải cả subtask, nên không làm thay đổi quá nhiều điểm số.
+Tuy nhiên, cách đánh giá trên khá phiến diện, vì nhiều lý do: Hàm đánh giá độ phức tạp không thể hiện chính xác thời gian chạy (không tính hằng số), cách cài đặt và tốc độ của mỗi máy chấm một khác. Tệ hại hơn, nếu không biết trước timelimit, thì cũng còn chẳng biết đánh giá ra làm sao. Tuy nhiên, theo mình nghĩ, nếu một thuật toán có độ phức tạp tầm $3 \times 10^{8}$ trở xuống có thể coi là chấp nhận được. Chấp nhận được ở đây không có nghĩa là thuật toán đó là đủ hiệu quả để đạt điểm tối đa, mà có nghĩa là, bạn nên bắt tay vào việc code thuật toán đó thay vì cố gắng tối ưu thêm. Đôi khi, việc tối ưu thuật toán từ $N\log N$ xuống $N$ hay $N\log^{2}N$ xuống $N\log N$ là không đơn giản, tốn nhiều thời gian và đôi khi sự tăng độ khó trong cài đặt sẽ khiến bạn thiếu thời gian làm bài. Chưa kể, những thuật toán có độ phức tạp khoảng tầm $3 \times 10^{8}$ trở xuống thường chỉ bị TLE một vài test, chứ không phải cả subtask, nên không làm thay đổi quá nhiều điểm số.
 
-Ví dụ, bài MINROAD 2014, hồi đấy mình nghĩ ra một thuật toán O(Nlog^2N), với giới hạn N <= 3e5. Mình ngồi code luôn bài đấy, mà không nghĩ để tối ưu xuống O(NlogN). Về sau, mình phát hiện ra mình là người duy nhất code thuật đó, tất cả mọi người khác trong đội đều làm O(NlogN) hay O(N). Mình nghĩ quyết định lúc đó khá hợp lý, bởi hồi đấy mình code khá chậm và rất tệ, nên cần ưu tiên việc code và kiểm tra hơn và chấp nhận không được điểm tối đa bài đó.
+Ví dụ, bài MINROAD 2014, hồi đấy mình nghĩ ra một thuật toán $\mathcal{O}(N\log^{2}N)$, với giới hạn $N \le 3 \times 10^{5}$. Mình ngồi code luôn bài đấy, mà không nghĩ để tối ưu xuống $\mathcal{O}(N\log N)$. Về sau, mình phát hiện ra mình là người duy nhất code thuật đó, tất cả mọi người khác trong đội đều làm $\mathcal{O}(N\log N)$ hay $\mathcal{O}(N)$. Mình nghĩ quyết định lúc đó khá hợp lý, bởi hồi đấy mình code khá chậm và rất tệ, nên cần ưu tiên việc code và kiểm tra hơn và chấp nhận không được điểm tối đa bài đó.
 
 ### 5. Không sử dụng các thuật toán "lạ" trong kỳ thi VOI.
 
@@ -96,11 +96,11 @@ Sau một ngày gián đoạn, hôm nay chuyên mục "mỗi ngày một lời k
 Những bài toán có đặc tính multitest là những bài mà trong đó một file input chứa nhiều bộ dữ liệu. Các bộ dữ liệu (test) này luôn độc lập với nhau, và luôn được chương trình của chúng ta xử lý theo kiểu tuần tự, nghĩa là đọc từng bộ dữ liệu, xử lý, in ra output, rồi mới đọc bộ dữ liệu tiếp theo.
 Có ba lý do chính dẫn tới kiểu input này:
 
-- Người ra đề muốn giới hạn độ phức tạp của thuật toán tới mức rất nhỏ (Ví dụ: O(logN) với N <= 1e8).
+- Người ra đề muốn giới hạn độ phức tạp của thuật toán tới mức rất nhỏ (Ví dụ: $\mathcal{O}(\log N)$ với $N \le 10^{8}$).
 - Bài toán có output dạng YES/NO, đặt nhiều test trong một file input sẽ vô hiệu hoá việc “output bừa” của thí sinh.
 - Một số hệ thống chấm bài giới hạn số lượng file input được đặt vào.
 
-Trừ trường hợp đầu tiên, khi đó, số lượng test trong một file input sẽ rất lớn (1e3, 1e4, …), và được chỉ rõ trong đề bài, còn hai trường hợp còn lại, số lượng test thường khá nhỏ (và đa số các test trong file input không phải test max), số lượng test có thể không được nhắc đến trong đề, và thuật giải bài toán sẽ y hệt như khi trong file input chỉ có một test.
+Trừ trường hợp đầu tiên, khi đó, số lượng test trong một file input sẽ rất lớn ($10^{3}$, $10^{4}$, $\ldots$), và được chỉ rõ trong đề bài, còn hai trường hợp còn lại, số lượng test thường khá nhỏ (và đa số các test trong file input không phải test max), số lượng test có thể không được nhắc đến trong đề, và thuật giải bài toán sẽ y hệt như khi trong file input chỉ có một test.
 
 Trong kỳ thi quốc gia, đa số các bài multitest đều thuộc hai nguyên nhân dưới. Bởi thế, trong quá trình tìm kiếm thuật toán, bạn không cần quan tâm đến số lượng test có trong một file input.
 
@@ -201,15 +201,20 @@ Khi đi thi các bạn cần chú ý tránh những code có thể dẫn đến 
     - Biết rõ những biến nào có thể bị trùng với biến của thư viện, ví dụ y1, next.. (bạn có thể xem code [I_love_Tanya_Romanova](http://codeforces.com/profile/I_love_Tanya_Romanova) có define tất cả những biến hay dùng mà trùng thư viện nào đó để tránh trùng tên biến. Ngoài ra cách khác là cho tất cả mọi thứ vào 1 namespace:
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 namespace A {
-  int y1, next;
-  void solve() {
+int y1, next;
+void solve() {
     cout << "OK" << endl;
     y1 = next = 1;
     cout << y1 << ' ' << next << endl;
-  }
-};
-int main() { A::solve(); }
+}
+}; // namespace A
+int main() {
+    A::solve();
+}
 ```
 
 ## 2
@@ -227,4 +232,4 @@ Ví dụ:
 - Đầu tiên code duyệt
 - Sau khi duyệt + sort, in tất cả ra rồi kiểm tra bằng mắt với 1 giá trị N tương đối lớn (e.g. 100)
 - Cài đặt subtask 2 hoặc 3
-- Dùng subtask 1, viết thêm trình sinh test tự động để kiểm tra độ chính xác với 1 số lượng test tương đối lớn (10^4 - 10^5 test).
+- Dùng subtask 1, viết thêm trình sinh test tự động để kiểm tra độ chính xác với 1 số lượng test tương đối lớn ($10^{4}$ - $10^{5}$ test).

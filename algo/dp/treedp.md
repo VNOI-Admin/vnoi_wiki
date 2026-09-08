@@ -21,7 +21,7 @@ dateCreated: 2024-01-24T16:34:25.497Z
 
 # Giới thiệu
 
-Bài viết này sẽ đề cập một số bài toán quy hoạch động trên cây điển hình. Nếu chưa nắm vững về quy hoạch động, các bạn có thể đọc thêm về quy hoạch động ở [VNOI - Quy hoạch động](/gollum/overview/algo/{\text{dp}}/).
+Bài viết này sẽ đề cập một số bài toán quy hoạch động trên cây điển hình. Nếu chưa nắm vững về quy hoạch động, các bạn có thể đọc thêm về quy hoạch động ở [VNOI - Quy hoạch động](/gollum/overview/algo/dp/).
 
 ## Định nghĩa
 
@@ -30,45 +30,45 @@ Trước khi đi vào các bài toán, ta có một số các định nghĩa nh�
 * $w(u, v)$ là trọng số của cạnh nối đỉnh $u$ và đỉnh $v$
 * $d(i, j)$ là độ dài đường đi **ngắn nhất** từ đỉnh $i$ đến đỉnh $j$.
 * Trong một cây $T$ có đỉnh gốc là $R$, đỉnh $v$ nằm trong cây con đỉnh $u$ nếu đường đi ngắn nhất từ $R$ đến $v$ đi qua $u$.
-* ${\text{subtree}}(V)$ là tập hợp tất cả các đỉnh nằm trong cây con $V$, trong đó có cả $V$.
-* ${\text{sz}}(V)$ là số đỉnh nằm trong cây con $V$, hay ${\text{sz}}(V) =  |{\text{subtree}}(V)|$.
+* $\texttt{subtree}(V)$ là tập hợp tất cả các đỉnh nằm trong cây con $V$, trong đó có cả $V$.
+* $\texttt{sz}(V)$ là số đỉnh nằm trong cây con $V$, hay $\texttt{sz}(V) =  |\texttt{subtree}(V)|$.
 
 
 # Bài toán 1
 
 ## Đề bài
 
-Cho một cây $T$ gồm $N$ đỉnh $(1 \leq N \leq 2 \times 10^5)$, đỉnh thứ $i$ có một đồng xu giá trị $C_i$ $(|C_i| \leq 10^9)$. Bài toán yêu cầu chọn một tập con các đỉnh sao cho tập con không tồn tại 2 đỉnh được nối trực tiếp bởi một cạnh và tổng các đồng xu trên các đỉnh được chọn là lớn nhất.
+Cho một cây $T$ gồm $N$ đỉnh $(1 \leq N \leq 2 \times 10^{5})$, đỉnh thứ $i$ có một đồng xu giá trị $C_i$ $(|C_i| \leq 10^{9})$. Bài toán yêu cầu chọn một tập con các đỉnh sao cho tập con không tồn tại 2 đỉnh được nối trực tiếp bởi một cạnh và tổng các đồng xu trên các đỉnh được chọn là lớn nhất.
 
 ## Lời giải
 
-Bài toán này khá giống với một bài toán quy hoạch động trên mảng 1 chiều: cho một mảng $A_1, A_2, ..., A_n$, chọn một tập con các phần tử sao cho không có 2 phần tử nằm cạnh nhau đều được chọn và tổng các phần tử là lớn nhất. 
+Bài toán này khá giống với một bài toán quy hoạch động trên mảng 1 chiều: cho một mảng $A_1, A_2, \ldots, A_n$, chọn một tập con các phần tử sao cho không có 2 phần tử nằm cạnh nhau đều được chọn và tổng các phần tử là lớn nhất. 
 
-Đối với bài toán trên mảng 1 chiều, ta định nghĩa trạng thái quy hoạch động ${\text{dp}}(i)$ là đáp án của bài toán nếu xét $i$ phần tử đầu $A_1, A_2, ... A_i$. 
+Đối với bài toán trên mảng 1 chiều, ta định nghĩa trạng thái quy hoạch động $\texttt{dp}(i)$ là đáp án của bài toán nếu xét $i$ phần tử đầu $A_1, A_2, \ldots A_i$. 
 
-Ta có 2 trường hợp là chọn $A_i$ hoặc không chọn $A_i$. Vì vậy ta suy ra được công thức truy hồi ${\text{dp}}(i) = \max({\text{dp}}(i-1), {\text{dp}}(i-2) + A_i)$
+Ta có 2 trường hợp là chọn $A_i$ hoặc không chọn $A_i$. Vì vậy ta suy ra được công thức truy hồi $\texttt{dp}(i) = \max(\texttt{dp}(i-1), \texttt{dp}(i-2) + A_i)$
 
-Đối với bài toán trên cây, thay vì xét một tiền tố, trạng thái quy hoạch động thường là đáp án nếu xét một cây con nào đó. Để định nghĩa cây con, cây cần có một gốc nào đó. Ta đặt gốc của cây là đỉnh $1$ và định nghĩa ${\text{dp}}(V)$ là đáp án của bài toán nếu chỉ xét cây con của đỉnh $V$, như vậy, đáp án cuối cùng của bài toán là ${\text{dp}}(1)$.
+Đối với bài toán trên cây, thay vì xét một tiền tố, trạng thái quy hoạch động thường là đáp án nếu xét một cây con nào đó. Để định nghĩa cây con, cây cần có một gốc nào đó. Ta đặt gốc của cây là đỉnh $1$ và định nghĩa $\texttt{dp}(V)$ là đáp án của bài toán nếu chỉ xét cây con của đỉnh $V$, như vậy, đáp án cuối cùng của bài toán là $\texttt{dp}(1)$.
 
 Tương tự như bài toán trên mảng 1 chiều, tại mỗi đỉnh $V$ ta cần quyết định có chọn $V$ hay không. Nếu không chọn đỉnh $V$, ta có thể chọn các đỉnh con tùy ý. Nếu có chọn đỉnh $V$, ta không được chọn đỉnh con nhưng vẫn có thể chọn các đỉnh cháu của $V$
 
-Gọi $v_1, v_2, ... v_n$ là con của $V$. Như vậy ta có công thức truy hồi như sau:
+Gọi $v_1, v_2, \ldots v_n$ là con của $V$. Như vậy ta có công thức truy hồi như sau:
 
 $$
-{\text{dp}}(V) = \max\left(\sum_{i = 1}^n {\text{dp}}(v_i), C_V + \sum_{i = 1}^n \left(\sum_{j\in \text{subtree}(v_i) \setminus \{v_i\}} {\text{dp}}(j)\right)\right)
+\texttt{dp}(V) = \max\left(\sum_{i = 1}^{n} \texttt{dp}(v_i), C_V + \sum_{i = 1}^{n} \left(\sum_{j\in \texttt{subtree}(v_i) \setminus \{v_i\}} \texttt{dp}(j)\right)\right)
 $$
 
 
 Để chuyển trạng thái gọn gàng hơn, ta định nghĩa 2 trạng thái quy hoạch động mới:
 
-* ${\text{dp}}_1(V)$ là đáp án bài toán nếu chỉ xét các đỉnh trong cây con của $V$ và đỉnh $V$ không được chọn.
-* ${\text{dp}}_2(V)$ là đáp án bài toán nếu chỉ xét các đỉnh trong cây con của $V$ và đỉnh $V$ được chọn.
+* $\texttt{dp}_1(V)$ là đáp án bài toán nếu chỉ xét các đỉnh trong cây con của $V$ và đỉnh $V$ không được chọn.
+* $\texttt{dp}_2(V)$ là đáp án bài toán nếu chỉ xét các đỉnh trong cây con của $V$ và đỉnh $V$ được chọn.
 
-Đối với ${\text{dp}}_1(V)$, đỉnh $V$ không được chọn nên ta có thể chọn các con của $V$, do đó ${\text{dp}}_1(V) = \sum_{i = 1}^n \max ({\text{dp}}_1(v_i), {\text{dp}}_2(v_i))$
+Đối với $\texttt{dp}_1(V)$, đỉnh $V$ không được chọn nên ta có thể chọn các con của $V$, do đó $\texttt{dp}_1(V) = \sum_{i = 1}^{n} \max (\texttt{dp}_1(v_i), \texttt{dp}_2(v_i))$
 
-Đối với ${\text{dp}}_2(V)$, đỉnh $V$ được chọn nên ta không được chọn các con của $V$, do đó ${\text{dp}}_2(V) = C_V + \sum_{i = 1}^n {\text{dp}}_1(v_i)$
+Đối với $\texttt{dp}_2(V)$, đỉnh $V$ được chọn nên ta không được chọn các con của $V$, do đó $\texttt{dp}_2(V) = C_V + \sum_{i = 1}^{n} \texttt{dp}_1(v_i)$
 
-Đáp án của bài toán sẽ là $\max({\text{dp}}_1(1), {\text{dp}}_2(1))$.
+Đáp án của bài toán sẽ là $\max(\texttt{dp}_1(1), \texttt{dp}_2(1))$.
 
 ## Cài đặt
 
@@ -102,20 +102,20 @@ long long solve(){ // hàm tính và trả về đáp án
 
 ## Độ phức tạp
 
-* Ta thực hiện DFS trên cây một lần, do đó độ phức tạp thời gian là $O(N)$.
-* Độ phức tạp không gian: $O(N)$
+* Ta thực hiện DFS trên cây một lần, do đó độ phức tạp thời gian là $\mathcal{O}(N)$.
+* Độ phức tạp không gian: $\mathcal{O}(N)$
 
 # Bài toán 2 - Kỹ thuật chuyển gốc
 
 ## Đề bài
 
-Cho một cây $T$ gồm $N$ đỉnh $(1 \leq N \leq 2 \times 10^5)$, các cạnh có trọng số nguyên dương không quá $10^9$. Tính $\sum_{i = 1}^n d(k, i)$ với mọi $k$ từ $1$ đến $n$. Nói cách khác, với mỗi đỉnh, tìm tổng khoảng cách từ đỉnh đó đến mọi đỉnh từ $1$ đến $n$.
+Cho một cây $T$ gồm $N$ đỉnh $(1 \leq N \leq 2 \times 10^{5})$, các cạnh có trọng số nguyên dương không quá $10^{9}$. Tính $\sum_{i = 1}^{n} d(k, i)$ với mọi $k$ từ $1$ đến $n$. Nói cách khác, với mỗi đỉnh, tìm tổng khoảng cách từ đỉnh đó đến mọi đỉnh từ $1$ đến $n$.
 
 ## Lời giải
 
-Ta xét bài toán nếu chỉ cần tính với $k = 1$. Ta đặt gốc của cây là $1$ và định nghĩa trạng thái quy hoạch động: ${\text{dp}}(V) = \sum_{j \in {\text{subtree}}(V)} d(V, j)$. Nói cách khác, ${\text{dp}}(V)$ lưu tổng khoảng cách từ đỉnh $V$ đến mọi đỉnh trong cây con của chính nó.
+Ta xét bài toán nếu chỉ cần tính với $k = 1$. Ta đặt gốc của cây là $1$ và định nghĩa trạng thái quy hoạch động: $\texttt{dp}(V) = \sum_{j \in \texttt{subtree}(V)} d(V, j)$. Nói cách khác, $\texttt{dp}(V)$ lưu tổng khoảng cách từ đỉnh $V$ đến mọi đỉnh trong cây con của chính nó.
 
-Để xây dựng công thức truy hồi, ta cần xét đóng góp của từng đỉnh con của $V$ vào ${\text{dp}}(V)$.
+Để xây dựng công thức truy hồi, ta cần xét đóng góp của từng đỉnh con của $V$ vào $\texttt{dp}(V)$.
 
 Xét đỉnh con $v_i$ của $V$. Ta nhận thấy mọi đường đi từ $V$ đến một đỉnh bất kỳ trong cây con của $v_i$ đều đi qua cạnh $(V, v_i)$. Do đó, với một đỉnh $j$ nằm trong cây con của $v_i$, ta có: 
 $$
@@ -126,36 +126,36 @@ Như vậy, tổng khoảng cách từ $V$ đến mọi đỉnh trong cây con c
 
 $$
 \begin{aligned}
-\sum_{j \in {\text{subtree}}(v_i)} d(V, j) &= \sum_{j \in {\text{subtree}}(v_i)} (w(V, v_i) + d(v_i, j)) \\
-&= \sum_{j \in {\text{subtree}}(v_i)}w(V, v_i) + \sum_{j \in {\text{subtree}}(v_i)}d(v_i, j) \\
-&= {\text{sz}}(v_i) \times w(V, v_i) + {\text{dp}}(v_i)
+\sum_{j \in \texttt{subtree}(v_i)} d(V, j) &= \sum_{j \in \texttt{subtree}(v_i)} (w(V, v_i) + d(v_i, j)) \\
+&= \sum_{j \in \texttt{subtree}(v_i)}w(V, v_i) + \sum_{j \in \texttt{subtree}(v_i)}d(v_i, j) \\
+&= \texttt{sz}(v_i) \times w(V, v_i) + \texttt{dp}(v_i)
 \end{aligned}
 $$
 
 Từ đây, ta có công thức chuyển đổi trạng thái quy hoạch động:
 
 $$
-{\text{dp}}(V) = \sum_{i = 1}^n ({\text{sz}}(v_i) \times w(V, v_i) + {\text{dp}}(v_i))
+\texttt{dp}(V) = \sum_{i = 1}^{n} (\texttt{sz}(v_i) \times w(V, v_i) + \texttt{dp}(v_i))
 $$
 
-Việc tính ${\text{sz}}(V)$ là một bài toán quy hoạch động trên cây cơ bản.
+Việc tính $\texttt{sz}(V)$ là một bài toán quy hoạch động trên cây cơ bản.
 
-Quay lại bài toán ban đầu, do công thức này chỉ tính được đáp án cho gốc đã chọn, nếu ta duyệt và chọn từng đỉnh làm gốc rồi tính lại, ta giải được bài toán với độ phức tạp $O(n^2)$. Ở đây ta sẽ sử dụng kĩ thuật **quy hoạch động chuyển gốc**, cụ thể như sau:
+Quay lại bài toán ban đầu, do công thức này chỉ tính được đáp án cho gốc đã chọn, nếu ta duyệt và chọn từng đỉnh làm gốc rồi tính lại, ta giải được bài toán với độ phức tạp $\mathcal{O}(n^{2})$. Ở đây ta sẽ sử dụng kĩ thuật **quy hoạch động chuyển gốc**, cụ thể như sau:
 
-Giả sử gốc hiện tại đang là $V$, ta cần tìm cách chuyển gốc thành đỉnh con $v_i$ trong $O(1)$. Ta có một số nhận xét như sau:
+Giả sử gốc hiện tại đang là $V$, ta cần tìm cách chuyển gốc thành đỉnh con $v_i$ trong $\mathcal{O}(1)$. Ta có một số nhận xét như sau:
 
 * Ngoài đỉnh $V$ và $v_i$, tất cả các đỉnh khác đều có cây con không thay đổi, do đó trạng thái quy hoạch động của chúng cũng không thay đổi.
 * Đối với đỉnh $V$, cây con của $V$ sẽ bỏ đi cây con $v_i$. Khi thành gốc mới, cây con $v_i$ sẽ bao gồm thêm cây con mới của $V$.
 
 ![](https://hackmd.io/_uploads/BJ1dhmMh2.png)
 
-Ta gọi ${\text{dp}}_{old}$ và ${\text{dp}}_{new}$ lần lượt là trạng thái quy hoạch động trước và sau khi đổi gốc, ${\text{sz}}_{old}$ và ${\text{sz}}_{new}$ lần lượt là số đỉnh trong cây con trước và sau khi đổi gốc. Dựa vào các nhận xét trên, ta có:
+Ta gọi $\texttt{dp}_{old}$ và $\texttt{dp}_{new}$ lần lượt là trạng thái quy hoạch động trước và sau khi đổi gốc, $\texttt{sz}_{old}$ và $\texttt{sz}_{new}$ lần lượt là số đỉnh trong cây con trước và sau khi đổi gốc. Dựa vào các nhận xét trên, ta có:
 
-* Đối với các đỉnh $j$ không phải $V$ và $v_i$, ta có ${\text{dp}}_{new}(j) = {\text{dp}}_{old}(j)$ và ${\text{sz}}_{new}(j) = {\text{sz}}_{old}(j)$.
-* Ta tính được ${\text{dp}}_{new}(V) = {\text{dp}}_{old}(V) - ({\text{sz}}_{old}(v_i) \times w(V, v_i) + {\text{dp}}_{old}(v_i))$ và ${\text{sz}}_{new}(V) = {\text{sz}}_{old}(V) - {\text{sz}}_{old}(v_i)$.
-* Ta tính được ${\text{dp}}_{new}(v_i) = {\text{dp}}_{old}(v_i) + ({\text{sz}}_{new}(V) \times w(V, v_i) + {\text{dp}}_{new}(V))$ và ${\text{sz}}_{new}(v_i) = N$.
+* Đối với các đỉnh $j$ không phải $V$ và $v_i$, ta có $\texttt{dp}_{new}(j) = \texttt{dp}_{old}(j)$ và $\texttt{sz}_{new}(j) = \texttt{sz}_{old}(j)$.
+* Ta tính được $\texttt{dp}_{new}(V) = \texttt{dp}_{old}(V) - (\texttt{sz}_{old}(v_i) \times w(V, v_i) + \texttt{dp}_{old}(v_i))$ và $\texttt{sz}_{new}(V) = \texttt{sz}_{old}(V) - \texttt{sz}_{old}(v_i)$.
+* Ta tính được $\texttt{dp}_{new}(v_i) = \texttt{dp}_{old}(v_i) + (\texttt{sz}_{new}(V) \times w(V, v_i) + \texttt{dp}_{new}(V))$ và $\texttt{sz}_{new}(v_i) = N$.
 
-Như vậy, ta có thể chuyển gốc sang một đỉnh con của gốc hiện tại trong $O(1)$. Nếu ta chuyển gốc theo thứ tự duyệt DFS, ta giải được bài toán trong độ phức tạp $O(N)$.
+Như vậy, ta có thể chuyển gốc sang một đỉnh con của gốc hiện tại trong $\mathcal{O}(1)$. Nếu ta chuyển gốc theo thứ tự duyệt DFS, ta giải được bài toán trong độ phức tạp $\mathcal{O}(N)$.
 
 ## Cài đặt
 
@@ -211,54 +211,53 @@ void solve() { // hàm tính đáp án
     pre_calc(1, 0); // tính dp và sz với gốc là đỉnh 1
 
     calc(1, 0); // chuyển gốc và tính đáp án bắt đầu từ đỉnh 1
-
 }
 ```
 
 ## Độ phức tạp
 
-* Độ phức tạp thời gian: $O(N)$
-* Độ phức tạp thời gian: $O(N)$
+* Độ phức tạp thời gian: $\mathcal{O}(N)$
+* Độ phức tạp thời gian: $\mathcal{O}(N)$
 
 # Bài toán 3 - Kỹ thuật knapsack trên cây
 
 ## Đề bài
 
-Cho cây $T$ gồm $N$ đỉnh có gốc là đỉnh $1$ $(1 \leq N \leq 5000)$, đỉnh thứ $i$ có giá trị là $C_i$ và một chỉ số $K_i$ $(|C_i| \leq 10^9, 1 \leq K_i \leq N)$. Chọn một tập con các đỉnh sao cho trong cây con đỉnh $i$ có không quá $K_i$ đỉnh được chọn và tổng giá trị các đỉnh được chọn là lớn nhất.
+Cho cây $T$ gồm $N$ đỉnh có gốc là đỉnh $1$ $(1 \leq N \leq 5000)$, đỉnh thứ $i$ có giá trị là $C_i$ và một chỉ số $K_i$ $(|C_i| \leq 10^{9}, 1 \leq K_i \leq N)$. Chọn một tập con các đỉnh sao cho trong cây con đỉnh $i$ có không quá $K_i$ đỉnh được chọn và tổng giá trị các đỉnh được chọn là lớn nhất.
 
 ## Lời giải
 
 Bài toán này khá tương đồng với bài toán quy hoạch động cơ bản knapsack.
 
-Trạng thái quy hoạch động ở bài này ${\text{dp}}(V, k)$ là tổng giá trị lớn nhất nếu chọn $k$ đỉnh trong cây con $V$ thỏa mãn điều kiện đề bài. Nếu không có cách nào chọn $k$ đỉnh mà vẫn thỏa mãn các điều kiện, ta định nghĩa ${\text{dp}}(V, k) = - \infty$. Như vậy đáp án của bài toán là $\max_{k = 0}^n {\text{dp}}(1, k)$
+Trạng thái quy hoạch động ở bài này $\texttt{dp}(V, k)$ là tổng giá trị lớn nhất nếu chọn $k$ đỉnh trong cây con $V$ thỏa mãn điều kiện đề bài. Nếu không có cách nào chọn $k$ đỉnh mà vẫn thỏa mãn các điều kiện, ta định nghĩa $\texttt{dp}(V, k) = - \infty$. Như vậy đáp án của bài toán là $\max_{k = 0}^{n} \texttt{dp}(1, k)$
 
-Để tính được giá trị này, ta cần thêm một trạng thái quy hoạch động phụ. Gọi $v_1, v_2, ... v_n$ là con của $V$ và $f_V(i, k)$ là tổng giá trị lớn nhất nếu chọn $k$ đỉnh trong các cây con của $i$ đỉnh con đầu tiên thỏa mãn điều kiện đề bài. Nói cách khác, $f_V(i, k)$ là trạng thái quy hoạch động cho tập các đỉnh thuộc ${\text{subtree}}(v_1), {\text{subtree}}(v_2),...,{\text{subtree}}(v_i)$.
+Để tính được giá trị này, ta cần thêm một trạng thái quy hoạch động phụ. Gọi $v_1, v_2, \ldots v_n$ là con của $V$ và $f_V(i, k)$ là tổng giá trị lớn nhất nếu chọn $k$ đỉnh trong các cây con của $i$ đỉnh con đầu tiên thỏa mãn điều kiện đề bài. Nói cách khác, $f_V(i, k)$ là trạng thái quy hoạch động cho tập các đỉnh thuộc $\texttt{subtree}(v_1), \texttt{subtree}(v_2),\ldots,\texttt{subtree}(v_i)$.
 
 Theo định nghĩa này, ta có $f_V(0, 0) = 0$ và $f_V(0, k) = - \infty \forall k > 0$. Ta tính được $f_V(i, k)$ dựa theo $f_V(i-1, k)$:
 
 $$
-f_V(i, k) = \max_{j = 0}^k(f_V(i-1, j) + {\text{dp}}(v_i, k-j))
+f_V(i, k) = \max_{j = 0}^{k}(f_V(i-1, j) + \texttt{dp}(v_i, k-j))
 $$
 
-Để tính ${\text{dp}}(V, k)$, ta có 2 lựa chọn là lấy hoặc không lấy đỉnh $V$. Kết hợp điều kiện đề bài, ta có:
+Để tính $\texttt{dp}(V, k)$, ta có 2 lựa chọn là lấy hoặc không lấy đỉnh $V$. Kết hợp điều kiện đề bài, ta có:
 
 $$
-{\text{dp}}(V, k) = 
+\texttt{dp}(V, k) = 
 \begin{cases}
 -\infty \text{ nếu } k>K_i \\
 \max(f_V(n, k), f_V(n, k - 1) + C_V) \text{ nếu } k\le K_i
 \end{cases}
 $$
 
-Độ phức tạp để tính $f_V(i, k)$ là $O(k) = O(N)$ do giá trị của $k$ không quá $N$, và độ phức tạp để tính ${\text{dp}}(V, k)$ là $O(1)$. Có $O(N^2)$ trạng thái $f_V(i, k)$ và $N^2$ trạng thái ${\text{dp}}(V, k)$ cần tính nên độ phức tạp tổng là $O(N \times N^2 + N^2) = O(N^3)$.
+Độ phức tạp để tính $f_V(i, k)$ là $\mathcal{O}(k) = \mathcal{O}(N)$ do giá trị của $k$ không quá $N$, và độ phức tạp để tính $\texttt{dp}(V, k)$ là $\mathcal{O}(1)$. Có $\mathcal{O}(N^{2})$ trạng thái $f_V(i, k)$ và $N^{2}$ trạng thái $\texttt{dp}(V, k)$ cần tính nên độ phức tạp tổng là $\mathcal{O}(N \times N^{2} + N^{2}) = \mathcal{O}(N^{3})$.
 
 ## Cài đặt 1
 
 ```cpp=
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-const int MAX_N = 5e3+5; 
+const int MAX_N = 5e3 + 5;
 const long long INF = -1e18;
 
 int N;
@@ -304,11 +303,11 @@ long long solve() {
 
 ## Tối ưu
 
-Tuy nhiên ta có thể làm tốt hơn như thế. Nhận thấy rằng khi tính $f_V(i, k)$ dựa vào $f_V(i-1, k)$ và $dp(v_i, k)$, ta có thể duyệt qua mọi cặp $f_V(i-1, a)$ và $dp(v_i, b)$ rồi cập nhật vào $f_V(i, a+b)$. Ta cần duyệt mọi cặp $a, b$ thỏa mãn $a \leq \sum_{j = 1}^{i-1}{\text{sz}}(v_j)$ và $b \leq {\text{sz}}(v_i)$. Tổng số cặp cần duyệt là $(\sum_{j = 1}^{i-1}{\text{sz}}(v_j)) \times{\text{sz}}(v_i)$. Ta biểu diễn tổng này thành $\sum_{1 \leq j < i} sz(v_j) \times sz(v_i)$.
+Tuy nhiên ta có thể làm tốt hơn như thế. Nhận thấy rằng khi tính $f_V(i, k)$ dựa vào $f_V(i-1, k)$ và $dp(v_i, k)$, ta có thể duyệt qua mọi cặp $f_V(i-1, a)$ và $dp(v_i, b)$ rồi cập nhật vào $f_V(i, a+b)$. Ta cần duyệt mọi cặp $a, b$ thỏa mãn $a \leq \sum_{j = 1}^{i-1}\texttt{sz}(v_j)$ và $b \leq \texttt{sz}(v_i)$. Tổng số cặp cần duyệt là $(\sum_{j = 1}^{i-1}\texttt{sz}(v_j)) \times\texttt{sz}(v_i)$. Ta biểu diễn tổng này thành $\sum_{1 \leq j < i} sz(v_j) \times sz(v_i)$.
 
 Số cặp duyệt này tương đương với số cặp đỉnh $a, b$ sao cho $a$ nằm trong cây con $v_i$ và $b$ nằm trong cây con $v_j$ thỏa mãn $j < i$.
 
-Do 2 đỉnh $a$ và $b$ nằm ở 2 cây con khác nhau của đỉnh $V$, $V$ sẽ là tổ tiên chung thấp nhất của $a$ và $b$. Mỗi cặp đỉnh chỉ có duy nhất một tổ tiên chung thấp nhất, do đó với cách duyệt này mỗi cặp đỉnh chỉ được duyệt tối đa $1$ lần. Có $\frac{N \times (N-1)}{2}$ cặp đỉnh khác nhau, do đó độ phức tạp của cách duyệt này là $O(N^2)$!
+Do 2 đỉnh $a$ và $b$ nằm ở 2 cây con khác nhau của đỉnh $V$, $V$ sẽ là tổ tiên chung thấp nhất của $a$ và $b$. Mỗi cặp đỉnh chỉ có duy nhất một tổ tiên chung thấp nhất, do đó với cách duyệt này mỗi cặp đỉnh chỉ được duyệt tối đa $1$ lần. Có $\frac{N \times (N-1)}{2}$ cặp đỉnh khác nhau, do đó độ phức tạp của cách duyệt này là $\mathcal{O}(N^{2})$!
 
 ![](https://hackmd.io/_uploads/SkRzxNfhn.png)
 
@@ -316,7 +315,7 @@ Do 2 đỉnh $a$ và $b$ nằm ở 2 cây con khác nhau của đỉnh $V$, $V$ 
 ## Cài đặt 2
 
 ```cpp=
-const int MAX_N = 5e3+5; 
+const int MAX_N = 5e3 + 5;
 const long long INF = 1e18;
 
 int N;
@@ -364,10 +363,10 @@ long long solve() {
 
 ## Độ phức tạp
 
-* Độ phức tạp thời gian: $O(N^2)$
-* Độ phức tạp không gian: $O(N^2)$
+* Độ phức tạp thời gian: $\mathcal{O}(N^{2})$
+* Độ phức tạp không gian: $\mathcal{O}(N^{2})$
 
-Tuy nhiên, ta có thể phân tích độ phức tạp thời gian kĩ hơn. Giả sử bài toán trên có điều kiện ($1 \leq K_i \leq M$), khi đó việc cập nhật thêm một cây con $v$ vào knapsack có độ phức tạp $O(\min(M, {\text{sz}}(v))$ và độ phức tạp tổng sẽ là $O(N \times \min(N, M))$. Phần chứng minh sẽ là bài tập dành cho bạn đọc
+Tuy nhiên, ta có thể phân tích độ phức tạp thời gian kĩ hơn. Giả sử bài toán trên có điều kiện ($1 \leq K_i \leq M$), khi đó việc cập nhật thêm một cây con $v$ vào knapsack có độ phức tạp $\mathcal{O}(\min(M, \texttt{sz}(v)))$ và độ phức tạp tổng sẽ là $\mathcal{O}(N \times \min(N, M))$. Phần chứng minh sẽ là bài tập dành cho bạn đọc
 
 # Bài tập tham khảo
 

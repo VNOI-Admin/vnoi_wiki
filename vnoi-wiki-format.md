@@ -34,17 +34,19 @@ Quý tác giả có thể tham khảo [ashki github](https://ashki23.github.io/m
 
 #### Các cú pháp cơ bản
 
-- **Phép nhân:** Sử dụng `\cdot` hoặc `\times`, không sử dụng `*`.
-- **Phép chia:** Sử dụng `\divi` hoặc `\ratio` hoặc phân số `\frac{...}{...}`, không sử dụng `/`. Có thể sử dụng `\displaystyle` để ép hiển thị phân số cỡ lớn đối với inline LaTeX.
-- **Dấu ba chấm:** Sử dụng `\dots` hoặc `\cdots`, không sử dụng `...`.
-- **Phép mũ:** Sử dụng `10^{12}`, không sử dụng `1e12`.
-- **Ngoặc:** Nên sử dụng `\left` và `\right` để tự động điều chỉnh kích thước ngoặc.
+- **Phép nhân:** Sử dụng `\times` hoặc `\cdot`, không sử dụng `*`. Riêng với các bài hình học, `\cdot` dành cho tích vô hướng và `\times` dành cho tích có hướng.
+- **Phép chia:** Sử dụng phân số `\frac{...}{...}`, không sử dụng `/`. Có thể sử dụng `\displaystyle` để ép hiển thị phân số cỡ lớn đối với inline LaTeX; không sử dụng dạng `{a \over b}`.
+- **Dấu ba chấm:** Sử dụng `\ldots` cho dãy phân tách bởi dấu phẩy (ví dụ $a_1, a_2, \ldots, a_n$) và `\cdots` cho dãy phân tách bởi phép toán (ví dụ $a_1 + a_2 + \cdots + a_n$), không viết trực tiếp `...` hay `..` trong công thức.
+- **Phép mũ:** Sử dụng `10^{12}`, không sử dụng `1e12`; luôn đặt số mũ trong cặp ngoặc nhọn kể cả khi chỉ có một ký tự (`10^{9}` thay vì `10^9`).
+- **Phép đồng dư:** Sử dụng `\pmod{n}` cho ký hiệu đồng dư (ví dụ $a \equiv b \pmod{n}$) và `\bmod` cho phép chia lấy dư (ví dụ $r = a \bmod b$); không viết `mod` thiếu dấu `\` hay tự thêm khoảng trắng bằng `\ mod \`.
+- **Công thức display:** Đặt cặp `$$` trên các dòng riêng biệt bao quanh công thức (như ví dụ phía trên), không viết cả công thức trên cùng một dòng với cặp `$$`.
+- **Ngoặc:** Nên sử dụng `\left` và `\right` để tự động điều chỉnh kích thước ngoặc khi nội dung bên trong chứa `\frac`, `\sum`, `\sqrt`,...
     - Cách trình bày đúng `\left( \frac{a}{b} \right)`, kết quả hiển thị là $\displaystyle\left( \frac{a}{b} \right)$.
     - Cách trình bày sai `( \frac{a}{b} )`, kết quả hiển thị là $\displaystyle(\frac{a}{b})$
 
 #### Sử dụng hàm
 
-Khi sử dụng các hàm thông dụng, ta cần thêm dấu `\` ở trước, ví dụ `$\max a_i$` chứ không phải `$max a_i$`. Đối với các hàm không được định nghĩa sẵn trong LaTeX, ta sử dụng `\operatorname{...}` hoặc `\mathrm{...}`. Ví dụ:
+Khi sử dụng các hàm thông dụng, ta cần thêm dấu `\` ở trước, ví dụ `$\max a_i$` chứ không phải `$max a_i$`, hay `$\gcd(a, b)$` chứ không phải `$gcd(a, b)$`. Đối với các hàm không được định nghĩa sẵn trong LaTeX, ta sử dụng `\operatorname{...}` hoặc `\mathrm{...}`. Ví dụ:
 
 ```
 $$
@@ -52,12 +54,13 @@ $$
 $$
 ```
 
-#### Các thống nhất về ký hiệu khác (tùy chọn)
+#### Các thống nhất về ký hiệu khác
 
-Để đảm bảo sự đồng bộ về mặt ký hiệu đối với các bài viết của VNOI, chúng mình khuyến khích quý tác giả tuân theo các thống nhất về ký hiệu như sau:
+Để đảm bảo sự đồng bộ về mặt ký hiệu đối với các bài viết của VNOI, các bài viết cần tuân theo các thống nhất về ký hiệu như sau:
 
-- Sử dụng `\mathcal{O}` thay vì `O` khi mô tả độ phức tạp, kết quả hiển thị là $\mathcal{O}$.
-- Đối với các tên biến có trên hai ký tự được đặt tên theo thuật toán, sử dụng `\texttt{...}` để phân biệt với tên biến toán học (đối với toán học, chỉ có các ký hiệu đặc biệt như vi phân $dx$ mới sử dụng hai ký tự trở lên cho một tên biến). Ví dụ `\texttt{solve}(i, j)`, kết quả hiển thị là $\texttt{solve}(i, j)$.
+- Sử dụng `\mathcal{O}` (luôn kèm cặp ngoặc nhọn) thay vì `O` hay `\mathcal O` khi mô tả độ phức tạp, kết quả hiển thị là $\mathcal{O}$.
+- Sử dụng `\mathbb{N}`, `\mathbb{Z}`, `\mathbb{R}`,... cho các ký hiệu tập hợp số.
+- Đối với các tên biến có trên hai ký tự được đặt tên theo thuật toán, sử dụng `\texttt{...}` để phân biệt với tên biến toán học (đối với toán học, chỉ có các ký hiệu đặc biệt như vi phân $dx$ mới sử dụng hai ký tự trở lên cho một tên biến). Ví dụ `\texttt{solve}(i, j)`, kết quả hiển thị là $\texttt{solve}(i, j)$. Chỉ sử dụng `\text{...}` cho các từ/cụm từ ngôn ngữ tự nhiên trong công thức.
 
 ### Ảnh minh họa
 

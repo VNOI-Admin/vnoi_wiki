@@ -2,75 +2,101 @@
 
 # Định lý
 
-Nếu $M$ là số nguyên tố thì $C_{N}^{K} \equiv C_{n_0}^{k_0}.C_{n_1}^{k_1}...C_{n_{p}}^{k_{p}} \ (mod \ M)$
+Nếu $M$ là số nguyên tố thì $C_{N}^{K} \equiv C_{n_0}^{k_0} \times C_{n_1}^{k_1} \cdots C_{n_{p}}^{k_{p}} \pmod{M}$
 
 Trong đó:
 
-$\overline{n_{p}n_{p-1}...n_0}$ là dạng biểu diễn của $N$ trên hệ cơ số $M$
+$\overline{n_{p}n_{p-1} \ldots n_0}$ là dạng biểu diễn của $N$ trên hệ cơ số $M$
 
-$\overline{k_{p}k_{p-1}...k_0}$ là dạng biểu diễn của $K$ trên hệ cơ số $M$
+$\overline{k_{p}k_{p-1} \ldots k_0}$ là dạng biểu diễn của $K$ trên hệ cơ số $M$
 
 Nói cách khác:
 
-$N=n_0.M^0+n_1.M^1+...+n_{p}.M^{p}$
+$$
+N=n_0 \times M^{0}+n_1 \times M^{1}+\cdots+n_{p} \times M^{p}
+$$
 
-$K=k_0.M^0+k_1.M^1+...+k_{p}.M^{p}$
+$$
+K=k_0 \times M^{0}+k_1 \times M^{1}+\cdots+k_{p} \times M^{p}
+$$
 
 # Chứng minh
 
 Với $M$ là số nguyên tố và $i$ là số nguyên với $1 \leq i < M$
 
-$\Rightarrow C_{M}^{i}=\frac{M.(M-1)...(M-i+1)}{i.(i-1)...1} \equiv 0 \ (mod \ M)$ do $gcd(M,i!)=1$
+$\Rightarrow C_{M}^{i}=\frac{M \times (M-1) \cdots (M-i+1)}{i \times (i-1) \cdots 1} \equiv 0 \pmod{M}$ do $\gcd(M,i!)=1$
 
-$\Rightarrow(1+X)^M=\sum_{i=0}^{M}C_{M}^{i}.X^i \equiv 1+X^M \ (mod \ M)$ với mọi $X \in \mathbb{Z}$
+$\Rightarrow(1+X)^{M}=\sum_{i=0}^{M}C_{M}^{i} \times X^{i} \equiv 1+X^{M} \pmod{M}$ với mọi $X \in \mathbb{Z}$
 
 Lại có:
 
-$(1+X^M)^M \equiv ((1+X)^M)^M \equiv (1+X)^{M^2}\ (mod \ M)$
+$$
+(1+X^{M})^{M} \equiv ((1+X)^{M})^{M} \equiv (1+X)^{M^{2}} \pmod{M}
+$$
 
 và
 
-$(1+X^M)^M \equiv 1+(X^M)^M \equiv 1+X^{M^2} \ (mod \ M)$
+$$
+(1+X^{M})^{M} \equiv 1+(X^{M})^{M} \equiv 1+X^{M^{2}} \pmod{M}
+$$
 
-$\Rightarrow (1+X)^{M^2} \equiv 1+X^{M^2} \ (mod \ M)$
+$$
+\Rightarrow (1+X)^{M^{2}} \equiv 1+X^{M^{2}} \pmod{M}
+$$
 
-Cứ tiếp tục như vậy, với mọi $i \in N$ ta được:
+Cứ tiếp tục như vậy, với mọi $i \in \mathbb{N}$ ta được:
 
-$(1+X)^{M^i} \equiv 1+X^{M^i} \ (mod \ M)$
+$$
+(1+X)^{M^{i}} \equiv 1+X^{M^{i}} \pmod{M}
+$$
 
 Ta có:
 
-$\sum_{K=0}^{N}C_{N}^{K}.X^K$
+$$
+\sum_{K=0}^{N}C_{N}^{K} \times X^{K}
+$$
 
-$=(1+X)^N$ (nhị thức Newton) (1)
+$=(1+X)^{N}$ (nhị thức Newton) (1)
 
 Tách $N$ về dạng cơ số $M$ ta được:
 
-$(1)=(1+X)^{n_0.M^0+n_1.M^1+...+n_{p}.M^{p}}$
+$$
+(1)=(1+X)^{n_0 \times M^{0}+n_1 \times M^{1}+\cdots+n_{p} \times M^{p}}
+$$
 
-$=\prod_{i=0}^{p}((1+X)^{M^i})^{n_i}$
+$$
+=\prod_{i=0}^{p}((1+X)^{M^{i}})^{n_i}
+$$
 
-$\equiv \prod_{i=0}^{p}(1+X^{M^i})^{n_i} \ (mod \ M)$
+$$
+\equiv \prod_{i=0}^{p}(1+X^{M^{i}})^{n_i} \pmod{M}
+$$
 
-$=\prod_{i=0}^{p}\sum_{k_i=0}^{n_i}C_{n_i}^{k_i}X^{k_i.M^i}$ (nhị thức Newton)
+$=\prod_{i=0}^{p}\sum_{k_i=0}^{n_i}C_{n_i}^{k_i}X^{k_i \times M^{i}}$ (nhị thức Newton)
 
-$=\prod_{i=0}^{p}\sum_{k_i=0}^{M-1}C_{n_i}^{k_i}X^{k_i.M^i}$ ($n_i \leq M-1$ với mọi $i$ và $C_j^i=0$ với $i>j$) (2)
+$=\prod_{i=0}^{p}\sum_{k_i=0}^{M-1}C_{n_i}^{k_i}X^{k_i \times M^{i}}$ ($n_i \leq M-1$ với mọi $i$ và $C_j^{i}=0$ với $i>j$) (2)
 
-Nhóm các $C_{n_i}^{k_i}X^{k_i.M^i}$ lại ta có
+Nhóm các $C_{n_i}^{k_i}X^{k_i \times M^{i}}$ lại ta có
 
-$C_{n_0}^{k_0}.C_{n_1}^{k_1}...C_{n_p}^{k_p}.X^{k_0.M^0+k_1.M^1+...k_p.M^p}$
+$$
+C_{n_0}^{k_0} \times C_{n_1}^{k_1} \cdots C_{n_p}^{k_p} \times X^{k_0 \times M^{0}+k_1 \times M^{1}+\cdots+k_p \times M^{p}}
+$$
 
-Do đó với một bộ $(k_0,k_1,...k_p)$ bất kì ta được một hạng tử
+Do đó với một bộ $(k_0,k_1,\ldots,k_p)$ bất kì ta được một hạng tử
 
-$C_{n_0}^{k_0}.C_{n_1}^{k_1}...C_{n_p}^{k_p}.X^{K}$
+$$
+C_{n_0}^{k_0} \times C_{n_1}^{k_1} \cdots C_{n_p}^{k_p} \times X^{K}
+$$
 
-($C_{n_0}^{k_0}.C_{n_1}^{k_1}...C_{n_p}^{k_p}$ là hệ số của $X^K$)
+($C_{n_0}^{k_0} \times C_{n_1}^{k_1} \cdots C_{n_p}^{k_p}$ là hệ số của $X^{K}$)
 
-Vậy $(2)=\sum_{K=0}^{N}\prod_{i=0}^{p}C_{n_i}^{k_i}X^K$
+Vậy $(2)=\sum_{K=0}^{N}\prod_{i=0}^{p}C_{n_i}^{k_i}X^{K}$
 
-Từ đó suy ra: $\sum_{K=0}^{N}C_{N}^{K}.X^K \equiv \sum_{K=0}^{N}\prod_{i=0}^{p}C_{n_i}^{k_i}X^K \ (mod \ M)$ với mọi $X \in \mathbb{Z}$
+Từ đó suy ra: $\sum_{K=0}^{N}C_{N}^{K} \times X^{K} \equiv \sum_{K=0}^{N}\prod_{i=0}^{p}C_{n_i}^{k_i}X^{K} \pmod{M}$ với mọi $X \in \mathbb{Z}$
 
-$\Leftrightarrow C_N^K \equiv \prod_{i=0}^{p}C_{n_i}^{k_i} \ (mod \ M)$
+$$
+\Leftrightarrow C_N^{K} \equiv \prod_{i=0}^{p}C_{n_i}^{k_i} \pmod{M}
+$$
 
 # Cài đặt
 
@@ -85,16 +111,15 @@ vector<int> getRepresentation(int N) {
     }
     return res;
 }
-
 ```
 
-Đoạn code trên chạy trong thời gian $O(log_M N)$
+Đoạn code trên chạy trong thời gian $\mathcal{O}(\log_M N)$
 
 ## Tính $C_{n_i}^{k_i}$
 
-### Thuật toán $< O(n^2),O(1) >$
+### Thuật toán $\langle \mathcal{O}(n^{2}), \mathcal{O}(1) \rangle$
 
-Với $N$ nhỏ ta có thể sử dụng công thức tam giác Pascal để tính trước trong $O(n^2)$ và truy vấn trong $O(1)$:
+Với $N$ nhỏ ta có thể sử dụng công thức tam giác Pascal để tính trước trong $\mathcal{O}(n^{2})$ và truy vấn trong $\mathcal{O}(1)$:
 
 ```cpp
 int C[M][M];
@@ -107,12 +132,11 @@ for (int i = 0; i < M; ++i) {
         }
     }
 }
-
 ```
 
-### Thuật toán $< O(M),O(logM) >$
+### Thuật toán $\langle \mathcal{O}(M), \mathcal{O}(\log M) \rangle$
 
-Với $M$ nhỏ các bạn có thể tiền xử lý trong $O(M)$ và truy vấn trong $O(logM)$ bằng trick #3 ở [đây](https://www.hackerearth.com/notes/powerful-tricks-with-calculation-modulo/).
+Với $M$ nhỏ các bạn có thể tiền xử lý trong $\mathcal{O}(M)$ và truy vấn trong $\mathcal{O}(\log M)$ bằng trick #3 ở [đây](https://www.hackerearth.com/notes/powerful-tricks-with-calculation-modulo/).
 
 #### Tiền xử lý
 
@@ -122,7 +146,6 @@ fact[0] = 1;
 for (int i = 1; i < M; ++i) {
     fact[i] = (fact[i - 1] * i) % M;
 }
-
 ```
 
 #### Truy vấn
@@ -134,14 +157,13 @@ int C(int N, int K) {
     }
     return (((fact[N] * binpow(fact[N - K], M - 2)) % M) * binpow(fact[K], M - 2)) % M;
 }
-
 ```
 
-Trong đó hàm `binpow(a,n)` dùng để tính nhanh $a^n$ trong $O(logn)$ bằng chia để trị:
+Trong đó hàm `binpow(a,n)` dùng để tính nhanh $a^{n}$ trong $\mathcal{O}(\log n)$ bằng chia để trị:
 
-$a^n=(a^{n/2})^2$ nếu $n$ chẵn
+$a^{n}=\left(a^{\frac{n}{2}}\right)^{2}$ nếu $n$ chẵn
 
-$a^n=(a^{n/2})^2*a$ nếu $n$ lẻ
+$a^{n}=\left(a^{\frac{n}{2}}\right)^{2} \times a$ nếu $n$ lẻ
 
 Có thể cài đặt bằng đệ quy theo công thức trên hoặc cài khử đệ quy như sau:
 
@@ -157,10 +179,9 @@ int binpow(int a, int n) {
     }
     return (int)res;
 }
-
 ```
 
-## Tính $C_N^K$
+## Tính $C_N^{K}$
 
 ```cpp
 vector<int> n = getRepresentation(N);
@@ -169,18 +190,17 @@ long long res = 1;
 for (int i = 0; i < k.size(); ++i) {
     res = (res * C(n[i], k[i])) % M;
 }
-
 ```
 
 # Trường hợp $M$ không là số nguyên tố
 
 Chúng ta thực hiện các bước như sau:
 
-- Phân tích thừa số nguyên tố $M={m_1}^{a_1}.{m_2}^{a_2}...{m_r}^{a_r}$
+- Phân tích thừa số nguyên tố $M={m_1}^{a_1} \times {m_2}^{a_2} \times \cdots \times {m_r}^{a_r}$
 
-- Tính $C_N^K \ mod \ m_1$, $C_N^K \ mod \ m_2$,...$C_N^K \ mod \ m_r$
+- Tính $C_N^{K} \bmod m_1$, $C_N^{K} \bmod m_2$,...$C_N^{K} \bmod m_r$
 
-- Sử dụng [Định lý Thặng dư Trung Hoa](https://en.wikipedia.org/wiki/Chinese_remainder_theorem) để khôi phục $C_N^K \ mod \ M$
+- Sử dụng [Định lý Thặng dư Trung Hoa](https://en.wikipedia.org/wiki/Chinese_remainder_theorem) để khôi phục $C_N^{K} \bmod M$
 
 # Luyện tập
 

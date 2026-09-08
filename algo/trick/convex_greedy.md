@@ -40,7 +40,7 @@ Cho $n$ hàm lồi $f_1, f_2, \dots, f_n$ được định nghĩa trên tập s�
 
 In ra giá trị nhỏ nhất của $f(x_1) + f(x_2) + \dots + f(x_n)$.
 
-Giới hạn: $1 \le n, k \le 2 \cdot 10^5$.
+Giới hạn: $1 \le n, k \le 2 \cdot 10^{5}$.
 
 ### Phân tích
 
@@ -67,13 +67,13 @@ Ngoài ra, ta cũng có thể chứng minh được là thao tác trên sẽ thu
 Với $n$ lớn hơn, ta có thuật toán tương tự: khởi tạo mọi $x_i = 0$, lặp bước sau $k$ lần:
 - Tìm $i$ sao cho $f_i(x_i + 1) - f_i(x_i)$ là nhỏ nhất rồi tăng $x_i$ lên $1$.
 
-Ta có thể sử dụng heap để cài đặt thuật toán trên với độ phức tạp là $O((n + k) \log n)$.
+Ta có thể sử dụng heap để cài đặt thuật toán trên với độ phức tạp là $\mathcal{O}((n + k) \log n)$.
 
 ### Cài đặt
 
 ```cpp
 int n; // Số lượng hàm f_i
-int f(int i, int x){
+int f(int i, int x) {
     // Trả về f_i(x)
 }
 long long cost_greedy(int k) {
@@ -101,21 +101,21 @@ Link bài: [CF - 1428E](https://codeforces.com/contest/1428/problem/E).
 
 ### Đề bài
 
-Có $n$ củ cà rốt có độ dài $a_1, a_2, \dots, a_n$. Người chủ muốn cắt các củ cà rốt này các phần *có độ dài nguyên dương* cho $k$ chú thỏ. Một phần cà rốt có độ dài $x$ sẽ mất $x^2$ giây để ăn. Người chủ này muốn cắt cà rốt thành $k$ phần sao cho tổng thời gian ăn hết $k$ phần này là nhỏ nhất có thể.
+Có $n$ củ cà rốt có độ dài $a_1, a_2, \dots, a_n$. Người chủ muốn cắt các củ cà rốt này các phần *có độ dài nguyên dương* cho $k$ chú thỏ. Một phần cà rốt có độ dài $x$ sẽ mất $x^{2}$ giây để ăn. Người chủ này muốn cắt cà rốt thành $k$ phần sao cho tổng thời gian ăn hết $k$ phần này là nhỏ nhất có thể.
 
 Giới hạn:
-- $1 \le n, k \le 10^5$.
-- $1 \le a_i \le 10^6$.
+- $1 \le n, k \le 10^{5}$.
+- $1 \le a_i \le 10^{6}$.
 
 ### Phân tích
 
 Xét hàm $f_i(p)$ là tổng thời gian ăn nhỏ nhất nếu ta chỉ xét củ cà rốt $a_i$, và củ cà rốt này được chia thành đúng $p$ phần.
 
-Nhận xét rằng ta có thể tính $f_i(x)$ trong độ phức tạp $O(1)$ với mọi $x$: để ý rằng khi chia củ cà rốt $i$ thành $x$ phần, các phần này cần có độ dài cách nhau tối đa là $1$ (ta có thể chứng minh bằng việc nhận xét rằng $f_i(x)$ là tổng $t_1^2 + t_2^2 + \dots + t_x^2$ với $t_1 + t_2 + \dots + t_x = a_i$, từ đó ta có thể dùng cách lập luận tham chi phí tăng để chứng minh điều này, chi tiết xin để dành cho bạn đọc).
+Nhận xét rằng ta có thể tính $f_i(x)$ trong độ phức tạp $\mathcal{O}(1)$ với mọi $x$: để ý rằng khi chia củ cà rốt $i$ thành $x$ phần, các phần này cần có độ dài cách nhau tối đa là $1$ (ta có thể chứng minh bằng việc nhận xét rằng $f_i(x)$ là tổng $t_1^{2} + t_2^{2} + \dots + t_x^{2}$ với $t_1 + t_2 + \dots + t_x = a_i$, từ đó ta có thể dùng cách lập luận tham chi phí tăng để chứng minh điều này, chi tiết xin để dành cho bạn đọc).
 
 Quan trọng hơn, ta nhận thấy là mọi $f_i$ là hàm lồi. Để chứng minh điều này với mọi $i$, ta giả sử củ cà rốt $n + 1$ có độ dài là $2a_i$. Nhận xét rằng với mọi $p$, $2f_i(p) = f_{n + 1}(2p)$. Đây là vì nếu củ cà rốt thứ $n + 1$ được chia thành các phần có độ dài $x$ và $x + 1$, thì số lượng đoạn cà rốt có độ dài $x$ là chẵn, và tương tự với $x + 1$; vì thế, ta luôn có thể chia củ cà rốt thứ $n + 1$ làm đôi, rồi cắt mỗi phần giống nhau. Ngoài ra, $f_{n + 1}(2p) \le f_i(p - 1) + f_i(p + 1)$, bởi vì một cách cắt một củ cà rốt có độ dài $2a_i$ thành $2p$ phần là cắt đôi củ cà rốt, rồi cắt nửa đầu thành $p - 1$ phần và nửa sau thành $p + 1$ phần. Bởi thế, $2f_i(p) \le f_i(p - 1) + f_i(p + 1)$, từ đó ta có $f_i(p + 1) - f_i(p) \ge f_i(p) - f_i(p - 1)$.
 
-Bởi thế, ta có thể dùng ý tưởng tham lam được đề cập ở phần bài toán tổng quát để cài đặt bài này với độ phức tạp là $O((n + k) \log n)$.
+Bởi thế, ta có thể dùng ý tưởng tham lam được đề cập ở phần bài toán tổng quát để cài đặt bài này với độ phức tạp là $\mathcal{O}((n + k) \log n)$.
 
 ### Cài đặt
 
@@ -174,20 +174,22 @@ Link bài: [CF - 1344D](https://codeforces.com/problemset/problem/1344/D).
 
 Cho mảng $a$ gồm $n$ số nguyên dương và một số $k$, bạn cần tìm mảng $b$ gồm $n$ số nguyên thỏa mãn:
 - $0 \le b_i \le a_i$ với mọi $i$.
-- $\sum_{i = 1}^n b_i = k$.
-- $\sum_{i = 1}^n b_i(a_i - b_i^2)$ là lớn nhất có thể.
+- $\sum_{i = 1}^{n} b_i = k$.
+- $\sum_{i = 1}^{n} b_i(a_i - b_i^{2})$ là lớn nhất có thể.
 
 In ra mảng $b$ thỏa mãn 3 điều kiện này.
 
 Giới hạn:
-- $1 \le n \le 10^5$.
-- $1 \le a_i \le 10^9$.
-- $1 \le k \le \sum_{i=1}^n a_i$.
+- $1 \le n \le 10^{5}$.
+- $1 \le a_i \le 10^{9}$.
+- $1 \le k \le \sum_{i=1}^{n} a_i$.
 
 ### Phân tích
-Nếu ta đặt $f_i(x) = x(a_i - x^2)$, thì ta nhận thấy là $f_i(x)$ là *hàm lõm* (hay nói cách khác, $-f_i(x)$ là hàm lồi). Để chứng minh điều này, với mọi $x$ ta có
-$$f_i(x + 1) - f_i(x) = -3x^2 - 3x - 1 + a_i$$
-và vế phải giảm dần khi $x$ tăng dần. Vì thế, ta có thể dùng ý tưởng tổng quát như trên. Tuy nhiên, với $k \sim 10^{14}$ ở bài toán này, ta không thể trực tiếp sử dụng thuật toán trên. Để tối ưu, ta có thể chặt nhị phân chi phí tăng lớn thứ $k$. Khi đang xét chặt nhị phân với giá trị $m$, ta cần tìm với mọi $i$ giá trị $b_i$ lớn nhất sao cho $f_i(b_i + 1) - f_i(b_i) \ge m$; thao tác này có thể được thực hiện với độ phức tạp $O(1)$ nếu sử dụng công thức phương trình bậc hai, hoặc với độ phức tạp $O(\log a_i)$ nếu sử dụng thêm 1 vòng chặt nhị phân. Vì thế, ta có thể giải bài trên với độ phức tạp là $O(n \log^2 A)$ hoặc $O(n \log A)$ với $A = \sum_{i=1}^n a_i$.
+Nếu ta đặt $f_i(x) = x(a_i - x^{2})$, thì ta nhận thấy là $f_i(x)$ là *hàm lõm* (hay nói cách khác, $-f_i(x)$ là hàm lồi). Để chứng minh điều này, với mọi $x$ ta có
+$$
+f_i(x + 1) - f_i(x) = -3x^{2} - 3x - 1 + a_i
+$$
+và vế phải giảm dần khi $x$ tăng dần. Vì thế, ta có thể dùng ý tưởng tổng quát như trên. Tuy nhiên, với $k \sim 10^{14}$ ở bài toán này, ta không thể trực tiếp sử dụng thuật toán trên. Để tối ưu, ta có thể chặt nhị phân chi phí tăng lớn thứ $k$. Khi đang xét chặt nhị phân với giá trị $m$, ta cần tìm với mọi $i$ giá trị $b_i$ lớn nhất sao cho $f_i(b_i + 1) - f_i(b_i) \ge m$; thao tác này có thể được thực hiện với độ phức tạp $\mathcal{O}(1)$ nếu sử dụng công thức phương trình bậc hai, hoặc với độ phức tạp $\mathcal{O}(\log a_i)$ nếu sử dụng thêm 1 vòng chặt nhị phân. Vì thế, ta có thể giải bài trên với độ phức tạp là $\mathcal{O}(n \log^{2} A)$ hoặc $\mathcal{O}(n \log A)$ với $A = \sum_{i=1}^{n} a_i$.
 
 ### Cài đặt
 
@@ -271,8 +273,8 @@ Jerry muốn giúp chú chuột này thoát khỏi mê cung (tức là đi tới
 In ra một cách đặt phô mai để Jerry tối đa hóa xác suất chú chuột kia có thể tẩu thoát.
 
 Giới hạn:
-- $1 \le n \le 2 \cdot 10^5$.
-- $1 \le x, c_i \le 10^9$.
+- $1 \le n \le 2 \cdot 10^{5}$.
+- $1 \le x, c_i \le 10^{9}$.
 
 ### Phân tích
 
@@ -283,7 +285,7 @@ Nhận xét rằng nếu ta đặt $f_u(t) = \log(c_u + t) - \log(b_u + t)$, th�
 - $\sum_{u \in \{1 \to n\}} x_u = x$.
 - $\sum_{u \in \{1 \to n\}} f_u(x_u)$ là lớn nhất có thể.
 
-Ta có thể áp dụng kĩ thuật ở trên: chặt nhị phân chi phí tăng cuối cùng $t$, rồi ở mỗi đỉnh $u$ ta chặt nhị phân $x_u$ nhỏ nhất sao cho $f_u(x_u + 1) - f_u(x_u) < t$. Tuy nhiên, độ phức tạp của cách làm này là $O(n \log x \log \epsilon^{-1})$ với $\epsilon$ là độ chính xác cần đạt được; với bài toán này, cách làm này sẽ bị vượt quá thời gian cho phép ($\epsilon$ có thể xuống tới $10^{-19}$).
+Ta có thể áp dụng kĩ thuật ở trên: chặt nhị phân chi phí tăng cuối cùng $t$, rồi ở mỗi đỉnh $u$ ta chặt nhị phân $x_u$ nhỏ nhất sao cho $f_u(x_u + 1) - f_u(x_u) < t$. Tuy nhiên, độ phức tạp của cách làm này là $\mathcal{O}(n \log x \log \epsilon^{-1})$ với $\epsilon$ là độ chính xác cần đạt được; với bài toán này, cách làm này sẽ bị vượt quá thời gian cho phép ($\epsilon$ có thể xuống tới $10^{-19}$).
 
 Một ý tưởng cho bài toán này là *bỏ giới hạn rằng $x_u$ là số nguyên*, rồi từ nghiệm thực $\hat{x}_u$ nhận được, ta chuyển về $x_u$ bằng cách nào đó (kĩ thuật này được gọi là integer program relaxation). Nói cách khác, xét bài toán sau: cho $f_u(t) = \log(c_u + t) - \log(b_u + t)$, chọn $\hat{x}_u$ sao cho
 - $x_u$ là *số thực không âm* với mọi $u \in \{1 \to n\}$.
@@ -300,12 +302,12 @@ Ta nhận thấy là với nghiệm nguyên, ta lặp thao tác trên với $dx 
 - Với mọi $u$ sao cho $\hat{x}_u > 0$, đạo hàm của $f_u$ tại các điểm này là bằng nhau. Nói cách khác, tồn tại số $t$ sao cho với mọi $u$ mà $\hat{x}_u > 0$, ta có $f'_u(\hat{x}_u) = t$.
 - Với mọi $u$ sao cho $\hat{x}_u = 0$, ta có $f'_u(\hat{x}_u) \le t$.
 
-Vì thế, ta có thể tìm nghiệm thực của bài toán trên như sau: ta chặt nhị phân giá trị $t$; ở mỗi vòng chặt nhị phân và với mỗi $u$, ta giải $\hat{x}_u$ sao cho $f'_u(\hat{x}_u) = t$ (hoặc gán $\hat{x}_u = 0$ nếu $f'(\hat{x}_u) \le t$). Độ phức tạp của phần này là $O(n \log \epsilon^{-1})$ vì ta có thể trực tiếp giải $\hat{x}_u$.
+Vì thế, ta có thể tìm nghiệm thực của bài toán trên như sau: ta chặt nhị phân giá trị $t$; ở mỗi vòng chặt nhị phân và với mỗi $u$, ta giải $\hat{x}_u$ sao cho $f'_u(\hat{x}_u) = t$ (hoặc gán $\hat{x}_u = 0$ nếu $f'(\hat{x}_u) \le t$). Độ phức tạp của phần này là $\mathcal{O}(n \log \epsilon^{-1})$ vì ta có thể trực tiếp giải $\hat{x}_u$.
 
 <details>
 <summary>Chi tiết giải</summary>
 <p>
-Ta biết rằng $f'_u(\hat{x}_u) = \frac{1}{c_u + \hat{x}_u} - \frac{1}{b_u + \hat{x}_u}$. Giả sử $c_u < b_u$ (nếu không thì ta không cần phải thêm phô mai vào đỉnh này), thì $f'_u(\hat{x}_u) = t$ là phương trình bậc hai, nhận nghiệm $\hat{x}_u = \frac{\sqrt{\frac{4(b_u - c_u)}{t} + (b_u - c_u)^2} - b_u - c_u}{2}$.
+Ta biết rằng $f'_u(\hat{x}_u) = \frac{1}{c_u + \hat{x}_u} - \frac{1}{b_u + \hat{x}_u}$. Giả sử $c_u < b_u$ (nếu không thì ta không cần phải thêm phô mai vào đỉnh này), thì $f'_u(\hat{x}_u) = t$ là phương trình bậc hai, nhận nghiệm $\hat{x}_u = \frac{\sqrt{\frac{4(b_u - c_u)}{t} + (b_u - c_u)^{2}} - b_u - c_u}{2}$.
 </p>
 </details>
 
@@ -318,7 +320,9 @@ Gọi $\hat{x}_u$ là nghiệm thực của bài toán và $x_u$ là nghiệm ng
 
 Giả sử tồn tại $u$ và $v$ sao cho $x_u \le \lfloor \hat{x}_u \rfloor - 1$ và $x_v \ge \lceil \hat{x}_v \rceil + 1$. Để ý rằng bởi vì $x_u \ge 0$, điều này nghĩa rằng $\hat{x}_u \ge 1$, tức là $f'_u(\hat{x}_u) = t$. Tuy nhiên, ta có:
 
-$$f_u(x_u + 1) - f_u(x_u) > f'_u(x_u + 1) \ge f'_u(\hat{x}_u) = t \ge f'_v(\hat{x}_v) \ge f'_v(x_v - 1) \ge f_v(x_v) - f_v(x_v - 1).$$
+$$
+f_u(x_u + 1) - f_u(x_u) > f'_u(x_u + 1) \ge f'_u(\hat{x}_u) = t \ge f'_v(\hat{x}_v) \ge f'_v(x_v - 1) \ge f_v(x_v) - f_v(x_v - 1).
+$$
 
 Bởi thế, theo thuật toán tham chi phí tăng, ta phải chọn tăng $x_u$ lên $x_u + 1$ trước khi chọn tăng $x_v - 1$ lên $x_v$. Vì thế, $x$ không phải nghiệm nguyên của bài toán trên.
 </p>
@@ -331,9 +335,9 @@ $x_u = \lfloor \hat{x}_u \rfloor$
 - Khởi tạo $x_u =\lfloor\hat{x}_u\rfloor$ rồi chạy tham chi phí tăng không quá $n$ bước (vì $\sum \lfloor \hat{x}_u \rfloor \ge x - n$).
 - Khởi tạo $x_u = \lceil \hat{x}_u \rceil$ rồi chạy thuật toán đảo của tham chi phí tăng (xoá chi phí giảm nhỏ nhất) không quá $n$ bước (vì $\sum \lceil \hat{x}_u \rceil \le x + n$).
 
-Trên thực tế, với riêng bài toán này, ta chỉ cần sử dụng cách thứ nhất. Mình không biết cách chứng minh điều này, tuy nhiên kể cả khi ta thực hiện cả 2 cách thì độ phức tạp của phần này là $O(n \log n)$.
+Trên thực tế, với riêng bài toán này, ta chỉ cần sử dụng cách thứ nhất. Mình không biết cách chứng minh điều này, tuy nhiên kể cả khi ta thực hiện cả 2 cách thì độ phức tạp của phần này là $\mathcal{O}(n \log n)$.
 
-Vì thế, bài toán có thể được giải với độ phức tạp $O(n (\log n + \log \epsilon^{-1}))$.
+Vì thế, bài toán có thể được giải với độ phức tạp $\mathcal{O}(n (\log n + \log \epsilon^{-1}))$.
 
 ### Cài đặt
 

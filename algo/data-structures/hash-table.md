@@ -26,7 +26,7 @@ Gọi:
 - $n$ là số phần tử ta cần lưu trong Hash table
 - $k$ là số bucket
 
-Giá trị $n/k$ được gọi là **load factor**. Khi load factor nhỏ (xấp xỉ 1), và giá trị của hàm Hash phân bố đều, độ phức tạp của các thao tác trên Hash table là $\mathcal{O}(1)$.
+Giá trị $\frac{n}{k}$ được gọi là **load factor**. Khi load factor nhỏ (xấp xỉ 1), và giá trị của hàm Hash phân bố đều, độ phức tạp của các thao tác trên Hash table là $\mathcal{O}(1)$.
 
 # Hash collision
 
@@ -62,12 +62,15 @@ Trong hình minh họa:
 Dưới đây là cài đặt Hash table đơn giản, hỗ trợ thao tác thêm và tìm kiếm. Hash table này sử dụng separate chaining, và dùng vector thay cho linked list để đơn giản.
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 const int P = 1e6 + 3;
 
 struct HashTable {
-    vector< pair<int,int> > h[P];
+    vector<pair<int, int>> h[P];
 
-public:
+  public:
     void insert(int key, int value) {
         int hkey = getHash(key);
         for (auto p : h[hkey]) {

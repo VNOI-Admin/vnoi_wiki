@@ -32,9 +32,9 @@ Tư tưởng chia để trị cũng xuất hiện rất đa dạng và phổ bi�
 
 Ta nhắc lại một vài ký hiệu trước khi vào phần này:
 
--   $\text{log}_a b$: Logarit cơ số $a$ của $b$, là số thực $k$ thoả mãn $a^k = b$. Bài viết này sẽ sử dụng ký hiệu $\text{log } b$ cho trường hợp $a = 2$.
+-   $\log_a b$: Logarit cơ số $a$ của $b$, là số thực $k$ thoả mãn $a^{k} = b$. Bài viết này sẽ sử dụng ký hiệu $\log b$ cho trường hợp $a = 2$.
 -   $T(n)$: Thời gian chạy thuật toán với kích thước dữ liệu đầu vào là $n$, tính bằng số phép tính.
--   $O()$ (big-O): Các hàm độ phức tạp thuật toán. Chi tiết bạn đọc tham khảo [Độ phức tạp thời gian](/algo/basic/computational-complexity.md)
+-   $\mathcal{O}()$ (big-O): Các hàm độ phức tạp thuật toán. Chi tiết bạn đọc tham khảo [Độ phức tạp thời gian](/algo/basic/computational-complexity.md)
 
 Chi tiết về các ký hiệu độ phức tạp và thời gian bạn đọc có thể tham khảo bài .
 
@@ -72,27 +72,27 @@ Tại mỗi nút của cây trên, nếu việc kết hợp kết quả các bà
 
 $$
 T(n) = \begin{cases}
-    a \times T(\frac{n}{b}) + f(n) &\text{khi } n \geq k\\
-    O(1) &\text{khi } n < k
-    \end{cases}
+ a \times T\left(\frac{n}{b}\right) + f(n) &\text{khi } n \geq k\\
+ \mathcal{O}(1) &\text{khi } n < k
+ \end{cases}
 $$
 
 với $k$ là một hằng số nào đó, tuỳ thuộc vào thuật toán.
 
-Ví dụ, với thuật toán MergeSort, tại mỗi bước ta chia một đoạn có độ dài $n$ thành hai đoạn con có độ dài $n/2$ hoặc xấp xỉ số đó. Thuật toán sẽ có thời gian chạy là $T(n) = 2T(\frac{n}{2}) + O(n)$ khi $n > 1$ và $O(1)$ khi $n = 1$.
+Ví dụ, với thuật toán MergeSort, tại mỗi bước ta chia một đoạn có độ dài $n$ thành hai đoạn con có độ dài $\frac{n}{2}$ hoặc xấp xỉ số đó. Thuật toán sẽ có thời gian chạy là $T(n) = 2T\left(\frac{n}{2}\right) + \mathcal{O}(n)$ khi $n > 1$ và $\mathcal{O}(1)$ khi $n = 1$.
 
-Bây giờ, ta lại xét giá trị $f(n)$. Giả sử $f(n)$ viết được dưới dạng $O(n^p\text{log}^qn)$ (Định lý Thợ chỉ áp dụng khi $f(n)$ có độ phức tạp đa thức). Chúng ta có thể tiếp tục thu gọn biểu thức như sau:
-| Quan hệ $a$ và $b^p$ | Biểu thức $T(n)$ |
+Bây giờ, ta lại xét giá trị $f(n)$. Giả sử $f(n)$ viết được dưới dạng $\mathcal{O}(n^{p}\log^{q} n)$ (Định lý Thợ chỉ áp dụng khi $f(n)$ có độ phức tạp đa thức). Chúng ta có thể tiếp tục thu gọn biểu thức như sau:
+| Quan hệ $a$ và $b^{p}$ | Biểu thức $T(n)$ |
 |---|---|
-| $a > b^p$ | $T(n) = O(n^{\text{log}_b a})$ |
-| $a = b^p$ | $T(n) = O(n^{\text{log}_b a}\text{log}^{q + 1}n)$ khi $q > -1$ <br> $T(n) = O(n^{\text{log}_b a}\text{log }\text{log }n)$ khi $q = -1$ <br> $T(n) = O(n^{\text{log}_b a})$ khi $q < -1$ |
-| $a < b^p$ | $T(n) = O(n^p\text{log}_q n)$ khi $q \geq 0$ <br> $T(n) = O(n^p)$ khi $q < 0$ |
+| $a > b^{p}$ | $T(n) = \mathcal{O}(n^{\log_b a})$ |
+| $a = b^{p}$ | $T(n) = \mathcal{O}(n^{\log_b a}\log^{q + 1} n)$ khi $q > -1$ <br> $T(n) = \mathcal{O}(n^{\log_b a}\log\log n)$ khi $q = -1$ <br> $T(n) = \mathcal{O}(n^{\log_b a})$ khi $q < -1$ |
+| $a < b^{p}$ | $T(n) = \mathcal{O}(n^{p}\log_q n)$ khi $q \geq 0$ <br> $T(n) = \mathcal{O}(n^{p})$ khi $q < 0$ |
 
 Một số ví dụ:
 
--   Thuật toán Tìm kiếm nhị phân (Binary search) mỗi lần chia bài toán thành 2 phần bằng nhau nhưng chỉ xét 1, không cần kết hợp kết quả sẽ có $T(n) = T(n / 2) + O(1)$. Thời gian chạy trung bình của thuật toán là $T(n) = O(\text{log }n)$, ứng với $a = 1, b = 2, p = 0, q = 0$.
--   Thuật toán MergeSort chia đôi dãy hiện tại thành 2 phần bằng nhau, lấy cả 2 và phải xét lại cả 2 phần để lấy kết quả sẽ có $T(n) = 2T(n / 2) + O(n)$. Thời gian chạy trung bình của thuật toán là $T(n) = O(n\text{log }n)$, ứng với $a = 2, b = 2, p = 1, q = 0$ (Chi tiết về thuật MergeSort bạn đọc có thể đọc phần dưới).
--   Một thuật toán chia để trị có $T(n) = 3T(n / 2) + \text{log}^2n$. Thời gian chạy trung bình của thuật toán là $T(n) = O(n^{\text{log}_2 3})$, tương ứng với $a = 3, b = 2, p = 0, q = 2$.
+-   Thuật toán Tìm kiếm nhị phân (Binary search) mỗi lần chia bài toán thành 2 phần bằng nhau nhưng chỉ xét 1, không cần kết hợp kết quả sẽ có $T(n) = T\left(\frac{n}{2}\right) + \mathcal{O}(1)$. Thời gian chạy trung bình của thuật toán là $T(n) = \mathcal{O}(\log n)$, ứng với $a = 1, b = 2, p = 0, q = 0$.
+-   Thuật toán MergeSort chia đôi dãy hiện tại thành 2 phần bằng nhau, lấy cả 2 và phải xét lại cả 2 phần để lấy kết quả sẽ có $T(n) = 2T\left(\frac{n}{2}\right) + \mathcal{O}(n)$. Thời gian chạy trung bình của thuật toán là $T(n) = \mathcal{O}(n\log n)$, ứng với $a = 2, b = 2, p = 1, q = 0$ (Chi tiết về thuật MergeSort bạn đọc có thể đọc phần dưới).
+-   Một thuật toán chia để trị có $T(n) = 3T\left(\frac{n}{2}\right) + \log^{2} n$. Thời gian chạy trung bình của thuật toán là $T(n) = \mathcal{O}(n^{\log_2 3})$, tương ứng với $a = 3, b = 2, p = 0, q = 2$.
 
 Định lý Thợ là một công cụ hữu hiệu để xác định độ phức tạp của một thuật toán chia để trị. Chỉ cần xác định được số bài toán con, kích thước dữ liệu các bài toán con và độ phức tạp của việc kết hợp dữ liệu, ta dễ dàng tìm ra độ phức tạp chung của bài toán.
 
@@ -102,11 +102,11 @@ Các bài toán áp dụng Chia để trị chỉ có chung một phương pháp
 
 ### MergeSort
 
-**Đề bài**: Sắp xếp một dãy gồm $n$ số nguyên $(n \leq 10^6)$.
+**Đề bài**: Sắp xếp một dãy gồm $n$ số nguyên $(n \leq 10^{6})$.
 
 #### Phân tích thuật toán
 
-Đây là một thuật toán sắp xếp nổi tiếng và cũng hay được áp dụng (nếu không được phép sử dụng các thư viện có sẵn). Thuật toán này sử dụng phương pháp đệ quy. Tại mỗi vòng đệ quy, giả sử đang cần sắp xếp một đoạn $[l, r]$ ta chia dãy làm hai phần bằng nhau, $[l, mid]$ và $[mid + 1, r]$ với $mid = \left\lfloor \dfrac{l + r}{2} \right\rfloor$. Sau khi đã gọi đệ quy các đoạn con, ta tiến hành hợp nhất hai đoạn này. Việc hợp nhất hai đoạn đã sắp xếp được tiến hành bằng phương pháp [hai con trỏ](/algo/basic/two-pointers.md), có độ phức tạp là $O(n)$. Trong trường hợp một đoạn chỉ có một phần tử duy nhất, ta coi như nó đã được sắp xếp.
+Đây là một thuật toán sắp xếp nổi tiếng và cũng hay được áp dụng (nếu không được phép sử dụng các thư viện có sẵn). Thuật toán này sử dụng phương pháp đệ quy. Tại mỗi vòng đệ quy, giả sử đang cần sắp xếp một đoạn $[l, r]$ ta chia dãy làm hai phần bằng nhau, $[l, mid]$ và $[mid + 1, r]$ với $mid = \left\lfloor \frac{l + r}{2} \right\rfloor$. Sau khi đã gọi đệ quy các đoạn con, ta tiến hành hợp nhất hai đoạn này. Việc hợp nhất hai đoạn đã sắp xếp được tiến hành bằng phương pháp [hai con trỏ](/algo/basic/two-pointers.md), có độ phức tạp là $\mathcal{O}(n)$. Trong trường hợp một đoạn chỉ có một phần tử duy nhất, ta coi như nó đã được sắp xếp.
 
 ![Minh hoạ MergeSort](https://hackmd.io/_uploads/Skh8YzQxa.png)
 
@@ -117,26 +117,25 @@ Các bài toán áp dụng Chia để trị chỉ có chung một phương pháp
 
 ```cpp=
 //Ghép hai đoạn [l1, r1], [l2, r2] thành một đoạn bắt đầu từ l1
-void merge(int a[], int l1, int r1, int l2, int r2)
-{
+void merge(int a[], int l1, int r1, int l2, int r2) {
     int cur = l2;
-    vector <int> newArr;
-    for (int i = l1; i <= r1; i++)
-    {
-        while (cur <= r2 && a[cur] < a[i])
-        {
+    vector<int> newArr;
+    for (int i = l1; i <= r1; i++) {
+        while (cur <= r2 && a[cur] < a[i]) {
             newArr.push_back(a[cur]);
             cur++;
         }
         newArr.push_back(a[i]);
     }
-    for (int j = cur; j <= r2; j ++) newArr.push_back(a[j]);
-    for (int i = 0; i < newArr.size(); i ++) a[l1 + i] = newArr[i];
+    for (int j = cur; j <= r2; j++)
+        newArr.push_back(a[j]);
+    for (int i = 0; i < newArr.size(); i++)
+        a[l1 + i] = newArr[i];
 }
 
-void mergeSort(int a[], int l, int r)
-{
-    if (l == r) return;
+void mergeSort(int a[], int l, int r) {
+    if (l == r)
+        return;
     int mid = (l + r) / 2;
     mergeSort(a, l, mid);
     mergeSort(a, mid + 1, r);
@@ -149,28 +148,30 @@ Hàm `merge()` trong đoạn code trên có thể thay thế bằng hàm `merge(
 
 #### Đánh giá
 
-Theo như phân tích độ phức tạp đã đề cập ở trên, độ phức tạp trung bình của MergeSort là $O(n\text{log }n)$. Thực tế thì trong mọi trường hợp, độ phức tạp của MergeSort luôn là $O(n\text{log }n)$.
+Theo như phân tích độ phức tạp đã đề cập ở trên, độ phức tạp trung bình của MergeSort là $\mathcal{O}(n\log n)$. Thực tế thì trong mọi trường hợp, độ phức tạp của MergeSort luôn là $\mathcal{O}(n\log n)$.
 
 ### Cặp điểm gần nhất
 
-**Đề bài**: Cho $n$ điểm trên mặt phẳng $(2 \leq n \leq 10^5)$. Hãy tìm khoảng cách nhỏ nhất giữa hai điểm bất kỳ trong đó.
+**Đề bài**: Cho $n$ điểm trên mặt phẳng $(2 \leq n \leq 10^{5})$. Hãy tìm khoảng cách nhỏ nhất giữa hai điểm bất kỳ trong đó.
 
 _Đề bài VNOI_: [NEAREST](https://vnoi.info/problems/NEAREST/)
 
 #### Phân tích
 
-Giả sử có $n$ điểm $A_1, A_2, ..., A_n$.
+Giả sử có $n$ điểm $A_1, A_2, \ldots, A_n$.
 
-Ta có thể sử dụng một thuật toán "ngây thơ" cho bài này: xét tất cả mọi cặp điểm, kiểm tra xem khoảng cách giữa hai cặp điểm nào là gần nhau nhất. Độ phức tạp khi đó sẽ là $O(n^2)$ trong mọi trường hợp, chưa đủ để vượt qua giới hạn của bài toán này.
+Ta có thể sử dụng một thuật toán "ngây thơ" cho bài này: xét tất cả mọi cặp điểm, kiểm tra xem khoảng cách giữa hai cặp điểm nào là gần nhau nhất. Độ phức tạp khi đó sẽ là $\mathcal{O}(n^{2})$ trong mọi trường hợp, chưa đủ để vượt qua giới hạn của bài toán này.
 
-Ta nghĩ đến việc sử dụng chia để trị. Trước hết, ta sắp xếp các điểm trong tập hợp theo hoành độ $x$. Tại mỗi vòng đệ quy, ta chia tập điểm hiện tại thành hai phần bên trái và bên phải vị trí $mid$ ta chọn. Base case (trường hợp cơ bản) lúc này thay vì là $l = r$ thì sẽ là $r - l \leq 2$, do ta không thể xác định khoảng cách với $1$ điểm, và cũng cần đảm bảo rằng khi chạy đệ quy không tồn tại tập nào có độ lớn như vậy. Ngoài trường hợp đó, ta thu được kết quả của 2 tập trái và phải. Tuy nhiên, việc kết hợp kết quả không đơn giản, vì một điểm ở bên trái $A_{mid}$ vẫn có thể tạo ra khoảng cách ngắn nhất với một điểm bên phải. Ta cũng không thể chạy hết từng cặp điểm một trong hai tập này, vì khi đó theo Định lý Thợ độ phức tạp trung bình sẽ lên đến $O(n^2)$.
+Ta nghĩ đến việc sử dụng chia để trị. Trước hết, ta sắp xếp các điểm trong tập hợp theo hoành độ $x$. Tại mỗi vòng đệ quy, ta chia tập điểm hiện tại thành hai phần bên trái và bên phải vị trí $mid$ ta chọn. Base case (trường hợp cơ bản) lúc này thay vì là $l = r$ thì sẽ là $r - l \leq 2$, do ta không thể xác định khoảng cách với $1$ điểm, và cũng cần đảm bảo rằng khi chạy đệ quy không tồn tại tập nào có độ lớn như vậy. Ngoài trường hợp đó, ta thu được kết quả của 2 tập trái và phải. Tuy nhiên, việc kết hợp kết quả không đơn giản, vì một điểm ở bên trái $A_{mid}$ vẫn có thể tạo ra khoảng cách ngắn nhất với một điểm bên phải. Ta cũng không thể chạy hết từng cặp điểm một trong hai tập này, vì khi đó theo Định lý Thợ độ phức tạp trung bình sẽ lên đến $\mathcal{O}(n^{2})$.
 
 ![nearest1](https://hackmd.io/_uploads/ryCGGq4kT.png)
 
 Ở hình vẽ trên, hai màu xanh và đỏ tượng trưng cho hai nửa phải và trái. Điểm $A_4$ đóng vai trò là $A_{mid}$, thuộc tập bên phải.
 
 Gọi $d$ là giá trị nhỏ hơn giữa khoảng cách ngắn nhất giữa hai điểm ta vừa thu được ở tập bên phải và tập bên trái. Cụ thể:
-$$d = min\{nearest(l, mid), nearest(mid + 1, r)\}$$ 
+$$
+d = \min\{\operatorname{nearest}(l, mid), \operatorname{nearest}(mid + 1, r)\}
+$$
 Khi đó, trong cùng một tập hợp, không tồn tại một cặp điểm nào có khoảng cách ngắn hơn $d$. Giữa hai tập hợp lúc này ta sẽ chỉ quan tâm đến các cặp điểm có khoảng cách nhỏ hơn $d$.
 
 Xét các điểm có hoành độ cách $A_{mid}$ một khoảng không vượt quá $d$. Các điểm này nằm giữa các đường thẳng $x = x_{mid} - d$ và $x = x_{mid} + d$:
@@ -185,11 +186,11 @@ Khoảng các điểm thoả mãn điều kiện trên được giới hạn b�
 
 ![window](https://hackmd.io/_uploads/rkqqL9V1p.png)
 
-Khoảng trên là hình tạo bởi hai hình vuông có cạnh là $d$ nằm cạnh nhau. Các điểm thoả mãn nằm trong hoặc trên cạnh của hai hình vuông này, và khoảng cách giữa hai điểm bất kỳ trong cùng một hình vuông không nhỏ hơn $d$. Không thể xếp quá $4$ điểm như vậy vào trong một hình vuông. Thật vậy, với mỗi điểm ta vẽ một đường tròn có tâm tại điểm đó và bán kính bằng $d / 2$. Hai đường tròn bất kỳ không thể có nhiều hơn 1 điểm chung, vì nếu không khoảng cách giữa chúng sẽ nhỏ hơn $d$.
+Khoảng trên là hình tạo bởi hai hình vuông có cạnh là $d$ nằm cạnh nhau. Các điểm thoả mãn nằm trong hoặc trên cạnh của hai hình vuông này, và khoảng cách giữa hai điểm bất kỳ trong cùng một hình vuông không nhỏ hơn $d$. Không thể xếp quá $4$ điểm như vậy vào trong một hình vuông. Thật vậy, với mỗi điểm ta vẽ một đường tròn có tâm tại điểm đó và bán kính bằng $\frac{d}{2}$. Hai đường tròn bất kỳ không thể có nhiều hơn 1 điểm chung, vì nếu không khoảng cách giữa chúng sẽ nhỏ hơn $d$.
 
 ![window2](https://hackmd.io/_uploads/BJaKDqE16.png)
 
-Ta thấy mỗi hình tròn có diện tích giao với hình vuông là $\geq \frac{\pi d^2}{4} = \frac{\pi}{16} d^2$, do khi tịnh tiến hình tròn dọc theo cả hai phương $x$ và $y$ ta đều thu được các hình có diện tích lớn hơn. Vì hình vuông có diện tích là $d^2$, số miền diện tích như vậy có thể đặt vào hình tròn là $d^2 : \frac{\pi}{16}d^2 \approx 5.1$. Tuy nhiên, không tồn tại cách đặt 5 điểm vào hình vuông thoả mãn yêu cầu của đề bài, nên số điểm đặt được tối đa là 4.
+Ta thấy mỗi hình tròn có diện tích giao với hình vuông là $\geq \frac{\pi d^{2}}{4} = \frac{\pi}{16} d^{2}$, do khi tịnh tiến hình tròn dọc theo cả hai phương $x$ và $y$ ta đều thu được các hình có diện tích lớn hơn. Vì hình vuông có diện tích là $d^{2}$, số miền diện tích như vậy có thể đặt vào hình tròn là $d^{2} : \frac{\pi}{16}d^{2} \approx 5.1$. Tuy nhiên, không tồn tại cách đặt 5 điểm vào hình vuông thoả mãn yêu cầu của đề bài, nên số điểm đặt được tối đa là 4.
 
 Với 4 điểm ở mỗi hình vuông, số điểm đặt được tối đa là 8, tính cả điểm mà chúng ta đã xét ban đầu. Do vậy có tối đa 7 điểm thoả mãn tung độ lớn hơn $y_m$ không quá $d$.
 
@@ -199,7 +200,7 @@ Nếu ta sắp xếp các điểm trong miền này theo thứ tự $y$ tăng d�
 
 ![nearest3](https://hackmd.io/_uploads/r1deOc4kp.png)
 
-Khi cài đặt, sau khi tiến hành tìm khoảng cách ngắn nhất giữa hai điểm ta có thể giữ nguyên trạng thái sau khi sắp xếp theo $y$ của đoạn đó, rồi dùng phép `merge()` như bài MergeSort ở trên để sắp xếp nhanh đoạn lớn trong $O(n)$.
+Khi cài đặt, sau khi tiến hành tìm khoảng cách ngắn nhất giữa hai điểm ta có thể giữ nguyên trạng thái sau khi sắp xếp theo $y$ của đoạn đó, rồi dùng phép `merge()` như bài MergeSort ở trên để sắp xếp nhanh đoạn lớn trong $\mathcal{O}(n)$.
 
 #### Cài đặt
 
@@ -270,34 +271,33 @@ double nearest(Point a[], int n)
 
     int middleAreaSize = 0;
     merge(a + 1, a + mid + 1, a + mid + 1, a + n + 1, middleArea + 1, ascendingY);
-    for (int i = 1; i <= n; i ++)
-    {
+    for (int i = 1; i <= n; i++) {
         a[i] = middleArea[i];
-        if (abs(middleArea[i].x - midPoint.x) < d) middleArea[++middleAreaSize] = middleArea[i];
+        if (abs(middleArea[i].x - midPoint.x) < d)
+            middleArea[++middleAreaSize] = middleArea[i];
     }
     return min(d, nearestMiddle(middleAreaSize, d));
 }
 
-int main()
-{
+int main() {
     int n;
     cin >> n;
-    for (int i = 1; i <= n; i ++) a[i].inp();
+    for (int i = 1; i <= n; i++)
+        a[i].inp();
     sort(a + 1, a + n + 1);
     cout << fixed << setprecision(3) << nearest(a, n);
 
     return 0;
 }
-
 ```
 
 Mảng `middleArea[]` lưu các điểm nằm ở giữa miền tạo bởi hai đường thẳng $x = x_{mid} - m$ và $x = x_{mid} + m$.
-Hàm `hypot(a, b)` trả về cạnh huyền của tam giác vuông có hai cạnh góc vuông là $a$ và $b$, tức giá trị $\sqrt{a^2 + b^2}$; hàm này có sẵn trong thư viện `cmath`.
+Hàm `hypot(a, b)` trả về cạnh huyền của tam giác vuông có hai cạnh góc vuông là $a$ và $b$, tức giá trị $\sqrt{a^{2} + b^{2}}$; hàm này có sẵn trong thư viện `cmath`.
 :::
 
 #### Đánh giá
 
-Mỗi tập $[l, r]$ được chia thành hai tập con, mỗi tập con có bộ dữ liệu bằng đúng một nửa tập lớn. Việc tìm kết quả của đoạn lớn bao gồm việc ghép đoạn để sắp xếp lại mất $O(n)$ và tính khoảng cách nhỏ nhất giữa các điểm ở giữa hết $O(7n) = O(n)$. Do vậy thuật này có $T(n) = 2T(\frac{n}{2}) + O(n)$ và có độ phức tạp trung bình là $O(n\text{log }n)$ theo Định lý Thợ. Trong mọi trường hợp, thuật toán đều thực hiện những bước tương tự và độ phức tạp là $O(n\text{log }n)$.
+Mỗi tập $[l, r]$ được chia thành hai tập con, mỗi tập con có bộ dữ liệu bằng đúng một nửa tập lớn. Việc tìm kết quả của đoạn lớn bao gồm việc ghép đoạn để sắp xếp lại mất $\mathcal{O}(n)$ và tính khoảng cách nhỏ nhất giữa các điểm ở giữa hết $\mathcal{O}(7n) = \mathcal{O}(n)$. Do vậy thuật này có $T(n) = 2T\left(\frac{n}{2}\right) + \mathcal{O}(n)$ và có độ phức tạp trung bình là $\mathcal{O}(n\log n)$ theo Định lý Thợ. Trong mọi trường hợp, thuật toán đều thực hiện những bước tương tự và độ phức tạp là $\mathcal{O}(n\log n)$.
 
 #### Bonus
 
@@ -309,39 +309,43 @@ Bài toán này còn một lời giải khác bằng cách sử dụng kỹ thu�
 
 Bài toán **Truy vấn trên mảng cố định (SRQ - Static Array Queries)** được mô tả như sau:
 
-Xét phép toán bất kỳ $\star$ và mảng $a$ gồm các số $a_1, a_2, ..., a_n$. Ta phải trả lời $q$ truy vấn, mỗi truy vấn yêu cầu ta tính $a_l \star a_{l + 1} \star ... \star a_r$, với $l, r$ là các giá trị cho trước, $l, r \in [1, n]$.
+Xét phép toán bất kỳ $\star$ và mảng $a$ gồm các số $a_1, a_2, \ldots, a_n$. Ta phải trả lời $q$ truy vấn, mỗi truy vấn yêu cầu ta tính $a_l \star a_{l + 1} \star \ldots \star a_r$, với $l, r$ là các giá trị cho trước, $l, r \in [1, n]$.
 
-Trong trường hợp $\star$ là phép toán có tính chất kết hợp, cụ thể hơn, phép toán này áp dụng được trên các giá trị (không nhất thiết là số) $a, b, c$ sao cho $(a \star b) \star c = a \star (b \star c)$, ta có thể sử dụng chia để trị để giải. Một số ví dụ cho phép toán này là phép cộng, phép nhân, phép lấy $\text{min}$.
+Trong trường hợp $\star$ là phép toán có tính chất kết hợp, cụ thể hơn, phép toán này áp dụng được trên các giá trị (không nhất thiết là số) $a, b, c$ sao cho $(a \star b) \star c = a \star (b \star c)$, ta có thể sử dụng chia để trị để giải. Một số ví dụ cho phép toán này là phép cộng, phép nhân, phép lấy $\min$.
 
 ### Thuật toán giải
 
-Có rất nhiều cách giải bài toán này với độ phức tạp không gian và thời gian logarit tuyến tính ($O(n\text{log }n)$), như cây phân đoạn, BIT, mảng thưa, ... Chia để trị cũng là một cách hiệu quả để giải quyết bài toán, đặc biệt trong trường hợp độ phức tạp cho mỗi truy vấn cần rất thấp.
+Có rất nhiều cách giải bài toán này với độ phức tạp không gian và thời gian logarit tuyến tính ($\mathcal{O}(n\log n)$), như cây phân đoạn, BIT, mảng thưa, ... Chia để trị cũng là một cách hiệu quả để giải quyết bài toán, đặc biệt trong trường hợp độ phức tạp cho mỗi truy vấn cần rất thấp.
 
 Giả sử tất cả các truy vấn $(lq, rq)$ đều thoả mãn điều kiện $l \leq lq \leq rq \leq r$. Ban đầu, ta có $l = 1, r = n$. Đặt $mid = \lfloor \frac{l + r}{2} \rfloor$ (tuỳ trường hợp, để tính toán thuận lợi, $mid$ có thể nhận các giá trị khác nhau, nhưng thường ta lấy vị trí chính giữa). Gọi $leftAcc[i]$ là "tổng" hậu tố tính từ $mid$ tới $i$ hay:
-$$leftAcc[i] = a[i] \star a[i + 1] \star ... \star a[mid]$$
+$$
+leftAcc[i] = a[i] \star a[i + 1] \star \ldots \star a[mid]
+$$
 
 Tương tự, ta gọi $rightAcc[i]$ là "tổng" tiền tố tính từ $mid + 1$ tới $i$:
-$$rightAcc[i] = a[mid + 1] \star a[mid + 2] \star ... \star a[i]$$
+$$
+rightAcc[i] = a[mid + 1] \star a[mid + 2] \star \ldots \star a[i]
+$$
 
 Với các truy vấn thoả mãn $lq \leq mid \leq rq$, kết quả của truy vấn đó sẽ là $leftAcc[i] \star rightAcc[i]$. Điều này là hiển nhiên theo tính chất kết hợp. Với các truy vấn còn lại, hiển nhiên chúng chỉ nằm hoàn toàn ở một trong hai bên của $mid$. Ta thay đổi các giá trị $l, r$ và tính các giá trị $leftAcc, rightAcc$ theo $l, r$ mới. Cứ như vậy tới khi $l = r$.
 
-Về độ phức tạp, ở mỗi bước ta chia mảng độ dài $n$ thành 2 phần đều nhau có kích thước dữ liệu là $\frac{n}{2}$. Sau khi có hai đoạn này, ta mất $O(n)$ để tính $leftAcc, rightAcc$, và $O(1)$ cho mỗi truy vấn, tổng cộng là $O(n + q)$. Độ phức tạp thời gian của thuật toán là $O((n + q)\text{log }n)$, chạy ổn định, còn về không gian chỉ cần $O(n + q)$.
+Về độ phức tạp, ở mỗi bước ta chia mảng độ dài $n$ thành 2 phần đều nhau có kích thước dữ liệu là $\frac{n}{2}$. Sau khi có hai đoạn này, ta mất $\mathcal{O}(n)$ để tính $leftAcc, rightAcc$, và $\mathcal{O}(1)$ cho mỗi truy vấn, tổng cộng là $\mathcal{O}(n + q)$. Độ phức tạp thời gian của thuật toán là $\mathcal{O}((n + q)\log n)$, chạy ổn định, còn về không gian chỉ cần $\mathcal{O}(n + q)$.
 
 Hai mảng $leftAcc$ và $rightAcc$ không có chung nhau một vị trí nào, vậy nên ta có thể kết hợp lại thành một mảng $acc$. Khi đó với một đoạn $[l, r]$ có phần tử ở giữa là $mid$, các giá trị từ $acc[l]$ đến $acc[mid]$ tương đương với $leftAcc$, và các giá trị $acc[mid + 1]$ đến $acc[r]$ tương đương với $rightAcc$.
 
-Nếu phải sử dụng các truy vấn online, ta lưu lại $acc$ của mỗi lần đệ quy dưới dạng một mảng hai chiều giống như mảng thưa, ví dụ $acc[j][i]$ là kết quả $acc[i]$ ở vòng đệ quy với độ sâu $j$ (xem ví dụ để hiểu rõ hơn). Bằng cách này, ta vẫn có thể trả lời mọi truy vấn trong $O(1)$, và độ phức tạp trở thành $O(n\text{log }n + q)$ cho thời gian và $O(n\text{log }n + q)$ cho không gian.
+Nếu phải sử dụng các truy vấn online, ta lưu lại $acc$ của mỗi lần đệ quy dưới dạng một mảng hai chiều giống như mảng thưa, ví dụ $acc[j][i]$ là kết quả $acc[i]$ ở vòng đệ quy với độ sâu $j$ (xem ví dụ để hiểu rõ hơn). Bằng cách này, ta vẫn có thể trả lời mọi truy vấn trong $\mathcal{O}(1)$, và độ phức tạp trở thành $\mathcal{O}(n\log n + q)$ cho thời gian và $\mathcal{O}(n\log n + q)$ cho không gian.
 
 ### Ví dụ
 
 **Đề bài**: [SEGPROD](https://www.codechef.com/problems/SEGPROD)
 
-_Tóm tắt_: Cho dãy $A$ gồm $N$ số nguyên dương và một số nguyên dương $P$. Có $Q \leq 2\times10^7$ truy vấn, truy vấn thứ $i$ yêu cầu tìm tích của các số $A_j$ với $L_i \leq j \leq R_i$, lấy số dư khi chia cho $P$. Chú ý rằng các truy vấn phải được xử lý online và số $P$ có thể không là số nguyên tố.
+_Tóm tắt_: Cho dãy $A$ gồm $N$ số nguyên dương và một số nguyên dương $P$. Có $Q \leq 2\times10^{7}$ truy vấn, truy vấn thứ $i$ yêu cầu tìm tích của các số $A_j$ với $L_i \leq j \leq R_i$, lấy số dư khi chia cho $P$. Chú ý rằng các truy vấn phải được xử lý online và số $P$ có thể không là số nguyên tố.
 
 #### Phân tích
 
-Đây là một bài toán SRQ khá "thẳng", chỉ yêu cầu ta tính tích trên một đoạn bất kỳ. Ý tưởng "ngây thơ" nhất là duyệt qua mọi đoạn con được truy vấn để tìm tích của nó, mất $O(n^2)$. Ta cũng nghĩ đến việc áp dụng tích tiền tố đơn giản, tuy nhiên việc lấy ra một đoạn sẽ gặp khó khăn nếu $P$ không phải là số nguyên tố. Các ý tưởng khác cho bài toán SRQ như cây phân đoạn và mảng thưa đều mất $O(\text{log n})$ cho mỗi truy vấn, khó qua được giới hạn của bài toán này. May mắn thay, sử dụng chia để trị vừa khít với bộ dữ liệu của bài toán.
+Đây là một bài toán SRQ khá "thẳng", chỉ yêu cầu ta tính tích trên một đoạn bất kỳ. Ý tưởng "ngây thơ" nhất là duyệt qua mọi đoạn con được truy vấn để tìm tích của nó, mất $\mathcal{O}(n^{2})$. Ta cũng nghĩ đến việc áp dụng tích tiền tố đơn giản, tuy nhiên việc lấy ra một đoạn sẽ gặp khó khăn nếu $P$ không phải là số nguyên tố. Các ý tưởng khác cho bài toán SRQ như cây phân đoạn và mảng thưa đều mất $\mathcal{O}(\log n)$ cho mỗi truy vấn, khó qua được giới hạn của bài toán này. May mắn thay, sử dụng chia để trị vừa khít với bộ dữ liệu của bài toán.
 
-Bằng cách sử dụng cách chia để trị như đã nói ở trên, ta dễ dàng khởi tạo mảng $acc$ trong $O(n\text{log }n)$. Khi trả lời một truy vấn `lq rq`, như đã nói ở trường hợp truy vấn offline, $lq$ và $rq$ phải thoả mãn $l \leq lq \leq mid$ và $mid + 1 \leq rq \leq r$ tại một vòng đệ quy.
+Bằng cách sử dụng cách chia để trị như đã nói ở trên, ta dễ dàng khởi tạo mảng $acc$ trong $\mathcal{O}(n\log n)$. Khi trả lời một truy vấn `lq rq`, như đã nói ở trường hợp truy vấn offline, $lq$ và $rq$ phải thoả mãn $l \leq lq \leq mid$ và $mid + 1 \leq rq \leq r$ tại một vòng đệ quy.
 
 Giả sử độ sâu $lvl$ của một vòng đệ quy là số lần phải gọi đệ quy từ đoạn $[1, n]$, ta thấy hai đoạn có cùng độ sâu không có điểm chung. Do đó ta có thể lưu các giá trị $acc$ đi kèm với độ sâu mà không sợ bị trùng lặp.
 

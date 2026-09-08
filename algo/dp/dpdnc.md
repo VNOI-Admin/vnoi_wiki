@@ -27,7 +27,7 @@ $$
 dp(i,j) = \min\limits_{k\le j}\left[dp(i-1,k)+C(k,j)\right]
 $$
 
-Công thức trên có độ phức tạp $\mathcal{O}(mn^2)$. Ta có thể tối ưu độ phức tạp xuống còn $\mathcal{O}(mn\log{n})$ bằng phương pháp *quy hoạch động chia để trị* nếu hàm chi phí $C(k, j)$ thoả mãn **điều kiện áp dụng** (được đề cập ở phần tiếp theo).
+Công thức trên có độ phức tạp $\mathcal{O}(mn^{2})$. Ta có thể tối ưu độ phức tạp xuống còn $\mathcal{O}(mn\log{n})$ bằng phương pháp *quy hoạch động chia để trị* nếu hàm chi phí $C(k, j)$ thoả mãn **điều kiện áp dụng** (được đề cập ở phần tiếp theo).
 
 <!-- Ngoài ra, ta còn có thể tối ưu độ phức tạp của công thức trên xuống còn $\mathcal{O}(mn)$ bằng phương pháp *quy hoạch động bao lồi* nếu hàm chi phí thoả một số điều kiện nhất định (không phải "điều kiện áp dụng" trong bài viết này). Phương pháp này sẽ được đề cập trong một bài viết khác.
  -->
@@ -75,9 +75,9 @@ Xét $j'<j$, ta biết rằng $opt(i,j')\le opt(i,j)$. Do đó, ta có thể tí
 
 ### Thuật toán chia để trị
 Dựa trên ý tưởng đó, ta có thuật toán chia để trị như sau:
-- Đầu tiên, ta tính $opt(i,n/2)$ trong $\mathcal{O}(n)$.
-- Tiếp theo, ta tính $opt(i,n/4)$ (biết rằng $opt(i,n/4)\le opt(i,n/2)$) và $opt(i,3n/4)$ (biết rằng $opt(i,3n/4)\ge opt(i,n/2)$), tổng độ phức tạp của "tầng" này là $\mathcal{O}(n)$.
-- Tiếp tục đệ quy để tính $opt(i,n/8), opt(i,3n/8),opt(i,5n/8),opt(i,7n/8)$, trong quá trình đệ quy, ta duy trì cận trên và dưới của $opt$.
+- Đầu tiên, ta tính $opt(i,\frac{n}{2})$ trong $\mathcal{O}(n)$.
+- Tiếp theo, ta tính $opt(i,\frac{n}{4})$ (biết rằng $opt(i,\frac{n}{4})\le opt(i,\frac{n}{2})$) và $opt(i,\frac{3n}{4})$ (biết rằng $opt(i,\frac{3n}{4})\ge opt(i,\frac{n}{2})$), tổng độ phức tạp của "tầng" này là $\mathcal{O}(n)$.
+- Tiếp tục đệ quy để tính $opt(i,\frac{n}{8}), opt(i,\frac{3n}{8}),opt(i,\frac{5n}{8}),opt(i,\frac{7n}{8})$, trong quá trình đệ quy, ta duy trì cận trên và dưới của $opt$.
 
 ### Độ phức tạp
 
@@ -162,8 +162,8 @@ Nói cách khác, thứ tự của các phần tử của mảng $a$ trong mản
 Hỏi số cặp nghịch thế ít nhất có thể của mảng $c$ là bao nhiêu? Biết rằng một cặp $(i,j)$ được gọi là nghịch thế nếu $i<j$ và $c_i>c_j$.
 
 Giới hạn:
-- $1\le n,m\le10^6$
-- $1\le a_i, b_i\le 10^9$
+- $1\le n,m\le10^{6}$
+- $1\le a_i, b_i\le 10^{9}$
 
 #### Ý tưởng
 Đầu tiên, ta sắp xếp mảng $b$ tăng dần (để $b_i\le b_{i+1}$).
@@ -276,7 +276,7 @@ Ta có thể tóm tắt bài toán như sau:
 - Yêu cầu: tìm chi phí nhỏ nhất để gom $n$ chiếc lá thành đúng $k$ đống lá.
 
 Giới hạn:
-- $0<n\le10^5$
+- $0<n\le10^{5}$
 - $0<k\le10$, $k<n$
 - $w_i\le1000$
 
@@ -294,8 +294,10 @@ $$
   
 Ta tính trước $2$ mảng cộng dồn $prf_1[i]=\sum\limits_{j=1}^{i}w_j$ và $prf_2[i]=\sum\limits_{j=1}^{i}(w_j\times j)$ để có thể tính $C(l,r)$ trong $\mathcal{O}(1)$.
 
-Tiếp theo, đặt $dp(i,j)$ là chi phí tối thiểu để gom $j$ chiếc lá đầu tiên thành $i$ đống lá. Ta có công thức truy hồi với độ phức tạp thời gian $\mathcal{O}(kn^2)$ cho bài toán này là
-$$dp(i,j) = \min\limits_{i-1\le k<j}\left[dp(i-1,k)+C(k+1,j)\right],\forall j\ge i$$
+Tiếp theo, đặt $dp(i,j)$ là chi phí tối thiểu để gom $j$ chiếc lá đầu tiên thành $i$ đống lá. Ta có công thức truy hồi với độ phức tạp thời gian $\mathcal{O}(kn^{2})$ cho bài toán này là
+$$
+dp(i,j) = \min\limits_{i-1\le k<j}\left[dp(i-1,k)+C(k+1,j)\right],\forall j\ge i
+$$
 
 Vì hàm chi phí $C$ thoả bất đẳng thức tứ giác xuôi $C(a,c)+C(b,d)\le C(a,d)+C(b,c)$ (bạn đọc có thể tự chứng minh) nên ta có thể áp dụng *quy hoạch động chia để trị*, giảm độ phức tạp thời gian xuống còn $\mathcal{O}(kn\log n)$.
 
@@ -391,7 +393,9 @@ C(p,j)-C(p,j+1) \lt C(q,j)-C(q,j+1) \\
 $$
 
 Áp dụng bất đẳng thức tứ giác cho hàm chi phí $C$ với bộ số $q<p\le j<j+1$, ta có:
-$$C(p,j)+C(q,j+1)\ge C(q,j)+C(p,j+1)$$
+$$
+C(p,j)+C(q,j+1)\ge C(q,j)+C(p,j+1)
+$$
 
 Điều này là vô lý. Do đó, ta có được điều phải chứng minh.
 

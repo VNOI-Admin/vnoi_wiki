@@ -26,7 +26,7 @@ dateCreated: 2024-04-06T13:23:44.674Z
 ## Một số ký hiệu được sử dụng
 
 -   $b|a$: $b$ là ước của $a$. Ký hiệu này tương đương với ${a} \vdots b$.
--   $log(N)$: Logarit cơ số $2$ của $N$ (quy ước chỉ trong bài viết này).
+-   $\log(N)$: Logarit cơ số $2$ của $N$ (quy ước chỉ trong bài viết này).
 
 ## Bài toán đếm số ước
 
@@ -43,7 +43,7 @@ Giải thuật ngây thơ nhất rất đơn giản: từ nhận xét mọi ư�
 ```cpp=
 int divCount(int n) {
     int ret = 0;
-    for (int i = 1; i <= n; i ++)
+    for (int i = 1; i <= n; i++)
         ret += (n % i == 0);
     return ret;
 }
@@ -60,30 +60,37 @@ Gọi $d$ là một ước của $N$, khi đó tồn tại một số nguyên $g
 ```cpp=
 int divCount(long long n) {
     int ret = 0;
-    for (int i = 1; 1ll * i * i <= n; i ++) {
+    for (int i = 1; 1ll * i * i <= n; i++) {
         ret += 2 * (n % i == 0);
-        if (1ll * i * i == n) ret --;
+        if (1ll * i * i == n)
+            ret--;
     }
     return ret;
 }
 ```
 
-Hai giải thuật trên có độ phức tạp thời gian lần lượt là $O(N)$ và $O(\sqrt{N})$, sẽ chạy tốt với $N \leq 10^6$ và $N \leq 10^{12}$. Rất khó để cải thiện độ phức tạp này để phù hợp với $N$ lớn hơn.
+Hai giải thuật trên có độ phức tạp thời gian lần lượt là $\mathcal{O}(N)$ và $\mathcal{O}(\sqrt{N})$, sẽ chạy tốt với $N \leq 10^{6}$ và $N \leq 10^{12}$. Rất khó để cải thiện độ phức tạp này để phù hợp với $N$ lớn hơn.
 
 #### Cách 2: Sử dụng sàng nguyên tố
 
 **Định lý**: Nếu một số $N$ được phân tích ra thừa số nguyên tố thành:
-$$N = \prod_{i = 1}^{k}{p_i^{m_i}} = p_1^{m_1} \times p_2^{m_2} ... \times p_k^{m_k}$$
+$$
+N = \prod_{i = 1}^{k}{p_i^{m_i}} = p_1^{m_1} \times p_2^{m_2} \cdots \times p_k^{m_k}
+$$
 
 với $p_i$ là các số nguyên tố, $m_i$ là các số nguyên dương thì số ước của $N$ là:
 
-$$\tau(N) = \prod_{i = 1}^{k}{(m_i + 1)}$$
+$$
+\tau(N) = \prod_{i = 1}^{k}{(m_i + 1)}
+$$
 
 (Chữ $\tau$ đọc là _tau_).
 
 :::spoiler **Chứng minh (nhấn để hiện)**
 Mọi ước $d$ của $N$ khi phân tích thành thừa số nguyên tố sẽ có dạng:
-$$d = \prod_{i = 1}^{k}{p_i^{\mu_i}}$$
+$$
+d = \prod_{i = 1}^{k}{p_i^{\mu_i}}
+$$
 với $0 \leq \mu_i \leq m_i$.
 Mỗi cách chọn số $d$ ứng với một cách chọn bộ số $\mu_i$ nên số cách chọn thoả mãn là $\prod_{i = 1}^{k}{(m_i + 1)}$.
 :::
@@ -92,12 +99,12 @@ Mỗi cách chọn số $d$ ứng với một cách chọn bộ số $\mu_i$ nê
 
 Để giải bài toán này theo cách phân tích ra thừa số nguyên tố, đầu tiên ta sử dụng sàng nguyên tố để lưu lại các số nguyên tố nhỏ hơn $N$. Sau đó, lần lượt chia $N$ cho các số trên rồi thu lại số lần chia ứng với mỗi số; đó chính là số mũ của các thừa số nguyên tố tương ứng. Cuối cùng, áp dụng công thức trên để tính ra kết quả.
 
-Cách làm này mất $O(N\log\log N)$ thời gian và không gian để chuẩn bị sàng, và $O(\pi(N)) \approx O(\frac{N}{\ln N})$ thời gian để phân tích, với $\pi(n)$ là số lượng số nguyên tố nhỏ hơn $N$. Tổng độ phức tạp là $O(N\log\log N)$.
+Cách làm này mất $\mathcal{O}(N\log\log N)$ thời gian và không gian để chuẩn bị sàng, và $\mathcal{O}(\pi(N)) \approx \mathcal{O}\left(\frac{N}{\ln N}\right)$ thời gian để phân tích, với $\pi(n)$ là số lượng số nguyên tố nhỏ hơn $N$. Tổng độ phức tạp là $\mathcal{O}(N\log\log N)$.
 
 ##### Cải tiến 1
 
-Sử dụng nhận xét sau, ta giảm được độ phức tạp xuống $O(\sqrt{N}\log\log\sqrt{n})$. Ta viết $N = X \times Y$. Trong đó, số $X=\prod_{p_i<\sqrt{N}}{p_i^{m_i}}$ là tích của tất cả các thừa số nguyên tố của $N$ đã nâng lên luỹ thừa có cơ số nhỏ hơn $\sqrt{N}$, còn $Y=\frac{N}{X}$. Xét hai trường hợp:
-- $Y=1$. Trường hợp này hoàn toàn giống với thuật toán $O(N\log\log N)$ chưa được cải tiến.
+Sử dụng nhận xét sau, ta giảm được độ phức tạp xuống $\mathcal{O}(\sqrt{N}\log\log\sqrt{n})$. Ta viết $N = X \times Y$. Trong đó, số $X=\prod_{p_i<\sqrt{N}}{p_i^{m_i}}$ là tích của tất cả các thừa số nguyên tố của $N$ đã nâng lên luỹ thừa có cơ số nhỏ hơn $\sqrt{N}$, còn $Y=\frac{N}{X}$. Xét hai trường hợp:
+- $Y=1$. Trường hợp này hoàn toàn giống với thuật toán $\mathcal{O}(N\log\log N)$ chưa được cải tiến.
 - $Y\neq 1$. Lúc này, nếu phân tích $Y$ ra thừa số nguyên tố, ta sẽ không thu được một thừa số nào nhỏ hơn $\sqrt{N}$, vì các thừa số như vậy đều đã nằm trong $X$. Điều đó có nghĩa là $Y$ không có ước nguyên tố nào nhỏ hơn $\sqrt{Y}$, do đó $Y$ là một số nguyên tố.
 
 Ví dụ:
@@ -153,7 +160,7 @@ void solution() {
 
 ##### Cải tiến 2
 
-Cho tới bước này, ta có thể giải được bài toán với $N \leq 10^{12}$. Ta sẽ cải tiến để bài toán giải được với $N \leq 10^{18}$, với độ phức tạp là khoảng $O(\sqrt[3]{N})$.
+Cho tới bước này, ta có thể giải được bài toán với $N \leq 10^{12}$. Ta sẽ cải tiến để bài toán giải được với $N \leq 10^{18}$, với độ phức tạp là khoảng $\mathcal{O}(\sqrt[3]{N})$.
 
 Vẫn viết $N$ dưới dạng $N = X \times Y$ như trên, $X$ được định nghĩa tương tự như trên, chỉ khác giới hạn các thừa số nguyên tố lúc này là $\sqrt[3]{N}$: $X=\prod_{p_i<\sqrt[3]{N}}{p_i^{m_i}}$. Lúc này ta không thể chắc chắn $Y$ là số nguyên tố nữa. Tuy nhiên, $Y$ lại chỉ có thể thuộc vào một trong bốn trường hợp:
 
@@ -270,19 +277,19 @@ void solution() {
 }
 ```
 
-Phần Rabin-Miller có độ phức tạp là $O(12\log N)$. Phần kiểm tra số chính phương có độ phức tạp là $O(1)$, với chú ý rằng cần phải xét một vài số lân cận `sqrt(N)` để đưa ra kết quả chính xác. Tổng hợp lại, độ phức tạp của giải thuật trên là $O(\sqrt[3]{N}\log\log \sqrt[3]{N}+\log N)$.
+Phần Rabin-Miller có độ phức tạp là $\mathcal{O}(12\log N)$. Phần kiểm tra số chính phương có độ phức tạp là $\mathcal{O}(1)$, với chú ý rằng cần phải xét một vài số lân cận `sqrt(N)` để đưa ra kết quả chính xác. Tổng hợp lại, độ phức tạp của giải thuật trên là $\mathcal{O}(\sqrt[3]{N}\log\log \sqrt[3]{N}+\log N)$.
 
-Giải thuật này thậm chí [còn có thể tối ưu](https://codeforces.com/blog/entry/22317?#comment-797506) tới khoảng $O(\sqrt[4]{N})$. Tuy vậy số trường hợp được đặt ra là tương đối lớn và kiểm tra chúng cũng không hề dễ dàng.
+Giải thuật này thậm chí [còn có thể tối ưu](https://codeforces.com/blog/entry/22317?#comment-797506) tới khoảng $\mathcal{O}(\sqrt[4]{N})$. Tuy vậy số trường hợp được đặt ra là tương đối lớn và kiểm tra chúng cũng không hề dễ dàng.
 
-Ngoài ra, nếu có thể phân tích $N$ ra thừa số nguyên tố bằng [thuật toán rho của Pollard](https://cp-algorithms.com/algebra/factorization.html#pollards-rho-algorithm), lời giải lúc này cũng có độ phức tạp là khoảng $O(\sqrt[4]{N})$.
+Ngoài ra, nếu có thể phân tích $N$ ra thừa số nguyên tố bằng [thuật toán rho của Pollard](https://cp-algorithms.com/algebra/factorization.html#pollards-rho-algorithm), lời giải lúc này cũng có độ phức tạp là khoảng $\mathcal{O}(\sqrt[4]{N})$.
 
 ### Bài toán 2: Đếm số ước của nhiều số
 
 **Đề bài**: Cho $Q$ truy vấn. Ở truy vấn thứ $i$, cần tìm số các ước của số $A_i$ với $A_i < N$.
 
-Bằng cách duyệt qua mọi ước của từng số một, độ phức tạp thời gian sẽ là $O(Q\sqrt{N})$. Còn với cách thứ hai giống như ở trên, độ phức tạp tốt nhất là $O(Q\sqrt[3]{N}\log\log \sqrt[3]{N}+Q\log N)$. Với $Q$ nhỏ, ta hoàn toàn có thể làm tương tự như trên.
+Bằng cách duyệt qua mọi ước của từng số một, độ phức tạp thời gian sẽ là $\mathcal{O}(Q\sqrt{N})$. Còn với cách thứ hai giống như ở trên, độ phức tạp tốt nhất là $\mathcal{O}(Q\sqrt[3]{N}\log\log \sqrt[3]{N}+Q\log N)$. Với $Q$ nhỏ, ta hoàn toàn có thể làm tương tự như trên.
 
-Khi $Q$ đủ lớn $(Q \leq 10^6)$ và $N$ không quá lớn $(N \leq 10^6)$, các hướng làm trên tỏ ra khá tồi. 
+Khi $Q$ đủ lớn $(Q \leq 10^{6})$ và $N$ không quá lớn $(N \leq 10^{6})$, các hướng làm trên tỏ ra khá tồi.
 
 Với cách thứ hai, ta có thể thay đổi một chút để có thể đưa ra kết quả của truy vấn nhanh hơn. Khi chuẩn bị, với mỗi số $x$, thay vì chỉ lưu `isPrime[x]`, ta lưu lại ước nguyên tố nhỏ nhất của $x$, là `minPDiv[x]`. Khi thực hiện truy vấn, thay vì chia $N$ cho toàn bộ các số nguyên tố, ta chỉ cần chia liên tục $N$ cho ước nguyên tố nhỏ nhất của nó tại thời điểm đó, ta sẽ dần thu được kết quả.
 
@@ -334,22 +341,24 @@ void solution() {
 }
 ```
 
-Phần chuẩn bị sàng nguyên tố mất $O(N)$ không gian và $O(N\log\log N)$ thời gian. Mỗi truy vấn, số phép tính được thực hiện bằng đúng tổng số mũ của các thừa số nguyên tố trong phân tích của $N$. Dễ thấy giá trị này không vượt quá $\log N$, và do đó độ phức tạp thời gian của phần này là $O(Q\log N)$. Độ phức tạp thời gian nói chung của cả giải thuật là $O(N\log\log N + Q\log N)$.
+Phần chuẩn bị sàng nguyên tố mất $\mathcal{O}(N)$ không gian và $\mathcal{O}(N\log\log N)$ thời gian. Mỗi truy vấn, số phép tính được thực hiện bằng đúng tổng số mũ của các thừa số nguyên tố trong phân tích của $N$. Dễ thấy giá trị này không vượt quá $\log N$, và do đó độ phức tạp thời gian của phần này là $\mathcal{O}(Q\log N)$. Độ phức tạp thời gian nói chung của cả giải thuật là $\mathcal{O}(N\log\log N + Q\log N)$.
 
-Ta cũng có thể lưu lại thêm cả số mũ của ước nguyên tố nhỏ nhất cùng với ước đó của từng số. Cách làm này sẽ có độ phức tạp là $O(N\log N + Q\log\log N)$ thời gian, và tốn thêm $O(N)$ không gian so với cách đã trình bày ở trên.
+Ta cũng có thể lưu lại thêm cả số mũ của ước nguyên tố nhỏ nhất cùng với ước đó của từng số. Cách làm này sẽ có độ phức tạp là $\mathcal{O}(N\log N + Q\log\log N)$ thời gian, và tốn thêm $\mathcal{O}(N)$ không gian so với cách đã trình bày ở trên.
 
 ### Bài toán 3: Đếm tổng số lượng ước trên một khoảng
 
 **Đề bài**: Cho một số nguyên dương $N$. Tính: $\sum_{i = 1}^{N}{\tau(i)}$ với $\tau(x)$ là số ước của $x$.
 
-Thử áp dụng hai hướng giải quyết ở trên, ta thu được độ phức tạp lần lượt là $O(N\sqrt[3]{N})$ và $O(N\text{log }N)$. Tuy vậy, bài toán này còn có một lời giải tốt hơn, có thời gian chạy dưới mức tuyến tính.
+Thử áp dụng hai hướng giải quyết ở trên, ta thu được độ phức tạp lần lượt là $\mathcal{O}(N\sqrt[3]{N})$ và $\mathcal{O}(N\log N)$. Tuy vậy, bài toán này còn có một lời giải tốt hơn, có thời gian chạy dưới mức tuyến tính.
 
 Dễ thấy với mỗi số $d$, sẽ tồn tại $\left\lfloor\frac{N}{d}\right\rfloor$ bội của $d$ trong đoạn $[1, N]$. Vì vậy, nếu liệt kê tất cả các ước của các số từ $1$ tới $N$, số $d$ sẽ xuất hiện $\left\lfloor\frac{N}{d}\right\rfloor$ lần.
 
 Do vậy, kết quả của bài toán sẽ trở thành:
-$$\sum_{i = 1}^{N}{\tau(i)} = \sum_{d = 1}^{N}{\left\lfloor\frac{N}{d}\right\rfloor}$$
+$$
+\sum_{i = 1}^{N}{\tau(i)} = \sum_{d = 1}^{N}{\left\lfloor\frac{N}{d}\right\rfloor}
+$$
 
-Tổng trên có thể được tính một cách dễ dàng trong $O(n)$. Tuy nhiên, dựa vào nhận xét sau, ta có thể tối ưu tính toán xuống $O(\sqrt{N})$:
+Tổng trên có thể được tính một cách dễ dàng trong $\mathcal{O}(n)$. Tuy nhiên, dựa vào nhận xét sau, ta có thể tối ưu tính toán xuống $\mathcal{O}(\sqrt{N})$:
 
 **Nhận xét**: Với $d \leq \left\lfloor\sqrt{N}\right\rfloor$, phép tính $\left\lfloor\frac{N}{d}\right\rfloor$ nhận giá trị khác nhau với mỗi giá trị của $d$. Với $d > \left\lfloor\sqrt{N}\right\rfloor$, phép tính này nhận tổng cộng $\left\lfloor\sqrt{N}\right\rfloor$ hoặc $\left\lfloor\sqrt{N}\right\rfloor - 1$ giá trị khác nhau, các giá trị này không vượt quá $\left\lfloor\sqrt{N}\right\rfloor$ (Xem chứng minh nhận xét này tại [đây](https://math.stackexchange.com/questions/1069460/how-many-distinct-values-of-floorn-i-exists-for-i-1-to-n)).
 
@@ -358,9 +367,9 @@ Dựa vào nhận xét trên, ta chỉ cần tính tổng $\left\lfloor\frac{N}{
 ```cpp=
 long long accCountDiv(long long n) {
     long long ret = 0;
-    for (int i = 1; 1ll * i * i <= n; i ++)
+    for (int i = 1; 1ll * i * i <= n; i++)
         ret += n / i;
-    for (int i = 1; i < n / (int)sqrt(n); i ++)
+    for (int i = 1; i < n / (int)sqrt(n); i++)
         ret += 1ll * (n / i - n / (i + 1)) * i;
     return ret;
 }
@@ -383,45 +392,58 @@ Một cách rất tự nhiên, ta có một lời giải đơn giản cho bài t
 ```cpp=
 int divSum(int n) {
     int ret = 0;
-    for (int i = 1; i * i <= n; i ++) {
+    for (int i = 1; i * i <= n; i++) {
         ret += (i + n / i) * (n % i == 0);
-        if (i * i == n) ret -= i;
+        if (i * i == n)
+            ret -= i;
     }
     return ret;
 }
 ```
 
-Độ phức tạp thời gian của giải thuật trên là $O(\sqrt{N})$.
+Độ phức tạp thời gian của giải thuật trên là $\mathcal{O}(\sqrt{N})$.
 
 Tương ứng với cách thứ hai của bài toán trên, hàm tổng các ước cũng có một tính chất đặc biệt:
 
-**Định lý**: Nếu một số $N$ được phân tích ra thừa số nguyên tố thành: $N = \prod_{i = 1}^{k}{p_i^{m_i}} = p_1^{m_1} \times p_2^{m_2} ... \times p_k^{m_k}$ với $p_i$ là các số nguyên tố, $m_i$ là các số nguyên dương thì tổng các ước của $N$ là:
-$$\sigma(N) = \prod_{i = 1}^{k}{\frac{p_i^{m_i+1}-1}{p_i-1}}$$
+**Định lý**: Nếu một số $N$ được phân tích ra thừa số nguyên tố thành: $N = \prod_{i = 1}^{k}{p_i^{m_i}} = p_1^{m_1} \times p_2^{m_2} \cdots \times p_k^{m_k}$ với $p_i$ là các số nguyên tố, $m_i$ là các số nguyên dương thì tổng các ước của $N$ là:
+$$
+\sigma(N) = \prod_{i = 1}^{k}{\frac{p_i^{m_i+1}-1}{p_i-1}}
+$$
 
 :::spoiler **Chứng minh (nhấn để hiện)**:
 
 Mọi ước $d$ của $N$ khi phân tích thành thừa số nguyên tố sẽ có dạng: 
-$$d = \prod_{i = 1}^{k}{p_i^{\mu_i}}$$
+$$
+d = \prod_{i = 1}^{k}{p_i^{\mu_i}}
+$$
 với $0 \leq \mu_i \leq m_i$.
 Ta có: 
-$$\sigma(N) = \sum_{\mu_1=0}^{m_1}{\sum_{\mu_2=0}^{m_2}{\dots\sum_{\mu_k=0}^{m_k}{(p_1^{\mu_1}p_2^{\mu_2}\dots p_k^{\mu_k})}}}$$
-$$\Rightarrow \sigma(N) = \sum_{\mu_1=0}^{m_1}{p_1^{m_1}}\times\sum_{\mu_2=0}^{m_2}{p_2^{m_2}}\times\dots\times\sum_{\mu_k=0}^{m_k}{p_k^{m_k}}$$
-Biết rằng $a^n-1=(a-1)\sum\limits_{i=0}^{n-1}{a^i}$, do đó:
-$$\sigma(N) = \left(\frac{p_1^{m_1+1}-1}{p_1-1}\right)\left(\frac{p_2^{m_2+1}-1}{p_2-1}\right)\dots\left(\frac{p_k^{m_k+1}-1}{p_k-1}\right)$$
-$$\Rightarrow \sigma(N) = \prod_{i = 1}^{k}{\frac{p_i^{m_i+1}-1}{p_i-1}}$$
+$$
+\sigma(N) = \sum_{\mu_1=0}^{m_1}{\sum_{\mu_2=0}^{m_2}{\cdots\sum_{\mu_k=0}^{m_k}{(p_1^{\mu_1}p_2^{\mu_2}\cdots p_k^{\mu_k})}}}
+$$
+$$
+\Rightarrow \sigma(N) = \sum_{\mu_1=0}^{m_1}{p_1^{m_1}}\times\sum_{\mu_2=0}^{m_2}{p_2^{m_2}}\times\cdots\times\sum_{\mu_k=0}^{m_k}{p_k^{m_k}}
+$$
+Biết rằng $a^{n}-1=(a-1)\sum\limits_{i=0}^{n-1}{a^{i}}$, do đó:
+$$
+\sigma(N) = \left(\frac{p_1^{m_1+1}-1}{p_1-1}\right)\left(\frac{p_2^{m_2+1}-1}{p_2-1}\right)\cdots\left(\frac{p_k^{m_k+1}-1}{p_k-1}\right)
+$$
+$$
+\Rightarrow \sigma(N) = \prod_{i = 1}^{k}{\frac{p_i^{m_i+1}-1}{p_i-1}}
+$$
 
 :::
 
-Với tính chất này, ta dễ dàng sử dụng sàng nguyên tố để tính tích trên với từng thừa số nguyên tố. Tuỳ vào bài toán mà độ phức tạp phù hợp sẽ là $O(\sqrt{N}\log\log\sqrt{N})$ hoặc $O(N\log\log N + Q\log N)$.
+Với tính chất này, ta dễ dàng sử dụng sàng nguyên tố để tính tích trên với từng thừa số nguyên tố. Tuỳ vào bài toán mà độ phức tạp phù hợp sẽ là $\mathcal{O}(\sqrt{N}\log\log\sqrt{N})$ hoặc $\mathcal{O}(N\log\log N + Q\log N)$.
 
-Cải tiến $O(\sqrt[3]{N})$ không thể áp dụng để tính tổng do nó không cho ta biết cụ thể các ước. Tuy nhiên, bài toán tính tổng các ước của một số duy nhất cho trước vẫn có thể giải trong $O(\sqrt[4]{N})$ bằng [thuật toán rho của Pollard](https://cp-algorithms.com/algebra/factorization.html#pollards-rho-algorithm).
+Cải tiến $\mathcal{O}(\sqrt[3]{N})$ không thể áp dụng để tính tổng do nó không cho ta biết cụ thể các ước. Tuy nhiên, bài toán tính tổng các ước của một số duy nhất cho trước vẫn có thể giải trong $\mathcal{O}(\sqrt[4]{N})$ bằng [thuật toán rho của Pollard](https://cp-algorithms.com/algebra/factorization.html#pollards-rho-algorithm).
 
 ## Chú ý thêm
 
 -   Độ phức tạp thời gian của các giải thuật cho cả hai bài toán cũng phụ thuộc vào các sàng nguyên tố được sử dụng. Một số cải tiến của sàng nguyên tố cũng làm tăng thêm hiệu quả của các thuật trên.
 -   Hàm $\sigma(x)$ (tổng các ước) là một [hàm nhân tính](https://wiki.vnoi.info/algo/math/multiplicative-function). Cụ thể, với hai số nguyên dương $x$ và $y$ nguyên tố cùng nhau, ta có $\sigma(x)\sigma(y) = \sigma(xy)$. Dựa vào tính chất này, nếu gặp khó khăn trong việc nhớ công thức tính $\sigma(N)$ dựa vào phân tích thừa số nguyên tố của $N$, ta có thể thử suy nghĩ lại với hướng trong bài viết đã liên kết.
--   Hàm $\sigma_k(N) = \sum\limits_{d|N}{d^k}$ cũng là một hàm nhân tính và có thể tính được bằng cách phân tích ra thừa số nguyên tố. Họ hàm này gọi là [hàm ước số](https://en.wikipedia.org/wiki/Divisor_function) và cũng có một số tính chất đặc biệt. Với bài viết này, ta có $k=0$ (hàm đếm số ước) và $k=1$ (hàm tổng các ước).
--   Các số thoả mãn $N = 2\sigma(N)$ được gọi là [số hoàn thiện (perfect number)](https://en.wikipedia.org/wiki/Perfect_number) (hoặc hoàn chỉnh, hoàn hảo, ... tuỳ cách dịch). Một tính chất thú vị của loại số này là: Các số hoàn thiện chẵn có dạng $2^{p-1}(2^p - 1)$, với điều kiện $p$ và $2^p - 1$ đều là số nguyên tố.
+-   Hàm $\sigma_k(N) = \sum\limits_{d|N}{d^{k}}$ cũng là một hàm nhân tính và có thể tính được bằng cách phân tích ra thừa số nguyên tố. Họ hàm này gọi là [hàm ước số](https://en.wikipedia.org/wiki/Divisor_function) và cũng có một số tính chất đặc biệt. Với bài viết này, ta có $k=0$ (hàm đếm số ước) và $k=1$ (hàm tổng các ước).
+-   Các số thoả mãn $N = 2\sigma(N)$ được gọi là [số hoàn thiện (perfect number)](https://en.wikipedia.org/wiki/Perfect_number) (hoặc hoàn chỉnh, hoàn hảo, ... tuỳ cách dịch). Một tính chất thú vị của loại số này là: Các số hoàn thiện chẵn có dạng $2^{p-1}(2^{p} - 1)$, với điều kiện $p$ và $2^{p} - 1$ đều là số nguyên tố.
 
 ## Bài tập áp dụng
 

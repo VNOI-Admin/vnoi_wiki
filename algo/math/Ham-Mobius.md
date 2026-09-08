@@ -12,14 +12,14 @@ Trong bài viết này mình sẽ tiếp tục giới thiệu về hàm Mobius. 
 
 - $\mu(n)=0$ nếu tồn tại $a_i>1$
 
-- $\mu(n)=(-1)^r$ nếu $n={p_1}\*{p_2}\*{p_3}\*...\*{p_r}$, hay $a_i = 1$ với mọi $i$
+- $\mu(n)=(-1)^{r}$ nếu $n={p_1}\times{p_2}\times{p_3}\times\cdots\times{p_r}$, hay $a_i = 1$ với mọi $i$
 
 - Có thể chứng minh được rằng $\mu(n)=\sum_{d\|n,d < n}\mu(d)$ với $n>1$ và tính được $\mu(n)$ bằng cách sử dụng Sàng:
 
 ```cpp
 mu[1] = 1;
 for (int i = 1; i <= N; i++)
-    for (int j = 2*i; j <= N; j += i)
+    for (int j = 2 * i; j <= N; j += i)
         mu[j] -= mu[i];
 ```
 
@@ -34,9 +34,9 @@ Ta xét bài toán [CF #305 - Div 1 C](http://codeforces.com/contest/547/problem
 
 **Cách làm**:
 
-Theo nguyên lý bù trừ, số cặp (x, y) trong tập S mà $gcd(x, y) = 1$ là:
+Theo nguyên lý bù trừ, số cặp (x, y) trong tập S mà $\gcd(x, y) = 1$ là:
 
-```
+```text
 (Số cặp (x, y) bất kỳ)
 - (Số cặp (x, y) mà x và y cùng chia hết cho 2)
 - (Số cặp (x, y) mà x và y cùng chia hết cho 3)
@@ -56,22 +56,22 @@ Với mỗi tập hợp gồm chẵn số nguyên tố, ta cộng thêm vào k�
 Với mỗi tập hợp gồm lẻ số nguyên tố, ta trừ khỏi kết quả số lượng cặp (x, y) mà cả x và y chia hết cho tất cả các số nguyên tố trong tập đó.
 
 
-Gọi $cnt(k)$ là số lượng số trong tập $S$ mà là bội của $k$.
+Gọi $\texttt{cnt}(k)$ là số lượng số trong tập $S$ mà là bội của $k$.
 
-Đặt $f(k)$ là số cặp x, y mà cả x và y đều chia hết cho $k$, thì $f(k) = cnt(k) * (cnt(k) - 1) / 2$.
+Đặt $f(k)$ là số cặp x, y mà cả x và y đều chia hết cho $k$, thì $f(k) = \frac{\texttt{cnt}(k) \times (\texttt{cnt}(k) - 1)}{2}$.
 
 Theo phân tích ở trên,
 
-$res = f(1) - f(2) - f(3) - f(5) - ... + f(2\*3) + f(2\*5) + f(2\*7) + ... - f(2\*3\*5) - f(2\*3\*7) - ...$
+$\texttt{res} = f(1) - f(2) - f(3) - f(5) - \cdots + f(2\times3) + f(2\times5) + f(2\times7) + \cdots - f(2\times3\times5) - f(2\times3\times7) - \cdots$
 
-$res = sum(f(i) * mu(i))$
+$\texttt{res} = \texttt{sum}(f(i) \times \texttt{mu}(i))$
 
 Khi ta thêm hoặc xoá 1 số $x$ khỏi tập S:
 
-- Với mảng $cnt$, chỉ có những $cnt(k)$ với $k$ là ước của $x$ bị thay đổi. Do đó ta dễ dàng cập nhật $cnt$ với độ phức tạp tỉ lệ với số ước của $n$.
-- Với kết quả, chỉ có các $f(k) * mu(k)$ với $k$ là ước của $x$ bị thay đổi. Do đó ta cũng có thể cập nhật kết quả với độ phức tạp tỉ lệ với số ước của $n$.
+- Với mảng $\texttt{cnt}$, chỉ có những $\texttt{cnt}(k)$ với $k$ là ước của $x$ bị thay đổi. Do đó ta dễ dàng cập nhật $\texttt{cnt}$ với độ phức tạp tỉ lệ với số ước của $n$.
+- Với kết quả, chỉ có các $f(k) \times \texttt{mu}(k)$ với $k$ là ước của $x$ bị thay đổi. Do đó ta cũng có thể cập nhật kết quả với độ phức tạp tỉ lệ với số ước của $n$.
 
-Do đó, ta thu được thuật toán với độ phức tạp $O(Q*x)$ với $x$ là số ước tối đa của 1 số trong mảng $A$.
+Do đó, ta thu được thuật toán với độ phức tạp $\mathcal{O}(Q\times x)$ với $x$ là số ước tối đa của 1 số trong mảng $A$.
 
 Các bạn có thể tham khảo cài đặt [ở đây](http://codeforces.com/contest/547/submission/11299564)
 

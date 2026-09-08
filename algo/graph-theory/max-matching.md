@@ -62,7 +62,11 @@ Ví dụ, với đồ thị và cặp ghép như trên, ta có đường đi $1 
 
 
  **Bổ đề 1:** Nếu $M$ là một cặp ghép và $\pi$ là một đường tăng luồng tương ứng với $M$, thì:
- $$M' = M \oplus \pi = \{e \in E \mid e \in (M \setminus \pi) \cup (\pi \setminus M) \}$$
+
+$$
+M' = M \oplus \pi = \{e \in E \mid e \in (M \setminus \pi) \cup (\pi \setminus M) \}
+$$
+
 là một cặp ghép và $|M'| = |M| + 1$.
 
 :::spoiler Chứng minh
@@ -93,7 +97,7 @@ Tập cạnh $E = \{e = (u, v) \mid u \in X, v \in Y\}$.
 
 Hãy tìm cặp ghép cực đại của đồ thị $G$.
 
-Ràng buộc: $1 \le X, Y \le 10^5, 1 \le E \le 2 \cdot 10^5$.
+Ràng buộc: $1 \le X, Y \le 10^{5}, 1 \le E \le 2 \cdot 10^{5}$.
 
 
 ## Thuật toán luồng cực đại
@@ -114,17 +118,16 @@ Cuối cùng, ta nối các đỉnh thuộc tập $Y$ tới đỉnh thu $T$ vớ
 </center>
 
 
-Hình minh hoạ đồ thị luồng của đồ thị có tập $E = \{
-(x_1, y_1), (x_1, y_2), (x_1, y_3), (x_2, y_1), (x_3, y_1)\}$
+Hình minh hoạ đồ thị luồng của đồ thị có tập $E = \{(x_1, y_1), (x_1, y_2), (x_1, y_3), (x_2, y_1), (x_3, y_1)\}$
 
 Cặp ghép cực đại sẽ bằng luồng cực đại đi từ đỉnh nguồn $S$ tới đỉnh thu $T$.
 
 ### Cài đặt
 
-Có rất nhiều thuật toán luồng cực đại nhưng chung quy đều phải có hai hàm `addEdge(u, v, cap)` (Thêm cạnh $(u, v)$ với dung lượng $cap$) và `calc(s, t)` (Trả về luồng cực đại đi từ $s$ tới $t$). 
+Có rất nhiều thuật toán luồng cực đại nhưng chung quy đều phải có hai hàm `addEdge(u, v, cap)` (Thêm cạnh $(u, v)$ với dung lượng $\texttt{cap}$) và `calc(s, t)` (Trả về luồng cực đại đi từ $s$ tới $t$). 
 
 Ta dễ dàng xây dựng đồ thị luồng với đoạn mã giả dưới đây:
-```=
+```cpp
 // Quy ước S = 0 là đỉnh source, T = M + N + 1 là đỉnh sink.
 // Các đỉnh 1..M là các đỉnh thuộc tập X.
 // Các đỉnh M+1..M+N là các đỉnh thuộc tập Y.
@@ -144,7 +147,7 @@ return calc(S, T)
 Độ phức tạp của bài toán tuỳ thuộc vào thuật toán luồng cực đại đã sử dụng. Ví dụ:
 + Trong đồ thị có dạng mạng đơn vị, [thuật toán Dinic](/algo/graph-theory/flow#thu%E1%BA%ADt-to%C3%A1n-dinic) sẽ giải quyết bài toán với độ phức tạp $\mathcal{O}(E\sqrt{V})$. 
 Để hiểu rõ tại sao có độ phức tạp này, độc giả có thể tìm hiểu thêm về [thuật toán Dinic trong mạng đơn vị](https://en.wikipedia.org/wiki/Dinic%27s_algorithm#Analysis).
-+ Do giá trị của luồng cực đại $f$ không quá $O(V)$ nên với [thuật toán Edmonds-Karp](/algo/graph-theory/flow#ph%C6%B0%C6%A1ng-ph%C3%A1p-ford-fulkerson-thu%E1%BA%ADt-to%C3%A1n-edmonds-karp) ta đạt độ phức tạp thuật toán là $\mathcal{O}(Ef)$ hay $\mathcal{O}(EV)$
++ Do giá trị của luồng cực đại $f$ không quá $\mathcal{O}(V)$ nên với [thuật toán Edmonds-Karp](/algo/graph-theory/flow#ph%C6%B0%C6%A1ng-ph%C3%A1p-ford-fulkerson-thu%E1%BA%ADt-to%C3%A1n-edmonds-karp) ta đạt độ phức tạp thuật toán là $\mathcal{O}(Ef)$ hay $\mathcal{O}(EV)$
 
 ## Thuật toán Kuhn 
 
@@ -168,7 +171,7 @@ Vậy tại sao đồ thị đạt cực đại khi không tìm được thêm �
 **Chứng minh 1**: Nếu đồ thị tồn tại một đường tăng luồng $\pi$ tương ứng với cặp ghép $M$, thì cặp ghép $M$ không đạt cực đại.
 + Xét một đồ thị tồn tại một đường tăng luồng $\pi$ tương ứng với cặp ghép $M$.
 
-    Theo **Bổ đề 1**, ta có $|M'| = |M|+ 1 \gt |M|$, với $M' = M \oplus \pi$.
+    Theo **Bổ đề 1**, ta có $|M'| = |M| + 1 > |M|$, với $M' = M \oplus \pi$.
     
 + Do đó, cặp ghép $M$ không phải là cặp ghép cực đại. Giả thiết được chứng minh.
 
@@ -177,7 +180,7 @@ Vậy tại sao đồ thị đạt cực đại khi không tìm được thêm �
 
     Xét đồ thị $H$ gồm tập cạnh $M \oplus M'$. Mỗi đỉnh của đồ thị $H$ có thể có tối đa $2$ cạnh chứa nó, gồm một cạnh trong $M$ và một cạnh trong $M'$. Do đó, mỗi thành phần liên thông của đồ thị sẽ có dạng một chu trình chẵn đi xen kẽ các cạnh trong $M$ và trong $M'$ hoặc sẽ có dạng một đường đi đơn xen kẽ các cạnh trong $M$ và trong $M'$.
 
-    Vì $|M'| \gt |M|$ nên tồn tại ít nhất một thành phần liên thông $P$ có dạng đường đi của $H$ phải bắt đầu và kết thúc là các cạnh trong $M'$. Vì cạnh bắt đầu và cạnh kết thúc của $P$ nằm trong $M'$ nên hai cạnh này sẽ không nằm trong $M$. Nói cách khác, nó là những cạnh tự do. 
+    Vì $|M'| > |M|$ nên tồn tại ít nhất một thành phần liên thông $P$ có dạng đường đi của $H$ phải bắt đầu và kết thúc là các cạnh trong $M'$. Vì cạnh bắt đầu và cạnh kết thúc của $P$ nằm trong $M'$ nên hai cạnh này sẽ không nằm trong $M$. Nói cách khác, nó là những cạnh tự do. 
     
 + Do đó, đường đi $P$ trong đồ thị $H$ là một đường tăng luồng tương ứng với cặp ghép hiện tại $M$. Giả thiết được chứng minh.
 :::
@@ -212,9 +215,9 @@ Gọi $M$ là cặp ghép hiện tại và $\pi$ là đường tăng luồng tư
 - `matchR[v]` lưu đỉnh kề cạnh ghép với đỉnh $v \in Y$, nếu không tồn tại, giá trị này bằng $-1$.
 - `seen[u]` lưu lại "thời gian" cuối cùng thực hiện việc tìm kiếm tại đỉnh $u \in X$.
 
-Hàm `kuhn(u)` là hàm tìm kiếm theo chiều sâu. Hàm trả về $\tt{True}$ nếu tìm được đường tăng luồng từ $u \in X$, và ngược lại.
+Hàm `kuhn(u)` là hàm tìm kiếm theo chiều sâu. Hàm trả về $\texttt{True}$ nếu tìm được đường tăng luồng từ $u \in X$, và ngược lại.
 
-Trong hàm `kuhn`, ta duyệt qua các đỉnh $v \in Y$ kề cạnh đỉnh $u$. Trong  hai trường hợp: hoặc là $v$ là đỉnh tự do, hoặc là $v$ là đỉnh được ghép nhưng có thể tìm được đường tăng luồng đi từ đỉnh đang ghép với $v$. Lúc này, ta tìm được đường tăng luồng đi từ $u$, và trước khi trả về $\tt{True}$ ta sẽ thêm cặp cạnh $(u, v)$ vào cặp ghép.
+Trong hàm `kuhn`, ta duyệt qua các đỉnh $v \in Y$ kề cạnh đỉnh $u$. Trong  hai trường hợp: hoặc là $v$ là đỉnh tự do, hoặc là $v$ là đỉnh được ghép nhưng có thể tìm được đường tăng luồng đi từ đỉnh đang ghép với $v$. Lúc này, ta tìm được đường tăng luồng đi từ $u$, và trước khi trả về $\texttt{True}$ ta sẽ thêm cặp cạnh $(u, v)$ vào cặp ghép.
 
 Biến `iteration` lưu "thời gian" hiện tại. Cụ thể, vì trước khi tìm kiếm đường tăng luồng tại đỉnh $u$, ta phải khởi tạo lại mảng đánh dấu lưu các đỉnh đã thăm trong lúc thực hiện hàm `kuhn` ở lần tìm kiếm đường tăng luồng tại đỉnh $u - 1$. Và để giảm độ phức tạp khởi tạo lại mảng đánh dấu này từ $\mathcal{O}(V)$ xuống $\mathcal{O}(1)$, ta sử dụng mảng `seen` và biến `iteration` với định nghĩa như đã nói ở trên. 
 
@@ -279,11 +282,11 @@ int matching(int M, int N, vector<pair<int, int>> E) {
 
 ### Cải tiến thuật toán
 
-Thứ tự tập cạnh quyết định rất lớn tới việc ta có nhanh chóng tìm được đường tăng luồng hay không. Do đó có một trick tối ưu thuật toán Kuhn bằng heuristic thường được sử dụng, đó là dùng `random_shuffle` để thay đổi thứ tự của tập cạnh ban đầu:
+Thứ tự tập cạnh quyết định rất lớn tới việc ta có nhanh chóng tìm được đường tăng luồng hay không. Do đó có một trick tối ưu thuật toán Kuhn bằng heuristic thường được sử dụng, đó là dùng hàm `shuffle` trong thư viện `<random>` để thay đổi thứ tự của tập cạnh ban đầu (`random_shuffle` đã bị loại bỏ khỏi chuẩn C++17):
 ```cpp
 // Xây dựng danh sách kề
-random_shuffle(E.begin(), E.end());
-for(int i = 0; i < (int) E.size(); ++i) {
+shuffle(E.begin(), E.end(), mt19937(random_device()()));
+for (int i = 0; i < (int)E.size(); ++i) {
     int u = E[i].first, v = E[i].second;
     G[u].push_back(v);
 }
@@ -348,13 +351,27 @@ Cuối cùng, ta sẽ tìm kiếm các đường tăng luồng trên cây BFS đ
 :::spoiler Chứng minh
 Xét cặp ghép $N = M \oplus \pi \oplus \pi'$. Dễ thấy, $|N| = |M| + 2$ và $M \oplus N$ sẽ chứa hai đường tăng luồng không giao nhau gọi là $\delta_1$ và $\delta_2$ - Cả $\delta_1$ và $\delta_2$ đều là đường tăng luồng tương ứng với cặp ghép $M$. 
 Dựa vào tính chất giao hoán, ta có:
-$$M \oplus N = M \oplus (M \oplus \pi \oplus \pi') = \pi \oplus \pi'$$
+
+$$
+M \oplus N = M \oplus (M \oplus \pi \oplus \pi') = \pi \oplus \pi'
+$$
+
 Mặc khác, ta lại có:
-$$|\pi \oplus \pi'| = |M \oplus N| \ge |\delta_1| + |\delta_2|$$
+
+$$
+|\pi \oplus \pi'| = |M \oplus N| \ge |\delta_1| + |\delta_2|
+$$
 Mà bởi vì $\pi$ là đường tăng luồng có độ dài ngắn nhất tương ứng với $M$ nên $|\delta_1| \ge |\pi|$ và $|\delta_2| \ge |\pi|$. Chúng ta có thể kết luận được:
-$$|\pi \oplus \pi'| \ge |\delta_1| + |\delta_2| \ge |\pi| + |\pi| = 2 |\pi|$$
+
+$$
+|\pi \oplus \pi'| \ge |\delta_1| + |\delta_2| \ge |\pi| + |\pi| = 2 |\pi|
+$$
+
 Theo định nghĩa, ta có công thức $|\pi \oplus \pi'| = |\pi| + |\pi'| - 2|\pi \cap \pi'|$. Kết hợp với điều trên, ta được:
-$$|\pi| + |\pi'| - 2|\pi \cap \pi'| \ge 2|\pi| \Rightarrow |\pi'| \ge |\pi| + 2|\pi \cap \pi'|$$ 
+
+$$
+|\pi| + |\pi'| - 2|\pi \cap \pi'| \ge 2|\pi| \Rightarrow |\pi'| \ge |\pi| + 2|\pi \cap \pi'|
+$$
 Bổ đề được chứng minh.
 :::
 
@@ -367,7 +384,7 @@ Từ bổ đề 2, ta rút ra được hai hệ quả sau:
 **Bổ đề 3:** Với mọi $i, j$ mà $|\pi_i| = \ldots = |\pi_j|$, thì ta có $\pi_i$ và $\pi_j$ rời nhau.
 
 :::spoiler Chứng minh
-Ta giả sử rằng $|\pi_i| = |\pi_j|, i \lt j$ nhưng $\pi_i$ và $\pi_j$ giao nhau. Để tiện trong việc chứng minh, giả sử thêm rằng rằng $j - i$ là nhỏ nhất. Khi đó, với mọi $k$ sao cho $i \lt k \lt j$, ta có $\pi_k$ không có đỉnh chung với $\pi_i$ và $\pi_j$.
+Ta giả sử rằng $|\pi_i| = |\pi_j|, i < j$ nhưng $\pi_i$ và $\pi_j$ giao nhau. Để tiện trong việc chứng minh, giả sử thêm rằng rằng $j - i$ là nhỏ nhất. Khi đó, với mọi $k$ sao cho $i < k < j$, ta có $\pi_k$ không có đỉnh chung với $\pi_i$ và $\pi_j$.
 
 Xét $M_i$ là cặp ghép sau khi thêm thêm đường tăng luồng $\pi_i$. Lúc này, $\pi_j$ là một đường tăng luồng tương ứng với $M_i$. Vì $\pi_i$ và $\pi_j$ giao nhau nhưng không thể có cùng hai đỉnh ở đầu mút (vì đó là các đỉnh tự do), nên những đỉnh chung này là một số đỉnh ở khoảng giữa.
 
@@ -390,7 +407,10 @@ $$
 Từ hệ quả 2.2, ta biết được độ dài ngắn nhất đường tăng luồng tìm kiếm được là $2 \cdot l + 1$. Do đó, số đỉnh tối thiểu để tìm kiếm được đường tăng luồng là $2 \cdot l + 2$.
 
 Mặc khác, ta lại có tổng số lượng đỉnh của đồ thị là $|V|$, vì thế số đường tăng luồng còn lại cần tìm hay cũng chính là số cặp ghép còn lại bằng:
-$$|M'| - |M| \le \frac{|V|}{2 \cdot l + 2} = \frac{2|V|}{l + 1}$$
+
+$$
+|M'| - |M| \le \frac{|V|}{2 \cdot l + 2} = \frac{2|V|}{l + 1}
+$$
 :::
 
 ### Cài đặt
@@ -502,7 +522,7 @@ Thêm vào đó, bài toán tìm tập bao phủ cực tiểu và bài toán tì
 
 ### [Bài toán phân việc](https://oj.vnoi.info/problem/assign1)
 Bài toán: Cho $n$ công nhân và $n$ công việc. Thời gian người thứ $i$ hoàn thành công việc thứ $j$ là $c_{i,j}$. Mỗi người chỉ làm một việc, và mỗi việc chỉ được làm bởi một người. Hỏi làm sao để phân $n$ người làm $n$ công việc để tổng thời gian hoàn thành của mọi người là nhỏ nhất.
-**Ràng buộc**: $n \le 500$, $1 \le c_{i, j} \le 2 \cdot 10^9$.
+**Ràng buộc**: $n \le 500$, $1 \le c_{i, j} \le 2 \cdot 10^{9}$.
 
 Đưa bài toán về dạng đồ thị, ta thấy rằng bài toán trở thành tìm cặp ghép cực đại với tổng chi phí cực tiểu trên đồ thị hai phía. Bằng cách sử dụng thuật toán Hungarian, ta có thể giải quyết bài toán trong $\mathcal{O}(n^3)$.
 
@@ -528,4 +548,4 @@ Bài viết được tham khảo từ các bài viết sau:
 - [Cp-algorithm - Kuhn's Algorithm](https://cp-algorithms.com/graph/kuhn_maximum_bipartite_matching.html)
 - [Sariel Har-Peled - Matchings](https://courses.grainger.illinois.edu/cs498to1/sp2021/lectures/14/matchings.pdf)
 - [John E. Hopcroft" và Richard M. Karp - Matchings](https://cse.unl.edu/~choueiry/Documents/MaxMatching-HopdcroftKarp.pdf)
-- [ DeMen100ns - Kuhn Algorithm $O(N * sqrt(M))$!](https://www.facebook.com/pagedemen100ns/posts/kuhn-algorithm-on-sqrtmspoiler-bait-th%C3%B4i-ch%E1%BB%A9-l%C3%A0m-g%C3%AC-c%C3%B3-b%C3%A0i-to%C3%A1n-t%C3%ACm-b%E1%BB%99-c%E1%BA%B7p-gh%C3%A9p-/529966502715166/)
+- [ DeMen100ns - Kuhn Algorithm $\mathcal{O}(N \times \sqrt{M})$!](https://www.facebook.com/pagedemen100ns/posts/kuhn-algorithm-on-sqrtmspoiler-bait-th%C3%B4i-ch%E1%BB%A9-l%C3%A0m-g%C3%AC-c%C3%B3-b%C3%A0i-to%C3%A1n-t%C3%ACm-b%E1%BB%99-c%E1%BA%B7p-gh%C3%A9p-/529966502715166/)

@@ -180,19 +180,19 @@ string str = "topcoder";
 
 regmatch_t matches[1];
 
-regcomp(&reg,pattern.c_str(),REG_EXTENDED|REG_ICASE);
+regcomp(&reg, pattern.c_str(), REG_EXTENDED | REG_ICASE);
 
-if (regexec(&reg,str.c_str(),1,matches,0)==0) {
-  cout << "Match "
-  cout << str.substr(matches[0].rm_so,matches[0].rm_eo-matches[0].rm_so)
-  cout << " found starting at: "
-  cout << matches[0].rm_so
-  cout << " and ending at "
-  cout << matches[0].rm_eo
-  cout << endl;
+if (regexec(&reg, str.c_str(), 1, matches, 0) == 0) {
+    cout << "Match ";
+    cout << str.substr(matches[0].rm_so, matches[0].rm_eo - matches[0].rm_so);
+    cout << " found starting at: ";
+    cout << matches[0].rm_so;
+    cout << " and ending at ";
+    cout << matches[0].rm_eo;
+    cout << endl;
 } else {
-  cout << "Match not found."
-  cout << endl;
+    cout << "Match not found.";
+    cout << endl;
 }
 regfree(&reg);
 ```
@@ -228,17 +228,17 @@ re_compile_fastmap(&buffer);
 
 struct re_registers regs;
 int ofs = 0;
-if (re_search(&buffer,str.c_str(),str.size(),0,str.size(),&regs)!=-1) {
-  cout << "Match "
-  cout << str.substr(regs.start[0],regs.end[0]-regs.start[0])
-  cout << " found starting at: "
-  cout << regs.start[0]
-  cout << " and ending at "
-  cout << regs.end[0]
-  cout << endl;
+if (re_search(&buffer, str.c_str(), str.size(), 0, str.size(), &regs) != -1) {
+    cout << "Match ";
+    cout << str.substr(regs.start[0], regs.end[0] - regs.start[0]);
+    cout << " found starting at: ";
+    cout << regs.start[0];
+    cout << " and ending at ";
+    cout << regs.end[0];
+    cout << endl;
 } else {
-  cout << "Match not found."
-  cout << endl;
+    cout << "Match not found.";
+    cout << endl;
 }
 regfree(&buffer);
 ```

@@ -23,7 +23,7 @@ Bài viết được sưu tầm và bổ sung từ bài viết *"Một số bài
 > * *Xoá kí tự ở vị trí thứ $i$: `D i`*
 >
 > *Hãy tìm số ít nhất các phép biến đổi để biến xâu $A$ thành xâu $B$.*
-> **Điều kiện:** $1\le n \times m \le 10^6$.
+> **Điều kiện:** $1\le n \times m \le 10^{6}$.
 
 **Ví dụ 1:** `ILoveVNOI`$\to$`ILoveVNOIMore`
 
@@ -78,8 +78,8 @@ Tổng kết lại, ta có công thức QHĐ sau:
 
 * $L[0][j]=j$, với mọi $j=0,1,\ldots,n$.
 * $L[i][0]=i$, với mọi $i=0,1,\ldots,m$.
-* $L[i][j] =L[i−1][j−1]$ nếu $A[i] = B[j]$.
-* $L[i][j] = \min(L[i−1][j], L[i][j−1], L[i−1][j−1]) + 1$ nếu $A[i] \ne B[j]$.
+* $L[i][j] =L[i - 1][j - 1]$ nếu $A[i] = B[j]$.
+* $L[i][j] = \min(L[i - 1][j], L[i][j - 1], L[i - 1][j - 1]) + 1$ nếu $A[i] \ne B[j]$.
 
 Bài này ta có thể tiết kiệm biến hơn bằng cách dùng 2 mảng 1 chiều tính lẫn nhau và một mảng đánh dấu 2 chiều để truy vết.
 
@@ -136,13 +136,13 @@ int main()
 
 > *Cho $2$ xâu A và B. Tìm xâu con chung dài nhất của $A$ và $B$.
 > Xâu $X$ là xâu con của xâu $Y$ khi và chỉ khi có thể thu được $X$ bằng cách xóa một số kí tự của $Y$ (có thể tất cả hoặc không kí tự nào).*
-> **Điều kiện:** $1\le |A|\times |B| \le 10^6$.
+> **Điều kiện:** $1\le |A|\times |B| \le 10^{6}$.
 > **Input:** $2$ xâu $A$ và $B$.
 > **Output:** Độ dài xâu con chung dài nhất.
 
 **Lời giải:**
 
-Gọi $L[i][j]$ là độ dài xâu con chung dài nhất của xâu $A_i$ gồm $i$ kí tự phần đầu của $A$ ($A_i = A[1..i]$) và xâu $B_j$ gồm $j$ kí tự phần đầu của $B$ ($B_j = B[1..j]$).
+Gọi $L[i][j]$ là độ dài xâu con chung dài nhất của xâu $A_i$ gồm $i$ kí tự phần đầu của $A$ ($A_i = A[1\ldots i]$) và xâu $B_j$ gồm $j$ kí tự phần đầu của $B$ ($B_j = B[1\ldots j]$).
 
 * Nếu $A[i]=B[j]$ thì ta chỉ cần chọn xâu con dài nhất của $A_{i-1}$ và $B_{j-1}$, do đó độ dài xâu con dài nhất của $A_i$ và $B_j$ là $L[i-1][j-1]+1$.
 * Nếu $A[i]\ne B[j]$ thì xâu con chung dài nhất sẽ là xâu con của $A_{i-1}$ và $B_j$ hoặc $A_i$ và $B_{i-1}$.
@@ -150,11 +150,11 @@ Gọi $L[i][j]$ là độ dài xâu con chung dài nhất của xâu $A_i$ gồm
 Từ đó có công thức quy hoạch động như sau:
 
 * $L[0][j] = L[i][0] = 0$
-* $L[i][j] = L[i−1][j−1] + 1$ nếu $A[i] = B[j]$
-* $L[i][j] = \max(L[i−1][j], L[i][j−1])$ nếu $A[i] \ne B[j]$.
+* $L[i][j] = L[i - 1][j - 1] + 1$ nếu $A[i] = B[j]$
+* $L[i][j] = \max(L[i - 1][j], L[i][j - 1])$ nếu $A[i] \ne B[j]$.
 
 **Cài đặt:**
-Lưu ý do $m$ và $n$ có thể lớn đến $10^6$ nên mảng $L$ phải là mảng động (ví dụ ```std::vector``` trong ```c++```).
+Lưu ý do $m$ và $n$ có thể lớn đến $10^{6}$ nên mảng $L$ phải là mảng động (ví dụ ```std::vector``` trong ```c++```).
 
 Nếu đề bài yêu cầu phải in ra xâu con dài nhất thì phải thực hiện truy vết. Dưới đây là một cách cài đặt tham khảo:
 
@@ -247,8 +247,7 @@ Tức là để tính hàng $L[i]$ thì chỉ cần hàng $L[i-1]$ và $L[i][0] 
 
 ```cpp
 vector<int> P(n + 1), L(n + 1);
-for (int i = 1; i <= m; i++)
-{
+for (int i = 1; i <= m; i++) {
     L[0] = 0;
     for (int j = 1; j <= n; j++)
         if (a[i] == b[j])
@@ -264,7 +263,7 @@ for (int i = 1; i <= m; i++)
 
 > *Hai nước Alpha và Beta nằm ở hai bên bờ sông Omega, Alpha nằm ở bờ bắc và có $m$ thành phố được đánh số từ $1$ đến $m$, Beta nằm ở bờ nam và có $n$ thành phố được đánh số từ $1$ đến $n$ (theo vị trí từ tây sang đông).
 > Mỗi thành phố của nước này thường có quan hệ kết nghĩa với một số thành phố của nước kia. Để tăng cường tình hữu nghị, hai nước muốn xây các cây cầu bắc qua sông, mỗi cây cầu sẽ là nhịp cầu nối 2 thành phố kết nghĩa. Với yêu cầu là các cây cầu không được cắt nhau và mỗi thành phố chỉ là đầu cầu cho nhiều nhất là một cây cầu, hãy đếm số cây cầu nhiều nhất có thể xây dựng.*
-> **Điều kiện:** $1\le n \times m \le 10^6$.
+> **Điều kiện:** $1\le n \times m \le 10^{6}$.
 
 ![](/uploads/basic-dynamic-programming-2_img2.png)
 
@@ -286,7 +285,7 @@ Khi đó công thức QHĐ sẽ là:
 **Link nộp bài:** [**SPOJ - IOIPALIN**](https://www.spoj.com/problems/IOIPALIN/)
 
 > *Cho một xâu $S$. Ở mỗi bước, bạn An có thể chèn $1$ kí tự tùy ý vào bất kì vị trí nào trong xâu $S$. Hãy tính số bước ít nhất cần thực hiện để biến $S$ thành xâu đối xứng.
-> Xâu $S[1..n]$ được gọi là xâu đối xứng nếu $S[i] = S[n + 1 - i]$, với mọi $i=1;2;\ldots;n$.*
+> Xâu $S[1\ldots n]$ được gọi là xâu đối xứng nếu $S[i] = S[n + 1 - i]$, với mọi $i=1;2;\ldots;n$.*
 > **Điều kiện:** $1\le|S|\le5000$.
 
 **Lời giải:**
@@ -294,9 +293,9 @@ Khi đó công thức QHĐ sẽ là:
 **Cách 1:**
 Công thức QHĐ của bài này như sau:
 
-Gọi $L[i][j]$ là số kí tự ít nhất cần thêm vào xâu con $S[i..j]$ của $S$ để xâu đó trở thành đối xứng. Nhận xét đầu tiên là xâu thu được sau khi thêm một số kí tự vào $S[i..j]$ phải có kí tự đầu tiên và cuối cùng là $S[i]$ hoặc $S[j]$.
+Gọi $L[i][j]$ là số kí tự ít nhất cần thêm vào xâu con $S[i\ldots j]$ của $S$ để xâu đó trở thành đối xứng. Nhận xét đầu tiên là xâu thu được sau khi thêm một số kí tự vào $S[i\ldots j]$ phải có kí tự đầu tiên và cuối cùng là $S[i]$ hoặc $S[j]$.
 * Nếu $S[i] = S[j]$ thì xâu đối xứng thu được từ $S[i][j]$ cũng có kí tự đầu tiên là $S[i]$ và kí tự cuối cùng là $S[j]$. Do đó, chỉ cần tìm số kí tự ít nhất để thêm vào $S[i+1][j-1]$ để tạo thành xâu đối xứng.
-* Nếu $S[i]\ne S[j]$ thì trước tiên ta cần thêm kí tự $S[j]$ vào đầu hoặc $S[i]$ vào cuối xâu $S[i..j]$. Do đó, chỉ cần tìm số kí tự ít nhất cần thêm vào để $S[i][j-1]$ hoặc $S[i+1][j]$ trở thành xâu đối xứng.
+* Nếu $S[i]\ne S[j]$ thì trước tiên ta cần thêm kí tự $S[j]$ vào đầu hoặc $S[i]$ vào cuối xâu $S[i\ldots j]$. Do đó, chỉ cần tìm số kí tự ít nhất cần thêm vào để $S[i][j-1]$ hoặc $S[i+1][j]$ trở thành xâu đối xứng.
 
 Tóm lại, công thức QHĐ là:
 * $L[i][j]=0$ nếu $i\ge j$
@@ -334,21 +333,20 @@ int calc(int i, int j)
     return d[i][j];
 }
 
-int main()
-{
+int main() {
     cin >> s;
     n = s.length();
     s = "_" + s;
     for (int i = 0; i <= n; i++)
-    for (int j = 0; j <= n; j++)
-        d[i][j] = -1;
+        for (int j = 0; j <= n; j++)
+            d[i][j] = -1;
     cout << calc(1, n) << '\n';
 }
 ```
 
-**Nhận xét:** Đây là phương pháp đệ quy có nhớ (*memoization*). Độ phức tạp bộ nhớ của thuật toán là $\mathcal{O}(n^2)$. Có một phương pháp cài đặt tiết kiệm hơn như sau:
+**Nhận xét:** Đây là phương pháp đệ quy có nhớ (*memoization*). Độ phức tạp bộ nhớ của thuật toán là $\mathcal{O}(n^{2})$. Có một phương pháp cài đặt tiết kiệm hơn như sau:
 
-Để ý để tính được mảng $L[1..n][j]$ thì ta chỉ cần mảng $L[1..n][j - 1]$. Do đó ta sẽ dùng hai mảng một chiều $P$ và $L$ để lưu giá trị mảng đã tính và cần tính. Ở mỗi vòng lặp ta có $P=L[1..n][j-1],L=L[1..n][j]$. Đáp án bài toán là $L[1]$.
+Để ý để tính được mảng $L[1\ldots n][j]$ thì ta chỉ cần mảng $L[1\ldots n][j - 1]$. Do đó ta sẽ dùng hai mảng một chiều $P$ và $L$ để lưu giá trị mảng đã tính và cần tính. Ở mỗi vòng lặp ta có $P=L[1\ldots n][j-1],L=L[1\ldots n][j]$. Đáp án bài toán là $L[1]$.
 
 **Cách 2:**
 Từ ý tưởng của bài xâu con chung dài nhất, ta có thuật toán sau:
@@ -360,7 +358,7 @@ Ví dụ: $S=edbabcd$, xâu đảo của $S$ là $P=dcbabde$. Xâu con chung dà
 # 2. Xếp vali không giới hạn (Unbounded Knapsack)
 ## 2.1. Mô hình
 > *Có $n$ đồ vật, vật thứ $i$ có trọng lượng $A_i$ và giá trị $B_i$. Hãy chọn ra một số các đồ vật để xếp vào vali có trọng lượng tối đa $W$ sao cho tổng giá trị của vali là lớn nhất (Chú ý mỗi vật có thể chọn nhiều lần).*
-> **Điều kiện:** $1\le n\times W\le 10^6,1\le A_i,B_i\le 10^9$.
+> **Điều kiện:** $1\le n\times W\le 10^{6},1\le A_i,B_i\le 10^{9}$.
 
 ![](/uploads/basic-dynamic-programming-2_img3.png)
 
@@ -422,7 +420,7 @@ Lưu ý rằng đoạn chương trình trên mới chỉ cài đặt y nguyên c
 ### 2.4.1. Đổi tiền
 
 > *Ở đất nước Omega người ta chỉ tiêu tiền xu. Có $n$ loại tiền xu, loại thứ $i$ có mệnh giá là $A_i$ đồng. Một người khách du lịch đến Omega du lịch với số tiền $m$ đồng. Ông ta muốn đổi số tiền đó ra tiền xu Omega để tiện tiêu dùng. Ông ta cũng muốn số đồng tiền sau khi đổi là ít nhất (cho túi tiền đỡ nặng khi đi đây đi đó). Bạn hãy giúp ông ta tìm cách đổi tiền.*
-> **Điều kiện:** $1\le n \times m\le 10^6,1\le A_i\le 10^9$.
+> **Điều kiện:** $1\le n \times m\le 10^{6},1\le A_i\le 10^{9}$.
 > **Input:** Hai số $m,n$ và $A_1,A_2,\ldots,A_n$.
 > **Output:** Nếu không thể đổi được, in ra $-1$. Ngược lại, in ra hai dòng:
 > * Dòng đầu tiên in ra số đồng tiền ít nhất có thể.
@@ -543,7 +541,7 @@ int main()
 
 > *Khi nhân một ma trận kích thước $m \times n$ với một ma trận $n \times p$, số phép nhân phải thực hiện là $m \times n \times p$. Mặt khác phép nhân các ma trận có tính kết hợp, tức là: $(A \times B) \times C = A \times (B \times C).$
 > Do đó khi tính tích nhiều ma trận, ta có thể thực hiện theo các trình tự khác nhau, mỗi trình tự tính sẽ quyết định số phép nhân cần thực hiện.
-> Cho $n+1$ số $d_0,d_1,\ldots,d_n$ và $n$ ma trận $A_1, A_2, ..., A_n$, ma trận thứ $i$ có kích thước là $d_{i-1} \times d_i$. Hãy xác định trình tự nhân ma trận $A_1 \times A_2 \times \ldots \times A_n$ sao cho số phép nhân cần thực hiện là ít nhất.*
+> Cho $n+1$ số $d_0,d_1,\ldots,d_n$ và $n$ ma trận $A_1, A_2, \ldots, A_n$, ma trận thứ $i$ có kích thước là $d_{i-1} \times d_i$. Hãy xác định trình tự nhân ma trận $A_1 \times A_2 \times \cdots \times A_n$ sao cho số phép nhân cần thực hiện là ít nhất.*
 > **Điều kiện:** $1\le n\le 300,1\le d_i\le 100$.
 > **Input:** Số $n$ và $n+1$ số $d_0,d_1,\ldots,d_n$.
 > **Output:** Số nguyên duy nhất là số phép nhân ít nhất.
@@ -551,13 +549,13 @@ int main()
 ![](/uploads/basic-dynamic-programming-2_img4.png)
 ## 3.2. Lời giải
 
-Gọi $L[i][j]$ là số phép nhân nhỏ nhất cần dùng để tính tích các ma trận từ $A_i$ đến $A_j$ $(A_i \times A_{i+1} \times \ldots \times A_j)$.
+Gọi $L[i][j]$ là số phép nhân nhỏ nhất cần dùng để tính tích các ma trận từ $A_i$ đến $A_j$ $(A_i \times A_{i+1} \times \cdots \times A_j)$.
 
-Xét tích $(A_i \times A_{i+1} \times \ldots \times A_j)$ với $i<j.$ Khi tính tích trên, phép nhân ma trận cuối cùng sẽ có dạng $B\times C$, sao cho tồn tại một số nguyên $i\le k\le j$ thỏa mãn:
-* $B=A_i\times A_{i+1}\times\ldots\times A_k$
-* $C=A_{k+1}\times A_{k+1}\times\ldots\times A_j$
+Xét tích $(A_i \times A_{i+1} \times \cdots \times A_j)$ với $i<j.$ Khi tính tích trên, phép nhân ma trận cuối cùng sẽ có dạng $B\times C$, sao cho tồn tại một số nguyên $i\le k\le j$ thỏa mãn:
+* $B=A_i\times A_{i+1}\times\cdots\times A_k$
+* $C=A_{k+1}\times A_{k+1}\times\cdots\times A_j$
 
-Nói cách khác, tích $A_{k+1}\times A_{k+1}\times\ldots\times A_j$ được tính theo trình tự sau: $(A_i \times \ldots \times A_k)\times(A_{k+1}\times\ldots\times A_j)$.
+Nói cách khác, tích $A_{k+1}\times A_{k+1}\times\cdots\times A_j$ được tính theo trình tự sau: $(A_i \times \cdots \times A_k)\times(A_{k+1}\times\cdots\times A_j)$.
 Để số phép nhân là nhỏ nhất thì số phép nhân cần dùng khi tính $B$ và $C$ cũng là nhỏ nhất. Giá trị của $L[i][j]$ sẽ là kết quả nhỏ nhất nếu $k$ chạy từ $i$ đến $j-1$. Từ đó, ta có công thức truy hồi như sau:
 
 * $L[i][i]=0$
@@ -593,15 +591,14 @@ int calc(int i, int j)
     return L[i][j];
 }
 
-int main()
-{
+int main() {
     cin >> n;
     for (int i = 0; i <= n; i++)
         cin >> d[i];
 
     for (int i = 1; i <= n; i++)
-    for (int j = 1; j <= n; j++)
-        L[i][j] = -1;
+        for (int j = 1; j <= n; j++)
+            L[i][j] = -1;
     cout << calc(1, n);
 }
 ```
@@ -629,14 +626,14 @@ int main()
     cout << L[1][n];
 }
 ```
-Với hai cách cài đặt trên, độ phức tạp bộ nhớ là $\mathcal{O}(n^2)$, độ phức tạp thời gian là $\mathcal{O}(n^3)$.
+Với hai cách cài đặt trên, độ phức tạp bộ nhớ là $\mathcal{O}(n^{2})$, độ phức tạp thời gian là $\mathcal{O}(n^{3})$.
 
 ## 3.4. Một số bài toán khác
 
 ### 3.4.1. Chia đa giác
 
 > *Cho một đa giác lồi $n$ đỉnh được đánh số từ $1$ đến $n$ theo chiều kim đồng hồ. Bằng các đường chéo không cắt nhau, ta có thể chia đa giác thành $n-2$ tam giác. Hãy xác định cách chia có tổng các đường chéo ngắn nhất.*
-> **Điều kiện:** $4\le n\le 300,-10^6\le x_i,y_i\le 10^6$ (với $(x_i,y_i)$ là tọa độ của đỉnh thứ $i$).
+> **Điều kiện:** $4\le n\le 300,-10^{6}\le x_i,y_i\le 10^{6}$ (với $(x_i,y_i)$ là tọa độ của đỉnh thứ $i$).
 > **Input:** Một số tự nhiên $n$ và $n$ bộ $(x_i,y_i)$.
 > **Output:** In ra tổng các đường chéo của cách chia ngắn nhất.
 
@@ -651,26 +648,24 @@ Gọi $L[i][j], (i\le j)$ là tổng độ dài bé nhất có thể của các 
 Từ đó, ta rút ra công thức truy hồi sau:
 
 * $L[i][j]=0$ nếu $i\le j<i+3$
-* $L[i][j]=\min(L[i][k]+L[k][j]+d(i,k)+d(k,j))$ với $k=i+1,...j-1$, nếu $j\ge i+3$
+* $L[i][j]=\min(L[i][k]+L[k][j]+d(i,k)+d(k,j))$ với $k=i+1,\ldots j-1$, nếu $j\ge i+3$
 
 $L[1][n]$ là tổng đường chéo của cách chia tối ưu.
 
 **Cài đặt:**
 ```cpp
-#include <iostream>
 #include <cmath>
+#include <iostream>
 using namespace std;
 
-struct Point
-{
+struct Point {
     double x;
     double y;
     Point(double xx = 0.0, double yy = 0.0)
         : x(xx), y(yy) {};
 };
 
-double distance(const Point& a, const Point& b)
-{
+double distance(const Point &a, const Point &b) {
     return sqrtl((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
 }
 
@@ -702,10 +697,10 @@ int main()
 > **Điều kiện:** $1\le n \le 300$.
 
 **Lời giải:**
-Giả sử biểu thức ban đầu là $A_1\cdot A_2\cdot\ldots\cdot A_n$, trong đó $\cdot$ là `+` hoặc `*` theo đề bài.
-Gọi $L[i,j]$ là giá trị lớn nhất có thể có của biểu thức $A_i \cdot A_{i+1} \cdot ... \cdot A_j$.
+Giả sử biểu thức ban đầu là $A_1\cdot A_2\cdot\cdots\cdot A_n$, trong đó $\cdot$ là `+` hoặc `*` theo đề bài.
+Gọi $L[i,j]$ là giá trị lớn nhất có thể có của biểu thức $A_i \cdot A_{i+1} \cdot \cdots \cdot A_j$.
 * Nếu $i=j$ thì $L[i][j]=A_i$
-* Nếu $j>i$ thì có thể tính biểu thức $A_i \cdot A_{i+1} \cdot ... \cdot A_j$ bằng cách chia thành 2 nhóm: $(A_i \cdot A_{i+1} \cdot ... \cdot A_k) \cdot (A_{k+1} \cdot ... \cdot A_j)(i\le k <j)$ (lập luận tương tự như bài toán nhân ma trận). Do $A_i\ge 0$ nên để $L[i,j]$ lớn nhất thì cách đặt ngoặc của hai biểu thức con cũng tối ưu. Khi đó $L[i][j]=L[i][k] \cdot L[k+1][j]$, trong đó $i\le k <j$ và $\cdot$ là phép toán giữa $A_k$ và $A_{k+1}$.
+* Nếu $j>i$ thì có thể tính biểu thức $A_i \cdot A_{i+1} \cdot \cdots \cdot A_j$ bằng cách chia thành 2 nhóm: $(A_i \cdot A_{i+1} \cdot \cdots \cdot A_k) \cdot (A_{k+1} \cdot \cdots \cdot A_j)(i\le k <j)$ (lập luận tương tự như bài toán nhân ma trận). Do $A_i\ge 0$ nên để $L[i,j]$ lớn nhất thì cách đặt ngoặc của hai biểu thức con cũng tối ưu. Khi đó $L[i][j]=L[i][k] \cdot L[k+1][j]$, trong đó $i\le k <j$ và $\cdot$ là phép toán giữa $A_k$ và $A_{k+1}$.
 
 Vậy ta có công thức truy hồi như sau:
 
@@ -717,7 +712,7 @@ Vậy ta có công thức truy hồi như sau:
 ## 4.1. Mô hình
 
 > *Có $n$ lọ hoa sắp thành một hàng ngang và $k$ bó hoa được đánh số thứ tự từ $1$ đến $k$. Cần cắm $k$ bó hoa trên vào $n$ lọ sao cho hoa có số thứ tự nhỏ phải đứng trước hoa có số thứ tự lớn. Giá trị thẩm mỹ tương ứng khi cắm hoa $i$ vào lọ thứ $j$ là $v_{i,j}\ge0$. Hãy tìm một cách cắm sao cho tổng giá trị thẫm mỹ là lớn nhất. Chú ý rằng mỗi bó hoa phải được cắm vào một lọ và mỗi lọ cũng chỉ cắm tối đa một bó hoa.*
-> **Điều kiện:** $1\le n \times k\le10^6,1\le v_{i,j}\le10^9$.
+> **Điều kiện:** $1\le n \times k\le10^{6},1\le v_{i,j}\le10^{9}$.
 
 ## 4.2. Lời giải
 
@@ -747,10 +742,8 @@ Tương tự các bài toán trước, có hai phương pháp cài đặt QHĐ, 
 
 ```cpp
 vector<int> P(k + 1), L(k + 1);
-for (int i = 1; i <= n; i++)
-{
-    for (int j = 1; j <= i; j++)
-    {
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= i; j++) {
         L[j] = max(P[j - 1] + v[i][j], P[j]);
     }
     P = L;
@@ -764,7 +757,7 @@ cout << L[k];
 
 > *Một trường học có $n$ phòng học đánh số từ $1$ đến $n$ và $k$ nhóm học sinh đánh số từ $1$ đến $k$. Cần xếp $k$ nhóm học sinh vào các phòng học khác nhau sao cho với hai nhóm $i<j$ có $a, b$ lần lượt là phòng học của hai nhóm thì $a<b$. Nói cách khác, nhóm có số hiệu lớn hơn sẽ được ưu tiên phòng có số hiệu lớn hơn.
 > Nếu phòng học nào đó có chứa học sinh thì số ghế thừa phải được chuyển ra ngoài, nếu thiếu ghế thì phải lấy thêm. Biết số ghế có sẵn trong phòng thứ $i$ là $A_i$ và số học sinh nhóm thứ $j$ là $B_j(1\le i \le n,1\le j \le k).$ Tính số lần chuyển ghế ra vào ít nhất có thể.*
-> **Điều kiện:** $1\le n\times k\le10^6, 1\le A_i,B_j\le10^9$.
+> **Điều kiện:** $1\le n\times k\le10^{6}, 1\le A_i,B_j\le10^{9}$.
 
 **Lời giải:**
 
@@ -773,7 +766,7 @@ Khi xếp nhóm $i$ vào phòng $j$ thì số lần chuyển ghế chính là đ
 ### 4.4.2. Mua giày (Đề QG bảng B năm 2003)
 
 > *Có $n$ đôi giày, đôi giày thứ $i$ có kích thước $H_i$. Có $k$ người cần mua giày, người thứ $j$ cần mua đôi giày kích thước $S_j$. Khi người $i$ chọn mua đôi giày $j$ thì độ lệch sẽ là $|H_i-S_j|$. Hãy tìm cách chọn mua giày cho $k$ người trên sao cho tổng độ lệch là ít nhất. Biết rằng mỗi người chỉ mua 1 đôi giày và 1 đôi giày cũng chỉ có tối đa một người mua.*
-> **Điều kiện:** $1\le n\times k\le10^6, 1\le H_i,S_j\le10^9$.
+> **Điều kiện:** $1\le n\times k\le10^{6}, 1\le H_i,S_j\le10^{9}$.
 
 **Lời giải:**
 
@@ -781,12 +774,12 @@ Bài này khác với bài **Xếp phòng học** ở trên ở chỗ: người 
 
 Tuy nhiên, để đưa bài toán về dạng ghép cặp, ta có nhận xét sau:
 > *Cho $2$ dãy số nguyên dương sắp thứ tự $A_1\le A_2\le\ldots\le A_n$ và $B_1\le B_2\le\ldots\le B_n$. Gọi $C_1,C_2,\ldots,C_n$ là một hoán vị của $B_1,B_2,\ldots,B_n$. Khi đó:*
-> $|A_1-B_1|+|A_2-B_2|+\ldots+|A_n-B_n|\le|A_1-C_1|+|A_2-C_2|+\ldots+|A_n-C_n|$
+> $|A_1-B_1|+|A_2-B_2|+\cdots+|A_n-B_n|\le|A_1-C_1|+|A_2-C_2|+\cdots+|A_n-C_n|$
 
 **Chứng minh:**
 
 Gọi $P=(P_1,P_2,\ldots,P_n)$ là một hoán vị của $B_1,B_2,\ldots,B_n$.
-Ta đặt: $f(P)=|A_1-P_1|+|A_2-P_2|+\ldots+|A_n-P_n|$.
+Ta đặt: $f(P)=|A_1-P_1|+|A_2-P_2|+\cdots+|A_n-P_n|$.
 Giả sử trong hoán vị P tồn tại một nghịch thế $u,v$, tức là $u<v$ và $P_u\ge P_v.$ Đặt $P'=P_1,P_2,\ldots,P_{u-1},P_v,P_{u+1},\ldots,P_{v-1},P_u,P_{v+1},\ldots,P_n$.
 
 Xét hiệu:

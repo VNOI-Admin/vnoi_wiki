@@ -14,7 +14,7 @@ Trước khi đọc bài viết này bạn cần nắm được các kiến th�
 
 Như các bạn đã biết:
 
-- Thuật toán [KMP](/translate/wcipeg/kmp) giúp tìm kiếm 1 xâu con (pattern) trong 1 xâu lớn với độ phức tạp $O(M + N)$ với $M$ và $N$ là độ dài 2 xâu.
+- Thuật toán [KMP](/translate/wcipeg/kmp) giúp tìm kiếm 1 xâu con (pattern) trong 1 xâu lớn với độ phức tạp $\mathcal{O}(M + N)$ với $M$ và $N$ là độ dài 2 xâu.
 - Cấu trúc dữ liệu [Trie](/algo/data-structures/trie) giúp chúng ta lưu trữ và tìm kiếm $N$.
 
 Cấu trúc dữ liệu **Aho-Corasick** có thể hình dung như 1 sự kết hợp giữa trie và KMP:

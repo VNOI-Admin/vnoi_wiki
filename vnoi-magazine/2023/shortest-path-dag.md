@@ -30,8 +30,8 @@ Bài toán trên khá quen thuộc với đa số mọi người, cách giải l
 
 Code mẫu:
 ```cpp
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -40,51 +40,51 @@ const int N = 1e5 + 5;
 // adj[u]: Lưu các đỉnh v mà có cung u->v, nếu có nhiều cung u->v thì lưu đỉnh v nhiều lần
 
 int n, m;
-vector < int > adj[N];
+vector<int> adj[N];
 int nTopo, v[N];
 bool vis[N];
 int f[N];
 
 void dfs(int u) {
-  vis[u] = true;
+    vis[u] = true;
 
-  for (auto i: adj[u])
-    if (!vis[i])
-      dfs(i);
+    for (auto i : adj[u])
+        if (!vis[i])
+            dfs(i);
 
-  v[++nTopo] = u;
+    v[++nTopo] = u;
 }
 
 int main() {
-  cin >> n >> m;
-  for (int i = 1; i <= m; ++i) {
-    int u, v;
-    cin >> u >> v;
-    adj[u].emplace_back(v);
-  }
+    cin >> n >> m;
+    for (int i = 1; i <= m; ++i) {
+        int u, v;
+        cin >> u >> v;
+        adj[u].emplace_back(v);
+    }
 
-  /* Sắp xếp topo */
-  for (int i = 1; i <= n; ++i)
-    if (!vis[i])
-      dfs(i);
+    /* Sắp xếp topo */
+    for (int i = 1; i <= n; ++i)
+        if (!vis[i])
+            dfs(i);
 
-  // Sau khi dfs xong, ta được thứ tự trong v là thứ tự ngược topo
-  reverse(v + 1, v + nTopo + 1);
-  
-  f[1] = 1;
+    // Sau khi dfs xong, ta được thứ tự trong v là thứ tự ngược topo
+    reverse(v + 1, v + nTopo + 1);
 
-  /* Qui hoạch động trên DAG */
-  for (int i = 1; i <= n; ++i)
-    for (auto j: adj[v[i]])
-      f[j] += f[v[i]];
+    f[1] = 1;
 
-  // In đáp án
-  for (int i = 1; i <= n; ++i)
-    cout << f[i] << " ";
+    /* Qui hoạch động trên DAG */
+    for (int i = 1; i <= n; ++i)
+        for (auto j : adj[v[i]])
+            f[j] += f[v[i]];
+
+    // In đáp án
+    for (int i = 1; i <= n; ++i)
+        cout << f[i] << " ";
 }
 ```
 
-Khi đó, độ phức tạp của thuật toán là $O(m+n)$, bởi thao tác sắp xếp Topo và thao tác tính hàm mục tiêu đều tốn thời gian $O(m+n)$.
+Khi đó, độ phức tạp của thuật toán là $\mathcal{O}(m+n)$, bởi thao tác sắp xếp Topo và thao tác tính hàm mục tiêu đều tốn thời gian $\mathcal{O}(m+n)$.
 
 ## Bài toán đếm số đường đi ngắn nhất
 
@@ -153,7 +153,7 @@ Theo đó:
 $$
 \begin{array}{cl}
 & [d(u,x_1)-d(u,u)]+[d(u,x_2)-d(u,x_1)] + \\
-& \quad +\dots+ d(u,v)-d(u,x_k)]>d(u,v) \\
+& \quad +\dots+ [d(u,v)-d(u,x_k)]>d(u,v) \\
 \Leftrightarrow & d(u,v)-d(u,u)>d(u,v) \\
 \Leftrightarrow & 0>0
 \end{array}
@@ -164,7 +164,9 @@ $\Rightarrow$ Điều ta giả sử là sai, dẫn đến $f(u,i)=d(u,i) \forall
 Nếu tồn tại đường đi từ $i$ đến $j$, ta biết $d(u,i)<\infty$; do đó tồn tại đường đi từ $u$ đến $i$ và $d(u,i)+f(i,j)=d(u,j)$.
 
 Mặt khác, theo [bất đẳng thức tam giác](https://sharmaeklavya2.github.io/theoremdep/nodes/graph-theory/shortest-paths/triangle-inequality.html):
-$$d(u,i)+d(i,j)\ge d(u,j)$$
+$$
+d(u,i)+d(i,j)\ge d(u,j)
+$$
 hay $d(u,i)+d(i,j) \ge d(u,i)+f(i,j)$
 suy ra $d(i,j)\ge f(i,j)$
 
@@ -182,7 +184,9 @@ Nếu đồ thị có chu trình chứa một đỉnh $v$ nào đó, ta có $d(v
 Vì tồn tại một đường đi từ $i$ đến $j$ trên $S'_u$ nên theo tính chất 2: $d(u,i)+d(i,j)=d(u,i)+f(i,j)=d(u,j)$
 
 Xét một **đường đi ngắn nhất** từ $i$ đến $j$ không xuất hiện trong đồ thị: 
-$$i\rightarrow x_1 \rightarrow x_2 \rightarrow \dots \rightarrow x_k \rightarrow j$$
+$$
+i\rightarrow x_1 \rightarrow x_2 \rightarrow \dots \rightarrow x_k \rightarrow j
+$$
 
 Theo bất đẳng thức tam giác:
 $$
@@ -194,8 +198,12 @@ d(u,j)-d(u,x_k)\le d(x_k,j)
 \end{cases}
 $$
 Cộng về với vế ta được:
-$$d(u,j)-d(u,i)\le d(i,x_1)+d(x_1,x_2)+\dots+d(x_k,j)$$ 
-$$\Leftrightarrow d(i,j)\le d(i,x_1)+d(x_1,x_2)+\dots+d(x_k,j)$$
+$$
+d(u,j)-d(u,i)\le d(i,x_1)+d(x_1,x_2)+\dots+d(x_k,j)
+$$
+$$
+\Leftrightarrow d(i,j)\le d(i,x_1)+d(x_1,x_2)+\dots+d(x_k,j)
+$$
 
 Mặt khác ta có đường đi trên là đường đi ngắn nhất nên $d(i,j)=w(i,x_1)+w(x_1,x_2)+\dots+w(x_k,j)$
 Theo đó:
@@ -254,24 +262,24 @@ $\Rightarrow$ Ta đếm số cách xóa để các đỉnh có bậc vào khác 
 #### Thuật toán
 
 Trước tiên, ta sẽ dựng đồ thị $S'_1$ của đồ thị đã cho. Xét đỉnh $i$, gọi:
-- $deg(i)$ là bậc vào của đỉnh $i$
-- $deg_1(i)$ là số cung "loại 1" vào đỉnh $i$
-- $deg_2(i)$ là số cung "loại 2" vào đỉnh $i$
+- $\texttt{deg}(i)$ là bậc vào của đỉnh $i$
+- $\texttt{deg}_1(i)$ là số cung "loại 1" vào đỉnh $i$
+- $\texttt{deg}_2(i)$ là số cung "loại 2" vào đỉnh $i$
 
 Lượng đóng góp của đỉnh $i$, tức là số cách xóa cung vào để bậc của nó tiếp tục bằng 0 hoặc tiếp tục khác 0 là:
-- $1$ nếu $deg(i)=0$
-- $2^{deg_2(i)}$ nếu $deg_1(i)>0$ vì $deg(i)=deg_1(i)+deg_2(i)\ge deg_1(i)>0$
-- $2^{deg_2(i)}-1$ nếu $deg_1(i)=0$ vì $deg(i)=deg_2(i)$
+- $1$ nếu $\texttt{deg}(i)=0$
+- $2^{\texttt{deg}_2(i)}$ nếu $\texttt{deg}_1(i)>0$ vì $\texttt{deg}(i)=\texttt{deg}_1(i)+\texttt{deg}_2(i)\ge \texttt{deg}_1(i)>0$
+- $2^{\texttt{deg}_2(i)}-1$ nếu $\texttt{deg}_1(i)=0$ vì $\texttt{deg}(i)=\texttt{deg}_2(i)$
 
 Từ đó, đáp án là **tích** lượng đóng góp của các đỉnh và các cạnh loại 2 sinh ra cung trong $S'_1$.
 
 **Code mẫu:**
 
 ```cpp
-#include <iostream>
 #include <cstdio>
-#include <vector>
+#include <iostream>
 #include <queue>
+#include <vector>
 
 using namespace std;
 using ll = long long;
@@ -282,95 +290,94 @@ constexpr ll mod = 998244353;
 constexpr ll Inf = 1e17;
 
 struct Edge {
-  int u, v, w;
-}
-s1[M], s2[N];
+    int u, v, w;
+} s1[M], s2[N];
 
 int n, k, m;
 int deg_1[N], deg_2[N];
 ll d[N];
 // adj[i] = đỉnh kề thông qua các cạnh loại 1
 // nadj[i] = đỉnh kề thông qua các cạnh loại 2
-vector < pair < int, int >> adj[N], nadj[N];
+vector<pair<int, int>> adj[N], nadj[N];
 
 // Nhập dữ liệu
 void Read() {
-  cin >> n >> m >> k;
-  for (int i = 1; i <= m; ++i) {
-    cin >> s1[i].u >> s1[i].v >> s1[i].w;
-    adj[s1[i].u].emplace_back(s1[i].v, i);
-    adj[s1[i].v].emplace_back(s1[i].u, i);
-  }
+    cin >> n >> m >> k;
+    for (int i = 1; i <= m; ++i) {
+        cin >> s1[i].u >> s1[i].v >> s1[i].w;
+        adj[s1[i].u].emplace_back(s1[i].v, i);
+        adj[s1[i].v].emplace_back(s1[i].u, i);
+    }
 
-  for (int i = 1; i <= k; ++i) {
-    s2[i].u = 1;
-    cin >> s2[i].v >> s2[i].w;
-    nadj[s2[i].u].emplace_back(s2[i].v, i);
-    nadj[s2[i].v].emplace_back(s2[i].u, i);
-  }
+    for (int i = 1; i <= k; ++i) {
+        s2[i].u = 1;
+        cin >> s2[i].v >> s2[i].w;
+        nadj[s2[i].u].emplace_back(s2[i].v, i);
+        nadj[s2[i].v].emplace_back(s2[i].u, i);
+    }
 }
 
 // Tính a ^ b % mod
 ll Pow(ll a, ll b) {
-  ll ans(1);
+    ll ans(1);
 
-  for (; b; b >>= 1) {
-    if (b & 1)
-      ans = ans * a % mod;
-    a = a * a % mod;
-  }
+    for (; b; b >>= 1) {
+        if (b & 1)
+            ans = ans * a % mod;
+        a = a * a % mod;
+    }
 
-  return ans;
+    return ans;
 }
 
 // Thuật toán tìm đường đi ngắn nhất
 // Kết quả trả về mảng d[], d[i] = đường đi ngắn nhất từ x đến i
 void ShortestPath(int x) {
-  // Bạn đọc vui lòng tự cài đặt lại thuật toán
+    // Bạn đọc vui lòng tự cài đặt lại thuật toán
 }
 
 // Thực hiện thuật toán
 void Solve() {
-  ll ans(1);
-  ShortestPath(1);
+    ll ans(1);
+    ShortestPath(1);
 
-  /* Dựng Shortest Path DAG */
+    /* Dựng Shortest Path DAG */
 
-  for (int i = 1; i <= m; ++i)
-    if (d[s1[i].u] + s1[i].w == d[s1[i].v])
-      ++deg_1[s1[i].v];
-    else if (d[s1[i].v] + s1[i].w == d[s1[i].u])
-    ++deg_1[s1[i].u] = 1;
+    for (int i = 1; i <= m; ++i)
+        if (d[s1[i].u] + s1[i].w == d[s1[i].v])
+            ++deg_1[s1[i].v];
+        else if (d[s1[i].v] + s1[i].w == d[s1[i].u])
+            ++deg_1[s1[i].u];
 
-  for (int i = 1; i <= k; ++i)
-    if (d[s2[i].u] + s2[i].w == d[s2[i].v])
-      ++deg_2[s2[i].v];
-    else if (d[s2[i].v] + s2[i].w == d[s2[i].u])
-    ++deg_2[s2[i].u];
-  else
-    ans = ans * 2 % mod; // Cạnh này không sinh cung
+    for (int i = 1; i <= k; ++i)
+        if (d[s2[i].u] + s2[i].w == d[s2[i].v])
+            ++deg_2[s2[i].v];
+        else if (d[s2[i].v] + s2[i].w == d[s2[i].u])
+            ++deg_2[s2[i].u];
+        else
+            ans = ans * 2 % mod; // Cạnh này không sinh cung
 
-  /* Kết thúc dựng Shortest Path DAG */
+    /* Kết thúc dựng Shortest Path DAG */
 
-  for (int i = 2; i <= n; ++i)
-    if (deg_1[i] > 0)
-      ans = ans * Pow(2, deg_2[i]) % mod;
-    else if (deg_2[i] > 0)
-    ans = ans * (Pow(2, deg_2[i]) - 1) % mod;
+    for (int i = 2; i <= n; ++i)
+        if (deg_1[i] > 0)
+            ans = ans * Pow(2, deg_2[i]) % mod;
+        else if (deg_2[i] > 0)
+            ans = ans * (Pow(2, deg_2[i]) - 1) % mod;
 
-  cout << (ans + mod) % mod;
+    cout << (ans + mod) % mod;
 }
 
-int32_t main() {
-  ios_base::sync_with_stdio(0);
-  cin.tie(0);
-  cout.tie(0);
-  Read();
-  Solve();
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    Read();
+    Solve();
 }
 ```
 
-Nhìn đoạn code trên, ta có thể dễ thấy độ phức tạp thời gian của thuật toán là $O(m+nlog_2{n}+ShortestPath)$. Thuật toán chạy nhanh hay chậm phụ thuộc phần nhiều vào cách cài đặt hàm ShortestPath.
+Nhìn đoạn code trên, ta có thể dễ thấy độ phức tạp thời gian của thuật toán là $\mathcal{O}(m+n\log_{2}n+\texttt{ShortestPath})$. Thuật toán chạy nhanh hay chậm phụ thuộc phần nhiều vào cách cài đặt hàm ShortestPath.
 
 ### BIẾN ĐỘNG
 
@@ -383,8 +390,8 @@ Bài toán có thể xem tại [https://vjudge.net/problem/Gym-406204L](https://
 
 Bài toán yêu cầu với mỗi cạnh, đếm số cặp đỉnh $(u,v)$ mà $d(u,v)$ tăng lên khi xóa cạnh đó. Vậy cạnh này có điều kiện gì mà ảnh hưởng được đến đường đi ngắn nhất từ $u$ đến một đỉnh khác? Rõ ràng cạnh này phải thuộc một đường đi ngắn nhất xuất phát từ đỉnh $u$!
 
-Ta dựng ra Shortest Path DAG $S'_u$; gọi $cnt(i,j)$ là số đường đỉ từ đỉnh $i$ đến đỉnh $j$.
-Nếu xóa cung $i\rightarrow j$ làm $d(u,v)$ tăng thì mọi đường đi từ $u$ đến $v$ phải thông qua cung này, tức là: $cnt(u,i)\times cnt(j,v)=cnt(u,v)_{(*)}$
+Ta dựng ra Shortest Path DAG $S'_u$; gọi $\texttt{cnt}(i,j)$ là số đường đỉ từ đỉnh $i$ đến đỉnh $j$.
+Nếu xóa cung $i\rightarrow j$ làm $d(u,v)$ tăng thì mọi đường đi từ $u$ đến $v$ phải thông qua cung này, tức là: $\texttt{cnt}(u,i)\times \texttt{cnt}(j,v)=\texttt{cnt}(u,v)_{(*)}$
 
 Từ nhận xét ở bài _DELETE_ ta có thể xóa bỏ các cung sao cho mỗi đỉnh trên $S'_u$ có bậc tối đa là 1 và đường đi ngắn nhất từ $u$ đến các đỉnh là không đổi.
 
@@ -397,19 +404,19 @@ Ta dựng ra các Shortest Path DAG $S'_1,S'_2,\dots,S'_n$. Trên $S'_u$:
 - Với mỗi ứng cử viên, ta lại duyệt các đỉnh $v$ nhằm đếm số lượng đường đi $d(u,v)$ bị tăng nếu xóa "ứng cử viên" đó (Dựa vào điều kiện $(*)$)
 
 **Chú ý:**
-- Theo tính chất 4, $cnt(i,j)$ chính là số đường đi ngắn nhất từ $i$ đến $j$ trên đồ thị ban đầu $\Rightarrow$ Ta có thể tính trước đường đi ngắn nhất giữa mọi cặp đỉnh bằng cách thực hiện $n$ lần thuật toán Dijkstra cổ điển (Thuật toán Dijkstra với độ phức tạp $O(n^2+m)$)
-- $cnt(i,j)$ có thể rất lớn, nên bạn hãy lưu số này trong modulo một số nào đó (Hoặc có thể trong hai modulo); khi so sánh ta sử dụng đồng dư thay vì bằng nhau hoàn toàn.
+- Theo tính chất 4, $\texttt{cnt}(i,j)$ chính là số đường đi ngắn nhất từ $i$ đến $j$ trên đồ thị ban đầu $\Rightarrow$ Ta có thể tính trước đường đi ngắn nhất giữa mọi cặp đỉnh bằng cách thực hiện $n$ lần thuật toán Dijkstra cổ điển (Thuật toán Dijkstra với độ phức tạp $\mathcal{O}(n^{2}+m)$)
+- $\texttt{cnt}(i,j)$ có thể rất lớn, nên bạn hãy lưu số này trong modulo một số nào đó (Hoặc có thể trong hai modulo); khi so sánh ta sử dụng đồng dư thay vì bằng nhau hoàn toàn.
 
-Vì số lượng ứng cử viên của mỗi DAG là $n-1$ nên độ phức tạp thời gian khi ấy là $O(n^2\times(n-1))+O(n\times(n^2+m))=O(n^3+nm)$ là chi phí dựng $n$ DAG và chi phí duyệt.
+Vì số lượng ứng cử viên của mỗi DAG là $n-1$ nên độ phức tạp thời gian khi ấy là $\mathcal{O}(n^{2}\times(n-1))+\mathcal{O}(n\times(n^{2}+m))=\mathcal{O}(n^{3}+nm)$ là chi phí dựng $n$ DAG và chi phí duyệt.
 
 **Code mẫu:**
 
 ```cpp
-#include <iostream>
-#include <cstdio>
-#include <vector>
-#include <cstring>
 #include <algorithm>
+#include <cstdio>
+#include <cstring>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 using ll = long long;
@@ -447,86 +454,82 @@ int mark, check[N];
 
 // Thuật toán Dijkstra cổ điển
 void Dijkstra(int x, ll d[N]) {
-  ++mark;
-  fill_n(d, N, Inf);
-  d[x] = 0;
-  cnt[x][x][0] = cnt[x][x][1] = 1;
+    ++mark;
+    fill_n(d, N, Inf);
+    d[x] = 0;
+    cnt[x][x][0] = cnt[x][x][1] = 1;
 
-  for (int i = 1; i <= n; ++i) {
-    pair < ll, int > ans = {
-      Inf,
-      0
-    };
+    for (int i = 1; i <= n; ++i) {
+        pair<ll, int> ans = {
+            Inf,
+            0};
 
-    for (int j = 1; j <= n; ++j) // Thay vì dùng Hàng đợi ưu tiên, ta duyệt lại toàn bộ
-      if (check[j] != mark && d[j] < ans.first)
-        ans = {
-          d[j],
-          j
-        };
+        for (int j = 1; j <= n; ++j) // Thay vì dùng Hàng đợi ưu tiên, ta duyệt lại toàn bộ
+            if (check[j] != mark && d[j] < ans.first)
+                ans = {
+                    d[j],
+                    j};
 
-    if (ans.first == Inf)
-      break;
+        if (ans.first == Inf)
+            break;
 
-    check[ans.second] = mark;
+        check[ans.second] = mark;
 
-    for (auto i: adj[ans.second])
-      if (d[i.first] > ans.first + e[i.second].w) {
-        d[i.first] = ans.first + e[i.second].w;
-        cnt[x][i.first][0] = cnt[x][ans.second][0];
-        cnt[x][i.first][1] = cnt[x][ans.second][1];
-      }
-    else if (d[i.first] == ans.first + e[i.second].w) {
-      Add(cnt[x][i.first][0], cnt[x][ans.second][0], mod[0]);
-      Add(cnt[x][i.first][1], cnt[x][ans.second][1], mod[1]);
+        for (auto i : adj[ans.second])
+            if (d[i.first] > ans.first + e[i.second].w) {
+                d[i.first] = ans.first + e[i.second].w;
+                cnt[x][i.first][0] = cnt[x][ans.second][0];
+                cnt[x][i.first][1] = cnt[x][ans.second][1];
+            } else if (d[i.first] == ans.first + e[i.second].w) {
+                Add(cnt[x][i.first][0], cnt[x][ans.second][0], mod[0]);
+                Add(cnt[x][i.first][1], cnt[x][ans.second][1], mod[1]);
+            }
     }
-  }
 }
 
 // dfs để tìm tập "ứng cử viên"
 void dfs(int v, int p, ll d[N]) {
-
-  for (auto i: adj[v])
-    if (i.first != p && d[i.first] == d[v] + e[i.second].w) {
-      candidate.emplace_back(i.second);
-      dfs(i.first, v, d);
-    }
+    for (auto i : adj[v])
+        if (i.first != p && d[i.first] == d[v] + e[i.second].w) {
+            candidate.emplace_back(i.second);
+            dfs(i.first, v, d);
+        }
 }
 
-int32_t main() {
-  ios_base::sync_with_stdio(0);
-  cin.tie(0);
-  cout.tie(0);
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
-  cin >> n >> m;
-  for (int i = 1; i <= m; ++i) {
-    cin >> e[i].u >> e[i].v >> e[i].w;
-    adj[e[i].u].emplace_back(e[i].v, i);
-    adj[e[i].v].emplace_back(e[i].u, i);
-  }
-
-  // Thực hiện n lần Dijkstra và cho chạy thuật toán đếm đường đi ngắn nhất song song với Dijkstra
-  for (int i = 1; i <= n; ++i)
-    Dijkstra(i, d[i]);
-
-  for (int i = 1; i <= n; ++i) {
-    candidate.clear();
-
-    dfs(i, -1, d[i]);
-
-    for (auto j: candidate) {
-      // Xác định chiều của cung
-      int v = d[i][e[j].u] > d[i][e[j].v] ? e[j].u : e[j].v;
-      int u = e[j].u + e[j].v - v;
-
-      for (int t = 1; t <= n; ++t)
-        if (d[i][u] + e[j].w + d[v][t] == d[i][t] && 1 ll * cnt[i][u][0] * cnt[v][t][0] % mod[0] == cnt[i][t][0] && 1 ll * cnt[i][u][1] * cnt[v][t][1] % mod[1] == cnt[i][t][1])
-          ++ans[j];
+    cin >> n >> m;
+    for (int i = 1; i <= m; ++i) {
+        cin >> e[i].u >> e[i].v >> e[i].w;
+        adj[e[i].u].emplace_back(e[i].v, i);
+        adj[e[i].v].emplace_back(e[i].u, i);
     }
-  }
 
-  for (int i = 1; i <= m; ++i)
-    cout << ans[i] / 2 << "\n"; // Vì mỗi cặp định được tính hai lần nên kết quả phải chia cho 2
+    // Thực hiện n lần Dijkstra và cho chạy thuật toán đếm đường đi ngắn nhất song song với Dijkstra
+    for (int i = 1; i <= n; ++i)
+        Dijkstra(i, d[i]);
+
+    for (int i = 1; i <= n; ++i) {
+        candidate.clear();
+
+        dfs(i, -1, d[i]);
+
+        for (auto j : candidate) {
+            // Xác định chiều của cung
+            int v = d[i][e[j].u] > d[i][e[j].v] ? e[j].u : e[j].v;
+            int u = e[j].u + e[j].v - v;
+
+            for (int t = 1; t <= n; ++t)
+                if (d[i][u] + e[j].w + d[v][t] == d[i][t] && 1ll * cnt[i][u][0] * cnt[v][t][0] % mod[0] == cnt[i][t][0] && 1ll * cnt[i][u][1] * cnt[v][t][1] % mod[1] == cnt[i][t][1])
+                    ++ans[j];
+        }
+    }
+
+    for (int i = 1; i <= m; ++i)
+        cout << ans[i] / 2 << "\n"; // Vì mỗi cặp định được tính hai lần nên kết quả phải chia cho 2
 }
 ```
 

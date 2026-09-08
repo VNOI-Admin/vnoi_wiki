@@ -38,11 +38,15 @@ Về cơ bản: Đồ thị là một tập hợp hữu hạn gồm các **đỉ
 
 Một đồ thị $G$ sẽ được kí hiệu:
 
-$$G = (V, E)$$
+$$
+G = (V, E)
+$$
 
 Với $V$ là tập hợp chứa các đỉnh, và $E$ là tập hợp chứa các cạnh, mỗi cạnh có dạng một cặp giá trị $\{ u, v \}$ (có thể được viết thành $uv$). Ví dụ:
 
-$$G = \{ \{1, 2, 3, 4, 5, 6\}, \{\{1, 2\}, \{1, 5\}, \{2, 5\}, \{2, 3\}, \{3, 4\}, \{4, 5\}, \{4, 6\} \} \} $$
+$$
+G = \{ \{1, 2, 3, 4, 5, 6\}, \{\{1, 2\}, \{1, 5\}, \{2, 5\}, \{2, 3\}, \{3, 4\}, \{4, 5\}, \{4, 6\} \} \}
+$$
 
 chính là đồ thị ở hình ví dụ trên.
 
@@ -156,34 +160,36 @@ Ta cùng điểm qua một số khái niệm, tính chất liên quan đến đ�
 > 
 > 1. Cho đỉnh $u \in V$, các đỉnh **hàng xóm (neighbours)** với đỉnh $u$ là tất cả các đỉnh $v \in V$ thỏa mãn $uv \in E$, hay tất cả các đỉnh $v$ kề với $u$.
 > 
-> 1. Cho đỉnh $u \in V$, **bậc (degree)** của đỉnh $u$ chính là số lượng hàng xóm của đỉnh $u$. Kí hiệu: $deg(u)$. Ta có một số bổ đề về bậc như [bổ đề bắt tay](https://en.wikipedia.org/wiki/Handshaking_lemma): 
-> $$\sum_{u \in V} deg(u) = 2|E|$$
+> 1. Cho đỉnh $u \in V$, **bậc (degree)** của đỉnh $u$ chính là số lượng hàng xóm của đỉnh $u$. Kí hiệu: $\deg(u)$. Ta có một số bổ đề về bậc như [bổ đề bắt tay](https://en.wikipedia.org/wiki/Handshaking_lemma): 
+> $$
+> \sum_{u \in V} \deg(u) = 2|E|
+> $$
 > 	Nếu $G$ là một đồ thị có hướng, ta định nghĩa: 
-> 		- **Bán bậc ra (out-degree)** của đỉnh $u$, kí hiệu $deg^+(u)$, là số lượng cạnh xuất phát từ đỉnh $u$, hay giá trị của $|\{v \in V | uv \in E\}|$.
-> 		- **Bán bậc vào (in-degree)** của đỉnh $u$ kí hiệu $deg^-(u)$, là số lượng cạnh kết thúc tại đỉnh $u$, hay giá trị của $|\{v \in V | vu \in E\}|$.
+> 		- **Bán bậc ra (out-degree)** của đỉnh $u$, kí hiệu $\deg^+(u)$, là số lượng cạnh xuất phát từ đỉnh $u$, hay giá trị của $|\{v \in V | uv \in E\}|$.
+> 		- **Bán bậc vào (in-degree)** của đỉnh $u$ kí hiệu $\deg^-(u)$, là số lượng cạnh kết thúc tại đỉnh $u$, hay giá trị của $|\{v \in V | vu \in E\}|$.
 > 	Trong đồ thị có hướng, tổng bán bậc vào của tất cả các đỉnh luôn bằng tổng bán bậc ra của tất cả các đỉnh (vì mỗi cạnh có một đỉnh bắt đầu và một đỉnh kết thúc).
 
 ### Đường đi, chu trình
 
 > Cho một đồ thị $G = (V, E)$:
 > 
-> 1. Một **đường đi (walk)** (trong $G$) là một dãy các đỉnh $(v_0, v_1, v_2,..., v_k)$ thuộc $G$ và các cạnh $(v_0v_1, v_1v_2,..., v_{k - 1}v_k)$ là các cạnh thuộc đồ thị.
+> 1. Một **đường đi (walk)** (trong $G$) là một dãy các đỉnh $(v_0, v_1, v_2, \ldots, v_k)$ thuộc $G$ và các cạnh $(v_0v_1, v_1v_2, \ldots, v_{k - 1}v_k)$ là các cạnh thuộc đồ thị.
 > 
 >     Một **trail** là một đường đi trong đó tất cả các cạnh trên đường đi đôi một phân biệt.
 >     
 >     Một **path** là một đường đi trong đó tất cả các đỉnh trên đường đi đôi một phân biệt (suy ra các cạnh trên đường đi cũng đôi một phân biệt).
 > 
-> 1. Với $w = (v_0, v_1, v_2,..., v_k)$ là một đường đi trong $G$, ta có:
-> 		- $v_0, v_1, v_2,..., v_k$ là các **đỉnh** của $w$.
-> 		- $v_0v_1, v_1v_2,..., v_{k - 1}v_k$ là các **cạnh** của $w$.
+> 1. Với $w = (v_0, v_1, v_2, \ldots, v_k)$ là một đường đi trong $G$, ta có:
+> 		- $v_0, v_1, v_2, \ldots, v_k$ là các **đỉnh** của $w$.
+> 		- $v_0v_1, v_1v_2, \ldots, v_{k - 1}v_k$ là các **cạnh** của $w$.
 > 		- **Độ dài (khoảng cách)** của đường đi $w$ là một số nguyên không âm $k$ ($k$ tương đương với số cạnh trên đường đi, và $k + 1$ tương đương với số đỉnh). Nếu $G$ có trọng số, độ dài của đường đi là tổng trọng số của các cạnh trên đường đi.
 > 		- $v_0$ được gọi là **đỉnh đầu (starting point)** của $w$, ta nói $w$ *bắt đầu* tại tại đỉnh $v_0$.
 > 		- $v_k$ được gọi là **đỉnh cuối (ending point)** của $w$, ta nói $w$ *kết thúc* tại tại đỉnh $v_k$.
 > 		- Cho hai đỉnh $p$ và $q$ thuộc $G$, ta nói **đường đi từ** $p$ **đến** $q$ là đường đi bắt đầu từ đỉnh $p$ và kết thúc tại đỉnh $q$.
 >
-> 1. Một **đường đi khép kín (closed walk)** của $G$ một đường đi mà đỉnh cuối trùng với đỉnh đầu. Hay nói cách khác, là một dãy các đỉnh $(v_0, v_1, v_2,..., v_k)$ với $v_0 = v_k$. 
+> 1. Một **đường đi khép kín (closed walk)** của $G$ một đường đi mà đỉnh cuối trùng với đỉnh đầu. Hay nói cách khác, là một dãy các đỉnh $(v_0, v_1, v_2, \ldots, v_k)$ với $v_0 = v_k$. 
 >
-> 1. Một **chu trình (cycle)** của $G$ là một đường đi khép kín $(v_0, v_1, v_2,..., v_k)$ với $k \ge 3$ và các đỉnh $(v_0, v_1, v_2,..., v_{k - 1})$ đôi một phân biệt.
+> 1. Một **chu trình (cycle)** của $G$ là một đường đi khép kín $(v_0, v_1, v_2, \ldots, v_k)$ với $k \ge 3$ và các đỉnh $(v_0, v_1, v_2, \ldots, v_{k - 1})$ đôi một phân biệt.
 >      Một số trường hợp đặc biệt:
 >      - Nếu $G$ là một đồ thị có hướng hoặc là một đa đồ thị, $G$ tồn tại chu trình có 2 đỉnh khi trong đồ thị tồn tại hai đỉnh $a$ và $b$ được nối với nhau bởi 2 cạnh song song. Ví dụ: ![2_node_cycle](/algo/graph/graph12.png)
 >      - $G$ tồn tại chu trình có 1 đỉnh nếu trong đồ thị tồn tại cạnh khuyên. Ví dụ: ![1_node_cycle](/algo/graph/graph13.png)
@@ -282,18 +288,22 @@ Ngoài ra:
 - Nếu đồ thị **có trọng số**, ta thay 1 bằng trọng số của cạnh tương ứng.
 - Nếu đồ thị **vô hướng**, ta đánh dấu cả $A[x][y]$ và $A[y][x]$, còn nếu **có hướng** thì chỉ đánh dấu $A[x][y]$.
 
-```C++
-const int N = 1010; 
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 1010;
 int n, m;
 int adj[N][N];
 int main() {
-	cin >> n >> m;
-	for(int i = 0; i < m; ++i){
-		int a, b; cin >> a >> b;
-		adj[a][b] = 1; // Nếu đồ thị có trọng số thì đổi 1 thành w
-		adj[b][a] = 1; // Nếu đồ thị có hướng thì không cần viết dòng này
-	}
-	return 0;
+    cin >> n >> m;
+    for (int i = 0; i < m; ++i) {
+        int a, b;
+        cin >> a >> b;
+        adj[a][b] = 1; // Nếu đồ thị có trọng số thì đổi 1 thành w
+        adj[b][a] = 1; // Nếu đồ thị có hướng thì không cần viết dòng này
+    }
+    return 0;
 }
 ```
 ### Danh sách kề (Adjacency list)
@@ -310,24 +320,28 @@ Danh sách kề là cách lưu trữ đồ thị phổ biến trong lập trình
 |`adj[6]`|4|
 
 
-```C++
-const int N = 1e5 + 10; 
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 1e5 + 10;
 int n, m;
 vector<int> adj[N];
 int main() {
-	cin >> n >> m;
-	for(int i = 0; i < m; ++i){
-		int a, b; cin >> a >> b;
-		adj[a].push_back(b); 
-		adj[b].push_back(a); // Nếu đồ thị có hướng thì không cần viết dòng này
-	}
-	return 0;
+    cin >> n >> m;
+    for (int i = 0; i < m; ++i) {
+        int a, b;
+        cin >> a >> b;
+        adj[a].push_back(b);
+        adj[b].push_back(a); // Nếu đồ thị có hướng thì không cần viết dòng này
+    }
+    return 0;
 }
 ```
 
 Nếu đồ thị *có trọng số* thì với mỗi cạnh `(a, b)` có trọng số `w`, ta lưu cặp giá trị `(b, w)` trong `adj[a]`. Có thể lưu cặp giá trị `(b, w)` bằng kiểu dữ liệu `pair`.
 
-```C++
+```cpp
 vector<pair<int, int>> adj[N];
 adj[1].push_back({2, 3}); // lưu cạnh (1, 2) có trọng số 3
 ```
@@ -338,23 +352,29 @@ Danh sách cạnh được dùng để lưu các cạnh trong đồ thị.
 
 Ta có thể lưu các cạnh của đồ thị bằng `pair` hoặc tạo một cấu trúc `struct` tùy ý để lưu cặp giá trị có trong cạnh của đồ thị.
 
-```C++
-struct Edge{
-	int a, b, w; // w được dùng cho đồ thị có trọng số
-	Edge(int u, int v, int weight): a(u), b(v), w(weight){}
-	bool operator<(const Edge &e) const{
-		return w < e.w; // Sắp xếp theo trọng số các cạnh
-	}
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Edge {
+    int a, b, w; // w được dùng cho đồ thị có trọng số
+    Edge(int u, int v, int weight) : a(u), b(v), w(weight) {
+    }
+    bool operator<(const Edge &e) const {
+        return w < e.w; // Sắp xếp theo trọng số các cạnh
+    }
 };
 
 int main() {
-	int n, m; cin >> n >> m;
-	vector<Edge> edges;
-	for(int i = 0; i < m; ++i){
-		int a, b, w; cin >> a >> b >> w;
-		edges.push_back(Edge(a, b, w));
-	}
-	return 0;
+    int n, m;
+    cin >> n >> m;
+    vector<Edge> edges;
+    for (int i = 0; i < m; ++i) {
+        int a, b, w;
+        cin >> a >> b >> w;
+        edges.push_back(Edge(a, b, w));
+    }
+    return 0;
 }
 ```
 
@@ -388,19 +408,23 @@ Ngoài ra, BFS có thể được dùng để tìm đường đi ngắn nhất t
 
 **Bài toán 2-SAT** được phát biểu như sau:
 
-Cho $m$ biến logic: $a_1, a_2,..., a_m$ và 1 biểu thức logic $C$ có dạng:
+Cho $m$ biến logic: $a_1, a_2, \ldots, a_m$ và 1 biểu thức logic $C$ có dạng:
 
-$$C = (u_1 \lor v_1) \land (u_2 \lor v_2) \land \ ... \land \ (u_n \lor v_n)$$
+$$
+C = (u_1 \lor v_1) \land (u_2 \lor v_2) \land \cdots \land (u_n \lor v_n)
+$$
 
 Trong đó $u_i$ và $v_i$ $(1 \le i \le n)$ được thay bằng biển logic $a_j$ hoặc $\lnot a_j$ nào đó. $(1 \le j \le m)$.
 
-Ta sẽ gán các $a_j$ với một trong hai giá trị $true/false \ (1/0)$ sao cho biểu thức $C$ hợp lệ, hoặc thông báo rằng không thể có cách gán hợp lệ.
+Ta sẽ gán các $a_j$ với một trong hai giá trị $\texttt{true/false} \ (1/0)$ sao cho biểu thức $C$ hợp lệ, hoặc thông báo rằng không thể có cách gán hợp lệ.
 
 Ví dụ với biểu thức:
 
-$$C = (a_1 \lor \lnot a_2) \land (\lnot a_1 \lor \lnot a_3) \land (a_1 \lor a_2) \land (a_4 \lor \lnot a_1)$$
+$$
+C = (a_1 \lor \lnot a_2) \land (\lnot a_1 \lor \lnot a_3) \land (a_1 \lor a_2) \land (a_4 \lor \lnot a_1)
+$$
 
-nếu ta gán $a_1 = True$, $a_2 = False$, $a_3 = False$, $a_4 = True$ thì biểu thức trên hợp lệ.
+nếu ta gán $a_1 = \texttt{True}$, $a_2 = \texttt{False}$, $a_3 = \texttt{False}$, $a_4 = \texttt{True}$ thì biểu thức trên hợp lệ.
 
 Bài toán này có thể được giải bằng cách xét duyệt trâu, hoặc giải quyết một cách tối ưu bằng lý thuyết đồ thị: [bài viết](https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing).
 

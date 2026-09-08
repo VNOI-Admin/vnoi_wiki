@@ -52,16 +52,16 @@ Trong bài viết này, ta giả sử cần sắp xếp tăng dần các phần 
 
 ## Nhược điểm
 
-- Độ phức tạp $\mathcal{O}(N^2)$, không đủ nhanh với dữ liệu lớn.
+- Độ phức tạp $\mathcal{O}(N^{2})$, không đủ nhanh với dữ liệu lớn.
 
 ## Code
 
 ```cpp
 for (int i = 0; i < n; i++)
-	for (int j = 0; j < n - 1; j++)
-		if (a[j] > a[j+1]) {
-			swap(a[j], a[j+1]);
-		}
+    for (int j = 0; j < n - 1; j++)
+        if (a[j] > a[j + 1]) {
+            swap(a[j], a[j + 1]);
+        }
 ```
 
 ## Minh họa
@@ -86,21 +86,22 @@ Giả sử ta đã sắp xếp xong $i$ phần tử của mảng. Để sắp x�
 
 ## Nhược điểm
 
-- Độ phức tạp $\mathcal{O}(N^2)$, không đủ nhanh với dữ liệu lớn.
+- Độ phức tạp $\mathcal{O}(N^{2})$, không đủ nhanh với dữ liệu lớn.
 
 ## Code
 
 ```cpp
 for (int i = 1; i < n; i++) {
-	// Tìm vị trí phù hợp cho i
-	int j = i;
-	while (j > 0 && data[i] < data[j-1]) --j;
+    // Tìm vị trí phù hợp cho i
+    int j = i;
+    while (j > 0 && data[i] < data[j - 1])
+        --j;
 
-	// Đưa i về đúng vị trí
-	int tmp = data[i];
-	for (int k = i; k > j; k--)
-		data[k] = data[k-1];
-	data[j] = tmp;
+    // Đưa i về đúng vị trí
+    int tmp = data[i];
+    for (int k = i; k > j; k--)
+        data[k] = data[k - 1];
+    data[j] = tmp;
 }
 ```
 
@@ -126,7 +127,7 @@ Sắp xếp trộn hoạt động kiểu đệ quy:
 
 ## Ưu điểm
 
-- Chạy nhanh, độ phức tạp $\mathcal{O}(N*logN)$.
+- Chạy nhanh, độ phức tạp $\mathcal{O}(N \times \log N)$.
 - Ổn định
 
 ## Nhược điểm
@@ -136,41 +137,42 @@ Sắp xếp trộn hoạt động kiểu đệ quy:
 ## Code
 
 ```cpp
+const int MAXN = 1000;
 int a[MAXN]; // mảng trung gian cho việc sắp xếp
 
 // Sắp xếp các phần tử có chỉ số từ left đến right của mảng data.
 void mergeSort(int data[MAXN], int left, int right) {
-	if (data.length == 1) {
-		// Dãy chỉ gồm 1 phần tử, ta không cần sắp xếp.
-		return ;
-	}
-	int mid = (left + right) / 2;
-	// Sắp xếp 2 phần
-	mergeSort(data, left, mid);
-	mergeSort(data, mid+1, right);
+    if (left == right) {
+        // Dãy chỉ gồm 1 phần tử, ta không cần sắp xếp.
+        return;
+    }
+    int mid = (left + right) / 2;
+    // Sắp xếp 2 phần
+    mergeSort(data, left, mid);
+    mergeSort(data, mid + 1, right);
 
-	// Trộn 2 phần đã sắp xếp lại
-	int i = left, j = mid + 1; // phần tử đang xét của mỗi nửa
-	int cur = 0; // chỉ số trên mảng a
+    // Trộn 2 phần đã sắp xếp lại
+    int i = left, j = mid + 1; // phần tử đang xét của mỗi nửa
+    int cur = 0;               // chỉ số trên mảng a
 
-	while (i <= mid || j <= right) { // chừng nào còn 1 phần chưa hết phần tử.
-		if (i > mid) {
-			// bên trái không còn phần tử nào
-			a[cur++] = data[j++];
-		} else if (j > right) {
-			// bên phải không còn phần tử nào
-			a[cur++] = data[i++];
-		} else if (data[i] < data[j]) {
-			// phần tử bên trái nhỏ hơn
-			a[cur++] = data[i++];
-		} else {
-			a[cur++] = data[j++];
-		}
-	}
+    while (i <= mid || j <= right) { // chừng nào còn 1 phần chưa hết phần tử.
+        if (i > mid) {
+            // bên trái không còn phần tử nào
+            a[cur++] = data[j++];
+        } else if (j > right) {
+            // bên phải không còn phần tử nào
+            a[cur++] = data[i++];
+        } else if (data[i] < data[j]) {
+            // phần tử bên trái nhỏ hơn
+            a[cur++] = data[i++];
+        } else {
+            a[cur++] = data[j++];
+        }
+    }
 
-	// copy mảng a về mảng data
-	for (int i = 0; i < cur; i++)
-		data[left + i] = a[i];
+    // copy mảng a về mảng data
+    for (int i = 0; i < cur; i++)
+        data[left + i] = a[i];
 }
 ```
 
@@ -194,7 +196,7 @@ Ta lưu mảng vào CTDL [Heap](/translate/wcipeg/Binary-Heap).
 ## Ưu điểm
 
 - Cài đặt đơn giản nếu đã có sẵn thư viện Heap.
-- Chạy nhanh, độ phức tạp $\mathcal{O}(N*logN)$.
+- Chạy nhanh, độ phức tạp $\mathcal{O}(N \times \log N)$.
 
 ## Nhược điểm
 
@@ -205,13 +207,13 @@ Ta lưu mảng vào CTDL [Heap](/translate/wcipeg/Binary-Heap).
 ```cpp
 Heap h = Heap();
 for (int i = 0; i < n; i++) {
-	// thêm phần tử vào heap
-	h.push(data[i]);
+    // thêm phần tử vào heap
+    h.push(data[i]);
 }
 int a[MAXN];
 for (int i = 0; i < n; i++) {
-	// lấy phần tử nhỏ nhất và cho vào mảng đã sắp xếp
-	a[i] = h.pop();
+    // lấy phần tử nhỏ nhất và cho vào mảng đã sắp xếp
+    a[i] = h.pop();
 }
 ```
 
@@ -231,29 +233,33 @@ for (int i = 0; i < n; i++) {
 
 ## Nhược điểm
 
-- Tùy thuộc vào cách chia thành 2 phần, nếu chia không tốt, độ phức tạp trong trường hợp xấu nhất có thể là $\mathcal{O}(N^2)$. Nếu ta chọn pivot ngẫu nhiên, thuật toán chạy với độ phức tạp trung bình là $\mathcal{O}(N*logN)$ (trong trường hợp xấu nhất vẫn là $\mathcal{O}(N^2)$, nhưng ta sẽ không bao giờ gặp phải trường hợp đó).
+- Tùy thuộc vào cách chia thành 2 phần, nếu chia không tốt, độ phức tạp trong trường hợp xấu nhất có thể là $\mathcal{O}(N^{2})$. Nếu ta chọn pivot ngẫu nhiên, thuật toán chạy với độ phức tạp trung bình là $\mathcal{O}(N \times \log N)$ (trong trường hợp xấu nhất vẫn là $\mathcal{O}(N^{2})$, nhưng ta sẽ không bao giờ gặp phải trường hợp đó).
 - Không ổn định.
 
 ## Code
 
 ```cpp
 void quickSort(int a[], int left, int right) {
-	int i = left, j = right;
-	int pivot = a[left + rand() % (right - left)];
-	// chia dãy thành 2 phần
-	while (i <= j) {
-		while (a[i] < pivot) ++i;
-		while (a[j] > pivot) --j;
+    int i = left, j = right;
+    int pivot = a[left + rand() % (right - left)];
+    // chia dãy thành 2 phần
+    while (i <= j) {
+        while (a[i] < pivot)
+            ++i;
+        while (a[j] > pivot)
+            --j;
 
-		if (i <= j) {
-			swap(a[i], a[j]);
-			++i;
-			--j;
-		}
-	}
-	// Gọi đệ quy để sắp xếp các nửa
-	if (left < j) quickSort(a, left, j);
-	if (i < right) quickSort(a, i, right);
+        if (i <= j) {
+            swap(a[i], a[j]);
+            ++i;
+            --j;
+        }
+    }
+    // Gọi đệ quy để sắp xếp các nửa
+    if (left < j)
+        quickSort(a, left, j);
+    if (i < right)
+        quickSort(a, i, right);
 }
 ```
 
@@ -277,7 +283,7 @@ Khác với tất cả các thuật toán nêu trên, RadixSort không sử dụ
 
 ## Ưu điểm
 
-- Có thể chạy nhanh hơn các thuật toán sắp xếp sử dụng so sánh. Ví dụ nếu ta sắp xếp các số nguyên 32 bit, và chia nhóm theo 1 bit, thì độ phức tạp là $\mathcal{O}(N)$. Trong trường hợp tổng quát, độ phức tạp là $\mathcal{O}(N*log(max(a_i)))$
+- Có thể chạy nhanh hơn các thuật toán sắp xếp sử dụng so sánh. Ví dụ nếu ta sắp xếp các số nguyên 32 bit, và chia nhóm theo 1 bit, thì độ phức tạp là $\mathcal{O}(N)$. Trong trường hợp tổng quát, độ phức tạp là $\mathcal{O}(N \times \log(\max(a_i)))$
 
 ## Nhược điểm
 

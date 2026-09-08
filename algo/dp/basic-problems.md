@@ -6,7 +6,7 @@ Bài viết sưu tầm trên mạng.
 
 ## 1.1. Mô hình
 
-Cho dãy $A_1,A_2,..., A_n$. Hãy tìm một dãy con tăng có nhiều phần tử nhất của dãy.
+Cho dãy $A_1,A_2,\ldots, A_n$. Hãy tìm một dãy con tăng có nhiều phần tử nhất của dãy.
 
 **Đặc trưng**:
 
@@ -26,9 +26,9 @@ Nhận xét với cách làm này ta đã chia 1 bài toán lớn (dãy con củ
 Ta có công thức QHĐ để tính $L_i$ như sau:
 
 - $L_1 = 1$. (Hiển nhiên)
-- $L_i = max(1, L_j + 1)$ với mọi phần tử $j$ thỏa mãn: $0<j<i$ và $A_j \le A_i$
+- $L_i = \max(1, L_j + 1)$ với mọi phần tử $j$ thỏa mãn: $0<j<i$ và $A_j \le A_i$
 
-Tính $L_i$: phần tử đang được xét là $A_i$. Ta tìm đến phần tử $A_j < A_i$ có $L_j$ lớn nhất. Khi đó nếu bổ sung $A_i$ vào sau dãy con $...A_j$ ta sẽ được dãy con tăng dần dài nhất xét từ $A_1...A_i$.
+Tính $L_i$: phần tử đang được xét là $A_i$. Ta tìm đến phần tử $A_j < A_i$ có $L_j$ lớn nhất. Khi đó nếu bổ sung $A_i$ vào sau dãy con $\ldots A_j$ ta sẽ được dãy con tăng dần dài nhất xét từ $A_1\ldots A_i$.
 
 ## 1.3. Cài đặt
 
@@ -43,9 +43,9 @@ for i:= 1 to n do
    end;
 ```
 
-Như vậy độ phức tạp bộ nhớ của bài toán là $O(n)$, độ phức tạp thời gian là $O(n^2)$.
+Như vậy độ phức tạp bộ nhớ của bài toán là $\mathcal{O}(n)$, độ phức tạp thời gian là $\mathcal{O}(n^{2})$.
 
-Có một số phương pháp cài đặt tốt hơn so với phương pháp trên, cho chi phí thời gian là $O(nlogn)$, một trong những cách đó là dùng [Segment Tree](/algo/data-structures/segment-tree-extend).
+Có một số phương pháp cài đặt tốt hơn so với phương pháp trên, cho chi phí thời gian là $\mathcal{O}(n \log n)$, một trong những cách đó là dùng [Segment Tree](/algo/data-structures/segment-tree-extend).
 
 ## 1.4. Một số bài toán khác
 
@@ -98,9 +98,9 @@ Việc kiểm tra điểm $M$ có nằm trong tam giác $ABC$ không có thể d
 
 **Bài toán**:
 
-Cho dãy $A_1, A_2,..., A_N$. Hãy tìm dãy con đổi dấu dài nhất của dãy đó. Dãy con đổi dấu $A_{i1},A_{i2},..., A_{ik}$ phải thoả mãn các điều kiện sau:
+Cho dãy $A_1, A_2,\ldots, A_N$. Hãy tìm dãy con đổi dấu dài nhất của dãy đó. Dãy con đổi dấu $A_{i1},A_{i2},\ldots, A_{ik}$ phải thoả mãn các điều kiện sau:
 
-- $A_{i1} < A_{i2} > A_{i3} <...$ hoặc $A_{i1} > A_{i2} < A_{i3} >...$
+- $A_{i1} < A_{i2} > A_{i3} <\ldots$ hoặc $A_{i1} > A_{i2} < A_{i3} >\ldots$
 - Các chỉ số phải cách nhau ít nhất $L$: $i_2 - i_1 \ge L$, $i_3 - i_2 \ge L$, ...
 - Chênh lệch giữa 2 phần tử liên tiếp nhỏ hơn $U$: $\|A_{i1} - A_{i2}\| \le U$, $\|A_{i2} - A_{i3}\| \le U$, ...
 
@@ -109,8 +109,8 @@ Cho dãy $A_1, A_2,..., A_N$. Hãy tìm dãy con đổi dấu dài nhất của 
 Gọi $L_i$ là số phần tử của dãy con đổi dấu có phần tử cuối cùng là $A_i$ và phần tử cuối cùng lớn hơn phần tử đứng trước. Tương tự, $P_i$ là số phần tử của dãy con đổi dấu có phần tử cuối cùng là $A_i$ và phần tử cuối cùng nhỏ hơn phần tử đứng trước.
 
 Ta dễ dàng suy ra:
-- $L_i = max(1, P_j + 1)$, với mọi $j$ thỏa mãn: $j \le i-L$ và $A_i - U \le A_j < A_i$.
-- $P_i = max(1, L_j + 1)$, với mọi $j$ thỏa mãn: $j \le i-L$ và $A_i < A_j \le A_i + U$.
+- $L_i = \max(1, P_j + 1)$, với mọi $j$ thỏa mãn: $j \le i-L$ và $A_i - U \le A_j < A_i$.
+- $P_i = \max(1, L_j + 1)$, với mọi $j$ thỏa mãn: $j \le i-L$ và $A_i < A_j \le A_i + U$.
 
 ### Dãy số WAVIO
 
@@ -155,7 +155,7 @@ Tính $L(i,j)$: vật đang xét là $a_i$ với trọng lượng của vali kh�
 - Nếu chọn $A_i$ đưa vào vali, trọng lượng vali trước đó phải không quá $j - A_i$. Vì mỗi vật chỉ được chọn 1 lần nên giá trị lớn nhất của vali lúc đó là $L(i-1, j - A_i) + B_i$.
 - Nếu không chọn $A_i$, trọng lượng của vali là như cũ (như lúc trước khi chọn $A_i$): $L(i-1,j)$.
 
-Tóm lại ta có $L[i,j] = max(L(i-1, j - A_i) + B_i, L(i-1, j))$.
+Tóm lại ta có $L[i,j] = \max(L(i-1, j - A_i) + B_i, L(i-1, j))$.
 
 ## 2.3. Cài đặt
 
@@ -173,17 +173,17 @@ For i:=1 to n do
 
 **Bài toán**:
 
-Cho dãy $A_1,A_2,..., A_N$. Tìm một dãy con của dãy đó có tổng bằng $S$.
+Cho dãy $A_1,A_2,\ldots, A_N$. Tìm một dãy con của dãy đó có tổng bằng $S$.
 
 **Hướng dẫn**:
 
-Đặt $L[i,t]=1$ nếu có thể tạo ra tổng $t$ từ một dãy con của dãy gồm các phần tử $A_1,A_2,...,A_i$. Ngược lại thì $L[i,t]=0$. Nếu $L[n,S]=1$ thì đáp án của bài toán trên là “có”.
+Đặt $L[i,t]=1$ nếu có thể tạo ra tổng $t$ từ một dãy con của dãy gồm các phần tử $A_1,A_2,\ldots,A_i$. Ngược lại thì $L[i,t]=0$. Nếu $L[n,S]=1$ thì đáp án của bài toán trên là “có”.
 
 Ta có thể tính $L[i,t]$ theo công thức: $L[i,t]=1$ nếu $L[i-1,t]=1$ hoặc $L[i-1,t-a[i]]=1$.
 
 **Cài đặt**:
 
-Nếu áp dụng luôn công thức trên thì ta cần dùng bảng phương án hai chiều. Ta có thể nhận xét rằng để tính dòng thứ $i$, ta chỉ cần dòng $i-1$. Bảng phương án khi đó chỉ cần 1 mảng 1 chiều $L[0..S]$ và được tính như sau:
+Nếu áp dụng luôn công thức trên thì ta cần dùng bảng phương án hai chiều. Ta có thể nhận xét rằng để tính dòng thứ $i$, ta chỉ cần dòng $i-1$. Bảng phương án khi đó chỉ cần 1 mảng 1 chiều $L[0\ldots S]$ và được tính như sau:
 
 ```pascal
 L[t]:=0; L[0]:=1;
@@ -193,7 +193,7 @@ for i := 1 to n do
           if (L[t]=0) and (L[t-a[i]]=1) then L[t]:=1;
 ```
 
-Dễ thấy độ phức tạp bộ nhớ của cách cài đặt trên là $O(m)$, độ phức tạp thời gian là $O(n \* m)$, với $m$ là tổng của $n$ số. Hãy tự kiểm tra xem tại sao vòng for thứ 2 lại là `for downto` chứ không phải là `for to`.
+Dễ thấy độ phức tạp bộ nhớ của cách cài đặt trên là $\mathcal{O}(m)$, độ phức tạp thời gian là $\mathcal{O}(n \times m)$, với $m$ là tổng của $n$ số. Hãy tự kiểm tra xem tại sao vòng for thứ 2 lại là `for downto` chứ không phải là `for to`.
 
 ### Chia kẹo
 
@@ -205,7 +205,7 @@ Cho $n$ gói kẹo, gói thứ $i$ có $a_i$ viên. Hãy chia các gói thành 2
 
 Gọi $T$ là tổng số kẹo của $n$ gói. Chúng ta cần tìm số $S$ lớn nhất thoả mãn:
 
-- $S \le T/2$.
+- $S \le \frac{T}{2}$.
 - Có một dãy con của dãy $a$ có tổng bằng $S$.
 
 Khi đó sẽ có cách chia với chênh lệch 2 phần là $T-2S$ là nhỏ nhất và dãy con có tổng bằng $S$ ở trên gồm các phần tử là các gói kẹo thuộc phần thứ nhất. Phần thứ hai là các gói kẹo còn lại.
@@ -226,7 +226,7 @@ Thực chất bài toán là tìm các số $S$ mà có một dãy con của dã
 
 **Bài toán**:
 
-Cho $n$ số tự nhiên $A_1,A_2, ...,A_N$. Ban đầu các số được đặt liên tiếp theo đúng thứ tự cách nhau bởi dấu "?": `A1 ? A2 ? ... ? AN`. Cho trước số nguyên $S$, có cách nào thay các dấu `?` bằng dấu `+` hay dấu `−` để được một biểu thức số học cho giá trị là $S$ không?
+Cho $n$ số tự nhiên $A_1,A_2, \ldots,A_N$. Ban đầu các số được đặt liên tiếp theo đúng thứ tự cách nhau bởi dấu "?": `A1 ? A2 ? ... ? AN`. Cho trước số nguyên $S$, có cách nào thay các dấu `?` bằng dấu `+` hay dấu `−` để được một biểu thức số học cho giá trị là $S$ không?
 
 **Hướng dẫn**:
 
@@ -248,7 +248,7 @@ Cho $n$ số nguyên. Hãy chia chúng thành 2 nhóm sao cho tích của tổng
 
 **Hướng dẫn**:
 
-Gọi $T$ là tổng $n$ số nguyên đó. Giả sử ta chia dãy thành 2 nhóm, gọi $S$ là tổng của một nhóm, tổng nhóm còn lại là $T-S$ và tích của tổng 2 nhóm là $S\*(T-S)$. Bằng phương pháp đánh dấu ta xác định được mọi số $S$ là tổng của một nhóm (như bài Market) và tìm số $S$ sao cho $S\*(T-S)$ đạt max.
+Gọi $T$ là tổng $n$ số nguyên đó. Giả sử ta chia dãy thành 2 nhóm, gọi $S$ là tổng của một nhóm, tổng nhóm còn lại là $T-S$ và tích của tổng 2 nhóm là $S\times(T-S)$. Bằng phương pháp đánh dấu ta xác định được mọi số $S$ là tổng của một nhóm (như bài Market) và tìm số $S$ sao cho $S\times(T-S)$ đạt max.
 
 ### Farmer (IOI 2004)
 
@@ -265,7 +265,7 @@ Dễ thấy mảnh đất thứ $i$ có $A_i$ cây ôliu và dải đất thứ 
 
 ## 3.1. Mô hình
 
-Cho 2 xâu $X$, $F$. Xâu gốc có $n$ kí tự $X_1 X_2 ... X_n$, xâu đích có $m$ kí tự $F_1 F_2 ... F_m$. Có 3 phép biến đổi:
+Cho 2 xâu $X$, $F$. Xâu gốc có $n$ kí tự $X_1 X_2 \ldots X_n$, xâu đích có $m$ kí tự $F_1 F_2 \ldots F_m$. Có 3 phép biến đổi:
 
 - Chèn 1 kí tự vào sau kí tự thứ $i$: `I i C`
 - Thay thế kí tự ở vị trí thứ $i$ bằng kí tự $C$: `R i C`
@@ -279,28 +279,28 @@ Hàm mục tiêu: $f$: số phép biến đổi.
 
 Dễ thấy số phép biến đổi phụ thuộc vào vị trí $i$ đang xét của xâu $X$ và vị trí $j$ đang xét của xâu $F$. Do vậy để cài đặt cho bảng phương án ta sẽ dùng mảng 2 chiều.
 
-Gọi $L[i,j]$ là số phép biến đổi ít nhất để biến xâu $X_i$ gồm $i$ kí tự phần đầu của $X$ ($X_i = X[1..i]$) thành xâu $F_j$ gồm $j$ kí tự phần đầu của $F$ ($F_j = F[1..j]$).
+Gọi $L[i,j]$ là số phép biến đổi ít nhất để biến xâu $X_i$ gồm $i$ kí tự phần đầu của $X$ ($X_i = X[1\ldots i]$) thành xâu $F_j$ gồm $j$ kí tự phần đầu của $F$ ($F_j = F[1\ldots j]$).
 
 Dễ thấy $L[0,j]=j$ và $L[i,0]=i$.
 
 Có 2 trường hợp xảy ra:
 
 - Nếu $X[i] = F[j]$:
-    - $X_1 X_2 ... X_{i-1}$      $X_i$
-    - $F_1 F_2 ... F_{j-1}$      $X_i$
+    - $X_1 X_2 \ldots X_{i-1}$      $X_i$
+    - $F_1 F_2 \ldots F_{j-1}$      $X_i$
     - thì ta chỉ phải biến đổi xâu $X_{i-1}$ thành xâu $F_{j-1}$. Do đó $L[i,j]=L[i-1,j-1]$.
 - Ngược lại, ta có 3 cách biến đổi:
     - Xoá kí tự $X_i$:
-        - $X_1 X_2 ... X_{i-1}$
-        - $F_1 F_2 ... F_{j-1}$      $F_j$
+        - $X_1 X_2 \ldots X_{i-1}$
+        - $F_1 F_2 \ldots F_{j-1}$      $F_j$
         - Xâu $X_{i-1}$ thành $F_j$. Khi đó $L[i,j]=L[i-1,j]+1$. (Cộng 1 là do ta đã dùng 1 phép xóa)
     - Thay thế $X_i$ bởi $F_j$:
-        - $X_1 X_2 ... X_{i-1}$      $F_j$
-        - $F_1 F_2 ... F_{j-1}$      $F_j$
+        - $X_1 X_2 \ldots X_{i-1}$      $F_j$
+        - $F_1 F_2 \ldots F_{j-1}$      $F_j$
         - Xâu $X_{i-1}$ thành $F_{j-1}$. Khi đó $L[i,j]=L[i-1,j-1]+1$.
     - Chèn $F_j$ vào sau $X_i$:
-        - $X_1 X_2 ... X_{i}$      $F_j$
-        - $F_1 F_2 ... F_{j-1}$      $F_j$
+        - $X_1 X_2 \ldots X_{i}$      $F_j$
+        - $F_1 F_2 \ldots F_{j-1}$      $F_j$
         - Xâu $X_i$ thành $F_{j-1}$. Khi đó $L[i,j]=L[i,j-1]+1$
 
 Tổng kết lại, ta có công thức QHĐ:
@@ -322,7 +322,7 @@ Cho 2 xâu $X$, $Y$. Hãy tìm xâu con của $X$ và của $Y$ có độ dài l
 
 **Công thức QHĐ**:
 
-Gọi $L[i,j]$ là độ dài xâu con chung dài nhất của xâu $X_i$ gồm $i$ kí tự phần đầu của $X$ ($X_i = X[1..i]$) và xâu $Y_j$ gồm $j$ kí tự phần đầu của $Y$ ($Y_j = Y[1..j]$). Ta có công thức quy hoạch động như sau:
+Gọi $L[i,j]$ là độ dài xâu con chung dài nhất của xâu $X_i$ gồm $i$ kí tự phần đầu của $X$ ($X_i = X[1\ldots i]$) và xâu $Y_j$ gồm $j$ kí tự phần đầu của $Y$ ($Y_j = Y[1\ldots j]$). Ta có công thức quy hoạch động như sau:
 
 - `L[0,j] = L[i,0] = 0`
 - `L[i,j] = L[i−1,j−1] + 1` nếu $X_i = Y_j$
@@ -345,9 +345,9 @@ for i:=1 to m do
            else L[i,j]:=max(L[i-1,j],L[i,j-1]]);
 ```
 
-Như vậy độ phức tạp bộ nhớ của bài toán là $O(n^2)$, độ phức tạp thời gian là $O(n^2)$.
+Như vậy độ phức tạp bộ nhớ của bài toán là $\mathcal{O}(n^{2})$, độ phức tạp thời gian là $\mathcal{O}(n^{2})$.
 
-Có một phương pháp cài đặt tốt hơn, chỉ với độ phức tạp bộ nhớ $O(n)$ dựa trên nhận xét sau: để tính ô $L[i,j]$ của bảng phương án, ta chỉ cần 3 ô $L[i-1,j-1]$, $L[i-1,j]$ và $L[i,j-1]$. Tức là để tính dòng $L[i]$ thì chỉ cần dòng $L[i-1]$. Do đó ta chỉ cần 2 mảng 1 chiều để lưu dòng vừa tính (P) và dòng đang tính (L) mà thôi. Cách cài đặt mới như sau:
+Có một phương pháp cài đặt tốt hơn, chỉ với độ phức tạp bộ nhớ $\mathcal{O}(n)$ dựa trên nhận xét sau: để tính ô $L[i,j]$ của bảng phương án, ta chỉ cần 3 ô $L[i-1,j-1]$, $L[i-1,j]$ và $L[i,j-1]$. Tức là để tính dòng $L[i]$ thì chỉ cần dòng $L[i-1]$. Do đó ta chỉ cần 2 mảng 1 chiều để lưu dòng vừa tính (P) và dòng đang tính (L) mà thôi. Cách cài đặt mới như sau:
 
 ```pascal
 for j:=0 to n do P[j]:=0;
@@ -370,7 +370,7 @@ Hai nước Alpha và Beta nằm ở hai bên bờ sông Omega, Alpha nằm ở 
 
 **Hướng dẫn**:
 
-Gọi các thành phố của Alpha lần lượt là $A_1,A_2,..., A_M$; các thành phố của Beta là $B_1,B_2,...,B_N$. Nếu thành phố  $A_i$ và $B_j$ kết nghĩa với nhau thì coi $A_i$ "bằng” $B_j$. Để các cây cầu không cắt nhau, nếu ta đã chọn cặp thành phố $(A_i,B_j)$ để xây cầu thì cặp tiếp theo phải là cặp $(A_u,B_v)$ sao cho $u>i$ và $v>j$. Như vậy các cặp thành phố được chọn xây cầu có thể coi là một dãy con chung của hai dãy $A$ và $B$.
+Gọi các thành phố của Alpha lần lượt là $A_1,A_2,\ldots, A_M$; các thành phố của Beta là $B_1,B_2,\ldots,B_N$. Nếu thành phố  $A_i$ và $B_j$ kết nghĩa với nhau thì coi $A_i$ "bằng” $B_j$. Để các cây cầu không cắt nhau, nếu ta đã chọn cặp thành phố $(A_i,B_j)$ để xây cầu thì cặp tiếp theo phải là cặp $(A_u,B_v)$ sao cho $u>i$ và $v>j$. Như vậy các cặp thành phố được chọn xây cầu có thể coi là một dãy con chung của hai dãy $A$ và $B$.
 
 Bài toán của chúng ta trở thành bài toán tìm dãy con chung dài nhất, ở  đây hai phần tử “bằng” nhau nếu chúng có quan hệ kết nghĩa.
 
@@ -384,13 +384,13 @@ Một xâu gọi là xâu đối xứng (palindrome) nếu xâu đó đọc từ
 
 Bài toán này có một công thức QHĐ như sau:
 
-- Gọi $L[i,j]$ là số kí tự ít nhất cần thêm vào xâu con $S[i..j]$ của $S$ để xâu đó trở thành đối xứng.
+- Gọi $L[i,j]$ là số kí tự ít nhất cần thêm vào xâu con $S[i\ldots j]$ của $S$ để xâu đó trở thành đối xứng.
 - Đáp số của bài toán sẽ là $L[1,n]$ với $n$ là số kí tự của $S$. Ta có công thức sau để tính $L[i,j]$:
   - $L(i,i)=0$.
   - $L(i,j)=L(i+1,j-1)$ nếu $S_i=S_j$
-  - $L(i,j)=max(L(i+1,j), L(i,j-1))$ nếu $S_i \ne S_j$
+  - $L(i,j)=\max(L(i+1,j), L(i,j-1))$ nếu $S_i \ne S_j$
 
-Bạn đọc dễ dàng có thể kiểm chứng công thức đó. Ta có thể cài đặt trực tiếp công thức đó bằng phương pháp đệ quy có nhớ. Tuy nhiên khi đó độ phức tạp bộ nhớ là $O(n^2)$. Có một phương pháp cài đặt tiết kiệm hơn, có thể tham khảo ở [bài viết của Nguyễn Hoành Tiến](/algo/dp/palindrome-problems)
+Bạn đọc dễ dàng có thể kiểm chứng công thức đó. Ta có thể cài đặt trực tiếp công thức đó bằng phương pháp đệ quy có nhớ. Tuy nhiên khi đó độ phức tạp bộ nhớ là $\mathcal{O}(n^{2})$. Có một phương pháp cài đặt tiết kiệm hơn, có thể tham khảo ở [bài viết của Nguyễn Hoành Tiến](/algo/dp/palindrome-problems)
 
 Ta có thuật toán đơn giản hơn như sau:
 
@@ -412,7 +412,7 @@ Công thức tính $L(i,t)$ như sau:
 - $L(i, 0) = 0$
 - $L(0, t) = 0$
 - $L(i,t) = L(i-1,t)$ nếu $t<A_i$
-- $L(i,t) = max(L(i-1,t),  L(i,t-A_i) + B_i)$ nếu $t \ge A_i$
+- $L(i,t) = \max(L(i-1,t),  L(i,t-A_i) + B_i)$ nếu $t \ge A_i$
 
 Trong đó: $L(i-1,t)$ là giá trị có được nếu không đưa vật $i$ vào balô, $L(i,t-A_i) + B_i$  là giá trị có được nếu chọn vật $i$.
 
@@ -432,7 +432,7 @@ for i := 1 to n do
 ```
 
 Nếu để ý kĩ bạn sẽ thấy rằng đoạn trình trên chỉ viết giống công thức QHĐ chứ chưa tối ưu. Chẳng hạn đã có lệnh gán `P:=L`, sau đó lại có gán `L[t]:=P[t]` với các giá trị `t<a[i]` là không cần thiết. Bạn đọc có thể tự cải tiến để chương trình tối ưu hơn.
-Độ phức tạp bộ nhớ là $O(m)$ và độ phức tạp thời gian là $O(m \* n)$.
+Độ phức tạp bộ nhớ là $\mathcal{O}(m)$ và độ phức tạp thời gian là $\mathcal{O}(m \times n)$.
 
 ## 4.4. Một số bài toán khác
 
@@ -451,7 +451,7 @@ Do đó ta cũng xây dựng hàm QHĐ một cách tương tự: Gọi $L[i,t]$ 
 - $L[i,0]=0$
 - $L[0,t]= \inf$ với $t>0$.
 - $L[i,t]=L[i-1,t]$ nếu $t<A[i]$.
-- $L[i,t]=min(L[i-1,t], L[i,t-A[i]]+1)$ nếu $t \ge A_i$.
+- $L[i,t]=\min(L[i-1,t], L[i,t-A[i]]+1)$ nếu $t \ge A_i$.
 
 Công thức này khác công thức của bài xếp balô ở chỗ: dùng hàm **min** chứ không phải hàm **max** (vì cần tìm cách chọn ít hơn).
 
@@ -459,27 +459,27 @@ Công thức này khác công thức của bài xếp balô ở chỗ: dùng hà
 
 ## 5.1. Mô hình
 
-Nhân một ma trận kích thước $m \* n$ với một ma trận $n \* p$, số phép nhân phải thực hiện là $m \* n \* p$. Mặt khác phép nhân các ma trận có tính kết hợp, tức là: $(A \* B) \* C = A \* (B \* C)$
+Nhân một ma trận kích thước $m \times n$ với một ma trận $n \times p$, số phép nhân phải thực hiện là $m \times n \times p$. Mặt khác phép nhân các ma trận có tính kết hợp, tức là: $(A \times B) \times C = A \times (B \times C)$
 
 Do đó khi tính tích nhiều ma trận, ta có thể thực hiện theo các trình tự khác nhau, mỗi trình tự tính sẽ quyết định số phép nhân cần thực hiện.
 
-Cho $N$ ma trận $A_1, A_2, ..., A_N$, ma trận $A$ có kích thước là $d_{i-1} \* d_i$. Hãy xác định trình tự nhân ma trận $A_1 \* A_2 \* ... \* A_N$ sao cho số phép nhân cần thực hiện là ít nhất.
+Cho $N$ ma trận $A_1, A_2, \ldots, A_N$, ma trận $A$ có kích thước là $d_{i-1} \times d_i$. Hãy xác định trình tự nhân ma trận $A_1 \times A_2 \times \cdots \times A_N$ sao cho số phép nhân cần thực hiện là ít nhất.
 
 ## 5.2. Công thức
 
-Gọi $F(i,j)$ là số phép nhân để tính tích các ma trận từ $A_i$ đến $A_j$ $(A_i \* A_{i+1} \* ... \* A_j)$.
+Gọi $F(i,j)$ là số phép nhân để tính tích các ma trận từ $A_i$ đến $A_j$ $(A_i \times A_{i+1} \times \cdots \times A_j)$.
 
 - $F[i,i]=0$.
-- $F[i,i+1]=d_{i-1} \* d_i \* d_{i+1}$
-- $F[i,j] = min(F[i,k]+F[k+1,j] + d_{i-1} \* d_k \* d_{j}$ với $k=i+1,i+2,...,j-1$
+- $F[i,i+1]=d_{i-1} \times d_i \times d_{i+1}$
+- $F[i,j] = \min(F[i,k]+F[k+1,j] + d_{i-1} \times d_k \times d_{j})$ với $k=i+1,i+2,\ldots,j-1$
 
 Công thức hơi phức tạp nên tôi xin giải thích như sau:
 
 - $F[i,i]=0$ là hiển nhiên.
-- $F[i,i+1]$ là số phép nhân khi nhân $A_i$ và $A_{i+1}$. $A_i$ có kích thước $d_{i-1} \* d_i$, $A_{i+1}$ có kích thước $d_i \* d_{i+1}$, do đó $F[i,i+1]=d_{i-1} \* d_i \* d_{i+1}$
-- Với $j>i+1$ thì ta thấy có thể tính $A_i \* A_{i+1} \* ... \* A_j$ bằng cách chọn một vị trí $k$ nào đó để đặt ngoặc theo trình tự: $A_i \* A_{i+1} \* ... \* A_j = (A_i..A_k) \* (A_{k+1}..A_j)$
+- $F[i,i+1]$ là số phép nhân khi nhân $A_i$ và $A_{i+1}$. $A_i$ có kích thước $d_{i-1} \times d_i$, $A_{i+1}$ có kích thước $d_i \times d_{i+1}$, do đó $F[i,i+1]=d_{i-1} \times d_i \times d_{i+1}$
+- Với $j>i+1$ thì ta thấy có thể tính $A_i \times A_{i+1} \times \cdots \times A_j$ bằng cách chọn một vị trí $k$ nào đó để đặt ngoặc theo trình tự: $A_i \times A_{i+1} \times \cdots \times A_j = (A_i\ldots A_k) \times (A_{k+1}\ldots A_j)$
 
-Ma trận kết quả của phép nhân $(A_i..A_k)$ có kích thước $d_{i-1} \* d_k$, ma trận kết quả của phép nhân $(A_{k+1}..A_j)$ có kích thước $d_k \* d_j$. Với cách đặt đó ta sẽ mất $F[i,k]$ phép nhân để có kết quả trong dấu ngoặc thứ nhất, mất thêm $F[k+1,j]$ phép nhân để có kết quả trong dấu ngoặc thứ hai, và cuối cùng mất $d_{i-1} \* d_k \* d_j$ để nhân 2 ma trận kết quả đó. Từ đó tổng số phép nhân của cách đặt đó là: $F[i,k] + F[k+1,j] + d_{i-1} \* d_k \* d_j$.
+Ma trận kết quả của phép nhân $(A_i\ldots A_k)$ có kích thước $d_{i-1} \times d_k$, ma trận kết quả của phép nhân $(A_{k+1}\ldots A_j)$ có kích thước $d_k \times d_j$. Với cách đặt đó ta sẽ mất $F[i,k]$ phép nhân để có kết quả trong dấu ngoặc thứ nhất, mất thêm $F[k+1,j]$ phép nhân để có kết quả trong dấu ngoặc thứ hai, và cuối cùng mất $d_{i-1} \times d_k \times d_j$ để nhân 2 ma trận kết quả đó. Từ đó tổng số phép nhân của cách đặt đó là: $F[i,k] + F[k+1,j] + d_{i-1} \times d_k \times d_j$.
 
 Ta chọn vị trí $k$ cho số phép nhân ít nhất.
 
@@ -510,7 +510,7 @@ for m:=2 to n-1 do
 end;
 ```
 
-Với cách cài đặt trên, độ phức tạp bộ nhớ là $O(n^2)$, độ phức tạp thời gian là $O(n^3)$.
+Với cách cài đặt trên, độ phức tạp bộ nhớ là $\mathcal{O}(n^{2})$, độ phức tạp thời gian là $\mathcal{O}(n^{3})$.
 
 ## 5.4. Một số bài toán khác
 
@@ -529,23 +529,23 @@ Gọi $F(i,j)$ là tổng độ dài các đường chéo khi chia đa giác g�
 Tóm lại công thức QHĐ như sau:
 
 - $F[i,j]=0$ với $j<i+3$.
-- $F[i,j]=min(F[i,k]+F[k,j]+d[i,k]+d[k,j])$ với $k=i+1,...j-1$. $F[1,n]$ là tổng đường chéo của cách chia tối ưu.
+- $F[i,j]=\min(F[i,k]+F[k,j]+d[i,k]+d[k,j])$ với $k=i+1,\ldots j-1$. $F[1,n]$ là tổng đường chéo của cách chia tối ưu.
 
 ### Biểu thức số học (IOI 1999)
 
 **Bài toán**
 
-Cho biểu thức $A_1 \cdot A_2 \cdot ... \cdot A_N$, trong đó $A_i$ là các số thực không âm và $\cdot$ là một phép toán `+` hoặc `*` cho trước. Hãy đặt các dấu ngoặc để biểu thức thu được có kết quả lớn nhất.
+Cho biểu thức $A_1 \cdot A_2 \cdot \cdots \cdot A_N$, trong đó $A_i$ là các số thực không âm và $\cdot$ là một phép toán `+` hoặc `*` cho trước. Hãy đặt các dấu ngoặc để biểu thức thu được có kết quả lớn nhất.
 
 **Hướng dẫn**
 
-Gọi $F[i,j]$ là giá trị lớn nhất có thể có của biểu thức $A_i \cdot A_{i+1} \cdot ... \cdot A_j$. Dễ thấy nếu $i=j$ thì $F[i,j]=A_i$, nếu $j=i+1$ thì $F[i,j]=A_i \cdot A_j$. Nếu $j>i+1$ thì có thể tính biểu thức $A_i \cdot A_{i+1} \cdot ... \cdot A_j$ bằng cách chia thành 2 nhóm: $(A_i \cdot A_{i+1} \cdot ... \cdot A_k) \cdot (A_{k+1} \cdot ... \cdot A_j)$, Khi đó $F[i,j]=F[i,k] \cdot F[k+1,j]$.
+Gọi $F[i,j]$ là giá trị lớn nhất có thể có của biểu thức $A_i \cdot A_{i+1} \cdot \cdots \cdot A_j$. Dễ thấy nếu $i=j$ thì $F[i,j]=A_i$, nếu $j=i+1$ thì $F[i,j]=A_i \cdot A_j$. Nếu $j>i+1$ thì có thể tính biểu thức $A_i \cdot A_{i+1} \cdot \cdots \cdot A_j$ bằng cách chia thành 2 nhóm: $(A_i \cdot A_{i+1} \cdot \cdots \cdot A_k) \cdot (A_{k+1} \cdot \cdots \cdot A_j)$, Khi đó $F[i,j]=F[i,k] \cdot F[k+1,j]$.
 
 Tóm lại, công thức QHĐ là:
 
 - $F[i,i]=A_i$
 - $F[i,i+1]=A_i \cdot A_{i+1}$
-- $F[i,j]=max(F[i,k] \cdot F[k+1,j])$ với $k=i+1,i+2,..j-1$.
+- $F[i,j]=\max(F[i,k] \cdot F[k+1,j])$ với $k=i+1,i+2,\ldots j-1$.
 
 (Chú là là các hạng tử của dãy đều không âm và các phép toán là `+` hoặc `*` nên $F[i,k]$ và $F[k+1,j]$ đạt max thì $F[i,k] \cdot F[k+1,j]$ cũng đạt max).
 
@@ -565,7 +565,7 @@ Giá trị thẩm mỹ phụ thuộc vào các hoa và các lọ đang được 
 
 $L(i,j)$: tổng giá trị thẩm mỹ lớn nhất khi xét đến hoa $i$ và lọ $j$. Khi tính $L(i,j)$ hoa đang xét sẽ là hoa $i$ và lọ $j$.
 
-- Nếu $i = j$. Chỉ có một cách cắm $L[i,i]:= V[1,1]+V[2,2]+...+V[i,i]$
+- Nếu $i = j$. Chỉ có một cách cắm $L[i,i]:= V[1,1]+V[2,2]+\cdots+V[i,i]$
 - Nếu $i>j$. Không có cách cắm hợp lý
 - Nếu $i<j$. Có 2 trường hợp xảy ra:
   - Cắm hoa $i$ vào lọ $j$. Tổng giá trị thẩm mỹ là $L[i-1,j-1]+V(i,j)$. (Bằng tổng giá trị trước khi cắm cộng với giá trị thẩm mỹ khi cắm hoa $i$ vào lọ $j$)
@@ -602,24 +602,24 @@ Trong hiệu có $n$ đôi giày, đôi giày $i$ có kích thước $H_i$. Có 
 
 **Hướng dẫn**
 
-Lập công thức giải như bài Câu lạc bộ. Chú ý chứng minh tính đúng đắn của bổ đề heuristic sau: Cho 2 dãy tăng dần các số dương $A_1, A_2, ..., A_N$, $B_1, B_2, ..., B_N$. Gọi $C_1, C_2, ..., C_N$ là một hoán vị bất kỳ của dãy $B$. Khi đó: $\|A_1-B_1\| + \|A_2-B_2\| + ... + \|A_N-B_N\| \le \|A_1-C_1\| + \|A_2 - C_2\| + ... + \|A_N-C_N\|$
+Lập công thức giải như bài Câu lạc bộ. Chú ý chứng minh tính đúng đắn của bổ đề heuristic sau: Cho 2 dãy tăng dần các số dương $A_1, A_2, \ldots, A_N$, $B_1, B_2, \ldots, B_N$. Gọi $C_1, C_2, \ldots, C_N$ là một hoán vị bất kỳ của dãy $B$. Khi đó: $\|A_1-B_1\| + \|A_2-B_2\| + \cdots + \|A_N-B_N\| \le \|A_1-C_1\| + \|A_2 - C_2\| + \cdots + \|A_N-C_N\|$
 
 # 7. Di chuyển
 
 ## 7.1. Mô hình
 
-Cho bảng $A$ gồm $M \* N$ ô. Từ ô $(i,j)$ có thể di chuyển sang 3 ô $(i+1,j)$, $(i+1,j-1)$ và $(i+1,j+1)$. Hãy xác định một lộ trình đi từ hàng 1 đến hàng $M$ sao cho tổng các ô đi qua là lớn nhất.
+Cho bảng $A$ gồm $M \times N$ ô. Từ ô $(i,j)$ có thể di chuyển sang 3 ô $(i+1,j)$, $(i+1,j-1)$ và $(i+1,j+1)$. Hãy xác định một lộ trình đi từ hàng 1 đến hàng $M$ sao cho tổng các ô đi qua là lớn nhất.
 
 ## 7.2. Công thức
 
 Gọi $F(i,j)$ là giá trị lớn nhất có được khi di chuyển đến ô $(i,j)$. Có 3 ô có thể đi đến ô $(i,j)$ là $(i-1,j)$, $(i-1,j-1)$ và $(i-1,j+1)$. Do đó ta có công thức QHĐ như sau:
 
 - $F[1,j]=A[1,j]$
-- $F[i,j]=max(F[i-1,j],F([i-1,j-1],F[i-1,j+1])+A[i,j]$ với $i>1$
+- $F[i,j]=\max(F[i-1,j],F[i-1,j-1],F[i-1,j+1])+A[i,j]$ với $i>1$
 
 ## 7.3. Cài đặt
 
-Bảng phương án là bảng 2 chiều $F[0..m,0..n]$. (Tất cả các ô trên biên đều cho giá trị bằng 0).
+Bảng phương án là bảng 2 chiều $F[0\ldots m,0\ldots n]$. (Tất cả các ô trên biên đều cho giá trị bằng 0).
 
 Quá trình tính như sau:
 
@@ -630,7 +630,7 @@ for i:=1 to m do
 
 ```
 
-Cách cài đặt này cho độ phức tạp bộ nhớ và thời gian đều là $O(n^2)$. Ta có thể tiết kiệm không gian nhớ bằng cách tính trực tiếp trên mảng $A$.
+Cách cài đặt này cho độ phức tạp bộ nhớ và thời gian đều là $\mathcal{O}(n^{2})$. Ta có thể tiết kiệm không gian nhớ bằng cách tính trực tiếp trên mảng $A$.
 
 ## 7.4. Một số bài toán khác
 
@@ -646,4 +646,4 @@ Mô tả các phần tử của tam giác số như một ma trận, $A[i,j]$ l�
 
 - $F[1,1]=A[1,1]$
 - $F[i,1]=F[i-1,1]+A[i,1]$
-- $F[i,j]=max( F[i-1,j-1],F[i-1,j] ) + A[i,j]$
+- $F[i,j]=\max( F[i-1,j-1],F[i-1,j] ) + A[i,j]$

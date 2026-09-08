@@ -8,7 +8,7 @@ editor: markdown
 dateCreated: 2023-12-25T11:08:27.643Z
 ---
 
-# "Nhảy nhị phân" với bộ nhớ $\mathcal O(n)$
+# "Nhảy nhị phân" với bộ nhớ $\mathcal{O}(n)$
 **Người viết**: Ngô Nhật Quang - Trường THPT Chuyên Khoa học Tự nhiên, Đại học Quốc gia Hà Nội
 
 # Giới thiệu
@@ -22,7 +22,7 @@ Bài viết này sẽ giới thiệu một thuật toán được công bố nă
 # Cấu trúc
 
 Cơ bản nhất, cấu trúc cây được cài đặt như sau với ba biến cho mỗi đỉnh trên cây:
-```cpp
+```java
 class Node {
   int depth;
   Node parent;
@@ -33,7 +33,7 @@ class Node {
 Chức năng của `id`, `depth` và `parent` ta có thể đoán được qua tên. Biến `id` lưu trữ số thứ tự của đỉnh này, `depth` sẽ lưu trữ độ sâu của đỉnh này, còn biến `parent` sẽ là con trỏ trỏ đến cha của đỉnh này. Biến `jump` lúc này ta sẽ "tạm" định nghĩa nó là một con trỏ trỏ đến một đỉnh tổ tiên bất kì. Ta sẽ đi sâu hơn việc cài đặt biến `jump` ở phần sau. Biến `root` sẽ là gốc của cây.
 
 Với đỉnh $0$ là đỉnh gốc của cây, ta định nghĩa
-```cpp
+```java
 root.parent = null;
 root.depth = 0;
 root.jump = root;
@@ -43,7 +43,7 @@ root.jump = root;
 
 Với định nghĩa trên, ta đã có thể dựng ra một đoạn code để tìm tổ tiên có độ sâu là $d$ của của đỉnh $u$.
 
-```cpp
+```java
 Node find(Node u, int d) {
   // Lặp đến khi độ sâu đỉnh hiện tại là d
   while (u.depth > d) {
@@ -67,7 +67,7 @@ Node find(Node u, int d) {
 
 Rõ ràng, với đoạn code như trên, ta đến được đỉnh cần tìm hoàn toàn phụ thuộc vào việc các biến `jump` đưa ta đến đỉnh cần tìm nhanh như nào. Hàm thêm một lá vào cây trông như sau:
 
-```cpp
+```java
 Node makeLeaf(Node p) {
   Node leaf = new Node();
   leaf.parent = p;
@@ -85,7 +85,7 @@ Node makeLeaf(Node p) {
 ```
 
 Phần gán biến `id`, `parent` và `depth` khá dễ hiểu, nhưng còn đoạn này thì nghĩa là gì?
-```cpp
+```java
 p.depth - p.jump.depth == p.jump.depth - p.jump.jump.depth
 ```
 
@@ -129,7 +129,7 @@ Như phần trước, ta có được cận trên của thuật toán là sử d
 
 Như cách ta định nghĩa con trỏ `jump` như trên, ta có thể thấy rằng với hai đỉnh bất kì với cùng độ sâu, thì hai đỉnh `jump` của chúng cũng sẽ có độ sâu giống nhau. Do vậy, giả dụ hai đỉnh được cho là $u$ và $v$ và đỉnh sâu hơn là $u$, thì ta tìm đỉnh $s$ là tổ tiên của đỉnh $u$ có độ sâu bằng đỉnh $v$. Sau đó, ta nhảy lên dần dần ở cả hai đỉnh cho đến khi chúng giống nhau.
 
-```cpp
+```java
 Node lca(Node u, Node v) {
   if (u.depth < v.depth) swap(u, v);
   u = find(u, v.depth);

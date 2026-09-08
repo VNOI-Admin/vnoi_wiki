@@ -34,7 +34,7 @@ Nếu bạn muốn tận dụng các hàm của C-String, cần chuyển đổi 
 - Chuyển từ C-String sang `string`:
 
   ```cpp
-  char* s_old = "ABC";
+  char *s_old = "ABC";
   string s(s_old);
   ```
 
@@ -53,25 +53,25 @@ Kiểu `string` của STL hỗ trợ các nhóm phương thức và phép toán 
 
   ```cpp
   string();
-  string(const char *str);    // char* là kiểu dữ liệu xâu của C
-  string(const string & str);
+  string(const char *str); // char* là kiểu dữ liệu xâu của C
+  string(const string &str);
   ```
 
 - Có thể dùng toán tử `<<` với `cout` để xuất một chuỗi ra màn hình hoặc dùng toán tử `>>` với `cin` để nhập một chuỗi ký tự đến khi gặp một khoảng trống thì dừng.
 
   ```cpp
-  char st[]="ABCDEF";
+  char st[] = "ABCDEF";
   string s;
-  s="XYZ";
+  s = "XYZ";
   cout << s << endl;
-  s=st;
+  s = st;
   cout << s.length() << " : " << s << endl;
   ```
 
 - Một vấn đề thường nảy sinh trong các ứng dụng có sử dụng C-string: một C-String chưa khởi tạo cần được gán NULL. Tuy nhiên, rất nhiều hàm thư viện của C-String sẽ gặp sự cố trong thời gian chạy khi gặp đối tượng C-String là NULL. Chẳng hạn, lệnh
 
   ```cpp
-  char* x = NULL;
+  char *x = NULL;
   cout << strlen(x);
   ```
 
@@ -93,19 +93,16 @@ String thực chất là một `vector<char>` có bổ sung thêm một số hà
 
   ```cpp
   #include <iostream>
-  #include <conio.h>
   #include <string>
   using namespace std;
-  int main()
-  {
-      string s = "Hello string"; // Khai báo biến kiểu string
+  int main() {
+      string s = "Hello string";                // Khai báo biến kiểu string
       cout << "Noi dung string: " << s << endl; // In nôi dung string ra màn hình
       cout << "Chieu dai cua string: " << s.size() << endl;
       // Chiều dài
       cout << "Ky tu 0: " << s[0] << endl; // In ký tự đầu tiên của xâu
       cout << "Ky tu 1: " << s[1] << endl; // In ký tự thứ 2
       cout << "Ky tu 2: " << s[2] << endl; // In ký tự thứ 3
-      getchar();
       return 0;
   }
   ```
@@ -139,14 +136,11 @@ String thực chất là một `vector<char>` có bổ sung thêm một số hà
   //get substring
   #include <iostream>
   #include <string>
-  #include <conio.h>
   using namespace std;
-  int main ()
-  {
-      string s="ConCho chay qua rao";
-      cout << s.substr(2,4) << endl;
+  int main() {
+      string s = "ConCho chay qua rao";
+      cout << s.substr(2, 4) << endl;
       // cout << new string(str.begin()+2, str.begin()+2+4);
-      getchar();
       return 0;
   }
   ```
@@ -160,15 +154,12 @@ String thực chất là một `vector<char>` có bổ sung thêm một số hà
   // inserting into a string
   #include <iostream>
   #include <string>
-  #include <conio.h>
   using namespace std;
-  int main ()
-  {
-      string str="day la .. xau thu";
+  int main() {
+      string str = "day la .. xau thu";
       string istr = "them";
       str.insert(8, istr);
       cout << str << endl;
-      getchar();
       return 0;
   }
   ```
@@ -179,16 +170,13 @@ String thực chất là một `vector<char>` có bổ sung thêm một số hà
   // erase from a string
   #include <iostream>
   #include <string>
-  #include <conio.h>
   using namespace std;
-  int main ()
-  {
-      string str="day cung la xau thu";
+  int main() {
+      string str = "day cung la xau thu";
       str.erase(0, 3); // " cung la xau thu"
       cout << str << endl;
       str.erase(6, 2);
       cout << str << endl; // " cung xau thu"
-      getchar();
       return 0;
   }
   ```
@@ -198,12 +186,12 @@ String thực chất là một `vector<char>` có bổ sung thêm một số hà
 Bạn có thể đơn giản là sử dụng những toán tử quan hệ (`==`, `!=`, `<`, `<=`, `>=`) được định nghĩa sẵn. Tuy nhiên, nếu muốn so sánh một phần của một chuỗi thì sẽ cần sử dụng phương thức `compare()`:
 
 ```cpp
-int compare ( const string& str ) const;
-int compare ( const char* s ) const;
-int compare ( size_t pos1, size_t n1, const string& str ) const;
-int compare ( size_t pos1, size_t n1, const char* s) const;
-int compare ( size_t pos1, size_t n1, const string& str, size_t pos2, size_t n2 ) const;
-int compare ( size_t pos1, size_t n1, const char* s, size_t n2) const;
+int compare(const string &str) const;
+int compare(const char *s) const;
+int compare(size_t pos1, size_t n1, const string &str) const;
+int compare(size_t pos1, size_t n1, const char *s) const;
+int compare(size_t pos1, size_t n1, const string &str, size_t pos2, size_t n2) const;
+int compare(size_t pos1, size_t n1, const char *s, size_t n2) const;
 ```
 
 Hàm trả về 0 khi hai chuỗi bằng nhau và lớn hơn hoặc nhỏ hơn 0 cho trường hợp khác
@@ -214,18 +202,17 @@ Ví dụ:
 #include <iostream>
 #include <string>
 using namespace std;
-int main ()
-{
-    string str1 ("green apple");
-    string str2 ("red apple");
+int main() {
+    string str1("green apple");
+    string str2("red apple");
     if (str1.compare(str2) != 0)
-    cout << str1 << " is not " << str2 << "\n";
-    if (str1.compare(6,5,"apple") == 0)
-    cout << "still, " << str1 << " is an apple\n";
-    if (str2.compare(str2.size()-5,5,"apple") == 0)
-    cout << "and " << str2 << " is also an apple\n";
-    if (str1.compare(6,5,str2,4,5) == 0)
-    cout << "therefore, both are apples\n";
+        cout << str1 << " is not " << str2 << "\n";
+    if (str1.compare(6, 5, "apple") == 0)
+        cout << "still, " << str1 << " is an apple\n";
+    if (str2.compare(str2.size() - 5, 5, "apple") == 0)
+        cout << "and " << str2 << " is also an apple\n";
+    if (str1.compare(6, 5, str2, 4, 5) == 0)
+        cout << "therefore, both are apples\n";
     return 0;
 }
 ```
@@ -246,14 +233,11 @@ int main ()
   //find substring
   #include <iostream>
   #include <string>
-  #include <conio.h>
   using namespace std;
-  int main ()
-  {
-      string str="ConCho chay qua rao";
-      cout << str.find("chay") << endl; // 7
+  int main() {
+      string str = "ConCho chay qua rao";
+      cout << str.find("chay") << endl;      // 7
       cout << (int)str.find("Chay") << endl; // -1
-      getchar();
       return 0;
   }
   ```
@@ -264,14 +248,11 @@ int main ()
   //find from back
   #include <iostream>
   #include <string>
-  #include <conio.h>
   using namespace std;
-  int main ()
-  {
-      string str="ConCho chay qua chay qua rao";
-      cout << str.find("chay") << endl; // 7
+  int main() {
+      string str = "ConCho chay qua chay qua rao";
+      cout << str.find("chay") << endl;       // 7
       cout << (int)str.rfind("chay") << endl; // 16
-      getchar();
       return 0;
   }
   ```
@@ -294,11 +275,14 @@ int main ()
 Trong việc xử lý xâu ký tự, không thể thiếu được các thao tác tách xâu ký tự thành nhiều xâu ký tự con thông qua các ký tự ngăn cách. Các hàm này có sẵn trong các ngôn ngữ khác như Visual Basic, Java, hay thậm chí là trong `<string.h>`. Với STL, các bạn có thể dễ dàng làm điều này với `stringstream`:
 
 ```cpp
+#include <sstream>
 string S = "Xin chao tat ca cac ban"; // Khởi tạo giá trị của xâu
-stringstream ss(S); // Khởi tạo stringstream từ xâu S
+stringstream ss(S);                   // Khởi tạo stringstream từ xâu S
+
+string token;
 
 while (ss >> token) { // Đọc lần lượt các phần của xâu. Các phần tách nhau bởi dấu cách hoặc xuống dòng.
-  cout << token << endl;
+    cout << token << endl;
 }
 ```
 
@@ -319,25 +303,25 @@ Nếu không muốn sử dụng `stringstream`, các bạn cũng có thể tự 
 
 ```cpp
 string S = "Xin chao tat ca cac ban"; // Khởi tạo giá trị của xâu
-string::iterator t, t2; // Các biến lặp
-vector<string> split; // Mảng các xâu (lưu kết quả tách)
+string::iterator t, t2;               // Các biến lặp
+vector<string> split;                 // Mảng các xâu (lưu kết quả tách)
 
-for (t=S.begin(); t<S.end();)
-{
+for (t = S.begin(); t < S.end();) {
     // Lặp từ vị trí bắt đầu
-    t2=find(t, S.end(), ' '); // TÌm ký tự space ' ' đầu tiên
+    t2 = find(t, S.end(), ' '); // TÌm ký tự space ' ' đầu tiên
     // kể từ vị trí t
-    if (t!=t2) split.push_back(string(t, t2)); // Lấy xâu ký tự giữa 2 vị trí
-    t = t2+1; // Chuyển sang vị trí sau
+    if (t != t2)
+        split.push_back(string(t, t2)); // Lấy xâu ký tự giữa 2 vị trí
+    t = t2 + 1;                         // Chuyển sang vị trí sau
 }
-for (int i=0; i<splitìsize(); i++)
-cout << split[i] << endl; // In mảng các xâu ký tự
+for (int i = 0; i < split.size(); i++)
+    cout << split[i] << endl; // In mảng các xâu ký tự
 getchar();
 ```
 
 Output:
 
-```cpp
+```text
 Xin
 chao
 tat
@@ -404,24 +388,23 @@ ban
 ## f) Chuyển đổi hàng loạt với transform
 
 ```cpp
-OutputIterator transform( InputIterator first,
-InputIterator last,
-OutputIterator result,
-UnaryOperation unary_op );
+OutputIterator transform(InputIterator first,
+                         InputIterator last,
+                         OutputIterator result,
+                         UnaryOperation unary_op);
 
-#include <cctype> // for toupper
-#include <string>
 #include <algorithm> //for transform
+#include <cctype>    // for toupper
+#include <iostream>
+#include <string>
 using namespace std;
-char alphabet(char c)
-{
+char alphabet(char c) {
     static char ch = 'a';
     return ch++;
 }
-int main()
-{
+int main() {
     string s("this is a lower case string");
-    transform(s.begin(), s.end(), s.begin(), toupper);
+    transform(s.begin(), s.end(), s.begin(), (int (*)(int))toupper);
     cout << s << endl;
     transform(s.begin(), s.end(), s.begin(), alphabet);
     cout << s;

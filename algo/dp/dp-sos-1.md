@@ -40,15 +40,16 @@ $$
 
 ### Các lời giải vét cạn
 
-Đối với phương pháp vét cạn, chúng ta có thể duyệt từng tập $S$ rồi từng tập $T$ và kiểm tra xem $T$ có phải tập con của $S$ hay không, cách làm này tốn độ phức tạp $\mathcal{O}(2^n \cdot 2^n) = \mathcal{O}(4^n)$.
+Đối với phương pháp vét cạn, chúng ta có thể duyệt từng tập $S$ rồi từng tập $T$ và kiểm tra xem $T$ có phải tập con của $S$ hay không, cách làm này tốn độ phức tạp $\mathcal{O}(2^{n} \cdot 2^{n}) = \mathcal{O}(4^{n})$.
 
-Ngoài ra, có thể tối ưu một chút bằng cách với mỗi tập $S$, ta chỉ duyệt đúng các tập $T$ là tập con của $S$ với [phương pháp duyệt tập con](https://cp-algorithms.com/algebra/all-submasks.html). Lúc này, mỗi bit trong bitmask có $3$ trạng thái: bit tắt ở tập cha, bit bật ở tập cha nhưng không được bật trong tập con, bit bật trong cả tập cha và tập con. Do đó, độ phức tạp thời gian là $\mathcal{O}(3^n)$.
+Ngoài ra, có thể tối ưu một chút bằng cách với mỗi tập $S$, ta chỉ duyệt đúng các tập $T$ là tập con của $S$ với [phương pháp duyệt tập con](https://cp-algorithms.com/algebra/all-submasks.html). Lúc này, mỗi bit trong bitmask có $3$ trạng thái: bit tắt ở tập cha, bit bật ở tập cha nhưng không được bật trong tập con, bit bật trong cả tập cha và tập con. Do đó, độ phức tạp thời gian là $\mathcal{O}(3^{n})$.
 
 :::spoiler Code tham khảo
 ```cpp=
 fill(f, f + (1 << n), a[0]); // do phương pháp duyệt tập con bỏ qua tập rỗng
 for (int mask = 0; mask < (1 << n); mask++) {
-    for (int sub = mask; sub; sub = (sub - 1) & mask) f[mask] += a[sub];
+    for (int sub = mask; sub; sub = (sub - 1) & mask)
+        f[mask] += a[sub];
 }
 ```
 :::
@@ -92,7 +93,7 @@ $$
 #### Cải tiến ý tưởng
 
 Tuy nhiên, cách làm này vẫn còn 2 điểm yếu lớn:
-- Độ phức tạp của chúng ta vẫn là $\mathcal{O}(3^n)$, thậm chí hằng số còn lớn hơn cách duyệt trâu.
+- Độ phức tạp của chúng ta vẫn là $\mathcal{O}(3^{n})$, thậm chí hằng số còn lớn hơn cách duyệt trâu.
 - Việc biểu diễn các pattern dưới dạng biểu diễn tam phân rất rắc rối.
 
 Để khắc phục điều này, khi truy hồi thay vì chọn dấu $\texttt{?}$ bất kì, ta quy ước chọn dấu $\texttt{?}$ bên trái nhất (chỉ số cao nhất). Khi đó, ta chỉ cần xét các pattern mà các giá trị $\texttt{1}$ và $\texttt{?}$ nằm ở hai bên của pattern.
@@ -149,10 +150,10 @@ Sau đây là cây biểu diễn các trạng thái mà ta sẽ gọi khi tính 
 Lưu ý, khi vẽ hết các trạng thái của Quy hoạch động ra, đồ thị không còn là cây nữa mà là một đồ thị có hướng không chu trình (DAG).
 
 :::success
-Có tổng cộng là $2^n \cdot (n + 1)$ trạng thái Quy hoạch động, mỗi trạng thái được truy hồi trong $\mathcal{O}(1)$. Như vậy, ta đã có thuật toán Quy hoạch động Sum over Subsets có độ phức tạp:
+Có tổng cộng là $2^{n} \cdot (n + 1)$ trạng thái Quy hoạch động, mỗi trạng thái được truy hồi trong $\mathcal{O}(1)$. Như vậy, ta đã có thuật toán Quy hoạch động Sum over Subsets có độ phức tạp:
 
-- **Thời gian:** $\mathcal{O}(2^n \cdot n)$.
-- **Bộ nhớ:** $\mathcal{O}(2^n)$ hoặc $\mathcal{O}(2^n \cdot n)$ tùy cách cài đặt.
+- **Thời gian:** $\mathcal{O}(2^{n} \cdot n)$.
+- **Bộ nhớ:** $\mathcal{O}(2^{n})$ hoặc $\mathcal{O}(2^{n} \cdot n)$ tùy cách cài đặt.
 :::
 
 ### Cài đặt
@@ -177,27 +178,30 @@ for (int mask = 0; mask < (1 << n); mask++) {
 
 Ưu điểm của cách cài đặt này là khi bắt đầu tính cho một $\texttt{mask}$ bất kì, ta đã có kết quả của mọi trạng thái liên quan đến sub-masks của $\texttt{mask}$, do đó, cách này còn được gọi là "online" DP SoS. Điều này vô cùng hữu ích đối với những bài DP SoS có công thức tự gọi lại chính nó.
 
-Tuy nhiên, cách làm này không thể tối ưu bộ nhớ xuống $\mathcal{O}(2^n)$ được.
+Tuy nhiên, cách làm này không thể tối ưu bộ nhớ xuống $\mathcal{O}(2^{n})$ được.
 
 #### Cách 2
 
 Ta sẽ duyệt theo biến $k$ trước:
 
 ```cpp=
-for (int mask = 0; mask < (1 << n); mask++) dp[mask][0] = a[mask]; // trường hợp cơ sở
+for (int mask = 0; mask < (1 << n); mask++)
+    dp[mask][0] = a[mask]; // trường hợp cơ sở
 for (int k = 1; k <= n; k++) {
     for (int mask = 0; mask < (1 << n); mask++) {
         if (mask & (1 << (k - 1)))
             dp[mask][k] = dp[mask ^ (1 << (k - 1))][k - 1] + dp[mask][k - 1];
-        else dp[mask][k] = dp[mask][k - 1];
+        else
+            dp[mask][k] = dp[mask][k - 1];
     }
 }
-for (int mask = 0; mask < (1 << n); mask++) f[mask] = dp[mask][n];
+for (int mask = 0; mask < (1 << n); mask++)
+    f[mask] = dp[mask][n];
 ```
 
 Với cách này, tất cả các giá trị $f(\texttt{mask})$ sẽ được đồng loạt tính xong ở vòng cuối (khi $k = n$). Do đó, giả sử trong quá trình tính $f(\texttt{mask})$, ta cần biết $f(\texttt{submask})$ thì cách làm này không phù hợp.
 
-Bù lại, từ cách cài đặt này, ta có thể tối ưu bộ nhớ xuống $\mathcal{O}(2^n)$ và rút gọn được phần cài đặt xuống rất ngắn. Do đó, nhìn chung, cách làm này phổ biến hơn cách 1.
+Bù lại, từ cách cài đặt này, ta có thể tối ưu bộ nhớ xuống $\mathcal{O}(2^{n})$ và rút gọn được phần cài đặt xuống rất ngắn. Do đó, nhìn chung, cách làm này phổ biến hơn cách 1.
 
 #### Tối ưu bộ nhớ
 
@@ -206,7 +210,8 @@ Bù lại, từ cách cài đặt này, ta có thể tối ưu bộ nhớ xuốn
 ```cpp=
 for (int k = 1; k <= n; k++)
     for (int mask = (1 << n) - 1; mask >= 0; mask--)
-        if (mask & (1 << (k - 1))) dp[mask] += dp[mask ^ (1 << (k - 1))];
+        if (mask & (1 << (k - 1)))
+            dp[mask] += dp[mask ^ (1 << (k - 1))];
 ```
 
 Để cài đặt ngắn gọn hơn nữa, ta còn có thể đưa ra nhận xét rằng đối với DP SoS, việc duyệt các mask từ nhỏ đến lớn cũng không làm sai kết quả. Hơn nữa, vì không còn cần phải đánh số dòng trên bảng QHĐ, ta có thể duyệt $k$ từ $0$ đến $n - 1$ và coi trường hợp cơ sở là $k = -1$, sẽ thuật tiện hơn cho việc xử lý bitmask. Đến đây, ta đã có code DP SoS rất ngắn, dễ cài đặt, tối ưu bộ nhớ và hằng số thấp:
@@ -214,7 +219,8 @@ for (int k = 1; k <= n; k++)
 ```cpp=
 for (int k = 0; k < n; k++)
     for (int mask = 0; mask < (1 << n); mask++)
-        if (mask & (1 << k)) dp[mask] += dp[mask ^ (1 << k)];
+        if (mask & (1 << k))
+            dp[mask] += dp[mask ^ (1 << k)];
 ```
 
 :::spoiler Tại sao có thể duyệt các mask từ nhỏ đến lớn?
@@ -240,7 +246,7 @@ $$
 
 ### Bài toán ngược
 
-Cho trước các giá trị của hàm $f(S)$. Khôi phục mảng $a$ ban đầu, nói cách khác, tìm mảng $a$ gồm $2^n$ phần tử sao cho $f(S) = \sum_{T \subseteq S} a[T]$.
+Cho trước các giá trị của hàm $f(S)$. Khôi phục mảng $a$ ban đầu, nói cách khác, tìm mảng $a$ gồm $2^{n}$ phần tử sao cho $f(S) = \sum_{T \subseteq S} a[T]$.
 
 #### Công thức truy hồi
 
@@ -263,7 +269,8 @@ for (int mask = 0; mask < (1 << n); mask++) {
     for (int k = n - 1; k >= 0; k--) {
         if (mask & (1 << k))
             dp[mask][k] = dp[mask][k + 1] - dp[mask ^ (1 << k)][k];
-        else dp[mask][k] = dp[mask][k + 1];
+        else
+            dp[mask][k] = dp[mask][k + 1];
     }
 }
 ```
@@ -277,7 +284,8 @@ Tương tự bài toán gốc, ta cũng có thể tối ưu bộ nhớ.
 ```cpp=
 for (int k = n - 1; k >= 0; k--)
     for (int mask = 0; mask < (1 << n); mask++)
-        if (mask & (1 << k)) sos[mask] -= sos[mask ^ (1 << k)];
+        if (mask & (1 << k))
+            sos[mask] -= sos[mask ^ (1 << k)];
 ```
 :::
 
@@ -297,7 +305,7 @@ $$
 \texttt{union}[S] = \sum_{T \subseteq S} \texttt{intersect}[T] \cdot (-1)^{|T| + 1}
 $$
 
-Ta có thể áp dụng DP SoS để tính mọi giá trị $\texttt{union}[S]$ trong $\mathcal{O}(2^n \cdot n)$.
+Ta có thể áp dụng DP SoS để tính mọi giá trị $\texttt{union}[S]$ trong $\mathcal{O}(2^{n} \cdot n)$.
 
 :::spoiler Code tham khảo
 ```cpp=
@@ -306,7 +314,8 @@ for (int mask = 0; mask < (1 << n); mask++)
 
 for (int k = 0; k < n; k++)
     for (int mask = 0; mask < (1 << n); mask++)
-        if (mask & (1 << k)) sos[mask] += sos[mask ^ (1 << k)];
+        if (mask & (1 << k))
+            sos[mask] += sos[mask ^ (1 << k)];
 ```
 
 Ở cuối chương trình, mảng `sos` chứa các giá trị của mảng $\texttt{union}[]$.
@@ -353,7 +362,7 @@ $$
 
 $$
 \begin{align*}
-\delta &= \sum_{0 \leq k \leq |S| - |T|} \binom{|S| - |T|}{k} \cdot (-1)^k \cdot \underbrace{(1)^{|S| - |T| - k}}_\text{optional} \\
+\delta &= \sum_{0 \leq k \leq |S| - |T|} \binom{|S| - |T|}{k} \cdot (-1)^{k} \cdot \underbrace{(1)^{|S| - |T| - k}}_\text{optional} \\
 &= (-1 + 1)^{|S| - |T|} \\
 &= 0
 \end{align*}
@@ -368,7 +377,7 @@ $$
 a[S] = \sum_{T \subseteq S} f(T) \cdot (-1)^{|T| + |S|} = \left( \sum_{T \subseteq S} f(T) \cdot (-1)^{|T|} \right) \cdot (-1)^{|S|}
 $$
 
-Sau khi biến đổi, từng số hạng trong tổng đã độc lập theo $S, T$, do đó, ta có thể áp dụng DP SoS để tính nhanh $\sum_{T \subseteq S} f(T) \cdot (-1)^{|T|}$ rồi nhân thêm $(-1)^{|S|}$ để được $a[S]$ trong $\mathcal{O}(2^n \cdot n)$.
+Sau khi biến đổi, từng số hạng trong tổng đã độc lập theo $S, T$, do đó, ta có thể áp dụng DP SoS để tính nhanh $\sum_{T \subseteq S} f(T) \cdot (-1)^{|T|}$ rồi nhân thêm $(-1)^{|S|}$ để được $a[S]$ trong $\mathcal{O}(2^{n} \cdot n)$.
 
 :::spoiler Code tham khảo
 ```cpp=
@@ -501,8 +510,8 @@ Cho một danh sách $n$ số nguyên, với mọi số trong danh sách, gọi 
 
 #### Giới hạn
 
-- $1 \leq n \leq 2 \cdot 10^5$.
-- $1 \leq x_i \leq 10^6$.
+- $1 \leq n \leq 2 \cdot 10^{5}$.
+- $1 \leq x_i \leq 10^{6}$.
 
 #### Ý tưởng
 
@@ -575,8 +584,8 @@ $$
 
 #### Giới hạn
 
-- $3 \leq n \leq 10^6$.
-- $0 \leq a_i \leq 2 \cdot 10^6$.
+- $3 \leq n \leq 10^{6}$.
+- $0 \leq a_i \leq 2 \cdot 10^{6}$.
 
 #### Ý tưởng
 
@@ -589,7 +598,7 @@ Bên cạnh việc sử dụng trong các bài toán tìm kiếm nhị phân tru
 Thuật toán này dựa trên ý tưởng tham lam tương tự thuật toán [Walk on Trie](https://wiki.vnoi.info/vi/algo/string/trie#xử-lí-truy-vấn-tìm-xor-lớn-nhất-với-giá-trị-được-cho) đó là thử bật các bit của đáp án theo thứ tự từ lớn đến bé. Ta có thể đưa ra nhận xét là việc bật bit thứ $i$ và tắt các bit từ $0$ đến $i - 1$ vẫn cho ra kết quả lớn hơn việc tắt bit thứ $i$ và bật tất cả các bit từ $0$ đến $i - 1$. Nói cách khác:
 
 $$
-2^i > \sum_{0 \leq j < i} 2^j
+2^{i} > \sum_{0 \leq j < i} 2^{j}
 $$
 
 Nhìn chung, các thuật toán tìm kiếm nhị phân trên bit có mô hình cài đặt như sau:
@@ -597,7 +606,8 @@ Nhìn chung, các thuật toán tìm kiếm nhị phân trên bit có mô hình 
 ```cpp!
 int ans = 0;
 for (int mask = (1 << B); mask; mask >>= 1) {
-    if (f(ans | mask)) ans |= mask;
+    if (f(ans | mask))
+        ans |= mask;
 }
 ```
 
@@ -674,12 +684,12 @@ Cho dãy $a$ gồm $n$ phần tử và ba số nguyên $k, L, R$. Đếm số d�
 
 - Gọi $v$ là bitwise OR của các số trong dãy con thì $L \leq v \leq R$ và $3 \mid v$.
 
-In ra đáp án modulo $10^9 + 7$.
+In ra đáp án modulo $10^{9} + 7$.
 
 #### Giới hạn
 
-- $1 \leq k \leq n \leq 10^6$.
-- $0 \leq L \leq R \leq 10^6$.
+- $1 \leq k \leq n \leq 10^{6}$.
+- $0 \leq L \leq R \leq 10^{6}$.
 
 #### Ý tưởng
 
@@ -693,7 +703,7 @@ $$
 \texttt{sub}[S] =
 \begin{cases}
 0 & f(S) < k \\
-C_{f(S)}^k & f(S) \geq k \\
+C_{f(S)}^{k} & f(S) \geq k \\
 \end{cases}
 $$
 
@@ -779,12 +789,12 @@ int main()
 
 [Link đề gốc](https://oj.uz/problem/view/JOI18_snake_escaping)
 
-Cho dãy $a$ gồm $2^L$ số nguyên tương ứng giá trị của tập con của $\{0, 1, \dots, L - 1\}$ và $Q$ truy vấn. Với mỗi truy vấn, cho xâu độ dài $L$ là pattern gồm một trong ba ký tự $\texttt{0}, \texttt{1}, \texttt{?}$, tính tổng giá trị tương ứng của các tập thỏa pattern được cho.
+Cho dãy $a$ gồm $2^{L}$ số nguyên tương ứng giá trị của tập con của $\{0, 1, \dots, L - 1\}$ và $Q$ truy vấn. Với mỗi truy vấn, cho xâu độ dài $L$ là pattern gồm một trong ba ký tự $\texttt{0}, \texttt{1}, \texttt{?}$, tính tổng giá trị tương ứng của các tập thỏa pattern được cho.
 
 #### Giới hạn
 
 - $1 \leq L \leq 20$.
-- $1 \leq Q \leq 10^6$.
+- $1 \leq Q \leq 10^{6}$.
 - $0 \leq a_i \leq 9$.
 
 #### Ý tưởng
@@ -826,8 +836,8 @@ $$
 
 #### Độ phức tạp
 
-- Độ phức tạp thời gian: $\mathcal{O} \left(2^L \cdot L + Q \cdot 2^{\min(c_\texttt{0}, c_\texttt{1}, c_\texttt{?})} \right)$.
-- Độ phức tạp bộ nhớ: $\mathcal{O}(2^L)$.
+- Độ phức tạp thời gian: $\mathcal{O} \left(2^{L} \cdot L + Q \cdot 2^{\min(c_\texttt{0}, c_\texttt{1}, c_\texttt{?})} \right)$.
+- Độ phức tạp bộ nhớ: $\mathcal{O}(2^{L})$.
 
 
 #### Cài đặt

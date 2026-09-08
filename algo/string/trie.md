@@ -68,13 +68,13 @@ Hàm tìm xâu được cài đặt khá giống hàm thêm xâu. Chỉ khác l�
 
 ```cpp
 const int NUMBEROFNODES = ...;
-struct Trie{
-    struct Node{
+struct Trie {
+    struct Node {
         int child[26];
         int exist, cnt;
     } nodes[NUMBEROFNODES];
 
-    int cur; // Hiện trong trie đang có bao nhiêu đỉnh
+    int cur;          // Hiện trong trie đang có bao nhiêu đỉnh
     Trie() : cur(0) { // Tạo nút gốc cho Trie là đỉnh 0 khi khởi tạo Trie
         memset(nodes[0].child, -1, sizeof(nodes[cur].child));
         nodes[0].exist = nodes[0].cnt = 0;
@@ -149,28 +149,30 @@ struct Trie{
 Gần như mọi phần trong đoạn code dưới hoạt động giống phần cài đặt bằng mảng nên sẽ không chú thích lại.
 
 ```cpp
-struct Trie{
-    struct Node{
-        Node* child[26];
+struct Trie {
+    struct Node {
+        Node *child[26];
         int exist, cnt;
 
         Node() {
-            for (int i = 0; i < 26; i++) child[i] = NULL;
+            for (int i = 0; i < 26; i++)
+                child[i] = NULL;
             exist = cnt = 0;
         }
     };
 
     int cur;
-    Node* root;
+    Node *root;
     Trie() : cur(0) {
         root = new Node();
     };
 
     void add_string(string s) {
-        Node* p = root;
+        Node *p = root;
         for (auto f : s) {
             int c = f - 'a';
-            if (p->child[c] == NULL) p->child[c] = new Node();
+            if (p->child[c] == NULL)
+                p->child[c] = new Node();
 
             p = p->child[c];
             p->cnt++;
@@ -245,8 +247,8 @@ Lưu ý rằng các ứng dụng của trie xâu (liệt kê bên dưới) đề
 ```cpp
 const int NUMBEROFNODES = ...;
 const int LG = ...;
-struct Trie{
-    struct Node{
+struct Trie {
+    struct Node {
         int child[2];
         int exist, cnt;
     } nodes[NUMBEROFNODES];
@@ -329,14 +331,16 @@ Qua đó mà ta đạt được thuật toán sắp xếp một danh sách các 
 </center>
 
 ```cpp
-void dfs(int pos, string& current_string, vector<string>& res) {
-    for (int i = 1; i <= nodes[pos].exist; i++) res.push_back(current_string);
+void dfs(int pos, string &current_string, vector<string> &res) {
+    for (int i = 1; i <= nodes[pos].exist; i++)
+        res.push_back(current_string);
 
-    for (int i = 0; i < 26; i++) if (nodes[pos].child[i] != -1) {
-        current_string += char(i + 'a');
-        dfs(nodes[pos].child[i], current_string, res);
-        current_string.pop_back();
-    }
+    for (int i = 0; i < 26; i++)
+        if (nodes[pos].child[i] != -1) {
+            current_string += char(i + 'a');
+            dfs(nodes[pos].child[i], current_string, res);
+            current_string.pop_back();
+        }
 }
 
 vector<string> sort_strings() {
@@ -411,7 +415,7 @@ Cho danh sách các số nguyên không âm $a_1, a_2, \ldots, a_n$. Xử lí c�
 
 Đầu tiên xây dựng một trie nhị phân với các số nguyên đã cho.
 
-Xét lần lượt các bit từ lớn đến bé của đáp án. Coi bit đang xét là bit thứ $i$. Ta sẽ xây dựng đáp án một cách tham lam bằng cách cố gắng đặt bit thứ $i$ của đáp án là $1$ do $2^i > \sum_{i = 0}^{j - 1}2^j$. Nói cách khác, dù đặt cả $i - 1$ bit còn lại của đáp án là $1$ thì cũng không có lợi bằng đặt bit $i$ là $1$.
+Xét lần lượt các bit từ lớn đến bé của đáp án. Coi bit đang xét là bit thứ $i$. Ta sẽ xây dựng đáp án một cách tham lam bằng cách cố gắng đặt bit thứ $i$ của đáp án là $1$ do $2^{i} > \sum_{i = 0}^{j - 1}2^{j}$. Nói cách khác, dù đặt cả $i - 1$ bit còn lại của đáp án là $1$ thì cũng không có lợi bằng đặt bit $i$ là $1$.
 
 Ta sẽ lần lượt xây đáp án bằng các đi xuống từ gốc của trie. Coi ta đang xây bit thứ $i$ của đáp án. Nếu đỉnh hiện tại đang xét có thể đi xuống cạnh có bit là $f(x, i) \oplus 1$ với $f(x, i)$ là bit thứ $i$ của số $x$, ta sẽ đi qua cạnh đó để có được bit $i$ trong đáp án là $1$. Nếu không, ta "đành" đi xuống cạnh còn lại của đỉnh đang xét và có được bit $i$ của đáp án là $0$.
 
@@ -449,17 +453,17 @@ Dưới đây sẽ là một số bài toán hay (theo góc nhìn của người
 
 Cho mảng số $a$ ban đầu rỗng. Xử lí $q$ truy vấn thuộc hai loại sau:
 - $1\,u_i$: Thêm số $u_i$ vào mảng $a$.
-- $2\,x_i\,k_i\,s_i$: Tìm số $v$ thuộc mảng $a$ sao cho $GCD(x_i, v)$ chia hết cho $k_i$, $x_i + v \le s_i$, và $x_i \oplus v$ là lớn nhất có thể với $GCD(a, b)$ là ước chung lớn nhất của $a$ và $b$. In ra $-1$ nếu không có số $v$ nào trong mảng $a$ thỏa mãn.
+- $2\,x_i\,k_i\,s_i$: Tìm số $v$ thuộc mảng $a$ sao cho $\gcd(x_i, v)$ chia hết cho $k_i$, $x_i + v \le s_i$, và $x_i \oplus v$ là lớn nhất có thể với $\gcd(a, b)$ là ước chung lớn nhất của $a$ và $b$. In ra $-1$ nếu không có số $v$ nào trong mảng $a$ thỏa mãn.
 
 Giới hạn:
-- $2 \le q \le 10^5$
-- $1 \le u_i, x_i, k_i, s_i \le 10^5$
+- $2 \le q \le 10^{5}$
+- $1 \le u_i, x_i, k_i, s_i \le 10^{5}$
 
 ### Lời giải
 
 Nhìn thấy bài toán tìm $x_i \oplus v$ lớn nhất ngay lập tức gợi cho chúng ta lời giải sử dụng trie để giải. Vì vậy ta sẽ cố gắng thiết kế trie để truy vấn trên tập các số thỏa mãn hai điều kiện còn lại.
 
-Để $GCD(x_i, v)$ chia hết cho $k_i$, dễ nhận thấy cả $x_i$ và $v$ đều phải chia hết cho $k_i$. Do vậy, ta sẽ tạo $10^5$ trie, với trie thứ $i$ là các số trong mảng $a$ chia hết cho $i$. Để $x_i + v \le s_i$ thì dĩ nhiên $v \le s_i - x_i$, ta lưu với mỗi đỉnh trong trie số bé nhất trong cây con của đỉnh đó là bao nhiêu.
+Để $\gcd(x_i, v)$ chia hết cho $k_i$, dễ nhận thấy cả $x_i$ và $v$ đều phải chia hết cho $k_i$. Do vậy, ta sẽ tạo $10^{5}$ trie, với trie thứ $i$ là các số trong mảng $a$ chia hết cho $i$. Để $x_i + v \le s_i$ thì dĩ nhiên $v \le s_i - x_i$, ta lưu với mỗi đỉnh trong trie số bé nhất trong cây con của đỉnh đó là bao nhiêu.
 
 Vậy để giải quyết một truy vấn, ta sẽ tìm giá trị XOR lớn nhất trên trie thứ $k_i$ (cách giải đã trình bày ở [trên](#Xử-lí-truy-vấn-tìm-XOR-lớn-nhất-với-giá-trị-được-cho)) và chỉ đi vào một đỉnh con nếu như giá trị bé nhất của cây con đó bé hơn hoặc bằng $s_i - x_i$.
 
@@ -540,17 +544,18 @@ signed main() {
         if (t == 1) {
             int u;
             cin >> u;
-            for (auto x : d[u]) tries[x].add_number(u);
-        }
-        else {
+            for (auto x : d[u])
+                tries[x].add_number(u);
+        } else {
             int x, k, s;
             cin >> x >> k >> s;
 
-            if (x % k != 0) cout << "-1\n";
-            else cout << tries[k].query(x, s - x) << "\n";
+            if (x % k != 0)
+                cout << "-1\n";
+            else
+                cout << tries[k].query(x, s - x) << "\n";
         }
     }
-
 }
 ```
 </details>
@@ -564,14 +569,14 @@ Cho dãy số nguyên không âm $a_1, a_2, \ldots, a_n$ và $m$ truy vấn thu�
 - In ra MEX (số nguyên không âm nhỏ nhất mà không xuất hiện) của dãy.
 
 Giới hạn:
-- $1 \le n, m \le 3 \times 10^5$
-- $0 \le a_i, x \le 3 \times 10^5$
+- $1 \le n, m \le 3 \times 10^{5}$
+- $0 \le a_i, x \le 3 \times 10^{5}$
 
 ### Lời giải
 
 Với các truy vấn loại $1$, thay vì thay đổi cả dãy, ta nhận thấy rằng $(a \oplus b) \oplus c = a \oplus (b \oplus c)$. Tức là nếu áp dụng hai truy vấn loại $1$ với hai số nguyên $b, c$ thì cũng tương tự như áp dụng một truy vấn với số nguyên $b \oplus c$. Do vậy, ta chỉ cần duy trì cả dãy đang bị XOR bởi số nguyên nào. Gọi số đó là $z$.
 
-Giả dụ ta đã có một trie nhị phân của dãy số $a_1, a_2, \ldots, a_n$ và ta muốn tìm MEX của các số trong đó. Ta sẽ sử dụng thuật toán tương tự chặt nhị phân. Gọi độ cao của trie là $k$. Khởi đầu tại gốc trie, ta kiểm tra xem cây con bên trái (cạnh thể hiện bit $0$) có phải là cây nhị phân hoàn hảo hay không. Nói cách khác, tất cả các số trong khoảng $[0, 2^k - 1]$ có tồn tại hay không. Nếu có, ta chắc chắn MEX của dãy số nằm trong khoảng này. Nếu không, ta chắc chắn MEX của dãy số nằm trong khoảng $[2^k, 2^{k + 1} - 1]$. Sau đó, ta đi xuống đỉnh con tương ứng và tiếp tục xét hai đỉnh con của nó. Làm như vậy với tất cả các bit là sẽ tìm được đáp án.
+Giả dụ ta đã có một trie nhị phân của dãy số $a_1, a_2, \ldots, a_n$ và ta muốn tìm MEX của các số trong đó. Ta sẽ sử dụng thuật toán tương tự chặt nhị phân. Gọi độ cao của trie là $k$. Khởi đầu tại gốc trie, ta kiểm tra xem cây con bên trái (cạnh thể hiện bit $0$) có phải là cây nhị phân hoàn hảo hay không. Nói cách khác, tất cả các số trong khoảng $[0, 2^{k} - 1]$ có tồn tại hay không. Nếu có, ta chắc chắn MEX của dãy số nằm trong khoảng này. Nếu không, ta chắc chắn MEX của dãy số nằm trong khoảng $[2^{k}, 2^{k + 1} - 1]$. Sau đó, ta đi xuống đỉnh con tương ứng và tiếp tục xét hai đỉnh con của nó. Làm như vậy với tất cả các bit là sẽ tìm được đáp án.
 
 <center>
 
@@ -647,21 +652,23 @@ signed main() {
     Trie trie;
     vector<int> v;
     for (int i = 1; i <= n; i++) {
-        int x; cin >> x;
+        int x;
+        cin >> x;
         v.push_back(x);
     }
 
     sort(v.begin(), v.end());
     v.erase(unique(v.begin(), v.end()), v.end());
-    for (auto x : v) trie.add_number(x);
+    for (auto x : v)
+        trie.add_number(x);
 
     int cur_xor = 0;
     while (m--) {
-        int x; cin >> x;
+        int x;
+        cin >> x;
         cur_xor ^= x;
         cout << trie.query(cur_xor) << "\n";
     }
-
 }
 ```
 </details>
@@ -670,20 +677,20 @@ signed main() {
 
 ### Đề bài
 
-Cho $N$ xâu $W_1, W_2, \ldots, W_N$. Một cặp xâu có độ dài tiền tố chung dài nhất là $l_p$, độ dài hậu tố chung dài nhất là $l_s$, thì vẻ đẹp của cặp xâu đó là là $\min(l_p, l_s)^2$. Hãy ghép cặp các xâu, mỗi xâu nằm trong tối đa một cặp sao cho tổng vẻ đẹp các cặp xâu là lớn nhất.
+Cho $N$ xâu $W_1, W_2, \ldots, W_N$. Một cặp xâu có độ dài tiền tố chung dài nhất là $l_p$, độ dài hậu tố chung dài nhất là $l_s$, thì vẻ đẹp của cặp xâu đó là là $\min(l_p, l_s)^{2}$. Hãy ghép cặp các xâu, mỗi xâu nằm trong tối đa một cặp sao cho tổng vẻ đẹp các cặp xâu là lớn nhất.
 
 Giới hạn:
-- $1 \le N \le 10^5$
-- $1 \le \lvert W_i \rvert \le 10^5$
-- $1 \le \sum^N_{i = 1} \lvert W_i \rvert \le 10^5$
+- $1 \le N \le 10^{5}$
+- $1 \le \lvert W_i \rvert \le 10^{5}$
+- $1 \le \sum^{N}_{i = 1} \lvert W_i \rvert \le 10^{5}$
 
 ### Lời giải
 
-Giả sử bài toán định nghĩa vẻ đẹp một cặp xâu là $l_p^2$, thì bài toán có thể dễ dàng được giải quyết bằng cách dfs trên trie các xâu đã cho.
+Giả sử bài toán định nghĩa vẻ đẹp một cặp xâu là $l_p^{2}$, thì bài toán có thể dễ dàng được giải quyết bằng cách dfs trên trie các xâu đã cho.
 
-Tuy nhiên, vì đề bài định nghĩa vẻ đẹp một cặp xâu là $\min(l_p, l_s)^2$, ta cần một cách nào đó để so sánh cả tiền tố và hậu tố cùng một lúc trên trie. Ta có thể làm điều này bằng cách biến đổi các xâu $W$. Chính xác hơn, nếu $W = C_1C_2 \ldots C_M$ thì ta biến đổi $W = (C_1, C_M)(C_2, C_{M - 1}) \ldots (C_M, C_1)$ với $(C_1, C_M)$ là "kí tự" đầu tiên. Nói cách khác, ta thay đổi bảng chữ cái từ $26$ kí tự thành bảng chữ cái có $676$ kí tự $(a, a), (a, b), \ldots, (z, z)$.
+Tuy nhiên, vì đề bài định nghĩa vẻ đẹp một cặp xâu là $\min(l_p, l_s)^{2}$, ta cần một cách nào đó để so sánh cả tiền tố và hậu tố cùng một lúc trên trie. Ta có thể làm điều này bằng cách biến đổi các xâu $W$. Chính xác hơn, nếu $W = C_1C_2 \ldots C_M$ thì ta biến đổi $W = (C_1, C_M)(C_2, C_{M - 1}) \ldots (C_M, C_1)$ với $(C_1, C_M)$ là "kí tự" đầu tiên. Nói cách khác, ta thay đổi bảng chữ cái từ $26$ kí tự thành bảng chữ cái có $676$ kí tự $(a, a), (a, b), \ldots, (z, z)$.
 
-Từ đó ta có thể thấy bài toán đã trở thành một cặp xâu có vẻ đẹp là $l_p^2$. Cách tính đáp án chi tiết bạn đọc có thể tham khảo trong code mẫu.
+Từ đó ta có thể thấy bài toán đã trở thành một cặp xâu có vẻ đẹp là $l_p^{2}$. Cách tính đáp án chi tiết bạn đọc có thể tham khảo trong code mẫu.
 
 <details>
 <summary>Code mẫu</summary>
@@ -759,7 +766,6 @@ signed main() {
 
         cout << trie.solve(trie.root, 0) << "\n";
     }
-
 }
 ```
 </details>
@@ -771,10 +777,10 @@ signed main() {
 Cho danh sách $N$ xâu $S_1, S_2, \ldots, S_N$ và $M$ truy vấn. Truy vấn thứ $j$ gồm hai xâu $P_j$ và $Q_j$, hãy tìm số lượng xâu trong danh sách ban đầu có tiền tố là $P_j$ và hậu tố là $Q_j$.
 
 Giới hạn:
-- $1 \le N, M, \lvert S_i \rvert, \lvert P_j \rvert, \lvert Q_j \rvert \le 10^5$
-- $1 \le \sum^{N}_{i = 1} \lvert S_i \rvert \le 2 \times 10^6$.
-- $1 \le \sum^{N}_{i = 1} \lvert P_j \rvert \le 2 \times 10^6$.
-- $1 \le \sum^{N}_{i = 1} \lvert Q_j \rvert \le 2 \times 10^6$.
+- $1 \le N, M, \lvert S_i \rvert, \lvert P_j \rvert, \lvert Q_j \rvert \le 10^{5}$
+- $1 \le \sum^{N}_{i = 1} \lvert S_i \rvert \le 2 \times 10^{6}$.
+- $1 \le \sum^{N}_{i = 1} \lvert P_j \rvert \le 2 \times 10^{6}$.
+- $1 \le \sum^{N}_{i = 1} \lvert Q_j \rvert \le 2 \times 10^{6}$.
 - Các xâu chỉ gồm các kí tự `A`, `G`, `C`, `U`.
 
 ### Lời giải
@@ -953,10 +959,11 @@ signed main() {
         cin >> p >> q;
 
         pair<int, int> range = trie1.get_range(p);
-        if (range.first == -1) cout << "0\n";
-        else cout << trie2.query(q, range) << "\n";
+        if (range.first == -1)
+            cout << "0\n";
+        else
+            cout << trie2.query(q, range) << "\n";
     }
-
 }
 ```
 </details>
@@ -968,14 +975,14 @@ signed main() {
 Cho dãy số nguyên $a_1, a_2, \ldots, a_N$ và số nguyên $x$. Đếm số dãy con $1 \le b_1 < b_2 < \ldots < b_k \le n$ mà $a_{b_i} \oplus a_{b_j} \ge x$ với mọi cặp $(i, j)$ thỏa mãn $1 \le i < j \le k$.
 
 Giới hạn:
-- $1 \le N \le 3 \times 10^5$
+- $1 \le N \le 3 \times 10^{5}$
 - $0 \le a_i, x < 2^{60}$
 
 ### Lời giải
 
 Với một dãy số ${x_1, x_2, \ldots, x_k}$ thỏa mãn điều kiện đề bài, nhận thấy rằng nếu ta sắp xếp lại các giá trị đó từ bé đến lớn, thì giá trị bé nhất của $x_i \oplus x_j$ sẽ có $\lvert i - j \rvert = 1$. Phần chứng minh xin dành cho bạn đọc.
 
-Vì vậy, ta có thể sắp xếp lại mảng $a$ tăng dần, và đếm số dãy $b$ thỏa mãn. Một công thức quy hoạch động với độ phức tạp $\mathcal{O}(n^2)$ khá dễ để thấy. Gọi $dp[i]$ là số dãy $b$ thỏa mãn với $b_k = i$, thì $dp[i] = \sum^{i - 1}_{j = 1,\,a_i \oplus a_j \ge x} dp[j]$.
+Vì vậy, ta có thể sắp xếp lại mảng $a$ tăng dần, và đếm số dãy $b$ thỏa mãn. Một công thức quy hoạch động với độ phức tạp $\mathcal{O}(n^{2})$ khá dễ để thấy. Gọi $dp[i]$ là số dãy $b$ thỏa mãn với $b_k = i$, thì $dp[i] = \sum^{i - 1}_{j = 1,\,a_i \oplus a_j \ge x} dp[j]$.
 
 Công thức quy hoạch động này có thể được tối ưu sử dụng một trie nhị phân. Giả dụ xét bit thứ $i$, với $i - 1$ bit đầu tiên của $a_i \oplus a_j$ bằng $i - 1$ bit đầu tiên của $x$, ta chia hai trường hợp:
 - Bit thứ $i$ của $x$ là $1$: Bit thứ $i$ của $a_i \oplus a_j$ cũng phải bằng $1$. Ta đi xuống cây con tương ứng bit $1$ để xét bit thứ $i + 1$.
@@ -1075,7 +1082,6 @@ signed main() {
         add(res, val);
     }
     cout << res;
-
 }
 ```
 </details>

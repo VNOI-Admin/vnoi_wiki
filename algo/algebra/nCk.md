@@ -22,12 +22,12 @@ dateCreated: 2023-12-25T10:59:29.380Z
 
 ### Giới thiệu về tổ hợp
 
-Trong toán học, tổ hợp là cách chọn các phần tử từ một nhóm mà không phân biệt thứ tự chọn. Mỗi tập con gồm $k$ phần tử khác nhau (không phân biệt thứ tự) của tập hợp $n$ phần tử đã cho ($0 ≤ k ≤ n$) được gọi là một tổ hợp chập $k$ của $n$ phần tử.
+Trong toán học, tổ hợp là cách chọn các phần tử từ một nhóm mà không phân biệt thứ tự chọn. Mỗi tập con gồm $k$ phần tử khác nhau (không phân biệt thứ tự) của tập hợp $n$ phần tử đã cho ($0 \le k \le n$) được gọi là một tổ hợp chập $k$ của $n$ phần tử.
 
 Số các tổ hợp chập $k$ của $n$ phần tử khác nhau được kí hiệu là $C_n^k$ hoặc $\dbinom{n}{k}$:
 
 $$
-C_n^k  = \dbinom{n}{k} = \dfrac{n!}{k! (n - k)!} = \dfrac{n(n-1)\ldots(n - k + 1)}{k!}, \quad 0 \leq k \leq n
+C_n^k  = \dbinom{n}{k} = \frac{n!}{k! (n - k)!} = \frac{n(n-1)\ldots(n - k + 1)}{k!}, \quad 0 \leq k \leq n
 $$
 
 Để bạn đọc tiện theo dõi, trong bài viết này, chúng ta thống nhất sử dụng ký hiệu $C_n^k$.
@@ -39,35 +39,40 @@ Ta quy ước:
 
 ### Một số tính chất của tổ hợp
 
-- Với mọi $n ≥ 1$ và $0 ≤ k ≤ n$, ta có:
+- Với mọi $n \ge 1$ và $0 \le k \le n$, ta có:
     - $C_n^k = C_n^{n - k}$
     - $C_n^k = C_{n - 1}^{k - 1} + C_{n - 1}^{k}$
     
 
 - $C_n^k$ còn được gọi là hệ số nhị thức (binomial coefficients) do $C_n^k$ là hệ số trong khai triển:
-$$(x + y)^n= \sum\limits_{k = 0}^{n} C_n^k \cdot x^k \cdot y ^ {n - k}$$
+$$
+(x + y)^n= \sum\limits_{k = 0}^{n} C_n^k \cdot x^k \cdot y ^ {n - k}
+$$
 
 ## Tính số tổ hợp
 
 ### Sử dụng định nghĩa
 
 $$
-C_n^k = \dfrac{n!}{k! (n - k)!}
+C_n^k = \frac{n!}{k! (n - k)!}
 $$
 
 Với công thức này, ta nghĩ ngay đến một thuật toán "ngây thơ": Tính $n!$, $k!$ và  $(n - k)!$. Từ đó tính được $C_n^k$.
 
 ```cpp=
 long long res = 1;
-for (int i = 1; i <= n; i++) res = res * i;
-for (int i = 1; i <= k; i++) res = res / i;
-for (int i = 1; i <= n-k; i++) res = res / i;
+for (int i = 1; i <= n; i++)
+    res = res * i;
+for (int i = 1; i <= k; i++)
+    res = res / i;
+for (int i = 1; i <= n - k; i++)
+    res = res / i;
 ```
 
 Mở rộng hơn, ta có thể biến đổi một chút như sau:
 
 $$
-C_n^k = \dfrac{n}{1} \cdot \dfrac{n - 1}{2} \ldots \dfrac{n - k + 1}{k} = \dfrac{C_{n-1}^{k-1} \cdot (n - k + 1)}{k}
+C_n^k = \frac{n}{1} \cdot \frac{n - 1}{2} \ldots \frac{n - k + 1}{k} = \frac{C_{n-1}^{k-1} \cdot (n - k + 1)}{k}
 $$
 
 Vì $C_n^k$ là số nguyên, nên bạn yên tâm rằng $C_{n-1}^{k-1} \cdot (n - k + 1)$ luôn chia hết cho $k$.
@@ -96,18 +101,18 @@ Với công thức truy hồi này, ta sẽ sử dụng một mảng hai chiều
 
 **Code C++ minh họa**
 ```cpp=
-for (int i = 0; i <= n; i++){
+for (int i = 0; i <= n; i++) {
     C[i][0] = 1;
-    for (int k = 1; k <= i; k++){
+    for (int k = 1; k <= i; k++) {
         C[i][k] = C[i - 1][k - 1] + C[i - 1][k];
     }
 }
 ```
 
-Độ phức tạp không gian: $O(n^2)$
+Độ phức tạp không gian: $\mathcal{O}(n^2)$
 Độ phức tạp thời gian:
-- Tiền xử lý: $O(n^2)$
-- Truy vấn: $O(1)$
+- Tiền xử lý: $\mathcal{O}(n^2)$
+- Truy vấn: $\mathcal{O}(1)$
 
 ## Tính số tổ hợp theo modulo M
 
@@ -119,47 +124,47 @@ Dưới đây là một số cách sử dụng để tính $C_n^k$ theo modulo $
 
 |                                     Phương pháp                                      |   Tiền xử lý    |        Truy vấn        |  Bộ nhớ  |   Độ khó   |                  Giới hạn                  |
 |:-----------------------------------------------------------------------------:|:---------------:|:----------------------:|:--------:|:----------:|:------------------------------------------:|
-|          [Sử dụng công thức truy hồi](#Sử-dụng-công-thức-truy-hồi1)           |    $O(n^2)$     |         $O(1)$         | $O(n^2)$ |   Cơ bản   |         $M$ bất kỳ, $n \sim 5000$          |
-|                  [Sử dụng định nghĩa](#Sử-dụng-định-nghĩa1)                   | $O(n + \log M)$ |         $O(1)$         |  $O(n)$  |   Cơ bản   |    $M$ nguyên tố, $n < M, n \sim 10^6$     |
-|                [Sử dụng định lý Lucas](#Sử-dụng-định-lý-Lucas)                |     $O(M)$      | $O\big(\log_M(n)\big)$ |  $O(M)$  | Trung bình |        $M$ nguyên tố, $M \sim 10^6$        |
-|        [Sử dụng định lý Lucas mở rộng](#Sử-dụng-định-lý-Lucas-mở-rộng)        |     $O(M)$      | $O\big(\log_p(n)\big)$ |  $O(M)$  | Trung bình | $M = p^q$ với $p$ nguyên tố, $M \sim 10^6$ |
+|          [Sử dụng công thức truy hồi](#Sử-dụng-công-thức-truy-hồi1)           |    $\mathcal{O}(n^2)$     |         $\mathcal{O}(1)$         | $\mathcal{O}(n^2)$ |   Cơ bản   |         $M$ bất kỳ, $n \sim 5000$          |
+|                  [Sử dụng định nghĩa](#Sử-dụng-định-nghĩa1)                   | $\mathcal{O}(n + \log M)$ |         $\mathcal{O}(1)$         |  $\mathcal{O}(n)$  |   Cơ bản   |    $M$ nguyên tố, $n < M, n \sim 10^{6}$     |
+|                [Sử dụng định lý Lucas](#Sử-dụng-định-lý-Lucas)                |     $\mathcal{O}(M)$      | $\mathcal{O}\big(\log_M(n)\big)$ |  $\mathcal{O}(M)$  | Trung bình |        $M$ nguyên tố, $M \sim 10^{6}$        |
+|        [Sử dụng định lý Lucas mở rộng](#Sử-dụng-định-lý-Lucas-mở-rộng)        |     $\mathcal{O}(M)$      | $\mathcal{O}\big(\log_p(n)\big)$ |  $\mathcal{O}(M)$  | Trung bình | $M = p^q$ với $p$ nguyên tố, $M \sim 10^{6}$ |
 | [Sử dụng định lý thặng dư Trung Hoa](#Sử-dụng-định-lý-thặng-dư-Trung-Hoa) |                 |                        |          | Trung bình |                 $M$ bất kỳ                 |
 
 Ngoài ra còn có hai cách tính dựa trên cách tính giai thừa modulo $M$ khá hiệu quả. Tham khảo thêm tại [Giai thừa modulo p](/algo/math/factorial-modulo-prime). Dưới đây là đánh giá về hai cách đó:
 
 |     Phương pháp     |         Tiền xử lý          |           Truy vấn            |           Bộ nhớ            | Độ khó |              Giới hạn              |
 |:------------:|:---------------------------:|:-----------------------------:|:---------------------------:|:------:|:----------------------------------:|
-|   Chia căn   | $O\left(\frac{M}{S}\right)$ | $O\left(S+\frac{M}{S}\right)$ | $O\left(\frac{M}{S}\right)$ | Cơ bản |      $n < M \le 2 \cdot 10^9$      |
-| Biến đổi FFT |            không            | $O\left(\sqrt M\log M\right)$ |   $O\left(\sqrt M\right)$   |  Khó   | $M$ nguyên tố, $n < M \le 10^{12}$ |
+|   Chia căn   | $\mathcal{O}\left(\frac{M}{S}\right)$ | $\mathcal{O}\left(S+\frac{M}{S}\right)$ | $\mathcal{O}\left(\frac{M}{S}\right)$ | Cơ bản |      $n < M \le 2 \cdot 10^{9}$      |
+| Biến đổi FFT |            không            | $\mathcal{O}\left(\sqrt M\log M\right)$ |   $\mathcal{O}\left(\sqrt M\right)$   |  Khó   | $M$ nguyên tố, $n < M \le 10^{12}$ |
 
 ### Sử dụng công thức truy hồi
 
 Ở đây, ta sẽ sử dụng công thức truy hồi ở trên và thay đổi một chút:
 
 $$
-C_n^k = (C_{n - 1}^{k - 1} + C_{n - 1}^{k}) \mod M
+C_n^k = (C_{n - 1}^{k - 1} + C_{n - 1}^{k}) \bmod M
 $$
 
 **Code C++ minh họa**
 ```cpp=
-for (int i = 0; i <= n; i++){
+for (int i = 0; i <= n; i++) {
     C[i][0] = 1 % MOD;
-    for (int k = 1; k <= i; k++){
+    for (int k = 1; k <= i; k++) {
         C[i][k] = (C[i - 1][k - 1] + C[i - 1][k]) % MOD;
     }
 }
 ```
 
-Độ phức tạp không gian: $O(n^2)$
+Độ phức tạp không gian: $\mathcal{O}(n^2)$
 Độ phức tạp thời gian:
-- Tiền xử lý: $O(n^2)$
-- Truy vấn: $O(1)$
+- Tiền xử lý: $\mathcal{O}(n^2)$
+- Truy vấn: $\mathcal{O}(1)$
 
 >Nhận xét: Đây là cách đơn giản, dễ nghĩ, dễ code đúng, nên sử dụng trong trường hợp $n$ nhỏ để tiết kiệm thời gian.
 
 ### Sử dụng định nghĩa
 
-Rào cản lớn nhất cho việc sử dụng định nghĩa $C_n^k = \dfrac{n!}{k! (n - k)!}$ là $n!$ quá lớn. Tuy nhiên khi ta cần lấy kết quả theo modulo $M$, đó lại là vấn đề khác.
+Rào cản lớn nhất cho việc sử dụng định nghĩa $C_n^k = \frac{n!}{k! (n - k)!}$ là $n!$ quá lớn. Tuy nhiên khi ta cần lấy kết quả theo modulo $M$, đó lại là vấn đề khác.
 
 **Điều kiện sử dụng:** $M$ nguyên tố và $n < M$.
 
@@ -172,12 +177,12 @@ Rào cản lớn nhất cho việc sử dụng định nghĩa $C_n^k = \dfrac{n!
 :::spoiler Định lý Fermat nhỏ 
 Cho $p$ là một số nguyên tố và số nguyên $a$ không chia hết cho $p$. Khi đó, ta có:
 $$
-a^{p - 1} \equiv 1 \pmod p
+a^{p - 1} \equiv 1 \pmod{p}
 $$
 
 Từ đó, ta rút ra:
 $$
-a^{-1} \equiv a^{p-2} \pmod p
+a^{-1} \equiv a^{p-2} \pmod{p}
 $$
 :::
 
@@ -186,47 +191,50 @@ $$
 Đầu tiên, ta viết lại: 
 
 $$
-C_n^k = n! \times \left( k! \right)^{-1} \times \left( (n - k)! \right)^{-1} \mod M
+C_n^k = n! \times \left( k! \right)^{-1} \times \left( (n - k)! \right)^{-1} \bmod M
 $$
 
-Ta sử dụng hai mảng: mảng $\text{fact}[i]$ để lưu $i! \bmod M$ và mảng $\text{ifact}[i]$ để lưu $(i!)^{-1} \bmod M$. Từ đó rút ra: 
+Ta sử dụng hai mảng: mảng $\texttt{fact}[i]$ để lưu $i! \bmod M$ và mảng $\texttt{ifact}[i]$ để lưu $(i!)^{-1} \bmod M$. Từ đó rút ra: 
 
 $$
 \begin{align}
-    \text{ifact}[i] &= (\text{fact}[i]) ^ {-1} \mod M\\
-    &= (\text{fact}[i])^{M-2} \mod M
+    \texttt{ifact}[i] &= (\texttt{fact}[i]) ^ {-1} \bmod M\\
+    &= (\texttt{fact}[i])^{M-2} \bmod M
 \end{align}
 $$
     
-Chú ý rằng $\text{fact}[i] \equiv 0 \pmod M \;\;\forall i \ge M$ nên ta chỉ tính $\text{fact}[i]$ và $\text{ifact}[i]$ với $0 \le i \le M - 1$.
+Chú ý rằng $\texttt{fact}[i] \equiv 0 \pmod{M} \;\;\forall i \ge M$ nên ta chỉ tính $\texttt{fact}[i]$ và $\texttt{ifact}[i]$ với $0 \le i \le M - 1$.
     
-Ta sẽ tính mảng $\text{fact}[i]$ như sau:
+Ta sẽ tính mảng $\texttt{fact}[i]$ như sau:
 
 $$
 \begin{align}
     \begin{cases}
-    \text{fact}[0] &= 1\\
-    \text{fact}[i] &= (\text{fact}[i - 1] \times i ) \bmod M &\text{ nếu } 1 \le i \le n
+    \texttt{fact}[0] &= 1\\
+    \texttt{fact}[i] &= (\texttt{fact}[i - 1] \times i ) \bmod M &\text{ nếu } 1 \le i \le n
     \end{cases}
 \end{align}
 $$
 
-Tiếp theo ta sử dụng thuật toán lũy thừa nhanh để tính $\text{ifact}[n]$ với độ phức tạp $O(\log M)$. Còn mảng $\text{ifact}[i]$ thì tính như sau:
+Tiếp theo ta sử dụng thuật toán lũy thừa nhanh để tính $\texttt{ifact}[n]$ với độ phức tạp $\mathcal{O}(\log M)$. Còn mảng $\texttt{ifact}[i]$ thì tính như sau:
 
 $$
 \begin{align}
     \begin{cases}
-    \text{ifact}[n] &= \left( \text{fact}[n] \right)^{M-2} &\mod M\\
-    \text{ifact}[i - 1] &= \text{ifact}[i] \times i  &\mod M  &\text{nếu } 1 \le i \le n
+    \texttt{ifact}[n] &= \left( \texttt{fact}[n] \right)^{M-2} &\bmod M\\
+    \texttt{ifact}[i - 1] &= \texttt{ifact}[i] \times i  &\bmod M  &\text{nếu } 1 \le i \le n
     \end{cases}
 \end{align}
 $$
 
-Cuối cùng, $C_n^k = \text{fact}[n] \times \text{ifact}[k] \times \text{ifact}[n - k] \mod M$
+Cuối cùng, $C_n^k = \texttt{fact}[n] \times \texttt{ifact}[k] \times \texttt{ifact}[n - k] \bmod M$
 
 **Code C++ minh họa**
 
 ```cpp=
+#include <bits/stdc++.h>
+using namespace std;
+
 const int MOD = 1e9 + 7;
 const int N = 1e6;
 int fact[N + 5], ifact[N + 5];
@@ -272,10 +280,10 @@ int main(){
 }
 ```
 
-Độ phức tạp không gian: $O(n)$
+Độ phức tạp không gian: $\mathcal{O}(n)$
 Độ phức tạp thời gian:
-- Tiền xử lý: $O(n + \log M)$
-- Truy vấn: $O(1)$
+- Tiền xử lý: $\mathcal{O}(n + \log M)$
+- Truy vấn: $\mathcal{O}(1)$
 
 ### Sử dụng định lý Lucas
 
@@ -286,14 +294,18 @@ int main(){
 
 **Code C++ minh họa**
 ```cpp=
-int C(long long n, long long k){...} // hàm tính Ckn sử dụng định nghĩa bên trên
+int C(long long n, long long k) {
+    ...
+} // hàm tính Ckn sử dụng định nghĩa bên trên
 
-int comb(long long n, long long k){
-    if (k > n) return 0;
+int comb(long long n, long long k) {
+    if (k > n)
+        return 0;
     int res = 1;
-    while (n > 0){
+    while (n > 0) {
         res = 1LL * res * C(n % MOD, k % MOD) % MOD;
-        n /= MOD; k/= MOD;
+        n /= MOD;
+        k /= MOD;
     }
     return res;
 }
@@ -301,14 +313,18 @@ int comb(long long n, long long k){
 
 :::spoiler *Bạn đọc tham khảo thêm code đầy đủ dưới đây*
 ```cpp=
+#include <bits/stdc++.h>
+using namespace std;
+
 const int MOD = 1e6 + 3;
 int fact[MOD + 5], ifact[MOD + 5];
 
 // Hàm lũy thừa nhanh
 long long binpow(long long a, long long b) {
     long long ans = 1;
-    while (b > 0){
-        if (b % 2) ans = ans * a % MOD;
+    while (b > 0) {
+        if (b % 2)
+            ans = ans * a % MOD;
         a = a * a % MOD;
         b /= 2;
     }
@@ -329,40 +345,44 @@ void prepare(){
 }
 
 // Hàm tính nCk với n < M
-int C(int n, int k){
-    if (k > n) return 0;
+int C(int n, int k) {
+    if (k > n)
+        return 0;
     return (1LL * fact[n] * ifact[k] % MOD) * ifact[n - k] % MOD;
 }
 
 // Hàm tính nCk với n có thể lớn hơn M
-int comb(long long n, long long k){
-    if (k > n) return 0;
+int comb(long long n, long long k) {
+    if (k > n)
+        return 0;
     int res = 1;
-    while (n > 0){
+    while (n > 0) {
         res = 1LL * res * C(n % MOD, k % MOD) % MOD;
-        n /= MOD; k/= MOD;
+        n /= MOD;
+        k /= MOD;
     }
     return res;
 }
 
-int main(){
-    prepare();        
+int main() {
+    prepare();
     // Truy vấn
-    int q; cin >> q;
-    while (q--){
-        long long n, k; cin >> n >> k;
+    int q;
+    cin >> q;
+    while (q--) {
+        long long n, k;
+        cin >> n >> k;
         cout << comb(n, k) << '\n';
     }
-    
 }
 ```
 :::
 <br/>
 
-Độ phức tạp không gian: $O(M)$
+Độ phức tạp không gian: $\mathcal{O}(M)$
 Độ phức tạp thời gian:
-- Tiền xử lý: $O(M)$
-- Truy vấn: $O\big(\log_M(n)\big)$
+- Tiền xử lý: $\mathcal{O}(M)$
+- Truy vấn: $\mathcal{O}\big(\log_M(n)\big)$
 
 ### Sử dụng định lý Lucas mở rộng
 
@@ -377,20 +397,20 @@ int main(){
 :::spoiler Định lý Euler
 Cho $2$ số nguyên $a, m$ nguyên tố cùng nhau. Khi đó, ta có:
 $$
-a^{\varphi(m)} \equiv 1 \pmod m
+a^{\varphi(m)} \equiv 1 \pmod{m}
 $$
 
 Trong đó, $\varphi(m)$ là hàm phi Euler:
 
 $$
-\varphi(m) = m \cdot \prod_{p \in d(m)} \dfrac{p - 1}{p}
+\varphi(m) = m \cdot \prod_{p \in d(m)} \frac{p - 1}{p}
 $$
 
 Với $d(m)$ là tập các ước nguyên tố của số nguyên $m$.
 
 Từ đó, ta rút ra:
 $$
-a^{-1} \equiv a^{\varphi(m)-1} \pmod p
+a^{-1} \equiv a^{\varphi(m)-1} \pmod{p}
 $$
 :::
 
@@ -398,16 +418,16 @@ $$
 *Andrew Granville* đã chứng minh được công thức sau: *(Xem bài báo tại [đây](https://web.archive.org/web/20170202003812/http://www.dms.umontreal.ca/~andrew/PDF/BinCoeff.pdf) hoặc tại [đây](http://www.cecm.sfu.ca/organics/papers/granville/paper/binomial/html/node2.html))*
 
 $$
-\dfrac{t^{e_q}}{p^{e_1}} C_n^k \equiv \dfrac{(n_0!)_p}{(k_0!)_p(r_0!)_p} \cdot \dfrac{(n_1!)_p}{(k_1!)_p(r_1!)_p} \cdots \dfrac{(n_d!)_p}{(k_d!)_p(r_d!)_p} \, \pmod {p^q}
+\frac{t^{e_q}}{p^{e_1}} C_n^k \equiv \frac{(n_0!)_p}{(k_0!)_p(r_0!)_p} \cdot \frac{(n_1!)_p}{(k_1!)_p(r_1!)_p} \cdots \frac{(n_d!)_p}{(k_d!)_p(r_d!)_p} \, \pmod {p^q}
 $$
 
 Trong đó:
 - $t = \begin{cases} 1 &\text{ nếu } p = 2 \text{ và } q \ge 3\\-1&\text{ còn lại}\end{cases}$
-- $e_j = \sum\limits_{i \ge j} \left( \left\lfloor \dfrac{n}{p^i} \right\rfloor - \left\lfloor \dfrac{k}{p^i} \right\rfloor - \left\lfloor \dfrac{r}{p^i} \right\rfloor \right)$
+- $e_j = \sum\limits_{i \ge j} \left( \left\lfloor \frac{n}{p^i} \right\rfloor - \left\lfloor \frac{k}{p^i} \right\rfloor - \left\lfloor \frac{r}{p^i} \right\rfloor \right)$
 *Bạn đọc có thể thấy, $e_1$ là số mũ của $p$ khi phân tích $C_n^k$ ra thừa số nguyên tố.*
 - $\left( n! \right)_p$ là tích tất cả các số từ $1$ đến $n$ và không bao gồm các số chia hết cho $p$ (với $p$ là số nguyên tố).
 - $r = n-k$
-- $n_i = \left\lfloor \dfrac{n}{p^i} \right\rfloor \bmod p ^ q$
+- $n_i = \left\lfloor \frac{n}{p^i} \right\rfloor \bmod p ^ q$
 - $k_i, r_i$ định nghĩa tương tự $n_i$
 - $d$ là vị trí cuối cùng mà $n_i \neq 0$.  Nghĩa là ta chỉ cần chạy cho đến khi $n_i = 0$.
 :::
@@ -420,10 +440,10 @@ const int prime = 3;
 long long fact[MOD], ifact[MOD];
 ```
 
-Chú ý rằng ở bước chuẩn bị, $\text{fact}[i]$ sử dụng để lưu $\left( i! \right)_p$ (*Xem phần mô tả mở rộng định lý Lucas*) thay vì $i!$ và ta cần sử dụng định lý Euler thay cho định lý Fermat nhỏ.
+Chú ý rằng ở bước chuẩn bị, $\texttt{fact}[i]$ sử dụng để lưu $\left( i! \right)_p$ (*Xem phần mô tả mở rộng định lý Lucas*) thay vì $i!$ và ta cần sử dụng định lý Euler thay cho định lý Fermat nhỏ.
 
 ```cpp=
-void init(){
+void init() {
     fact[0] = 1;
     for (int i = 1; i < MOD; i++) {
         if (i % prime != 0)
@@ -445,11 +465,11 @@ void init(){
 Tiếp theo ta sử dụng công thức bên trên
 
 ```cpp=
-long long C(long long N, long long K, long long R){
+long long C(long long N, long long K, long long R) {
     return (fact[N] * ifact[R] % MOD) * ifact[K] % MOD;
 }
 
-int count_carry(long long n, long long k, long long r, int p, long long t){
+int count_carry(long long n, long long k, long long r, int p, long long t) {
     long long res = 0;
     while (n >= t) {
         res += ((n / t) - (k / t) - (r / t));
@@ -475,10 +495,10 @@ long long calc(long long N, long long K, long long R) {
 }
 ```
 
-Độ phức tạp không gian: $O(M)$
+Độ phức tạp không gian: $\mathcal{O}(M)$
 Độ phức tạp thời gian:
-- Tiền xử lý: $O(M)$
-- Truy vấn: $O\big(\log_p(n)\big)$
+- Tiền xử lý: $\mathcal{O}(M)$
+- Truy vấn: $\mathcal{O}\big(\log_p(n)\big)$
 
 ### Sử dụng định lý thặng dư Trung Hoa
 
@@ -502,7 +522,7 @@ $$
 
 với $m_1, m_2, \ldots m_k$ đôi một nguyên tố cùng nhau.
 
-Ký hiệu: $M = m_1 \cdot m_2 \ldots m_k$, $M_i = \dfrac{M}{m_i}$ và $N_i = M_i^{-1} \bmod m_i$. Từ đó nhận thấy:
+Ký hiệu: $M = m_1 \cdot m_2 \ldots m_k$, $M_i = \frac{M}{m_i}$ và $N_i = M_i^{-1} \bmod m_i$. Từ đó nhận thấy:
 $$
 \left\{\begin{array}{rcl}
     a_i M_i N_i & \equiv & a_i \pmod{m_i} \\
@@ -526,10 +546,10 @@ $$
 
 Giả sử bằng những cách trên, bạn đã tính được $C_n^k$ modulo là số nguyên tố ([ĐL Lucas](#Định-lý-Lucas)) hoặc lũy thừa của chúng ([ĐL Lucas mở rộng](#Định-lý-Lucas-mở-rộng)). Tiếp theo ta sẽ sử dụng CRT xử lý các phần còn lại.
 
-Đầu tiên, ta sẽ phân tích modulo $142857 = 3^3 \cdot 11 \cdot 13 \cdot 17$
+Đầu tiên, ta sẽ phân tích modulo $142857 = 3^3 \cdot 11 \cdot 13 \cdot 37$
 
 ```cpp=
-int n_primes = 4;
+const int n_primes = 4;
 int primes[] = {3, 11, 13, 37};
 int primes_pw[] = {27, 11, 13, 37};
 int rem[n_primes];
@@ -539,7 +559,7 @@ vector<long long> fact[n_primes], ifact[n_primes];
 Ta chuẩn bị sẵn một mảng tính $M_i N_i$ trong công thức $a = \sum a_i M_i N_i$ để tiện cho việc truy vấn.
 
 ```cpp=
-void prepare(){
+void prepare() {
     for (int i = 0; i < n_primes; i++) {
         // M_i
         int tmp = MOD / primes_pw[i];

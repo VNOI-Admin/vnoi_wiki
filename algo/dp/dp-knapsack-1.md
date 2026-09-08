@@ -47,8 +47,8 @@ Trong cả 2 phần của bài viết này, ta sẽ giả sử rằng trọng s�
 #### Giới hạn
 
 - $1 \leq n \leq 100$
-- $1 \leq w_i \leq C \leq 10^5$
-- $1 \leq v_i \leq 10^9$
+- $1 \leq w_i \leq C \leq 10^{5}$
+- $1 \leq v_i \leq 10^{9}$
 
 ### Xây dựng trạng thái quy hoạch động
 
@@ -217,14 +217,14 @@ Cuối cùng, ta tìm giá trị $j$ lớn nhất sao cho $\texttt{dp}(n, j) \le
 
 #### Đề bài
 
-> Cho $n$ món đồ và một số nguyên $C$, mỗi món đồ được gán trọng số $w_i$. Đếm số tập con các món đồ có tổng đúng bằng $C$, modulo $10^9 + 7$.
+> Cho $n$ món đồ và một số nguyên $C$, mỗi món đồ được gán trọng số $w_i$. Đếm số tập con các món đồ có tổng đúng bằng $C$, modulo $10^{9} + 7$.
 > 
-> Nói cách khác, đếm số tập $S \subseteq \{1, 2, \dots, n\}$ sao cho $\sum_{i \in S} w_i = C$, rồi in đáp án modulo $10^9 + 7$.
+> Nói cách khác, đếm số tập $S \subseteq \{1, 2, \dots, n\}$ sao cho $\sum_{i \in S} w_i = C$, rồi in đáp án modulo $10^{9} + 7$.
 
 #### Giới hạn
 
 - $1 \leq n \leq 100$.
-- $1 \leq w_i \leq C \leq 10^5$.
+- $1 \leq w_i \leq C \leq 10^{5}$.
 
 ### Lời giải Quy hoạch động
 
@@ -279,9 +279,9 @@ cout << dp[C];
 
 #### Giới hạn (thay đổi)
 
-- $1 \leq n \leq 10^6$
-- $1 \leq w_i \leq 10^6$
-- $1 \leq C \leq \sum w_i \leq 2 \cdot 10^6$
+- $1 \leq n \leq 10^{6}$
+- $1 \leq w_i \leq 10^{6}$
+- $1 \leq C \leq \sum w_i \leq 2 \cdot 10^{6}$
 
 #### Tối ưu 1
 
@@ -354,7 +354,7 @@ $$
 \begin{align*}
 1 + 2 + 3 + \dots + \frac{n}{2} &\leq \frac{S}{2} \\
 \Longleftrightarrow \frac{\frac{n}{2} \cdot (\frac{n}{2} + 1)}{2} &\leq \frac{S}{2} \\
-\Longrightarrow \left( \frac{n}{2} \right)^2 &\leq S \\
+\Longrightarrow \left( \frac{n}{2} \right)^{2} &\leq S \\
 \Longrightarrow n &\leq 2 \sqrt{S}
 \end{align*}
 $$
@@ -373,15 +373,19 @@ Ta thực hiện xóa đi $2\Delta$ phần tử có trọng lượng $i$ rồi t
 :::spoiler Code tham khảo 4
 ```cpp=
 // chuẩn bị mảng thống kê
-for (int u : components) cnt[u]++;
+for (int u : components)
+    cnt[u]++;
 exist.set(0);
-         
+
 for (int i = 1; i <= S; i++) {
-    if (!cnt[i]) continue;
+    if (!cnt[i])
+        continue;
     int delta = (cnt[i] - 1) / 2;
     cnt[i] -= (delta * 2);
-    if (i * 2 <= S) cnt[i * 2] += delta;
-    for (int j = 0; j < cnt[i]; j++) exist |= (exist << i);
+    if (i * 2 <= S)
+        cnt[i * 2] += delta;
+    for (int j = 0; j < cnt[i]; j++)
+        exist |= (exist << i);
 }
 ```
 :::
@@ -412,7 +416,7 @@ for (int j = weight; j <= C; j++)
 
 > **Lưu ý khi cài đặt**
 >
-> Đối với các bài toán đếm liên quan đến Subset Sum, ta thường được yêu cầu in ra đáp án modulo một số nguyên tố (như $10^9 + 7$ hoặc $998 \space 244 \space 353$). Do đó, quá trình tính toán Quy hoạch động sẽ gọi toán tử modulo rất nhiều. Điều này có thể làm chậm tốc độ của chương trình.
+> Đối với các bài toán đếm liên quan đến Subset Sum, ta thường được yêu cầu in ra đáp án modulo một số nguyên tố (như $10^{9} + 7$ hoặc $998\,244\,353$). Do đó, quá trình tính toán Quy hoạch động sẽ gọi toán tử modulo rất nhiều. Điều này có thể làm chậm tốc độ của chương trình.
 >
 > Ta thường phải khử phép modulo bằng cách:
 > - Viết hàm `add(a, b)` và `sub(a, b)` để tính $(a + b) \bmod \texttt{MOD}$ và $(a - b) \bmod \texttt{MOD}$ với $0 \leq a, b < \texttt{MOD}$ (chỉ sử dụng phép cộng/trừ và `if`/`else`).
@@ -430,10 +434,10 @@ for (int j = weight; j <= C; j++)
 
 #### Giới hạn
 
-- $1 \leq n \leq 10^5$
+- $1 \leq n \leq 10^{5}$
 - $1 \leq w_i \leq C \leq 2000$
-- $1 \leq v_i \leq 10^6$
-- $1 \leq k_i \leq 10^9$
+- $1 \leq v_i \leq 10^{6}$
+- $1 \leq k_i \leq 10^{9}$
 
 *(Lưu ý, biến $S$ trong đề bài gốc đã được thay thế thành biến $C$ để đồng nhất với cách đặt tên biến trong bài viết này)*
 
@@ -447,7 +451,7 @@ $$
 \left\lfloor \frac{C}{1} \right\rfloor + \left\lfloor \frac{C}{2} \right\rfloor + \left\lfloor \frac{C}{1} \right\rfloor + \dots + \left\lfloor \frac{C}{C} \right\rfloor = \mathcal{O}(C \log C)
 $$
 
-Khi đó, nếu thực hiện quy hoạch động trên tập *món đồ tiềm năng*, độ phức tạp thời gian sẽ là $\mathcal{O}(C^2 \log C)$.
+Khi đó, nếu thực hiện quy hoạch động trên tập *món đồ tiềm năng*, độ phức tạp thời gian sẽ là $\mathcal{O}(C^{2} \log C)$.
 
 :::spoiler Code tham khảo 5
 ```cpp=
@@ -496,7 +500,7 @@ int main()
 
 #### Lời giải sử dụng deque trick
 
-Tuy nhiên, trong trường hợp giới hạn của $C$ lớn (ví dụ, $1 \leq C \leq 10^5$ và $1 \leq n \leq 200$), cách làm như trên là chưa hợp lý. Thay vào đó, ta có thể xử lý bài toán trên với lời giải thứ hai đó là sử dụng kỹ thuật [tìm max-min trong đoạn tịnh tiến](https://wiki.vnoi.info/vi/algo/data-structures/deque-min-max) hay deque trick.
+Tuy nhiên, trong trường hợp giới hạn của $C$ lớn (ví dụ, $1 \leq C \leq 10^{5}$ và $1 \leq n \leq 200$), cách làm như trên là chưa hợp lý. Thay vào đó, ta có thể xử lý bài toán trên với lời giải thứ hai đó là sử dụng kỹ thuật [tìm max-min trong đoạn tịnh tiến](https://wiki.vnoi.info/vi/algo/data-structures/deque-min-max) hay deque trick.
 
 Vẫn giữ nguyên cách đặt trạng thái $\texttt{dp}(i, j)$ là tổng giá trị lớn nhất có thể đạt được nếu chọn tập có tổng trọng lượng $j$ và chỉ xét $i$ loại đồ đầu tiên. Nếu chọn $a$ (với $1 \leq a \leq k_i$) món đồ cho loại đồ thứ $i$, tổng giá trị tối đa mà ta có là $\texttt{dp}(i - 1, j - w_i \cdot a) + v_i \cdot a$. Do đó, công thức truy hồi trong trường hợp này là:
 
@@ -610,7 +614,7 @@ Cho một hoán vị $p$ độ dài $n$ và một số nguyên $k$, đảm bảo
 
 #### Giới hạn
 
-- $2 \leq n \leq 10^6$
+- $2 \leq n \leq 10^{6}$
 - $0 \leq k \leq n$
 
 #### Biến đổi thành đồ thị

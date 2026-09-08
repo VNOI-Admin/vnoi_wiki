@@ -19,7 +19,7 @@ __Quy hoạch động (QHĐ) (Dynamic Programming)__ là một trong những kĩ
 ## Ví dụ 1
 
 > *Bạn An có $n$ chiếc ghế màu trắng, $n$ chiếc ghế màu đen và $n$ chiếc ghế màu đỏ. An muốn chọn ra $n$ chiếc ghế để xếp thành một hàng ngang. Do An không thích màu đỏ nên An không muốn xếp hai chiếc ghế đỏ cạnh nhau. Tính số cách xếp ghế thỏa mãn điều kiện đó.*
-> **Điều kiện:** $1\le n\le 10^5$.
+> **Điều kiện:** $1\le n\le 10^{5}$.
 
 ***Lưu ý**: hai cách xếp được xem là khác nhau khi tồn tại một vị trí mà hai cách có hai loại ghế khác nhau.*
 
@@ -30,11 +30,11 @@ Bây giờ ta sẽ xây dựng thuật giải:
 ### Thuật toán đệ quy
 
 Gọi số cách xếp $i$ cái ghế là $f[i]$. Ta xét chiếc ghế thứ $n$.
-* Nếu nó có màu đen hoặc trắng thì chiếc ghế cạnh nó có thể có một trong ba màu. Do đó ta chỉ cần bố trí $n-1$ chiếc ghế còn lại thỏa mãn yêu cầu. Do có 2 cách chọn màu cho ghế thứ $n$ và $f[n-1]$ cách chọn màu cho các ghế còn lại nên số cách xếp trong trường hợp này là $2 * f[n-1]$.
+* Nếu nó có màu đen hoặc trắng thì chiếc ghế cạnh nó có thể có một trong ba màu. Do đó ta chỉ cần bố trí $n-1$ chiếc ghế còn lại thỏa mãn yêu cầu. Do có 2 cách chọn màu cho ghế thứ $n$ và $f[n-1]$ cách chọn màu cho các ghế còn lại nên số cách xếp trong trường hợp này là $2 \times f[n-1]$.
 
 ![](/uploads/basic-dynamic-programming-1_img2.png)
 
-* Nếu nó có màu đỏ thì chiếc ghế cạnh nó chỉ có thể có màu trắng hoặc đen. Do vậy nên chiếc ghế thứ $n-2$ có thể có một trong ba màu. Khi đó ta cũng chỉ cần bố trí $n-2$ chiếc ghế còn lại thỏa mãn yêu cầu. Số cách xếp trong trường hợp này là $1* 2* f[n-2]$.
+* Nếu nó có màu đỏ thì chiếc ghế cạnh nó chỉ có thể có màu trắng hoặc đen. Do vậy nên chiếc ghế thứ $n-2$ có thể có một trong ba màu. Khi đó ta cũng chỉ cần bố trí $n-2$ chiếc ghế còn lại thỏa mãn yêu cầu. Số cách xếp trong trường hợp này là $1 \times 2 \times f[n-2]$.
 
 ![](/uploads/basic-dynamic-programming-1_img3.png)
 
@@ -42,8 +42,7 @@ Với ý tưởng trên, ta có thể giải bài toán này như các bài toá
 
 ```cpp
 // Tính số cách sắp xếp n cái ghế
-int solve(int n)
-{
+int solve(int n) {
     // Trường hợp cơ bản
     if (n == 1)
         return 3;
@@ -80,22 +79,20 @@ Từ sơ đồ trên ta thấy có nhiều hàm bị gọi rất nhiều lần m
 ```cpp
 int d[100010];
 
-int solve(int n)
-{
+int solve(int n) {
     if (n == 1)
         return 3;
     else if (n == 2)
         return 8;
     else if (d[n] != 0)
         return d[n];
-    else
-    {
-        d[n] = 2 * f(n - 1) + 2 * f(n - 2);
+    else {
+        d[n] = 2 * solve(n - 1) + 2 * solve(n - 2);
         return d[n];
     }
 }
 ```
-Thuật toán trên có độ phức tạp $O(n)$.
+Thuật toán trên có độ phức tạp $\mathcal{O}(n)$.
 
 Với cách tiếp cận trên, ta quan tâm đến giá trị cuối cùng $f[n]$, sau đó mới xem xét những giá trị bé hơn cần thiết cho tính toán.
 
@@ -120,7 +117,7 @@ Ví dụ, trạng thái trong bài này là số cách sắp xếp $n$ chiếc g
 Gọi $f[i]$ là cách sắp xếp $i$ chiếc ghế thành một hàng dọc. Khi đó ta có:
 $$
 \begin{cases}
-f[1] = 3; f[2] = 8 \newline
+f[1] = 3; f[2] = 8 \\
 f[i] = 2f[i - 1] + 2f[i - 2], \forall i=3;4;\ldots;n(*)
 \end{cases}
 $$
@@ -148,7 +145,7 @@ int main()
     return 0;
 }
 ```
-Độ phức tạp của thuật toán trên là $O(n)$, nhưng cách thực hiện đơn giản hơn đệ quy có nhớ.
+Độ phức tạp của thuật toán trên là $\mathcal{O}(n)$, nhưng cách thực hiện đơn giản hơn đệ quy có nhớ.
 
 **Phân tích:** Từ ví dụ trên, ta thấy phương pháp QHĐ được triển khai theo các bước sau:
 * Xác định trạng thái của bài toán
@@ -174,11 +171,11 @@ Sau đây là ví dụ: ***Cho các đồng xu với giá tiền $1,3,5$. Và $S
 
 Đầu tiên, ta bắt đầu từ trạng thái cơ bản nhất: $f[0]=0$.
 
-Xét đến tổng $1$. Có duy nhất đồng xu $1$ nhỏ hơn hoặc bằng tổng $1$, nên ta có $f[1]=f[1−v_1]+1=f[0]+1=1$.
+Xét đến tổng $1$. Có duy nhất đồng xu $1$ nhỏ hơn hoặc bằng tổng $1$, nên ta có $f[1]=f[1 - v_1]+1=f[0]+1=1$.
 
-Xét đến tổng $2$. Cũng giống như tổng trước, chỉ có $1$ đổng xu không vượt quá $2$, suy ra $f[2]=f[2−v_1]+1=f[1]+1=2$.
+Xét đến tổng $2$. Cũng giống như tổng trước, chỉ có $1$ đổng xu không vượt quá $2$, suy ra $f[2]=f[2 - v_1]+1=f[1]+1=2$.
 
-Đến tổng $3$. Lần này có hai đồng xu không vượt quá $3$ là $1$ và $3$. Nếu ta chọn đồng $1$, ta có $f[3]=f[3−v_1]+1=f[2]+1=3$; nếu ta chọn đồng $3$, ta có $f[3]=f[3−v_2]+1=f[0]+1=1$. Rõ ràng $1 ≤ 3$ nên ta chọn đồng $3$ và $f[3]=1$.
+Đến tổng $3$. Lần này có hai đồng xu không vượt quá $3$ là $1$ và $3$. Nếu ta chọn đồng $1$, ta có $f[3]=f[3 - v_1]+1=f[2]+1=3$; nếu ta chọn đồng $3$, ta có $f[3]=f[3 - v_2]+1=f[0]+1=1$. Rõ ràng $1 \le 3$ nên ta chọn đồng $3$ và $f[3]=1$.
 
 Xét tiếp đến tổng $4,$ tổng $5,\ldots$ đến $11$ bằng cách như trên.
 
@@ -219,13 +216,12 @@ int main()
 
     for (int i = 1; i <= S; i++)
         for (int j = 1; j <= n; j++)
-            if (v[j] <= i && f[i - v[j]] != -1)
-                {
-                    if (f[i] != -1)
-                        f[i] = min(f[i], f[i - v[j]] + 1);
-                    else
-                        f[i] = f[i - v[j]] + 1;
-                }
+            if (v[j] <= i && f[i - v[j]] != -1) {
+                if (f[i] != -1)
+                    f[i] = min(f[i], f[i - v[j]] + 1);
+                else
+                    f[i] = f[i - v[j]] + 1;
+            }
     cout << f[S];
 }
 ```
@@ -237,27 +233,26 @@ Phần này giới thiệu một lớp bài toán QHĐ điển hình. Ta bắt �
 
 > *Cho dãy số nguyên dương $a_1,a_2,\ldots,a_n$. Tìm độ dài của dãy con không giảm dài nhất của dãy.
 > Dãy con của một dãy là dãy số thu được bằng cách bỏ đi một số phần tử của dãy ban đầu.*
-> **Điều kiện:** $1\le n\le 1000$ và $1\le a_1,a_2,\dots,a_n\le 10^9$.
+> **Điều kiện:** $1\le n\le 1000$ và $1\le a_1,a_2,\dots,a_n\le 10^{9}$.
 
 Đầu tiên cần xác định trạng thái của bài toán.
 
 Ta đặt $f[i]$ là độ dài của dãy con không giảm dài nhất kết thúc ở $a_i$. $f[i]$ là trạng thái của bài toán. Ta khởi tạo $f[i] = 1$ ($a_i$ là một dãy không giảm).
 
-Với $j<i$ mà $a_j \ge a_i$ thì ta có thể thêm $a_i$ vào dãy không giảm kết thúc ở $a_j$, do đó nếu $f[j] + 1$ lớn hơn giá trị hiện tại của $f[i]$ thì ta cập nhật $f[i] = f[j] + 1$.
+Với $j<i$ mà $a_j \le a_i$ thì ta có thể thêm $a_i$ vào dãy không giảm kết thúc ở $a_j$, do đó nếu $f[j] + 1$ lớn hơn giá trị hiện tại của $f[i]$ thì ta cập nhật $f[i] = f[j] + 1$.
 
 Cuối cùng để tìm được độ dài dãy con không giảm dài nhất ta tính $\max  (f[1],f[2],\ldots,f[n])$.
 
 ### Code tham khảo
 
-``` cpp
+```cpp
 #include <iostream>
 using namespace std;
 
 const int N = 1e3 + 10;
 int f[N], a[N], n;
 
-int main()
-{
+int main() {
     cin >> n;
     for (int i = 1; i <= n; i++)
         cin >> a[i];
@@ -336,7 +331,7 @@ int main()
 ### Bố trí phòng họp (mất tính thứ tự so với dãy ban đầu)
 
 > *Có $n$ cuộc họp, cuộc họp thứ $i$ bắt đầu vào thời điểm $A_i$ và kết thúc ở thời điểm $B_i$. Do chỉ có một phòng hội thảo nên 2 cuộc họp bất kì sẽ được cùng bố trí phục vụ nếu khoảng thời gian làm việc của chúng chỉ giao nhau tại đầu mút hoặc không giao nhau. Hãy bố trí phòng họp để phục vụ được nhiều cuộc họp nhất.*
-> **Điều kiện:** $1\le n\le1000$ và $1\le A_i\le B_i\le10^9$ với mọi $i=1;2;\dots;n$.
+> **Điều kiện:** $1\le n\le1000$ và $1\le A_i\le B_i\le10^{9}$ với mọi $i=1;2;\dots;n$.
 > **Input:** Số nguyên $n$ và $n$ dòng tiếp theo có dòng thứ $i$ là thời điểm bắt đầu $A_i$ và kết thúc $B_i$ của cuộc họp thứ $i$.
 > **Output:** một dòng gồm số thứ tự ban đầu của các cuộc họp được bố trí, theo thứ tự thời gian.
 
@@ -348,18 +343,16 @@ Sắp xếp các cuộc họp tăng dần theo thời điểm bắt đầu $A_i$
 ![](/uploads/basic-dynamic-programming-1_img6.png)
 
 ```cpp
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
-struct Meeting
-{
+struct Meeting {
     Meeting(int aa = 1, int bb = 1, int nn = 1)
-    : a(aa), b(bb), num(nn)
-    { };
-    int a; // Thời điểm bắt đầu cuộc họp
-    int b; // Thời điểm kết thúc cuộc họp
+        : a(aa), b(bb), num(nn) {};
+    int a;   // Thời điểm bắt đầu cuộc họp
+    int b;   // Thời điểm kết thúc cuộc họp
     int num; // Số thứ tự của cuộc họp
 };
 
@@ -413,43 +406,40 @@ int main()
 ### Cho thuê máy
 
 > *Trung tâm tính toán hiệu năng cao nhận được đơn đặt hàng của $n$ khách hàng. Khách hàng $i$ muốn sử dụng máy trong khoảng thời gian từ $a_i$ đến $b_i$ và trả tiền thuê là $c_i$. Hãy bố trí lịch thuê máy để tổng số tiền thu được là lớn nhất mà thời gian sử dụng máy của 2 khách hàng bất kì được phục vụ đều không giao nhau (cả trung tâm chỉ có một máy cho thuê).*
-> **Điều kiện:** $1\le n\le1000$ và $1\le A_i\le B_i\le10^9, 1\le c_i\le10^6$ với mọi $i=1;2;\dots;n$.
+> **Điều kiện:** $1\le n\le1000$ và $1\le A_i\le B_i\le10^{9}, 1\le c_i\le10^{6}$ với mọi $i=1;2;\dots;n$.
 
 **Hướng dẫn**:
 
 Tương tự như bài toán bố trí phòng họp, nếu sắp xếp các đơn đặt hàng theo thời điểm bắt đầu, ta sẽ đưa được về bài toán **tìm dãy con có tổng lớn nhất**. Bài toán này là biến thể của bài toán tìm dãy con tăng dài nhất, ta có thể cài đặt bằng đoạn chương trình như sau:
 
 ```cpp
-struct Value
-{
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Value {
     Value(int aa = 1, int bb = 1, int cc = 1, int nn = 1)
-    : a(aa), b(bb), num(nn)
-    { };
-    int a; // Thời điểm bắt đầu thuê
-    int b; // Thời điểm kết thúc thuê
-    int c; // Tiền thuê
+        : a(aa), b(bb), c(cc), num(nn) {};
+    int a;   // Thời điểm bắt đầu thuê
+    int b;   // Thời điểm kết thúc thuê
+    int c;   // Tiền thuê
     int num; // Số thứ tự
-}
+};
 
 const int N = 1e3 + 10;
 int n, f[N], d[N];
 Value m[N];
 
-bool compare(const Value& x, const Value& y)
-{
+bool compare(const Value &x, const Value &y) {
     return x.a < y.a || (x.a == y.a && x.b < y.b);
 }
-int main()
-{
+int main() {
     // ...
     sort(m + 1, m + n + 1, compare);
     // Bước quy hoạch động
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         f[i] = m[i].c;
         for (int j = 1; j < i; j++)
-            if (m[j].b <= m[i].a && f[i] < f[j] + m[i].c)
-            {
+            if (m[j].b <= m[i].a && f[i] < f[j] + m[i].c) {
                 f[i] = f[j] + m[i].c;
                 d[i] = j;
             }
@@ -461,7 +451,7 @@ int main()
 ### Dãy tam giác bao nhau
 
 > *Cho $n$ tam giác trên mặt phẳng. Tam giác $i$ bao tam giác $j$ nếu 3 đỉnh của tam giác $j$ đều nằm trong tam giác $i$ (có thể nằm trên cạnh). Hãy tìm dãy tam giác bao nhau có nhiều tam giác nhất.*
-> **Điều kiện:** $1\le n\le 1000$ và tọa độ các đỉnh của các tam giác thuộc đoạn ${-10}^6$ đến $10^6$.
+> **Điều kiện:** $1\le n\le 1000$ và tọa độ các đỉnh của các tam giác thuộc đoạn ${-10}^{6}$ đến $10^{6}$.
 
 ![](/uploads/basic-dynamic-programming-1_img7.png)
 
@@ -482,7 +472,7 @@ Việc kiểm tra điểm $M$ có nằm trong tam giác $ABC$ không có thể d
 
 > *Cho dãy số nguyên gồm $n$ phần tử $a_1, a_2,\ldots, a_n$ và các số nguyên dương $L,U$. Hãy tìm dãy con đổi dấu dài nhất của dãy đó.*
 > Dãy con của dãy $a$ là dãy thu được bằng cách xóa đi một số phần tử của $a$.
-> **Điều kiện:** $1\le L\le n\le1000, 1\le U\le10^9$ và $1\le a_1, a_2,\dots, a_n\le10^9$.
+> **Điều kiện:** $1\le L\le n\le1000, 1\le U\le10^{9}$ và $1\le a_1, a_2,\dots, a_n\le10^{9}$.
 
 Dãy con đổi dấu $a_{i_1},a_{i_2},\ldots, a_{i_k}$ phải thoả mãn các điều kiện sau:
 
@@ -535,7 +525,7 @@ int main()
 > * $a_k\le a_{k-1} \le \ldots \le a_m$
 >
 > *Ví dụ dãy số `1 2 3 4 5 2 1` là 1 dãy WAVIO độ dài 7. Cho dãy $a$ gồm $n$ số nguyên, hãy chỉ ra một dãy con Wavio có độ dài lớn nhất trích ra từ dãy đó.*
-> **Điều kiện:** $1\le n\le 1000$ và $1\le a_1,a_2,\ldots,a_n\le10^9$ với mọi $i=1;2;\ldots;n$.
+> **Điều kiện:** $1\le n\le 1000$ và $1\le a_1,a_2,\ldots,a_n\le10^{9}$ với mọi $i=1;2;\ldots;n$.
 
 **Hướng dẫn**:
 
@@ -551,7 +541,7 @@ Khi đó, trong các dãy WAVIO có $i$ là đỉnh thì dãy dài nhất sẽ c
 Ở mục này, chúng ta sẽ làm quen với QHĐ hai chiều, ta bắt đầu bằng ví dụ sau:
 
 > *Cho một bảng ô vuông gồm $m$ hàng và $n$ cột. Kí hiệu $(i, j)$ là ô ở hàng $i$, cột $j$. Giả sử $(i, j)$ có $a_{i,j}$ quả táo. Bạn An muốn đi từ $(1, 1)$ đến $(m, n)$. Ở mỗi bước, An đi sang phải hoặc xuống dưới đúng một ô. Khi An ở ô $(i, j)$, An có thể lấy hết các quả táo ở ô đó. Tính số quả táo nhiều nhất mà An có thể lấy được.*
-> **Điều kiện:** $1\le mn\le10^6$ và $1\le a_{i, j}\le 10^9$ với mọi $i,j$.
+> **Điều kiện:** $1\le mn\le10^{6}$ và $1\le a_{i, j}\le 10^{9}$ với mọi $i,j$.
 
 ![](/uploads/basic-dynamic-programming-1_img9.png)
 
@@ -622,13 +612,13 @@ Tóm lại ta có $L[i,j] = \max(L[i-1, j - A_i] + B_i, L[i-1, j])$.
 
 ## 2.3. Cài đặt
 
-``` cpp
-long long L[1010];
+```cpp
+long long L[1010][1010];
 
 for (int i = 1; i <= n; i++)
     for (int j = 1; j <= W; j++)
         if (A[i] <= j)
-            L[i][j] = max(L[i - 1][j - A[i]]  + B[i], L[i - 1][j]);
+            L[i][j] = max(L[i - 1][j - A[i]] + B[i], L[i - 1][j]);
         else
             L[i][j] = L[i - 1][j];
 ```
@@ -638,7 +628,7 @@ for (int i = 1; i <= n; i++)
 ### Dãy con có tổng bằng S
 
 > *Cho dãy $A_1,A_2,\ldots, A_N$. Tìm một dãy con của dãy đó có tổng bằng $S$.*
-> **Điều kiện:** $1\le n\le 1000$ và $1\le A_1,A_2,\ldots,A_n\le10^9$.
+> **Điều kiện:** $1\le n\le 1000$ và $1\le A_1,A_2,\ldots,A_n\le10^{9}$.
 
 **Hướng dẫn**:
 
@@ -648,7 +638,7 @@ Ta có thể tính $L[i,t]$ theo công thức: $L[i,t]=1$ nếu $L[i-1,t]=1$ ho�
 
 **Cài đặt**:
 
-Nếu áp dụng luôn công thức trên thì ta cần dùng bảng phương án hai chiều. Ta có thể nhận xét rằng để tính dòng thứ $i$, ta chỉ cần dòng $i-1$. Bảng phương án khi đó chỉ cần 1 mảng 1 chiều $L[0..S]$ và được tính như sau:
+Nếu áp dụng luôn công thức trên thì ta cần dùng bảng phương án hai chiều. Ta có thể nhận xét rằng để tính dòng thứ $i$, ta chỉ cần dòng $i-1$. Bảng phương án khi đó chỉ cần 1 mảng 1 chiều $L[0\ldots S]$ và được tính như sau:
 
 
 ```cpp
@@ -661,7 +651,7 @@ for (int i = 1; i <= n; i++)
             L[t] = 1;
 ```
 
-Dễ thấy độ phức tạp bộ nhớ của cách cài đặt trên là $O(m)$, độ phức tạp thời gian là $O(nm)$, với $m$ là tổng của $n$ số.
+Dễ thấy độ phức tạp bộ nhớ của cách cài đặt trên là $\mathcal{O}(m)$, độ phức tạp thời gian là $\mathcal{O}(nm)$, với $m$ là tổng của $n$ số.
 
 **Bonus:** Hãy thử kiểm tra xem vì sao trong vòng ```for``` thứ hai, $t$ được duyệt từ $S$ về $a[i]$ chứ không phải từ $a[i]$ lên $S$.
 
@@ -674,14 +664,14 @@ Dễ thấy độ phức tạp bộ nhớ của cách cài đặt trên là $O(m
 
 Gọi $T$ là tổng số kẹo của $n$ gói. Chúng ta cần tìm số $S$ lớn nhất thoả mãn:
 
-- $S \le T/2$.
+- $S \le \frac{T}{2}$.
 - Có một dãy con của dãy $a$ có tổng bằng $S$.
 
-Khi đó sẽ có cách chia với chênh lệch 2 phần là $T-2S$ là nhỏ nhất và dãy con có tổng bằng $S$ ở trên gồm các phần tử là các gói kẹo thuộc phần thứ nhất. Phần thứ hai là các gói kẹo còn lại. Ta quy hoạch động mảng $L[i,j]$ $(j\le \frac{T}{2})$ như sau: $L[i,j]=true$ nếu tồn tại một số phần tử của dãy $a$ từ $1$ đến $i$ có tổng bằng $j$. Khi đó:
-* Nếu $L[i-1,j]=true$ thì $L[i,j] = true$.
-* Nếu $L[i-1,j-a[i]]=true$ thì $L[i,j] = true$.
+Khi đó sẽ có cách chia với chênh lệch 2 phần là $T-2S$ là nhỏ nhất và dãy con có tổng bằng $S$ ở trên gồm các phần tử là các gói kẹo thuộc phần thứ nhất. Phần thứ hai là các gói kẹo còn lại. Ta quy hoạch động mảng $L[i,j]$ $(j\le \frac{T}{2})$ như sau: $L[i,j]=\texttt{true}$ nếu tồn tại một số phần tử của dãy $a$ từ $1$ đến $i$ có tổng bằng $j$. Khi đó:
+* Nếu $L[i-1,j]=\texttt{true}$ thì $L[i,j] = \texttt{true}$.
+* Nếu $L[i-1,j-a[i]]=\texttt{true}$ thì $L[i,j] = \texttt{true}$.
 
-Cuối cùng, ta cần tìm số $j$ lớn nhất không vượt quá $\frac{T}{2}$ sao cho tồn tại số nguyên dương $i$ để $L[i,j]=true$, hay $L[n,j]=true$.
+Cuối cùng, ta cần tìm số $j$ lớn nhất không vượt quá $\frac{T}{2}$ sao cho tồn tại số nguyên dương $i$ để $L[i,j]=\texttt{true}$, hay $L[n,j]=\texttt{true}$.
 ```cpp
 #include <iostream>
 using namespace std;
@@ -727,7 +717,7 @@ int main()
 
 Thực chất bài toán là tìm các số $S$ mà có một dãy con của dãy $a$ có tổng bằng $S$.
 
-Ta có thể dùng phương pháp đánh dấu của bài chia kẹo ở trên rồi đếm các giá trị $t$ mà $L[n, t]=true$.
+Ta có thể dùng phương pháp đánh dấu của bài chia kẹo ở trên rồi đếm các giá trị $t$ mà $L[n, t]=\texttt{true}$.
 
 ### Điền dấu
 

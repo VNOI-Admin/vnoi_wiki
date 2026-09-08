@@ -126,7 +126,7 @@ Ta sử dụng cấu trúc dữ liệu `stack`. Xét phần tử thứ $i$ trong
 
 Ta chứng minh cách dựng trên cho ra một dãy ngoặc đúng và đạt cận trên.
 
-Trước hết, ở mọi thời điểm stack chỉ chứa các phần tử của cùng một tập, vì ta chỉ đẩy thêm vào khi phần tử mới cùng tập với đỉnh stack. Tiếp theo, khi kết thúc stack phải rỗng. Thật vậy, giả sử còn $t > 0$ phần tử, chúng cùng thuộc một tập, gọi là $T$. Ta đã ghép được $(2N - t)/2$ cặp, mỗi cặp chứa đúng một phần tử của $T$, nên $|T| = (2N - t)/2 + t = N + t/2 > N$, mâu thuẫn với việc mỗi tập có đúng $N$ phần tử.
+Trước hết, ở mọi thời điểm stack chỉ chứa các phần tử của cùng một tập, vì ta chỉ đẩy thêm vào khi phần tử mới cùng tập với đỉnh stack. Tiếp theo, khi kết thúc stack phải rỗng. Thật vậy, giả sử còn $t > 0$ phần tử, chúng cùng thuộc một tập, gọi là $T$. Ta đã ghép được $\frac{2N - t}{2}$ cặp, mỗi cặp chứa đúng một phần tử của $T$, nên $|T| = \frac{2N - t}{2} + t = N + \frac{t}{2} > N$, mâu thuẫn với việc mỗi tập có đúng $N$ phần tử.
 
 Thuật toán in ra ngoặc mở mỗi khi đẩy vào stack, ngoặc đóng mỗi khi lấy ra, không bao giờ lấy ra khi stack rỗng, và kết thúc với stack rỗng. Điều này thoả mãn tính chất của dãy ngoặc đúng. Cuối cùng, ta đã ghép đủ $N$ cặp, mỗi cặp gồm hai phần tử thuộc hai tập khác nhau, nên giá trị thu được chính là cận trên của bài toán. Ta có điều phải chứng minh.
 :::
@@ -198,7 +198,9 @@ Giả sử trong cách ghép có $i < j$ mà $a_i$ ghép với $b_p$, $a_j$ ghé
 
 Cho một mảng $N$ số $a_1 \le a_2 \le \dots \le a_n$. Tìm $x$ sao cho biểu thức sau đạt giá trị nhỏ nhất:
 
-$$S = \sum_{i = 1}^{N} |a_i - x|^k$$
+$$
+S = \sum_{i = 1}^{N} |a_i - x|^{k}
+$$
 
 Ta sẽ tập trung vào hai trường hợp cơ bản và phổ biến nhất, có nhiều ứng dụng trong các bài toán: $k = 1$ và $k = 2$.
 
@@ -231,16 +233,18 @@ Dấu "$=$" xảy ra khi và chỉ khi $a_i \le x \le a_j$. Do đó để $S$ nh
 <i>Giá trị của $S$ khi $x$ thay đổi với mảng $a$ gồm $50$ số nguyên ngẫu nhiên trong khoảng $[1; 1000]$, hai đường thẳng màu xanh thể hiện hai trung vị của dãy</i>
 </center>
 
-**Trường hợp 2:** $k = 2, S = \sum_{i = 1}^{N} (a_i - x)^2$
+**Trường hợp 2:** $k = 2, S = \sum_{i = 1}^{N} (a_i - x)^{2}$
 
 Giá trị $x$ tối ưu khi này sẽ là **trung bình cộng** của mảng $a$. 
 
 :::spoiler Chứng minh
 Thật vậy, ta khai triển $S$ thành
 
-$$S = nx^2 - 2x \sum a_i + \sum a_i^2$$
+$$
+S = nx^{2} - 2x \sum a_i + \sum a_i^{2}
+$$
 
-Đây là tam thức bậc hai dạng $S = Ax^2 + Bx + C$ với $A = n > 0$ và có dạng một parabol với bề lõm quay lên trên. Theo kiến thức toán lớp 9, đỉnh của parabol ứng với cực tiểu của $S$ đạt tại:
+Đây là tam thức bậc hai dạng $S = Ax^{2} + Bx + C$ với $A = n > 0$ và có dạng một parabol với bề lõm quay lên trên. Theo kiến thức toán lớp 9, đỉnh của parabol ứng với cực tiểu của $S$ đạt tại:
 
 $$
 x = \frac{-B}{2A} = \frac{-(-2 \sum a_i)}{2n} = \frac{2 \sum a_i}{2n} = \frac{\sum a_i}{n}
@@ -287,12 +291,12 @@ Có $n$ món đồ, món $i$ có khối lượng $w_i$ và giá trị $v_i$, và
 
 Với bài toán cái túi phân số, ta có thuật toán sau: 
 
-1. Sắp xếp các món đồ theo tỉ lệ giá trị trên khối lượng $v_i / w_i$ giảm dần
+1. Sắp xếp các món đồ theo tỉ lệ giá trị trên khối lượng $\frac{v_i}{w_i}$ giảm dần
 2. Với mỗi món, nếu còn đủ chỗ thì ta lấy hết cả món đó, nếu không thì lấy một phần. 
 
-**Chứng minh:** Gọi món $1$ là món có tỉ lệ cao nhất. Giả sử một nghiệm tối ưu chưa lấy hết món $1$ dù túi đã đầy; khi đó nó có lấy một lượng khối lượng $\delta > 0$ nào đó của một món $j$ khác. Bỏ $\delta$ khối lượng của món $j$, thay bằng $\delta$ khối lượng của món $1$, giá trị thay đổi một lượng $\delta (v_1 / w_1 - v_j / w_j) \ge 0$. Vậy tồn tại nghiệm tối ưu lấy hết món $1$ (hoặc lấy đầy túi bằng món $1$ nếu $w_1 \ge W$), phần còn lại là bài toán con cùng dạng.
+**Chứng minh:** Gọi món $1$ là món có tỉ lệ cao nhất. Giả sử một nghiệm tối ưu chưa lấy hết món $1$ dù túi đã đầy; khi đó nó có lấy một lượng khối lượng $\delta > 0$ nào đó của một món $j$ khác. Bỏ $\delta$ khối lượng của món $j$, thay bằng $\delta$ khối lượng của món $1$, giá trị thay đổi một lượng $\delta \left(\frac{v_1}{w_1} - \frac{v_j}{w_j}\right) \ge 0$. Vậy tồn tại nghiệm tối ưu lấy hết món $1$ (hoặc lấy đầy túi bằng món $1$ nếu $w_1 \ge W$), phần còn lại là bài toán con cùng dạng.
 
-Với cái túi 0/1, lập luận trên sẽ sai ở chỗ "thay $\delta$ khối lượng" vì khi này ta không còn được lấy một phần nữa. Với phản ví dụ sau: $W = 50$, ba món $(w, v) = (10, 60), (20, 100), (30, 120)$. Tỉ lệ giảm dần là $6, 5, 4$, tham lam lấy hai món đầu được $160$, nhưng lấy hai món sau được $220$. Bài toán khi này có cấu trúc con tối ưu và có thể giải bằng quy hoạch động $O(nW)$ quen thuộc nhưng không còn tính chất lựa chọn tham lam nữa.
+Với cái túi 0/1, lập luận trên sẽ sai ở chỗ "thay $\delta$ khối lượng" vì khi này ta không còn được lấy một phần nữa. Với phản ví dụ sau: $W = 50$, ba món $(w, v) = (10, 60), (20, 100), (30, 120)$. Tỉ lệ giảm dần là $6, 5, 4$, tham lam lấy hai món đầu được $160$, nhưng lấy hai món sau được $220$. Bài toán khi này có cấu trúc con tối ưu và có thể giải bằng quy hoạch động $\mathcal{O}(nW)$ quen thuộc nhưng không còn tính chất lựa chọn tham lam nữa.
 :::
 
 ### Bài tập: [Missing Coin Sum - CSES](https://cses.fi/problemset/task/2183)
@@ -315,7 +319,9 @@ Xét đồng xu đầu tiên $c_1$. Ta có $S_0 = 0$.
 
 Giả sử với $i$ đồng xu đầu tiên, ta đã tạo được mọi giá trị nguyên liên tiếp trong đoạn $[0, S_i]$ (bao gồm 0 là tập rỗng). Xét đồng xu tiếp theo là $c_{i+1}$. Khi thêm $c_{i+1}$ vào, các giá trị mới ta có thể tạo ra là:
 
-$$V_{new} = \{ x + c_{i+1} \mid x \in [0, S_i] \}$$
+$$
+V_{new} = \{ x + c_{i+1} \mid x \in [0, S_i] \}
+$$
 
 Trong đó ta tạo thêm được đoạn giá trị: $[c_{i+1}, S_i + c_{i+1}]$. Lúc này, tập hợp tất cả các giá trị có thể tạo được là hợp của hai đoạn:
 
@@ -327,7 +333,9 @@ Ta xét hai trường hợp của $c_{i+1}$:
 
 1. $c_{i+1} \le S_i + 1$. Khi đó, đoạn thứ hai bắt đầu tại $c_{i+1}$, mà $c_{i+1} \le S_i + 1$. Điều này có nghĩa là đoạn thứ hai sẽ nối tiếp hoặc giao với đoạn thứ nhất. Hợp của chúng sẽ là một đoạn liên tục:
 
-$$[0, S_i + c_{i+1}] = [0, S_{i+1}]$$
+$$
+[0, S_i + c_{i+1}] = [0, S_{i+1}]
+$$
 
 $\Rightarrow$ Ta vẫn tạo được mọi giá trị từ $1$ đến $S_{i+1}$ và quy nạp tiếp tục.
 
@@ -365,17 +373,21 @@ Có một ông vua và $N$ ông quan. Ông vua muốn chia thưởng cho các ô
 Tìm cách để ông vua xếp thứ tự $N$ ông quan đứng sau mình sao cho **số vàng của ông quan được thưởng nhiều nhất là ít nhất**.
 
 :::spoiler Ý tưởng và lời giải
-Gọi $m = \prod a_j$ với $j$ đứng trước $i$, khi này ông quan thứ $i$ nhận được $\dfrac{m}{b_i}$ vàng còn ông quan thứ $i + 1$ nhận được $\dfrac{m \times a_i}{b_{i + 1}}$ vàng.
+Gọi $m = \prod a_j$ với $j$ đứng trước $i$, khi này ông quan thứ $i$ nhận được $\frac{m}{b_i}$ vàng còn ông quan thứ $i + 1$ nhận được $\frac{m \times a_i}{b_{i + 1}}$ vàng.
 
-Nếu ta đảo chỗ hai ông quan $i$ và $i + 1$ thì khi này ông $i$ nhận $\dfrac{m}{b_{i + 1}}$ vàng còn ông $i + 1$ nhận được $\dfrac{m \times a_{i + 1}}{b_i}$ vàng. Những ông quan khác không bị ảnh hưởng, vì tích các số bên tay trái đứng trước họ không đổi.
+Nếu ta đảo chỗ hai ông quan $i$ và $i + 1$ thì khi này ông $i$ nhận $\frac{m}{b_{i + 1}}$ vàng còn ông $i + 1$ nhận được $\frac{m \times a_{i + 1}}{b_i}$ vàng. Những ông quan khác không bị ảnh hưởng, vì tích các số bên tay trái đứng trước họ không đổi.
 
 Thứ tự $(i, i + 1)$ không tệ hơn thứ tự $(i + 1, i)$ khi và chỉ khi:
 
-$$\max \left(\dfrac{m}{b_i}, \dfrac{m \times a_i}{b_{i + 1}} \right) \le \max \left (\dfrac{m}{b_{i + 1}}, \dfrac{m \times a_{i + 1}}{b_i} \right)$$
+$$
+\max \left(\frac{m}{b_i}, \frac{m \times a_i}{b_{i + 1}} \right) \le \max \left(\frac{m}{b_{i + 1}}, \frac{m \times a_{i + 1}}{b_i} \right)
+$$
 
 tương đương với (nhân hai vế với $\frac{b_i b_{i+1}}{m}$):
 
-$$\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$$
+$$
+\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})
+$$
 
 Đến đây, việc dùng luôn bất đẳng thức trên làm hàm so sánh khi cài đặt sắp xếp có thể dẫn đến kết quả sai vì đây **không phải** một quan hệ thứ tự hợp lệ: chẳng hạn với ba ông quan $(1, 2), (1, 12), (2, 3)$, cặp thứ nhất và thứ hai "bằng nhau" theo bất đẳng thức, cặp thứ hai và thứ ba cũng "bằng nhau", nhưng để tối ưu thì $(1, 2)$ lại phải đứng ngay trước $(2, 3)$.
 
@@ -391,7 +403,7 @@ Trong thực tế, Exchange Argument còn được sử dụng phổ biến tron
 
 Cho $N$ hàm tuyến tính $f_i(x) = A_ix + B_i$. Tính giá trị lớn nhất của hàm hợp $f_{p_1}(f_{p_2}(\dots f_{p_K}(1) \dots))$ với $(p_1, \dots, p_K)$ là các bộ $K$ số khác nhau.
 
-Giới hạn: $N \le 2 \times 10^5, K \le \min(N, 10), 1 \le A_i, B_i \le 50$.
+Giới hạn: $N \le 2 \times 10^{5}, K \le \min(N, 10), 1 \le A_i, B_i \le 50$.
 
 :::spoiler Lời giải và chứng minh
 
@@ -414,16 +426,18 @@ $\Rightarrow$ Hàm nào có giá trị $\frac{B}{A-1}$ lớn hơn sẽ được 
 
 Gọi $\texttt{dp}[j]$ là giá trị lớn nhất tạo được với hàm hợp của $j$ hàm số. Duyệt qua danh sách hàm số đã sắp xếp: Với mỗi hàm $f_i(x) = A_ix + B_i$, ta xem xét việc áp dụng hàm này sau khi đã áp dụng $j-1$ hàm trước đó. Công thức chuyển trạng thái như sau:
 
-$$\texttt{dp}[j] = \max(\texttt{dp}[j], A_i \times \texttt{dp}[j-1] + B_i)$$
+$$
+\texttt{dp}[j] = \max(\texttt{dp}[j], A_i \times \texttt{dp}[j-1] + B_i)
+$$
 
 Khởi tạo: $\texttt{dp}[0] = 1$ (đề bài cho $x = 1$), các vị trí khác $-\infty$.
 :::
 
 :::spoiler Cài đặt
 ```cpp=
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
@@ -504,15 +518,15 @@ Bạn có thông tin giá cổ phiếu của $N$ ngày tiếp theo. Mỗi ngày 
 
 Trong bài toán này, chúng ta sẽ "thử" giao dịch nếu thấy có lãi, nhưng sẽ lưu lại thông tin để hoàn tác giao dịch này và sửa sai trong tương lai. Ta dựng một Priority Queue thể hiện danh sách quyền mua. Tại ngày $i$ với giá $p_i$, ta làm như sau:
 
-1. Ta luôn coi $p_i$ là một cơ hội mua tiềm năng và thêm vào PQ. Nếu $p_i$ lớn hơn quyền mua thấp nhất hiện có trong quá khứ ($p_{min}$), ta thực hiện khớp lệnh mua tại $p_{min}$ và bán tại $p_i$ để kiếm lời ngay lập tức: $p_i - p_{min}$. Việc ưu tiên chọn $p_{min}$ để khớp lệnh là chiến lược tốt nhất vì nó không chỉ tối đa hóa lợi nhuận tức thời mà còn an toàn hơn về điều kiện giao dịch (vì $p_{min}$ dễ khớp lệnh hơn). Quan trọng nhất, việc "chốt lãi" sớm này không làm mất nghiệm tối ưu toàn cục, bởi bất kỳ lợi ích tiềm năng nào của việc để dành $p_{min}$ cho tương lai đều có thể được bù đắp bởi cơ chế sửa sai ở bước sau.
-2. Khi ta quyết định khớp lệnh mua ở $p_{min}$ với lệnh bán ở $p_i$, **ta vẫn đẩy $p_i$ lại vào PQ**. Thao tác này đóng vai trò như một công cụ toán học biến đổi trạng thái từ "vừa bán tại $p_i$" thành một "quyền mua ảo tại $p_i$". Nếu trong tương lai xuất hiện giá bán lời hơn $p_j > p_i$, ta sẽ dùng chính quyền mua ảo này để khớp lệnh (sửa lại lựa chọn). Khi đó, tổng lợi nhuận của chuỗi giao dịch sẽ là tổng đại số: $(p_i - p_{min}) + (p_j - p_i) = p_j - p_{min}$. Tức là việc sửa lại lựa chọn tương đương với việc ta đã đưa ra quyết định lời hơn (bán ở $p_j$) ngay từ đầu mà không vi phạm ràng buộc nào của bài toán.
+1. Ta luôn coi $p_i$ là một cơ hội mua tiềm năng và thêm vào PQ. Nếu $p_i$ lớn hơn quyền mua thấp nhất hiện có trong quá khứ ($p_{\min}$), ta thực hiện khớp lệnh mua tại $p_{\min}$ và bán tại $p_i$ để kiếm lời ngay lập tức: $p_i - p_{\min}$. Việc ưu tiên chọn $p_{\min}$ để khớp lệnh là chiến lược tốt nhất vì nó không chỉ tối đa hóa lợi nhuận tức thời mà còn an toàn hơn về điều kiện giao dịch (vì $p_{\min}$ dễ khớp lệnh hơn). Quan trọng nhất, việc "chốt lãi" sớm này không làm mất nghiệm tối ưu toàn cục, bởi bất kỳ lợi ích tiềm năng nào của việc để dành $p_{\min}$ cho tương lai đều có thể được bù đắp bởi cơ chế sửa sai ở bước sau.
+2. Khi ta quyết định khớp lệnh mua ở $p_{\min}$ với lệnh bán ở $p_i$, **ta vẫn đẩy $p_i$ lại vào PQ**. Thao tác này đóng vai trò như một công cụ toán học biến đổi trạng thái từ "vừa bán tại $p_i$" thành một "quyền mua ảo tại $p_i$". Nếu trong tương lai xuất hiện giá bán lời hơn $p_j > p_i$, ta sẽ dùng chính quyền mua ảo này để khớp lệnh (sửa lại lựa chọn). Khi đó, tổng lợi nhuận của chuỗi giao dịch sẽ là tổng đại số: $(p_i - p_{\min}) + (p_j - p_i) = p_j - p_{\min}$. Tức là việc sửa lại lựa chọn tương đương với việc ta đã đưa ra quyết định lời hơn (bán ở $p_j$) ngay từ đầu mà không vi phạm ràng buộc nào của bài toán.
 :::
 
 :::spoiler Cài đặt
 ```cpp=
 #include <iostream>
-#include <vector>
 #include <queue>
+#include <vector>
 
 using namespace std;
 
@@ -584,7 +598,7 @@ Ta giải bài toán này bằng tìm kiếm nhị phân đáp án. Với $X$ c�
 
 Vì sao tham lam trả lời đúng? Gọi $r_1 < r_2 < \dots$ là các vị trí kết thúc đoạn của tham lam, và $r'_1 < r'_2 < \dots$ là của một cách chia hợp lệ bất kỳ. Ta chứng minh $r_j \ge r'_j$ với mọi $j$ bằng quy nạp: đoạn thứ $j$ của tham lam bắt đầu tại $r_{j-1} + 1 \ge r'_{j-1} + 1$, tức không sớm hơn đoạn thứ $j$ của cách chia kia. Vì các phần tử đều dương, đoạn $[r_{j-1} + 1, r'_j]$ là một phần của đoạn $[r'_{j-1} + 1, r'_j]$ nên có tổng $\le X$, và tham lam kéo dài tối đa nên kết thúc không sớm hơn $r'_j$. Do đó tham lam dùng số đoạn ít nhất trong mọi cách chia hợp lệ; nếu tham lam cần nhiều hơn $k$ đoạn thì không có cách chia mảng thoả mãn.
 
-Độ phức tạp của bài toán là $O(n \log \sum a_i)$.
+Độ phức tạp của bài toán là $\mathcal{O}(n \log \sum a_i)$.
 :::
 
 ## Kĩ thuật và lưu ý khi cài đặt
@@ -600,8 +614,8 @@ Hàm `std::sort` trong C++ có cú pháp như sau:
 
 ```cpp
 // ví dụ, với vector s
-sort(s.begin(), s.end(), func)   // sắp xếp theo func
-sort(s.rbegin(), s.rend(), func) // sắp xếp theo thứ tự ngược lại của func
+sort(s.begin(), s.end(), func);   // sắp xếp theo func
+sort(s.rbegin(), s.rend(), func); // sắp xếp theo thứ tự ngược lại của func
 ```
 
 với `func` là hàm so sánh (comparator) tuỳ chọn giữa 2 phần tử bất kì trong mảng. Nếu ta không thiết lập hàm `func` này, thì kiểu dữ liệu mà ta sử dụng phải có định nghĩa phép toán `<` của nó. Chẳng hạn, trong bài toán Chia vàng ở phần Exchange Argument, ta có thể cài đặt như sau:
@@ -667,7 +681,7 @@ Mỗi con tàu có phần mui và phần đuôi, khoảng cách giữa mui và �
 
 Sau mỗi truy vấn, tính tổng thời gian ít nhất để đưa toàn bộ tàu trong danh sách ra khỏi đường ray mà không xảy ra tai nạn. Tai nạn có thể xảy ra giữa 2 tàu ở thời điểm mui của tàu đi sau đâm vào đuôi của tàu đi trước, vận tốc của tàu đi sau lớn hơn tàu đi trước và tàu đi trước chưa ra khỏi đường ray. In ra đáp án tối ưu (luôn có dạng là số hữu tỉ) theo modulo $998244353$.
 
-Giới hạn: $s \le 10^9, q \le 2 \times 10^5, 1 \le l, v \le 10^6$.
+Giới hạn: $s \le 10^{9}, q \le 2 \times 10^{5}, 1 \le l, v \le 10^{6}$.
 
 :::spoiler Lời giải
 
@@ -681,12 +695,12 @@ Tiếp theo đó, bằng việc ngồi nháp toán và chứng minh công thức
 3. Giả sử có 2 tàu $T_1 = (l_1, v_1)$ và $T_ 2 = (l_2, v_2)$ với $v_1 < v_2$. Ta cho $T_1$ đi trước, $T_2$ đi sau và $T_2$ sẽ có xu hướng đuổi kịp. Để tối ưu thời gian, ta căn chỉnh sao cho ngay thời điểm đuôi $T_1$ rời khỏi đường ray thì mui của $T_2$ cũng vừa chạm vạch kết thúc. Theo đó ta có giãn cách thời gian tối ưu giữa 2 tàu:
 
 $$
-\dfrac{s + l_1}{v_1} - \dfrac{s}{v_2} = \dfrac{s}{v_1} - \dfrac{s}{v_2} + \dfrac{l_1}{v_1}
+\frac{s + l_1}{v_1} - \frac{s}{v_2} = \frac{s}{v_1} - \frac{s}{v_2} + \frac{l_1}{v_1}
 $$
 
 4. Áp dụng nhận xét trên cho $n$ tàu, thì tổng thời gian tối ưu là: 
 $$
-\dfrac{s}{v_1} - \dfrac{s}{v_n} + \sum_{i = 1}^{n - 1} \dfrac{l_i}{v_i} + \dfrac{s + l_n}{v_n} = \dfrac{s}{v_1} + \sum_{i = 1}^{n} \dfrac{l_i}{v_i}
+\frac{s}{v_1} - \frac{s}{v_n} + \sum_{i = 1}^{n - 1} \frac{l_i}{v_i} + \frac{s + l_n}{v_n} = \frac{s}{v_1} + \sum_{i = 1}^{n} \frac{l_i}{v_i}
 $$
 
 **Chứng minh:** Gọi $T_1$ là tàu chậm nhất. Với các tàu xuất phát trước $T_1$, ta có đuôi của mỗi tàu phải rời vạch xuất phát trước khi mui tàu kế tiếp chạm vạch (nếu không hai tàu chồng lên nhau ngay tại vạch), nên tàu $i \ne 1$ chiếm vạch xuất phát ít nhất $\frac{l_i}{v_i}$, và $T_1$ xuất phát không sớm hơn tổng các $\frac{l_i}{v_i}$ đó. Bản thân $T_1$ cần thêm $\frac{s + l_1}{v_1}$ để ra khỏi đường ray. Cộng lại, tổng thời gian $\ge \frac{s}{v_1} + \sum_{i = 1}^{n} \frac{l_i}{v_i}$ với mọi cách sắp xếp. Các tàu xuất phát sau $T_1$ đều nhanh hơn hoặc bằng nó, mui của chúng luôn nằm sau đuôi $T_1$, nên chúng chỉ băng qua vạch kết thúc sau khi $T_1$ đã ra hẳn; tại vạch kết thúc mỗi lúc chỉ có một tàu băng qua và tàu $i$ chiếm vạch đúng $\frac{l_i}{v_i}$. Vậy nên ta thu được một cách dựng đạt được cận dưới của đáp án, nên công thức của nhận xét là tối ưu.
@@ -695,7 +709,7 @@ $$
 
 Tổng kết lại, thuật toán cuối cùng của bài chỉ cần duy trì 2 giá trị sau qua các thao tác thêm và xoá tàu khỏi danh sách:
 1. Vận tốc $v_1$ của tàu chậm nhất trong danh sách hiện tại, có thể dùng `multiset` hoặc `priority queue`.
-2. Tổng $\dfrac{l_i}{v_i}$ của các tàu đang có trong danh sách hiện tại.
+2. Tổng $\frac{l_i}{v_i}$ của các tàu đang có trong danh sách hiện tại.
 
 Độ phức tạp cho mỗi truy vấn là $\mathcal{O}(\log q)$.
 
@@ -711,7 +725,7 @@ Trước khi vượt mê cung. bạn có thể chọn trước độ dài tốc 
 
 Tính thời gian ngắn nhất có thể để ra khỏi mê cung khi chọn $m$ tối ưu.
 
-Giới hạn: $n \le 10^6, l_i \le 10^9$.
+Giới hạn: $n \le 10^{6}, l_i \le 10^{9}$.
 
 :::spoiler Lời giải
 
@@ -721,7 +735,9 @@ Chúng ta bắt đầu với một số nhận xét tham lam như sau về đáp
 
 1. Với $m$ cho trước thì ta có công thức tổng thời gian hoàn thành:
 
-$$ f(m) = \sum_{i = 1}^{n} \left \lceil \frac{l_i}{m} \right \rceil + [l_i \bmod m \ne 0]$$
+$$
+ f(m) = \sum_{i = 1}^{n} \left \lceil \frac{l_i}{m} \right \rceil + [l_i \bmod m \ne 0]
+$$
 
 $[x]$ là kí hiệu Iverson của biểu thức boolean $x$, với $[x] = 1$ nếu $x$ đúng và $0$ nếu $x$ sai.
 
@@ -744,86 +760,86 @@ using namespace std;
 // Hàm tính thời gian đi qua hành lang độ dài len với bước nhảy m
 // Công thức: ceil(len/m) + (1 nếu len không chia hết cho m)
 int calculate_cost(int len, int m) {
-  if (len % m == 0) {
-    return len / m;
-  } else {
-    return (len / m) + 2;  // 1 bước cuối + 1 giây choáng
-  }
+    if (len % m == 0) {
+        return len / m;
+    } else {
+        return (len / m) + 2; // 1 bước cuối + 1 giây choáng
+    }
 }
 
 void solve() {
-  int n;
-  cin >> n;
-  vector<int> a(n);
-  for (int i = 0; i < n; ++i) {
-    cin >> a[i];
-  }
-
-  // Sắp xếp để gom nhóm các hành lang có cùng độ dài
-  // và dễ dàng xử lý các phần tử nhỏ hơn/lớn hơn.
-  sort(a.begin(), a.end());
-
-  // Khởi tạo kết quả ban đầu: trường hợp tệ nhất mỗi hành lang tốn 2s
-  // (ví dụ chọn m > max(a_i), tất cả đều nhảy quá đà và bị choáng)
-  long long min_total_time = 2LL * n;
-
-  for (int i = 0; i < n;) {
-    int m = a[i];  // Chọn độ dài bước nhảy m bằng độ dài hành lang hiện tại
-
-    // Tìm vị trí cuối cùng có giá trị bằng a[i]
-    // Đoạn [i, j] là các hành lang có độ dài bằng m (tốn 1s)
-    int j = i;
-    while (j < n && a[j] == m) {
-      j++;
-    }
-    // j lúc này là chỉ số của phần tử đầu tiên > m (hoặc n)
-
-    // Tính chi phí cơ sở cho lần chọn m này:
-    // 1. Các hành lang < m: tốn 2s (nhảy quá đà ngay bước 1)
-    // 2. Các hành lang = m (từ i đến j-1): tốn 1s
-    // 3. Các hành lang > m (từ j đến n-1): giả sử tạm tính tối thiểu là 2s
-    //    (Thực tế sẽ >= 2s. Ta sẽ cộng phần chênh lệch sau)
-    long long current_time = i * 2 + (j - i) * 1 + (n - j) * 2;
-
-    // Tối ưu: Duyệt các phần tử lớn hơn m từ lớn về bé.
-    // Cộng thêm chi phí thực tế chênh lệch so với giả định (2s).
-    // Nếu tổng vượt quá kết quả tốt nhất hiện có thì dừng ngay.
-    for (int k = n - 1; k >= j; --k) {
-      int actual_cost = calculate_cost(a[k], m);
-      current_time += (actual_cost - 2);
-      if (current_time >= min_total_time) {
-        break;
-      }
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> a[i];
     }
 
-    min_total_time = min(min_total_time, current_time);
+    // Sắp xếp để gom nhóm các hành lang có cùng độ dài
+    // và dễ dàng xử lý các phần tử nhỏ hơn/lớn hơn.
+    sort(a.begin(), a.end());
 
-    // Chuyển sang nhóm độ dài tiếp theo
-    i = j;
-  }
+    // Khởi tạo kết quả ban đầu: trường hợp tệ nhất mỗi hành lang tốn 2s
+    // (ví dụ chọn m > max(a_i), tất cả đều nhảy quá đà và bị choáng)
+    long long min_total_time = 2LL * n;
 
-  cout << min_total_time << "\n";
+    for (int i = 0; i < n;) {
+        int m = a[i]; // Chọn độ dài bước nhảy m bằng độ dài hành lang hiện tại
+
+        // Tìm vị trí cuối cùng có giá trị bằng a[i]
+        // Đoạn [i, j] là các hành lang có độ dài bằng m (tốn 1s)
+        int j = i;
+        while (j < n && a[j] == m) {
+            j++;
+        }
+        // j lúc này là chỉ số của phần tử đầu tiên > m (hoặc n)
+
+        // Tính chi phí cơ sở cho lần chọn m này:
+        // 1. Các hành lang < m: tốn 2s (nhảy quá đà ngay bước 1)
+        // 2. Các hành lang = m (từ i đến j-1): tốn 1s
+        // 3. Các hành lang > m (từ j đến n-1): giả sử tạm tính tối thiểu là 2s
+        //    (Thực tế sẽ >= 2s. Ta sẽ cộng phần chênh lệch sau)
+        long long current_time = i * 2 + (j - i) * 1 + (n - j) * 2;
+
+        // Tối ưu: Duyệt các phần tử lớn hơn m từ lớn về bé.
+        // Cộng thêm chi phí thực tế chênh lệch so với giả định (2s).
+        // Nếu tổng vượt quá kết quả tốt nhất hiện có thì dừng ngay.
+        for (int k = n - 1; k >= j; --k) {
+            int actual_cost = calculate_cost(a[k], m);
+            current_time += (actual_cost - 2);
+            if (current_time >= min_total_time) {
+                break;
+            }
+        }
+
+        min_total_time = min(min_total_time, current_time);
+
+        // Chuyển sang nhóm độ dài tiếp theo
+        i = j;
+    }
+
+    cout << min_total_time << "\n";
 }
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-  int tc;
-  cin >> tc;
-  while (tc--) solve();
-  return 0;
+    int tc;
+    cin >> tc;
+    while (tc--)
+        solve();
+    return 0;
 }
-
 ```
 
 Ý tưởng tóm gọn như sau: Ở một thời điểm bất kì, giá trị của `min_total_time` là ngưỡng quyết định xem `l[i]` hiện tại có tối ưu hơn không. Để có thể quyết định nhanh, ta duyệt qua các giá trị từ lớn đến nhỏ, nếu đến một lúc nào đó `current_time` lớn hơn ngưỡng tối ưu hiện tại thì ta có thể loại luôn `l[i]`.
 
-Độ phức tạp của 2 vòng lặp khi này không phải $\mathcal{O}(n^2)$ mà là $\mathcal{O}(n)$. Thật vậy, xét một độ dài phân biệt $m$ với tần suất $\texttt{freq}(m)$:
+Độ phức tạp của 2 vòng lặp khi này không phải $\mathcal{O}(n^{2})$ mà là $\mathcal{O}(n)$. Thật vậy, xét một độ dài phân biệt $m$ với tần suất $\texttt{freq}(m)$:
 
 1. `current_time` khởi đầu bằng $2n - \texttt{freq}(m)$ (mọi hành lang $> m$ được tạm tính $2$ giây).
 2. `min_total_time` luôn $\le 2n - 1$ sau lần xét đầu tiên (nhận xét 2).
-3. Mỗi hành lang có độ dài $l > m$ và $l \ne 2m$ tốn ít nhất $3$ giây: nếu $m < l < 2m$ thì $\lceil l/m \rceil = 2$ và không chia hết, nếu $l > 2m$ thì $\lceil l/m \rceil \ge 3$. Mỗi hành lang như vậy cộng thêm ít nhất $1$ vào `current_time`. Hành lang $l = 2m$ tốn đúng $2$ giây, cộng thêm $0$.
+3. Mỗi hành lang có độ dài $l > m$ và $l \ne 2m$ tốn ít nhất $3$ giây: nếu $m < l < 2m$ thì $\left\lceil \frac{l}{m} \right\rceil = 2$ và không chia hết, nếu $l > 2m$ thì $\left\lceil \frac{l}{m} \right\rceil \ge 3$. Mỗi hành lang như vậy cộng thêm ít nhất $1$ vào `current_time`. Hành lang $l = 2m$ tốn đúng $2$ giây, cộng thêm $0$.
 
 Do đó sau khi duyệt qua không quá $\texttt{freq}(m)$ hành lang loại thứ nhất, `current_time` đã đạt `min_total_time` và vòng lặp trong dừng; xen giữa có thể có thêm không quá $\texttt{freq}(2m)$ hành lang loại thứ hai. Vậy với mỗi $m$ phân biệt, vòng lặp trong chạy không quá $\texttt{freq}(m) + \texttt{freq}(2m) + 1$ lần, và tổng đại lượng này trên mọi $m$ phân biệt là $\mathcal{O}(n)$. Độ phức tạp cuối cùng của bài là $\mathcal{O}(n \log n)$ do sắp xếp.
 

@@ -20,9 +20,9 @@ Làm việc với xác suất giống như làm một thí nghiệm. Một **k�
 
 Một số phép thử ví dụ:
 
-- Gieo một con súc sắc một lần: Không gian mẫu là $\Omega$ = {1; 2; 3; 4; 5; 6}.
+- Gieo một con súc sắc một lần: Không gian mẫu là $\Omega = \{1; 2; 3; 4; 5; 6\}$.
 
-- Gieo hai đồng xu phân biệt: Không gian mẫu là $\Omega$ = {(Ngửa, Ngửa), (Ngửa, Sấp), (Sấp, Ngửa), (Sấp, Sấp)}.
+- Gieo hai đồng xu phân biệt: Không gian mẫu là $\Omega = \{(\text{Ngửa}, \text{Ngửa}), (\text{Ngửa}, \text{Sấp}), (\text{Sấp}, \text{Ngửa}), (\text{Sấp}, \text{Sấp})\}$.
 
 Ta định nghĩa **biến cố (event)** là một tập hợp các kết quả của một phép thử. Do đó, một biến cố là một tập con của không gian mẫu. Nếu ta kí hiệu một biến cố là $\Omega_A$, thì $\Omega_A \subset \Omega$. Nếu một biến cố chỉ gồm một kết quả trong không gian mẫu, thì nó được gọi là biến cố đơn. Nếu một biến cố gồm nhiều kết quả trong không gian mẫu thì nó được gọi là biến cố phức.
 
@@ -38,13 +38,13 @@ Ví dụ bạn gieo một con súc sắc và một đồng xu. Xác suất nhậ
 
 ![](/uploads/number-theory-prob-1.gif)
 
-Nếu hai biến cố $A$ và $B$ độc lập với nhau, không biến cố nào ảnh hưởng đến biến cố nào, khi đó ta có thể viết: $P(AB) = P(A).P(B)$.
+Nếu hai biến cố $A$ và $B$ độc lập với nhau, không biến cố nào ảnh hưởng đến biến cố nào, khi đó ta có thể viết: $P(AB) = P(A) \times P(B)$.
 
 ## Xác suất có điều kiện (Conditional Probability)
 
-Xác suất có điều kiện là xác suất của một biến cố $B$ nào đó, biết rằng một biến cố $A$ khác xảy ra. Kí hiệu là $P(B| A)$, đọc là xác suất của $B$, biết $A$.
+Xác suất có điều kiện là xác suất của một biến cố $B$ nào đó, biết rằng một biến cố $A$ khác xảy ra. Kí hiệu là $P(B \mid A)$, đọc là xác suất của $B$, biết $A$.
 
-Sử dụng toán học, ta định nghĩa $P(B| A) = \frac{P(AB)}{P(A)}$.
+Sử dụng toán học, ta định nghĩa $P(B \mid A) = \frac{P(AB)}{P(A)}$.
 
 
 ## Các quy tắc tính xác suất (Rules of Probability)
@@ -56,9 +56,9 @@ $AB$ có nghĩa là giao của hai biến cố $A$ và $B$, và trong xác suấ
 
 Nếu $A$ và $B$ là hai biến cố phụ thuộc, xác suất của biến cố $AB$ được tính bằng công thức: $P(AB) = P(A \cup B) - (P(\text{chỉ } A) + P(\text{chỉ } B))$
 
-Nếu $A$ và $B$ là hai biến cố độc lập, xác suất của biến cố $AB$ được tính bằng công thức: $P(AB) = P(A).P(B)$.
+Nếu $A$ và $B$ là hai biến cố độc lập, xác suất của biến cố $AB$ được tính bằng công thức: $P(AB) = P(A) \times P(B)$.
 
-Do đó, xác suất có điều kiện của hai biến cố độc lập có thể được tính bằng công thức: $P(B|A) = \frac{P(AB)}{P(A)} \Leftrightarrow P(B|A) = \frac{P(A).P(B)}{P(A)} \Leftrightarrow P(B|A) = P(B)$.
+Do đó, xác suất có điều kiện của hai biến cố độc lập có thể được tính bằng công thức: $P(B \mid A) = \frac{P(AB)}{P(A)} \Leftrightarrow P(B \mid A) = \frac{P(A) \times P(B)}{P(A)} \Leftrightarrow P(B \mid A) = P(B)$.
 
 Công thức trên phù hợp với định nghĩa xác suất có điều kiện, biến cố $A$ có xảy ra hay không không làm ảnh hưởng đến xác suất xảy ra biến cố $B$, do đó xác suất biến cố $B$ xảy ra biết biến cố $A$ xảy ra bằng xác suất xảy ra biến cố $B$.
 
@@ -92,21 +92,21 @@ Từ quy tắc cộng, ta suy ra được quy tắc trừ hai biến cố xung k
 
 ## Xác suất có điều kiện của hai biến cố xung khắc
 
-Ta đã định nghĩa xác suất có điều kiện bằng công thức sau: $P(B|A) = \frac{P(AB)}{P(A)}$
+Ta đã định nghĩa xác suất có điều kiện bằng công thức sau: $P(B \mid A) = \frac{P(AB)}{P(A)}$
 
 Mà với hai biến cố xung khắc $A$ và $B$, ta lại có: $P(AB) = 0$
 
-Do đó $P(B|A) = \frac{0}{P(A)} = 0$.
+Do đó $P(B \mid A) = \frac{0}{P(A)} = 0$.
 
 ## Định lí Bayes (Bayes’ Theorem)
 
 Trong xác suất và thống kê, định lí Bayes mô tả xác suất của một biến cố dựa trên các biến cố có liên quan đến biến cố đó.
 
-Công thức của định lí Bayes như sau: $P(A|B) = \frac{P(A).P(B|A)}{P(B)}$, với $A$, $B$ là hai biến cố, $P(A)$, $P(B)$ là xác suất của hai biến cố, $P(A|B)$ là xác suất có điều kiện: xác suất của $A$ biết $B$ xảy ra, $P(B|A)$ là xác suất của $B$ biết $A$ xảy ra.
+Công thức của định lí Bayes như sau: $P(A \mid B) = \frac{P(A) \times P(B \mid A)}{P(B)}$, với $A$, $B$ là hai biến cố, $P(A)$, $P(B)$ là xác suất của hai biến cố, $P(A \mid B)$ là xác suất có điều kiện: xác suất của $A$ biết $B$ xảy ra, $P(B \mid A)$ là xác suất của $B$ biết $A$ xảy ra.
 
 ### Dạng mở rộng (Extended Form)
 
-Cho $n$ biến cố $A_1, A_2, ..., A_n$, khi đó nếu $P(B) = \sum_{i=1}^n P(B|A_i)P(A_i)$ thì $P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum\limits_{j=1}^n P(B|A_j) \times P(A_j)}$.
+Cho $n$ biến cố $A_1, A_2, \ldots, A_n$, khi đó nếu $P(B) = \sum_{i=1}^{n} P(B \mid A_i)P(A_i)$ thì $P(A_i \mid B) = \frac{P(B \mid A_i)P(A_i)}{\sum\limits_{j=1}^{n} P(B \mid A_j) \times P(A_j)}$.
 
 ## Thuật toán ngẫu nhiên (Randomized Algorithms)
 

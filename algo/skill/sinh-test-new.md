@@ -81,7 +81,7 @@ mt19937 rng2(chrono::steady_clock::now().time_since_epoch().count());
 
 ## Kiểm thử thời gian, không gian của code
 
-Như mình đã đề cập ở trên, việc sinh test cũng có thể đuợc sử dụng để kiểm tra cũng như đảm bảo thời gian code chạy. Chẳng hạn như trong một kì thi offline, bạn code một thuật có độ phức tạp là $O(n\log^2{n})$ với $n = 200000$, tuy so sánh với test trâu đã đúng nhưng vẫn là khá sát với TL (thường là $1-2$s).
+Như mình đã đề cập ở trên, việc sinh test cũng có thể đuợc sử dụng để kiểm tra cũng như đảm bảo thời gian code chạy. Chẳng hạn như trong một kì thi offline, bạn code một thuật có độ phức tạp là $\mathcal{O}(n\log^{2}{n})$ với $n = 200000$, tuy so sánh với test trâu đã đúng nhưng vẫn là khá sát với TL (thường là $1-2$s).
 
 Để test code, ta chỉ cần chỉnh limit các biến trong test lên mức tối đa mà đề bài cho, cũng như bỏ code trâu (vì nếu để lại sẽ chạy rất lâu). Ngoài ra, để kiểm tra xem code chạy chính xác mất bao lâu trong một test, ta có thể sử dụng hàm $\texttt{clock}()$ như sau:
 
@@ -108,57 +108,60 @@ Code chính (code ta muốn kiểm tra):
   <summary>Code tham khảo</summary>
   
 ```cpp=
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
- 
+
 #define int long long
 #define fi first
 #define se second
 #define pb push_back
 #define mp make_pair
-#define foru(i, l, r) for(int i = l; i <= r; i++)
-#define ford(i, r, l) for(int i = r; i >= l; i--)
- 
+#define foru(i, l, r) for (int i = l; i <= r; i++)
+#define ford(i, r, l) for (int i = r; i >= l; i--)
+
 typedef pair<int, int> ii;
 typedef pair<ii, int> iii;
 typedef pair<ii, ii> iiii;
- 
+
 const int N = 1e3 + 5;
- 
+
 const int oo = 1e18 + 7, mod = 1e9 + 7;
- 
+
 int n, k, a, b;
 vector<int> Adj[N];
- 
+
 int dp[N][N][5], f[N][5];
- 
+
 int sz[N], ans;
- 
-void dfs(int u, int p){
+
+void dfs(int u, int p) {
     bool ck = 0;
-    for(auto v : Adj[u]){
-        if(v == p) continue;
+    for (auto v : Adj[u]) {
+        if (v == p)
+            continue;
         dfs(v, u);
         ck = 1;
     }
     dp[u][0][1] = dp[u][0][0] = 1;
-    if(!ck){
+    if (!ck) {
         return;
     }
     sz[u] = 1;
-    for(auto v : Adj[u]){
-        if(v == p) continue;
-        for(int i = 0; i <= sz[u]; i++){
-            for(int j = 0; j <= k; j++){
+    for (auto v : Adj[u]) {
+        if (v == p)
+            continue;
+        for (int i = 0; i <= sz[u]; i++) {
+            for (int j = 0; j <= k; j++) {
                 f[i][j] = dp[u][i][j];
                 dp[u][i][j] = 0;
             }
         }
-        for(int i = 0; i <= sz[u]; i++){
-            for(int j = 0; j <= sz[v]; j++){
-                for(int num1 = 0; num1 <= k; num1++){
-                    for(int num2 = 0; num2 <= k; num2++){
-                        if(num2 + num1 > k) continue;
+        for (int i = 0; i <= sz[u]; i++) {
+            for (int j = 0; j <= sz[v]; j++) {
+                for (int num1 = 0; num1 <= k; num1++) {
+                    for (int num2 = 0; num2 <= k; num2++) {
+                        if (num2 + num1 > k)
+                            continue;
                         dp[u][i + j + (num2 > 0)][num1 + num2] += f[i][num1] * dp[v][j][num2];
                     }
                 }
@@ -201,89 +204,96 @@ Code "trâu":
   <summary>Code tham khảo</summary>
   
 ```cpp=
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
- 
+
 #define int long long
 #define fi first
 #define se second
 #define pb push_back
 #define mp make_pair
-#define foru(i, l, r) for(int i = l; i <= r; i++)
-#define ford(i, r, l) for(int i = r; i >= l; i--)
- 
+#define foru(i, l, r) for (int i = l; i <= r; i++)
+#define ford(i, r, l) for (int i = r; i >= l; i--)
+
 typedef pair<int, int> ii;
 typedef pair<ii, int> iii;
 typedef pair<ii, ii> iiii;
- 
+
 const int N = 2e3 + 5;
- 
+
 const int oo = 1e18 + 7, mod = 1e9 + 7;
- 
+
 int n, k, a, b;
- 
+
 int lca[N][N];
- 
+
 vector<int> nodes[N];
 vector<int> Adj[N];
- 
+
 int root;
- 
+
 int d[N];
- 
-void dfs_small(int u, int p){
-    for(auto v : Adj[u]){
-        if(v == p) continue;
+
+void dfs_small(int u, int p) {
+    for (auto v : Adj[u]) {
+        if (v == p)
+            continue;
         d[v] = d[u] + 1;
         dfs_small(v, u);
     }
 }
- 
-void dfs(int u, int p){
-    if(u >= root) nodes[u].pb(u);
-    for(auto v : Adj[u]){
-        if(v == p) continue;
+
+void dfs(int u, int p) {
+    if (u >= root)
+        nodes[u].pb(u);
+    for (auto v : Adj[u]) {
+        if (v == p)
+            continue;
         d[v] = d[u] + 1;
         dfs(v, u);
     }
-    for(auto v : Adj[u]){
-        if(v == p) continue;
-        for(auto w : nodes[v]) nodes[u].pb(w);
+    for (auto v : Adj[u]) {
+        if (v == p)
+            continue;
+        for (auto w : nodes[v])
+            nodes[u].pb(w);
     }
-    for(int itr1 = 0; itr1 < Adj[u].size(); itr1++){
-        for(int itr2 = itr1 + 1; itr2 < Adj[u].size(); itr2++){
+    for (int itr1 = 0; itr1 < Adj[u].size(); itr1++) {
+        for (int itr2 = itr1 + 1; itr2 < Adj[u].size(); itr2++) {
             int v1 = Adj[u][itr1], v2 = Adj[u][itr2];
-            if(v1 == p || v2 == p) continue;
-            for(int i = 0; i < nodes[v1].size(); i++){
-                for(int j = 0; j < nodes[v2].size(); j++){
+            if (v1 == p || v2 == p)
+                continue;
+            for (int i = 0; i < nodes[v1].size(); i++) {
+                for (int j = 0; j < nodes[v2].size(); j++) {
                     lca[nodes[v1][i]][nodes[v2][j]] = lca[nodes[v2][j]][nodes[v1][i]] = u;
                 }
             }
         }
     }
-    if(u >= root){
-        for(auto v : nodes[u]){
+    if (u >= root) {
+        for (auto v : nodes[u]) {
             lca[u][v] = lca[v][u] = u;
         }
     }
 }
- 
-void process(){
+
+void process() {
     cin >> n >> k >> a >> b;
-    for(int i = 1; i < n; i++){
+    for (int i = 1; i < n; i++) {
         int x, y;
         cin >> x >> y;
         Adj[x].pb(y);
         Adj[y].pb(x);
     }
-    if(k == 2){
+    if (k == 2) {
         int ans = 0;
-        for(int i = 1; i <= n; i++){
+        for (int i = 1; i <= n; i++) {
             d[i] = 0;
             dfs_small(i, i);
-            for(int j = i + 1; j <= n; j++){
-                if(i == j) continue;
-                if(d[j] >= a && d[j] <= b){
+            for (int j = i + 1; j <= n; j++) {
+                if (i == j)
+                    continue;
+                if (d[j] >= a && d[j] <= b) {
                     ans++;
                 }
             }
@@ -348,43 +358,43 @@ Code sinh test (để debug):
 <summary>Code tham khảo</summary>
 
 ```cpp=
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
- 
+
 #define fi first
 #define se second
 #define pb push_back
- 
+
 typedef pair<int, int> ii;
 typedef pair<ii, int> iii;
 typedef pair<ii, ii> iiii;
- 
+
 const int N = 2e5 + 5;
- 
+
 // Tên bài
 const string NAME = "comnet";
- 
+
 // Số test chúng ta muốn kiểm tra
 const int TEST = 100;
- 
+
 // Đây là các số trong đề bài
 int n, k, a, b;
- 
+
 // Trong code gen để debug, các bạn có thể giữ nguyên seed để đảm bảo lần nào generator cũng generate ra những test giống nhau.
 // Như vậy, các bạn đảm bảo rằng code của mình thỏa mãn tất cả những test từng sai
 mt19937 rng(7405);
- 
+
 // Còn nếu các bạn muổn random hoàn toàn có thể dùng
 mt19937 rng2(chrono::steady_clock::now().time_since_epoch().count());
- 
+
 // Hàm này trả về một số bất kì trong khoảng [l, r]
-int rnd(int l, int r){
+int rnd(int l, int r) {
     // rng() trả về một số bất kì
     return abs((int)rng() % (r - l + 1)) + l;
 }
- 
+
 // Hàm này được dùng để tạo ra test
-void generate_test(){
+void generate_test() {
     // Chúng ta sinh test và xuất ra file .inp
     // Mỗi lần chúng ta xuất ra file .inp, ta sẽ in đè lên input cũ
     ofstream inp((NAME + ".inp").c_str());
@@ -456,89 +466,96 @@ Code sinh test (để sinh lần cuối trước khi nộp bài) (optional):
 <summary>Code tham khảo</summary>
     
 ```cpp=
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
- 
+
 #define int long long
 #define fi first
 #define se second
 #define pb push_back
 #define mp make_pair
-#define foru(i, l, r) for(int i = l; i <= r; i++)
-#define ford(i, r, l) for(int i = r; i >= l; i--)
- 
+#define foru(i, l, r) for (int i = l; i <= r; i++)
+#define ford(i, r, l) for (int i = r; i >= l; i--)
+
 typedef pair<int, int> ii;
 typedef pair<ii, int> iii;
 typedef pair<ii, ii> iiii;
- 
+
 const int N = 2e3 + 5;
- 
+
 const int oo = 1e18 + 7, mod = 1e9 + 7;
- 
+
 int n, k, a, b;
- 
+
 int lca[N][N];
- 
+
 vector<int> nodes[N];
 vector<int> Adj[N];
- 
+
 int root;
- 
+
 int d[N];
- 
-void dfs_small(int u, int p){
-    for(auto v : Adj[u]){
-        if(v == p) continue;
+
+void dfs_small(int u, int p) {
+    for (auto v : Adj[u]) {
+        if (v == p)
+            continue;
         d[v] = d[u] + 1;
         dfs_small(v, u);
     }
 }
- 
-void dfs(int u, int p){
-    if(u >= root) nodes[u].pb(u);
-    for(auto v : Adj[u]){
-        if(v == p) continue;
+
+void dfs(int u, int p) {
+    if (u >= root)
+        nodes[u].pb(u);
+    for (auto v : Adj[u]) {
+        if (v == p)
+            continue;
         d[v] = d[u] + 1;
         dfs(v, u);
     }
-    for(auto v : Adj[u]){
-        if(v == p) continue;
-        for(auto w : nodes[v]) nodes[u].pb(w);
+    for (auto v : Adj[u]) {
+        if (v == p)
+            continue;
+        for (auto w : nodes[v])
+            nodes[u].pb(w);
     }
-    for(int itr1 = 0; itr1 < Adj[u].size(); itr1++){
-        for(int itr2 = itr1 + 1; itr2 < Adj[u].size(); itr2++){
+    for (int itr1 = 0; itr1 < Adj[u].size(); itr1++) {
+        for (int itr2 = itr1 + 1; itr2 < Adj[u].size(); itr2++) {
             int v1 = Adj[u][itr1], v2 = Adj[u][itr2];
-            if(v1 == p || v2 == p) continue;
-            for(int i = 0; i < nodes[v1].size(); i++){
-                for(int j = 0; j < nodes[v2].size(); j++){
+            if (v1 == p || v2 == p)
+                continue;
+            for (int i = 0; i < nodes[v1].size(); i++) {
+                for (int j = 0; j < nodes[v2].size(); j++) {
                     lca[nodes[v1][i]][nodes[v2][j]] = lca[nodes[v2][j]][nodes[v1][i]] = u;
                 }
             }
         }
     }
-    if(u >= root){
-        for(auto v : nodes[u]){
+    if (u >= root) {
+        for (auto v : nodes[u]) {
             lca[u][v] = lca[v][u] = u;
         }
     }
 }
- 
-void process(){
+
+void process() {
     cin >> n >> k >> a >> b;
-    for(int i = 1; i < n; i++){
+    for (int i = 1; i < n; i++) {
         int x, y;
         cin >> x >> y;
         Adj[x].pb(y);
         Adj[y].pb(x);
     }
-    if(k == 2){
+    if (k == 2) {
         int ans = 0;
-        for(int i = 1; i <= n; i++){
+        for (int i = 1; i <= n; i++) {
             d[i] = 0;
             dfs_small(i, i);
-            for(int j = i + 1; j <= n; j++){
-                if(i == j) continue;
-                if(d[j] >= a && d[j] <= b){
+            for (int j = i + 1; j <= n; j++) {
+                if (i == j)
+                    continue;
+                if (d[j] >= a && d[j] <= b) {
                     ans++;
                 }
             }
@@ -608,77 +625,75 @@ Code mẫu:
 <summary>Code tham khảo</summary>
     
 ```cpp=
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
- 
+
 // Tên bài
 const string NAME = "";
- 
+
 // Số test chúng ta muốn kiểm tra
 const int TEST = 100;
- 
+
 // Trong code gen để debug, các bạn có thể giữ nguyên seed để đảm bảo lần nào generator cũng generate ra những test giống nhau.
 // Như vậy, các bạn đảm bảo rằng code của mình thỏa mãn tất cả những test từng sai
 mt19937 rng(7405);
- 
+
 // Còn nếu các bạn muổn random hoàn toàn có thể dùng
 mt19937 rng2(chrono::steady_clock::now().time_since_epoch().count());
- 
+
 // Hàm này trả về một số bất kì trong khoảng [l, r]
-int rnd(int l, int r){
+int rnd(int l, int r) {
     // rng() trả về một số bất kì
     return abs((int)rng() % (r - l + 1)) + l;
 }
- 
+
 // Hàm này được dùng để tạo ra test
-void generate_test(){
+void generate_test() {
     // Chúng ta sinh test và xuất ra file .inp
     // Mỗi lần chúng ta xuất ra file .inp, ta sẽ in đè lên input cũ
     ofstream inp((NAME + ".inp").c_str());
     // sinh test ở đây
     inp.close();
 }
- 
+
 // Ở khá nhiều bài, việc check output chỉ đơn thuần là so sánh xem output của file .out và .ans có ra giống hệt nhau không.
 // Đây là một trong những bài đó
-bool check_test(){
+bool check_test() {
     // Lệnh dưới đây kiểm tra hai file có giống hệt nhau hay không
-    if(system(("fc " + NAME + ".out " + NAME + ".ans").c_str()) != 0){// 2 file khác nhau
+    if (system(("fc " + NAME + ".out " + NAME + ".ans").c_str()) != 0) { // 2 file khác nhau
         return 0;
-    }
-    else{
+    } else {
         return 1;
     }
 }
- 
+
 // Hàm này được dùng để kiểm tra output của một bài bất kì
 // Tuy không cần thiết cho bài này, nhưng sẽ hữu ích cho những bài khác
-bool general_check_test(){
-    // Ta nhập vào output từ file output được sinh ra từ 
+bool general_check_test() {
+    // Ta nhập vào output từ file output được sinh ra từ
     ifstream out1((NAME + ".out").c_str());
     ifstream out2((NAME + ".ans").c_str());
     // nhập vào dữ liệu của 2 file và check xem output của file .out có thỏa mãn không
- 
+    return true; // TODO: cài đặt kiểm tra cụ thể cho từng bài
 }
- 
-void process(){
-    for(int itest = 1; itest <= TEST; itest++){
+
+void process() {
+    for (int itest = 1; itest <= TEST; itest++) {
         generate_test();
         // 2 dòng tiếp theo để chạy 2 code mẫu và code trâu
         system((".\\" + NAME + ".exe").c_str());
         system((".\\" + NAME + "_trau.exe").c_str());
         bool ok = check_test();
-        if(!ok){
+        if (!ok) {
             cout << "TEST " << itest << ": WA\n";
-            exit(0);// Dừng lại ngay khi tìm được test sai
-        }
-        else{
+            exit(0); // Dừng lại ngay khi tìm được test sai
+        } else {
             cout << "TEST " << itest << ": AC\n";
         }
     }
 }
- 
-signed main(){
+
+signed main() {
     // Việc không để ios_base::sync_with_stdio(0)/cin.tie(0) là để dễ xem trạng thái của từng test
     process();
 }
@@ -689,7 +704,7 @@ signed main(){
 
 ### Mảng
 
-Việc sinh mảng khá đơn giản, chúng ta sinh random $N$ -- số phần tử của mảng -- và sau đó sinh tiếp ra $N$ số $A_1, A_2, ..., A_N$ là các phần tử của mảng. Ta có thể sinh $N$ cũng như các phần tử  nhỏ trước để khi tìm được test sai có thể debug được, còn việc sinh $N$ lớn có thể để kiểm tra lần cuối cùng.
+Việc sinh mảng khá đơn giản, chúng ta sinh random $N$ -- số phần tử của mảng -- và sau đó sinh tiếp ra $N$ số $A_1, A_2, \ldots, A_N$ là các phần tử của mảng. Ta có thể sinh $N$ cũng như các phần tử  nhỏ trước để khi tìm được test sai có thể debug được, còn việc sinh $N$ lớn có thể để kiểm tra lần cuối cùng.
 
 Một số trường hợp các bạn có thể kiểm tra:
 - Nhiều số trùng nhau, ít số phân biệt.
@@ -707,13 +722,13 @@ Chẳng hạn như để sinh ra một cây (đồ thị với $N$ đỉnh và $
     - Đầu tiên ta sinh ra $N$ -- số đỉnh của cây. 
     - Với mỗi đỉnh $i$ từ $2$ đến $N$, ta nối $i$ với một đỉnh bất kì trong khoảng $[1, i - 1]$. 
     - *(Tùy chọn)* Đảo lại thứ tự của các đỉnh.
-  Đây là cách nhanh và an toàn nhất để sinh ra cây, tuy nhiên hai nhuợc điểm của cách sinh test này là cây sẽ có độ cao thấp (khoảng $\log{N}$) và bậc của các đỉnh (số cạnh nối với đỉnh đó) sẽ thấp (cũng chỉ là $O(\log{N}$)). 
+  Đây là cách nhanh và an toàn nhất để sinh ra cây, tuy nhiên hai nhuợc điểm của cách sinh test này là cây sẽ có độ cao thấp (khoảng $\log{N}$) và bậc của các đỉnh (số cạnh nối với đỉnh đó) sẽ thấp (cũng chỉ là $\mathcal{O}(\log{N}$)). 
   Ngoài ra, cây được sinh ra sẽ không hoàn toàn ngẫu nhiên. Những đỉnh có chỉ số thấp hơn thường sẽ có bậc cao hơn (đỉnh thứ $i$ sẽ có bậc kì vọng là $1 + \sum_{j = i + 1}^{n}\frac{1}{j - 1}$), và cây sẽ có xu hướng gần với đường thẳng hơn. 
 - Sinh bằng Prüfer code: 
     - Đầu tiên ta sinh ra $N$ -- số đỉnh của cây. 
-    - Sau đó, ta sinh $N - 2$ số $A_1, ..., A_{N - 2}$ trong khoảng $[1, N]$ - các số không nhất thiết phải phân biệt. Dựa vào dãy này, ta tạo ra cây bằng cách như sau:
+    - Sau đó, ta sinh $N - 2$ số $A_1, \ldots, A_{N - 2}$ trong khoảng $[1, N]$ - các số không nhất thiết phải phân biệt. Dựa vào dãy này, ta tạo ra cây bằng cách như sau:
     - Khi bắt đầu, chúng ta có $N$ đỉnh và chưa có cạnh nào
-    - Ta định nghĩa $\texttt{deg}[i]$ với $1 \le i \le N$ là số lần xuất hiện của $i$ trong dãy $A_1, A_2, ..., A_{N - 2}$.
+    - Ta định nghĩa $\texttt{deg}[i]$ với $1 \le i \le N$ là số lần xuất hiện của $i$ trong dãy $A_1, A_2, \ldots, A_{N - 2}$.
     - Ở bước thứ $i$ $(1 \le i \le N - 2)$, ta tìm vị trí $u$ nhỏ nhất có $\texttt{deg}[u] = 0$, nối đỉnh $u$ với đỉnh $A_i$, và trừ $\texttt{deg}[u]$ và $\texttt{deg}[A_i]$ đi $1$ (ta trừ $\texttt{deg}[u]$ để đảm bảo rằng không bao giờ chọn $u$ nữa).
     - Cuối cùng, ta nối $2$ đỉnh chưa được chọn với nhau.
 
@@ -738,11 +753,11 @@ Việc sinh test hình học không hề đơn giản, đặc biệt việc sinh
 
 Những trường hợp biên hay gặp có thể kể đến:
 - Các đường thẳng song song, trùng nhau.
-- Các đường thẳng cắt nhau tại những điểm rất xa (chẳng hạn như hai đường thẳng đuợc tạo ra bởi $(0, 0), (0, 1)$ và $(0, 10^9), (10^9, 10^9 - 1)$). Việc tính toán giao điểm của những đường thẳng này có thể dẫn đến sai số lớn hơn sai số cho phép.
+- Các đường thẳng cắt nhau tại những điểm rất xa (chẳng hạn như hai đường thẳng đuợc tạo ra bởi $(0, 0), (0, 1)$ và $(0, 10^{9}), (10^{9}, 10^{9} - 1)$). Việc tính toán giao điểm của những đường thẳng này có thể dẫn đến sai số lớn hơn sai số cho phép.
 - Hai đường tròn giao nhau tại đúng 0/1/2 điểm.
 - Các điểm nằm ở trục toạ độ, $3$ điểm thẳng hàng (có thể rơi vào trường hợp chia cho $0$).
 
-Các bạn cũng lưu ý sinh test số bé, hoặc sinh những số tròn (chẳng hạn như $10^9, 10^9 - 1$) để dễ vẽ ra trong lúc debug.
+Các bạn cũng lưu ý sinh test số bé, hoặc sinh những số tròn (chẳng hạn như $10^{9}, 10^{9} - 1$) để dễ vẽ ra trong lúc debug.
 
 ## Luyện tập
 

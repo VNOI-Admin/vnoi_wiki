@@ -30,7 +30,7 @@ dateCreated: 2024-11-20T13:29:13.953Z
 ### **Basic Number Theory**
 - [Modulo cơ bản - ⭐](/algo/math/modulo)
 - [Ước chung lớn nhất & Thuật toán Euclid - ⭐](/algo/algebra/euclid)
-- [$a^b \bmod c$ - Lũy thừa nhị phân - ⭐](/algo/algebra/binary_exponentation.md)
+- [$a^{b} \bmod c$ - Lũy thừa nhị phân - ⭐](/algo/algebra/binary_exponentation.md)
 - [Sàng nguyên tố - ⭐](/algo/algebra/prime_sieve.md)
 - [Hàm số học cơ bản - ⭐](/algo/math/divisors)
 - [Nghịch đảo modulo - ⭐⭐](/algo/math/modular-inverse)

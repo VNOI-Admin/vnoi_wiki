@@ -46,9 +46,13 @@ Phần dưới đây liệt kê một số thuật ngữ quen thuộc với đa 
 - Trong đa giác lồi $n$ cạnh, tại mỗi đỉnh ta vẽ được $n-3$ đường chéo, cùng với các cạnh chúng tạo ra $n-2$ tam giác con. Như vậy, từ các đỉnh trong đa giác, ta có thể vẽ được nhiều nhất $\frac{n(n-3)}{2}$ đường chéo.
 - Các đa giác đều có chẵn cạnh vừa có tâm đối xứng vừa có trục đối xứng, còn các đa giác đều có lẻ cạnh thì chỉ có tâm đối xứng. 
 - **Bất đẳng thức đa giác**: Độ dài một cạnh bất kỳ của một đa giác lồi luôn nhỏ hơn tổng độ dài các cạnh còn lại. Cụ thể, trong đa giác gồm $n$ cạnh có độ dài lần lượt là $a_1$, $a_2$, ..., $a_n$, ta có: 
-$$\forall_i\in[1, n], a_i<\sum_{1\leq j\leq n, j\neq i}a_j$$ 
+$$
+\forall_i\in[1, n], a_i<\sum_{1\leq j\leq n, j\neq i}a_j
+$$
 Bất đẳng thức cũng có thể được biểu diễn sử dụng cạnh lớn nhất trong đa giác: 
-$$2\max_{1\leq i\leq n}a_i < \sum_{i = 1}^na_i$$
+$$
+2\max_{1\leq i\leq n}a_i < \sum_{i = 1}^na_i
+$$
 
 ### CTDL biểu diễn
 
@@ -124,7 +128,7 @@ struct Polygon {
 
 ### Ý tưởng
 
-Gọi $n$ điểm thuộc đa giác theo đúng thứ tự trên là $A_1, A_2, ..., A_n$, trong đó $A_1$ là điểm có tung độ nhỏ nhất trong số các điểm cùng có hoành độ nhỏ nhất. Để tiện biểu diễn các công thức, trong bài viết này ta sẽ quy ước thêm $A_{n + 1} \equiv A_1$.
+Gọi $n$ điểm thuộc đa giác theo đúng thứ tự trên là $A_1, A_2, \ldots, A_n$, trong đó $A_1$ là điểm có tung độ nhỏ nhất trong số các điểm cùng có hoành độ nhỏ nhất. Để tiện biểu diễn các công thức, trong bài viết này ta sẽ quy ước thêm $A_{n + 1} \equiv A_1$.
 
 Các công thức tính diện tích cho tam giác và một số dạng tứ giác đặc biệt vốn đã rất phổ biến. Tuy vậy, gần như chẳng có công thức nào cho phép ta tính ngay diện tích của một đa giác bất kỳ (ngay cả tứ giác đã khó rồi). Chỉ có một cách duy nhất để giải bài toán này: chia hình này thành những hình có thể tính được diện tích.
 
@@ -144,41 +148,61 @@ Bây giờ, hình đa giác đã chuyển thành một loạt các tam giác. M�
 Sau khi áp dụng các công thức để tính diện tích tam giác, việc còn lại chỉ là cộng các kết quả lại. Tổng nhận được chắc chắn là diện tích của đa giác cần tính.
 
 Trong các công thức trên, hai công thức đầu ít nhiều phải sử dụng phép căn bậc hai, còn công thức thứ ba với phép toán vector thì đơn giản hơn cả. Khi các đỉnh của đa giác được cho ngược chiều kim đồng hồ, ta có thể bỏ giá trị tuyệt đối của công thức trên: 
-$$S=\frac{1}{2}\sum_{i = 2}^{n-1}\overrightarrow{A_1A_i}\times \overrightarrow{A_1A_{i+1}}\tag{1}$$
+$$
+S=\frac{1}{2}\sum_{i = 2}^{n-1}\overrightarrow{A_1A_i}\times \overrightarrow{A_1A_{i+1}}\tag{1}
+$$
 
 Đến đây, ta đã có một công thức khá đẹp để tính diện tích đa giác. Tuy nhiên, ta vẫn có thể tiếp tục biến đổi $(1)$ để có công thức đẹp hơn. Ta thấy với $i = 1$ và $i = n$, $\overrightarrow{A_1A_i}\times \overrightarrow{A_1A_{i+1}}$ nhận giá trị bằng $0$. Vì vậy:   
-$$\begin{align}S &= \frac{1}{2}\sum_{i = 1}^{n} \overrightarrow{A_1A_i}\times \overrightarrow{A_1A_{i+1}}\\ &= \frac{1}{2}\sum_{i = 1}^{n}((x_i-x_1)(y_{i+1}-y_1) - (y_i-y_1)(x_{i+1}-x_1))\\&=\frac{1}{2}\sum_{i = 1}^{n}(x_iy_{i+1}-x_iy_1-x_1y_{i+1}-x_{i+1}y_i+x_1y_i+x_{i+1}y_1)\tag{2}\end{align}$$
+$$
+\begin{align}S &= \frac{1}{2}\sum_{i = 1}^{n} \overrightarrow{A_1A_i}\times \overrightarrow{A_1A_{i+1}}\\ &= \frac{1}{2}\sum_{i = 1}^{n}((x_i-x_1)(y_{i+1}-y_1) - (y_i-y_1)(x_{i+1}-x_1))\\&=\frac{1}{2}\sum_{i = 1}^{n}(x_iy_{i+1}-x_iy_1-x_1y_{i+1}-x_{i+1}y_i+x_1y_i+x_{i+1}y_1)\tag{2}\end{align}
+$$
 
 Ta áp dụng lại phép chia đa giác và tính diện tích, nhưng lần này với các đỉnh từ $A_2$ đến $A_n$ và thu được các đẳng thức giống như $(2)$. Cộng các kết quả trên lại, ta được: 
-$$\begin{align}nS &= \frac{1}{2}\sum_{j = 1}^n\sum_{i = 1}^n(x_iy_{i+1}-x_iy_j-x_jy_{i+1}-x_{i+1}y_i+x_jy_i+x_{i+1}y_j)\\&=\frac{n}{2}\sum_{i = 1}^n(x_iy_{i+1}-x_{i+1}y_i) \\&\quad+ \frac{1}{2}\sum_{i = 1}^n\sum_{j = 1}^n(-x_iy_j + x_jy_i - x_jy_{i+1}+x_{i+1}y_j)\\&=\frac{n}{2}\sum_{i = 1}^n(x_iy_{i+1}-x_{i+1}y_i)\tag{3}\end{align}$$
+$$
+\begin{align}nS &= \frac{1}{2}\sum_{j = 1}^n\sum_{i = 1}^n(x_iy_{i+1}-x_iy_j-x_jy_{i+1}-x_{i+1}y_i+x_jy_i+x_{i+1}y_j)\\&=\frac{n}{2}\sum_{i = 1}^n(x_iy_{i+1}-x_{i+1}y_i) \\&\quad+ \frac{1}{2}\sum_{i = 1}^n\sum_{j = 1}^n(-x_iy_j + x_jy_i - x_jy_{i+1}+x_{i+1}y_j)\\&=\frac{n}{2}\sum_{i = 1}^n(x_iy_{i+1}-x_{i+1}y_i)\tag{3}\end{align}
+$$
 
 Suy ra: 
-$$S=\frac{1}{2}\sum_{i = 1}^n{(x_iy_{i+1}-x_{i+1}y_i)}\tag{4}$$
+$$
+S=\frac{1}{2}\sum_{i = 1}^n{(x_iy_{i+1}-x_{i+1}y_i)}\tag{4}
+$$
 
 Trong trường hợp các đỉnh được cho theo thứ tự ngược lại, $(1)$ sẽ phải viết lại thành 
-$$S=-\frac{1}{2}\sum_{i = 2}^{n-1}\overrightarrow{A_1A_i}\times \overrightarrow{A_1A_{i+1}}$$ 
+$$
+S=-\frac{1}{2}\sum_{i = 2}^{n-1}\overrightarrow{A_1A_i}\times \overrightarrow{A_1A_{i+1}}
+$$
 Hoàn toàn tương tự, ta biến đổi được thành công thức giống như $(4)$: 
-$$S=-\frac{1}{2}\sum_{i = 1}^n{(x_iy_{i+1}-x_{i+1}y_i)}$$ 
+$$
+S=-\frac{1}{2}\sum_{i = 1}^n{(x_iy_{i+1}-x_{i+1}y_i)}
+$$
 Như vậy, diện tích của một đa giác với các đỉnh được cho lần lượt theo thứ tự, không phân biệt cùng chiều hay ngược chiều kim đồng hồ là: 
-$$S=\frac{1}{2}\left|\sum_{i = 1}^n{(x_iy_{i+1}-x_{i+1}y_i)}\right|\tag{5}$$
+$$
+S=\frac{1}{2}\left|\sum_{i = 1}^n{(x_iy_{i+1}-x_{i+1}y_i)}\right|\tag{5}
+$$
 
 Công thức này được gọi là **công thức tam giác**.
 
 Người ta cũng hay viết $(5)$ thành dạng định thức như sau: 
-$$S=\frac{1}{2}\left|\det\begin{bmatrix}x_1 & x_2 & ... & x_n & x_1 \\ y_1 & y_2 & ... & y_n & y_1\end{bmatrix}\right|\tag{6}$$
+$$
+S=\frac{1}{2}\left|\det\begin{bmatrix}x_1 & x_2 & \ldots & x_n & x_1 \\ y_1 & y_2 & \ldots & y_n & y_1\end{bmatrix}\right|\tag{6}
+$$
 
 Do khi tính định thức, ta lấy tổng của các hiệu giữa hai phần tử chéo nhau, người ta cũng gọi công thức tam giác là **công thức Shoelace (Shoelace Formula)** (shoelace nghĩa là dây giày).
 
 Công thức tam giác $(5)$ cũng có thể biến đổi một lần nữa thành dạng vector: 
-$$S=\frac{1}{2}\left|\sum_{i = 1}^n\overrightarrow{OA_i}\times \overrightarrow{OA_{i + 1}}\right|\tag{7}$$ 
+$$
+S=\frac{1}{2}\left|\sum_{i = 1}^n\overrightarrow{OA_i}\times \overrightarrow{OA_{i + 1}}\right|\tag{7}
+$$
 trong đó $O(0, 0)$ là gốc toạ độ.
 
 #### Công thức hình thang
 
 Bằng một hướng tiếp cận khác, chúng ta cũng có công thức sau: 
 
-**Định lý**: Diện tích đa giác $A_1A_2...A_n$ với các đỉnh được sắp xếp theo thứ tự cùng chiều hoặc ngược chiều kim đồng hồ là: 
-$$S = \frac{1}{2}\left|\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})\right|\tag{8}$$
+**Định lý**: Diện tích đa giác $A_1A_2 \ldots A_n$ với các đỉnh được sắp xếp theo thứ tự cùng chiều hoặc ngược chiều kim đồng hồ là: 
+$$
+S = \frac{1}{2}\left|\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})\right|\tag{8}
+$$
 
 Công thức $(8)$ được gọi là **công thức hình thang (Trapezoid Formula)**.
 
@@ -193,27 +217,39 @@ Xét trường hợp các đỉnh được cho ngược chiều kim đồng hồ
 ![geo1.png](/algo/geometry/p3/geo4.png)
 
 Xét hình thang $A_1H_1H_2A_2$ (đây là hình thang vì $A_1H_1$ song song với $A_2H_2$ do cùng vuông góc với $Ox$). Diện tích hình thang trên là: 
-$$\begin{align}S_{A_1H_1H_2A_2} &=\frac{A_1H_1+A_2H_2}{2}\\ &=\frac{(x_2 - x_1)(y_2+y_1)}{2}\end{align}$$
+$$
+\begin{align}S_{A_1H_1H_2A_2} &=\frac{A_1H_1+A_2H_2}{2}\\ &=\frac{(x_2 - x_1)(y_2+y_1)}{2}\end{align}
+$$
 
 Hoàn toàn tương tự, ta tính được diện tích của các hình thang $A_iH_iH_{i+1}A_{i+1}$: 
-$$\begin{align}S_{A_iH_iH_{i+1}A_{i+1}} &=\frac{|x_{i+1}-x_i|(y_{i+1}+y_i)}{2}\end{align}$$ 
+$$
+\begin{align}S_{A_iH_iH_{i+1}A_{i+1}} &=\frac{|x_{i+1}-x_i|(y_{i+1}+y_i)}{2}\end{align}
+$$
 
-Ta có thể thấy trên đa giác, tồn tại một điểm $A_k$ nào đó sao cho, $x_{i+1} \geq x_i$ với $i \leq k$ và $x_{i+1} \leq x_i$ với $i > k$, do các điểm đã được sắp theo thứ tự ngược chiều kim đồng hồ. Như vậy, diện tích đa giác đã cho bằng hiệu giữa diện tích đa giác $A_kA_{k+1}...A_1H_1H_k$ (phần phía trên) và đa giác $A_1A_2...A_kH_kH_1$ (phần phía dưới). Diện tích của hai đa giác này lại được tính bằng tổng diện tích các hình thang. Như vậy, diện tích đa giác $A_1A_2...A_n$ được tính như sau: 
-$$\begin{align}S &= S_{A_kA_{k+1}...A_1H_1H_k} - S_{A_1A_2...A_kH_kH_1} \\ &= \sum_{i = k + 1}^n\frac{|x_i-x_{i+1}|(y_i + y_{i+1})}{2} - \sum_{i = 1}^k\frac{|x_i-x_{i+1}|(y_i + y_{i+1})}{2} \\ &= \sum_{i = k + 1}^n\frac{(x_i-x_{i+1})(y_i + y_{i+1})}{2} + \sum_{i = 1}^k\frac{(x_i-x_{i+1})(y_i + y_{i+1})}{2} \\ &= \sum_{i = 1}^n\frac{(x_i-x_{i+1})(y_i + y_{i+1})}{2} \\&=\frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})\end{align}$$
+Ta có thể thấy trên đa giác, tồn tại một điểm $A_k$ nào đó sao cho, $x_{i+1} \geq x_i$ với $i \leq k$ và $x_{i+1} \leq x_i$ với $i > k$, do các điểm đã được sắp theo thứ tự ngược chiều kim đồng hồ. Như vậy, diện tích đa giác đã cho bằng hiệu giữa diện tích đa giác $A_kA_{k+1} \ldots A_1H_1H_k$ (phần phía trên) và đa giác $A_1A_2 \ldots A_kH_kH_1$ (phần phía dưới). Diện tích của hai đa giác này lại được tính bằng tổng diện tích các hình thang. Như vậy, diện tích đa giác $A_1A_2 \ldots A_n$ được tính như sau: 
+$$
+\begin{align}S &= S_{A_kA_{k+1} \ldots A_1H_1H_k} - S_{A_1A_2 \ldots A_kH_kH_1} \\ &= \sum_{i = k + 1}^n\frac{|x_i-x_{i+1}|(y_i + y_{i+1})}{2} - \sum_{i = 1}^k\frac{|x_i-x_{i+1}|(y_i + y_{i+1})}{2} \\ &= \sum_{i = k + 1}^n\frac{(x_i-x_{i+1})(y_i + y_{i+1})}{2} + \sum_{i = 1}^k\frac{(x_i-x_{i+1})(y_i + y_{i+1})}{2} \\ &= \sum_{i = 1}^n\frac{(x_i-x_{i+1})(y_i + y_{i+1})}{2} \\&=\frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})\end{align}
+$$
 
 **Trường hợp 2**: $Ox$ có 2 giao điểm với các cạnh của đa giác
 
 ![geo1.png](/algo/geometry/p3/geo5.png)
 
-Giả sử giá trị $y_i$ nhỏ nhất trong tất cả các điểm $A_i$ là $\zeta$. Ta tịnh tiến đa giác theo vector có toạ độ $(0, Y)$, trong đó $Y > \zeta$. Tức là, ta biến đa giác $A_1A_2...A_n$ thành đa giác $B_1B_2...B_n$, trong đó $B_i$ có toạ độ là $(x_i, y_i + Y)$. Do $Y > \zeta$, có thể khẳng định mọi giá trị $y_i + Y$ đều dương. Như vậy, đa giác $B_1B_2...B_n$ không có cạnh nào cắt trục $Ox$. Theo trường hợp thứ nhất, diện tích của đa giác mới tạo thành là: 
-$$\begin{align}S' &= \frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + Y + y_{i+1} + Y)\\&=\frac{1}{2}\times2Y\sum_{i=1}^n(x_i-x_{i+1}) + \frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})\\&=\frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})\end{align}$$ 
-Ta cũng biết rằng, phép tịnh tiến tạo ra hình mới bằng với hình cũ, và diện tích của chúng là giống nhau. Vậy diện tích hình $A_1A_2...A_n$ là $S = S'$.
+Giả sử giá trị $y_i$ nhỏ nhất trong tất cả các điểm $A_i$ là $\zeta$. Ta tịnh tiến đa giác theo vector có toạ độ $(0, Y)$, trong đó $Y > \zeta$. Tức là, ta biến đa giác $A_1A_2 \ldots A_n$ thành đa giác $B_1B_2 \ldots B_n$, trong đó $B_i$ có toạ độ là $(x_i, y_i + Y)$. Do $Y > \zeta$, có thể khẳng định mọi giá trị $y_i + Y$ đều dương. Như vậy, đa giác $B_1B_2 \ldots B_n$ không có cạnh nào cắt trục $Ox$. Theo trường hợp thứ nhất, diện tích của đa giác mới tạo thành là: 
+$$
+\begin{align}S' &= \frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + Y + y_{i+1} + Y)\\&=\frac{1}{2}\times2Y\sum_{i=1}^n(x_i-x_{i+1}) + \frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})\\&=\frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})\end{align}
+$$
+Ta cũng biết rằng, phép tịnh tiến tạo ra hình mới bằng với hình cũ, và diện tích của chúng là giống nhau. Vậy diện tích hình $A_1A_2 \ldots A_n$ là $S = S'$.
 
 Như vậy, trong cả hai trường hợp, diện tích của đa giác với các đỉnh được cho ngược chiều kim đồng hồ được tính theo công thức sau: 
-$$S = \frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})$$
+$$
+S = \frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})
+$$
 
 Hoàn toàn tương tự, khi các đỉnh được cho cùng chiều kim đồng hồ, diện tích của đa giác là: 
-$$S = -\frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})$$ 
+$$
+S = -\frac{1}{2}\sum_{i = 1}^n(x_i-x_{i+1})(y_i + y_{i+1})
+$$
 
 Hai công thức trên đều cho kết quả không âm. Vậy ta có điều phải chứng minh.
 
@@ -228,25 +264,23 @@ Dưới đây là cài đặt của công thức tam giác $(5)$:
 ```cpp=
 double Polygon::area() {
     long long s = 0;
-    for (int i = 0; i < nVertices; i ++) {
+    for (int i = 0; i < nVertices; i++) {
         int i1 = (i + 1) % nVertices;
-        s += 1ll * vertices[i].x * vertices[i1].y
-            - 1ll * vertices[i].y * vertices[i1].x;
+        s += 1ll * vertices[i].x * vertices[i1].y - 1ll * vertices[i].y * vertices[i1].x;
     }
     return abs(1.0 * s / 2);
 }
 ```
 
-Nếu nộp thử đoạn code trên, ta sẽ thấy kết quả chưa được đẹp lắm. Về mặt lý thuyết, phương pháp này không có gì sai. Vấn đề nằm ở kiểu dữ liệu `double`. Đối với kiểu này, các số được biểu diễn dưới dạng dấu phẩy động $\pm\overline{1.????...??}\times 10^{\pm\overline{???}}$, bao gồm 1 bit dấu $\pm$, 11 bit cho phần luỹ thừa và 52 bit cho phần sau dấu thập phân. Với số lượng bit để biểu diễn phần thập phân hạn chế như vậy, ta không thể biểu diễn chính xác tất cả các số trên miền giá trị của kết quả. Chẳng hạn, xét tam giác có toạ độ các đỉnh là $(-10^9 - 1, -10^9 - 1)$, $(10^9 + 1, -10^9 - 1)$, $(-10^9 - 1, 10^9 + 1)$, diện tích của nó sẽ là $2\times 10^{18} + 4\times 10^9 + 2$. Số này muốn biểu diễn chính xác ở dạng số nguyên phải dùng tới 61 bit (chưa tính dấu), do vậy ta không thể có kết quả đúng tới từng chữ số bằng `double` được.`long double` có vẻ cũng là một lựa chọn, tuy nhiên trên phần lớn hệ máy, đó cũng chỉ là `double` mà thôi.
+Nếu nộp thử đoạn code trên, ta sẽ thấy kết quả chưa được đẹp lắm. Về mặt lý thuyết, phương pháp này không có gì sai. Vấn đề nằm ở kiểu dữ liệu `double`. Đối với kiểu này, các số được biểu diễn dưới dạng dấu phẩy động $\pm\overline{1.????\ldots??}\times 10^{\pm\overline{???}}$, bao gồm 1 bit dấu $\pm$, 11 bit cho phần luỹ thừa và 52 bit cho phần sau dấu thập phân. Với số lượng bit để biểu diễn phần thập phân hạn chế như vậy, ta không thể biểu diễn chính xác tất cả các số trên miền giá trị của kết quả. Chẳng hạn, xét tam giác có toạ độ các đỉnh là $(-10^{9} - 1, -10^{9} - 1)$, $(10^{9} + 1, -10^{9} - 1)$, $(-10^{9} - 1, 10^{9} + 1)$, diện tích của nó sẽ là $2\times 10^{18} + 4\times 10^{9} + 2$. Số này muốn biểu diễn chính xác ở dạng số nguyên phải dùng tới 61 bit (chưa tính dấu), do vậy ta không thể có kết quả đúng tới từng chữ số bằng `double` được.`long double` có vẻ cũng là một lựa chọn, tuy nhiên trên phần lớn hệ máy, đó cũng chỉ là `double` mà thôi.
 
 Để ý thấy hai lần diện tích của đa giác là một số nguyên. Lợi dụng điều đó, với bài toán yêu cầu in ra chính xác diện tích đa giác, ta làm như sau:
 ```cpp=
 long long Polygon::area2() {
     long long s = 0;
-    for (int i = 0; i < nVertices; i ++) {
+    for (int i = 0; i < nVertices; i++) {
         int i1 = (i + 1) % nVertices;
-        s += 1ll * vertices[i].x * vertices[i1].y
-            - 1ll * vertices[i].y * vertices[i1].x;
+        s += 1ll * vertices[i].x * vertices[i1].y - 1ll * vertices[i].y * vertices[i1].x;
     }
     return abs(s);
 }
@@ -297,13 +331,13 @@ C.Jordan đã chứng minh rằng: Mọi đa giác không tự cắt đều chia
 
 ```cpp=
 enum PointPolygonPosition {
-    INSIDE,    // điểm nằm trong đa giác
-    OUTSIDE,   // điểm nằm ngoài đa giác
-    BOUNDARY   // điểm nằm trên cạnh đa giác
+    INSIDE,  // điểm nằm trong đa giác
+    OUTSIDE, // điểm nằm ngoài đa giác
+    BOUNDARY // điểm nằm trên cạnh đa giác
 };
 ```
 
-**Bài toán**: Cho đa giác $n$ đỉnh $A_1A_2...A_n$ không tự cắt, điểm thứ $i$ có toạ độ $(x_i, y_i)$ theo thứ tự ngược chiều kim đồng hồ. Cho $m$ điểm $P_1, P_2, ..., P_m$, với mỗi điểm $P_j$ hãy kiểm tra xem điểm này nằm trong, nằm trên cạnh hay nằm ngoài đa giác, biết rằng:
+**Bài toán**: Cho đa giác $n$ đỉnh $A_1A_2 \ldots A_n$ không tự cắt, điểm thứ $i$ có toạ độ $(x_i, y_i)$ theo thứ tự ngược chiều kim đồng hồ. Cho $m$ điểm $P_1, P_2, \ldots, P_m$, với mỗi điểm $P_j$ hãy kiểm tra xem điểm này nằm trong, nằm trên cạnh hay nằm ngoài đa giác, biết rằng:
 a) Đa giác đã cho là đa giác lồi
 b) Đa giác đã cho là đa giác không tự cắt bất kỳ (tức là có thể không lồi)
 
@@ -320,7 +354,7 @@ Kiểm tra bằng diện tích là phương pháp đơn giản nhất để xem 
 Với mỗi điểm $P_j$, nối $P_j$ với các đỉnh $A_i$ của tam giác. Ta tính tổng diện tích các tam giác $P_jA_iA_{i+1}$. Sẽ có các trường hợp sau xảy ra (xem hình minh hoạ ở trên để hiểu rõ hơn):
 - Nếu tổng trên có diện tích bằng đúng diện tích đa giác, và tất cả các tam giác đều có diện tích khác $0$, ta kết luận điểm $P_j$ nằm bên trong đa giác
 - Nếu tổng trên có diện tích bằng đúng diện tích đa giác, và trong số các tam giác $P_jA_iA_{i+1}$ tồn tại ít nhất một tam giác có diện tích bằng $0$ thì ta kết luận điểm $P_j$ nằm trên một cạnh của đa giác
-- Nếu tổng trên khác diện tích của đa giác $A_1A_2...A_n$ thì ta kết luận điểm $P_j$ nằm ngoài đa giác.
+- Nếu tổng trên khác diện tích của đa giác $A_1A_2 \ldots A_n$ thì ta kết luận điểm $P_j$ nằm ngoài đa giác.
 
 ```cpp=
 PointPolygonPosition position(Polygon plg, Point p) {
@@ -336,7 +370,6 @@ PointPolygonPosition position(Polygon plg, Point p) {
     }
     return (sSumTris == plg.area2() ? INSIDE : OUTSIDE);
 }
-
 ```
 
 Cách kiểm tra này có độ phức tạp không gian là $\mathcal{O}(n)$, còn độ phức tạp thời gian là $\mathcal{O}(mn)$.
@@ -470,7 +503,7 @@ PointPolygonPosition position(Polygon plg, Point p) {
 ## Số điểm nguyên nằm trong đa giác
 
 **Bài toán**: [CSES - Polygon Lattice Points](https://cses.fi/problemset/task/2193)
-**Tóm tắt đề bài**: Cho đa giác $A_1A_2...A_n$ với các đỉnh có toạ độ nguyên cho trước. Đếm số điểm có toạ độ nguyên nằm bên trong và trên các cạnh của đa giác.
+**Tóm tắt đề bài**: Cho đa giác $A_1A_2 \ldots A_n$ với các đỉnh có toạ độ nguyên cho trước. Đếm số điểm có toạ độ nguyên nằm bên trong và trên các cạnh của đa giác.
 
 ![geo1.png](/algo/geometry/p3/geo10.png)
 
@@ -478,9 +511,11 @@ PointPolygonPosition position(Polygon plg, Point p) {
 ### Đếm số điểm nguyên nằm trên cạnh của đa giác
 
 Xét đường thẳng đi qua hai điểm $A$ và $B$. Phương trình đường thẳng trên có dạng: 
-$$y = y_A + \frac{y_B-y_A}{x_B-x_A}(x-x_A)$$ 
+$$
+y = y_A + \frac{y_B-y_A}{x_B-x_A}(x-x_A)
+$$
 
-Khi $x$ nguyên, để $y$ nguyên thì $(y_B-y_A)(x-x_A)\ \vdots\ x_B-x_A$. Để điều này xảy ra thì $x-x_A$ phải là các bội của $\frac{\text{lcm}(y_B-y_A, x_B-x_A)}{x_B-x_A}$. Có $\gcd(y_B-y_A, x_B-x_A)$ giá trị $x$ nằm giữa $0$ và $x_B - 1$ thoả mãn tính chất trên.
+Khi $x$ nguyên, để $y$ nguyên thì $(y_B-y_A)(x-x_A)\ \vdots\ x_B-x_A$. Để điều này xảy ra thì $x-x_A$ phải là các bội của $\frac{\mathrm{lcm}(y_B-y_A, x_B-x_A)}{x_B-x_A}$. Có $\gcd(y_B-y_A, x_B-x_A)$ giá trị $x$ nằm giữa $0$ và $x_B - 1$ thoả mãn tính chất trên.
 
 Như vậy, số điểm nguyên nằm trên mỗi cạnh $A_iA_{i+1}$ (chỉ tính một đầu mút) sẽ là $\gcd(y_i-y_{i+1}, x_i-x_{i+1})$. Cộng các kết quả này lại ta sẽ được số điểm nguyên trên cạnh của đa giác.
 
@@ -489,7 +524,9 @@ _Lưu ý_: Về mặt định nghĩa, ta vẫn có $\gcd(a, b) > 0$ với mọi 
 ### Định lý Pick và số điểm nguyên nằm trong đa giác 
 
 **Định lý Pick**: Cho một đa giác không tự cắt với các đỉnh có toạ độ nguyên và diện tích khác không. Gọi diện tích đa giác là $S$, số điểm nguyên nằm bên trong đa giác là $I$ và số điểm nguyên nằm trên cạnh đa giác là $B$. Khi đó diện tích đa giác là: 
-$$S = I + \frac{B}{2}-1\tag{9}$$ 
+$$
+S = I + \frac{B}{2}-1\tag{9}
+$$
 
 Do độ dài của bài viết cũng như độ dài của chứng minh, tác giả sẽ không trình bày phần chứng minh trong bài viết này. Bạn đọc tham khảo chứng minh ở [đây](http://www.geometer.org/mathcircles/pick.pdf).
 

@@ -44,7 +44,7 @@ Với hai điểm $P(x_P, y_P)$ và $Q(x_Q, y_Q)$:
 
 <center>
 
-Các đường màu đỏ, xanh lam, vàng biểu diễn khoảng cách Manhattan có cùng độ dài $(12)$, trong khi đường màu xanh lục biểu diễn khoảng cách Euclid với độ dài $6 * \sqrt2 \approx 8.48$.
+Các đường màu đỏ, xanh lam, vàng biểu diễn khoảng cách Manhattan có cùng độ dài $(12)$, trong khi đường màu xanh lục biểu diễn khoảng cách Euclid với độ dài $6 \times \sqrt2 \approx 8.48$.
 </center>
 
 Như đã đề cập ở phía trên, khi ứng dụng thuật toán đường quét, việc quét qua tất cả các điểm trên mặt phẳng là bất khả thi, và chúng ta cần sử dụng một số kĩ thuật hay cấu trúc dữ liệu khác - chẳng hạn, *[kĩ thuật hai con trỏ](/algo/basic/two-pointers.md), [kĩ thuật nén số](/algo/trick/Roi-rac-hoa-va-ung-dung.md), [cây phân đoạn](/algo/data-structures/segment-tree-basic.md), [cây Fenwick (cây chỉ số nhị phân)](/algo/data-structures/fenwick.md)* - để lọc ra và xử lí các điểm thiết yếu cần quan tâm. Do đó, độc giả nên nắm kĩ các chủ đề liên quan nêu trên trước khi đọc bài viết.
@@ -62,13 +62,13 @@ Cho một danh sách $n$ điểm. Tìm khoảng cách Euclid ngắn nhất tạo
 Giới hạn:
 
 - $2 \leqslant n \leqslant 50000$
-- Toạ độ các điểm là số nguyên $-10^6 \leqslant x, y \leqslant 10^6$
+- Toạ độ các điểm là số nguyên $-10^{6} \leqslant x, y \leqslant 10^{6}$
 
 ## Phân tích
 
-Ta có thể dễ dàng nhận thấy bài này có thể giải quyết với độ phức tạp $O(n^2)$, nhưng sẽ không thể qua được giới hạn thời gian 1 giây. Tuy vậy, áp dụng thuật toán đường quét, chúng ta có thể giảm độ phức tạp xuống $O(n\log{n})$.
+Ta có thể dễ dàng nhận thấy bài này có thể giải quyết với độ phức tạp $\mathcal{O}(n^2)$, nhưng sẽ không thể qua được giới hạn thời gian 1 giây. Tuy vậy, áp dụng thuật toán đường quét, chúng ta có thể giảm độ phức tạp xuống $\mathcal{O}(n\log{n})$.
 
-Trước tiên, chúng ta sẽ sắp xếp lại danh sách điểm theo thứ tự hoành độ các điểm tăng dần. Lần lượt duyệt qua từng điểm trong danh sách đã sắp xếp. Ý tưởng chính của thuật toán cải tiến so với thuật toán trâu bò đó là thay vì phải duyệt qua tất cả cặp điểm, với mỗi điểm, ta chỉ phải xét điểm đó với một số ít các điểm khác đáng quan tâm, chi phí để tìm các điểm đáng quan tâm là $O(\log{n})$, do đó thuật toán cải tiến có độ phức tạp $O(n \log{n})$.
+Trước tiên, chúng ta sẽ sắp xếp lại danh sách điểm theo thứ tự hoành độ các điểm tăng dần. Lần lượt duyệt qua từng điểm trong danh sách đã sắp xếp. Ý tưởng chính của thuật toán cải tiến so với thuật toán trâu bò đó là thay vì phải duyệt qua tất cả cặp điểm, với mỗi điểm, ta chỉ phải xét điểm đó với một số ít các điểm khác đáng quan tâm, chi phí để tìm các điểm đáng quan tâm là $\mathcal{O}(\log{n})$, do đó thuật toán cải tiến có độ phức tạp $\mathcal{O}(n \log{n})$.
 
 Giả sử chúng ta đã xử lí xong $N - 1$ điểm đầu tiên và khoảng cách ngắn nhất hiện có là $d$. Như vậy từ điểm thứ $N$ về sau, ta chỉ quan tâm đến các cặp điểm có khoảng cách bé hơn $d$. Gọi điểm thứ $N$ (cũng là điểm đang xét) là điểm $P$.
 
@@ -78,7 +78,7 @@ Giả sử chúng ta đã xử lí xong $N - 1$ điểm đầu tiên và khoản
 >
 > **Chứng minh**
 >
-> Từ $P$, vẽ $8$ hình vuông xung quanh, mỗi hình vuông có cạnh đúng bằng $d/2$, như hình dưới (điểm màu xanh là $P$).
+> Từ $P$, vẽ $8$ hình vuông xung quanh, mỗi hình vuông có cạnh đúng bằng $\frac{d}{2}$, như hình dưới (điểm màu xanh là $P$).
 >
 ><center>
 >
@@ -98,7 +98,7 @@ Thuật toán của chúng ta cụ thể như sau. Đầu tiên sắp xếp danh
 - Tìm các điểm trong $T$ có chênh lệch tung độ không quá $d$, tính khoảng cách giữa các điểm này và điểm đang xét, và cập nhật $d$.
 - Thêm điểm đang xét vào $T$.
 
-Ta nhận thấy mỗi điểm được thêm vào và xoá khỏi $T$ đúng một lần. Do đó tổng chi phí cho các thao tác thêm và xoá điểm là $O(n \log{n})$. Tại mỗi bước, chi phí tìm kiếm là $O(\log{n})$ và có $O(1)$ điểm ta cần xét. Tóm lại, độ phức tạp thời gian của thuật toán là $O(n \log{n})$.
+Ta nhận thấy mỗi điểm được thêm vào và xoá khỏi $T$ đúng một lần. Do đó tổng chi phí cho các thao tác thêm và xoá điểm là $\mathcal{O}(n \log{n})$. Tại mỗi bước, chi phí tìm kiếm là $\mathcal{O}(\log{n})$ và có $\mathcal{O}(1)$ điểm ta cần xét. Tóm lại, độ phức tạp thời gian của thuật toán là $\mathcal{O}(n \log{n})$.
 
 ## Cài đặt mẫu
 
@@ -230,9 +230,9 @@ Như vậy ta thấy tập $S$ là một yếu tố quan trọng để giải qu
 2. Xoá một phần tử có khoá $k$ khỏi tập.
 3. Cho một khoảng $[L, R]$, trả về số lượng phần tử trong tập có khoá $k \in [L, R]$.
 
-Để thoả mãn các yêu cầu trên, ta sẽ cài đặt tập $S$ bằng kĩ thuật nén số và cây Fenwick. Ta sẽ nén tung độ của các đoạn thẳng thành $O(n)$ điểm. Dựng cây Fenwick dựa trên $O(n)$ điểm này, mỗi nút trong cây cho biết có bao nhiêu đoạn thẳng ngang đang cắt các điểm trong đoạn con mà nút quản lý. Như vậy, mỗi thao tác thêm một đoạn thẳng vào tập $S$ tương ứng với một thao tác cộng $1$ vào giá trị lưu ở các nút tương ứng và mỗi thao tác xoá một đoạn thẳng khỏi $S$ tương ứng với một thao tác giảm giá trị lưu ở các nút tương ứng đi $1$. Chi phí để thực hiện cả hai thao tác trên là $O(\log{n})$. Để tìm số lượng đoạn thẳng ngang có tung độ trong khoảng $[L, R]$, ta có thể tính tổng các điểm trong khoảng $[L, R]$ trong cây Fenwick trong $O(\log{n})$. Chi tiết tham khảo ở cài đặt mẫu.
+Để thoả mãn các yêu cầu trên, ta sẽ cài đặt tập $S$ bằng kĩ thuật nén số và cây Fenwick. Ta sẽ nén tung độ của các đoạn thẳng thành $\mathcal{O}(n)$ điểm. Dựng cây Fenwick dựa trên $\mathcal{O}(n)$ điểm này, mỗi nút trong cây cho biết có bao nhiêu đoạn thẳng ngang đang cắt các điểm trong đoạn con mà nút quản lý. Như vậy, mỗi thao tác thêm một đoạn thẳng vào tập $S$ tương ứng với một thao tác cộng $1$ vào giá trị lưu ở các nút tương ứng và mỗi thao tác xoá một đoạn thẳng khỏi $S$ tương ứng với một thao tác giảm giá trị lưu ở các nút tương ứng đi $1$. Chi phí để thực hiện cả hai thao tác trên là $\mathcal{O}(\log{n})$. Để tìm số lượng đoạn thẳng ngang có tung độ trong khoảng $[L, R]$, ta có thể tính tổng các điểm trong khoảng $[L, R]$ trong cây Fenwick trong $\mathcal{O}(\log{n})$. Chi tiết tham khảo ở cài đặt mẫu.
 
-Dễ thấy thuật toán của chúng ta duyệt qua một danh sách có $O(n)$ phần tử, với mỗi phần tử chi phí xử lí là $O(\log{n})$. Do đó độ phức tạp thời gian của thuật toán là $O(n \log{n})$. Độ phức tạp bộ nhớ là $O(n)$.
+Dễ thấy thuật toán của chúng ta duyệt qua một danh sách có $\mathcal{O}(n)$ phần tử, với mỗi phần tử chi phí xử lí là $\mathcal{O}(\log{n})$. Do đó độ phức tạp thời gian của thuật toán là $\mathcal{O}(n \log{n})$. Độ phức tạp bộ nhớ là $\mathcal{O}(n)$.
 
 Minh họa thuật toán:
 
@@ -365,7 +365,7 @@ Ta biết được những hình chữ nhật nào đang bị cắt bởi đư�
 
 Vấn đề đặt ra là làm thế nào để tìm tổng độ dài của các phần "nét liền màu xanh" như trên hình. Nhớ rằng tại mỗi bước ta duy trì một tập $S$ các hình chữ nhật mà đường thẳng quét cắt qua. Hiển nhiên ta thấy tổng độ dài của phần "nét liền màu xanh" chính là hợp của tất cả các hình chữ nhật trong tập $S$ tại mỗi bước.
 
-Để tính hợp của tất cả các hình chữ nhật trong tập $S$, một thuật toán đơn giản là ta sẽ duyệt qua hết tất cả các hình chữ nhật hiện có trong $S$. Độ phức tạp thời gian để giải bài toán khi này là $O(n^2)$ - chúng ta duyệt qua $O(n)$ sự kiện, tại mỗi "sự kiện", ta lại duyệt qua $O(n)$ hình chữ nhật mà đường quét của chúng ta đang cắt (dĩ nhiên chúng ta cũng phải thêm các hình mới và xoá bớt những hình mà đường quét không còn cắt khỏi tập $S$).
+Để tính hợp của tất cả các hình chữ nhật trong tập $S$, một thuật toán đơn giản là ta sẽ duyệt qua hết tất cả các hình chữ nhật hiện có trong $S$. Độ phức tạp thời gian để giải bài toán khi này là $\mathcal{O}(n^2)$ - chúng ta duyệt qua $\mathcal{O}(n)$ sự kiện, tại mỗi "sự kiện", ta lại duyệt qua $\mathcal{O}(n)$ hình chữ nhật mà đường quét của chúng ta đang cắt (dĩ nhiên chúng ta cũng phải thêm các hình mới và xoá bớt những hình mà đường quét không còn cắt khỏi tập $S$).
 
 Minh họa thuật toán:
 <center>
@@ -377,9 +377,9 @@ Minh họa thuật toán:
 
 <!-- Chúng ta có thể xác định được độ dài đoạn được cắt bằng cách cũng sử dụng thuật toán này, nhưng quay 90 độ. Bỏ qua các hình chữ nhật ngoài tập trên ra, ta cho một đường quét chạy từ trên xuống, với các sự kiện giờ là các cạnh ngang của hình chữ nhật, và mỗi khi đường quét chạm vào một trong số chúng, ta chỉ cần tăng hoặc giảm biến đếm số lượng hình chữ nhật đang đè lên nhau ở thời điểm đó. Độ dài đoạn cắt này sẽ tăng nếu biến đếm khác 0. Tất nhiên, chúng ta sẽ không tăng liên tục, mà sẽ đi từ sự kiện này sang sự kiện khác.
 
-Nếu sử dụng đúng cấu trúc dữ liệu, bài toán có thể giải quyết với độ phức tạp $(O(n^2))$ (gợi ý: sử dụng một mảng `bool` để chứa tập, thay vì sử dụng cây nhị phân cân bằng, và sắp xếp lại tất cả các cạnh nằm ngang trước tiên). Trên thực tế, đường quét nằm trong có thể thay thế bởi một vài thao tác thông minh trên cây nhị phân, qua đó giảm độ phức tạp xuống $O(n\log(n))$, nhưng khi đó, bài toán sẽ là một bài cấu trúc dữ liệu thay vì là một bài hình học, nên nó sẽ được để lại cho bạn đọc tự giải. Thuật toán này vẫn có thể áp dụng tới một số bài toán tương tự như tìm chu vi của các hình chữ nhật hoặc tìm số hình chữ nhật đè lên nhau nhiều nhất. -->
+Nếu sử dụng đúng cấu trúc dữ liệu, bài toán có thể giải quyết với độ phức tạp $(\mathcal{O}(n^2))$ (gợi ý: sử dụng một mảng `bool` để chứa tập, thay vì sử dụng cây nhị phân cân bằng, và sắp xếp lại tất cả các cạnh nằm ngang trước tiên). Trên thực tế, đường quét nằm trong có thể thay thế bởi một vài thao tác thông minh trên cây nhị phân, qua đó giảm độ phức tạp xuống $\mathcal{O}(n\log(n))$, nhưng khi đó, bài toán sẽ là một bài cấu trúc dữ liệu thay vì là một bài hình học, nên nó sẽ được để lại cho bạn đọc tự giải. Thuật toán này vẫn có thể áp dụng tới một số bài toán tương tự như tìm chu vi của các hình chữ nhật hoặc tìm số hình chữ nhật đè lên nhau nhiều nhất. -->
 
-Để tối ưu thuật toán, chúng ta có thể sử dụng kĩ thuật nén số và cây phân đoạn. Ta sẽ nén hoành độ của các "sự kiện" thành $O(n)$ điểm, các điểm này chia đường thẳng quét của chúng ta thành $O(n)$ đoạn thẳng con. Ta dựng cây phân đoạn với $O(n)$ đoạn thẳng con này là các nút lá. Tại mỗi nút trong cây phân đoạn ta sẽ lưu hai giá trị để trả lời cho hai câu hỏi:
+Để tối ưu thuật toán, chúng ta có thể sử dụng kĩ thuật nén số và cây phân đoạn. Ta sẽ nén hoành độ của các "sự kiện" thành $\mathcal{O}(n)$ điểm, các điểm này chia đường thẳng quét của chúng ta thành $\mathcal{O}(n)$ đoạn thẳng con. Ta dựng cây phân đoạn với $\mathcal{O}(n)$ đoạn thẳng con này là các nút lá. Tại mỗi nút trong cây phân đoạn ta sẽ lưu hai giá trị để trả lời cho hai câu hỏi:
 
 1) Hiện có bao nhiêu hình chữ nhật đang phủ đoạn con mà nút quản lý?
 2) Tổng độ dài các phần được ít nhất một hình chữ nhật phủ trong đoạn con mà nút quản lý là bao nhiêu?
@@ -473,7 +473,7 @@ Giới hạn:
 
 ## Phân tích
 
-Ý tưởng chính của thuật giải là nếu như số cạnh ta cần xét là $O(n)$ thì ta có thể sử dụng các thuật toán tìm cây khung nhỏ nhất như Kruskal hay Prim để giải bài toán trong $O(n \log{n})$.
+Ý tưởng chính của thuật giải là nếu như số cạnh ta cần xét là $\mathcal{O}(n)$ thì ta có thể sử dụng các thuật toán tìm cây khung nhỏ nhất như Kruskal hay Prim để giải bài toán trong $\mathcal{O}(n \log{n})$.
 
 > **Bổ đề 2**
 >
@@ -484,7 +484,7 @@ Giới hạn:
 > ![](/uploads/Sweep-Line_img5.png)
 ></center>
 >
-> Thực hiện thao tác trên với tất cả các điểm được cho, ta thu được một đồ thị $G$ có $O(n)$ cạnh. Ta sẽ chứng minh rằng cây khung nhỏ nhất trên đồ thị $G$ là một đáp án cho bài toán.
+> Thực hiện thao tác trên với tất cả các điểm được cho, ta thu được một đồ thị $G$ có $\mathcal{O}(n)$ cạnh. Ta sẽ chứng minh rằng cây khung nhỏ nhất trên đồ thị $G$ là một đáp án cho bài toán.
 >
 > **Chứng minh**
 >
@@ -503,13 +503,15 @@ Qua bổ đề 2, ta thấy bài toán đặt ra hiện tại là làm sao để
 > Gọi $d(P, Q)$ là khoảng cách Manhattan giữa hai điểm $P$ và $Q$. Gọi $A(x_A, y_A)$, $B(x_B, y_B)$, $C(x_C, y_C)$, $D(x_D, y_D)$ là bốn điểm trên mặt phẳng sao cho $x_A, x_B \leqslant x_C, x_D$ và $y_A, y_B \leqslant y_C, y_D$. Ta có $d(A, C) \leqslant d(A, D)$ tương đương với $d(B, C) \leqslant d(B, D)$.
 >
 > **Chứng minh**
-> $$\begin{align}
+> $$
+> \begin{align}
 > d(A, C) &\leqslant d(A, D)\\
 > x_C - x_A + y_C - y_A &\leqslant x_D - x_A + y_D - y_A\\
 > x_C + y_C &\leqslant x_D + y_D\\
 > x_C - x_B + y_C - y_B &\leqslant x_D - x_B + y_D - y_B\\
 > d(B, C) &\leqslant d(B, D)
-> \end{align}$$
+> \end{align}
+> $$
 
 Ta sẽ sử dụng phương pháp chia để trị để giải quyết bài toán. Đầu tiên ta sẽ sắp xếp $n$ điểm theo thứ tự tăng dần về hoành độ. Tại mỗi bước ta chia $n$ điểm thành $2$ tập con $L$ và $R$. Gọi đệ quy giải bài toán với từng tập con. Nhận xét rằng lời giải cho tập $R$ cũng chính là lời giải đúng, do đó ta chỉ cần cập nhật lời giải cho các điểm trong tập $L$.
 
@@ -521,9 +523,9 @@ Dùng con trỏ 1 để duyệt các điểm trong $L$. Gọi điểm đang đư
 2) Điểm được con trỏ 2 trỏ tới có tung độ lớn hơn hoặc bằng tung độ của $T$ và có khoảng cách Manhattan tới $T$ lớn hơn khoảng cách Manhattan giữa $T$ và $U$: Khi này ta không làm gì cả.
 3) Điểm được con trỏ 2 trỏ tới có tung độ lớn hơn hoặc bằng tung độ của $T$ và có khoảng cách Manhattan tới $T$ bé hơn khoảng cách Manhattan giữa $T$ và $U$: Khi này ta trỏ con trỏ 3 đến điểm đang được trỏ bới con trỏ 2.
 
-Nhờ có tính chất được đề cập trong bổ đề 3, ta nhận thấy vòng lặp trên sẽ cho chúng ta đáp án chính xác. Cả ba con trỏ đều "thăm" mỗi điểm trong $L$ hoặc $R$ đúng một lần nên độ phức tập của mỗi "tầng" trong cây đệ quy của chúng ta sẽ là $O(n)$. Do ta sẽ có $O(\log{n})$, độ phức tạp của thuật toán trên là $O(n \log{n})$.
+Nhờ có tính chất được đề cập trong bổ đề 3, ta nhận thấy vòng lặp trên sẽ cho chúng ta đáp án chính xác. Cả ba con trỏ đều "thăm" mỗi điểm trong $L$ hoặc $R$ đúng một lần nên độ phức tập của mỗi "tầng" trong cây đệ quy của chúng ta sẽ là $\mathcal{O}(n)$. Do ta sẽ có $\mathcal{O}(\log{n})$, độ phức tạp của thuật toán trên là $\mathcal{O}(n \log{n})$.
 
-<!-- Trước hết, chúng ta sẽ chia bài toán này thành những bài toán nhỏ hơn. Bài toán cây khung nhỏ nhất trong đồ thị bình thường (bạn có thể tìm hiểu ở [đây](/algo/graph-theory/minimum-spanning-tree.md)) có một số thuật toán để giải (như Prim chẳng hạn). Prim có thể giúp chúng ta giải quyết bài toán trong độ phức tạp $O((E + N)\log N)$ với $E$ cạnh. Tuy vậy, nếu chúng ta tận dụng được yếu tố hình học, ta có thể đưa số cạnh về $O(N)$, tức là thuật toán sẽ gần như là $O(N\log N)$.
+<!-- Trước hết, chúng ta sẽ chia bài toán này thành những bài toán nhỏ hơn. Bài toán cây khung nhỏ nhất trong đồ thị bình thường (bạn có thể tìm hiểu ở [đây](/algo/graph-theory/minimum-spanning-tree.md)) có một số thuật toán để giải (như Prim chẳng hạn). Prim có thể giúp chúng ta giải quyết bài toán trong độ phức tạp $\mathcal{O}((E + N)\log N)$ với $E$ cạnh. Tuy vậy, nếu chúng ta tận dụng được yếu tố hình học, ta có thể đưa số cạnh về $\mathcal{O}(N)$, tức là thuật toán sẽ gần như là $\mathcal{O}(N\log N)$.
 
 Trên thực tế, với mỗi điểm $P$, ta có thể xét những điểm gần $P$ nhất trong những góc phần tám của mặt phẳng (xem hình dưới). Hình vẽ mô tả việc xử lí trong 1 góc của hình: Tây - Tây Bắc. Giả sử điểm $Q$ là điểm gần nhất, với đường nét đứt là những điểm có khoảng cách Manhattan cùng với $Q$, và $R$ là một điểm bất kì khác nằm trong góc phần tám đó. Nếu $PR$ là một cạnh trong cây khung, chúng ta có thể bỏ nó đi, bởi $PQ$ hoặc $QR$ sẽ cho ra cây khung tốt hơn.
 
@@ -533,9 +535,9 @@ Bài toán bây giờ trở thành tìm điểm gần nhất với $P$ ở mỗi
 
 Tưởng tượng rằng, một lúc nào đó, cận dưới $y$ không tồn tại. Trong trường họp này, chúng ta sẽ giải quyết vấn đề cho mọi điểm $P$ như sau: quét qua các điểm theo thứ tự tăng dần của $x + y$ và $Q$ sẽ là điểm trong số chúng với $x - y$ lớn nhất. Đây là lúc chúng ta vận dụng ý tưởng chia để trị: Ta chia tập điểm thành 2 nửa bằng một đường nằm ngang, và xử lí cho mỗi nửa. Với các điểm $P$ ở nửa trên, chúng ta có thể giải quyết mà không dùng gì mới, bởi những điểm ở nửa dưới không thể đóng vai trò là điểm $Q$ cho những điểm $P$ ở nửa trên. Xét tới nửa dưới, chúng ta phải để ý rằng do đã bỏ qua ở nửa trên nên chúng ta có thể chưa xét tới một số điểm gần hơn. Tuy vậy, những điểm này hoàn toàn có thể giải bằng cách chúng ta đã làm: quét qua tất cả các điểm theo thứ tự $x + y$, và lưu lại điểm có $x - y$ lớn nhất ở nửa trên, và với mỗi điểm ở nửa dưới, kiểm tra điểm tốt nhất ở nửa trên liệu có tốt hơn so với điểm kề hiện tại không.
 
-Chúng ta đã nói về cách chia các điểm và về cách quét theo thứ tự $x + y$ mà chưa nói tới việc làm chúng như thế nào. Trên thực tế, vẻ đẹp của cách làm kết hợp chia để trị và đường quét là việc nó có cấu trúc giống như làm sắp xếp trộn (merge sort). Vì thế, thuật toán có độ phức tạp $O(N\log N)$.
+Chúng ta đã nói về cách chia các điểm và về cách quét theo thứ tự $x + y$ mà chưa nói tới việc làm chúng như thế nào. Trên thực tế, vẻ đẹp của cách làm kết hợp chia để trị và đường quét là việc nó có cấu trúc giống như làm sắp xếp trộn (merge sort). Vì thế, thuật toán có độ phức tạp $\mathcal{O}(N\log N)$.
 
-Ý tưởng tìm cặp điểm gần nhất ở mỗi góc có thể giải quyết cả bài toán Cây khung nhỏ nhất với khoảng cách Euclid, nhưng độ phức tạp sẽ không còn là $O(N\log N)$ trong trường hợp xấu nhất, bởi khoảng cách giờ không còn là phương trình tuyến tính nữa. Giải quyết bài toán này trong $O(N\log N)$ không phải là điều không thể, bởi khi đó, nó là một bài toán con của phép tam giác hoá Delaunay. -->
+Ý tưởng tìm cặp điểm gần nhất ở mỗi góc có thể giải quyết cả bài toán Cây khung nhỏ nhất với khoảng cách Euclid, nhưng độ phức tạp sẽ không còn là $\mathcal{O}(N\log N)$ trong trường hợp xấu nhất, bởi khoảng cách giờ không còn là phương trình tuyến tính nữa. Giải quyết bài toán này trong $\mathcal{O}(N\log N)$ không phải là điều không thể, bởi khi đó, nó là một bài toán con của phép tam giác hoá Delaunay. -->
 
 ## Cài đặt mẫu
 

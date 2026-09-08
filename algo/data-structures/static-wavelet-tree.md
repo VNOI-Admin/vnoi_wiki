@@ -39,7 +39,7 @@ Với mảng tĩnh, các truy vấn như tìm phần tử nhỏ thứ $k$, đế
 
 Cho mảng $A$ gồm $n$ số nguyên và $q$ truy vấn. Mỗi truy vấn yêu cầu tìm giá trị nhỏ thứ $k$ trong đoạn $[l; r]$.
 
-* **Ràng buộc:** $n, q \leq 10^5$, $A_i \leq 10^9$.
+* **Ràng buộc:** $n, q \leq 10^{5}$, $A_i \leq 10^{9}$.
 * **Thuật toán ngây thơ:** $\mathcal{O}(q \cdot n \log n)$ sẽ không khả thi.
 
 Wavelet Tree giúp giải quyết bài toán này với độ phức tạp $\mathcal{O}((n+q) \log \sigma)$ (với $\sigma$ là số giá trị khác nhau).
@@ -53,24 +53,24 @@ Trong bài viết này, ta quy ước mảng được đánh số từ $1$.
 Cây Wavelet được xây dựng bằng cách chia nhị phân miền giá trị của mảng.
 
 - **Nút gốc:** Quản lý toàn bộ các phần tử của mảng với miền giá trị $[\min; \max]$.
-- **Nút con:** Giả sử nút hiện tại quản lý miền giá trị $[\text{low}; \text{high}]$, ta đặt $\text{mid} = \left\lfloor \frac{\text{low} + \text{high}}{2} \right\rfloor$.
-    - Các phần tử có giá trị $\le \text{mid}$ sẽ được đưa vào nhánh trái (quản lý miền $[\text{low}; \text{mid}]$).
-    - Các phần tử có giá trị $> \text{mid}$ sẽ được đưa vào nhánh phải (quản lý miền $[\text{mid}+1; \text{high}]$).
+- **Nút con:** Giả sử nút hiện tại quản lý miền giá trị $[\texttt{low}; \texttt{high}]$, ta đặt $\texttt{mid} = \left\lfloor \frac{\texttt{low} + \texttt{high}}{2} \right\rfloor$.
+    - Các phần tử có giá trị $\le \texttt{mid}$ sẽ được đưa vào nhánh trái (quản lý miền $[\texttt{low}; \texttt{mid}]$).
+    - Các phần tử có giá trị $> \texttt{mid}$ sẽ được đưa vào nhánh phải (quản lý miền $[\texttt{mid}+1; \texttt{high}]$).
 
 Vì miền giá trị liên tục bị chia đôi ở mỗi bước đệ quy, chiều cao tối đa của cây sẽ đạt $\mathcal{O}(\log \sigma)$.
 
 **Lưu ý:** 
 - Thứ tự xuất hiện của các phần tử trong mảng ban đầu luôn được giữ nguyên khi đẩy xuống các nút con.
-- Miền giá trị ám chỉ độ lớn của lớn của các phần tử , cần phân biệt với đoạn. *Suggest: Ở đây, miền giá trị $[\text{low}; \text{high}]$ tức là các phần tử có **giá trị** $a$ thỏa $\text{low} \leq a \leq \text{high}$, tránh nhầm lẫn với đoạn con $[l; r]$ chỉ các phần tử có **vị trí** nằm trong đoạn này.*
+- Miền giá trị ám chỉ độ lớn của lớn của các phần tử , cần phân biệt với đoạn. *Suggest: Ở đây, miền giá trị $[\texttt{low}; \texttt{high}]$ tức là các phần tử có **giá trị** $a$ thỏa $\texttt{low} \leq a \leq \texttt{high}$, tránh nhầm lẫn với đoạn con $[l; r]$ chỉ các phần tử có **vị trí** nằm trong đoạn này.*
 
 ### Phép duyệt
 
-Khi duyệt cây, ta để ý rằng một đoạn các phần tử có vị trí nằm trong khoảng $[l_0; r_0]$ (các phần tử thuộc một nút của Wavelet Tree được đánh số từ $1$) tại một nút đang quản lý miền giá trị $[\text{low}; \text{high}]$ tương ứng với một đoạn các phần tử có vị trí nằm trong khoảng $[l_1; r_1]$ tại nút con trái (quản lý miền giá trị $[\text{low}; \text{mid}]$) và trong khoảng $[l_2; r_2]$ tại nút con phải (quản lý miền giá trị $[\text{mid} + 1; \text{high}]$).
+Khi duyệt cây, ta để ý rằng một đoạn các phần tử có vị trí nằm trong khoảng $[l_0; r_0]$ (các phần tử thuộc một nút của Wavelet Tree được đánh số từ $1$) tại một nút đang quản lý miền giá trị $[\texttt{low}; \texttt{high}]$ tương ứng với một đoạn các phần tử có vị trí nằm trong khoảng $[l_1; r_1]$ tại nút con trái (quản lý miền giá trị $[\texttt{low}; \texttt{mid}]$) và trong khoảng $[l_2; r_2]$ tại nút con phải (quản lý miền giá trị $[\texttt{mid} + 1; \texttt{high}]$).
 
 Để tiện lợi cho việc xác định $l_1, r_1, l_2, r_2$ khi đã biết đoạn $[l_0; r_0]$, tại mỗi nút, thay vì lưu lại toàn bộ mảng, ta sẽ ngầm định gán cho mỗi phần tử một trạng thái nhị phân (ứng với một bit) với ý nghĩa như sau:
 
-- Bit bật (1) ứng với các phần tử có giá trị $\le \text{mid}$, sẽ được đẩy sang nhánh trái.
-- Bit tắt (0) ứng với các phần tử có giá trị $> \text{mid}$, sẽ được đẩy sang nhánh phải.
+- Bit bật (1) ứng với các phần tử có giá trị $\le \texttt{mid}$, sẽ được đẩy sang nhánh trái.
+- Bit tắt (0) ứng với các phần tử có giá trị $> \texttt{mid}$, sẽ được đẩy sang nhánh phải.
 
 Dựa vào các bit này, tại mỗi nút , ta cần xây dựng một mảng cộng dồn $B$ để truy vấn nhanh. Khi đó, $B_i$ cho biết số lượng phần tử trong tiền tố từ $1$ đến $i$ được đẩy sang nhánh trái.
 
@@ -106,13 +106,13 @@ Vậy nên khi di chuyển xuống nút con , ta sẽ có các đoạn mới là
 
 ### Minh họa
 
- Ta xét ví dụ với mảng $A = [5, 2, 7, 1, 6, 3, 8, 4, 2, 5]$ gồm $10$ phần tử và miền giá trị ban đầu là $[1; 8]$. Tại nút gốc, ta có $\text{mid} = 4$, các giá trị tại nút này sẽ được xử lý như bảng sau:
+ Ta xét ví dụ với mảng $A = [5, 2, 7, 1, 6, 3, 8, 4, 2, 5]$ gồm $10$ phần tử và miền giá trị ban đầu là $[1; 8]$. Tại nút gốc, ta có $\texttt{mid} = 4$, các giá trị tại nút này sẽ được xử lý như bảng sau:
 
  
 | Chỉ số $i$ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 | :--- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | **Giá trị $A[i]$** | 5 | 2 | 7 | 1 | 6 | 3 | 8 | 4 | 2 | 5 |
-| **So sánh với $\text{mid}$** | $>4$ | $\le4$ | $>4$ | $\le4$ | $>4$ | $\le4$ | $>4$ | $\le4$ | $\le4$ | $>4$ |
+| **So sánh với $\texttt{mid}$** | $>4$ | $\le4$ | $>4$ | $\le4$ | $>4$ | $\le4$ | $>4$ | $\le4$ | $\le4$ | $>4$ |
 | **Bit vector** | `0` | `1` | `0` | `1` | `0` | `1` | `0` | `1` | `1` | `0` |
 | **Dãy $B$** | $0$ | $1$ | $1$ | $2$ | $2$ | $3$ | $3$ | $4$ | $5$ | $5$ |
 
@@ -151,18 +151,20 @@ struct Node {
         B.push_back(0);
         for (auto it = from; it != to; it++)
             B.push_back(B.back() + f(*it));
-        
+
         // phân chia mảng thành 2 phần theo điều kiện x <= mid
         auto pivot = stable_partition(from, to, f);
 
         // tiếp tục xây dựng cây con
-        if (from < pivot) lpt = new Node(from, pivot, low, mid);
-        if (pivot < to) rpt = new Node(pivot, to, mid + 1, high);
+        if (from < pivot)
+            lpt = new Node(from, pivot, low, mid);
+        if (pivot < to)
+            rpt = new Node(pivot, to, mid + 1, high);
     }
 };
 ```
 
-Trong phần cài đặt trên, ta sử dụng hàm `stable_partition` để hỗ trợ tách mảng gốc thành 2 phần theo điều kiện $x \leq \text{mid}$. Hàm này nhận vào hai con trỏ `from`, `to` và một điều kiện boolean, nó sẽ đưa tất cả phần tử thỏa điều kiện lên đầu và các phần tử còn lại ra sau mảng mà vẫn duy trì thứ tự tương đối của các phần tử. Sau đó, hàm trả về điểm cắt là con trỏ chỉ vào phần tử đầu tiên của nửa sau (phần tử đầu tiên không thỏa điều kiện).
+Trong phần cài đặt trên, ta sử dụng hàm `stable_partition` để hỗ trợ tách mảng gốc thành 2 phần theo điều kiện $x \leq \texttt{mid}$. Hàm này nhận vào hai con trỏ `from`, `to` và một điều kiện boolean, nó sẽ đưa tất cả phần tử thỏa điều kiện lên đầu và các phần tử còn lại ra sau mảng mà vẫn duy trì thứ tự tương đối của các phần tử. Sau đó, hàm trả về điểm cắt là con trỏ chỉ vào phần tử đầu tiên của nửa sau (phần tử đầu tiên không thỏa điều kiện).
 
 Lưu ý rằng với việc sử dụng hàm `stable_partition`, mảng được truyền vào constructor của cấu trúc dữ liệu cũng sẽ được sắp xếp sau khi khởi tạo cây. Do đó, nếu muốn sử dụng lại mảng, ta cần truyền vào một bản sao.
 
@@ -171,14 +173,16 @@ Khi đã có `Node`, ta tạo `struct WaveletTree` để có thể dễ dàng s�
 ```cpp=
 template <int MIN, int MAX>
 struct WaveletTree {
-    Node* root;
+    Node *root;
 
-    WaveletTree() : root(nullptr) {}
-    WaveletTree (int* from, int* to) : root(new Node(from, to, MIN, MAX)) {}
+    WaveletTree() : root(nullptr) {
+    }
+    WaveletTree(int *from, int *to) : root(new Node(from, to, MIN, MAX)) {
+    }
 };
 ```
 
-Giả sử ta cần khởi tạo Wavelet Tree có miền giá trị là $[0; 10^9]$ trên mảng $a$ gồm $n$ phần tử được đánh số từ $1$, ta sử dụng cú pháp sau:
+Giả sử ta cần khởi tạo Wavelet Tree có miền giá trị là $[0; 10^{9}]$ trên mảng $a$ gồm $n$ phần tử được đánh số từ $1$, ta sử dụng cú pháp sau:
 
 ```cpp=
 WaveletTree<0, 1'000'000'000> tree(a + 1, a + N + 1);
@@ -199,14 +203,14 @@ Từ quá trình xây dựng trên, ta có thể rút ra các tính chất quan 
 
 Ý tưởng chính của truy vấn đếm số phần tử có giá trị bằng $K$ trong đoạn đó là ta tìm đường đi từ nút gốc của Wavelet Tree xuống nút lá quản lý miền giá trị $[K; K]$ và duy trì đoạn tìm kiếm $[l; r]$ tương ứng. Cuối cùng, ta chỉ cần trả về $r - l + 1$, tức số phần tử trong đoạn $[l; r]$ ứng với nút lá tìm được.
 
-Cụ thể hơn, ta bắt đầu quá trình tìm kiếm bằng chia để trị từ nút gốc. Giả sử ta đã thu hẹp phạm vi tìm kiếm xuống một nút có miền giá trị $[\text{low}; \text{high}]$ và đoạn được truy vấn (theo chỉ số của nút này) là $[l; r]$.
+Cụ thể hơn, ta bắt đầu quá trình tìm kiếm bằng chia để trị từ nút gốc. Giả sử ta đã thu hẹp phạm vi tìm kiếm xuống một nút có miền giá trị $[\texttt{low}; \texttt{high}]$ và đoạn được truy vấn (theo chỉ số của nút này) là $[l; r]$.
 
 Tại một nút bất kỳ, nếu đoạn $[l; r]$ rỗng hoặc giá trị $K$ không nằm trong miền mà nút này quản lý, kết quả hiển nhiên bằng $0$. Nếu nút hiện tại là nút lá đang quản lý miền giá trị $[K; K]$, như đã phân tích, ta trả về $r - l + 1$.
 
-Trong trường hợp nút đang tìm kiếm chưa phải là lá, ta so sánh $k$ với giá trị trung điểm $\text{mid} = \frac{\text{low} + \text{high}}{2}$.
+Trong trường hợp nút đang tìm kiếm chưa phải là lá, ta so sánh $k$ với giá trị trung điểm $\texttt{mid} = \frac{\texttt{low} + \texttt{high}}{2}$.
 
-- Nếu $K \le \text{mid}$, tức $K$ nằm ở cây con trái, ta chiếu đoạn $[l; r]$ xuống cây con trái ứng với đoạn $[B_{l-1} + 1; B_r]$.
-- Ngược lại, nếu $K > \text{mid}$, tức $K$ nằm ở cây con phải, ta chiếu đoạn $[l; r]$ xuống cây phải ứng với đoạn $[l - B_{l-1}; r - B_r]$.
+- Nếu $K \le \texttt{mid}$, tức $K$ nằm ở cây con trái, ta chiếu đoạn $[l; r]$ xuống cây con trái ứng với đoạn $[B_{l-1} + 1; B_r]$.
+- Ngược lại, nếu $K > \texttt{mid}$, tức $K$ nằm ở cây con phải, ta chiếu đoạn $[l; r]$ xuống cây phải ứng với đoạn $[l - B_{l-1}; r - B_r]$.
 
 Nhờ mảng prefix $B$, việc ánh xạ này luôn chính xác, nó đảm bảo các phần tử thuộc đoạn $[l; r]$ được chuyển về đúng vị trí trong cây con chứa giá trị $K$. Nói cách khác, tính đúng đắn của thuật toán đến từ việc: mỗi bước ta đều đi đúng nhánh duy nhất có thể chứa giá trị $K$, và mảng $B$ đảm bảo sự tương ứng một-một giữa đoạn ở nút cha và đoạn ở nút con. 
 
@@ -214,11 +218,14 @@ Có thể thấy, ở mỗi tầng của Wavelet tree, các thao tác xử lý �
 
 :::spoiler Code tham khảo
 ```cpp=
-int countEqualK (int l, int r, int K, int low, int high) {
-    if (l > r || K < low || K > high) return 0;
-    if (low == high) return r - l + 1;
+int countEqualK(int l, int r, int K, int low, int high) {
+    if (l > r || K < low || K > high)
+        return 0;
+    if (low == high)
+        return r - l + 1;
     int mid = (low + high) / 2;
-    if (K <= mid) return (lpt ? lpt->countEqualK(B[l - 1] + 1, B[r], K, low, mid) : 0);
+    if (K <= mid)
+        return (lpt ? lpt->countEqualK(B[l - 1] + 1, B[r], K, low, mid) : 0);
     return (rpt ? rpt->countEqualK(l - B[l - 1], r - B[r], K, mid + 1, high) : 0);
 }
 ```
@@ -226,7 +233,7 @@ int countEqualK (int l, int r, int K, int low, int high) {
 
 ### Tìm phần tử nhỏ thứ $k$ trong đoạn
 
-Tương tự truy vấn ở trên, ta cũng bắt đầu quá trình tìm kiếm bằng chia để trị từ nút gốc. Giả sử ta đã thu hẹp phạm vi tìm kiếm xuống một nút có miền giá trị $[\text{low}; \text{high}]$ và đoạn được truy vấn (theo chỉ số của nút này) là $[l; r]$.
+Tương tự truy vấn ở trên, ta cũng bắt đầu quá trình tìm kiếm bằng chia để trị từ nút gốc. Giả sử ta đã thu hẹp phạm vi tìm kiếm xuống một nút có miền giá trị $[\texttt{low}; \texttt{high}]$ và đoạn được truy vấn (theo chỉ số của nút này) là $[l; r]$.
 
 Gọi $\texttt{cnt_left}$ là số lượng phần tử thuộc nhánh trái nằm trong đoạn $[l; r]$. Từ dãy $B$, ta có thể xác định $\texttt{cnt_left}$ như sau:
 
@@ -235,7 +242,7 @@ $$
 $$
 
 
-Nếu $k \le \texttt{cnt_left}$ thì phần tử cần tìm chắc chắn nằm trong tập trái (vì toàn bộ các phần tử trong tập này đều không lớn hơn $\text{mid}$). Khi đó, truy vấn được chuyển tiếp xuống cây con trái với đoạn chỉ số mới $[B_{l-1} + 1; B_r]$, giữ nguyên giá trị $k$.
+Nếu $k \le \texttt{cnt_left}$ thì phần tử cần tìm chắc chắn nằm trong tập trái (vì toàn bộ các phần tử trong tập này đều không lớn hơn $\texttt{mid}$). Khi đó, truy vấn được chuyển tiếp xuống cây con trái với đoạn chỉ số mới $[B_{l-1} + 1; B_r]$, giữ nguyên giá trị $k$.
 
 Ngược lại, nếu $k > \texttt{cnt_left}$, tức là phần tử cần tìm không nằm trong tập trái mà nằm trong tập phải. Lúc này, do đã có $\texttt{cnt_left}$ phần tử nhỏ hơn đã đi sang cây con trái nên phần tử cần tìm sẽ là phần tử nhỏ thứ $k - \texttt{cnt_left}$ ở cây con phải. Nói cách khác, truy vấn được chuyển tiếp xuống cây con phải với đoạn đoạn mới $[l - B_{l-1}; r - B_r]$, đồng thời cập nhật lại  $k \leftarrow k - \texttt{cnt_left}$.
 
@@ -245,9 +252,11 @@ Quá trình này tiếp tục cho đến khi ta đi tới một nút lá, tại 
 
 :::spoiler Code tham khảo
 ```cpp=
-int kthSmallest (int l, int r, int k, int low, int high) {
-    if (l > r) return 0;
-    if (low == high) return low;
+int kthSmallest(int l, int r, int k, int low, int high) {
+    if (l > r)
+        return 0;
+    if (low == high)
+        return low;
     int cntLeft = B[r] - B[l - 1], mid = (low + high) / 2;
     if (k <= cntLeft)
         return lpt->kthSmallest(B[l - 1] + 1, B[r], k, low, mid);
@@ -262,26 +271,29 @@ Bạn đọc có thể tham khảo mã nguồn đầy đủ của mình trên Li
 
 ### Đếm số phần tử có giá trị không quá $K$ trong đoạn
 
-Ta cũng thực hiện chia để trị như các truy vấn trước, giả sử nút hiện tại có miền giá trị $[\text{low}; \text{high}]$ và đoạn được truy vấn (theo chỉ số của nút này) là $[l; r]$.
+Ta cũng thực hiện chia để trị như các truy vấn trước, giả sử nút hiện tại có miền giá trị $[\texttt{low}; \texttt{high}]$ và đoạn được truy vấn (theo chỉ số của nút này) là $[l; r]$.
 
 Ta xét các trường hợp biên như sau:
-- Nếu đoạn $[l; r]$ rỗng hoặc $K < \text{low}$, tức toàn bộ miền giá trị tại nút đều lớn hơn $k$, kết quả hiển nhiên bằng $0$.
-- Nếu $\text{high} \le K$, nghĩa là mọi giá trị trong nút này đều nhỏ hơn hoặc bằng $K$, khi đó toàn bộ $r - l + 1$ phần tử trong đoạn đều thỏa mãn, và ta có thể trả về trực tiếp mà không cần đi sâu hơn.
+- Nếu đoạn $[l; r]$ rỗng hoặc $K < \texttt{low}$, tức toàn bộ miền giá trị tại nút đều lớn hơn $k$, kết quả hiển nhiên bằng $0$.
+- Nếu $\texttt{high} \le K$, nghĩa là mọi giá trị trong nút này đều nhỏ hơn hoặc bằng $K$, khi đó toàn bộ $r - l + 1$ phần tử trong đoạn đều thỏa mãn, và ta có thể trả về trực tiếp mà không cần đi sâu hơn.
 
-Trong các trường hợp còn lại, tức khoảng $[1; K]$ chỉ bao phủ một phần của khoảng $[\text{low}; \text{high}]$, ta đặt $\text{mid} = \left\lfloor \frac{\text{low} + \text{high}}{2} \right \rfloor$ và so sánh $K$ với $\text{mid}$ để quyết định hướng đi.
+Trong các trường hợp còn lại, tức khoảng $[1; K]$ chỉ bao phủ một phần của khoảng $[\texttt{low}; \texttt{high}]$, ta đặt $\texttt{mid} = \left\lfloor \frac{\texttt{low} + \texttt{high}}{2} \right \rfloor$ và so sánh $K$ với $\texttt{mid}$ để quyết định hướng đi.
 
-- Nếu $K \le \text{mid}$: Các phần tử thoả mãn điều kiện $\leq K$ chỉ có thể nằm ở nhánh trái. Do đó, ta chỉ cần tiếp tục tìm kiếm trên đoạn $[B_{l-1} + 1; B_r]$ của cây con trái.
-- Nếu $K > \text{mid}$: Toàn bộ các phần tử rẽ sang nhánh trái đều có giá trị $\le \text{mid} < K$, nên chắc chắn chúng thỏa mãn điều kiện bài toán. Số lượng phần tử này chính là $\texttt{cnt_left} = B_r - B_{l-1}$. Sau đó, ta chỉ cần gọi đệ quy xuống nhánh phải với đoạn ánh xạ $[l - B_{l-1}; r - B_r]$ để tìm nốt các phần tử thỏa mãn còn lại.
+- Nếu $K \le \texttt{mid}$: Các phần tử thoả mãn điều kiện $\leq K$ chỉ có thể nằm ở nhánh trái. Do đó, ta chỉ cần tiếp tục tìm kiếm trên đoạn $[B_{l-1} + 1; B_r]$ của cây con trái.
+- Nếu $K > \texttt{mid}$: Toàn bộ các phần tử rẽ sang nhánh trái đều có giá trị $\le \texttt{mid} < K$, nên chắc chắn chúng thỏa mãn điều kiện bài toán. Số lượng phần tử này chính là $\texttt{cnt_left} = B_r - B_{l-1}$. Sau đó, ta chỉ cần gọi đệ quy xuống nhánh phải với đoạn ánh xạ $[l - B_{l-1}; r - B_r]$ để tìm nốt các phần tử thỏa mãn còn lại.
 
 Với việc tính toán lượng phần tử thỏa mãn ở nhánh trái được thực hiện trong $\mathcal{O}(1)$, bằng cách luôn chỉ đi xuống nhiều nhất một cây con tại mỗi bước, thuật toán được đảm bảo chạy trong thời gian $\mathcal{O}(\log \sigma)$ \.
 
 :::spoiler Code tham khảo
 ```cpp=
-int countLEQ (int l, int r, int K, int low, int high) {
-    if (l > r || K < low) return 0;
-    if (high <= K) return r - l + 1;
+int countLEQ(int l, int r, int K, int low, int high) {
+    if (l > r || K < low)
+        return 0;
+    if (high <= K)
+        return r - l + 1;
     int cntLeft = B[r] - B[l - 1], mid = (low + high) / 2;
-    if (K <= mid) return (lpt ? lpt->countLEQ(B[l - 1] + 1, B[r], K, low, mid) : 0);
+    if (K <= mid)
+        return (lpt ? lpt->countLEQ(B[l - 1] + 1, B[r], K, low, mid) : 0);
     return cntLeft + (rpt ? rpt->countLEQ(l - B[l - 1], r - B[r], K, mid + 1, high) : 0);
 }
 ```
@@ -297,7 +309,7 @@ Bạn đọc cũng có thể tham khảo bản cài đặt đầy đủ gồm c�
 
 Kỹ thuật Nén Bitvector giúp ta giảm lượng bộ nhớ xuống tới hơn $20$ lần bằng cách gộp các bit lại:
 - Tạo một mảng $b$  để lưu nhóm $64$ trạng thái nhị phân liên tiếp thành một khối.
-- Tạo một mảng prefix sum $c$  lưu tổng số lượng bit $1$ tính đến trước khối thứ $i$. Kích thước mảng $c$ nhờ vậy bằng $\lceil N / 64 \rceil$.
+- Tạo một mảng prefix sum $c$  lưu tổng số lượng bit $1$ tính đến trước khối thứ $i$. Kích thước mảng $c$ nhờ vậy bằng $\left\lceil \frac{N}{64} \right\rceil$.
 
 Hai mảng này sinh ra để bù trừ khiếm khuyết cho nhau khi xây dựng hàm truy vấn ``rank1(i)``.
 
@@ -330,13 +342,14 @@ Hàm ``rank1(i)`` trả về số lượng bit $1$ (phần tử rẽ trái) tron
 
 Khi cần tính tổng số phần tử rẽ trái trong tiền tố độ dài $i$, thuật toán chia công việc làm hai thành phần dựa trên tọa độ khối:
 
-- Ở phần chẵn , ta tính tổng số bit $1$ của tất cả các khối nguyên vẹn đứng trước bằng cách truy xuất trực tiếp từ cột mốc $c[\lfloor i / 64 \rfloor]$.
-- Ở phần lẻ , ta tính số lượng bit $1$ dư ra nằm bên trong khối hiện tại bằng cách trích xuất khối $b[\lfloor i / 64 \rfloor]$. Áp dụng phép toán bitmask ``(1ULL << (i % 64)) - 1`` để giữ lại đúng phần tiền tố cần xét, sau đó đếm nhanh số lượng bit $1$ bằng ``__builtin_popcountll``.
+- Ở phần chẵn , ta tính tổng số bit $1$ của tất cả các khối nguyên vẹn đứng trước bằng cách truy xuất trực tiếp từ cột mốc $c\left[\left\lfloor \frac{i}{64} \right\rfloor\right]$.
+- Ở phần lẻ , ta tính số lượng bit $1$ dư ra nằm bên trong khối hiện tại bằng cách trích xuất khối $b\left[\left\lfloor \frac{i}{64} \right\rfloor\right]$. Áp dụng phép toán bitmask ``(1ULL << (i % 64)) - 1`` để giữ lại đúng phần tiền tố cần xét, sau đó đếm nhanh số lượng bit $1$ bằng ``__builtin_popcountll``.
 
 ```cpp=
 // Hàm truy cập O(1): Trả về số lượng phần tử rẽ trái trong tiền tố độ dài i
 int rank1(int i) {
-    if (i == 0) return 0;
+    if (i == 0)
+        return 0;
     int block_idx = i / 64;
     int rem = i % 64;
 
@@ -363,7 +376,7 @@ Trước tiên, ta xét một bài toán tương tự với bài toán ở phầ
 > 
 > - Cho ba số nguyên $l, r, k$, hãy xác định phần tử nhỏ thứ $k$ trong đoạn $a_l, a_{l+1}, a_{l+2}, \dots, a_r$.
 
-Ngoài ra, để thuận tiện cho việc cài đặt, ta giả sử miền giá trị tìm kiếm ban đầu có dạng $\left[0; 2^B\right)$ để Wavelet Tree có dạng cây nhị phân hoàn chỉnh gồm $B$ tầng. Trong phần này, ta sử dụng Wavelet Tree đánh số từ $0$.
+Ngoài ra, để thuận tiện cho việc cài đặt, ta giả sử miền giá trị tìm kiếm ban đầu có dạng $\left[0; 2^{B}\right)$ để Wavelet Tree có dạng cây nhị phân hoàn chỉnh gồm $B$ tầng. Trong phần này, ta sử dụng Wavelet Tree đánh số từ $0$.
 
 ### Ý tưởng
 
@@ -386,10 +399,11 @@ Lưu ý rằng khi sử dụng cách đánh số từ $0$, ta phải quy ước 
 
 :::spoiler Code tham khảo
 ```cpp=
-vector<int> offlineWaveletTree (vector<int> A, vector<tuple<int,int,int,int>> queries) {
+vector<int> offlineWaveletTree(vector<int> A, vector<tuple<int, int, int, int>> queries) {
     // tiền xử lý các truy vấn
-    for (auto &[l, r, k, id] : queries) k--; // chuyển thành dạng đánh số từ 0
-    sort(all(queries));
+    for (auto &[l, r, k, id] : queries)
+        k--; // chuyển thành dạng đánh số từ 0
+    sort(queries.begin(), queries.end());
 
     // khai báo các mảng phụ
     int N = A.size(), Q = queries.size();
@@ -442,7 +456,8 @@ vector<int> offlineWaveletTree (vector<int> A, vector<tuple<int,int,int,int>> qu
     // sau khi thực hiện Offline Wavelet Tree, các giá trị của mảng A cũng chính là các
     // giá trị của các nút lá, do đó, ta chỉ cần truy cập vào đúng phần tử để lấy đáp án
     vector<int> ans(Q);
-    for (auto [l, r, k, id] : queries) ans[id] = A[l];
+    for (auto [l, r, k, id] : queries)
+        ans[id] = A[l];
     return ans;
 }
 ```
@@ -454,7 +469,7 @@ Tuy nhiên, cách xử lý như trên khá bất lợi cho việc cài đặt, c
 
 Để ý rằng các truy vấn trong quá trình biến đổi sẽ được duy trì nằm gọn trong một đoạn ứng với một nút của Wavelet Tree. Khi đó, vị trí tương đối của các nút trong cùng một tầng của Wavelet Tree không còn quan trọng nữa, miễn là ta có thể "mang theo" truy vấn ứng với mỗi nút khi xáo trộn thứ tự của chúng.
 
-Để dễ hình dung hơn, xét mảng $B$ ứng với một tầng của Wavelet Tree có hai nút quản lý miền giá trị $[0; 2^d)$ và $[2^d; 2^{d+1})$. Thông thường, ta sẽ tách hai nút này thành 4 nút và giữ lại giá trị tương đối của nó (tức là thứ tự trái-trái, trái-phải, phải-trái, phải-phải). Tuy nhiên, nếu ta chuyển toàn bộ phần tử có bit thứ $d - 1$ tắt sang trái và phần còn lại sang phải (tức là thứ tự trái-trái, phải-trái, trái-phải, phải-phải), các truy vấn vẫn được ánh xạ đúng:
+Để dễ hình dung hơn, xét mảng $B$ ứng với một tầng của Wavelet Tree có hai nút quản lý miền giá trị $[0; 2^{d})$ và $[2^{d}; 2^{d+1})$. Thông thường, ta sẽ tách hai nút này thành 4 nút và giữ lại giá trị tương đối của nó (tức là thứ tự trái-trái, trái-phải, phải-trái, phải-phải). Tuy nhiên, nếu ta chuyển toàn bộ phần tử có bit thứ $d - 1$ tắt sang trái và phần còn lại sang phải (tức là thứ tự trái-trái, phải-trái, trái-phải, phải-phải), các truy vấn vẫn được ánh xạ đúng:
 
 ![offline_wavelet_tree_transformation.png](/algo/data-structures/wavelet-tree/offline_wavelet_tree_transformation.png)
 
@@ -469,32 +484,37 @@ Do đó, ta có thể xây dựng mảng tổng cộng dồn trên cả mảng $
 
 :::spoiler Code tham khảo
 ```cpp=
-vector<int> offlineWaveletTree (vector<int> A, vector<tuple<int,int,int>> queries) {
+vector<int> offlineWaveletTree(vector<int> A, vector<tuple<int, int, int>> queries) {
     // tiền xử lý các truy vấn
-    for (auto &[l, r, k] : queries) k--;
+    for (auto &[l, r, k] : queries)
+        k--;
 
     // khai báo mảng phụ
     int N = A.size(), Q = queries.size();
     vector<int> B(N);
-    
+
     for (int b = 29; b >= 0; b--) {
         // thực hiện phân tách cả tầng chia để trị thứ b
-        for (int i = 0; i < N; i++) B[i] = bool((A[i] >> b & 1) ^ 1);
+        for (int i = 0; i < N; i++)
+            B[i] = bool((A[i] >> b & 1) ^ 1);
         partial_sum(B.begin(), B.end(), B.begin());
-        stable_partition(A.begin(), A.end(), [b] (int x) { return (x >> b) & 1 ^ 1; });
+        stable_partition(A.begin(), A.end(), [b](int x) { return (x >> b) & 1 ^ 1; });
 
         // xử lý các truy vấn trên tầng chia để trị thứ b
         int cntLeft = B.back();
         for (auto &[l, r, k] : queries) {
             int toLeft = B[r] - (l ? B[l - 1] : 0);
-            if (k < toLeft) l = (l ? B[l - 1] : 0), r = B[r] - 1; // đi sang cây con trái
-            else l += cntLeft - (l ? B[l - 1] : 0), r += cntLeft - B[r], k -= toLeft; // đi sang cây con phải
+            if (k < toLeft)
+                l = (l ? B[l - 1] : 0), r = B[r] - 1; // đi sang cây con trái
+            else
+                l += cntLeft - (l ? B[l - 1] : 0), r += cntLeft - B[r], k -= toLeft; // đi sang cây con phải
         }
     }
 
     // lấy đáp án tương tự như trên
     vector<int> ans(Q);
-    for (int i = 0; i < Q; i++) ans[i] = A[get<0>(queries[i])];
+    for (int i = 0; i < Q; i++)
+        ans[i] = A[get<0>(queries[i])];
     return ans;
 }
 ```
@@ -523,29 +543,30 @@ Cho dãy số $A$. Đếm số lượng cặp nghịch thế $(i, j)$ sao cho $i
 
 Ta sử dụng Wavelet Tree bằng cách duyệt từng phần tử. Khi xét đến phần tử $A[j]$ (với $j$ chạy từ $1 \to n$), ta cần đếm xem có bao nhiêu chỉ số $i < j$ mà $A[i] > A[j]$. Điều này tương đương với việc truy vấn trên đoạn tiền tố $[1; j-1]$ xem có bao nhiêu số lớn hơn $A[j]$. Công thức tổng quát:
 
-$$\text{Inversions} = \sum_{j=1}^{N} \Big( (j - 1) - \texttt{LTE}(1, j-1, A[j]) \Big)$$
+$$
+\text{Inversions} = \sum_{j=1}^{N} \Big( (j - 1) - \texttt{LTE}(1, j-1, A[j]) \Big)
+$$
 
 :::spoiler Code tham khảo
 
 ```cpp=
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 
 using namespace std;
 
-struct Wavelet_Tree
-{
+struct Wavelet_Tree {
     int low, high;
     Wavelet_Tree *L = NULL, *R = NULL;
-    vector <int> B;
+    vector<int> B;
 
-    Wavelet_Tree() {}
-    Wavelet_Tree(int *From, int *To, int x, int y)
-    {
+    Wavelet_Tree() {
+    }
+    Wavelet_Tree(int *From, int *To, int x, int y) {
         low = x, high = y;
-        if (low == high || From >= To) return;
+        if (low == high || From >= To)
+            return;
         int mid = (low + high) / 2;
-        auto F = [mid](int x)
-        {
+        auto F = [mid](int x) {
             return x <= mid;
         };
         B.reserve(To - From + 1);
@@ -558,61 +579,63 @@ struct Wavelet_Tree
     }
 
     // Phần tử nhỏ thứ k trong [l; r]
-    int kthSmallest(int l, int r, int K)
-    {
-        if (l > r) return 0;
-        if (low == high) return low;
+    int kthSmallest(int l, int r, int K) {
+        if (l > r)
+            return 0;
+        if (low == high)
+            return low;
         int cnt_left = B[r] - B[l - 1];
-        if (K <= cnt_left) return L->kthSmallest(B[l - 1] + 1, B[r], K);
+        if (K <= cnt_left)
+            return L->kthSmallest(B[l - 1] + 1, B[r], K);
         return R->kthSmallest(l - B[l - 1], r - B[r], K - cnt_left);
     }
 
     // số lượng phần tử trong [l; r] = K
-    int countEqualK (int l, int r, int K)
-    {
-        if (l > r || K < low || K > high) return 0;
-        if (low == high) return r - l + 1;
+    int countEqualK(int l, int r, int K) {
+        if (l > r || K < low || K > high)
+            return 0;
+        if (low == high)
+            return r - l + 1;
         int mid = (low + high) / 2;
-        if (K <= mid) return L->countEqualK(B[l - 1] + 1, B[r], K);
+        if (K <= mid)
+            return L->countEqualK(B[l - 1] + 1, B[r], K);
         return R->countEqualK(l - B[l - 1], r - B[r], K);
     }
 
     // số lượng phần tử trong [l; r] <= K
-    int countLEQ(int l, int r, int K)
-    {
-        if (l > r || K < low) return 0;
-        if (high <= K) return r - l + 1;
+    int countLEQ(int l, int r, int K) {
+        if (l > r || K < low)
+            return 0;
+        if (high <= K)
+            return r - l + 1;
         return L->countLEQ(B[l - 1] + 1, B[r], K) + R->countLEQ(l - B[l - 1], r - B[r], K);
     }
 
-}wvl;
-
+} wvl;
 
 const int N = 6e4 + 4;
 int n, a[N], MAX, q, B[N];
 
-signed main()
-{
-
+int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
 
     cin >> n;
-    for (int i = 1; i <= n; ++i) cin >> a[i], B[i] = a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i], B[i] = a[i];
     MAX = *max_element(a + 1, a + 1 + n);
 
     wvl = Wavelet_Tree(a + 1, a + n + 1, 1, MAX);
 
-
     long long ans = 0;
-    for (int i = 1; i < n; ++i) if (1 <= B[i] - 1)
-        ans += wvl.countLEQ(i + 1, n, B[i] - 1);
+    for (int i = 1; i < n; ++i)
+        if (1 <= B[i] - 1)
+            ans += wvl.countLEQ(i + 1, n, B[i] - 1);
 
     cout << ans << '\n';
 
     return 0;
 }
-
 ```
 
 :::
@@ -710,7 +733,7 @@ int main()
 
 Cho một dãy $n$ số và $q$ truy vấn, mỗi truy vấn tìm phần tử trung vị của đoạn con $[l; r]$.
 
-Giới hạn: $1 \le n, q, a_i \le 10^5$.
+Giới hạn: $1 \le n, q, a_i \le 10^{5}$.
 
 #### Lời giải
 
@@ -720,29 +743,28 @@ Với bài toán này chúng ta có thể áp dụng trực tiếp cài đặt �
 
 ```cpp=
 const int N = 1e5 + 2;
-int n, q, a[N], MAX , B[N];
+int n, q, a[N], MAX, B[N];
 
-int main()
-{
+int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
 
     cin >> n >> q;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
 
     MAX = *max_element(a + 1, a + 1 + n);
-    for (int i = 1; i <= n; ++i) B[i] = a[i];
-        wvl = Wavelet_Tree(B + 1, B + 1 + n, 1, MAX);
-        while (q--)
-        {
-            int L, R;
-            cin >> L >> R;
-            cout << wvl.kthSmallest(L, R, (R - L + 2) / 2) << '\n';
-        }
+    for (int i = 1; i <= n; ++i)
+        B[i] = a[i];
+    wvl = Wavelet_Tree(B + 1, B + 1 + n, 1, MAX);
+    while (q--) {
+        int L, R;
+        cin >> L >> R;
+        cout << wvl.kthSmallest(L, R, (R - L + 2) / 2) << '\n';
+    }
 
     return 0;
 }
-
 ```
 
 :::
@@ -753,51 +775,46 @@ int main()
 
 Cho dãy $A$ có $n$ số nguyên và $q$ truy vấn. Mỗi truy vấn là một đoạn $[l; r]$. Tìm số $h$ lớn nhất sao cho trong đoạn $A_l, A_{l+1}, \dots, A_r$ có ít nhất $h$ phần tử có giá trị $\ge h$.
 
-Giới hạn: $1 \le n, q, a_i \le 2 \times 10^5$.
+Giới hạn: $1 \le n, q, a_i \le 2 \times 10^{5}$.
 
 #### Lời giải
 
 Ta có số phần tử $\ge h$ trong đoạn $A_l, A_{l+1}, \dots, A_r$ là `(r - l + 1) - countLEQ(l, r, h - 1)`. Khi ta tăng dần $h$ thì biểu thức trên giảm dần, do đó ta có thể áp dụng chặt nhị phân để tìm $h$ lớn nhất thoả mãn điều kiện `(r - l + 1) - countLEQ(l, r, h - 1) >= h`.
 
-Độ phức tạp của thuật toán là $\mathcal{O}((n + q) \log^2 n)$.
+Độ phức tạp của thuật toán là $\mathcal{O}((n + q) \log^{2} n)$.
 
 ::: spoiler Code tham khảo
 ```cpp=
 const int N = 2e5 + 4;
 int n, a[N], MAX, q;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
     cin >> n >> q;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     MAX = *max_element(a + 1, a + 1 + n);
     wvl = Wavelet_Tree(a + 1, a + n + 1, 1, MAX);
 
-    while (q--)
-    {
+    while (q--) {
         int l, r;
         cin >> l >> r;
         int len = r - l + 1;
         int low = 0, high = len, ans = 0;
-        while (low <= high)
-        {
+        while (low <= high) {
             int mid = (low + high) / 2;
-            int cnt = len - wvl.countLEQ(l , r , mid - 1);
-            if (cnt >= mid)
-            {
+            int cnt = len - wvl.countLEQ(l, r, mid - 1);
+            if (cnt >= mid) {
                 ans = mid;
                 low = mid + 1;
-            }
-            else
+            } else
                 high = mid - 1;
         }
         cout << ans << "\n";
     }
 }
-
 ```
 :::
 
@@ -805,11 +822,11 @@ int main()
 
 #### Đề bài
 
-Cho dãy $A$ gồm $n$ số nguyên trong khoảng $[-10^9; 10^9]$, đánh thứ tự từ $0$ và $q$ truy vấn. Mỗi truy vấn có dạng:
+Cho dãy $A$ gồm $n$ số nguyên trong khoảng $[-10^{9}; 10^{9}]$, đánh thứ tự từ $0$ và $q$ truy vấn. Mỗi truy vấn có dạng:
 
 - `i t k`: gọi $d$ là phần tử nhỏ thứ $k$ cho đến chỉ số $i$. Trả về chỉ số của lần xuất hiện thứ $t$ của $d$ trong dãy. Nếu không tồn tại lần xuất hiện này thì in ra `-1`.
 
-Giới hạn: $1 \le n \le 10^5, 1 \le q \le 10^5$.
+Giới hạn: $1 \le n \le 10^{5}, 1 \le q \le 10^{5}$.
 
 #### Lời giải
 
@@ -820,17 +837,18 @@ Trước tiên ta nén số, sau đó với mỗi phần tử phân biệt ta l�
 ```cpp=
 const int N = 1e5 + 2;
 int n, q, a[N], ID[N];
-vector <int> C;
+vector<int> C;
 
-int main()
-{
+int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
 
     cin >> n >> q;
-    for (int i = 0; i < n; ++i) cin >> a[i];
+    for (int i = 0; i < n; ++i)
+        cin >> a[i];
 
-    for (int i = 0; i < n; ++i) C.push_back(a[i]);
+    for (int i = 0; i < n; ++i)
+        C.push_back(a[i]);
 
     sort(C.begin(), C.end());
     C.erase(unique(C.begin(), C.end()), C.end());
@@ -866,7 +884,7 @@ int main()
 
 #### Đề bài
 
-Cho dãy $A$ gồm $n \le 10^5$ số nguyên trong khoảng $[-10^9; 10^9]$ và $q$ truy vấn. Mỗi truy vấn có dạng:
+Cho dãy $A$ gồm $n \le 10^{5}$ số nguyên trong khoảng $[-10^{9}; 10^{9}]$ và $q$ truy vấn. Mỗi truy vấn có dạng:
 
 - `0 l r k`: đếm số phần tử được bật trong đoạn $[l; r]$ có giá trị bằng $k$.
 - `1 i`: chuyển trạng thái phần tử thứ $i$, nếu trước là bật thì giờ là tắt và ngược lại. Ban đầu tất cả các phần tử đều bật.
@@ -1012,16 +1030,16 @@ int main() {
 
 #### Đề bài
 
-Cho dãy $a$ gồm $n$ số nguyên trong khoảng $[-10^9; 10^9]$, đánh thứ tự từ $0$ và $q$ truy vấn. Mỗi truy vấn có dạng:
+Cho dãy $a$ gồm $n$ số nguyên trong khoảng $[-10^{9}; 10^{9}]$, đánh thứ tự từ $0$ và $q$ truy vấn. Mỗi truy vấn có dạng:
 
 - `0 i t k`: gọi $d$ là phần tử nhỏ thứ $k$ cho đến chỉ số $i$. Trả về chỉ số của lần xuất hiện thứ $t$ của $d$ trong dãy. Nếu không tồn tại lần xuất hiện này thì in ra `-1`.
 - `1 i`: swap 2 phần tử liền kề ở vị trí $i$ và $i + 1$.
 
-Giới hạn: $1 \le n \le 10^6, 1 \le q \le 10^5$.
+Giới hạn: $1 \le n \le 10^{6}, 1 \le q \le 10^{5}$.
 
 #### Lời giải
 
-Bài toán này là mở rộng của ILKQ1, với input nhiều hơn hẳn ($n = 10^6$) và thêm truy vấn update.
+Bài toán này là mở rộng của ILKQ1, với input nhiều hơn hẳn ($n = 10^{6}$) và thêm truy vấn update.
 
 Giả sử ta swap 2 phần tử khác nhau ở vị trí $i$ và $i + 1$. Khi duyệt cây từ gốc xuống, ta sẽ đến đúng một nút $v$ mà tại đó 2 phần tử này sẽ được đưa về **2 nhánh khác nhau**. Khi đó trong bitvector $B_v$ của nút $v$ sẽ có $B_v[i] \ne B_v[i + 1]$. 
 
@@ -1031,12 +1049,16 @@ Do đó ta có thể cài đặt hàm swap rất dễ dàng với độ phức t
 
 ```cpp
 void swap_adj(int i) {
-    if (lo == hi) return;
-    int a = leftCnt[i] - leftCnt[i - 1], b = leftCnt[i + 1] - leftCnt[i];
-    if (a != b) pref[i] += (a == 0 ? 1 : -1);
+    if (lo == hi)
+        return;
+    int a = pref[i] - pref[i - 1], b = pref[i + 1] - pref[i];
+    if (a != b)
+        pref[i] += (a == 0 ? 1 : -1);
     else {
-        if (a == 1) L->swap_adj(pref[i]);
-        else R->swap_adj(i - pref[i]);
+        if (a == 1)
+            L->swap_adj(pref[i]);
+        else
+            R->swap_adj(i - pref[i]);
     }
 }
 ```
@@ -1050,109 +1072,120 @@ void swap_adj(int i) {
 using namespace std;
 
 struct WaveletTree {
-  int lo, hi, mid;
-  WaveletTree *L = 0, *R = 0;
-  vector<int> pref;
+    int lo, hi, mid;
+    WaveletTree *L = 0, *R = 0;
+    vector<int> pref;
 
-  template <class It>
-  WaveletTree(It b, It e, int lo, int hi) : lo(lo), hi(hi) {
-    if (b >= e) return;
-    mid = (lo + hi) >> 1;
-    pref.reserve((int)(e - b) + 1);
-    pref.push_back(0);
-    for (auto it = b; it != e; ++it) pref.push_back(pref.back() + (*it <= mid));
-    if (lo == hi) return;
-    auto pivot = stable_partition(b, e, [&](int x) { return x <= mid; });
-    L = new WaveletTree(b, pivot, lo, mid);
-    R = new WaveletTree(pivot, e, mid + 1, hi);
-  }
-
-  int quantile(int r, int k) {
-    if (lo == hi) return lo;
-    int inLeft = pref[r];
-    if (k <= inLeft) return L->quantile(inLeft, k);
-    return R->quantile(r - inLeft, k - inLeft);
-  }
-
-  int rank(int r, int x) {
-    if (r == 0) return 0;
-    if (lo == hi) return r;
-    if (x <= mid) return L->rank(pref[r], x);
-    return R->rank(r - pref[r], x);
-  }
-
-  int select(int x, int j) {
-    if (lo == hi) return j;
-    if (x <= mid) {
-      int pos = L->select(x, j);
-      return (int)(lower_bound(pref.begin(), pref.end(), pos) - pref.begin());
-    } else {
-      int pos = R->select(x, j);
-      int l = 0, r = (int)pref.size() - 1;
-      while (l < r) {
-        int m = (l + r) >> 1;
-        if (m - pref[m] >= pos)
-          r = m;
-        else
-          l = m + 1;
-      }
-      return l;
+    template <class It>
+    WaveletTree(It b, It e, int lo, int hi) : lo(lo), hi(hi) {
+        if (b >= e)
+            return;
+        mid = (lo + hi) >> 1;
+        pref.reserve((int)(e - b) + 1);
+        pref.push_back(0);
+        for (auto it = b; it != e; ++it)
+            pref.push_back(pref.back() + (*it <= mid));
+        if (lo == hi)
+            return;
+        auto pivot = stable_partition(b, e, [&](int x) { return x <= mid; });
+        L = new WaveletTree(b, pivot, lo, mid);
+        R = new WaveletTree(pivot, e, mid + 1, hi);
     }
-  }
 
-  void swap_adj(int i) {
-    if (lo == hi) return;
-    int a = pref[i] - pref[i - 1], b = pref[i + 1] - pref[i];
-    if (a != b) {
-      pref[i] += (a == 0 ? 1 : -1);
-    } else {
-      if (a == 1)
-        L->swap_adj(pref[i]);
-      else
-        R->swap_adj(i - pref[i]);
+    int quantile(int r, int k) {
+        if (lo == hi)
+            return lo;
+        int inLeft = pref[r];
+        if (k <= inLeft)
+            return L->quantile(inLeft, k);
+        return R->quantile(r - inLeft, k - inLeft);
     }
-  }
+
+    int rank(int r, int x) {
+        if (r == 0)
+            return 0;
+        if (lo == hi)
+            return r;
+        if (x <= mid)
+            return L->rank(pref[r], x);
+        return R->rank(r - pref[r], x);
+    }
+
+    int select(int x, int j) {
+        if (lo == hi)
+            return j;
+        if (x <= mid) {
+            int pos = L->select(x, j);
+            return (int)(lower_bound(pref.begin(), pref.end(), pos) - pref.begin());
+        } else {
+            int pos = R->select(x, j);
+            int l = 0, r = (int)pref.size() - 1;
+            while (l < r) {
+                int m = (l + r) >> 1;
+                if (m - pref[m] >= pos)
+                    r = m;
+                else
+                    l = m + 1;
+            }
+            return l;
+        }
+    }
+
+    void swap_adj(int i) {
+        if (lo == hi)
+            return;
+        int a = pref[i] - pref[i - 1], b = pref[i + 1] - pref[i];
+        if (a != b) {
+            pref[i] += (a == 0 ? 1 : -1);
+        } else {
+            if (a == 1)
+                L->swap_adj(pref[i]);
+            else
+                R->swap_adj(i - pref[i]);
+        }
+    }
 };
 
 int main() {
-  ios::sync_with_stdio(false);
-  cin.tie(nullptr);
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-  int N, Q;
-  cin >> N >> Q;
-  vector<int> A(N);
-  for (auto &x : A) cin >> x;
+    int N, Q;
+    cin >> N >> Q;
+    vector<int> A(N);
+    for (auto &x : A)
+        cin >> x;
 
-  // compress
-  vector<int> vals = A;
-  sort(vals.begin(), vals.end());
-  vals.erase(unique(vals.begin(), vals.end()), vals.end());
-  for (auto &x : A)
-    x = int(lower_bound(vals.begin(), vals.end(), x) - vals.begin());
+    // compress
+    vector<int> vals = A;
+    sort(vals.begin(), vals.end());
+    vals.erase(unique(vals.begin(), vals.end()), vals.end());
+    for (auto &x : A)
+        x = int(lower_bound(vals.begin(), vals.end(), x) - vals.begin());
 
-  WaveletTree wt(A.begin(), A.end(), 0, (int)vals.size() - 1);
+    WaveletTree wt(A.begin(), A.end(), 0, (int)vals.size() - 1);
 
-  while (Q--) {
-    int t;
-    cin >> t;
-    if (t == 1) {
-      int i;
-      cin >> i;
-      if (i + 1 < N) {
-        wt.swap_adj(i + 1);
-        swap(A[i], A[i + 1]);
-      }
-    } else {
-      int i, l, k;
-      cin >> i >> l >> k;
-      int d = wt.quantile(i + 1, k);
-      int occ = wt.rank(N, d);
-      if (l > occ)
-        cout << -1 << "\n";
-      else
-        cout << wt.select(d, l) - 1 << "\n";
+    while (Q--) {
+        int t;
+        cin >> t;
+        if (t == 1) {
+            int i;
+            cin >> i;
+            if (i + 1 < N) {
+                wt.swap_adj(i + 1);
+                swap(A[i], A[i + 1]);
+            }
+        } else {
+            int i, l, k;
+            cin >> i >> l >> k;
+            int d = wt.quantile(i + 1, k);
+            int occ = wt.rank(N, d);
+            if (l > occ)
+                cout << -1 << "\n";
+            else
+                cout << wt.select(d, l) - 1 << "\n";
+        }
     }
-  }
 }
 ```
 :::

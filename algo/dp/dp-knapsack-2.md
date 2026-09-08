@@ -38,17 +38,17 @@ Khi xử lý bài toán kiểm tra sự tồn tại của một tập con có t�
 > Cho số nguyên $C$, đếm số tập con của tập số tự nhiên có tổng là $C$.
 
 Giới hạn:
-- $1 \leq C \leq 10^5$
+- $1 \leq C \leq 10^{5}$
 
-#### Thuật toán $\mathcal{O}(C^2)$
+#### Thuật toán $\mathcal{O}(C^{2})$
 
-Nếu áp dụng thuật toán quy hoạch động truyền thống với $\texttt{dp}(i, j)$ là số tập con của $\{1, 2, \dots, i\}$ có tổng là $j$, ta có thuật toán có độ phức tạp $\mathcal{O}(C^2)$ với công thức truy hồi là:
+Nếu áp dụng thuật toán quy hoạch động truyền thống với $\texttt{dp}(i, j)$ là số tập con của $\{1, 2, \dots, i\}$ có tổng là $j$, ta có thuật toán có độ phức tạp $\mathcal{O}(C^{2})$ với công thức truy hồi là:
 
 $$
 \texttt{dp}(i, j) = \texttt{dp}(i - 1, j) + \texttt{dp}(i - 1, j - i)
 $$
 
-Tuy nhiên, với giới hạn $C \leq 10^5$, đây rõ ràng là một lời giải chưa tối ưu.
+Tuy nhiên, với giới hạn $C \leq 10^{5}$, đây rõ ràng là một lời giải chưa tối ưu.
 
 #### Thay đổi hướng tiếp cận
 
@@ -97,18 +97,18 @@ $$
 
 #### Độ phức tạp
 
-Thoạt nhìn qua, ta có cảm giác như lời giải này cũng có độ phức tạp $\mathcal{O}(C^2)$ như lời giải trước đó. Tuy nhiên, dựa vào nhận xét rằng với mọi tập số nguyên, tổng $\sigma$ của nó tối thiểu là $1 + 2 + \dots + \ell$, tức là:
+Thoạt nhìn qua, ta có cảm giác như lời giải này cũng có độ phức tạp $\mathcal{O}(C^{2})$ như lời giải trước đó. Tuy nhiên, dựa vào nhận xét rằng với mọi tập số nguyên, tổng $\sigma$ của nó tối thiểu là $1 + 2 + \dots + \ell$, tức là:
 
 $$
 \begin{align*}
 1 + 2 + \dots + \ell &\leq \sigma \\
 \Longleftrightarrow \frac{\ell(\ell+1)}{2} &\leq \sigma \\
-\Longrightarrow \ell^2 &\leq 2 \sigma \\
+\Longrightarrow \ell^{2} &\leq 2 \sigma \\
 \Longrightarrow \ell &\leq \sqrt{2 \sigma} \\
 \end{align*}
 $$
 
-Như vậy, kích thước của một tập con không thể vượt quá căn bậc hai của hai lần tổng của nó. Nói cách khác, số trạng thái mà ta cần xét trong thuật toán quy hoạch động này là $\mathcal{O}(C \sqrt{C})$ -- đủ để xử lý giới hạn $10^5$.
+Như vậy, kích thước của một tập con không thể vượt quá căn bậc hai của hai lần tổng của nó. Nói cách khác, số trạng thái mà ta cần xét trong thuật toán quy hoạch động này là $\mathcal{O}(C \sqrt{C})$ -- đủ để xử lý giới hạn $10^{5}$.
 
 :::spoiler Code tham khảo
 Trước tiên, ta khai báo hai hàm giúp tính phép cộng có modulo và kiểm tra tính hợp lệ của một trạng thái như sau:
@@ -116,11 +116,11 @@ Trước tiên, ta khai báo hai hàm giúp tính phép cộng có modulo và ki
 ```cpp=
 const int MOD = 1e9 + 7;
 
-int add (int a, int b) {
+int add(int a, int b) {
     return a + b - (a + b < MOD ? 0 : MOD);
 }
 
-bool validState (int sigma, int len) {
+bool validState(int sigma, int len) {
     return 1LL * len * len <= 2 * sigma;
 }
 ```
@@ -128,7 +128,8 @@ bool validState (int sigma, int len) {
 Sau đó, thuật toán nêu trên có thể được cài đặt như sau:
 
 ```cpp=
-int C; cin >> C;
+int C;
+cin >> C;
 vector<vector<int>> dp(C + 1);
 
 dp[1] = {0, 1};
@@ -145,7 +146,8 @@ for (int sigma = 2; sigma <= C; sigma++) {
 }
 
 int ans = 0;
-for (int len = 1; validState(C, len); len++) ans = add(ans, dp[C][len]);
+for (int len = 1; validState(C, len); len++)
+    ans = add(ans, dp[C][len]);
 cout << ans;
 ```
 :::
@@ -157,7 +159,7 @@ cout << ans;
 > Cho hai số nguyên $C$ và $L$, đếm số tập con của tập số $\{L, L + 1, L + 2, \dots\}$ có tổng là $C$.
 
 Giới hạn:
-- $1 \leq C, L \leq 10^5$
+- $1 \leq C, L \leq 10^{5}$
 
 #### Ý tưởng
 
@@ -172,7 +174,7 @@ Khi bài toán có cận dưới, ta có thể xử lý theo một trong hai hư
 > Cho hai số nguyên $C$ và $n$, đếm số tập con của tập số $\{1, 2, 3, \dots, n\}$ có tổng là $C$.
 
 Giới hạn:
-- $1 \leq C, n \leq 10^5$.
+- $1 \leq C, n \leq 10^{5}$.
 
 #### Ý tưởng
 
@@ -196,15 +198,16 @@ $$
 Để tiện lợi cho việc bù trừ, ta định nghĩa thêm một hàm tính phép trừ có modulo như sau:
 
 ```cpp=
-int sub (int a, int b) {
-		return a - b + (a - b >= 0 ? 0 : MOD);
+int sub(int a, int b) {
+    return a - b + (a - b >= 0 ? 0 : MOD);
 }
 ```
 
 Sau đó, thuật toán nêu trên có thể được cài đặt như sau:
 
 ```cpp=
-int C, n; cin >> C >> n;
+int C, n;
+cin >> C >> n;
 vector<vector<int>> dp(C + 1);
 
 dp[0] = {1}, dp[1] = {0, 1};
@@ -223,7 +226,8 @@ for (int sigma = 2; sigma <= C; sigma++) {
 }
 
 int ans = 0;
-for (int len = 1; validState(C, len); len++) ans = add(ans, dp[C][len]);
+for (int len = 1; validState(C, len); len++)
+    ans = add(ans, dp[C][len]);
 cout << ans;
 ```
 :::
@@ -232,7 +236,7 @@ cout << ans;
 
 Năm 1997, David Pisinger đã xuất bản bài báo cáo về thành quả nghiên cứu bài toán cái túi của mình. Trong bài báo cáo ấy, ông đã đề xuất một hướng tiếp cận khác cho QHĐ cái túi, giúp xử lý bài toán Subset sum trong $\mathcal{O}(n \cdot \max w_i)$ và 0/1 Knapsack trong $\mathcal{O}(n \cdot \max w_i \cdot \max v_i)$. Năm 1999, Martello, Pisinger và Toth đã đưa ra nhiều cải tiến quan trọng cho thuật toán 0/1 Knapsack nhưng thuật toán này tương đối phức tạp và không phổ biến trong Lập trình thi đấu.
 
-Độ phức tạp của thuật toán này tốt hơn quy hoạch động truyền thống ở chỗ nó không phụ thuộc vào tổng trọng số cần tìm (trong bài toán Subset Sum) hay giới hạn của cái túi (trong bài toán 0/1 Knapsack). Đây là một cải tiến hữu ích đặc biệt là với các dạng bài có giới hạn $C$ lên đến $\sum w_i$, khi đó độ phức tạp của thuật toán truyền thống tương đương $\mathcal{O}(n^2 \cdot \max w_i)$.
+Độ phức tạp của thuật toán này tốt hơn quy hoạch động truyền thống ở chỗ nó không phụ thuộc vào tổng trọng số cần tìm (trong bài toán Subset Sum) hay giới hạn của cái túi (trong bài toán 0/1 Knapsack). Đây là một cải tiến hữu ích đặc biệt là với các dạng bài có giới hạn $C$ lên đến $\sum w_i$, khi đó độ phức tạp của thuật toán truyền thống tương đương $\mathcal{O}(n^{2} \cdot \max w_i)$.
 
 > **Lưu ý**
 > Để thuận lợi cho việc giải thích thuật toán, một số thuật ngữ và cách định nghĩa trong bài viết này sẽ có đôi chút khác biệt so với bài báo cáo của Pisinger. Tuy nhiên, những thay đổi này không làm thay đổi hiệu suất của thuật toán.
@@ -298,7 +302,7 @@ Có thể thấy, ý tưởng của thuật toán quy hoạch động của Davi
 
 ### Lời giải cho bài toán Subset sum
 
-#### Quy hoạch động $\mathcal{O}(n^2W)$
+#### Quy hoạch động $\mathcal{O}(n^{2}W)$
 
 Gọi $\texttt{exist}(i, j, \sigma)$ là một giá trị boolean cho biết sự tồn tại của một trạng thái cân bằng có tổng trọng số $\sigma$ nếu chỉ áp dụng thao tác xóa món đồ cho $i$ phần tử đầu tiên của nhóm $A$ và thao tác thêm món đồ cho $j$ phần tử đầu tiên của nhóm $B$.
 
@@ -402,7 +406,7 @@ Như vậy, với mọi cặp $(i, \sigma)$, tồn tại một giá trị $\delt
 
 Không khó để chứng minh khi cố định $\sigma$ thì $\texttt{change}(i, \sigma)$ là hàm nghịch biến (tức $i$ tăng thì $\texttt{change}(i, \sigma)$ giảm).
 
-Từ công thức truy hồi cho $\texttt{exist}$ ở lời giải  $\mathcal{O}(n^2W)$, ta thấy, khi một trạng thái $(i, j, \sigma)$ có $\texttt{exist}(i, j, \sigma) = 1$, nó sẽ kéo theo:
+Từ công thức truy hồi cho $\texttt{exist}$ ở lời giải  $\mathcal{O}(n^{2}W)$, ta thấy, khi một trạng thái $(i, j, \sigma)$ có $\texttt{exist}(i, j, \sigma) = 1$, nó sẽ kéo theo:
 
 - $\texttt{exist}(i + 1, j, \sigma) = 1$.
 - $\texttt{exist}(i, j + 1, \sigma) = 1$.
@@ -417,13 +421,13 @@ Từ đó, nếu cố định $i, \sigma$ và cùng lúc các vị trí $\texttt
 - $\texttt{exist}(i + 1, j, \sigma - w_{i+1}) = 1$ với $j \in [\delta; n - b]$, nếu $\sigma > C$.
 - $\texttt{exist}(i, j, \sigma + w_{b+j}) = 1$, với $j \in [\delta + 1; n - b]$, nếu $\sigma \leq C$.
 
-Ở hai trường hợp đầu tiên, ta đều có các trạng thái thái di động theo tham số $j$, hai tham số $i$ và $\sigma$ được cố định cùng một giá trị. Tuy nhiên, ở trường hợp cuối cùng, tham số $\sigma$ lại phụ thuộc vào $j$, do đó, ta phải xét mọi $j$ thỏa mãn để tính. Việc xét mọi $j$ từ $\delta + 1$ đến $n - b$ sẽ khiến thuật toán quay về độ phức tạp $\mathcal{O}(n^2W)$. Do đó, ta cần dùng đến nhận xét rằng nếu:
+Ở hai trường hợp đầu tiên, ta đều có các trạng thái thái di động theo tham số $j$, hai tham số $i$ và $\sigma$ được cố định cùng một giá trị. Tuy nhiên, ở trường hợp cuối cùng, tham số $\sigma$ lại phụ thuộc vào $j$, do đó, ta phải xét mọi $j$ thỏa mãn để tính. Việc xét mọi $j$ từ $\delta + 1$ đến $n - b$ sẽ khiến thuật toán quay về độ phức tạp $\mathcal{O}(n^{2}W)$. Do đó, ta cần dùng đến nhận xét rằng nếu:
 
 $$
 \begin{align*}
-\texttt{exist}(i - 1, j, \sigma) = 1 \space\space\space &\forall j \in [\delta'; n - b] \\
-\Longrightarrow \texttt{exist}(i - 1, j, \sigma + w_{b+j}) = 1 \space\space\space &\forall j \in [\delta' + 1; n - b] \\
-\Longrightarrow \texttt{exist}(i, j, \sigma + w_{b+j}) = 1 \space\space\space & \forall j \in [\delta' + 1; n - b]
+\texttt{exist}(i - 1, j, \sigma) = 1 \qquad &\forall j \in [\delta'; n - b] \\
+\Longrightarrow \texttt{exist}(i - 1, j, \sigma + w_{b+j}) = 1 \qquad &\forall j \in [\delta' + 1; n - b] \\
+\Longrightarrow \texttt{exist}(i, j, \sigma + w_{b+j}) = 1 \qquad & \forall j \in [\delta' + 1; n - b]
 \end{align*}
 $$
 

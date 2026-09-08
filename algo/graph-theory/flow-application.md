@@ -59,13 +59,13 @@ Giả sử ta có luồng cực đại $f^*$. Khi $v(f^*) = k$, ta có một dan
 
 Một số mạng không những có sức chứa cạnh mà nó còn có cả sức chứa đỉnh.
 
-Để giải quyết trường hợp này, ta có thể biến đổi mạng này thành một mạng thông thường bằng cách tạo hai đỉnh mới $u_{in}$, $u_{out}$ với mỗi đỉnh $u$ trong mạng. Ta nối hai đỉnh này bằng một cung có sức chứa bằng với sức chứa đỉnh.
+Để giải quyết trường hợp này, ta có thể biến đổi mạng này thành một mạng thông thường bằng cách tạo hai đỉnh mới $u_{\texttt{in}}$, $u_{\texttt{out}}$ với mỗi đỉnh $u$ trong mạng. Ta nối hai đỉnh này bằng một cung có sức chứa bằng với sức chứa đỉnh.
 
 <center>
 <img src="/algo/flow-application/flow_2.png" alt="Sức chứa đỉnh">
 </center>
 
-Các cạnh $\{u, v\}$ trong mạng từ đây cũng được nối lại thành các cạnh $\{u_{out}, v_{in}\}$.
+Các cạnh $\{u, v\}$ trong mạng từ đây cũng được nối lại thành các cạnh $\{u_{\texttt{out}}, v_{\texttt{in}}\}$.
 
 ### Tìm các đường đi phân biệt đỉnh
 
@@ -127,7 +127,7 @@ Sau khi tìm được luồng cực đại của đồ thị, vì các giá tr�
 
 Bài toán vòng loại bóng chày (baseball elimination) được phát biểu như sau: có một giải đấu bóng chày bao gồm $n$ đội, mỗi đội có $w_i$ trận thắng, $l_i$ trận thua, $r_i$ trận còn lại cần phải chơi, và $g_{i, j}$ trận với các đội $j$. Nhiệm vụ của ta là xét xem những đội nào không còn khả năng vô địch, tức là dù kết quả ra sao thì đội đó cũng không đứng nhất bảng. Ta giả sử không có trận hoà và tất cả trận đấu đều được diễn ra.
 
-Dễ nhất, ta có thể xác định đội $x$ không có khả năng vô địch giải đấu nếu tồn tại một đội $y$ sao cho $w_x + r_x \lt w_y$. Ta không cần luồng để giải quyết trường hợp này.
+Dễ nhất, ta có thể xác định đội $x$ không có khả năng vô địch giải đấu nếu tồn tại một đội $y$ sao cho $w_x + r_x < w_y$. Ta không cần luồng để giải quyết trường hợp này.
 
 Đối với các trường hợp còn lại, ta sử dụng luồng trên mạng để kiểm tra. Ta xây dựng mạng như sau:
 - Nối đỉnh nguồn $s$ với các đỉnh $(i,j)$ tượng trưng cho trận đấu giữa hai đội bằng một cung có sức chứa $g_{i, j}$. Không tính các trận đấu có sự tham gia của đội $x$. Ta quy ước các đỉnh $(i, j)$ thuộc tập $X$.
@@ -140,7 +140,9 @@ Dễ nhất, ta có thể xác định đội $x$ không có khả năng vô đ�
 
 Đội $x$ không có khả năng vô địch nếu tập $S^*$ trong lát cắt cực tiểu $(S^*, T^*)$ (sau khi thực hiện lát cắt cực tiểu $s - t$, tập hợp đỉnh được chia làm $2$ phần: tập $S^*$ là một tập con chứa đỉnh nguồn $s$, tập $T^*$ là tập chứa các đỉnh còn lại) tồn tại một tập con $R$ sao cho $R \subseteq Y$ và điều kiện dưới đây thoả mãn:
 
-$$ \frac{\sum_{i \in R}w_i + \frac{1}{2} \sum_{i,j \in R, \\ i \neq j} g_{i,j}}{|R|} \gt w_x + r_x$$
+$$
+\frac{\sum_{i \in R} w_i + \frac{1}{2} \sum_{i, j \in R, \ i \neq j} g_{i, j}}{|R|} > w_x + r_x
+$$
 
 Đơn giản hơn, ta có thể xác định đội $x$ có khả năng vô địch giải đấu nếu giá trị luồng cực đại $v(f^*)$ bằng tổng sức chứa $g_{i, j}$ các cung $\\{s, (i, j)\\}$ và không thể nếu ngược lại.
 
@@ -186,7 +188,9 @@ Ta có thể chứng minh lí do vì sao hai công thức $C - c(S^*, T^*)$ và 
 :::spoiler Chứng minh
 Vì mạng tồn tại các cạnh có sức chứa $\infty$, nên lát cắt cực tiểu sẽ chỉ bao gồm các cung $\{s, u\}$ và $\{v, t\}$. Khi này, $c(S^*, T^*)$ sẽ bằng: 
 
-$$\sum_{u \in T^*, p_u > 0} p_u + \sum_{u \in S^*, p_u < 0} (-p_u)$$
+$$
+\sum_{u \in T^*, p_u > 0} p_u + \sum_{u \in S^*, p_u < 0} (-p_u)
+$$
 Từ đây, với $C = \sum_{p_u > 0} p_u$, ta suy ra:
 
 $$
@@ -215,11 +219,13 @@ $$
 
 Khi thực hiện **lưu thông** trên mạng, ta cần thoả mãn hai điều kiện:
 1. Với mỗi cạnh $e \in E$, $0 \le f(e) \le c(e)$
-2. Với mỗi đỉnh $u \in V$, $f^{in}(u) - f^{out}(u) = d(u)$
+2. Với mỗi đỉnh $u \in V$, $f^{\texttt{in}}(u) - f^{\texttt{out}}(u) = d(u)$
  
 Dễ thấy, điều kiện để có lưu thông trên mạng là:
 
-$$\sum_{u, d(u) > 0} d(u) = \sum_{u, d(u) < 0} -d(u) = D$$
+$$
+\sum_{u, d(u) > 0} d(u) = \sum_{u, d(u) < 0} -d(u) = D
+$$
 
 Từ đây, ta xây dựng một mạng mới $G^{'} = G$ với các thay đổi:
 - Thêm đỉnh siêu nguồn $S$ và đỉnh siêu thu $T$
@@ -232,7 +238,9 @@ Ta xác định mạng $G$ có thể thực hiện lưu thông nếu giá trị 
 
 Một số bài toán lưu thông theo cung cầu sẽ cho ta thêm điều kiện cận dưới cho các cung trên đồ thị. Cụ thể hơn, gọi giá trị $l(e)$ là cận dưới của cạnh $e = \{u, v\}$. Khi này, lượng luồng $f(e)$ đi qua cạnh $e$ phải thoả mãn:
 
-$$l(e) \le f(e) \le c(e)$$
+$$
+l(e) \le f(e) \le c(e)
+$$
 
 <center>
 <img src="/algo/flow-application/flow_8.png" alt="Trường hợp có cận dưới">
@@ -248,7 +256,9 @@ Sau khi đã cập nhật xong, ta thực hiện việc giải quyết bài toá
 
 Giả sử ta có $f^*(e)$ là lượng luồng đi qua cạnh $e$ sau khi cập nhật các giá trị. Từ đây, lượng luồng $f(e)$ đi qua cạnh $e$ ban đầu sẽ bằng:
 
-$$f(e) = f^*(e) + l(e)$$
+$$
+f(e) = f^*(e) + l(e)
+$$
 
 ### Vận dụng 
 

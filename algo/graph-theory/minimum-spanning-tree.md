@@ -64,27 +64,27 @@ Xuyên suốt cả bốn tính chất, ta đều sử dụng phép phản chứn
     Giả sử $e$ thuộc một cây khung $T$ của đồ thị, ta sẽ chứng minh luôn tồn tại một cây khung khác của đồ thị có trọng số nhỏ hơn $T$. 
     - Ta thử xóa cạnh $e$ khỏi cây khung $T$. Lúc này, $T$ sẽ bị chia làm 2 thành phần liên thông và tổng trọng số giảm đi $w_e$.
     - Xét các đỉnh nằm trong chu trình $C$, giả sử sau khi xóa $e$ khỏi cây khung, các đỉnh này vẫn liên thông với nhau. Vì thế, khi thêm $e$ trở lại vào cây khung, $e$ sẽ kết nối 2 đỉnh đã liên thông với nhau $\Rightarrow$ tồn tại chu trình trong cây khung $\Rightarrow$ Trái với giả thiết $T$ là cây khung. 
-    ⇒ Vậy nên, khi xóa $e$ khỏi $T$, các đỉnh nằm trong chu trình $C$ sẽ bị tách làm 2 thành phần liên thông. Do đó, ta có thể chọn ra cạnh $e'$ khác $e$ thuộc chu trình $C$ để kết nối 2 thành liên thông này, biến $T$ trở lại thành một cây khung của đồ thị. Mặt khác, $e$ là cạnh có trọng số lớn nhất tuyệt đối trên $C$, nên khi thay $e$ bằng $e'$, trọng số của T sẽ giảm đi $w_e - w_{e'}$
+    $\Rightarrow$ Vậy nên, khi xóa $e$ khỏi $T$, các đỉnh nằm trong chu trình $C$ sẽ bị tách làm 2 thành phần liên thông. Do đó, ta có thể chọn ra cạnh $e'$ khác $e$ thuộc chu trình $C$ để kết nối 2 thành liên thông này, biến $T$ trở lại thành một cây khung của đồ thị. Mặt khác, $e$ là cạnh có trọng số lớn nhất tuyệt đối trên $C$, nên khi thay $e$ bằng $e'$, trọng số của T sẽ giảm đi $w_e - w_{e'}$
     **Kết luận:** T không phải là cây khung nhỏ nhất của đồ thị.
     
 * **2. Đường đi hẹp nhất**: 
     - Xét cây khung nhỏ nhất $T$ bất kỳ của đồ thị $G$ mà tồn tại đường đi $u \rightarrow v$ trên $G$ có cạnh lớn nhất **nhỏ hơn** cạnh lớn nhất của đường đi $u \rightarrow v$ trên $T$. 
-    - Gọi đường đi $u \rightarrow v$ trên $G$ là $path$, cạnh lớn nhất của đường đi $u \rightarrow v$ trên $T$ là $e$. 
-    ⇒ Như vậy, nếu xóa $e$ khỏi cây khung ban đầu, cây khung sẽ bị chia thành 2 TPLT rời nhau, một TPLT chứa $u$ và TPLT còn lại chứa $v$. 
-    - Do $path$ là đường đi $u \rightarrow v$ trên $G$ nên trên $path$ sẽ tồn tại cạnh $e'$ có thể kết nối 2 TPLT này. Mà mọi cạnh trên $path$ đều có trọng số nhỏ hơn $e$ (như giả thiết) 
-    ⇒ Khi xoá $e$ và thay bằng $e'$, ta sẽ thu được 1 cây khung $T'$ có trọng số nhỏ hơn cây khung ban đầu 
+    - Gọi đường đi $u \rightarrow v$ trên $G$ là $\texttt{path}$, cạnh lớn nhất của đường đi $u \rightarrow v$ trên $T$ là $e$. 
+    $\Rightarrow$ Như vậy, nếu xóa $e$ khỏi cây khung ban đầu, cây khung sẽ bị chia thành 2 TPLT rời nhau, một TPLT chứa $u$ và TPLT còn lại chứa $v$. 
+    - Do $\texttt{path}$ là đường đi $u \rightarrow v$ trên $G$ nên trên $\texttt{path}$ sẽ tồn tại cạnh $e'$ có thể kết nối 2 TPLT này. Mà mọi cạnh trên $\texttt{path}$ đều có trọng số nhỏ hơn $e$ (như giả thiết) 
+    $\Rightarrow$ Khi xoá $e$ và thay bằng $e'$, ta sẽ thu được 1 cây khung $T'$ có trọng số nhỏ hơn cây khung ban đầu 
     **Kết luận:** $T$ không phải cây khung nhỏ nhất của đồ thị.
 * **3. Tính duy nhất**: 
     * Giả sử tồn tại 2 cây khung nhỏ nhất $T$ và $T'$. Xét cạnh $u-v$ nằm trong $T$ nhưng không trong $T'$. 
-    * Gọi đường đi $u \rightarrow v$ trên $T$ là $path$, trên $T'$ là $path'$. Hiển nhiên, $path'$ không chứa cạnh $u-v$. 
-    * Vì trọng số các cạnh của đồ thị đều khác nhau $\Rightarrow$ Cạnh lớn nhất của $path$ sẽ có trọng số lớn hơn trọng số cạnh lớn nhất của $path'$ hoặc ngược lại.
-    ⇒ Theo tính chất đường đi hẹp nhất, $T$ hoặc $T'$ sẽ không phải là cây khung nhỏ nhất. 
+    * Gọi đường đi $u \rightarrow v$ trên $T$ là $\texttt{path}$, trên $T'$ là $\texttt{path}'$. Hiển nhiên, $\texttt{path}'$ không chứa cạnh $u-v$. 
+    * Vì trọng số các cạnh của đồ thị đều khác nhau $\Rightarrow$ Cạnh lớn nhất của $\texttt{path}$ sẽ có trọng số lớn hơn trọng số cạnh lớn nhất của $\texttt{path}'$ hoặc ngược lại.
+    $\Rightarrow$ Theo tính chất đường đi hẹp nhất, $T$ hoặc $T'$ sẽ không phải là cây khung nhỏ nhất. 
     
 * **4. Tính chất cạnh nhỏ nhất**: 
     > Ta sẽ chứng minh mọi cây khung không chứa $e$ của đồ thị đều không phải là cây khung nhỏ nhất.
     - Giả sử $e$ nối 2 đỉnh $u$, $v$ của đồ thị. Gọi $T$ là 1 cây khung không chứa $e$ của đồ thị. 
     - Xét cạnh $e'$ bất kỳ thuộc đường đi từ $u \rightarrow v$ trên $T$. Khi xóa $e'$ khỏi $T$, $T$ sẽ bị tách làm 2 thành phần liên thông, 1 thành phần liên thông chứa $u$, 1 phần phần liên thông chứa $v$. 
-    ⇒ Do đó, ta hoàn toàn có thể thêm cạnh $e$ (nối 2 đỉnh $u- v$) vào $T$ để kết nối 2 thành phần liên thông này, khi đó $T$ sẽ trở lại thành 1 cây khung của đồ thị.
+    $\Rightarrow$ Do đó, ta hoàn toàn có thể thêm cạnh $e$ (nối 2 đỉnh $u- v$) vào $T$ để kết nối 2 thành phần liên thông này, khi đó $T$ sẽ trở lại thành 1 cây khung của đồ thị.
     -  Mặt khác, $e$ là cạnh có trọng số nhỏ nhất tuyệt đối của đồ thị, nên khi thay $e'$ bằng $e$ trên cây khung $T$, trọng số của $T$ sẽ giảm đi 1 lượng dương 
     **Kết luận:** $T$ ban đầu không phải là cây khung nhỏ nhất của đồ thị.
     
@@ -199,10 +199,10 @@ Ta phải chứng minh hai điều:
 2. cây đó có trọng số nhỏ nhất trong số tất cả các cây khung của đồ thị.
 
 **Chứng minh (1)**
-- Mỗi cạnh $(u, v)$ được xét đến, nó chỉ kết nạp vào câu khung nếu $u, v$ thuộc 2 thành phần liên thông khác nhau $T_u, T_v$ ⇒ Do đó các cạnh được thêm không tạo thành chu trình
-- Do $T$ không có chu trình ⇒ số cạnh được thêm $≤ n - 1$. Ta sẽ chứng minh $T$ có đúng $n - 1$ cạnh
-    - Giả sử số cạnh được thêm $< n - 1$ ⇒ $T$ gồm hai hay nhiều thành phần liên thông
-    - Mặt khác, do $G$ liên thông ⇒ tồn tại các cạnh thuộc $G$ nối các thành phần liên thông đó mà không thuộc $T$. Do đó cạnh đầu tiên nhỏ nhất trong số các cạnh này sẽ được đưa vào do nó không tạo thành chu trình, mâu thuẫn với giả thiết ở trên ⇒ Giả sử sai
+- Mỗi cạnh $(u, v)$ được xét đến, nó chỉ kết nạp vào câu khung nếu $u, v$ thuộc 2 thành phần liên thông khác nhau $T_u, T_v$ $\Rightarrow$ Do đó các cạnh được thêm không tạo thành chu trình
+- Do $T$ không có chu trình $\Rightarrow$ số cạnh được thêm $\le n - 1$. Ta sẽ chứng minh $T$ có đúng $n - 1$ cạnh
+    - Giả sử số cạnh được thêm $< n - 1$ $\Rightarrow$ $T$ gồm hai hay nhiều thành phần liên thông
+    - Mặt khác, do $G$ liên thông $\Rightarrow$ tồn tại các cạnh thuộc $G$ nối các thành phần liên thông đó mà không thuộc $T$. Do đó cạnh đầu tiên nhỏ nhất trong số các cạnh này sẽ được đưa vào do nó không tạo thành chu trình, mâu thuẫn với giả thiết ở trên $\Rightarrow$ Giả sử sai
     - Vậy số cạnh được thêm vào bằng đúng $n - 1$
 
 **Chứng minh (2)**
@@ -214,19 +214,19 @@ Trong chứng minh này, mình có quy ước sử dụng một số kí hiệu:
 
 Giờ cùng đi vào chi tiết chứng minh nhé (づ◔ ͜ʖ◔)づ
 - Gọi $T$ là cây khung đầu ra của thuật toán Kruskal và $T^*$ là một cây khung nhỏ nhất, ta sẽ chứng minh tổng trọng số trên $T$ và $T^*$ bằng nhau : $c(T)$ = $c(T^*)$
-- Nếu $c(T)$ = $c(T^*)$ ⇒ hiển nhiên đúng
-- Nếu $c(T)$ ≠ $c(T^*)$ gọi $(u, v)$ là cạnh $\in$ $T$ mà $\notin$ $T^*$ hay thuộc $T - T^*$. Gọi $S$ là thành phần liên thông chứa u tại thời điểm $(u, v)$ được thêm vào $T$.
+- Nếu $c(T)$ = $c(T^*)$ $\Rightarrow$ hiển nhiên đúng
+- Nếu $c(T) \ne c(T^*)$ gọi $(u, v)$ là cạnh $\in T$ mà $\notin T^*$ hay thuộc $T - T^*$. Gọi $S$ là thành phần liên thông chứa u tại thời điểm $(u, v)$ được thêm vào $T$.
     **Nhận xét:** 
     Dễ thấy nếu xóa cạnh $(u, v)$ trên $T$ thì sẽ tách thành 2 **thành phần liên thông** $S$ và $G - S$. 
-    Đây là một **lát cắt**, ta có thể thêm bất cứ cạnh nào nối giữa 2 **thành phần liên thông** này để tạo thành một cây mới ⇒ $(u, v)$ $\in$ lát cắt $(S, G - S)$.
-    > **Định nghĩa :** Một lát cắt $s$ - $t$ là một tập con của 𝐸 mà khi loại bỏ những cạnh này thì không còn đường đi từ $s$ tới $t$. ([Bài toán lát cắt hẹp nhất](/translate/wcipeg/Flows#bài-toán-lát-cắt-hẹp-nhất-minimun-s-t-cut))
+    Đây là một **lát cắt**, ta có thể thêm bất cứ cạnh nào nối giữa 2 **thành phần liên thông** này để tạo thành một cây mới $\Rightarrow$ $(u, v) \in$ lát cắt $(S, G - S)$.
+    > **Định nghĩa :** Một lát cắt $s$ - $t$ là một tập con của $E$ mà khi loại bỏ những cạnh này thì không còn đường đi từ $s$ tới $t$. ([Bài toán lát cắt hẹp nhất](/translate/wcipeg/Flows#bài-toán-lát-cắt-hẹp-nhất-minimun-s-t-cut))
    
     Ta sẽ chứng minh $(u, v)$ thuộc **lát cắt nhỏ nhất** $(S, G - S)$
-    - Nếu tồn tại đường đi trọng số $e$ từ $S$ đến $G - S$ có trọng số nhỏ hơn $(u, v)$, thuật toán kruskal sẽ chọn $e$ thay vì $(u, v)$ ⇒ vô lý.
-    ⇒ *Ta khẳng định $(u, v)$ có **trọng số nhỏ nhất** trong các cạnh từ $S$ đến $(G - S)$.* **(1)**
+    - Nếu tồn tại đường đi trọng số $e$ từ $S$ đến $G - S$ có trọng số nhỏ hơn $(u, v)$, thuật toán kruskal sẽ chọn $e$ thay vì $(u, v)$ $\Rightarrow$ vô lý.
+    $\Rightarrow$ *Ta khẳng định $(u, v)$ có **trọng số nhỏ nhất** trong các cạnh từ $S$ đến $(G - S)$.* **(1)**
     - Mặt khác, bởi vì $T^*$ là 1 cây khung nhỏ nhất nên  có một đường từ $S$ tới $G - S$, gọi cạnh thuộc đường này là $(x, y)$. Xét cây khung :
-    ${T^*}' = T^* \cup (u, v) - (x, y)$ ⇒ $c({T^*}') = c(T^*) + c(u, v) - c(x, y)$
-    - Do theo **(1)** có:  $c(u, v) ≤ c(x, y)$ nên $c({T^*}') ≤ c(T^*)$ mà $T^*$ là cây khung nhỏ nhất ⇒ $c({T^*}')$ = $c(T^*)$ và ${T^*}'$ cũng là **cây khung nhỏ nhất** ⇒ $|T - {T^*}'|$ = $|T - T^*| - 1$
+    ${T^*}' = T^* \cup (u, v) - (x, y)$ $\Rightarrow$ $c({T^*}') = c(T^*) + c(u, v) - c(x, y)$
+    - Do theo **(1)** có:  $c(u, v) \le c(x, y)$ nên $c({T^*}') \le c(T^*)$ mà $T^*$ là cây khung nhỏ nhất $\Rightarrow$ $c({T^*}')$ = $c(T^*)$ và ${T^*}'$ cũng là **cây khung nhỏ nhất** $\Rightarrow$ $|T - {T^*}'|$ = $|T - T^*| - 1$
     ***Ý nghĩa :** Như vậy ta đã biến đổi được **cây khung nhỏ nhất** ${T^*}$ thành cây khung ${T^*}'$ cũng là **cây khung nhỏ nhất** mà làm giảm số cạnh khác nhau của $T$ và ${T^*}$ đi 1 cạnh*
     - Lặp lại cách chứng minh với mỗi cạnh thuộc $T - {T^*}'$, ta sẽ biến đổi được ${T^*}'$ thành ${T}$, hay nói cách khác đã đã biến đổi cây khung nhỏ nhất ban đầu về cây khung đầu ra của Kruskal : $c(T) = c(T^*)$.
 
@@ -234,10 +234,10 @@ Giờ cùng đi vào chi tiết chứng minh nhé (づ◔ ͜ʖ◔)づ
 Gọi $n$ là số đỉnh, $m$ là số cạnh của đồ thị
 
 Thuật toán gồm 2 phần: 
-* Sắp xếp mảng $m$ cạnh theo trọng số tăng dần mất độ phức tạp $O(m \log{m})$.
-* Ta duyệt $m$ cạnh, mỗi cạnh dùng Disjoint Set mất độ phức tạp $O(\log{n})$, vậy tổng cộng mất độ phức tạp $O(m\log{n})$.
+* Sắp xếp mảng $m$ cạnh theo trọng số tăng dần mất độ phức tạp $\mathcal{O}(m \log{m})$.
+* Ta duyệt $m$ cạnh, mỗi cạnh dùng Disjoint Set mất độ phức tạp $\mathcal{O}(\log{n})$, vậy tổng cộng mất độ phức tạp $\mathcal{O}(m\log{n})$.
 
-$\Rightarrow$ độ phức tạp của thuật toán Kruskal là $O(m\log{m} +m\log{n})$
+$\Rightarrow$ độ phức tạp của thuật toán Kruskal là $\mathcal{O}(m\log{m} +m\log{n})$
 
 
 ### 2. Thuật toán Prim
@@ -249,8 +249,8 @@ Thuật toán bao gồm các bước sau:
 * Khởi tạo mảng $D$ trong đó $D_i$ là khoảng cách ngắn nhất từ đỉnh $i$ đến 1 đỉnh đã được kết nạp vào tập $S$, ban đầu $D[i]$ = $+\infty$
 * Lặp lại các thao tác sau $n$ lần($n$ là số cạnh của đồ thị)
     *  Tìm đỉnh $u$ không thuộc $S$ có $D_u$ nhỏ nhất, thêm $u$ vào tập $S$.
-    *  Xét tất cả các đỉnh $v$ kề $u$, cập nhật $D_v = min(D_v, w_{u,v})$ với $w_{u,v}$ là trọng số cạnh $u-v$. Nếu $D_v$ được cập nhật theo $w_{u,v}$ thì đánh dấu $trace_v = u$.
-    *  Thêm cạnh $u-trace[u]$ vào tập cạnh thuộc cây khung nhỏ nhất.
+    *  Xét tất cả các đỉnh $v$ kề $u$, cập nhật $D_v = \min(D_v, w_{u,v})$ với $w_{u,v}$ là trọng số cạnh $u-v$. Nếu $D_v$ được cập nhật theo $w_{u,v}$ thì đánh dấu $\texttt{trace}_v = u$.
+    *  Thêm cạnh $u-\texttt{trace}[u]$ vào tập cạnh thuộc cây khung nhỏ nhất.
     
 Mặc dù không bắt buộc, các bạn có thể đọc chứng minh tính đúng đắn thuật toán của Wikipedia tại [đây](https://vi.wikipedia.org/wiki/Thu%E1%BA%ADt_to%C3%A1n_Prim#Ch%E1%BB%A9ng_minh).
 
@@ -334,8 +334,8 @@ int main() {
 }
 ```
 Đánh giá độ phức tạp thuật toán: 
-- Ta duyệt tổng cộng $n$ lần, mỗi lần lấy 1 đỉnh ra khỏi heap mất $O(\log{n})$ và cập nhật trọng số của tất cả các đỉnh kề với đỉnh đó, tổng số lần cập nhật là $m$ lần, mỗi lần cập nhật ta mất độ phức tạp $O(\log{n})$. 
-- Như vậy, độ phức tạp của thuật toán Prim là $O((m + n)\log{n})$ với n là số đỉnh và m là số cạnh của đồ thị.
+- Ta duyệt tổng cộng $n$ lần, mỗi lần lấy 1 đỉnh ra khỏi heap mất $\mathcal{O}(\log{n})$ và cập nhật trọng số của tất cả các đỉnh kề với đỉnh đó, tổng số lần cập nhật là $m$ lần, mỗi lần cập nhật ta mất độ phức tạp $\mathcal{O}(\log{n})$. 
+- Như vậy, độ phức tạp của thuật toán Prim là $\mathcal{O}((m + n)\log{n})$ với n là số đỉnh và m là số cạnh của đồ thị.
 
 **Fact**: Trong các bài toán tìm cây khung, phần lớn mọi người sẽ sử dụng thuật toán **Kruskal** do tính dễ cài đặt cũng như dễ hiểu của nó. 
 > **Bonus :** Các bạn có thể sử dụng [Visualgo](https://visualgo.net/en/mst) để  mô phỏng thuật toán Kruskal và Prim thông qua hoạt ảnh, qua đó hiểu thêm về các thuật toán trên
@@ -567,12 +567,15 @@ int main() {
 
     // tìm cây khung nhỏ nhất cho từng cạnh
     for (auto &e : edges) {
-        if (res[e.id] == -1) res[e.id] = mstWeight;
-        else res[e.id] = mstWeight - lca(e.u, e.v) + e.c;
+        if (res[e.id] == -1)
+            res[e.id] = mstWeight;
+        else
+            res[e.id] = mstWeight - lca(e.u, e.v) + e.c;
     }
 
     // in ra kết quả
-    for (int i = 1; i <= m; i++) cout << res[i] << "\n";
+    for (int i = 1; i <= m; i++)
+        cout << res[i] << "\n";
     return 0;
 }
 ```
@@ -590,16 +593,16 @@ Cho đồ thị vô hướng có trọng số $G$ gồm $n$ đỉnh và $m$ cạ
     -  Nếu tập cạnh chọn chứa chu trình thì đầu ra không còn là cây khung
     -  Nếu tập cạnh làm tăng số lượng thành phần liên thông của $G$ thì cây khung sẽ mất tính **nhỏ nhất** 
 - Vậy cạnh nằm trong **mọi cây khung** sẽ phải là cạnh mà nằm trong **mọi tập cạnh** mình chọn ở trên, nếu tập cạnh thiếu nó thì vi phạm tính **nhỏ nhất**. 
-⇒ Có nghĩa là nếu thiếu cạnh đó thì sẽ làm tăng **thành phần liên thông** của $G$. Vậy đó chỉ có thể là **cạnh cầu**.
+$\Rightarrow$ Có nghĩa là nếu thiếu cạnh đó thì sẽ làm tăng **thành phần liên thông** của $G$. Vậy đó chỉ có thể là **cạnh cầu**.
 - Kết luận : 
     -  Các **cạnh cầu** sẽ nằm trong **mọi** cây khung nhỏ nhất của đồ thị
     -  Các cạnh còn lại **không phải cạnh cầu** sẽ thuộc **một số** cây khung nhỏ nhất
     - **Xem thêm** : [Tìm cạnh cầu](/algo/graph-theory/Depth-First-Search-Tree.md#tìm-cạnh-cầu)
 
 #### Độ phức tạp
-- Đầu tiên, ta phải sắp xếp lại các cạnh theo trọng số tăng dần mất đpt $O(m\log{m})$. Sau đó, ta phải duy trì 1 đồ thị hiện tại trong quá trình lần lượt thêm các nhóm cạnh vào đồ thị, ở đây ta sử dụng **Disjoint Set** để kiểm tra 2 đỉnh nối 2 TPLT nào cũng như thêm các cạnh vào đồ thị hiện tại.
-- Thuật toán **Tarjan** để tìm **cầu** có độ phức tạp $O(m + n)$ cho toàn đồ thị 
-⇒ Như vậy, độ phức tạp tổng của bài toán là $O(m\log{m} + m\log{n} + n)$.
+- Đầu tiên, ta phải sắp xếp lại các cạnh theo trọng số tăng dần mất đpt $\mathcal{O}(m\log{m})$. Sau đó, ta phải duy trì 1 đồ thị hiện tại trong quá trình lần lượt thêm các nhóm cạnh vào đồ thị, ở đây ta sử dụng **Disjoint Set** để kiểm tra 2 đỉnh nối 2 TPLT nào cũng như thêm các cạnh vào đồ thị hiện tại.
+- Thuật toán **Tarjan** để tìm **cầu** có độ phức tạp $\mathcal{O}(m + n)$ cho toàn đồ thị 
+$\Rightarrow$ Như vậy, độ phức tạp tổng của bài toán là $\mathcal{O}(m\log{m} + m\log{n} + n)$.
 
 #### Cài đặt
 ```cpp
@@ -736,9 +739,12 @@ int main() {
 
     // in ra kết quả
     for (int i = 1; i <= m; i++) {
-        if (res[i] == EdgeType::NONE) cout << "none\n";
-        else if (res[i] == EdgeType::ANY) cout << "any\n";
-        else cout << "at least one\n";
+        if (res[i] == EdgeType::NONE)
+            cout << "none\n";
+        else if (res[i] == EdgeType::ANY)
+            cout << "any\n";
+        else
+            cout << "at least one\n";
     }
 }
 ```

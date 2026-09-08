@@ -38,26 +38,26 @@ Một số sách và tài liệu có đề cập với việc cắt tỉa alpha 
 
 Chắc hẳn những bạn đang đọc bài này sẽ đều thắc mắc vấn đề tại sao chúng ta có thể cắt bỏ toàn bộ những nút con của C trên cây trò chơi trên.
 
-Đầu tiên là xét cây từ trái sang phải ta sẽ thấy S là Max, theo chiến lược đưa ra vậy chúng ta sẽ có giá trị alpha ≥ 10 tại S.
+Đầu tiên là xét cây từ trái sang phải ta sẽ thấy S là Max, theo chiến lược đưa ra vậy chúng ta sẽ có giá trị $\alpha \ge 10$ tại S.
 
-Tiếp theo, ở C ở đây là nút Min (trạng thái trò chơi dành cho Max) tức là sẽ lấy giá trị nhỏ nhất của các nút con ở dưới. Nếu như vậy thì giá trị chúng ta phải lấy là beta ≤ 3.
+Tiếp theo, ở C ở đây là nút Min (trạng thái trò chơi dành cho Max) tức là sẽ lấy giá trị nhỏ nhất của các nút con ở dưới. Nếu như vậy thì giá trị chúng ta phải lấy là $\beta \le 3$.
 
-Sau khi xác định được alpha và beta, chúng ta có thể dễ dàng xác định việc có cắt tỉa hay không. Ở nút S (Max), giá trị alpha luôn ≥ 10 (luôn tăng) nhưng ở C (Min) thì giá trị luôn luôn ≤ 3 (luôn giảm), nên việc xét các con còn lại ở C là không cần thiết.
+Sau khi xác định được alpha và beta, chúng ta có thể dễ dàng xác định việc có cắt tỉa hay không. Ở nút S (Max), giá trị $\alpha$ luôn $\ge 10$ (luôn tăng) nhưng ở C (Min) thì giá trị luôn luôn $\le 3$ (luôn giảm), nên việc xét các con còn lại ở C là không cần thiết.
 
-Nếu nói theo khoảng thì hiện tại chúng ta chỉ nhận khoảng ≥ 10 tại nút gốc  S, vậy thì đâu cần bận tâm đến việc khoảng ≤ 3 tại nút C.
+Nếu nói theo khoảng thì hiện tại chúng ta chỉ nhận khoảng $\ge 10$ tại nút gốc  S, vậy thì đâu cần bận tâm đến việc khoảng $\le 3$ tại nút C.
 
 Ví dụ với một cây trò chơi trung bình
 ![alpha-beta2.png](/algo/game/alpha-beta2.png)
 
 Ở đây chúng ta cũng xét từ trái qua phải bắt đầu từ nút gốc và nút con bên trái sẽ được ưu tiên duyệt trước. Duyệt nguyên cây này sẽ khá dài dòng nhưng để bạn hiểu tôi sẽ viết ra các bước sau.
 
-Xét duyệt từ trên gốc xuống sâu (vì ban đầu chưa hề tồn tại giá trị alpha hay beta của các nút). Nút đầu tiên ta duyệt là E sẽ gặp giá trị 2 (alpha ≥ 2), khi đó ở trên chưa có giá trị beta để ta có thể so sánh nên sẽ bắt đầu duyệt con tiếp theo của nút E đó và ở đây ta sẽ chọn cho alpha = 3 (Max).
+Xét duyệt từ trên gốc xuống sâu (vì ban đầu chưa hề tồn tại giá trị alpha hay beta của các nút). Nút đầu tiên ta duyệt là E sẽ gặp giá trị 2 ($\alpha \ge 2$), khi đó ở trên chưa có giá trị beta để ta có thể so sánh nên sẽ bắt đầu duyệt con tiếp theo của nút E đó và ở đây ta sẽ chọn cho alpha = 3 (Max).
 
-Lưu ý là chúng ta luôn luôn duyệt từ trái sang phải và phải lần lượt từng nhánh một, sau đó sang nhánh tiếp theo cùng gốc. Vậy nên tiếp theo chúng ta sẽ đưa giá trị alpha này lên nút B (Min) và nút B – beta ≤ 3, sau đó nút F sẽ được duyệt, và ta phải tìm alpha của F.  Khi duyệt con đầu tiên mang giá trị 5 vậy alpha của F – alpha ≥ 5.
+Lưu ý là chúng ta luôn luôn duyệt từ trái sang phải và phải lần lượt từng nhánh một, sau đó sang nhánh tiếp theo cùng gốc. Vậy nên tiếp theo chúng ta sẽ đưa giá trị alpha này lên nút B (Min) và nút B – $\beta \le 3$, sau đó nút F sẽ được duyệt, và ta phải tìm alpha của F.  Khi duyệt con đầu tiên mang giá trị 5 vậy alpha của F – $\alpha \ge 5$.
 
-Tại B – beta ≤ 3 và tại F – alpha ≥ 5. Như vậy chúng ta không cần xem xét các nút con còn lại của F vì cái ta cần ở đây chỉ là khoảng ≤ 3 nên ta cắt toàn bộ các con còn lại.
+Tại B – $\beta \le 3$ và tại F – $\alpha \ge 5$. Như vậy chúng ta không cần xem xét các nút con còn lại của F vì cái ta cần ở đây chỉ là khoảng $\le 3$ nên ta cắt toàn bộ các con còn lại.
 
-Sau khi duyệt toàn bộ các con của B thì tại B – beta = 3, và tại nút A – alpha ≥ 3.
+Sau khi duyệt toàn bộ các con của B thì tại B – beta = 3, và tại nút A – $\alpha \ge 3$.
 
 Các bạn tự duyệt phần còn lại nhé. Đừng lo lắng, nếu không hiểu có thể đọc lại vài lần hoặc có thể comment, mình sẽ giải đáp giúp các bạn.
 

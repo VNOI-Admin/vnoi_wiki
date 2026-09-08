@@ -43,7 +43,7 @@ Ban đầu, ta chọn ra phần tử nhỏ nhất trong $n$ phần tử, đưa n
 #### Cài đặt
 :::spoiler Code tham khảo
 ```cpp=
-void selectionSort(int a[], int n){
+void selectionSort(int a[], int n) {
     for (int i = 0; i < n - 1; i++) {
         int min_pos = i;
         for (int j = i + 1; j < n; j++) {
@@ -53,10 +53,10 @@ void selectionSort(int a[], int n){
         }
         swap(a[i], a[min_pos]);
     }
-} 
+}
 ```
 :::
-Độ phức tạp: $\mathcal{O}(n^2)$.
+Độ phức tạp: $\mathcal{O}(n^{2})$.
 
 <center>
 <video controls width="80%">
@@ -73,7 +73,7 @@ Khác với sắp xếp chọn, sắp xếp nổi bọt sẽ so sánh trực ti�
 
 :::spoiler Code tham khảo
 ```cpp= 
-void bubbleSort(int a[], int n){
+void bubbleSort(int a[], int n) {
     for (int i = 0; i < n - 1; i++) {
         bool swapped = false;
 
@@ -85,13 +85,13 @@ void bubbleSort(int a[], int n){
         }
 
         // Nếu không có hoán đổi nào, mảng đã được sắp xếp
-        if (!swapped) break;
+        if (!swapped)
+            break;
     }
 }
- 
 ```
 :::
-Độ phức tạp: $\mathcal{O}(n^2)$.
+Độ phức tạp: $\mathcal{O}(n^{2})$.
 
 #### Nhận xét
 
@@ -115,7 +115,7 @@ Ta lặp lại thao tác sắp xếp $n$ lần. Ở lần thứ $k$, ta đã có
 
 :::spoiler Code tham khảo
 ```cpp=
-void insertionSort(int a[], int n){
+void insertionSort(int a[], int n) {
     for (int i = 1; i < n; i++) {
         int x = a[i];
         int j = i - 1;
@@ -126,10 +126,10 @@ void insertionSort(int a[], int n){
         }
         a[j + 1] = x;
     }
-} 
+}
 ```
 :::
-Độ phức tạp: $\mathcal{O}(n^2)$.
+Độ phức tạp: $\mathcal{O}(n^{2})$.
 
 <center>
 <video controls width="80%">
@@ -140,7 +140,7 @@ void insertionSort(int a[], int n){
 ### Sắp xếp đếm phân phối (Counting Sort)
 
 #### Giới thiệu
-Các thuật toán sắp xếp ở trên đều có độ phức tạp $\mathcal{O}{(n^2)}$, nên trong nhiều trường hợp sẽ không đủ nhanh để xử lý dữ liệu lớn. Ở phần này, ta sẽ tìm hiểu một thuật toán có thể đạt hiệu năng tuyến tính trong những điều kiện phù hợp: __Counting Sort__.
+Các thuật toán sắp xếp ở trên đều có độ phức tạp $\mathcal{O}(n^{2})$, nên trong nhiều trường hợp sẽ không đủ nhanh để xử lý dữ liệu lớn. Ở phần này, ta sẽ tìm hiểu một thuật toán có thể đạt hiệu năng tuyến tính trong những điều kiện phù hợp: __Counting Sort__.
 
 #### Ý tưởng
 Ta đếm tần suất xuất hiện của các phần tử, sau đó duyệt toàn bộ từ $0$ đến $n$, nếu phần tử xuất hiện thì ta lần lượt in ra $k$ phần tử với $k$ là số lần xuất hiện của $a_{i}$.
@@ -163,7 +163,7 @@ void countingSort(int a[], int n){
             a[idx++] = v;
         }
     }
-} 
+}
 ```
 :::
 Nhận xét: Vòng lặp ngoài ta sẽ chạy từ $0$ đến $\max a_{i}$, vòng lặp trong in ra mỗi giá trị $\texttt{cnt}[i]$ lần, vậy tổng tất cả các lần in bằng $n$.
@@ -193,22 +193,27 @@ Sắp xếp trộn là một thuật toán dựa trên ý tưởng Chia để tr
 
 :::spoiler Code tham khảo
 ```cpp=
-void mergeArray(vector<int> &a, int left, int mid, int right){
+void mergeArray(vector<int> &a, int left, int mid, int right) {
     vector<int> L(a.begin() + left, a.begin() + mid + 1);
     vector<int> R(a.begin() + mid + 1, a.begin() + right + 1);
     int i = 0, j = 0, k = left;
 
-    while(i < L.size() && j < R.size()){
-        if (L[i] <= R[j]) a[k++] = L[i++];
-        else a[k++] = R[j++];
+    while (i < L.size() && j < R.size()) {
+        if (L[i] <= R[j])
+            a[k++] = L[i++];
+        else
+            a[k++] = R[j++];
     }
 
-    while(i < L.size()) a[k++] = L[i++];
-    while(j < R.size()) a[k++] = R[j++];
+    while (i < L.size())
+        a[k++] = L[i++];
+    while (j < R.size())
+        a[k++] = R[j++];
 }
 
-void MergeSort(vector<int> &a, int left, int right){
-    if(left >= right) return;
+void MergeSort(vector<int> &a, int left, int right) {
+    if (left >= right)
+        return;
 
     int mid = (left + right) / 2;
     MergeSort(a, left, mid);
@@ -252,35 +257,35 @@ Heap Sort hoạt động trên 2 giai đoạn chính:
 :::spoiler Code tham khảo
 ```cpp=
 // Hàm heapify để duy trì tính chất max-heap tại node i
-void heapify(int a[], int n, int i){
+void heapify(int a[], int n, int i) {
     int largest = i;       // Giả sử node i là lớn nhất
-    int left = 2 * i + 1;    // Con trái
-    int right = 2 * i + 2;   // Con phải
+    int left = 2 * i + 1;  // Con trái
+    int right = 2 * i + 2; // Con phải
 
     // Nếu con trái lớn hơn cha
-    if(left < n && a[left] > a[largest])
+    if (left < n && a[left] > a[largest])
         largest = left;
 
     // Nếu con phải lớn hơn cha (hoặc lớn hơn con trái)
-    if(right < n && a[right] > a[largest])
+    if (right < n && a[right] > a[largest])
         largest = right;
 
     // Nếu node lớn nhất không phải là node cha
-    if(largest != i){
-        swap(a[i], a[largest]);  // Hoán đổi
-        heapify(a, n, largest);    // Gọi đệ quy
+    if (largest != i) {
+        swap(a[i], a[largest]); // Hoán đổi
+        heapify(a, n, largest); // Gọi đệ quy
     }
 }
 
-void heapSort(int a[], int n){
+void heapSort(int a[], int n) {
     // Bước 1: Xây dựng max heap
-    for(int i = n/2 - 1; i >= 0; i--)
-        heapify(arr, n, i);
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(a, n, i);
 
     // Bước 2: Trích từng phần tử lớn nhất ra cuối mảng
-    for(int i = n-1; i >= 0; i--){
-        swap(arr[0], arr[i]);   // Đưa max hiện tại ra cuối
-        heapify(arr, i, 0);     // Duy trì heap cho phần còn lại
+    for (int i = n - 1; i >= 0; i--) {
+        swap(a[0], a[i]); // Đưa max hiện tại ra cuối
+        heapify(a, i, 0); // Duy trì heap cho phần còn lại
     }
 }
 ```
@@ -304,7 +309,7 @@ Trước hết, ta chọn một phần tử làm $\texttt{pivot}$, sau đó phâ
 
 :::spoiler Code tham khảo
 ```cpp=
-int selectPivot (vector<int> &a, int l, int r) {
+int selectPivot(vector<int> &a, int l, int r) {
     int pivot = a[r], i = l - 1;
     for (int j = l; j < r; j++) {
         if (a[j] <= pivot) {
@@ -317,14 +322,17 @@ int selectPivot (vector<int> &a, int l, int r) {
     return i;
 }
 
-void quickSort (vector<int> &a, int l, int r){
-    if (l >= r) return;
+void quickSort(vector<int> &a, int l, int r) {
+    if (l >= r)
+        return;
     int pos = selectPivot(a, l, r);
-    if (l < pos - 1) quickSort(a, l, pos - 1);
-    if (pos + 1 < r) quickSort(a, pos + 1, r);
+    if (l < pos - 1)
+        quickSort(a, l, pos - 1);
+    if (pos + 1 < r)
+        quickSort(a, pos + 1, r);
 }
 
-void quickSort (vector<int> &a) {
+void quickSort(vector<int> &a) {
     quickSort(a, 0, (int)a.size() - 1);
 }
 ```
@@ -349,25 +357,26 @@ Phương pháp này được Tony Hoare phát triển cùng với khái niệm Q
 
 :::spoiler Code tham khảo
 ```cpp=
-int vi_tri2(int l, int r){
+int vi_tri2(int l, int r) {
     int pivot = a[l];
     int i = l - 1, j = r + 1;
-    while(true){
-        do{
+    while (true) {
+        do {
             i++;
-        }while(a[i] < pivot);
-        do{
+        } while (a[i] < pivot);
+        do {
             j--;
-        }while(a[j] > pivot);
-        if(i < j){
+        } while (a[j] > pivot);
+        if (i < j) {
             swap(a[i], a[j]);
-        }
-        else return j;
+        } else
+            return j;
     }
 }
 
-void quicksort(int l, int r){
-    if(l >= r) return;
+void quicksort(int l, int r) {
+    if (l >= r)
+        return;
     int pos = vi_tri2(l, r);
     quicksort(l, pos);
     quicksort(pos + 1, r);
@@ -382,7 +391,7 @@ void quicksort(int l, int r){
 </video>
 </center>
 
-Nhược điểm: Qua 2 ví dụ minh họa trên, ta thấy trong trường hợp tệ nhất, Quick Sort có thể chạy lên tới $\mathcal{O}(n^2)$.
+Nhược điểm: Qua 2 ví dụ minh họa trên, ta thấy trong trường hợp tệ nhất, Quick Sort có thể chạy lên tới $\mathcal{O}(n^{2})$.
 
 ### Sắp xếp cơ số (Radix Sort)
 Radix Sort không sắp xếp bằng cách so sánh trực tiếp các phần tử, mà sắp xếp theo từng chữ số trong một hệ cơ số $d$. Với hệ cơ số $d$, mỗi số có tối đa $\log_d \max$ chữ số.
@@ -412,33 +421,33 @@ $$
 
 :::spoiler Code tham khảo
 ```cpp=
-void countingSortByDigit(vector<int>& a, int exp){
+void countingSortByDigit(vector<int> &a, int exp) {
     int n = a.size();
     vector<int> v(n);
     vector<int> dem(10, 0);
 
     // Đếm số lượng xuất hiện của mỗi chữ số
-    for(int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++) {
         int digit = (a[i] / exp) % 10;
         dem[digit]++;
     }
-    for(int i = 1; i < 10; i++){
+    for (int i = 1; i < 10; i++) {
         dem[i] += dem[i - 1];
     }
-    for(int i = n - 1; i >= 0; i--){
+    for (int i = n - 1; i >= 0; i--) {
         int digit = (a[i] / exp) % 10;
         v[dem[digit] - 1] = a[i];
         dem[digit]--;
     }
-    for(int i = 0; i < n; i++){
+    for (int i = 0; i < n; i++) {
         a[i] = v[i];
     }
 }
 
-void radixSort(vector<int>& a){
+void radixSort(vector<int> &a) {
     // Tìm số lớn nhất để biết số chữ số
     int mx = *max_element(a.begin(), a.end());
-    for(int exp = 1; mx / exp > 0; exp *= 10){
+    for (int exp = 1; mx / exp > 0; exp *= 10) {
         countingSortByDigit(a, exp);
     }
 }
@@ -450,16 +459,16 @@ void radixSort(vector<int>& a){
 
 | **Thuật toán** | **Độ phức tạp** (Tốt / Trung bình / Xấu) | **Bộ nhớ phụ** | **Tính ổn định** | **Cách sắp xếp** | **Ưu điểm** | **Nhược điểm** |
 |-----------------|-----------------------------------------|----------------|-----------------|-----------------|-------------|----------------|
-| **Selection Sort** *(Sắp xếp chọn)* | $\mathcal{O}(n^2)$ | $\mathcal{O}(1)$ | Không ổn định | So sánh, đổi chỗ | Dễ cài đặt, ít hoán đổi | Hiệu năng kém với dữ liệu lớn |
-| **Bubble Sort** *(Sắp xếp nổi bọt)* | $\mathcal{O}(n^2)$ | $\mathcal{O}(1)$ | Ổn định | So sánh–đổi chỗ | Dễ hiểu, nhận biết nhanh dữ liệu gần sắp xếp | Rất chậm với mảng lớn |
-| **Insertion Sort** *(Sắp xếp chèn)* | $\mathcal{O}(n)$ / $\mathcal{O}(n^2)$ / $\mathcal{O}(n^2)$ | $\mathcal{O}(1)$ | Ổn định | So sánh, chèn | Hiệu quả với mảng nhỏ hoặc gần sắp xếp | Kém hiệu quả với dữ liệu ngẫu nhiên |
+| **Selection Sort** *(Sắp xếp chọn)* | $\mathcal{O}(n^{2})$ | $\mathcal{O}(1)$ | Không ổn định | So sánh, đổi chỗ | Dễ cài đặt, ít hoán đổi | Hiệu năng kém với dữ liệu lớn |
+| **Bubble Sort** *(Sắp xếp nổi bọt)* | $\mathcal{O}(n^{2})$ | $\mathcal{O}(1)$ | Ổn định | So sánh–đổi chỗ | Dễ hiểu, nhận biết nhanh dữ liệu gần sắp xếp | Rất chậm với mảng lớn |
+| **Insertion Sort** *(Sắp xếp chèn)* | $\mathcal{O}(n)$ / $\mathcal{O}(n^{2})$ / $\mathcal{O}(n^{2})$ | $\mathcal{O}(1)$ | Ổn định | So sánh, chèn | Hiệu quả với mảng nhỏ hoặc gần sắp xếp | Kém hiệu quả với dữ liệu ngẫu nhiên |
 | **Counting Sort** *(Sắp xếp đếm/phân phối)* | $\mathcal{O}(n + k)$ | $\mathcal{O}(n + k)$ | Ổn định | Không so sánh | Rất nhanh với giá trị nhỏ, nguyên dương | Giới hạn phạm vi giá trị, tốn bộ nhớ |
 | **Radix Sort** *(Sắp xếp cơ số)* | $\mathcal{O}(d\times(n + k))$ | $\mathcal{O}(n + k)$ | Ổn định | Không so sánh | Nhanh với số nguyên có độ dài chữ số cố định | Khó áp dụng cho dữ liệu không phải số hoặc độ dài khác nhau |
 | **Merge Sort** *(Sắp xếp trộn)* | $\mathcal{O}(n \times \log n)$ | $\mathcal{O}(n)$ | Ổn định | Chia để trị | Độ phức tạp ổn định, thích hợp dữ liệu lớn | Tốn bộ nhớ phụ |
 | **Heap Sort** *(Sắp xếp vun đống)* | $\mathcal{O}(n \times \log n)$ | $\mathcal{O}(1)$ | Không ổn định | So sánh–đổi chỗ | Không cần bộ nhớ phụ | Khó cài đặt, không ổn định |
-| **Quick Sort** *(Sắp xếp nhanh)* | $\mathcal{O} (n \times \log n)$ / $\mathcal{O} (n \times \log n)$ / $\mathcal{O}(n^2)$ | $\mathcal{O}(\log n)$ | Không ổn định | Chia để trị | Trung bình rất nhanh, sử dụng phổ biến | Dễ bị $\mathcal{O}(n^2)$ nếu chọn pivot kém |
+| **Quick Sort** *(Sắp xếp nhanh)* | $\mathcal{O}(n \times \log n)$ / $\mathcal{O}(n \times \log n)$ / $\mathcal{O}(n^{2})$ | $\mathcal{O}(\log n)$ | Không ổn định | Chia để trị | Trung bình rất nhanh, sử dụng phổ biến | Dễ bị $\mathcal{O}(n^{2})$ nếu chọn pivot kém |
 
-Ở phần giới thiệu ta có nhắc đến hàm sort trong C++ (IntroSort). Về cơ bản, IntroSort chạy dựa trên QuickSort vì thuật toán này nhanh trong hầu hết các trường hợp. Khi phát hiện nguy cơ chậm và có thể rơi vào $\mathcal{O}(n^2)$, nó sẽ chuyển sang dùng HeapSort để đảm bảo hiệu năng. Với các mảng nhỏ, thuật toán dùng thêm InsertionSort cho gọn và nhanh hơn. Nói ngắn gọn, đây là một thuật toán kết hợp nhiều thuật toán sắp xếp khác nhau tùy từng tình huống.
+Ở phần giới thiệu ta có nhắc đến hàm sort trong C++ (IntroSort). Về cơ bản, IntroSort chạy dựa trên QuickSort vì thuật toán này nhanh trong hầu hết các trường hợp. Khi phát hiện nguy cơ chậm và có thể rơi vào $\mathcal{O}(n^{2})$, nó sẽ chuyển sang dùng HeapSort để đảm bảo hiệu năng. Với các mảng nhỏ, thuật toán dùng thêm InsertionSort cho gọn và nhanh hơn. Nói ngắn gọn, đây là một thuật toán kết hợp nhiều thuật toán sắp xếp khác nhau tùy từng tình huống.
 ## Xây dựng comparator cho hàm sort
 
 Trong lập trình, hầu hết các ngôn ngữ đều cung cấp hàm sắp xếp để sắp xếp các phần tử trong một dãy theo thứ tự tăng dần hoặc giảm dần.
@@ -486,30 +495,29 @@ Giả sử ta có mảng:
 vector<int> a = {-3, 7, -1, 4, 2};
 ```
 Nếu sắp xếp bình thường, kết quả sẽ là:
-```cpp=
+```text=
 -3, -2, -1, 4, 7
 ```
 Ta cần tự định nghĩa comparator như sau:
 ```cpp=
-bool cmp(int a, int b){
+bool cmp(int a, int b) {
     if (abs(a) != abs(b))
         return abs(a) < abs(b);
     return a < b; // phân biệt 2 và -2
 }
-
 ```
 Sau đó truyền vào hàm sort:
 ```cpp=
 sort(a.begin(), a.end(), cmp);
 ```
 Kết quả là:
-```cpp=
+```text=
 -1, -2, -3, 4, 7
 ```
 ### Ví dụ 2: Sắp xếp theo nhiều tiêu chí khác nhau
 Giả sử ta có danh sách học sinh, mỗi học sinh có 2 thông tin: chiều cao và cân nặng.
 ```cpp=
-struct Student{
+struct Student {
     int height;
     int weight;
 };
@@ -520,16 +528,15 @@ vector<Student> students = {
     {170, 60},
     {165, 55},
     {170, 50},
-    {160, 45}
-}
+    {160, 45}};
 ```
 Yêu cầu:
 * Sắp xếp tăng dần theo chiều cao.
 * Nếu 2 học sinh có cùng chiều cao, sắp xếp tăng dần theo cân nặng.
 Khi đó comparator sẽ được viết như sau:
 ```cpp=
-bool cmp(const Student &a, const Student &b){
-    if(a.height == b.height)
+bool cmp(const Student &a, const Student &b) {
+    if (a.height == b.height)
         return a.weight < b.weight;
     return a.height < b.height;
 }
@@ -542,8 +549,8 @@ bool cmp(const Student &a, const Student &b){
 2. Không nên viết comparator có logic mâu thuẫn.
 3. Có thể dùng lambda expression gọn hơn như sau:
 ```cpp=
-sort(students.begin(), students.end(), [](const Student &a, const Student &b){
-    if(a.height == b.height)
+sort(students.begin(), students.end(), [](const Student &a, const Student &b) {
+    if (a.height == b.height)
         return a.weight < b.weight;
     return a.height < b.height;
 });
@@ -568,7 +575,7 @@ Mục tiêu biến 2 mảng $a$ và $b$ thành 2 dãy không giảm. Nếu có t
 
 Ta nhận xét rằng trong trạng thái cuối cùng, các cặp $(a_i, b_i)$ phải được sắp xếp theo một thứ tự tăng đồng thời - nghĩa là nếu một cặp đứng trước, thì cả 2 phần đều không lớn hơn phần sau.
 
-Do đó, ta có mảng chỉ số $tmp = [0, 1,..., n - 1]$ và nó sắp xếp theo cặp $(a_i, b_i)$.
+Do đó, ta có mảng chỉ số $tmp = [0, 1, \ldots, n - 1]$ và nó sắp xếp theo cặp $(a_i, b_i)$.
 
 Nếu sau khi sắp xếp, vẫn tồn tại $a_{\texttt{tmp}[i]}$ $\gt$ $a_{\texttt{tmp}[i + 1]}$ hoặc $b_{\texttt{tmp}[i]}$ $\gt$ $b_{\texttt{tmp}[i + 1]}$ thì việc sắp xếp đồng thời là **không thể xảy ra**.
 
@@ -637,7 +644,7 @@ int main(){
 
 Bài toán cho một dãy số gồm $n$ phần tử và yêu cầu đếm số lần hoán đổi khi sắp xếp dãy theo thứ tự không giảm bằng thuật toán Bubble Sort đã cho.
     
-Nếu mô phỏng trực tiếp Bubble Sort thì độ phức tạp là $\mathcal{O}(n^2)$, không đủ nhanh với $n$ $\le$ $2 \cdot 10^5$.
+Nếu mô phỏng trực tiếp Bubble Sort thì độ phức tạp là $\mathcal{O}(n^{2})$, không đủ nhanh với $n$ $\le$ $2 \cdot 10^{5}$.
     
 Để đếm số nghịch thế, ta sử dụng Merge Sort kết hợp đếm nghịch thế trong quá trình trộn hai dãy con đã được sắp xếp.
     

@@ -18,15 +18,15 @@ Nguyễn Tiến Trung Kiên là cựu học sinh Chuyên Tổng Hợp, với 1 H
 
 # Giới thiệu
 
-[Nhân ma trận](/algo/trick/matrix-multiplication) thật sự hữu dụng. Có nhiều bài toán khi $n$ nhỏ, ta dùng **DP** (**Dynamic Programming - Quy Hoạch Động**) để giải. Nhưng khi $n$ lớn (khoảng $10^9$), ta phải dùng nhân ma trận để giảm **độ phức tạp**. Trong quá trình code nhân ma trận, việc sinh ra ma trận gốc không phải lúc nào cũng đơn giản. Tôi đã tìm ra một phương pháp tốt để giải những bài toán này mà không cần nhân ma trận.
+[Nhân ma trận](/algo/trick/matrix-multiplication) thật sự hữu dụng. Có nhiều bài toán khi $n$ nhỏ, ta dùng **DP** (**Dynamic Programming - Quy Hoạch Động**) để giải. Nhưng khi $n$ lớn (khoảng $10^{9}$), ta phải dùng nhân ma trận để giảm **độ phức tạp**. Trong quá trình code nhân ma trận, việc sinh ra ma trận gốc không phải lúc nào cũng đơn giản. Tôi đã tìm ra một phương pháp tốt để giải những bài toán này mà không cần nhân ma trận.
 
-Khi dùng phương pháp này, ta không cần phải sinh ma trận gốc và không cần cài phép toán nhân hai ma trận $A \times B$ và luỹ thừa ma trận $A^k$. Tuy nhiên, phương pháp này chỉ dùng được trong các bài toán đếm, nghĩa là nó không thể hoàn toàn thay thế nhân ma trận.
+Khi dùng phương pháp này, ta không cần phải sinh ma trận gốc và không cần cài phép toán nhân hai ma trận $A \times B$ và luỹ thừa ma trận $A^{k}$. Tuy nhiên, phương pháp này chỉ dùng được trong các bài toán đếm, nghĩa là nó không thể hoàn toàn thay thế nhân ma trận.
 
 # Bắt đầu bằng ví dụ đơn giản nhất
 
 Để ví dụ, tôi sẽ dùng bài toán sau:
 
-Đếm xem có bao nhiêu dãy ngoặc đúng độ dài $n$ mà độ sâu không quá $L$. $(n \le 10^9, L \le 10)$.
+Đếm xem có bao nhiêu dãy ngoặc đúng độ dài $n$ mà độ sâu không quá $L$. $(n \le 10^{9}, L \le 10)$.
 
 Ví dụ, khi $n = 4$ và $L = 1$, thì `()()` là dãy ngoặc đúng duy nhất thoả mãn, còn `(())`, `((()`, và `))((` thì không thoả mãn.
 
@@ -51,9 +51,9 @@ Ngoài ra, chú ý đến trường hợp sau: nếu $h<0$ hoặc $h>L$ thì tr�
 
 Mục tiêu của ta là tính $f(n, 0, 0)$.
 
-Độ phức tạp của phương pháp này là $\mathcal{O}(L^3 \log n)$, nhanh bằng với nhân ma trận. Chú ý rằng ta chỉ có $\mathcal{O}(L^2 \log n)$ trạng thái, không phải là $\mathcal{O}(L^2 n)$. Chẳng hạn khi $n=100$, các giá trị của $n$ sẽ nằm trong tập sau: ${100, 50, 25, 24, 12, 6, 3, 2, 1, 0}$. Thế nên $n$ chỉ nhận khoảng $2*\log n$ giá trị trong tập hợp đó. Ta có thể dùng độ sâu của hàm $f$ để đại diện cho $n$.
+Độ phức tạp của phương pháp này là $\mathcal{O}(L^{3} \log n)$, nhanh bằng với nhân ma trận. Chú ý rằng ta chỉ có $\mathcal{O}(L^{2} \log n)$ trạng thái, không phải là $\mathcal{O}(L^{2} n)$. Chẳng hạn khi $n=100$, các giá trị của $n$ sẽ nằm trong tập sau: ${100, 50, 25, 24, 12, 6, 3, 2, 1, 0}$. Thế nên $n$ chỉ nhận khoảng $2 \times \log n$ giá trị trong tập hợp đó. Ta có thể dùng độ sâu của hàm $f$ để đại diện cho $n$.
 
-```javascript
+```cpp
 function f(n, h, h_0, Depth):
     if h < 0 or h > L:
       return 0
@@ -79,9 +79,9 @@ output f(n, 0, 0, 0)
 
 # Tổng quát
 
-Với trường hợp $f(n, [a,b,c,...])$ được tính từ $f(n-1, [a,b,c,...])$
+Với trường hợp $f(n, [a,b,c,\ldots])$ được tính từ $f(n-1, [a,b,c,\ldots])$
 
-Có $t$ loại hoa $(t \ge 4)$. 4 trong $t$ loại hoa này là `g` (gerbera), `o` (orchid), `a` (azalea) và `h` (hydrangea). Ta dùng các loại hoa này để tạo một dãy $n$ chậu hoa $(n \le 10^9)$. Có vài điều kiện được đặt ra như sau:
+Có $t$ loại hoa $(t \ge 4)$. 4 trong $t$ loại hoa này là `g` (gerbera), `o` (orchid), `a` (azalea) và `h` (hydrangea). Ta dùng các loại hoa này để tạo một dãy $n$ chậu hoa $(n \le 10^{9})$. Có vài điều kiện được đặt ra như sau:
 
 - Một chậu `h` phải được đặt giữa một `a` và một `o`
 - Giữa hai chậu `g` bất kì, phải có ít nhất $p$ chậu hoa loại khác $(p \le 20)$.
@@ -167,11 +167,11 @@ cout << g(n, ::p, 0, rand()%21, rand()%3, true) << endl;
 
 Chú ý ở code trên, `::p` và `p` là khác nhau. `::p` là biến `p` toàn cục, tức là `p` được nhập từ input. Còn `p` là tham số ở trong hàm `g`. `Rand()%21` và `rand()%3` là hai số mà ta có thể bỏ qua giá trị của chúng (khi nào mà `Stop=true` thì `p0` và `Just0` không có ý nghĩa).
 
-Độ phức tạp ở code trên là $\mathcal{O}(p^3 \log^2 n)$. Thực tế, ta có thể không dùng `map`, bằng cách thêm một tham số là `Depth` đại diện cho độ sâu của hàm quy hoạch động. Khi đó, độ phức tạp mất đi một thừa số $\log n$, giảm xuống còn $\mathcal{O}(p^3 \log n)$. Code trên tôi dùng `map` cho nó dễ hiểu.
+Độ phức tạp ở code trên là $\mathcal{O}(p^{3} \log^{2} n)$. Thực tế, ta có thể không dùng `map`, bằng cách thêm một tham số là `Depth` đại diện cho độ sâu của hàm quy hoạch động. Khi đó, độ phức tạp mất đi một thừa số $\log n$, giảm xuống còn $\mathcal{O}(p^{3} \log n)$. Code trên tôi dùng `map` cho nó dễ hiểu.
 
 # $f(n) = f(n-1) + f(n-2)$
 
-Bây giờ, chúng ta sẽ tính số fibonacci thứ $10^9$ (trong một modulo nào đó). Chắc hẳn là bạn đã biết cách dùng nhân ma trận, nó khá dễ. Tuy nhiên, bây giờ chúng ta sẽ thử giải bằng cách không dùng nhân ma trận. Xem bài toán sau:
+Bây giờ, chúng ta sẽ tính số fibonacci thứ $10^{9}$ (trong một modulo nào đó). Chắc hẳn là bạn đã biết cách dùng nhân ma trận, nó khá dễ. Tuy nhiên, bây giờ chúng ta sẽ thử giải bằng cách không dùng nhân ma trận. Xem bài toán sau:
 
 Bạn đang đứng ở điểm $n$ trên trục Ox. Mỗi bước, bạn có thể di chuyển sang trái 1 hoặc 2 bước. Có bao nhiêu cách để bạn đi tới vị trí 0?
 
@@ -184,7 +184,7 @@ Có hai trường hợp:
   - Lựa chon thứ hai là nhảy từ $2 \times k$ đến $k+1$, sau đó di chuyển sang trái 2 bước, tức là từ $k+1$ đến $k-1$, rồi nhảy từ $k-1$ đến 0 (chú ý ta không hề nhảy vào ô thứ $k$).
   Thế nên, $f(2 \times k) = f(k) \times f(k) + f(k-1) \times f(k-1)$.
 
-- $n=2 \times k+1$, bây giờ ta chia dãy thành hai đoạn $0..k$ và $k..n$ (đoạn thứ nhất độ dài $k+1$, đoạn thứ hai dài $k$), ta lại có hai lựa chọn:
+- $n=2 \times k+1$, bây giờ ta chia dãy thành hai đoạn $0\ldots k$ và $k\ldots n$ (đoạn thứ nhất độ dài $k+1$, đoạn thứ hai dài $k$), ta lại có hai lựa chọn:
   - Lựa chọn thứ nhất là nhảy từ $n$ đến $k$ rồi nhảy từ $k$ đến 0.
   - Lựa chọn thứ hai là nhảy từ $n$ đến $k+1$, di chuyển sang trái 2 bước, rồi nhảy từ $k-1$ đến 0. Thế nên $f(2 \times k+1) = f(k) \times f(k+1) + f(k-1) \times f(k)$.
 

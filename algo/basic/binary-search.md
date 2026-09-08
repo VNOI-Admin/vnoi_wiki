@@ -19,16 +19,16 @@ Mở đầu, ta sẽ đến với bài toán sử dụng tìm kiếm nhị phân
 Cho $A = [0, 5, 13, 19, 2, 41, 55, 68, 72, 81, 98]$ và $x = 55$, thuật toán sẽ diễn ra như hình dưới:
 ![](/uploads/binary_search_first_example.png)
 
-Ở lượt tìm đầu tiên, không gian tìm kiếm là tập hợp $S = \{1,\ldots,11\}$ gồm tất cả các chỉ số của mảng. Bắt đầu với việc chọn [phần tử trung vị](https://vi.wikipedia.org/wiki/S%E1%BB%91_trung_v%E1%BB%8B) của không gian tìm kiếm hiện tại (chính là $6$), ta nhận xét $A[6]=41 < 55 = x$. Do theo đề bài mảng $A$ được sắp xếp tăng dần, ta biết được tất cả các phần tử có chỉ số $1,\ldots,6$ đều nhỏ hơn giá trị cần tìm $x$. Do đó, chúng *chắc chắn không thể là kết quả*, khi đó không gian tìm kiếm có thể thu hẹp lại $S = \{7,\ldots,11\}$, tức *giảm đi một nửa.*
+Ở lượt tìm đầu tiên, không gian tìm kiếm là tập hợp $S = \{1,\ldots, 11\}$ gồm tất cả các chỉ số của mảng. Bắt đầu với việc chọn [phần tử trung vị](https://vi.wikipedia.org/wiki/S%E1%BB%91_trung_v%E1%BB%8B) của không gian tìm kiếm hiện tại (chính là $6$), ta nhận xét $A[6]=41 < 55 = x$. Do theo đề bài mảng $A$ được sắp xếp tăng dần, ta biết được tất cả các phần tử có chỉ số $1,\ldots, 6$ đều nhỏ hơn giá trị cần tìm $x$. Do đó, chúng *chắc chắn không thể là kết quả*, khi đó không gian tìm kiếm có thể thu hẹp lại $S = \{7,\ldots, 11\}$, tức *giảm đi một nửa.*
 
-Tương tự, ở lượt tìm thứ hai, ta xét phần tử trung vị của không gian tìm kiếm hiện tại (chính là $9$), nhận thấy $A[9]=72 > 55 = x$. Cũng do mảng $A$ được sắp xếp tăng dần, ta biết được tất cả các phần tử có vị trí từ $9,\ldots,11$ đều lớn hơn giá trị cần tìm $x$. Do đó, chúng chắc chắn không thể là kết quả, khi đó không gian tìm kiếm sẽ lại giảm đi một nửa $S = \{7,\ldots,8\}$.
+Tương tự, ở lượt tìm thứ hai, ta xét phần tử trung vị của không gian tìm kiếm hiện tại (chính là $9$), nhận thấy $A[9]=72 > 55 = x$. Cũng do mảng $A$ được sắp xếp tăng dần, ta biết được tất cả các phần tử có vị trí từ $9,\ldots, 11$ đều lớn hơn giá trị cần tìm $x$. Do đó, chúng chắc chắn không thể là kết quả, khi đó không gian tìm kiếm sẽ lại giảm đi một nửa $S = \{7,\ldots, 8\}$.
 
 Ở lượt tìm cuối cùng, ta cũng xét phần tử trung vị của không gian tìm kiếm hiện tại ở vị trí $7$ (ở đây số lượng phần tử của không gian tìm kiếm là chẵn, do đó có hai phần tử trung vị, ta có thể chọn một trong hai đều được, ở ví dụ này ta chọn phần tử trung vị đầu tiên), Nhận thấy $A[7] = 55 = x$, ta kết luận $5$ chính là vị trí của phần tử cần tìm và dừng thuật toán.
 
 ### Tổng quát hóa bài toán
 
 Từ ví dụ trên, ta có thể dễ dàng hiểu được ý tưởng của thuật toán tìm kiếm nhị phân. Đúng như tên gọi, thuật toán sẽ liên tục chia không gian tìm kiếm thành hai nửa và loại một nửa đi. Thuật toán có thể trình bày như sau:
-1. Ta duy trì một không gian tìm kiếm $S$ là một dãy con các giá trị có thể là kết quả (ở đây là chỉ số các phần tử trong $A$). Ban đầu, không gian tìm kiếm là toàn bộ các chỉ số của mảng $S=\{1,\ldots,n\}$ với $n$ là chỉ số phần tử cuối cùng của $A$.
+1. Ta duy trì một không gian tìm kiếm $S$ là một dãy con các giá trị có thể là kết quả (ở đây là chỉ số các phần tử trong $A$). Ban đầu, không gian tìm kiếm là toàn bộ các chỉ số của mảng $S=\{1,\ldots, n\}$ với $n$ là chỉ số phần tử cuối cùng của $A$.
 2. Ở mỗi bước, thuật toán so sánh giá trị cần tìm với phần tử có chỉ số là trung vị trong không gian tìm kiếm. Dựa trên sự so sánh đó, cộng thêm việc ta biết dãy $A$ có thứ tự, ta có thể loại một nửa số phần tử của $S$. Lặp đi lặp lại quá trình này, cuối cùng ta sẽ được một không gian tìm kiếm bao gồm một phần tử duy nhất.
 3. Khi đó, nếu phần tử duy nhất đó bằng với giá trị cần tìm $x$ thì đó là nghiệm của bài toán, nếu không thì bài toán vô nghiệm.
 
@@ -55,7 +55,7 @@ int binary_search(int A[], int sizeA, int target) {
 }
 ```
 ### Độ phức tạp thuật toán
-Ở mỗi bước, kích thước không gian tìm kiếm bị giảm đi một nửa. Ta dễ thấy rằng độ phức tạp của thuật toán là $O(\log(N))$ với $N$ là số phần tử ban đầu của không gian tìm kiếm.
+Ở mỗi bước, kích thước không gian tìm kiếm bị giảm đi một nửa. Ta dễ thấy rằng độ phức tạp của thuật toán là $\mathcal{O}(\log(N))$ với $N$ là số phần tử ban đầu của không gian tìm kiếm.
 
 Hàm $\log$ là một hàm tăng rất chậm. Ví dụ như nếu phải tìm kiếm giá trị trong 1 triệu phần tử, với tìm kiếm nhị phân chỉ cần tối đa là 21 bước.
 
@@ -70,36 +70,28 @@ C++ Standard Template Library đã cài đặt sẵn tìm kiếm nhị phân b�
 Khi gặp một bài toán mà ta đoán được có thể dùng tìm kiếm nhị phân để giải, thì ta phải chứng minh tính đúng đắn suy luận của chúng ta. Do đó, xây dựng một cơ sở lý thuyết vững chắc là vô cùng cần thiết. Sau đây, tôi sẽ trình bày một lớp tổng quát hóa nữa cho các bài toán có thể áp dụng tìm kiếm nhị phân, song song đó là ví dụ thực tế với bài toán mở đầu.
 
 Cho không gian tìm kiếm $S$ bao gồm các ứng cử viên cho kết quả của bài toán. Ta định nghĩa môt hàm kiểm tra $P: S \rightarrow \{\texttt{true}, \texttt{false}\}$ là hàm nhận một ứng cử viên $x \in S$ và trả về giá trị $\texttt{true}/\texttt{false}$ cho biết $x$ có hợp lệ hay không (tùy vào bài toán mà định nghĩa hợp lệ sẽ khác nhau). Hiểu đơn giản, hàm $P$ là hàm "kiểm tra" một tính chất nào đó, xem một ứng cử viên cho kết quả của bài toán có thỏa tính chất đó không.
-> Với ví dụ ở đầu bài, thay vì tìm chỉ số của phần tử có giá trị $55$, ta có thể viết lại đề bài thành "tìm chỉ số nhỏ nhất sao cho phần tử ở chỉ số đó lớn hơn hoặc bằng $55$". Khi đó, không gian tìm kiếm ban đầu $S = \{1,\ldots,11\}$ (ban đầu mọi chỉ số của mảng đều có thể là kết quả) và $P(x) = boolean(a[x] \geq 55)$ trả về $\texttt{true}$ nếu $a[x] \geq 55$ và $\texttt{false}$ nếu $a[x] < 55$.
+> Với ví dụ ở đầu bài, thay vì tìm chỉ số của phần tử có giá trị $55$, ta có thể viết lại đề bài thành "tìm chỉ số nhỏ nhất sao cho phần tử ở chỉ số đó lớn hơn hoặc bằng $55$". Khi đó, không gian tìm kiếm ban đầu $S = \{1,\ldots, 11\}$ (ban đầu mọi chỉ số của mảng đều có thể là kết quả) và $P(x) = \texttt{boolean}(a[x] \geq 55)$ trả về $\texttt{true}$ nếu $a[x] \geq 55$ và $\texttt{false}$ nếu $a[x] < 55$.
 
 **Định lý chính** (Main Theorem) cho biết rằng: một bài toán chỉ có thể áp dụng tìm kiếm nhị phân nếu và chỉ nếu hàm kiểm tra $P$ của bài toán thỏa mãn
 $$
-\begin{equation}
-\forall x, y \in S, y > x \wedge P(x) = \texttt{true} \Rightarrow P(y) = \texttt{true}
-\tag{*}
-\label{eq:1}
-\end{equation}
+\forall x, y \in S, y > x \wedge P(x) = \texttt{true} \Rightarrow P(y) = \texttt{true} \tag{*}
 $$
 Lưu ý rằng tính chất trên của hàm kiểm tra $P$ cũng tương đương với tính chất sau:
 
 $$
-\begin{equation}
-\forall x, y \in S, y < x \wedge P(x) = \texttt{false} \Rightarrow P(y) = \texttt{false}
-\tag{**}
-\label{eq:2}
-\end{equation}
+\forall x, y \in S, y < x \wedge P(x) = \texttt{false} \Rightarrow P(y) = \texttt{false} \tag{**}
 $$
 
 Sự tương đương ở đây có thể chứng minh bằng [phương pháp phản chứng](https://hoctoan24h.net/chung-minh-dinh-ly-bang-phuong-phap-phan-chung/), để tránh bài viết quá dài dòng, phần chứng minh để lại cho bạn đọc.
 
 Định lý chính mang cho chúng ta một thông tin rất quan trọng, đó là **điều kiện cần và đủ để một bài toán có thể giải bằng tìm kiếm nhị phân**. Để hiểu được tại sao, chúng ta hãy phân tích kĩ hơn ý nghĩa tính chất của hàm $P$ mà định lý yêu cầu
 
-- Tính chất $\eqref{eq:1}$ có thể giải thích như sau: **nếu $x$ hợp lệ thì mọi phần tử $y > x$ đều hợp lệ**. Tính chất này giúp chúng ta loại đi nửa sau của không gian tìm kiếm do đã biết chắc $x$ là phần tử nhỏ nhất trong nửa sau hợp lệ, ta ghi nhận $x$ là kết quả tạm thời và tiếp tục tìm xem có phần tử nào ở nửa đầu (nhỏ hơn $x$) hợp lệ hay không.
-- Tương tự, tính chất $\eqref{eq:2}$ có thể giải thích như sau: **nếu $x$ không hợp lệ thì mọi phần tử $y < x$ đều không hợp lệ**. Tính chất này giúp chúng ta loại đi nửa trước của không gian tìm kiếm do đã biết chắc chúng không hợp lệ, ta chỉ quan tâm những phần tử ở nửa sau (lớn hơn $x$) mà ta chưa biết thông tin chúng có hợp lệ hay không.
+- Tính chất $(*)$ có thể giải thích như sau: **nếu $x$ hợp lệ thì mọi phần tử $y > x$ đều hợp lệ**. Tính chất này giúp chúng ta loại đi nửa sau của không gian tìm kiếm do đã biết chắc $x$ là phần tử nhỏ nhất trong nửa sau hợp lệ, ta ghi nhận $x$ là kết quả tạm thời và tiếp tục tìm xem có phần tử nào ở nửa đầu (nhỏ hơn $x$) hợp lệ hay không.
+- Tương tự, tính chất $(**)$ có thể giải thích như sau: **nếu $x$ không hợp lệ thì mọi phần tử $y < x$ đều không hợp lệ**. Tính chất này giúp chúng ta loại đi nửa trước của không gian tìm kiếm do đã biết chắc chúng không hợp lệ, ta chỉ quan tâm những phần tử ở nửa sau (lớn hơn $x$) mà ta chưa biết thông tin chúng có hợp lệ hay không.
 
 Nếu ta tính giá trị $P(x)$ cho từng phần tử trong $S$ ban đầu, ta sẽ được một dãy liên tiếp các giá trị $\texttt{false}$ liền kề một dãy liên tiếp các giá trị $\texttt{true}$ (từ nay gọi là dãy $P(S)$). Dễ thấy ta có thể áp dụng tìm kiếm nhị phân trên dãy $P(S)$ mới này để tìm giá trị $x$ *nhỏ nhất* thỏa mãn $P(x) = \texttt{true}$ (hoặc cũng có thể làm cách tìm giá trị $x$ *lớn nhất* mà $P(x) = \texttt{false}$, tuy nhiên ở đây ta không chọn cách này).
-> Với ví dụ đầu bài, như đã nói $P(x) = boolean(A[x] \geq 55)$. Dễ thấy $P$ thỏa mãn tính chất đầu tiên, do $A$ được sắp tăng dần nên nếu $A[x] \geq 55$ thì chắc chắn các phần tử $y$ sau $x$ đều thỏa $A[y] \geq A[x] \geq 55$. Tương tự ta cũng suy ra được, nếu $A[x] < 55$ thì chắc chắn các phần tử $y$ trước $x$ đều thỏa $A[y] \leq A[x] < 55$.
-Áp dụng hàm $P(x) = boolean(A[x] \geq 55)$ cho từng phần tử của $S=\{1,\ldots,11\}$ ta có hình sau
+> Với ví dụ đầu bài, như đã nói $P(x) = \texttt{boolean}(A[x] \geq 55)$. Dễ thấy $P$ thỏa mãn tính chất đầu tiên, do $A$ được sắp tăng dần nên nếu $A[x] \geq 55$ thì chắc chắn các phần tử $y$ sau $x$ đều thỏa $A[y] \geq A[x] \geq 55$. Tương tự ta cũng suy ra được, nếu $A[x] < 55$ thì chắc chắn các phần tử $y$ trước $x$ đều thỏa $A[y] \leq A[x] < 55$.
+Áp dụng hàm $P(x) = \texttt{boolean}(A[x] \geq 55)$ cho từng phần tử của $S=\{1,\ldots, 11\}$ ta có hình sau
 > ![](/uploads/binary_search_apply_P_to_A.png)
 
 Chú ý rằng ta thấy có thể dễ dàng xây dựng định lý chính dựa trên một hàm kiểm tra $P$ ngược lại, tức $P(S)$ sẽ là một dãy $\texttt{true}$ liên tiếp theo sau bởi $\texttt{false}$ liên tiếp. Tuy nhiên, ở đây ta sẽ chỉ xét một trường hợp để bài viết ngắn gọn hơn, trường hợp còn lại có thể làm tương tự.
@@ -108,7 +100,7 @@ Từ định lý trên, ta rút ra được mấu chốt để giải một bài
 
 Cuối cùng, tại sao ta phải tốn công tổng quát hóa thuật toán này thay vì dùng cách làm đơn giản ở ví dụ đầu? Đó là vì nhiều bài toán không thể ở dưới dạng tìm kiếm một giá trị cụ thể, nhưng ta lại có thể định nghĩa một hàm kiểm tra thỏa yêu cầu định lý chính để có thể áp dụng tìm kiếm nhị phân. Bằng cách đó, ta có thể mở rộng lớp bài toán có thể giải bằng tìm kiếm nhị phân.
 
-Ví dụ điển hình cho việc áp dụng định lý là với bài toán *Tìm căn bậc hai*, thay vì hỏi *"Số $x$ nào bình phương lên thì bằng $a$?"* và tìm kiếm tuần tự tất cả các trường hợp, ta có thể định nghĩa hàm $P(x)$ trả lời cho câu hỏi *"$x^2$ có lớn hơn hoặc bằng $a$ hay không?"* sau đó dùng tìm kiếm nhị phân để tìm $x$ nhỏ nhất thỏa mãn. Với cách làm này ta có thể đơn giản hóa bài toán thành một bài toán yes/no, hơn thế còn giảm độ phức tạp của bài toán từ $O(n)$ xuống chỉ còn $O(\log(n))$.
+Ví dụ điển hình cho việc áp dụng định lý là với bài toán *Tìm căn bậc hai*, thay vì hỏi *"Số $x$ nào bình phương lên thì bằng $a$?"* và tìm kiếm tuần tự tất cả các trường hợp, ta có thể định nghĩa hàm $P(x)$ trả lời cho câu hỏi *"$x^{2}$ có lớn hơn hoặc bằng $a$ hay không?"* sau đó dùng tìm kiếm nhị phân để tìm $x$ nhỏ nhất thỏa mãn. Với cách làm này ta có thể đơn giản hóa bài toán thành một bài toán yes/no, hơn thế còn giảm độ phức tạp của bài toán từ $\mathcal{O}(n)$ xuống chỉ còn $\mathcal{O}(\log(n))$.
 
 ### Cài đặt thuật toán tổng quát
 
@@ -117,48 +109,48 @@ Trước khi cài đặt thuật toán, ta phải trả lời những câu hỏi
 2. Bài của bạn có luôn có nghiệm không? Nếu không hãy kiểm tra trước khi tìm kiếm nhị phân để tiết kiệm chi phí tính toán.
 3. Mục tiêu của bạn là tìm phần tử $\texttt{false}$ lớn nhất hay tìm phần tử $\texttt{true}$ nhỏ nhất? Ở đây sẽ trình bày cả hai cách.
 4. Nếu bài toán có nghiệm, hãy đảm bảo giá trị chặn dưới và chặn trên của khoảng tìm kiếm (biến `lo` và `hi`) là bắt đầu và kết thúc của một *khoảng đóng mà chắc chắn chứa kết quả cần tìm* (phần tử $x$ đầu tiên mà $P(x) = \texttt{true}$). Hãy đảm bảo điều kiện này trong lúc thu hẹp không gian tìm kiếm để tránh xảy ra lỗi.
-5. Phạm vi tìm kiếm đã đủ rộng chưa? Sẽ có nhiều lúc chấm xong bạn nhận ra là mình thiếu vài trường hợp biên. Vì thời gian chạy chỉ tăng theo hàm logarit $O(\log(N))$, bạn hoàn toàn có thể nâng rộng khoảng tìm kiếm ra mà ít khi lo bị quá thời gian. Tuy nhiên, phải để ý các lỗi như tràn mảng, tràn số,...
+5. Phạm vi tìm kiếm đã đủ rộng chưa? Sẽ có nhiều lúc chấm xong bạn nhận ra là mình thiếu vài trường hợp biên. Vì thời gian chạy chỉ tăng theo hàm logarit $\mathcal{O}(\log(N))$, bạn hoàn toàn có thể nâng rộng khoảng tìm kiếm ra mà ít khi lo bị quá thời gian. Tuy nhiên, phải để ý các lỗi như tràn mảng, tràn số,...
 6. Luôn kiểm tra trường hợp $P(S) = [\texttt{false},\texttt{true}]$. Để hiểu lý do tại sao hãy đọc *Trường hợp 2* của cài đặt.
 
 **TH1**: tìm $x$ nhỏ nhất mà $P(x) = \texttt{true}$. Dưới đây là đoạn code mẫu viết bằng C++.
 ```cpp
 bool P(int x) {
     // Logic của hàm P ở đây
-    return true;  // thay giá trị này bằng giá trị đúng logic.
+    return true; // thay giá trị này bằng giá trị đúng logic.
 }
 
 int binary_search(int lo, int hi) {
     while (lo < hi) {
-        int mid = lo + (hi-lo)/2;
+        int mid = lo + (hi - lo) / 2;
         if (P(mid) == true)
             hi = mid;
         else
-            lo = mid+1;
+            lo = mid + 1;
     }
 
     if (P(lo) == false)
         return -1; // P(x) = false với mọi x thuộc S, bài toán vô nghiệm.
 
-   return lo; // lo là giá trị x nhỏ nhất mà P(x) = true
+    return lo; // lo là giá trị x nhỏ nhất mà P(x) = true
 }
 ```
 Hai dòng quan trọng là $hi = mid$ và $lo = mid+1$, chúng giúp ta thu hẹp không gian tìm kiếm dần.
 
 Khi $P(mid) = \texttt{true}$, ta có thể bỏ nửa sau của không gian tìm kiếm vì đã biết phần tử trong đó luôn hợp lệ. Tuy nhiên ta vẫn phải giữ $mid$ trong không gian tìm kiếm mới vì nó có thể là phần tử đầu tiên mà $P = \texttt{true}$. Do đó không gian tìm kiếm mới sẽ là $S=\{lo, mid\}$, ta gán $hi = mid$.
 
-Tương tự, khi $P(mid) = \texttt{false}$, ta có thể bỏ nửa đầu (bao gồm cả phần tử $mid$) vì tất cả các phần tử này đều không hợp lệ. Lúc này không gian tìm kiếm mới sẽ là $S=\{mid + 1, hi\}$, ta gán $lo  = mid+1$.
+Tương tự, khi $P(mid) = \texttt{false}$, ta có thể bỏ nửa đầu (bao gồm cả phần tử $mid$) vì tất cả các phần tử này đều không hợp lệ. Lúc này không gian tìm kiếm mới sẽ là $S=\{mid + 1, hi\}$, ta gán $lo = mid+1$.
 
 **TH2**: tìm $x$ lớn nhất mà $P(x) = \texttt{false}$, suy luận tương tự như trên, ta có đoạn code như sau:
 
 ```cpp
 bool P(int x) {
     // Logic của hàm P ở đây
-    return true;  // thay giá trị này bằng giá trị đúng logic.
+    return true; // thay giá trị này bằng giá trị đúng logic.
 }
 
 int binary_search(int lo, int hi) {
     while (lo < hi) {
-        int mid = lo + (hi-lo+1)/2;
+        int mid = lo + (hi - lo + 1) / 2;
         if (P(mid) == true)
             hi = mid - 1;
         else
@@ -168,7 +160,7 @@ int binary_search(int lo, int hi) {
     if (P(lo) == true)
         return -1; // P(x) = true với mọi x thuộc S, bài toán vô nghiệm.
 
-   return lo; // lo là giá trị x lớn nhất mà P(x) = false
+    return lo; // lo là giá trị x lớn nhất mà P(x) = false
 }
 ```
 
@@ -177,9 +169,9 @@ Bạn sẽ thắc mắc rằng tại sao cách tính $mid$ lại có một tí k
 <td>false</td> <td>true</td>
 </table>
 
-Nếu ta tính $mid = lo + (hi-lo)/2$, đoạn code sẽ lặp vô hạn. Nó sẽ luôn chọn phần tử trung vị là $mid = lo$, nhưng cận dưới $lo$ sẽ không di chuyển vì nó muốn giữ lại phần tử có $p = \texttt{false}$ thỏa yêu cầu tìm kiếm đó. Do đó, ta thay đổi công thức tính $mid$ thành $mid = lo + (hi-lo+1)/2$, làm như vậy sẽ khiến cận dưới sẽ được làm tròn lên thay vì làm tròn xuống, khi đó nó có thể loại bỏ phần tử $\texttt{true}$ trước khi xét phần tử $\texttt{false}$. Có nhiều cách làm khác để thực hiện điều này, tuy nhiên, đây là cách dễ hiểu nhất. Do vậy, *hãy luôn luôn kiểm tra thử trường hợp $P(S) = [\texttt{false}, \texttt{true}]$*.
+Nếu ta tính $mid = lo + \frac{hi-lo}{2}$, đoạn code sẽ lặp vô hạn. Nó sẽ luôn chọn phần tử trung vị là $mid = lo$, nhưng cận dưới $lo$ sẽ không di chuyển vì nó muốn giữ lại phần tử có $p = \texttt{false}$ thỏa yêu cầu tìm kiếm đó. Do đó, ta thay đổi công thức tính $mid$ thành $mid = lo + \frac{hi-lo+1}{2}$, làm như vậy sẽ khiến cận dưới sẽ được làm tròn lên thay vì làm tròn xuống, khi đó nó có thể loại bỏ phần tử $\texttt{true}$ trước khi xét phần tử $\texttt{false}$. Có nhiều cách làm khác để thực hiện điều này, tuy nhiên, đây là cách dễ hiểu nhất. Do vậy, *hãy luôn luôn kiểm tra thử trường hợp $P(S) = [\texttt{false}, \texttt{true}]$*.
 
-Một điều có thể bạn đang thắc mắc nữa là tại sao để tìm trung vị ta tính $mid = lo + (hi-lo)/2$ chứ không phải $mid = (hi+lo)/2$. Sở dĩ phải làm như vậy là để tránh khả năng xảy ra lỗi làm tròn số nguyên, ta muốn phép chia được làm tròn xuống, về gần với cận dưới, tuy nhiên phép chia làm tròn khác khi có số âm, nên nếu $(lo+hi)$ là số âm thì kết quả sẽ bị làm tròn lên. Code như trong mẫu kia giúp quá trình tính toán đều được làm tròn đúng theo logic. Đối với các bài toán mà chỉ cần xử lý giá trị dương thì lỗi này không xảy ra.
+Một điều có thể bạn đang thắc mắc nữa là tại sao để tìm trung vị ta tính $mid = lo + \frac{hi-lo}{2}$ chứ không phải $mid = \frac{hi+lo}{2}$. Sở dĩ phải làm như vậy là để tránh khả năng xảy ra lỗi làm tròn số nguyên, ta muốn phép chia được làm tròn xuống, về gần với cận dưới, tuy nhiên phép chia làm tròn khác khi có số âm, nên nếu $(lo+hi)$ là số âm thì kết quả sẽ bị làm tròn lên. Code như trong mẫu kia giúp quá trình tính toán đều được làm tròn đúng theo logic. Đối với các bài toán mà chỉ cần xử lý giá trị dương thì lỗi này không xảy ra.
 
 ### Cài đặt thuật toán với nửa khoảng
 Cài đặt với đoạn đóng $[lo, hi]$ như trên có ưu điểm là dễ hiểu. Tuy nhiên, quay lại một chút với cơ sở lý thuyết: với dãy $P(S)$ có dạng $\texttt{false}-\texttt{true}$, thực tế ta nên chọn giá trị $lo$ và $hi$ mà $P(lo) = \texttt{false}$ và $P(hi) = \texttt{true}$ để đảm bảo luôn tìm được nghiệm. Do đó sẽ không ổn nếu như dãy $P(S)$ của ta đều toàn giá trị $\texttt{false}$ (tức vô nghiệm). Trong trường hợp này, cài đặt với đoạn đóng có thêm đoạn kiểm tra để `return - 1`.
@@ -192,21 +184,21 @@ Cài đặt cũng tương tự với đoạn đóng, ngoại trừ việc ta lo�
 ```cpp
 bool P(int x) {
     // Logic của hàm P ở đây
-    return true;  // thay giá trị này bằng giá trị đúng logic.
+    return true; // thay giá trị này bằng giá trị đúng logic.
 }
 
 // nhớ rằng ta phải truyền hi lớn hơn một đơn vị
 // so với đoạn tìm kiếm thực sự
 int binary_search(int lo, int hi) {
     while (lo < hi) {
-        int mid = lo + (hi-lo)/2;
+        int mid = lo + (hi - lo) / 2;
         if (P(mid) == true)
             hi = mid;
         else
-            lo = mid+1;
+            lo = mid + 1;
     }
 
-   return lo; // lo là giá trị x nhỏ nhất mà P(x) = true
+    return lo; // lo là giá trị x nhỏ nhất mà P(x) = true
 }
 ```
 Cách cài đặt này còn có một ưu điểm khác, đó là trong C++ và rất nhiều ngôn ngữ lập trình khác thì mảng bắt đầu từ $0$, vì vậy nếu cần tìm một phần tử nào đó trong mảng thì với cài đặt bằng nửa khoảng tham số truyền vào sẽ rất đẹp, đó là `binary_search(0, N)` với $N$ là số phần tử của mảng. Toàn bộ thư viện STL, `lower_bound`, `upper_bound` đều nhận nửa khoảng, và thực tế nguyên lý của các hàm đó cũng như trên: không tìm ra đáp án thì trả về `iterator end`.
@@ -226,9 +218,10 @@ Sau đây là đoạn code mẫu bằng C++:
 
 ```cpp
 // hàm kiểm tra P
- bool check(int capacity, const vector<int>& weights, int days) {
-    int current_weight = 0; --days;
-    for(int i = 0; i < weights.size(); ++i) {
+bool check(int capacity, const vector<int> &weights, int days) {
+    int current_weight = 0;
+    --days;
+    for (int i = 0; i < weights.size(); ++i) {
         if (current_weight + weights[i] <= capacity)
             current_weight += weights[i];
         else {
@@ -264,7 +257,7 @@ Có một lưu ý về việc chọn cận dưới và cận trên. Cận trên 
 
 Để kiểm tra thuật toán không bị lặp vô hạn với trường hợp $[\texttt{false}, \texttt{true}]$, ta thử một test như sau: $weights = [1,1], days = 1$ và thấy thuật toán hoạt động tốt.
 
-Độ phức tạp thuật toán là $O(n \cdot \log(SIZE))$ với $SIZE = hi -lo + 1$ là kích thước của không gian tìm kiếm và $n$ là số lượng gói hàng, do đó thuật toán chạy rất nhanh.
+Độ phức tạp thuật toán là $\mathcal{O}(n \cdot \log(SIZE))$ với $SIZE = hi -lo + 1$ là kích thước của không gian tìm kiếm và $n$ là số lượng gói hàng, do đó thuật toán chạy rất nhanh.
 
 ## Tìm kiếm nhị phân trên số thực
 
@@ -272,7 +265,7 @@ Tìm kiếm nhị phân cũng có thể được áp dụng khi không gian tìm
 ```cpp
 bool P(double x) {
     // Logic của hàm P ở đây
-    return true;  // thay giá trị này bằng giá trị đúng logic.
+    return true; // thay giá trị này bằng giá trị đúng logic.
 }
 
 bool isTerminated(double lo, double hi) {
@@ -290,10 +283,9 @@ double binary_search(double lo, double hi) {
     }
     // trung bình cộng lo và hi xấp xỉ
     // ranh giới giữa false và true
-    return lo + (hi-lo)/2;
+    return lo + (hi - lo) / 2;
 }
-
- ```
+```
 Ta thường không tìm được giá trị mục tiêu một cách chính xác mà chỉ có thể xấp xỉ kết quả, đó là lý do có hàm điều kiện dừng `isTerminated`. Thông thường có 2 cách quyết định khi nào dừng vòng lặp:
 1. **Dừng sau một số vòng lặp cố định (fixed)**: thông thường khi làm bài tập trên TopCoder, chỉ cần lặp khoảng 100 lần là đủ (nhiều khi là thừa) để đạt được độ chính xác mong muốn cho những bài dạng thế này.
 2. **Sai số tuyệt đối (absolute error)**: dừng khi $hi - lo \leq \epsilon$ ($\epsilon$ thường rất nhỏ, khoảng $10^{-8}$). Cách này được sử dụng nếu thời gian chặt và bạn phải tiết kiệm số lần lặp.

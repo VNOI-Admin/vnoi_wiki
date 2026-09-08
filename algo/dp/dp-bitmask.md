@@ -42,18 +42,18 @@ Có thể thấy các thao tác này có những điểm tương đồng với v
 ## Biểu diễn các tập hợp bằng bitmask
 Ta có thể biểu diễn một tập con của một tập hợp bằng một xâu nhị phân, trong đó bit thứ $i$ bằng $0$/$1$ khi phần tử thứ $i$ không/có nằm trong tập hợp. Xâu nhị phân này được gọi là **bitmask**.
 
-Giả sử có một tập hợp $S=\{a_0,a_1,a_2,…,a_{n-1}\}$.  Xét một tập con $T=\{a_{i_1},a_{i_2} ,…,a_{i_k}\}$. của $S$. Khi đó ta có thể biểu diễn $T$ bằng một xâu nhị phân độ dài $n$, với bit thứ $i$ (ở đây là bit có giá trị cao thứ $i$ hay bit thứ $i$ từ phải sang) bằng $1$ nếu $a_i$ nằm trong tập $T$:
+Giả sử có một tập hợp $S=\{a_0,a_1,a_2, \ldots,a_{n-1}\}$.  Xét một tập con $T=\{a_{i_1},a_{i_2}, \ldots,a_{i_k}\}$. của $S$. Khi đó ta có thể biểu diễn $T$ bằng một xâu nhị phân độ dài $n$, với bit thứ $i$ (ở đây là bit có giá trị cao thứ $i$ hay bit thứ $i$ từ phải sang) bằng $1$ nếu $a_i$ nằm trong tập $T$:
 $$
-mask_T=000…010…010…010…000
+mask_T=000 \ldots 010 \ldots 010 \ldots 010 \ldots 000
 $$
-với các vị trí bằng $1$ là $i_1,i_2,…,i_k$.
+với các vị trí bằng $1$ là $i_1,i_2, \ldots,i_k$.
 
 Do $mask_T$ là một xâu nhị phân, ta có thể biểu diễn nó bằng một số ở dạng thập phân. Ví dụ:
 $12=(1100)_2$ biểu diễn tập con $T=\{a_2,a_3 \}$ của $S=\{a_0,a_1,a_2,a_3 \}$
 $17=(010001)_2$ biểu diễn tập con $T=\{a_0,a_4 \}$ của $S=\{a_0,a_1,a_2,a_3,a_4,a_5 \}$
 $0=(000)_2$ biểu diễn tập con $T=\emptyset$ của $S=\{a_0,a_1,a_2\}$
 
-Khi duyệt tất cả các số từ $0$ đến $2^{n-1}$, ta sẽ duyệt qua mọi xâu nhị phân độ dài $n$, và cũng là duyệt qua tất cả các tập con của $S=\{a_0,a_1,…,a_n\}$. Công việc duyệt này có độ phức tạp thời gian là $\mathcal{O}(2^n)$.
+Khi duyệt tất cả các số từ $0$ đến $2^{n-1}$, ta sẽ duyệt qua mọi xâu nhị phân độ dài $n$, và cũng là duyệt qua tất cả các tập con của $S=\{a_0,a_1, \ldots,a_n\}$. Công việc duyệt này có độ phức tạp thời gian là $\mathcal{O}(2^{n})$.
 
 Bạn đọc có thể làm thử [bài này](https://codeforces.com/contest/550/problem/B) để hiểu rõ hơn về biểu diễn tập hợp bằng bitmask.
 
@@ -63,70 +63,73 @@ Bạn đọc có thể làm thử [bài này](https://codeforces.com/contest/550
 
 **Đề bài**: [Codeforces - 100589G](https://codeforces.com/gym/100589/problem/G)
 
-Cho hai số nguyên dương $N$ và số tự nhiên $K$ ($N \leq 15, K \leq N$). Một hoán vị của dãy $[a_1, ..., a_n]$ là một cách sắp xếp lại dãy $a$ sao cho mọi phần tử của dãy đều xuấ hiện chính xác một lần. Đếm số hoán vị độ dài $N$ của dãy $[1, 2, ..., N]$ mà trong hoán vị đó, hai phần tử liên tiếp chênh lệch nhau không quá $K$. 
+Cho hai số nguyên dương $N$ và số tự nhiên $K$ ($N \leq 15, K \leq N$). Một hoán vị của dãy $[a_1, \ldots, a_n]$ là một cách sắp xếp lại dãy $a$ sao cho mọi phần tử của dãy đều xuấ hiện chính xác một lần. Đếm số hoán vị độ dài $N$ của dãy $[1, 2, \ldots, N]$ mà trong hoán vị đó, hai phần tử liên tiếp chênh lệch nhau không quá $K$. 
 Ví dụ, với $N = 4, K = 2$, $[1, 3, 2, 4]$ là một hoán vị thoả mãn, còn $[4, 1, 2, 3]$ là một hoán vị không thoả mãn do $4 - 1 = 3 > 2$.
 
 ### Phân tích
 
-Cách làm tự nhiên nhất đối với bài toán trên là sinh ra mọi hoán vị có thể của dãy $[1, 2, ..., N]$ (tạm gọi là dãy $a$) bằng cách sử dụng thuật toán quay lui. Độ phức tạp thời gian là $\mathcal{O}(N!)$; với $N \leq 15$ thì ta không thể sử dụng cách này.
+Cách làm tự nhiên nhất đối với bài toán trên là sinh ra mọi hoán vị có thể của dãy $[1, 2, \ldots, N]$ (tạm gọi là dãy $a$) bằng cách sử dụng thuật toán quay lui. Độ phức tạp thời gian là $\mathcal{O}(N!)$; với $N \leq 15$ thì ta không thể sử dụng cách này.
 
 Ta thử áp dụng tư tưởng quy hoạch động. Nếu xét theo vị trí, ta thấy phần tử ở vị trí $i$ phải sai khác phần tử ở $i-1$ của $a$ một khoảng không quá $K$. Cách này đưa ta tới cách gọi $dp[i][p]$ là số lượng dãy hoán vị sao cho phần tử thứ $i$ là $p$ và dễ dàng biểu diễn nó theo $dp[i - 1][p]$. Tuy nhiên, cách gọi này không đảm bảo được tính chất quan trọng của hoán vị: tất cả các phần tử trong dãy ban đầu phải xuất hiện chính xác một lần.
 
 Để có được tính chất này, thay vì chỉ dùng vị trí, ta dùng hẳn một tập hợp để lưu lại tất cả các vị trí đã được thêm vào dãy trước đó. Gọi $dp[X][p]$ là số lượng dãy là hoán vị của $X \subset A$ và có phần tử cuối cùng được thêm vào $X$ là $p$. Khi thêm một phần tử $q$ vào $X$, ta cần chắc chắn rằng $q\notin X$, và $|q - p| \leq K$. Như vậy: 
 
-$\forall q\notin X, dp[X\cup\{q\}][q] = \sum_{\substack{p\in  X,\\|q-p|\leq K}}dp[X][p]$.
+$$
+\forall q\notin X, dp[X\cup\{q\}][q] = \sum_{\substack{p\in  X,\\|q-p|\leq K}}dp[X][p].
+$$
 
-Với trường hợp cơ sở, ta có thể chọn $dp[\emptyset][\infty] = 1$. Dĩ nhiên, ta không thể biểu diễn $\infty$ trong mảng khi cài đặt được; trong trường hợp này ta có thể thay thế nó bằng $0$ và chấp nhận mọi trường hợp thêm $q$ vào $X$ nếu xuất hiện $p = 0$. Kết quả của bài toán là tổng số dãy được tạo ra từ dãy $a$ ban đầu với đầy đủ phần tử ở mọi trường hợp phần tử cuối cùng, tức $\sum\limits_{p=1}^N dp[a][p]$.
+Với trường hợp cơ sở, ta có thể chọn $dp[\emptyset][\infty] = 1$. Dĩ nhiên, ta không thể biểu diễn $\infty$ trong mảng khi cài đặt được; trong trường hợp này ta có thể thay thế nó bằng $0$ và chấp nhận mọi trường hợp thêm $q$ vào $X$ nếu xuất hiện $p = 0$. Kết quả của bài toán là tổng số dãy được tạo ra từ dãy $a$ ban đầu với đầy đủ phần tử ở mọi trường hợp phần tử cuối cùng, tức $\sum\limits_{p=1}^{N} dp[a][p]$.
 
 Còn để biểu diễn tập hợp $X$ khi cài đặt, ta sử dụng bitmask như đã nói ở trên.
 - Mọi tập con $X$ của $a$ đều có thể được biểu diễn bằng một dãy nhị phân độ dài $N$, tương đương một số nguyên dương. Chẳng hạn, với $N = 4$, $dp[\{0, 2\}][1]$ được biểu diễn thành $dp[5][1]$, do $(0101)_2=5$.  Gọi biểu diễn nhị phân này là `mask`.
 - Biểu diễn nhị phân của $X$ khi $X = a$ là `mask = (1 << N) - 1`
 - Biểu diễn của $q\notin X$ là `((mask >> q) & 1) != 1` (tức là bit thứ $q$ của `mask` khác $1$)
 - Biểu diễn của $X\cup \{q\}$ là `mask | (1 << q)`. 
-- Để duyệt qua mọi trạng thái của tập $X$, ta duyệt mọi số nguyên tương ứng từ $0$ đến $2^N-1$ cho giá trị của `mask`.
+- Để duyệt qua mọi trạng thái của tập $X$, ta duyệt mọi số nguyên tương ứng từ $0$ đến $2^{N}-1$ cho giá trị của `mask`.
 
 Trong bài toán này, hoán vị phải được tạo thành bởi các số từ $1$ đến $N$. Nếu sử dụng cách biểu diễn trên, bit ở vị trí thứ $0$ không biểu diễn cái gì cả, hơn nữa phải dùng $N + 1$ bit mới biểu diễn hết được $N$ số này. Vì vậy, thay vì dùng bit thứ $q$ để biểu diễn việc $q$ có thuộc $X$ hay không, ta dùng bit thứ $q - 1$. Bằng cách này, ta chỉ cần đúng $N$ bit để biểu diễn tập hợp mà không lãng phí bit nào.
 
 ### Cài đặt
 
 ```cpp=
+#include <bits/stdc++.h>
+using namespace std;
+
 const int MAXN = (1 << 15) + 1;
 
 int n, k;
 long long dp[MAXN][16];
 
 //Lấy bit thứ k của số x
-int getBit(int x, int k)
-{
+int getBit(int x, int k) {
     return (x >> k) & 1;
 }
 
-int solve(int n, int k)
-{
+int solve(int n, int k) {
     for (int mask = 0; mask < (1 << n); mask++)
         for (int k = 0; k <= n; k++)
             dp[mask][k] = 0;
-    
+
     //base case
     dp[0][0] = 1;
-    
+
     for (int mask = 0; mask < (1 << n); mask++)
-        for (int q = 1; q <= n; q++)
-        {
+        for (int q = 1; q <= n; q++) {
             //check q nằm trong tập hợp (biểu diễn bằng mask)
-            if (getBit(mask, q - 1)) continue;
-            for (int p = 0; p <= n; p++)
-            {
+            if (getBit(mask, q - 1))
+                continue;
+            for (int p = 0; p <= n; p++) {
                 //check chênh lệch của q và p
-                if (p != 0 && abs(q - p) > k) continue;
-                
+                if (p != 0 && abs(q - p) > k)
+                    continue;
+
                 //thêm q vào tập hợp
                 int newMask = mask | (1 << (q - 1));
-                
+
                 dp[newMask][q] += dp[mask][p];
             }
         }
-    
+
     long long res = 0;
     int fullMask = (1 << n) - 1;
     for (int k = 1; k <= n; k++)
@@ -135,11 +138,11 @@ int solve(int n, int k)
 }
 ```
 
-Độ phức tạp về thời gian của cách cài đặt trên là $\mathcal{O}(N^2\times 2^N)$, còn độ phức tạp về không gian là $\mathcal{O}(N\times 2^N)$.
+Độ phức tạp về thời gian của cách cài đặt trên là $\mathcal{O}(N^{2}\times 2^{N})$, còn độ phức tạp về không gian là $\mathcal{O}(N\times 2^{N})$.
 
 ## Chú ý thêm
 
-Ta thấy rằng nếu $m$ lớn, thuật toán cũng sẽ mất rất nhiều thời gian để chạy. Vì vậy, để thực hiện được phương pháp này thì $m$ cần phải đủ nhỏ, thường là $m≤20$ nếu thuật toán chỉ yêu cầu ta phải duyệt qua các tập hợp.
+Ta thấy rằng nếu $m$ lớn, thuật toán cũng sẽ mất rất nhiều thời gian để chạy. Vì vậy, để thực hiện được phương pháp này thì $m$ cần phải đủ nhỏ, thường là $m \le 20$ nếu thuật toán chỉ yêu cầu ta phải duyệt qua các tập hợp.
 
 Việc sử dụng biểu diễn bitmask của tập hợp và QHĐ bitmask giúp chúng ta kiểm tra được mọi tập hợp con của một tập hợp lớn hơn. Do vậy, trong nhiều trường hợp, đây là phương pháp đơn giản và đáng để thử khi muốn kiếm điểm một cách hiệu quả từ các subtask bé, cũng như có một code chắc chắn để làm tiếp với các subtask lớn hơn
 

@@ -35,7 +35,7 @@ Tương truyền, để kiểm đếm số binh sĩ dưới quyền, Hàn Tín �
 
 Giả sử số người lẻ ra khi xếp hàng ba, hàng năm, hàng bảy lần lượt là $a$, $b$, $c$. Gọi số lính cần tìm là $x$. Khi đó, sử dụng phép toán modulo hiện đại, ta biểu diễn được các điều kiện của $x$: 
 $$
-\begin{cases}x\equiv a\pmod 3\\ x\equiv b\pmod 5\\ x\equiv c\pmod 7\end{cases}
+\begin{cases}x\equiv a\pmod{3}\\ x\equiv b\pmod{5}\\ x\equiv c\pmod{7}\end{cases}
 $$
 
 
@@ -49,19 +49,19 @@ Trở về lập trình thi đấu, đôi khi ta sẽ gặp những bài toán k
 
 Giải hệ gồm $n$ phương trình đồng dư ẩn $x$ như sau: 
 $$
-\begin{cases}x\equiv a_1\pmod{m_1}\\ x\equiv a_2\pmod{m_2}\\ ...\\x\equiv a_n\pmod{m_n}\end{cases}\tag{*}
+\begin{cases}x\equiv a_1\pmod{m_1}\\ x\equiv a_2\pmod{m_2}\\ \ldots\\x\equiv a_n\pmod{m_n}\end{cases}\tag{*}
 $$
- trong đó $a_1, ..., a_n, m_1, m_2, ..., m_n$ là các số nguyên bất kỳ sao cho  $\gcd(m_i, m_j) = 1$ với mọi $i, j\in[1, n], i \neq j$.
+ trong đó $a_1, \ldots, a_n, m_1, m_2, \ldots, m_n$ là các số nguyên bất kỳ sao cho  $\gcd(m_i, m_j) = 1$ với mọi $i, j\in[1, n], i \neq j$.
 
-Dễ thấy nếu $x$ là một nghiệm của (\*) thì các giá trị $x + k\times\text{lcm}(m_1, m_2, ..., m_n)$ cũng là nghiệm của (\*). Vì vậy, thông thường các bài toán chỉ yêu cầu ta tìm nghiệm dương nhỏ nhất thoả mãn phương trình.
+Dễ thấy nếu $x$ là một nghiệm của (\*) thì các giá trị $x + k\times\operatorname{lcm}(m_1, m_2, \ldots, m_n)$ cũng là nghiệm của (\*). Vì vậy, thông thường các bài toán chỉ yêu cầu ta tìm nghiệm dương nhỏ nhất thoả mãn phương trình.
 
 ## Định lý thặng dư Trung Hoa
 
 ### Các biến phụ được sử dụng
 
 Để thuận tiện, trong toàn bộ bài viết này tác giả sẽ sử dụng các ký hiệu sau:
-- $M$ là tích của các $m_i$ với $\forall i\in[1, n]$: $M = \prod\limits_{i = 1}^nm_i$
-- $M^*$ là bội chung nhỏ nhất của các $m_i$ với $\forall i\in[1, n]$: $M^* = \text{lcm}(m_1, m_2, ..., m_n)$.
+- $M$ là tích của các $m_i$ với $\forall i\in[1, n]$: $M = \prod\limits_{i = 1}^{n}m_i$
+- $M^{*}$ là bội chung nhỏ nhất của các $m_i$ với $\forall i\in[1, n]$: $M^{*} = \operatorname{lcm}(m_1, m_2, \ldots, m_n)$.
 - $p_i = \frac{M}{m_i}$ với $\forall i\in[1, n]$. Nói cách khác, $p_i$ là tích của các $m_j$ với $j\in[1, n], j\neq i$
 - $p_i'$ là một giá trị nghịch đảo modulo $m_i$ của $p_i$ với $\forall i\in[1, n]$: $p_i' \equiv p_i^{-1}\pmod{m_i}$
 
@@ -71,7 +71,7 @@ Ta có thể xây dựng nghiệm của phương trình theo hướng sau: Tạo
 - Mỗi số hạng chỉ thoả mãn một phương trình tương ứng với nó
 - Mỗi số hạng đều chia hết cho tất cả các modulo của các phương trình khác. Như vậy nó sẽ không gây ảnh hưởng đến số dư của các phương trình còn lại
 
-Nói cách khác, nghiệm $x$ của ta sẽ có dạng $x = \sum\limits_{i = 1}^nf_i$ , trong đó mỗi $f_i$ đều thoả mãn: 
+Nói cách khác, nghiệm $x$ của ta sẽ có dạng $x = \sum\limits_{i = 1}^{n}f_i$ , trong đó mỗi $f_i$ đều thoả mãn:
 $$
 \begin{cases}f_i\equiv a_i \pmod{m_i} & \\ f_i\equiv 0 \pmod{m_j} & \forall j\in[1, n], j\neq i\end{cases}
 $$
@@ -95,7 +95,7 @@ f_i = a_i\prod\limits_{j\in[1, n], j\neq i}m_j = a_ip_i
 $$
 
 
-Sau khi nhân xong, sẽ không có gì xảy ra nếu $a_i = 0$. Nhưng nếu $a_i \neq 0$, số dư của $f_i$ khi chia cho $m_i$ cũng bị nhân lên một lượng tương ứng và không còn là $a_i$ nữa. Lúc này, ta cần tìm được một số nguyên $k$ sao cho: 
+Sau khi nhân xong, sẽ không có gì xảy ra nếu $a_i = 0$. Nhưng nếu $a_i \neq 0$, số dư của $f_i$ khi chia cho $m_i$ cũng bị nhân lên một lượng tương ứng và không còn là $a_i$ nữa. Lúc này, ta cần tìm được một số nguyên $k$ sao cho:
 $$
 \begin{align} && a_ip_ik & \equiv   a_i && \pmod{m_i}\\\Leftrightarrow && p_ik & \equiv   1 &&\pmod{m_i} \end{align}
 $$
@@ -107,13 +107,13 @@ Do $\gcd(p_i, m_i) = 1$, số $k$ như vậy chắc chắn tồn tại; số đ�
 
 Bằng cách làm hoàn toàn tương tự như trên cho các phương trình khác trong hệ, ta sẽ xây dựng các số hạng $f_i$ còn lại. Cộng các số hạng đó lại, ta sẽ được một nghiệm $x$ thoả mãn phương trình là 
 $$
-x = \sum_{i = 1}^nf_i= \sum_{i = 1}^np_ip_i'a_i
+x = \sum_{i = 1}^{n}f_i= \sum_{i = 1}^{n}p_ip_i'a_i
 $$
 
 
-Nhắc lại, nếu một số $x$ là nghiệm của (\*) thì mọi số $x + kM^*$ cũng sẽ là nghiệm của (\*). Thêm vào đó, do các modulo nguyên tố cùng nhau đôi một nên $M^* = M$. Như vậy, (\*) sẽ có nghiệm là: 
+Nhắc lại, nếu một số $x$ là nghiệm của (\*) thì mọi số $x + kM^{*}$ cũng sẽ là nghiệm của (\*). Thêm vào đó, do các modulo nguyên tố cùng nhau đôi một nên $M^{*} = M$. Như vậy, (\*) sẽ có nghiệm là:
 $$
-x \equiv \sum_{i = 1}^np_ip_i'a_i\pmod{M}
+x \equiv \sum_{i = 1}^{n}p_ip_i'a_i\pmod{M}
 $$
 
 
@@ -125,18 +125,18 @@ Ngoài đưa ra công thức nghiệm, định lý thặng dư Trung hoa cũng k
 
 **Định lý Thặng dư Trung Hoa** (Chinese Remainder Theorem, CRT): Hệ phương trình (\*) có họ nghiệm duy nhất là: 
 $$
-x \equiv \sum_{i = 1}^np_ip_i'a_i\pmod{M}
+x \equiv \sum_{i = 1}^{n}p_ip_i'a_i\pmod{M}
 $$
  
 
 :::spoiler **Chứng minh** (nhấn để hiện)
-_Chứng minh sự tồn tại_: Do $m_1, m_2, .., m_n$ là các số đôi một nguyên tố cùng nhau nên dễ thấy với mọi $i$ thì $\gcd(p_i, m_i) = 1$. Do $p_i$ và $m_i$ nguyên tố cùng nhau nên tồn tại nghịch đảo modulo $m_i$ của p_i, chính là $p_i'$. Vì $p_ip_i'\equiv 1\pmod{m_i}$ nên 
+_Chứng minh sự tồn tại_: Do $m_1, m_2, \ldots, m_n$ là các số đôi một nguyên tố cùng nhau nên dễ thấy với mọi $i$ thì $\gcd(p_i, m_i) = 1$. Do $p_i$ và $m_i$ nguyên tố cùng nhau nên tồn tại nghịch đảo modulo $m_i$ của $p_i$, chính là $p_i'$. Vì $p_ip_i'\equiv 1\pmod{m_i}$ nên
 $$
 p_ip_i'a_i\equiv a_i\pmod{m_i}
 $$
 
 
-Xét $x = \sum\limits_{i = 1}^np_ip_i'a_i$. Ta thấy với mọi $i\neq j$ thì $p_j\ \vdots\ m_i$ do $p_j$ là tích của tất cả các $m_{i'}$ với ${i'}$ khác $j$. Vì vậy, với mọi $i$ ta có 
+Xét $x = \sum\limits_{i = 1}^{n}p_ip_i'a_i$. Ta thấy với mọi $i\neq j$ thì $p_j\ \vdots\ m_i$ do $p_j$ là tích của tất cả các $m_{i'}$ với ${i'}$ khác $j$. Vì vậy, với mọi $i$ ta có
 $$
 x\equiv a_i\pmod{m_i}
 $$
@@ -146,9 +146,9 @@ Vậy $x$ là một nghiệm của (\*).
 
 _Chứng minh sự duy nhất_: Giả sử $x$ và $y$ là hai số nguyên thoả mãn (\*). Với mọi $i$, ta đều có $x\equiv y\equiv a_i\pmod{m_i}$. Lấy bội chung nhỏ nhất của tất cả các đồng dư thức dạng trên ta được 
 $$
-x\equiv y\pmod{M^*}
+x\equiv y\pmod{M^{*}}
 $$
- Do các số $m_i$ nguyên tố cùng nhau đôi một nên $M^* = M$. Như vậy 
+ Do các số $m_i$ nguyên tố cùng nhau đôi một nên $M^{*} = M$. Như vậy
 $$
 x\equiv y\pmod{M}
 $$
@@ -168,7 +168,7 @@ $$
 
 ```cpp=
 const int MAXN = 8;
-const pair <long long, long long> 
+const pair<long long, long long>
     INVALID_ROOT = {LLONG_MAX, LLONG_MAX};
 
 // CTDL biểu diễn đồng dư thức, gồm số dư và modulo
@@ -243,7 +243,6 @@ Congruence solveCongruenceEqSet(vector <Congruence>& eqSet) {
 
     return sol;
 }
-
 ```
 
 ### Độ phức tạp
@@ -258,11 +257,11 @@ Tất cả nhưng gì ta vừa làm đều chỉ đúng với các modulo nguyê
 
 Ta đã biết đồng dư thức có hai tính chất sau với các số nguyên $a, b, m$ bất kỳ sao cho $m\neq 0$:
 - $a\equiv b\pmod{m}$ thì $a\equiv b\pmod{\frac{m}{\delta}}$, với $\delta$ là một ước bất kỳ của $m$
-- $\forall i\in[1, n], a\equiv b\pmod{m_i} \Rightarrow a\equiv b\pmod{\text{lcm}(m_1, m_2, ..., m_n)}$
+- $\forall i\in[1, n], a\equiv b\pmod{m_i} \Rightarrow a\equiv b\pmod{\operatorname{lcm}(m_1, m_2, \ldots, m_n)}$
 
-Do đó, ta có thể tách một phương trình thành nhiều phương trình sao cho tích các modulo của chúng bằng đúng modulo của phương trình ban đầu. Cụ thể, giả sử $m_i$ được phân tích thành $m_i = \prod_{j = 1}^k\mu_{ij}^{\pi_{ij}}$ với $\mu_{ij}$ là các số nguyên tố. Khi đó, phương trình $x\equiv a_i\pmod{m_i}$ sẽ tương đương với hệ các phương trình sau: 
+Do đó, ta có thể tách một phương trình thành nhiều phương trình sao cho tích các modulo của chúng bằng đúng modulo của phương trình ban đầu. Cụ thể, giả sử $m_i$ được phân tích thành $m_i = \prod_{j = 1}^{k}\mu_{ij}^{\pi_{ij}}$ với $\mu_{ij}$ là các số nguyên tố. Khi đó, phương trình $x\equiv a_i\pmod{m_i}$ sẽ tương đương với hệ các phương trình sau:
 $$
-\begin{cases} x\equiv a_i\pmod{\mu_{i1}^{\pi_{i1}}}\\x\equiv a_i\pmod{\mu_{i2}^{\pi_{i2}}}\\...\\x\equiv a_i\pmod{\mu_{ik}^{\pi_{ik}}}\end{cases}
+\begin{cases} x\equiv a_i\pmod{\mu_{i1}^{\pi_{i1}}}\\x\equiv a_i\pmod{\mu_{i2}^{\pi_{i2}}}\\ \ldots\\x\equiv a_i\pmod{\mu_{ik}^{\pi_{ik}}}\end{cases}
 $$
 
 
@@ -272,7 +271,7 @@ r_1\bmod \mu^{\pi_1} = r_2 \bmod \mu^{\pi_1}
 $$
  Ngược lại, ta có thể kết luận ngay là hệ vô nghiệm.
 
-Nếu không có cặp phương trình nào xung đột với nhau, hệ phương trình chắc chắn có nghiệm. Lúc này, dễ thấy các phương trình có modulo thuộc cùng một cơ số, chẳng hạn $\mu^1, \mu^2, ...$ kết hợp lại sẽ tương đương với phương trình có số mũ lớn nhất (xem phần ví dụ để hiểu thêm). Ta chỉ cần giữ lại phương trình này. Sau khi thực hiện bước này, ta đã có một hệ gồm các phương trình có modulo nguyên tố cùng nhau. Việc cần làm lúc này là áp dụng định lý Thặng dư Trung Hoa để giải hệ.
+Nếu không có cặp phương trình nào xung đột với nhau, hệ phương trình chắc chắn có nghiệm. Lúc này, dễ thấy các phương trình có modulo thuộc cùng một cơ số, chẳng hạn $\mu^{1}, \mu^{2}, \ldots$ kết hợp lại sẽ tương đương với phương trình có số mũ lớn nhất (xem phần ví dụ để hiểu thêm). Ta chỉ cần giữ lại phương trình này. Sau khi thực hiện bước này, ta đã có một hệ gồm các phương trình có modulo nguyên tố cùng nhau. Việc cần làm lúc này là áp dụng định lý Thặng dư Trung Hoa để giải hệ.
 
 Chẳng hạn, xét hệ phương trình: 
 $$
@@ -280,9 +279,9 @@ $$
 $$
  Ta phân tích các modulo ra được: 
 $$
-\begin{cases}x\equiv 1 \pmod{2} \\ x\equiv 1 \pmod{5} \\ x \equiv{7}\pmod{2^2} \\ x \equiv{7}\pmod{3}\end{cases}
+\begin{cases}x\equiv 1 \pmod{2} \\ x\equiv 1 \pmod{5} \\ x \equiv{7}\pmod{2^{2}} \\ x \equiv{7}\pmod{3}\end{cases}
 $$
- Xét phương trình thứ nhất và phương trình thứ ba, với $r_1 = 1, r_2 = 7, \mu = 2, \pi_1 = 1, \pi_2 = 2$, ta có $r_1\bmod \mu^{\pi_1} = r_2 \bmod \mu^{\pi_1}$. Như vậy không có mâu thuẫn nào xảy ra. Ta loại đi phương trình thứ nhất do đã có modulo $2^2$. Áp dụng định lý Thặng dư Trung Hoa cho hệ này, ta có nghiệm của phương trình là $x\equiv 31\pmod {60}$.
+ Xét phương trình thứ nhất và phương trình thứ ba, với $r_1 = 1, r_2 = 7, \mu = 2, \pi_1 = 1, \pi_2 = 2$, ta có $r_1\bmod \mu^{\pi_1} = r_2 \bmod \mu^{\pi_1}$. Như vậy không có mâu thuẫn nào xảy ra. Ta loại đi phương trình thứ nhất do đã có modulo $2^{2}$. Áp dụng định lý Thặng dư Trung Hoa cho hệ này, ta có nghiệm của phương trình là $x\equiv 31\pmod{60}$.
 
 Đoạn chương trình dưới đây cài đặt các ý tưởng trên, sử dụng phép phân tích bằng sàng nguyên tố và lưu lại ước nhỏ nhất của các số.
 
@@ -400,13 +399,12 @@ Congruence solveCongruenceEqSet(vector<Congruence>& eqSet) {
 
     return sol;
 }
-
 ```
 
 Nói về độ phức tạp, ta xét các công việc con:
 - Để phân tích các modulo ra thừa số nguyên tố, sẽ có rất nhiều cách khác nhau. Nếu đặt $m = \max\limits_{i \in[1, n]}(m_i)$, cách làm trên có độ phức tạp thời gian là $\mathcal{O}(m\log\log m + n\log m)$. Còn nếu ta chỉ chuẩn bị các ước nguyên tố nhỏ nhất cho $\sqrt{m}$ số nguyên đầu tiên, ta sẽ mất $\mathcal{O}(\sqrt{m}\log\log \sqrt{m} + n\sqrt{m})$. Độ phức tạp không gian cũng vậy, hoàn toàn tuỳ thuộc vào cách chọn thuật toán phân tích. Về các thuật toán phân tích, có thể tham khảo tại [đây](/algo/math/integer-factorization).
 - Sau khi phân tích, mỗi phương trình sẽ "nở" ra thành $\mathcal{O}(\log m)$ phương trình khác. Chúng ta có $\mathcal{O}(n\log m)$ phương trình. Lúc này, sẽ xuất hiện các phương trình có modulo với cơ số giống nhau (cùng giá trị $\mu$) và có thể sẽ xuất hiện mâu thuẫn. Cách tốt nhất để kiểm tra và loại trừ các cặp phương trình mâu thuẫn là sắp xếp lại các phương trình có cùng cơ số theo độ lớn của số mũ và xét từng cặp kề nhau. Độ phức tạp của bước này cũng tuỳ vào cách bạn chọn thuật sắp xếp nhưng theo cách "phổ thông" nhất (`std::sort`) là $\mathcal{O}(n\log m\log (n\log m))$ thời gian và $\mathcal{O}(n\log m)$ không gian.
-- Sau khi sắp xếp và thu gọn hệ xong, trong trường hợp tệ nhất ta vẫn có $\mathcal{O}(n\log m)$ phương trình (tuy nhiên thực tế số phương trình còn lại là nhỏ hơn rất nhiều). Như vậy, độ phức tạp của công việc này sẽ là $\mathcal{O}(\sum_{i = 1}^n n\log m\log m_i) = \mathcal{O}\left(n\log m\sum_{i = 1}^n\log m_i\right) = \mathcal{O}(n\log m\log M)$ thời gian và $O(n\log m)$ không gian.
+- Sau khi sắp xếp và thu gọn hệ xong, trong trường hợp tệ nhất ta vẫn có $\mathcal{O}(n\log m)$ phương trình (tuy nhiên thực tế số phương trình còn lại là nhỏ hơn rất nhiều). Như vậy, độ phức tạp của công việc này sẽ là $\mathcal{O}(\sum_{i = 1}^{n} n\log m\log m_i) = \mathcal{O}\left(n\log m\sum_{i = 1}^{n}\log m_i\right) = \mathcal{O}(n\log m\log M)$ thời gian và $\mathcal{O}(n\log m)$ không gian.
 
 ## Cách tiếp cận khác
 
@@ -420,7 +418,7 @@ $$
 
 Theo định lý Thặng dư Trung Hoa và những gì ta đã làm ở trường hợp modulo không nguyên tố cùng nhau đôi một, (\*\*) có thể không có nghiệm có một họ nghiệm duy nhất theo modulo $[m_1, m_2]$. Như vậy, nghiệm ta cần tìm có dạng 
 $$
-x\equiv a_{12}\pmod{\text{lcm}(m_1, m_2)}
+x\equiv a_{12}\pmod{\operatorname{lcm}(m_1, m_2)}
 $$
 
 
@@ -436,23 +434,23 @@ $$
 
 (1) là một [phương trình Diophantus tuyến tính](/algo/algebra/euclid#ph%C6%B0%C6%A1ng-tr%C3%ACnh-diophantus-tuy%E1%BA%BFn-t%C3%ADnh-hai-%E1%BA%A9n) với hai ẩn là $t_1$ và $t_2$. Nếu nó có nghiệm, 
 $$
-x \equiv m_1t_1 + a_1\pmod{\text{lcm}(m_1, m_2)}
+x \equiv m_1t_1 + a_1\pmod{\operatorname{lcm}(m_1, m_2)}
 $$
  là một nghiệm của (\*\*).
 
-Với $n$ lớn, ta giải từng cặp phương trình một bằng cách quy nạp. Chẳng hạn, giả sử ta đã giải xong $i$ phương trình đầu tiên và tìm được nghiệm $x\equiv a_{1..i}\pmod{\text{lcm}(m_1, m_2, ..., m_i)}$. Khi đó ta sẽ giải hệ 
+Với $n$ lớn, ta giải từng cặp phương trình một bằng cách quy nạp. Chẳng hạn, giả sử ta đã giải xong $i$ phương trình đầu tiên và tìm được nghiệm $x\equiv a_{1..i}\pmod{\operatorname{lcm}(m_1, m_2, \ldots, m_i)}$. Khi đó ta sẽ giải hệ
 $$
-\begin{cases} x & \equiv a_{1..i} & \pmod{\text{lcm}(m_1, m_2, ..., m_i)} \\ x & \equiv a_{i + 1} & \pmod{m_{i + 1}}\end{cases}\tag{***}
+\begin{cases} x & \equiv a_{1..i} & \pmod{\operatorname{lcm}(m_1, m_2, \ldots, m_i)} \\ x & \equiv a_{i + 1} & \pmod{m_{i + 1}}\end{cases}\tag{***}
 $$
 
 
 Để ý dạng của (\*\*\*) chẳng khác gì (\*\*) cả. Ta có thể áp dụng mọi biện pháp giải (\*\*) để giải hệ này. Ta cứ tiếp tục như vậy tới khi toàn bộ phương trình đã được giải.
 
 ```cpp=
-const pair <long long, long long> 
+const pair<long long, long long>
     INVALID_ROOT = {LLONG_MAX, LLONG_MAX};
 
-Congruence solveInduction(vector <Congruence>& eqSet, int solved) {
+Congruence solveInduction(vector<Congruence> &eqSet, int solved) {
     Congruence sol(0, 1), lastSol(0, 1);
     if (solved == 1) {
         lastSol = eqSet[0];
@@ -494,7 +492,7 @@ Congruence solveCongruenceEqSet(vector <Congruence>& eqSet) {
 }
 ```
 
-Về độ phức tạp, ta đã thực hiện giải $n - 1$ phương trình Diophantus. Làm như vậy sẽ tốn $\mathcal{O}(n\log M^*)$ thời gian và $\mathcal{O}(n)$ bộ nhớ.
+Về độ phức tạp, ta đã thực hiện giải $n - 1$ phương trình Diophantus. Làm như vậy sẽ tốn $\mathcal{O}(n\log M^{*})$ thời gian và $\mathcal{O}(n)$ bộ nhớ.
 
 Nhìn chung, cách làm này có vẻ tự nhiên hơn so với việc sử dụng công thức trực tiếp. Tuy nhiên, khi cài đặt, cần phải đặc biệt chú ý xử lý các phép toán lấy số dư, đặc biệt khi giải phương trình Diophantus để tìm nghiệm.
 

@@ -26,18 +26,18 @@ Ta sẽ xét một số cấu trúc dữ liệu (chưa đề cập đến Skip L
   * Chèn: Dịch tất cả các phần tử bên phải vị trí cần chèn sang phải một chỉ số, rồi chèn phần tử cần chèn vào vị trí đó.
   * Xóa: Dịch tất cả các phần tử bên phải phần tử bị xóa sang trái một chỉ số.
   * Tìm: Tìm kiếm nhị phân phần tử.
-  * Độ phức tạp: $O(N*log(N))$ với thao tác khởi tạo, $O(N)$ với thao tác chèn/xóa, $O(log(N))$ với thao tác tìm kiếm.
+  * Độ phức tạp: $\mathcal{O}(N \times \log(N))$ với thao tác khởi tạo, $\mathcal{O}(N)$ với thao tác chèn/xóa, $\mathcal{O}(\log(N))$ với thao tác tìm kiếm.
 * Sorted Linked List: Biểu diễn $S$ là một danh sách liên kết chứa các phần tử. Các phần tử trong danh sách liên kết được sắp xếp theo thứ tự tăng dần.
   * Chèn: Thay đổi liên kết giữa phần tử cần chèn, phần tử đứng trước, và phần tử đứng sau.
   * Xóa: Thay đổi liên kết giữa phần tử cần chèn, phần tử đứng trước, và phần tử đứng sau.
   * Tìm: Duyệt $S$ từ đầu đến cuối.
-  * Độ phức tạp: $O(N)$ với các thao tác chèn/xóa/tìm. $O(N*log(N))$ với thao tác khởi tạo.
+  * Độ phức tạp: $\mathcal{O}(N)$ với các thao tác chèn/xóa/tìm. $\mathcal{O}(N \times \log(N))$ với thao tác khởi tạo.
 * Binary Search Tree: Biểu diễn $S$ là một cây nhị phân tìm kiếm chứa các phần tử. Cây này có tính chất tất cả các nút thuộc cây con bên trái đều nhỏ hơn nút cha, và tất cả các nút thuộc cây con bên phải đều lớn hơn nút cha.
   * Chèn (Nhiều cách làm): Đi từ trên gốc xuống, so sánh phần tử được chèn với hai nút con, nếu có thì đi vào nút con, còn không thì thêm một nút vào cây chứa phần tử cần chèn.
   * Xóa (Nhiều cách làm): Thay nút bị xóa bằng nút lớn nhất của cây con bên trái (và xóa nút đó đi), nếu không có cây con bên trái thì thay bằng nút nhỏ nhất của cây con bên phải, nếu không có con thì đơn giản là xóa đi.
   * Tìm: Đi từ trên gốc xuống, so sánh phần tử cần tìm với hai nút con, đi vào cây con chứa nút cần tìm, cứ thế đến khi tìm được.
-  * Độ phức tạp: Với trường hợp trung bình, các thao tác này có độ phức tạp $O(log(N))$. Còn với trường hợp xấu nhất là $O(N)$.
-* Balanced Binary Search Tree: Giống Binary Search Tree, nhưng cây có thêm cơ chế tự cần bằng để tránh việc cây bị suy biến, luôn giữ chiều cao cây ở mức ổn định (thường là $O(log(N)$).
+  * Độ phức tạp: Với trường hợp trung bình, các thao tác này có độ phức tạp $\mathcal{O}(\log(N))$. Còn với trường hợp xấu nhất là $\mathcal{O}(N)$.
+* Balanced Binary Search Tree: Giống Binary Search Tree, nhưng cây có thêm cơ chế tự cần bằng để tránh việc cây bị suy biến, luôn giữ chiều cao cây ở mức ổn định (thường là $\mathcal{O}(\log(N))$).
 
 ***Lưu ý: Thao tác chèn và xóa đều phải đi qua thao tác tìm.***
 
@@ -51,21 +51,21 @@ Skip Lists là một phiên bản nâng cấp của Sorted Linked Lists. Ta hãy
 
 ![Paint 1](http://i.imgur.com/oHPvH3A.png)
 
-Sorted Linked List có ưu điểm lớn khi thao tác chèn xóa chỉ mất $O(1)$ (ta chỉ việc chỉnh sửa liên kết giữa phần tử được chèn/xóa và các phần tử đằng trước/sau). Tuy nhiên thao tác tìm kiếm lại mất $O(N)$ do phải duyệt từ đầu đến cuối.
+Sorted Linked List có ưu điểm lớn khi thao tác chèn xóa chỉ mất $\mathcal{O}(1)$ (ta chỉ việc chỉnh sửa liên kết giữa phần tử được chèn/xóa và các phần tử đằng trước/sau). Tuy nhiên thao tác tìm kiếm lại mất $\mathcal{O}(N)$ do phải duyệt từ đầu đến cuối.
 
 ![Paint 2](http://i.imgur.com/rRXWDjb.png)
 
-Một ý tưởng để cân bằng điều này là ta thêm nhiều tầng liên kết, cứ lên một tầng số liên kết lại giảm còn một nửa. Khi tìm phần tử, ta sẽ duyệt từ trái sang phải nhưng sẽ nhảy xa hơn nhờ những liên kết trên các tầng cao, khi nào không nhảy được mới xuống tầng thấp hơn. Ý tưởng này khá giống với phương pháp nhảy lên tổ tiên thứ $2^K$ khi tìm Lowest Common Ancestor (LCA).
+Một ý tưởng để cân bằng điều này là ta thêm nhiều tầng liên kết, cứ lên một tầng số liên kết lại giảm còn một nửa. Khi tìm phần tử, ta sẽ duyệt từ trái sang phải nhưng sẽ nhảy xa hơn nhờ những liên kết trên các tầng cao, khi nào không nhảy được mới xuống tầng thấp hơn. Ý tưởng này khá giống với phương pháp nhảy lên tổ tiên thứ $2^{K}$ khi tìm Lowest Common Ancestor (LCA).
 
 ![Paint 3](http://i.imgur.com/VWUnxgd.png)
 
 Trong hình trên, để tìm số $7$, ta sẽ nhảy thẳng từ $0$ đến $5$ bằng liên kết trên tầng thứ ba, sau đó nhảy từ $5$ đến $6$ bằng liên kết trên tầng thứ nhất. Ta tìm được $6$ là số gần nhất với $7$.
 
-Với cấu trúc này, ta có thể thực hiện thao tác tìm trong $O(log(N))$. Tuy nhiên việc chèn và xóa một phần tử vào sẽ làm thay đổi cấu trúc này. Chẳng hạn nếu ta chèn số $7$:
+Với cấu trúc này, ta có thể thực hiện thao tác tìm trong $\mathcal{O}(\log(N))$. Tuy nhiên việc chèn và xóa một phần tử vào sẽ làm thay đổi cấu trúc này. Chẳng hạn nếu ta chèn số $7$:
 
 ![Paint 4](http://i.imgur.com/d7VVpxt.png)
 
-Như hình trên, cấu trúc của ta không còn "chuẩn", có nghĩa là chính xác tầng thứ nhất liên kết cách $2^0$, tầng thứ hai liên kết cách $2^1$, tầng thứ ba liên kết cách $2^2$, ... Tuy nhiên, với cấu trúc như hình trên vẫn chạy tốt - chỉ có điều ở mỗi tầng ta có thể phải nhảy nhiều hơn một lần (chẳng hạn, muốn tìm số $7$, ở tầng thứ nhất ta phải nhảy đến hai lần $5$ ~> $6$ ~> $7$).
+Như hình trên, cấu trúc của ta không còn "chuẩn", có nghĩa là chính xác tầng thứ nhất liên kết cách $2^{0}$, tầng thứ hai liên kết cách $2^{1}$, tầng thứ ba liên kết cách $2^{2}$, ... Tuy nhiên, với cấu trúc như hình trên vẫn chạy tốt - chỉ có điều ở mỗi tầng ta có thể phải nhảy nhiều hơn một lần (chẳng hạn, muốn tìm số $7$, ở tầng thứ nhất ta phải nhảy đến hai lần $5$ ~> $6$ ~> $7$).
 
 Từ đó ta có nhận xét sau: Các liên kết trên mỗi tầng không nhất thiết phải chuẩn, tuy nhiên, nếu các độ dài giữa các liên kết xấp xỉ nhau và số liên kết ở tầng trên xấp xỉ bằng nửa số liên kết ở tầng dưới, thuật toán tìm kiếm vẫn chạy tốt và không mất quá nhiều lần nhảy ở mỗi tầng. Ta sẽ duy trì cấu trúc này bằng kĩ thuật tung đồng xu ngẫu nhiên:
 
@@ -73,7 +73,7 @@ Từ đó ta có nhận xét sau: Các liên kết trên mỗi tầng không nh�
 
 ![Paint 5](http://i.imgur.com/cRT7Bpe.png)
 
-Đây chính là Skip Lists - một cấu trúc dữ liệu được xây dựng bằng nhiều tầng Sorted Linked List được xây dựng một cách ngẫu nhiên, trong đó tầng cao chứa những bước nhảy dài hơn và tầng thấp chứa những bước nhảy ngắn hơn. Skip Lists cho phép ta thực hiện thao tác tìm kiếm với độ phức tạp xấp xỉ $O(log(N))$.
+Đây chính là Skip Lists - một cấu trúc dữ liệu được xây dựng bằng nhiều tầng Sorted Linked List được xây dựng một cách ngẫu nhiên, trong đó tầng cao chứa những bước nhảy dài hơn và tầng thấp chứa những bước nhảy ngắn hơn. Skip Lists cho phép ta thực hiện thao tác tìm kiếm với độ phức tạp xấp xỉ $\mathcal{O}(\log(N))$.
 
 # So sánh các cấu trúc dữ liệu
 
@@ -90,9 +90,15 @@ Trước tiên ta cần xây dựng các struct biểu diễn Skip Lists. Ta s�
 ![Paint 6](http://i.imgur.com/jzabi8g.png)
 
 ```cpp
+#include <vector>
+using namespace std;
+
+struct Column;
+struct Cell;
+
 struct SkipLists {
     static const int MAX_LEVEL = 20; // Giới hạn số tầng, nên chọn một số khoảng log(N)
-    Column *head, *tail; // thêm 2 cột không có giá trị vào đầu và cuối để dễ xử lí
+    Column *head, *tail;             // thêm 2 cột không có giá trị vào đầu và cuối để dễ xử lí
 };
 
 struct Column {
@@ -112,12 +118,12 @@ struct SkipLists {
     static const int MAX_LEVEL = 20;
     Column *head, *tail;
 
-    SkipLists(); // Khởi tạo
-    bool empty(); // Kiểm tra SkipLists có rỗng không
+    SkipLists();              // Khởi tạo
+    bool empty();             // Kiểm tra SkipLists có rỗng không
     Column *lower_bound(int); // Tìm vị trí Column chứa giá trị nhỏ nhất không nhỏ hơn giá trị cần tìm
     Column *upper_bound(int); // Tìm vị trí Column chứa giá trị nhỏ nhất lớn hơn giá trị cần tìm
-    void insert(int); // Chèn một phần tử mang giá trị cho trước vào SkipLists
-    void erase(int); // Xóa một phần tử mang giá trị cho trước khỏi SkipLists
+    void insert(int);         // Chèn một phần tử mang giá trị cho trước vào SkipLists
+    void erase(int);          // Xóa một phần tử mang giá trị cho trước khỏi SkipLists
 };
 ```
 
@@ -149,8 +155,8 @@ Với hàm `lower_bound()`, ta sẽ đi từ tầng cao nhất đến tầng th�
 ```cpp
 Column *SkipLists::lower_bound(int value) {
     Column *iter = head;
-    for(int level = MAX_LEVEL - 1; level >= 0; level--) {
-        while(iter->cells[level].next_column != tail && iter->cells[level].next_column->value < value) {
+    for (int level = MAX_LEVEL - 1; level >= 0; level--) {
+        while (iter->cells[level].next_column != tail && iter->cells[level].next_column->value < value) {
             iter = iter->cells[level].next_column;
         }
     }
@@ -163,8 +169,8 @@ Hàm `upper_bound()` không khác gì `lower_bound()`, ngoại trừ việc thay
 ```cpp
 Column *SkipLists::upper_bound(int value) {
     Column *iter = head;
-    for(int level = MAX_LEVEL - 1; level >= 0; level--) {
-        while(iter->cells[level].next_column != tail && iter->cells[level].next_column->value <= value) {
+    for (int level = MAX_LEVEL - 1; level >= 0; level--) {
+        while (iter->cells[level].next_column != tail && iter->cells[level].next_column->value <= value) {
             iter = iter->cells[level].next_column;
         }
     }

@@ -103,7 +103,7 @@ Tổng độ phức tạp thời gian của $Q$ truy vấn là $\mathcal{O}(Q\lo
 #### Ví dụ 1: [VNOJ - Phân nhóm](https://oj.vnoi.info/problem/group)
 
 ##### Bài toán
-Cho $N(N \le 3\times10^5)$ hình chữ nhật khác nhau về hình dạng (có cùng góc trái dưới ở $O(0, 0)$), mục tiêu của bài toán là phải lấy được tất cả hình chữ nhật. Một tập hình chữ nhật có thể thu được với chi phí bằng tích của chiều ngang dài nhất và chiều dọc dài nhất. Ta cần phân hoạch tập các hình chữ nhật này một cách khôn khéo sao cho tổng chi phí có thể được tối thiểu hóa và tính chi phí này. Hình chữ nhật không thể được xoay (đổi chiều ngang và chiều dọc).
+Cho $N(N \le 3\times10^{5})$ hình chữ nhật khác nhau về hình dạng (có cùng góc trái dưới ở $O(0, 0)$), mục tiêu của bài toán là phải lấy được tất cả hình chữ nhật. Một tập hình chữ nhật có thể thu được với chi phí bằng tích của chiều ngang dài nhất và chiều dọc dài nhất. Ta cần phân hoạch tập các hình chữ nhật này một cách khôn khéo sao cho tổng chi phí có thể được tối thiểu hóa và tính chi phí này. Hình chữ nhật không thể được xoay (đổi chiều ngang và chiều dọc).
 
 ##### Nhận xét 1: Tồn tại các hình chữ nhật không quan trọng
 
@@ -118,9 +118,9 @@ Sau khi sắp xếp, ta có thể hình dung được rằng nếu ta chọn hai
 
 ##### Lời giải Quy Hoạch Động
 
-Vậy bài toán trở về bài toán phân dãy sao cho tổng chi phí của các dãy là tối ưu. Đây là một dạng bài quy hoạch động hay gặp và ta có thể dễ dàng nghĩ ra thuật toán $\mathcal{O}(N^2)$ như mã giả phía dưới. (Giả sử các hình đã được sắp xếp và bỏ đi những hình chữ nhật không quan trọng)
+Vậy bài toán trở về bài toán phân dãy sao cho tổng chi phí của các dãy là tối ưu. Đây là một dạng bài quy hoạch động hay gặp và ta có thể dễ dàng nghĩ ra thuật toán $\mathcal{O}(N^{2})$ như mã giả phía dưới. (Giả sử các hình đã được sắp xếp và bỏ đi những hình chữ nhật không quan trọng)
 
-```
+```cpp
 input N
 for i in [1..N]
     input h[i] // chiều  dọc  của hình chữ nhật thứ i
@@ -135,13 +135,13 @@ for i in [1..N]
 print cost[N]
 ```
 
-Ở trên `cost[k]` lưu lại chi phí cực tiểu để lấy được `k` hình chữ nhật đầu tiên. Hiển nhiên, `cost[0] = 0`. Để tính toán được `cost[i]` với $i\neq0$, ta tính tổng chi phí để lấy được các tập trước và cộng nó với chi phí của tập cuối cùng (có chứa $i$). Chi phí của một tập có thể dễ dàng tính bằng cách lấy tích của chiều ngang của hình chữ nhật đầu tiên và chiều dọc của hình chữ nhật cuối cùng. Vậy ta có `cost[i] = min(cost[i], cost[j] + h[i] * w[j+1])` với $j$ là hình chữ nhật đầu tiên của tập cuối cùng. Với $N=300000$ thì thuật toán $\mathcal{O}(N^2)$ này là quá chậm.
+Ở trên `cost[k]` lưu lại chi phí cực tiểu để lấy được `k` hình chữ nhật đầu tiên. Hiển nhiên, `cost[0] = 0`. Để tính toán được `cost[i]` với $i\neq0$, ta tính tổng chi phí để lấy được các tập trước và cộng nó với chi phí của tập cuối cùng (có chứa $i$). Chi phí của một tập có thể dễ dàng tính bằng cách lấy tích của chiều ngang của hình chữ nhật đầu tiên và chiều dọc của hình chữ nhật cuối cùng. Vậy ta có `cost[i] = min(cost[i], cost[j] + h[i] * w[j+1])` với $j$ là hình chữ nhật đầu tiên của tập cuối cùng. Với $N=300000$ thì thuật toán $\mathcal{O}(N^{2})$ này là quá chậm.
  
 ##### Nhận xét 3: Sử dụng bao lồi
 
 Ta chọn $a_j=w[j+1], b_j=cost[j]$, và $x=h[i]$. Bài toán trở về tìm hàm cực tiểu của $y=a_jx+b_j$ bằng cách tìm $j$ tối ưu. Nó giống hoàn toàn bài toán ta đã đề cập ở trên. Giả sử ta đã hoàn thành việc cài đặt cấu trúc đã đề cập ở trên, ta có thể có mã giả ở dưới đây:
 
-```
+```cpp
 input N
 for i in [1..N]
     input h[i] // chiều  dọc  của hình chữ nhật thứ i
@@ -245,11 +245,11 @@ int main() {
 ##### Bài toán
 
 Bạn được cho:
-- Một dãy có **$N$ số nguyên dương** ($1\le N \le 10^6$)
-- Một hàm số bậc 2 với hệ số nguyên dương $f(x)= ax^2 + bx +c$, $a\lt0$.
+- Một dãy có **$N$ số nguyên dương** ($1\le N \le 10^{6}$)
+- Một hàm số bậc 2 với hệ số nguyên dương $f(x)= ax^{2} + bx +c$, $a\lt0$.
 - Mục tiêu của bài toán là phân dãy này ra thành các đoạn liên tiếp sao tổng các hàm $f$ trên các dãy là lớn nhất (giá trị của hàm $f$ lên dãy là $f(x)$ với $x$ là tổng dãy đó).
 
-Tương tự bài trên, ta dễ dàng thấy được công thức quy hoạch động $\mathcal{O}(N^2)$.
+Tương tự bài trên, ta dễ dàng thấy được công thức quy hoạch động $\mathcal{O}(N^{2})$.
 
 Định nghĩa rằng:
 
@@ -258,11 +258,13 @@ Tương tự bài trên, ta dễ dàng thấy được công thức quy hoạch 
 
 Ta có:
 
-$dp(n) = \max\limits_{k=0}^{n-1}[dp(k)+adjust(k+1,n)]$
+$$
+dp(n) = \max\limits_{k=0}^{n-1}[dp(k)+adjust(k+1,n)]
+$$
 
 Mã giả:
 
-```
+```cpp
 dp[0] = 0
 for n in [1..N]
     for k in [0..n-1]
@@ -272,15 +274,21 @@ for n in [1..N]
 Hãy thử biến đổi hàm "adjust" một tí.
 Định nghĩa $sum(1,x)$ là $\delta(x)$. Vậy với một số $k$ bất kì ta có thể viết là:
 
-$dp(n)=dp(k)+a(\delta(n)-\delta(k))^2+b(\delta(n)-\delta(k))+c$
-$dp(n)=dp(k)+a(\delta(n)^2+\delta(k)^2-2\delta(n)\delta(k))+b(\delta(n)-\delta(k))+c$
-$dp(n)=(a\delta(n)^2 +b\delta(n) +c)+dp(k)-2a\delta(n)\delta(k)+a\delta(k)^2-b\delta(k)$
+$$
+dp(n)=dp(k)+a(\delta(n)-\delta(k))^{2}+b(\delta(n)-\delta(k))+c
+$$
+$$
+dp(n)=dp(k)+a(\delta(n)^{2}+\delta(k)^{2}-2\delta(n)\delta(k))+b(\delta(n)-\delta(k))+c
+$$
+$$
+dp(n)=(a\delta(n)^{2} +b\delta(n) +c)+dp(k)-2a\delta(n)\delta(k)+a\delta(k)^{2}-b\delta(k)
+$$
 
 Nếu:
 
 - $z=\delta(n)$
 - $m=-2a\delta(k)$
-- $p=dp(k)+a\delta(k)^2-b\delta(k)$
+- $p=dp(k)+a\delta(k)^{2}-b\delta(k)$
 
 Ta có thể thấy $mz+p$ là đại lượng mà ta cần tối ưu hóa bằng cách chọn $k$. $dp(n)$ sẽ bằng đại lượng đó cộng thêm với $a\delta(n)+b\delta(n)+c$ (độc lập so với $k$). Trong đó $z$ cũng độc lập với $k$, và $m$ và $p$ phụ thuộc vào $k$.
 
@@ -317,7 +325,7 @@ Hãy xác định thời gian ít nhất cần chuyển tin từ các thị tr�
 
 **Giới hạn**
  - $3 \le N \le 100 000$
- - $0 \le S_i, V_i \le 10^9$
+ - $0 \le S_i, V_i \le 10^{9}$
  - Độ dài mỗi con đường không vượt quá $10000$
 
 ##### Lời giải
@@ -326,28 +334,34 @@ Hãy xác định thời gian ít nhất cần chuyển tin từ các thị tr�
 
 Gọi $F(i)$ là thời gian ít nhất để truyền tin từ thành phố thứ $i$ đến thủ đô, ta có công thức truy hồi:
 
-$F(i) = \min[ F(j) + dist(j, i) * V_i + S_i ]$
+$$
+F(i) = \min[ F(j) + dist(j, i) \times V_i + S_i ]
+$$
 
-với $j$ là một nút trên đường từ thành phố $i$ đến thành phố $1$. Trong đó $dist(j, i)$ là khoảng cách giữa 2 thành phố $i$ và $j$, có thể tính trong $O(1)$ sử dụng mảng cộng dồn $D[]$ với $D[i]$ là khoảng cách từ thành phố $i$ tới thủ đô. Thuật toán này có thể dễ dàng cài đặt với độ phức tạp là $O(N^2)$.
+với $j$ là một nút trên đường từ thành phố $i$ đến thành phố $1$. Trong đó $dist(j, i)$ là khoảng cách giữa 2 thành phố $i$ và $j$, có thể tính trong $\mathcal{O}(1)$ sử dụng mảng cộng dồn $D[]$ với $D[i]$ là khoảng cách từ thành phố $i$ tới thủ đô. Thuật toán này có thể dễ dàng cài đặt với độ phức tạp là $\mathcal{O}(N^{2})$.
 
 **Áp dụng kĩ thuật bao lồi**
 
 Công thức truy hồi có thể viết lại thành
 
-$F(i) = \min[ F(j) - D_j * V_i + D_i * V_i + S_i ]$
+$$
+F(i) = \min[ F(j) - D_j \times V_i + D_i \times V_i + S_i ]
+$$
 
-Khi ta tính $F(i)$, thì giá trị $D_i*V_i + S_i$ là hằng số với mọi $j$, vì vậy
+Khi ta tính $F(i)$, thì giá trị $D_i \times V_i + S_i$ là hằng số với mọi $j$, vì vậy
 
-$F(i) = \min[ F(j) - D_j * V_i ] + D_i * V_i + S_i$
+$$
+F(i) = \min[ F(j) - D_j \times V_i ] + D_i \times V_i + S_i
+$$
 
-Có thể thấy rằng ta cần tìm giá trị nhỏ nhất của hàm bậc nhất $y = -D_j*x + F(j)$ <dạng $y = ax + b$>.
+Có thể thấy rằng ta cần tìm giá trị nhỏ nhất của hàm bậc nhất $y = -D_j \times x + F(j)$ <dạng $y = ax + b$>.
 Với trường hợp cây là đường thẳng, ta có thể trực tiếp áp dụng kĩ thuật bao lồi. Trong trường hợp tổng quát, ta cần một cấu trúc dữ liệu cho phép xử lí hai thao tác:
 
  - Khi DFS xuống một nút con, ta cần thêm một đường thẳng.
  - Khi quá trình DFS tính $F[]$ cho gốc cây con đã hoàn tất, ta cần xóa một đường thẳng, trả cấu trúc dữ liệu về trạng thái ban đầu.
 
-Các thao tác này có thể được thực hiện hiệu quả trong $O(\log N)$. Cụ thể ta sẽ biểu diễn Stack bằng một mảng cùng một biến $size$ (kích thước Stack). Khi thêm một đường thẳng vào, ta sẽ tìm kiếm nhị phân vị trí mới của nó, rồi chỉnh sửa biến $size$ cho phù hợp, chú ý là sẽ có tối đa một đường thẳng bị ghi đè, nên ta chỉ cần lưu lại nó. Khi cần trả về trạng thái ban đầu, ta chỉ cần chỉnh sửa lại biến $size$ đồng thời ghi lại đường thẳng đã bị ghi đè trước đó. Để quản lí lịch sử các thao tác ta sử dụng một $vector$ lưu lại chúng.
-Độ phức tạp cho toàn bộ thuật toán là $O(N\log N)$.
+Các thao tác này có thể được thực hiện hiệu quả trong $\mathcal{O}(\log N)$. Cụ thể ta sẽ biểu diễn Stack bằng một mảng cùng một biến $size$ (kích thước Stack). Khi thêm một đường thẳng vào, ta sẽ tìm kiếm nhị phân vị trí mới của nó, rồi chỉnh sửa biến $size$ cho phù hợp, chú ý là sẽ có tối đa một đường thẳng bị ghi đè, nên ta chỉ cần lưu lại nó. Khi cần trả về trạng thái ban đầu, ta chỉ cần chỉnh sửa lại biến $size$ đồng thời ghi lại đường thẳng đã bị ghi đè trước đó. Để quản lí lịch sử các thao tác ta sử dụng một $vector$ lưu lại chúng.
+Độ phức tạp cho toàn bộ thuật toán là $\mathcal{O}(N\log N)$.
 
 ```cpp
 #include <bits/stdc++.h>
@@ -435,9 +449,11 @@ int main() {
         a[u].emplace_back(v, c);
         a[v].emplace_back(u, c);
     }
-    for (int i = 2; i <= n; ++i) cin >> S[i] >> V[i];
+    for (int i = 2; i <= n; ++i)
+        cin >> S[i] >> V[i];
     dfs(1, 0);
-    for (int i = 2; i <= n; ++i) cout << f[i] << ' ';
+    for (int i = 2; i <= n; ++i)
+        cout << f[i] << ' ';
 }
 ```
 
@@ -483,7 +499,9 @@ struct Line {
     // Line: y = ax + b
     int a, b;
     // các đường thẳng được sắp xếp theo hệ số góc a
-    bool operator<(const Line& o) const { return a < o.a; }
+    bool operator<(const Line &o) const {
+        return a < o.a;
+    }
 };
 multiset<Line> myLC;
 ```
@@ -492,11 +510,13 @@ multiset<Line> myLC;
 Từ khoá `mutable` cho phép ta thay đổi giá trị biến `p` kể cả khi `Line` là `const` (ta cần cập nhật giá trị của `p` liên tục nhưng `Line` trong `std::multiset<Line>` là `const`).
 
 ```cpp=1
-const double INF = 1/.0;
+const double INF = 1 / .0;
 struct Line {
     int a, b;
     mutable double p; // như định nghĩa, p trong myLC cũng sẽ có thứ tự tăng dần
-    bool operator<(const Line& o) const { return a < o.a; }
+    bool operator<(const Line &o) const {
+        return a < o.a;
+    }
 };
 multiset<Line> myLC;
 ```
@@ -520,11 +540,13 @@ Hàm trả về `true` nếu `x->p >= y->p`, tức là `y` không còn là một
 Vì mục đích thuận tiện, hàm sẽ tính lại `x->p` trước khi thực hiện phép so sánh cuối cùng.
 
 ```cpp=1
-const double INF = 1/.0;
+const double INF = 1 / .0;
 struct Line {
     int a, b;
     mutable double p;
-    bool operator<(const Line& o) const { return a < o.a; }
+    bool operator<(const Line &o) const {
+        return a < o.a;
+    }
 };
 multiset<Line> myLC;
 
@@ -573,19 +595,24 @@ Cài đặt hàm `add(int a, int b)` gồm 4 bước:
 |**Hình 5:** Sau khi thêm $x$, $pre1$ và $pre2$ lần lượt không còn "tiềm năng" nữa (vì `pre1->p < pre2->p`, sau đó, `pre2->p < pre3->p`).|
 
 ```cpp=1
-const double INF = 1/.0;
+const double INF = 1 / .0;
 struct Line {
     int a, b;
     mutable double p;
-    bool operator<(const Line& o) const { return a < o.a; }
+    bool operator<(const Line &o) const {
+        return a < o.a;
+    }
 };
 multiset<Line> myLC;
 
 bool isect(multiset<Line>::iterator x, multiset<Line>::iterator y) {
     // rút gọn cài đặt nhưng ý nghĩa vẫn không thay đổi
-    if (y == myLC.end()) return x->p = INF, false;
-    if (x->a == y->a) x->p = (x->b > y->b) ? INF : -INF;
-    else x->p = (double)(y->b - x->b) / (x->a - y->a);
+    if (y == myLC.end())
+        return x->p = INF, false;
+    if (x->a == y->a)
+        x->p = (x->b > y->b) ? INF : -INF;
+    else
+        x->p = (double)(y->b - x->b) / (x->a - y->a);
     return x->p >= y->p;
 }
 
@@ -652,31 +679,37 @@ Trong phần cài đặt của [KTH's ICPC notebook](https://github.com/kth-comp
 Giả sử rằng không có đường thẳng nào có dạng $y=+\infty\times x+\infty$ với $a=b=+\infty$. Khi đó, để chặt nhị phân theo `p`, ta truyền vào cho `multiset::lower_bound` giá trị `{ INT_MAX, INT_MAX, x }` và thực hiện phép so sánh theo `p`.
 
 ```cpp=1
-const double INF = 1/.0;
+const double INF = 1 / .0;
 struct Line {
     int a, b;
     mutable double p;
-    bool operator<(const Line& o) const {
+    bool operator<(const Line &o) const {
         // nếu a = b = INT_MAX thì so sánh theo p
         // o.p lúc này chính là x đã được truyền vào hàm
-        if (o.a == INT_MAX && o.b == INT_MAX) return p < o.p;
+        if (o.a == INT_MAX && o.b == INT_MAX)
+            return p < o.p;
         return a < o.a;
     }
 };
 multiset<Line> myLC;
 
 bool isect(multiset<Line>::iterator x, multiset<Line>::iterator y) {
-    if (y == myLC.end()) return x->p = INF, false;
-    if (x->a == y->a) x->p = (x->b > y->b) ? INF : -INF;
-    else x->p = (double)(y->b - x->b) / (x->a - y->a);
+    if (y == myLC.end())
+        return x->p = INF, false;
+    if (x->a == y->a)
+        x->p = (x->b > y->b) ? INF : -INF;
+    else
+        x->p = (double)(y->b - x->b) / (x->a - y->a);
     return x->p >= y->p;
 }
 
 void add(int a, int b) {
     // rút gọn cài đặt nhưng ý nghĩa vẫn không thay đổi
-    auto x = myLC.insert({ a, b, 0 }), y = next(x);
-    while (isect(x, y)) y = myLC.erase(y);
-    if ((y = x) != myLC.begin() && isect(--y, x)) isect(y, myLC.erase(x));
+    auto x = myLC.insert({a, b, 0}), y = next(x);
+    while (isect(x, y))
+        y = myLC.erase(y);
+    if ((y = x) != myLC.begin() && isect(--y, x))
+        isect(y, myLC.erase(x));
     // ở đây, ta có thể tiếp tục rút gọn bằng cách hoán đổi
     // ý nghĩa của 'x' và 'y' => giảm 1 lần gán 'x=y' hoặc 'y=x'
     while ((x = y) != myLC.begin() && (--x)->p >= y->p)
@@ -686,7 +719,7 @@ void add(int a, int b) {
 int query(int x) {
     // tìm đường thẳng đầu tiên có it->p >= x
     // => đoạn thẳng mà đường thẳng này "quản lý" chắc chắn chứa x
-    Line l = *myLC.lower_bound({ INT_MAX, INT_MAX, x });
+    Line l = *myLC.lower_bound({INT_MAX, INT_MAX, x});
     return l.a * x + l.b;
 }
 ```
@@ -694,32 +727,38 @@ int query(int x) {
 Để dễ dàng sử dụng khi cần nhiều LineContainer (như trong [Bài toán 2](#Bài-toán-2-Codeforces---455E-Function)), ta tạo `struct LineContainer`
 
 ```cpp=1
-const double INF = 1/.0;
+const double INF = 1 / .0;
 struct Line {
     int a, b;
     mutable double p;
-    bool operator<(const Line& o) const {
-        if (o.a == INT_MAX && o.b == INT_MAX) return p < o.p;
+    bool operator<(const Line &o) const {
+        if (o.a == INT_MAX && o.b == INT_MAX)
+            return p < o.p;
         return a < o.a;
     }
 };
 struct LineContainer {
     multiset<Line> myLC;
     bool isect(multiset<Line>::iterator x, multiset<Line>::iterator y) {
-        if (y == myLC.end()) return x->p = INF, false;
-        if (x->a == y->a) x->p = (x->b > y->b) ? INF : -INF;
-        else x->p = (double)(y->b - x->b) / (x->a - y->a);
+        if (y == myLC.end())
+            return x->p = INF, false;
+        if (x->a == y->a)
+            x->p = (x->b > y->b) ? INF : -INF;
+        else
+            x->p = (double)(y->b - x->b) / (x->a - y->a);
         return x->p >= y->p;
     }
     void add(int a, int b) {
-        auto x = myLC.insert({ a, b, 0 }), y = next(x);
-        while (isect(x, y)) y = myLC.erase(y);
-        if ((y = x) != myLC.begin() && isect(--y, x)) isect(y, myLC.erase(x));
+        auto x = myLC.insert({a, b, 0}), y = next(x);
+        while (isect(x, y))
+            y = myLC.erase(y);
+        if ((y = x) != myLC.begin() && isect(--y, x))
+            isect(y, myLC.erase(x));
         while ((x = y) != myLC.begin() && (--x)->p >= y->p)
             isect(x, myLC.erase(y)), y = x;
     }
     int query(int x) {
-        Line l = *myLC.lower_bound({ INT_MAX, INT_MAX, x });
+        Line l = *myLC.lower_bound({INT_MAX, INT_MAX, x});
         return l.a * x + l.b;
     }
 };
@@ -765,7 +804,8 @@ Ta viết lại hàm `f` như sau:
 ```cpp=1
 int f(int a, int b) {
     int res = a / b;
-    if (a % b && (a ^ b) < 0) --res;
+    if (a % b && (a ^ b) < 0)
+        --res;
     return res;
 }
 ```
@@ -820,12 +860,12 @@ struct LineContainer {
 #### Bài toán 1: [**Codeforces - 660F (Bear and Bowling 4)**](https://codeforces.com/contest/660/problem/F)
 
 ##### Tóm tắt
-Cho mảng $a$ độ dài $n$. Ta định nghĩa hàm $score(l,r)$ của đoạn $[l,r]$ bằng công thức $score(l,r)=\sum\limits_{i=l}^r(a_i\times(i-l+1))$ nếu $l\le r$, và $score(l,r)=0$ nếu $l\gt r$.
+Cho mảng $a$ độ dài $n$. Ta định nghĩa hàm $score(l,r)$ của đoạn $[l,r]$ bằng công thức $score(l,r)=\sum\limits_{i=l}^{r}(a_i\times(i-l+1))$ nếu $l\le r$, và $score(l,r)=0$ nếu $l\gt r$.
 Hỏi giá trị lớn nhất của $score(l,r)$ với $1\le l,r\le n$.
 
 Giới hạn:
-- $1\le n\le 2\times10^5$
-- $|a_i|\le10^7$
+- $1\le n\le 2\times10^{5}$
+- $|a_i|\le10^{7}$
 
 ##### Ý tưởng
 Ý tưởng chung cho các bài toán sử dụng kĩ thuật bao lồi là ta sẽ cố gắng biến đổi công thức về dạng phương trình đường thẳng $(kx+m)+const$ với:
@@ -847,7 +887,7 @@ score(l,r)&=\sum\limits_{i=l}^r(a_i\times(i-l+1)) \\
 &=\left[\sum\limits_{i=1}^r(a_i\times i)-\sum\limits_{i=1}^{l-1}(a_i\times i)\right]+\left[(1-l)\sum\limits_{i=1}^ra_i+(l-1)\sum\limits_{i=1}^{l-1}a_i\right] \\
 \end{align*}$$
 
-Đặt $prf_1(r)=\sum\limits_{i=1}^r(a_i\times i)$ và $prf_2(r)=\sum\limits_{i=1}^ra_i$, công thức trên trở thành:
+Đặt $prf_1(r)=\sum\limits_{i=1}^{r}(a_i\times i)$ và $prf_2(r)=\sum\limits_{i=1}^ra_i$, công thức trên trở thành:
 
 $$\begin{align*}
 score(l,r)
@@ -864,7 +904,7 @@ score(l,r)=k(l)\times prf_2(r)+m(l)+prf_1(r)
 
 ##### Thuật toán
 Xét $r$ từ $1$ đến $n$.
-Với mỗi $r$, để tính $\max\limits_{l=1}^r\left[score(l,r)\right]$, ta thêm đường thẳng thứ $r$: $y=k(r)\times x+m(r)$ vào LineContainer, sau đó truy vấn với $x=prf_2(r)$ để có được giá trị lớn nhất của $k(l)\times prf_2(r)+m(l)$, rồi thêm $prf_1(r)$ vào.
+Với mỗi $r$, để tính $\max\limits_{l=1}^{r}\left[score(l,r)\right]$, ta thêm đường thẳng thứ $r$: $y=k(r)\times x+m(r)$ vào LineContainer, sau đó truy vấn với $x=prf_2(r)$ để có được giá trị lớn nhất của $k(l)\times prf_2(r)+m(l)$, rồi thêm $prf_1(r)$ vào.
 
 ##### Cài đặt
 ```cpp=1
@@ -949,8 +989,8 @@ $$
 Cho $m$ truy vấn $(x_i,y_i)$. Với mỗi truy vấn, in ra giá trị của $f(x_i,y_i)$.
 
 Giới hạn:
-- $1\le n,m\le 10^5$
-- $0\le a_i\le 10^4$
+- $1\le n,m\le 10^{5}$
+- $0\le a_i\le 10^{4}$
 - $1\le x_i\le y_i\le n$
 
 ##### Ý tưởng
@@ -1083,7 +1123,7 @@ int main() {
 }
 ```
 
-Độ phức tạp thời gian: $\mathcal{O}(N\log^2 N)$
+Độ phức tạp thời gian: $\mathcal{O}(N\log^{2} N)$
 Độ phức tạp không gian: $\mathcal{O}(N\log N)$
 
 ### Bài tập áp dụng

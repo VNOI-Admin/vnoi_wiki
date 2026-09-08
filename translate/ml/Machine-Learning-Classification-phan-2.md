@@ -26,11 +26,15 @@ Tuy nhiên, mặc dù khoảng cách Euclide giữa hai điểm trên bản đ�
 
 Khoảng cách giữa hai bông diên vĩ đầu tiên là:
 
-$\sqrt{(6.3 - 6.2)^2 + (2.3 - 3.4)^2 + (4.4 - 5.4)^2 + (1.3 - 2.3)^2} = 1.79$
+$$
+\sqrt{(6.3 - 6.2)^{2} + (2.3 - 3.4)^{2} + (4.4 - 5.4)^{2} + (1.3 - 2.3)^{2}} = 1.79
+$$
 
 Khoảng cách giữa bông hoa đầu tiên và bông hoa thứ ba là:
 
-$\sqrt{(6.3 - 5.2)^2 + (2.3 - 3.4)^2 + (4.4 - 1.4)^2 + (1.3 - 0.2)^2} = 3.55$
+$$
+\sqrt{(6.3 - 5.2)^{2} + (2.3 - 3.4)^{2} + (4.4 - 1.4)^{2} + (1.3 - 0.2)^{2}} = 3.55
+$$
 
 Giá trị đầu tiên nhỏ hơn ($1.79 < 3.55$), điều này có nghĩa là bông diên vĩ đầu tiên giống bông hoa thứ hai hơn so với bông hoa thứ ba.
 

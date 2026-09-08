@@ -20,12 +20,12 @@ Giả sử ta đã xây dựng được đoạn $[L, R]$ và các giá trị $Z[
 
 - Nếu $i > R$, khi đấy không tồn tại một chuỗi con là tiền tố của $S$ bắt đầu tại một vị trí trước $i$ và kết thúc tại ví trí $i$ hoặc sau $i$. Bởi nếu như có một tiền tố như vậy, thì đoạn $[L, i]$ sẽ là chuỗi tiền tố tối ưu chứ không phải $[L, R]$. Do đó, ta sẽ cập nhật lại đoạn $[L, R]$ bằng cách so sánh $S[0..]$ với $S[i..]$ và lấy giá trị $Z_i$ hiện tại ($Z_i = R - L + 1$).
 
-- Ngược lại, $i \le R$ thì đoạn $[L, R]$ hiện tại kéo dài ít nhất đến $i$. Đặt $k = i - L$. Ta biết rằng $Z_i \ge min(Z_k, R - i + 1)$ bởi vì $S[i..]$ bằng với $S[k..]$ ít nhất là $R - i + 1$ ký tự. Xét các trường hợp sau:
+- Ngược lại, $i \le R$ thì đoạn $[L, R]$ hiện tại kéo dài ít nhất đến $i$. Đặt $k = i - L$. Ta biết rằng $Z_i \ge \min(Z_k, R - i + 1)$ bởi vì $S[i..]$ bằng với $S[k..]$ ít nhất là $R - i + 1$ ký tự. Xét các trường hợp sau:
     - Nếu $Z_k < R - i + 1$ thì sẽ không có chuỗi con nào là tiền tố của $S$ dài hơn $Z_k$ bắt đầu tại $S_i$. Nghĩa là $Z_i = Z_k$ và đoạn $[L, R]$ vẫn giữ nguyên (do đoạn $[L, R]$ chỉ thay đổi nếu chuỗi tiền tố bắt đầu tại $S_i$ vượt ra khỏi đoạn $[L, R]$).
     - Nếu $Z_k \ge R - i + 1$ thì chuỗi $S[i..]$ là tiền tố của $S$ và có nhiều hơn $R - i + 1$ ký tự (tức là kết thúc sau vị trí $R$). Như vậy ta cần cập nhật đoạn $[L, R]$ bằng cách đặt lại $L = i$ và so sánh từ vị trí $S[R + 1]$ trở đi để được một vị trí $R$ mới. Đồng thời, ta tính được giá trị của $Z_i$.
 
 # Độ phức tạp:
-Tại mỗi bước trong vòng lặp, chúng ta không cần so sánh ký tự tại các vị trí nhỏ hơn $R$, và mỗi lần ký tự $R$ phù hợp thì ta tăng $R$ lên một, vì thế ta sẽ tốn nhiều nhất $n$ phép so sánh. Ngoài ra, với mỗi giá trị $i$, ta chỉ tìm thấy một ký tự không phù hợp (điều kiện tăng $R$). Vì thế không thể có nhiều hơn $n$ phép so sánh cho kết quả sai. Đưa đến độ phức tạp thuật toán là $O(n)$.
+Tại mỗi bước trong vòng lặp, chúng ta không cần so sánh ký tự tại các vị trí nhỏ hơn $R$, và mỗi lần ký tự $R$ phù hợp thì ta tăng $R$ lên một, vì thế ta sẽ tốn nhiều nhất $n$ phép so sánh. Ngoài ra, với mỗi giá trị $i$, ta chỉ tìm thấy một ký tự không phù hợp (điều kiện tăng $R$). Vì thế không thể có nhiều hơn $n$ phép so sánh cho kết quả sai. Đưa đến độ phức tạp thuật toán là $\mathcal{O}(n)$.
 
 # Cài đặt:
 
@@ -35,27 +35,28 @@ Có thể dễ dàng cài đặt. Chú ý việc tối ưu hóa $L = R = i$ đư
 int L = 0, R = 0;
 Z[0] = n;
 for (int i = 1; i < n; i++)
-   if (i > R)
-   {
-      L = R = i;
-      while (R < n && S[R] == S[R - L]) R++;
-      Z[i] = R - L; R--;
-   }
-   else
-   {
-      int k = i - L;
-      if (Z[k] < R - i + 1) Z[i] = Z[k];
-      else
-      {
-          L = i;
-          while (R < n && S[R] == S[R - L]) R++;
-          Z[i] = R - L; R--;
-      }
-   }
+    if (i > R) {
+        L = R = i;
+        while (R < n && S[R] == S[R - L])
+            R++;
+        Z[i] = R - L;
+        R--;
+    } else {
+        int k = i - L;
+        if (Z[k] < R - i + 1)
+            Z[i] = Z[k];
+        else {
+            L = i;
+            while (R < n && S[R] == S[R - L])
+                R++;
+            Z[i] = R - L;
+            R--;
+        }
+    }
 ```
 
 # Áp dụng
 
 [VNOJ - SUBSTR](https://oj.vnoi.info/problem/substr/)
 
-Có thể dùng ZFuntion để giải bài này. Ta tạo ra một chuỗi $S=B+A$, sao đó xây dựng mảng $Z$. Những vị trí có $Z_i \ge Length(B)$ (Với $Length(B) \le i < Length(A)+Length(B)$) là vị trí tương ứng của $B$ trong $A$.
+Có thể dùng ZFuntion để giải bài này. Ta tạo ra một chuỗi $S=B+A$, sao đó xây dựng mảng $Z$. Những vị trí có $Z_i \ge \texttt{Length}(B)$ (Với $\texttt{Length}(B) \le i < \texttt{Length}(A)+\texttt{Length}(B)$) là vị trí tương ứng của $B$ trong $A$.

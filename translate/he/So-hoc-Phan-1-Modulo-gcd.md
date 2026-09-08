@@ -25,14 +25,18 @@ Phép đồng dư thức cho bạn số dư của phép chia số này cho số 
 
 Ví dụ:
 
-Ta có hai số 5 và 2, khi đó $5\%2$ bằng 1 do khi chia 5 cho 2, ta được số dư là 1.
+Ta có hai số 5 và 2, khi đó $5 \bmod 2$ bằng 1 do khi chia 5 cho 2, ta được số dư là 1.
 
 Tính chất:
 Đồng dư thức có một số tính chất sau:
 
-$(a+b)\%c = (a\%c + b\%c) \% c$
+$$
+(a+b) \bmod c = (a \bmod c + b \bmod c) \bmod c
+$$
 
-$(a.b)\%c = ((a\%c).(b\%c))\%c$
+$$
+(a \times b) \bmod c = ((a \bmod c) \times (b \bmod c)) \bmod c
+$$
 
 Ví dụ:
 
@@ -40,13 +44,13 @@ Giả sử $a=5,b=3,c=2$
 
 Khi đó:
 
-- $(5+3)\%2=8\%2=0$
+- $(5+3) \bmod 2 = 8 \bmod 2 = 0$
 
-và cũng bằng $(5\%2+3\%2)\%2=(1+1)\%2=0$.
+và cũng bằng $(5 \bmod 2+3 \bmod 2) \bmod 2 = (1+1) \bmod 2 = 0$.
 
-- $(5.3)\%2=15\%2=1$
+- $(5 \times 3) \bmod 2 = 15 \bmod 2 = 1$
 
-và cũng bằng $((5\%2).(3\%2))\%2=(1.1)\%2=1$.
+và cũng bằng $((5 \bmod 2) \times (3 \bmod 2)) \bmod 2 = (1 \times 1) \bmod 2 = 1$.
 
 
 # Ước chung lớn nhất
@@ -58,28 +62,34 @@ Ví dụ: GCD của 6 và 10 là 2 vì 2 là số nguyên dương lớn nhất m
 
 ## Thuật toán "ngây thơ" (Naive Approach)
 
-Ta có thể duyệt tất cả các số từ $min(A,B)$ đến 1 và kiểm tra xem số đang xét có phải là ước của của $A$ và $B$ hay không. Nếu đúng như vậy thì số đang xét sẽ là GCD của $A$ và $B$.
+Ta có thể duyệt tất cả các số từ $\min(A,B)$ đến 1 và kiểm tra xem số đang xét có phải là ước của của $A$ và $B$ hay không. Nếu đúng như vậy thì số đang xét sẽ là GCD của $A$ và $B$.
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 int gcd(int A, int B) {
     for (int i = min(A, B); i > 0; --i)
         if (A % i == 0 && B % i == 0) {
             return i;
         }
     // không bao giờ chạy đến đây vì khi i = 1 thì cả A và B luôn chia hết cho i
+    return 1;
 }
 ```
 
-**Độ phức tạp của thuật toán:** $O(min(A,B))$.
+**Độ phức tạp của thuật toán:** $\mathcal{O}(\min(A,B))$.
 
 ## Thuật toán Euclid
 
-Thuật toán Euclid dựa trên tính chất sau của ước chung lớn nhất $GCD(A,B)=GCD(B,A\%B)$. Thuật toán sẽ quy nạp cho đến khi $A\%B=0$.
+Thuật toán Euclid dựa trên tính chất sau của ước chung lớn nhất $\gcd(A,B)=\gcd(B,A \bmod B)$. Thuật toán sẽ quy nạp cho đến khi $A \bmod B=0$.
 
 ```cpp
 int gcd(int A, int B) {
-    if (B == 0) return A;
-    else return gcd(B, A % B);
+    if (B == 0)
+        return A;
+    else
+        return gcd(B, A % B);
 }
 ```
 
@@ -87,67 +97,77 @@ Ví dụ:
 
 Giả sử $A=16, B=10$.
 
-$GCD(16,10)=GCD(10,16\%10)=GCD(10,6)$
+$$
+\gcd(16,10)=\gcd(10,16 \bmod 10)=\gcd(10,6)
+$$
 
-$GCD(10,6)=GCD(6,10\%6)=GCD(6,4)$
+$$
+\gcd(10,6)=\gcd(6,10 \bmod 6)=\gcd(6,4)
+$$
 
-$GCD(6, 4) = GCD(4, 6 \% 4) = GCD(4, 2)$
+$$
+\gcd(6, 4) = \gcd(4, 6 \bmod 4) = \gcd(4, 2)
+$$
 
-$GCD(4, 2) = GCD(2, 4 \% 2) = GCD(2, 0)$
+$$
+\gcd(4, 2) = \gcd(2, 4 \bmod 2) = \gcd(2, 0)
+$$
 
-Vì $B=0$ nên $GCD(2,0)$ sẽ trả về giá trị 2.
+Vì $B=0$ nên $\gcd(2,0)$ sẽ trả về giá trị 2.
 
-**Độ phức tạp của thuật toán:** $O(\log{min(A,B)})$.
+**Độ phức tạp của thuật toán:** $\mathcal{O}(\log{\min(A,B)})$.
 
 ## Thuật toán Euclid mở rộng (Extended Euclid Algorithm)
 
-Đây là một thuật toán mở rộng của thuật toán Euclid ở trên. $GCD(A,B)$ có một tính chất rất đặc biệt: Nó luôn có thể được biểu diễn dưới dạng phương trình $Ax+By=GCD(A,B)$.
+Đây là một thuật toán mở rộng của thuật toán Euclid ở trên. $\gcd(A,B)$ có một tính chất rất đặc biệt: Nó luôn có thể được biểu diễn dưới dạng phương trình $Ax+By=\gcd(A,B)$.
 
-Thuật toán sẽ cho ta biết một cặp giá trị $(x;y)$ thỏa mãn phương trình này và nhờ đó giúp ta tính Modular Multiplicative Inverse. $x$ và $y$ có thể có giá trị bằng không hoặc âm. Chương trình sau đọc hai số $A$ và $B$ và in ra $GCD(A,B)$ cũng như một cặp số $(x;y)$ thỏa mãn phương trình.
+Thuật toán sẽ cho ta biết một cặp giá trị $(x;y)$ thỏa mãn phương trình này và nhờ đó giúp ta tính Modular Multiplicative Inverse. $x$ và $y$ có thể có giá trị bằng không hoặc âm. Chương trình sau đọc hai số $A$ và $B$ và in ra $\gcd(A,B)$ cũng như một cặp số $(x;y)$ thỏa mãn phương trình.
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 int d, x, y;
 void extendedEuclid(int A, int B) {
     if (B == 0) {
         d = A;
         x = 1;
         y = 0;
-    }
-    else {
-        extendedEuclid(B, A%B);
+    } else {
+        extendedEuclid(B, A % B);
         int temp = x;
         x = y;
-        y = temp - (A/B)*y;
+        y = temp - (A / B) * y;
     }
 }
 
 int main() {
     extendedEuclid(16, 10);
     cout << "gcd(16, 10) = " << d << endl;
-    cout << "x, y: " << x <<  ", " << y << endl;
+    cout << "x, y: " << x << ", " << y << endl;
     return 0;
 }
 ```
 
 Kết quả
 
-```
+```text
 gcd(16, 10) = 2
 x, y: 2, -3
 ```
 
-Ban đầu, thuật toán Euclid mở rộng sẽ chạy như thuật toán Euclid cho đến khi ta có $GCD(A,B)$ hoặc cho đến khi $B$ bằng 0 và khi đó thuật toán sẽ đặt $x=1$ và $y=0$. Vì $B=0$ và $GCD(A,B)$ là $A$ trong thời điểm hiện tại nên phương trình $Ax+By=0$ trở thành $A.1+0.0=A$.
+Ban đầu, thuật toán Euclid mở rộng sẽ chạy như thuật toán Euclid cho đến khi ta có $\gcd(A,B)$ hoặc cho đến khi $B$ bằng 0 và khi đó thuật toán sẽ đặt $x=1$ và $y=0$. Vì $B=0$ và $\gcd(A,B)$ là $A$ trong thời điểm hiện tại nên phương trình $Ax+By=0$ trở thành $A \times 1 + 0 \times 0 = A$.
 
 Giá trị của các biến $d,x,y$ trong hàm `extendedEuclid()` sẽ lần lượt trở thành:
 
 1. $d=2, x = 1, y = 0$.
 
-2. $d=2, x = 0 , y = 1 - (4/2).0 = 1$.
+2. $d=2, x = 0 , y = 1 - \frac{4}{2} \times 0 = 1$.
 
-3. $d=2, x = 1 , y = 0 - (6/4).1 = -1$.
+3. $d=2, x = 1 , y = 0 - \frac{6}{4} \times 1 = -1$.
 
-4. $d=2, x = -1 , y = 1 - (10/6).(-1) = 2$.
+4. $d=2, x = -1 , y = 1 - \frac{10}{6} \times (-1) = 2$.
 
-5. $d=2 , x= 2, y = -1 - (16/10).2 = -3$
+5. $d=2 , x= 2, y = -1 - \frac{16}{10} \times 2 = -3$
 
-**Độ phức tạp của thuật toán:** Độ phức tạp của thuật toán Euclid mở rộng là $O(\log{max(A,B)})$.
+**Độ phức tạp của thuật toán:** Độ phức tạp của thuật toán Euclid mở rộng là $\mathcal{O}(\log{\max(A,B)})$.

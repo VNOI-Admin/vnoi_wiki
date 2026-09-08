@@ -72,7 +72,7 @@ Chương trình này có nhiệm vụ duyệt N lần, với N là số test c�
 
 [Link code](http://ideone.com/4cIx5a/)
 
-Đây là code trâu với độ phức tạp O(N * M), làm y như những gì đề bài bảo.
+Đây là code trâu với độ phức tạp $\mathcal{O}(N \times M)$, làm y như những gì đề bài bảo.
 
 ## Trình sinh test + Trình so test:
 
@@ -82,7 +82,7 @@ Vì đây là code C++ nên tác giả kết hợp trình sinh test với trình
 
 Chạy thử chương trình này, ta có thể sinh được một test sai như sau:
 
-```
+```text
 1 5
 6 6
 3 1 1 8
@@ -95,13 +95,13 @@ Chạy thử chương trình này, ta có thể sinh được một test sai nh�
 
 Trong đó, lời giải 1 ra output là:
 
-```
+```text
 1
 ```
 
 Lời giải 2 ra output là:
 
-```
+```text
 0
 ```
 

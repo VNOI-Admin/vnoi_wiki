@@ -16,11 +16,15 @@ dateCreated: 2024-09-04T06:31:48.123Z
 - Phạm Công Minh - Trường Đại học Công nghệ, ĐHQGHN
 
 Đôi khi, chúng ta sẽ gặp những bài tập như tính $\sqrt x \bmod p$ hay thậm chí như tính số Fibonacci $F_n \bmod p$. Mà chúng ta biết, công thức tổng quát:
-$$F_n = \dfrac{1}{\sqrt5}\left[\left(\frac{1 + \sqrt 5}{2}\right)^n - \left(\frac{1 - \sqrt 5}{2}\right)^n \right]$$
+$$
+F_n = \frac{1}{\sqrt5}\left[\left(\frac{1 + \sqrt 5}{2}\right)^{n} - \left(\frac{1 - \sqrt 5}{2}\right)^{n} \right]
+$$
 Việc xuất hiện $\sqrt5$ đặt ra nhiều thách thức cho việc tính toán nhanh $F_n$, nhưng đồng thời cũng mở ra những phương pháp mới để chinh phục được bài toán $F_n \bmod p$
 ## Một số định nghĩa
 - Số nguyên dương $a$ được gọi là **thặng dư bình phương** modulo $p$ nếu:
-    $$\exists x:\; x^2 \equiv a \pmod p$$
+    $$
+    \exists x:\; x^{2} \equiv a \pmod{p}
+    $$
     Khi này, $x$ được gọi là căn bậc hai của $a$ modulo $p$.
 - **Ký hiệu Legendre**: với  $p$ là số nguyên tố lẻ
 
@@ -29,33 +33,37 @@ Việc xuất hiện $\sqrt5$ đặt ra nhiều thách thức cho việc tính t
 <img src="/algo/math/legendre.png" width=475></img>
 </center>
 
-<!-- $$\left(\dfrac{a}{p}\right) = \begin{cases}
-    0, &{\text{ nếu }} a\equiv 0 \pmod p\\
+<!-- $$\left(\frac{a}{p}\right) = \begin{cases}
+    0, &{\text{ nếu }} a\equiv 0 \pmod{p}\\
     1, &{\text{ nếu }} a {\text{ là thặng dư bình phương}} \bmod p\\
     -1, &{\text{ nếu }} a {\text{ không là thặng dư bình phương}} \bmod p
     \end{cases}$$  -->
     
 ## Kiểm tra thặng dư bình phương
 Ta sử dụng **tiêu chuẩn Euler** (Euler's criterion) như sau. Với $p$ nguyên tố lẻ:
-$$\left(\dfrac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod p$$
+$$
+\left(\frac{a}{p}\right) \equiv a^{\frac{p-1}{2}} \pmod{p}
+$$
 Đến đây, ta sử dụng lũy thừa nhanh để tính.
 
 ```cpp=
-int pow_mod(int a, int n, int p); // hàm tính lũy thừa nhanh modulo p
+int pow_mod(long long a, long long n, long long p); // hàm tính lũy thừa nhanh modulo p
 int legendre_symbol(int a, int p) {
-	return pow_mod(a, (p - 1) >> 1, p);
+    return pow_mod(a, (p - 1) >> 1, p);
 }
 ```
 
-Độ phức tạp: $O(\log p)$
+Độ phức tạp: $\mathcal{O}(\log p)$
 
 ## Thặng dư bình phương modulo nguyên tố
 ### Bài toán
 [VNOJ - Số học 1](https://oj.vnoi.info/problem/jacobi)
 Tìm tất cả $x$ thỏa mãn phương trình:
-$$x^2 \equiv a \pmod p$$
-- Với $p = 2$, phương trình có đúng $1$ nghiệm: $x \equiv 1 \pmod p$
-- Với $p$ lẻ, theo *định lý Lagrange*, phương trình có đúng $2$ nghiệm $x \equiv \pm x_0 \pmod p$
+$$
+x^{2} \equiv a \pmod{p}
+$$
+- Với $p = 2$, phương trình có đúng $1$ nghiệm: $x \equiv 1 \pmod{p}$
+- Với $p$ lẻ, theo *định lý Lagrange*, phương trình có đúng $2$ nghiệm $x \equiv \pm x_0 \pmod{p}$
 
 $\implies$ Như vậy, ta sẽ tìm nghiệm trong trường hợp $p$ lẻ.
 
@@ -65,29 +73,37 @@ $\implies$ Như vậy, ta sẽ tìm nghiệm trong trường hợp $p$ lẻ.
 - Để thuật toán hiệu quả hơn, bạn nên sinh số ngẫu nhiên và kiểm tra đến khi tìm được. Xác suất $1$ lần thử tìm được là $\frac{1}{2}$, nên xác suất sau $32$ lần thử mà bạn chưa tìm ra là $\frac{1}{2^{32}}$.
 
 ### Thuật toán Tonelli-Shanks
-$$x^2 \equiv a \pmod p$$
+$$
+x^{2} \equiv a \pmod{p}
+$$
 <!-- Ý tưởng:
-    - Nếu $a^m \equiv 1 \pmod p$ với $m$ lẻ. Ta suy ra
-    $$\left(a^\frac{m+1}{2}\right)^2 \equiv a^{m+1} \equiv a \pmod p$$
-    Điều này nghĩa là $a^\frac{m+1}{2}$ là nghiệm cần tìm. 
+    - Nếu $a^{m} \equiv 1 \pmod{p}$ với $m$ lẻ. Ta suy ra
+    $$
+    \left(a^{\frac{m+1}{2}}\right)^{2} \equiv a^{m+1} \equiv a \pmod{p}
+    $$
+    Điều này nghĩa là $a^{\frac{m+1}{2}}$ là nghiệm cần tìm.
     - $z$ là một thặng dư không chính phương bất kỳ. -->
 - Thuật toán:
     - *Bài viết xin không đề cập phần chứng minh thuật toán. Bạn đọc tham khảo tại [Wikipedia](https://en.wikipedia.org/wiki/Tonelli%E2%80%93Shanks_algorithm#Proof).*
-    - **Bước 1:** ta phân tích $p = Q \cdot 2^S + 1$ với $Q$ lẻ
+    - **Bước 1:** ta phân tích $p = Q \cdot 2^{S} + 1$ với $Q$ lẻ
     - **Bước 2:** Chọn $z$ là một thặng dư không chính phương bất kỳ.
     - **Bước 3:** Gán
-        $$\begin{aligned}
+        $$
+        \begin{aligned}
         x &\leftarrow a^{\frac{Q+1}{2}}\\
-        b &\leftarrow a ^ Q \\
-        \end{aligned}$$
+        b &\leftarrow a^{Q} \\
+        \end{aligned}
+        $$
     - **Bước 4:** Lặp
-        - Tìm $m$ nhỏ nhất $(0\le m < r)$ sao cho $b^{2^m} \equiv 1 \pmod p$
-        - Nếu $m = 0 \iff b \equiv 1 \pmod p$ thì $x$ chính là đáp án cần tìm.
-        Nếu $m > 0$ thì đặt $e = \cfrac{p-1}{2^{m+1}} = Q \cdot 2 ^ {S – m - 1}$ gán:
-        $$\begin{aligned}
-        x &\leftarrow x \cdot z ^ e\\
-        b &\leftarrow b \cdot z ^ {2e}\\
-        \end{aligned}$$
+        - Tìm $m$ nhỏ nhất $(0\le m < r)$ sao cho $b^{2^{m}} \equiv 1 \pmod{p}$
+        - Nếu $m = 0 \iff b \equiv 1 \pmod{p}$ thì $x$ chính là đáp án cần tìm.
+        Nếu $m > 0$ thì đặt $e = \frac{p-1}{2^{m+1}} = Q \cdot 2^{S - m - 1}$ gán:
+        $$
+        \begin{aligned}
+        x &\leftarrow x \cdot z^{e}\\
+        b &\leftarrow b \cdot z^{2e}\\
+        \end{aligned}
+        $$
 - Code C++ minh họa:
 ```cpp=
 int pow_mod(long long a, long long k, long long M) {
@@ -131,13 +147,15 @@ int Tonelli_Shanks(int a, int p) {
     return x;
 }
 ```
-- Độ phức tạp: $O(\log^2p)$
+- Độ phức tạp: $\mathcal{O}(\log^{2} p)$
     
 
 ## Trường hữu hạn
 ### Định nghĩa
 - Như các bạn đã biết: 
-$$\left(a + b \sqrt k\right)^n = u + v \sqrt k$$
+$$
+\left(a + b \sqrt k\right)^{n} = u + v \sqrt k
+$$
 Trong đó $a, b, u, v, k \in \mathbb{Z}$ và  $\sqrt k \notin \mathbb{Z}$.
 > Bạn đọc có thể thấy nó khá giống số phức, chỉ thay $i = \sqrt{-1}$ bằng $\sqrt k$ mà thôi.
 
@@ -145,27 +163,35 @@ Mục đích của chúng ta là tính $u, v$ theo $\bmod p$. Như các bạn ng
 
 - Ký hiệu: $\langle a, b \rangle = a + b\sqrt{k}$
 - Phần tử đơn vị:
-    $$\langle a, b \rangle \times \langle 1, 0 \rangle = \langle a, b \rangle$$
+    $$
+    \langle a, b \rangle \times \langle 1, 0 \rangle = \langle a, b \rangle
+    $$
 - Xét phép nhân $2$ số:
-    $$\begin{aligned}
+    $$
+    \begin{aligned}
     \langle a, b \rangle \times \langle u, v \rangle &= \big\langle au + bvk,\; av + bu \big\rangle \\
     &= \big\langle (au + bvk) \bmod p,\; (av + bu) \bmod p \big\rangle
-    \end{aligned}$$
+    \end{aligned}
+    $$
 - Phép lũy thừa:
-    $$\langle a, b \rangle^n = \underbrace{\langle a, b \rangle \times \cdots \times \langle a, b \rangle}_{n\ \text{thừa số}}$$
+    $$
+    \langle a, b \rangle^{n} = \underbrace{\langle a, b \rangle \times \cdots \times \langle a, b \rangle}_{n\ \text{thừa số}}
+    $$
 
     
-> Các phép toán trên chỉ là một số tính chất của trường hữu hạn $\mathbb{F}_{p^2}=\mathbb{F}_{p}\left(\sqrt{k}\right)$. Để có kiến thức đầy đủ hơn, bạn đọc tham khảo trên [Wikipedia](https://vi.wikipedia.org/wiki/Tr%C6%B0%E1%BB%9Dng_h%E1%BB%AFu_h%E1%BA%A1n).
+> Các phép toán trên chỉ là một số tính chất của trường hữu hạn $\mathbb{F}_{p^{2}}=\mathbb{F}_{p}\left(\sqrt{k}\right)$. Để có kiến thức đầy đủ hơn, bạn đọc tham khảo trên [Wikipedia](https://vi.wikipedia.org/wiki/Tr%C6%B0%E1%BB%9Dng_h%E1%BB%AFu_h%E1%BA%A1n).
 ### Thuật toán Cipolla
-$$x^2 \equiv a \pmod p$$
+$$
+x^{2} \equiv a \pmod{p}
+$$
 - Thuật toán:
     - *Bài viết xin không đề cập phần chứng minh thuật toán. Bạn đọc tham khảo tại [Wikipedia](https://en.wikipedia.org/wiki/Cipolla%27s_algorithm#Proof).*
-    - **Bước 1:** Tìm $b$ sao cho $b^2 - a$ là thặng dư không chính phương modulo $p$
-    - **Bước 2:** Ta tính $x + y\sqrt{b^2-a} = \left(b + \sqrt{b^2-a}\right)^{(p+1)/2}$.
+    - **Bước 1:** Tìm $b$ sao cho $b^{2} - a$ là thặng dư không chính phương modulo $p$
+    - **Bước 2:** Ta tính $x + y\sqrt{b^{2}-a} = \left(b + \sqrt{b^{2}-a}\right)^{\left(\frac{p+1}{2}\right)}$.
     Khi đó, $x \bmod p$ tìm được chính là nghiệm của bài toán.
-    Nói cách khác là $\left<x, y\right> = \left<b, 1\right>^{(p+1)/2}$ trên $\mathbb{F}_{p}\left(\sqrt{b^2-a}\right)$
+    Nói cách khác là $\left\langle x, y\right\rangle = \left\langle b, 1\right\rangle^{\left(\frac{p+1}{2}\right)}$ trên $\mathbb{F}_{p}\left(\sqrt{b^{2}-a}\right)$
 - Code C++ minh họa
-Về cài đặt, như đã nói ở trên, $\left<x, y\right>$ khá giống số phức nên việc cài đặt cũng tương tự như vậy.
+Về cài đặt, như đã nói ở trên, $\left\langle x, y\right\rangle$ khá giống số phức nên việc cài đặt cũng tương tự như vậy.
 
 ```cpp=
 int a, p;
@@ -214,78 +240,98 @@ int Cipolla(long long a, long long p) {
     return Complex(b, 1).pow((p + 1) >> 1).re;
 }
 ```
-- Độ phức tạp: $O(\log^2p)$
+- Độ phức tạp: $\mathcal{O}(\log^{2} p)$
 
 ## Fibonacci modulo p
 Ngoài các phương pháp như *Nhân ma trận* hay *Khử nhân ma trận*, còn có một phương pháp khác sử dụng 
 Công thức tổng quát của Fibonacci:
-$$F_n = \dfrac{1}{\sqrt5}\left[\left(\frac{1 + \sqrt 5}{2}\right)^n - \left(\frac{1 - \sqrt 5}{2}\right)^n \right]$$
+$$
+F_n = \frac{1}{\sqrt5}\left[\left(\frac{1 + \sqrt 5}{2}\right)^{n} - \left(\frac{1 - \sqrt 5}{2}\right)^{n} \right]
+$$
 Xét modulo $p$ nguyên tố.
 - **Nếu $5$ là thặng dư bình phương modulo $p$**
-Ví dụ: Bài [Codeforces - DZY Loves Fibonacci Numbers](https://codeforces.com/problemset/problem/446/C) với $p = 10^9 + 9$. 
-Ta tính được: $\sqrt 5 = 383008016 \pmod p$
+Ví dụ: Bài [Codeforces - DZY Loves Fibonacci Numbers](https://codeforces.com/problemset/problem/446/C) với $p = 10^{9} + 9$.
+Ta tính được: $\sqrt 5 = 383008016 \pmod{p}$
 Sử dụng nghịch đảo modulo, ta có:
-    $$\begin{align}
-    \dfrac{1}{\sqrt5} &\equiv 276601605 \pmod p\\
-    \frac{1 + \sqrt 5}{2} &\equiv 691504013 \pmod p\\
-    \frac{1 - \sqrt 5}{2} &\equiv 308495997 \pmod p\\
-    \end{align}$$
-    $$\implies F_n \equiv 276601605 \cdot (691504013^n - 308495997^n) \pmod p$$
+    $$
+    \begin{align}
+    \frac{1}{\sqrt5} &\equiv 276601605 \pmod{p}\\
+    \frac{1 + \sqrt 5}{2} &\equiv 691504013 \pmod{p}\\
+    \frac{1 - \sqrt 5}{2} &\equiv 308495997 \pmod{p}\\
+    \end{align}
+    $$
+    $$
+    \implies F_n \equiv 276601605 \cdot (691504013^{n} - 308495997^{n}) \pmod{p}
+    $$
 > So với việc tính lũy thừa của ma trận, tính lũy thừa của 2 số vẫn nhanh hơn rất nhiều.
 
 - **Nếu $5$ không là thặng dư bình phương modulo $p$**
 
-Ví dụ: Bài [VNOI - Fibonacci](https://oj.vnoi.info/problem/errichto_matexp_fibonacci) với $p = 10^9 + 7$
+Ví dụ: Bài [VNOI - Fibonacci](https://oj.vnoi.info/problem/errichto_matexp_fibonacci) với $p = 10^{9} + 7$
 Ở bài này, ta sử dụng trường hữu hạn như ở trên.
-Ta sẽ viết $\left(\frac{1 + \sqrt 5}{2}\right)^n = \left<u_1, v_1\right>$ và $\left(\frac{1 - \sqrt 5}{2}\right)^n = \left<u_2, v_2\right>$
-Trên thực tế, vì $F_n$ nguyên nên $u_1-u_2 = 0$. Từ đó suy ra $F_n \equiv v_1 - v_2 \pmod p$.
+Ta sẽ viết $\left(\frac{1 + \sqrt 5}{2}\right)^{n} = \left\langle u_1, v_1\right\rangle$ và $\left(\frac{1 - \sqrt 5}{2}\right)^{n} = \left\langle u_2, v_2\right\rangle$
+Trên thực tế, vì $F_n$ nguyên nên $u_1-u_2 = 0$. Từ đó suy ra $F_n \equiv v_1 - v_2 \pmod{p}$.
 
 Do sử dụng công thức tổng quát, cách này có một ưu điểm mà không cách nào có được, thể hiện qua bài toán bên dưới đây.
 
 **Ví dụ: [Bài F - ICPC miền Nam 2023](https://oj.vnoi.info/problem/icpc23_mn_f)**
 Tính $S$ theo modulo $p = 998244353$ nguyên tố với:
-$$S = \sum\limits_{i = 0}^{n} (F_n)^k$$
-Giới hạn: $n \le 10^{18}, k \le 10^6$.
+$$
+S = \sum\limits_{i = 0}^{n} (F_n)^{k}
+$$
+Giới hạn: $n \le 10^{18}, k \le 10^{6}$.
 
 <p style="text-align: center;"><strong>Lời giải</strong></p>
 
 Xét:
-$$F_n = \dfrac{1}{\sqrt5}\left[\left(\frac{1 + \sqrt 5}{2}\right)^n - \left(\frac{1 - \sqrt 5}{2}\right)^n \right] = \dfrac{1}{\sqrt5}\left[u^n - \left(-u^{-1}\right)^n \right]$$
-với $u = \frac{1 + \sqrt 5}{2} = \left<\frac{1}{2}, \frac{1}{2} \right>$
+$$
+F_n = \frac{1}{\sqrt5}\left[\left(\frac{1 + \sqrt 5}{2}\right)^{n} - \left(\frac{1 - \sqrt 5}{2}\right)^{n} \right] = \frac{1}{\sqrt5}\left[u^{n} - \left(-u^{-1}\right)^{n} \right]
+$$
+với $u = \frac{1 + \sqrt 5}{2} = \left\langle \frac{1}{2}, \frac{1}{2} \right\rangle$
 
 Ta viết lại $S$ như sau:
-$$\begin{align}
-S &= \sum\limits_{n = 0}^{N} \left(F_n\right)^k\\
-&= \sum\limits_{n = 0}^{N} \dfrac{1}{\sqrt5 ^k}\left[u^n - \left(-u^{-1}\right)^n \right]^k\\
-&= \sum\limits_{n = 0}^{N} \dfrac{1}{\sqrt5 ^k} \sum\limits_{i = 0}^{k} \binom{k}{i} (u^n)^i \left(-\left(-u^{-1}\right)^n\right)^{k-i}\\
-&= \sum\limits_{n = 0}^{N} \dfrac{1}{\sqrt5 ^k} \sum\limits_{i = 0}^{k} \binom{k}{i} (-1) ^ {k-i} \left((-1) ^ {k-i} u^{2i-k}\right)^n\\
-&= \dfrac{1}{\sqrt5 ^k} \sum\limits_{i = 0}^{k} \binom{k}{i} (-1) ^ {k-i} \sum\limits_{n = 0}^{N} \left((-1) ^ {k-i} u^{2i-k}\right)^n\\
-\end{align}$$
+$$
+\begin{align}
+S &= \sum\limits_{n = 0}^{N} \left(F_n\right)^{k}\\
+&= \sum\limits_{n = 0}^{N} \frac{1}{\sqrt5^{k}}\left[u^{n} - \left(-u^{-1}\right)^{n} \right]^{k}\\
+&= \sum\limits_{n = 0}^{N} \frac{1}{\sqrt5^{k}} \sum\limits_{i = 0}^{k} \binom{k}{i} (u^{n})^{i} \left(-\left(-u^{-1}\right)^{n}\right)^{k-i}\\
+&= \sum\limits_{n = 0}^{N} \frac{1}{\sqrt5^{k}} \sum\limits_{i = 0}^{k} \binom{k}{i} (-1)^{k-i} \left((-1)^{k-i} u^{2i-k}\right)^{n}\\
+&= \frac{1}{\sqrt5^{k}} \sum\limits_{i = 0}^{k} \binom{k}{i} (-1)^{k-i} \sum\limits_{n = 0}^{N} \left((-1)^{k-i} u^{2i-k}\right)^{n}\\
+\end{align}
+$$
 
-Đặt $v = (-1) ^ {k-i} u^{2i-k}$, ta có:
-$$S = \dfrac{1}{\sqrt5 ^k} \sum\limits_{i = 0}^{k} \binom{k}{i}(-1) ^ {k-i} \sum\limits_{n = 0}^{N} v^n$$
+Đặt $v = (-1)^{k-i} u^{2i-k}$, ta có:
+$$
+S = \frac{1}{\sqrt5^{k}} \sum\limits_{i = 0}^{k} \binom{k}{i}(-1)^{k-i} \sum\limits_{n = 0}^{N} v^{n}
+$$
 Và
 
-$$\sum\limits_{n = 0}^{N} v^n= 
+$$
+\sum\limits_{n = 0}^{N} v^{n}=
 \begin{cases}
-\dfrac{v^{N+1} - 1}{v - 1} \text{ nếu } v \neq 1\\
+\frac{v^{N+1} - 1}{v - 1} \text{ nếu } v \neq 1\\
 N + 1 \;\;\;\;\;\text{ nếu } v = 1
-\end{cases}$$
+\end{cases}
+$$
 
-Bây giờ, chúng ta cần giải quyết bài toán tính $\dfrac{1}{\left<a, b\right>} \mod p$ nếu $\left<a, b\right> \neq 1$.
-Chú ý rằng $v = (-1) ^ {k-i} u^{2i-k}$ và $2i-k$ có thể âm.
+Bây giờ, chúng ta cần giải quyết bài toán tính $\frac{1}{\left\langle a, b\right\rangle} \bmod p$ nếu $\left\langle a, b\right\rangle \neq 1$.
+Chú ý rằng $v = (-1)^{k-i} u^{2i-k}$ và $2i-k$ có thể âm.
 
-- **Cách 1: Trường hữu hạn $\mathbb{F}_{p^2} = \mathbb{F}_{p}\left(\sqrt5\right)$**
-    Ta có  $t^{p^2} \equiv t \pmod p$
-    Nếu $t \neq \left<0, 0\right>$ thì $t^{p^2 - 1} \equiv \left<1, 0\right> \pmod p$
-    Thay $t = \left<a, b\right>$, ta có ngay: 
-    $$\dfrac{1}{\left<a, b\right>} \equiv \left<a, b\right>^{p^2-2} \pmod p$$
+- **Cách 1: Trường hữu hạn $\mathbb{F}_{p^{2}} = \mathbb{F}_{p}\left(\sqrt5\right)$**
+    Ta có  $t^{p^{2}} \equiv t \pmod{p}$
+    Nếu $t \neq \left\langle 0, 0\right\rangle$ thì $t^{p^{2} - 1} \equiv \left\langle 1, 0\right\rangle \pmod{p}$
+    Thay $t = \left\langle a, b\right\rangle$, ta có ngay:
+    $$
+    \frac{1}{\left\langle a, b\right\rangle} \equiv \left\langle a, b\right\rangle^{p^{2}-2} \pmod{p}
+    $$
     
 - **Cách 2: Nhân liên hợp**
-    $$\dfrac{1}{a + b\sqrt5} = \dfrac{a-b\sqrt5}{a^2 - 5b^2} \equiv \left(a^2 - 5b^2\right)^{p-2} \cdot \left<a, -b\right> \pmod p$$
-    Rõ ràng cách thứ hai này cho hiệu suất tốt hơn với khoảng $2\log p$ trong khi cách thứ nhất sử dụng tới $8\log p^2 \sim16\log p$ phép nhân.
+    $$
+    \frac{1}{a + b\sqrt5} = \frac{a-b\sqrt5}{a^{2} - 5b^{2}} \equiv \left(a^{2} - 5b^{2}\right)^{p-2} \cdot \left\langle a, -b\right\rangle \pmod{p}
+    $$
+    Rõ ràng cách thứ hai này cho hiệu suất tốt hơn với khoảng $2\log p$ trong khi cách thứ nhất sử dụng tới $8\log p^{2} \sim16\log p$ phép nhân.
 
-Cả hai cách này đều có độ phức tạp tiệm cận $O(K \log \text{MOD})$, đủ để đánh bại bài toán này.
+Cả hai cách này đều có độ phức tạp tiệm cận $\mathcal{O}(K \log \texttt{MOD})$, đủ để đánh bại bài toán này.
     
     
 **Code C++ tham khảo:**
@@ -410,7 +456,6 @@ int main() {
     else
         cout << 1LL * res.re * pow_mod(5, MOD - 1 - K / 2) % MOD;
 }
-
 ```
 
 

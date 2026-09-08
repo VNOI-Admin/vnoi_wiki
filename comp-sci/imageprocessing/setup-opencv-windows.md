@@ -110,15 +110,15 @@ Tạo một file cpp và run thử chương trình.
 Mã nguồn:
 
 ```cpp
-#include <opencv2/opencv.hpp>
 #include <iostream>
+#include <opencv2/opencv.hpp>
 using namespace cv;
 using namespace std;
 int main() {
-	Mat img = imread("demo.jpg");
-	imshow("show image", img);
-	waitKey(0);
-	destroyAllWindows();
+    Mat img = imread("demo.jpg");
+    imshow("show image", img);
+    waitKey(0);
+    destroyAllWindows();
 }
 ```
 (Với mã nguồn này lưu ý đặt 1 file tên là demo.jpg vào trong thư mục chứa mã nguồn).

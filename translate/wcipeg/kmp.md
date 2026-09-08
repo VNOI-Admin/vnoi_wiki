@@ -24,7 +24,7 @@ Thuật toán được xây dựng dựa vào quan sát rằng một xâu con ch
 
 Cụ thể hơn, ta muốn tính toán trước cách xâu $S$ tự khớp với chính nó. Nhờ vậy thuật toán sẽ *không quay nhìn lại* và chỉ duyệt qua $T$ một lần duy nhất.
 
-Cùng với quá trình tiền xử lí tuyến tính $O(|T|)$ (với $|T|$ là độ dài xâu $T$), thuật toán có thời gian chạy tuyến tính.
+Cùng với quá trình tiền xử lí tuyến tính $\mathcal{O}(|T|)$ (với $|T|$ là độ dài xâu $T$), thuật toán có thời gian chạy tuyến tính.
 
 ## Cảm hứng
 
@@ -39,7 +39,7 @@ T = aaaaaaaaa
 
 Ở ví dụ này, ta cần các lần xuất hiện của xâu $S$ trong xâu $T$ ($S$ xuất hiện 7 lần).
 
-Ta có thể duyệt bình thường với độ phức tạp $O(\|S\| \* \|T\|)$ như sau:
+Ta có thể duyệt bình thường với độ phức tạp $\mathcal{O}(|S| \times |T|)$ như sau:
 
 - So $S_1$ với $T_1$, $S_2$ với $T_2$, $S_3$ với $T_3$, do đó vị trí số 1 là vị trí khớp của $S$ trong $T$.
 - So $S_1$ với $T_2$, $S_2$ với $T_3$, $S_3$ với $T_4$, tìm được vị trí số 2 là vị trí khớp của $S$ trong $T$.
@@ -173,23 +173,23 @@ Tổng quát, bảng $\pi$ cho ta biết, sau một lần khớp hoặc không k
 
 Để tính độ phức tạp cho hàm tiền xử lí, trước tiên ta có quan sát:
 
-- Dãy $\pi_i^{\*} = i, \pi_i, \pi_{\pi_i}, \pi_{\pi_{\pi_i}}, ... ,0$ chứa toàn bộ những giá trị $j$ thỏa mãn $S^j \sqsupset S^i$.
+- Dãy $\pi_i^{*} = i, \pi_i, \pi_{\pi_i}, \pi_{\pi_{\pi_i}}, \ldots, 0$ chứa toàn bộ những giá trị $j$ thỏa mãn $S^j \sqsupset S^i$.
 
 Vậy, ta có thể đếm toàn bộ những hậu tố của $S^i$ đồng thời là tiền tố của $S$ bằng cách bắt đầu với $i$, dò nó trong bảng $\pi$, dùng kết quả đó dò tiếp tục và tiếp tục, đến khi kết thúc bằng $0$.
 
 *Chứng minh:*
 
-- Đầu tiên ta chứng minh chiều xuôi: nếu $j$ xuất hiện trong $\pi_i^{\*}$ thì $S^j \sqsupset S^i$.
-    - Nếu $j$ là phần tử đầu trong $\pi_i^{\*}$. Vậy $j = i$ và hẳn nhiên $S^j \sqsupset S^i$.
+- Đầu tiên ta chứng minh chiều xuôi: nếu $j$ xuất hiện trong $\pi_i^{*}$ thì $S^j \sqsupset S^i$.
+    - Nếu $j$ là phần tử đầu trong $\pi_i^{*}$. Vậy $j = i$ và hẳn nhiên $S^j \sqsupset S^i$.
     - Nếu $j$ không là phần tử đầu: Gọi phần tử trước nó là $k$. Vậy $\pi_k = j$. Theo định nghĩa, $S^j \sqsupset S^k$. Nhưng $S^k \sqsupset S^i$. Do quan hệ này có tính chất bắc cầu, $S^j \sqsupset S^i$.
 
-- Giờ ta chứng minh chiều ngược: nếu $S^j \sqsupset S^i$, $j$ thuộc $\pi_i^{\*}$. Giả sử $j$ không xuất hiện trong dãy. Rõ ràng $0 < j < i$ do $i$ và $0$ đều có trong dãy. Do $\pi_i^{\*}$ luôn giảm, ta có thể tìm được một và chỉ một $k$ thuộc $\pi_i^{\*}$ sao cho $k>j$ và $\pi_k<j$. Nói cách khác, ta có thể tìm được một và chỉ một $k$ mà sau nó $j$ "có lẽ" sẽ xuất hiện (để giữ cho dãy luôn giảm). Ở phần đầu chứng minh ta đã biết $S^k \sqsupset S^i$. Do hậu tố độ dài $j$ của $S^i$ là một hậu tố của hậu tố độ dài $k$ của $S^i$, hậu tố độ dài $j$ của $S^i$ phải khớp với hậu tố độ dài $j$ của $S^k$. Nhưng hậu tố độ dài $j$ của $S^i$ cũng khớp với $S^j$, nên $S^j$ khớp với hậu tố độ dài $j$ của $S^k$. Vậy ta kết luận $\pi_k \ge j$. Thế nhưng $j \ge \pi_k$, mâu thuẫn.
+- Giờ ta chứng minh chiều ngược: nếu $S^j \sqsupset S^i$, $j$ thuộc $\pi_i^{*}$. Giả sử $j$ không xuất hiện trong dãy. Rõ ràng $0 < j < i$ do $i$ và $0$ đều có trong dãy. Do $\pi_i^{*}$ luôn giảm, ta có thể tìm được một và chỉ một $k$ thuộc $\pi_i^{*}$ sao cho $k > j$ và $\pi_k < j$. Nói cách khác, ta có thể tìm được một và chỉ một $k$ mà sau nó $j$ "có lẽ" sẽ xuất hiện (để giữ cho dãy luôn giảm). Ở phần đầu chứng minh ta đã biết $S^k \sqsupset S^i$. Do hậu tố độ dài $j$ của $S^i$ là một hậu tố của hậu tố độ dài $k$ của $S^i$, hậu tố độ dài $j$ của $S^i$ phải khớp với hậu tố độ dài $j$ của $S^k$. Nhưng hậu tố độ dài $j$ của $S^i$ cũng khớp với $S^j$, nên $S^j$ khớp với hậu tố độ dài $j$ của $S^k$. Vậy ta kết luận $\pi_k \ge j$. Thế nhưng $j \ge \pi_k$, mâu thuẫn.
 
 Cũng chính nhờ việc chứng minh này, ta có thể xây dựng một thuật toán để tính bảng $\pi$. Với mỗi $i$:
 
 - Đầu tiên ta tìm số $j > 0$ sao cho $S^j \sqsupset S^i$.
 - Nếu không tìm được, ta kết luận $\pi_i = 0$ (như trường hợp $i=1$).
-- Nếu có $j > 0$ thỏa mãn, vậy khi xóa bỏ kí tự cuối của hậu tố này, ta thu được một hậu tố của $S_{i-1}$ đồng thời là tiền tố của $S$, tức là $S^{j-1} \sqsupset S^{i-1}$. Vậy bước đầu ta đếm mọi hậu tố chuẩn và không-rỗng của $S^{i-1}$ đồng thời là tiền tố của $S$. Nếu ta tìm được một hậu tố độ dài $k$ đồng thời thỏa $S_k = S_i$, vậy $S^{k+1} \sqsupset S^i$, và $k+1$ là một giá trị khả dĩ của $j$. Vậy ta sẽ gán $k = \pi_{i-1}$ và tiếp tục lặp lại trong dãy $\pi_{\pi_i}, \pi_{\pi_{\pi_i}}, ... $ Quá trình sẽ dừng lại nếu gặp phải một phần tử $j$ trong dãy sao cho $S_{j+1} = S_i$, và gán $\pi_i = j+1$; cách này sẽ luôn cho kết quả tối ưu vì dãy $\pi_{i-1}^*$ luôn giảm và nó chứa toàn bộ giá trị $k$ khả dĩ. Nếu đi đến hết dãy, vậy $\pi_i = 0$.
+- Nếu có $j > 0$ thỏa mãn, vậy khi xóa bỏ kí tự cuối của hậu tố này, ta thu được một hậu tố của $S_{i-1}$ đồng thời là tiền tố của $S$, tức là $S^{j-1} \sqsupset S^{i-1}$. Vậy bước đầu ta đếm mọi hậu tố chuẩn và không-rỗng của $S^{i-1}$ đồng thời là tiền tố của $S$. Nếu ta tìm được một hậu tố độ dài $k$ đồng thời thỏa $S_k = S_i$, vậy $S^{k+1} \sqsupset S^i$, và $k+1$ là một giá trị khả dĩ của $j$. Vậy ta sẽ gán $k = \pi_{i-1}$ và tiếp tục lặp lại trong dãy $\pi_{\pi_i}, \pi_{\pi_{\pi_i}}, \ldots$ Quá trình sẽ dừng lại nếu gặp phải một phần tử $j$ trong dãy sao cho $S_{j+1} = S_i$, và gán $\pi_i = j+1$; cách này sẽ luôn cho kết quả tối ưu vì dãy $\pi_{i-1}^*$ luôn giảm và nó chứa toàn bộ giá trị $k$ khả dĩ. Nếu đi đến hết dãy, vậy $\pi_i = 0$.
 
 Dưới đây là mã giả để tính $\pi$:
 
@@ -218,7 +218,7 @@ for i ∈ [2..m]
     π[i] ← k
 ```
 
-Thuật toán có độ phức tạp $O(m)$. Để hiểu tại sao thì hãy để ý, `k` không bao giờ âm; nó không thể giảm nhiều hơn mức nó tăng. `k` chỉ tăng ở dòng `k ← k+1`, vốn chỉ bị gọi nhiều nhất là $m-1$ lần. Vậy `k` giảm nhiều nhất là k lần. Nhưng `k` giảm ở mỗi lần lặp của vòng `while`, vậy tổng tất cả các bước trong vòng `while` không quá $O(m)$. Tất cả những câu lệnh trong vòng `for` đều có độ phức tạp là hằng số, nên cả thuật toán có độ phức tạp $O(m)$.
+Thuật toán có độ phức tạp $\mathcal{O}(m)$. Để hiểu tại sao thì hãy để ý, `k` không bao giờ âm; nó không thể giảm nhiều hơn mức nó tăng. `k` chỉ tăng ở dòng `k ← k+1`, vốn chỉ bị gọi nhiều nhất là $m-1$ lần. Vậy `k` giảm nhiều nhất là k lần. Nhưng `k` giảm ở mỗi lần lặp của vòng `while`, vậy tổng tất cả các bước trong vòng `while` không quá $\mathcal{O}(m)$. Tất cả những câu lệnh trong vòng `for` đều có độ phức tạp là hằng số, nên cả thuật toán có độ phức tạp $\mathcal{O}(m)$.
 
 
 ## So khớp
@@ -243,20 +243,20 @@ Lí do cho trường hợp 2 là:
 
 Nếu ta đã biết từ $S_1$ đến $S_k$ khớp với từ $T_j$ đến $T_{j+k-1}$, vị trí nào ta có thể bỏ qua? Đây là cốt lõi của thuật toán KMP:
 
-- *Định lý*: Nếu $k > 0$ thì $p = k - \pi_k$ sẽ là giá trị $p$ nhỏ nhất sao cho $S_1,...,S_{k-p}$ khớp với $T_{j+p},...,T_{j+k-1}$. (Nếu $k=0$, $p=1$.)
+- *Định lý*: Nếu $k > 0$ thì $p = k - \pi_k$ sẽ là giá trị $p$ nhỏ nhất sao cho $S_1, \ldots, S_{k-p}$ khớp với $T_{j+p}, \ldots, T_{j+k-1}$. (Nếu $k=0$, $p=1$.)
 
 Nói một cách dễ hình dung hơn, ta có thể bỏ qua tất cả các vị trí từ $0$ đến $p-1$.
 
 Suy nghĩ thật kĩ lí thuyết này.
 
-- Nếu $p > 0$ *không thỏa mãn* $S_1,...,S_{k-p}$ khớp với $T_{j+p},...,T_{j+k-1}$, vậy $S$ **không khớp** với $T$ ở vị trí $j+p$, tức ta có thể loại bỏ vị trí này.
+- Nếu $p > 0$ *không thỏa mãn* $S_1, \ldots, S_{k-p}$ khớp với $T_{j+p}, \ldots, T_{j+k-1}$, vậy $S$ **không khớp** với $T$ ở vị trí $j+p$, tức ta có thể loại bỏ vị trí này.
 - Mặt khác, nếu $p > 0$ *thỏa mãn* yêu cầu trên, xâu $S$ **có khả năng** khớp với $T$ ở vị trí $j+p$, và thực tế là các kí tự từ vị trí $j+p$ đến $j+k-1$ đều đã khớp với các vị trí tương ứng ở $S$. Ta chỉ cần tiếp tục bằng cách so $S_{k-p+1}$ với $T_{j+k}$, "không quay đầu lại" như đã hứa.
 
 *Chứng minh:*
 
 - Có $0 \le q < k$.
-- Nếu $S^q \sqsupset S^k$, vậy theo định nghĩa ta có $S_1,...,S_q = S_{k-q+1},..., S_k$. Nhưng vì $S_1,..., S_k = T_j,...,T_{j+k-1}$, nên $S_{k-q+1},...,S_k = T_{j+k-q},...,T_{j+k-1}$. Vậy $S_1,...S_q = T_{j+k-q},...,T_{j+k-1}$.
-- Ngược lại, nếu không có $S^q \sqsupset S^k$, vậy $S_1,...,S_q \neq S_{k-q+1},..., S_k$, dẫn đến $S_{k-q+1},...,S_k = T_{j+k-q},...,T_{j+k-1}$ là sai, và dẫn đến $S_1,...S_q = T_{j+k-q},...,T_{j+k-1}$ là sai.
+- Nếu $S^q \sqsupset S^k$, vậy theo định nghĩa ta có $S_1, \ldots, S_q = S_{k-q+1}, \ldots, S_k$. Nhưng vì $S_1, \ldots, S_k = T_j, \ldots, T_{j+k-1}$, nên $S_{k-q+1}, \ldots, S_k = T_{j+k-q}, \ldots, T_{j+k-1}$. Vậy $S_1, \ldots, S_q = T_{j+k-q}, \ldots, T_{j+k-1}$.
+- Ngược lại, nếu không có $S^q \sqsupset S^k$, vậy $S_1, \ldots, S_q \neq S_{k-q+1}, \ldots, S_k$, dẫn đến $S_{k-q+1}, \ldots, S_k = T_{j+k-q}, \ldots, T_{j+k-1}$ là sai, và dẫn đến $S_1, \ldots, S_q = T_{j+k-q}, \ldots, T_{j+k-1}$ là sai.
 
 Ta kết luận rằng $k-q$ là một giá trị khả dĩ của $p$ khi và chỉ khi $S^q \sqsupset S^k$. Do maximum của $q$ là $\pi_k$, minumum của $p$ được xác định bởi $k-\pi_k$.
 
@@ -293,7 +293,7 @@ for i ∈ [1..n]
         k ← π[k]
 ```
 
-Ở đây, `i` tương ứng với `j+k` ở đoạn code trên. Mỗi lần lặp của vòng lặp trong của một trong 2 đoạn code tương ứng với một lần lặp của vòng lặp ngoài ở đoạn còn lại. Ở đoạn thứ hai, ta cũng có thể chứng minh thuật có độ phức tạp $O(n)$; mỗi lần vòng `while` ở trong được thực hiện, giá trị của `k` giảm, nhưng nó không thể giảm nhiều hơn `n` lần bởi `k` khởi đầu là không và không bao giờ âm. `k` chỉ tăng nhiều nhất một lần ở vòng lặp ngoài (tức nhiều nhất tổng cộng `n` lần). Vậy vòng lặp trong chỉ lặp nhiều nhất `n` lần, và tất cả các câu lệnh khác có độ phức tạp hằng số.
+Ở đây, `i` tương ứng với `j+k` ở đoạn code trên. Mỗi lần lặp của vòng lặp trong của một trong 2 đoạn code tương ứng với một lần lặp của vòng lặp ngoài ở đoạn còn lại. Ở đoạn thứ hai, ta cũng có thể chứng minh thuật có độ phức tạp $\mathcal{O}(n)$; mỗi lần vòng `while` ở trong được thực hiện, giá trị của `k` giảm, nhưng nó không thể giảm nhiều hơn `n` lần bởi `k` khởi đầu là không và không bao giờ âm. `k` chỉ tăng nhiều nhất một lần ở vòng lặp ngoài (tức nhiều nhất tổng cộng `n` lần). Vậy vòng lặp trong chỉ lặp nhiều nhất `n` lần, và tất cả các câu lệnh khác có độ phức tạp hằng số.
 
 ## Bài tập áp dụng:
 

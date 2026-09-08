@@ -40,7 +40,7 @@ Hãy bàn về một trong những cách tiếp cận phổ biến nhất: chia 
 
 Một ví dụ áp dụng cách tiếp cận này. [Round 2, MatArith, topcoder Invitational 2002](http://topcoder.bgcoder.com/print.php?id=131), bài toán yêu cầu bạn phải tính giá trị biểu thức có sử dụng ma trận. Để có được những con số chúng ta phải xử lý xâu (vì input là string), tính toán dựa trên đó, và trả ngược về string. Nên bạn cần một hàm `print` để in kết quả, một hàm `parse` để xử lý xâu và một hàm `calc` để xử lí toán học. Không cần suy nghĩ quá phức tạp, Nếu chúng ta có đủ 3 hàm đó thì vấn đề sẽ được giải quyết chỉ trong 1 dòng code:
 
-```cpp
+```java
 public String[] calculate(String[] A, String[] B, String[] C, String eval){
    return print(calc(parse(A),parse(B),parse(C),eval));
 }

@@ -15,11 +15,11 @@ dateCreated: 2023-12-25T11:03:30.226Z
 
 ## Giải bằng LCA  
 
-Gọi `up[u][i].par` là tổ tiên thứ $2^i$ của $u$, `maxc` là cạnh có trọng số lớn nhất trên đường đi từ u lên `up[u][i]`. Tương tự với `minc` là cạnh có trọng số nhỏ nhất. Có thể tính $up[u][0]$ khi dfs dựng cây, tức là nút cha trực tiếp của u, cũng là cạnh từ cha đến u.
+Gọi `up[u][i].par` là tổ tiên thứ $2^i$ của $u$, `maxc` là cạnh có trọng số lớn nhất trên đường đi từ u lên `up[u][i]`. Tương tự với `minc` là cạnh có trọng số nhỏ nhất. Có thể tính $\texttt{up}[u][0]$ khi dfs dựng cây, tức là nút cha trực tiếp của u, cũng là cạnh từ cha đến u.
 Có thể tính `up[u][i]` (i > 0) thông qua công thức QHĐ sau:
 
 Đặt `p = up[u][i-1].par`, do  p là cha thứ $2^i$ của $u$
-⇒ `up[u][i].par = up[p][i-1].par` , cha thứ $2^{i-1}$ của `p` cũng là cha thứ $2^i$ của `u`.
+$\Rightarrow$ `up[u][i].par = up[p][i-1].par` , cha thứ $2^{i-1}$ của `p` cũng là cha thứ $2^i$ của `u`.
 
 Vậy nên `up[u][i].maxc = max(up[u][i-1].maxc. up[p][i-1].maxc)` có nghĩa là ***trọng số lớn nhất*** khi nhảy từ ``u`` lên cha thứ $2^i$ đi qua các cạnh bằng ***trọng số lớn nhất*** khi nhảy từ `u` lên cha thứ $2^{i - 1}$ là `p` và nhảy từ `p` lên cha thứ $2^{i - 1}$
 

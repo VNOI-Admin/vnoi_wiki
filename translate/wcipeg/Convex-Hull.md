@@ -328,11 +328,11 @@ Các thuật toán trên hoạt động tốt trong trường hợp lí tưởng
 # Bao lồi 3D
 ![](/uploads/algo_geometry_convex_hull_3d.gif)
 
-Tìm bao lồi trong 3D thực sự là một bài toán khó. Bài toán này chắc chắn sẽ không bao giờ được ra trong IOI, và học sinh trung học không cần phải đi sâu vào vấn đề này. Tuy nhiên, có một thuật toán $\mathcal{O}(n^2)$  khá là đơn giản:
+Tìm bao lồi trong 3D thực sự là một bài toán khó. Bài toán này chắc chắn sẽ không bao giờ được ra trong IOI, và học sinh trung học không cần phải đi sâu vào vấn đề này. Tuy nhiên, có một thuật toán $\mathcal{O}(n^{2})$  khá là đơn giản:
 - Đầu tiên, ta tìm hình chiếu của các điểm trên mặt phẳng $Oxy$, và tìm một cạnh chắc chắn thuộc bao bằng cách lấy một điểm có tung độ lớn nhất rồi tìm điểm kia bằng cách chạy vòng lặp của thuật toán bọc gói một lần. Đây là phần đầu tiên của bao lồi.
 - Sau đó, xét cạnh vừa tìm được, tìm một điểm thứ ba để tạo thành một mặt tam giác của bao lồi. Ta chọn điểm thứ ba bằng cách tìm điểm để tất cả các điểm khác nằm ở phía bên phải của mặt tam giác đó (giống như thuật toán bọc gói, ta tìm cạnh để tất cả các điểm khác đều nằm về phía bên phải cạnh đó).
 - Bây giờ ta đã có ba cạnh trong bao lồi, ta chọn ngẫu nhiên một trong ba cạnh đó, rồi tìm tiếp một tam giác với cạnh này, rồi tiếp tục cho đến khi không còn cạnh nào nữa (khi ta tìm thêm một mặt tam giác, ta phải thêm hai cạnh vào bao, tuy vậy hai cạnh này phải chưa có trong bao, nếu không ta phải đi tìm hai cạnh khác).
-- Có tổng cộng $\mathcal{O}(n)$ mặt, và mỗi lần duyệt các điểm ta mất thời gian $\mathcal{O}(n)$ vì ta phải duyệt tất cả các điểm còn lại, do đó độ phức tạp của thuật toán là $\mathcal{O}(n^2)$. (Nếu bạn nghĩ bạn có thể cài đặt được thuật toán này, hãy nộp bài tại [SPOJ - CH3D](https://www.spoj.com/problems/CH3D/)).
+- Có tổng cộng $\mathcal{O}(n)$ mặt, và mỗi lần duyệt các điểm ta mất thời gian $\mathcal{O}(n)$ vì ta phải duyệt tất cả các điểm còn lại, do đó độ phức tạp của thuật toán là $\mathcal{O}(n^{2})$. (Nếu bạn nghĩ bạn có thể cài đặt được thuật toán này, hãy nộp bài tại [SPOJ - CH3D](https://www.spoj.com/problems/CH3D/)).
 - Ta có thể tăng tốc độ thuật toán này bằng các loại bỏ các điểm chắc chắn không phải đỉnh của bao (tìm các điểm cực theo các trục tọa độ, rồi loại bỏ các điểm nằm trong bát diện mà các đỉnh đấy tạo ra).
 
 Ta có thể tìm bao lồi trong không gian với độ phức tạp $\mathcal{O}(n\log{n})$ bằng phương pháp chia để trị, tuy nhiên việc cài đặt thuật toán này là vô cùng khó.
@@ -355,7 +355,7 @@ Mở rộng, các loại cocktail có thể pha chế từ $N$ loại cocktail b
     ![](/uploads/algo_geometry_convex_hull_kmix1.png)
 - Tiếp theo, ta kiểm tra $(H_{n-1}, H_0, P)$ có ngược chiều kim đồng hồ hay không ($P$ thoả thuộc vùng màu cam).
     ![](/uploads/algo_geometry_convex_hull_kmix2.png)
-- Bây giờ, ta chặt nhị phân để tìm **tia** $\overrightarrow{H_0H_x}$ thoả mãn $\overrightarrow{H_0H_x}$ là tia gần điểm $P$ nhất ở phía **bên phải** bằng cách kiểm tra $CCW(H_0,H_x,P)$ (chi tiết xem ở phần cài đặt).
+- Bây giờ, ta chặt nhị phân để tìm **tia** $\overrightarrow{H_0H_x}$ thoả mãn $\overrightarrow{H_0H_x}$ là tia gần điểm $P$ nhất ở phía **bên phải** bằng cách kiểm tra $\texttt{CCW}(H_0, H_x, P)$ (chi tiết xem ở phần cài đặt).
 - Sau khi có $x$ (ví dụ $x=4$), ta biết được rằng $P$ thuộc vùng tạo bởi $2$ tia $\overrightarrow{H_0H_{x-1}}$ và $\overrightarrow{H_0H_x}$ (vùng màu tím).
     ![](/uploads/algo_geometry_convex_hull_kmix3.png)
 - Đến đây, ta kiểm tra $(H_{x-1}, H_x, P)$ có cùng chiều kim đồng hồ hay không (tức $P$ có thuộc tam giác $(H_0,H_{x-1},H_x)$ hay không).

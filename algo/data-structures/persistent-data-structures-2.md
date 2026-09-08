@@ -29,9 +29,9 @@ dateCreated: 2025-02-19T11:23:02.127Z
 ### Bài toán
 
 Xét bài toán sau đây:
-Cho một dãy $A_1, A_2, ..., A_N$ gồm $N$ phần tử, và ta cần làm $2$ loại thao tác sau đây:
-- $1 \space i \space k$: Cập nhật $A_i := k$ 
-- $2 \space l \space r \space k$: Hỏi tổng đoạn $(l, r)$ sau thao tác thứ $k$.
+Cho một dãy $A_1, A_2, \ldots, A_N$ gồm $N$ phần tử, và ta cần làm $2$ loại thao tác sau đây:
+- $1 \ i \ k$: Cập nhật $A_i := k$ 
+- $2 \ l \ r \ k$: Hỏi tổng đoạn $(l, r)$ sau thao tác thứ $k$.
 
 Lưu ý rằng chúng ta cần làm bài toán này online - cần đưa ra đáp án ngay sau khi được hỏi.
 
@@ -44,15 +44,15 @@ Chúng ta có thể sử dụng Persistent Data Structures để giải bài to�
 Ví dụ như dưới đây chúng ta vẫn dùng Segment Tree nhưng có thêm một số thay đổi để có thể lưu lại những trạng thái cũ của dãy trước khi thay đổi, và thêm vào trạng thái mới nhất của dãy. 
 
 Ta xử lý bài toán trên như sau:
-- Phần persistent: Với mỗi lần cập nhật, ta tạo ra $O(\log(n))$ node lưu giá trị mới của các node được cập nhật. Ngoài ra chúng ta lưu lại node $root$ - gốc của mỗi bản cập nhật - để tiện cho việc truy vấn. 
+- Phần persistent: Với mỗi lần cập nhật, ta tạo ra $\mathcal{O}(\log(n))$ node lưu giá trị mới của các node được cập nhật. Ngoài ra chúng ta lưu lại node $\texttt{root}$ - gốc của mỗi bản cập nhật - để tiện cho việc truy vấn. 
 - Nhận thấy rằng mỗi khi update ta thay đổi đường đi từ gốc đến một lá, nên không xảy ra việc node con lưu giá trị tại thời điểm $k$ mà node cha lại không lưu.
 - Khi ta hỏi giá trị của đoạn sau thời điểm $k$, ta bắt đầu đi tìm từ root tương ứng với truy vấn $k$ và làm như bình thường
 
-Ta thấy rằng chúng ta chỉ thay đổi giá trị của một phần tử trong Segment Tree $O(n \times \log(n))$ lần, và do đó độ phức tạp của thuật toán này là $O(q \times \log(n))$
+Ta thấy rằng chúng ta chỉ thay đổi giá trị của một phần tử trong Segment Tree $\mathcal{O}(n \times \log(n))$ lần, và do đó độ phức tạp của thuật toán này là $\mathcal{O}(q \times \log(n))$
 
 ### Code mẫu
 
-```cpp= 
+```cpp=
 const long long infty = 1e18 + 7;
 const int MAXN = 3e5 + 5;
 
@@ -132,14 +132,14 @@ long long get(int id, int l, int r, int L, int R){
 // lưu thời điểm của lần thay đổi hiện tại
 int cnt_que;
 
-void update(int p, long long v){
+void update(int p, long long v) {
     cnt_que++;
     root_idx[cnt_que] = tolnode + 1;
     upd(1, 1, n, p, v);
 }
 
 // ta bắt đầu tại root_idx[k]
-long long ans(int l, int r, int k){
+long long ans(int l, int r, int k) {
     return get(root_idx[k], 1, n, l, r);
 }
 ```
@@ -150,23 +150,23 @@ long long ans(int l, int r, int k){
 
 Xét phiên bản 2D của bài toán trên
 
-Cho một bảng $A_{1, 1}, A_{1, 2}, ..., A_{N, M}$ gồm $N \times M$ phần tử, và ta cần làm $2$ loại thao tác sau đây:
-- $1 \space i \space k$: Cập nhật $A_{i, j} := A_{i, j} + k$ 
-- $2 \space x_1 \space y_1 \space x_2 \space y_2 \space k$: Hỏi tổng các phần tử trong hình chữ nhật con có góc trên trái là $(x_1, y_1)$ và góc dưới phải là $(x_2, y_2)$ sau thao tác thứ $k$.
+Cho một bảng $A_{1, 1}, A_{1, 2}, \ldots, A_{N, M}$ gồm $N \times M$ phần tử, và ta cần làm $2$ loại thao tác sau đây:
+- $1 \ i \ k$: Cập nhật $A_{i, j} := A_{i, j} + k$ 
+- $2 \ x_1 \ y_1 \ x_2 \ y_2 \ k$: Hỏi tổng các phần tử trong hình chữ nhật con có góc trên trái là $(x_1, y_1)$ và góc dưới phải là $(x_2, y_2)$ sau thao tác thứ $k$.
 
 ### Lời giải
 
 Việc áp dụng phương pháp tạo node mới như trên với BIT là khá khó khăn, và thay vào đó chúng ta có thể làm như dưới đây:
 
 Với mỗi node trong BIT ta sẽ lưu lại lịch sử những lần thay đổi của node này.
-- Ta lưu với mỗi phần tử trên BIT một vector $updates$. Mỗi lần cập nhật phần tử $(i, j)$ thêm $val$ ở truy vấn thứ $t_i$, ta thêm vào $updates[i][j]$ cặp $(t_i, val + last)$ với $last$ là giá trị của phần tử $(i, j)$ trước lần cập nhật này.
+- Ta lưu với mỗi phần tử trên BIT một vector $\texttt{updates}$. Mỗi lần cập nhật phần tử $(i, j)$ thêm $\texttt{val}$ ở truy vấn thứ $t_i$, ta thêm vào $\texttt{updates}[i][j]$ cặp $(t_i, \texttt{val} + \texttt{last})$ với $\texttt{last}$ là giá trị của phần tử $(i, j)$ trước lần cập nhật này.
 - Khi được hỏi, với mỗi node ta chặt nhị phân trên tập updates để tìm phần tử có $t_i$ lớn nhất sao cho $t_i \leq k$.
 
 ### Code mẫu: 
 ```cpp=
 // y1 là tên một biến trong C++ nên mình sử dụng tạm cách này
 // tuy nhiên không khuyến khích mọi người làm theo
-#define y1 y11 
+#define y1 y11
 
 const long long infty = 1e18 + 7;
 const int MAXN = 3e3 + 5;
@@ -223,7 +223,7 @@ long long get(int x, int y, int k){
     return ans;
 }
 
-long long ans(int x1, int y1, int x2, int y2, int k){
+long long ans(int x1, int y1, int x2, int y2, int k) {
     return get(x2, y2, k) - get(x1 - 1, y2, k) - get(x2, y1 - 1, k) + get(x1 - 1, y1 - 1, k);
 }
 ```
@@ -231,13 +231,13 @@ long long ans(int x1, int y1, int x2, int y2, int k){
 Độ phức tạp của thuật toán này là:
 
 - Về mặt thời gian:
-    - $O(N \times M)$ cho việc khởi tạo bảng
-    - $O(\log(N) \times \log(M))$ cho mỗi truy vấn update
-    - $O(\log(N) \times \log(M) \times \log(Q))$ cho mỗi truy vấn hỏi.
+    - $\mathcal{O}(N \times M)$ cho việc khởi tạo bảng
+    - $\mathcal{O}(\log(N) \times \log(M))$ cho mỗi truy vấn update
+    - $\mathcal{O}(\log(N) \times \log(M) \times \log(Q))$ cho mỗi truy vấn hỏi.
 
-- Về mặt không gian: $O(N \times M + Q \times log(N) \times log(M))$
-    - $O(N \times M)$ là số vector mà ta tạo ra để lưu lại các truy vấn
-    - $Q \times log(N) \times log(M)$ là tổng số lần ta cập nhật các vector
+- Về mặt không gian: $\mathcal{O}(N \times M + Q \times \log(N) \times \log(M))$
+    - $\mathcal{O}(N \times M)$ là số vector mà ta tạo ra để lưu lại các truy vấn
+    - $Q \times \log(N) \times \log(M)$ là tổng số lần ta cập nhật các vector
 
 Cách làm này tuy độ phức tạp cao hơn nhưng lại tổng quát hơn khi có thể dùng cho BIT, IT và nhiều cấu trúc dữ liệu khác.
 

@@ -49,10 +49,10 @@ Trong C++ STL, có CTDL `vector`, được gọi là mảng động. CTDL này c
 
 Nếu ta thêm $N$ phần tử vào cuối mảng, thì độ phức tạp là:
 
-- $\mathcal{O}(1 + 2 + 4 + 8 + 16 + ...)$ cho các thao tác cấp phát bộ nhớ
+- $\mathcal{O}(1 + 2 + 4 + 8 + 16 + \cdots)$ cho các thao tác cấp phát bộ nhớ
 - $\mathcal{O}(1)$ cho việc ghi phần tử mới vào phần bộ nhớ trống.
 
-Do đó độ phức tạp tổng không quá $\mathcal{O(N)}$, và độ phức tạp trung bình của 1 thao tác là $\mathcal{O}(1)$.
+Do đó độ phức tạp tổng không quá $\mathcal{O}(N)$, và độ phức tạp trung bình của 1 thao tác là $\mathcal{O}(1)$.
 
 
 # Danh sách liên kết (Linked Lists)
@@ -69,16 +69,16 @@ Sau đây là cài đặt kiểu dữ liệu danh sách liên kết thông thư�
 
 ```cpp
 struct ListNode {
-    int data; // dữ liệu được lưu ở nút của linked list
-    ListNode* nextNode; // con trỏ trỏ tới phần tử tiếp theo của linked list.
+    int data;           // dữ liệu được lưu ở nút của linked list
+    ListNode *nextNode; // con trỏ trỏ tới phần tử tiếp theo của linked list.
 };
-ListNode* firstNode;
+ListNode *firstNode;
 ```
 
 Bạn có thể chèn một nút mới vào bằng cách chèn chúng vào đầu danh sách. Thao tác này có độ phức tạp là $\mathcal{O}(1)$.
 
 ```cpp
-ListNode* newNode = new ListNode();
+ListNode *newNode = new ListNode();
 newNode->nextNode = firstNode;
 firstNode = newNode;
 ```
@@ -86,10 +86,10 @@ firstNode = newNode;
 Duyệt qua toàn bộ danh sách liên kết rất đơn giản như sau:
 
 ```cpp
-ListNode* curNode = firstNode;
+ListNode *curNode = firstNode;
 while (curNode != NULL) {
-   cout << curNode->data << endl;
-   curNode = curNode->nextNode;
+    cout << curNode->data << endl;
+    curNode = curNode->nextNode;
 }
 ```
 

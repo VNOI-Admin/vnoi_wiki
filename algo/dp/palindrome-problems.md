@@ -18,7 +18,7 @@ Palindrome hay còn gọi là xâu đối xứng, xâu đối gương là tên g
 
 **Bài toán**: Cho 1 xâu. Kiểm tra nó có phải là Palindrome hay không?
 
-Đây là một bài cơ bản, nhưng quan trọng vì nó được đề cập đến trong nhiều bài tập khác. Cách làm tốt nhất là duyệt đơn thuần mất $O(N)$.
+Đây là một bài cơ bản, nhưng quan trọng vì nó được đề cập đến trong nhiều bài tập khác. Cách làm tốt nhất là duyệt đơn thuần mất $\mathcal{O}(N)$.
 
 ```pascal
 function is_palindrome(s: string): boolean;
@@ -93,7 +93,7 @@ for k := 1 to (n-1) do
 
 Kết quả là: $Max(j-i+1) \le j$ thỏa $F[i,j] = True$.
 
-Độ phức tạp thuật toán là $O(N^2)$.
+Độ phức tạp thuật toán là $\mathcal{O}(N^{2})$.
 
 Chú ý: Với $N$ lớn, ta phải thay mảng 2 chiều $F$ bằng 3 mảng 1 chiều và dùng thêm biến max lưu giá trị tối ưu.
 
@@ -157,9 +157,9 @@ begin
 end;
 ```
 
-Cách làm này có độ phức tạp: $max \times (N-max)$. Vì vậy nó chạy nhanh hơn cách QHĐ trên, thời gian chậm nhất khi tất cả các ký tự giống nhau (khi đó, $max = N/2$): cũng chỉ mất $N^2/4$ và nhanh gấp 4 lần cách dùng QHĐ. Nhờ vậy, chúng ta biết là: không phải lúc nào QHĐ cũng chấp nhận được về mặt thời gian và không phải lúc nào duyệt lúc nào cũng chậm.
+Cách làm này có độ phức tạp: $max \times (N-max)$. Vì vậy nó chạy nhanh hơn cách QHĐ trên, thời gian chậm nhất khi tất cả các ký tự giống nhau (khi đó, $max = \frac{N}{2}$): cũng chỉ mất $\frac{N^{2}}{4}$ và nhanh gấp 4 lần cách dùng QHĐ. Nhờ vậy, chúng ta biết là: không phải lúc nào QHĐ cũng chấp nhận được về mặt thời gian và không phải lúc nào duyệt lúc nào cũng chậm.
 
-Bài này còn có một thuật toán với độ phức tạp $O(N \log N)$ sử dụng [Suffix Aray](/algo/data-structures/suffix-array), thậm chí có thuật toán với độ phức tạp $O(N)$ sử dụng Suffix Tree và [thuật toán tìm LCA](/algo/data-structures/lca). Đương nhiên cách cài đặt không hề dễ dàng, tôi sẽ thảo luận với các bạn vào một dịp khác.
+Bài này còn có một thuật toán với độ phức tạp $\mathcal{O}(N \log N)$ sử dụng [Suffix Aray](/algo/data-structures/suffix-array), thậm chí có thuật toán với độ phức tạp $\mathcal{O}(N)$ sử dụng Suffix Tree và [thuật toán tìm LCA](/algo/data-structures/lca). Đương nhiên cách cài đặt không hề dễ dàng, tôi sẽ thảo luận với các bạn vào một dịp khác.
 
 # Bài 3: Chia một xâu thành ít nhất các Palindrome
 
@@ -167,8 +167,8 @@ Bài này còn có một thuật toán với độ phức tạp $O(N \log N)$ s�
 
 Bài này phức tạp hơn bài trên, cách làm thì vẫn là QHĐ.
 
-- Gọi $F(i)$ là số palindrome ít nhất mà đoạn $1..i$ chia thành được.
-- Ta có công thức: $F[i] = min(F[i], F[j] + 1)$ với $j < i$ thỏa mãn: đoạn $j+1..i$ là palindrome
+- Gọi $F(i)$ là số palindrome ít nhất mà đoạn $1\ldots i$ chia thành được.
+- Ta có công thức: $F[i] = \min(F[i], F[j] + 1)$ với $j < i$ thỏa mãn: đoạn $j+1\ldots i$ là palindrome
 
 Đoạn chương trình như sau:
 
@@ -181,12 +181,12 @@ for i := 1 to n do
 
 ```
 
-Hai vòng for lồng nhau mất $O(N^2)$, phần kiểm tra đoạn $j+1..i$ là palindrome hay không mất O(N), vậy độ phức tạp thuật toán là $O(N^3)$. Sẽ không được khả thi nếu $N = 1000$. Để giảm độ phức tạp thuật toán, ta sử dụng mảng $L[i, j]$ có ý nghĩa tương tự như mảng $F[i, j]$ ở bài 1. QHĐ lập mảng $L[i, j]$ mất $O(N^2)$. Tổng cộng là $O(N^2)$ vì mỗi lần kiểm tra chỉ mất $O(1)$.
+Hai vòng for lồng nhau mất $\mathcal{O}(N^{2})$, phần kiểm tra đoạn $j+1\ldots i$ là palindrome hay không mất $\mathcal{O}(N)$, vậy độ phức tạp thuật toán là $\mathcal{O}(N^{3})$. Sẽ không được khả thi nếu $N = 1000$. Để giảm độ phức tạp thuật toán, ta sử dụng mảng $L[i, j]$ có ý nghĩa tương tự như mảng $F[i, j]$ ở bài 1. QHĐ lập mảng $L[i, j]$ mất $\mathcal{O}(N^{2})$. Tổng cộng là $\mathcal{O}(N^{2})$ vì mỗi lần kiểm tra chỉ mất $\mathcal{O}(1)$.
 
 Một cách khác sử dụng ít bộ nhớ hơn là dùng hai mảng một chiều $L_i$ và $C_i$ có ý nghĩa:
 
 - $L_i$ là độ dài lớn nhất của palindrome độ dài lẻ nhận $S_i$ làm tâm
-- $C_i$ là độ dài lớn nhất của palindrome độ dài chẵn nhận $S_i$ và $S_{i+1}$ làm tâm. $L_i$ và $C_i$ có thể tính được bằng cách 2 bài 2 trong $O(N^2)$. Phần kiểm tra ta viết lại như sau:
+- $C_i$ là độ dài lớn nhất của palindrome độ dài chẵn nhận $S_i$ và $S_{i+1}$ làm tâm. $L_i$ và $C_i$ có thể tính được bằng cách 2 bài 2 trong $\mathcal{O}(N^{2})$. Phần kiểm tra ta viết lại như sau:
 
 ```pascal
 function is_palindrome(i, j : integer) : boolean;
@@ -200,7 +200,7 @@ begin
 end;
 ```
 
-Vậy thuật toán của chúng ta có độ phức tạp tính toán là $O(N^2)$, chi phí bộ nhớ là $O(N)$.
+Vậy thuật toán của chúng ta có độ phức tạp tính toán là $\mathcal{O}(N^{2})$, chi phí bộ nhớ là $\mathcal{O}(N)$.
 
 # Bài 4: Pal - Ioicamp - Marathon 2005-2006
 
@@ -275,7 +275,7 @@ begin
 end;
 ```
 
-Đoạn chương trình trên chỉ có tính mô phỏng, muốn hoàn thiện bạn phải cài đặt các phép tính cộng trừ số lớn vì kết quả có thể lên tới $2^{n-1}$. Độ phức tạp của thuật toán là $O(N^2)$. Vì vậy, chúng ta hoàn toàn có thể làm với $N = 1000$, khí đó cần rút gọn mảng $F$ thành ba mảng một chiều.
+Đoạn chương trình trên chỉ có tính mô phỏng, muốn hoàn thiện bạn phải cài đặt các phép tính cộng trừ số lớn vì kết quả có thể lên tới $2^{n-1}$. Độ phức tạp của thuật toán là $\mathcal{O}(N^{2})$. Vì vậy, chúng ta hoàn toàn có thể làm với $N = 1000$, khí đó cần rút gọn mảng $F$ thành ba mảng một chiều.
 
 # Bài 5: Palindrome - IOI 2000
 

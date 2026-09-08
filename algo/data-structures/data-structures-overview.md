@@ -91,7 +91,7 @@ Heap là một cấu trúc dữ liệu cho phép thực hiện các thao tác:
 
 - Thêm một phần tử, với độ phức tạp $\mathcal{O}(\log{N})$.
 - Xóa một phần tử, với độ phức tạp $\mathcal{O}(\log{N})$.
-- Tìm $max$ của các phần tử, với độ phức tạp $\mathcal{O}(1)$.
+- Tìm $\max$ của các phần tử, với độ phức tạp $\mathcal{O}(1)$.
 
 Bạn có thể đọc thêm về Heap [ở đây](/translate/wcipeg/Binary-Heap)
 
@@ -115,7 +115,7 @@ Trong trường hợp dữ liệu ngẫu nhiên, các thao tác trên có độ 
 
 Để khắc phục điều này, có rất nhiều CTDL cải tiến từ cây tìm kiếm nhị phân, thường được gọi là các cây nhị phân cân bằng. Khi đó, các thao tác trên có thể được thực hiện với độ phức tạp $\mathcal{O}(\log{N})$. Ví dụ:
 
-- **Cây Đỏ Đen** (Red-Black Tree) là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $O(log(N))$. CTDL **set** trong **C++** được cài đặt bằng cây đỏ đen.
+- **Cây Đỏ Đen** (Red-Black Tree) là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $\mathcal{O}(\log{N})$. CTDL **set** trong **C++** được cài đặt bằng cây đỏ đen.
   ![](/uploads/redblack1.png)
 - **Splay tree**, [Skip list](/algo/data-structures/Skip-Lists), **Treap** thường được dùng trong các kỳ thi bởi cài đặt đơn giản.
 
@@ -144,28 +144,28 @@ Mảng cộng dồn là một cách áp dụng khéo léo mảng. Có 2 dạng b
 
 **Ví dụ**
 
-- Cho một mảng $a_1,a_2,a_3,...,a_N$.
-- Cần trả lời nhiều truy vấn, mỗi truy vấn cho 2 số $L$ và $R$, yêu cầu in ra tổng $a_L + a_{L+1} + ... + a_R$.
+- Cho một mảng $a_1,a_2,a_3,\ldots,a_N$.
+- Cần trả lời nhiều truy vấn, mỗi truy vấn cho 2 số $L$ và $R$, yêu cầu in ra tổng $a_L + a_{L+1} + \cdots + a_R$.
 
 **Cách làm**
 
-- Tạo một mảng $S$, với $S_i = a_1 + a_2 + ... + a_i$. Mảng $S$ được gọi là mảng cộng dồn
-- Với mỗi truy vấn, in ra: $S_R – S_{L-1}$.
+- Tạo một mảng $S$, với $S_i = a_1 + a_2 + \cdots + a_i$. Mảng $S$ được gọi là mảng cộng dồn
+- Với mỗi truy vấn, in ra: $S_R - S_{L-1}$.
 
 ### 2.1.2. Mảng cộng dồn - Tăng giá trị các đoạn
 
 **Ví dụ**
 
-- Cho mảng $a_1,a_2,...,a_N$.
+- Cho mảng $a_1,a_2,\ldots,a_N$.
 - Cần thực hiện nhiều truy vấn, mỗi truy vấn cho 3 số $L$, $R$, $V$. Yêu cầu: với mỗi $i (L \le i \le R)$, cộng $V$ vào $a_i$.
 - Tính mảng $a$ sau khi thực hiện tất cả các truy vấn.
 
 **Cách làm**
 
-- Tạo một mảng $P$: $p_1,p_2,...,p_N$
+- Tạo một mảng $P$: $p_1,p_2,\ldots,p_N$
 - Khởi tạo $p_i = 0$.
 - Với mỗi truy vấn, tăng $p_L$ lên $V$ và trừ $p_{R+1}$ đi $V$.
-- Cuối cùng, với mỗi $i$ (từ 1), $p_i += p_{i–1}$. Ta có $a_i = a_i + p_i$.
+- Cuối cùng, với mỗi $i$ (từ 1), $p_i += p_{i-1}$. Ta có $a_i = a_i + p_i$.
 
 ### 2.1.3. Mảng cộng dồn trên bảng 2 chiều
 

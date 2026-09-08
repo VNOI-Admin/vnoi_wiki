@@ -52,34 +52,51 @@ Ta có thể coi thuật toán này như việc sắp xếp cạnh của hai bao
 Dưới đây là một cách cài đặt mẫu:
 ```cpp!
 // rút gọn từ kactl: https://github.com/kth-competitive-programming/kactl/blob/main/content/geometry/Point.h
-template<class T>
+template <class T>
 struct Point {
     typedef Point P;
     T x, y;
-    explicit Point(T x=0, T y=0) : x(x), y(y) {}
-    bool operator<(P p) const { return tie(x,y) < tie(p.x,p.y); }
-    bool operator==(P p) const { return tie(x,y)==tie(p.x,p.y); }
-    P operator+(P p) const { return P(x+p.x, y+p.y); }
-    T cross(P p) const { return x*p.y - y*p.x; }
+    explicit Point(T x = 0, T y = 0) : x(x), y(y) {
+    }
+    bool operator<(P p) const {
+        return tie(x, y) < tie(p.x, p.y);
+    }
+    bool operator==(P p) const {
+        return tie(x, y) == tie(p.x, p.y);
+    }
+    P operator+(P p) const {
+        return P(x + p.x, y + p.y);
+    }
+    P operator-(P p) const {
+        return P(x - p.x, y - p.y);
+    }
+    T cross(P p) const {
+        return x * p.y - y * p.x;
+    }
 };
 
-template<class P>
+template <class P>
 vector<P> minkowskiSum(vector<P> a, vector<P> b) {
     // xoay a và b sao cho điểm trái dưới là điểm đầu tiên
     rotate(begin(a), min_element(begin(a), end(a)), end(a));
     rotate(begin(b), min_element(begin(b), end(b)), end(b));
     int n = a.size(), m = b.size();
-    vector<P> h(n + m + 1); h[0] = a[0] + b[0];
+    vector<P> h(n + m + 1);
+    h[0] = a[0] + b[0];
     int t = 1;
     // ở đây ta cho phép i đi tới n và j đi tới m để thể hiện việc đã duyệt qua hết các cạnh của A và B
-    for (int i = 0, j = 0; i < n || j < m; ) {
-        if (i == n) j++;
-        else if (j == m) i++;
+    for (int i = 0, j = 0; i < n || j < m;) {
+        if (i == n)
+            j++;
+        else if (j == m)
+            i++;
         else {
             P pa = a[(i + 1) % n] - a[i], pb = b[(j + 1) % m] - b[j];
             auto cr = pa.cross(pb);
-            if (cr >= 0) i++;
-            if (cr <= 0) j++;
+            if (cr >= 0)
+                i++;
+            if (cr <= 0)
+                j++;
         }
         h[t++] = (a[i % n] + b[j % m]);
     }
@@ -87,7 +104,7 @@ vector<P> minkowskiSum(vector<P> a, vector<P> b) {
 }
 ```
 
-Độ phức tạp của thuật toán là $O(|A| + |B|)$.
+Độ phức tạp của thuật toán là $\mathcal{O}(|A| + |B|)$.
 
 ## Một số bài toán ví dụ
 
@@ -97,7 +114,7 @@ Link bài: [CF 87E](https://codeforces.com/problemset/problem/87/E).
 
 #### Đề bài
 
-Cho ba bao lồi $A$, $B$ và $C$ và $q$ truy vấn. Với mỗi truy vấn, ta được nhận một điểm $x$, và ta cần trả lời rằng có tồn tại ba điểm $a \in A$, $b \in B$, và $c \in C$ sao cho điểm $x$ là trọng tâm của tam giác được tạo bởi $a, b, c$ ($1 \le |A|, |B|, |C|, q \le 10^5$).
+Cho ba bao lồi $A$, $B$ và $C$ và $q$ truy vấn. Với mỗi truy vấn, ta được nhận một điểm $x$, và ta cần trả lời rằng có tồn tại ba điểm $a \in A$, $b \in B$, và $c \in C$ sao cho điểm $x$ là trọng tâm của tam giác được tạo bởi $a, b, c$ ($1 \le |A|, |B|, |C|, q \le 10^{5}$).
 
 #### Phân tích
 
@@ -105,18 +122,20 @@ Nhận xét rằng $x$ là trọng tâm của tam giác tạo bởi $a, b, c$ kh
 
 #### Cài đặt
 
-Các bạn có thể tham khảo cách cài đặt [tại đây](https://codeforces.com/contest/87/submission/228115969). Ở phần cài đặt này, hàm `minkowskiSum` nhận một tập các bao lồi (không nhất thiết chỉ là 2 bao lồi) và trả về tổng Minkowski của tập bao lồi này. Độ phức tạp là $O(p + q \log p)$, với $p \le |A| + |B| + |C|$ là số lượng điểm trong tổng Minkowski.
+Các bạn có thể tham khảo cách cài đặt [tại đây](https://codeforces.com/contest/87/submission/228115969). Ở phần cài đặt này, hàm `minkowskiSum` nhận một tập các bao lồi (không nhất thiết chỉ là 2 bao lồi) và trả về tổng Minkowski của tập bao lồi này. Độ phức tạp là $\mathcal{O}(p + q \log p)$, với $p \le |A| + |B| + |C|$ là số lượng điểm trong tổng Minkowski.
 
 ### Tìm khoảng cách giữa hai bao lồi
 
 #### Đề bài
 
-Cho hai bao lồi $A$ và $B$, tìm khoảng cách ngắn nhất giữa hai điểm bất kì thuộc hai bao lồi này. Nếu $A$ và $B$ có điểm chung thì in ra 0 ($1 \le |A|, |B| \le 2 \cdot 10^5$).
+Cho hai bao lồi $A$ và $B$, tìm khoảng cách ngắn nhất giữa hai điểm bất kì thuộc hai bao lồi này. Nếu $A$ và $B$ có điểm chung thì in ra 0 ($1 \le |A|, |B| \le 2 \cdot 10^{5}$).
 
 #### Phân tích
 
-Đây là một bài toán kinh điển sử dụng tổng Minkowski. Nhận xét là bài toán có thể được viết như sau (ở đây $||u||_2 = \sqrt{x_u^2 + y_u^2}$ là khoảng cách của $u$ tới gốc tọa độ):
-$$\min_{a \in A, b \in B} ||a - b||_2 = \min_{a \in A, b \in B} ||a + (-b)||_2$$
+Đây là một bài toán kinh điển sử dụng tổng Minkowski. Nhận xét là bài toán có thể được viết như sau (ở đây $||u||_2 = \sqrt{x_u^{2} + y_u^{2}}$ là khoảng cách của $u$ tới gốc tọa độ):
+$$
+\min_{a \in A, b \in B} ||a - b||_2 = \min_{a \in A, b \in B} ||a + (-b)||_2
+$$
 
 Vì thế, nếu ta gọi $-B$ chứa tất cả các điểm $-b$ khi $b \in B$ thì bài toán tương đương với việc tìm $\min_{a \in A, c \in -B} ||a + c||_2$. Gọi $S = A + (-B)$ là tổng Minkowski của bao lồi $A$ và $-B$, thì bài toán trở thành: tìm điểm trong $S$ gần gốc tọa độ nhất. Bài toán này ta có thể giải một cách dễ dàng: nếu $S$ chứa gốc tọa độ thì đáp án là $0$, ngược lại thì ta có thể lặp qua cạnh của $S$ và tìm khoảng cách ngắn nhất từ gốc tọa độ tới từng cạnh của $S$.
 
@@ -240,7 +259,7 @@ int main() {
     }
 }
 ```
-Độ phức tạp của thuật toán là $O(n + m)$.
+Độ phức tạp của thuật toán là $\mathcal{O}(n + m)$.
 
 ## Bài tập áp dụng
 

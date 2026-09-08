@@ -37,7 +37,7 @@ Sau khi ta vẽ các đường thẳng lên hệ trục tọa độ, dễ thấy
 
 # Thuật toán duyệt
 
-Với mỗi truy vấn trong $Q$ truy vấn, ta duyệt qua từng hàm số và thử từng từng hàm và xem thử hàm nào trả giá trị cực tiểu cho giá trị $x$. Nếu có $M$ đường thẳng và $Q$ truy vấn, độ phức tạp của thuật toán sẽ $\mathcal{O}(MQ)$. Kĩ thuật bao lồi sẽ giúp giảm độ phức tạp xuống còn $\mathcal{O}((Q+M)\log M$, một độ phức tạp hiệu quá hơn nhiều.
+Với mỗi truy vấn trong $Q$ truy vấn, ta duyệt qua từng hàm số và thử từng từng hàm và xem thử hàm nào trả giá trị cực tiểu cho giá trị $x$. Nếu có $M$ đường thẳng và $Q$ truy vấn, độ phức tạp của thuật toán sẽ $\mathcal{O}(MQ)$. Kĩ thuật bao lồi sẽ giúp giảm độ phức tạp xuống còn $\mathcal{O}((Q+M)\log M)$, một độ phức tạp hiệu quá hơn nhiều.
 
 
 # Kĩ thuật
@@ -57,7 +57,7 @@ Cụm từ *bao lồi* được sử dụng để chỉ *hình bao trên/dưới
 
 ## Thêm một đường vào tập
 
-Ta có thể thấy nếu ta có một tập đường thẳng đã được xác định sắp xếp, ta có thể dễ dàng trả lời bất kì truy vấn nào với độ phức tạp là $\mathcal{O}(\log{} M)$ với tìm kiếm nhị phân. Vậy nếu chúng ta tìm ra cách thêm một đường thẳng vào tính toán lại một cách hiệu quả là chúng ta đã có một thuật toán hoạt động ngon lành.
+Ta có thể thấy nếu ta có một tập đường thẳng đã được xác định sắp xếp, ta có thể dễ dàng trả lời bất kì truy vấn nào với độ phức tạp là $\mathcal{O}(\log M)$ với tìm kiếm nhị phân. Vậy nếu chúng ta tìm ra cách thêm một đường thẳng vào tính toán lại một cách hiệu quả là chúng ta đã có một thuật toán hoạt động ngon lành.
 
 Giả sử chúng ta được xử lý tất cả đường thẳng trước khi làm các truy vấn thì chúng ta chỉ cần đơn giản sắp xếp các đường thẳng theo hệ số góc và thêm từng đường một vào. Sẽ có thể một số đường không quan trọng và sẽ bị bỏ đi. Chúng ta sẽ sử dụng cấu trúc dữ liệu Stack để cài đặt, bỏ từng đường thẳng vào stack và nếu đường nào không quan trọng sẽ bị bỏ ra ngoài đến khi chỉ còn một đường thẳng (đường thẳng cuối không thể bỏ)
 
@@ -69,11 +69,11 @@ Vậy làm sao để có thể xác định đường thẳng nào sẽ bị b�
 
 Độ phức tạp thời gian cho phần tiền xây dựng:
 
-- Để sắp xếp các đoạn thẳng theo tăng dần hệ số góc sẽ tốn  $\mathcal{O}(M\log{M})$.
+- Để sắp xếp các đoạn thẳng theo tăng dần hệ số góc sẽ tốn  $\mathcal{O}(M \log M)$.
 
 - Duyệt qua các đường thẳng mỗi đường được cho vào stack và bỏ khỏi stack tối đa một lần vậy nên sẽ tốn $\mathcal{O}(M)$ cho bước này.
 
-Vậy thời gian cho việc xây dựng sẽ là $\mathcal{O}(M\log{M})$. Với mỗi truy vấn dùng chặt nhị phân sẽ cho độ phúc tạp tốt nhất $\mathcal{O}(\log{} M)$.
+Vậy thời gian cho việc xây dựng sẽ là $\mathcal{O}(M \log M)$. Với mỗi truy vấn dùng chặt nhị phân sẽ cho độ phúc tạp tốt nhất $\mathcal{O}(\log M)$.
 
 # Ví dụ 1: USACO Tháng 3 năm 2008 "Acquire"
 
@@ -89,10 +89,10 @@ Sau khi sắp xếp, ta có thể hình dung được rằng nếu chúng ta ch�
 
 ## Lời giải Quy Hoạch Động
 
-Vậy bài toán trờ về bài toán phân dãy sao cho tổng chi phí của các dãy là tối ưu. Đây là một dạng bài quy hoạch động hay gặp và chúng ta có thể dễ dàng nghĩ ra thuật toán $\mathcal{O}(N^2)$ như mã giả phía dưới. (Giả sử các hình đã được sắp xếp và bỏ đi những hình chữ nhật không quan trọng)
+Vậy bài toán trờ về bài toán phân dãy sao cho tổng chi phí của các dãy là tối ưu. Đây là một dạng bài quy hoạch động hay gặp và chúng ta có thể dễ dàng nghĩ ra thuật toán $\mathcal{O}(N^{2})$ như mã giả phía dưới. (Giả sử các hình đã được sắp xếp và bỏ đi những hình chữ nhật không quan trọng)
 
 
-```
+```cpp
 input N
 for i ∈ [1..N]
      input rect[i].h
@@ -105,13 +105,13 @@ for i ∈ [1..N]
 print cost[N]
 ```
 
-Ở trên `cost[k]` lưu lại chi phí cực tiểu để lấy được `k` hình chữ nhật đầu tiên. Hiển nhiên, `cost[0]=0`. Để tính toán được `cost[i]` với `i` khác 0, ta có tính tổng chi phí để lấy được các tập trước và cộng nó với chi phí của tập cuối cùng(có chứa `i`). Chi phí của một tập có thể dễ dàng tính bằng cách lấy tích của chiều dài hình chữ nhật đầu tiên và chiều rộng của hình chữ nhật cuối cùng. Vậy ta có `min(cost[i],cost[j]+rect[i].h*rect[j+1].w)` với j là hình chữ nhật đầu tiên của tập cuối cùng. Với $N=50000$ thì thuật toán $\mathcal{O}(N^2)$ này là quá chậm.
+Ở trên `cost[k]` lưu lại chi phí cực tiểu để lấy được `k` hình chữ nhật đầu tiên. Hiển nhiên, `cost[0]=0`. Để tính toán được `cost[i]` với `i` khác 0, ta có tính tổng chi phí để lấy được các tập trước và cộng nó với chi phí của tập cuối cùng(có chứa `i`). Chi phí của một tập có thể dễ dàng tính bằng cách lấy tích của chiều dài hình chữ nhật đầu tiên và chiều rộng của hình chữ nhật cuối cùng. Vậy ta có `min(cost[i],cost[j]+rect[i].h*rect[j+1].w)` với j là hình chữ nhật đầu tiên của tập cuối cùng. Với $N=50000$ thì thuật toán $\mathcal{O}(N^{2})$ này là quá chậm.
 
 ## Nhận xét 3: Sử dụng bao lồi
 
-Với $m_j=rect[j+1].w, b_j=cost[j], x=rect[i].h$ với $rect[x].h$ là chiều rộng của hình chữ nhật $x$ và $rect[x].w$ là chiều dài của hình chữ nhật $x$. Vậy thì bài toán trờ về tìm hàm cực tiểu của $y=m_jx+b_j$ bằng cách tìm $j$ tối ưu. Nó giống hoàn toàn bài toán chúng ta đã đề cập ở trên. Giả sử ta đã hoàn thành việc cài đặt cấu trúc đã đề cập ở trên chúng ta có thể có mã giả ở dưới đây:
+Với $m_j = \texttt{rect}[j+1].w, \ b_j = \texttt{cost}[j], \ x = \texttt{rect}[i].h$ với $\texttt{rect}[x].h$ là chiều rộng của hình chữ nhật $x$ và $\texttt{rect}[x].w$ là chiều dài của hình chữ nhật $x$. Vậy thì bài toán trờ về tìm hàm cực tiểu của $y = m_jx + b_j$ bằng cách tìm $j$ tối ưu. Nó giống hoàn toàn bài toán chúng ta đã đề cập ở trên. Giả sử ta đã hoàn thành việc cài đặt cấu trúc đã đề cập ở trên chúng ta có thể có mã giả ở dưới đây:
 
-```
+```cpp
 input N
 for i ∈ [1..N]
      input rect[i].h
@@ -126,17 +126,17 @@ for i ∈ [1..N]
 print cost[N]
 ```
 
-Rõ ràng các đường thẳng đã được sắp xếp giảm dần về độ lớn của hệ số góc do chúng ta đã sắp xếp các chiều dài giảm dần. Do mỗi truy vấn có thể thực hiện trong thời gian $\mathcal{O}(\log{N})$, ta có thể dễ dàng thấy thời gian thực hiện của cả bài toán là $\mathcal{O}(N\log{N})$. Do các truy vấn của chúng ta cũng tăng dần (do chiều rộng đã được sắp xếp tăng tần) ta có thể thay thế việc chặt nhị phân bằng một con trỏ chạy song song với việc quy hoạch động đưa bước quy hoạch động còn $\mathcal{O}(N)$ nhưng tổng độ phức tạp vẫn là $\mathcal{O}(N\log{N})$ do chi phí sắp xếp. Vậy là ta đã giải quyết thành công bài toán sử dụng kĩ thuật bao lồi đầu tiên của chúng ta :D.
+Rõ ràng các đường thẳng đã được sắp xếp giảm dần về độ lớn của hệ số góc do chúng ta đã sắp xếp các chiều dài giảm dần. Do mỗi truy vấn có thể thực hiện trong thời gian $\mathcal{O}(\log N)$, ta có thể dễ dàng thấy thời gian thực hiện của cả bài toán là $\mathcal{O}(N \log N)$. Do các truy vấn của chúng ta cũng tăng dần (do chiều rộng đã được sắp xếp tăng tần) ta có thể thay thế việc chặt nhị phân bằng một con trỏ chạy song song với việc quy hoạch động đưa bước quy hoạch động còn $\mathcal{O}(N)$ nhưng tổng độ phức tạp vẫn là $\mathcal{O}(N \log N)$ do chi phí sắp xếp. Vậy là ta đã giải quyết thành công bài toán sử dụng kĩ thuật bao lồi đầu tiên của chúng ta :D.
 
 # Ví dụ 2: APIO 2010 Commando
 
 ## Bài toán
 
 Bạn được cho:
-- Một dãy có **$N$ số nguyên dương** ($1\le N \le 10^6$)
-- Một hàm số bậc 2 với hệ số nguyên duong $f(x)= ax^2 + bx +c$, $a\lt0$.
+- Một dãy có **$N$ số nguyên dương** ($1 \le N \le 10^{6}$)
+- Một hàm số bậc 2 với hệ số nguyên duong $f(x) = ax^{2} + bx + c$, $a < 0$.
 Mục tiêu cũng của bài toán là phân dãy này ra thành các đoạn liên tiếp sao tổng các hàm $f$ trên các dãy là lớn nhất ( giá trị của hàm $f$ lên dãy là $f(x)$ với $x$ là tổng dãy đó) .
-Tương tự như bài trên công thức quy hoạch động có thể dễ thấy công thức $\mathcal{O}(N^2)$.
+Tương tự như bài trên công thức quy hoạch động có thể dễ thấy công thức $\mathcal{O}(N^{2})$.
 
 Định nghĩa rằng:
 
@@ -145,11 +145,13 @@ Tương tự như bài trên công thức quy hoạch động có thể dễ th�
 
 Ta có:
 
-$dp(n) = max_{k=0}^{n-1}[dp(k)+adjust(k+1,n)]$
+$$
+\texttt{dp}(n) = \max_{k=0}^{n-1}[\texttt{dp}(k) + \texttt{adjust}(k+1, n)]
+$$
 
 Mã giả:
 
-```
+```cpp
 dp[0] ← 0
 for n ∈ [1..N]
     for k ∈ [0..n-1]
@@ -157,21 +159,29 @@ for n ∈ [1..N]
 ```
 
 Hãy thử biến đổi hàm "adjust" một tí nào.
-Định nghĩa $sum(1,x)$ là $\delta(x)$. Vậy với một số $k$ bất kì ta có thể viết là:
+Định nghĩa $\texttt{sum}(1, x)$ là $\delta(x)$. Vậy với một số $k$ bất kì ta có thể viết là:
 
-$dp(n)=dp(k)+a(\delta(n)-\delta(k))^2+b(\delta(n)-\delta(k))+c$
-$dp(n)=dp(k)+a(\delta(n)^2+\delta(k)^2-2\delta(n)\delta(k))+b(\delta(n)-\delta(k))+c$
-$dp(n)=(a\delta(n)^2 +b\delta(n) +c)+dp(k)-2a\delta(n)\delta(k)+a\delta(k)^2-b\delta(k)$
+$$
+\texttt{dp}(n) = \texttt{dp}(k) + a(\delta(n)-\delta(k))^{2} + b(\delta(n)-\delta(k)) + c
+$$
+
+$$
+\texttt{dp}(n) = \texttt{dp}(k) + a(\delta(n)^{2} + \delta(k)^{2} - 2\delta(n)\delta(k)) + b(\delta(n)-\delta(k)) + c
+$$
+
+$$
+\texttt{dp}(n) = (a\delta(n)^{2} + b\delta(n) + c) + \texttt{dp}(k) - 2a\delta(n)\delta(k) + a\delta(k)^{2} - b\delta(k)
+$$
 
 Nếu:
 
 - $z=\delta(n)$
 - $m=-2a\delta(k)$
-- $p=dp(k)+a\delta(k)^2-b\delta(k)$
+- $p = \texttt{dp}(k) + a\delta(k)^{2} - b\delta(k)$
 
-Ta có thể thấy $mz+p$ là đại lượng mà chúng ta muốn tối ưu hóa bằng cách chọn $k$. $dp(n)$ sẽ bằng đại lượng đó cộng thêm với $a\delta(n)+b\delta(n)+c$(độc lập so với k). Trong đó $z$ cũng độc lập với $k$, và $m$ và $p$ phụ thuộc vào k.
+Ta có thể thấy $mz + p$ là đại lượng mà chúng ta muốn tối ưu hóa bằng cách chọn $k$. $\texttt{dp}(n)$ sẽ bằng đại lượng đó cộng thêm với $a\delta(n)+b\delta(n)+c$(độc lập so với k). Trong đó $z$ cũng độc lập với $k$, và $m$ và $p$ phụ thuộc vào k.
 
-Ngược với bài "acquire" khi chúng ta phải tối thiểu hóa hàm quy hoạch động thì bài này chúng ta phải cực đại hóa nó. Chúng ta phải xây dựng một hình bao trên với các đường thẳng tăng dần về hệ số góc. Do đề bài đã cho $a\lt0$ hệ số góc của chúng ta tăng dần và luôn dương thỏa với điều kiện của cấu trúc chúng ta.
+Ngược với bài "acquire" khi chúng ta phải tối thiểu hóa hàm quy hoạch động thì bài này chúng ta phải cực đại hóa nó. Chúng ta phải xây dựng một hình bao trên với các đường thẳng tăng dần về hệ số góc. Do đề bài đã cho $a < 0$ hệ số góc của chúng ta tăng dần và luôn dương thỏa với điều kiện của cấu trúc chúng ta.
 
 Do dễ thấy $\delta(n)>\delta(n-1)$, giống như bài "acquire" các truy vấn chúng ta cũng tăng dần theo thứ tự do vậy chúng ta có thể khơi tạo một biến chạy để chạy song song khi làm quy hoạch động (bỏ được phần chặt nhị phân).
 
@@ -196,7 +206,7 @@ Hãy xác định thời gian ít nhất cần chuyển tin từ các thị tr�
  - Ghi $N-1$ số trên một dòng. Số thứ $i$ thể hiện thời gian ít nhất cần truyền tin từ thành phố $i+1$ về thủ đô.
 
 **Ví dụ**
-```
+```text
 Input
 5
 1 2 20
@@ -214,7 +224,7 @@ Output
 
 **Giới hạn**
  - $3 \le N \le 100 000$
- - $0 \le S_i, V_i \le 10^9$
+ - $0 \le S_i, V_i \le 10^{9}$
  - Độ dài mỗi con đường không vượt quá $10000$
 
 ## Lời giải
@@ -223,28 +233,34 @@ Output
 
 Gọi $F(i)$ là thời gian ít nhất để truyền tin từ thành phố thứ $i$ đến thủ đô, ta có công thức truy hồi:
 
-$F(i) = min[ F(j) + dist(j, i) * V_i + S_i ]$
+$$
+F(i) = \min[F(j) + \texttt{dist}(j, i) \times V_i + S_i]
+$$
 
-với $j$ là một nút trên đường từ thành phố $i$ đến thành phố $1$. Trong đó $dist(j, i)$ là khoảng cách giữa 2 thành phố $i$ và $j$, có thể tính trong $O(1)$ sử dụng mảng cộng dồn $D[]$ với $D[i]$ là khoảng cách từ thành phố $i$ tới thủ đô. Thuật toán này có thể dễ dàng cài đặt với độ phức tạp là $O(N^2)$.
+với $j$ là một nút trên đường từ thành phố $i$ đến thành phố $1$. Trong đó $\texttt{dist}(j, i)$ là khoảng cách giữa 2 thành phố $i$ và $j$, có thể tính trong $\mathcal{O}(1)$ sử dụng mảng cộng dồn $D[]$ với $D[i]$ là khoảng cách từ thành phố $i$ tới thủ đô. Thuật toán này có thể dễ dàng cài đặt với độ phức tạp là $\mathcal{O}(N^{2})$.
 
 **Áp dụng bao lồi**
 
 Công thức truy hồi có thể viết lại thành
 
-$F(i) = min[ F(j) - D_j * V_i + D_i * V_i + S_i ]$
+$$
+F(i) = \min[F(j) - D_j \times V_i + D_i \times V_i + S_i]
+$$
 
-Khi ta tính $F(i)$, thì giá trị $D_i*V_i + S_i$ là hằng số với mọi $j$, vì vậy
+Khi ta tính $F(i)$, thì giá trị $D_i \times V_i + S_i$ là hằng số với mọi $j$, vì vậy
 
-$F(i) = min[ F(j) - D_j * V_i ] + D_i * V_i + S_i$
+$$
+F(i) = \min[F(j) - D_j \times V_i] + D_i \times V_i + S_i
+$$
 
-Có thể thấy rằng ta cần tìm giá trị nhỏ nhất của hàm bậc nhất $y = -D_j*x + F(j)$ <dạng $y = ax + b$>.
+Có thể thấy rằng ta cần tìm giá trị nhỏ nhất của hàm bậc nhất $y = -D_j \times x + F(j)$ <dạng $y = ax + b$>.
 Với trường hợp cây là đường thẳng, ta có thể trực tiếp kỹ thuật đã trình bày ở phần trước. Trong trường hợp tổng quát, ta cần một cấu trúc dữ liệu cho phép xử lí hai thao tác:
 
  - Khi DFS xuống một nút con, ta cần thêm một đường thẳng.
  - Khi quá trình DFS tính $F[]$ cho gốc cây con đã hoàn tất, ta cần xóa một đường thẳng, trả cấu trúc dữ liệu về trạng thái ban đầu.
 
-Các thao tác này có thể được thực hiện hiệu quả trong $O(logN)$. Cụ thể ta sẽ biểu diễn stack bằng một mảng cũng một biến $size$ (kích thước stack). Khi thêm một đường thẳng vào, ta sẽ tìm kiếm nhị phân vị trí mới của nó, rồi chỉnh sửa biến $size$ cho phù hợp, chú ý là sẽ có tối đa một đường thẳng bị ghi đè, nên ta chỉ cần lưu lại nó. Khi cần trả về trạng thái ban đầu, ta chỉ cần chỉnh sửa lại biến $size$ đồng thời ghi lại đường thẳng đã bị ghi đè trước đó. Để quản lí lịch sử các thao tác ta sử dụng một $vector$ lưu lại chúng.
-Độ phức tạp cho toàn bộ thuật toán là $O(NlogN)$.
+Các thao tác này có thể được thực hiện hiệu quả trong $\mathcal{O}(\log N)$. Cụ thể ta sẽ biểu diễn stack bằng một mảng cũng một biến $\texttt{size}$ (kích thước stack). Khi thêm một đường thẳng vào, ta sẽ tìm kiếm nhị phân vị trí mới của nó, rồi chỉnh sửa biến $\texttt{size}$ cho phù hợp, chú ý là sẽ có tối đa một đường thẳng bị ghi đè, nên ta chỉ cần lưu lại nó. Khi cần trả về trạng thái ban đầu, ta chỉ cần chỉnh sửa lại biến $\texttt{size}$ đồng thời ghi lại đường thẳng đã bị ghi đè trước đó. Để quản lí lịch sử các thao tác ta sử dụng một $\texttt{vector}$ lưu lại chúng.
+Độ phức tạp cho toàn bộ thuật toán là $\mathcal{O}(N \log N)$.
 
 ```cpp
 #include <bits/stdc++.h>
@@ -331,9 +347,11 @@ int main() {
         a[u].push_back(make_pair(v, c));
         a[v].push_back(make_pair(u, c));
     }
-    for (int i = 2; i <= n; ++i) cin >> S[i] >> V[i];
+    for (int i = 2; i <= n; ++i)
+        cin >> S[i] >> V[i];
     dfs(1, 0);
-    for (int i = 2; i <= n; ++i) cout << f[i] << ' ';
+    for (int i = 2; i <= n; ++i)
+        cout << f[i] << ' ';
     return 0;
 }
 ```
@@ -342,10 +360,10 @@ int main() {
 
 Kĩ thuật này có thể dễ dàng được thực hiện khi các đường thẳng được thêm trước tất cả các truy vấn hay các đường thẳng được thêm vào theo thứ tự giảm dần của hệ số góc. Hoặc với cấu trúc deque chúng ta cũng có thể thêm những đường thẳng có hệ số góc lớn hơn hết các đường thẳng đã có. Nhưng có những lúc sẽ có các bài toán khi chúng ta phải giải quyết các truy vấn và thêm đường thẳng lồng vào nhau với các hệ số góc ngẫu nhiên. Chúng ta không thể sắp xếp lại trước (do bị lồng vào truy vấn) và không thể sắp xếp lại với mỗi lần thêm đường thẳng (vậy sẽ cho ta một độ phức tạp tuyến tính với mỗi truy vấn).
 
-Có tồn tại một cách để thêm các đường thẳng ngẫu nhiên vào trong độ phức tạp log. Chúng ta lưu các đoạn thẳng trong một cấu trúc có thứ tự động như `std::set` của C++. Mỗi đường thẳng chứa hệ số góc và giao điểm $y$ (sắp xếp theo hệ số góc trước rồi theo $y$)  cùng với một biến $left$ thêm, $x$ nhỏ nhất sao cho đường thẳng này đạt cực tiểu trong tập các đường thẳng.
+Có tồn tại một cách để thêm các đường thẳng ngẫu nhiên vào trong độ phức tạp log. Chúng ta lưu các đoạn thẳng trong một cấu trúc có thứ tự động như `std::set` của C++. Mỗi đường thẳng chứa hệ số góc và giao điểm $y$ (sắp xếp theo hệ số góc trước rồi theo $y$)  cùng với một biến $\texttt{left}$ thêm, $x$ nhỏ nhất sao cho đường thẳng này đạt cực tiểu trong tập các đường thẳng.
 Sắp đường thẳng này vào vị trí đúng của nó và những đường bị loại sẽ là các đường liên tiếp kế bên nó. Chúng ta dùng các điều kiện tương tự trên để bỏ các đường thẳng bên trái và bên phải nó.
 
-Để trả lời truy vấn, chúng ta dùng một *set* nữa dùng chính các biến ấy nhưng lại sắp xếp theo $left$. Vậy mỗi lần truy vấn ta có thể dễ dàng chặt nhị phân để tìm ra kết quả như đã nói ở trên.
+Để trả lời truy vấn, chúng ta dùng một *set* nữa dùng chính các biến ấy nhưng lại sắp xếp theo $\texttt{left}$. Vậy mỗi lần truy vấn ta có thể dễ dàng chặt nhị phân để tìm ra kết quả như đã nói ở trên.
 
 # Code
 

@@ -42,7 +42,7 @@ Xét hai số phức $z_1=a_1+b_1i=r_1\exp(i\varphi_1)$ và $z_2=a_2+b_2i=r_2\ex
 - Phép cộng: $z_1+z_2=(a_1+a_2)+(b_1+b_2)i$.
 - Phép trừ: $z_1-z_2=(a_1-a_2)+(b_1-b_2)i$.
 - Phép nhân: $z_1z_2=(a_1a_2-b_1b_2)+(a_1b_2+a_2b_1)i=r_1r_2\exp(i(\varphi_1+\varphi_2))$.
-- Phép chia: $\dfrac{z_1}{z_2}=\dfrac{z_1\overline{z_2}}{z_2\overline{z_2}}=\dfrac{z_1\overline{z_2}}{|z_2|^2}$.
+- Phép chia: $\frac{z_1}{z_2}=\frac{z_1\overline{z_2}}{z_2\overline{z_2}}=\frac{z_1\overline{z_2}}{|z_2|^2}$.
 
 Phép cộng (trừ) hai số phức tương đương với phép cộng (trừ) hai vectơ biểu diễn chúng. Khi nhân hai số phức, ta nhân môđun của chúng và cộng acgumen của chúng.
 
@@ -69,8 +69,8 @@ Xét một số nguyên dương $n$:
 
 #### Một số tính chất của căn đơn vị
 - $\omega_n^j=\omega_n^{j\bmod n}$.
-- Với $n$ chẵn, $\omega_n^{n/2}=-1$, từ đây suy ra $\omega_n^{j+n/2}=-\omega_n^j$.
-- Với $n$ chẵn, $\omega_n^2=\omega_{n/2}$.
+- Với $n$ chẵn, $\omega_n^{\frac{n}{2}}=-1$, từ đây suy ra $\omega_n^{j+\frac{n}{2}}=-\omega_n^j$.
+- Với $n$ chẵn, $\omega_n^2=\omega_{\frac{n}{2}}$.
 
 ### 1.2. Ma trận
 
@@ -88,19 +88,23 @@ Dãy $c$ được định nghĩa như trên được gọi là tích chập (con
 
 Biểu thức của dãy $c$ phía trên gợi lại cho chúng ta về phép nhân đa thức. Cụ thể, định nghĩa:
 
-$$\begin{align*}
+$$
+\begin{align*}
 A(z)&=a_0 z^0 + a_1 z^1 + \ldots + a_{n-1} z^{n-1}\\
 B(z)&=b_0 z^0 + b_1 z^1 + \ldots + b_{n-1} z^{n-1}
-\end{align*}$$
+\end{align*}
+$$
 
 thì $c$ chính là dãy hệ số của đa thức $C(z)=A(z)\cdot B(z)$.
 
 Có thể thấy rằng việc tính đa thức $C$ theo định nghĩa sẽ có độ phức tạp thời gian $\mathcal{O}(n^2)$, không đủ nhanh khi độ dài $n$ khá lớn, ta cần một hướng tiếp cận khác. Giả sử ta tính được giá trị của $A$ và $B$ tại $m$ điểm khác nhau:
 
-$$\begin{align*}
+$$
+\begin{align*}
 A(z_0),A(z_1),\ldots,A({z_{m-1})}\\
 B(z_0),B(z_1),\ldots,B({z_{m-1})}
-\end{align*}$$
+\end{align*}
+$$
 
 thì giá trị của $C$ tại các điểm tương ứng là: $C(z_j)=A(z_j)\cdot B(z_j)$.
 
@@ -123,15 +127,18 @@ Ta có một đa thức $A(z)=a_0z^0 + a_1z^1+\ldots+a_{n-1}z^{n-1}$. Không m�
 
 Tập số mà FFT chọn để tính là tập các căn đơn vị cấp $n$, tức $\{\omega_n^0,\omega_n^1,\ldots,\omega_n^{n-1}\}$ (nhắc lại $\omega_n=\exp(\frac{2\pi i}{n})$).
 
-**Định nghĩa.** Cho một dãy $a_0,a_1,\ldots,a_{n-1}$, **Biến đổi Fourier nhanh - Fast Fourier Transform - FFT** là bất kì thuật toán nào tính dãy $A(\omega_n^0),A(\omega_n^1),\ldots,A(\omega_n^{n-1})$ trong thời gian $O(n\log n)$. Phép biến đổi này bản thân nó được gọi là **Biến đổi Fourier rời rạc - Discrete Fourier Transform - DFT**.
-$$\text{DFT}(a_0,a_1,\ldots,a_{n-1})=(A(\omega_n^0),A(\omega_n^1),\ldots,A(\omega_n^{n-1}))$$
+**Định nghĩa.** Cho một dãy $a_0,a_1,\ldots,a_{n-1}$, **Biến đổi Fourier nhanh - Fast Fourier Transform - FFT** là bất kì thuật toán nào tính dãy $A(\omega_n^0),A(\omega_n^1),\ldots,A(\omega_n^{n-1})$ trong thời gian $\mathcal{O}(n\log n)$. Phép biến đổi này bản thân nó được gọi là **Biến đổi Fourier rời rạc - Discrete Fourier Transform - DFT**.
+$$
+\texttt{DFT}(a_0,a_1,\ldots,a_{n-1})=(A(\omega_n^0),A(\omega_n^1),\ldots,A(\omega_n^{n-1}))
+$$
 
 Bài viết này sẽ giới thiệu về một thuật toán FFT thông dụng là thuật toán *Cooley-Tukey*.
 
 
 Ta sẽ biểu diễn bài toán dưới dạng ma trận:
 
-$$\left[
+$$
+\left[
 \begin{array}{@{}c@{}}
 A(\omega^0)\\A(\omega^1)\\ \vdots \\ A(\omega^{n-1})
 \end{array}
@@ -149,7 +156,8 @@ a_1\\
 a_2\\
 \vdots\\
 a_{n-1}
-\end{array}\right ]$$
+\end{array}\right ]
+$$
 
 Trước khi đi vào trường hợp tổng quát, ta sẽ xem xét một ví dụ với $n=8$:
 
@@ -205,7 +213,7 @@ $$
 \end{array}\right ]
 $$
 
-Nhận thấy rằng các hệ số tương ứng ở hai ma trận con bên trái bằng nhau và các hệ số tương ứng ở hai ma trận con bên phải trái dấu, do tính chất $\omega^{n/2}=-1$.
+Nhận thấy rằng các hệ số tương ứng ở hai ma trận con bên trái bằng nhau và các hệ số tương ứng ở hai ma trận con bên phải trái dấu, do tính chất $\omega^{\frac{n}{2}}=-1$.
 
 Vậy biểu thức cần tính có dạng:
 
@@ -259,50 +267,54 @@ $$
 \right ] 
 $$
 
-Vậy ta chỉ cần tính $\color{red}{AX}$ và $\color{red}{A}\color{blue}{Y}$ là đủ để tính kết quả. Mặt khác, có thể thấy tính $\color{red}{AX}$ và $\color{red}{A}\color{blue}{Y}$ tương đương với tính $\text{DFT}(a_0,a_2,a_4,a_6)$ và $\text{DFT}(a_1,a_3,a_5,a_7)$.
+Vậy ta chỉ cần tính $\color{red}{AX}$ và $\color{red}{A}\color{blue}{Y}$ là đủ để tính kết quả. Mặt khác, có thể thấy tính $\color{red}{AX}$ và $\color{red}{A}\color{blue}{Y}$ tương đương với tính $\texttt{DFT}(a_0,a_2,a_4,a_6)$ và $\texttt{DFT}(a_1,a_3,a_5,a_7)$.
 
 Xét trường hợp tổng quát, với $0\le i<\frac{n}{2}$, ta có (chú ý $i$ ở đây là chỉ số, không phải đơn vị ảo):
 \begin{align}
 A(\omega_n^i)&=\sum_ja_j\omega_n^{ij}=\sum_k a_{2k}\omega_n^{2k i}+\sum_k a_{2k+1}\omega_n^{(2k+1)i}\\&=\sum_k a_{2k}(\omega_n^2)^{ik}+\omega_n^i\sum_k a_{2k+1}(\omega_n^2)^{ik}\\
-&= \sum_k a_{2k}\omega_{n/2}^{ik}+\omega_n^i\sum_k a_{2k+1}\omega_{n/2}^{ik}
+&= \sum_k a_{2k}\omega_{\frac{n}{2}}^{ik}+\omega_n^i\sum_k a_{2k+1}\omega_{\frac{n}{2}}^{ik}
 \end{align}
 
 \begin{align}
-A(\omega_n^{i+n/2})&=\sum_ja_j\omega_n^{(i+n/2)j}=\sum_k a_{2k}\omega_n^{2k(i+n/2)}+\sum_k a_{2k+1}\omega_n^{(2k+1)(i+n/2)}\\
-&=\sum_k a_{2k}\omega_n^{2ki}+\sum_k a_{2k+1}\omega_n^{2ki+i+n/2}\\
+A(\omega_n^{i+\frac{n}{2}})&=\sum_ja_j\omega_n^{(i+\frac{n}{2})j}=\sum_k a_{2k}\omega_n^{2k(i+\frac{n}{2})}+\sum_k a_{2k+1}\omega_n^{(2k+1)(i+\frac{n}{2})}\\
+&=\sum_k a_{2k}\omega_n^{2ki}+\sum_k a_{2k+1}\omega_n^{2ki+i+\frac{n}{2}}\\
 &=\sum_k a_{2k}(\omega_n^2)^{ik}-\omega_n^i\sum_k a_{2k+1}(\omega_n^2)^{ik}\\
-&= \sum_k a_{2k}\omega_{n/2}^{ik}-\omega_{n}^i\sum_k a_{2k+1}\omega_{n/2}^{ik}
+&= \sum_k a_{2k}\omega_{\frac{n}{2}}^{ik}-\omega_{n}^i\sum_k a_{2k+1}\omega_{\frac{n}{2}}^{ik}
 \end{align}
 
-Nếu coi $\text{DFT}(a_0,a_2,\ldots,a_{n/2-2})=A_0$ và $\text{DFT}(a_1,a_3,\ldots,a_{n/2-1})=A_1$ thì hai biểu thức trên có thể viết lại thành:
+Nếu coi $\texttt{DFT}(a_0,a_2,\ldots,a_{\frac{n}{2}-2})=A_0$ và $\texttt{DFT}(a_1,a_3,\ldots,a_{\frac{n}{2}-1})=A_1$ thì hai biểu thức trên có thể viết lại thành:
 
 \begin{align}
-A(\omega_n^i)&=A_0(\omega_{n/2}^i)+\omega_n^iA_1(\omega_{n/2}^i)\\
-A(\omega_n^{i+n/2})&=A_0(\omega_{n/2}^i)-\omega_n^iA_1(\omega_{n/2}^i)
+A(\omega_n^i)&=A_0(\omega_{\frac{n}{2}}^i)+\omega_n^iA_1(\omega_{\frac{n}{2}}^i)\\
+A(\omega_n^{i+\frac{n}{2}})&=A_0(\omega_{\frac{n}{2}}^i)-\omega_n^iA_1(\omega_{\frac{n}{2}}^i)
 \end{align}
 
 Vậy ta cần tính $A_0$ và $A_1$ là hai bài toán với kích thước giảm đi một nửa.
 
-**Độ phức tạp.** Thuật toán FFT là một thuật toán chia để trị nên ta dễ thấy nó có độ phức tạp $O(n\log_2n)$.
+**Độ phức tạp.** Thuật toán FFT là một thuật toán chia để trị nên ta dễ thấy nó có độ phức tạp $\mathcal{O}(n\log_2n)$.
 
 #### Biến đổi ngược
 
-**Bổ đề.** $\text{DFT}(\text{DFT}(a_0,a_1,\ldots,a_{n-2},a_{n-1}))=(na_0,na_{n-1},na_{n-2}\ldots,na_1)$.
+**Bổ đề.** $\texttt{DFT}(\texttt{DFT}(a_0,a_1,\ldots,a_{n-2},a_{n-1}))=(na_0,na_{n-1},na_{n-2}\ldots,na_1)$.
 
 *Chứng minh:*
-Đặt $(b_0,b_1,\ldots,b_{n-1})=\text{DFT}(a_0,a_1,\ldots,a_{n-1})$ và $(c_0,c_1,\ldots,c_{n-1})=\text{DFT}(b_0,b_1,\ldots,b_{n-1})$.
+Đặt $(b_0,b_1,\ldots,b_{n-1})=\texttt{DFT}(a_0,a_1,\ldots,a_{n-1})$ và $(c_0,c_1,\ldots,c_{n-1})=\texttt{DFT}(b_0,b_1,\ldots,b_{n-1})$.
 
 Ta có:
 
-$$c_l=\sum_k c_k\omega^{kl}=\sum_k \omega^{kl}\sum_ja_j\omega^{jk}=\sum_ja_j\sum_k\omega^{k(j+l)}$$
+$$
+c_l=\sum_k c_k\omega^{kl}=\sum_k \omega^{kl}\sum_ja_j\omega^{jk}=\sum_ja_j\sum_k\omega^{k(j+l)}
+$$
 
-Xét $j+l\not \equiv 0\pmod n$, ta có:
-$$\sum_k\omega^{k(j+l)}=\frac{(\omega^{j+l})^n-1}{\omega^{j+l}-1}=0$$
+Xét $j+l\not \equiv 0\pmod{n}$, ta có:
+$$
+\sum_k\omega^{k(j+l)}=\frac{(\omega^{j+l})^n-1}{\omega^{j+l}-1}=0
+$$
 bởi $w^{j+l}$ là một căn đơn vị.
 
-Từ đây ta suy ra $c_l=na_j$ với $j+l\equiv 0\pmod n$.
+Từ đây ta suy ra $c_l=na_j$ với $j+l\equiv 0\pmod{n}$.
 
-Ngoài ra, nếu ta sử dụng $\omega^{-1}=\exp(\frac{-2\pi i}{n})$ thay cho $\omega$ ở lần $\text{DFT}$ thứ hai, kết quả ta nhận được sẽ là $(na_0,na_1,\ldots,na_{n-1})$ (bạn đọc tự chứng minh).
+Ngoài ra, nếu ta sử dụng $\omega^{-1}=\exp(\frac{-2\pi i}{n})$ thay cho $\omega$ ở lần $\texttt{DFT}$ thứ hai, kết quả ta nhận được sẽ là $(na_0,na_1,\ldots,na_{n-1})$ (bạn đọc tự chứng minh).
 
 Ta sẽ cài đặt chung cả biến đổi xuôi và ngược:
 
@@ -337,13 +349,17 @@ void fft(vector<cd> &a, bool invert) {
 Dưới đây là cài đặt để tính tích chập của hai dãy số:
 ```cpp
 vector<int> conv(const vector<int> &a, const vector<int> &b) {
-    if (a.empty() || b.empty()) return {};
+    if (a.empty() || b.empty())
+        return {};
     vector<cd> fa(a.begin(), a.end());
     vector<cd> fb(b.begin(), b.end());
     int n = 1;
-    while (n < int(a.size() + b.size()) - 1) n <<= 1;
-    fa.resize(n); fb.resize(n);
-    fft(fa, false); fft(fb, false);
+    while (n < int(a.size() + b.size()) - 1)
+        n <<= 1;
+    fa.resize(n);
+    fb.resize(n);
+    fft(fa, false);
+    fft(fb, false);
     for (int i = 0; i < n; i++)
         fa[i] *= fb[i];
     fft(fa, true);
@@ -364,11 +380,13 @@ Ta xét các tầng đệ quy với $n=8$:
 Vậy nếu ta sắp xếp dãy $a$ lại thành $(a_0,a_4,a_2,a_6,a_1,a_5,a_3,a_7)$ thì mỗi lần gọi đệ quy ở tầng thứ $i$ sẽ thực hiện trên một đoạn dài $2^i$.
 
 Viết lại dãy chỉ số dưới dạng nhị phân:
-$$(000,100,010,110,001,101,011,111)$$
+$$
+(000,100,010,110,001,101,011,111)
+$$
 
 Có thể thấy rằng nếu ta đảo ngược thứ tự bit thì, ví dụ $100\rightarrow 001$ thì ta nhận được dãy tăng dần từ $0$ đến $n-1$.
 
-Gọi $rev(i)$ là số nhận được sau khi đảo ngược thứ tự bit của $i$, ta có $rev(i)=\dfrac{rev(i / 2) | [(i \bmod 2) \cdot n]}{2}$ với $|$ thể hiện phép toán bitwise OR (bạn đọc tự chứng minh).
+Gọi $\texttt{rev}(i)$ là số nhận được sau khi đảo ngược thứ tự bit của $i$, ta có $\texttt{rev}(i)=\frac{\texttt{rev}(\frac{i}{2}) | [(i \bmod 2) \cdot n]}{2}$ với $|$ thể hiện phép toán bitwise OR (bạn đọc tự chứng minh).
 
 Ta có cài đặt sau:
 ```cpp
@@ -393,7 +411,8 @@ void fft(vector<cd> &a, bool invert) {
         }
     }
     if (invert) {
-        for (auto &x : a) x /= n;
+        for (auto &x : a)
+            x /= n;
     }
 }
 ```
@@ -401,11 +420,11 @@ void fft(vector<cd> &a, bool invert) {
 #### Vấn đề về độ chính xác
 Ở cài đặt phía trên ta có viết ```w *= wlen``` để tính luỹ thừa của căn đơn vị. Việc nhân nhiều lần sẽ ảnh hưởng rất lớn đến độ chính xác của thuật toán vì ta đang thực hiện tính toán trên số thực.
 
-Nhận xét rằng với mỗi $len$ ta chỉ cần tính $\omega_{len}^0,\omega_{len}^1,\ldots,\omega_{len}^{len/2-1}$.
+Nhận xét rằng với mỗi $\texttt{len}$ ta chỉ cần tính $\omega_{\texttt{len}}^0,\omega_{\texttt{len}}^1,\ldots,\omega_{\texttt{len}}^{\frac{\texttt{len}}{2}-1}$.
 
-Định nghĩa một mảng $root$ sao cho với mỗi $len$ và với mỗi $0\le j<\frac{len}{2}$ ta có $root(\frac{len}{2}+j)=\omega_{len}^j$.
+Định nghĩa một mảng $\texttt{root}$ sao cho với mỗi $\texttt{len}$ và với mỗi $0\le j<\frac{\texttt{len}}{2}$ ta có $\texttt{root}(\frac{\texttt{len}}{2}+j)=\omega_{\texttt{len}}^j$.
 
-Cài đặt để tính mảng $root$:
+Cài đặt để tính mảng $\texttt{root}$:
 ```cpp
 vector<cd> root(n);
 root[1] = 1;
@@ -418,7 +437,7 @@ for (int k = 2; k < n; k *= 2) {
 }
 ```
 
-Sau khi có mảng $root$ ta có thể sửa cài đặt FFT như sau:
+Sau khi có mảng $\texttt{root}$ ta có thể sửa cài đặt FFT như sau:
 ```cpp
 for (int k = 1; k < n; k *= 2)
     for (int i = 0; i < n; i += 2 * k)
@@ -433,10 +452,12 @@ Thử nghiệm với $n=2^{20}$, sai số chỉ rơi vào khoảng $5.5511\cdot 
 
 #### FFT hai dãy cùng một lúc
 
-Ta có thể tính $\text{DFT}$ của hai dãy $a$ và $b$ cùng một lúc bằng cách tính $\text{DFT}$ của dãy $c$ với $c_j=a_j+b_j\cdot i$.
+Ta có thể tính $\texttt{DFT}$ của hai dãy $a$ và $b$ cùng một lúc bằng cách tính $\texttt{DFT}$ của dãy $c$ với $c_j=a_j+b_j\cdot i$.
 
-Gọi $A,B,C$ lần lượt là các biến đổi $\text{DFT}$ tương ứng. Ta có:
-$$\overline{C(\omega^{-j})}=\overline{A(\omega^{-j})}+\overline{B(\omega^{-j})\cdot i}=A(\overline{\omega^{-j}})-i\cdot B(\overline{\omega^{-j}})=A(\omega^j)-B(\omega^j)\cdot i$$
+Gọi $A,B,C$ lần lượt là các biến đổi $\texttt{DFT}$ tương ứng. Ta có:
+$$
+\overline{C(\omega^{-j})}=\overline{A(\omega^{-j})}+\overline{B(\omega^{-j})\cdot i}=A(\overline{\omega^{-j}})-i\cdot B(\overline{\omega^{-j}})=A(\omega^j)-B(\omega^j)\cdot i
+$$
 
 kết hợp với $C(\omega^j)=A(\omega^j)+B(\omega^j)\cdot i$ suy ra:
 \begin{align}
@@ -448,14 +469,16 @@ A(\omega^j)B(\omega^j) &=\frac{C^2(\omega^j)-\overline{C^2(\omega^{-j})}}{4i}
 Sử dụng công thức này ta có thể tính tích chập chỉ dùng hai lần gọi hàm `fft`:
 ```cpp
 vector<int> conv(const vector<int> &a, const vector<int> &b) {
-    if (a.empty() || b.empty()) return {};
+    if (a.empty() || b.empty())
+        return {};
     int n = 1;
-    while (n < int(a.size() + b.size()) - 1) n <<= 1;
+    while (n < int(a.size() + b.size()) - 1)
+        n <<= 1;
     vector<cd> in(n), out(n);
     for (int i = 0; i < int(a.size()); i++)
         in[i].real(a[i]);
     for (int i = 0; i < int(b.size()); i++)
-        in[i].image(b[i]);
+        in[i].imag(b[i]);
     fft(in, false);
     for (int i = 0; i < n; i++)
         in[i] *= in[i];
@@ -479,7 +502,7 @@ Xét bài toán nhân đa thức nhưng lần này ta muốn các hệ số củ
 
 Thuật toán FFT dựa trên các tính chất của căn đơn vị. Các tính chất này cũng xuất hiện trên căn đơn vị trong số học modulo. Cụ thể ta gọi căn đơn vị cấp $n$ modulo $p$ là một số nguyên $\omega_n$ thoả mãn:
 \begin{align}
-&(\omega_n)^n=1\pmod p\\
+&(\omega_n)^n=1\pmod{p}\\
 &(\omega_n)^j \ne (\omega_n)^k, \forall\ 0\le j<k<n
 \end{align}
 
@@ -489,8 +512,8 @@ Các căn đơn vị cấp $n$ khác được biểu diễn bằng một luỹ t
 
 Để áp dụng thuật toán FFT, ta cần các căn đơn vị cho các luỹ thừa nhỏ hơn của $2$. Ta có thể chứng minh tính chất sau:
 \begin{align}
-&(\omega_n^2)^{n/2}=1\pmod p\\
-&(\omega_n^2)^k\ne 1\pmod p,\forall\ 1\le k<\frac{n}{2}
+&(\omega_n^2)^{\frac{n}{2}}=1\pmod{p}\\
+&(\omega_n^2)^k\ne 1\pmod{p},\forall\ 1\le k<\frac{n}{2}
 \end{align}
 
 Từ đây ta có nếu $\omega_n$ là căn đơn vị cấp $n$, thì $\omega_n^2$ là căn đơn vị cấp $\frac{n}{2}$ và do đó ta tính được căn đơn vị cho các luỹ thừa của $2$ nhỏ hơn.
@@ -559,27 +582,31 @@ với $C \approx \sqrt{M}$.
 
 Khi đó tích của hai đa thức được biểu diễn thành:
 
-$$A_0(x)B_0(x)+(A_0(x)B_1(x)+A_1(x)B_0(x))\cdot C + A_1(x)B_1(x)\cdot C^2$$
+$$
+A_0(x)B_0(x)+(A_0(x)B_1(x)+A_1(x)B_0(x))\cdot C + A_1(x)B_1(x)\cdot C^2
+$$
 
 Sử dụng kĩ thuật tương tự với [FFT hai dãy cùng một lúc](), ta có thể tính biểu thức trên với chỉ $4$ lần gọi FFT.
 
 Cài đặt:
-```cpp 
+```cpp
 using ll = long long;
 
 vector<int> convMod(const vector<int> &a, const vector<int> &b, int M) {
-    if (a.empty() || b.empty()) return {};
+    if (a.empty() || b.empty())
+        return {};
     vector<int> res(a.size() + b.size() - 1);
     int B = 32 - __builtin_clz(res.size());
     int n = 1 << B, cut = sqrt(M);
-    
+
     vector<cd> L(n), R(n), outs(n), outl(n);
-    
+
     for (int i = 0; i < int(a.size()); i++)
         L[i] = cd(a[i] / cut, a[i] % cut);
     for (int i = 0; i < int(b.size()); i++)
         R[i] = cd(b[i] / cut, b[i] % cut);
-    fft(L, false); fft(R, false);
+    fft(L, false);
+    fft(R, false);
 
     for (int i = 0; i < n; i++) {
         /// j = (n - i) % n

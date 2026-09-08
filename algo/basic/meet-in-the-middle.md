@@ -17,8 +17,8 @@ Cho mảng $t$ có $N$ phần tử. Hỏi có bao nhiêu cách chọn tập con 
 
 Giới hạn:
 - $1\le N\le40$
-- $1\le x\le10^9$
-- $1\le t_i\le10^9$
+- $1\le x\le10^{9}$
+- $1\le t_i\le10^{9}$
 
 ### Thuật toán ngây thơ: Quay lui (Backtracking)
 #### Ý tưởng
@@ -50,22 +50,22 @@ long long solve() {
 }
 ```
 
-Thuật toán trên có độ phức tạp thời gian là $\mathcal{O}(2^N)$, không đủ nhanh để giải bài toán bởi vì $2^{40}$ khá lớn. Do đó, ta cần tìm một phương án tối ưu hơn.
+Thuật toán trên có độ phức tạp thời gian là $\mathcal{O}(2^{N})$, không đủ nhanh để giải bài toán bởi vì $2^{40}$ khá lớn. Do đó, ta cần tìm một phương án tối ưu hơn.
 
 ### Thuật toán tối ưu: kỹ thuật MITM
 Kỹ thuật MITM được mô tả như sau:
-- Đặt $K=N/2$
+- Đặt $K=\frac{N}{2}$
 - Chia $N$ phần tử thành $2$ tập:
 	- Tập $X$ bao gồm $K$ phần tử đầu tiên.
 	- Tập $Y$ bao gồm tất cả phần tử còn lại.
-- Quay lui ở tập $X$ và lưu tổng của tất cả tập con vào mảng $A$. Tương tự, quay lui ở tập $Y$ và lưu tổng của tất cả tập con vào mảng $B$. Do đó, kích thước tối đa của mỗi mảng $A$ và $B$ là $2^K$.
+- Quay lui ở tập $X$ và lưu tổng của tất cả tập con vào mảng $A$. Tương tự, quay lui ở tập $Y$ và lưu tổng của tất cả tập con vào mảng $B$. Do đó, kích thước tối đa của mỗi mảng $A$ và $B$ là $2^{K}$.
 - Bây giờ, ta cần kết hợp $2$ mảng $A$ và $B$:
 	- Cách đơn giản nhất là lặp qua từng phần tử của $A$, với mỗi phần tử, ta duyệt qua tất cả phần tử của $B$.
-Độ phức tạp là $\mathcal{O}(2^K\times2^K)=\mathcal{O}(2^{N})$ (không đủ nhanh)
+Độ phức tạp là $\mathcal{O}(2^{K}\times2^{K})=\mathcal{O}(2^{N})$ (không đủ nhanh)
 	- Để tối ưu, ta sắp xếp mảng $B$ trước. Sau đó, lặp qua từng phần tử của $A$, với mỗi phần tử, ta sử dụng [tìm kiếm nhị phân](https://vnoi.info/wiki/algo/basic/binary-search.md) trong mảng $B$.
-Độ phức tạp là $\mathcal{O}(2^K\times\log_2{2^K})=\mathcal{O}(2^KK)$
+Độ phức tạp là $\mathcal{O}(2^{K}\times\log_2{2^{K}})=\mathcal{O}(2^{K} K)$
 	- Một cách tối ưu khác là ta sắp xếp cả $2$ mảng $A$ và $B$ trước, sau đó sử dụng [kỹ thuật hai con trỏ](https://vnoi.info/wiki/algo/basic/two-pointers.md).
-Độ phức tạp là $\mathcal{O}(\text{sort algorithm})+\mathcal{O}(2^K)$
+Độ phức tạp là $\mathcal{O}(\text{sort algorithm})+\mathcal{O}(2^{K})$
 
 #### Cài đặt (sử dụng tìm kiếm nhị phân)
 ```cpp
@@ -119,23 +119,25 @@ int main() {
 
 #### Cài đặt (sử dụng kỹ thuật hai con trỏ)
 ```cpp
-    // Quay lui 2 tập X và Y
-    TryX(1, 0);
-    TryY(n / 2 + 1, 0);
+// Quay lui 2 tập X và Y
+TryX(1, 0);
+TryY(n / 2 + 1, 0);
 
-    // Sắp xếp mảng A và B
-    sort(A.begin(), A.end(), greater<int>());
-    sort(B.begin(), B.end());
+// Sắp xếp mảng A và B
+sort(A.begin(), A.end(), greater<int>());
+sort(B.begin(), B.end());
 
-    // Sử dụng kỹ thuật 2 con trỏ
-    long long cnt = 0;
-    for (int i = 0, j1 = 0, j2 = 0; i < A.size(); ++i) {
-        int s = x - A[i]; // cần đếm lượng B[j] thoả B[j] = s
-        while (j1 < B.size() && B[j1] < s) ++j1;
-        while (j2 < B.size() && B[j2] <= s) ++j2;
-        cnt += j2 - j1;
-    }
-    cout << cnt << '\n';
+// Sử dụng kỹ thuật 2 con trỏ
+long long cnt = 0;
+for (int i = 0, j1 = 0, j2 = 0; i < A.size(); ++i) {
+    int s = x - A[i]; // cần đếm lượng B[j] thoả B[j] = s
+    while (j1 < B.size() && B[j1] < s)
+        ++j1;
+    while (j2 < B.size() && B[j2] <= s)
+        ++j2;
+    cnt += j2 - j1;
+}
+cout << cnt << '\n';
 ```
 
 # Ứng dụng
@@ -146,17 +148,17 @@ Có $N$ cục vàng, mỗi cục vàng có trọng lượng $W_i$ và giá trị
 
 Giới hạn:
 - $1\le N\le40$
-- $1\le M\le10^9$
-- $1\le W_i, V_i\le10^8$
+- $1\le M\le10^{9}$
+- $1\le W_i, V_i\le10^{8}$
 
 ### Ý tưởng
-Áp dụng MITM, ta tách $N$ cục vàng thành $2$ tập $X$ và $Y$, tập $X$ chứa $N/2$ cục vàng đầu tiên và tập $Y$ chứa phần còn lại.
+Áp dụng MITM, ta tách $N$ cục vàng thành $2$ tập $X$ và $Y$, tập $X$ chứa $\frac{N}{2}$ cục vàng đầu tiên và tập $Y$ chứa phần còn lại.
 
 Bây giờ, quay lui cho với mỗi tập $X$ và $Y$, ta được $2$ tập $A$ và $B$ chứa các cặp (tổng trọng lượng $sumW$, tổng giá trị $sumV$) của các tập con.
 
 Để kết hợp $2$ tập $A$ và $B$, ta cần giải quyết bài toán con: Với mỗi cặp $(sumW_i, sumV_i)$ của tập $A$, ta cần tìm một cặp $(sumW_j, sumV_j)$ trong tập $B$ sao cho $sumW_j\le M-sumW_i$ và $sumV_j$ là lớn nhất.
 
-Để giải bài toán con này, gợi ý là sắp xếp lại mảng $B$ theo thứ tự tăng dần của $sumW_j$ và đặt $maxSumV_j=max(sumV_1, \ldots,sumV_j)$ (phần này có thể tính nhanh bằng [mảng cộng dồn](https://vnoi.info/wiki/algo/data-structures/prefix-sum-and-difference-array.md)).
+Để giải bài toán con này, gợi ý là sắp xếp lại mảng $B$ theo thứ tự tăng dần của $sumW_j$ và đặt $maxSumV_j=\max(sumV_1, \ldots, sumV_j)$ (phần này có thể tính nhanh bằng [mảng cộng dồn](https://vnoi.info/wiki/algo/data-structures/prefix-sum-and-difference-array.md)).
 
 ### Cài đặt
 ```cpp
@@ -225,15 +227,15 @@ Cho mảng $a$ gồm $n$ số nguyên, đếm số lượng dãy con tăng có �
 
 Giới hạn:
 - $1\le n\le2000$
-- $1\le a_i\le10^9$
+- $1\le a_i\le10^{9}$
 
 ### Ý tưởng
 Đặt $a_i, a_j, a_k (i<j<k)$ ứng với một dãy con tăng có độ dài $3$.
 
-Theo cách làm ngây thơ, với mỗi $i$, ta đếm số cặp $(j,k)$ thoả mãn trong $\mathcal{O}(n^2)$, tổng độ phức tạp thời gian sẽ là $\mathcal{O}(n^3)$.
+Theo cách làm ngây thơ, với mỗi $i$, ta đếm số cặp $(j,k)$ thoả mãn trong $\mathcal{O}(n^{2})$, tổng độ phức tạp thời gian sẽ là $\mathcal{O}(n^{3})$.
 
 Ta có thể ứng dụng "middle" như sau: thay vì xét $i$ đầu tiên, ta xét $j$ đầu tiên.
-Với mỗi $j$, ta đếm số lượng $i<j$ thoả $a_i < a_j$ và $k>j$ thoả $a_k>a_j$ trong $\mathcal{O}(n)$, tổng độ phức tạp thời gian lúc này sẽ là $\mathcal{O}(n^2)$.
+Với mỗi $j$, ta đếm số lượng $i<j$ thoả $a_i < a_j$ và $k>j$ thoả $a_k>a_j$ trong $\mathcal{O}(n)$, tổng độ phức tạp thời gian lúc này sẽ là $\mathcal{O}(n^{2})$.
 
 ### Cài đặt
 ```cpp
@@ -255,18 +257,20 @@ Cho mảng $a$ gồm $n$ số nguyên và số nguyên $x$. Ta cần tìm $4$ v�
 
 Giới hạn:
 - $1\le n\le1000$
-- $1\le x,a_i\le10^9$
+- $1\le x,a_i\le10^{9}$
 
 ### Ý tưởng
 Đặt $i,j,k,l$ $(i<j<k<l)$ là $4$ vị trí thoả mãn $a_i+a_j+a_k+a_l=x$.
 
-Thuật toán ngây thơ của bài toán này là sử dụng $4$ vòng lặp lồng nhau với độ phức tạp $\mathcal{O}(n^4)$.
+Thuật toán ngây thơ của bài toán này là sử dụng $4$ vòng lặp lồng nhau với độ phức tạp $\mathcal{O}(n^{4})$.
 ```cpp
 for (int i = 1; i <= n; ++i)
     for (int j = i + 1; j <= n; ++j)
         for (int k = j + 1; k <= n; ++k)
             for (int l = k + 1; l <= n; ++l)
-                if (a[i] + a[j] + a[k] + a[l] == x) { ... }
+                if (a[i] + a[j] + a[k] + a[l] == x) {
+                    ...
+                }
 ```
 Ta có nhận xét: trong vòng lặp thứ $2$ (biến $j$), ta đang giải bài toán: tìm $2$ vị trí phân biệt **lớn hơn** $j$ sao cho tổng giá trị của $2$ vị trí đó bằng $x-a_i-a_j$.
 
@@ -314,9 +318,9 @@ int main() {
 ```
 
 #### Phân tích
-Độ phức tạp tiền xử lý: $\mathcal{O}(n^2\log(n^2))$
-Độ phức tạp truy vấn: $\mathcal{O}(\log(n^2))$
-Có $\mathcal{O}(n^2)$ truy vấn, vì thế, tổng độ phức tạp thời gian là: $\mathcal{O}(n^2\log(n^2))$
+Độ phức tạp tiền xử lý: $\mathcal{O}(n^{2}\log(n^{2}))$
+Độ phức tạp truy vấn: $\mathcal{O}(\log(n^{2}))$
+Có $\mathcal{O}(n^{2})$ truy vấn, vì thế, tổng độ phức tạp thời gian là: $\mathcal{O}(n^{2}\log(n^{2}))$
 
 ## Bài toán 4: [Kattis - Playlist](https://open.kattis.com/problems/playlist)
 
@@ -330,13 +334,13 @@ Tương tự [Bài toán 2](#Bài-toán-2), ta có thể ứng dụng "middle" n
 - Với mỗi $u$:
 	- Ta có tập $A$ gồm các đường đi độ dài $4$ ứng với $4$ đỉnh $1,2,3,4$ thoả mãn các màu là phân biệt và khác màu của $u$ (bằng DFS hoặc 4 vòng for từ $u$ **trong đồ thị ngược**)
 	- Ta có tập $B$ gồm các đường đi độ dài $4$ ứng với $4$ đỉnh $6,7,8,9$ thoả mãn các màu là phân biệt và khác màu của $u$ (bằng DFS hoặc 4 vòng for từ $u$)
-	- Độ phức tạp thời gian: $\mathcal{O}(40^4)$
+	- Độ phức tạp thời gian: $\mathcal{O}(40^{4})$
 - Bây giờ, để kết hợp $2$ tập, ta cần giải bài toán:
 	- Với mỗi đường đi độ dài $4$ trong $A$, đặt là $X$, ta kiểm tra xem có tồn tại đường đi độ dài $4$ trong $B$ sao cho màu của $8$ đỉnh là phân biệt.
 	- Ta có thể giải bài toán này bằng [Bao hàm - loại trừ](https://vnoi.info/wiki/translate/he/Number-Theory-7.md):
 Số đường đi độ dài $4$ trong $B$ có màu phân biệt với $X$ = $|B|$ - (số đường đi trùng ít nhất $1$ màu) + (số đường đi trùng ít nhất $2$ màu) - (số đường đi trùng ít nhất $3$ màu) + (số đường đi trùng cả $4$ màu)
-	- Độ phức tạp thời gian: $\mathcal{O}(2^4\times40^4)$
-- Độ phức tạp thời gian của thuật toán là $\mathcal{O}(N\times2^4\times40^4)$
+	- Độ phức tạp thời gian: $\mathcal{O}(2^{4}\times40^{4})$
+- Độ phức tạp thời gian của thuật toán là $\mathcal{O}(N\times2^{4}\times40^{4})$
 
 ### Cài đặt
 ```cpp

@@ -20,7 +20,7 @@ dateCreated: 2024-04-24T13:12:11.953Z
 ## Giới thiệu
 
 Lỡ một ngày bạn ngồi trong phòng thi quốc gia, bạn gặp một đề bài như sau:
-> Cho một đồ thị $n$ đỉnh $m$ cạnh ($1 \leq n, m \leq 2 \times 10^6$), cạnh thứ $i$ có trọng số là $w_i$ ($0 \leq w_i \leq 1$). Tìm đường đi ngắn nhất từ $s$ đến $t$ ($1 \leq s, t \leq n$).
+> Cho một đồ thị $n$ đỉnh $m$ cạnh ($1 \leq n, m \leq 2 \times 10^{6}$), cạnh thứ $i$ có trọng số là $w_i$ ($0 \leq w_i \leq 1$). Tìm đường đi ngắn nhất từ $s$ đến $t$ ($1 \leq s, t \leq n$).
 
 Bạn hì hục cài Dijkstra, tuy nhiên code lại chạy quá chậm để qua được giới hạn thời gian. Lúc ấy bạn mới nhớ lại blog về 0-1 BFS trên VNOI wiki, thứ mà bạn sắp đọc bây giờ.
 
@@ -46,11 +46,11 @@ Bạn hì hục cài Dijkstra, tuy nhiên code lại chạy quá chậm để qu
 
 ## Chứng minh
 
-Tính đúng đắn của 0-1 BFS có thể chứng minh như thuật toán Dijkstra. Tuy nhiên Dijkstra sử dụng cấu trúc dữ liệu hàng đợi ưu tiên để tìm đỉnh $x$ có $D_x$ nhỏ nhất trong các đỉnh với độ phức tạp $O(\log n)$ mỗi thao tác, còn 0-1 BFS tìm đỉnh này trong $O(1)$.
+Tính đúng đắn của 0-1 BFS có thể chứng minh như thuật toán Dijkstra. Tuy nhiên Dijkstra sử dụng cấu trúc dữ liệu hàng đợi ưu tiên để tìm đỉnh $x$ có $D_x$ nhỏ nhất trong các đỉnh với độ phức tạp $\mathcal{O}(\log n)$ mỗi thao tác, còn 0-1 BFS tìm đỉnh này trong $\mathcal{O}(1)$.
 
 Trong hàng đợi hai đầu, gọi $u$ là đỉnh nằm ở đầu hàng đợi, các đỉnh $v$ trong hàng đợi có $D_v$ tăng dần từ đầu đến cuối hàng đợi và $D_v$ chỉ có thể bằng $D_u$ hoặc $D_u+1$:
 
-$deque = \underbrace{u,\dots,v}_{D_v},\underbrace{m,\dots,n}_{D_v+1}$
+$\texttt{deque} = \underbrace{u,\dots,v}_{D_v},\underbrace{m,\dots,n}_{D_v+1}$
 
 Ta sẽ chứng minh điều này bằng phương pháp quy nạp:
 
@@ -60,7 +60,7 @@ Ta sẽ chứng minh điều này bằng phương pháp quy nạp:
         - Trong trường hợp đỉnh v được cập nhật lại $D_v = D_u + 1$, vì $D_u+1$ là giá trị $D$ lớn nhất trong hàng đợi nên khi đẩy vào **cuối** hàng đợi, nó vẫn sẽ thỏa mãn điều kiện sắp xếp tăng dần.
         - Trong trường hợp $D_v$ được cập nhật lại từ $D_u+1$ thành $D_u$ và đẩy lần thứ hai vào đầu hàng đợi, do ta bỏ qua lần duyệt thứ 2 của $v$ nên chứng minh giống như trường hợp đầu tiên.
 
-Từ đây ta cũng chứng minh được một đỉnh $v$ chỉ được cập nhật $D_v$ và đẩy vào hàng đợi tối đa 2 lần nên độ phức tạp sẽ tương đương thuật toán BFS là $O(|V| + |E|)$
+Từ đây ta cũng chứng minh được một đỉnh $v$ chỉ được cập nhật $D_v$ và đẩy vào hàng đợi tối đa 2 lần nên độ phức tạp sẽ tương đương thuật toán BFS là $\mathcal{O}(|V| + |E|)$
 
 ## Cài đặt
 
@@ -74,30 +74,33 @@ Từ đây ta cũng chứng minh được một đỉnh $v$ chỉ được cập
 
 ```cpp
 const int INF = 1e9;
-const int MAXN = 2e6+5;
+const int MAXN = 2e6 + 5;
 
 int n; // Số đỉnh của đồ thị
 int D[MAXN], vis[MAXN];
-vector<pair<int, int>> g[MAXN];  // first là đầu mút của cạnh, second là trọng số của cạnh 
+vector<pair<int, int>> g[MAXN]; // first là đầu mút của cạnh, second là trọng số của cạnh
 deque<int> dq;
 
-void BFS_01(int s){
-    for(int i = 1; i <= n; i++){
-        D[i] = INF;              // Khởi tạo
+void BFS_01(int s) {
+    for (int i = 1; i <= n; i++) {
+        D[i] = INF; // Khởi tạo
         vis[i] = 0;
     }
     D[s] = 0;
     dq.push_front(s);
-    while(!dq.empty()){
+    while (!dq.empty()) {
         int u = dq.front();
         dq.pop_front();
-        if(vis[u])continue;
-        vis[u] = 1;             // Đánh dấu
-        for(auto v: g[u]){                              
-            if(D[v.first] > D[u] + v.second){              //
-                D[v.first] = D[u] + v.second;              // Duyệt và sử lý các cạnh của u
-                if(v.second == 1)dq.push_back(v.first);    //
-                else dq.push_front(v.first);
+        if (vis[u])
+            continue;
+        vis[u] = 1; // Đánh dấu
+        for (auto v : g[u]) {
+            if (D[v.first] > D[u] + v.second) { //
+                D[v.first] = D[u] + v.second;   // Duyệt và sử lý các cạnh của u
+                if (v.second == 1)
+                    dq.push_back(v.first); //
+                else
+                    dq.push_front(v.first);
             }
         }
     }
@@ -109,7 +112,7 @@ Có rất ít bài toán yêu cầu bắt buộc phải sử dụng 0-1 BFS. R�
 
 ### Thuật toán Dial (Bucket Dijkstra)
 
-Ta có thể giải được bài toán tìm đường đi ngắn nhất từ một nguồn trong $O(|E| + |V| \times K)$ với $K$ là trọng số cạnh lớn nhất trong đồ thị. Ta có thể lưu $K + 1$ hàng đợi, hàng đợi thứ $i$ ban đầu lưu các đỉnh $v$ có $D_v = i$. Khi đã lấy hết đỉnh trong hàng đợi $i$, ta có thể dùng lại hàng đợi đó để lưu các đỉnh $v$ có $D_v = i + (K+1)$, rồi $i+ 2\times (K+1)$, ... Do các cạnh có trọng số không quá $K$, một đỉnh sẽ không bao giờ cập nhật vào một hàng đợi cách hàng đợi chứa đỉnh đó quá $K$, nên chỉ có tối đa $K+1$ hàng đợi không rỗng tại mỗi thời điểm.
+Ta có thể giải được bài toán tìm đường đi ngắn nhất từ một nguồn trong $\mathcal{O}(|E| + |V| \times K)$ với $K$ là trọng số cạnh lớn nhất trong đồ thị. Ta có thể lưu $K + 1$ hàng đợi, hàng đợi thứ $i$ ban đầu lưu các đỉnh $v$ có $D_v = i$. Khi đã lấy hết đỉnh trong hàng đợi $i$, ta có thể dùng lại hàng đợi đó để lưu các đỉnh $v$ có $D_v = i + (K+1)$, rồi $i+ 2\times (K+1)$, ... Do các cạnh có trọng số không quá $K$, một đỉnh sẽ không bao giờ cập nhật vào một hàng đợi cách hàng đợi chứa đỉnh đó quá $K$, nên chỉ có tối đa $K+1$ hàng đợi không rỗng tại mỗi thời điểm.
 
 ## Ví dụ
 
@@ -124,7 +127,7 @@ Do bàn phím bạn sắp hỏng nên bạn chỉ được di chuyển sang trá
 
 Biết rằng bạn đang bắt đầu ở ô $(r, c)$, hãy đếm và in ra số ô trong mê cung đến được từ ô bắt đầu.
 
-Giới hạn: $1 \leq n,m \leq 2000, 1 \leq x,y \leq 10^9, 1 \leq r \leq n, 1 \leq c \leq m$
+Giới hạn: $1 \leq n,m \leq 2000, 1 \leq x,y \leq 10^{9}, 1 \leq r \leq n, 1 \leq c \leq m$
 
 **Lời giải**
 
@@ -137,15 +140,15 @@ Gọi số lần đi sang trái là $L$, số lần đi sang phải là $R$. D�
 
 Ta coi mê cung là một đồ thị, các ô vuông chung cạnh sẽ được nối với nhau trên đồ thị, cạnh nối có trọng số là $0$ nếu lên/xuống/phải và là $1$ nếu là trái. Sau khi chạy thuật toán, với mỗi ô ta sẽ biết được số bước sang trái tối thiểu, từ đó tính được số bước phải tối thiểu và kiểm tra với điều kiện đề bài.
 
-**Độ phức tạp thời gian:** $O(n \times m)$
+**Độ phức tạp thời gian:** $\mathcal{O}(n \times m)$
 
 :::spoiler *Code mẫu*
 ```cpp=
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 2e3+5;
-const int INF = 1e9+5;
+const int MAXN = 2e3 + 5;
+const int INF = 1e9 + 5;
 
 int n, m, r, c, x, y;
 
@@ -237,21 +240,21 @@ Ta có nhận xét: Nếu tồn tại $i$ sao cho $u_{i-1} = u_i = u_{i+1}$ ho�
 
 Đáp án của bài toán là đường đi ngắn nhất từ ô $(1, 1)$ trong đồ thị $1$ đến ô $(n, m)$ trong đồ thị $1$. Ta tìm đường đi ngắn nhất bằng 0-1 BFS.
 
-**Độ phức tạp thời gian**: $O(n \times m)$
+**Độ phức tạp thời gian**: $\mathcal{O}(n \times m)$
 
 ::: spoiler *Code mẫu*
 ```cpp=
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-const int MAXN = 1e3+5;
-const int INF = 1e9+5;
+const int MAXN = 1e3 + 5;
+const int INF = 1e9 + 5;
 
-vector<pair<int, int>> g[MAXN*MAXN*2];
-int d[MAXN*MAXN*2], vis[MAXN*MAXN*2];
+vector<pair<int, int>> g[MAXN * MAXN * 2];
+int d[MAXN * MAXN * 2], vis[MAXN * MAXN * 2];
 
-int encode(int type, int i, int j) {    // mã hóa ô (i, j) của đồ thị type thành 1 số
-    return (type-1)*MAXN*MAXN + i*MAXN + j;
+int encode(int type, int i, int j) { // mã hóa ô (i, j) của đồ thị type thành 1 số
+    return (type - 1) * MAXN * MAXN + i * MAXN + j;
 }
 
 void add_edge(int a, int b, int w) {

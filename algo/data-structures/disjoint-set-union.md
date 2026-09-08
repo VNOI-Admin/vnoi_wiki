@@ -63,14 +63,16 @@ void make_set(int v) {
 }
 
 int find_set(int v) {
-    if (v == parent[v]) return v; // Trả về đỉnh v nếu như đỉnh v là gốc của cây
+    if (v == parent[v])
+        return v;               // Trả về đỉnh v nếu như đỉnh v là gốc của cây
     return find_set(parent[v]); // Đệ quy lên cha của đỉnh v
 }
 
 void union_sets(int a, int b) {
     a = find_set(a); // Tìm gốc của cây có chứa đỉnh a
     b = find_set(b); // Tìm gốc của cây có chứa đỉnh b
-    if (a != b) parent[b] = a; // Gộp hai cây nếu như hai phần tử ở hai cây khác nhau
+    if (a != b)
+        parent[b] = a; // Gộp hai cây nếu như hai phần tử ở hai cây khác nhau
 }
 ```
 
@@ -115,9 +117,11 @@ void union_sets(int a, int b) {
     a = find_set(a);
     b = find_set(b);
     if (a != b) {
-        if (rank[a] < rank[b]) swap(a, b); // Đặt biến a là gốc của cây có độ cao lớn hơn
+        if (rank[a] < rank[b])
+            swap(a, b); // Đặt biến a là gốc của cây có độ cao lớn hơn
         parent[b] = a;
-        if (rank[a] == rank[b]) rank[a]++; // Nếu như hai cây có cùng một độ cao, độ cao của cây mới sau khi gộp sẽ tăng 1
+        if (rank[a] == rank[b])
+            rank[a]++; // Nếu như hai cây có cùng một độ cao, độ cao của cây mới sau khi gộp sẽ tăng 1
     }
 }
 ```
@@ -142,9 +146,10 @@ Bên trái là cây ban đầu và bên phải là cây bị nén sau khi ta s�
 Thao tác `find_set` mới này được cài đặt như sau:
 ```cpp
 int find_set(int v) {
-    if (v == parent[v]) return v; // Trả về đỉnh v nếu như đỉnh v là gốc của cây
+    if (v == parent[v])
+        return v;                // Trả về đỉnh v nếu như đỉnh v là gốc của cây
     int p = find_set(parent[v]); // Đệ quy lên cha của đỉnh v
-    parent[v] = p; // Nén đoạn từ v lên gốc của cây
+    parent[v] = p;               // Nén đoạn từ v lên gốc của cây
     return p;
 }
 ```
@@ -168,7 +173,7 @@ Một điều đáng lưu ý là nếu như chúng ta chỉ sử dụng phương
 
 **Tối ưu gộp set theo kích cỡ**: Gọi $a$ là độ lớn của cây con có gốc là đỉnh $v$, $b$ là độ lớn của cây con có gốc là $p$ (cha của đỉnh $v$). Dễ thấy rằng $b \ge 2 \times a$ do số lượng đỉnh trong cây con gốc $p$ mà không thuộc cây con gốc $v$ lớn hơn hoặc bằng $a$. Do vậy độ sâu tối đa của cây sẽ là $\log_2{n}$.
 
-**Tối ưu gộp set theo độ cao**: Ta sẽ chứng minh một cây có độ cao là $k$ có ít nhất $2^k$ đỉnh. Có thể thấy rằng số cây có độ cao là $0$ có chính xác $1$ đỉnh. Một cây chỉ có thể có độ cao là $k$ nếu như trước đó độ cao của nó là $k - 1$ và nó được gộp với một cây khác có độ cao là $k - 1$. Vì vậy, số đỉnh trong cây có độ cao là $k$ sẽ lớn hơn hoặc bằng hai lần số đỉnh trong cây có độ cao là $k - 1$. Do đó độ cao lớn nhất có thể của cây sẽ là $\log_2{n}$.
+**Tối ưu gộp set theo độ cao**: Ta sẽ chứng minh một cây có độ cao là $k$ có ít nhất $2^{k}$ đỉnh. Có thể thấy rằng số cây có độ cao là $0$ có chính xác $1$ đỉnh. Một cây chỉ có thể có độ cao là $k$ nếu như trước đó độ cao của nó là $k - 1$ và nó được gộp với một cây khác có độ cao là $k - 1$. Vì vậy, số đỉnh trong cây có độ cao là $k$ sẽ lớn hơn hoặc bằng hai lần số đỉnh trong cây có độ cao là $k - 1$. Do đó độ cao lớn nhất có thể của cây sẽ là $\log_2{n}$.
 
 **Kết hợp hai phương pháp tối ưu**: Phần chứng minh này khá dài dòng và khó hiểu, bạn đọc có thể tìm hiểu tại [đây](http://e-maxx.ru/bookz/files/dsu/Efficiency%20of%20a%20Good%20But%20Not%20Linear%20Set%20Union%20Algorithm.%20Tarjan.pdf) hoặc [đây](https://codeforces.com/blog/entry/98275).
 
@@ -315,7 +320,7 @@ int find_next(int p) { // Trả vè thứ tự của người gần nhất về 
 
 ## Tối ưu thuật toán tìm cây khung nhỏ nhất trong đồ thị
 
-Sử dụng DSU, ta có thể tối ưu độ phức tạp của thuật toán tìm cây khung nhỏ nhất của đồ thị từ $\mathcal{O}(m \log{n} + n^2)$ xuống $\mathcal{O}(m \log{n})$.
+Sử dụng DSU, ta có thể tối ưu độ phức tạp của thuật toán tìm cây khung nhỏ nhất của đồ thị từ $\mathcal{O}(m \log{n} + n^{2})$ xuống $\mathcal{O}(m \log{n})$.
 
 Bạn đọc có thể tìm hiểu kĩ hơn ở [blog](/algo/graph-theory/minimum-spanning-tree.md) tìm cây khung nhỏ nhất trong đồ thị.
 
@@ -331,7 +336,7 @@ Cho mảng gồm $n$ số nguyên không âm $a_1, a_2, \ldots, a_n$ và một h
 
 Các phần tử sẽ lần lượt bị phá hủy theo thứ tự hoán vị trên. Sau mỗi lần một phần tử bị phá hủy, hãy in ra dãy con liên tiếp có tổng lớn nhất mà không có phần tử nào đã bị phá hủy. Tổng của một đoạn con rỗng là $0$.
 
-Giới hạn: $1\le n \le 10^5, 0 \le a_i \le 10^9$.
+Giới hạn: $1\le n \le 10^{5}, 0 \le a_i \le 10^{9}$.
 
 ### Lời giải
 
@@ -382,28 +387,33 @@ struct DSU{
 };
 
 signed main() {
-
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     cin >> n;
 
-    for (int i = 1; i <= n; i++) cin >> a[i];
-    for (int i = 1; i <= n; i++) cin >> p[i];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> p[i];
 
     DSU g(n + 5);
-    for (int i = 1; i <= n; i++) g.make_set(i);
+    for (int i = 1; i <= n; i++)
+        g.make_set(i);
     for (int i = n; i >= 1; i--) {
         flag[p[i]] = true;
 
-        if (p[i] > 1 && flag[p[i] - 1]) g.join_sets(p[i], p[i] - 1);
-        if (p[i] < n && flag[p[i] + 1]) g.join_sets(p[i], p[i] + 1);
+        if (p[i] > 1 && flag[p[i] - 1])
+            g.join_sets(p[i], p[i] - 1);
+        if (p[i] < n && flag[p[i] + 1])
+            g.join_sets(p[i], p[i] + 1);
 
         ans = max(ans, g.sum[g.find_set(p[i])]);
         res[i - 1] = ans;
     }
 
-    for (int i = 1; i <= n; i++) cout << res[i] << "\n";
-
+    for (int i = 1; i <= n; i++)
+        cout << res[i] << "\n";
 }
 ```
 
@@ -421,14 +431,15 @@ Chúng ta hoàn toàn có thể sử dụng cấu trúc dữ liệu DSU để l�
 
 ```cpp
 pair<int, int> find_set(int v) {
-    if (v == parent[v]) return {v, 0};
+    if (v == parent[v])
+        return {v, 0};
     pair<int, int> val = find_set(parent[v]);
     parent[v] = val.first;
     dist[v] = (dist[v] + val.second) % 2;
-        // độ dài từ đỉnh đến cha mới
-        // = độ dài đến đỉnh cha cũ
-        // + độ dài từ cha cũ tới cha mới (gốc của cây)
-    return {parent[a], dist[a]};
+    // độ dài từ đỉnh đến cha mới
+    // = độ dài đến đỉnh cha cũ
+    // + độ dài từ cha cũ tới cha mới (gốc của cây)
+    return {parent[v], dist[v]};
 }
 ```
 
@@ -447,14 +458,15 @@ void union_sets(int a, int b) {
     }
 
     else {
-        if (sz[a] < sz[b]) swap(a, b);
+        if (sz[a] < sz[b])
+            swap(a, b);
         parent[b] = a;
         sz[a] += sz[b];
         dist[b] = (valA.second + valB.second + 1) % 2;
-            // Độ dài từ đỉnh b tới gốc cây
-            // = Độ dài từ đỉnh a tới gốc cây ban đầu chứa a
-            // + Dộ dài từ đỉnh b tới gốc cây ban đầu chứa b
-            // + 1 (Khoảng cách giữa hai đỉnh a và b)
+        // Độ dài từ đỉnh b tới gốc cây
+        // = Độ dài từ đỉnh a tới gốc cây ban đầu chứa a
+        // + Dộ dài từ đỉnh b tới gốc cây ban đầu chứa b
+        // + 1 (Khoảng cách giữa hai đỉnh a và b)
     }
 }
 ```
@@ -481,7 +493,7 @@ Cho $q$ truy vấn, mỗi truy vấn thuộc một trong hai dạng sau:
 
 Chúng ta vẫn sẽ sử dụng cấu trúc dữ liệu DSU trong bài này, và lưu thêm một map chứa số lượng từng màu tại gốc của từng cây.
 
-Trong thao tác `union_sets`, ta sẽ chuyển lần lượt các phần tử trong map của tập hợp bé hơn vào map của tập hợp lớn hơn. Thoạt nhìn ban đầu, việc làm này có độ phức tạp tổng là $\mathcal{O}(n ^ 2)$, nhưng thực chất nó chỉ là $\mathcal{O}(n \log{n})$. Ta sẽ chứng minh tại sao.
+Trong thao tác `union_sets`, ta sẽ chuyển lần lượt các phần tử trong map của tập hợp bé hơn vào map của tập hợp lớn hơn. Thoạt nhìn ban đầu, việc làm này có độ phức tạp tổng là $\mathcal{O}(n^{2})$, nhưng thực chất nó chỉ là $\mathcal{O}(n \log{n})$. Ta sẽ chứng minh tại sao.
 
 Gọi số phần tử nằm trong hai dãy số lớn hơn và bé hơn lần lượt là $a$ và $b$. Dễ thấy được rằng $a + b \ge 2 \cdot b$, nên mỗi lần một phần tử bị di chuyển, nó sẽ bị di chuyển tới một dãy số có kích thước lớn hơn ít nhất hai lần kích thước dãy số ban đầu nó nằm trong. Vì vậy mà ta thấy rằng một phần tử chỉ bị di chuyển tối đa $\log_2{n}$ lần, qua đó mà đạt được độ phức tạp $\mathcal{O}(n \log{n})$.
 
@@ -534,25 +546,29 @@ struct DSU{
     }
 };
 
-signed main() {
-
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     cin >> n >> q;
-    for (int i = 1; i <= n; i++) cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
 
     DSU g(n + 5);
-    for (int i = 1; i <= n; i++) g.make_set(i);
+    for (int i = 1; i <= n; i++)
+        g.make_set(i);
     while (q--) {
         int op, x, y;
         cin >> op >> x >> y;
-        if (op == 1) g.union_sets(x, y);
-        else cout << g.query(x, y) << "\n";
+        if (op == 1)
+            g.union_sets(x, y);
+        else
+            cout << g.query(x, y) << "\n";
     }
 }
 ```
 
-Độ phức tạp thuật toán: $\mathcal{O}(n \log^2{n})$, có thêm một $\log$ do ta phải lưu giữ thông tin bằng cấu trúc dữ liệu map.
+Độ phức tạp thuật toán: $\mathcal{O}(n \log^{2}{n})$, có thêm một $\log$ do ta phải lưu giữ thông tin bằng cấu trúc dữ liệu map.
 
 ## Kĩ thuật DSU trên cây (Sack)
 
@@ -564,7 +580,7 @@ Cho một cây có $n$ đỉnh với gốc là đỉnh $1$, đỉnh thứ $i$ đ
 
 ### Lời giải
 
-Sử dụng ý tưởng gộp set ở phần trước, ta có thể dễ dàng đạt được độ phức tạp $\mathcal{O}(n \log^2{n} + q\log{n})$. Tuy nhiên, ta còn có thể làm tốt hơn với kĩ thuật DSU trên cây
+Sử dụng ý tưởng gộp set ở phần trước, ta có thể dễ dàng đạt được độ phức tạp $\mathcal{O}(n \log^{2}{n} + q\log{n})$. Tuy nhiên, ta còn có thể làm tốt hơn với kĩ thuật DSU trên cây
 
 Bằng cách thay đổi cách dfs, ta có thể loại bỏ một $\log$ của cấu trúc dữ liệu map trong độ phức tạp, qua đó mà đạt được độ phức tạp $\mathcal{O}(n \log{n} + q)$. Ta sẽ tham khảo đoạn code dưới đây để hiểu hơn kĩ thuật này:
 
@@ -623,27 +639,27 @@ Tuy nhiên, sự tối ưu của kỹ thuật này chính là ta có thể đả
 </center>
 <br>
 
-Ta sẽ sử dụng duy nhất một mảng để đếm số lượng từng màu trong một cây con. Bằng cách nào đó, đến cuối hàm dfs của cây con gốc $u$, ta có sẽ có mảng $cnt$ với $cnt[c]$ là số lượng đỉnh có màu $c$ trong cây con gốc $u$.
+Ta sẽ sử dụng duy nhất một mảng để đếm số lượng từng màu trong một cây con. Bằng cách nào đó, đến cuối hàm dfs của cây con gốc $u$, ta có sẽ có mảng $\texttt{cnt}$ với $\texttt{cnt}[c]$ là số lượng đỉnh có màu $c$ trong cây con gốc $u$.
 
 Do dùng chung một mảng chứ không phải lưu riêng từng cây con trong map riêng biệt, nên trước khi ta dfs xuống để giải bài toán cho các con tiếp theo, ta phải cập nhật "xóa" đi các màu của các cây con đã dfs từ trước khỏi mảng để tránh ghi đè lên đáp án. Do đó ta thấy chỉ có màu trong cây con được dfs cuối cùng là không nhất thiết phải xóa đi ngay lập tức.
 
 Gọi đỉnh $v$ có cây con lớn nhất là `bigChild`. Với ý tưởng gộp màu trong các cây con khác vào cây con `bigChild`, hay nói cách khác ta không được phép di chuyển các màu trong cây con `bigChild`, ta sẽ đảo thứ tự dfs của `bigChild` xuống cuối cùng và giữ lại các màu trong mảng mà không xóa đi. Tiếp đó ta sẽ dfs xuống các cây không phải `bigChild` chỉ để thêm lại các màu vào mảng, qua đó mà tìm được số lượng từng màu trong cây con gốc $u$. Dễ thấy bằng cách này ta đã loại bỏ hoàn toàn việc sử dụng cấu trúc dữ liệu map, qua đó mà giảm được một $\log$ trong độ phức tạp thời gian.
 
-Ta có thể thấy rõ hơn thông tin mà mảng $cnt$ lưu trữ trong quá trình sau đây:
+Ta có thể thấy rõ hơn thông tin mà mảng $\texttt{cnt}$ lưu trữ trong quá trình sau đây:
 
 | Chú thích | Minh họa |
 | -------- | -------- |
-| dfs xuống cây con $v_1$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img5.png) |
-| $v_1$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $cnt$ | ![](/uploads/disjoint-set-union_img6.png) |
-| dfs xuống cây con $v_3$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img7.png) |
-| $v_3$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $cnt$ | ![](/uploads/disjoint-set-union_img8.png) |
-| dfs xuống cây con $v_2$, lúc này trong mảng $cnt$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img9.png) |
-| $v_2$ là `bigChild`,  do đó ta giữ nguyên các màu trong cây con này trong mảng $cnt$ | ![](/uploads/disjoint-set-union_img10.png) |
-| Thêm các màu trong cây con $v_1$ vào mảng $cnt$ | ![](/uploads/disjoint-set-union_img11.png) |
-| Thêm các màu trong cây con $v_3$ vào mảng $cnt$ | ![](/uploads/disjoint-set-union_img12.png) |
-| Thêm đỉnh $u$ vào mảng $cnt$ | ![](/uploads/disjoint-set-union_img13.png) |
+| dfs xuống cây con $v_1$, lúc này trong mảng $\texttt{cnt}$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img5.png) |
+| $v_1$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img6.png) |
+| dfs xuống cây con $v_3$, lúc này trong mảng $\texttt{cnt}$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img7.png) |
+| $v_3$ không phải `bigChild`,  do đó ta xóa các màu trong cây con này ra khỏi mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img8.png) |
+| dfs xuống cây con $v_2$, lúc này trong mảng $\texttt{cnt}$ chứa các màu trong cây con này | ![](/uploads/disjoint-set-union_img9.png) |
+| $v_2$ là `bigChild`,  do đó ta giữ nguyên các màu trong cây con này trong mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img10.png) |
+| Thêm các màu trong cây con $v_1$ vào mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img11.png) |
+| Thêm các màu trong cây con $v_3$ vào mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img12.png) |
+| Thêm đỉnh $u$ vào mảng $\texttt{cnt}$ | ![](/uploads/disjoint-set-union_img13.png) |
 
-Lúc này mảng $cnt$ đã có đủ các màu trong cây con gốc $u$ và ta có thể trả lời các truy vấn của đỉnh $u$.
+Lúc này mảng $\texttt{cnt}$ đã có đủ các màu trong cây con gốc $u$ và ta có thể trả lời các truy vấn của đỉnh $u$.
 
 ### Code mẫu
 ```cpp
@@ -717,8 +733,8 @@ signed main() {
     pre_dfs(1, 0);
     dfs(1, 0);
 
-    for (int i = 1; i <= q; i++) cout << res[i] << "\n";
-
+    for (int i = 1; i <= q; i++)
+        cout << res[i] << "\n";
 }
 ```
 

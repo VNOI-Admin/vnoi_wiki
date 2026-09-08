@@ -21,7 +21,7 @@ dateCreated: 2023-12-25T11:04:29.630Z
 
 ## Bài toán
 Cho xâu $S$ có độ dài $n$. Hãy tìm tất cả các xâu con đối xứng (palindrome) trong xâu $S$.
-Thuật toán Manacher sẽ xử lý bài toán trên với độ phức tạp thời gian $O(n)$.
+Thuật toán Manacher sẽ xử lý bài toán trên với độ phức tạp thời gian $\mathcal{O}(n)$.
 
 ## Một số khái niệm và ký hiệu trong bài
 - Xâu đối xứng (palindrome) là xâu mà khi đọc ngược lại thì vẫn là chính nó, ví dụ như $tacocat$, $aaaaaaa$, $2002$
@@ -29,22 +29,22 @@ Thuật toán Manacher sẽ xử lý bài toán trên với độ phức tạp t
     - Trong xâu đối xứng có độ dài lẻ, điểm chính giữa là một chữ cái trong xâu. Ví dụ xâu $aabaa$ có điểm chính giữa là chữ $b$
     - Trong xâu đối xứng có độ dài chẵn, điểm chính giữa là khoảng trống (vị trí giữa của hai chữ cái liên tiếp). Ví dụ xâu $aabbaa$ có điểm chính giữa là khoảng trống giữa hai chữ $b$
     - Nếu điểm chính giữa của xâu $T$ nào đó là $i$, ta có thể nói xâu $T$ đối xứng qua $i$
-- $S_i$ là chữ cái thứ $i$ của xâu $S$. $S_{i...j}$ là xâu con từ vị trí thứ $i$ đến $j$ của $S$, bao gồm cả $i$ và $j$
+- $S_i$ là chữ cái thứ $i$ của xâu $S$. $S_{i\ldots j}$ là xâu con từ vị trí thứ $i$ đến $j$ của $S$, bao gồm cả $i$ và $j$
 
 ![](https://i.imgur.com/bSE3TvQ.jpg)
 
 # Thuật toán ngây thơ
 ## Sai lầm thường gặp
-Lưu ý, vì có thể có $O(n^2)$ xâu con đối xứng trong một xâu nên có thể dễ dàng lầm tưởng rằng không thể tạo ra thuật toán có độ phức tạp tốt hơn $O(n^2)$ cho bài toán này. Tuy nhiên, với một xâu đối xứng, chúng ta có các xâu con ở phía trong cũng là đối xứng.
+Lưu ý, vì có thể có $\mathcal{O}(n^{2})$ xâu con đối xứng trong một xâu nên có thể dễ dàng lầm tưởng rằng không thể tạo ra thuật toán có độ phức tạp tốt hơn $\mathcal{O}(n^{2})$ cho bài toán này. Tuy nhiên, với một xâu đối xứng, chúng ta có các xâu con ở phía trong cũng là đối xứng.
 
-Cụ thể, giả sử xâu con $S_{i...j}$ là một xâu đối xứng. Nếu $i+1 \leq j-1$ thì ta có $S_{(i+1)...(j-1)}$ cũng là một xâu đối xứng. Ví dụ, xâu $abcdcba$ đối xứng thì có thể dễ dàng thấy được rằng các xâu $bcdcb$, $cdc$ hay $d$ đều đối xứng.
+Cụ thể, giả sử xâu con $S_{i\ldots j}$ là một xâu đối xứng. Nếu $i+1 \leq j-1$ thì ta có $S_{(i+1)\ldots(j-1)}$ cũng là một xâu đối xứng. Ví dụ, xâu $abcdcba$ đối xứng thì có thể dễ dàng thấy được rằng các xâu $bcdcb$, $cdc$ hay $d$ đều đối xứng.
 
-Như vậy, với mỗi điểm chính giữa của một xâu con đối xứng $mid$, chúng ta có thể lưu lại độ dài dài nhất $d[mid]$ sao cho $S_{(mid-d)...(mid+d)}$ là một xâu đối xứng.
+Như vậy, với mỗi điểm chính giữa của một xâu con đối xứng $mid$, chúng ta có thể lưu lại độ dài dài nhất $d[mid]$ sao cho $S_{(mid-d)\ldots(mid+d)}$ là một xâu đối xứng.
 
 Điểm chính giữa là điểm mà khi đảo ngược trật tự của xâu thì vị trí của điểm này trong xâu không thay đổi. Điểm chính giữa này có thể là một chữ cái hoặc một khoảng trống, tương ứng với xâu đối xứng có độ dài lẻ hoặc chẵn.
 
 ## Thuật toán ngây thơ
-Như vậy, từ quan sát trên, chúng ta có thể ngay lập tức đưa ra thuật toán có độ phức tạp $O(n^2)$. Xét tất cả các vị trí trong xâu (một chữ cái hoặc một khoảng trống), và chạy về hai phía đến khi nào xâu không còn đối xứng nữa.
+Như vậy, từ quan sát trên, chúng ta có thể ngay lập tức đưa ra thuật toán có độ phức tạp $\mathcal{O}(n^{2})$. Xét tất cả các vị trí trong xâu (một chữ cái hoặc một khoảng trống), và chạy về hai phía đến khi nào xâu không còn đối xứng nữa.
 
 Cũng như rất nhiều thuật toán liên quan đến xâu khác như *Z* hay *KMP*, khi xử lý ở từng vị trí trên xâu, kết quả ở những vị trí trước cho ta rất nhiều dữ liệu để xử lý ở vị trí tiếp theo. Trong bài toán này, chúng ta có thể tận dụng dữ kiện xâu đối xứng như hình vẽ dưới đây.
 
@@ -53,14 +53,14 @@ $$
     \overbrace{
         S_{l}\ \ldots\
         \underbrace{
-            S_{l+i-d_[l+i]}\ \ldots\ S_{l+i}\ \ldots\ S_{l+i+d[l+i]}\
+            S_{l+i-d_{[l+i]}}\ \ldots\ S_{l+i}\ \ldots\ S_{l+i+d[l+i]}\
         }_\text{đối xứng}\
         \ldots\ S_{mid} \ldots\
         \underbrace{
             S_{r-i-d[l+i]}\ \ldots\ S_{r-i}\ \ldots\ S_{r-i+d[l+i]}\
         }_\text{đối xứng}\
         \ldots\ S_{r}\
-    }^\text{đối xứng}\
+    }^{\text{đối xứng}}\
     \ldots
 $$
 
@@ -71,7 +71,7 @@ Do $l+i$ và $r-i$ đối xứng qua $mid$ nên có thể tận dụng kết qu�
 
 ### Code mẫu
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 const int MaxN = 5e3 + 5;
@@ -125,16 +125,16 @@ Do xâu đối xứng độ dài lẻ có điểm chính giữa là một chữ 
 Chúng ta sẽ tính giá trị $d$ với tất cả các vị trí chứa các ký tự trong xâu (tìm các xâu đối xứng có độ dài lẻ) theo thứ tự lần lượt từ đầu đến cuối xâu với các bước như sau. Chúng ta sẽ đánh số các ký tự của xâu $S$ bắt đầu từ $1$.
 
 - Đặt $l=1$ và $r=0$ (chưa có xâu con đối xứng nào)
-- Duy trì giá trị $l$ và $r$ thỏa mãn xâu con từ $l$ đến $r$ là xâu đối xứng với $r$ lớn nhất đã được tìm thấy. Chúng ta luôn có $(l+r)/2 < i$ ($i$ nằm ở phía bên phải của xâu đối xứng)
+- Duy trì giá trị $l$ và $r$ thỏa mãn xâu con từ $l$ đến $r$ là xâu đối xứng với $r$ lớn nhất đã được tìm thấy. Chúng ta luôn có $\frac{l+r}{2} < i$ ($i$ nằm ở phía bên phải của xâu đối xứng)
 - Tại điểm $i$,
-    - nếu $i > r$, thì chạy trâu để tìm $d[i]$ như trong thuật toán có độ phức tạp $O(n^2)$
+    - nếu $i > r$, thì chạy trâu để tìm $d[i]$ như trong thuật toán có độ phức tạp $\mathcal{O}(n^{2})$
     - nếu $i \leq r$, ta lấy giá trị $d[l+(r-i)]$ (điểm đối xứng với $i$ qua $mid$). Tại đây, trong phần lớn trường hợp, chúng ta có thể gán luôn $d[i] = d[l+(r-i)]$. Tuy vậy, vẫn có trường hợp đặc biệt sau đây cần lưu ý (Xem hình vẽ dưới)
 
 $$
     \ldots\
     \overbrace{
         \underbrace{
-            S_{l}\ \ldots\ S_{l+(r-i)}\ \ldots\ S_{l+2*(r-i)}\
+            S_{l}\ \ldots\ S_{l+(r-i)}\ \ldots\ S_{l+2 \times (r-i)}\
         }_\text{đối xứng}\
         \underbrace{
         \ldots\ S_{mid} \ldots
@@ -142,7 +142,7 @@ $$
         \underbrace{
             S_{i-(r-i)}\ \ldots\ S_{i}\ \ldots\ S_{r}\
         }_\text{đối xứng}\
-    }^\text{đối xứng}\
+    }^{\text{đối xứng}}\
     \underbrace{
         \ldots \ldots \ldots \ldots \ldots
     }_\text{Kiểm tra tiếp}
@@ -165,13 +165,13 @@ Ký tự đặc biệt được thêm cần phải giống nhau (để đảm b�
 
 
 ## Độ phức tạp
-Ở mỗi lần tính $d[i]$, nếu $d[i] + i < r$ thì chúng ta chỉ mất $O(1)$. Tuy nhiên, nếu $d[i] + i > r$ thì chúng ta sẽ đặt lại giá trị của $r$ thành $d[i] + i$. Do $r$ không giảm và  $r \leq n$ nên tổng độ phức tạp không vượt quá $O(n)$.
+Ở mỗi lần tính $d[i]$, nếu $d[i] + i < r$ thì chúng ta chỉ mất $\mathcal{O}(1)$. Tuy nhiên, nếu $d[i] + i > r$ thì chúng ta sẽ đặt lại giá trị của $r$ thành $d[i] + i$. Do $r$ không giảm và  $r \leq n$ nên tổng độ phức tạp không vượt quá $\mathcal{O}(n)$.
 
 ## Cài đặt
 Dưới đây là code mẫu của thuật toán Manacher cho bài toán được nêu trong phần **Giới thiệu**. Các bạn có thể tự cài đặt và nộp ở link sau: [Library checker - Enumerate Palindromes](https://judge.yosupo.jp/problem/enumerate_palindromes)
 ### Code mẫu
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 const int MaxN = 5e5 + 5;
@@ -234,7 +234,7 @@ signed main() {
 
 ## Tóm tắt đề bài
 
-Cho hai số nguyên dương $n, m \leq 250$ và một ma trận kích thước $n * m$ gồm các chữ cái thường trong bảng chữ cái tiếng Anh.
+Cho hai số nguyên dương $n, m \leq 250$ và một ma trận kích thước $n \times m$ gồm các chữ cái thường trong bảng chữ cái tiếng Anh.
 
 Một ma trận con $(i_1, j_1, i_2, j_2)$ $(1 \leq i_1 \leq i_2 \leq n, 1 \leq j_1 \leq j_2 \leq m)$ là ma trận gồm các phần tử $a_{ij}$ của ma trận ban đầu sao cho $i_1 \leq i \leq i_2$ và $j_1 \leq j \leq j_2$.
 
@@ -254,11 +254,11 @@ Xác định số ma trận con **đẹp** trong ma trận đã cho.
 - Như vậy, khi đã có cách so sánh hai hàng "bằng nhau", chúng ta sẽ có thể đếm số ma trận con thỏa mãn bằng cách cố định hai cột bất kỳ và đếm số xâu đối xứng.
 - Khi đó, chúng ta có thể sử dụng thuật toán Manacher trên các hàng.
 - Lưu ý, cần đảm bảo các điều kiện về hàng có thể đối xứng.
-- Như vậy độ phức tạp là $O(n^3 * 26)$, trong đó $O(n^2)$ là số cặp cột, $O(n)$ cho thuật toán Manacher và $O(26)$ để so sánh giữa 2 hàng (26 là kích thước bảng chữ cái).
+- Như vậy độ phức tạp là $\mathcal{O}(n^{3} \times 26)$, trong đó $\mathcal{O}(n^{2})$ là số cặp cột, $\mathcal{O}(n)$ cho thuật toán Manacher và $\mathcal{O}(26)$ để so sánh giữa 2 hàng (26 là kích thước bảng chữ cái).
 
 ## Code mẫu
 ```cpp
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 const int MaxN = 255;
 int Cnt[MaxN][26];
