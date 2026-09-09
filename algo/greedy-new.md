@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-09T13:32:46.692Z
+date: 2026-09-09T13:34:42.985Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -623,9 +623,9 @@ Hàm so sánh `cmp(x, y)` (đọc là "$x$ phải đứng trước $y$" hay $x <
 2. Bắc cầu: `cmp(x, y)` và `cmp(y, z)` kéo theo `cmp(x, z)`.
 3. Quan hệ "không so sánh được" (cả `cmp(x, y)` và `cmp(y, x)` đều `false`) cũng phải thoả mãn tính chất bắc cầu: nếu có `z` sao cho cả `cmp(y, z)` và `cmp(z, y)` đều `false` thì ta cũng phải có cả `cmp(x, z)` và `cmp(z, x)` đều `false`.
 
-Điều kiện thứ ba là điều kiện quan trọng nhất. Hàm so sánh $\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$ rút thẳng từ bất đẳng thức của bài Chia vàng vi phạm đúng điều kiện này: với $(a, b) = (1, 2), (1, 12), (2, 3)$, phần tử thứ nhất và thứ hai không so sánh được, thứ hai và thứ ba không so sánh được, nhưng thứ nhất lại nhỏ hơn thứ ba. Vi phạm điều kiện trên, thuật toán có thể gây ra hành vi không xác định (undefined behavior) trong C++: `std::sort` có thể cho thứ tự sai, và trong một số cài đặt thậm chí truy cập ngoài mảng, do đó sẽ khó debug hơn bình thường. Cách phòng tránh tốt nhất là đưa hàm so sánh về dạng so sánh một khoá `f(i) < f(j)` như đã bàn ở mục Exchange Argument.
+Điều kiện thứ ba là điều kiện quan trọng nhất. Hàm so sánh $\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$ rút thẳng từ bất đẳng thức của bài Chia vàng vi phạm đúng điều kiện này: với $(a, b) = (1, 2), (1, 12), (2, 3)$, phần tử thứ nhất và thứ hai không so sánh được, thứ hai và thứ ba không so sánh được, nhưng thứ nhất lại nhỏ hơn thứ ba. Vi phạm điều kiện trên, thuật toán có thể gây ra hành vi không xác định (undefined behavior) trong C++: `std::sort` có thể cho thứ tự sai, và trong một số cài đặt thậm chí truy cập ngoài mảng, do đó có thể gây ra lỗi rất khó debug. Cách phòng tránh tốt nhất là đưa hàm so sánh về dạng so sánh một khoá `f(i) < f(j)` như đã bàn ở mục Exchange Argument.
 
-> Qua kiểm nghiệm của tác giả, khi thử trên các bộ dữ liệu nhỏ và so với vét cạn, hàm so sánh  $\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$ cho đáp án sai ở khoảng 0.2% số test -- đủ hiếm để qua được các test ví dụ sơ sài, và đủ nhiều để không qua được bộ test chính thức (vốn sẽ được sinh nhiều trường hợp hiểm). Do đó việc viết hàm so sánh sai có thể gây ra lỗi rất khó nhận ra và debug (nhất là khi bạn thi những kì thi mà phải đúng hết test trong 1 bài/subtask thì mới qua được bài/subtask đó).
+> Qua kiểm nghiệm của tác giả, khi thử trên các bộ dữ liệu nhỏ và so với vét cạn, hàm so sánh  $\max(b_{i + 1}, a_i \times b_i) \le \max(b_i, a_{i + 1} \times b_{i + 1})$ cho đáp án sai ở khoảng 0.2% số test -- đủ hiếm để qua được các test ví dụ sơ sài, và đủ nhiều để không qua được bộ test chính thức (vốn sẽ được sinh nhiều trường hợp hiểm). Do đó cài đặt hàm so sánh không hợp lệ có thể gây ra những hậu quả khó lường trong các kì thi chính thức (nhất là khi bạn thi những kì thi mà phải đúng hết test trong 1 bài/subtask thì mới qua được bài/subtask đó).
 
 ### Sử dụng STL
 
