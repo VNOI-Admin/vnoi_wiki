@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-09T13:05:47.610Z
+date: 2026-09-09T13:09:18.269Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -79,7 +79,7 @@ Quy luật tham lam đúng là làm các công việc theo thời lượng tăng
 
 ![task_schedule.png](/algo/greedy/task_schedule.png)
 
-Khi này bằng việc đảo thứ tự $X$ và $Y$, ta sẽ thiệt $b$ điểm từ $X$ nhưng sẽ được thêm $a$ điểm từ $Y$ nên tổng điểm sẽ tăng thêm $a - b > 0$, do đó đáp án sẽ tối ưu hơn. Mọi thứ tự chưa được sắp tăng dần theo thời lượng đều có một cặp công việc kề nhau như vậy, và mỗi lần đổi chỗ tổng điểm lại tăng, nên thứ tự sắp xếp đề ra là tối ưu. Ta có điều phải chứng minh.
+Khi này bằng việc đảo thứ tự $X$ và $Y$, ta sẽ thiệt $b$ điểm từ $X$ nhưng sẽ được thêm $a$ điểm từ $Y$ nên tổng điểm sẽ tăng thêm $a - b > 0$, qua đó ta nhận được kết quả tốt hơn. Mọi thứ tự công việc chưa được sắp xếp tăng dần theo thời lượng đều tồn tại ít nhất một cặp công việc kề nhau như vậy, và mỗi lần đổi chỗ như trên thì ta được kết quả tốt hơn. Qua đó ta suy ra được thứ tự sắp xếp tăng dần theo thời lượng cho kết quả tối ưu, tức điều phải chứng minh.
 
 Lập luận "chỉ cần xét hai phần tử kề nhau" này sẽ được nhắc đến kĩ hơn ở phần sau.
 :::
