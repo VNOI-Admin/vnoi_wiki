@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-09T13:05:37.135Z
+date: 2026-09-09T13:05:47.610Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -32,7 +32,7 @@ Trong bài viết này, ở mỗi mục có các phần Ví dụ và Bài tập.
 
 ## Những ý tưởng tham lam cơ bản
 
-### Nguyên lý cực hạn và cách tìm phản ví dụ
+### Nguyên lý cực hạn
 
 Đặc điểm chính của tham lam là nguyên lý cực hạn: lời giải tối ưu thường sẽ nằm ở các trường hợp biên, hoặc một nhóm nhỏ các trường hợp đặc biệt. Cách làm việc tự nhiên nhất là liệt kê một vài chiến lược ứng với các trường hợp biên đó, rồi tìm phản ví dụ để loại dần. Chiến lược nào sống sót thì ta mới tìm cách chứng minh.
 
