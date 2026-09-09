@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-09T13:26:15.624Z
+date: 2026-09-09T13:29:15.050Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -261,7 +261,7 @@ Một bài toán có tính chất **cấu trúc con tối ưu** nếu như nghi�
 
 Tham lam có thể xem như một lớp trường hợp đặc biệt của lớp các bài toán Quy hoạch động. Quy hoạch động chỉ cần tính chất cấu trúc con tối ưu: ở mỗi bước nó *giải mọi bài toán con ứng với mọi lựa chọn, rồi mới quyết định*. Tham lam ngoài điều kiện đó sử dụng thêm tính chất lựa chọn tham lam để đảo ngược thứ tự ấy: *quyết định lựa chọn trước, rồi giải đúng bài toán con ứng với lựa chọn đó*. Do đó về lý thuyết, một bài toán có thể giải được bằng tham lam cũng có thể giải được bằng quy hoạch động, nhưng không phải ngược lại. 
 
-Tính chất lựa chọn tham lam chính là mấu chốt giúp giảm không gian trạng thái của bài toán xuống đáng kể, nên một lời giải tham lam đúng sẽ có độ phức tạp thấp hơn và nhanh hơn so với lời giải quy hoạch động cho cùng một bài toán. Đối với các bài toán tối ưu tổ hợp ở mức NP-khó (như bài toán Người giao hàng), các thuật toán tham lam dù không thể đưa ra lời giải tối ưu toàn cục, nhưng cũng có thể đưa ra những xấp xỉ tốt và nhanh, có thể áp dụng trong thực tế.
+Tính chất lựa chọn tham lam chính là mấu chốt giúp giảm không gian trạng thái của bài toán xuống đáng kể, nên một lời giải tham lam đúng sẽ có độ phức tạp thấp hơn và nhanh hơn so với lời giải quy hoạch động cho cùng một bài toán.
 
 > Ví dụ, bài toán tìm đường đi ngắn nhất trên đồ thị trọng số không âm có thể giải bằng tham lam sử dụng thuật toán Dijkstra với độ phức tạp $\mathcal{O}((V + E) \log V)$, cũng như có thể giải bằng quy hoạch động sử dụng thuật toán Bellman-Ford với độ phức tạp $\mathcal{O}(E V)$. Ta biết rằng thuật toán Dijkstra sẽ luôn chạy nhanh hơn, tuy nhiên nếu đồ thị có trọng số âm thì Dijkstra sẽ không thể giải được mà phải sử dụng Bellman-Ford.
 
