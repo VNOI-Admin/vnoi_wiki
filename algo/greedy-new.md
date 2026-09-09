@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-09T13:29:15.050Z
+date: 2026-09-09T13:30:07.212Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -345,7 +345,7 @@ Trước khi vào ví dụ, ta phát biểu bổ đề mà mọi lập luận ho
 
 **Bổ đề.** Giả sử ta có một quan hệ "$x$ nên đứng trước $y$" giữa các phần tử, thoả hai điều kiện: 
 
-1. Nó là một quan hệ thứ tự hợp lệ (strict weak ordering)
+1. Nó là một quan hệ thứ tự hợp lệ (chính xác là **thứ tự yếu nghiêm ngặt**).
 2. Trong bất kỳ dãy nào, đổi chỗ hai phần tử **kề nhau** đang đứng sai thứ tự không làm đáp án xấu đi. 
 
 Khi đó dãy đã sắp xếp theo quan hệ này là tối ưu.
