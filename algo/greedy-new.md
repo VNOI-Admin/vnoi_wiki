@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-05T04:16:52.840Z
+date: 2026-09-09T13:05:37.135Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -34,7 +34,7 @@ Trong bài viết này, ở mỗi mục có các phần Ví dụ và Bài tập.
 
 ### Nguyên lý cực hạn và cách tìm phản ví dụ
 
-Đặc điểm chính của tham lam là nguyên lý cực hạn: lời giải tối ưu thường sẽ nằm ở các trường hợp biên, hoặc một nhóm nhỏ các trường hợp đặc biệt. Cách làm việc tự nhiên nhất là liệt kê một vài chiến lược ứng với các trường hợp biên đó, rồi tìm phản ví dụ để loại dần. Chiến lược nào sống sót thì ta mới ngồi xuống chứng minh.
+Đặc điểm chính của tham lam là nguyên lý cực hạn: lời giải tối ưu thường sẽ nằm ở các trường hợp biên, hoặc một nhóm nhỏ các trường hợp đặc biệt. Cách làm việc tự nhiên nhất là liệt kê một vài chiến lược ứng với các trường hợp biên đó, rồi tìm phản ví dụ để loại dần. Chiến lược nào sống sót thì ta mới tìm cách chứng minh.
 
 #### Ví dụ: [Movie Festival - CSES](https://cses.fi/problemset/task/1629)
 
