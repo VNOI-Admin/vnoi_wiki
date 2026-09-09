@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-09T13:09:54.885Z
+date: 2026-09-09T13:26:15.624Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -184,14 +184,14 @@ int main() {
 
 :::
 
-### Các bổ đề tối ưu hoá thường dùng
+### Các kết quả thường dùng
 
 #### Ví dụ: Bất đẳng thức hoán vị
 
 Cho hai dãy $a_1 \le a_2 \le \dots \le a_n$ và $b_1 \le b_2 \le \dots \le b_n$. Trong mọi cách ghép cặp $a_i$ với $b_{\sigma(i)}$ ($\sigma$ là một hoán vị), tổng $\sum a_i b_{\sigma(i)}$ lớn nhất khi ghép cùng chiều ($\sigma$ là hoán vị đồng nhất) và nhỏ nhất khi ghép ngược chiều ($a_i$ với $b_{n-i+1}$).
 
 :::spoiler Chứng minh
-Giả sử trong cách ghép có $i < j$ mà $a_i$ ghép với $b_p$, $a_j$ ghép với $b_q$ với $p > q$ (ghép chéo). Đổi lại cho $a_i$ ghép $b_q$, $a_j$ ghép $b_p$, tổng thay đổi một lượng $(a_i b_q + a_j b_p) - (a_i b_p + a_j b_q) = (a_j - a_i)(b_p - b_q) \ge 0$. Vậy mỗi khi ta tháo một cặp chéo thì tổng không giảm, và khi không còn cặp chéo nào thì ta đang ghép cùng chiều và có luôn điều phải chứng minh. Ý nhỏ nhất chứng minh tương tự.
+Giả sử trong cách ghép có $i < j$ mà $a_i$ ghép với $b_p$, $a_j$ ghép với $b_q$ với $p > q$ (ghép chéo). Đổi lại cho $a_i$ ghép $b_q$, $a_j$ ghép $b_p$, tổng thay đổi một lượng $(a_i b_q + a_j b_p) - (a_i b_p + a_j b_q) = (a_j - a_i)(b_p - b_q) \ge 0$. Vậy mỗi khi ta tháo một cặp chéo thì tổng không giảm, và khi không còn cặp chéo nào thì ta đang ghép hai dãy tăng cùng chiều và có điều phải chứng minh. Ý nhỏ nhất chứng minh tương tự.
 :::
 
 #### Ví dụ: Cực tiểu hoá tổng
@@ -255,13 +255,13 @@ $$
 
 ## Cấu trúc con tối ưu và tính chất lựa chọn tham lam
 
-Một bài toán có **cấu trúc con tối ưu** nếu như nghiệm tối ưu của nó có thể thu được từ nghiệm tối ưu của các bài toán con. Tính chất này là nền của cả quy hoạch động lẫn tham lam, nên tự nó chưa nói lên điều gì về việc tham lam có đúng hay không. Điều quyết định tính đúng đắn của thuật toán tham lam là tính chất thứ hai, **tính chất lựa chọn tham lam**: ở mỗi bước, tồn tại một nghiệm tối ưu toàn cục chứa lựa chọn tối ưu cục bộ mà ta đang định thực hiện. 
+Một bài toán có tính chất **cấu trúc con tối ưu** nếu như nghiệm tối ưu của nó có thể thu được từ nghiệm tối ưu của các bài toán con. Tính chất này là nền của cả quy hoạch động lẫn tham lam. Điều quyết định tính đúng đắn của thuật toán tham lam là tính chất thứ hai, **tính chất lựa chọn tham lam**: ở mỗi bước, tồn tại một nghiệm tối ưu toàn cục chứa lựa chọn tối ưu cục bộ mà ta đang định thực hiện. 
 
 ### Tham lam vs. quy hoạch động
 
-Hai tính chất trên cho ta một cách nhìn về quan hệ giữa tham lam và quy hoạch động. Quy hoạch động chỉ cần cấu trúc con tối ưu: ở mỗi bước nó *giải mọi bài toán con ứng với mọi lựa chọn, rồi mới quyết định*. Tham lam ngoài điều kiện đó còn cần thêm tính chất lựa chọn tham lam để đảo ngược thứ tự ấy: *quyết định lựa chọn trước, rồi giải bài toán con ứng với lựa chọn đó*. Do đó về lý thuyết, một bài toán có thể giải được bằng tham lam cũng có thể giải được bằng quy hoạch động, nhưng không phải ngược lại. 
+Tham lam có thể xem như một lớp trường hợp đặc biệt của lớp các bài toán Quy hoạch động. Quy hoạch động chỉ cần tính chất cấu trúc con tối ưu: ở mỗi bước nó *giải mọi bài toán con ứng với mọi lựa chọn, rồi mới quyết định*. Tham lam ngoài điều kiện đó sử dụng thêm tính chất lựa chọn tham lam để đảo ngược thứ tự ấy: *quyết định lựa chọn trước, rồi giải đúng bài toán con ứng với lựa chọn đó*. Do đó về lý thuyết, một bài toán có thể giải được bằng tham lam cũng có thể giải được bằng quy hoạch động, nhưng không phải ngược lại. 
 
-Tính chất lựa chọn tham lam chính là mấu chốt giúp giảm được không gian trạng thái của bài toán xuống đáng kể, nên một lời giải tham lam đúng sẽ có độ phức tạp thấp hơn và nhanh hơn so với lời giải quy hoạch động cho cùng một bài toán. Trong thực tế, có những bài toán biến thể mà chỉ cần đổi một ràng buộc nhỏ là tính chất lựa chọn tham lam biến mất, và ta buộc phải giải bằng quy hoạch động.
+Tính chất lựa chọn tham lam chính là mấu chốt giúp giảm không gian trạng thái của bài toán xuống đáng kể, nên một lời giải tham lam đúng sẽ có độ phức tạp thấp hơn và nhanh hơn so với lời giải quy hoạch động cho cùng một bài toán. Đối với các bài toán tối ưu tổ hợp ở mức NP-khó (như bài toán Người giao hàng), các thuật toán tham lam dù không thể đưa ra lời giải tối ưu toàn cục, nhưng cũng có thể đưa ra những xấp xỉ tốt và nhanh, có thể áp dụng trong thực tế.
 
 > Ví dụ, bài toán tìm đường đi ngắn nhất trên đồ thị trọng số không âm có thể giải bằng tham lam sử dụng thuật toán Dijkstra với độ phức tạp $\mathcal{O}((V + E) \log V)$, cũng như có thể giải bằng quy hoạch động sử dụng thuật toán Bellman-Ford với độ phức tạp $\mathcal{O}(E V)$. Ta biết rằng thuật toán Dijkstra sẽ luôn chạy nhanh hơn, tuy nhiên nếu đồ thị có trọng số âm thì Dijkstra sẽ không thể giải được mà phải sử dụng Bellman-Ford.
 
