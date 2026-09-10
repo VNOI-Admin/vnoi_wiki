@@ -96,7 +96,7 @@ cout << "TEST " << itest << " time: " << fixed << setprecision(10) << (time_afte
 ```
 </details>
 
-Lưu ý: Hàm $\texttt{clock}()$ trả về số tick kể từ lúc code bắt đầu chạy đến thời điểm được gọi. Do đó, để biết được số giây đã trôi qua, ta chia $\texttt{clock}()$ cho $\texttt{CLOCKS_PER_SEC}$ -- số tick trên giây.
+Lưu ý: Hàm $\texttt{clock}()$ trả về số tick kể từ lúc code bắt đầu chạy đến thời điểm được gọi. Do đó, để biết được số giây đã trôi qua, ta chia $\texttt{clock}()$ cho $\texttt{CLOCKS\_PER\_SEC}$ -- số tick trên giây.
 
 ## Ví dụ về một trình chấm
 

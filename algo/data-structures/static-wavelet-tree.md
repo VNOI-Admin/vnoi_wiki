@@ -237,16 +237,16 @@ int countEqualK(int l, int r, int K, int low, int high) {
 
 Tương tự truy vấn ở trên, ta cũng bắt đầu quá trình tìm kiếm bằng chia để trị từ nút gốc. Giả sử ta đã thu hẹp phạm vi tìm kiếm xuống một nút có miền giá trị $[\texttt{low}; \texttt{high}]$ và đoạn được truy vấn (theo chỉ số của nút này) là $[l; r]$.
 
-Gọi $\texttt{cnt_left}$ là số lượng phần tử thuộc nhánh trái nằm trong đoạn $[l; r]$. Từ dãy $B$, ta có thể xác định $\texttt{cnt_left}$ như sau:
+Gọi $\texttt{cnt\_left}$ là số lượng phần tử thuộc nhánh trái nằm trong đoạn $[l; r]$. Từ dãy $B$, ta có thể xác định $\texttt{cnt\_left}$ như sau:
 
 $$
-\texttt{cnt_left} = B_r - B_{l-1}
+\texttt{cnt\_left} = B_r - B_{l-1}
 $$
 
 
-Nếu $k \le \texttt{cnt_left}$ thì phần tử cần tìm chắc chắn nằm trong tập trái (vì toàn bộ các phần tử trong tập này đều không lớn hơn $\texttt{mid}$). Khi đó, truy vấn được chuyển tiếp xuống cây con trái với đoạn chỉ số mới $[B_{l-1} + 1; B_r]$, giữ nguyên giá trị $k$.
+Nếu $k \le \texttt{cnt\_left}$ thì phần tử cần tìm chắc chắn nằm trong tập trái (vì toàn bộ các phần tử trong tập này đều không lớn hơn $\texttt{mid}$). Khi đó, truy vấn được chuyển tiếp xuống cây con trái với đoạn chỉ số mới $[B_{l-1} + 1; B_r]$, giữ nguyên giá trị $k$.
 
-Ngược lại, nếu $k > \texttt{cnt_left}$, tức là phần tử cần tìm không nằm trong tập trái mà nằm trong tập phải. Lúc này, do đã có $\texttt{cnt_left}$ phần tử nhỏ hơn đã đi sang cây con trái nên phần tử cần tìm sẽ là phần tử nhỏ thứ $k - \texttt{cnt_left}$ ở cây con phải. Nói cách khác, truy vấn được chuyển tiếp xuống cây con phải với đoạn đoạn mới $[l - B_{l-1}; r - B_r]$, đồng thời cập nhật lại  $k \leftarrow k - \texttt{cnt_left}$.
+Ngược lại, nếu $k > \texttt{cnt\_left}$, tức là phần tử cần tìm không nằm trong tập trái mà nằm trong tập phải. Lúc này, do đã có $\texttt{cnt\_left}$ phần tử nhỏ hơn đã đi sang cây con trái nên phần tử cần tìm sẽ là phần tử nhỏ thứ $k - \texttt{cnt\_left}$ ở cây con phải. Nói cách khác, truy vấn được chuyển tiếp xuống cây con phải với đoạn đoạn mới $[l - B_{l-1}; r - B_r]$, đồng thời cập nhật lại  $k \leftarrow k - \texttt{cnt\_left}$.
 
 Quá trình này tiếp tục cho đến khi ta đi tới một nút lá, tại đó miền giá trị chỉ còn một phần tử duy nhất, và giá trị này chính là phần tử nhỏ thứ $k$ cần tìm.
 
@@ -282,7 +282,7 @@ Ta xét các trường hợp biên như sau:
 Trong các trường hợp còn lại, tức khoảng $[1; K]$ chỉ bao phủ một phần của khoảng $[\texttt{low}; \texttt{high}]$, ta đặt $\texttt{mid} = \left\lfloor \frac{\texttt{low} + \texttt{high}}{2} \right \rfloor$ và so sánh $K$ với $\texttt{mid}$ để quyết định hướng đi.
 
 - Nếu $K \le \texttt{mid}$: Các phần tử thoả mãn điều kiện $\leq K$ chỉ có thể nằm ở nhánh trái. Do đó, ta chỉ cần tiếp tục tìm kiếm trên đoạn $[B_{l-1} + 1; B_r]$ của cây con trái.
-- Nếu $K > \texttt{mid}$: Toàn bộ các phần tử rẽ sang nhánh trái đều có giá trị $\le \texttt{mid} < K$, nên chắc chắn chúng thỏa mãn điều kiện bài toán. Số lượng phần tử này chính là $\texttt{cnt_left} = B_r - B_{l-1}$. Sau đó, ta chỉ cần gọi đệ quy xuống nhánh phải với đoạn ánh xạ $[l - B_{l-1}; r - B_r]$ để tìm nốt các phần tử thỏa mãn còn lại.
+- Nếu $K > \texttt{mid}$: Toàn bộ các phần tử rẽ sang nhánh trái đều có giá trị $\le \texttt{mid} < K$, nên chắc chắn chúng thỏa mãn điều kiện bài toán. Số lượng phần tử này chính là $\texttt{cnt\_left} = B_r - B_{l-1}$. Sau đó, ta chỉ cần gọi đệ quy xuống nhánh phải với đoạn ánh xạ $[l - B_{l-1}; r - B_r]$ để tìm nốt các phần tử thỏa mãn còn lại.
 
 Với việc tính toán lượng phần tử thỏa mãn ở nhánh trái được thực hiện trong $\mathcal{O}(1)$, bằng cách luôn chỉ đi xuống nhiều nhất một cây con tại mỗi bước, thuật toán được đảm bảo chạy trong thời gian $\mathcal{O}(\log \sigma)$ \.
 
