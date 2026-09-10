@@ -16,16 +16,16 @@ Hầu hết các bạn tham gia vào các cuộc thi lập trình đều khá qu
 
 # Cập nhật từng phần tử riêng lẻ (single element modifications)
 
-Cây phân đoạn được sử dụng khi chúng ta có một mảng $A$, thực hiện các chỉnh sửa và truy vấn trên các đoạn liên tiếp. Ví dụ: ta có một mảng $A$ với $10^5$ phần tử và cần thực hiện $Q$ thao tác, mỗi thao tác thuộc 1 trong 2 loại:
+Cây phân đoạn được sử dụng khi chúng ta có một mảng $A$, thực hiện các chỉnh sửa và truy vấn trên các đoạn liên tiếp. Ví dụ: ta có một mảng $A$ với $10^{5}$ phần tử và cần thực hiện $Q$ thao tác, mỗi thao tác thuộc 1 trong 2 loại:
 
 1. Thay đổi giá trị của một phần tử: Gán $A_i = v$.
-2. Tính tổng các phần tử trên đoạn bất kì: Tính $A_l + A_{l+1} + ... + A_r$.
+2. Tính tổng các phần tử trên đoạn bất kì: Tính $A_l + A_{l+1} + \cdots + A_r$.
 
 ## Cây nhị phân hoàn chỉnh (Perfect binary tree)
 
 Ta cài đặt Segment Tree bằng một cây nhị phân hoàn chỉnh có dạng như sau:
 
-![](http://i.imgur.com/GGBmcEP.png)
+![](/uploads/translate/codeforces/Efficient-and-easy-segment-trees/GGBmcEP.png)
 
 Trong hình vẽ trên:
 
@@ -35,36 +35,41 @@ Trong hình vẽ trên:
 Giả sử độ dài của mảng là lũy thừa của 2 (như 16 trong ví dụ) thì ta được cây nhị phân hoàn chỉnh. Khi đi từ dưới lên ta ghép cặp nút có chỉ số $(2\times i,2\times i+1)$ và tổng hợp giá trị của chúng thành giá trị của nút cha có chỉ số $i$. Bằng cách này, khi tính tổng đoạn $[3,11)$, ta chỉ cần cộng giá trị tại các nút 19,5,12 và 26 (các nút được in đậm) mà không cần phải cộng cả 8 giá trị trong đoạn. Cùng xem qua cách cài đặt (C++) dưới đây:
 
 ```cpp
-const int N = 1e5;  // giới hạn của mảng
-int n;  // kích thước mảng
+#include <cstdio>
+
+const int N = 1e5; // giới hạn của mảng
+int n;             // kích thước mảng
 int t[2 * N];
 
-void build() {  // khởi tạo cây
-  for (int i = n - 1; i > 0; --i)
-    t[i] = t[i<<1] + t[i<<1|1];
+void build() { // khởi tạo cây
+    for (int i = n - 1; i > 0; --i)
+        t[i] = t[i << 1] + t[i << 1 | 1];
 }
 
-void modify(int p, int value) {  // gán giá trị tại vị trí p
-  for (t[p += n] = value; p > 1; p >>= 1)
-    t[p>>1] = t[p] + t[p^1];
+void modify(int p, int value) { // gán giá trị tại vị trí p
+    for (t[p += n] = value; p > 1; p >>= 1)
+        t[p >> 1] = t[p] + t[p ^ 1];
 }
 
-int query(int l, int r) {  // tính tổng đoạn [l, r)
-  int res = 0;
-  for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-    if (l&1) res += t[l++];
-    if (r&1) res += t[--r];
-  }
-  return res;
+int query(int l, int r) { // tính tổng đoạn [l, r)
+    int res = 0;
+    for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+        if (l & 1)
+            res += t[l++];
+        if (r & 1)
+            res += t[--r];
+    }
+    return res;
 }
 
 int main() {
-  scanf("%d", &n);
-  for (int i = 0; i < n; ++i) scanf("%d", t + n + i);
-  build();
-  modify(0, 1);
-  printf("%d\n", query(3, 11));
-  return 0;
+    scanf("%d", &n);
+    for (int i = 0; i < n; ++i)
+        scanf("%d", t + n + i);
+    build();
+    modify(0, 1);
+    printf("%d\n", query(3, 11));
+    return 0;
 }
 ```
 
@@ -73,11 +78,11 @@ int main() {
 Cùng tìm hiểu cách chương trình hoạt động một cách rất hiệu quả
 
 1. Ta có thể thấy được trong hình, các lá được lưu tại những nút liên tiếp với chỉ số bắt đầu từ $n$, phần tử thứ $i$ tương ứng nút có chỉ số là $i+n$. Do đó chúng ta có thể lưu mảng ban đầu trực tiếp vào cây đúng vị trí của từng phần tử.
-2. Trước khi thực hiện các truy vấn ta cần khởi tạo cây với độ phức tạp là $O(n)$. Vì nút cha luôn có chỉ số nhỏ hơn các con của nó nên ta chỉ cần duyệt qua các nút theo thứ tự giảm dần. Phép biến đổi bit trong *build()* tương ứng với phép tính `t[i] = t[2*i] + t[2*i+1]`. (Trong code trên dùng xử lý bit: `t[i] = t[i<<1] + t[i<<1|1]`).
-3. Thay đổi giá trị của một phần tử cũng khá đơn giản tốn thời gian tỉ lệ với độ cao của cây, độ phức tạp là $O(\log n)$. Ta chỉ cần cập nhật giá trị tại các nút cha của nút đó. Do đó chỉ cần đi lên cây biết rằng cha của nút $p$ là nút $p/2$ (hay `p>>1`). Phép `p^1` biến đổi $2\times i$ thành $2\times i+1$ hay ngược lại, đó là nút con còn lại của nút $p$.
-4. Tính tổng tốn độ phức tạp là $O(\log n)$. Để hiểu rõ hơn tính logic của thuật toán bạn có thể thử với ví dụ đoạn $[3,11)$ và thấy rằng kết quả là tổng của các nút 19, 26, 12 và 5 (theo thứ tự). Ý tưởng chung là như sau:
-  - Nếu $l$ (biên trái của đoạn) là lẻ (`if l&1`) thì $l$ là nút con phải của cha nó, cũng có nghĩa là đoạn cần truy vấn chứa nút $l$ nhưng không chứa cha nó. Do đó ta cộng `t[l]` vào kết quả và nhảy đến nút bên phải của cha nút $l$: $l=(l+1)/2$.
-  - Nếu $l$ chẵn, nó là con bên trái của cha nó và đoạn cần truy vẫn cũng chứa cha nó  (trừ khi đoạn bị giới hạn bởi biên phải), nên ta nhảy đến cha của nút $l$: $l=l/2$.
+2. Trước khi thực hiện các truy vấn ta cần khởi tạo cây với độ phức tạp là $\mathcal{O}(n)$. Vì nút cha luôn có chỉ số nhỏ hơn các con của nó nên ta chỉ cần duyệt qua các nút theo thứ tự giảm dần. Phép biến đổi bit trong *build()* tương ứng với phép tính `t[i] = t[2*i] + t[2*i+1]`. (Trong code trên dùng xử lý bit: `t[i] = t[i<<1] + t[i<<1|1]`).
+3. Thay đổi giá trị của một phần tử cũng khá đơn giản tốn thời gian tỉ lệ với độ cao của cây, độ phức tạp là $\mathcal{O}(\log n)$. Ta chỉ cần cập nhật giá trị tại các nút cha của nút đó. Do đó chỉ cần đi lên cây biết rằng cha của nút $p$ là nút $\frac{p}{2}$ (hay `p>>1`). Phép `p^1` biến đổi $2\times i$ thành $2\times i+1$ hay ngược lại, đó là nút con còn lại của nút $p$.
+4. Tính tổng tốn độ phức tạp là $\mathcal{O}(\log n)$. Để hiểu rõ hơn tính logic của thuật toán bạn có thể thử với ví dụ đoạn $[3,11)$ và thấy rằng kết quả là tổng của các nút 19, 26, 12 và 5 (theo thứ tự). Ý tưởng chung là như sau:
+  - Nếu $l$ (biên trái của đoạn) là lẻ (`if l&1`) thì $l$ là nút con phải của cha nó, cũng có nghĩa là đoạn cần truy vấn chứa nút $l$ nhưng không chứa cha nó. Do đó ta cộng `t[l]` vào kết quả và nhảy đến nút bên phải của cha nút $l$: $l=\frac{l+1}{2}$.
+  - Nếu $l$ chẵn, nó là con bên trái của cha nó và đoạn cần truy vẫn cũng chứa cha nó  (trừ khi đoạn bị giới hạn bởi biên phải), nên ta nhảy đến cha của nút $l$: $l=\frac{l}{2}$.
   - Tương tự cho biên phải.
   - Ta dừng khi 2 biên chạm nhau.
 
@@ -97,7 +102,7 @@ Phần giải thích sẽ phức tạp hơn, trước hết hãy xem qua những
 
 Bạn có thể bỏ qua đoạn giải thích này và xem code để thấy tính đúng đắn của nó. Nếu hứng thú với phần giải thích, đây là hình ảnh cây của mảng có kích thước $n=13$:
 
-![](http://imgur.com/cwKpYH1.png)
+![](/uploads/translate/codeforces/Efficient-and-easy-segment-trees/cwKpYH1.png)
 
 Nó không phải là một cây đơn lẻ nữa, nhưng là tập các cây nhị phân bao gồm:
 
@@ -136,17 +141,19 @@ Tất cả những gì chúng ta phải làm trong trường hợp này là đ�
 
 ```cpp
 void modify(int l, int r, int value) {
-  for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-    if (l&1) t[l++] += value;
-    if (r&1) t[--r] += value;
-  }
+    for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+        if (l & 1)
+            t[l++] += value;
+        if (r & 1)
+            t[--r] += value;
+    }
 }
 
 int query(int p) {
-  int res = 0;
-  for (p += n; p > 0; p >>= 1)
-    res += t[p];
-  return res;
+    int res = 0;
+    for (p += n; p > 0; p >>= 1)
+        res += t[p];
+    return res;
 }
 ```
 
@@ -154,11 +161,11 @@ Nếu sau khi thực hiện tất cả các thao tác chỉnh sửa, ta muốn t
 
 ```cpp
 void push() {
-  for (int i = 1; i < n; ++i) {
-    t[i<<1] += t[i];
-    t[i<<1|1] += t[i];
-    t[i] = 0;
-  }
+    for (int i = 1; i < n; ++i) {
+        t[i << 1] += t[i];
+        t[i << 1 | 1] += t[i];
+        t[i] = 0;
+    }
 }
 ```
 
@@ -171,18 +178,20 @@ Chúng ta thử xét phép kết hợp đơn giản nhất là phép cộng. Ph�
 Tuy nhiên, có một số trường hợp mà phép kết hợp không có tính giao hoán, ví dụ như trong bài [380C - Codeforces](http://codeforces.com/contest/380/problem/C), xem phân tích ở [Bài viết về Segment Tree](/algo/data-structures/segment-tree-extend#1-segment-tree-cổ-điển_ví-dụ-1). May mắn là cách làm của ta vẫn có thể hỗ trợ phép kết hợp trong bài trên. Ta định nghĩa cấu trúc `Node` và toán tử `+` như trong bài viết trên. Trong thủ tục *build* ta dùng toán tử `+` mới định nghĩa này. Trong *modify*, ta cần đảm bảo thứ tự đúng của các nút con, biết rằng các nút con trái có chỉ số chẵn. Khi truy vấn kết quả, ta lưu ý là các nút tương ứng với nút biên trái sẽ dịch từ trái sang phải, trong khi biên phải dịch từ phải sang trái. Đoạn code như sau:
 
 ```cpp
-void modify(int p, const Node& value) {
-  for (t[p += n] = value; p >>= 1;)
-    t[p] = t[p<<1] + t[p<<1|1];
+void modify(int p, const Node &value) {
+    for (t[p += n] = value; p >>= 1;)
+        t[p] = t[p << 1] + t[p << 1 | 1];
 }
 
 Node query(int l, int r) {
-  Node resl, resr;
-  for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-    if (l&1) resl = resl + t[l++];
-    if (r&1) resr = t[--r] + resr;
-  }
-  return resl + resr;
+    Node resl, resr;
+    for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+        if (l & 1)
+            resl = resl + t[l++];
+        if (r & 1)
+            resr = t[--r] + resr;
+    }
+    return resl + resr;
 }
 ```
 
@@ -221,50 +230,54 @@ Mời các bạn cùng xem qua những ví dụ cụ thể.
 
 ```cpp
 void apply(int p, int value) {
-  t[p] += value;
-  if (p < n)
-    d[p] += value;
+    t[p] += value;
+    if (p < n)
+        d[p] += value;
 }
 
 void build(int p) {
-  while (p > 1) {
-    p >>= 1;
-    t[p] = max(t[p<<1], t[p<<1|1]) + d[p];
-  }
+    while (p > 1) {
+        p >>= 1;
+        t[p] = max(t[p << 1], t[p << 1 | 1]) + d[p];
+    }
 }
 
 void push(int p) {
-  for (int s = h; s > 0; --s) {
-    int i = p >> s;
-    if (d[i] != 0) {
-      apply(i<<1, d[i]);
-      apply(i<<1|1, d[i]);
-      d[i] = 0;
+    for (int s = h; s > 0; --s) {
+        int i = p >> s;
+        if (d[i] != 0) {
+            apply(i << 1, d[i]);
+            apply(i << 1 | 1, d[i]);
+            d[i] = 0;
+        }
     }
-  }
 }
 
 void inc(int l, int r, int value) {
-  l += n, r += n;
-  int l0 = l, r0 = r;
-  for (; l < r; l >>= 1, r >>= 1) {
-    if (l&1) apply(l++, value);
-    if (r&1) apply(--r, value);
-  }
-  build(l0);
-  build(r0 - 1);
+    l += n, r += n;
+    int l0 = l, r0 = r;
+    for (; l < r; l >>= 1, r >>= 1) {
+        if (l & 1)
+            apply(l++, value);
+        if (r & 1)
+            apply(--r, value);
+    }
+    build(l0);
+    build(r0 - 1);
 }
 
 int query(int l, int r) {
-  l += n, r += n;
-  push(l);
-  push(r - 1);
-  int res = -2e9;
-  for (; l < r; l >>= 1, r >>= 1) {
-    if (l&1) res = max(res, t[l++]);
-    if (r&1) res = max(t[--r], res);
-  }
-  return res;
+    l += n, r += n;
+    push(l);
+    push(r - 1);
+    int res = -2e9;
+    for (; l < r; l >>= 1, r >>= 1) {
+        if (l & 1)
+            res = max(res, t[l++]);
+        if (r & 1)
+            res = max(t[--r], res);
+    }
+    return res;
 }
 ```
 
@@ -279,7 +292,7 @@ Tiếp theo là những thủ tục chính:
 1. Như đã giải thích ở trên, ta thực hiện các thay đổi vòng lặp quen thuộc để cập nhật tất cả và thêm một việc là gọi hàm *build*.
 2. Để trả lời truy vấn, ta cũng sử dụng vòng lặp như cũ, tuy nhiên trước đó cần phải đẩy các thay đổi đến những nút sẽ được sử dụng. Tương tự như *build*, như vậy là đủ để đẩy các thay đổi từ các nút cha của những nút lá ở biên.
 
-Dễ dàng nhận thấy tất cả các thao tác trên tốn độ phức tạp $O(\log n)$.
+Dễ dàng nhận thấy tất cả các thao tác trên tốn độ phức tạp $\mathcal{O}(\log n)$.
 
 Đây là trường hợp đơn giản nhất vì 2 lý do:
 
@@ -296,44 +309,49 @@ Chúng ta lại bắt đầu từ các hàm trợ giúp. Ở đây ta có nhiề
 
 ```cpp
 void calc(int p, int k) {
-  if (d[p] == 0) t[p] = t[p<<1] + t[p<<1|1];
-  else t[p] = d[p] * k;
+    if (d[p] == 0)
+        t[p] = t[p << 1] + t[p << 1 | 1];
+    else
+        t[p] = d[p] * k;
 }
 
 void apply(int p, int value, int k) {
-  t[p] = value * k;
-  if (p < n) d[p] = value;
+    t[p] = value * k;
+    if (p < n)
+        d[p] = value;
 }
 ```
 
-Đây là những hàm đơn giản có độ phức tạp $O(1)$ dùng để tính giá trị tại nút $p$ và thực hiện một thay đổi cho nút. Có 2 điều cần giải thích:
+Đây là những hàm đơn giản có độ phức tạp $\mathcal{O}(1)$ dùng để tính giá trị tại nút $p$ và thực hiện một thay đổi cho nút. Có 2 điều cần giải thích:
 
 1. Ta kiểm tra `d[p] == 0` vì 0 là một giá trị mà không bao giờ được dùng trong các thay đổi. Trong trường hợp không có giá trị nào như vậy, ta buộc phải dùng thêm mảng đánh dấu.
 2. Ta có thêm một tham số $k$, chứa độ dài của đoạn thuộc nút $p$. Tham số $k$ sẽ được giữ nguyên ý nghĩa trong cả đoạn code. Có thể nhận thấy ta không thể tính tổng nếu không có tham số này. Ta có thể tính trước giá trị $k$ cho tất cả các nút hay suy ra từ chỉ số của nút trên đường đi, nhưng ta sẽ tìm hiểu một cách khác không cần phải sử dụng thêm bộ nhớ hay tính toán.
 
-Tiếp theo ta cần chỉnh sử lại *build* và *push*. Lưu ý rằng ta đang có 2 phiên bản: một được giới thiệu trước duyệt qua toàn bộ cây trong $O(n)$, một được sử dụng trong ví dụ trước mà chỉ duyệt các nút cha của một nút là trong $O(\log n)$. Ta có thể dễ dàng tích hợp thêm các chức năng mới vào cùng một thủ tục.
+Tiếp theo ta cần chỉnh sử lại *build* và *push*. Lưu ý rằng ta đang có 2 phiên bản: một được giới thiệu trước duyệt qua toàn bộ cây trong $\mathcal{O}(n)$, một được sử dụng trong ví dụ trước mà chỉ duyệt các nút cha của một nút là trong $\mathcal{O}(\log n)$. Ta có thể dễ dàng tích hợp thêm các chức năng mới vào cùng một thủ tục.
 
 ```cpp
 void build(int l, int r) {
-  int k = 2;
-  for (l += n, r += n-1; l > 1; k <<= 1) {
-    l >>= 1, r >>= 1;
-    for (int i = r; i >= l; --i) calc(i, k);
-  }
+    int k = 2;
+    for (l += n, r += n - 1; l > 1; k <<= 1) {
+        l >>= 1, r >>= 1;
+        for (int i = r; i >= l; --i)
+            calc(i, k);
+    }
 }
 
 void push(int l, int r) {
-  int s = h, k = 1 << (h-1);
-  for (l += n, r += n-1; s > 0; --s, k >>= 1)
-    for (int i = l >> s; i <= r >> s; ++i) if (d[i] != 0) {
-      apply(i<<1, d[i], k);
-      apply(i<<1|1, d[i], k);
-      d[i] = 0;
-    }
+    int s = h, k = 1 << (h - 1);
+    for (l += n, r += n - 1; s > 0; --s, k >>= 1)
+        for (int i = l >> s; i <= r >> s; ++i)
+            if (d[i] != 0) {
+                apply(i << 1, d[i], k);
+                apply(i << 1 | 1, d[i], k);
+                d[i] = 0;
+            }
 }
 ```
 
-Cả hai thủ tục này thực hiện trên đoạn bất kỳ với đô phức tạp $O(\log n+|r-l|)$. Nếu muốn biến đổi một đoạn trên cây, ta có thể viết như sau:
+Cả hai thủ tục này thực hiện trên đoạn bất kỳ với đô phức tạp $\mathcal{O}(\log n+|r-l|)$. Nếu muốn biến đổi một đoạn trên cây, ta có thể viết như sau:
 
 ```cpp
 push(l, r);
@@ -350,27 +368,32 @@ Các thủ tục chính không thay đổi nhiều so với ví dụ trước, n
 
 ```cpp
 void modify(int l, int r, int value) {
-  if (value == 0) return;
-  push(l, l + 1);
-  push(r - 1, r);
-  int l0 = l, r0 = r, k = 1;
-  for (l += n, r += n; l < r; l >>= 1, r >>= 1, k <<= 1) {
-    if (l&1) apply(l++, value, k);
-    if (r&1) apply(--r, value, k);
-  }
-  build(l0, l0 + 1);
-  build(r0 - 1, r0);
+    if (value == 0)
+        return;
+    push(l, l + 1);
+    push(r - 1, r);
+    int l0 = l, r0 = r, k = 1;
+    for (l += n, r += n; l < r; l >>= 1, r >>= 1, k <<= 1) {
+        if (l & 1)
+            apply(l++, value, k);
+        if (r & 1)
+            apply(--r, value, k);
+    }
+    build(l0, l0 + 1);
+    build(r0 - 1, r0);
 }
 
 int query(int l, int r) {
-  push(l, l + 1);
-  push(r - 1, r);
-  int res = 0;
-  for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-    if (l&1) res += t[l++];
-    if (r&1) res += t[--r];
-  }
-  return res;
+    push(l, l + 1);
+    push(r - 1, r);
+    int res = 0;
+    for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
+        if (l & 1)
+            res += t[l++];
+        if (r & 1)
+            res += t[--r];
+    }
+    return res;
 }
 ```
 
@@ -378,28 +401,35 @@ int query(int l, int r) {
 
 ```cpp
 void modify(int l, int r, int value) {
-  if (value == 0) return;
-  push(l, l + 1);
-  push(r - 1, r);
-  bool cl = false, cr = false;
-  int k = 1;
-  for (l += n, r += n; l < r; l >>= 1, r >>= 1, k <<= 1) {
-    if (cl) calc(l - 1, k);
-    if (cr) calc(r, k);
-    if (l&1) apply(l++, value, k), cl = true;
-    if (r&1) apply(--r, value, k), cr = true;
-  }
-  for (--l; r > 0; l >>= 1, r >>= 1, k <<= 1) {
-    if (cl) calc(l, k);
-    if (cr && (!cl || l != r)) calc(r, k);
-  }
+    if (value == 0)
+        return;
+    push(l, l + 1);
+    push(r - 1, r);
+    bool cl = false, cr = false;
+    int k = 1;
+    for (l += n, r += n; l < r; l >>= 1, r >>= 1, k <<= 1) {
+        if (cl)
+            calc(l - 1, k);
+        if (cr)
+            calc(r, k);
+        if (l & 1)
+            apply(l++, value, k), cl = true;
+        if (r & 1)
+            apply(--r, value, k), cr = true;
+    }
+    for (--l; r > 0; l >>= 1, r >>= 1, k <<= 1) {
+        if (cl)
+            calc(l, k);
+        if (cr && (!cl || l != r))
+            calc(r, k);
+    }
 }
 ```
 
 Biến boolean dùng để đánh dấu xem ta đã thực hiện biến đổi nào ở bên trái và ở bên phải. Xem một ví dụ:
 <center>
   
-![](http://i.imgur.com/CG6aftV.png)
+![](/uploads/translate/codeforces/Efficient-and-easy-segment-trees/CG6aftV.png)
  </center>
 
 Gọi *modify* trên $[4,13)$:

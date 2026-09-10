@@ -40,15 +40,16 @@ $$
 
 ### Các lời giải vét cạn
 
-Đối với phương pháp vét cạn, chúng ta có thể duyệt từng tập $S$ rồi từng tập $T$ và kiểm tra xem $T$ có phải tập con của $S$ hay không, cách làm này tốn độ phức tạp $\mathcal{O}(2^n \cdot 2^n) = \mathcal{O}(4^n)$.
+Đối với phương pháp vét cạn, chúng ta có thể duyệt từng tập $S$ rồi từng tập $T$ và kiểm tra xem $T$ có phải tập con của $S$ hay không, cách làm này tốn độ phức tạp $\mathcal{O}(2^{n} \cdot 2^{n}) = \mathcal{O}(4^{n})$.
 
-Ngoài ra, có thể tối ưu một chút bằng cách với mỗi tập $S$, ta chỉ duyệt đúng các tập $T$ là tập con của $S$ với [phương pháp duyệt tập con](https://cp-algorithms.com/algebra/all-submasks.html). Lúc này, mỗi bit trong bitmask có $3$ trạng thái: bit tắt ở tập cha, bit bật ở tập cha nhưng không được bật trong tập con, bit bật trong cả tập cha và tập con. Do đó, độ phức tạp thời gian là $\mathcal{O}(3^n)$.
+Ngoài ra, có thể tối ưu một chút bằng cách với mỗi tập $S$, ta chỉ duyệt đúng các tập $T$ là tập con của $S$ với [phương pháp duyệt tập con](https://cp-algorithms.com/algebra/all-submasks.html). Lúc này, mỗi bit trong bitmask có $3$ trạng thái: bit tắt ở tập cha, bit bật ở tập cha nhưng không được bật trong tập con, bit bật trong cả tập cha và tập con. Do đó, độ phức tạp thời gian là $\mathcal{O}(3^{n})$.
 
 :::spoiler Code tham khảo
 ```cpp=
 fill(f, f + (1 << n), a[0]); // do phương pháp duyệt tập con bỏ qua tập rỗng
 for (int mask = 0; mask < (1 << n); mask++) {
-    for (int sub = mask; sub; sub = (sub - 1) & mask) f[mask] += a[sub];
+    for (int sub = mask; sub; sub = (sub - 1) & mask)
+        f[mask] += a[sub];
 }
 ```
 :::
@@ -92,12 +93,12 @@ $$
 #### Cải tiến ý tưởng
 
 Tuy nhiên, cách làm này vẫn còn 2 điểm yếu lớn:
-- Độ phức tạp của chúng ta vẫn là $\mathcal{O}(3^n)$, thậm chí hằng số còn lớn hơn cách duyệt trâu.
+- Độ phức tạp của chúng ta vẫn là $\mathcal{O}(3^{n})$, thậm chí hằng số còn lớn hơn cách duyệt trâu.
 - Việc biểu diễn các pattern dưới dạng biểu diễn tam phân rất rắc rối.
 
 Để khắc phục điều này, khi truy hồi thay vì chọn dấu $\texttt{?}$ bất kì, ta quy ước chọn dấu $\texttt{?}$ bên trái nhất (chỉ số cao nhất). Khi đó, ta chỉ cần xét các pattern mà các giá trị $\texttt{1}$ và $\texttt{?}$ nằm ở hai bên của pattern.
 
-![mask example recolored](/algo/dp_/sos/dpsos1.png)
+![mask example recolored](/uploads/algo/dp/dp-sos-1/dpsos1.png)
 
 :::info
 Ta lưu thêm một biến $k$ cho biết vị trí tách phần chứa $\texttt{1}$ và phần chứa $\texttt{?}$ (giá trị $\texttt{0}$ xuất hiện trong cả hai phần). Lúc này, để biểu diễn một pattern, ta chỉ cần một cặp bitmask và số nguyên $(\texttt{mask}, k)$:
@@ -144,15 +145,15 @@ $$
 
 Sau đây là cây biểu diễn các trạng thái mà ta sẽ gọi khi tính $f(\texttt{1011})$:
 
-![sos tree recolored](/algo/dp_/sos/dpsos2.png)
+![sos tree recolored](/uploads/algo/dp/dp-sos-1/dpsos2.png)
 
 Lưu ý, khi vẽ hết các trạng thái của Quy hoạch động ra, đồ thị không còn là cây nữa mà là một đồ thị có hướng không chu trình (DAG).
 
 :::success
-Có tổng cộng là $2^n \cdot (n + 1)$ trạng thái Quy hoạch động, mỗi trạng thái được truy hồi trong $\mathcal{O}(1)$. Như vậy, ta đã có thuật toán Quy hoạch động Sum over Subsets có độ phức tạp:
+Có tổng cộng là $2^{n} \cdot (n + 1)$ trạng thái Quy hoạch động, mỗi trạng thái được truy hồi trong $\mathcal{O}(1)$. Như vậy, ta đã có thuật toán Quy hoạch động Sum over Subsets có độ phức tạp:
 
-- **Thời gian:** $\mathcal{O}(2^n \cdot n)$.
-- **Bộ nhớ:** $\mathcal{O}(2^n)$ hoặc $\mathcal{O}(2^n \cdot n)$ tùy cách cài đặt.
+- **Thời gian:** $\mathcal{O}(2^{n} \cdot n)$.
+- **Bộ nhớ:** $\mathcal{O}(2^{n})$ hoặc $\mathcal{O}(2^{n} \cdot n)$ tùy cách cài đặt.
 :::
 
 ### Cài đặt
@@ -169,7 +170,8 @@ for (int mask = 0; mask < (1 << n); mask++) {
     for (int k = 1; k <= n; k++) {
         if (mask & (1 << (k - 1)))
             dp[mask][k] = dp[mask ^ (1 << (k - 1))][k - 1] + dp[mask][k - 1];
-        else dp[mask][k] = dp[mask][k - 1];
+        else
+            dp[mask][k] = dp[mask][k - 1];
     }
     f[mask] = dp[mask][n];
 }
@@ -177,27 +179,30 @@ for (int mask = 0; mask < (1 << n); mask++) {
 
 Ưu điểm của cách cài đặt này là khi bắt đầu tính cho một $\texttt{mask}$ bất kì, ta đã có kết quả của mọi trạng thái liên quan đến sub-masks của $\texttt{mask}$, do đó, cách này còn được gọi là "online" DP SoS. Điều này vô cùng hữu ích đối với những bài DP SoS có công thức tự gọi lại chính nó.
 
-Tuy nhiên, cách làm này không thể tối ưu bộ nhớ xuống $\mathcal{O}(2^n)$ được.
+Tuy nhiên, cách làm này không thể tối ưu bộ nhớ xuống $\mathcal{O}(2^{n})$ được.
 
 #### Cách 2
 
 Ta sẽ duyệt theo biến $k$ trước:
 
 ```cpp=
-for (int mask = 0; mask < (1 << n); mask++) dp[mask][0] = a[mask]; // trường hợp cơ sở
+for (int mask = 0; mask < (1 << n); mask++)
+    dp[mask][0] = a[mask]; // trường hợp cơ sở
 for (int k = 1; k <= n; k++) {
     for (int mask = 0; mask < (1 << n); mask++) {
         if (mask & (1 << (k - 1)))
             dp[mask][k] = dp[mask ^ (1 << (k - 1))][k - 1] + dp[mask][k - 1];
-        else dp[mask][k] = dp[mask][k - 1];
+        else
+            dp[mask][k] = dp[mask][k - 1];
     }
 }
-for (int mask = 0; mask < (1 << n); mask++) f[mask] = dp[mask][n];
+for (int mask = 0; mask < (1 << n); mask++)
+    f[mask] = dp[mask][n];
 ```
 
 Với cách này, tất cả các giá trị $f(\texttt{mask})$ sẽ được đồng loạt tính xong ở vòng cuối (khi $k = n$). Do đó, giả sử trong quá trình tính $f(\texttt{mask})$, ta cần biết $f(\texttt{submask})$ thì cách làm này không phù hợp.
 
-Bù lại, từ cách cài đặt này, ta có thể tối ưu bộ nhớ xuống $\mathcal{O}(2^n)$ và rút gọn được phần cài đặt xuống rất ngắn. Do đó, nhìn chung, cách làm này phổ biến hơn cách 1.
+Bù lại, từ cách cài đặt này, ta có thể tối ưu bộ nhớ xuống $\mathcal{O}(2^{n})$ và rút gọn được phần cài đặt xuống rất ngắn. Do đó, nhìn chung, cách làm này phổ biến hơn cách 1.
 
 #### Tối ưu bộ nhớ
 
@@ -206,7 +211,8 @@ Bù lại, từ cách cài đặt này, ta có thể tối ưu bộ nhớ xuốn
 ```cpp=
 for (int k = 1; k <= n; k++)
     for (int mask = (1 << n) - 1; mask >= 0; mask--)
-        if (mask & (1 << (k - 1))) dp[mask] += dp[mask ^ (1 << (k - 1))];
+        if (mask & (1 << (k - 1)))
+            dp[mask] += dp[mask ^ (1 << (k - 1))];
 ```
 
 Để cài đặt ngắn gọn hơn nữa, ta còn có thể đưa ra nhận xét rằng đối với DP SoS, việc duyệt các mask từ nhỏ đến lớn cũng không làm sai kết quả. Hơn nữa, vì không còn cần phải đánh số dòng trên bảng QHĐ, ta có thể duyệt $k$ từ $0$ đến $n - 1$ và coi trường hợp cơ sở là $k = -1$, sẽ thuật tiện hơn cho việc xử lý bitmask. Đến đây, ta đã có code DP SoS rất ngắn, dễ cài đặt, tối ưu bộ nhớ và hằng số thấp:
@@ -214,7 +220,8 @@ for (int k = 1; k <= n; k++)
 ```cpp=
 for (int k = 0; k < n; k++)
     for (int mask = 0; mask < (1 << n); mask++)
-        if (mask & (1 << k)) dp[mask] += dp[mask ^ (1 << k)];
+        if (mask & (1 << k))
+            dp[mask] += dp[mask ^ (1 << k)];
 ```
 
 :::spoiler Tại sao có thể duyệt các mask từ nhỏ đến lớn?
@@ -240,7 +247,7 @@ $$
 
 ### Bài toán ngược
 
-Cho trước các giá trị của hàm $f(S)$. Khôi phục mảng $a$ ban đầu, nói cách khác, tìm mảng $a$ gồm $2^n$ phần tử sao cho $f(S) = \sum_{T \subseteq S} a[T]$.
+Cho trước các giá trị của hàm $f(S)$. Khôi phục mảng $a$ ban đầu, nói cách khác, tìm mảng $a$ gồm $2^{n}$ phần tử sao cho $f(S) = \sum_{T \subseteq S} a[T]$.
 
 #### Công thức truy hồi
 
@@ -263,7 +270,8 @@ for (int mask = 0; mask < (1 << n); mask++) {
     for (int k = n - 1; k >= 0; k--) {
         if (mask & (1 << k))
             dp[mask][k] = dp[mask][k + 1] - dp[mask ^ (1 << k)][k];
-        else dp[mask][k] = dp[mask][k + 1];
+        else
+            dp[mask][k] = dp[mask][k + 1];
     }
 }
 ```
@@ -277,7 +285,8 @@ Tương tự bài toán gốc, ta cũng có thể tối ưu bộ nhớ.
 ```cpp=
 for (int k = n - 1; k >= 0; k--)
     for (int mask = 0; mask < (1 << n); mask++)
-        if (mask & (1 << k)) sos[mask] -= sos[mask ^ (1 << k)];
+        if (mask & (1 << k))
+            sos[mask] -= sos[mask ^ (1 << k)];
 ```
 :::
 
@@ -297,7 +306,7 @@ $$
 \texttt{union}[S] = \sum_{T \subseteq S} \texttt{intersect}[T] \cdot (-1)^{|T| + 1}
 $$
 
-Ta có thể áp dụng DP SoS để tính mọi giá trị $\texttt{union}[S]$ trong $\mathcal{O}(2^n \cdot n)$.
+Ta có thể áp dụng DP SoS để tính mọi giá trị $\texttt{union}[S]$ trong $\mathcal{O}(2^{n} \cdot n)$.
 
 :::spoiler Code tham khảo
 ```cpp=
@@ -306,7 +315,8 @@ for (int mask = 0; mask < (1 << n); mask++)
 
 for (int k = 0; k < n; k++)
     for (int mask = 0; mask < (1 << n); mask++)
-        if (mask & (1 << k)) sos[mask] += sos[mask ^ (1 << k)];
+        if (mask & (1 << k))
+            sos[mask] += sos[mask ^ (1 << k)];
 ```
 
 Ở cuối chương trình, mảng `sos` chứa các giá trị của mảng $\texttt{union}[]$.
@@ -353,7 +363,7 @@ $$
 
 $$
 \begin{align*}
-\delta &= \sum_{0 \leq k \leq |S| - |T|} \binom{|S| - |T|}{k} \cdot (-1)^k \cdot \underbrace{(1)^{|S| - |T| - k}}_\text{optional} \\
+\delta &= \sum_{0 \leq k \leq |S| - |T|} \binom{|S| - |T|}{k} \cdot (-1)^{k} \cdot \underbrace{(1)^{|S| - |T| - k}}_\text{optional} \\
 &= (-1 + 1)^{|S| - |T|} \\
 &= 0
 \end{align*}
@@ -368,7 +378,7 @@ $$
 a[S] = \sum_{T \subseteq S} f(T) \cdot (-1)^{|T| + |S|} = \left( \sum_{T \subseteq S} f(T) \cdot (-1)^{|T|} \right) \cdot (-1)^{|S|}
 $$
 
-Sau khi biến đổi, từng số hạng trong tổng đã độc lập theo $S, T$, do đó, ta có thể áp dụng DP SoS để tính nhanh $\sum_{T \subseteq S} f(T) \cdot (-1)^{|T|}$ rồi nhân thêm $(-1)^{|S|}$ để được $a[S]$ trong $\mathcal{O}(2^n \cdot n)$.
+Sau khi biến đổi, từng số hạng trong tổng đã độc lập theo $S, T$, do đó, ta có thể áp dụng DP SoS để tính nhanh $\sum_{T \subseteq S} f(T) \cdot (-1)^{|T|}$ rồi nhân thêm $(-1)^{|S|}$ để được $a[S]$ trong $\mathcal{O}(2^{n} \cdot n)$.
 
 :::spoiler Code tham khảo
 ```cpp=
@@ -377,7 +387,8 @@ for (int mask = 0; mask < (1 << n); mask++)
 
 for (int k = 0; k < n; k++)
     for (int mask = 0; mask < (1 << n); mask++)
-        if (mask & (1 << k)) sos[mask] += sos[mask ^ (1 << k)];
+        if (mask & (1 << k))
+            sos[mask] += sos[mask ^ (1 << k)];
 
 for (int mask = 0; mask < (1 << n); mask++)
     a[mask] = sos[mask] * (__builtin_parity(mask) ? -1 : 1);
@@ -430,8 +441,8 @@ for (int mask = 0; mask < (1 << n); mask++) {
         if (mask & (1 << (k - 1))) {
             int sub = mask ^ (1 << (k - 1));
             dp[mask][k] = dp[mask][k - 1] + dp[sub][k - 1] + f[sub];
-        }
-        else dp[mask][k] = dp[mask][k - 1];
+        } else
+            dp[mask][k] = dp[mask][k - 1];
     }
     f[mask] = h(dp[mask][n]) + a[mask]; // tính f
 }
@@ -466,17 +477,18 @@ for (int mask = 0; mask < (1 << n); mask++) {
         if (mask & (1 << (k - 1))) { // truy hồi theo kiểu proper subset
             int sub = mask ^ (1 << (k - 1));
             dpG[mask][k] = dpG[mask][k - 1] + dpG[sub][k - 1] + g[sub];
-        }
-        else dpG[mask][k] = dpG[mask][k - 1];
+        } else
+            dpG[mask][k] = dpG[mask][k - 1];
     }
     f[mask] = h1(dpG[mask][n]) + a[mask];
-    
+
     // tính dpF và g
     dpF[mask][0] = f[mask];
     for (int k = 1; k <= n; k++) {
         if (mask & (1 << (k - 1))) // truy hồi theo kiểu subset
             dpF[mask][k] = dpF[mask][k - 1] + dpF[mask ^ (1 << (k - 1))][k - 1];
-        else dpF[mask][k] = dpF[mask][k - 1];
+        else
+            dpF[mask][k] = dpF[mask][k - 1];
     }
     g[mask] = h2(dpF[mask][n]) + b[mask];
 }
@@ -501,8 +513,8 @@ Cho một danh sách $n$ số nguyên, với mọi số trong danh sách, gọi 
 
 #### Giới hạn
 
-- $1 \leq n \leq 2 \cdot 10^5$.
-- $1 \leq x_i \leq 10^6$.
+- $1 \leq n \leq 2 \cdot 10^{5}$.
+- $1 \leq x_i \leq 10^{6}$.
 
 #### Ý tưởng
 
@@ -537,12 +549,12 @@ using namespace std;
 const int full = (1 << 20) - 1;
 int a[1 << 20], sosSub[1 << 20], sosSup[1 << 20];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n; cin >> n;
+    int n;
+    cin >> n;
     for (int i = 0; i < n; i++) {
         cin >> a[i];
         sosSub[a[i]]++, sosSup[a[i]]++;
@@ -550,8 +562,10 @@ int main()
 
     for (int k = 0; k < 20; k++) {
         for (int mask = 0; mask < (1 << 20); mask++) {
-            if (mask & (1 << k)) sosSub[mask] += sosSub[mask ^ (1 << k)];
-            else sosSup[mask] += sosSup[mask ^ (1 << k)];
+            if (mask & (1 << k))
+                sosSub[mask] += sosSub[mask ^ (1 << k)];
+            else
+                sosSup[mask] += sosSup[mask ^ (1 << k)];
         }
     }
 
@@ -575,8 +589,8 @@ $$
 
 #### Giới hạn
 
-- $3 \leq n \leq 10^6$.
-- $0 \leq a_i \leq 2 \cdot 10^6$.
+- $3 \leq n \leq 10^{6}$.
+- $0 \leq a_i \leq 2 \cdot 10^{6}$.
 
 #### Ý tưởng
 
@@ -589,7 +603,7 @@ Bên cạnh việc sử dụng trong các bài toán tìm kiếm nhị phân tru
 Thuật toán này dựa trên ý tưởng tham lam tương tự thuật toán [Walk on Trie](https://wiki.vnoi.info/vi/algo/string/trie#xử-lí-truy-vấn-tìm-xor-lớn-nhất-với-giá-trị-được-cho) đó là thử bật các bit của đáp án theo thứ tự từ lớn đến bé. Ta có thể đưa ra nhận xét là việc bật bit thứ $i$ và tắt các bit từ $0$ đến $i - 1$ vẫn cho ra kết quả lớn hơn việc tắt bit thứ $i$ và bật tất cả các bit từ $0$ đến $i - 1$. Nói cách khác:
 
 $$
-2^i > \sum_{0 \leq j < i} 2^j
+2^{i} > \sum_{0 \leq j < i} 2^{j}
 $$
 
 Nhìn chung, các thuật toán tìm kiếm nhị phân trên bit có mô hình cài đặt như sau:
@@ -597,7 +611,8 @@ Nhìn chung, các thuật toán tìm kiếm nhị phân trên bit có mô hình 
 ```cpp!
 int ans = 0;
 for (int mask = (1 << B); mask; mask >>= 1) {
-    if (f(ans | mask)) ans |= mask;
+    if (f(ans | mask))
+        ans |= mask;
 }
 ```
 
@@ -619,30 +634,35 @@ using namespace std;
 
 struct helper {
     int best, secBest;
-    helper() : best(0), secBest(0) {}
-
-    void push (int cur) {
-        if (cur > best) secBest = best, best = cur;
-        else secBest = max(secBest, cur);
+    helper() : best(0), secBest(0) {
     }
 
-    void push (const helper &o) {
-        if (best >= o.best) secBest = max(secBest, o.best);
-        else secBest = max(best, o.secBest), best = o.best;
+    void push(int cur) {
+        if (cur > best)
+            secBest = best, best = cur;
+        else
+            secBest = max(secBest, cur);
+    }
+
+    void push(const helper &o) {
+        if (best >= o.best)
+            secBest = max(secBest, o.best);
+        else
+            secBest = max(best, o.secBest), best = o.best;
     }
 } sos[1 << 21];
 int a[1 << 20], n;
 
-bool ok (int mask) {
+bool ok(int mask) {
     for (int i = 1; i <= n - 2; i++) {
         int miss = mask ^ (mask & a[i]);
-        if (i < sos[miss].secBest) return 1;
+        if (i < sos[miss].secBest)
+            return 1;
     }
     return 0;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
@@ -654,11 +674,13 @@ int main()
 
     for (int k = 0; k < 21; k++)
         for (int mask = 0; mask < (1 << 21); mask++)
-            if (!(mask & (1 << k))) sos[mask].push(sos[mask ^ (1 << k)]);
+            if (!(mask & (1 << k)))
+                sos[mask].push(sos[mask ^ (1 << k)]);
 
     int ans = 0;
     for (int mask = 1 << 20; mask > 0; mask >>= 1)
-        if (ok(ans | mask)) ans |= mask;
+        if (ok(ans | mask))
+            ans |= mask;
     cout << ans;
 
     return 0;
@@ -674,12 +696,12 @@ Cho dãy $a$ gồm $n$ phần tử và ba số nguyên $k, L, R$. Đếm số d�
 
 - Gọi $v$ là bitwise OR của các số trong dãy con thì $L \leq v \leq R$ và $3 \mid v$.
 
-In ra đáp án modulo $10^9 + 7$.
+In ra đáp án modulo $10^{9} + 7$.
 
 #### Giới hạn
 
-- $1 \leq k \leq n \leq 10^6$.
-- $0 \leq L \leq R \leq 10^6$.
+- $1 \leq k \leq n \leq 10^{6}$.
+- $0 \leq L \leq R \leq 10^{6}$.
 
 #### Ý tưởng
 
@@ -693,7 +715,7 @@ $$
 \texttt{sub}[S] =
 \begin{cases}
 0 & f(S) < k \\
-C_{f(S)}^k & f(S) \geq k \\
+C_{f(S)}^{k} & f(S) \geq k \\
 \end{cases}
 $$
 
@@ -715,59 +737,74 @@ const int MOD = 1e9 + 7;
 const int mn = 1e6 + 6;
 int fact[mn], ifac[mn], sos[1 << 20];
 
-int add (int a, int b) { return a + b - (a + b < MOD ? 0 : MOD); }
-int sub (int a, int b) { return a - b + (a - b >= 0 ? 0 : MOD); }
-int mul (int a, int b) { return 1LL * a * b % MOD; }
+int add(int a, int b) {
+    return a + b - (a + b < MOD ? 0 : MOD);
+}
+int sub(int a, int b) {
+    return a - b + (a - b >= 0 ? 0 : MOD);
+}
+int mul(int a, int b) {
+    return 1LL * a * b % MOD;
+}
 
-int binpow (int a, int b = MOD - 2) {
+int binpow(int a, int b = MOD - 2) {
     int ans = 1;
     for (; b; b >>= 1) {
-        if (b & 1) ans = mul(ans, a);
+        if (b & 1)
+            ans = mul(ans, a);
         a = mul(a, a);
     }
     return ans;
 }
 
-int C (int n, int k) {
-    if (n < k) return 0;
+int C(int n, int k) {
+    if (n < k)
+        return 0;
     int ans = mul(fact[n], ifac[k]);
     return mul(ans, ifac[n - k]);
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     // tiền xử lý của tổ hợp
     fact[0] = 1;
-    for (int i = 1; i < mn; i++) fact[i] = mul(fact[i - 1], i);
+    for (int i = 1; i < mn; i++)
+        fact[i] = mul(fact[i - 1], i);
     ifac[mn - 1] = binpow(fact[mn - 1]);
-    for (int i = mn - 2; i >= 0; i--) ifac[i] = mul(ifac[i + 1], i + 1);
+    for (int i = mn - 2; i >= 0; i--)
+        ifac[i] = mul(ifac[i + 1], i + 1);
 
     // nhập dữ liệu
-    int n, k, L, R; cin >> n >> k >> L >> R;
+    int n, k, L, R;
+    cin >> n >> k >> L >> R;
     for (int i = 0; i < n; i++) {
-        int a; cin >> a;
+        int a;
+        cin >> a;
         sos[a]++;
     }
 
     // tính f bằng DP SoS truyền thống
     for (int k = 0; k < 20; k++)
         for (int mask = 0; mask < (1 << 20); mask++)
-            if (mask & (1 << k)) sos[mask] += sos[mask ^ (1 << k)];
+            if (mask & (1 << k))
+                sos[mask] += sos[mask ^ (1 << k)];
 
     // tính sub bằng tổ hợp
-    for (int mask = 0; mask < (1 << 20); mask++) sos[mask] = C(sos[mask], k);
+    for (int mask = 0; mask < (1 << 20); mask++)
+        sos[mask] = C(sos[mask], k);
 
     // tính count bằng DP SoS ngược
     for (int k = 19; k >= 0; k--)
         for (int mask = 0; mask < (1 << 20); mask++)
-            if (mask & (1 << k)) sos[mask] = sub(sos[mask], sos[mask ^ (1 << k)]);
+            if (mask & (1 << k))
+                sos[mask] = sub(sos[mask], sos[mask ^ (1 << k)]);
 
     // lấy đáp án
     int ans = 0;
-    for (int mask = 3 * (L / 3 + (L % 3 ? 1 : 0)); mask <= R; mask += 3) ans = add(ans, sos[mask]);
+    for (int mask = 3 * (L / 3 + (L % 3 ? 1 : 0)); mask <= R; mask += 3)
+        ans = add(ans, sos[mask]);
     cout << ans;
 
     return 0;
@@ -779,12 +816,12 @@ int main()
 
 [Link đề gốc](https://oj.uz/problem/view/JOI18_snake_escaping)
 
-Cho dãy $a$ gồm $2^L$ số nguyên tương ứng giá trị của tập con của $\{0, 1, \dots, L - 1\}$ và $Q$ truy vấn. Với mỗi truy vấn, cho xâu độ dài $L$ là pattern gồm một trong ba ký tự $\texttt{0}, \texttt{1}, \texttt{?}$, tính tổng giá trị tương ứng của các tập thỏa pattern được cho.
+Cho dãy $a$ gồm $2^{L}$ số nguyên tương ứng giá trị của tập con của $\{0, 1, \dots, L - 1\}$ và $Q$ truy vấn. Với mỗi truy vấn, cho xâu độ dài $L$ là pattern gồm một trong ba ký tự $\texttt{0}, \texttt{1}, \texttt{?}$, tính tổng giá trị tương ứng của các tập thỏa pattern được cho.
 
 #### Giới hạn
 
 - $1 \leq L \leq 20$.
-- $1 \leq Q \leq 10^6$.
+- $1 \leq Q \leq 10^{6}$.
 - $0 \leq a_i \leq 9$.
 
 #### Ý tưởng
@@ -826,8 +863,8 @@ $$
 
 #### Độ phức tạp
 
-- Độ phức tạp thời gian: $\mathcal{O} \left(2^L \cdot L + Q \cdot 2^{\min(c_\texttt{0}, c_\texttt{1}, c_\texttt{?})} \right)$.
-- Độ phức tạp bộ nhớ: $\mathcal{O}(2^L)$.
+- Độ phức tạp thời gian: $\mathcal{O} \left(2^{L} \cdot L + Q \cdot 2^{\min(c_\texttt{0}, c_\texttt{1}, c_\texttt{?})} \right)$.
+- Độ phức tạp bộ nhớ: $\mathcal{O}(2^{L})$.
 
 
 #### Cài đặt
@@ -839,34 +876,41 @@ using namespace std;
 
 int toxic[1 << 20], sosSub[1 << 20], sosSuper[1 << 20];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int k, Q; cin >> k >> Q;
+    int k, Q;
+    cin >> k >> Q;
     for (int i = 0; i < (1 << k); i++) {
-        char c; cin >> c;
+        char c;
+        cin >> c;
         toxic[i] = sosSub[i] = sosSuper[i] = c - '0';
     }
 
     for (int i = 0; i < k; i++) {
         for (int mask = 0; mask < (1 << k); mask++) {
-            if (mask & (1 << i)) sosSub[mask] += sosSub[mask ^ (1 << i)];
-            else sosSuper[mask] += sosSuper[mask ^ (1 << i)];
+            if (mask & (1 << i))
+                sosSub[mask] += sosSub[mask ^ (1 << i)];
+            else
+                sosSuper[mask] += sosSuper[mask ^ (1 << i)];
         }
     }
 
     int full = (1 << k) - 1;
     while (Q--) {
-        string s; cin >> s;
+        string s;
+        cin >> s;
         reverse(s.begin(), s.end());
 
         int maskZ = 0, maskO = 0, maskQ = 0;
         for (int i = 0; i < s.size(); i++) {
-            if (s[i] == '0') maskZ |= (1 << i);
-            if (s[i] == '1') maskO |= (1 << i);
-            if (s[i] == '?') maskQ |= (1 << i);
+            if (s[i] == '0')
+                maskZ |= (1 << i);
+            if (s[i] == '1')
+                maskO |= (1 << i);
+            if (s[i] == '?')
+                maskQ |= (1 << i);
         }
 
         int ans = 0;
@@ -874,19 +918,21 @@ int main()
             ans = toxic[maskO];
             for (int sub = maskQ; sub; sub = (sub - 1) & maskQ)
                 ans += toxic[sub | maskO];
-        }
-        else if (__builtin_popcount(maskO) <= 6) {
+        } else if (__builtin_popcount(maskO) <= 6) {
             ans = sosSub[maskQ] * (__builtin_parity(maskO) ? -1 : 1);
             for (int sub = maskO; sub; sub = (sub - 1) & maskO) {
-                if (__builtin_parity(sub) ^ __builtin_parity(maskO)) ans -= sosSub[sub | maskQ];
-                else ans += sosSub[sub | maskQ];
+                if (__builtin_parity(sub) ^ __builtin_parity(maskO))
+                    ans -= sosSub[sub | maskQ];
+                else
+                    ans += sosSub[sub | maskQ];
             }
-        }
-        else if (__builtin_popcount(maskZ) <= 6) {
+        } else if (__builtin_popcount(maskZ) <= 6) {
             ans = sosSuper[maskO];
             for (int sub = maskZ; sub; sub = (sub - 1) & maskZ) {
-                if (__builtin_parity(sub)) ans -= sosSuper[sub | maskO];
-                else ans += sosSuper[sub | maskO];
+                if (__builtin_parity(sub))
+                    ans -= sosSuper[sub | maskO];
+                else
+                    ans += sosSuper[sub | maskO];
             }
         }
         cout << ans << "\n";

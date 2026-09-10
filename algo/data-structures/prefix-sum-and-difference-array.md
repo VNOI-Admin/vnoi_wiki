@@ -31,7 +31,7 @@ Cho một mảng $A$ có $n$ phần tử được đánh số từ $0$ đến $n
 
 Mảng $S(A)$ được gọi là **mảng cộng dồn (tiền tố)** theo $c$ của $A$, gọi cách khác là prefix sum của $A$. Từ một mảng $A$, ta có thể sinh ra vô hạn mảng $S(A)$ bằng cách chọn một số thực $c$ tùy ý; trên thực tế, ta thường chọn $c = 0$ để thuận tiện hơn khi tính toán.
 
-![](https://i.imgur.com/lzBYJ89.gif)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/lzBYJ89.gif)
 
 ### Mảng hiệu (difference array)
 
@@ -39,7 +39,7 @@ Cũng với mảng $A$, ta có thể dựng mảng $D(A)$ theo quy tắc: $D_i =
 
 Mảng $D(A)$ được gọi là **mảng hiệu** của $A$, có tên tiếng Anh là difference array.
 
-![](https://i.imgur.com/3IQ1YlB.gif)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/3IQ1YlB.gif)
 
 ## Cài đặt
 
@@ -47,8 +47,8 @@ Mảng $D(A)$ được gọi là **mảng hiệu** của $A$, có tên tiếng A
 
 Để dựng mảng cộng dồn, ta có thể áp dụng định nghĩa ở trên để dựng trực tiếp mảng:
 
-```c++
-vector<int> buildPrefixSum(const vector<int>& a, int C = 0) {
+```cpp
+vector<int> buildPrefixSum(const vector<int> &a, int C = 0) {
     int n = (int)a.size();
     vector<int> prefixSum(n + 1);
 
@@ -65,7 +65,7 @@ vector<int> buildPrefixSum(const vector<int>& a, int C = 0) {
 
 Ngoài ra, thư viện C++ STL cũng cung cấp hàm `partial_sum` để phục vụ quá trình dựng mảng cộng dồn, cú pháp của hàm như sau:
 
-```c++
+```cpp
 partial_sum(first, last, result, binary_op)
 ```
 
@@ -81,9 +81,10 @@ Bạn đọc có thể tham khảo thêm về hàm này tại trang [cppreferenc
 Code minh họa:
 
 ```cpp
-void printArray(const vector<int>& arr) {
-  for (int v : arr) cout << v << " ";
-  cout << endl;
+void printArray(const vector<int> &arr) {
+    for (int v : arr)
+        cout << v << " ";
+    cout << endl;
 }
 
 vector<int> a = {3, -1, -4, 1, 5, 9, -2, -6};
@@ -106,7 +107,7 @@ Trong cả hai cách trên, độ phức tạp của quá trình dựng là $\ma
 Tương tự, ta cũng có thể áp dụng định nghĩa để dựng trực tiếp mảng hiệu:
 
 ```cpp
-vector<int> buildDifferenceArray(const vector<int>& a) {
+vector<int> buildDifferenceArray(const vector<int> &a) {
     int n = (int)a.size();
 
     vector<int> differenceArray(n - 1);
@@ -166,7 +167,7 @@ Cho mảng cộng dồn $S(c, A)$ và mảng hiệu $D(A)$, ta có thể dễ d�
 - $D(S(c, A)) = A$ với mọi $c$ thực
 
 Hình dưới đây mô tả rõ hơn mối liên hệ giữa mảng gốc, mảng hiệu và mảng cộng dồn sinh ra từ nó:
-![](https://i.imgur.com/agrVFdU.png)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/agrVFdU.png)
 
 Hàm `partial_sum` và `adjacent_difference` trong C++ STL cũng tuân theo quy tắc này trên. Tuy nhiên, các thao tác trên hai hàm này có phần phức tạp hơn so với thao tác trên mảng mà ta cài đặt thủ công.
 
@@ -196,19 +197,19 @@ Trong đa số trường hợp, mảng cộng dồn thường được sử dụ
 
 Nguồn: [CSES - Maximum Subarray Sum](https://cses.fi/problemset/task/1643)
 
-Đề bài: Cho một mảng $A$ gồm $n$ phần tử. Tìm đoạn con khác rỗng có tổng lớn nhất. Giới hạn: $1 \le n \le 2 \cdot 10^5$, $\lvert A_i \rvert \le 10^9$
+Đề bài: Cho một mảng $A$ gồm $n$ phần tử. Tìm đoạn con khác rỗng có tổng lớn nhất. Giới hạn: $1 \le n \le 2 \cdot 10^{5}$, $\lvert A_i \rvert \le 10^{9}$
 
-Trước hết, ta tạo mảng $pref = S(0, A)$ để lưu mảng cộng dồn của $A$. Giả sử với $r$ cố định, ta cần tìm $l < r$ sao cho tổng các phần tử trong nửa khoảng $[l, r)$ đạt cực đại. Ta viết lại bài toán theo công thức sau:
+Trước hết, ta tạo mảng $\texttt{pref} = S(0, A)$ để lưu mảng cộng dồn của $A$. Giả sử với $r$ cố định, ta cần tìm $l < r$ sao cho tổng các phần tử trong nửa khoảng $[l, r)$ đạt cực đại. Ta viết lại bài toán theo công thức sau:
 
 $$
 \begin{align*}
-ans_r &= \max_{0 \, \le \, l \, < \, r} (pref_r - pref_l) \\
-&= pref_r + \max_{0 \, \le \, l \, < \, r} (- pref_l) \\
-&= pref_r - \min_{0 \, \le \, l \, < \, r} pref_l \\
+\texttt{ans}_r &= \max_{0 \, \le \, l \, < \, r} (\texttt{pref}_r - \texttt{pref}_l) \\
+&= \texttt{pref}_r + \max_{0 \, \le \, l \, < \, r} (- \texttt{pref}_l) \\
+&= \texttt{pref}_r - \min_{0 \, \le \, l \, < \, r} \texttt{pref}_l \\
 \end{align*}
 $$
 
-Nếu ta chạy $r$ từ $1$ đến $n$, ta có thể cập nhật cuốn chiếu $\min$ theo từng $pref_r$; việc này cho phép chúng ta tính $ans_r$ với độ phức tạp $O(1)$. Đáp án của bài toán là $\displaystyle \max_{r} ans_r$ với $1 \le r \le n$.
+Nếu ta chạy $r$ từ $1$ đến $n$, ta có thể cập nhật cuốn chiếu $\min$ theo từng $\texttt{pref}_r$; việc này cho phép chúng ta tính $\texttt{ans}_r$ với độ phức tạp $\mathcal{O}(1)$. Đáp án của bài toán là $\displaystyle \max_{r} \texttt{ans}_r$ với $1 \le r \le n$.
 
 Độ phức tạp của cách trên là $\mathcal{O}(n)$. Code tham khảo:
 
@@ -225,10 +226,11 @@ long long prefSum[MAXN], prefMin[MAXN], ans = -INF;
 
 int main() {
     cin >> n;
-    for (int i = 1; i <= n; i++) cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
     prefSum[0] = prefMin[0] = 0;
     for (int i = 1; i <= n; i++)
-      prefSum[i] = prefSum[i - 1] + a[i], prefMin[i] = min(prefMin[i - 1], prefSum[i]);
+        prefSum[i] = prefSum[i - 1] + a[i], prefMin[i] = min(prefMin[i - 1], prefSum[i]);
     for (int i = 1; i <= n; i++)
         ans = max(ans, prefSum[i] - prefMin[i - 1]);
     cout << ans;
@@ -256,7 +258,7 @@ Nguồn: [Codeforces - Karen and Coffee](https://codeforces.com/contest/816/prob
 
 Sau khi cập nhật xong, trả lời $q$ câu hỏi với nội dung sau: có bao nhiêu vị trí $i$ thỏa $a \le i \le b$ và $A_i \ge k$?
 
-Giới hạn: $k \le n \le 2 \cdot 10^5, q \le 2 \cdot 10^5, 1 \le l_i \le r_i \le 2 \cdot 10^5, 1 \le a \le b \le 2 \cdot 10^5$
+Giới hạn: $k \le n \le 2 \cdot 10^{5}, q \le 2 \cdot 10^{5}, 1 \le l_i \le r_i \le 2 \cdot 10^{5}, 1 \le a \le b \le 2 \cdot 10^{5}$
 
 Do điều kiện $l_i, r_i, a, b$ của đề bài, mảng $A$ sẽ chỉ lưu trữ tối đa 200 nghìn phần tử, toàn bộ phần tử này đều có chỉ số dương, vì thế ta sẽ đơn thuần lưu 2 mảng này dưới dạng mảng thường.
 
@@ -294,12 +296,14 @@ int query(int a, int b) {
 int main() {
     cin >> n >> k >> q;
     for (int i = 0; i < n; i++) {
-        int l, r; cin >> l >> r;
+        int l, r;
+        cin >> l >> r;
         update(l, r);
     }
     buildPrefixSum();
     for (int i = 0; i < q; i++) {
-        int a, b; cin >> a >> b;
+        int a, b;
+        cin >> a >> b;
         cout << query(a, b) << endl;
     }
 }
@@ -313,12 +317,14 @@ Ta có thể mở rộng mảng cộng dồn và mảng hiệu để thao tác t
 
 Cho mảng hai chiều $A$ có kích thước $m \times n$ (chỉ số hàng và cột đầu tiên đều là 1), mảng cộng dồn $S(A)$ được dựng theo công thức sau: 
 
-$$S_{i,j}=\displaystyle \sum_{t_i\,=\,1}^{i} \sum_{t_j\,=\,1}^{j} A_{t_i,t_j}$$
+$$
+S_{i,j}=\displaystyle \sum_{t_i\,=\,1}^{i} \sum_{t_j\,=\,1}^{j} A_{t_i,t_j}
+$$
 
 Các phần tử trong mảng cộng dồn lưu tổng của toàn bộ phần tử chứa trong hình chữ nhật $[1, i] \times [1, j]$.
 Điểm khác biệt so với mảng cộng dồn 1 chiều ở đây là sự lược bỏ của hằng số $C$, ta ngầm quy ước: $S_{0,x} = S_{y,0} = 0$ với $x, y$ nguyên không âm khi dựng mảng cộng dồn.
 
-![](https://i.imgur.com/FhmEVv3.png)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/FhmEVv3.png)
 
 Từ công thức quy ước trên, ta thực hiện biến đổi sau để dựng mảng cộng dồn:
 
@@ -336,18 +342,18 @@ $$
 
 Để hình dung rõ hơn công thức biến đổi trên, bạn đọc có thể tham khảo hình ảnh dưới:
 
-| ![](https://i.imgur.com/3vhyF37.gif)                                                            |
+| ![](/uploads/algo/data-structures/prefix-sum-and-difference-array/3vhyF37.gif)                                                            |
 | :---------------------------------------------------------------------------------------------: |
-| ![](https://i.imgur.com/TlZhWxX.png)                                                            |
+| ![](/uploads/algo/data-structures/prefix-sum-and-difference-array/TlZhWxX.png)                                                            |
 | Các phần tử $A_i$ tô màu xanh nhạt được đánh dấu 1 lần, tô màu xanh đậm được đánh dấu tới 2 lần |
 
 Code dưới đây dựng mảng cộng dồn hai chiều:
 
 ```cpp
-vector< vector<int> > build2DPrefixSum(const vector< vector<int> >& a) {
+vector<vector<int>> build2DPrefixSum(const vector<vector<int>> &a) {
     int m = (int)a.size(), n = (int)a[0].size();
 
-    vector< vector<int> > prefixSum(m + 1, vector<int> (n + 1, 0));
+    vector<vector<int>> prefixSum(m + 1, vector<int>(n + 1, 0));
 
     for (int i = 1; i <= m; i++)
         for (int j = 1; j <= n; j++)
@@ -365,15 +371,17 @@ $$
 
 Phần chứng minh công thức trên xin được nhường lại cho bạn đọc. Hình ảnh dưới minh họa vì sao công thức trên cho kết quả chính xác:
 
-|                   ![](https://i.imgur.com/aqfFaz3.gif)                    |
+|                   ![](/uploads/algo/data-structures/prefix-sum-and-difference-array/aqfFaz3.gif)                    |
 | :-----------------------------------------------------------------------: |
-|                   ![](https://i.imgur.com/3qzbjwL.png)                    |
+|                   ![](/uploads/algo/data-structures/prefix-sum-and-difference-array/3qzbjwL.png)                    |
 | Các phần tử $A_i$ tô màu đỏ bị trừ tới 2 lần, vì thế cần phải cộng bù lại |
 
 ### Mảng cộng dồn ba chiều
 
 Giả sử ta có mảng $A$ trong không gian 3 chiều với kích thước $m \times n \times p$, ta dựng mảng $S(A)$ theo quy tắc sau: 
-$$S_{i, j, k}=\displaystyle \sum_{t_i\,=\,1}^{i} \sum_{t_j\,=\,1}^{j} \sum_{t_k\,=\,1}^{k} A_{t_i,t_j,t_k}$$
+$$
+S_{i, j, k}=\displaystyle \sum_{t_i\,=\,1}^{i} \sum_{t_j\,=\,1}^{j} \sum_{t_k\,=\,1}^{k} A_{t_i,t_j,t_k}
+$$
 
 Công thức sau được sử dụng để dựng mảng cộng dồn 3 chiều:
 
@@ -436,27 +444,32 @@ $$
 
 Ta kết luận rằng $S(D) = A'$, mảng $D$ ta vừa dựng chính là mảng hiệu của $A$.
 
-![](https://i.imgur.com/w7txGHE.png)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/w7txGHE.png)
 
 Từ các quan sát trên, ta có thể dựng mảng hiệu của $A$ bằng hai cách:
 
 - Sử dụng trực tiếp công thức:
-  $D_{i, j} = A_{i, j} - A_{i, j - 1} - A_{i - 1, j} + A_{i - 1, j - 1}$
+  $$
+  D_{i, j} = A_{i, j} - A_{i, j - 1} - A_{i - 1, j} + A_{i - 1, j - 1}
+  $$
 - Tính $D_{hàng}$ cho từng hàng của $A$ và gán kết quả vào $A'$, sau đó tính $D_{cột}$ cho từng cột của $A'$.
 
 Code dưới đây dựng mảng hiệu 2 chiều $D$ theo $A$ theo cách thứ nhất:
 
 ```cpp
-vector< vector<int> > build2DDifferenceArray(const vector< vector<int> >& a) {
+vector<vector<int>> build2DDifferenceArray(const vector<vector<int>> &a) {
     int m = (int)a.size(), n = (int)a[0].size();
-    vector< vector<int> > differenceArray(m, vector<int>(n, 0));
+    vector<vector<int>> differenceArray(m, vector<int>(n, 0));
 
     for (int i = 0; i < m; i++) {
         for (int j = 0; j < n; j++) {
             differenceArray[i][j] = a[i][j];
-            if (i > 0) differenceArray[i][j] -= a[i - 1][j];
-            if (j > 0) differenceArray[i][j] -= a[i][j - 1];
-            if (i > 0 && j > 0) differenceArray[i][j] += a[i - 1][j - 1];
+            if (i > 0)
+                differenceArray[i][j] -= a[i - 1][j];
+            if (j > 0)
+                differenceArray[i][j] -= a[i][j - 1];
+            if (i > 0 && j > 0)
+                differenceArray[i][j] += a[i - 1][j - 1];
         }
     }
 
@@ -481,7 +494,7 @@ $$
 
 Để xử lý truy vấn cập nhật toàn bộ phần tử trong không gian $[x_1, x_2] \times [y_1, y_2] \times [z_1, z_2]$, ta cần cập nhật giá trị tại $8$ vị trí, các vị trí đều nằm tại biên của không gian. Nếu ta coi mảng $n$-chiều như một hình lập phương chứa số, vị trí cần cập nhật sẽ tương ứng với đỉnh của hình lập phương đại diện cho không gian cần cập nhật. Ta sẽ tô xen kẽ các đỉnh này theo hai màu đen - trắng, đỉnh có tọa độ $(x_1, y_1, z_1)$ được tô màu trắng. Phần tử $D$ ứng với các đỉnh trắng được cộng thêm lượng $k$, ngược lại, phần tử ứng với đỉnh đen thì trừ đi lượng $k$.
 
-![](https://i.imgur.com/jO0h9zp.png)
+![](/uploads/algo/data-structures/prefix-sum-and-difference-array/jO0h9zp.png)
 
 Hình trên minh họa những vị trí mà ta cần cập nhật trên mảng hiệu. Tương tự mảng cộng dồn, phương pháp [bao hàm - loại trừ](/translate/he/Number-Theory-7.md) được áp dụng để đưa đến kết luận này.
 
@@ -494,7 +507,7 @@ Có hai dạng bài toán liên quan đến mảng cộng dồn và mảng hiệ
 - **Dạng 1:** Cập nhật giá trị của $A_i$ hoặc tính tổng của $i$ phần tử đầu tiên.
 - **Dạng 2:** Cập nhật toàn bộ giá trị từ $A_i$ đến $A_j$ $(i \le j)$ hoặc cho biết giá trị hiện tại của $A_i$.
 
-Nếu bài toán chỉ xử lý một trong hai dạng nói trên, ta có thể áp dụng cấu trúc dữ liệu [Binary Indexed Tree](/algo/data-structures/fenwick.md) để giải quyết các truy vấn trên. Độ phức tạp của từng truy vấn sẽ phụ thuộc vào số chiều của mảng, thí dụ, thao tác trên mảng 1D sẽ cho độ phức tạp $\mathcal{O}(\log n)$ còn trên mảng 2D sẽ là $\mathcal{O}(\log^2 n)$.
+Nếu bài toán chỉ xử lý một trong hai dạng nói trên, ta có thể áp dụng cấu trúc dữ liệu [Binary Indexed Tree](/algo/data-structures/fenwick.md) để giải quyết các truy vấn trên. Độ phức tạp của từng truy vấn sẽ phụ thuộc vào số chiều của mảng, thí dụ, thao tác trên mảng 1D sẽ cho độ phức tạp $\mathcal{O}(\log n)$ còn trên mảng 2D sẽ là $\mathcal{O}(\log^{2} n)$.
 
 Trong một số bài toán yêu cầu xử lý kết hợp 2 dạng (cập nhật đoạn và tính tổng đoạn), ta thường áp dụng [Segment Tree](/algo/data-structures/segment-tree-extend.md) có lazy propagation (cập nhật lười). Mặc dù có chung độ phức tạp, cách cài đặt này thường khó hơn, có thời gian chạy lâu hơn và dùng nhiều bộ nhớ hơn so với cài đặt Binary Indexed Tree. Nếu ta làm việc trên mảng 1 chiều, ta cũng có thể biến đổi hệ thức giữa mảng hiệu và mảng cộng dồn để cài đặt trực tiếp BIT làm việc trên các truy vấn này. Bạn đọc có thể tham khảo thêm cách cài đặt này tại [đây](/algo/data-structures/fenwick.md#truy-v%E1%BA%A5n-tr%C3%AAn-%C4%91o%E1%BA%A1n).
 

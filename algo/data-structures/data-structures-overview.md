@@ -91,7 +91,7 @@ Heap là một cấu trúc dữ liệu cho phép thực hiện các thao tác:
 
 - Thêm một phần tử, với độ phức tạp $\mathcal{O}(\log{N})$.
 - Xóa một phần tử, với độ phức tạp $\mathcal{O}(\log{N})$.
-- Tìm $max$ của các phần tử, với độ phức tạp $\mathcal{O}(1)$.
+- Tìm $\max$ của các phần tử, với độ phức tạp $\mathcal{O}(1)$.
 
 Bạn có thể đọc thêm về Heap [ở đây](/translate/wcipeg/Binary-Heap)
 
@@ -102,7 +102,7 @@ Bạn có thể đọc thêm về Heap [ở đây](/translate/wcipeg/Binary-Heap
 
 **Cây Tìm Kiếm Nhị Phân** (**BST Binary Search Tree**) là một [cây nhị phân](/translate/wcipeg/tree) có tính chất: Với mỗi giá trị trên đỉnh đang xét, giá trị của mọi đỉnh trên cây con trái luôn nhỏ hơn đỉnh đang xét và giá trị của mọi đỉnh trên cây con phải luôn lớn hơn đỉnh đang xét.
 
-![](/uploads/bst1.png)
+![](/uploads/algo/data-structures/data-structures-overview/bst1.png)
 
 Cây tìm kiếm nhị phân cho phép thực hiện các thao tác:
 
@@ -115,8 +115,8 @@ Trong trường hợp dữ liệu ngẫu nhiên, các thao tác trên có độ 
 
 Để khắc phục điều này, có rất nhiều CTDL cải tiến từ cây tìm kiếm nhị phân, thường được gọi là các cây nhị phân cân bằng. Khi đó, các thao tác trên có thể được thực hiện với độ phức tạp $\mathcal{O}(\log{N})$. Ví dụ:
 
-- **Cây Đỏ Đen** (Red-Black Tree) là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $O(log(N))$. CTDL **set** trong **C++** được cài đặt bằng cây đỏ đen.
-  ![](/uploads/redblack1.png)
+- **Cây Đỏ Đen** (Red-Black Tree) là một dạng **cây tìm kiếm nhị phân** (**BST**) mà sau mỗi truy vấn được thực hiện, cây tự cân bằng theo đúng tính chất của nó với độ phức tạp $\mathcal{O}(\log{N})$. CTDL **set** trong **C++** được cài đặt bằng cây đỏ đen.
+  ![](/uploads/algo/data-structures/data-structures-overview/redblack1.png)
 - **Splay tree**, [Skip list](/algo/data-structures/Skip-Lists), **Treap** thường được dùng trong các kỳ thi bởi cài đặt đơn giản.
 
 ## 1.5. Bảng băm (Hash Tables)
@@ -125,7 +125,7 @@ Bảng băm là một CTDL thường được sử dụng như một từ điể
 
 Bảng băm hoạt động dựa trên hàm Hash: Hash là quá trình khởi tạo một giá trị khóa (thường là 32 bit hoặc 64 bit) từ một phần dữ liệu. Nó có thể là $n$ bit đầu tiên của dữ liệu, $n$ bit cuối cùng, giá trị mod cho một số nguyên tố nào đó. Dựa theo giá trị hash, dữ liệu được chia vào các **bucket**:
 
-![](/uploads/data_structures_hash_table_hash_function.png)
+![](/uploads/algo/data-structures/data-structures-overview/data_structures_hash_table_hash_function.png)
 
 Trong trường hợp hàm Hash hoạt động tốt, mỗi bucket có rất ít phần tử, độ phức tạp của các thao tác trên Hash table như sau:
 
@@ -144,28 +144,28 @@ Mảng cộng dồn là một cách áp dụng khéo léo mảng. Có 2 dạng b
 
 **Ví dụ**
 
-- Cho một mảng $a_1,a_2,a_3,...,a_N$.
-- Cần trả lời nhiều truy vấn, mỗi truy vấn cho 2 số $L$ và $R$, yêu cầu in ra tổng $a_L + a_{L+1} + ... + a_R$.
+- Cho một mảng $a_1,a_2,a_3,\ldots,a_N$.
+- Cần trả lời nhiều truy vấn, mỗi truy vấn cho 2 số $L$ và $R$, yêu cầu in ra tổng $a_L + a_{L+1} + \cdots + a_R$.
 
 **Cách làm**
 
-- Tạo một mảng $S$, với $S_i = a_1 + a_2 + ... + a_i$. Mảng $S$ được gọi là mảng cộng dồn
-- Với mỗi truy vấn, in ra: $S_R – S_{L-1}$.
+- Tạo một mảng $S$, với $S_i = a_1 + a_2 + \cdots + a_i$. Mảng $S$ được gọi là mảng cộng dồn
+- Với mỗi truy vấn, in ra: $S_R - S_{L-1}$.
 
 ### 2.1.2. Mảng cộng dồn - Tăng giá trị các đoạn
 
 **Ví dụ**
 
-- Cho mảng $a_1,a_2,...,a_N$.
+- Cho mảng $a_1,a_2,\ldots,a_N$.
 - Cần thực hiện nhiều truy vấn, mỗi truy vấn cho 3 số $L$, $R$, $V$. Yêu cầu: với mỗi $i (L \le i \le R)$, cộng $V$ vào $a_i$.
 - Tính mảng $a$ sau khi thực hiện tất cả các truy vấn.
 
 **Cách làm**
 
-- Tạo một mảng $P$: $p_1,p_2,...,p_N$
+- Tạo một mảng $P$: $p_1,p_2,\ldots,p_N$
 - Khởi tạo $p_i = 0$.
 - Với mỗi truy vấn, tăng $p_L$ lên $V$ và trừ $p_{R+1}$ đi $V$.
-- Cuối cùng, với mỗi $i$ (từ 1), $p_i += p_{i–1}$. Ta có $a_i = a_i + p_i$.
+- Cuối cùng, với mỗi $i$ (từ 1), $p_i += p_{i-1}$. Ta có $a_i = a_i + p_i$.
 
 ### 2.1.3. Mảng cộng dồn trên bảng 2 chiều
 
@@ -175,7 +175,7 @@ Khi đó, ta có: $f(i, j) = f(i-1, j) + f(i, j-1) - f(i-1, j-1) + A(i, j)$.
 
 Giải thích công thức trên:
 
-![](/uploads/2DPartialSum_small.png)
+![](/uploads/algo/data-structures/data-structures-overview/2DPartialSum_small.png)
 
 đỏ = xanh da trời + vàng - tím + xanh lá
 

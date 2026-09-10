@@ -31,7 +31,7 @@ Khác với hai thuật toán bài trước, hai thuật toán này có thể gi
 
 * Chu trình âm là một chu trình trong đó tổng trọng số các cạnh là số âm. Ví dụ trong hình dưới, ta có một chu trình âm $0 \rightarrow 1 \rightarrow 2$ có tổng trọng số là $7-9+1 = -1$
 
-![](https://i.ibb.co/jbkzpCB/dijsktra.png)
+![](/uploads/algo/graph-theory/shortest-path-2/dijsktra.png)
 
 * Nếu trên đường đi từ $u$ đến $v$ chứa chu trình âm thì độ dài đường đi ngắn nhất từ $u$ đến $v$ sẽ là $-\infty$. Vì vậy nên sự xuất hiện của chu trình âm trong đồ thị sẽ khiến một số cặp đỉnh không tồn tại đường đi ngắn nhất (chỉ tồn tại đường đi có độ dài âm vô cực).
     * Ví dụ: Ở đồ thị trên, đường đi ngắn nhất từ $4$ đến $5$ sẽ có cách đi là vô hạn lần qua chu trình âm đã nhắc đến, sau đó mới đi đến $5$. Như vậy không có đường đi ngắn nhất.
@@ -57,7 +57,7 @@ Cho đồ thị có hướng gồm $N$ đỉnh, $M$ cạnh và một đỉnh ngu
 - $1 \leq N \leq 1000$, $1 \leq M \leq 5000$  : $1 \le N \le 1000, 1 \le M \le 5000$
 
 **Sample Input**
-```
+```text
 7 6 4
 0 1 7
 2 0 1
@@ -67,7 +67,7 @@ Cho đồ thị có hướng gồm $N$ đỉnh, $M$ cạnh và một đỉnh ngu
 4 3 3
 ```
 **Sample Output**
-```
+```text
 -Infinity
 -Infinity
 -Infinity
@@ -84,7 +84,7 @@ Thuật toán Bellman-Ford sẽ thực hiện nhiều bước lặp. Ở mỗi b
 
 - Ví dụ đồ thị sau:
 
-![](https://i.imgur.com/YMKQtKM.png)
+![](/uploads/algo/graph-theory/shortest-path-2/YMKQtKM.png)
 
 - Giả sử ta tìm được đường đi từ $1\rightarrow 3$ có độ dài là $4$, và đường đi từ $1 \rightarrow 2$ có độ dài là $2$. Như vậy ta có thể sử dụng cạnh $(2, 3)$ để nối dài đường đi $1 \rightarrow 2$ thành $1 \rightarrow 2 \rightarrow 3$ có độ dài bằng $3$, tốt hơn đường đi trực tiếp $1 \rightarrow 3$ ta đã tìm được.
 
@@ -102,14 +102,14 @@ Nhận xét rằng một đường đi ngắn nhất bất kì sẽ không có �
     Ban đầu, chưa có đường đi nào:
     * $D[u] = \infty$ với mọi $u$ khác $S$
     * $D[S] = 0$
-* Nếu cần tìm lại chính đường đi ngắn nhất, ta định nghĩa thêm mảng truy vết $trace[u]$. Ta gán $trace[u]=v$ với ý nghĩa là đường đi ngắn nhất từ $S\rightarrow u$ cần đi qua cạnh $(v, u)$.
-    Ban đầu mọi $trace[u]$ bằng $-1$ nghĩa là chưa có đường đi.
+* Nếu cần tìm lại chính đường đi ngắn nhất, ta định nghĩa thêm mảng truy vết $\texttt{trace}[u]$. Ta gán $\texttt{trace}[u]=v$ với ý nghĩa là đường đi ngắn nhất từ $S\rightarrow u$ cần đi qua cạnh $(v, u)$.
+    Ban đầu mọi $\texttt{trace}[u]$ bằng $-1$ nghĩa là chưa có đường đi.
 * Thực hiện $N-1$ lần:
     Xét lần lượt các cạnh $(u, v)$ trong đồ thị.
     Nếu $D[u] + W[u, v] < D[v]$, cập nhật:
     * $D[v] = D[u] + W[u, v]$
-    * $trace[v] = u$.
-* **Độ phức tạp**: Có tổng cộng $N-1$ lần lặp, mỗi lần lặp cần duyệt tất cả $M$ cạnh trong đồ thị, như vậy độ phức tạp của thuật toán là $O(N*M)$.
+    * $\texttt{trace}[v] = u$.
+* **Độ phức tạp**: Có tổng cộng $N-1$ lần lặp, mỗi lần lặp cần duyệt tất cả $M$ cạnh trong đồ thị, như vậy độ phức tạp của thuật toán là $\mathcal{O}(N \times M)$.
 
 **Code:**
 ```cpp=
@@ -131,7 +131,7 @@ void bellmanFord(int n, int S, vector<Edge> &e,
     trace.resize(n, -1);
 
     D[S] = 0;
-    for(int T = 1; T < n; T++) {
+    for (int T = 1; T < n; T++) {
         for (auto E : e) {
             int u = E.u;
             int v = E.v;
@@ -146,11 +146,12 @@ void bellmanFord(int n, int S, vector<Edge> &e,
 ```
 
 ### Tìm lại đường đi ngắn nhất
-Thao tác tìm đường đi ngắn nhất từ $S$ đến $u$ khá đơn giản, ta sẽ bắt đầu từ đỉnh $u$, sau đó truy vết theo mảng $trace$ ngược về $S$.
+Thao tác tìm đường đi ngắn nhất từ $S$ đến $u$ khá đơn giản, ta sẽ bắt đầu từ đỉnh $u$, sau đó truy vết theo mảng $\texttt{trace}$ ngược về $S$.
 
 ```cpp=
 vector<int> trace_path(vector<int> &trace, int S, int u) {
-    if (u != S && trace[u] == -1) return vector<int>(0); // không có đường đi
+    if (u != S && trace[u] == -1)
+        return vector<int>(0); // không có đường đi
 
     vector<int> path;
     while (u != -1) { // truy vết ngược từ u về S
@@ -161,7 +162,6 @@ vector<int> trace_path(vector<int> &trace, int S, int u) {
 
     return path;
 }
-
 ```
 
 ### Tìm chu trình âm
@@ -176,7 +176,7 @@ Thuật toán Bellman-Ford có thể xử lí được thêm trường hợp nh�
 **Code:**
 ```cpp=
 // sau khi chạy xong N-1 vòng lặp Bellman-Ford
-for(int T = 0; T < n; T++){
+for (int T = 0; T < n; T++) {
     for (auto E : e) {
         int u = E.u;
         int v = E.v;
@@ -194,21 +194,21 @@ for(int T = 0; T < n; T++){
 
 Một số bài toán có thể yêu cầu ta tìm một chu trình âm bất kì trong đồ thị. Ta có thể chỉnh sửa thuật toán Bellman-Ford lại như sau:
 - Thay vì chạy $N$ vòng lặp Bellman-Ford như trường hợp trên, ta chỉ cần chạy một vòng lặp. Như vậy là đủ để phát hiện ít nhất một đỉnh có đường đi bằng $-\infty$ (nếu có).
-- Tiến hành truy vết: Bắt đầu từ đỉnh $u$ bất kì có đường đi bằng $-\infty$, ta sẽ truy vết theo mảng $trace$:
-    - Trước hết gán $u = trace[u]$ đủ $N$ lần để $u$ chắc chắn thuộc chu trình âm nào đó.
+- Tiến hành truy vết: Bắt đầu từ đỉnh $u$ bất kì có đường đi bằng $-\infty$, ta sẽ truy vết theo mảng $\texttt{trace}$:
+    - Trước hết gán $u = \texttt{trace}[u]$ đủ $N$ lần để $u$ chắc chắn thuộc chu trình âm nào đó.
     :::spoiler Giải thích
     Ban đầu có thể đỉnh $u$ có đường đi bằng $-\infty$ nhưng chưa chắc thuộc chu trình âm. Ví dụ trường hợp sau:
-    [![](https://i.imgur.com/PblptAC.png)
+    [![](/uploads/algo/graph-theory/shortest-path-2/PblptAC.png)
     ]()
     Ở đây, từ $0$ đến $1$ có độ dài đường đi ngắn nhất bằng $-\infty$, tuy nhiên đỉnh $1$ lại không thuộc chu trình âm nào.
     :::
 
-    - Sau đó, $u$ sẽ thuộc một chu trình âm. Ta chỉ cần truy vết đỉnh $u$ theo mảng $trace$ cho đến khi gặp lại chính nó, sẽ được một chu trình.
+    - Sau đó, $u$ sẽ thuộc một chu trình âm. Ta chỉ cần truy vết đỉnh $u$ theo mảng $\texttt{trace}$ cho đến khi gặp lại chính nó, sẽ được một chu trình.
 - Chu trình vừa truy vết chính là một chu trình âm của đồ thị. Lưu ý ta vẫn phải đảo ngược kết quả truy vết, vì ta đang truy vết ngược so với đồ thị gốc.
 
 
 ```cpp=
-bool findNegativeCycle(int n, vector<Edge> &e, vector<long long> &D, 
+bool findNegativeCycle(int n, vector<Edge> &e, vector<long long> &D,
                        vector<int> &trace, vector<int> &negCycle) {
     // mảng D và trace đã được chạy qua thuật toán Bellman-Ford
     int negStart = -1; // đỉnh bắt đầu
@@ -223,7 +223,8 @@ bool findNegativeCycle(int n, vector<Edge> &e, vector<long long> &D,
         }
     }
 
-    if (negStart == -1) return false; // không có chu trình âm
+    if (negStart == -1)
+        return false; // không có chu trình âm
 
     int u = negStart;
     for (int i = 0; i < n; i++) {
@@ -260,7 +261,7 @@ Cho đồ thị gồm $N$ đỉnh và một ma trận trọng số $W$, trong đ
 - $1 \leq N \leq 100$
 
 **Sample Input**
-```
+```text
 5
 0 4 2 1 6
 7 0 1 2 4
@@ -269,7 +270,7 @@ Cho đồ thị gồm $N$ đỉnh và một ma trận trọng số $W$, trong đ
 6 8 7 3 0
 ```
 **Sample Output**
-```
+```text
 0 4 2 1 2
 3 0 1 2 3
 2 3 0 1 2
@@ -301,16 +302,16 @@ Ta nhận thấy có một cấu trúc đệ quy, chia nhỏ bài toán ở đâ
 
     - $W[u, v]$ là giá trị đường đi trực tiếp từ $u\rightarrow v$.
     - $D[u, v]$ là giá trị đường đi ngắn nhất từ $u\rightarrow v$.
-    - $trace[u, v]$ là mảng truy vết đường đi ngắn nhất từ $u\rightarrow v$
+    - $\texttt{trace}[u, v]$ là mảng truy vết đường đi ngắn nhất từ $u\rightarrow v$
 
 - Đồ thị sẽ được lưu dưới dạng **ma trận kề**. Ban đầu sẽ khởi tạo mọi $D[u, v] = W[u, v]$ vì khi chưa tối ưu gì thì đường đi trực tiếp luôn là đường đi ngắn nhất.
-    - $trace[u, v]$ sẽ khởi tạo bằng $u$ với mọi cặp $u, v$.
+    - $\texttt{trace}[u, v]$ sẽ khởi tạo bằng $u$ với mọi cặp $u, v$.
     - Nếu không có cạnh nối giữa $u$ và $v$, coi như $W[u, v] = \infty$ .
 
 - Thuật toán chỉ cần một vòng lặp xét mọi đỉnh $k$ như một đỉnh trung gian. Tiếp theo đến là 2 vòng lặp $u$, $v$, có ý nghĩa thử chèn đỉnh $k$ vào giữa đường đi từ $u$ đến $v$.
-    - Nếu như $D[u, v]$ được tối ưu bằng đỉnh $k$, ta cập nhật thêm $trace[u, v] = trace[k, v]$
+    - Nếu như $D[u, v]$ được tối ưu bằng đỉnh $k$, ta cập nhật thêm $\texttt{trace}[u, v] = \texttt{trace}[k, v]$
 
-- Độ phức tạp của thuật toán là $O(N^3)$.
+- Độ phức tạp của thuật toán là $\mathcal{O}(N^{3})$.
 
 :::warning
 **Chú ý:** Thuật toán Floyd-Warshall có thứ tự 3 vòng lặp là $k \rightarrow u \rightarrow v$ thay vì $u\rightarrow v\rightarrow k$ (đỉnh trung gian phải được đặt ở vòng lặp ngoài cùng), đây là một nhầm lẫn tương đối phổ biến khi cài đặt.
@@ -363,7 +364,6 @@ vector<int> trace_path(vector<vector<int>> &trace, int u, int v) {
 
     return path;
 }
-
 ```
 
 ### Trường hợp chu trình âm
@@ -382,15 +382,15 @@ Sau đây là bảng so sánh các thuật toán đã được đề cập:
 
 | **Thuật toán**          | **Bài toán** | **Độ phức tạp**     | **Sử dụng được trọng số âm** | **Tìm được chu trình âm**                  |
 | ----------------------- | ------------ | ------------------- | ---------------------------- | ------------------------------------------ |
-| **DP theo thứ tự topo** | Một nguồn    | $O(M + N)$          | Có                           | Yêu cầu thuật toán: Đồ thị không chu trình |
-| **Dijkstra**            | Một nguồn    | $O(N^2 + M)$        | Không                        | Không                                      |
-| **Dijkstra + Min Heap** | Một nguồn    | $O((M + N) \log N)$ | Không                        | Không                                      |
-| **Bellman-Ford**        | Một nguồn    | $O(N \cdot M)$      | Có                           | Có                                         |
-| **Floyd-Warshall**      | Mọi cặp đỉnh | $O(N^3)$            | Có                           | Có                                         |
+| **DP theo thứ tự topo** | Một nguồn    | $\mathcal{O}(M + N)$          | Có                           | Yêu cầu thuật toán: Đồ thị không chu trình |
+| **Dijkstra**            | Một nguồn    | $\mathcal{O}(N^{2} + M)$        | Không                        | Không                                      |
+| **Dijkstra + Min Heap** | Một nguồn    | $\mathcal{O}((M + N) \log N)$ | Không                        | Không                                      |
+| **Bellman-Ford**        | Một nguồn    | $\mathcal{O}(N \cdot M)$      | Có                           | Có                                         |
+| **Floyd-Warshall**      | Mọi cặp đỉnh | $\mathcal{O}(N^{3})$            | Có                           | Có                                         |
 
 Trong trường hợp có chu trình âm, thuật toán Floyd-Warshall có thể phải tính toán đến những giá trị rất nhỏ (về phía số âm), đủ để gây ra hiện tượng tràn số (thậm chí với $N$ tương đối nhỏ). Cần phải chú ý đặc biệt đến trường hợp này khi cài đặt. Một cách thường dùng để giải quyết trường hợp này là gán `D[u][v] = max(D[u][v], -INF)` ngay sau mỗi lần tối ưu, chặn không cho $D[u, v]$ xuống dưới hằng số âm vô tận.
 
-Với đồ thị thưa, không có trọng số âm, thay vì sử dụng thuật toán Floyd, ta có thể chạy thuật toán Dijkstra cải tiến $N$ lần với $N$ đỉnh nguồn để tìm đường đi ngắn nhất giữa mọi cặp đỉnh, với độ phức tạp $O(N \times (M + N)\log N)$.
+Với đồ thị thưa, không có trọng số âm, thay vì sử dụng thuật toán Floyd, ta có thể chạy thuật toán Dijkstra cải tiến $N$ lần với $N$ đỉnh nguồn để tìm đường đi ngắn nhất giữa mọi cặp đỉnh, với độ phức tạp $\mathcal{O}(N \times (M + N)\log N)$.
 
 *[Phần 3](/algo/graph-theory/spfa) của bài viết sẽ tiếp tục giới thiệu với bạn đọc một biến thể của thuật toán Bellman-Ford, hiệu quả đến mức người ta gọi nó là "Shortest Path **Faster** algorithm". Mời bạn đọc tiếp tục theo dõi.*
 

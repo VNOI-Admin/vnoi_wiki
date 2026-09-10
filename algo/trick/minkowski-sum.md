@@ -27,7 +27,7 @@ Một số bài toán trung bình khó yêu cầu người giải phải thực 
 Để nhắc lại từ phần giới thiệu, ta định nghĩa tổng Minkowski $A + B$ của hai bao lồi $A$ và $B$ như sau:
 - Với mọi điểm $c \in A + B$, tồn tại hai điểm $a \in A$ và $b \in B$ sao cho $a + b = c$.
 
-| ![minkowski_1.png](/algo/minkowski_1.png) | 
+| ![minkowski_1.png](/uploads/algo/trick/minkowski-sum/minkowski_1.png) | 
 |:--:| 
 | *Ví dụ của tổng Minkowski của hai bao lồi $A$ và $B$* |
 
@@ -37,7 +37,7 @@ Như ta thấy ở ví dụ trên, $A + B$ cũng là một bao lồi và có s�
 
 Lấy ví dụ vừa nêu trên, ta có thể nhìn $A + B$ dưới một góc nhìn khác như sau.
 
-![minkowski_2.png](/algo/minkowski_2.png)
+![minkowski_2.png](/uploads/algo/trick/minkowski-sum/minkowski_2.png)
 
 Ta có hai nhận xét sau:
 - Đỉnh trái dưới của $A + B$ bằng đỉnh trái dưới của $A$ cộng đỉnh trái dưới của $B$.
@@ -52,34 +52,51 @@ Ta có thể coi thuật toán này như việc sắp xếp cạnh của hai bao
 Dưới đây là một cách cài đặt mẫu:
 ```cpp!
 // rút gọn từ kactl: https://github.com/kth-competitive-programming/kactl/blob/main/content/geometry/Point.h
-template<class T>
+template <class T>
 struct Point {
     typedef Point P;
     T x, y;
-    explicit Point(T x=0, T y=0) : x(x), y(y) {}
-    bool operator<(P p) const { return tie(x,y) < tie(p.x,p.y); }
-    bool operator==(P p) const { return tie(x,y)==tie(p.x,p.y); }
-    P operator+(P p) const { return P(x+p.x, y+p.y); }
-    T cross(P p) const { return x*p.y - y*p.x; }
+    explicit Point(T x = 0, T y = 0) : x(x), y(y) {
+    }
+    bool operator<(P p) const {
+        return tie(x, y) < tie(p.x, p.y);
+    }
+    bool operator==(P p) const {
+        return tie(x, y) == tie(p.x, p.y);
+    }
+    P operator+(P p) const {
+        return P(x + p.x, y + p.y);
+    }
+    P operator-(P p) const {
+        return P(x - p.x, y - p.y);
+    }
+    T cross(P p) const {
+        return x * p.y - y * p.x;
+    }
 };
 
-template<class P>
+template <class P>
 vector<P> minkowskiSum(vector<P> a, vector<P> b) {
     // xoay a và b sao cho điểm trái dưới là điểm đầu tiên
     rotate(begin(a), min_element(begin(a), end(a)), end(a));
     rotate(begin(b), min_element(begin(b), end(b)), end(b));
     int n = a.size(), m = b.size();
-    vector<P> h(n + m + 1); h[0] = a[0] + b[0];
+    vector<P> h(n + m + 1);
+    h[0] = a[0] + b[0];
     int t = 1;
     // ở đây ta cho phép i đi tới n và j đi tới m để thể hiện việc đã duyệt qua hết các cạnh của A và B
-    for (int i = 0, j = 0; i < n || j < m; ) {
-        if (i == n) j++;
-        else if (j == m) i++;
+    for (int i = 0, j = 0; i < n || j < m;) {
+        if (i == n)
+            j++;
+        else if (j == m)
+            i++;
         else {
             P pa = a[(i + 1) % n] - a[i], pb = b[(j + 1) % m] - b[j];
             auto cr = pa.cross(pb);
-            if (cr >= 0) i++;
-            if (cr <= 0) j++;
+            if (cr >= 0)
+                i++;
+            if (cr <= 0)
+                j++;
         }
         h[t++] = (a[i % n] + b[j % m]);
     }
@@ -87,7 +104,7 @@ vector<P> minkowskiSum(vector<P> a, vector<P> b) {
 }
 ```
 
-Độ phức tạp của thuật toán là $O(|A| + |B|)$.
+Độ phức tạp của thuật toán là $\mathcal{O}(|A| + |B|)$.
 
 ## Một số bài toán ví dụ
 
@@ -97,7 +114,7 @@ Link bài: [CF 87E](https://codeforces.com/problemset/problem/87/E).
 
 #### Đề bài
 
-Cho ba bao lồi $A$, $B$ và $C$ và $q$ truy vấn. Với mỗi truy vấn, ta được nhận một điểm $x$, và ta cần trả lời rằng có tồn tại ba điểm $a \in A$, $b \in B$, và $c \in C$ sao cho điểm $x$ là trọng tâm của tam giác được tạo bởi $a, b, c$ ($1 \le |A|, |B|, |C|, q \le 10^5$).
+Cho ba bao lồi $A$, $B$ và $C$ và $q$ truy vấn. Với mỗi truy vấn, ta được nhận một điểm $x$, và ta cần trả lời rằng có tồn tại ba điểm $a \in A$, $b \in B$, và $c \in C$ sao cho điểm $x$ là trọng tâm của tam giác được tạo bởi $a, b, c$ ($1 \le |A|, |B|, |C|, q \le 10^{5}$).
 
 #### Phân tích
 
@@ -105,18 +122,20 @@ Nhận xét rằng $x$ là trọng tâm của tam giác tạo bởi $a, b, c$ kh
 
 #### Cài đặt
 
-Các bạn có thể tham khảo cách cài đặt [tại đây](https://codeforces.com/contest/87/submission/228115969). Ở phần cài đặt này, hàm `minkowskiSum` nhận một tập các bao lồi (không nhất thiết chỉ là 2 bao lồi) và trả về tổng Minkowski của tập bao lồi này. Độ phức tạp là $O(p + q \log p)$, với $p \le |A| + |B| + |C|$ là số lượng điểm trong tổng Minkowski.
+Các bạn có thể tham khảo cách cài đặt [tại đây](https://codeforces.com/contest/87/submission/228115969). Ở phần cài đặt này, hàm `minkowskiSum` nhận một tập các bao lồi (không nhất thiết chỉ là 2 bao lồi) và trả về tổng Minkowski của tập bao lồi này. Độ phức tạp là $\mathcal{O}(p + q \log p)$, với $p \le |A| + |B| + |C|$ là số lượng điểm trong tổng Minkowski.
 
 ### Tìm khoảng cách giữa hai bao lồi
 
 #### Đề bài
 
-Cho hai bao lồi $A$ và $B$, tìm khoảng cách ngắn nhất giữa hai điểm bất kì thuộc hai bao lồi này. Nếu $A$ và $B$ có điểm chung thì in ra 0 ($1 \le |A|, |B| \le 2 \cdot 10^5$).
+Cho hai bao lồi $A$ và $B$, tìm khoảng cách ngắn nhất giữa hai điểm bất kì thuộc hai bao lồi này. Nếu $A$ và $B$ có điểm chung thì in ra 0 ($1 \le |A|, |B| \le 2 \cdot 10^{5}$).
 
 #### Phân tích
 
-Đây là một bài toán kinh điển sử dụng tổng Minkowski. Nhận xét là bài toán có thể được viết như sau (ở đây $||u||_2 = \sqrt{x_u^2 + y_u^2}$ là khoảng cách của $u$ tới gốc tọa độ):
-$$\min_{a \in A, b \in B} ||a - b||_2 = \min_{a \in A, b \in B} ||a + (-b)||_2$$
+Đây là một bài toán kinh điển sử dụng tổng Minkowski. Nhận xét là bài toán có thể được viết như sau (ở đây $||u||_2 = \sqrt{x_u^{2} + y_u^{2}}$ là khoảng cách của $u$ tới gốc tọa độ):
+$$
+\min_{a \in A, b \in B} ||a - b||_2 = \min_{a \in A, b \in B} ||a + (-b)||_2
+$$
 
 Vì thế, nếu ta gọi $-B$ chứa tất cả các điểm $-b$ khi $b \in B$ thì bài toán tương đương với việc tìm $\min_{a \in A, c \in -B} ||a + c||_2$. Gọi $S = A + (-B)$ là tổng Minkowski của bao lồi $A$ và $-B$, thì bài toán trở thành: tìm điểm trong $S$ gần gốc tọa độ nhất. Bài toán này ta có thể giải một cách dễ dàng: nếu $S$ chứa gốc tọa độ thì đáp án là $0$, ngược lại thì ta có thể lặp qua cạnh của $S$ và tìm khoảng cách ngắn nhất từ gốc tọa độ tới từng cạnh của $S$.
 
@@ -128,55 +147,96 @@ using namespace std;
 
 /// KACTL
 
-#define rep(i, a, b) for(int i = a; i < (b); ++i)
+#define rep(i, a, b) for (int i = a; i < (b); ++i)
 #define all(x) begin(x), end(x)
 #define sz(x) (int)(x).size()
 typedef long long ll;
 typedef pair<int, int> pii;
 typedef vector<int> vi;
 
-template <class T> int sgn(T x) { return (x > 0) - (x < 0); }
-template<class T>
+template <class T>
+int sgn(T x) {
+    return (x > 0) - (x < 0);
+}
+template <class T>
 struct Point {
     typedef Point P;
     T x, y;
-    explicit Point(T x=0, T y=0) : x(x), y(y) {}
-    bool operator<(P p) const { return tie(x,y) < tie(p.x,p.y); }
-    bool operator==(P p) const { return tie(x,y)==tie(p.x,p.y); }
-    P operator+(P p) const { return P(x+p.x, y+p.y); }
-    P operator-(P p) const { return P(x-p.x, y-p.y); }
-    P operator*(T d) const { return P(x*d, y*d); }
-    P operator/(T d) const { return P(x/d, y/d); }
-    T dot(P p) const { return x*p.x + y*p.y; }
-    T cross(P p) const { return x*p.y - y*p.x; }
-    T cross(P a, P b) const { return (a-*this).cross(b-*this); }
-    T dist2() const { return x*x + y*y; }
-    double dist() const { return sqrt((double)dist2()); }
+    explicit Point(T x = 0, T y = 0) : x(x), y(y) {
+    }
+    bool operator<(P p) const {
+        return tie(x, y) < tie(p.x, p.y);
+    }
+    bool operator==(P p) const {
+        return tie(x, y) == tie(p.x, p.y);
+    }
+    P operator+(P p) const {
+        return P(x + p.x, y + p.y);
+    }
+    P operator-(P p) const {
+        return P(x - p.x, y - p.y);
+    }
+    P operator*(T d) const {
+        return P(x * d, y * d);
+    }
+    P operator/(T d) const {
+        return P(x / d, y / d);
+    }
+    T dot(P p) const {
+        return x * p.x + y * p.y;
+    }
+    T cross(P p) const {
+        return x * p.y - y * p.x;
+    }
+    T cross(P a, P b) const {
+        return (a - *this).cross(b - *this);
+    }
+    T dist2() const {
+        return x * x + y * y;
+    }
+    double dist() const {
+        return sqrt((double)dist2());
+    }
     // angle to x-axis in interval [-pi, pi]
-    double angle() const { return atan2(y, x); }
-    P unit() const { return *this/dist(); } // makes dist()=1
-    P perp() const { return P(-y, x); } // rotates +90 degrees
-    P normal() const { return perp().unit(); }
+    double angle() const {
+        return atan2(y, x);
+    }
+    P unit() const {
+        return *this / dist();
+    } // makes dist()=1
+    P perp() const {
+        return P(-y, x);
+    } // rotates +90 degrees
+    P normal() const {
+        return perp().unit();
+    }
     // returns point rotated 'a' radians ccw around the origin
     P rotate(double a) const {
-        return P(x*cos(a)-y*sin(a),x*sin(a)+y*cos(a)); }
-    friend ostream& operator<<(ostream& os, P p) {
-        return os << "(" << p.x << "," << p.y << ")"; }
+        return P(x * cos(a) - y * sin(a), x * sin(a) + y * cos(a));
+    }
+    friend ostream &operator<<(ostream &os, P p) {
+        return os << "(" << p.x << "," << p.y << ")";
+    }
 };
 
-template<class P> bool onSegment(P s, P e, P p) {
+template <class P>
+bool onSegment(P s, P e, P p) {
     return p.cross(s, e) == 0 && (s - p).dot(e - p) <= 0;
 }
 
-template<class P>
-int sideOf(P s, P e, P p) { return sgn(s.cross(e, p)); }
+template <class P>
+int sideOf(P s, P e, P p) {
+    return sgn(s.cross(e, p));
+}
 
 using P = Point<double>;
-bool inHull(const vector<P>& l, P p, bool strict = true) {
+bool inHull(const vector<P> &l, P p, bool strict = true) {
     int a = 1, b = sz(l) - 1, r = !strict;
-    if (sz(l) < 3) return r && onSegment(l[0], l.back(), p);
-    if (sideOf(l[0], l[a], l[b]) > 0) swap(a, b);
-    if (sideOf(l[0], l[a], p) >= r || sideOf(l[0], l[b], p)<= -r)
+    if (sz(l) < 3)
+        return r && onSegment(l[0], l.back(), p);
+    if (sideOf(l[0], l[a], l[b]) > 0)
+        swap(a, b);
+    if (sideOf(l[0], l[a], p) >= r || sideOf(l[0], l[b], p) <= -r)
         return false;
     while (abs(a - b) > 1) {
         int c = (a + b) / 2;
@@ -186,28 +246,34 @@ bool inHull(const vector<P>& l, P p, bool strict = true) {
 }
 
 double segDist(P s, P e, P p) {
-    if (s==e) return (p-s).dist();
-    auto d = (e-s).dist2(), t = min(d,max(.0,(p-s).dot(e-s)));
-    return ((p-s)*d-(e-s)*t).dist()/d;
+    if (s == e)
+        return (p - s).dist();
+    auto d = (e - s).dist2(), t = min(d, max(.0, (p - s).dot(e - s)));
+    return ((p - s) * d - (e - s) * t).dist() / d;
 }
 
 /// END KACTL
 
-template<class P>
+template <class P>
 vector<P> minkowskiSum(vector<P> a, vector<P> b) {
     rotate(begin(a), min_element(begin(a), end(a)), end(a));
     rotate(begin(b), min_element(begin(b), end(b)), end(b));
     int n = a.size(), m = b.size();
-    vector<P> h(n + m + 1); h[0] = a[0] + b[0];
+    vector<P> h(n + m + 1);
+    h[0] = a[0] + b[0];
     int t = 1;
-    for (int i = 0, j = 0; i < n || j < m; ) {
-        if (i == n) j++;
-        else if (j == m) i++;
+    for (int i = 0, j = 0; i < n || j < m;) {
+        if (i == n)
+            j++;
+        else if (j == m)
+            i++;
         else {
             P pa = a[(i + 1) % n] - a[i], pb = b[(j + 1) % m] - b[j];
             auto cr = pa.cross(pb);
-            if (cr >= 0) i++;
-            if (cr <= 0) j++;
+            if (cr >= 0)
+                i++;
+            if (cr <= 0)
+                j++;
         }
         h[t++] = (a[i % n] + b[j % m]);
     }
@@ -217,7 +283,8 @@ vector<P> minkowskiSum(vector<P> a, vector<P> b) {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    int n, m; cin >> n >> m;
+    int n, m;
+    cin >> n >> m;
     vector<P> a(n), b(m);
     vector<vector<P>> poly(n, {P(0, 0)});
     for (int i = 0; i < n; i++) {
@@ -240,7 +307,7 @@ int main() {
     }
 }
 ```
-Độ phức tạp của thuật toán là $O(n + m)$.
+Độ phức tạp của thuật toán là $\mathcal{O}(n + m)$.
 
 ## Bài tập áp dụng
 

@@ -27,7 +27,7 @@ $$
 dp(i,j) = \min\limits_{k\le j}\left[dp(i-1,k)+C(k,j)\right]
 $$
 
-Công thức trên có độ phức tạp $\mathcal{O}(mn^2)$. Ta có thể tối ưu độ phức tạp xuống còn $\mathcal{O}(mn\log{n})$ bằng phương pháp *quy hoạch động chia để trị* nếu hàm chi phí $C(k, j)$ thoả mãn **điều kiện áp dụng** (được đề cập ở phần tiếp theo).
+Công thức trên có độ phức tạp $\mathcal{O}(mn^{2})$. Ta có thể tối ưu độ phức tạp xuống còn $\mathcal{O}(mn\log{n})$ bằng phương pháp *quy hoạch động chia để trị* nếu hàm chi phí $C(k, j)$ thoả mãn **điều kiện áp dụng** (được đề cập ở phần tiếp theo).
 
 <!-- Ngoài ra, ta còn có thể tối ưu độ phức tạp của công thức trên xuống còn $\mathcal{O}(mn)$ bằng phương pháp *quy hoạch động bao lồi* nếu hàm chi phí thoả một số điều kiện nhất định (không phải "điều kiện áp dụng" trong bài viết này). Phương pháp này sẽ được đề cập trong một bài viết khác.
  -->
@@ -75,9 +75,9 @@ Xét $j'<j$, ta biết rằng $opt(i,j')\le opt(i,j)$. Do đó, ta có thể tí
 
 ### Thuật toán chia để trị
 Dựa trên ý tưởng đó, ta có thuật toán chia để trị như sau:
-- Đầu tiên, ta tính $opt(i,n/2)$ trong $\mathcal{O}(n)$.
-- Tiếp theo, ta tính $opt(i,n/4)$ (biết rằng $opt(i,n/4)\le opt(i,n/2)$) và $opt(i,3n/4)$ (biết rằng $opt(i,3n/4)\ge opt(i,n/2)$), tổng độ phức tạp của "tầng" này là $\mathcal{O}(n)$.
-- Tiếp tục đệ quy để tính $opt(i,n/8), opt(i,3n/8),opt(i,5n/8),opt(i,7n/8)$, trong quá trình đệ quy, ta duy trì cận trên và dưới của $opt$.
+- Đầu tiên, ta tính $opt(i,\frac{n}{2})$ trong $\mathcal{O}(n)$.
+- Tiếp theo, ta tính $opt(i,\frac{n}{4})$ (biết rằng $opt(i,\frac{n}{4})\le opt(i,\frac{n}{2})$) và $opt(i,\frac{3n}{4})$ (biết rằng $opt(i,\frac{3n}{4})\ge opt(i,\frac{n}{2})$), tổng độ phức tạp của "tầng" này là $\mathcal{O}(n)$.
+- Tiếp tục đệ quy để tính $opt(i,\frac{n}{8}), opt(i,\frac{3n}{8}),opt(i,\frac{5n}{8}),opt(i,\frac{7n}{8})$, trong quá trình đệ quy, ta duy trì cận trên và dưới của $opt$.
 
 ### Độ phức tạp
 
@@ -103,9 +103,9 @@ Nếu bỏ qua $opt(i,mid)$ thì rõ ràng là $[optl,opt(i,mid)]$ và $[opt(i,m
 - Tổng độ phức tạp của thuật toán sau $m$ lần tính $dp$ là $\mathcal{O}(mn\log n)$.
 
 Dưới đây là hình minh hoạ về tổng độ phức tạp để tính $opt(i)$:
-![image](https://hackmd.io/_uploads/B1-6YBwIp.png)
+![image](/uploads/algo/dp/dpdnc/B1-6YBwIp.png)
 <!--
-![](https://vnoi.info/wiki/uploads/dp_optimization_img2.png)
+![](/uploads/algo/dp/dpdnc/dp_optimization_img2.png)
  -->
 ## Cài đặt
 Mặc dù việc triển khai có thể khác nhau tùy theo từng bài toán nhưng chúng đều có một cấu trúc chung.
@@ -121,17 +121,18 @@ int C(int l, int r);
 
 // tính dp_cur[l], ..., dp_cur[r]
 void compute(int l, int r, int optl, int optr) {
-    if (l > r) return;
+    if (l > r)
+        return;
 
-    int mid             = (l + r) >> 1;
-    pair<int, int> best = { INT_MAX, -1 };
+    int mid = (l + r) >> 1;
+    pair<int, int> best = {INT_MAX, -1};
 
     // tính dp_cur[mid] và opt[i][mid] dựa vào dp_before và hàm chi phí
     for (int k = optl; k <= min(mid, optr); ++k) {
-        best = min(best, { dp_before[k] + C(k, mid), k });
+        best = min(best, {dp_before[k] + C(k, mid), k});
     }
     dp_cur[mid] = best.first;
-    int opt     = best.second;
+    int opt = best.second;
 
     // đệ quy để tính dp_cur[l..mid-1] và dp_cur[mid+1..r]
     compute(l, mid - 1, optl, opt);
@@ -162,8 +163,8 @@ Nói cách khác, thứ tự của các phần tử của mảng $a$ trong mản
 Hỏi số cặp nghịch thế ít nhất có thể của mảng $c$ là bao nhiêu? Biết rằng một cặp $(i,j)$ được gọi là nghịch thế nếu $i<j$ và $c_i>c_j$.
 
 Giới hạn:
-- $1\le n,m\le10^6$
-- $1\le a_i, b_i\le 10^9$
+- $1\le n,m\le10^{6}$
+- $1\le a_i, b_i\le 10^{9}$
 
 #### Ý tưởng
 Đầu tiên, ta sắp xếp mảng $b$ tăng dần (để $b_i\le b_{i+1}$).
@@ -198,19 +199,23 @@ int bit[N * 2];
 
 int calcPos(int optl, int optr, int bi) {
     prf[optl - 1] = suf[optr + 1] = 0;
-    for (int i = optl; i <= optr; ++i) prf[i] = prf[i - 1] + (a[i] > bi);
-    for (int i = optr; i >= optl; --i) suf[i] = suf[i + 1] + (bi > a[i]);
+    for (int i = optl; i <= optr; ++i)
+        prf[i] = prf[i - 1] + (a[i] > bi);
+    for (int i = optr; i >= optl; --i)
+        suf[i] = suf[i + 1] + (bi > a[i]);
 
     int pos = optl;
     for (int i = optl + 1; i <= optr; ++i)
-        if (prf[pos - 1] + suf[pos] > prf[i - 1] + suf[i]) pos = i;
+        if (prf[pos - 1] + suf[pos] > prf[i - 1] + suf[i])
+            pos = i;
     return pos;
 }
 void compute(int l, int r, int optl, int optr) {
-    if (l > r) return;
+    if (l > r)
+        return;
 
     int mid = (l + r) >> 1;
-    p[mid]  = calcPos(optl, optr, b[mid]);
+    p[mid] = calcPos(optl, optr, b[mid]);
 
     compute(l, mid - 1, optl, p[mid]);
     compute(mid + 1, r, p[mid], optr);
@@ -223,26 +228,32 @@ void compress_c() {
         c[i] = lower_bound(tmp.begin(), tmp.end(), c[i]) - tmp.begin() + 1;
 }
 void upd(int p, int v) {
-    for (; p; p ^= p & -p) bit[p] += v;
+    for (; p; p ^= p & -p)
+        bit[p] += v;
 }
 int get(int p) {
     int res = 0;
-    for (; p <= n; p += p & -p) res += bit[p];
+    for (; p <= n; p += p & -p)
+        res += bit[p];
     return res;
 }
 
 long long solve() {
     cin >> n >> m;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
-    for (int i = 1; i <= m; ++i) cin >> b[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
+    for (int i = 1; i <= m; ++i)
+        cin >> b[i];
     a[n + 1] = INT_MAX;
     sort(b + 1, b + m + 1);
     compute(1, m, 1, n + 1);
 
     // dựng mảng c từ mảng a, b và p
     for (int i = 1, j = 1, sz = 0; i <= n + 1; ++i) {
-        while (j <= m && p[j] == i) c[++sz] = b[j++];
-        if (i <= n) c[++sz] = a[i];
+        while (j <= m && p[j] == i)
+            c[++sz] = b[j++];
+        if (i <= n)
+            c[++sz] = a[i];
     }
     n += m;
     compress_c();
@@ -276,7 +287,7 @@ Ta có thể tóm tắt bài toán như sau:
 - Yêu cầu: tìm chi phí nhỏ nhất để gom $n$ chiếc lá thành đúng $k$ đống lá.
 
 Giới hạn:
-- $0<n\le10^5$
+- $0<n\le10^{5}$
 - $0<k\le10$, $k<n$
 - $w_i\le1000$
 
@@ -294,8 +305,10 @@ $$
   
 Ta tính trước $2$ mảng cộng dồn $prf_1[i]=\sum\limits_{j=1}^{i}w_j$ và $prf_2[i]=\sum\limits_{j=1}^{i}(w_j\times j)$ để có thể tính $C(l,r)$ trong $\mathcal{O}(1)$.
 
-Tiếp theo, đặt $dp(i,j)$ là chi phí tối thiểu để gom $j$ chiếc lá đầu tiên thành $i$ đống lá. Ta có công thức truy hồi với độ phức tạp thời gian $\mathcal{O}(kn^2)$ cho bài toán này là
-$$dp(i,j) = \min\limits_{i-1\le k<j}\left[dp(i-1,k)+C(k+1,j)\right],\forall j\ge i$$
+Tiếp theo, đặt $dp(i,j)$ là chi phí tối thiểu để gom $j$ chiếc lá đầu tiên thành $i$ đống lá. Ta có công thức truy hồi với độ phức tạp thời gian $\mathcal{O}(kn^{2})$ cho bài toán này là
+$$
+dp(i,j) = \min\limits_{i-1\le k<j}\left[dp(i-1,k)+C(k+1,j)\right],\forall j\ge i
+$$
 
 Vì hàm chi phí $C$ thoả bất đẳng thức tứ giác xuôi $C(a,c)+C(b,d)\le C(a,d)+C(b,c)$ (bạn đọc có thể tự chứng minh) nên ta có thể áp dụng *quy hoạch động chia để trị*, giảm độ phức tạp thời gian xuống còn $\mathcal{O}(kn\log n)$.
 
@@ -314,16 +327,17 @@ long long C(int l, int r) {
     return (prf2[r] - prf2[l - 1]) - 1LL * l * (prf1[r] - prf1[l - 1]);
 }
 void compute(int l, int r, int optl, int optr) {
-    if (l > r) return;
+    if (l > r)
+        return;
 
-    int mid                   = (l + r) >> 1;
-    pair<long long, int> best = { LONG_LONG_MAX, -1 };
+    int mid = (l + r) >> 1;
+    pair<long long, int> best = {LONG_LONG_MAX, -1};
 
     for (int i = optl; i <= min(mid, optr); ++i) {
-        best = min(best, { dp_before[i] + C(i + 1, mid), i });
+        best = min(best, {dp_before[i] + C(i + 1, mid), i});
     }
     dp_cur[mid] = best.first;
-    int opt     = best.second;
+    int opt = best.second;
 
     compute(l, mid - 1, optl, opt);
     compute(mid + 1, r, opt, optr);
@@ -391,7 +405,9 @@ C(p,j)-C(p,j+1) \lt C(q,j)-C(q,j+1) \\
 $$
 
 Áp dụng bất đẳng thức tứ giác cho hàm chi phí $C$ với bộ số $q<p\le j<j+1$, ta có:
-$$C(p,j)+C(q,j+1)\ge C(q,j)+C(p,j+1)$$
+$$
+C(p,j)+C(q,j+1)\ge C(q,j)+C(p,j+1)
+$$
 
 Điều này là vô lý. Do đó, ta có được điều phải chứng minh.
 

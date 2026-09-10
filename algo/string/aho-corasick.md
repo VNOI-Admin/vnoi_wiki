@@ -32,8 +32,8 @@ Aho-Corasick là một thuật toán giúp bạn quản lý một tập xâu và
 
 Độ phức tạp của Aho-Corasick là:
 
-- Xây dựng trong $O(c*\sum{|S_i|})$ với $c$ là số lượng chữ cái khác nhau trong $N$ xâu $S_i$ và $|S_i|$ là số chữ cái trong xâu $S_i$. Giả sử bài toán cho các xâu chữ cái la-tinh viết thường, độ phức tạp là $26 * \sum{|S_i|}$.
-- Truy vấn trong $O(|T|)$, với $|T|$ là độ dài xâu truy vấn.
+- Xây dựng trong $\mathcal{O}(c \times \sum{|S_i|})$ với $c$ là số lượng chữ cái khác nhau trong $N$ xâu $S_i$ và $|S_i|$ là số chữ cái trong xâu $S_i$. Giả sử bài toán cho các xâu chữ cái la-tinh viết thường, độ phức tạp là $26 \times \sum{|S_i|}$.
+- Truy vấn trong $\mathcal{O}(|T|)$, với $|T|$ là độ dài xâu truy vấn.
 
 ## Ký hiệu
 
@@ -42,7 +42,7 @@ Trong bài viết này, ta quy ước các ký hiệu như sau:
 - Nếu không có giải thích gì thêm, $c$ là độ lớn của bảng chữ cái (thường là $26$, số chữ cái từ `A-Z`).
 - Với $S$ là một xâu, $|S|$ là độ dài của xâu $S$.
 - Với $S$ là một xâu, $S_i$ $(0 \leq i < |S|)$ là chữ cái thứ $i$ trong xâu $S$. Ta quy ước $S_i \in [0, c)$ (một số tài liệu khác có thể đặt giá trị này là $\sigma$)
-- Với $S$ là một xâu, $S_{l..r}$ $(0 \leq l \leq r < |S|)$ là xâu con liên tiếp từ $l$ tới $r$ của xâu S.
+- Với $S$ là một xâu, $S_{l\ldots r}$ $(0 \leq l \leq r < |S|)$ là xâu con liên tiếp từ $l$ tới $r$ của xâu S.
 
 Ngoài ra, trong bài viết này, ta tạm gọi cấu trúc dữ liệu được xây dựng bởi thuật toán Aho-Corasick là cây Aho-Corasick.
 
@@ -52,17 +52,19 @@ Ngoài ra, trong bài viết này, ta tạm gọi cấu trúc dữ liệu đư�
 
 Cách xây dựng Trie, các bạn có thể tham khảo ở bài viết về [Trie (Cây tiền tố)](/algo/data-structures/trie.md). Để xây dựng cây Aho-Corasick, ta xây dựng Trie đối với tập xâu $S$. Cài đặt của bước này như sau:
 
-```c++
-struct trie{
-    struct node{
+```cpp
+struct trie {
+    struct node {
         int cnt = 0, nxt[26];
-        node() {fill(nxt, nxt+26, -1);}
+        node() {
+            fill(nxt, nxt + 26, -1);
+        }
     };
     vector<node> g = {node()};
-    void insert_string(const string &s){
+    void insert_string(const string &s) {
         int p = 0;
-        for (char c: s){
-            if (g[p].nxt[c - 'a'] == -1){
+        for (char c : s) {
+            if (g[p].nxt[c - 'a'] == -1) {
                 g[p].nxt[c - 'a'] = g.size();
                 g.emplace_back();
             }
@@ -81,24 +83,25 @@ struct trie{
 >
 > Hãy cùng nhìn lại cách hoạt động của thuật toán [Knuth-Morris-Pratt](/algo/string/kmp.md):
 >
-> ```c++
-> vector<int> prefix_function(const string &s){
+> ```cpp
+> vector<int> prefix_function(const string &s) {
 >     vector<int> pi(s.size());
->     for (int i=1, p=0; i<s.size(); i++){
+>     for (int i = 1, p = 0; i < s.size(); i++) {
 >         while (p && s[p] != s[i])
->             p = pi[p-1];
+>             p = pi[p - 1];
 >         p = pi[i] = p + (s[p] == s[i]);
 >     }
 >     return pi;
 > }
-> 
-> void print_matches(const string &s, const string &t){
+>
+> void print_matches(const string &s, const string &t) {
 >     vector<int> pi = prefix_function(s);
->     for (int i=0, p=0; i<t.size(); i++){
+>     for (int i = 0, p = 0; i < t.size(); i++) {
 >         while (p && s[p] != t[i])
->             p = pi[p-1];
+>             p = pi[p - 1];
 >         p += s[p] == t[i];
->         if (p == s.size()) cout << i << "\n";
+>         if (p == s.size())
+>             cout << i << "\n";
 >     }
 > }
 > ```
@@ -107,7 +110,7 @@ struct trie{
 >
 > - Xây dựng hàm tiền tố `pi` cho xâu $S$.
 > - Khởi tạo con trỏ `p` trên xâu $S$, ban đầu trỏ về vị trí $0$.
-> - Duyệt lần lượt qua từng chữ cái của xâu $T$. Con trỏ `p` nhảy theo hàm `pi` cho tới khi tìm được vị trí mà $S_p = T_i$. Sau mỗi bước duyệt, con trỏ chỉ tới **tiền tố dài nhất của $S$** mà trùng với một **hậu tố của $T_{0..i}$**.
+> - Duyệt lần lượt qua từng chữ cái của xâu $T$. Con trỏ `p` nhảy theo hàm `pi` cho tới khi tìm được vị trí mà $S_p = T_i$. Sau mỗi bước duyệt, con trỏ chỉ tới **tiền tố dài nhất của $S$** mà trùng với một **hậu tố của $T_{0\ldots i}$**.
 
 ### Xây dựng cây Aho-Corasick
 
@@ -121,7 +124,7 @@ Trước khi đi vào cách xây dựng liên kết hậu tố, ta giải một 
 
 > **Cho tập $N$ xâu $S$ và xâu $T$. Liệt kê tất cả các lần xuất hiện của các xâu $S_i$ trong xâu $T$.**
 
-Giả sử đã xây dựng được liên kết hậu tố cho tất cả các nút trong Trie. Ta khởi tạo một con trỏ `p` chỉ tới gốc của Trie và duyệt từng chữ cái trong xâu $T$. Sau bước duyệt thứ $i$, ta duy trì tính chất: Con trỏ `p` chỉ tới nút Trie sâu nhất (hay biểu diễn cho xâu dài nhất) mà trùng với một **hậu tố của $T_{0..i}$**.
+Giả sử đã xây dựng được liên kết hậu tố cho tất cả các nút trong Trie. Ta khởi tạo một con trỏ `p` chỉ tới gốc của Trie và duyệt từng chữ cái trong xâu $T$. Sau bước duyệt thứ $i$, ta duy trì tính chất: Con trỏ `p` chỉ tới nút Trie sâu nhất (hay biểu diễn cho xâu dài nhất) mà trùng với một **hậu tố của $T_{0\ldots i}$**.
 
 > Tính chất của con trỏ `p` tương đương với tính chất được duy trì trong hàm `print_matches`. Do việc trỏ tới một nút trong Trie chính là trỏ tới **tiền tố của một (vài) xâu $S_i$ nào đó**, ta có thể hình dung việc này như thực hiện Knuth-Morris-Pratt đồng thời trên tất cả các xâu trong tập $S$.
 
@@ -133,13 +136,13 @@ Giả sử đã xây dựng được liên kết hậu tố cho tất cả các 
 
   <center>
  
-![ahocorasickanimate.gif](/algo/ahocorasickanimate.gif)
+![ahocorasickanimate.gif](/uploads/algo/string/aho-corasick/ahocorasickanimate.gif)
     <a href="/algo/ahocorasickanimate.mp4">Download video</a>
     
   </center>
 
   
-**Chú ý:** Để tìm được tất cả các xâu thuộc $S$ trùng với một hậu tố của $T_{0..i}$ tương ứng với con trỏ `p`, ta cần phải tìm trên tất cả các nút tới được bằng cách nhảy một (vài) bước từ `p` theo liên kết hậu tố.
+**Chú ý:** Để tìm được tất cả các xâu thuộc $S$ trùng với một hậu tố của $T_{0\ldots i}$ tương ứng với con trỏ `p`, ta cần phải tìm trên tất cả các nút tới được bằng cách nhảy một (vài) bước từ `p` theo liên kết hậu tố.
 
 Như vậy, thuật toán giải chia thành các bước như sau:
 
@@ -153,21 +156,23 @@ Như vậy, thuật toán giải chia thành các bước như sau:
 
 Cài đặt của thuật toán giải được cài đặt trong hàm `print_occurences` dưới đây:
 
-```c++
-struct aho_corasick{
-    struct node{
+```cpp
+struct aho_corasick {
+    struct node {
         int suffix_link = -1, nxt[26];
         vector<int> leaf;
-        node() {fill(nxt, nxt+26, -1);}
+        node() {
+            fill(nxt, nxt + 26, -1);
+        }
     };
     vector<node> g = {node()};
-    void print_sindex(int p){
+    void print_sindex(int p) {
         for (int v = p; v != -1; v = g[v].suffix_link)
-            for (int j: g[v].leaf)
+            for (int j : g[v].leaf)
                 cout << j << "\n";
     }
-    void print_occurences(const string &t){
-        for (int i=0, p=0; i<t.size(); i++){
+    void print_occurences(const string &t) {
+        for (int i = 0, p = 0; i < t.size(); i++) {
             while (p != -1 && g[p].nxt[t[i] - 'a'] == -1)
                 p = g[p].suffix_link;
             p = p == -1 ? 0 : g[p].nxt[t[i] - 'a'];
@@ -190,7 +195,7 @@ Việc di chuyển `p` như trên là `O(1)` amortized cho mỗi vòng lặp `i`
 > - Sau mỗi lần lặp `i`, độ sâu của nút được biểu diễn bởi `p` tăng tối đa `1`. Như vậy, số lần tăng là `|T|`.
 > - Sau mỗi lần lặp gán `p := p.suffix_link`, độ sâu của nút được biểu diễn bởi `p` giảm ít nhất `1`. Như vậy, số lần lặp gán nhỏ hơn hoặc bằng số lần lặp `i`, là `|T|`.
 >
-> Như vậy, số lần lặp để thay đổi `p` (hay `p`) là $O(T)$.
+> Như vậy, số lần lặp để thay đổi `p` (hay `p`) là $\mathcal{O}(T)$.
 
 Ta sẽ tối ưu thao tác di chuyển này thành `O(1)` cho mỗi bước.
 
@@ -208,20 +213,23 @@ Nhắc lại, liên kết hậu tố của một nút $P$ sẽ biểu diễn cho
 
 Sau đây là cài đặt Aho-Corasick của người viết, xây dựng liên kết hậu tố và mảng `go` từ Trie đã xây dựng từ bước trên.
 
-```c++
-struct aho_corasick{
-    struct node{
+```cpp
+struct aho_corasick {
+    struct node {
         int suffix_link = -1, cnt = 0, nxt[26], go[26];
-        node() {fill(nxt, nxt+26, -1);}
+        node() {
+            fill(nxt, nxt + 26, -1);
+        }
     };
     vector<node> g = {node()};
-    void build_automaton(){
-        for (deque<int> q = {0}; q.size(); q.pop_front()){
+    void build_automaton() {
+        for (deque<int> q = {0}; q.size(); q.pop_front()) {
             int v = q.front(), suffix_link = g[v].suffix_link;
-            for (int i=0; i<26; i++){
+            for (int i = 0; i < 26; i++) {
                 int nxt = g[v].nxt[i], go_sf = v ? g[suffix_link].go[i] : 0;
-                if (nxt == -1) g[v].go[i] = go_sf;
-                else{
+                if (nxt == -1)
+                    g[v].go[i] = go_sf;
+                else {
                     g[v].go[i] = nxt;
                     g[nxt].suffix_link = go_sf;
                     q.push_back(nxt);
@@ -247,33 +255,35 @@ struct aho_corasick{
 
 ### Xây dựng liên kết thoát (tối ưu thứ hai)
 
-Sau bước lặp thứ $i$ (đã duyệt qua $T_{0..i}$), ta nhận được con trỏ `p`. Nếu nhảy theo liên kết hậu tố của `p` cho tới khi về tới gốc (như hàm `print_sindex`), ta có thể tìm thấy được tất cả xâu $Y \in S$ trùng với hậu tố của xâu $T_{0..i}$. Nói cách khác, với mỗi $0 \leq i <|T|$, ta tìm được các $j$ sao cho $T_{j..i}$ thuộc $S$. Tuy nhiên, với mỗi $i$, việc tìm kiếm này là $O(n)$ do số lượng lần nhảy theo liên kết hậu tố từ một nút $P$ bất kỳ là $O(|P|) = O(n)$ (với $|P|$ là độ dài xâu biểu diễn bởi nút $P$).
+Sau bước lặp thứ $i$ (đã duyệt qua $T_{0\ldots i}$), ta nhận được con trỏ `p`. Nếu nhảy theo liên kết hậu tố của `p` cho tới khi về tới gốc (như hàm `print_sindex`), ta có thể tìm thấy được tất cả xâu $Y \in S$ trùng với hậu tố của xâu $T_{0\ldots i}$. Nói cách khác, với mỗi $0 \leq i <|T|$, ta tìm được các $j$ sao cho $T_{j\ldots i}$ thuộc $S$. Tuy nhiên, với mỗi $i$, việc tìm kiếm này là $\mathcal{O}(n)$ do số lượng lần nhảy theo liên kết hậu tố từ một nút $P$ bất kỳ là $\mathcal{O}(|P|) = \mathcal{O}(n)$ (với $|P|$ là độ dài xâu biểu diễn bởi nút $P$).
 
-> Với giới hạn đầu vào $10^5$, ta có thể tìm được tất cả các $j$ hay không? Quan trọng hơn, số lượng $j$ thoả mãn điều kiện này là bao nhiêu?
+> Với giới hạn đầu vào $10^{5}$, ta có thể tìm được tất cả các $j$ hay không? Quan trọng hơn, số lượng $j$ thoả mãn điều kiện này là bao nhiêu?
 >
-> Sau đây, ta sẽ chứng minh số lượng vị trí $j$ thoả mãn với mỗi vị trí $i$ là $O(\sqrt{\sum{|S_k|}})$ (với $\sum{|S_k|}$ là tổng số chữ cái trong các xâu thuộc $S$).
+> Sau đây, ta sẽ chứng minh số lượng vị trí $j$ thoả mãn với mỗi vị trí $i$ là $\mathcal{O}(\sqrt{\sum{|S_k|}})$ (với $\sum{|S_k|}$ là tổng số chữ cái trong các xâu thuộc $S$).
 >
-> Gọi $Y$ là tập các xâu thuộc $S$ mà tồn tại $j$ sao cho $Y = T_{j..i}$. Do các vị trí $j$ khác nhau, độ dài các xâu thuộc $Y$ khác nhau. Rõ ràng, $\sum{|Y_i|} \geq \frac{|Y| * |Y+1|}{2}$ (xâu ngắn nhất trong $Y$ có độ dài $\geq 1$, xâu ngắn thứ hai có độ dài $\geq 2$, ...). Như vậy, $|Y| = O(\sqrt{\sum{|S_i|}})$. Chứng minh hoàn tất.
+> Gọi $Y$ là tập các xâu thuộc $S$ mà tồn tại $j$ sao cho $Y = T_{j\ldots i}$. Do các vị trí $j$ khác nhau, độ dài các xâu thuộc $Y$ khác nhau. Rõ ràng, $\sum{|Y_i|} \geq \frac{|Y| \times |Y+1|}{2}$ (xâu ngắn nhất trong $Y$ có độ dài $\geq 1$, xâu ngắn thứ hai có độ dài $\geq 2$, ...). Như vậy, $|Y| = \mathcal{O}(\sqrt{\sum{|S_i|}})$. Chứng minh hoàn tất.
 
-Nói một cách nôm na, với mỗi tiền tố $X$ của $T$, có $O(\sqrt{\sum{|S_i|}})$ hậu tố của $X$ trùng với một xâu thuộc $S$. Do tất cả các hậu tố của các tiền tố chính là tất cả các xâu con liên tiếp và có đúng $|T|$ xâu $X$, có $O(|T| * \sqrt{\sum{|S_i|}})$ lần xuất hiện của các xâu thuộc $S$ trong xâu $T$.
+Nói một cách nôm na, với mỗi tiền tố $X$ của $T$, có $\mathcal{O}(\sqrt{\sum{|S_i|}})$ hậu tố của $X$ trùng với một xâu thuộc $S$. Do tất cả các hậu tố của các tiền tố chính là tất cả các xâu con liên tiếp và có đúng $|T|$ xâu $X$, có $\mathcal{O}(|T| \times \sqrt{\sum{|S_i|}})$ lần xuất hiện của các xâu thuộc $S$ trong xâu $T$.
 
-Để có thể tìm kiếm nhanh chóng tất cả các hậu tố của $X$ mà thuộc $S$, ta lưu thêm "liên kết thoát" (exit link) trên mỗi nút. Liên kết thoát của $P$ sẽ trỏ tới nút $E_P$ sao cho khi nhảy theo liên kết hậu tố từ $P$ dương lần, $E_P$ là nút đầu tiên có $cnt \neq 0$ (đồng nghĩa với việc xâu được biểu diễn bởi nút $q$ thuộc $S$).
+Để có thể tìm kiếm nhanh chóng tất cả các hậu tố của $X$ mà thuộc $S$, ta lưu thêm "liên kết thoát" (exit link) trên mỗi nút. Liên kết thoát của $P$ sẽ trỏ tới nút $E_P$ sao cho khi nhảy theo liên kết hậu tố từ $P$ dương lần, $E_P$ là nút đầu tiên có $\texttt{cnt} \neq 0$ (đồng nghĩa với việc xâu được biểu diễn bởi nút $q$ thuộc $S$).
 
 ### Cài đặt hoàn chỉnh
 
 Sau đây là cài đặt hoàn chỉnh của người viết. Tùy vào mục đích sử dụng, bạn có thể cần thêm các biến trên mỗi node hoặc chỉnh sửa số lượng chữ cái. Trong cài đặt này, người viết sử dụng chung mảng `nxt` và `go` để giúp tiết kiệm bộ nhớ và đơn giản hoá cài đặt.
 
-```c++
-struct aho_corasick{
-    struct node{
+```cpp
+struct aho_corasick {
+    struct node {
         int suffix_link = -1, exit_link = -1, cnt = 0, nxt[26];
-        node() {fill(nxt, nxt+26, -1);}
+        node() {
+            fill(nxt, nxt + 26, -1);
+        }
     };
     vector<node> g = {node()};
-    void insert_string(const string &s){
+    void insert_string(const string &s) {
         int p = 0;
-        for (char c: s){
-            if (g[p].nxt[c - 'a'] == -1){
+        for (char c : s) {
+            if (g[p].nxt[c - 'a'] == -1) {
                 g[p].nxt[c - 'a'] = g.size();
                 g.emplace_back();
             }
@@ -281,14 +291,16 @@ struct aho_corasick{
         }
         g[p].cnt++;
     }
-    void build_automaton(){
-        for (deque<int> q = {0}; q.size(); q.pop_front()){
+    void build_automaton() {
+        for (deque<int> q = {0}; q.size(); q.pop_front()) {
             int v = q.front(), suffix_link = g[v].suffix_link;
-            if (v) g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
-            for (int i=0; i<26; i++){
+            if (v)
+                g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
+            for (int i = 0; i < 26; i++) {
                 int &nxt = g[v].nxt[i], nxt_sf = v ? g[suffix_link].nxt[i] : 0;
-                if (nxt == -1) nxt = nxt_sf;
-                else{
+                if (nxt == -1)
+                    nxt = nxt_sf;
+                else {
                     g[nxt].suffix_link = nxt_sf;
                     q.push_back(nxt);
                 }
@@ -302,21 +314,23 @@ struct aho_corasick{
 
 Bài toán được trình bày trong phần [Giới thiệu](#giới-thiệu) chính là bài [Kattis stringmultimatching: String Multimatching](https://open.kattis.com/problems/stringmultimatching). Do bài này sử dụng bảng chữ cái bao gồm tất cả các chữ cái in được (trừ dấu xuống dòng), ta sử dụng bảng chữ cái có độ lớn $128$ để dễ dàng cài đặt.
 
-```c++
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-struct aho_corasick{
-    struct node{
+struct aho_corasick {
+    struct node {
         int suffix_link = -1, exit_link = -1, nxt[128];
         vector<int> leaf;
-        node() {fill(nxt, nxt+128, -1);}
+        node() {
+            fill(nxt, nxt + 128, -1);
+        }
     };
     vector<node> g = {node()};
-    void insert_string(const string &s, int sidx){
+    void insert_string(const string &s, int sidx) {
         int p = 0;
-        for (char c: s){
-            if (g[p].nxt[c] == -1){
+        for (char c : s) {
+            if (g[p].nxt[c] == -1) {
                 g[p].nxt[c] = g.size();
                 g.emplace_back();
             }
@@ -324,56 +338,62 @@ struct aho_corasick{
         }
         g[p].leaf.push_back(sidx);
     }
-    void build_automaton(){
-        for (deque<int> q = {0}; q.size(); q.pop_front()){
+    void build_automaton() {
+        for (deque<int> q = {0}; q.size(); q.pop_front()) {
             int v = q.front(), suffix_link = g[v].suffix_link;
-            if (v) g[v].exit_link = g[suffix_link].leaf.size() ? suffix_link : g[suffix_link].exit_link;
-            for (int i=0; i<128; i++){
+            if (v)
+                g[v].exit_link = g[suffix_link].leaf.size() ? suffix_link : g[suffix_link].exit_link;
+            for (int i = 0; i < 128; i++) {
                 int &nxt = g[v].nxt[i], nxt_sf = v ? g[suffix_link].nxt[i] : 0;
-                if (nxt == -1) nxt = nxt_sf;
-                else{
+                if (nxt == -1)
+                    nxt = nxt_sf;
+                else {
                     g[nxt].suffix_link = nxt_sf;
                     q.push_back(nxt);
                 }
             }
         }
     }
-    vector<int> get_sindex(int p){
+    vector<int> get_sindex(int p) {
         vector<int> a;
         for (int v = g[p].leaf.size() ? p : g[p].exit_link; v != -1; v = g[v].exit_link)
-            for (int j: g[v].leaf)
+            for (int j : g[v].leaf)
                 a.push_back(j);
         return a;
     }
 };
 
-signed main(){
+int main() {
     cin.tie(0)->sync_with_stdio(0);
     string n_line;
-    while (getline(cin, n_line)){
+    while (getline(cin, n_line)) {
         int n = stoi(n_line);
 
         vector<int> s_size(n);
         aho_corasick ac;
-        for (int i=0; i<n; i++){
-            string s; getline(cin, s);
+        for (int i = 0; i < n; i++) {
+            string s;
+            getline(cin, s);
             ac.insert_string(s, i);
             s_size[i] = s.size();
         }
         ac.build_automaton();
 
         vector<vector<int>> result(n);
-        string t; getline(cin, t);
-        for (int i=0, p=0; i<t.size(); i++){
+        string t;
+        getline(cin, t);
+        for (int i = 0, p = 0; i < t.size(); i++) {
             p = ac.g[p].nxt[t[i]];
-            for (int j: ac.get_sindex(p))
+            for (int j : ac.get_sindex(p))
                 result[j].push_back(i - s_size[j] + 1);
         }
-        
-        for (const vector<int> &v: result){
-            if (v.size() == 0) cout << "\n";
-            else for (int i=0; i<v.size(); i++)
-                cout << v[i] << " \n"[i == v.size()-1];
+
+        for (const vector<int> &v : result) {
+            if (v.size() == 0)
+                cout << "\n";
+            else
+                for (int i = 0; i < v.size(); i++)
+                    cout << v[i] << " \n"[i == v.size() - 1];
         }
     }
 }
@@ -391,13 +411,13 @@ Dễ dàng nhận thấy: các cạnh tạo bởi các liên kết hậu tố t�
 
 #### Tóm tắt đề bài
 
-Cho một tập xâu $S$ có $n$ phần tử ($1 \leq n, \sum{|S_i|} \leq 2*10^5$) và $q (1 \leq q \leq 5*10^5)$ truy vấn có dạng $(l, r, k)$. Với mỗi truy vấn, trả về tổng số lần xuất hiện của $s_k$ trong các xâu $s_i (l \leq i \leq r)$.
+Cho một tập xâu $S$ có $n$ phần tử ($1 \leq n, \sum{|S_i|} \leq 2 \times 10^{5}$) và $q (1 \leq q \leq 5 \times 10^{5})$ truy vấn có dạng $(l, r, k)$. Với mỗi truy vấn, trả về tổng số lần xuất hiện của $s_k$ trong các xâu $s_i (l \leq i \leq r)$.
 
 #### Ý tưởng liên kết thoát
 
 Truy vấn của đề bài có thể được đơn giản hóa như sau: Với mỗi truy vấn $(l, r, k)$, ta giải truy vấn $(1, r, k)$ và $(1, l-1, k)$, sau đó lấy hiệu hai truy vấn này. Sau đây, ta gọi truy vấn dạng $(1, r, k)$ là $(r, k)$.
 
-Ta xây dựng cây Aho-Corasick của tập xâu $S$, sau đó duyệt các truy vấn $(r, k)$ theo thứ tự $r$ tăng dần. Khi duyệt tới $r = r_0$ nào đó, ta sẽ "bật" các xâu thuộc $S[1..r_0]$.
+Ta xây dựng cây Aho-Corasick của tập xâu $S$, sau đó duyệt các truy vấn $(r, k)$ theo thứ tự $r$ tăng dần. Khi duyệt tới $r = r_0$ nào đó, ta sẽ "bật" các xâu thuộc $S[1\ldots r_0]$.
 
 Cụ thể, với mỗi nút $V$, ta duy trì biến `apr` là số lần xuất hiện của xâu được biểu diễn bởi $V$ trong tập xâu đã "bật". Kết quả của truy vấn chính là giá trị của `apr` tại nút biểu diễn cho xâu $S_k$.
 
@@ -405,24 +425,26 @@ Cụ thể, với mỗi nút $V$, ta duy trì biến `apr` là số lần xuất
 
 #### Cài đặt liên kết thoát
 
-```c++
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-struct query{
+struct query {
     int r, k, idx, coef;
 };
 
-struct aho_corasick{
-    struct node{
+struct aho_corasick {
+    struct node {
         int suffix_link = -1, exit_link = -1, cnt = 0, apr = 0, nxt[26];
-        node() {fill(nxt, nxt+26, -1);}
+        node() {
+            fill(nxt, nxt + 26, -1);
+        }
     };
     vector<node> g = {node()};
-    vector<int> insert_string(const string &s){
+    vector<int> insert_string(const string &s) {
         vector<int> ptr = {0};
-        for (char c: s){
-            if (g[ptr.back()].nxt[c - 'a'] == -1){
+        for (char c : s) {
+            if (g[ptr.back()].nxt[c - 'a'] == -1) {
                 g[ptr.back()].nxt[c - 'a'] = g.size();
                 g.emplace_back();
             }
@@ -431,63 +453,70 @@ struct aho_corasick{
         g[ptr.back()].cnt++;
         return ptr;
     }
-    void build_automaton(){
-        for (deque<int> q = {0}; q.size(); q.pop_front()){
+    void build_automaton() {
+        for (deque<int> q = {0}; q.size(); q.pop_front()) {
             int v = q.front(), suffix_link = g[v].suffix_link;
-            if (v) g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
-            for (int i=0; i<26; i++){
+            if (v)
+                g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
+            for (int i = 0; i < 26; i++) {
                 int &nxt = g[v].nxt[i], nxt_sf = v ? g[suffix_link].nxt[i] : 0;
-                if (nxt == -1) nxt = nxt_sf;
-                else{
+                if (nxt == -1)
+                    nxt = nxt_sf;
+                else {
                     g[nxt].suffix_link = nxt_sf;
                     q.push_back(nxt);
                 }
             }
         }
     }
-    void update(int ptr){
+    void update(int ptr) {
         for (ptr = g[ptr].cnt ? ptr : g[ptr].exit_link; ptr != -1; ptr = g[ptr].exit_link)
             g[ptr].apr++;
     }
 };
 
-signed main(){
+int main() {
     cin.tie(0)->sync_with_stdio(0);
-    int n, q; cin >> n >> q;
+    int n, q;
+    cin >> n >> q;
 
     vector<string> s(n);
-    for (int i=0; i<n; i++) cin >> s[i];
+    for (int i = 0; i < n; i++)
+        cin >> s[i];
 
     aho_corasick ac;
     vector<vector<int>> ptrs(n);
-    for (int i=0; i<n; i++) ptrs[i] = ac.insert_string(s[i]);
+    for (int i = 0; i < n; i++)
+        ptrs[i] = ac.insert_string(s[i]);
     ac.build_automaton();
 
     vector<query> a;
-    for (int i=0; i<q; i++){
-        int l, r, k; cin >> l >> r >> k;
-        a.push_back({r-1, k-1, i, 1});
-        if (l != 1) a.push_back({l-2, k-1, i, -1});
+    for (int i = 0; i < q; i++) {
+        int l, r, k;
+        cin >> l >> r >> k;
+        a.push_back({r - 1, k - 1, i, 1});
+        if (l != 1)
+            a.push_back({l - 2, k - 1, i, -1});
     }
-    sort(a.begin(), a.end(), [](const query &a, const query &b){return a.r < b.r;});
+    sort(a.begin(), a.end(), [](const query &a, const query &b) { return a.r < b.r; });
 
     vector<int> result(q);
 
     int ptr_s = 0;
-    for (const query &qr: a){
+    for (const query &qr : a) {
         for (; ptr_s <= qr.r; ptr_s++)
-            for (int pos: ptrs[ptr_s])
+            for (int pos : ptrs[ptr_s])
                 ac.update(pos);
         int v = ptrs[qr.k].back();
         result[qr.idx] += qr.coef * ac.g[v].apr;
     }
 
-    for (int v: result) cout << v << "\n";
+    for (int v : result)
+        cout << v << "\n";
 }
-
 ```
 
-Độ phức tạp thời gian của cài đặt trên là $O(Q + \sum{S_i} \sqrt{\sum{S_i}})$ do mỗi xâu chỉ được "bật" tối đa một lần.
+Độ phức tạp thời gian của cài đặt trên là $\mathcal{O}(Q + \sum{S_i} \sqrt{\sum{S_i}})$ do mỗi xâu chỉ được "bật" tối đa một lần.
 
 #### Ý tưởng Euler tour trên cây
 
@@ -502,24 +531,26 @@ Bài toán con này có thể dễ dàng giải được với [Cập nhật đ�
 
 #### Cài đặt Euler tour trên cây
 
-```c++
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 
-struct query{
+struct query {
     int r, k, idx, coef;
 };
 
-struct aho_corasick{
-    struct node{
+struct aho_corasick {
+    struct node {
         int suffix_link = -1, exit_link = -1, cnt = 0, nxt[26];
-        node() {fill(nxt, nxt+26, -1);}
+        node() {
+            fill(nxt, nxt + 26, -1);
+        }
     };
     vector<node> g = {node()};
-    vector<int> insert_string(const string &s){
+    vector<int> insert_string(const string &s) {
         vector<int> ptr = {0};
-        for (char c: s){
-            if (g[ptr.back()].nxt[c - 'a'] == -1){
+        for (char c : s) {
+            if (g[ptr.back()].nxt[c - 'a'] == -1) {
                 g[ptr.back()].nxt[c - 'a'] = g.size();
                 g.emplace_back();
             }
@@ -528,37 +559,40 @@ struct aho_corasick{
         g[ptr.back()].cnt++;
         return ptr;
     }
-    void build_automaton(){
-        for (deque<int> q = {0}; q.size(); q.pop_front()){
+    void build_automaton() {
+        for (deque<int> q = {0}; q.size(); q.pop_front()) {
             int v = q.front(), suffix_link = g[v].suffix_link;
-            if (v) g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
-            for (int i=0; i<26; i++){
+            if (v)
+                g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
+            for (int i = 0; i < 26; i++) {
                 int &nxt = g[v].nxt[i], nxt_sf = v ? g[suffix_link].nxt[i] : 0;
-                if (nxt == -1) nxt = nxt_sf;
-                else{
+                if (nxt == -1)
+                    nxt = nxt_sf;
+                else {
                     g[nxt].suffix_link = nxt_sf;
                     q.push_back(nxt);
                 }
             }
         }
     }
-    vector<vector<int>> to_tree(){
+    vector<vector<int>> to_tree() {
         vector<vector<int>> tree(g.size());
-        for (int i=1; i<g.size(); i++)
+        for (int i = 1; i < g.size(); i++)
             tree[g[i].suffix_link].push_back(i);
         return tree;
     }
 };
 
-struct BIT{
+struct BIT {
     static const int OFFSET = 2;
     vector<int> g;
-    BIT(int n): g(n + OFFSET, 0) {}
-    void update(int p, int v){
+    BIT(int n) : g(n + OFFSET, 0) {
+    }
+    void update(int p, int v) {
         for (p += OFFSET; p < g.size(); p += p & (-p))
             g[p] += v;
     }
-    int query(int p){
+    int query(int p) {
         int v = 0;
         for (p += OFFSET; p; p -= p & (-p))
             v += g[p];
@@ -566,22 +600,25 @@ struct BIT{
     }
 };
 
-void dfs(const vector<vector<int>> &g, int &tdfs, vector<int> &tin, vector<int> &tout, int v){
+void dfs(const vector<vector<int>> &g, int &tdfs, vector<int> &tin, vector<int> &tout, int v) {
     tin[v] = tdfs++;
-    for (int u: g[v])
+    for (int u : g[v])
         dfs(g, tdfs, tin, tout, u);
-    tout[v] = tdfs-1;
+    tout[v] = tdfs - 1;
 }
-signed main(){
+int main() {
     cin.tie(0)->sync_with_stdio(0);
-    int n, q; cin >> n >> q;
+    int n, q;
+    cin >> n >> q;
 
     vector<string> s(n);
-    for (int i=0; i<n; i++) cin >> s[i];
+    for (int i = 0; i < n; i++)
+        cin >> s[i];
 
     aho_corasick ac;
     vector<vector<int>> ptrs(n);
-    for (int i=0; i<n; i++) ptrs[i] = ac.insert_string(s[i]);
+    for (int i = 0; i < n; i++)
+        ptrs[i] = ac.insert_string(s[i]);
     ac.build_automaton();
 
     vector<vector<int>> g = ac.to_tree();
@@ -590,30 +627,33 @@ signed main(){
     dfs(g, tdfs, tin, tout, 0);
 
     vector<query> a;
-    for (int i=0; i<q; i++){
-        int l, r, k; cin >> l >> r >> k;
-        a.push_back({r-1, k-1, i, 1});
-        if (l != 1) a.push_back({l-2, k-1, i, -1});
+    for (int i = 0; i < q; i++) {
+        int l, r, k;
+        cin >> l >> r >> k;
+        a.push_back({r - 1, k - 1, i, 1});
+        if (l != 1)
+            a.push_back({l - 2, k - 1, i, -1});
     }
-    sort(a.begin(), a.end(), [](const query &a, const query &b){return a.r < b.r;});
+    sort(a.begin(), a.end(), [](const query &a, const query &b) { return a.r < b.r; });
 
     vector<int> result(q);
     BIT bit(g.size());
 
     int ptr_s = 0;
-    for (const query &qr: a){
+    for (const query &qr : a) {
         for (; ptr_s <= qr.r; ptr_s++)
-            for (int pos: ptrs[ptr_s])
+            for (int pos : ptrs[ptr_s])
                 bit.update(tin[pos], 1);
         int v = ptrs[qr.k].back();
         result[qr.idx] += qr.coef * (bit.query(tout[v]) - bit.query(tin[v] - 1));
     }
 
-    for (int v: result) cout << v << "\n";
+    for (int v : result)
+        cout << v << "\n";
 }
 ```
 
-Độ phức tạp thời gian của cài đặt này là $O((\sum{|S_i|}+Q) \lg \sum{|S_i|})$
+Độ phức tạp thời gian của cài đặt này là $\mathcal{O}((\sum{|S_i|}+Q) \lg \sum{|S_i|})$
 
 #### Bonus: Ý tưởng chia căn
 
@@ -621,31 +661,33 @@ Trong trường hợp không nghĩ tới việc tách query ra thành hai phần
 
 **Chú ý:** Do số lượng thao tác cần dùng để thêm mỗi xâu là khác nhau, ta cần xét tới độ dài các xâu khi sử dụng MO's algorithm.
 
-Như vậy, ta sẽ thực hiện $O(\sum {S_i} \sqrt{\sum {S_i}})$ thao tác cập nhật một đường đi trên cây Aho-Corasick và $O(Q)$ thao tác truy vấn.
+Như vậy, ta sẽ thực hiện $\mathcal{O}(\sum {S_i} \sqrt{\sum {S_i}})$ thao tác cập nhật một đường đi trên cây Aho-Corasick và $\mathcal{O}(Q)$ thao tác truy vấn.
 
-Ý tưởng tự nhiên ở bước này là sử dụng một cấu trúc dữ liệu có khả năng thực hiện cập nhật trong $O(1)$ và truy vấn tổng một đoạn trong $O(\sqrt N)$. Bài toán con này có thể xử lý được bằng phương pháp [Chia căn đoạn](/algo/data-structures/sqrt-decomposition.md).
+Ý tưởng tự nhiên ở bước này là sử dụng một cấu trúc dữ liệu có khả năng thực hiện cập nhật trong $\mathcal{O}(1)$ và truy vấn tổng một đoạn trong $\mathcal{O}(\sqrt N)$. Bài toán con này có thể xử lý được bằng phương pháp [Chia căn đoạn](/algo/data-structures/sqrt-decomposition.md).
 
 #### Cài đặt ý tưởng chia căn
 
-```c++
+```cpp
 #include <bits/stdc++.h>
 using namespace std;
 const int SQRT = 450;
 
-struct query{
+struct query {
     int l, r, k, idx;
 };
 
-struct aho_corasick{
-    struct node{
+struct aho_corasick {
+    struct node {
         int suffix_link = -1, exit_link = -1, cnt = 0, nxt[26];
-        node() {fill(nxt, nxt+26, -1);}
+        node() {
+            fill(nxt, nxt + 26, -1);
+        }
     };
     vector<node> g = {node()};
-    vector<int> insert_string(const string &s){
+    vector<int> insert_string(const string &s) {
         vector<int> ptr = {0};
-        for (char c: s){
-            if (g[ptr.back()].nxt[c - 'a'] == -1){
+        for (char c : s) {
+            if (g[ptr.back()].nxt[c - 'a'] == -1) {
                 g[ptr.back()].nxt[c - 'a'] = g.size();
                 g.emplace_back();
             }
@@ -654,48 +696,54 @@ struct aho_corasick{
         g[ptr.back()].cnt++;
         return ptr;
     }
-    void build_automaton(){
-        for (deque<int> q = {0}; q.size(); q.pop_front()){
+    void build_automaton() {
+        for (deque<int> q = {0}; q.size(); q.pop_front()) {
             int v = q.front(), suffix_link = g[v].suffix_link;
-            if (v) g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
-            for (int i=0; i<26; i++){
+            if (v)
+                g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
+            for (int i = 0; i < 26; i++) {
                 int &nxt = g[v].nxt[i], nxt_sf = v ? g[suffix_link].nxt[i] : 0;
-                if (nxt == -1) nxt = nxt_sf;
-                else{
+                if (nxt == -1)
+                    nxt = nxt_sf;
+                else {
                     g[nxt].suffix_link = nxt_sf;
                     q.push_back(nxt);
                 }
             }
         }
     }
-    vector<vector<int>> to_tree(){
+    vector<vector<int>> to_tree() {
         vector<vector<int>> tree(g.size());
-        for (int i=1; i<g.size(); i++)
+        for (int i = 1; i < g.size(); i++)
             tree[g[i].suffix_link].push_back(i);
         return tree;
     }
 };
 
-void dfs(const vector<vector<int>> &g, int &tdfs, vector<int> &tin, vector<int> &tout, int v){
+void dfs(const vector<vector<int>> &g, int &tdfs, vector<int> &tin, vector<int> &tout, int v) {
     tin[v] = tdfs++;
-    for (int u: g[v])
+    for (int u : g[v])
         dfs(g, tdfs, tin, tout, u);
-    tout[v] = tdfs-1;
+    tout[v] = tdfs - 1;
 }
-signed main(){
+int main() {
     cin.tie(0)->sync_with_stdio(0);
-    int n, q; cin >> n >> q;
+    int n, q;
+    cin >> n >> q;
 
     vector<string> s(n);
-    for (int i=0; i<n; i++) cin >> s[i];
+    for (int i = 0; i < n; i++)
+        cin >> s[i];
 
     vector<int> pfs(n);
-    for (int i=0; i<n; i++) pfs[i] = s[i].size();
+    for (int i = 0; i < n; i++)
+        pfs[i] = s[i].size();
     partial_sum(pfs.begin(), pfs.end(), pfs.begin());
 
     aho_corasick ac;
     vector<vector<int>> ptrs(n);
-    for (int i=0; i<n; i++) ptrs[i] = ac.insert_string(s[i]);
+    for (int i = 0; i < n; i++)
+        ptrs[i] = ac.insert_string(s[i]);
     ac.build_automaton();
 
     vector<vector<int>> g = ac.to_tree();
@@ -704,50 +752,59 @@ signed main(){
     dfs(g, tdfs, tin, tout, 0);
 
     vector<query> a(q);
-    for (int i=0; i<q; i++){
-        int l, r, k; cin >> l >> r >> k;
-        a[i] = {l-1, r-1, k-1, i};
+    for (int i = 0; i < q; i++) {
+        int l, r, k;
+        cin >> l >> r >> k;
+        a[i] = {l - 1, r - 1, k - 1, i};
     }
-    sort(a.begin(), a.end(), [&pfs](const query &a, const query &b) -> bool{
-        int la = a.l == 0 ? 0 : pfs[a.l-1], lb = b.l == 0 ? 0 : pfs[b.l-1];
+    sort(a.begin(), a.end(), [&pfs](const query &a, const query &b) -> bool {
+        int la = a.l == 0 ? 0 : pfs[a.l - 1], lb = b.l == 0 ? 0 : pfs[b.l - 1];
         int ra = pfs[a.r], rb = pfs[b.r];
 
         int block_a = la / SQRT, block_b = lb / SQRT;
-        if (block_a != block_b) return block_a < block_b;
+        if (block_a != block_b)
+            return block_a < block_b;
         return ra == rb ? 0 : (ra < rb) ^ (block_a % 2);
     });
 
-    vector<int> apr(g.size()), bapr((g.size()-1) / SQRT + 1);
-    auto update_string = [&ptrs, &apr, &bapr, &tin](int ptr, int coef){
-        for (int pos: ptrs[ptr]){
+    vector<int> apr(g.size()), bapr((g.size() - 1) / SQRT + 1);
+    auto update_string = [&ptrs, &apr, &bapr, &tin](int ptr, int coef) {
+        for (int pos : ptrs[ptr]) {
             pos = tin[pos];
             apr[pos] += coef;
-            bapr[pos/SQRT] += coef;
+            bapr[pos / SQRT] += coef;
         }
     };
 
     int l = 0, r = -1;
     vector<int> result(q);
-    for (const query &qr: a){
-        for (; r+1 <= qr.r; r++) update_string(r+1, 1);
-        for (; l-1 >= qr.l; l--) update_string(l-1, 1);
+    for (const query &qr : a) {
+        for (; r + 1 <= qr.r; r++)
+            update_string(r + 1, 1);
+        for (; l - 1 >= qr.l; l--)
+            update_string(l - 1, 1);
 
-        for (; r > qr.r; r--) update_string(r, -1);
-        for (; l < qr.l; l++) update_string(l, -1);
+        for (; r > qr.r; r--)
+            update_string(r, -1);
+        for (; l < qr.l; l++)
+            update_string(l, -1);
 
         int v = ptrs[qr.k].back();
         int &rs = result[qr.idx];
-        for (int i=tin[v]; i<=tout[v];){
-            if (i + SQRT > tout[v]+1 || i % SQRT) rs += apr[i], i++;
-            else rs += bapr[i / SQRT], i += SQRT;
+        for (int i = tin[v]; i <= tout[v];) {
+            if (i + SQRT > tout[v] + 1 || i % SQRT)
+                rs += apr[i], i++;
+            else
+                rs += bapr[i / SQRT], i += SQRT;
         }
     }
 
-    for (int v: result) cout << v << "\n";
+    for (int v : result)
+        cout << v << "\n";
 }
 ```
 
-Độ phức tạp thời gian của cài đặt này là $O(Q \sqrt{\sum{|S_i|}})$
+Độ phức tạp thời gian của cài đặt này là $\mathcal{O}(Q \sqrt{\sum{|S_i|}})$
 
 ### Xử lý query thay đổi tập xâu
 
@@ -761,17 +818,17 @@ Nếu bài toán cho các truy vấn từ đầu, ta có thể nhập tất cả
 
 Trong một số trường hợp, bài toán yêu cầu tạo ra xâu sử dụng kết quả từ truy vấn trước (ta không thể nhập tất cả các truy vấn sau trước khi đưa ra kết quả cho truy vấn trước). Trong trường hợp này, người viết biết tới hai cách xử lý.
 
-##### Tăng độ phức tạp thêm $O(\lg Q)$
+##### Tăng độ phức tạp thêm $\mathcal{O}(\lg Q)$
 
 Người viết xin phép chỉ trình bày cách xử lý truy vấn thêm xâu; truy vấn xoá xâu là bài tập dành cho bạn đọc.
 
-Ta lưu $\lg Q$ cây Aho-Corasick khác nhau; cây thứ $i$ có độ lớn là $2^i$. Với truy vấn $1$, ta thêm vào cây thứ $0$ rồi xây dựng luôn. Với truy vấn $2$, ta lấy xâu ở truy vấn $1$ và truy vấn $2$, thêm vào cây thứ $1$ rồi xây dựng, và xoá cây thứ $0$. Với truy vấn $3$, ta lại thêm vào cây thứ $0$ rồi xây dựng luôn.
+Ta lưu $\lg Q$ cây Aho-Corasick khác nhau; cây thứ $i$ có độ lớn là $2^{i}$. Với truy vấn $1$, ta thêm vào cây thứ $0$ rồi xây dựng luôn. Với truy vấn $2$, ta lấy xâu ở truy vấn $1$ và truy vấn $2$, thêm vào cây thứ $1$ rồi xây dựng, và xoá cây thứ $0$. Với truy vấn $3$, ta lại thêm vào cây thứ $0$ rồi xây dựng luôn.
 
-Cứ như vậy, với truy vấn thứ $i$, ta cố gắng thêm vào cây $1$. Nếu cây $1$ đã đầy, ta lấy thêm hết xâu ở cây $1$ rồi thêm vào cây $2$. Nếu cây $2$ đã đầy, ta lấy thêm hết và thêm vào cây $3$, cứ như vậy. Nếu nháp các truy vấn này, bạn đọc có thể dễ dàng chứng minh được ở cây $i$ sẽ có hoặc $0$ hoặc $2^i$ xâu.
+Cứ như vậy, với truy vấn thứ $i$, ta cố gắng thêm vào cây $1$. Nếu cây $1$ đã đầy, ta lấy thêm hết xâu ở cây $1$ rồi thêm vào cây $2$. Nếu cây $2$ đã đầy, ta lấy thêm hết và thêm vào cây $3$, cứ như vậy. Nếu nháp các truy vấn này, bạn đọc có thể dễ dàng chứng minh được ở cây $i$ sẽ có hoặc $0$ hoặc $2^{i}$ xâu.
 
-Độ phức tạp được cộng thêm là $O(\lg Q)$, do sau mỗi thao tác, một xâu đang ở tập $i$ chỉ có thể được đưa về các tập sau tập $i$. Ta chỉ có $\lg Q$ tập như vậy vì tập $\lg Q$ sẽ lưu được $\geq Q$ xâu. Như vậy, mỗi xâu chỉ có thể bị xây dựng lại tối đa $\lg Q$ lần.
+Độ phức tạp được cộng thêm là $\mathcal{O}(\lg Q)$, do sau mỗi thao tác, một xâu đang ở tập $i$ chỉ có thể được đưa về các tập sau tập $i$. Ta chỉ có $\lg Q$ tập như vậy vì tập $\lg Q$ sẽ lưu được $\geq Q$ xâu. Như vậy, mỗi xâu chỉ có thể bị xây dựng lại tối đa $\lg Q$ lần.
 
-Khi có truy vấn hỏi, ta thực hiện các truy vấn này với từng cây Aho-Corasick. Như vậy, độ phức tạp của tất cả các thao tác bị nhân thêm $O(\lg Q)$.
+Khi có truy vấn hỏi, ta thực hiện các truy vấn này với từng cây Aho-Corasick. Như vậy, độ phức tạp của tất cả các thao tác bị nhân thêm $\mathcal{O}(\lg Q)$.
 
 ##### Giữ nguyên độ phức tạp
 
@@ -783,7 +840,7 @@ Cách xây dựng giữ nguyên độ phức tạp được mô tả trong paper
     - Gợi ý 1: Với mỗi vị trí $x$ trong $T$, đếm số $i, j$ sao cho $x$ là vị trí cuối cùng của $S_i$ và $x+1$ là vị trí đầu tiên của $S_2$.
     - Gợi ý 2: Tính mảng $A$ với $A_i$ là số lượng lần xuất hiện **bắt đầu** tại $i$, $B$ với $B_i$ là số lượng lần xuất hiện **kết thúc** tại $i$.
 2. [HackerRank two-two: Two Two](https://www.hackerrank.com/contests/w4/challenges/two-two)
-    - Gợi ý 1: Sinh ra tất cả các xâu là biểu diễn thập phân của $2^x$ với $x$ nào đó và có chiều dài $\leq |A|$.
+    - Gợi ý 1: Sinh ra tất cả các xâu là biểu diễn thập phân của $2^{x}$ với $x$ nào đó và có chiều dài $\leq |A|$.
 3. [Codeforces 696D: Legen...](https://codeforces.com/problemset/problem/696/D)
     - Gợi ý 1: Biến đổi bài toán về tìm đường đi qua đúng $l$ cạnh có tổng trọng số lớn nhất.
     - Gợi ý 2: Giải bằng nhân ma trận.

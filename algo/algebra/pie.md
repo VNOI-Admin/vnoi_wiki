@@ -32,7 +32,7 @@ $$
 |A \cap B| + |A \cap C| + |B \cap C|
 $$
 
-![pie_3_element_1.png](/algo/pie/pie_3_element_1.png)
+![pie_3_element_1.png](/uploads/algo/algebra/pie/pie_3_element_1.png)
 
 Lúc này phép đếm đã gần đúng, ngoại trừ các phần tử thuộc $A \cap B \cap C$ — sau khi được cộng 3 lần lại bị trừ ba lần. Do đó, ta cần cộng lại một lần nữa. Kết quả là:
 
@@ -40,7 +40,7 @@ $$
 |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|
 $$
 
-![pie_3_element_2.png](/algo/pie/pie_3_element_2.png)
+![pie_3_element_2.png](/uploads/algo/algebra/pie/pie_3_element_2.png)
 
 <!--Hoặc, viết tương đương:
 $$
@@ -65,7 +65,7 @@ Hỏi có bao nhiêu học sinh thích ít nhất một trong ba môn Toán, Lý
 Ta áp dụng công thức vừa nêu ở trên:
 
 $$
-|A \cup B \cup C| = 30 + 25 + 20 − 10 − 8 − 5 + 3 = 55
+|A \cup B \cup C| = 30 + 25 + 20 - 10 - 8 - 5 + 3 = 55
 $$
 
 Vậy có 55 học sinh thích ít nhất một trong ba môn Toán, Lý, Hóa.
@@ -115,10 +115,9 @@ Vì vậy, hai vế bằng nhau.
 
 **Cài đặt**
 
-``` cpp=
+```cpp=
 int Union = 0;
 for (int mask = 0; mask < (1 << n); mask++) {
-
     // mask biểu diễn một tập con S của {0, 1, ..., n-1}
     // intersect[mask] = | ⋂_{i ∈ S} A_i |
 
@@ -127,9 +126,9 @@ for (int mask = 0; mask < (1 << n); mask++) {
     //   0 nếu số bit bật trong mask là chẵn (|S| chẵn)
 
     if (__builtin_parity(mask))
-        Union += intersect[mask];   // |S| lẻ ⇒ cộng
+        Union += intersect[mask]; // |S| lẻ ⇒ cộng
     else
-        Union -= intersect[mask];   // |S| chẵn ⇒ trừ
+        Union -= intersect[mask]; // |S| chẵn ⇒ trừ
 }
 ```
 
@@ -182,12 +181,12 @@ Một ứng dụng rất điển hình của nguyên lý bao hàm–loại trừ
 
 Giới hạn:
 
-- $1 \leq U_i \leq N \leq 10^9$.
+- $1 \leq U_i \leq N \leq 10^{9}$.
 - $1 \leq K \leq 20$.
 
 <!--**Ví dụ**: Bài toán chia kẹo Euler **có chặn trên**
 Cho:
-- Một số nguyên $N$ với $0 \le N \le 10^9$ là số viên kẹo cần chia.
+- Một số nguyên $N$ với $0 \le N \le 10^{9}$ là số viên kẹo cần chia.
 - Một số nguyên $K$ với $1 \le K \le 20$ là số người nhận kẹo.
 - Một mảng $U = [\,U_1, U_2, \dots, U_K\,]$ với $0 \le U_i \le N$, trong đó $U_i$ là giới hạn tối đa số kẹo mà người thứ $i$ có thể nhận.
 
@@ -279,9 +278,10 @@ typedef long long ll;
 
 // Hàm tính C(n, k) (số cách chọn k từ n)
 ll C(ll n, ll k) {
-    if(k < 0 || k > n) return 0;
+    if (k < 0 || k > n)
+        return 0;
     ll res = 1;
-    for(ll i = 1; i <= k; i++) {
+    for (ll i = 1; i <= k; i++) {
         res = res * (n - i + 1) / i;
     }
     return res;
@@ -291,38 +291,43 @@ ll C(ll n, ll k) {
 ll eulerWays(ll m, int n, vector<int> &L) {
     ll sumL = accumulate(L.begin(), L.end(), 0LL);
     m -= sumL;
-    if(m < 0) return 0;
+    if (m < 0)
+        return 0;
     return C(m + n - 1, n - 1);
 }
 
 int main() {
     int K; // số người
-    ll M; // tổng số kẹo
+    ll M;  // tổng số kẹo
     cin >> K >> M;
 
     vector<int> L(K), U(K);
-    for(int i = 0; i < K; i++) cin >> L[i]; // cận dưới
-    for(int i = 0; i < K; i++) cin >> U[i]; // cận trên
+    for (int i = 0; i < K; i++)
+        cin >> L[i]; // cận dưới
+    for (int i = 0; i < K; i++)
+        cin >> U[i]; // cận trên
 
     // Tính tổng số cách chia tự do (chỉ cận dưới)
     ll total = eulerWays(M, K, L);
 
     // Bao hàm–loại trừ để trừ các trường hợp vi phạm cận trên
     ll bad = 0;
-    for(int mask = 1; mask < (1 << K); mask++) {
+    for (int mask = 1; mask < (1 << K); mask++) {
         vector<int> Lmod = L;
         int bits = __builtin_popcount(mask);
         ll subtract = 0;
 
-        for(int i = 0; i < K; i++) {
-            if(mask & (1 << i)) {
+        for (int i = 0; i < K; i++) {
+            if (mask & (1 << i)) {
                 // Nếu i-th người vi phạm, ta đặt xi > Ui => xi >= Ui+1
                 Lmod[i] = U[i] + 1;
             }
         }
         ll ways = eulerWays(M, K, Lmod);
-        if(bits % 2 == 1) bad += ways;
-        else bad -= ways;
+        if (bits % 2 == 1)
+            bad += ways;
+        else
+            bad -= ways;
     }
 
     ll answer = total - bad;
@@ -330,7 +335,6 @@ int main() {
 
     return 0;
 }
-
 ```
 :::
 
@@ -338,7 +342,7 @@ int main() {
 
 Mở rộng từ ví dụ ở phần trước, thay vì mỗi người $i$ có một cận trên riêng $U_i$, ta xét trường hợp đồng nhất với một cận trên chung $V$. Nói cách khác, bài toán trở thành: Đếm số cách chia $N$ viên kẹo cho $K$ người sao cho mỗi người nhận tối đa $V$ viên kẹo. 
 
-Ý tưởng xử lý tương tự như trước, nhưng có một nhận xét quan trọng: các tập $A_0, A_1, ..., A_{K-1}$ là đồng nhất, nên kích thước của giao  $\bigcap_{i \in S} A_i$ chỉ phụ thuộc vào số lượng phần tử của $S$, tức $|S|$, chứ không phụ thuộc vào các chỉ số cụ thể trong $S$.
+Ý tưởng xử lý tương tự như trước, nhưng có một nhận xét quan trọng: các tập $A_0, A_1, \ldots, A_{K-1}$ là đồng nhất, nên kích thước của giao  $\bigcap_{i \in S} A_i$ chỉ phụ thuộc vào số lượng phần tử của $S$, tức $|S|$, chứ không phụ thuộc vào các chỉ số cụ thể trong $S$.
 
 Do đó, với mỗi $k = |S|$ (với $1 \leq k \leq K$), nếu tính được $\left| \bigcap_{i \in S} A_i \right |$ cho một tập $S$ bất kỳ có $k$ phần tử, ta có thể nhân kết quả với $\binom{K}{k}$ (tức số cách chọn tập $S$ có kích thước $k$) để tính tổng $\sum_{|S| = k} \left| \bigcap_{i \in S} A_i \right|$.
 
@@ -366,8 +370,8 @@ Một ứng dụng quan trọng khác của bao hàm loại trừ đó là thao 
 
 Giới hạn:
 
-- $1 \leq N \leq 2 \cdot 10^5$.
-- $1 \leq A_i \leq 10^6$.
+- $1 \leq N \leq 2 \cdot 10^{5}$.
+- $1 \leq A_i \leq 10^{6}$.
 
 #### Phân tích
 
@@ -393,7 +397,7 @@ $$
 g(S) = \left| \bigcap_{p \in S} M_p \right|
 $$
 
-Dễ thấy, ta chỉ cần xét các tập $S$ có tích không quá $10^6$ vì các tập còn lại hiển nhiên sẽ có giá trị $g(S) = 0$.
+Dễ thấy, ta chỉ cần xét các tập $S$ có tích không quá $10^{6}$ vì các tập còn lại hiển nhiên sẽ có giá trị $g(S) = 0$.
 
 Áp dụng Bao hàm loại trừ, ta có thể tính $f(x)$ dựa trên $g(S)$:
 
@@ -407,10 +411,10 @@ Như vậy, nếu biết trước các giá trị $g(S)$, ta hoàn toàn có th�
 Ta xét $8$ số nguyên tố nhỏ nhất:
 
 $$
-2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 \cdot 17 \cdot 23 \approx 9,6 \cdot 10^6 > 10^6
+2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 \cdot 17 \cdot 23 \approx 9,6 \cdot 10^{6} > 10^{6}
 $$
 
-Trong khi đó $a_i \leq 10^6$, ta thấy rằng không thể tồn tại một số nguyên không quá $10^6$ có nhiều hơn $7$ số nguyên tố phân biệt.
+Trong khi đó $a_i \leq 10^{6}$, ta thấy rằng không thể tồn tại một số nguyên không quá $10^{6}$ có nhiều hơn $7$ số nguyên tố phân biệt.
 
 Như vậy, nếu tồn tại đáp án, ta chỉ cần chọn một phần tử rồi chọn thêm tối đa $6$ phần tử khác để "loại bỏ" $6$ ước nguyên tố của phần tử đầu tiên ra khỏi ước chung lớn nhất.
 :::
@@ -421,7 +425,7 @@ Như vậy, số thao tác duyệt cho mỗi truy vấn là không quá $2^7 = 1
 
 Nhiệm vụ còn lại của bài toán là tính $g(S)$ một cách hiệu quả. Ta có hai cách làm đều có độ phức tạp phù hợp với bài toán đang xét như sau:
 
-1. Duyệt tất cả các tập $S$ rồi duyệt tất cả các bội của tích của tập $S$ không quá $10^6$. Độ phức tạp của cách này là $\mathcal{O}(A \ln A)$ được tính bởi [chuỗi điều hòa](https://vi.wikipedia.org/wiki/Chu%E1%BB%97i_%C4%91i%E1%BB%81u_h%C3%B2a).
+1. Duyệt tất cả các tập $S$ rồi duyệt tất cả các bội của tích của tập $S$ không quá $10^{6}$. Độ phức tạp của cách này là $\mathcal{O}(A \ln A)$ được tính bởi [chuỗi điều hòa](https://vi.wikipedia.org/wiki/Chu%E1%BB%97i_%C4%91i%E1%BB%81u_h%C3%B2a).
 2. Ta duyệt các phần tử của mảng $A$ rồi duyệt các tập con của $\mathcal{P}(A_i)$. Độ phức tạp của cách này là $\mathcal{O}(N \cdot 2^7)$ đã được chứng minh ở phần trên.
 
 #### Cài đặt
@@ -438,26 +442,31 @@ void preProcess() {
     // Sàng nguyên tố
     iota(sieve, sieve + maxA, 0);
     for (int p = 2; p * p < maxA; p++) {
-        if (sieve[p] < p) continue;
-        for (int a = p * p; a < maxA; a += p) sieve[a] = p;
+        if (sieve[p] < p)
+            continue;
+        for (int a = p * p; a < maxA; a += p)
+            sieve[a] = p;
     }
 
     // Chuẩn bị mảng countMultiple[S]
-    for (int i = 0; i < N; i++) freq[A[i]]++;
+    for (int i = 0; i < N; i++)
+        freq[A[i]]++;
     for (int p = 1; p < maxA; p++)
-        for (int mult = p; mult < maxA; mult += p) countMultiple[p] += freq[mult];
+        for (int mult = p; mult < maxA; mult += p)
+            countMultiple[p] += freq[mult];
 }
 ```
 
 Sau đó, ta cài đặt hàm truy vấn như sau:
 ```cpp=
-int query (int x) {
+int query(int x) {
     // Phân tích thừa số nguyên tố và giữ lại tập thừa số phân biệt
     vector<int> vec;
     while (x > 1) {
         int curPrime = sieve[x];
         vec.push_back(curPrime);
-        while (x % curPrime == 0) x /= curPrime;
+        while (x % curPrime == 0)
+            x /= curPrime;
     }
 
     // Tìm bội của từng tập con và thực hiện Bao hàm loại trừ
@@ -468,7 +477,8 @@ int query (int x) {
         multiple[mask] = multiple[mask ^ (1 << cur)] * vec[cur];
         if (__builtin_parity(mask))
             ans += countMultiple[multiple[mask]];
-        else ans -= countMultiple[multiple[mask]];
+        else
+            ans -= countMultiple[multiple[mask]];
     }
     return ans;
 }
@@ -485,7 +495,7 @@ Cho $N, L, R$, bạn cần tính số lượng số nguyên $x$ trong đoạn $[
 Có $1 \le \mathcal{T} \le 100$ bộ test.
 
 Giới hạn:
-- $1 \le N \le 10^9$.
+- $1 \le N \le 10^{9}$.
 - $1 \le L \le R \le 10^{15}$.
 
 #### Phân tích
@@ -507,9 +517,9 @@ Việc tính hợp này có thể hơi khó, nhưng nhờ **Nguyên lý Bao hàm
 
 :::spoiler *Cài đặt*
 ```cpp=
+#include <cmath>
 #include <iostream>
 #include <vector>
-#include <cmath>
 using namespace std;
 
 // Thừa số nguyên tố phân biệt của n
@@ -517,30 +527,42 @@ vector<long long> facd(long long n) {
     vector<long long> p;
     if (n % 2 == 0) {
         p.push_back(2);
-        while (n % 2 == 0) n /= 2;
+        while (n % 2 == 0)
+            n /= 2;
     }
     for (long long i = 3; i * i <= n; i += 2) {
         if (n % i == 0) {
             p.push_back(i);
-            while (n % i == 0) n /= i;
+            while (n % i == 0)
+                n /= i;
         }
     }
-    if (n > 1) p.push_back(n);
+    if (n > 1)
+        p.push_back(n);
     return p;
 }
 
 // Đếm số không cùng nhau trong [1..x]
-long long cntn(long long x, const vector<long long>& p) {
-    if (x <= 0) return 0;
-    int k = p.size(); long long s = 0, tot = 1 << k;
+long long cntn(long long x, const vector<long long> &p) {
+    if (x <= 0)
+        return 0;
+    int k = p.size();
+    long long s = 0, tot = 1 << k;
     for (int m = 1; m < tot; ++m) {
-        long long pr = 1; int b = 0; bool ov = 0;
-        for (int i = 0; i < k; ++i) if (m & (1 << i)) {
-            ++b;
-            if (pr > x / p[i]) { ov = 1; break; }
-            pr *= p[i];
-        }
-        if (ov) continue;
+        long long pr = 1;
+        int b = 0;
+        bool ov = 0;
+        for (int i = 0; i < k; ++i)
+            if (m & (1 << i)) {
+                ++b;
+                if (pr > x / p[i]) {
+                    ov = 1;
+                    break;
+                }
+                pr *= p[i];
+            }
+        if (ov)
+            continue;
         long long c = x / pr;
         s += (b % 2 ? c : -c);
     }
@@ -548,23 +570,24 @@ long long cntn(long long x, const vector<long long>& p) {
 }
 
 // Đếm số cùng nhau trong [1..x]
-long long cntc(long long x, const vector<long long>& p) {
+long long cntc(long long x, const vector<long long> &p) {
     return x <= 0 ? 0 : x - cntn(x, p);
 }
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int T; cin >> T;
+    int T;
+    cin >> T;
     for (int t = 0; t < T; ++t) {
-        long long a, b, n; cin >> a >> b >> n;
+        long long a, b, n;
+        cin >> a >> b >> n;
         vector<long long> p = facd(n);
         long long ans = cntc(b, p) - cntc(a - 1, p);
         cout << "Case #" << t + 1 << ": " << ans << '\n';
     }
     return 0;
 }
-
 ```
 :::
 
@@ -574,12 +597,12 @@ int main() {
 
 ### [HDUOJ - Character Encoding](https://acm.hdu.edu.cn/showproblem.php?pid=6397)
 
-Cho ba số nguyên $n, m, k$, yêu cầu tính số nghiệm của hệ phương trình $x_1 + x_2 + \cdots + x_n = k$ thỏa mãn $0 \le x_i < m$. In đáp án modulo $998 \space 244 \space 353$
+Cho ba số nguyên $n, m, k$, yêu cầu tính số nghiệm của hệ phương trình $x_1 + x_2 + \cdots + x_n = k$ thỏa mãn $0 \le x_i < m$. In đáp án modulo $998\,244\,353$
 
 Giới hạn:
 
-- $1 \le n, m, k \le 10^5$
-- Đây là bài tập multi-testcase có $\mathcal{T} \leq 400$, đảm bảo tổng $m, k$ ở các testcase là không quá $5 \cdot 10^6$.
+- $1 \le n, m, k \le 10^{5}$
+- Đây là bài tập multi-testcase có $\mathcal{T} \leq 400$, đảm bảo tổng $m, k$ ở các testcase là không quá $5 \cdot 10^{6}$.
 
 #### Phân tích
 Ta biết rằng số nghiệm nguyên không âm của: $x_1 + x_2 + \cdots + x_n = k$ được tính công thức chia kẹo euler $\binom{n + k - 1}{k} = \binom{n + k - 1}{n - 1}$. Vậy điều duy nhất cần xử lý là loại bỏ ràng buộc $x_i < m$. Để làm điều đó, ta áp dụng **Nguyên lý Bao hàm – Loại trừ**.
@@ -652,9 +675,11 @@ const long long MOD = 998244353LL;
 
 // lũy thừa nhị phân mod MOD
 long long pw(long long a, long long e) {
-    long long r = 1 % MOD; a %= MOD;
+    long long r = 1 % MOD;
+    a %= MOD;
     while (e) {
-        if (e & 1) r = r * a % MOD;
+        if (e & 1)
+            r = r * a % MOD;
         a = a * a % MOD;
         e >>= 1;
     }
@@ -662,17 +687,20 @@ long long pw(long long a, long long e) {
 }
 
 // tiền xử lý giai thừa và nghịch đảo giai thừa
-void prep(int n, vector<long long>& f, vector<long long>& inv) {
+void prep(int n, vector<long long> &f, vector<long long> &inv) {
     f.assign(n + 1, 1);
     inv.assign(n + 1, 1);
-    for (int i = 1; i <= n; ++i) f[i] = f[i - 1] * i % MOD;
+    for (int i = 1; i <= n; ++i)
+        f[i] = f[i - 1] * i % MOD;
     inv[n] = pw(f[n], MOD - 2);
-    for (int i = n; i >= 1; --i) inv[i - 1] = inv[i] * i % MOD;
+    for (int i = n; i >= 1; --i)
+        inv[i - 1] = inv[i] * i % MOD;
 }
 
 // C(n, r) mod MOD
-long long C(int n, int r, const vector<long long>& f, const vector<long long>& inv) {
-    if (r < 0 || r > n) return 0;
+long long C(int n, int r, const vector<long long> &f, const vector<long long> &inv) {
+    if (r < 0 || r > n)
+        return 0;
     return f[n] * inv[r] % MOD * inv[n - r] % MOD;
 }
 
@@ -680,7 +708,8 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    int T; cin >> T;
+    int T;
+    cin >> T;
     vector<int> n(T), m(T), k(T);
     int mx = 0;
     for (int i = 0; i < T; ++i) {
@@ -703,8 +732,10 @@ int main() {
             long long w1 = C(M, j, f, inv);
             long long w2 = C(K - j * N + M - 1, M - 1, f, inv);
             long long cur = w1 * w2 % MOD;
-            if (j & 1) ans = (ans - cur + MOD) % MOD;
-            else ans = (ans + cur) % MOD;
+            if (j & 1)
+                ans = (ans - cur + MOD) % MOD;
+            else
+                ans = (ans + cur) % MOD;
         }
         cout << ans << '\n';
     }
@@ -720,11 +751,11 @@ int main() {
 
 ### [Codeforces Round 519 - Make It One](https://codeforces.com/contest/1043/problem/F)
 
-Cho dãy $n$ số nguyên dương $a_1,a_2,...,a_n$. Tìm một dãy con (không nhất thiết liên tiếp) gồm ít phần tử nhất sao cho ước chung lớn nhất của dãy này có giá trị là $1$. Nếu không tồn tại thì in ra $-1$.
+Cho dãy $n$ số nguyên dương $a_1,a_2,\ldots,a_n$. Tìm một dãy con (không nhất thiết liên tiếp) gồm ít phần tử nhất sao cho ước chung lớn nhất của dãy này có giá trị là $1$. Nếu không tồn tại thì in ra $-1$.
 
 Giới hạn:
-- $1 \leq n \leq 3 \cdot 10^5$.
-- $1 \leq a_i \leq 3 \cdot 10^5$.
+- $1 \leq n \leq 3 \cdot 10^{5}$.
+- $1 \leq a_i \leq 3 \cdot 10^{5}$.
 
 #### Phân tích
 
@@ -734,10 +765,10 @@ Giới hạn:
 Tương tự ví dụ ở phần trước, ta xét $7$ số nguyên tố nhỏ nhất:
 
 $$
-2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 \cdot 17 > 3 \cdot 10^5
+2 \cdot 3 \cdot 5 \cdot 7 \cdot 11 \cdot 13 \cdot 17 > 3 \cdot 10^{5}
 $$
 
-Trong khi đó $a_i \leq 3 \cdot 10^5$, ta thấy rằng không thể tồn tại một số nguyên không quá $3 \cdot 10^5$ có nhiều hơn $6$ số nguyên tố phân biệt.
+Trong khi đó $a_i \leq 3 \cdot 10^{5}$, ta thấy rằng không thể tồn tại một số nguyên không quá $3 \cdot 10^{5}$ có nhiều hơn $6$ số nguyên tố phân biệt.
 
 Như vậy, nếu tồn tại đáp án, ta chỉ cần chọn một phần tử rồi chọn thêm tối đa $6$ phần tử khác để "loại bỏ" $6$ ước nguyên tố của phần tử đầu tiên ra khỏi ước chung lớn nhất.
 :::
@@ -776,36 +807,35 @@ using namespace std;
 static const int MAXA = 300000;
 static const int MOD = 1000000007;
 
-long long pw(long long a, long long e)
-{
+long long pw(long long a, long long e) {
     long long r = 1;
-    while (e)
-    {
-        if (e & 1) r = r * a % MOD;
+    while (e) {
+        if (e & 1)
+            r = r * a % MOD;
         a = a * a % MOD;
         e >>= 1;
     }
     return r;
 }
 
-long long C(int n, int k)
-{
-    if (n < k || k < 0) return 0;
+long long C(int n, int k) {
+    if (n < k || k < 0)
+        return 0;
     static long long fact[MAXA + 1], invfact[MAXA + 1];
     static bool built = false;
-    if (!built)
-    {
+    if (!built) {
         fact[0] = 1;
-        for (int i = 1; i <= MAXA; i++) fact[i] = fact[i - 1] * i % MOD;
+        for (int i = 1; i <= MAXA; i++)
+            fact[i] = fact[i - 1] * i % MOD;
         invfact[MAXA] = pw(fact[MAXA], MOD - 2);
-        for (int i = MAXA; i > 0; i--) invfact[i - 1] = invfact[i] * i % MOD;
+        for (int i = MAXA; i > 0; i--)
+            invfact[i - 1] = invfact[i] * i % MOD;
         built = true;
     }
     return fact[n] * invfact[k] % MOD * invfact[n - k] % MOD;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
@@ -813,10 +843,12 @@ int main()
     cin >> n;
 
     vector<int> a(n);
-    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
 
     vector<int> freq(MAXA + 1, 0);
-    for (int x : a) freq[x]++;
+    for (int x : a)
+        freq[x]++;
 
     vector<int> cnt(MAXA + 1, 0);
     for (int i = 1; i <= MAXA; i++)
@@ -826,17 +858,14 @@ int main()
     static long long dp[8][MAXA + 1];
     memset(dp, 0, sizeof(dp));
 
-    for (int i = 1; i <= 7; i++)
-    {
-        for (int j = MAXA; j >= 1; j--)
-        {
+    for (int i = 1; i <= 7; i++) {
+        for (int j = MAXA; j >= 1; j--) {
             long long val = C(cnt[j], i);
             for (int k = 2; k * j <= MAXA; k++)
                 val = (val - dp[i][k * j] + MOD) % MOD;
             dp[i][j] = val;
         }
-        if (dp[i][1] > 0)
-        {
+        if (dp[i][1] > 0) {
             cout << i;
             return 0;
         }

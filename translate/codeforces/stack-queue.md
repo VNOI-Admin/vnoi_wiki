@@ -12,7 +12,7 @@ Các bài tập dạng BFS xuất hiện thường xuyên trong các cuộc thi.
 
 Duyệt một hàng đợi khá đơn giản. Ví dụ như, nếu bạn biết mình đang cố gắng đi từ điểm A đến điểm B trên một lưới ô vuông 50*50 (hướng đi, các chi tiết khác đều không liên quan) khi đó, sẽ có hơn 2500 trạng thái để thăm. Chương trình của bạn sẽ như sau:
 
-```cpp
+```java
 class StateNode {
    int xPos;
    int yPos;
@@ -33,7 +33,7 @@ class MyQueue {
       StateNode returnValue = null;
       if (queueBack > queueFront) {
       returnValue = queueData[queueFront];
-      QueueFront++;
+      queueFront++;
    }
    return returnValue;
    }
@@ -46,7 +46,7 @@ class MyQueue {
 
 Khi đó đoạn code chính của bạn sẽ như bên dưới. (Nếu hàng đợi của chúng ta không đến được thêm một trạng thái nào nữa và chúng ta vẫn chưa đến được vị trí đích khi đó không có đường đi từ A đến B. Trong trường hợp này, chúng ta trả về giá trị -1).
 
-```cpp
+```java
 MyQueue queue = new MyQueue();
 queue.Enqueue(initialState);
 while (queue.isNotEmpty()) {

@@ -16,7 +16,7 @@ dateCreated: 2024-09-19T11:09:15.064Z
 Trước khi đến với lí thuyết đồ thị, ta có một câu hỏi nhỏ như sau:
 
 > Thành phố Königsberg thuộc Phổ, nay là Kaliningrad thuộc Nga, là một thành phố nằm ở 2 bên sông Pregel và có 2 hòn đảo lớn Kneiphof và Lomse. Trước kia, 2 hòn đảo được kết nối với nhau và với 2 bên bờ sông bằng 7 cây cầu.
-> ![graph1.png](/algo/graph/graph1.png)
+> ![graph1.png](/uploads/algo/graph-theory/graph/graph1.png)
 >
 > Bài toán đặt ra ở đây là: Hãy tìm một con đường đi qua 7 cây cầu ít nhất một lần và chỉ một lần duy nhất.
 
@@ -29,7 +29,7 @@ Trong bài viết này, ta sẽ tìm hiểu về lý thuyết đồ thị: đị
 Hình ảnh dưới đây là một ví dụ về một đồ thị:
 
 <center>
-<img src="/algo/graph/graph2.png" alt="Đồ thị"/>
+<img src="/uploads/algo/graph-theory/graph/graph2.png" alt="Đồ thị"/>
 </center>
 
 Những vòng tròn được gọi là các **đỉnh (vertices)** hoặc các **nút (nodes)**, và những đường thẳng nối những vòng tròn được gọi là các **cạnh (edges)**.
@@ -38,11 +38,15 @@ Về cơ bản: Đồ thị là một tập hợp hữu hạn gồm các **đỉ
 
 Một đồ thị $G$ sẽ được kí hiệu:
 
-$$G = (V, E)$$
+$$
+G = (V, E)
+$$
 
 Với $V$ là tập hợp chứa các đỉnh, và $E$ là tập hợp chứa các cạnh, mỗi cạnh có dạng một cặp giá trị $\{ u, v \}$ (có thể được viết thành $uv$). Ví dụ:
 
-$$G = \{ \{1, 2, 3, 4, 5, 6\}, \{\{1, 2\}, \{1, 5\}, \{2, 5\}, \{2, 3\}, \{3, 4\}, \{4, 5\}, \{4, 6\} \} \} $$
+$$
+G = \{ \{1, 2, 3, 4, 5, 6\}, \{\{1, 2\}, \{1, 5\}, \{2, 5\}, \{2, 3\}, \{3, 4\}, \{4, 5\}, \{4, 6\} \} \}
+$$
 
 chính là đồ thị ở hình ví dụ trên.
 
@@ -57,7 +61,7 @@ Các dạng đồ thị được nói đến dưới đây là một số dạng
 Một đồ thị không có **khuyên**, không có các cạnh song song, vô hướng và không có trọng số được gọi là **đơn đồ thị** (hay chỉ đơn giản là đồ thị).
 
 <center>
-<img src="/algo/graph/graph3.png" alt="Đơn đồ thị"/>
+<img src="/uploads/algo/graph-theory/graph/graph3.png" alt="Đơn đồ thị"/>
 </center>
 
 Note: 
@@ -71,7 +75,7 @@ Một đồ thị tồn tại các cạnh song song được gọi là **đa đ�
 Đơn đồ thị là một dạng đặc biệt của đa đồ thị.
 
 <center>
-<img src="/algo/graph/graph4.png" alt="Đa đồ thị"/>
+<img src="/uploads/algo/graph-theory/graph/graph4.png" alt="Đa đồ thị"/>
 </center>
 
 ### Đồ thị vô hướng
@@ -79,7 +83,7 @@ Một đồ thị tồn tại các cạnh song song được gọi là **đa đ�
 Một đồ thị là **vô hướng (undirected)** khi cạnh không được chỉ định hướng. Nếu đồ thị tồn tại một cạnh $uv$, ta có thể đi theo hướng $u \rightarrow v$ và hướng $v \rightarrow u$. Khi này, việc viết 2 cạnh $uv$ và $vu$ là như nhau và ta chỉ cần viết 1 trong 2 cạnh.
 
 <center>
-<img src="/algo/graph/graph5.png" alt="Đồ thị vô hướng"/>
+<img src="/uploads/algo/graph-theory/graph/graph5.png" alt="Đồ thị vô hướng"/>
 </center>
 
 ### Đồ thị có hướng
@@ -87,7 +91,7 @@ Một đồ thị là **vô hướng (undirected)** khi cạnh không được c
 Một đồ thị là **có hướng (directed)** khi cạnh được chỉ định hướng. Điều này có nghĩa rằng nếu đồ thị tồn tại một cạnh $uv$, ta chỉ có thể đi theo hướng $u \rightarrow v$. Khi này, 2 cạnh $uv$ và $vu$ phân biệt.
 
 <center>
-<img src="/algo/graph/graph6.png" alt="Đồ thị có hướng"/>
+<img src="/uploads/algo/graph-theory/graph/graph6.png" alt="Đồ thị có hướng"/>
 </center>
 
 ### Đồ thị có trọng số
@@ -95,7 +99,7 @@ Một đồ thị là **có hướng (directed)** khi cạnh được chỉ đ�
 Một đồ thị **có trọng số (weighted)** là một đồ thị có các cạnh được gán một giá trị. Các giá trị có thể tượng trưng cho khoảng cách, chi phí di chuyển,... 
 
 <center>
-<img src="/algo/graph/graph7.png" alt="Đồ thị có trọng số"/>
+<img src="/uploads/algo/graph-theory/graph/graph7.png" alt="Đồ thị có trọng số"/>
 </center>
 
 ### Đồ thị không có trọng số
@@ -117,7 +121,7 @@ Một đồ thị là **đầy đủ** khi tất cả các cặp đỉnh của �
 Nếu một đồ thị $G$ có $|V|$ đỉnh vô hướng và đầy đủ, số cạnh của $G$ sẽ là $|E| = \frac{|V| \times (|V| - 1)}{2}$.
 
 <center>
-<img src="/algo/graph/graph8.png" alt="Đồ thị đầy đủ"/>
+<img src="/uploads/algo/graph-theory/graph/graph8.png" alt="Đồ thị đầy đủ"/>
 </center>
 
 ### Đồ thị hai phía
@@ -125,7 +129,7 @@ Nếu một đồ thị $G$ có $|V|$ đỉnh vô hướng và đầy đủ, s�
 Một đồ thị là **hai phía (bipartite)** khi tập đỉnh của nó có thể chia làm hai tập $X$ và $Y$ rời nhau sao cho mỗi cạnh trong đồ thị phải nối một đỉnh trong tập $X$ với một đỉnh trong tập $Y$, và không cặp đỉnh nào liên thông nhau với mỗi tập. 
 
 <center>
-<img src="/algo/graph/graph9.png" alt="Đồ thị hai phía"/>
+<img src="/uploads/algo/graph-theory/graph/graph9.png" alt="Đồ thị hai phía"/>
 </center>
 
 ### Directed acyclic graph (DAG)
@@ -133,7 +137,7 @@ Một đồ thị là **hai phía (bipartite)** khi tập đỉnh của nó có 
 **DAG** là một đồ thị *có hướng __không có chu trình__* . Một đồ thị có hướng được gọi là một DAG khi và chỉ khi đồ thị tồn tại [thứ tự tô pô](/algo/graph-theory/topological-sort.md).
 
 <center>
-<img src="/algo/graph/graph10.png" alt="DAG"/>
+<img src="/uploads/algo/graph-theory/graph/graph10.png" alt="DAG"/>
 </center>
 
 ### Cây
@@ -141,7 +145,7 @@ Một đồ thị là **hai phía (bipartite)** khi tập đỉnh của nó có 
 Một đồ thị được gọi là một **cây** khi nó là một đồ thị *vô hướng, liên thông và không có chu trình*.
 
 <center>
-<img src="/algo/graph/graph11.png" alt="Cây"/>
+<img src="/uploads/algo/graph-theory/graph/graph11.png" alt="Cây"/>
 </center>
 
 ## Các khái niệm, tính chất
@@ -156,37 +160,39 @@ Ta cùng điểm qua một số khái niệm, tính chất liên quan đến đ�
 > 
 > 1. Cho đỉnh $u \in V$, các đỉnh **hàng xóm (neighbours)** với đỉnh $u$ là tất cả các đỉnh $v \in V$ thỏa mãn $uv \in E$, hay tất cả các đỉnh $v$ kề với $u$.
 > 
-> 1. Cho đỉnh $u \in V$, **bậc (degree)** của đỉnh $u$ chính là số lượng hàng xóm của đỉnh $u$. Kí hiệu: $deg(u)$. Ta có một số bổ đề về bậc như [bổ đề bắt tay](https://en.wikipedia.org/wiki/Handshaking_lemma): 
-> $$\sum_{u \in V} deg(u) = 2|E|$$
+> 1. Cho đỉnh $u \in V$, **bậc (degree)** của đỉnh $u$ chính là số lượng hàng xóm của đỉnh $u$. Kí hiệu: $\deg(u)$. Ta có một số bổ đề về bậc như [bổ đề bắt tay](https://en.wikipedia.org/wiki/Handshaking_lemma): 
+> $$
+> \sum_{u \in V} \deg(u) = 2|E|
+> $$
 > 	Nếu $G$ là một đồ thị có hướng, ta định nghĩa: 
-> 		- **Bán bậc ra (out-degree)** của đỉnh $u$, kí hiệu $deg^+(u)$, là số lượng cạnh xuất phát từ đỉnh $u$, hay giá trị của $|\{v \in V | uv \in E\}|$.
-> 		- **Bán bậc vào (in-degree)** của đỉnh $u$ kí hiệu $deg^-(u)$, là số lượng cạnh kết thúc tại đỉnh $u$, hay giá trị của $|\{v \in V | vu \in E\}|$.
+> 		- **Bán bậc ra (out-degree)** của đỉnh $u$, kí hiệu $\deg^+(u)$, là số lượng cạnh xuất phát từ đỉnh $u$, hay giá trị của $|\{v \in V | uv \in E\}|$.
+> 		- **Bán bậc vào (in-degree)** của đỉnh $u$ kí hiệu $\deg^-(u)$, là số lượng cạnh kết thúc tại đỉnh $u$, hay giá trị của $|\{v \in V | vu \in E\}|$.
 > 	Trong đồ thị có hướng, tổng bán bậc vào của tất cả các đỉnh luôn bằng tổng bán bậc ra của tất cả các đỉnh (vì mỗi cạnh có một đỉnh bắt đầu và một đỉnh kết thúc).
 
 ### Đường đi, chu trình
 
 > Cho một đồ thị $G = (V, E)$:
 > 
-> 1. Một **đường đi (walk)** (trong $G$) là một dãy các đỉnh $(v_0, v_1, v_2,..., v_k)$ thuộc $G$ và các cạnh $(v_0v_1, v_1v_2,..., v_{k - 1}v_k)$ là các cạnh thuộc đồ thị.
+> 1. Một **đường đi (walk)** (trong $G$) là một dãy các đỉnh $(v_0, v_1, v_2, \ldots, v_k)$ thuộc $G$ và các cạnh $(v_0v_1, v_1v_2, \ldots, v_{k - 1}v_k)$ là các cạnh thuộc đồ thị.
 > 
 >     Một **trail** là một đường đi trong đó tất cả các cạnh trên đường đi đôi một phân biệt.
 >     
 >     Một **path** là một đường đi trong đó tất cả các đỉnh trên đường đi đôi một phân biệt (suy ra các cạnh trên đường đi cũng đôi một phân biệt).
 > 
-> 1. Với $w = (v_0, v_1, v_2,..., v_k)$ là một đường đi trong $G$, ta có:
-> 		- $v_0, v_1, v_2,..., v_k$ là các **đỉnh** của $w$.
-> 		- $v_0v_1, v_1v_2,..., v_{k - 1}v_k$ là các **cạnh** của $w$.
+> 1. Với $w = (v_0, v_1, v_2, \ldots, v_k)$ là một đường đi trong $G$, ta có:
+> 		- $v_0, v_1, v_2, \ldots, v_k$ là các **đỉnh** của $w$.
+> 		- $v_0v_1, v_1v_2, \ldots, v_{k - 1}v_k$ là các **cạnh** của $w$.
 > 		- **Độ dài (khoảng cách)** của đường đi $w$ là một số nguyên không âm $k$ ($k$ tương đương với số cạnh trên đường đi, và $k + 1$ tương đương với số đỉnh). Nếu $G$ có trọng số, độ dài của đường đi là tổng trọng số của các cạnh trên đường đi.
 > 		- $v_0$ được gọi là **đỉnh đầu (starting point)** của $w$, ta nói $w$ *bắt đầu* tại tại đỉnh $v_0$.
 > 		- $v_k$ được gọi là **đỉnh cuối (ending point)** của $w$, ta nói $w$ *kết thúc* tại tại đỉnh $v_k$.
 > 		- Cho hai đỉnh $p$ và $q$ thuộc $G$, ta nói **đường đi từ** $p$ **đến** $q$ là đường đi bắt đầu từ đỉnh $p$ và kết thúc tại đỉnh $q$.
 >
-> 1. Một **đường đi khép kín (closed walk)** của $G$ một đường đi mà đỉnh cuối trùng với đỉnh đầu. Hay nói cách khác, là một dãy các đỉnh $(v_0, v_1, v_2,..., v_k)$ với $v_0 = v_k$. 
+> 1. Một **đường đi khép kín (closed walk)** của $G$ một đường đi mà đỉnh cuối trùng với đỉnh đầu. Hay nói cách khác, là một dãy các đỉnh $(v_0, v_1, v_2, \ldots, v_k)$ với $v_0 = v_k$. 
 >
-> 1. Một **chu trình (cycle)** của $G$ là một đường đi khép kín $(v_0, v_1, v_2,..., v_k)$ với $k \ge 3$ và các đỉnh $(v_0, v_1, v_2,..., v_{k - 1})$ đôi một phân biệt.
+> 1. Một **chu trình (cycle)** của $G$ là một đường đi khép kín $(v_0, v_1, v_2, \ldots, v_k)$ với $k \ge 3$ và các đỉnh $(v_0, v_1, v_2, \ldots, v_{k - 1})$ đôi một phân biệt.
 >      Một số trường hợp đặc biệt:
->      - Nếu $G$ là một đồ thị có hướng hoặc là một đa đồ thị, $G$ tồn tại chu trình có 2 đỉnh khi trong đồ thị tồn tại hai đỉnh $a$ và $b$ được nối với nhau bởi 2 cạnh song song. Ví dụ: ![2_node_cycle](/algo/graph/graph12.png)
->      - $G$ tồn tại chu trình có 1 đỉnh nếu trong đồ thị tồn tại cạnh khuyên. Ví dụ: ![1_node_cycle](/algo/graph/graph13.png)
+>      - Nếu $G$ là một đồ thị có hướng hoặc là một đa đồ thị, $G$ tồn tại chu trình có 2 đỉnh khi trong đồ thị tồn tại hai đỉnh $a$ và $b$ được nối với nhau bởi 2 cạnh song song. Ví dụ: ![2_node_cycle](/uploads/algo/graph-theory/graph/graph12.png)
+>      - $G$ tồn tại chu trình có 1 đỉnh nếu trong đồ thị tồn tại cạnh khuyên. Ví dụ: ![1_node_cycle](/uploads/algo/graph-theory/graph/graph13.png)
 >
 > 1. Một đường đi (chu trình) là *sơ cấp* nếu nó không đi qua đỉnh nào hai lần trở lên. Một đường đi (chu trình) là *đơn giản* nếu nó không đi qua cạnh nào hai lần trở lên.
 
@@ -257,7 +263,7 @@ Ta giả sử dữ liệu nhập của một đồ thị là một danh sách c�
 Đồ thị ví dụ:
 
 <center>
-<img src="/algo/graph/graph2.png" alt="Đồ thị"/>
+<img src="/uploads/algo/graph-theory/graph/graph2.png" alt="Đồ thị"/>
 </center>
 
 
@@ -282,18 +288,22 @@ Ngoài ra:
 - Nếu đồ thị **có trọng số**, ta thay 1 bằng trọng số của cạnh tương ứng.
 - Nếu đồ thị **vô hướng**, ta đánh dấu cả $A[x][y]$ và $A[y][x]$, còn nếu **có hướng** thì chỉ đánh dấu $A[x][y]$.
 
-```C++
-const int N = 1010; 
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 1010;
 int n, m;
 int adj[N][N];
 int main() {
-	cin >> n >> m;
-	for(int i = 0; i < m; ++i){
-		int a, b; cin >> a >> b;
-		adj[a][b] = 1; // Nếu đồ thị có trọng số thì đổi 1 thành w
-		adj[b][a] = 1; // Nếu đồ thị có hướng thì không cần viết dòng này
-	}
-	return 0;
+    cin >> n >> m;
+    for (int i = 0; i < m; ++i) {
+        int a, b;
+        cin >> a >> b;
+        adj[a][b] = 1; // Nếu đồ thị có trọng số thì đổi 1 thành w
+        adj[b][a] = 1; // Nếu đồ thị có hướng thì không cần viết dòng này
+    }
+    return 0;
 }
 ```
 ### Danh sách kề (Adjacency list)
@@ -310,24 +320,28 @@ Danh sách kề là cách lưu trữ đồ thị phổ biến trong lập trình
 |`adj[6]`|4|
 
 
-```C++
-const int N = 1e5 + 10; 
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 1e5 + 10;
 int n, m;
 vector<int> adj[N];
 int main() {
-	cin >> n >> m;
-	for(int i = 0; i < m; ++i){
-		int a, b; cin >> a >> b;
-		adj[a].push_back(b); 
-		adj[b].push_back(a); // Nếu đồ thị có hướng thì không cần viết dòng này
-	}
-	return 0;
+    cin >> n >> m;
+    for (int i = 0; i < m; ++i) {
+        int a, b;
+        cin >> a >> b;
+        adj[a].push_back(b);
+        adj[b].push_back(a); // Nếu đồ thị có hướng thì không cần viết dòng này
+    }
+    return 0;
 }
 ```
 
 Nếu đồ thị *có trọng số* thì với mỗi cạnh `(a, b)` có trọng số `w`, ta lưu cặp giá trị `(b, w)` trong `adj[a]`. Có thể lưu cặp giá trị `(b, w)` bằng kiểu dữ liệu `pair`.
 
-```C++
+```cpp
 vector<pair<int, int>> adj[N];
 adj[1].push_back({2, 3}); // lưu cạnh (1, 2) có trọng số 3
 ```
@@ -338,23 +352,29 @@ Danh sách cạnh được dùng để lưu các cạnh trong đồ thị.
 
 Ta có thể lưu các cạnh của đồ thị bằng `pair` hoặc tạo một cấu trúc `struct` tùy ý để lưu cặp giá trị có trong cạnh của đồ thị.
 
-```C++
-struct Edge{
-	int a, b, w; // w được dùng cho đồ thị có trọng số
-	Edge(int u, int v, int weight): a(u), b(v), w(weight){}
-	bool operator<(const Edge &e) const{
-		return w < e.w; // Sắp xếp theo trọng số các cạnh
-	}
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Edge {
+    int a, b, w; // w được dùng cho đồ thị có trọng số
+    Edge(int u, int v, int weight) : a(u), b(v), w(weight) {
+    }
+    bool operator<(const Edge &e) const {
+        return w < e.w; // Sắp xếp theo trọng số các cạnh
+    }
 };
 
 int main() {
-	int n, m; cin >> n >> m;
-	vector<Edge> edges;
-	for(int i = 0; i < m; ++i){
-		int a, b, w; cin >> a >> b >> w;
-		edges.push_back(Edge(a, b, w));
-	}
-	return 0;
+    int n, m;
+    cin >> n >> m;
+    vector<Edge> edges;
+    for (int i = 0; i < m; ++i) {
+        int a, b, w;
+        cin >> a >> b >> w;
+        edges.push_back(Edge(a, b, w));
+    }
+    return 0;
 }
 ```
 
@@ -388,19 +408,23 @@ Ngoài ra, BFS có thể được dùng để tìm đường đi ngắn nhất t
 
 **Bài toán 2-SAT** được phát biểu như sau:
 
-Cho $m$ biến logic: $a_1, a_2,..., a_m$ và 1 biểu thức logic $C$ có dạng:
+Cho $m$ biến logic: $a_1, a_2, \ldots, a_m$ và 1 biểu thức logic $C$ có dạng:
 
-$$C = (u_1 \lor v_1) \land (u_2 \lor v_2) \land \ ... \land \ (u_n \lor v_n)$$
+$$
+C = (u_1 \lor v_1) \land (u_2 \lor v_2) \land \cdots \land (u_n \lor v_n)
+$$
 
 Trong đó $u_i$ và $v_i$ $(1 \le i \le n)$ được thay bằng biển logic $a_j$ hoặc $\lnot a_j$ nào đó. $(1 \le j \le m)$.
 
-Ta sẽ gán các $a_j$ với một trong hai giá trị $true/false \ (1/0)$ sao cho biểu thức $C$ hợp lệ, hoặc thông báo rằng không thể có cách gán hợp lệ.
+Ta sẽ gán các $a_j$ với một trong hai giá trị $\texttt{true/false} \ (1/0)$ sao cho biểu thức $C$ hợp lệ, hoặc thông báo rằng không thể có cách gán hợp lệ.
 
 Ví dụ với biểu thức:
 
-$$C = (a_1 \lor \lnot a_2) \land (\lnot a_1 \lor \lnot a_3) \land (a_1 \lor a_2) \land (a_4 \lor \lnot a_1)$$
+$$
+C = (a_1 \lor \lnot a_2) \land (\lnot a_1 \lor \lnot a_3) \land (a_1 \lor a_2) \land (a_4 \lor \lnot a_1)
+$$
 
-nếu ta gán $a_1 = True$, $a_2 = False$, $a_3 = False$, $a_4 = True$ thì biểu thức trên hợp lệ.
+nếu ta gán $a_1 = \texttt{True}$, $a_2 = \texttt{False}$, $a_3 = \texttt{False}$, $a_4 = \texttt{True}$ thì biểu thức trên hợp lệ.
 
 Bài toán này có thể được giải bằng cách xét duyệt trâu, hoặc giải quyết một cách tối ưu bằng lý thuyết đồ thị: [bài viết](https://drive.google.com/file/d/15UbO4GWo1G6cUBDnV6uWk0KxjuEdurCG/view?usp=sharing).
 
@@ -417,7 +441,7 @@ Thông tin về luồng cực đại/lát cắt cực tiểu sẽ được cập
 **Lowest Common Ancestor (LCA)** hay *tổ tiên chung gần nhất* của hai hay nhiều đỉnh là đỉnh sâu nhất là tổ tiên của tất cả các đỉnh.
 
 <center>
-<img src="/algo/graph/translate_topcoder_lca_rmq.png" alt="LCA"/>
+<img src="/uploads/algo/graph-theory/graph/translate_topcoder_lca_rmq.png" alt="LCA"/>
 </center>
 
 Bạn có thể đọc thêm một số phương pháp giải LCA qua bài viết [sau](/algo/data-structures/lca).

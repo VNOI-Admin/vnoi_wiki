@@ -30,8 +30,8 @@ Một lớp những bài toán rất được quan tâm trong khoa học máy t�
 
 Có rất nhiều thuật toán có thể giải quyết bài toán này. Người viết xin tóm tắt 2 thuật toán phổ biến được dùng trong các kì thi lập trình:
 
-- **Brute-force**: Với một cách tiếp cận trực tiếp, chúng ta có thể thu được thuật toán để giải. Tuy nhiên độ phực tạp của nó là rất lớn trong trường hợp xấu nhất. Thuật toán brute-force so khớp tất cả các vị trí xuất hiện của đoạn mẫu trong đoạn văn bản. Cụ thể độ phức tạp cho thuật toán này là $O(mn)$.
--  **[Knuth-Morris-Pratt](/translate/wcipeg/kmp)**: Hay còn được viết tắt là KMP, được phát minh vào năm 1974, bởi Donald Knuth, Vaughan Pratt và James H. Morris.  Thuật toán này sử dụng một correction-array, là một thuật toán rất hiệu quả, có độ phức tạp là $O(m + n)$.
+- **Brute-force**: Với một cách tiếp cận trực tiếp, chúng ta có thể thu được thuật toán để giải. Tuy nhiên độ phực tạp của nó là rất lớn trong trường hợp xấu nhất. Thuật toán brute-force so khớp tất cả các vị trí xuất hiện của đoạn mẫu trong đoạn văn bản. Cụ thể độ phức tạp cho thuật toán này là $\mathcal{O}(mn)$.
+-  **[Knuth-Morris-Pratt](/translate/wcipeg/kmp)**: Hay còn được viết tắt là KMP, được phát minh vào năm 1974, bởi Donald Knuth, Vaughan Pratt và James H. Morris.  Thuật toán này sử dụng một correction-array, là một thuật toán rất hiệu quả, có độ phức tạp là $\mathcal{O}(m + n)$.
 
 ## Mục đích bài viết
 
@@ -44,15 +44,15 @@ Trong bài viết này, người viết chỉ tập trung vào thuật toán Has
 ## Ký hiệu
 
 - Tập hợp các chữ cái được sử dụng: $\Sigma$
-- Đoạn con từ $i$ đến $j$ của một xâu $s$: $s[i..j]$
-- Đoạn văn bản: $T[1..m]$
-- Đoạn mẫu: $P[1..n]$
+- Đoạn con từ $i$ đến $j$ của một xâu $s$: $s[i\ldots j]$
+- Đoạn văn bản: $T[1\ldots m]$
+- Đoạn mẫu: $P[1\ldots n]$
 
-Chúng ta cần tìm ra tất cả các vị trí $i (1 \le i \le m − n + 1)$ thỏa  mãn: $T[i..i+n−1] = P$.
+Chúng ta cần tìm ra tất cả các vị trí $i (1 \le i \le m - n + 1)$ thỏa  mãn: $T[i\ldots i+n-1] = P$.
 
 ## Mô tả thuật toán
 
-Để đơn giản, giả sử rằng $\Sigma = {a, b, ..., z}$ (nói cách khác, $\Sigma$ chỉ gồm các chữ cái in thường). Để biểu diễn một xâu, thay vì dùng chữ cái, chúng ta sẽ chuyển sang biểu diễn dạng số. Ví dụ: xâu `aczd` được viết dưới dạng số là một dãy gồm 4 số: `(1,3,26,4)`. Như vậy, một xâu được biểu diễn dưới dạng một số ở hệ cơ số $base$ với $base > 26$. Từ đây suy ra, 2 xâu bằng nhau khi và chỉ khi biểu diễn của 2 xâu ở hệ cơ số 10 giống nhau.
+Để đơn giản, giả sử rằng $\Sigma = {a, b, \ldots, z}$ (nói cách khác, $\Sigma$ chỉ gồm các chữ cái in thường). Để biểu diễn một xâu, thay vì dùng chữ cái, chúng ta sẽ chuyển sang biểu diễn dạng số. Ví dụ: xâu `aczd` được viết dưới dạng số là một dãy gồm 4 số: `(1,3,26,4)`. Như vậy, một xâu được biểu diễn dưới dạng một số ở hệ cơ số $base$ với $base > 26$. Từ đây suy ra, 2 xâu bằng nhau khi và chỉ khi biểu diễn của 2 xâu ở hệ cơ số 10 giống nhau.
 
 **Lưu ý**:
 
@@ -69,23 +69,23 @@ Dễ dàng nhận thấy việc so sánh $x \bmod MOD$ với $y \bmod MOD$ rồi
 
 Để đơn giản trong việc trình bày tiếp thuật toán, chúng ta sẽ gọi biểu diễn của một xâu trong hệ thập phân sau khi lấy phần dư cho $MOD$ là mã Hash của xâu đó. Nhắc lại, 2 xâu bằng nhau _‘khi và chỉ khi’_ mã Hash của 2 xâu bằng nhau.
 
-Trở lại bài toán ban đầu, chúng ta cần chỉ ra $P$ xuất hiện ở những vị trí nào trong $T$. Để làm được việc này, chúng ta chỉ cần duyệt qua mọi vị trí xuất phát có thể của $P$ trong $T$. Giả sử vị trí đó là $i$, chúng ta sẽ kiểm tra $T[i..i+n−1]$ có bằng với $P$ hay không. Để kiểm tra điều này, chúng ta cần tính được mã Hash của đoạn $T[i..i+n−1]$ và mã Hash của xâu $P$.
+Trở lại bài toán ban đầu, chúng ta cần chỉ ra $P$ xuất hiện ở những vị trí nào trong $T$. Để làm được việc này, chúng ta chỉ cần duyệt qua mọi vị trí xuất phát có thể của $P$ trong $T$. Giả sử vị trí đó là $i$, chúng ta sẽ kiểm tra $T[i\ldots i+n-1]$ có bằng với $P$ hay không. Để kiểm tra điều này, chúng ta cần tính được mã Hash của đoạn $T[i\ldots i+n-1]$ và mã Hash của xâu $P$.
 
 Để tính mã Hash của xâu $P$ chúng ta chỉ cần làm đơn giản như sau:
 
-```
+```cpp
 const base = 31;
 hashP = 0
 for (i : 1 .. n)
       hashP = (hashP * base + P[i] - 'a' + 1) mod MOD
 ```
 
-Phần khó hơn của thuật toán Hash là: Tính mã Hash của một đoạn con $T[i..j]$ của xâu $T$ $(1 \le i \le j \le N)$.
+Phần khó hơn của thuật toán Hash là: Tính mã Hash của một đoạn con $T[i\ldots j]$ của xâu $T$ $(1 \le i \le j \le N)$.
 
-- Để hình dung cho đơn giản, xét ví dụ sau: Xét xâu $s$ và biểu diễn của nó dưới cơ số $base$: $(4,1,2,5,1,7,8)$. Chúng ta cần lấy mã Hash của đoạn con từ phần tử thứ 3 đến phần tử thứ 6, nghĩa là cần lấy mã Hash của xâu $(2,5,1,7)$. Nhận thấy, để lấy được xâu $s[3..6]$, chỉ cần lấy số $s[1..6]$ là $(4,1,2,5,1,7)$ trừ cho số ($s[1..2]$ nhân với $base^4$) là $(4,1,0,0,0,0)$ ta sẽ thu được $(2,5,1,7)$.
-- Để cài đặt ý tưởng này, chúng ta cần khởi tạo $base^x \bmod MOD$ với $(0 \le x \le m)$ và mã Hash của tất cả những tiền tố của $s$, cụ thể là mã Hash của những xâu $s[1..i]$ với $(1 \le i \le m)$.
+- Để hình dung cho đơn giản, xét ví dụ sau: Xét xâu $s$ và biểu diễn của nó dưới cơ số $base$: $(4,1,2,5,1,7,8)$. Chúng ta cần lấy mã Hash của đoạn con từ phần tử thứ 3 đến phần tử thứ 6, nghĩa là cần lấy mã Hash của xâu $(2,5,1,7)$. Nhận thấy, để lấy được xâu $s[3\ldots 6]$, chỉ cần lấy số $s[1\ldots 6]$ là $(4,1,2,5,1,7)$ trừ cho số ($s[1\ldots 2]$ nhân với $base^{4}$) là $(4,1,0,0,0,0)$ ta sẽ thu được $(2,5,1,7)$.
+- Để cài đặt ý tưởng này, chúng ta cần khởi tạo $base^{x} \bmod MOD$ với $(0 \le x \le m)$ và mã Hash của tất cả những tiền tố của $s$, cụ thể là mã Hash của những xâu $s[1\ldots i]$ với $(1 \le i \le m)$.
 
-```
+```cpp
 pow[0] = 1
 for (i : 1 .. m)
        pow[i] = (pow[i-1] * base) mod MOD
@@ -97,11 +97,11 @@ for (i : 1 .. m)
 
 ```
 
-Trong đoạn code trên, chúng ta thu được mảng $pow[i]$ (lưu lại $base^i \bmod MOD$) và mảng $hashT[i]$ (lưu lại mã Hash của $T[1..i]$).
+Trong đoạn code trên, chúng ta thu được mảng $pow[i]$ (lưu lại $base^{i} \bmod MOD$) và mảng $hashT[i]$ (lưu lại mã Hash của $T[1\ldots i]$).
 
-- Để lấy mã Hash của $T[i..j]$ ta viết hàm sau:
+- Để lấy mã Hash của $T[i\ldots j]$ ta viết hàm sau:
 
-```
+```cpp
 function getHashT(i, j):
        // Chú ý rằng `- hashT[i - 1] * pow[j - i + 1]` có thể âm.
        // Với 1 số ngôn ngữ như C++, toán tử mod sẽ trả kết quả sai với số âm.
@@ -111,7 +111,7 @@ function getHashT(i, j):
 
 Bài toán chính đã được giải quyết, và đây là chương trình chính:
 
-```
+```cpp
 for (i : 1 .. m - n +1)
       if hashP = getHashT(i, i + n - 1):
               print("Match position: ", i)
@@ -122,6 +122,8 @@ for (i : 1 .. m - n +1)
 Chương trình sau, tôi viết bằng ngôn ngữ C++, là lời giải cho bài [SUBSTR](https://oj.vnoi.info/problem/substr):
 
 ```cpp
+#include <bits/stdc++.h>
+
 typedef long long ll;
 
 const int base = 31;
@@ -132,11 +134,9 @@ using namespace std;
 
 ll POW[maxn], hashT[maxn];
 
-
-ll getHashT(int i,int j) {
+ll getHashT(int i, int j) {
     return (hashT[j] - hashT[i - 1] * POW[j - i + 1] + MOD * MOD) % MOD;
 }
-
 
 int main() {
     // Input
@@ -158,7 +158,7 @@ int main() {
         hashT[i] = (hashT[i - 1] * base + T[i] - 'a' + 1) % MOD;
 
     // Calculate hash value of P
-    ll hashP=0;
+    ll hashP = 0;
     for (int i = 1; i <= lenP; i++)
         hashP = (hashP * base + P[i] - 'a' + 1) % MOD;
 
@@ -171,7 +171,7 @@ int main() {
 
 ## Đánh giá
 
-Độ phức tạp của thuật toán là $O(m + n)$. Nhưng điều quan trọng là: chúng ta có thể kiểm tra 2 xâu có giống nhau hay không trong $O(1)$. Đây là điều tạo nên sự linh động cho thuật toán Hash. Ngoài sự linh động và tốc độ thực thi, chúng ta có thể thấy cài đặt thuật toán này thực sự rất đơn giản nếu so với các thuật toán xử lý xâu khác.
+Độ phức tạp của thuật toán là $\mathcal{O}(m + n)$. Nhưng điều quan trọng là: chúng ta có thể kiểm tra 2 xâu có giống nhau hay không trong $\mathcal{O}(1)$. Đây là điều tạo nên sự linh động cho thuật toán Hash. Ngoài sự linh động và tốc độ thực thi, chúng ta có thể thấy cài đặt thuật toán này thực sự rất đơn giản nếu so với các thuật toán xử lý xâu khác.
 
 # Chi tiết cài đặt
 
@@ -179,7 +179,7 @@ Trong thuật toán hash, có hai yếu tố cần quan tâm là hệ cơ số (
 
 ## 1. Chọn số nguyên tố cho hệ cơ số và modulo
 
-Ý tưởng của thuật toán Hash là dựa trên một ngộ nhận sai lầm nhưng xảy ra sai sót với xác suất vô cùng nhỏ: $a \bmod M = b \bmod M \iff a = b$. Để xác suất xảy ra sai là $1/M$ cho một truy vấn, các bạn cần chọn hệ cơ số và modulo thỏa mãn đồng thời:
+Ý tưởng của thuật toán Hash là dựa trên một ngộ nhận sai lầm nhưng xảy ra sai sót với xác suất vô cùng nhỏ: $a \bmod M = b \bmod M \iff a = b$. Để xác suất xảy ra sai là $\frac{1}{M}$ cho một truy vấn, các bạn cần chọn hệ cơ số và modulo thỏa mãn đồng thời:
 
 - $base$ là số nguyên tố lớn hơn các chữ cái của xâu `S`.
 - $MOD$ là số nguyên tố.
@@ -222,21 +222,21 @@ Bài toán đặt ra như sau: Bạn được cho một xâu $s$ độ dài $n$ 
 
 - Một _‘thuật toán chuẩn’_ không thể áp dụng vào bài toán này đó là thuật toán KMP. Ngoài KMP ra, có 2 _‘thuật toán chuẩn’_ có thể áp dụng được. Thuật toán thứ nhất đó là sử dụng thuật toán Manacher để tính bán kính đối xứng tại tất cả vị trí trong xâu. Thuật toán thứ 2 đó là sử dụng Suffix Array và LCP (Longest Common Prefix) cho xâu được nối bởi $s$ và xâu $s$ viết theo thứ tự ngược lại. 2 thuật toán này đều không dễ, và nằm ngoài phạm vi bài viết, nên tôi chỉ nêu sơ qua mà không đi vào chi tiết.
 - Bây giờ, chúng ta sẽ xét thuật toán _‘không chuẩn’_ là thuật toán Hash. Để đơn giản, chúng ta xét trường hợp độ dài của xâu đối xứng là lẻ (trường hợp chẵn xử lý hoàn toàn tương tự).
-- Giả sử xâu đối xứng độ dài lẻ dài nhất có độ dài là $l$. Dễ thấy, trong xâu $s$ tồn tại xâu đối xứng độ dài $l−2$, $l−4$,... Tuy nhiên, xâu $s$ không tồn tài xâu đối xứng độ dài $l+2$, $l+4$, ... Như vậy, $s$ thỏa mãn tính chất chia nhị phân. Chúng ta sẽ chia nhị phân để tìm độ dài lớn nhất có thể. Với mỗi độ dài $l$, chúng ta cần kiểm tra xem trong xâu có tồn tại một xâu con là xâu đối xứng độ dài $l$ hay không. Để làm việc này, ta duyệt qua tất cả tất cả các xâu con độ dài $l$ trong $s$.
-- Bài toán còn lại là: kiểm tra xem $s[i..j]$ với $(1 \le i \le j \le m; (j−i+1) \bmod 2 = 1)$ có phải là xâu đối xứng hay không.
-- Cách làm như sau. Gọi $t$ là xâu $s$ viết theo thứ tự ngược lại. Bằng thuật toán Hash, chúng ta có thể kiểm tra được một xâu con nào đó của $t$ có bằng một xâu con nào đó của $s$ hay không. Như vậy, chúng ta cần kiểm tra $s[i..k]$ có bằng $t[n−j+1..n−k+1]$ hay không với $k$ là tâm đối xứng, nói cách khác $k = (i+j)/2$. Như vậy bài toán đã được giải. Độ phức tạp cho cách làm này là $O(n \log{n})$.
+- Giả sử xâu đối xứng độ dài lẻ dài nhất có độ dài là $l$. Dễ thấy, trong xâu $s$ tồn tại xâu đối xứng độ dài $l-2$, $l-4$,... Tuy nhiên, xâu $s$ không tồn tài xâu đối xứng độ dài $l+2$, $l+4$, ... Như vậy, $s$ thỏa mãn tính chất chia nhị phân. Chúng ta sẽ chia nhị phân để tìm độ dài lớn nhất có thể. Với mỗi độ dài $l$, chúng ta cần kiểm tra xem trong xâu có tồn tại một xâu con là xâu đối xứng độ dài $l$ hay không. Để làm việc này, ta duyệt qua tất cả tất cả các xâu con độ dài $l$ trong $s$.
+- Bài toán còn lại là: kiểm tra xem $s[i\ldots j]$ với $(1 \le i \le j \le m; (j-i+1) \bmod 2 = 1)$ có phải là xâu đối xứng hay không.
+- Cách làm như sau. Gọi $t$ là xâu $s$ viết theo thứ tự ngược lại. Bằng thuật toán Hash, chúng ta có thể kiểm tra được một xâu con nào đó của $t$ có bằng một xâu con nào đó của $s$ hay không. Như vậy, chúng ta cần kiểm tra $s[i\ldots k]$ có bằng $t[n-j+1\ldots n-k+1]$ hay không với $k$ là tâm đối xứng, nói cách khác $k = \frac{i+j}{2}$. Như vậy bài toán đã được giải. Độ phức tạp cho cách làm này là $\mathcal{O}(n \log{n})$.
 
 ## k-th alphabetical cyclic
 
-Bài toán đặt ra như sau: Bạn được cho một dãy $a_1, a_2,... , a_n$ $(n \le 50,000)$. Sắp xếp $n$ hoán vị vòng tròn của dãy này theo thứ tự từ điển. Cụ thể, các hoán vị vòng quanh của dãy này là $(a_1, a_2,... , a_n)$, $(a_2, a_3, ..., a_n, a_1)$, $(a_3, a_4, ..., a_n, a_1, a_2)$,... Dãy này có thứ tự từ điển nhỏ hơn dãy kia nếu số đầu tiên khác nhau của dãy này nhỏ hơn dãy kia. Yêu cầu bài toán là: In ra dãy có thứ tự từ điển lớn thứ $k$.
+Bài toán đặt ra như sau: Bạn được cho một dãy $a_1, a_2,\ldots , a_n$ $(n \le 50,000)$. Sắp xếp $n$ hoán vị vòng tròn của dãy này theo thứ tự từ điển. Cụ thể, các hoán vị vòng quanh của dãy này là $(a_1, a_2,\ldots , a_n)$, $(a_2, a_3, \ldots, a_n, a_1)$, $(a_3, a_4, \ldots, a_n, a_1, a_2)$,... Dãy này có thứ tự từ điển nhỏ hơn dãy kia nếu số đầu tiên khác nhau của dãy này nhỏ hơn dãy kia. Yêu cầu bài toán là: In ra dãy có thứ tự từ điển lớn thứ $k$.
 
 - Bài toán này có thể được giải bằng Suffix Array, tuy nhiên cách cài đặt phức tạp và không phải trọng tâm của bài viết nên tôi sẽ không nêu ra ở đây.
-- Nếu tiếp cận một cách trực tiếp, chúng ta sẽ sinh ra tất cả các dãy hoán vị vòng quanh, rồi sau đó dùng một thuật toán sắp xếp để sắp xếp lại chúng theo thứ tự từ điển, cuối cùng chỉ việc in ra dãy thứ $k$ sau khi sắp xếp. Tuy nhiên độ phức tạp của thuật toán này là rất lớn và không thể đáp ứng được yêu cầu về thời gian. Cụ thể, cách này có độ phức tạp là $O(n^2 \times \log{n})$, đây là tích của độ phức tạp của sắp xếp và độ phức tạp của mỗi phép so sánh dãy.
+- Nếu tiếp cận một cách trực tiếp, chúng ta sẽ sinh ra tất cả các dãy hoán vị vòng quanh, rồi sau đó dùng một thuật toán sắp xếp để sắp xếp lại chúng theo thứ tự từ điển, cuối cùng chỉ việc in ra dãy thứ $k$ sau khi sắp xếp. Tuy nhiên độ phức tạp của thuật toán này là rất lớn và không thể đáp ứng được yêu cầu về thời gian. Cụ thể, cách này có độ phức tạp là $\mathcal{O}(n^{2} \times \log{n})$, đây là tích của độ phức tạp của sắp xếp và độ phức tạp của mỗi phép so sánh dãy.
 - Vẫn giữ tư tưởng là sắp xếp lại tất cả các dãy hoán vị vòng quanh rồi in ra dãy đứng ở vị trí thứ $k$, chúng ta cố gắng cải tiến độ phức tạp của việc so sánh thứ tự từ điển của 2 dãy.
 - Nhắc lại định nghĩa về thứ tự từ điển của 2 dãy: Xét 2 dãy $a$ và $b$ có cùng số phần tử. Gọi ví trí thứ $i$ là vị trí đầu tiên từ trái sang mà $a_i \ne b_i$. $a < b \Leftrightarrow a_i < b_i$. Như vậy, ta phải tìm đoạn tiền tố giống nhau dài nhất của $a$ và $b$, rồi so sánh kí tự tiếp theo. Để tìm được đoạn tiền tố giống nhau dài nhất, ta có thể sử dụng Hash kết hợp với chia nhị phân.
-- Để giải được bài này, cần sử dụng thêm một kỹ thuật nhỏ nữa: Thay vì sinh ra tất cả các hoán vị vòng quanh, chúng ta chỉ cần nhân đôi dãy $a$ lên, dãy mới sẽ có $2n$ phần tử: $(a_1, a_2, ..., a_n, a_1, a_2, ..., a_n)$. Một hoán vị vòng quanh sẽ là một dãy con liên tiếp độ dài $n$ của dãy nhân đôi này.
+- Để giải được bài này, cần sử dụng thêm một kỹ thuật nhỏ nữa: Thay vì sinh ra tất cả các hoán vị vòng quanh, chúng ta chỉ cần nhân đôi dãy $a$ lên, dãy mới sẽ có $2n$ phần tử: $(a_1, a_2, \ldots, a_n, a_1, a_2, \ldots, a_n)$. Một hoán vị vòng quanh sẽ là một dãy con liên tiếp độ dài $n$ của dãy nhân đôi này.
 
-Từ đó ta thu được thuật toán với độ phức tạp $O(n \log^2{n})$.
+Từ đó ta thu được thuật toán với độ phức tạp $\mathcal{O}(n \log^{2}{n})$.
 
 ## Longest substring and appear at least k times
 
@@ -245,7 +245,7 @@ Bài toán đặt ra như sau: Bạn được cho xâu $s$ độ dài $n (n \le 
 - Bài toán này có thể được giải bằng Suffix Array, tuy nhiên cách cài đặt phức tạp và không phải trọng tâm của bài viết nên tôi sẽ không nêu ra ở đây.
 - Tiếp tục bàn đến thuật toán Hash để thay thế thuật toán chuẩn. Nhận xét rằng, giả sử độ dài lớn nhất tìm được là $l$, thì với mọi $l′ \le l$, luôn tồn tại xâu có độ dài $l′$ xuất hiện ít nhất $k$ lần. Tuy nhiên, với mọi $l′ > l$, không tồn tại xâu có độ dài $l′$ xuất hiện ít nhất $k$ lần (do $l$ đã là lớn nhất). Như vậy, $l$  thỏa mãn tính chất chia nhị phân. Chúng ta có thể áp dụng thuật toán tìm kiếm nhị phân để tìm ra $l$ lớn nhất.
 - Bây giờ, với mỗi $l$ khi đang chia nhị phân, chúng ta sẽ phải kiểm tra liệu có tồn tại xâu con nào xuất hiện ít nhất $k$ lần hay không. Điều này được làm rất đơn giản, bằng cách sinh mọi mã Hash của các xâu con độ dài $k$ trong $s$. Sau đó sắp xếp lại các mã Hash này theo chiều tăng dần, rồi kiếm tra xem có một đoạn liên tiếp các mã Hash nào giống nhau độ dài $l$ hay không.
-- Như vậy, độ phức tạp để  chia nhị phân là $O(\log{n})$, độ phức tạp của sắp xếp là $O(n \log{n})$, vậy độ phức tạp của cả bài toán là $O(n \log^2{n} )$.
+- Như vậy, độ phức tạp để  chia nhị phân là $\mathcal{O}(\log{n})$, độ phức tạp của sắp xếp là $\mathcal{O}(n \log{n})$, vậy độ phức tạp của cả bài toán là $\mathcal{O}(n \log^{2}{n} )$.
 
 
 # Đánh giá độ chính xác
@@ -255,23 +255,23 @@ Thông thường, khi sử dụng Hash, ta thường gặp phải 2 trường h�
 1. Trả lời $Q$ truy vấn, mỗi truy vấn có dạng kiểm tra 2 đoạn con của 2 xâu có bằng nhau hay không
 2. Cho $N$ xâu, kiểm tra tất cả các xâu có phân biệt hay không.
 
-Giả sử ta chọn $MOD$ là một số nguyên tố khoảng $10^9$, và giả sử dữ liệu được sinh ngẫu nhiên và hàm hash của chúng ta đủ tốt để Hash của các xâu được phân bố đều và ngẫu nhiên.
+Giả sử ta chọn $MOD$ là một số nguyên tố khoảng $10^{9}$, và giả sử dữ liệu được sinh ngẫu nhiên và hàm hash của chúng ta đủ tốt để Hash của các xâu được phân bố đều và ngẫu nhiên.
 
 ## Trường hợp 1
 
-Giả sử $Q$ khoảng $10^5$, và bộ test có $T = 100$ test.
+Giả sử $Q$ khoảng $10^{5}$, và bộ test có $T = 100$ test.
 
-- Với 2 xâu khác nhau, xác suất để nó có cùng Hash là xấp xỉ $1 / 10^9$. Như vậy, xác suất để trả lời đúng 1 truy vấn là: $1 - 1 / 10^9$.
-- Ở trường hợp xấu nhất, ta có $Q$ truy vấn mà mỗi truy vấn là một cặp xâu khác nhau. Xác suất để ta trả lời đúng tất cả các truy vấn là: $(1 - 1 / 10^9)^Q$.
-- Xác suất để ta trả lời đúng tất cả các truy vấn của tất cả các test là: $(1 - 1 / 10^9)^{Q \times T}$.
+- Với 2 xâu khác nhau, xác suất để nó có cùng Hash là xấp xỉ $\frac{1}{10^{9}}$. Như vậy, xác suất để trả lời đúng 1 truy vấn là: $1 - \frac{1}{10^{9}}$.
+- Ở trường hợp xấu nhất, ta có $Q$ truy vấn mà mỗi truy vấn là một cặp xâu khác nhau. Xác suất để ta trả lời đúng tất cả các truy vấn là: $\left(1 - \frac{1}{10^{9}}\right)^{Q}$.
+- Xác suất để ta trả lời đúng tất cả các truy vấn của tất cả các test là: $\left(1 - \frac{1}{10^{9}}\right)^{Q \times T}$.
 
 Thay số vào, xác suất để trả lời đúng tất cả các truy vấn là $0.9900$, đủ lớn để ta yên tâm qua tất cả các test, với điều kiện test không được sinh dựa trên $P$. (Chú ý nếu bạn đang thi những contest như Topcoder/Codeforces, người khác có thể đọc được $P$ của bạn và sinh test để challenge code của bạn).
 
 ## Trường hợp 2
 
-Theo [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem), ta dễ dàng thấy rằng, nếu có $\sqrt{P} = 3 \times 10^4$ xâu, xác suất để 2 xâu bằng nhau là rất lớn. Thật vậy, xác suất để tất cả các xâu khác nhau là:
+Theo [Birthday Paradox](https://en.wikipedia.org/wiki/Birthday_problem), ta dễ dàng thấy rằng, nếu có $\sqrt{P} = 3 \times 10^{4}$ xâu, xác suất để 2 xâu bằng nhau là rất lớn. Thật vậy, xác suất để tất cả các xâu khác nhau là:
 
-$(1 - 1 / 10^9) \times (1 - 2 / 10^9) \times (1 - 3 / 10^9) \times ... (1 - N / 10^9)$.
+$\left(1 - \frac{1}{10^{9}}\right) \times \left(1 - \frac{2}{10^{9}}\right) \times \left(1 - \frac{3}{10^{9}}\right) \times \cdots \times \left(1 - \frac{N}{10^{9}}\right)$.
 
 Với $N = 30,000$, tích trên là $0.6376$, nghĩa là bạn có gần $0.40$ xác suất trả lời sai. Do vậy, bạn bắt buộc phải dùng nhiều $MOD$ khác nhau.
 

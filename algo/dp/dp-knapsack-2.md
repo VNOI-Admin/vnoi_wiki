@@ -38,17 +38,17 @@ Khi xử lý bài toán kiểm tra sự tồn tại của một tập con có t�
 > Cho số nguyên $C$, đếm số tập con của tập số tự nhiên có tổng là $C$.
 
 Giới hạn:
-- $1 \leq C \leq 10^5$
+- $1 \leq C \leq 10^{5}$
 
-#### Thuật toán $\mathcal{O}(C^2)$
+#### Thuật toán $\mathcal{O}(C^{2})$
 
-Nếu áp dụng thuật toán quy hoạch động truyền thống với $\texttt{dp}(i, j)$ là số tập con của $\{1, 2, \dots, i\}$ có tổng là $j$, ta có thuật toán có độ phức tạp $\mathcal{O}(C^2)$ với công thức truy hồi là:
+Nếu áp dụng thuật toán quy hoạch động truyền thống với $\texttt{dp}(i, j)$ là số tập con của $\{1, 2, \dots, i\}$ có tổng là $j$, ta có thuật toán có độ phức tạp $\mathcal{O}(C^{2})$ với công thức truy hồi là:
 
 $$
 \texttt{dp}(i, j) = \texttt{dp}(i - 1, j) + \texttt{dp}(i - 1, j - i)
 $$
 
-Tuy nhiên, với giới hạn $C \leq 10^5$, đây rõ ràng là một lời giải chưa tối ưu.
+Tuy nhiên, với giới hạn $C \leq 10^{5}$, đây rõ ràng là một lời giải chưa tối ưu.
 
 #### Thay đổi hướng tiếp cận
 
@@ -61,7 +61,7 @@ Ví dụ, với tập $\{2, 4, 5\}$ ứng với dãy trạng thái $[0, 1, 0, 1,
 
 Tuy nhiên, với việc thêm trạng thái mới vào đầu dãy, ta có hai tập mới là $\{3, 5, 6\}$ và $\{1, 3, 5, 6\}$.
 
-![state_prepend.png](/algo/dp_/knapsack/state_prepend.png)
+![state_prepend.png](/uploads/algo/dp/dp-knapsack-2/state_prepend.png)
 
 Nói một cách toán học hơn, từ tập $S = \{1\}$, ta sẽ sinh ra tất cả các tập số tự nhiên khác rỗng theo hai thao tác sau:
 
@@ -97,18 +97,18 @@ $$
 
 #### Độ phức tạp
 
-Thoạt nhìn qua, ta có cảm giác như lời giải này cũng có độ phức tạp $\mathcal{O}(C^2)$ như lời giải trước đó. Tuy nhiên, dựa vào nhận xét rằng với mọi tập số nguyên, tổng $\sigma$ của nó tối thiểu là $1 + 2 + \dots + \ell$, tức là:
+Thoạt nhìn qua, ta có cảm giác như lời giải này cũng có độ phức tạp $\mathcal{O}(C^{2})$ như lời giải trước đó. Tuy nhiên, dựa vào nhận xét rằng với mọi tập số nguyên, tổng $\sigma$ của nó tối thiểu là $1 + 2 + \dots + \ell$, tức là:
 
 $$
 \begin{align*}
 1 + 2 + \dots + \ell &\leq \sigma \\
 \Longleftrightarrow \frac{\ell(\ell+1)}{2} &\leq \sigma \\
-\Longrightarrow \ell^2 &\leq 2 \sigma \\
+\Longrightarrow \ell^{2} &\leq 2 \sigma \\
 \Longrightarrow \ell &\leq \sqrt{2 \sigma} \\
 \end{align*}
 $$
 
-Như vậy, kích thước của một tập con không thể vượt quá căn bậc hai của hai lần tổng của nó. Nói cách khác, số trạng thái mà ta cần xét trong thuật toán quy hoạch động này là $\mathcal{O}(C \sqrt{C})$ -- đủ để xử lý giới hạn $10^5$.
+Như vậy, kích thước của một tập con không thể vượt quá căn bậc hai của hai lần tổng của nó. Nói cách khác, số trạng thái mà ta cần xét trong thuật toán quy hoạch động này là $\mathcal{O}(C \sqrt{C})$ -- đủ để xử lý giới hạn $10^{5}$.
 
 :::spoiler Code tham khảo
 Trước tiên, ta khai báo hai hàm giúp tính phép cộng có modulo và kiểm tra tính hợp lệ của một trạng thái như sau:
@@ -116,11 +116,11 @@ Trước tiên, ta khai báo hai hàm giúp tính phép cộng có modulo và ki
 ```cpp=
 const int MOD = 1e9 + 7;
 
-int add (int a, int b) {
+int add(int a, int b) {
     return a + b - (a + b < MOD ? 0 : MOD);
 }
 
-bool validState (int sigma, int len) {
+bool validState(int sigma, int len) {
     return 1LL * len * len <= 2 * sigma;
 }
 ```
@@ -128,7 +128,8 @@ bool validState (int sigma, int len) {
 Sau đó, thuật toán nêu trên có thể được cài đặt như sau:
 
 ```cpp=
-int C; cin >> C;
+int C;
+cin >> C;
 vector<vector<int>> dp(C + 1);
 
 dp[1] = {0, 1};
@@ -145,7 +146,8 @@ for (int sigma = 2; sigma <= C; sigma++) {
 }
 
 int ans = 0;
-for (int len = 1; validState(C, len); len++) ans = add(ans, dp[C][len]);
+for (int len = 1; validState(C, len); len++)
+    ans = add(ans, dp[C][len]);
 cout << ans;
 ```
 :::
@@ -157,7 +159,7 @@ cout << ans;
 > Cho hai số nguyên $C$ và $L$, đếm số tập con của tập số $\{L, L + 1, L + 2, \dots\}$ có tổng là $C$.
 
 Giới hạn:
-- $1 \leq C, L \leq 10^5$
+- $1 \leq C, L \leq 10^{5}$
 
 #### Ý tưởng
 
@@ -172,7 +174,7 @@ Khi bài toán có cận dưới, ta có thể xử lý theo một trong hai hư
 > Cho hai số nguyên $C$ và $n$, đếm số tập con của tập số $\{1, 2, 3, \dots, n\}$ có tổng là $C$.
 
 Giới hạn:
-- $1 \leq C, n \leq 10^5$.
+- $1 \leq C, n \leq 10^{5}$.
 
 #### Ý tưởng
 
@@ -196,15 +198,16 @@ $$
 Để tiện lợi cho việc bù trừ, ta định nghĩa thêm một hàm tính phép trừ có modulo như sau:
 
 ```cpp=
-int sub (int a, int b) {
-		return a - b + (a - b >= 0 ? 0 : MOD);
+int sub(int a, int b) {
+    return a - b + (a - b >= 0 ? 0 : MOD);
 }
 ```
 
 Sau đó, thuật toán nêu trên có thể được cài đặt như sau:
 
 ```cpp=
-int C, n; cin >> C >> n;
+int C, n;
+cin >> C >> n;
 vector<vector<int>> dp(C + 1);
 
 dp[0] = {1}, dp[1] = {0, 1};
@@ -223,7 +226,8 @@ for (int sigma = 2; sigma <= C; sigma++) {
 }
 
 int ans = 0;
-for (int len = 1; validState(C, len); len++) ans = add(ans, dp[C][len]);
+for (int len = 1; validState(C, len); len++)
+    ans = add(ans, dp[C][len]);
 cout << ans;
 ```
 :::
@@ -232,7 +236,7 @@ cout << ans;
 
 Năm 1997, David Pisinger đã xuất bản bài báo cáo về thành quả nghiên cứu bài toán cái túi của mình. Trong bài báo cáo ấy, ông đã đề xuất một hướng tiếp cận khác cho QHĐ cái túi, giúp xử lý bài toán Subset sum trong $\mathcal{O}(n \cdot \max w_i)$ và 0/1 Knapsack trong $\mathcal{O}(n \cdot \max w_i \cdot \max v_i)$. Năm 1999, Martello, Pisinger và Toth đã đưa ra nhiều cải tiến quan trọng cho thuật toán 0/1 Knapsack nhưng thuật toán này tương đối phức tạp và không phổ biến trong Lập trình thi đấu.
 
-Độ phức tạp của thuật toán này tốt hơn quy hoạch động truyền thống ở chỗ nó không phụ thuộc vào tổng trọng số cần tìm (trong bài toán Subset Sum) hay giới hạn của cái túi (trong bài toán 0/1 Knapsack). Đây là một cải tiến hữu ích đặc biệt là với các dạng bài có giới hạn $C$ lên đến $\sum w_i$, khi đó độ phức tạp của thuật toán truyền thống tương đương $\mathcal{O}(n^2 \cdot \max w_i)$.
+Độ phức tạp của thuật toán này tốt hơn quy hoạch động truyền thống ở chỗ nó không phụ thuộc vào tổng trọng số cần tìm (trong bài toán Subset Sum) hay giới hạn của cái túi (trong bài toán 0/1 Knapsack). Đây là một cải tiến hữu ích đặc biệt là với các dạng bài có giới hạn $C$ lên đến $\sum w_i$, khi đó độ phức tạp của thuật toán truyền thống tương đương $\mathcal{O}(n^{2} \cdot \max w_i)$.
 
 > **Lưu ý**
 > Để thuận lợi cho việc giải thích thuật toán, một số thuật ngữ và cách định nghĩa trong bài viết này sẽ có đôi chút khác biệt so với bài báo cáo của Pisinger. Tuy nhiên, những thay đổi này không làm thay đổi hiệu suất của thuật toán.
@@ -249,7 +253,7 @@ $$
 
 Bên cạnh đó, ta gọi **lời giải tại điểm cắt** là phương án chọn tất cả các món đồ từ $1$ đến $b$ và không chọn các món đồ còn lại. Ngoài ra, từ điểm cắt $b$, ta tách các món đồ thành hai nhóm $A, B$ lần lượt là các món đồ từ $1$ đến $b$ và từ $b + 1$ đến $n$.
 
-![break_solution.png](/algo/dp_/knapsack/break_solution.png)
+![break_solution.png](/uploads/algo/dp/dp-knapsack-2/break_solution.png)
 
 **Định nghĩa 2.** Ta định nghĩa một trạng thái chọn/không chọn các món đồ là **trạng thái cân bằng** nếu trạng thái này có thể được biến đổi từ lời giải tại điểm cắt thông qua hai thao tác:
 
@@ -260,7 +264,7 @@ Lưu ý, tại mọi thời điểm, việc chọn loại thao tác để thực
 
 Ví dụ, từ lời giải tại điểm cắt như hình trên, ta có thể thêm một món đồ có trọng số $8$ và bỏ đi hai món đồ có trọng số $1$ và $3$ để cho ra một trạng thái cân bằng như sau:
 
-![balanced_filling.png](/algo/dp_/knapsack/balanced_filling.png)
+![balanced_filling.png](/uploads/algo/dp/dp-knapsack-2/balanced_filling.png)
 
 **Tính chất 1.** Với cách định nghĩa như trên, ta có thể chứng minh rằng mọi lời giải tối ưu/hợp lệ của bài toán 0/1 Knapsack và Subset sum đều là một trạng thái cân bằng.
 
@@ -294,11 +298,11 @@ Có thể thấy, ý tưởng của thuật toán quy hoạch động của Davi
 
 Đây là đồ thị mô phỏng sự thay đổi của tổng trọng số theo hướng tiếp cận của thuật toán này so với hướng tiếp cận của lời giải quy hoạch động truyền thống:
 
-![weight_to_time_graph.png](/algo/dp_/knapsack/weight_to_time_graph.png)
+![weight_to_time_graph.png](/uploads/algo/dp/dp-knapsack-2/weight_to_time_graph.png)
 
 ### Lời giải cho bài toán Subset sum
 
-#### Quy hoạch động $\mathcal{O}(n^2W)$
+#### Quy hoạch động $\mathcal{O}(n^{2}W)$
 
 Gọi $\texttt{exist}(i, j, \sigma)$ là một giá trị boolean cho biết sự tồn tại của một trạng thái cân bằng có tổng trọng số $\sigma$ nếu chỉ áp dụng thao tác xóa món đồ cho $i$ phần tử đầu tiên của nhóm $A$ và thao tác thêm món đồ cho $j$ phần tử đầu tiên của nhóm $B$.
 
@@ -336,14 +340,17 @@ for (int i = 0; i <= breakPoint; i++) {
     for (int j = 0; j <= n - breakPoint; j++) {
         for (int sigma = C - W; sigma <= C + W; sigma++) {
             int cur = sigma - offset;
-            if (!exist[i][j][cur]) continue;
+            if (!exist[i][j][cur])
+                continue;
             if (i < breakPoint) {
                 exist[i + 1][j][cur] = 1;
-                if (sigma > C) exist[i + 1][j][cur - w[i + 1]] = 1;
+                if (sigma > C)
+                    exist[i + 1][j][cur - w[i + 1]] = 1;
             }
             if (j < n - breakPoint) {
                 exist[i][j + 1][cur] = 1;
-                if (sigma <= C) exist[i][j + 1][cur + w[breakPoint + j + 1]] = 1;
+                if (sigma <= C)
+                    exist[i][j + 1][cur + w[breakPoint + j + 1]] = 1;
             }
         }
     }
@@ -366,7 +373,8 @@ exist[0][0][curSum - offset] = 1;
 /// thực hiện QHĐ
 for (int i = 0; i <= breakPoint; i++) {
     for (int j = 0; j <= n - breakPoint; j++) {
-        if (max(i, j) == 0) continue;
+        if (max(i, j) == 0)
+            continue;
         for (int sigma = C - W; sigma <= C + W; sigma++) {
             int cur = sigma - offset;
             exist[i][j][cur] = (i ? exist[i - 1][j][cur] : 0) | (j ? exist[i][j - 1][cur] : 0);
@@ -402,14 +410,14 @@ Như vậy, với mọi cặp $(i, \sigma)$, tồn tại một giá trị $\delt
 
 Không khó để chứng minh khi cố định $\sigma$ thì $\texttt{change}(i, \sigma)$ là hàm nghịch biến (tức $i$ tăng thì $\texttt{change}(i, \sigma)$ giảm).
 
-Từ công thức truy hồi cho $\texttt{exist}$ ở lời giải  $\mathcal{O}(n^2W)$, ta thấy, khi một trạng thái $(i, j, \sigma)$ có $\texttt{exist}(i, j, \sigma) = 1$, nó sẽ kéo theo:
+Từ công thức truy hồi cho $\texttt{exist}$ ở lời giải  $\mathcal{O}(n^{2}W)$, ta thấy, khi một trạng thái $(i, j, \sigma)$ có $\texttt{exist}(i, j, \sigma) = 1$, nó sẽ kéo theo:
 
 - $\texttt{exist}(i + 1, j, \sigma) = 1$.
 - $\texttt{exist}(i, j + 1, \sigma) = 1$.
 - $\texttt{exist}(i + 1, j, \sigma - w_{i+1}) = 1$, nếu $\sigma > C$.
 - $\texttt{exist}(i, j + 1, \sigma + w_{b+j+1}) = 1$, nếu $\sigma \leq C$.
 
-![transition_2.png](/algo/dp_/knapsack/transition_2.png)
+![transition_2.png](/uploads/algo/dp/dp-knapsack-2/transition_2.png)
 
 Từ đó, nếu cố định $i, \sigma$ và cùng lúc các vị trí $\texttt{exist}(i, j, \sigma) = 1$ với $j \in [\delta; n - b]$, nó sẽ kéo theo:
 
@@ -417,13 +425,13 @@ Từ đó, nếu cố định $i, \sigma$ và cùng lúc các vị trí $\texttt
 - $\texttt{exist}(i + 1, j, \sigma - w_{i+1}) = 1$ với $j \in [\delta; n - b]$, nếu $\sigma > C$.
 - $\texttt{exist}(i, j, \sigma + w_{b+j}) = 1$, với $j \in [\delta + 1; n - b]$, nếu $\sigma \leq C$.
 
-Ở hai trường hợp đầu tiên, ta đều có các trạng thái thái di động theo tham số $j$, hai tham số $i$ và $\sigma$ được cố định cùng một giá trị. Tuy nhiên, ở trường hợp cuối cùng, tham số $\sigma$ lại phụ thuộc vào $j$, do đó, ta phải xét mọi $j$ thỏa mãn để tính. Việc xét mọi $j$ từ $\delta + 1$ đến $n - b$ sẽ khiến thuật toán quay về độ phức tạp $\mathcal{O}(n^2W)$. Do đó, ta cần dùng đến nhận xét rằng nếu:
+Ở hai trường hợp đầu tiên, ta đều có các trạng thái thái di động theo tham số $j$, hai tham số $i$ và $\sigma$ được cố định cùng một giá trị. Tuy nhiên, ở trường hợp cuối cùng, tham số $\sigma$ lại phụ thuộc vào $j$, do đó, ta phải xét mọi $j$ thỏa mãn để tính. Việc xét mọi $j$ từ $\delta + 1$ đến $n - b$ sẽ khiến thuật toán quay về độ phức tạp $\mathcal{O}(n^{2}W)$. Do đó, ta cần dùng đến nhận xét rằng nếu:
 
 $$
 \begin{align*}
-\texttt{exist}(i - 1, j, \sigma) = 1 \space\space\space &\forall j \in [\delta'; n - b] \\
-\Longrightarrow \texttt{exist}(i - 1, j, \sigma + w_{b+j}) = 1 \space\space\space &\forall j \in [\delta' + 1; n - b] \\
-\Longrightarrow \texttt{exist}(i, j, \sigma + w_{b+j}) = 1 \space\space\space & \forall j \in [\delta' + 1; n - b]
+\texttt{exist}(i - 1, j, \sigma) = 1 \qquad &\forall j \in [\delta'; n - b] \\
+\Longrightarrow \texttt{exist}(i - 1, j, \sigma + w_{b+j}) = 1 \qquad &\forall j \in [\delta' + 1; n - b] \\
+\Longrightarrow \texttt{exist}(i, j, \sigma + w_{b+j}) = 1 \qquad & \forall j \in [\delta' + 1; n - b]
 \end{align*}
 $$
 
@@ -456,7 +464,8 @@ change[0][curSum - offset] = 0;
 for (int i = 0; i <= breakPoint; i++) {
     for (int sigma = C - W; sigma <= C + W; sigma++) {
         int cur = sigma - offset, delta = change[i][cur];
-        if (delta == INT_MAX) continue;
+        if (delta == INT_MAX)
+            continue;
 
         if (i < breakPoint) // bước 1
             change[i + 1][cur] = min(change[i + 1][cur], delta);

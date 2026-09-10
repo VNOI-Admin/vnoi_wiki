@@ -29,7 +29,7 @@ Với những yêu cầu trên, ta có thể sử dụng nhiều cấu trúc, nh
 
 Cây là cấu trúc hữu hiệu nhất dùng cho DSU. Với mỗi đỉnh, ta lưu lại đỉnh cha của nó (đỉnh cha của đỉnh gốc là -1). Ban đầu, mọi đỉnh cha được set là -1. Có các truy vấn **tìm đỉnh gốc** của mỗi hộp (có được gốc, ta có thể truy ra vị trí của hộp) và các truy vấn yêu cầu **hợp** 2 cây lại. Để thuật toán nhanh hơn, mỗi lần tìm gốc của mỗi đỉnh, ta đặt đỉnh cha của nó là gốc cho truy vấn tiếp theo. Luôn muốn độ cao của cây là nhỏ nhất có thể, vì vậy, mỗi khi nhập các hộp lại với nhau, ta bỏ các bộ dụng cụ trong hộp có ít bộ hơn vào hộp còn lại.
 
-![](/uploads/tree1.png)
+![](/uploads/algo/data-structures/disjoint-set/tree1.png)
 
 _Code C++ ([bmerry](http://codeforces.com/profile/bmerry))_
 
@@ -42,18 +42,18 @@ _Code C++ ([bmerry](http://codeforces.com/profile/bmerry))_
 int root(int v) {
     // Cho 1 số v, tìm hộp chứa viên sỏi v
     return par[v] < 0
-            ? v
-            : (par[v] = root(par[v])); // Viên sỏi v nằm trong cùng hộp với viên sỏi chứa par[v]
-                                       // Chú ý ở đây ta gán lại par[v] = root(par[v]), kĩ thuật này
-                                       // được gọi là Path Compression, giúp giảm độ phức tạp mỗi
-                                       // thao tác xuống log(n)
+               ? v
+               : (par[v] = root(par[v])); // Viên sỏi v nằm trong cùng hộp với viên sỏi chứa par[v]
+                                          // Chú ý ở đây ta gán lại par[v] = root(par[v]), kĩ thuật này
+                                          // được gọi là Path Compression, giúp giảm độ phức tạp mỗi
+                                          // thao tác xuống log(n)
 }
 
 void merge(int x, int y) {
     // Gộp 2 hộp chứa viên sỏi x và y vào cùng 1 hộp
-    if ((x = root(x)) == (y = root(y)) {
+    if ((x = root(x)) == (y = root(y))) {
         // 2 viên sỏi x và y đã thuộc cùng 1 hộp, ta không cần làm gì cả
-        return ;
+        return;
     }
     if (par[y] < par[x]) {
         // Ta gộp vào hộp chứa nhiều sỏi hơn. Kĩ thuật này gọi là Union-by-rank, và cũng giúp giảm
@@ -71,16 +71,16 @@ void merge(int x, int y) {
 
 Ta lưu vị trí các viên sỏi trong một **vector** (hoặc **mảng**) và mỗi khi có truy vấn yêu cầu **nhập** hai hộp, ta bỏ các viên sỏi ở hộp có ít viên sỏi hơn vào hộp còn lại.
 
-Độ phức tạp không cao vì với mỗi viên sỏi, tổng số lần lấy và bỏ nó vào hộp chỉ tối đa là $log(n)$.
+Độ phức tạp không cao vì với mỗi viên sỏi, tổng số lần lấy và bỏ nó vào hộp chỉ tối đa là $\log{n}$.
 
-Độ phức tạp cho $n$ thao tác sẽ là $O(nlog(n))$.
+Độ phức tạp cho $n$ thao tác sẽ là $\mathcal{O}(n\log{n})$.
 
 Khi cài đặt DSU, cách này không được sử dụng (do phức tạp hơn cách trên), tuy nhiên ý tưởng này có thể được áp dụng cho nhiều bài khác.
 
 
 ## Cài đặt Disjoint Set với Sets (Cây Đỏ Đen; Red-Black Trees)
 
-Một cách khác là lưu chúng trong một cây đỏ đen (trong C++ là **set** thư viện **STL**). Ta làm y như đã làm với vectors, độ phức tạp sẽ là $O(nlog^2n)$. (1 log cho việc nhập vào).
+Một cách khác là lưu chúng trong một cây đỏ đen (trong C++ là **set** thư viện **STL**). Ta làm y như đã làm với vectors, độ phức tạp sẽ là $\mathcal{O}(n\log^{2}{n})$. (1 log cho việc nhập vào).
 
 _Bài tập: (Phải tham gia nhóm [ACM-OI](http://codeforces.com/group/L1Sf9F4uBt))_
 

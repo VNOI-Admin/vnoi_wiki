@@ -56,26 +56,32 @@ Quá trình tìm thứ tự topo do đó có độ phức tạp là $\mathcal{O}
 
 Gọi $d[v]$ là đường đi ngắn nhất đến đỉnh $v$. Một cách tự nhiên, ta vẫn sẽ tính $d[v]$ bằng các đỉnh $u$ kề $v$ (có cạnh từ đỉnh $u$ đến đỉnh $v$):
 
-$$d[v] = \min\limits_{u \text{ kề } v} (d[u] + W[u,v])$$
+$$
+d[v] = \min\limits_{u \text{ kề } v} (d[u] + W[u,v])
+$$
 
 Ta biết rằng chỉ tồn tại đường đi từ đỉnh có thứ tự topo nhỏ hơn đỉnh có thứ tự topo lớn hơn. Vì vậy, để tìm đường đi ngắn xuất phát từ một đỉnh, ta chỉ cần xét các đỉnh $u$ theo đúng thứ tự topo từ đỉnh xuất phát, và cập nhật các đỉnh $v$ kề với $u$.
 
-Về độ phức tạp, ta mất $O(M)$ thời gian để tìm thứ tự topo và mất thêm $O(M + N)$ thời gian để tiến hành dp, ngoài ra thêm $O(N)$ thời gian nữa cho việc truy vết. Tổng độ phức tạp thời gian là $O(M+N)$. Độ phức tạp không gian nếu cài đặt bằng danh sách kề như ở dưới đây là $O(M+N)$.
+Về độ phức tạp, ta mất $\mathcal{O}(M)$ thời gian để tìm thứ tự topo và mất thêm $\mathcal{O}(M + N)$ thời gian để tiến hành dp, ngoài ra thêm $\mathcal{O}(N)$ thời gian nữa cho việc truy vết. Tổng độ phức tạp thời gian là $\mathcal{O}(M+N)$. Độ phức tạp không gian nếu cài đặt bằng danh sách kề như ở dưới đây là $\mathcal{O}(M+N)$.
 
 ### Cài đặt
 
 ```cpp=
-int n, m, s;
-vector<vector<pair <int, int> > > adj;
-vector <int> topo, trace, topoId;
-vector <long long> d;
-vector <bool> visit;
+#include <bits/stdc++.h>
+using namespace std;
+
+int n, m, s, t;
+const long long INF = 1e18;
+vector<vector<pair<int, int>>> adj;
+vector<int> topo, trace, topoId;
+vector<long long> d;
+vector<bool> visited;
 
 void dfs(int u) {
-    visit[u] = 1;
+    visited[u] = 1;
     for (auto p : adj[u]) {
         auto v = p.first;
-        if (!visit[v]) {
+        if (!visited[v]) {
             dfs(v);
         }
     }
@@ -84,7 +90,7 @@ void dfs(int u) {
 
 long long spDAG() {
     for (int u = 0; u < n; u++) {
-        if (!visit[u]) {
+        if (!visited[u]) {
             dfs(u);
         }
     }
@@ -111,7 +117,7 @@ long long spDAG() {
 
 vector<int> path() {
     vector<int> ret;
-    if (d[t] != INF) {
+    if (d[t] == INF) {
         return ret;
     }
     int u = t;
@@ -123,7 +129,6 @@ vector<int> path() {
     reverse(ret.begin(), ret.end());
     return ret;
 }
-
 ```
 
 ### Chú ý thêm
@@ -147,7 +152,7 @@ Cho một đồ thị có hướng với $N$ đỉnh (được đánh số từ 
 
 
 **Sample Input**
-```
+```text
 7 8 0
 0 2 7
 0 1 1
@@ -159,7 +164,7 @@ Cho một đồ thị có hướng với $N$ đỉnh (được đánh số từ 
 2 4 3
 ```
 **Sample Output**
-```
+```text
 0
 1
 7
@@ -171,7 +176,7 @@ Cho một đồ thị có hướng với $N$ đỉnh (được đánh số từ 
 
 Hình ảnh của Test ví dụ. Ở đồ thị này, đỉnh nguồn là đỉnh $0$, đường đi ngắn nhất từ $0$ đến các đỉnh $0$ đến $5$ là $[0, 1, 7, 4, 4, 10]$. Riêng đỉnh $6$ không có đường đi đến.
 
-![](https://i.imgur.com/UhI67bO.png)
+![](/uploads/algo/graph-theory/shortest-path/UhI67bO.png)
 
 ### Ý tưởng của thuật toán.
 
@@ -182,30 +187,30 @@ Thuật toán sẽ duy trì một mảng chứa đường đi ngắn nhất từ
 ### Minh họa thuật toán
 Ta sẽ minh họa thuật toán bằng một đồ thị như hình. Định nghĩa:
 - $D_u$ là đường đi ngắn nhất từ đỉnh nguồn đên đỉnh $u$ đã tìm được.
-- $P_u$ nhận hai giá trị $true$, $false$ cho biết đỉnh $P_u$ đã được chọn để tối ưu chưa.
+- $P_u$ nhận hai giá trị $\texttt{true}$, $\texttt{false}$ cho biết đỉnh $P_u$ đã được chọn để tối ưu chưa.
 
 **Đỉnh được tô đen (đỉnh 0) sẽ là đỉnh nguồn.**
 
-![](https://i.imgur.com/FPDbyq9.png)
+![](/uploads/algo/graph-theory/shortest-path/FPDbyq9.png)
 
-Ban đầu, $D = [0, \infty, \infty, \infty]$, $P = [false, false, false, false]$
+Ban đầu, $D = [0, \infty, \infty, \infty]$, $P = [\texttt{false}, \texttt{false}, \texttt{false}, \texttt{false}]$
 
-* Bước 1: Thuật toán sẽ chọn đỉnh $0$, vì $D_0 = 0$ là nhỏ nhất thỏa mãn $P_0 = false$. Tiến hành tối ưu các cạnh đi ra:
-    * Cạnh $(0, 2)$: cập nhật $D_2 = min(D_2, D_0 + W_{0, 2}) = min(\infty, 0+1) = 1$
-    * Cạnh $(0, 3)$: cập nhật $D_3 = min(D_3, D_0 + W_{0, 3}) = min(\infty, 0+4) = 4$
+* Bước 1: Thuật toán sẽ chọn đỉnh $0$, vì $D_0 = 0$ là nhỏ nhất thỏa mãn $P_0 = \texttt{false}$. Tiến hành tối ưu các cạnh đi ra:
+    * Cạnh $(0, 2)$: cập nhật $D_2 = \min(D_2, D_0 + W_{0, 2}) = \min(\infty, 0+1) = 1$
+    * Cạnh $(0, 3)$: cập nhật $D_3 = \min(D_3, D_0 + W_{0, 3}) = \min(\infty, 0+4) = 4$
 
-Sau bước này, $D = [0, \infty, 1, 4]$, $P = [true, false, false, false]$
+Sau bước này, $D = [0, \infty, 1, 4]$, $P = [\texttt{true}, \texttt{false}, \texttt{false}, \texttt{false}]$
 
-* Bước 2: thuật toán sẽ chọn ra đỉnh $2$, có $D_2 = 1$ là nhỏ nhất thỏa mãn $P_2 = false$. Tiến hành tối ưu các cạnh đi ra:
-    * Cạnh $(2, 1)$: cập nhật $D_1 = min(D_1, D_2 + W_{2, 1}) = min(\infty, 1+3) = 4$
-    * Cạnh $(2, 3)$: cập nhật $D_3 = min(D_3, D_2 + W_{2, 3}) = min(4, 1+2) = 3$
+* Bước 2: thuật toán sẽ chọn ra đỉnh $2$, có $D_2 = 1$ là nhỏ nhất thỏa mãn $P_2 = \texttt{false}$. Tiến hành tối ưu các cạnh đi ra:
+    * Cạnh $(2, 1)$: cập nhật $D_1 = \min(D_1, D_2 + W_{2, 1}) = \min(\infty, 1+3) = 4$
+    * Cạnh $(2, 3)$: cập nhật $D_3 = \min(D_3, D_2 + W_{2, 3}) = \min(4, 1+2) = 3$
 
-Sau bước này, $D = [0, 4, 1, 3]$, $P = [true, false, true, false]$
+Sau bước này, $D = [0, 4, 1, 3]$, $P = [\texttt{true}, \texttt{false}, \texttt{true}, \texttt{false}]$
 
-* Bước 3: thuật toán sẽ chọn ra đỉnh $3$, có $D_3 = 3$ là nhỏ nhất thỏa mãn $P_3 = false$. Tiến hành tối ưu các cạnh đi ra:
-    * Cạnh $(3, 1)$: cập nhật $D_1 = min(D_1, D_3 + W_{3, 1}) = min(4, 3+2) = 4$
+* Bước 3: thuật toán sẽ chọn ra đỉnh $3$, có $D_3 = 3$ là nhỏ nhất thỏa mãn $P_3 = \texttt{false}$. Tiến hành tối ưu các cạnh đi ra:
+    * Cạnh $(3, 1)$: cập nhật $D_1 = \min(D_1, D_3 + W_{3, 1}) = \min(4, 3+2) = 4$
 
-Sau bước này, $D = [0, 4, 1, 3]$, $P = [true, false, true, true]$
+Sau bước này, $D = [0, 4, 1, 3]$, $P = [\texttt{true}, \texttt{false}, \texttt{true}, \texttt{true}]$
 
 * Bước 4: thuật toán sẽ chọn đỉnh $1$. Không có cạnh nào đi ra.
 
@@ -218,30 +223,33 @@ Sau bước này, $D = [0, 4, 1, 3]$, $P = [true, false, true, true]$
 - $D[u]$ là đường đi ngắn nhất từ $s\rightarrow u$. Ban đầu khởi tạo $D[u] = \infty$ với mọi $u$, riêng $D[s] = 0$.
 - $W[u,v]$ là trọng số cạnh trên đường đi từ $u\rightarrow v$.
 - $P[u]$ là mảng đánh dấu các đỉnh $u$ đã được xử lí chưa. Ban đầu tất cả các giá trị đều là **false**.
-- Trong trường hợp bài toán yêu cầu chũng ta truy vết, ta có thể định nghĩa thêm một mảng $trace$, trong đó $trace[u]$ là đỉnh nằm trước đỉnh $u$ trên đường đi ngắn nhất từ $s$ đến $u$.
+- Trong trường hợp bài toán yêu cầu chũng ta truy vết, ta có thể định nghĩa thêm một mảng $\texttt{trace}$, trong đó $\texttt{trace}[u]$ là đỉnh nằm trước đỉnh $u$ trên đường đi ngắn nhất từ $s$ đến $u$.
 
 Ta sẽ lặp $N$ lần quá trình sau:
-- Tìm đỉnh $u$ có $D[u]$ nhỏ nhất và $P[u] = false$.
+- Tìm đỉnh $u$ có $D[u]$ nhỏ nhất và $P[u] = \texttt{false}$.
 - Sau khi tìm được đỉnh $u$, ta xét các đỉnh $v$ kề với đỉnh $u$ và tiến hành tối ưu hóa $D[v]$: nếu $D[v] > D[u] + W[u,v]$ thì $D[v] = D[u] + W[u,v]$.
-    - Nếu việc tối ưu hóa diễn ra, ta sẽ cập nhật $trace[v] = u$.
-- Đánh dấu $P[u] = true$, nghĩa là đỉnh $u$ đã được xử lí xong
+    - Nếu việc tối ưu hóa diễn ra, ta sẽ cập nhật $\texttt{trace}[v] = u$.
+- Đánh dấu $P[u] = \texttt{true}$, nghĩa là đỉnh $u$ đã được xử lí xong
 
 #### Độ phức tạp thuật toán
 
 Trong quá trình tính toán, ta thực hiện $N$ lần lặp:
-- Bước đầu tiên có độ phức tạp $O(N)$ **mỗi lần lặp**.
-- Bước thứ hai có **tổng độ phức tạp $O(M)$ qua tất cả các lần lặp**
+- Bước đầu tiên có độ phức tạp $\mathcal{O}(N)$ **mỗi lần lặp**.
+- Bước thứ hai có **tổng độ phức tạp $\mathcal{O}(M)$ qua tất cả các lần lặp**
 
-Như vậy độ phức tạp của cách cài đặt cơ bản sẽ là $O(N^2 + M)$.
+Như vậy độ phức tạp của cách cài đặt cơ bản sẽ là $\mathcal{O}(N^{2} + M)$.
 
 **Code:**
-``` cpp=
+```cpp=
+#include <bits/stdc++.h>
+using namespace std;
+
 const long long INF = 2000000000000000000LL;
-struct Edge{
+struct Edge {
     int v;
     long long w;
 };
-void dijkstra(int n, int S, vector<vector<Edge>> E, 
+void dijkstra(int n, int S, vector<vector<Edge>> E,
               vector<long long> &D, vector<int> &trace) {
     D.resize(n, INF);
     trace.resize(n, -1);
@@ -250,22 +258,25 @@ void dijkstra(int n, int S, vector<vector<Edge>> E,
     D[S] = 0;
 
     for (int i = 0; i < n; i++) {
-        int uBest; // tìm đỉnh u chưa dùng, có khoảng cách nhỏ nhất
+        int uBest = -1; // tìm đỉnh u chưa dùng, có khoảng cách nhỏ nhất
         long long Max = INF;
         for (int u = 0; u < n; u++) {
-            if(D[u] < Max && P[u] == false) {
+            if (D[u] < Max && P[u] == false) {
                 uBest = u;
                 Max = D[u];
             }
         }
 
+        if (uBest == -1)
+            break; // các đỉnh còn lại không đến được từ S
+
         // cải tiến các đường đi qua u
         int u = uBest;
         P[u] = true;
-        for(auto x : E[u]) {
+        for (auto x : E[u]) {
             int v = x.v;
             long long w = x.w;
-            if(D[v] > D[u] + w) {
+            if (D[v] > D[u] + w) {
                 D[v] = D[u] + w;
                 trace[v] = u;
             }
@@ -275,35 +286,38 @@ void dijkstra(int n, int S, vector<vector<Edge>> E,
 ```
 ### Cải tiến đối với đồ thị thưa
 
-* Nhận xét rằng bước đầu tiên: "Tìm đỉnh $u$ có $D_u$ nhỏ nhất và $P_u = false$", có thể được cải tiến. Ta có thể sử dụng cấu trúc dữ liệu [Heap](/translate/wcipeg/Binary-Heap.md) (cụ thể là Min Heap) hoặc cây nhị phân tìm kiếm để cải tiến bước này.
-    * Mỗi lần chọn cạnh $(u, v)$ để tối ưu hóa $D_v$, ta đẩy cặp $\{D_v, v\}$ vào trong Heap. $\implies$ sử dụng $M$ cạnh sẽ có tổng độ phức tạp là $O(M\log N)$
-    * Để tìm đỉnh có $D_u$ nhỏ nhất, ta chỉ cần liên tục lấy phần tử trên cùng trong Heap ra, cho đến khi gặp đỉnh $u$ thỏa mãn $P_u = false$. $\implies$ cần lấy ra tối thiểu $N$ lần để lấy được tất cả $N$ đỉnh sẽ có tổng độ phức tạp là $O(N\log N)$
+* Nhận xét rằng bước đầu tiên: "Tìm đỉnh $u$ có $D_u$ nhỏ nhất và $P_u = \texttt{false}$", có thể được cải tiến. Ta có thể sử dụng cấu trúc dữ liệu [Heap](/translate/wcipeg/Binary-Heap.md) (cụ thể là Min Heap) hoặc cây nhị phân tìm kiếm để cải tiến bước này.
+    * Mỗi lần chọn cạnh $(u, v)$ để tối ưu hóa $D_v$, ta đẩy cặp $\{D_v, v\}$ vào trong Heap. $\implies$ sử dụng $M$ cạnh sẽ có tổng độ phức tạp là $\mathcal{O}(M\log N)$
+    * Để tìm đỉnh có $D_u$ nhỏ nhất, ta chỉ cần liên tục lấy phần tử trên cùng trong Heap ra, cho đến khi gặp đỉnh $u$ thỏa mãn $P_u = \texttt{false}$. $\implies$ cần lấy ra tối thiểu $N$ lần để lấy được tất cả $N$ đỉnh sẽ có tổng độ phức tạp là $\mathcal{O}(N\log N)$
 
-* Do đó, độ phức tạp của thuật toán sau khi cải tiến là $O((M+N)\log N)$.
+* Do đó, độ phức tạp của thuật toán sau khi cải tiến là $\mathcal{O}((M+N)\log N)$.
 
 
 **Lưu ý rằng với đồ thị dày cạnh $\left(M \sim \frac{N(N-1)}{2}\right)$ thì cải tiến sử dụng Min Heap không tốt hơn cài đặt cơ bản.** Khi đó, độ phức tạp của hai cách cài đặt có dạng như sau:
-- Cách cài đặt cơ bản: $O(N^2)$.
-- Cách cài đặt cải tiến: $O(N^2\log N)$.
+- Cách cài đặt cơ bản: $\mathcal{O}(N^{2})$.
+- Cách cài đặt cải tiến: $\mathcal{O}(N^{2}\log N)$.
 
-Tuy nhiên, thực tế các bài toán lập trình thi đấu ta thường gặp sẽ giới hạn $N, M \le 10^5$ nên nhìn chung khi thuật toán Min Heap với độ phức tạp $O((M + N)\log N)$ luôn tốt hơn cả.
+Tuy nhiên, thực tế các bài toán lập trình thi đấu ta thường gặp sẽ giới hạn $N, M \le 10^{5}$ nên nhìn chung khi thuật toán Min Heap với độ phức tạp $\mathcal{O}((M + N)\log N)$ luôn tốt hơn cả.
 
 **Code:**
 ```cpp=
+#include <bits/stdc++.h>
+using namespace std;
+
 const long long INF = 2000000000000000000LL;
-struct Edge{// kiểu dữ liệu tự tạo để lưu thông số của một cạnh.
+struct Edge { // kiểu dữ liệu tự tạo để lưu thông số của một cạnh.
     int v;
     long long w;
 };
-struct Node{// kiểu dữ liệu để lưu đỉnh u và độ dài của đường đi ngắn nhất từ s đến u.
+struct Node { // kiểu dữ liệu để lưu đỉnh u và độ dài của đường đi ngắn nhất từ s đến u.
     int u;
     long long Dist_u;
 };
-struct cmp{
+struct cmp {
     // Vì priority_queue mặc định để giá trị lớn nhất lên đầu
     // Nên b sẽ đặt lên trước a trong priority_queue chỉ khi a < b
     // Trong trường hợp này, ta cần a.Dist_u > b.Dist_U
-    bool operator() (Node a, Node b) {
+    bool operator()(Node a, Node b) {
         return a.Dist_u > b.Dist_u;
     }
 };
@@ -316,20 +330,20 @@ void dijkstraSparse(int n, int s, vector<vector<Edge>> &E, vector<long long> &D,
     priority_queue<Node, vector<Node>, cmp> h; // hàng đợi ưu tiên, sắp xếp theo dist[u] nhỏ nhất trước
     h.push({s, D[s]});
 
-    while(!h.empty()) {
+    while (!h.empty()) {
         Node x = h.top();
         h.pop();
 
         int u = x.u;
-        if(P[u] == true) // Đỉnh u đã được chọn trước đó, bỏ qua
+        if (P[u] == true) // Đỉnh u đã được chọn trước đó, bỏ qua
             continue;
 
         P[u] = true; // Đánh dấu đỉnh u đã được chọn
-        for(auto e : E[u]) {
+        for (auto e : E[u]) {
             int v = e.v;
             long long w = e.w;
 
-            if(D[v] > D[u] + w) {
+            if (D[v] > D[u] + w) {
                 D[v] = D[u] + w;
                 h.push({v, D[v]});
                 trace[v] = u;
@@ -340,11 +354,15 @@ void dijkstraSparse(int n, int s, vector<vector<Edge>> &E, vector<long long> &D,
 ```
 
 ### Tìm lại đường đi ngắn nhất
-Để tìm lại đường đi ngắn nhất từ $S$ về $u$, ta sẽ bắt đầu từ đỉnh $u$, sau đó truy vết theo mảng $trace$ ngược về $S$.
+Để tìm lại đường đi ngắn nhất từ $S$ về $u$, ta sẽ bắt đầu từ đỉnh $u$, sau đó truy vết theo mảng $\texttt{trace}$ ngược về $S$.
 
 ```cpp=
+#include <bits/stdc++.h>
+using namespace std;
+
 vector<int> trace_path(vector<int> &trace, int S, int u) {
-    if (u != S && trace[u] == -1) return vector<int>(0); // không có đường đi
+    if (u != S && trace[u] == -1)
+        return vector<int>(0); // không có đường đi
 
     vector<int> path;
     while (u != -1) { // truy vết ngược từ u về S
@@ -355,7 +373,6 @@ vector<int> trace_path(vector<int> &trace, int S, int u) {
 
     return path;
 }
-
 ```
 
 ## Tổng kết
@@ -366,9 +383,9 @@ Bảng so sánh các thuật toán được đề cập:
     
 | **Thuật toán**          | **Bài toán** | **Độ phức tạp**     |
 | ----------------------- | ------------ | ------------------- |
-| **DP theo thứ tự topo** | Một nguồn    | $O(M + N)$          |
-| **Dijkstra**            | Một nguồn    | $O(N^2 + M)$        |
-| **Dijkstra + Min Heap** | Một nguồn    | $O((M + N) \log N)$ |
+| **DP theo thứ tự topo** | Một nguồn    | $\mathcal{O}(M + N)$          |
+| **Dijkstra**            | Một nguồn    | $\mathcal{O}(N^{2} + M)$        |
+| **Dijkstra + Min Heap** | Một nguồn    | $\mathcal{O}((M + N) \log N)$ |
 </center>
 
 Heap không phải là cấu trúc dữ liệu duy nhất có thể sử dụng khi cài đặt Dijkstra dành cho đồ thị thưa. Ta có thể sử dụng bất cứ cấu trúc dữ liệu nào hỗ trợ các thao tác *"xóa khỏi tập hợp"*, *"cập nhật phần tử trong tập hợp"*, *"tìm phần tử nhỏ nhất trong tập hợp"*. Do đó, các cây tìm kiếm nhị phân (ví dụ như `std::set` trong C++) cũng là một lựa chọn khi cài đặt thuật toán này.

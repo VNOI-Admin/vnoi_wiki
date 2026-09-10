@@ -157,7 +157,7 @@ Và giờ thì tất cả những số còn sót lại chính là các số nguy
 
 ## Ước chung lớn nhất
 
-**Ước chung lớn nhất** (Greatest Common Divisor) của hai số  tự nhiên $a$ và $b$ là số lớn nhất mà cả $a$ và $b$ đều chia hết. Để tìm được $GCD(a, b)$, một cách đơn giản, ta có thể lấy số nhỏ hơn trong hai số $a$ và $b$ rồi giảm dần cho đến khi nào có được một số mà cả $a$ và $b$ đều cùng chia hết cho số đó.
+**Ước chung lớn nhất** (Greatest Common Divisor) của hai số  tự nhiên $a$ và $b$ là số lớn nhất mà cả $a$ và $b$ đều chia hết. Để tìm được $\texttt{GCD}(a, b)$, một cách đơn giản, ta có thể lấy số nhỏ hơn trong hai số $a$ và $b$ rồi giảm dần cho đến khi nào có được một số mà cả $a$ và $b$ đều cùng chia hết cho số đó.
 
 **Java**
 
@@ -251,7 +251,7 @@ Xem thêm: [Thuật toán Euclid mở rộng](http://vnoi.info/library/82/419/)
 
 Đôi khi, bài toán yêu cầu ta tìm phần giao của các hình chữ nhật với các cạnh song song trục tọa độ. Có rất nhiều cách để biểu diễn một hình chữ nhật. Đối với hệ trục tọa độ Cartesian, thì cách biểu diễn phổ biến nhất chính là lưu giữ giá trị tọa độ của góc trái - dưới và góc phải - trên của hình chữ nhật.
 
-Giả sử chúng ta có hai hình chữ nhật $R1$ và $R2$. Đặt $(x1, y1)$ là tọa độ góc trái - dưới, $(x2, y2)$ là tọa độ góc phải - trên của hình chữ nhật $R1$. Tương tự với $R2$, ta đặt $(x3, y3)$, $(x4, y4)$ lần lượt là tọa độ góc trái - dưới và góc phải - trên của $R2$. Phần giao của $R1$ và $R2$ sẽ là hình chữ nhật $R3$ có tọa độ trái - dưới là $(max(x1, x3), max(y1, y3))$ và tọa độ góc phải - trên là $(min(x2, x4), min(y2, y4))$. Nếu  $max(x1, x3) > min(x2, x4)$ hoặc $max(y1, y3) > min(y2, y4)$ thì sẽ không tồn tại hình chữ nhật $R3$, hay nói các khác là $R1$ và $R2$ không giao nhau. Công thức này còn được mở rộng ra hơn không gian 2 chiều giống như là trong bài [CuboidJoin (SRM 191, Div 2 Hard)](http://topcoder.bgcoder.com/print.php?id=514). 
+Giả sử chúng ta có hai hình chữ nhật $R_1$ và $R_2$. Đặt $(x_1, y_1)$ là tọa độ góc trái - dưới, $(x_2, y_2)$ là tọa độ góc phải - trên của hình chữ nhật $R_1$. Tương tự với $R_2$, ta đặt $(x_3, y_3)$, $(x_4, y_4)$ lần lượt là tọa độ góc trái - dưới và góc phải - trên của $R_2$. Phần giao của $R_1$ và $R_2$ sẽ là hình chữ nhật $R_3$ có tọa độ trái - dưới là $(\max(x_1, x_3), \max(y_1, y_3))$ và tọa độ góc phải - trên là $(\min(x_2, x_4), \min(y_2, y_4))$. Nếu  $\max(x_1, x_3) > \min(x_2, x_4)$ hoặc $\max(y_1, y_3) > \min(y_2, y_4)$ thì sẽ không tồn tại hình chữ nhật $R_3$, hay nói các khác là $R_1$ và $R_2$ không giao nhau. Công thức này còn được mở rộng ra hơn không gian 2 chiều giống như là trong bài [CuboidJoin (SRM 191, Div 2 Hard)](http://topcoder.bgcoder.com/print.php?id=514). 
 
 Thường thì, khi làm bài chúng ta sẽ phải đối mặt với những đa giác mà đỉnh của nó là số nguyên. Những đa giác đó được gọi là [Đa giác lưới](http://mathworld.wolfram.com/LatticePolygon.html) (lattice polygon). Trong phần hướng dẫn cơ bản về khái niệm hình học ([Geometry Concepts](https://www.topcoder.com/community/data-science/data-science-tutorials/geometry-concepts-basic-concepts/)), lbackstrom đã trình bày một cách ngắn gọn cách tính diện tích thông qua các cạnh của đa giác. Bây giờ, giả sử ta không biết được chính xác vị trí các cạnh mà thay vào đó ta có được các giá trị sau:
 
@@ -299,7 +299,7 @@ Vậy với $V = n+1$, ta cũng vẫn thu được kết quả là $V - E + F = 
 
 Một trong những bài toán mà người thi Topcoder đối mặt nhiều nhất đó chính là việc chuyển đổi số từ hệ cơ số nhị phân sang hệ cơ số thập phân và ngược lại (cùng với nhiều hệ cơ số khác).
 
-Vậy hệ cơ số nghĩa là gì? Ta sẽ bắt đầu với hệ cơ số tiêu chuẩn (hệ thập phân). Xét số 4325 ở hệ cơ số 10. Ta thấy 4325 có thể phân tích thành $5 + 2\*10 + 3\*10\*10 + 4\*10\*10\*10$. Chú ý rằng mỗi "giá trị" của chữ số tiếp theo sau của số được nhân thêm tích số 10 khi ta xét từ phải qua trái. Hệ nhị phân cũng hoạt động theo cách tương tự như thế. Nó sử dụng hai chữ số 0 và 1 và "giá trị" của từng chữ số sẽ được nhân thêm 2 khi ta xét từ phải qua trái. Ví dụ, số 1011 ở dạng nhị phân có thể biểu diễn thành $1 + 1\*2 + 0\*2\*2 + 1\*2\*2\*2 = 1 + 2 + 8 = 11$ và trở lại thành số ở hệ thập phân là 11. Và đây chính là cách để ta chuyển từ số ở hệ nhị phân (hoặc bất kỳ hệ số nào) về hệ cơ số thập phân. Sau đây là đoạn mã để chuyển số $n$ từ một hệ cơ số $b$ $(2 \le b \le n)$ thành hệ cơ số thập phân.
+Vậy hệ cơ số nghĩa là gì? Ta sẽ bắt đầu với hệ cơ số tiêu chuẩn (hệ thập phân). Xét số 4325 ở hệ cơ số 10. Ta thấy 4325 có thể phân tích thành $5 + 2 \times 10 + 3 \times 10 \times 10 + 4 \times 10 \times 10 \times 10$. Chú ý rằng mỗi "giá trị" của chữ số tiếp theo sau của số được nhân thêm tích số 10 khi ta xét từ phải qua trái. Hệ nhị phân cũng hoạt động theo cách tương tự như thế. Nó sử dụng hai chữ số 0 và 1 và "giá trị" của từng chữ số sẽ được nhân thêm 2 khi ta xét từ phải qua trái. Ví dụ, số 1011 ở dạng nhị phân có thể biểu diễn thành $1 + 1 \times 2 + 0 \times 2 \times 2 + 1 \times 2 \times 2 \times 2 = 1 + 2 + 8 = 11$ và trở lại thành số ở hệ thập phân là 11. Và đây chính là cách để ta chuyển từ số ở hệ nhị phân (hoặc bất kỳ hệ số nào) về hệ cơ số thập phân. Sau đây là đoạn mã để chuyển số $n$ từ một hệ cơ số $b$ $(2 \le b \le n)$ thành hệ cơ số thập phân.
 
 **Java**
 
@@ -538,12 +538,20 @@ Cuối cùng, nó rất cần thiết để biết được cách tối giản p
 
 Bằng phương pháp tương tự, ta cũng có thể biểu diễn được số phức. Một cách tổng quát, số phức được biểu diễn dưới dạng $a + ib$ với $a$, $b$ là số thực và $i$ là căn bậc hai của -1. Ví dụ, để cộng hai số phức, ta sẽ cộng đơn giản như sau:
 
-$m + n$
-$= (a + bi) + (c + di)$
-$= (a + c) + (b + d)$
+$$
+m + n
+$$
+
+$$
+= (a + bi) + (c + di)
+$$
+
+$$
+= (a + c) + (b + d)
+$$
 
 
-Việc nhân hai số phức cũng tương tự như việc nhân số thực, trừ việc $i*i$ bằng -1.
+Việc nhân hai số phức cũng tương tự như việc nhân số thực, trừ việc $i \times i$ bằng -1.
 
 ```
     m * n

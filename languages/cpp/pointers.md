@@ -26,7 +26,6 @@ b = 2;
 cout << a << endl; // it prints 2, not 1 (!)
 a = 3;
 cout << b << endl; // it prints 3, not 2 (!)
-
 ```
 
 Trong đoạn code này, biến `b` được gọi là *biến tham chiếu* kiểu `int`. Nó được khai báo bằng việc thêm một dấu `&` vào sau tên kiểu `int`. Chú ý rằng hai cách khai báo `int& a = b` và `int &a = b` đều hợp lệ và có ý nghĩa như nhau. Qua thí nghiệm này, ta thấy rằng lệnh gán biến `a` cũng làm thay đổi giá trị của `b` và lệnh gán biến `b` cũng lam thay đổi giá trị của `a`. Thực tế, hai biến `a` và `b` này chỉ là một biến, nghĩa là `a` và `b` **luôn mang cùng một giá trị**, và mọi lệnh làm thay đổi giá trị của `a` **cũng làm thay đổi giá trị của** `b` và **ngược lại**.
@@ -36,16 +35,18 @@ Ta xét thêm một ví dụ nữa - một trường hợp điển hình cho vi�
 ```cpp
 int cacheDPResults[2207][1997] = {-1};
 int dp(int i, int j) {
-	int &result = cacheDPResults[i][j];
-	if (result >= 0) return result;
+    int &result = cacheDPResults[i][j];
+    if (result >= 0)
+        return result;
 
-	if (i == 0) return result = 0;
-	result = dp(i - 1, j);
-	if (j >= weight[i]) result = max(result, dp(i - 1, j - weight[i]) + value[i];
+    if (i == 0)
+        return result = 0;
+    result = dp(i - 1, j);
+    if (j >= weight[i])
+        result = max(result, dp(i - 1, j - weight[i]) + value[i]);
 
-	return result;
+    return result;
 }
-
 ```
 
 Chắc các bạn lờ mờ đoán ra đoạn code trên mô phỏng công thức quy hoạch động của bài toán cái túi (*knapsack*). Tất nhiên không ai cài bài toán cái túi bằng đệ quy có nhớ cả :)
@@ -61,13 +62,15 @@ Do đó, nếu giữ định nghĩa về biến "thông thường" như ở ph�
 ```cpp
 int cacheDPResults[2207][1997] = {-1};
 int dp(int i, int j) {
-	if (cacheDPResults[i][j] >= 0) return cacheDPResults[i][j];
-	if (i == 0) return 0;
-	cacheDPResults[i][j] = dp(i - 1, j);
-	if (j >= weight[i]) cacheDPResults[i][j] = max(cacheDPResults[i][j], dp(i - 1, j - weight[i]) + value[i];
-	return cacheDPResults[i][j];
+    if (cacheDPResults[i][j] >= 0)
+        return cacheDPResults[i][j];
+    if (i == 0)
+        return 0;
+    cacheDPResults[i][j] = dp(i - 1, j);
+    if (j >= weight[i])
+        cacheDPResults[i][j] = max(cacheDPResults[i][j], dp(i - 1, j - weight[i]) + value[i]);
+    return cacheDPResults[i][j];
 }
-
 ```
 
 Biếu tham chiến này cho ta ý tưởng về một dạng biến đặc biệt trong ngôn ngữ lập trình, ở đó dù biến được tạo ra nhưng bản chất chỉ là "đặt một tên khác" cho một biến đã có sẵn từ trước. Tuy nhiên, biến tham chiếu này có hai nhược điểm: Biến tham chiếu **luôn tham chiếu vào một biến cố định** và đối tượng được tham chiếu **phải được xác định ngay lúc khai báo**. Có nghĩa là, nếu bạn có hai biến "thông thường" `int a, b` và một biến tham chiếu `int &c = a`, bạn không thể nào làm cho `b` và `c` đồng bộ nhau được. Đồng thời, nếu bạn chỉ khai bảo `int &c` mà không có vế phải, trình biên dịch sẽ báo lỗi.
@@ -103,7 +106,6 @@ int *first;
 int *second;
 first = &normal;
 second = first;
-
 ```
 Trong ví dụ trên, ta có `normal` là một biến "thông thường" kiểu `int`. `first` và `second` là các con trỏ mà đối tượng (biến) được trỏ tới có kiểu `int`. Dòng số 4 `first = &normal` giúp con trỏ first trỏ vào biến normal. Dòng số 5 `second = first` mang ý nghĩa rằng *con trỏ `second` trỏ vào nơi mà `first` đang trỏ vào, nghĩa là biến `normal`*.
 
@@ -114,10 +116,9 @@ int normal;
 int *pointer_1, *pointer_2;
 string *pointer_string;
 
-pointer_1 = normal; // ERROR!!! should be pointer_1 = &normal
-pointer_2 = &pointer_1; // ERROR!!! should be pointer_2 = pointer_1;
+pointer_1 = normal;        // ERROR!!! should be pointer_1 = &normal
+pointer_2 = &pointer_1;    // ERROR!!! should be pointer_2 = pointer_1;
 pointer_2 = pointer_string // ERROR!!! type mismatches: string* vs int*
-
 ```
 
 Tới đây các bạn sẽ thắc mắc: Dấu `&` xuất hiện trong `&normal` có mối quan hệ biện chứng nào với dấu `&` ở phần biến tham chiếu hay không. Câu trả lời là có, nhưng nó hơi phức tạp với các bạn. Nhắc lại lần nữa, mình khuyên các bạn coi các đoạn code ở phần này là những **cú pháp cố định** và **phải học thuộc lòng** thay vì cố phân tích các quy tắc.
@@ -126,12 +127,15 @@ Tới đây các bạn sẽ thắc mắc: Dấu `&` xuất hiện trong `&normal
 Như đã nói ở trên, ngoại trừ trường hợp con trỏ trỏ vào một con trỏ, các con trỏ được dùng để "đặt tên khác" cho một biến "thông thường" nào đó. Để truy cập vào một biến được con trỏ `p` trỏ tới, bạn dùng `*p`. Các bạn hãy coi `*p` ở đây **như một biến "thông thường"**, nghĩa là nếu các biến "thông thường" cùng kiểu có thể xuất hiện thế nào, `*p` có thể sử dụng hoàn toàn tương tự như vậy:
 
 ```cpp
-int *p_int = ...; // something which does not matter
+int *p_int = ...;       // something which does not matter
 string *p_string = ...; // something which does not matter
 
-*p_int = 5; (*p_int)++; cout << *p_int << endl;
-if (!(*p_string).empty()) for (int i = 0; i < (*p_string).size(); i++) printf("%c", (*p_string)[i]);
-
+*p_int = 5;
+(*p_int)++;
+cout << *p_int << endl;
+if (!(*p_string).empty())
+    for (int i = 0; i < (*p_string).size(); i++)
+        printf("%c", (*p_string)[i]);
 ```
 
 Việc một con trỏ *là một tên khác* của một biến "thông thường" được thể hiện dưới đây:
@@ -153,7 +157,6 @@ printf("%d %d\n", normal_1, normal_2); // 200 300
 int *another_pointer = pointer;
 normal_2 = 400;
 printf("%d\n", *another_pointer); // 400
-
 ```
 
 Trong ví dụ trên:
@@ -169,18 +172,16 @@ Trong ví dụ trên:
 Một con trỏ có thể không trỏ vào một đối tượng nào, khi đó con trỏ mang một giá trị mặc định *NULL*. Khi bạn cố gắng truy cập vào đối tượng của một con trỏ mang gía trị *NULL*, chương trình bạn **bị crash ngay lập tức** (bị *crash* chứ không bị *crush*) và bạn sẽ gặp phải lỗi *run-time error* (hoặc *non-zero exit code*, *segmentation fault*):
 
 ```cpp
-int* p = NULL;
+int *p = NULL;
 cout << *p << endl; // ERROR!!!
-
 ```
 
 Do đó, kinh nghiệm ở đây là luôn kiểm tra một con trỏ có phải *NULL* hay không trước khi truy cập vào. Khi biết chương trình của bạn chạy sinh lỗi (khi chạy thử test đề hoặc nộp lên hệ thống bị run-time error), bạn nên rà soát lại toàn bộ code, và xem các con trỏ đã được kiểm tra *NULL* trước khi truy cập hay chưa:
 
 ```cpp
-int* p ...;
-printf("%d\n", *p); // DANGEROUS!!! p might be NULL
+int *p...;
+printf("%d\n", *p);                 // DANGEROUS!!! p might be NULL
 printf("%d\n", p != NULL ? *p : 0); // SAFE :)
-
 ```
 
 ### Lệnh *new* tạo biến "thông thường":
@@ -191,7 +192,6 @@ int normal_1 = 100, normal_2 = 200, normal_3 = 300;
 int *pointer = new int;
 *pointer = 400;
 printf("%d %d %d %d\n", normal_1, normal_2, normal_3, *pointer); // 100 200 300
-
 ```
 
 Ở đây, rõ ràng biến `*pointer` là một biến "thông thường" kiểu `int`. Nhưng biến này không trùng với bất kỳ biến "thông thường" kiểu `int` nào đã khai báo trước đó. Do đó lệnh `*pointer = 400` không ảnh hưởng tới `normal_1`, `normal_2` hay `normal_3`.
@@ -202,7 +202,6 @@ Nếu các bạn đã quen với *constructor* của struct/class hay các thư 
 vector<int> vec(10, 1);
 vector<int> *vec_pointer = new vector<int>(10, 1);
 cerr << (*vec_pointer).size() << " " << (*vec_pointer)[0] << endl; // 10 1
-
 ```
 
 ### Truy cập các trường của một con trỏ trỏ vào đối tượng.
@@ -212,7 +211,6 @@ Nếu một con trỏ trỏ vào một đối tượng (struct/class) hoặc cá
 vector<int> *p = new vector<int>(); // an empty vector
 p->push_back(2);
 cerr << p->size() << " " << p->front() << "\n"; // 1 2
-
 ```
 
 ## b. Các cú pháp nâng cao
@@ -255,19 +253,19 @@ Trước tiên, ta nhắc lại 3 loại tham số đối với các biến "th�
 Ví dụ:
 ```cpp
 void update(int a, int &b, const int &c) {
-   a = 10; // OK but has no effect
-   b = 20; // OK and has effect
-   c = 30; // COMPILATION ERROR
+    a = 10; // OK but has no effect
+    b = 20; // OK and has effect
+    c = 30; // COMPILATION ERROR
 }
 
 int main(void) {
-   int a = 1, b = 2, c = 3;
-   update(a, b, c);
-   cout << a << " " << b << " " << c << endl; // 1 20 3
+    int a = 1, b = 2, c = 3;
+    update(a, b, c);
+    cout << a << " " << b << " " << c << endl; // 1 20 3
 
-   update(1 + 1, b, c); // OK
-   update(a, 1 + 1, c); // COMPILATION ERROR
-   update(a, b, 1 + 1); // OK
+    update(1 + 1, b, c); // OK
+    update(a, 1 + 1, c); // COMPILATION ERROR
+    update(a, b, 1 + 1); // OK
 }
 ```
 
@@ -282,20 +280,23 @@ Nếu ta thử truyền một biểu thức (ví dụ, `1 + 1` như ở trên), 
 
 Ví dụ:
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 int normal_1, normal_2;
-void update(int* pointer) {
-   *pointer = 10;
-   pointer = &normal_2;
-   *pointer = 20;
+void update(int *pointer) {
+    *pointer = 10;
+    pointer = &normal_2;
+    *pointer = 20;
 }
 
 int main(void) {
-   normal_1 = 1; normal_2 = 2;
-   int* pointer = &normal_1;
-   update(pointer);
-   cout << normal_1 << " " << normal_2 << " " << *pointer << endl; // 10 20 10;
+    normal_1 = 1;
+    normal_2 = 2;
+    int *pointer = &normal_1;
+    update(pointer);
+    cout << normal_1 << " " << normal_2 << " " << *pointer << endl; // 10 20 10;
 }
-
 ```
 Trong ví dụ trên:
 - Khi hàm `update` được gọi, tham số `pointer` đang trỏ vào biến `normal_1`. Do đó, lệnh `*pointer = 10` mang ý nghĩa `normal_1 = 10`;
@@ -303,33 +304,36 @@ Trong ví dụ trên:
 - Kết quả in ra cho thấy `*pointer = 10`, tức là `pointer` trỏ vào `normal_1`. Tức là đối tượng bị `pointer` trỏ vào **không đổi** sau khi gọi hàm update.
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 int normal_1, normal_2;
 void update(int *&pointer) {
-   *pointer = 10;
-   pointer = &normal_2;
-   *pointer = 20;
+    *pointer = 10;
+    pointer = &normal_2;
+    *pointer = 20;
 }
 
 int main(void) {
-   normal_1 = 1; normal_2 = 2;
-   int* pointer = &normal_1;
-   update(pointer);
-   cout << normal_1 << " " << normal_2 << " " << *pointer << endl; // 10 20 20;
+    normal_1 = 1;
+    normal_2 = 2;
+    int *pointer = &normal_1;
+    update(pointer);
+    cout << normal_1 << " " << normal_2 << " " << *pointer << endl; // 10 20 20;
 }
-
 ```
 Đoạn code này chỉ khác ở đoạn code trên ở chỗ tham số `pointer` của hàm `update` là **tham biến** thay vì **tham trị**.  Gía trị của hai biến `normal_1` và `normal_2` giống hệt đoạn code trên, nhưng `pointer` lúc này trỏ vào `normal_2`. Sở dĩ có điều này là vì trong hàm `update`, `pointer` bị gán lại thành `&normal_2`, và vì `pointer` là tham biến, lệnh gán này giữ nguyên giá trị khi ra khỏi hàm.
 
 ### Tạo mảng động
 Các bạn đã biết, trong một số trường hợp bạn không thể khai báo mảng tĩnh vì như vậy kích thước mảng cần thiết sẽ quá lớn, vượt quá giới hạn bộ nhớ cho phép và thực tế không cần thiết tới vậy.
 
-Ví dụ, khi bạn cần nhập vào một bảng hai chiều kích thước $m \cdot n$ với $1 \leq m \cdot n \leq 10^5$, ta biết rằng cả $m$ và $n$ đều có thể lên tới $10^5$. Tuy nhiên, khai báo mảng tĩnh `int a[1e5][1e5]` là không khả thi vì kích thước mảng $10^{10}$ là quá to.
+Ví dụ, khi bạn cần nhập vào một bảng hai chiều kích thước $m \cdot n$ với $1 \leq m \cdot n \leq 10^{5}$, ta biết rằng cả $m$ và $n$ đều có thể lên tới $10^{5}$. Tuy nhiên, khai báo mảng tĩnh `int a[1e5][1e5]` là không khả thi vì kích thước mảng $10^{10}$ là quá to.
 
-Một trường hợp khác khá quen thuộc với các bạn: Các bạn cần lưu mảng danh sách kề của một đồ thị có $10^5$ đỉnh và $10^5$ cạnh. Ta biết rằng một đỉnh có thể kề với tối đa $10^5-1$ đỉnh khác, do đó nếu dùng mảng tĩnh ta phải khai báo `int adj[1e5][1e5]`, nhưng điều này một lần nữa không khả thi. Nhưng chúng ta biết rằng, thực tế chỉ có $10^5$ cạnh, tức là tổng kích thước của danh sách kề ứng với các đỉnh là không quá $2 \cdot 10^5$, đó là lý do chúng ta sử dụng `vector<int> adj[1e5]`.
+Một trường hợp khác khá quen thuộc với các bạn: Các bạn cần lưu mảng danh sách kề của một đồ thị có $10^{5}$ đỉnh và $10^{5}$ cạnh. Ta biết rằng một đỉnh có thể kề với tối đa $10^{5}-1$ đỉnh khác, do đó nếu dùng mảng tĩnh ta phải khai báo `int adj[1e5][1e5]`, nhưng điều này một lần nữa không khả thi. Nhưng chúng ta biết rằng, thực tế chỉ có $10^{5}$ cạnh, tức là tổng kích thước của danh sách kề ứng với các đỉnh là không quá $2 \cdot 10^{5}$, đó là lý do chúng ta sử dụng `vector<int> adj[1e5]`.
 
 Theo quan điểm của mình, việc tạo mảng động bằng con trỏ không cần thiết, do `vector` của C++ cũng khá tiện lợi. Hơn nữa, việc khai báo vector **có kích thước cố định** không khiến vector chậm hơn hoặc dùng nhiều bộ nhớ hơn mảng (chỉ việc `push_back` quá nhiền lần với những vector có kích thước nhỏ mới khiến vector bị chậm). Vì vậy, nếu bạn không thạo con trỏ, lời khuyên là hãy dùng vector.
 
-Để hiểu cách tạo mảng bằng con trỏ, bạn cần hiểu về nguyên lý hoạt động của mảng, và vì sao truy cập phần tử thứ $k$ của mảng lại mất độ phức tạp $\\mathcal{O}(1)$. Điều này nói chi tiết ra sẽ khá dài dòng và cũng hơi khó hiểu, vì vậy mình sẽ bỏ qua (các bạn khi lên đại học sẽ được học thêm về phần này, và mình cảnh báo trước, đây là phần rất rất khó. Bản thân mình ko đạt điểm tối đa bài kiểm tra môn lập trình cơ bản phần con trỏ).
+Để hiểu cách tạo mảng bằng con trỏ, bạn cần hiểu về nguyên lý hoạt động của mảng, và vì sao truy cập phần tử thứ $k$ của mảng lại mất độ phức tạp $\mathcal{O}(1)$. Điều này nói chi tiết ra sẽ khá dài dòng và cũng hơi khó hiểu, vì vậy mình sẽ bỏ qua (các bạn khi lên đại học sẽ được học thêm về phần này, và mình cảnh báo trước, đây là phần rất rất khó. Bản thân mình ko đạt điểm tối đa bài kiểm tra môn lập trình cơ bản phần con trỏ).
 
 Nói vắn tắt, một mảng các số nguyên kiểu `int` có bản chất giống như một **con trỏ** trỏ vào **phần tử đầu tiên** của mảng. Tức là, nếu ta khai báo `int a[100]` thì biến  `a` có kiểu `int*` (dù `a[0]`, `a[1]`,... có kiểu là `int`). Do `a` là con trỏ kiểu `int*`, `*a` là một biến "thông thường" kiểu `int`, và vì `a` trỏ vào phần tử đầu tiên `a[0]`, `*a` và `a[0]` **là cùng một biến** (gán `*a = 4` và `a[0] = 4` là như nhau).
 
@@ -338,73 +342,76 @@ Tương tự, do mảng hai chiều là **mảng các mảng một chiều**, m�
 Để tạo ra mảng một chiều có $100$ phần tử `int`, ta khai báo như sau:
 ```cpp
 int *a = new int[100];
-
 ```
 
 Để tạo ra các mảng nhiều chiều, ý tưởng là ta sẽ tạo ra từng chiều một. Ví dụ dưới đây đọc vào 3 số m, n, p và tạo ra một mảng hai chiều kích thước $m \cdot n$ cùng một mảng ba chiều kích thước $m \cdot n \cdot p$:
 ```cpp
 int **array_2d, ***array_3d;
-int m, n, p; cin >> m >> n >> p;
+int m, n, p;
+cin >> m >> n >> p;
 
-array_2d = new int*[m];
-for (int i = 0; i < m; i++) array_2d[i] = new int[n];
+array_2d = new int *[m];
+for (int i = 0; i < m; i++)
+    array_2d[i] = new int[n];
 
-array_3d = new int**[m];
+array_3d = new int **[m];
 for (int i = 0; i < m; i++) {
-   array_3d[i] = new int*[n];
-   for (int j = 0; j < n; j++) array_3d[i][j] = new int[p];
+    array_3d[i] = new int *[n];
+    for (int j = 0; j < n; j++)
+        array_3d[i][j] = new int[p];
 }
-
 ```
 
 Việc dùng vector để tạo mảng động được khuyến khích do sự dễ dàng và thuận tiện. Tuy nhiên, có hai ưu điểm của việc dùng mảng động bằng con trỏ: **Tốn ít bộ nhớ** và **code ngắn gọn hơn.**
 
-Ví dụ, nếu ta cần một mảng 4 chiều kích thước $10^5 \cdot 10^2 \cdot 2 \cdot 2$, có hai cách khai báo mà mình biết:
+Ví dụ, nếu ta cần một mảng 4 chiều kích thước $10^{5} \cdot 10^{2} \cdot 2 \cdot 2$, có hai cách khai báo mà mình biết:
 ```cpp
 int m = (int)1e5, n = (int)1e2;
 
-vector<vector<vector<vector<int>>>> dynamic_vector(m, vector<vector<vector<int>>>);
+vector<vector<vector<vector<int>>>> dynamic_vector(
+    m, vector<vector<vector<int>>>(n, vector<vector<int>>(2, vector<int>(2))));
 for (int i = 0; i < m; i++) {
-   dynamic_vector[i].resize(n);
-   for (int j = 0; j < n; j++) {
-      dynamic_vector[i][j].resize(2);
-      for (int k = 0; k < 2; k++)
-         dynamic_vector[i][j][k].resize(2);
-   }
+    dynamic_vector[i].resize(n);
+    for (int j = 0; j < n; j++) {
+        dynamic_vector[i][j].resize(2);
+        for (int k = 0; k < 2; k++)
+            dynamic_vector[i][j][k].resize(2);
+    }
 }
 
 /**OR**/
-int**** dynamic_array = new int***[m];
+int ****dynamic_array = new int ***[m];
 for (int i = 0; i < m; i++) {
-   dynamic_array[i] = new int**[n];
-   for (int j = 0; j < n; j++) {
-      dynamic_array[i][j] = new int*[2];
-      for (int k = 0; k < 2; k++) {
-         dynamic_array[i][j][k] = new int[2];
-      }
-   }
+    dynamic_array[i] = new int **[n];
+    for (int j = 0; j < n; j++) {
+        dynamic_array[i][j] = new int *[2];
+        for (int k = 0; k < 2; k++) {
+            dynamic_array[i][j][k] = new int[2];
+        }
+    }
 }
-
 ```
 
-Một vector cần 24 bytes để lưu, còn một con trỏ chỉ cần 8 bytes. Ở mỗi cách, ta cần lưu $m + m \cdot n + m \cdot n \cdot 2 = 30.1 \cdot 10^6$ vector/con trỏ và $4 \cdot 10^7$ biến `int`. Do đó dùng vector sẽ tốn $882.4 \cdot 10^6$ bytes ~ $841.5$MB, nhưng dùng con trỏ chỉ tốn ~400MB.
+Một vector cần 24 bytes để lưu, còn một con trỏ chỉ cần 8 bytes. Ở mỗi cách, ta cần lưu $m + m \cdot n + m \cdot n \cdot 2 = 30.1 \cdot 10^{6}$ vector/con trỏ và $4 \cdot 10^{7}$ biến `int`. Do đó dùng vector sẽ tốn $882.4 \cdot 10^{6}$ bytes ~ $841.5$MB, nhưng dùng con trỏ chỉ tốn ~400MB.
 
 Sau đây là hai lời khuyên cuối cùng về việc tạo mảng động:
 - Bất kể sử dụng vector hay con trỏ để khai báo mảng động, bạn cố gắng **chỉ tạo một chiều động**, còn các chiều còn lại tĩnh.
 - Trường hợp bắt buộc phải dùng mảng động nhiều chiều, dùng con trỏ sẽ tốt hơn vector.
 
-Giả sử bạn có một bài quy hoạch động 4 chiều với hàm qhđ $f(i, j, k, l)$ với $0 \leq i \leq m$, $0 \leq j \leq n$ và $k$ và $l$ chỉ là các giá trị $0$ hoặc $1$. Nếu đề bài ràng buộc $1 \leq m \cdot n \leq 10^5$, ta biết rằng kích thước của ba chiều $i$, $k$, và $l$ không quá $4 \cdot 10^5$. Do đó mình khuyên các bạn nên biểu diễn trạng thái dưới dạng $f(k, l, i, j)$ thay vì $f(i, j, k, l)$ (đảo thứ tự các chiều):
+Giả sử bạn có một bài quy hoạch động 4 chiều với hàm qhđ $f(i, j, k, l)$ với $0 \leq i \leq m$, $0 \leq j \leq n$ và $k$ và $l$ chỉ là các giá trị $0$ hoặc $1$. Nếu đề bài ràng buộc $1 \leq m \cdot n \leq 10^{5}$, ta biết rằng kích thước của ba chiều $i$, $k$, và $l$ không quá $4 \cdot 10^{5}$. Do đó mình khuyên các bạn nên biểu diễn trạng thái dưới dạng $f(k, l, i, j)$ thay vì $f(i, j, k, l)$ (đảo thứ tự các chiều):
 ```cpp
-#define MAX   100100
+#define MAX 100100
 int *f[2][2][MAX];
 
 int main(void) {
-   int m, n; cin >> m >> n;
-   ...
-   for (int k = 0; k < 2; k++) for (int l = 0; l < 2; l++) for (int i = 0; i <= m; i++)
-      f[k][l][i] = new int[n + 1]; // note that 0 <= j <= n so the array size is n+1.
+    int m, n;
+    cin >> m >> n;
+    ...
+    for (int k = 0; k < 2; k++)
+        for (int l = 0; l < 2; l++)
+            for (int i = 0; i <= m; i++)
+                f[k][l][i] = new int[n + 1]; // note that 0 <= j <= n so the array size is n+1.
 }
-
 ```
 
 ### Lệnh *delete* để giải phóng bộ nhớ
@@ -443,50 +450,48 @@ Các bạn đã biết, ta có thể dùng `memset` để khởi tạo một m�
 
 ```cpp
 int m = 100, n = 10000;
-int *int_array; int_array = new int[m];
-int *ll_array; ll_array = new long long[n];
+int *int_array;
+int_array = new int[m];
+long long *ll_array;
+ll_array = new long long[n];
 
 // INCORRECT
 memset(int_array, 0, sizeof int_array);
 memset(ll_array, 0, sizeof ll_array);
 
-
 // CORRECT
 memset(int_array, 0, m * sizeof(int));
 memset(ll_array, 0, n * sizeof(long long));
-
 ```
 
 Tương tự, nếu một mảng được truyền vào một hàm, kể cả **nếu mảng đó là mảng tĩnh**, bạn không thể khởi tạo theo cách thông thường.
 
 ```cpp
-#define MAX   100100
+#define MAX 100100
 int arr[MAX];
 
 // INCORRECT
 void do_something_funny(int arr[MAX]) { // "int arr[MAX]", "int arr[]" or "int *arr" are the same here
-   memset(arr, 0, sizeof arr);
+    memset(arr, 0, sizeof arr);
 }
 
 // CORRECT
 void do_something_funny(int arr[MAX]) {
-   memset(arr, 0, MAX * sizeof(int));
+    memset(arr, 0, MAX * sizeof(int));
 }
-
 ```
 Dù cách thứ hai trong phần trên là chính xác, mình khuyên các bạn không nên dùng. Tốt nhất là nếu `memset` thì không nên truyền mảng vào hàm
 
 ### Các con trỏ trỏ không đúng thứ cần trỏ.
 Các bạn thử nghĩ xem hai đoạn code dưới đây khác nhau như thế nào. Sau khi nhận ra được sự khác biệt, bạn sẽ có cách khác phục cho riêng mình.
 ```cpp
-vector<int*> v(10);
-for (int i = 0; i < 10; i++) v[i] = new int;
-
+vector<int *> v(10);
+for (int i = 0; i < 10; i++)
+    v[i] = new int;
 ```
 và
 ```cpp
-vector<int*> v(10, new int);
-
+vector<int *> v(10, new int);
 ```
 
 # 3. Một số ứng dụng của con trỏ trong lập trình thi đấu
@@ -497,7 +502,7 @@ Phần này điểm qua một số cấu trúc dữ liệu và thuật toán mà
 
 Giả sử ta chỉ làm việc trên các xâu ký tự gồm các chữ cái latin in thường. Khi đó, trong `struct Node` cần có một mảng gồm $26$ phần tử có kiểu `Node *`, để lưu lại $26$ con trỏ trỏ đến $26$ con của một nút ứng với $26$ ký tự 'a' - 'z'.
 
-Ta xét bài toán ví dụ đơn giản: *Cho $n$ xâu ký tự $s_1, s_2, \ldots, s_n$, tính tổng độ dài các tiền tố phân biệt của $n$ xâu kí tự này.
+Ta xét bài toán ví dụ đơn giản: *Cho $n$ xâu ký tự $s_1, s_2, \ldots, s_n$, tính tổng độ dài các tiền tố phân biệt của $n$ xâu kí tự này.*
 
 Để làm được bài này, đầu tiên ta sẽ dựng cây tiền tố. Sau đó, với mỗi nút ta sẽ tính hai giá trị:
 - Độ cao của nút này
@@ -505,48 +510,55 @@ Ta xét bài toán ví dụ đơn giản: *Cho $n$ xâu ký tự $s_1, s_2, \ldo
 
 Đoạn code mẫu:
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
 #define REP(i, n) for (int i = 0, _n = (n); i < _n; i++)
 
 struct Node {
-   Node *child[26];
-   long long high, totHigh;
+    Node *child[26];
+    long long high, totHigh;
 
-   Node() {
-      high = totHigh = 0;
-      REP(i, 26) child[i] = NULL;
-   }
+    Node() {
+        high = totHigh = 0;
+        REP(i, 26)
+        child[i] = NULL;
+    }
 };
 Node *root;
 
 void addString(const string &s) {
-   Node *p = root;
-   REP(i, s.size()) {
-      if (p->child[s[i] - 'a'] == NULL) p->child[s[i] - 'a'] = new Node();
-      p = p->child[s[i] - 'a'];
-      p->high = i + 1;
-   }
+    Node *p = root;
+    REP(i, s.size()) {
+        if (p->child[s[i] - 'a'] == NULL)
+            p->child[s[i] - 'a'] = new Node();
+        p = p->child[s[i] - 'a'];
+        p->high = i + 1;
+    }
 }
 
 void dfs(Node *p) {
-   p->totHigh = p->high;
-   REP(i, 26) if (p->child[i] != NULL) {
-      dfs(p->child[i]);
-      p->totHigh += p->child[i]->totHigh;
-   }
+    p->totHigh = p->high;
+    REP(i, 26)
+    if (p->child[i] != NULL) {
+        dfs(p->child[i]);
+        p->totHigh += p->child[i]->totHigh;
+    }
 }
 
 int main(void) {
-   int n; cin >> n;
-   root = new Node();
+    int n;
+    cin >> n;
+    root = new Node();
 
-   REP(love, n) {
-      string s; cin >> s; addString(s);
-   }
+    REP(love, n) {
+        string s;
+        cin >> s;
+        addString(s);
+    }
 
-   root->dfs();
-   cout << root->totHigh << endl;
+    dfs(root);
+    cout << root->totHigh << endl;
 }
-
 ```
 
 Đoạn code trên có ba phần chính:
@@ -561,14 +573,14 @@ Các lỗi hay mắc khi cài đặt trie:
 
 ```cpp
 void addString(const string &s) {
-   Node *p = root;
-   REP(i, s.size()) {
-      p = p->child[s[i] - 'a'];
-      if (p == NULL) p = new Node();
-      p->high = i + 1;
-   }
+    Node *p = root;
+    REP(i, s.size()) {
+        p = p->child[s[i] - 'a'];
+        if (p == NULL)
+            p = new Node();
+        p->high = i + 1;
+    }
 }
-
 ```
 
 Một số bài tập dùng trie cho các bạn luyện tập:

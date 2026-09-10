@@ -14,34 +14,34 @@ dateCreated: 2023-12-25T11:01:56.816Z
 
 - Khi Segment Tree mới được du nhập vào Việt Nam, một số tài liệu gọi là Interval Tree. Đây là cách gọi không chính xác, bởi [Interval Tree là một CTDL khác](https://en.wikipedia.org/wiki/Interval_tree).
 - Tất cả hàm trong bài đều đánh số từ 1. Các nút của cây phân đoạn sẽ quản lý đoạn $[l,r]$
-- Segment Tree còn có [một cách cài đặt khác sử dụng ít bộ nhớ hơn](/translate/codeforces/Efficient-and-easy-segment-trees) (tối đa $2*N$ phần tử), cài đặt ngắn hơn và chạy nhanh hơn. Tuy nhiên theo cá nhân mình không dễ hiểu bằng cách cài đặt trong bài viết này.
+- Segment Tree còn có [một cách cài đặt khác sử dụng ít bộ nhớ hơn](/translate/codeforces/Efficient-and-easy-segment-trees) (tối đa $2 \times N$ phần tử), cài đặt ngắn hơn và chạy nhanh hơn. Tuy nhiên theo cá nhân mình không dễ hiểu bằng cách cài đặt trong bài viết này.
 
 # 0. Giới thiệu
 
 Segment Tree là một cấu trúc dữ liệu được sử dụng rất nhiều trong các kỳ thi, đặc biệt là trong những bài toán xử lý trên dãy số.
 
-Segment Tree là một [cây](/translate/wcipeg/tree). Cụ thể hơn, nó là *một cây nhị phân đầy đủ (full binary tree)* (mỗi nút là lá hoặc có đúng 2 nút con), với mỗi nút quản lý một đoạn trên dãy số. Với một dãy số gồm $N$ phần tử, nút gốc sẽ lưu thông tin về đoạn $[1, N]$, nút con trái của nó sẽ lưu thông tin về đoạn $[1, ⌊N/2⌋]$ và nút con phải sẽ lưu thông tin về đoạn $[⌊N/2⌋+1, N]$. Tổng quát hơn: nếu nút $A$ lưu thông tin đoạn $[i, j]$, thì 2 con của nó: $A1$ và $A2$ sẽ lưu thông tin của các đoạn $[i, ⌊(i+j)/2⌋]$ và đoạn $[⌊(i+j)/2⌋ + 1, j]$.
+Segment Tree là một [cây](/translate/wcipeg/tree). Cụ thể hơn, nó là *một cây nhị phân đầy đủ (full binary tree)* (mỗi nút là lá hoặc có đúng 2 nút con), với mỗi nút quản lý một đoạn trên dãy số. Với một dãy số gồm $N$ phần tử, nút gốc sẽ lưu thông tin về đoạn $[1, N]$, nút con trái của nó sẽ lưu thông tin về đoạn $\left[1, \left\lfloor \frac{N}{2} \right\rfloor\right]$ và nút con phải sẽ lưu thông tin về đoạn $\left[\left\lfloor \frac{N}{2} \right\rfloor+1, N\right]$. Tổng quát hơn: nếu nút $A$ lưu thông tin đoạn $[i, j]$, thì 2 con của nó: $A_1$ và $A_2$ sẽ lưu thông tin của các đoạn $\left[i, \left\lfloor \frac{i+j}{2} \right\rfloor\right]$ và đoạn $\left[\left\lfloor \frac{i+j}{2} \right\rfloor + 1, j\right]$.
 
 ## Ví dụ
 
 Xét một dãy gồm 7 phần tử, Segment Tree sẽ quản lý các đoạn như sau:
 
-![](/uploads/segment_tree_structure_example.png)
+![](/uploads/algo/data-structures/segment-tree-extend/segment_tree_structure_example.png)
 
 ## Cài đặt
 
-Để cài đặt, ta có thể dùng một mảng 1 chiều, phần tử thứ nhất của mảng thể hiện nút gốc. Phần tử thứ $id$ sẽ có 2 con là $2 \* id$ (con trái) và $2 \* id+1$ (con phải). Với cách cài đặt này, người ta đã chứng minh được bộ nhớ cần dùng cho ST không quá $4 \* N$ phần tử.
+Để cài đặt, ta có thể dùng một mảng 1 chiều, phần tử thứ nhất của mảng thể hiện nút gốc. Phần tử thứ $id$ sẽ có 2 con là $2 \times id$ (con trái) và $2 \times id+1$ (con phải). Với cách cài đặt này, người ta đã chứng minh được bộ nhớ cần dùng cho ST không quá $4 \times N$ phần tử.
 
 ## Áp dụng
 
 Để dễ hình dung, ta lấy 1 ví dụ cụ thể:
 
-- Cho dãy $N$ phần tử $(N \le 10^5)$. Ban đầu mỗi phần tử có giả trị 0.
-- Có $Q$ truy vấn $(Q \le 10^5)$. Mỗi truy vấn có 1 trong 2 loại:
+- Cho dãy $N$ phần tử $(N \le 10^{5})$. Ban đầu mỗi phần tử có giả trị 0.
+- Có $Q$ truy vấn $(Q \le 10^{5})$. Mỗi truy vấn có 1 trong 2 loại:
     1. Gán giá trị $v$ cho phần tử ở vị trí $i$.
     2. Tìm giá trị lớn nhất cho đoạn $[i, j]$.
 
-Cách đơn giản nhất là dùng 1 mảng $A$ duy trì giá trị các phần tử. Với thao tác 1 thì ta gán $A[i] = v$. Với thao tác 2 thì ta dùng 1 vòng lặp từ $i$ đến $j$ để tìm giá trị lớn nhất. Rõ ràng cách này có độ phức tạp là $O(N*Q)$ và không thể chạy trong thời gian cho phép.
+Cách đơn giản nhất là dùng 1 mảng $A$ duy trì giá trị các phần tử. Với thao tác 1 thì ta gán $A[i] = v$. Với thao tác 2 thì ta dùng 1 vòng lặp từ $i$ đến $j$ để tìm giá trị lớn nhất. Rõ ràng cách này có độ phức tạp là $\mathcal{O}(N \times Q)$ và không thể chạy trong thời gian cho phép.
 
 Cách dùng Segment Tree như sau:
 
@@ -56,21 +56,21 @@ Cài đặt như sau:
 void update(int id, int l, int r, int i, int v) {
     if (i < l || r < i) {
         // i nằm ngoài đoạn [l, r], ta bỏ qua nút i
-        return ;
+        return;
     }
     if (l == r) {
         // Đoạn chỉ gồm 1 phần tử, không có nút con
         ST[id] = v;
-        return ;
+        return;
     }
 
     // Gọi đệ quy để xử lý các nút con của nút id
     int mid = (l + r) / 2;
-    update(id*2, l, mid, i, v);
-    update(id*2 + 1, mid+1, r, i, v);
+    update(id * 2, l, mid, i, v);
+    update(id * 2 + 1, mid + 1, r, i, v);
 
     // Cập nhật lại giá trị max của đoạn [l, r] theo 2 nút con:
-    ST[id] = max(ST[id*2], ST[id*2 + 1]);
+    ST[id] = max(ST[id * 2], ST[id * 2 + 1]);
 }
 
 // Truy vấn: tìm max đoạn [u, v]
@@ -87,20 +87,20 @@ int get(int id, int l, int r, int u, int v) {
     }
     int mid = (l + r) / 2;
     // Gọi đệ quy với các con của nút id
-    return max(get(id*2, l, mid, u, v), get(id*2 + 1, mid+1, r, u, v));
+    return max(get(id * 2, l, mid, u, v), get(id * 2 + 1, mid + 1, r, u, v));
 }
 ```
 
 ## Phân tích thời gian chạy
 
-Mỗi thao tác truy vấn trên cây ST có độ phức tạp $O(\log{N})$. Để chứng minh điều này, ta xét 2 loại thao tác trên cây ST:
+Mỗi thao tác truy vấn trên cây ST có độ phức tạp $\mathcal{O}(\log{N})$. Để chứng minh điều này, ta xét 2 loại thao tác trên cây ST:
 
 1. Truy vấn 1 phần tử trên ST (giống thao tác `update` ở trên)
 2. Truy vấn nhiều phần tử trên ST (giống thao tác `get` ở trên)
 
 Đầu tiên ta có thể chứng minh được:
 
-- Độ cao của cây ST không quá $O(\log{N})$.
+- Độ cao của cây ST không quá $\mathcal{O}(\log{N})$.
 - Tại mỗi độ sâu của cây, không có phần tử nào nằm trong 2 nút khác nhau của cây.
 
 ### Thao tác loại 1
@@ -110,7 +110,7 @@ Với thao tác này, ở mỗi độ sâu của cây, ta chỉ gọi đệ quy 
 - Phần tử cần xét không nằm trong đoạn $[l, r]$ do nút $id$ quản lý. Trường hợp này ta dừng lại, không xét tiếp.
 - Phần tử cần xét nằm trong đoạn $[l, r]$ do nút $id$ quản lý. Ta xét các con của nút `id`. Tuy nhiên chỉ có 1 con của nút `id` chứa phần tử cần xét và ta sẽ phải xét tiếp các con của nút này. Với con còn lại, ta sẽ dừng ngay mà không xét các con của nó nữa.
 
-Do đó độ phức tạp của thao tác này không quá $O(\log{N})$.
+Do đó độ phức tạp của thao tác này không quá $\mathcal{O}(\log{N})$.
 
 
 ### Thao tác loại 2
@@ -119,7 +119,7 @@ Với thao này, ta cũng chứng minh tương tự, nhưng ở mỗi độ sâu
 
 Ta chứng minh bằng phản chứng, giả sử ta gọi đệ quy với 3 nút khác nhau của cây ST (đánh dấu màu đỏ):
 
-![](/uploads/segment_tree_proof_time_complexity.png)
+![](/uploads/algo/data-structures/segment-tree-extend/segment_tree_proof_time_complexity.png)
 
 Trong trường hợp này, rõ ràng toàn bộ đoạn của nút ở giữa quản lý nằm trong đoạn đang truy vấn. Do đó ta không cần phải gọi đệ quy các con của nút ở giữa. Từ đó suy ra vô lý, nghĩa là ở mỗi độ sâu ta chỉ gọi đệ quy với không quá 2 nút.
 
@@ -127,14 +127,14 @@ Trong trường hợp này, rõ ràng toàn bộ đoạn của nút ở giữa q
 
 Ta xét 2 trường hợp:
 
-- $N = 2^k$: Cây ST đầy đủ, ở độ sâu cuối cùng có đúng $2^k$ lá, và các độ sâu thấp hơn không có nút lá nào (và các nút này đều có đúng 2 con). Như vậy:
-    - Tầng $k$: có $2^k$ nút
+- $N = 2^{k}$: Cây ST đầy đủ, ở độ sâu cuối cùng có đúng $2^{k}$ lá, và các độ sâu thấp hơn không có nút lá nào (và các nút này đều có đúng 2 con). Như vậy:
+    - Tầng $k$: có $2^{k}$ nút
     - Tầng $k-1$: có $2^{k-1}$ nút
     - ...
     Tổng số nút không quá $2^{k+1}$.
-- Với $N > 2^k$ và $N < 2^{k+1}$. Số nút của cây ST không quá số nút của cây ST với $N = 2^{k+1}$.
+- Với $N > 2^{k}$ và $N < 2^{k+1}$. Số nút của cây ST không quá số nút của cây ST với $N = 2^{k+1}$.
 
-Do đó, số nút của cây cho dãy $N$ phần tử, với $N \le 2^k$ là không quá $2^{k+1}$, giá trị này xấp xỉ $4 \* N$. Bằng thực nghiệm, ta thấy dùng $4 \* N$ là đủ.
+Do đó, số nút của cây cho dãy $N$ phần tử, với $N \le 2^{k}$ là không quá $2^{k+1}$, giá trị này xấp xỉ $4 \times N$. Bằng thực nghiệm, ta thấy dùng $4 \times N$ là đủ.
 
 # 1. Segment Tree cổ điển
 
@@ -146,7 +146,7 @@ Tại sao lại gọi là cổ điển? Đây là dạng ST đơn giản nhất,
 
 ### Tóm tắt đề
 
-Cho một dãy ngoặc độ dài $N$ $(N\le10^6)$, cho $M$ truy vấn có dạng $l_i, r_i (1\le l_i\le r_i \le N)$. Yêu cầu của bài toán là với mỗi truy vấn tìm một chuỗi con (không cần liên tiếp) của chuỗi từ $l_i$ đến $r_i$ dài nhất mà tạo thành dãy ngoặc đúng.
+Cho một dãy ngoặc độ dài $N$ $(N\le 10^{6})$, cho $M$ truy vấn có dạng $l_i, r_i (1\le l_i\le r_i \le N)$. Yêu cầu của bài toán là với mỗi truy vấn tìm một chuỗi con (không cần liên tiếp) của chuỗi từ $l_i$ đến $r_i$ dài nhất mà tạo thành dãy ngoặc đúng.
 
 ### Lời giải
 
@@ -164,6 +164,9 @@ struct Node {
     int open;
     int close;
 
+    Node() {
+    }
+
     Node(int opt, int o, int c) { // Khởi tạo struct Node
         optimal = opt;
         open = o;
@@ -180,10 +183,10 @@ Node st[MAXN * 4];
 
 ### Định lý
 
-Để tính thông tin ở nút $id$ quản lý đoạn $[l, r]$, dựa trên 2 nút con $2\*id$ và $2\*id+1$, ta định nghĩa 1 thao tác kết hợp 2 nút của cây ST:
+Để tính thông tin ở nút $id$ quản lý đoạn $[l, r]$, dựa trên 2 nút con $2 \times id$ và $2 \times id+1$, ta định nghĩa 1 thao tác kết hợp 2 nút của cây ST:
 
 ```cpp
-Node operator + (const Node& left, const Node& right) {
+Node operator+(const Node &left, const Node &right) {
     Node res;
     // min(số dấu "(" thừa ra ở cây con trái, và số dấu ")" thừa ra ở cây con phải)
     int tmp = min(left.open, right.close);
@@ -205,13 +208,15 @@ Ban đầu ta có thể khởi tạo cây như sau:
 void build(int id, int l, int r) {
     if (l == r) {
         // Đoạn [l, r] chỉ có 1 phần tử.
-        if (s[l] == '(') st[id] = Node(0, 1, 0);
-        else st[id] = Node(0, 0, 1);
-        return ;
+        if (s[l] == '(')
+            st[id] = Node(0, 1, 0);
+        else
+            st[id] = Node(0, 0, 1);
+        return;
     }
     int mid = (l + r) / 2;
     build(id * 2, l, mid);
-    build(id * 2 + 1, mid+1, r);
+    build(id * 2 + 1, mid + 1, r);
 
     st[id] = st[id * 2] + st[id * 2 + 1];
 }
@@ -219,7 +224,7 @@ void build(int id, int l, int r) {
 
 Để trả lời truy vấn, ta cũng làm tương tự như trong bài toán cơ bản:
 
-``` cpp
+```cpp
 Node query(int id, int l, int r, int u, int v) {
     if (v < l || r < u) {
         // Trường hợp không giao nhau
@@ -231,7 +236,7 @@ Node query(int id, int l, int r, int u, int v) {
     }
 
     int mid = (l + r) / 2;
-    return query(id * 2, l, mid, u, v) + query(id * 2 + 1, mid+1, r, u, v);
+    return query(id * 2, l, mid, u, v) + query(id * 2 + 1, mid + 1, r, u, v);
 }
 ```
 
@@ -241,8 +246,8 @@ Node query(int id, int l, int r, int u, int v) {
 
 **Tóm đề**:
 
-- Cho một dãy số $a_i(1\le a_i \le 10^9)$ có $N(1\le N \le 30,000)$ phần tử
-- Cho $Q(1\le Q \le 200,000)$ truy vấn có dạng 3 số nguyên là $l_i, r_i, k_i$ $(1\le l_i\le r_i\le N, 1\le k \le 10^9)$. Yêu cầu của bài toán là đếm số lượng số $a_j (l_i\le j \le r_i)$ mà $a_j\ge k$.
+- Cho một dãy số $a_i (1 \le a_i \le 10^{9})$ có $N(1\le N \le 30,000)$ phần tử
+- Cho $Q(1\le Q \le 200,000)$ truy vấn có dạng 3 số nguyên là $l_i, r_i, k_i$ $(1\le l_i\le r_i\le N, 1\le k \le 10^{9})$. Yêu cầu của bài toán là đếm số lượng số $a_j (l_i\le j \le r_i)$ mà $a_j\ge k$.
 
 Giả sử chúng ta có một mảng $b$ với $b_i=1$ nếu $a_i>k$ và bằng $0$ nếu ngược lại. Thì chúng ta có thể dễ dàng trả lời truy vấn $(i, j, k)$ bằng cách lấy tổng từ $i$ đến $j$.
 
@@ -261,7 +266,7 @@ struct Query {
 };
 
 // so sánh 2 truy vấn để dùng vào việc sort.
-bool operator < (const Query& a, const Query &b) {
+bool operator<(const Query &a, const Query &b) {
     return a.k < b.k;
 }
 ```
@@ -269,7 +274,7 @@ bool operator < (const Query& a, const Query &b) {
 Phần xử lý chính sẽ như sau:
 
 ```cpp
-vector< Query > queries; // các truy vấn
+vector<Query> queries; // các truy vấn
 // Đọc vào các truy vấn
 readInput();
 
@@ -281,7 +286,7 @@ sort(queries.begin(), queries.end());
 
 // Khởi tạo Segment Tree
 
-for(Query q : queries) {
+for (Query q : queries) {
     while (a[id[i]] <= q.k) {
         b[id[i]] = 0;
         // Cập nhật cây Segment Tree.
@@ -297,13 +302,13 @@ void build(int id, int l, int r) {
     if (l == r) {
         // Nút id chỉ gồm 1 phần tử
         st[id] = 1;
-        return ;
+        return;
     }
     int mid = (l + r) / 2;
     build(id * 2, l, mid);
-    build(id * 2 + 1, mid+1, r);
+    build(id * 2 + 1, mid + 1, r);
 
-    st[id] = st[id*2] + st[id*2+1];
+    st[id] = st[id * 2] + st[id * 2 + 1];
 }
 ```
 
@@ -313,17 +318,17 @@ Một hàm cập nhật khi ta muốn gán lại một vị trí bằng 0:
 void update(int id, int l, int r, int u) {
     if (u < l || r < u) {
         // u nằm ngoài đoạn [l, r]
-        return ;
+        return;
     }
     if (l == r) {
         st[id] = 0;
-        return ;
+        return;
     }
     int mid = (l + r) / 2;
-    update(id*2, l, mid, u);
-    update(id*2 + 1, mid+1, r, u);
+    update(id * 2, l, mid, u);
+    update(id * 2 + 1, mid + 1, r, u);
 
-    st[id] = st[id*2] + st[id*2+1];
+    st[id] = st[id * 2] + st[id * 2 + 1];
 }
 ```
 
@@ -340,8 +345,7 @@ int get(int id, int l, int r, int u, int v) {
         return st[id];
     }
     int mid = (l + r) / 2;
-    return get(id*2, l, mid, u, v)
-        + get(id*2+1, mid+1, r, u, v);
+    return get(id * 2, l, mid, u, v) + get(id * 2 + 1, mid + 1, r, u, v);
 }
 ```
 
@@ -352,7 +356,7 @@ int get(int id, int l, int r, int u, int v) {
 
 ## Tư tưởng
 
-Giả sử ta cần cập nhật đoạn $[u, v]$. Dễ thấy ta không thể nào cập nhật tất cả các nút trên Segment Tree (do tổng số nút nằm trong đoạn $[u, v]$ có thể lên đến $O(N)$). Do đó, trong quá trình cập nhật, ta chỉ thay đổi giá trị ở các nút quản lý các đoạn to nhất nằm trong $[u, v]$. Ví dụ với $N = 7$, cây Segment tree như hình minh hoạ ở đầu bài. Giả sử bạn cần cập nhật $[1, 6]$:
+Giả sử ta cần cập nhật đoạn $[u, v]$. Dễ thấy ta không thể nào cập nhật tất cả các nút trên Segment Tree (do tổng số nút nằm trong đoạn $[u, v]$ có thể lên đến $\mathcal{O}(N)$). Do đó, trong quá trình cập nhật, ta chỉ thay đổi giá trị ở các nút quản lý các đoạn to nhất nằm trong $[u, v]$. Ví dụ với $N = 7$, cây Segment tree như hình minh hoạ ở đầu bài. Giả sử bạn cần cập nhật $[1, 6]$:
 
 - Bạn chỉ cập nhật giá trị ở các nút quản lý các đoạn $[1, 4]$ và $[5, 6]$.
 - Giá trị của các nút quản lý các đoạn $[1, 2]$, $[3, 4]$, $[1, 1]$, $[2, 2]$, $[5, 5]$, ... sẽ không đúng. Ta sẽ chỉ cập nhật lại giá trị của các nút này khi thật sự cần thiết (Do đó kĩ thuật này được gọi là lazy - lười biếng).
@@ -367,17 +371,17 @@ Cụ thể, chúng ta cùng xem bài toán sau:
 
 Cho dãy số $A$ với $N$ phần tử $(N \le 50,000)$. Bạn cần thực hiện 2 loại truy vấn:
 
-1. Cộng tất cả các số trong đoạn $[l, r]$ lên giá trị $val$.
+1. Cộng tất cả các số trong đoạn $[l, r]$ lên giá trị $\texttt{val}$.
 2. In ra giá trị lớn nhất của các số trong đoạn $[l, r]$.
 
 ## Phân tích
 
 Thao tác 2 là thao tác cơ bản trên Segment Tree, đã được ta phân tích ở bài toán đầu tiên.
 
-Với thao tác 1, truy vấn đoạn $[u, v]$. Giả sử ta gọi $F(id)$ là giá trị lớn nhất trong đoạn mà nút $id$ quản lý. Trong lúc cập nhật, muốn hàm này thực hiện với độ phức tạp không quá $O(\log{N})$, thì khi đến 1 nút $id$ quản lý đoạn $[l, r]$ với đoạn $[l, r]$ nằm hoàn toàn trong đoạn $[u, v]$, thì ta không được đi vào các nút con của nó nữa (nếu không độ phức tạp sẽ là $O(N)$ do ta đi vào tất cả các nút nằm trong đoạn $[u, v]$). Để giải quyết, ta dùng kĩ thuật Lazy Propagation như sau:
+Với thao tác 1, truy vấn đoạn $[u, v]$. Giả sử ta gọi $F(id)$ là giá trị lớn nhất trong đoạn mà nút $id$ quản lý. Trong lúc cập nhật, muốn hàm này thực hiện với độ phức tạp không quá $\mathcal{O}(\log{N})$, thì khi đến 1 nút $id$ quản lý đoạn $[l, r]$ với đoạn $[l, r]$ nằm hoàn toàn trong đoạn $[u, v]$, thì ta không được đi vào các nút con của nó nữa (nếu không độ phức tạp sẽ là $\mathcal{O}(N)$ do ta đi vào tất cả các nút nằm trong đoạn $[u, v]$). Để giải quyết, ta dùng kĩ thuật Lazy Propagation như sau:
 
 - Lưu $T(id)$ với ý nghĩa, tất cả các phần tử trong đoạn $[l, r]$ mà nút $id$ quản lý đều được cộng thêm $T(id)$.
-- Trước khi ta cập nhật hoặc lấy 1 giá trị của 1 nút $id'$ nào đó, ta phải đảm bảo ta đã "đẩy" giá trị của mảng $T$ ở tất cả các nút tổ tiên của $id'$ xuống $id'$. Để làm được điều này, ở các hàm `get` và `update`, trước khi gọi đệ quy xuống các con $2 \* id$ và $2 \* id+1$, ta phải gán:
+- Trước khi ta cập nhật hoặc lấy 1 giá trị của 1 nút $id'$ nào đó, ta phải đảm bảo ta đã "đẩy" giá trị của mảng $T$ ở tất cả các nút tổ tiên của $id'$ xuống $id'$. Để làm được điều này, ở các hàm `get` và `update`, trước khi gọi đệ quy xuống các con $2 \times id$ và $2 \times id+1$, ta phải gán:
     - `T[id*2] += T[id]`
     - `T[id*2+1] += T[id]`
     - `T[id] = 0` chú ý ta cần phải thực hiện thao tác này, nếu không mỗi phần tử của dãy sẽ bị cộng nhiều lần, do ta đẩy xuống nhiều lần.
@@ -391,7 +395,7 @@ Ta có kiểu dữ liệu cho 1 nút của ST như sau:
 ```cpp
 struct Node {
     int lazy; // giá trị T trong phân tích trên
-    int val; // giá trị lớn nhất.
+    int val;  // giá trị lớn nhất.
 } nodes[MAXN * 4];
 ```
 
@@ -400,15 +404,14 @@ Hàm "đẩy" giá trị $T$ xuống các con:
 ```cpp
 void down(int id) {
     int t = nodes[id].lazy;
-    nodes[id*2].lazy += t;
-    nodes[id*2].val += t;
+    nodes[id * 2].lazy += t;
+    nodes[id * 2].val += t;
 
-    nodes[id*2+1].lazy += t;
-    nodes[id*2+1].val += t;
+    nodes[id * 2 + 1].lazy += t;
+    nodes[id * 2 + 1].val += t;
 
     nodes[id].lazy = 0;
 }
-
 ```
 
 Hàm cập nhật:
@@ -416,23 +419,23 @@ Hàm cập nhật:
 ```cpp
 void update(int id, int l, int r, int u, int v, int val) {
     if (v < l || r < u) {
-        return ;
+        return;
     }
     if (u <= l && r <= v) {
         // Khi cài đặt, ta LUÔN ĐẢM BẢO giá trị của nút được cập nhật ĐỒNG THỜI với
         // giá trị lazy propagation. Như vậy sẽ tránh sai sót.
         nodes[id].val += val;
         nodes[id].lazy += val;
-        return ;
+        return;
     }
     int mid = (l + r) / 2;
 
     down(id); // đẩy giá trị lazy propagation xuống các con
 
-    update(id*2, l, mid, u, v, val);
-    update(id*2+1, mid+1, r, u, v, val);
+    update(id * 2, l, mid, u, v, val);
+    update(id * 2 + 1, mid + 1, r, u, v, val);
 
-    nodes[id].val = max(nodes[id*2].val, nodes[id*2+1].val);
+    nodes[id].val = max(nodes[id * 2].val, nodes[id * 2 + 1].val);
 }
 ```
 
@@ -449,8 +452,8 @@ int get(int id, int l, int r, int u, int v) {
     int mid = (l + r) / 2;
     down(id); // đẩy giá trị lazy propagation xuống các con
 
-    return max(get(id*2, l, mid, u, v),
-        get(id*2+1, mid+1, r, u, v));
+    return max(get(id * 2, l, mid, u, v),
+               get(id * 2 + 1, mid + 1, r, u, v));
     // Trong các bài toán tổng quát, giá trị ở nút id có thể bị thay đổi (do ta đẩy lazy propagation
     // xuống các con). Khi đó, ta cần cập nhật lại thông tin của nút id dựa trên thông tin của các con.
 }
@@ -472,7 +475,7 @@ Cách làm online cho bài [KQUERY](https://oj.vnoi.info/problem/kquery).
 - Truy vấn: đếm số phần tử lớn hơn $k$ trong đoạn $[l, r]$.
 - Giới hạn:
     - $N \le 30,000$
-    - $A_i \le 10^9$
+    - $A_i \le 10^{9}$
     - $Q \le 200,000$
 
 ## Phân tích
@@ -489,13 +492,13 @@ void build(int id, int l, int r) {
     if (l == r) {
         // Đoạn gồm 1 phần tử. Ta dễ dàng khởi tạo nút trên ST.
         st[id].push_back(a[l]);
-        return ;
+        return;
     }
     int mid = (l + r) / 2;
-    build(id*2, l, mid);
-    build(id*2+1, mid+1, r);
+    build(id * 2, l, mid);
+    build(id * 2 + 1, mid + 1, r);
 
-    merge(st[id*2].begin(), st[id*2].end(), st[id*2+1].begin(), st[id*2+1].end(), st[id].begin());
+    merge(st[id * 2].begin(), st[id * 2].end(), st[id * 2 + 1].begin(), st[id * 2 + 1].end(), st[id].begin());
 }
 ```
 
@@ -511,7 +514,7 @@ int get(int id, int l, int r, int u, int v, int k) { // Trả lời truy vấn (
         return st[id].size() - (upper_bound(st[id].begin(), st[id].end(), k) - st[id].begin());
     }
     int mid = (l + r) / 2;
-    return get(id*2, l, mid, u, v, k) + get(id*2+1, mid+1, r, u, v, k);
+    return get(id * 2, l, mid, u, v, k) + get(id * 2 + 1, mid + 1, r, u, v, k);
 }
 ```
 
@@ -523,25 +526,28 @@ Một ví dụ khác là bài [Component Tree](http://codeforces.com/gym/100513/
 Ở cấu trúc này mỗi nút chúng ta lưu một `set`,`multiset`, `hashmap`, hoặc `unodered map` và một số biến khác.
 
 Đây là một bài toán ví dụ:
-Cho $n$ vector $a_1, a_2, a_3,...,a_n$ rỗng ban đầu. Chúng ta có thể thực hiện $m$ truy vấn trên những vector này:
+Cho $n$ vector $a_1, a_2, a_3, \ldots, a_n$ rỗng ban đầu. Chúng ta có thể thực hiện $m$ truy vấn trên những vector này:
 
 1. Truy vấn $A$ $p$ $k$ là thêm số $k$ vào cuối vector $a_p$.
-2. Truy vấn $C$ $l$ $r$ $k$ là xuất ra $\sum_{i=l}^rcount(a_i,k)$, với $count(a_i,k)$ là số lần xuất hiện của số $k$ trong vector $a_i$.
+2. Truy vấn $C$ $l$ $r$ $k$ là xuất ra $\sum_{i=l}^{r} \operatorname{count}(a_i, k)$, với $\operatorname{count}(a_i, k)$ là số lần xuất hiện của số $k$ trong vector $a_i$.
 
-Bài toán này chúng ta lưu lại mỗi nút của cây là một `multiset` $s$, với mỗi nút lưu số $k$ đúng $\sum_{i=l}^rcount(a_i,k)$ lần với độ phức tạp bộ nhớ chỉ $\mathcal{O}(q\log{n})$.
+Bài toán này chúng ta lưu lại mỗi nút của cây là một `multiset` $s$, với mỗi nút lưu số $k$ đúng $\sum_{i=l}^{r} \operatorname{count}(a_i, k)$ lần với độ phức tạp bộ nhớ chỉ $\mathcal{O}(q\log{n})$.
 
 Với mỗi truy vấn  $C$ $x$ $y$ $k$ chúng ta sẽ in ra tổng của tất cả dùng cây phân đoạn và truy vấn trên set trong mỗi đoạn thuộc đoạn $x$ đến $y$ như truy trên truy vấn cây phân đoạn bình thường.
 
 Chúng ta sẽ không có hàm xây cây do các vector ban đầu đang là rỗng, nhưng chúng ta sẽ có thêm hàm cộng phần tử vào như sau:
 
 ```cpp
-void add(int id, int l, int r, int p, int k) {  // Thực hiện truy vấn A p k
+void add(int id, int l, int r, int p, int k) { // Thực hiện truy vấn A p k
     s[id].insert(k);
-    if (l == r) return ;
+    if (l == r)
+        return;
 
     int mid = (l + r) / 2;
-    if (p <= mid) add(id*2, l, mid, p, k);
-    else add(id*2 + 1, mid+1, r, p, k);
+    if (p <= mid)
+        add(id * 2, l, mid, p, k);
+    else
+        add(id * 2 + 1, mid + 1, r, p, k);
 }
 ```
 
@@ -549,12 +555,13 @@ Và một hàm cho truy vấn 2:
 
 ```cpp
 int ask(int id, int l, int r, int x, int y, int k) { // Trả lời C x y k
-    if (y < l || r < x) return 0;
+    if (y < l || r < x)
+        return 0;
     if (x <= l && r <= y) {
         return s[id].count(k);
     }
     int mid = (l + r) / 2;
-    return ask(id*2, l, mid, x, y, k) + ask(id*2+1, mid+1, r, x, y, k);
+    return ask(id * 2, l, mid, x, y, k) + ask(id * 2 + 1, mid + 1, r, x, y, k);
 }
 ```
 
@@ -564,12 +571,12 @@ Cây phân đoạn còn có thể có thể sử dụng một cách linh hoạt 
 
 Như trên mỗi nút của cây sẽ là một cây **Fenwick** và có thể một số biến khác. Dưới đây là một bài toán ví dụ:
 
-Cho $n$ vectors $a_1,a_2,a_3,...,a_n$ rỗng ban đầu. Chúng ta cần thực hiện hai loại truy vấn:
+Cho $n$ vectors $a_1, a_2, a_3, \ldots, a_n$ rỗng ban đầu. Chúng ta cần thực hiện hai loại truy vấn:
 
 1. Truy vấn $A$ $p$ $k$ là thêm số $k$ vào đằng sau vector $a_p$.
-2. Truy vấn $C$ $l$ $r$ $k$ là xuất ra $\sum_{i=l}^rcount(a_i,j)$ với $j\le k$ với $count(a_i,j)$ là số lần xuất hiện $k$ trong $a_i$.
+2. Truy vấn $C$ $l$ $r$ $k$ là xuất ra $\sum_{i=l}^{r} \operatorname{count}(a_i, j)$ với $j\le k$ với $\operatorname{count}(a_i, j)$ là số lần xuất hiện $k$ trong $a_i$.
 
-Với bài toán này, ta cũng lưu lại ở một nút là một `vector` $v$ chứa số $k$ khi và chỉ khi $\sum_{i=l}^rcount(a_i,j)\ne 0$ (độ phức tạp bộ nhớ sẽ là $\mathcal{O}(q\log{n})$ ) (các số theo theo thứ tự tăng dần)
+Với bài toán này, ta cũng lưu lại ở một nút là một `vector` $v$ chứa số $k$ khi và chỉ khi $\sum_{i=l}^{r} \operatorname{count}(a_i, j)\ne 0$ (độ phức tạp bộ nhớ sẽ là $\mathcal{O}(q\log{n})$ ) (các số theo theo thứ tự tăng dần)
 
 Đầu tiên, đọc và lưu các truy vấn lại với mỗi truy vấn loại 1 ta sẽ thêm $v$ vào tất cả vector có chứa phần tử $p$. Sau đó ta tiến hành sắp xếp các truy vấn theo phương pháp **Merge Sort** đã nói ở trên và dùng hàm `unique` để loại các phần tử trùng.
 
@@ -579,13 +586,13 @@ Sau đó chúng ta sẽ xây dụng ở mỗi nút một cây Fenwick có độ 
 void insert(int id, int l, int r, int p, int k) { // Thực hiện A p k
     if (l == r) {
         v[id].push_back(k);
-        return ;
+        return;
     }
-    int mid = (l+r) / 2;
+    int mid = (l + r) / 2;
     if (p < mid)
-        insert(id*2, l, mid, p, k);
+        insert(id * 2, l, mid, p, k);
     else
-        insert(id*2+1, mid+1, r, p, k);
+        insert(id * 2 + 1, mid + 1, r, p, k);
 }
 ```
 
@@ -593,20 +600,21 @@ Hàm sắp xếp sau khi đã đọc hết các truy vấn:
 
 ```cpp
 void sort_(int id, int l, int r) {
-    if (l == r) return ;
+    if (l == r)
+        return;
     int mid = (l + r) / 2;
-    sort_(id*2, l, mid);
-    sort_(id*2+1, mid+1, r);
+    sort_(id * 2, l, mid);
+    sort_(id * 2 + 1, mid + 1, r);
 
-    merge(v[2 * id].begin(), v[2 * id].end(), v[2 * id + 1].begin(), v[2 * id +1].end(), v[id].begin());
+    merge(v[2 * id].begin(), v[2 * id].end(), v[2 * id + 1].begin(), v[2 * id + 1].end(), v[id].begin());
 }
 ```
 
 Với mỗi truy vấn loại 1 ta làm như sau với mỗi nút x:
 
 ```cpp
-for(int i = a + 1; i < fen[x].size(); i += i & -i)
-    fen[x][i] ++;
+for (int i = a + 1; i < fen[x].size(); i += i & -i)
+    fen[x][i]++;
 ```
 
 Với tất cả $v[x][a]=k$:
@@ -614,16 +622,17 @@ Với tất cả $v[x][a]=k$:
 ```cpp
 void update(int id, int l, int r, int p, int k) {
     int a = lower_bound(v[id].begin(), v[id].end(), k) - v[id].begin();
-    for(int i = a + 1; i < fen[id].size(); i += i & -i)
+    for (int i = a + 1; i < fen[id].size(); i += i & -i)
         fen[id][i]++;
 
-    if (l == r) return ;
+    if (l == r)
+        return;
 
     int mid = (l + r) / 2;
     if (p < mid)
-        update(id*2, l, mid, p, k);
+        update(id * 2, l, mid, p, k);
     else
-        update(id*2+1, mid+1, r, p, k);
+        update(id * 2 + 1, mid + 1, r, p, k);
 }
 ```
 
@@ -631,17 +640,17 @@ Còn lại việc tính toán truy vấn loại 2 trở nên dễ dàng hơn:
 
 ```cpp
 int ask(int id, int l, int r, int x, int y, int k) { // Trả lời C x y-1 k
-    if (y < l || r < x) return 0;
+    if (y < l || r < x)
+        return 0;
     if (x <= l && r <= y) {
         int a = lower_bound(v[id].begin(), v[id].end(), k) - v[id].begin();
         int ans = 0;
-        for(int i = a + 1; i > 0; i -= i & -i)
+        for (int i = a + 1; i > 0; i -= i & -i)
             ans += fen[id][i];
         return ans;
     }
     int mid = (l + r) / 2;
-    return ask(id*2, l, mid, x, y, k)
-        + ask(id*2+1, mid+1, r, x, y, k);
+    return ask(id * 2, l, mid, x, y, k) + ask(id * 2 + 1, mid + 1, r, x, y, k);
 }
 ```
 
@@ -653,23 +662,24 @@ Ta có thể thấy cây phân đoạn là một ứng dụng trong mảng, vì 
 
 Gọi $h_v$ là độ cao tương ứng của nút $v$.
 
-Ta có với mỗi nút $u$ trong cây con gốc $v$ sau truy vấn một giá trị của nó sẽ tăng một lượng là $x+(h_u-h_v)\*-k=x+k\* h_v-k\* h$. Kết quả của truy vấn 2 sẽ là $\sum_{i\in s}(k_i\*h_{v_i}+x_i)-h_u\*\sum_{i\in s}k_i$. Vì vậy ta chỉ cần tính hai giá trị là $\sum_{i\in s}(k_i\* h_{v_i}+x_i)$ và $\sum_{i\in s}k_i$. Vậy với mỗi nút ta có thể lưu lại hai giá trị là $hkx=\sum x +h*k$ và $sk=\sum k$ (không cần lazy propagation do chúng ta chỉ update nút đầu tiên thỏa việc nằm trong đoạn.
+Ta có với mỗi nút $u$ trong cây con gốc $v$ sau truy vấn một giá trị của nó sẽ tăng một lượng là $x+(h_u-h_v) \times -k=x+k \times h_v-k \times h$. Kết quả của truy vấn 2 sẽ là $\sum_{i\in s}(k_i \times h_{v_i}+x_i)-h_u \times \sum_{i\in s}k_i$. Vì vậy ta chỉ cần tính hai giá trị là $\sum_{i\in s}(k_i \times h_{v_i}+x_i)$ và $\sum_{i\in s}k_i$. Vậy với mỗi nút ta có thể lưu lại hai giá trị là $\texttt{hkx}=\sum x +h \times k$ và $\texttt{sk}=\sum k$ (không cần lazy propagation do chúng ta chỉ update nút đầu tiên thỏa việc nằm trong đoạn.
 
 Với truy vấn cập nhật:
 
 ```cpp
 void update(int id, int l, int r, int x, int k, int v) {
-    if (s[v] >= r || l >= f[v]) return ;
+    if (s[v] >= r || l >= f[v])
+        return;
     if (s[v] <= l && r <= f[v]) {
         hkx[id] = (hkx[id] + x) % mod;
-  			int a = (1LL * h[v] * k) % mod;
-  			hkx[id] = (hkx[id] + a) % mod;
-  			sk[id] = (sk[id] + k) % mod;
-  			return ;
+        int a = (1LL * h[v] * k) % mod;
+        hkx[id] = (hkx[id] + a) % mod;
+        sk[id] = (sk[id] + k) % mod;
+        return;
     }
-    int mid = (l+r) / 2;
-    update(id*2, l, mid, x, k, v);
-    update(id*2+1, mid+1, r, x, k, v);
+    int mid = (l + r) / 2;
+    update(id * 2, l, mid, x, k, v);
+    update(id * 2 + 1, mid + 1, r, x, k, v);
 }
 ```
 
@@ -679,11 +689,12 @@ Và truy vấn:
 int ask(int id, int l, int r, int v) {
     int a = (1LL * h[v] * sk[id]) % mod;
     int ans = (hkx[id] + mod - a) % mod;
-    if (l == r) return ans;
-    int mid = (l+r) / 2;
-    if(s[v] < mid)
+    if (l == r)
+        return ans;
+    int mid = (l + r) / 2;
+    if (s[v] < mid)
         return (ans + ask(2 * id, l, mid, v)) % mod;
-    return (ans + ask(2*id + 1, mid, r, v)) % mod;
+    return (ans + ask(2 * id + 1, mid, r, v)) % mod;
 }
 ```
 
@@ -722,9 +733,9 @@ Cho một mảng các số nguyên $a$ có $n$ phần tử. Có $q$ truy vấn c
 
 Ta nhận thấy do $a[i] \le k$ và $i$ nhỏ nhất, cho nên $a[j] > k$ với mọi $1 \le j < i$.
 
-Do đó, $min(a[1], a[2], ..., a[i]) = a[i]$.
+Do đó, $\min(a[1], a[2], \ldots, a[i]) = a[i]$.
 
-Đặt $f[i] = min(a[1], a[2], ..., a[i])$.
+Đặt $f[i] = \min(a[1], a[2], \ldots, a[i])$.
 
 **Nhận xét 1:** Việc tìm $i$ nhỏ nhất sao cho $a[i] \le k$ cũng tương ứng với việc tìm $i$ nhỏ nhất sao cho $f[i] \le k$.
 
@@ -735,7 +746,7 @@ Vậy bài toán có thể phát biểu lại như sau:
 Cho một mảng các số nguyên $f$ đã "sắp xếp" giảm dần, có $q$ truy vấn có dạng:
 - $k$ : tìm $i$ nhỏ nhất sao cho $f[i] \le k$.
 
-Rõ ràng bài toán này chỉ là bài toán chặt nhị phân cơ bản, vì mảng $f$ đã được "sắp xếp". Tới đây ta có thể trả lời các truy vấn trong độ phức tạp $O(\log{n})$. Code thì nó sẽ giống giống thế này:
+Rõ ràng bài toán này chỉ là bài toán chặt nhị phân cơ bản, vì mảng $f$ đã được "sắp xếp". Tới đây ta có thể trả lời các truy vấn trong độ phức tạp $\mathcal{O}(\log{n})$. Code thì nó sẽ giống giống thế này:
 
 ```cpp
 int query(int k) {
@@ -760,9 +771,9 @@ Cho một mảng các số nguyên $a$ có $n$ phần tử. Có $q$ truy vấn c
 Bài toán này giống **bài toán 1**, nhưng có thêm truy vấn cập nhật phần tử, điều này làm cho mảng $f$ bị thay đổi. Ta có thể sửa lại yêu cầu bài toán một chút, là có $3$ loại truy vấn:
 - $i$ $x$ : gán $a[i] = x$.
 - $k$ : tìm $i$ nhỏ nhất sao cho $a[i] \le k$
-- $i$ : tính $min(a[1], a[2], ..., a[i])$.
+- $i$ : tính $\min(a[1], a[2], \ldots, a[i])$.
 
-Rõ ràng truy vấn 1 và 3 có thể thực hiện bằng Segment tree với độ phức tạp $O(\log{n})$, vậy thì tới đây bài toán quay về **bài toán 1**, chỉ có điều khi ta cần tính $f[i]$ thì ta phải gọi hàm trên Segment tree để lấy *min*, độ phức tạp cho việc trả lời truy vấn 2 là $O(\log^2{n})$:
+Rõ ràng truy vấn 1 và 3 có thể thực hiện bằng Segment tree với độ phức tạp $\mathcal{O}(\log{n})$, vậy thì tới đây bài toán quay về **bài toán 1**, chỉ có điều khi ta cần tính $f[i]$ thì ta phải gọi hàm trên Segment tree để lấy *min*, độ phức tạp cho việc trả lời truy vấn 2 là $\mathcal{O}(\log^{2}{n})$:
 
 ```cpp
 int query(int k) {
@@ -780,40 +791,42 @@ int query(int k) {
 
 Nhưng nếu chỉ dừng ở đây thì đã không cần phải nhắc đến trong bài viết này rồi <(") . Ta nhìn một chút vào cấu trúc cây Segment tree (quản lý *min*) dưới dây:
 
-![](/uploads/segment-tree-extend_img1.png)
+![](/uploads/algo/data-structures/segment-tree-extend/segment-tree-extend_img1.png)
 
 Giả sử ta cần tìm vị trí đầu tiên có giá trị không vượt quá $2$. Ta đứng từ gốc, xét $2$ con trái phải lần lượt có giá trị là $3$ và $2$:
-![](/uploads/segment-tree-extend_img2.png)
+![](/uploads/algo/data-structures/segment-tree-extend/segment-tree-extend_img2.png)
 
 Do ta đang cần tìm giá trị không vượt quá $2$, nên ta chắc chắn kết quả không nằm trong cây con bên trái (vì *min* của cây con này là $3$, suy ra mọi phần tử được quản lý bởi cây con này đều lớn hơn $2$). Và do cây con phải có giá trị là $2$, suy ra kết quả chắc chắn nằm cây con này, ta đệ quy xuống cây con bên trái:
 
-![](/uploads/segment-tree-extend_img3.png)
+![](/uploads/algo/data-structures/segment-tree-extend/segment-tree-extend_img3.png)
 
 Tương tự, cây con này có $2$ cây con trái và phải, cả $2$ đều có giá trị là $2$, nghĩa là luôn tồn tại ít nhất một số có giá trị bằng $2$ trong cả $2$ cây con này, từ đó suy ra cả $2$ cây con đều có thể chứa kết quả ta cần tìm. Nhưng do ta muốn tìm vị trí có $i$ bé nhất, nên ta sẽ ưu tiên đi vào cây con bên trái (cây con này quản lý các vị trí nhỏ hơn các vị trí của cây con phải).
 
-![](/uploads/segment-tree-extend_img4.png)
+![](/uploads/algo/data-structures/segment-tree-extend/segment-tree-extend_img4.png)
 
 Lập luận tương tự thì ta sẽ biết được kết quả nằm ở cây con trái, lúc này cây chỉ quản lý duy nhất một phần tử nên ta có thể kết luận luôn vị trí cần tìm.
 
-Đoạn code mẫu cho việc tìm vị trí đầu tiên không vượt quá số $k$ có thể code như sau, lưu ý, trong code này mình xem mảng $st$ là mảng lưu giá trị của Segment tree, $3$ tham số $root, l, r$ thể hiện cho việc nút $root$ quản lý một đoạn từ $[l, r]$:
+Đoạn code mẫu cho việc tìm vị trí đầu tiên không vượt quá số $k$ có thể code như sau, lưu ý, trong code này mình xem mảng $st$ là mảng lưu giá trị của Segment tree, $3$ tham số $\texttt{root}, l, r$ thể hiện cho việc nút $\texttt{root}$ quản lý một đoạn từ $[l, r]$:
 
 ```cpp
 int query(int root, int l, int r, int k) {
-    if (st[root] > k) return -1; //nếu cả đoạn [l, r] đều lớn hơn k thì không thỏa mãn
-    if (l == r) return l; //khi đoạn có 1 phần tử thì đó là kết quả
+    if (st[root] > k)
+        return -1; //nếu cả đoạn [l, r] đều lớn hơn k thì không thỏa mãn
+    if (l == r)
+        return l; //khi đoạn có 1 phần tử thì đó là kết quả
     int mid = (l + r) / 2;
     if (st[root * 2] <= k) //nếu min cây con trái không vượt quá k
         return query(root * 2, l, mid, k);
     //ngược lại thì kết quả nằm ở bên cây con phải
-    return query(root * 2 + 1, mid + 1, r, k)
+    return query(root * 2 + 1, mid + 1, r, k);
 }
 //cout << query(1, 1, n, k);
 ```
 
-Hàm trên có độ phức tạp là $O(\log{n})$, bởi vì mỗi lần đệ quy chỉ gọi ra một hàm khác (từ một nút chỉ đi qua một nút khác), và số lần gọi đệ quy chính bằng độ cao của Segment tree.
+Hàm trên có độ phức tạp là $\mathcal{O}(\log{n})$, bởi vì mỗi lần đệ quy chỉ gọi ra một hàm khác (từ một nút chỉ đi qua một nút khác), và số lần gọi đệ quy chính bằng độ cao của Segment tree.
 Tới đây ta đã xong **bài toán 2**.
 
-Lưu ý là, với các bài toán mà truy vấn cập nhật là một đoạn (thay vì một phần tử như **bài toán 2**), thì việc cài đặt hàm $query$ ở trên vẫn không đổi, chỉ có thêm vào *lazy* trước khi xét $2$ cây con trái phải, mình xin giành cho bạn đọc vậy.
+Lưu ý là, với các bài toán mà truy vấn cập nhật là một đoạn (thay vì một phần tử như **bài toán 2**), thì việc cài đặt hàm $\texttt{query}$ ở trên vẫn không đổi, chỉ có thêm vào *lazy* trước khi xét $2$ cây con trái phải, mình xin giành cho bạn đọc vậy.
 
 ## Bài toán 3:
 Cho một mảng các số nguyên $a$ có $n$ phần tử. Có $q$ truy vấn có dạng:
@@ -824,9 +837,12 @@ Bài toán này khó hơn **bài toán 2** một chút, đó là có thêm một
 
 ```cpp
 int query(int root, int l, int r, int lowerbound, int k) {
-    if (st[root] > k) return -1; //nếu cả đoạn [l, r] đều lớn hơn k thì không thỏa mãn
-    if (r < lowerbound) return -1; //ta chỉ xét những vị trí không nhỏ hơn lowerbound
-    if (l == r) return l; //khi đoạn có 1 phần tử thì đó là kết quả
+    if (st[root] > k)
+        return -1; //nếu cả đoạn [l, r] đều lớn hơn k thì không thỏa mãn
+    if (r < lowerbound)
+        return -1; //ta chỉ xét những vị trí không nhỏ hơn lowerbound
+    if (l == r)
+        return l; //khi đoạn có 1 phần tử thì đó là kết quả
     int mid = (l + r) / 2;
     int res = -1;
     if (st[root * 2] <= k) //nếu min cây con trái không vượt quá k
@@ -839,9 +855,9 @@ int query(int root, int l, int r, int lowerbound, int k) {
 }
 //cout << query(1, 1, n, l, k);
 ```
-Code này có một chút lạ, khác so với code ở **bài toán 2** một chút, ở **bài toán 2**, thì mỗi lần đệ quy chỉ thăm duy nhất một con trái hoặc phải, nhưng ở code mới này thì một lần đệ quy có thể phải thăm cả $2$ con, lý do là vì có thể một cây con nó có *min* không vượt quá $k$, nhưng vị trí đạt *min* nó có thể nhỏ hơn $lowerbound$, vì thế ta phải tìm ở cây con khác.
+Code này có một chút lạ, khác so với code ở **bài toán 2** một chút, ở **bài toán 2**, thì mỗi lần đệ quy chỉ thăm duy nhất một con trái hoặc phải, nhưng ở code mới này thì một lần đệ quy có thể phải thăm cả $2$ con, lý do là vì có thể một cây con nó có *min* không vượt quá $k$, nhưng vị trí đạt *min* nó có thể nhỏ hơn $\texttt{lowerbound}$, vì thế ta phải tìm ở cây con khác.
 
-Để đánh giá độ phức tạp code trên thì hơi rườm rà một chút, nhưng nó vẫn là $O(\log{n})$. Đại ý là ta có thể chứng minh số lần mà $r < lowerbound$ sẽ không quá $O(\log{n})$.
+Để đánh giá độ phức tạp code trên thì hơi rườm rà một chút, nhưng nó vẫn là $\mathcal{O}(\log{n})$. Đại ý là ta có thể chứng minh số lần mà $r < \texttt{lowerbound}$ sẽ không quá $\mathcal{O}(\log{n})$.
 
 # Bài tập áp dụng:
 

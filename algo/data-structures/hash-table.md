@@ -6,7 +6,7 @@ Bảng băm là một CTDL thường được sử dụng như một từ điể
 
 Không may, không phải tất cả các kiểu dữ liệu đều có thể sắp xếp vào một từ điển đơn giản. Đây chính là lúc mà quá trình băm (hash) ra đời. Hash là quá trình khởi tạo một giá trị khóa (thường là 32 bit hoặc 64 bit) từ một phần dữ liệu. Nó có thể là $n$ bit đầu tiên của dữ liệu, $n$ bit cuối cùng, giá trị mod cho một số nguyên tố nào đó. Dựa theo giá trị hash, dữ liệu được chia vào các **bucket**:
 
-![](/uploads/data_structures_hash_table_hash_function.png)
+![](/uploads/algo/data-structures/data-structures-overview/data_structures_hash_table_hash_function.png)
 
 Giải thích hình minh họa:
 
@@ -26,7 +26,7 @@ Gọi:
 - $n$ là số phần tử ta cần lưu trong Hash table
 - $k$ là số bucket
 
-Giá trị $n/k$ được gọi là **load factor**. Khi load factor nhỏ (xấp xỉ 1), và giá trị của hàm Hash phân bố đều, độ phức tạp của các thao tác trên Hash table là $\mathcal{O}(1)$.
+Giá trị $\frac{n}{k}$ được gọi là **load factor**. Khi load factor nhỏ (xấp xỉ 1), và giá trị của hàm Hash phân bố đều, độ phức tạp của các thao tác trên Hash table là $\mathcal{O}(1)$.
 
 # Hash collision
 
@@ -34,7 +34,7 @@ Giá trị $n/k$ được gọi là **load factor**. Khi load factor nhỏ (xấ
 
 Trường hợp một hash bucket chứa nhiều hơn một giá trị ta gọi đó là **Hash collision** (va chạm). Việc xử lý hash collision rất quan trọng đối với độ hiệu quả của bảng băm. Một trong những phương pháp đơn giản nhất là cài đặt các [danh sách liên kết](/algo/data-structures/array-vs-linked-lists) ở các bucket. Kĩ thuật này được gọi là **Separate chaining**:
 
-![](/uploads/data_structures_hash_table_collision_linked_list.png)
+![](/uploads/algo/data-structures/hash-table/data_structures_hash_table_collision_linked_list.png)
 
 Giải thích hình minh họa:
 
@@ -45,7 +45,7 @@ Giải thích hình minh họa:
 
 Tư tưởng của **Open Addressing** là, khi xảy ra Hash collision, ta lưu vào một vị trí tiếp theo trong bảng băm. Ví dụ:
 
-![](/uploads/data_structures_hash_table_collision_open_addressing.png)
+![](/uploads/algo/data-structures/hash-table/data_structures_hash_table_collision_open_addressing.png)
 
 Trong hình minh họa:
 
@@ -62,12 +62,15 @@ Trong hình minh họa:
 Dưới đây là cài đặt Hash table đơn giản, hỗ trợ thao tác thêm và tìm kiếm. Hash table này sử dụng separate chaining, và dùng vector thay cho linked list để đơn giản.
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 const int P = 1e6 + 3;
 
 struct HashTable {
-    vector< pair<int,int> > h[P];
+    vector<pair<int, int>> h[P];
 
-public:
+  public:
     void insert(int key, int value) {
         int hkey = getHash(key);
         for (auto p : h[hkey]) {
@@ -82,17 +85,17 @@ public:
 
     int find(int key) {
         int hkey = getHash(key);
-        for(auto p : h[hkey]) {
+        for (auto p : h[hkey]) {
             if (p.first == key) {
                 // ton tai key trong Hash table, return value
-                return p.value;
+                return p.second;
             }
         }
         // Khong tim thay
         return 0;
     }
 
-private:
+  private:
     int getHash(int key) {
         // Cho 1 key, tra lai Hash value la key % P
         return key % P;

@@ -24,7 +24,7 @@ Ví dụ, 2, 4, 6 được coi là các phần tử phân biệt khi ta xét t�
 
 Tập hợp là một trong những khái niệm cơ bản trong Toán học.
 
-![](/uploads/number-theory-set-1.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-1.png)
 
 Tập hợp các hình đa giác được biểu diễn trong biểu đồ Venn.
 
@@ -40,9 +40,9 @@ Nếu $A$ là tập con của tập $B$ nhưng không bằng tập $B$, thì $A$
 
 Ví dụ:
 
-- {1,3} $\subset$ {1,2,3,4}
+- $\{1,3\} \subset \{1,2,3,4\}$
 
-- {1,2,3,4} $\subset$ {1,2,3,4}
+- $\{1,2,3,4\} \subset \{1,2,3,4\}$
 
 **Tập rỗng (empty set, kí hiệu $\varnothing$)** là tập con của tất că các tập và tất cả các tập là tập con của chính nó:
 
@@ -50,7 +50,7 @@ Ví dụ:
 
 - $A \subset A$.
 
-![](/uploads/number-theory-set-2.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-2.png)
 
 $A$ là tập con của tập $B$.
 
@@ -64,11 +64,11 @@ Hai tập hợp có thể được ghép vào nhau. Hợp của hai tập hợp 
 
 Ví dụ:
 
-- {1,2} $\cup$ {1,2} = {1,2}
-- {1,2} $\cup$ {2,3} = {1,2,3}
-- {1,2,3} $\cup$ {3,4,5} = {1,2,3,4,5}
+- $\{1,2\} \cup \{1,2\} = \{1,2\}$
+- $\{1,2\} \cup \{2,3\} = \{1,2,3\}$
+- $\{1,2,3\} \cup \{3,4,5\} = \{1,2,3,4,5\}$
 
-![](/uploads/number-theory-set-3.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-3.png)
 
 Hợp của hai tập hợp $A$ và $B$, kí hiệu là $A \cup B$.
 
@@ -90,10 +90,10 @@ Một tập hợp mới có thể được xây dựng từ các phẩn tử mà
 
 Ví dụ:
 
-- {1,2} $\cap$ {1,2} = {1,2}.
-- {1,2} $\cap$ {2,3} = {2}.
+- $\{1,2\} \cap \{1,2\} = \{1,2\}$.
+- $\{1,2\} \cap \{2,3\} = \{2\}$.
 
-![](/uploads/number-theory-set-intersection.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-intersection.png)
 
 Giao của hai tập hợp $A$ và $B$, kí hiệu là $A \cap B$.
 
@@ -119,17 +119,17 @@ Trong một số trường hợp tập $A$ được coi là tập con của mộ
 
 Ví dụ:
 
-- {1,2} $\backslash$ {1,2} = $\varnothing$.
+- $\{1,2\} \backslash \{1,2\} = \varnothing$.
 
-- {1,2,3,4} $\backslash$ {1,3} = {2,4}.
+- $\{1,2,3,4\} \backslash \{1,3\} = \{2,4\}$.
 
 - Nếu $U$ là tập hợp các số nguyên, $E$ là tập hợp các số nguyên chẵn, $O$ là tập hợp các số nguyên lẻ, khi đó $U \backslash E = E' = O$.
 
-![](/uploads/number-theory-set-diff-1.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-diff-1.png)
 
 Hiệu của hai tập hợp $A$ và $B$.
 
-![](/uploads/number-theory-set-diff-2.png)
+![](/uploads/translate/he/Number-Theory-5/number-theory-set-diff-2.png)
 
 Phần bù của $A$ trong $U$.
 
@@ -156,7 +156,7 @@ Kí hiệu $\|A\|$ là số phần tử của tập $A$ (hay còn được gọi
 Một vài quy tắc về tổ hợp cần nhớ:
 
 1. **Quy tắc nhân (The Rule of Product):**
-Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp gồm một phần tử thuộc tập $A$ và một phần tử thuộc tập $B$ là $\|A\|.\|B\|$
+Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp gồm một phần tử thuộc tập $A$ và một phần tử thuộc tập $B$ là $\|A\| \times \|B\|$
 
 2. **Quy tắc cộng (The Rule of Sum):** Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn một phần tử thuộc tập $A$ hoặc thuộc tập $B$ là $\|A\|+\|B\|$ nếu hai tập $A$ và $B$ rời nhau.
 
@@ -164,8 +164,9 @@ Giả sử có hai tập hợp $A$ và $B$. Khi đó số cách chọn cặp g�
 
 Trong trường hợp tổng quát, ta có:
 
-$\|\bigcup_{i=1}^n A_i\| = \sum_{i=1}^n \|A_i\| - \sum_{i \ne j} \|A_i \cap A_j\| + \|A_1 \cap A_2 \cap A_3\| + \|A_1 \cap A_2 \cap A_4\| + ... + \|A_{n-2} \cap A_{n-1} \cap A_n\| - ... -$
-$ (-1)^n\|A_1 \cap A_2 \cap ... \cap A_n\|$
+$$
+\|\bigcup_{i=1}^{n} A_i\| = \sum_{i=1}^{n} \|A_i\| - \sum_{i \ne j} \|A_i \cap A_j\| + \|A_1 \cap A_2 \cap A_3\| + \|A_1 \cap A_2 \cap A_4\| + \cdots + \|A_{n-2} \cap A_{n-1} \cap A_n\| - \cdots - (-1)^{n}\|A_1 \cap A_2 \cap \cdots \cap A_n\|
+$$
 
 Lí do ta phải cộng trừ giao của một số tập hợp vì nếu ta không làm như vậy, ta có thể đếm nhiều lần các phần tử xuất hiện tại nhiều tập hợp khác nhau.
 
@@ -181,13 +182,15 @@ Ví dụ: Trong trận chung kết bóng đá phải phân định thắng thua 
 
 Mỗi danh sách có xếp thứ tự 5 cầu thủ được gọi là một chỉnh hợp chập 5 của 11 cầu thủ.
 
-Kí hiệu số chỉnh hợp chập $k$ của $n$ phần tử là $A_n^k$.
+Kí hiệu số chỉnh hợp chập $k$ của $n$ phần tử là $A_n^{k}$.
 
 Số chỉnh hợp chập $k$ của $n$ phần tử được tính bởi công thức
 
-$A_n^k = n(n-1)...(n-k+1) = \frac{n!}{(n-k)!}$.
+$$
+A_n^{k} = n(n-1) \cdots (n-k+1) = \frac{n!}{(n-k)!}
+$$
 
-với $n!=1.2.3...n$ và $0! = 1$.
+với $n!=1 \times 2 \times 3 \cdots n$ và $0! = 1$.
 
 ### Hoán vị không lặp
 
@@ -197,15 +200,19 @@ Kí hiệu số hoán vị của $n$ phần tử là $P_n$.
 
 Số hoán vị của $n$ được tính bởi công thức:
 
-$P_n = n!$.
+$$
+P_n = n!
+$$
 
 ### Hoán vị lặp (Permutation with Repetition)
 
 Hoán vị trong đó mỗi phần tử xuất hiện ít nhất một lần được gọi là hoán vị lặp.
 
-Số hoán vị lặp của $n$ phần tử thuộc $k$ loại, mà các phần tử loại $i$ ($1 \leq i \leq k$) xuất hiện $n_i$ lần được kí hiệu là $P(n_1,n_2,...,n_k)$ và được tính bằng công thức
+Số hoán vị lặp của $n$ phần tử thuộc $k$ loại, mà các phần tử loại $i$ ($1 \leq i \leq k$) xuất hiện $n_i$ lần được kí hiệu là $P(n_1,n_2,\ldots,n_k)$ và được tính bằng công thức
 
-$P(n_1,n_2,...,n_k) = \frac{n!}{n_1!n_2!...n_k!}$
+$$
+P(n_1,n_2,\ldots,n_k) = \frac{n!}{n_1!n_2! \cdots n_k!}
+$$
 
 ## Các đối tượng tổ hợp (Combinatorial Objects)
 
@@ -215,15 +222,19 @@ Một **song ánh (bijection)** là tương ứng một-một giữa hai tập h
 
 Trong tổ hợp, ta thường phải chọn một tập các phần tử nào đó và không quan tâm đến thứ tự của chúng. Số lượng tập con $k$ phần tử của một tập $n$ phần tử (còn gọi là số tổ hợp chập $k$ của $n$ phần tử) là:
 
-$\binom{n}{k} = C^k_n = \frac{n!}{k!(n-k)!}$
+$$
+\binom{n}{k} = C^{k}_n = \frac{n!}{k!(n-k)!}
+$$
 
 ### Tổ hợp có lặp (Combinations with repetition)
 
 Giả sử ta cần chọn $k$ phần tử từ một tập $n$ phần tử, không quan trọng thứ tự và một phần tử có thể được chọn nhiều lần. Khi đó, số cách chọn là số tổ hợp lặp chập $k$ của $n$ phần tử và có giá trị là:
 
-$\overline{C^k_n} = \binom{n+k-1}{k} = \frac{(n+k-1)!}{k!(n-1)!}$
+$$
+\overline{C^{k}_n} = \binom{n+k-1}{k} = \frac{(n+k-1)!}{k!(n-1)!}
+$$
 
-Một tính chất thú vị về số tổ hợp có lặp: $\overline{C^k_n}$ là số nghiệm nguyên không âm của phương trình: $x_1+x_2+...+x_n = k$ với $k$ là hằng số nguyên dương.
+Một tính chất thú vị về số tổ hợp có lặp: $\overline{C^{k}_n}$ là số nghiệm nguyên không âm của phương trình: $x_1+x_2+\cdots+x_n = k$ với $k$ là hằng số nguyên dương.
 
 ## Vector nhị phân (Binary Vectors)
 
@@ -231,11 +242,11 @@ Vector nhị phân là kiểu dữ liệu ``<bitset>`` trong C++ STL.
 
 Ngoài ra, các tính chất về tổ hợp của vector nhị phân cũng rất quan trọng. Sau đây là một số tính chất hay được sử dụng của vector nhị phân.
 
-1. Số lượng vector nhị phân độ dài $n$ là $2^n$.
+1. Số lượng vector nhị phân độ dài $n$ là $2^{n}$.
 
 2. Số lượng vector nhị phân độ dài $n$ có $k$ số 1 là $\binom{n}{k}$, vì ta chọn $k$ vị trí có số 1 trong $n$ vị trí.
 
-3. Số lượng cặp vector nhị phân $(a;b)$ (có quan tâm đến thứ tự) thỏa mãn điều kiện khoảng cách giữa $a$ và $b$ là $k$ là $\binom{n}{k}.2^n$.
+3. Số lượng cặp vector nhị phân $(a;b)$ (có quan tâm đến thứ tự) thỏa mãn điều kiện khoảng cách giữa $a$ và $b$ là $k$ là $\binom{n}{k} \times 2^{n}$.
 
 Khoảng cách giữa hai vector nhị phân $a$ và $b$ là số lượng giá trị $i$ nguyên không âm thỏa mãn $a_i \ne b_i$
 
@@ -247,9 +258,9 @@ Hệ thức truy hồi là một phương trình dùng để xác định dãy s
 
 - **Hàm đa thức (Polynomials)**: $a_n=a_{n-1}+1, a_1=1 \rightarrow a_n=n$.
 
-- **Hàm mũ (Exponentials)**: $a_n=2a_{n-1}, a_1=2 \rightarrow a_n=2^n$.
+- **Hàm mũ (Exponentials)**: $a_n=2a_{n-1}, a_1=2 \rightarrow a_n=2^{n}$.
 
-- Giai thừa: $a_n=n.a_{n-1}, a_1 = 1 \rightarrow a_n=n!$.
+- Giai thừa: $a_n=n \times a_{n-1}, a_1 = 1 \rightarrow a_n=n!$.
 
 Ta thường dễ dàng tìm được hệ thức truy hồi để giải các bài toán đếm. Giải hệ thức truy hồi để có được dạng công thức cần tìm là cả một nghệ thuật, tuy vậy ta có thể sử dụng trực tiếp hệ thức truy hồi để giải một số bài toán đơn giản.
 
@@ -259,7 +270,7 @@ Hệ số nhị thức $\binom{n}{k}$ được sử dụng để đếm số cá
 
 ### Đếm số đường đi trên lưới (Paths Across a Grid)
 
-Có bao nhiêu cách để đi từ góc trái trên của một bảng $n * m$ ô đến góc phải dưới của ô đó, nếu ta chỉ được phép đi về bên phải hoặc đi xuống dưới. Ta thấy mọi đường đi hợp lệ có $n+m$ bước, và hai đường đi khác nhau nếu và chỉ nếu chúng có một bước đi xuống dưới khác nhau, vậy ta có $\binom{n+m}{n}$ cách đi.
+Có bao nhiêu cách để đi từ góc trái trên của một bảng $n \times m$ ô đến góc phải dưới của ô đó, nếu ta chỉ được phép đi về bên phải hoặc đi xuống dưới. Ta thấy mọi đường đi hợp lệ có $n+m$ bước, và hai đường đi khác nhau nếu và chỉ nếu chúng có một bước đi xuống dưới khác nhau, vậy ta có $\binom{n+m}{n}$ cách đi.
 
 Tính hệ số nhị thức có thể gây tràn số ở các bước trung gian, vì vậy ta nên tính hệ số nhị thức bằng công thức: $\binom{n}{k}=\binom{n-1}{k-1}+\binom{n-1}{k}$
 
@@ -279,27 +290,24 @@ using namespace std;
 const int MOD = 1e9 + 7;
 long long ncr[5005][5005];
 
-void precompute()
-{
-	int k;
-	for (int i = 0; i < 5001; i++)
-	{
-		ncr[i][0] = ncr[i][i] = 1;
-		k = i >> 1;
-		for (int j = 1; j < k + 1; j++)
-			ncr[i][j] = ncr[i][i - j] = (ncr[i - 1][j] + ncr[i - 1][j - 1]) % MOD;
-	}
+void precompute() {
+    int k;
+    for (int i = 0; i < 5001; i++) {
+        ncr[i][0] = ncr[i][i] = 1;
+        k = i >> 1;
+        for (int j = 1; j < k + 1; j++)
+            ncr[i][j] = ncr[i][i - j] = (ncr[i - 1][j] + ncr[i - 1][j - 1]) % MOD;
+    }
 }
 
-int main()
-{
-	precompute();
-	cout << ncr[4892][231] << endl;
-	return 0;
+int main() {
+    precompute();
+    cout << ncr[4892][231] << endl;
+    return 0;
 }
 ```
 
-Chương trình trên chỉ tính được $\binom{n}{k}$ với $n$ nhỏ. Bạn có thể tham khảo chương trình sau để tính $\binom{n}{k} \% p$ với $p$ là một số nguyên tố và $n$ lớn.
+Chương trình trên chỉ tính được $\binom{n}{k}$ với $n$ nhỏ. Bạn có thể tham khảo chương trình sau để tính $\binom{n}{k} \bmod p$ với $p$ là một số nguyên tố và $n$ lớn.
 
 Chú ý: Code sau sử dụng nghịch đảo modulo, đã được giới thiệu ở bài viết [Số học 4.5](/algo/math/modular-inverse)
 
@@ -324,46 +332,45 @@ const int MOD = 1e9 + 7;
 
 LL fac[N], ifac[N];
 
-LL PowerMod(LL a, LL n){
-	LL ret = 1;
-	while (n){
-		if (n & 1){
-			ret *= a;
-			ret %= MOD;
-		}
-		a *= a;
-		a %= MOD;
-		n /= 2;
-	}
-	return ret;
+LL PowerMod(LL a, LL n) {
+    LL ret = 1;
+    while (n) {
+        if (n & 1) {
+            ret *= a;
+            ret %= MOD;
+        }
+        a *= a;
+        a %= MOD;
+        n /= 2;
+    }
+    return ret;
 }
 
-inline void precompute(){
-	int i;
-	fac[0] = 1;
-	for (i = 1; i < N; i++){
-		fac[i] = (i * fac[i - 1]) % MOD;
-	}
-	ifac[N - 1] = PowerMod(fac[N - 1], MOD - 2);
-	for (i = N - 2; i >= 0; i--){
-		ifac[i] = ((i + 1) * ifac[i + 1]) % MOD;
-	}
+inline void precompute() {
+    int i;
+    fac[0] = 1;
+    for (i = 1; i < N; i++) {
+        fac[i] = (i * fac[i - 1]) % MOD;
+    }
+    ifac[N - 1] = PowerMod(fac[N - 1], MOD - 2);
+    for (i = N - 2; i >= 0; i--) {
+        ifac[i] = ((i + 1) * ifac[i + 1]) % MOD;
+    }
 }
 
-LL com(int n, int r){
-	LL ret = fac[n];
-	ret *= ifac[r];
-	ret %= MOD;
-	ret *= ifac[n - r];
-	ret %= MOD;
-	return ret;
+LL com(int n, int r) {
+    LL ret = fac[n];
+    ret *= ifac[r];
+    ret %= MOD;
+    ret *= ifac[n - r];
+    ret %= MOD;
+    return ret;
 }
 
-int main()
-{
-	precompute();
-	cout << com(4892,231) << endl;
-	return 0;
+int main() {
+    precompute();
+    cout << com(4892, 231) << endl;
+    return 0;
 }
 ```
 
@@ -385,15 +392,15 @@ Các ứng dụng của dãy số Catalan:
 
 - $C_n$ còn là số cây nhị phân đầy đủ có $n$ là (một cây nhị phân được gọi là đầy đủ nếu mọi nút của nó có hai nút con hoặc không có nút con nào).
 
-![](https://upload.wikimedia.org/wikipedia/commons/0/01/Catalan_number_binary_tree_example.png)
+![](/uploads/translate/he/Number-Theory-5/Catalan_number_binary_tree_example.png)
 
 [Và còn nhiều ứng dụng khác...](https://en.wikipedia.org/wiki/Catalan_number#Applications_in_combinatorics)
 
 ### Số Euler
 
-Số Euler $\big \langle^n_k \big \rangle$ là số lượng hoán vị các số từ 1 đến $n$ mà có đúng $k$ phần tử lớn hơn phần tử đứng trước nó. Hệ thức truy hồi tính số Euler được lập bằng cách xét mỗi hoán vị $p$ của 1,2,...,$n-1$. Có $n$ vị trí để thêm số $n$ vào hoán vị, và một cách thêm số $n$ có thể làm tăng số phần tử lớn hơn phần tử đứng trước nó của $p$, hoặc bảo toàn số phần tử lớn hơn phần tử đứng trước nó. Vì vậy,
+Số Euler $\big \langle^{n}_k \big \rangle$ là số lượng hoán vị các số từ 1 đến $n$ mà có đúng $k$ phần tử lớn hơn phần tử đứng trước nó. Hệ thức truy hồi tính số Euler được lập bằng cách xét mỗi hoán vị $p$ của 1,2,...,$n-1$. Có $n$ vị trí để thêm số $n$ vào hoán vị, và một cách thêm số $n$ có thể làm tăng số phần tử lớn hơn phần tử đứng trước nó của $p$, hoặc bảo toàn số phần tử lớn hơn phần tử đứng trước nó. Vì vậy,
 
-![](/uploads/number-theory-euler-number.gif)
+![](/uploads/translate/he/Number-Theory-5/number-theory-euler-number.gif)
 
 ### Bài toán phân tích một số nguyên (Integer Partitions)
 

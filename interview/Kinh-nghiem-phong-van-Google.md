@@ -132,36 +132,39 @@ Một số chú ý trong quá trình phỏng vấn:
 - Bạn có thể trình bày một thuật toán tối ưu, và khi code xin phép code cách đơn giản hơn. Nói rõ với người phỏng vấn là bạn không tự tin code được thuật toán tối ưu.
 - Khi code, sử dụng tên biến rõ ràng, dễ hiểu. Hạn chế đặt tên biến gồm 1 ký tự.
 
-Mình sẽ lấy ví dụ về mặt cài đặt bằng bài toán tìm xâu con đối xứng dài nhất với độ phức tạp $\mathcal{O}(N^2)$ ở phần 1:
+Mình sẽ lấy ví dụ về mặt cài đặt bằng bài toán tìm xâu con đối xứng dài nhất với độ phức tạp $\mathcal{O}(N^{2})$ ở phần 1:
 
 ```cpp
-int expand(const string& s, int left, int right) {
-  // given a palindrome substring: s[left..right], we expand [left, right] to
-  // find the maximum palindrome substring with center [left..right].
-  // returns: length of maximum palindrome substring with center [left..right].
+#include <string>
+using namespace std;
 
-  while (left > 0 && right + 1 < s.length() && s[left-1] == s[right+1]) {
-    left--;
-    right++;
-  }
-  return right - left + 1;
+int expand(const string &s, int left, int right) {
+    // given a palindrome substring: s[left..right], we expand [left, right] to
+    // find the maximum palindrome substring with center [left..right].
+    // returns: length of maximum palindrome substring with center [left..right].
+
+    while (left > 0 && right + 1 < s.length() && s[left - 1] == s[right + 1]) {
+        left--;
+        right++;
+    }
+    return right - left + 1;
 }
 
 int max_palindrome_substring(string s) {
-  // Given string s, find its longest palindrome substring.
-  // Returns: length of longest palindrome substring.
-  int result = 0;  // our result
+    // Given string s, find its longest palindrome substring.
+    // Returns: length of longest palindrome substring.
+    int result = 0; // our result
 
-  for (int center = 0; center < s.length(); center++) {
-    // odd-length substrings
-    result = max(result, expand(s, center, center));
+    for (int center = 0; center < s.length(); center++) {
+        // odd-length substrings
+        result = max(result, expand(s, center, center));
 
-    // even-length substrings
-    if (center + 1 < s.length() && s[center] == s[center+1]) {
-      result = max(result, expand(s, center, center+1));
+        // even-length substrings
+        if (center + 1 < s.length() && s[center] == s[center + 1]) {
+            result = max(result, expand(s, center, center + 1));
+        }
     }
-  }
-  return result;
+    return result;
 }
 ```
 

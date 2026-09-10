@@ -16,9 +16,9 @@ Tiếp nối chuỗi bài viết về các thuật toán chia căn, trong bài v
 
 # Bài toán
 
-Cho một dãy số $A$ gồm $N$ phần tử. Cần thực hiện $Q$ truy vấn, mỗi truy vấn $(i, j)$ yêu cầu tìm $mode(A_i, ..., A_j)$. (Mode của một tập hợp là giá trị xuất hiện nhiều lần nhất trong tập hợp đó). Giới hạn: $N, Q, A_i \le 10^5$.
+Cho một dãy số $A$ gồm $N$ phần tử. Cần thực hiện $Q$ truy vấn, mỗi truy vấn $(i, j)$ yêu cầu tìm $\operatorname{mode}(A_i, \ldots, A_j)$. (Mode của một tập hợp là giá trị xuất hiện nhiều lần nhất trong tập hợp đó). Giới hạn: $N, Q, A_i \le 10^{5}$.
 
-Khi đọc đề một bài toán truy vấn kiểu này, có lẽ CTDL đầu tiên mà các bạn nghĩ đến là Interval Tree. Nhưng có điều gì đó không ổn trong bài này: Khi có thông tin của 2 nút con $[l, mid]$ và $[mid+1, r]$, rất khó để tìm được bất kỳ thông tin hữu ích nào của $[l, r]$.
+Khi đọc đề một bài toán truy vấn kiểu này, có lẽ CTDL đầu tiên mà các bạn nghĩ đến là Interval Tree. Nhưng có điều gì đó không ổn trong bài này: Khi có thông tin của 2 nút con $[l, \texttt{mid}]$ và $[\texttt{mid}+1, r]$, rất khó để tìm được bất kỳ thông tin hữu ích nào của $[l, r]$.
 
 # Duyệt
 
@@ -49,13 +49,13 @@ Ta có thể cải tiến được như sau:
 
 Sau khi trả lời truy vấn $[l_1, r_1]$, để trả lời truy vấn $[l_2, r_2]$, bạn chỉ cần thay đổi mảng đếm một cách phù hợp. Cụ thể:
 
-- Nếu $l_2 > l_1$, giảm số lần xuất hiện của $A_{l_1}, ..., A_{l_2-1}$
-- Nếu $l_2 < l_1$, tăng số lần xuất hiện của $A_{l_2}, ..., A_{l_1-1}$
+- Nếu $l_2 > l_1$, giảm số lần xuất hiện của $A_{l_1}, \ldots, A_{l_2-1}$
+- Nếu $l_2 < l_1$, tăng số lần xuất hiện của $A_{l_2}, \ldots, A_{l_1-1}$
 - Tương tự với $r_1$ và $r_2$.
 
 Để cập nhật số lần xuất hiện lớn nhất thì có thể dùng thêm set.
 
-Như vậy, độ phức tạp của ta là tổng $\|l_i - l_{i-1}\| + \|r_i - r_{i-1}\|$, nhân thêm $\mathcal{O}(logN)$ để đếm và tìm phần tử lớn nhất của mảng đếm.
+Như vậy, độ phức tạp của ta là tổng $\|l_i - l_{i-1}\| + \|r_i - r_{i-1}\|$, nhân thêm $\mathcal{O}(\log N)$ để đếm và tìm phần tử lớn nhất của mảng đếm.
 
 # Thuật toán Mo
 
@@ -67,12 +67,11 @@ Thứ tự các truy vấn được định nghĩa qua hàm so sánh dưới đ�
 S = sqrt(N);
 bool cmp(Query A, Query B) // so sánh 2 truy vấn
 {
-  if (A.l / S != B.l / S) {
-    return A.l / S < B.l / S;
-  }
-  return A.r < B.r;
+    if (A.l / S != B.l / S) {
+        return A.l / S < B.l / S;
+    }
+    return A.r < B.r;
 }
-
 ```
 
 **Giải thích**:
@@ -100,19 +99,19 @@ Sử dụng Mo's Algorithm, bạn đã có thể thu được một thuật toá
 
 - Sort tất cả các truy vấn theo Mo's Algorithm.
 - Gọi $S(N)$ là một mảng gồm $N$ set (có thể cài bằng hash table (bảng băm)). $S(i)$ chứa tất cả các số xuất hiện đúng $i$ lần.
-- Gọi $A(val)$ = số lần xuất hiện của val.
-- Đặt $max$ là chỉ số lớn nhất của mảng $S$ mà $S(max)$ khác rỗng.
-- Ta sẽ thêm và xóa một số trong O(1) như sau:
+- Gọi $A(\texttt{val})$ = số lần xuất hiện của val.
+- Đặt $\texttt{max}$ là chỉ số lớn nhất của mảng $S$ mà $S(\texttt{max})$ khác rỗng.
+- Ta sẽ thêm và xóa một số trong $\mathcal{O}(1)$ như sau:
     - Thêm 1 số $v$:
         - Xóa $v$ khỏi $S(A(v))$.
         - Tăng $A(v)$ thêm 1.
         - Thêm $v$ vào $S(A(v))$.
-        - Nếu $A(v) > max$, cập nhật $max$.
+        - Nếu $A(v) > \texttt{max}$, cập nhật $\texttt{max}$.
     - Xóa 1 số $v$:
         - Xóa $v$ khỏi $S(A(v))$.
         - Giảm $A(v)$ đi 1.
         - Thêm $v$ vào $S(A(v))$.
-        - Nếu $S(max)$ rỗng, giảm $max$ đi 1.
+        - Nếu $S(\texttt{max})$ rỗng, giảm $\texttt{max}$ đi 1.
 
 Vì tổng các thao tác thêm và xóa khi áp dụng Mo's Algorithm không quá $\mathcal{O}\left((N + Q)  \sqrt{N}\right)$, ta thu được một thuật toán với độ phức tạp này.
 
@@ -121,7 +120,7 @@ Vì tổng các thao tác thêm và xóa khi áp dụng Mo's Algorithm không qu
 
 Với mục đích làm bài toán khó hơn, ta xét trường hợp mà CTDL của ta chỉ cho phép thực hiện đúng 2 thao tác:
 
-- **Insert**: Thêm 1 phần tử vào CTDL, thao tác này có độ phức tạp là $\mathcal{O}(logN)$ hoặc $\mathcal{O}(1)$.
+- **Insert**: Thêm 1 phần tử vào CTDL, thao tác này có độ phức tạp là $\mathcal{O}(\log N)$ hoặc $\mathcal{O}(1)$.
 - **Snapshot**: Lưu lại trạng thái hiện tại của CTDL. Thao tác này có độ phức tạp $\mathcal{O}(N)$.
 - **Rollback**: Hồi phục lại trạng thái của CTDL ở lần Snapshot cuối. Thao tác này cũng có độ phức tạp là $\mathcal{O}(N)$.
 

@@ -16,7 +16,7 @@ Trong **hình học tính toán (computational geometry)**, **bao lồi (convex 
 
 Theo một cách trực quan, nếu ta coi những điểm trong một tập hợp là những cái đinh đóng trên một tấm gỗ, bao lồi của tập điểm đó có viền ngoài tạo bởi sợi dây chun mắc vào những cái đinh sau khi bị kéo căng về các phía.
 
-![](/uploads/algo_geometry_convex_hull_nail.png)
+![](/uploads/translate/wcipeg/Convex-Hull/algo_geometry_convex_hull_nail.png)
 
 # Các thuật toán tìm bao lồi trên mặt phẳng
 Bài toán tìm bao lồi của một tập điểm trên mặt phẳng là một trong những bài toán được nghiên cứu nhiều nhất trong hình học tính toán và có rất nhiều thuật toán để giải bài toán này. Sau đây là ba thuật toán phổ biến nhất, được giới thiệu theo thứ tự tăng dần về độ khó.
@@ -29,7 +29,7 @@ Bài toán tìm bao lồi của một tập điểm trên mặt phẳng là mộ
 
 **Thuật toán bọc gói quà**, hay còn gọi là thuật toán **Jarvis march**, là một trong những thuật toán tìm bao lồi đơn giản và dễ hiểu nhất. Tên thuật toán xuất phát từ sự tương tự của thuật toán với việc đi bộ xung quanh các điểm và cầm theo một dải băng gói quà.
 
-|![](/uploads/algo_geometry_convex_hull_gift_wrapping_algorithm.png)|
+|![](/uploads/translate/wcipeg/Convex-Hull/algo_geometry_convex_hull_gift_wrapping_algorithm.png)|
 |-|
 |source: [wikipedia - Gift wrapping algorithm](https://en.wikipedia.org/wiki/Gift_wrapping_algorithm)|
 
@@ -47,7 +47,7 @@ Thuật toán này được mô tả như sau:
 
 Với mỗi lần tìm $Q$, ta duyệt qua tất cả các điểm $R$ trong tập và tính góc tạo bởi $\vec{v}$ và $\overrightarrow{PR}$, vì vậy độ phức tạp của mỗi lần tìm điểm là $\mathcal{O}(n)$, với $n$ là số lượng điểm trong tập. Gọi số điểm thuộc bao lồi là $h$, Khi đó độ phức tạp của thuật toán là $\mathcal{O}(nh)$
 
-|![](https://upload.wikimedia.org/wikipedia/commons/9/9c/Animation_depicting_the_gift_wrapping_algorithm.gif)|
+|![](/uploads/translate/wcipeg/Convex-Hull/Animation_depicting_the_gift_wrapping_algorithm.gif)|
 |-|
 |Minh hoạ của thuật toán bọc gói quà<br> source: [wikipedia - Gift wrapping algorithm](https://en.wikipedia.org/wiki/Gift_wrapping_algorithm)|
 
@@ -62,7 +62,8 @@ const double EPS = 1e-9;
 // Kiểu điểm
 struct Point {
     int x, y;
-    Point(int x = 0, int y = 0) : x(x), y(y) {}
+    Point(int x = 0, int y = 0) : x(x), y(y) {
+    }
     bool operator==(const Point &o) {
         return x == o.x && y == o.y;
     }
@@ -89,11 +90,13 @@ double calcAngle(const Point &A, const Point &B) {
 
 // Trả về bao lồi với thứ tự các điểm được liệt kê cùng chiều kim đồng hồ
 vector<Point> convexHull(vector<Point> p, int n) {
-    if (n <= 2) return p;
+    if (n <= 2)
+        return p;
 
     // Đưa điểm trái nhất lên đầu tập
     for (int i = 1; i < p.size(); ++i) {
-        if (p[0].x > p[i].x) swap(p[0], p[i]);
+        if (p[0].x > p[i].x)
+            swap(p[0], p[i]);
     }
 
     // Tập bao lồi
@@ -111,28 +114,28 @@ vector<Point> convexHull(vector<Point> p, int n) {
         Point P0 = (hull.size() == 1 ? Point(P.x, P.y - 1) : hull[hull.size() - 2]);
 
         // Q là đỉnh tiếp theo của tập hull
-        Point Q      = p[0];
+        Point Q = p[0];
         double angle = calcAngle(P0 - P, Q - P);
 
         for (int i = 1; i < n; ++i) {
             if (Q == P || Q == P0) {
-                Q     = p[i];
+                Q = p[i];
                 angle = calcAngle(P0 - P, Q - P);
                 continue;
             }
-            if (p[i] == P || p[i] == P0) continue;
+            if (p[i] == P || p[i] == P0)
+                continue;
 
             double newAngle = calcAngle(P0 - P, p[i] - P);
             // Nếu góc (P0, P, Q) nhỏ hơn góc (P0, P, p[i]) thì gán Q = p[i]
             if (abs(angle - newAngle) > EPS) {
                 if (angle < newAngle) {
-                    Q     = p[i];
+                    Q = p[i];
                     angle = newAngle;
                 }
-            }
-            else {
+            } else {
                 if ((Q - P).length() > (p[i] - P).length()) {
-                    Q     = p[i];
+                    Q = p[i];
                     angle = newAngle;
                 }
             }
@@ -161,7 +164,7 @@ Thuật toán Graham có độ phức tạp trong trường hợp xấu nhất n
 
 Về độ phức tạp thuật toán, ta thấy bước sắp xếp các điểm có độ phức tạp $\mathcal{O}(n\log{n})$. Mỗi điểm được thêm/xoá nhiều nhất một lần nên tổng độ phức tạp của các bước thêm/xoá điểm là $\mathcal{O}(n)$. Vậy độ phức tạp của thuật toán Graham là $\mathcal{O}(n\log{n})$, phù hợp cho hầu hết các bài toán.
 
-|![](/uploads/algo_geometry_convex_hull_graham_scan.gif)|
+|![](/uploads/translate/wcipeg/Convex-Hull/algo_geometry_convex_hull_graham_scan.gif)|
 |-|
 |Minh hoạ của thuật toán Graham<br> source: [wikipedia - Graham scan](https://en.wikipedia.org/wiki/Graham_scan)|
 
@@ -183,8 +186,10 @@ long long cross(const Point &A, const Point &B, const Point &C) {
 // A -> B -> C đi theo thứ tự theo chiều kim đồng hồ (-1), thẳng hàng (0), ngược chiều kim đồng hồ (1)
 int ccw(const Point &A, const Point &B, const Point &C) {
     long long S = cross(A, B, C);
-    if (S < 0) return -1;
-    if (S == 0) return 0;
+    if (S < 0)
+        return -1;
+    if (S == 0)
+        return 0;
     return 1;
 }
 
@@ -200,8 +205,10 @@ vector<Point> convexHull(vector<Point> p, int n) {
     // Sắp xếp các điểm I theo góc tạo bởi trục hoành theo chiều dương và OI
     sort(p.begin() + 1, p.end(), [&p](const Point &A, const Point &B) {
         int c = ccw(p[0], A, B);
-        if (c > 0) return true;
-        if (c < 0) return false;
+        if (c > 0)
+            return true;
+        if (c < 0)
+            return false;
         return A.x < B.x || (A.x == B.x && A.y < B.y);
     });
 
@@ -223,7 +230,7 @@ vector<Point> convexHull(vector<Point> p, int n) {
 ## Thuật toán chuỗi đơn điệu (Monotone chain algorithm)
 Thuật toán chuỗi đơn điệu vừa dễ cài đặt, vừa là thuật toán nhanh nhất trong $3$ thuật toán được giới thiệu trong bài này. Thuật toán dựa trên việc tìm hai chuỗi đơn điệu của bao lồi: bao trên (hay chuỗi trên) và bao dưới (hay chuỗi dưới).
 
-|![](/uploads/algo_geometry_convex_hull_UpperAndLowerConvexHulls.png)|
+|![](/uploads/translate/wcipeg/Convex-Hull/algo_geometry_convex_hull_UpperAndLowerConvexHulls.png)|
 |-|
 |source: [wikibooks - Monotone chain](https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain)|
 
@@ -240,7 +247,7 @@ Sau khi xét hết các điểm, $H$ sẽ chứa toàn bộ phần bao trên. Sa
 
 Thuật toán này cũng có độ phức tạp $\mathcal{O}(n\log{n})$. Thuật toán chuỗi đơn điệu được khuyên dùng ở mọi bài toán tìm bao lồi, do nó đơn giản hơn thuật toán Graham và nhanh hơn một chút (do ta không phải tính góc).
 
-|![](/uploads/algo_geometry_convex_hull_monotone_algorithm.gif)|
+|![](/uploads/translate/wcipeg/Convex-Hull/algo_geometry_convex_hull_monotone_algorithm.gif)|
 |-|
 |Minh hoạ của thuật toán chuỗi đơn điệu<br> source: [wikibooks - Monotone chain](https://en.wikibooks.org/wiki/Algorithm_Implementation/Geometry/Convex_hull/Monotone_chain)|
 
@@ -264,7 +271,8 @@ bool ccw(const Point &A, const Point &B, const Point &C) {
 vector<Point> convexHull(vector<Point> p, int n) {
     // Sắp xếp các điểm theo tọa độ x, nếu bằng nhau sắp xếp theo y
     sort(p.begin(), p.end(), [](const Point &A, const Point &B) {
-        if (A.x != B.x) return A.x < B.x;
+        if (A.x != B.x)
+            return A.x < B.x;
         return A.y < B.y;
     });
 
@@ -289,7 +297,8 @@ vector<Point> convexHull(vector<Point> p, int n) {
     }
 
     // Xoá đỉểm đầu được lặp lại ở cuối
-    if (n > 1) hull.pop_back();
+    if (n > 1)
+        hull.pop_back();
 
     return hull;
 }
@@ -326,13 +335,13 @@ Các thuật toán trên hoạt động tốt trong trường hợp lí tưởng
 - Diện tích bao lồi bằng $0$. Có hai trường hợp như vậy: tất cả các điểm đều trùng nhau, hoặc tất cả điểm đều thẳng hàng.
 
 # Bao lồi 3D
-![](/uploads/algo_geometry_convex_hull_3d.gif)
+![](/uploads/translate/wcipeg/Convex-Hull/algo_geometry_convex_hull_3d.gif)
 
-Tìm bao lồi trong 3D thực sự là một bài toán khó. Bài toán này chắc chắn sẽ không bao giờ được ra trong IOI, và học sinh trung học không cần phải đi sâu vào vấn đề này. Tuy nhiên, có một thuật toán $\mathcal{O}(n^2)$  khá là đơn giản:
+Tìm bao lồi trong 3D thực sự là một bài toán khó. Bài toán này chắc chắn sẽ không bao giờ được ra trong IOI, và học sinh trung học không cần phải đi sâu vào vấn đề này. Tuy nhiên, có một thuật toán $\mathcal{O}(n^{2})$  khá là đơn giản:
 - Đầu tiên, ta tìm hình chiếu của các điểm trên mặt phẳng $Oxy$, và tìm một cạnh chắc chắn thuộc bao bằng cách lấy một điểm có tung độ lớn nhất rồi tìm điểm kia bằng cách chạy vòng lặp của thuật toán bọc gói một lần. Đây là phần đầu tiên của bao lồi.
 - Sau đó, xét cạnh vừa tìm được, tìm một điểm thứ ba để tạo thành một mặt tam giác của bao lồi. Ta chọn điểm thứ ba bằng cách tìm điểm để tất cả các điểm khác nằm ở phía bên phải của mặt tam giác đó (giống như thuật toán bọc gói, ta tìm cạnh để tất cả các điểm khác đều nằm về phía bên phải cạnh đó).
 - Bây giờ ta đã có ba cạnh trong bao lồi, ta chọn ngẫu nhiên một trong ba cạnh đó, rồi tìm tiếp một tam giác với cạnh này, rồi tiếp tục cho đến khi không còn cạnh nào nữa (khi ta tìm thêm một mặt tam giác, ta phải thêm hai cạnh vào bao, tuy vậy hai cạnh này phải chưa có trong bao, nếu không ta phải đi tìm hai cạnh khác).
-- Có tổng cộng $\mathcal{O}(n)$ mặt, và mỗi lần duyệt các điểm ta mất thời gian $\mathcal{O}(n)$ vì ta phải duyệt tất cả các điểm còn lại, do đó độ phức tạp của thuật toán là $\mathcal{O}(n^2)$. (Nếu bạn nghĩ bạn có thể cài đặt được thuật toán này, hãy nộp bài tại [SPOJ - CH3D](https://www.spoj.com/problems/CH3D/)).
+- Có tổng cộng $\mathcal{O}(n)$ mặt, và mỗi lần duyệt các điểm ta mất thời gian $\mathcal{O}(n)$ vì ta phải duyệt tất cả các điểm còn lại, do đó độ phức tạp của thuật toán là $\mathcal{O}(n^{2})$. (Nếu bạn nghĩ bạn có thể cài đặt được thuật toán này, hãy nộp bài tại [SPOJ - CH3D](https://www.spoj.com/problems/CH3D/)).
 - Ta có thể tăng tốc độ thuật toán này bằng các loại bỏ các điểm chắc chắn không phải đỉnh của bao (tìm các điểm cực theo các trục tọa độ, rồi loại bỏ các điểm nằm trong bát diện mà các đỉnh đấy tạo ra).
 
 Ta có thể tìm bao lồi trong không gian với độ phức tạp $\mathcal{O}(n\log{n})$ bằng phương pháp chia để trị, tuy nhiên việc cài đặt thuật toán này là vô cùng khó.
@@ -352,12 +361,12 @@ Mở rộng, các loại cocktail có thể pha chế từ $N$ loại cocktail b
 Để kiểm tra nhanh một điểm có nằm trong bao lồi hay không trong $\mathcal{O}(\log{n})$, ta thực hiện như sau:
 - Gọi tập bao lồi là $H$, giả sử tập $H$ được liệt kê theo chiều kim đồng hồ.
 - Đầu tiên, ta kiểm tra $(H_0, H_1, P)$ có ngược chiều kim đồng hồ hay không ($P$ thoả thuộc vùng màu xanh).
-    ![](/uploads/algo_geometry_convex_hull_kmix1.png)
+    ![](/uploads/translate/wcipeg/Convex-Hull/algo_geometry_convex_hull_kmix1.png)
 - Tiếp theo, ta kiểm tra $(H_{n-1}, H_0, P)$ có ngược chiều kim đồng hồ hay không ($P$ thoả thuộc vùng màu cam).
-    ![](/uploads/algo_geometry_convex_hull_kmix2.png)
-- Bây giờ, ta chặt nhị phân để tìm **tia** $\overrightarrow{H_0H_x}$ thoả mãn $\overrightarrow{H_0H_x}$ là tia gần điểm $P$ nhất ở phía **bên phải** bằng cách kiểm tra $CCW(H_0,H_x,P)$ (chi tiết xem ở phần cài đặt).
+    ![](/uploads/translate/wcipeg/Convex-Hull/algo_geometry_convex_hull_kmix2.png)
+- Bây giờ, ta chặt nhị phân để tìm **tia** $\overrightarrow{H_0H_x}$ thoả mãn $\overrightarrow{H_0H_x}$ là tia gần điểm $P$ nhất ở phía **bên phải** bằng cách kiểm tra $\texttt{CCW}(H_0, H_x, P)$ (chi tiết xem ở phần cài đặt).
 - Sau khi có $x$ (ví dụ $x=4$), ta biết được rằng $P$ thuộc vùng tạo bởi $2$ tia $\overrightarrow{H_0H_{x-1}}$ và $\overrightarrow{H_0H_x}$ (vùng màu tím).
-    ![](/uploads/algo_geometry_convex_hull_kmix3.png)
+    ![](/uploads/translate/wcipeg/Convex-Hull/algo_geometry_convex_hull_kmix3.png)
 - Đến đây, ta kiểm tra $(H_{x-1}, H_x, P)$ có cùng chiều kim đồng hồ hay không (tức $P$ có thuộc tam giác $(H_0,H_{x-1},H_x)$ hay không).
 
 ### Cài đặt
@@ -402,7 +411,8 @@ bool ccw(const Point &A, const Point &B, const Point &C) {
 vector<Point> convexHull(vector<Point> p, int n) {
     // Sắp xếp các điểm theo tọa độ x, nếu bằng nhau sắp xếp theo y
     sort(p.begin(), p.end(), [](const Point &A, const Point &B) {
-        if (A.x != B.x) return A.x < B.x;
+        if (A.x != B.x)
+            return A.x < B.x;
         return A.y < B.y;
     });
 
@@ -427,7 +437,8 @@ vector<Point> convexHull(vector<Point> p, int n) {
     }
 
     // Xoá đỉểm đầu được lặp lại ở cuối
-    if (n > 1) hull.pop_back();
+    if (n > 1)
+        hull.pop_back();
 
     return hull;
 }
@@ -437,11 +448,14 @@ bool checkInHull(vector<Point> &hull, Point P) {
     int n = hull.size();
 
     // Xử lý trường hợp suy biến có diện tích bao lồi = 0
-    if (n == 1) return (hull[0] == P);
-    if (n == 2) return onSegment(hull[0], hull[1], P);
+    if (n == 1)
+        return (hull[0] == P);
+    if (n == 2)
+        return onSegment(hull[0], hull[1], P);
 
     // Nếu (hull[0], hull[1], P) ngược chiều kim đồng hồ thì P nằm ngoài bao lồi
-    if (ccw(hull[0], hull[1], P)) return false;
+    if (ccw(hull[0], hull[1], P))
+        return false;
 
     // Nếu (hull[n - 1], hull[0], P) không cùng chiều kim đồng hồ thì P chỉ thoả
     // nếu P nằm trên đoạn (hull[n - 1], hull[0])
@@ -456,10 +470,10 @@ bool checkInHull(vector<Point> &hull, Point P) {
         // Nếu (hull[0], hull[mid], P) ngược chiều kim đồng hồ thì
         // tia (hull[0], hull[mid]) nằm ở phía bên phải của P
         if (ccw(hull[0], hull[mid], P)) {
-            x  = mid;
+            x = mid;
             hi = mid - 1;
-        }
-        else lo = mid + 1;
+        } else
+            lo = mid + 1;
     }
 
     // P nằm trong tam giác (hull[0], hull[x - 1], hull[x])

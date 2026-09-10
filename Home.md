@@ -107,7 +107,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 - [Persistent Data Structures - ⭐⭐⭐](/algo/data-structures/persistent-data-structures)
 - [Persistent Data Structures - <big>:new:</big> - ⭐⭐⭐](/algo/data-structures/persistent-data-structures-2)
 - [Skip List - ⭐⭐⭐](/algo/data-structures/Skip-Lists)
-- ["Nhảy nhị phân" với bộ nhớ $\mathcal O(n)$ - ⭐⭐⭐](/vnoi-magazine/2023/binary-lifting)
+- ["Nhảy nhị phân" với bộ nhớ $\mathcal{O}(n)$ - ⭐⭐⭐](/vnoi-magazine/2023/binary-lifting)
 - [Static Wavelet Tree - <big>:new:</big> - ⭐⭐⭐](/algo/data-structures/static-wavelet-tree)
 
 ### Cấu trúc dữ liệu dạng cây
@@ -214,7 +214,7 @@ Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](h
 - **Số học cơ bản:**
   - [Modulo cơ bản - ⭐](/algo/math/modulo)
   - [Ước chung lớn nhất & Thuật toán Euclid - ⭐](/algo/algebra/euclid)
-  - [$a^b \bmod c$ -  Lũy thừa nhị phân - ⭐](/algo/algebra/binary_exponentation.md)
+  - [$a^{b} \bmod c$ -  Lũy thừa nhị phân - ⭐](/algo/algebra/binary_exponentation.md)
   - [Sàng nguyên tố - ⭐](/algo/algebra/prime_sieve.md)
   - [Nghịch đảo modulo - ⭐⭐](/algo/math/modular-inverse)
   - [Kiểm tra số nguyên tố - ⭐⭐](/algo/algebra/primality_check.md)

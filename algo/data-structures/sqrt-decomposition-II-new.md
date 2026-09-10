@@ -35,9 +35,9 @@ Cho cây gồm $n$ đỉnh, trên mỗi đỉnh là giá trị $0$. Cho $q$ truy
 - `2 u`: Tìm giá trị trên đỉnh $u$.
 
 #### Giới hạn
-- $1 \le n,q \le 10^5$.
+- $1 \le n,q \le 10^{5}$.
 - $1 \le u \le n$.
-- $1 \le d \le 10^9$.
+- $1 \le d \le 10^{9}$.
 
 #### Thuật toán ngây thơ
 Thuật toán đơn giản nhất chính là với mỗi truy vấn cập nhật, duyệt qua toàn bộ đỉnh kề của $u$ và tăng giá trị trên các đỉnh này. Trong trường hợp tệ nhất, thuật toán có độ phức tạp $\mathcal{O}(n \times q)$.
@@ -53,10 +53,10 @@ Từ đây phân loại các đỉnh vào hai nhóm:
 
 Để xử lí các truy vấn cập nhật của đỉnh nhẹ, ta hoàn toàn có thể sử dụng thuật toán ngây thơ ở trên do số lượng đỉnh kề nhỏ. Thao tác xử lí những truy vấn đỉnh nhẹ có độ phức tạp $\mathcal{O}(\sqrt n)$.
 
-Để xử lí các truy vấn cập nhật của đỉnh nặng, ta sẽ sử dụng mảng $\text{lazy}$ và tăng $\text{lazy}_u$ lên $d$ để đánh dấu đỉnh này đã được cập nhật thêm $d$. Thao tác xử lí cập nhật đỉnh nặng có độ phức tạp $\mathcal{O}(1)$.
+Để xử lí các truy vấn cập nhật của đỉnh nặng, ta sẽ sử dụng mảng $\texttt{lazy}$ và tăng $\texttt{lazy}_u$ lên $d$ để đánh dấu đỉnh này đã được cập nhật thêm $d$. Thao tác xử lí cập nhật đỉnh nặng có độ phức tạp $\mathcal{O}(1)$.
 
 
-Với các truy vấn trả lời giá trị trên đỉnh $u$, ngoài các giá trị đã được cập nhật trực tiếp qua các truy vấn đỉnh nhẹ, cần tính tổng $\text{lazy}_v$ với $v$ là các đỉnh kề của $u$. Dĩ nhiên khi tính tổng $\text{lazy}$, chỉ cần quan tâm đến các đỉnh $v$ nặng, mà có không quá $\sqrt{2 \times n}$ đỉnh nặng nên các truy vấn trả lời có thể xử lí trong độ phức tạp $\mathcal{O}(\sqrt n)$.
+Với các truy vấn trả lời giá trị trên đỉnh $u$, ngoài các giá trị đã được cập nhật trực tiếp qua các truy vấn đỉnh nhẹ, cần tính tổng $\texttt{lazy}_v$ với $v$ là các đỉnh kề của $u$. Dĩ nhiên khi tính tổng $\texttt{lazy}$, chỉ cần quan tâm đến các đỉnh $v$ nặng, mà có không quá $\sqrt{2 \times n}$ đỉnh nặng nên các truy vấn trả lời có thể xử lí trong độ phức tạp $\mathcal{O}(\sqrt n)$.
 
 ### Bài toán 2: [Codeforces 1207F - Remainder Problem](https://codeforces.com/contest/1207/problem/F)
 
@@ -80,9 +80,9 @@ Từ đây phân loại các truy vấn tính tổng vào hai nhóm:
 - **Nhẹ** gồm các truy vấn còn lại, có $x$ nhỏ hơn hoặc bằng $S$.
 
 
-Để xử lí các truy vấn nhẹ, ta sẽ lưu $\text{sum}(d, m)$ với $1 \le m \le S, 0 \le d < m$ là tổng của những chỉ số chia $m$ dư $d$.
+Để xử lí các truy vấn nhẹ, ta sẽ lưu $\texttt{sum}(d, m)$ với $1 \le m \le S, 0 \le d < m$ là tổng của những chỉ số chia $m$ dư $d$.
 
-Khi thực hiện truy vấn cập nhật cho $a_i$, với từng $1 \le m' \le S$, ta cập nhật lại $\text{sum}(i \mod m', m')$. Còn khi truy vấn, nếu $x \le S$ thì in ra $\text{sum}(y,x)$.
+Khi thực hiện truy vấn cập nhật cho $a_i$, với từng $1 \le m' \le S$, ta cập nhật lại $\texttt{sum}(i \bmod m', m')$. Còn khi truy vấn, nếu $x \le S$ thì in ra $\texttt{sum}(y,x)$.
 
 Thuật toán có độ phức tạp $\mathcal{O}((n + q) \times S)$.
 
@@ -111,18 +111,18 @@ Ví dụ với bảng sau:
 
 <center>
   
-![sqrt1.png](/algo/sqrt/sqrt1.png)
+![sqrt1.png](/uploads/algo/data-structures/sqrt-decomposition-II-new/sqrt1.png)
 </center>
 
 Khoảng cách từ ô trắng mang dấu *\** đến ô đen gần nhất là $2$, vì có thể đi sang bên trái hai bước để đến một ô đen. Sau đó tô đen ô này:
 
 <center>
 
-![sqrt2.png](/algo/sqrt/sqrt2.png)
+![sqrt2.png](/uploads/algo/data-structures/sqrt-decomposition-II-new/sqrt2.png)
 </center>
 
 #### Chia căn truy vấn
-Ta có $n - 1$ truy vấn, và sẽ chia chúng thành các nhóm $\sqrt n$ truy vấn liên tiếp: $[1, 2,...,\sqrt n], [\sqrt n+1,\sqrt n+2...,2 \times \sqrt n],...$
+Ta có $n - 1$ truy vấn, và sẽ chia chúng thành các nhóm $\sqrt n$ truy vấn liên tiếp: $[1, 2, \ldots, \sqrt n], [\sqrt n+1, \sqrt n+2, \ldots, 2 \times \sqrt n], \ldots$
 
 Khi xử lí hết một nhóm truy vấn, ta mới thực hiện tô đen những ô thuộc nhóm truy vấn này. Từ đây ta có hai trường hợp.
 - Với những ô đen đã được tô trên bảng: Thực hiện thuật toán BFS đa nguồn để tính với mỗi ô trắng khoảng cách gần nhất tới một ô đen. Thao tác này có độ phức tạp $\mathcal{O}(n)$.
@@ -135,8 +135,8 @@ Ta thực hiện thao tác thứ nhất $\sqrt n$ lần, và với mỗi truy v�
 Bạn được cho một tập hợp rỗng gồm các số nguyên dương và $q$ truy vấn. Mỗi truy vấn sẽ thuộc một trong hai dạng, thêm một số vào tập hợp hoặc xóa một số khỏi tập hợp. Sau mỗi truy vấn hãy tính ước chung lớn nhất (GCD) của tất cả các số trong tập hợp. Lưu ý tập hợp có thể gồm nhiều số có giá trị giống nhau.
 
 #### Giới hạn
-- $1 \le q \le 10^5$.
-- Các số trong tập hợp không vượt quá $10^{18}$ (đề bài gốc là $10^9$, nhưng với thuật toán trình bày ở dưới có thể xử lí được tới giới hạn này).
+- $1 \le q \le 10^{5}$.
+- Các số trong tập hợp không vượt quá $10^{18}$ (đề bài gốc là $10^{9}$, nhưng với thuật toán trình bày ở dưới có thể xử lí được tới giới hạn này).
 
 #### Chia căn truy vấn
 Nếu biết được GCD hiện tại của các số trong tập hợp, việc thêm một số vào và tính lại GCD rất đơn giản. Nhưng khá khó để xóa một số khỏi tập hợp và tính lại GCD trong độ phức tạp thời gian đủ tốt.
@@ -171,11 +171,11 @@ Muc này sẽ trình bày các ứng dụng hiếm gặp hơn của thuật toá
 #### Bài toán: [VNOJ - Point Update Range Query](https://oj.vnoi.info/problem/sqrt_a)
 Cho mảng $a$ gồm $n$ phần tử nguyên. Cho $q$ truy vấn thuộc một trong hai dạng:
 - `1 i x`: Gán $a_i=x$.
-- `2 l r`: Tính tổng các phần tử  $a_l,a_{l+1},...,a_r$.
+- `2 l r`: Tính tổng các phần tử  $a_l, a_{l+1}, \ldots, a_r$.
 
 Giới hạn:
-- $1 \le n,q \le 10^5$
-- $1 \le x \le 10^9$
+- $1 \le n,q \le 10^{5}$
+- $1 \le x \le 10^{9}$
 - $1 \le l \le r \le n$
 
 
@@ -223,112 +223,130 @@ Ta sẽ có cách sắp xếp mới để đảm bảo số lần cập nhật/�
 - Và cuối cùng là số lượng truy vấn cập nhật nằm trước truy vấn này.
 
 ```cpp
-struct query{
+struct query {
     // t là số lượng truy vấn cập nhật đứng trước truy vấn này
     int l, r, t;
     int id;
-}
+};
 
-bool cmp(const query &a, const query &b){
-    if(a.l / S != b.l / S)
+bool cmp(const query &a, const query &b) {
+    if (a.l / S != b.l / S)
         return a.l < b.l;
-    else if(a.r / S != b.r / S){
-        if((a.l / S) % 2 == 1)
+    else if (a.r / S != b.r / S) {
+        if ((a.l / S) % 2 == 1)
             return a.r < b.r;
         else
-            return a.r > b.r
+            return a.r > b.r;
     }
     return a.t < b.t;
 }
 ```
 
 Phân tích độ phức tạp thuật toán:
-- Số lần di chuyển đầu mút trái và phải là có cận trên là $2 \times (\frac{n^2}{S} + q \times S + \frac{n}{S})$.
-- Với cách sắp xếp như trên, ta xét những  truy vấn có đầu mút trái nằm trong cùng một nhóm, đồng thời đầu mút phải cũng nằm cùng một nhóm, chúng có thứ tự được sắp xếp tăng dần theo $t$. Vậy nên xử lí các truy vấn trong cùng một nhóm sẽ cần tối đa $q$ thao tác cập nhật/đảo ngược, khi chuyển nhóm sẽ cần tối đa $q$ thao tác cập nhật/đảo ngược khi thay đổi nhóm, vậy cần tối đa $2 \times q \times (\frac{n}{S})^2$ thao tác để xử lí các truy vấn cập nhật/đảo ngược. Có thay đổi luân phiên thứ tự sắp xếp $t$ như sắp xếp đầu mút phải để giảm số thao tác về $q \times  (\frac{n}{S})^2$.
+- Số lần di chuyển đầu mút trái và phải là có cận trên là $2 \times \left(\frac{n^{2}}{S} + q \times S + \frac{n}{S}\right)$.
+- Với cách sắp xếp như trên, ta xét những  truy vấn có đầu mút trái nằm trong cùng một nhóm, đồng thời đầu mút phải cũng nằm cùng một nhóm, chúng có thứ tự được sắp xếp tăng dần theo $t$. Vậy nên xử lí các truy vấn trong cùng một nhóm sẽ cần tối đa $q$ thao tác cập nhật/đảo ngược, khi chuyển nhóm sẽ cần tối đa $q$ thao tác cập nhật/đảo ngược khi thay đổi nhóm, vậy cần tối đa $2 \times q \times \left(\frac{n}{S}\right)^{2}$ thao tác để xử lí các truy vấn cập nhật/đảo ngược. Có thay đổi luân phiên thứ tự sắp xếp $t$ như sắp xếp đầu mút phải để giảm số thao tác về $q \times \left(\frac{n}{S}\right)^{2}$.
 - Nếu chọn $S = n^{\frac{2}{3}}$, ta thu được thuật toán có độ phức tạp $\mathcal{O}(q \times n^{\frac{2}{3}})$.
 
 #### Cài đặt
 Cách cài đặt tương đối giống với cài đặt thuật toán Mo bình thường, chỉ cần thêm thao tác xử lí các truy vấn cập nhật.
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 const int maxN = 2e5 + 5;
 
-struct query{
+struct query {
     int l, r, t, id;
-}
+};
 
 // Lưu lại thông tin cập nhật: Sau khi thực hiện truy vấn này, a[index] = old sẽ trở thành a[index] = next. Lưu lại như vậy nhằm mục đích thuận tiện khi đảo ngược truy vấn.
-struct update{
+struct update {
     int index, old, next;
 };
 
 vector<update> update_queries;
 vector<query> queries;
 
+vector<int> ans_ids;
+
 int n, q;
-int a[maxN], b[maxN], ans[maxN];
+int a[maxN], b[maxN];
+long long ans[maxN];
 int S = 0;
 int l = 0, r = -1, t = -1;
+long long sum = 0;
 
-bool cmp(const query &a, const query &b){
-    if(a.l / S != b.l / S)
+bool cmp(const query &a, const query &b) {
+    if (a.l / S != b.l / S)
         return a.l < b.l;
-    else if(a.r / S != b.r / S){
-        if((a.l / S) % 2 == 1)
+    else if (a.r / S != b.r / S) {
+        if ((a.l / S) % 2 == 1)
             return a.r < b.r;
         else
-            return a.r > b.r
+            return a.r > b.r;
     }
     return a.t < b.t;
 }
-void run_update(int i, int x){
+void run_update(int i, int x) {
     // Nếu i nằm trong [l, r], việc cập nhật sẽ ảnh hưởng đến đáp án
-    if(l <= i && i <= r){
+    if (l <= i && i <= r) {
         sum -= a[i];
         sum += x;
     }
     a[i] = x;
 }
 
-signed main(){
-    ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
 
     cin >> n >> q;
-    for(int i = 1; i <= n; i++){
+    for (int i = 1; i <= n; i++) {
         cin >> a[i];
         b[i] = a[i];
     }
 
     S = pow(n, 2. / 3.) + 1;
 
-    for(int i = 1; i <= q; i++){
+    for (int i = 1; i <= q; i++) {
         int t, u, v;
         cin >> t >> u >> v;
 
-        if(t == 1){
+        if (t == 1) {
             update_queries.push_back({u, b[u], v});
             b[u] = v;
-        }else{
+        } else {
             queries.push_back({u, v, (int)update_queries.size() - 1, i});
+            ans_ids.push_back(i);
         }
     }
 
-	sort(queries.begin(), queries.end(), cmp);
+    sort(queries.begin(), queries.end(), cmp);
 
-    for(query &q : queries){
+    for (query &q : queries) {
         // Truy vấn cập nhật
-        while(t < q.t) t++, run_update(update_queries[t].index, update_queries[t].next);
-        
-        // Đảo ngược truy vấn cập nhật
-        while(t > q.t) run_update(update_queries[t].index, update_queries[t].old), t--;
+        while (t < q.t)
+            t++, run_update(update_queries[t].index, update_queries[t].next);
 
-        while (l > q.l) sum += a[--l];
-        while (r < q.r) sum += a[++r];
-        while (l < q.l) sum -= a[l++];
-        while (r > q.r) sum -= a[r--];	
+        // Đảo ngược truy vấn cập nhật
+        while (t > q.t)
+            run_update(update_queries[t].index, update_queries[t].old), t--;
+
+        while (l > q.l)
+            sum += a[--l];
+        while (r < q.r)
+            sum += a[++r];
+        while (l < q.l)
+            sum -= a[l++];
+        while (r > q.r)
+            sum -= a[r--];
 
         ans[q.id] = sum;
     }
+    for (int i : ans_ids)
+        cout << ans[i] << "\n";
 }
 ```
 
@@ -350,51 +368,57 @@ Trước khi đến với thuật toán Mo trên cây, bạn đọc cần nắm 
 
 <center>
 
-![sqrt3.png](/algo/sqrt/sqrt3.png)
+![sqrt3.png](/uploads/algo/data-structures/sqrt-decomposition-II-new/sqrt3.png)
 </center>
 <br>
 
-Với $\text{ST}_u$ là thời điểm bắt đầu duyệt DFS cây con gốc $u$ và $\text{EN}_u$ là thời điểm hoàn thành duyệt cây con gốc $u$. Ta có thứ tự:
+Với $\texttt{ST}_u$ là thời điểm bắt đầu duyệt DFS cây con gốc $u$ và $\texttt{EN}_u$ là thời điểm hoàn thành duyệt cây con gốc $u$. Ta có thứ tự:
 
 $$\begin{aligned}
-&\text{ST}_1 = 1 ;\ \text{EN}_1 = 10\\\
-&\text{ST}_2 = 2 ;\ \text{EN}_2 = 7\\\
-&\text{ST}_3 = 3 ;\ \text{EN}_3 = 4\\\
-&\text{ST}_4 = 5 ;\ \text{EN}_4 = 6\\\
-&\text{ST}_5 = 8 ;\ \text{EN}_5 = 9\\\
-&\text{E}=\{1,2,3,3,4,4,2,5,5,1\}\\\
+&\texttt{ST}_1 = 1 ;\ \texttt{EN}_1 = 10\\\
+&\texttt{ST}_2 = 2 ;\ \texttt{EN}_2 = 7\\\
+&\texttt{ST}_3 = 3 ;\ \texttt{EN}_3 = 4\\\
+&\texttt{ST}_4 = 5 ;\ \texttt{EN}_4 = 6\\\
+&\texttt{ST}_5 = 8 ;\ \texttt{EN}_5 = 9\\\
+&\texttt{E}=\{1,2,3,3,4,4,2,5,5,1\}\\\
 \end{aligned}$$
 
 #### Thuật toán Mo trên cây
-Ta có một tính chất quan trọng: Nếu $v$ nằm trong cây con gốc $u$ thì $\text{ST}_u \le \text{ST}_v \le \text{EN}_v \le \text{EN}_u$.
+Ta có một tính chất quan trọng: Nếu $v$ nằm trong cây con gốc $u$ thì $\texttt{ST}_u \le \texttt{ST}_v \le \texttt{EN}_v \le \texttt{EN}_u$.
 
-Để xử lí truy vấn đường đi từ $u$ đến $v$, gọi $d$ là tổ tiên chung gần nhất (LCA) của $u$ và $v$. Không mất tính tổng quát, giả sử $\text{ST}_u \le \text{ST}_v$. Xét các đỉnh $x$ nằm trên đường đi từ $u$ đến $v$:
+Để xử lí truy vấn đường đi từ $u$ đến $v$, gọi $d$ là tổ tiên chung gần nhất (LCA) của $u$ và $v$. Không mất tính tổng quát, giả sử $\texttt{ST}_u \le \texttt{ST}_v$. Xét các đỉnh $x$ nằm trên đường đi từ $u$ đến $v$:
 
 #### Trường hợp 1: $d = u$
 Dễ thấy $x$ phải nằm trong cây con gốc $u$, đồng thời $v$ cũng phải nằm trong cây con gốc $x$. Từ nhận xét ở trên ta thu được:
 
-$\;\;\; \text{ST}_u \le \text{ST}_x \le \text{EN}_x \le \text{EN}_u$
+$$
+\texttt{ST}_u \le \texttt{ST}_x \le \texttt{EN}_x \le \texttt{EN}_u
+$$
 
-$\;\;\; \text{ST}_x \le \text{ST}_v \le \text{EN}_v \le \text{EN}_x$
+$$
+\texttt{ST}_x \le \texttt{ST}_v \le \texttt{EN}_v \le \texttt{EN}_x
+$$
 
-$\;\;\; \Rightarrow \text{ST}_u \le \text{ST}_x \le \text{ST}_v \le \text{EN}_v \le \text{EN}_x$
+$$
+\Rightarrow \texttt{ST}_u \le \texttt{ST}_x \le \texttt{ST}_v \le \texttt{EN}_v \le \texttt{EN}_x
+$$
 
-Từ đây có thể thấy rằng, nếu xét đoạn $[\text{ST}_u, \text{ST}_v]$ trên thứ tự $\text{E}$ thì các đỉnh $x$ nằm trên đường đi từ $u$ đến $v$ chỉ xuất hiện đúng một lần ở vị trí $\text{ST}_x$.
+Từ đây có thể thấy rằng, nếu xét đoạn $[\texttt{ST}_u, \texttt{ST}_v]$ trên thứ tự $\texttt{E}$ thì các đỉnh $x$ nằm trên đường đi từ $u$ đến $v$ chỉ xuất hiện đúng một lần ở vị trí $\texttt{ST}_x$.
 
 #### Trường hợp 2: $d \neq u$
 - Trường hợp 2.1: Đỉnh $x$ là tổ tiên của $u$ và $x \neq d$.
-  - $\text{ST}_x \le \text{ST}_u \le \text{EN}_u \le \text{EN}_x$.
-  - Do $\text{ST}_u \le \text{ST}_v$, thời điểm duyệt xong cây con gốc $x$, ta chắc chắn chưa duyệt đến đỉnh $v$ nên $\text{EN}_x < \text{ST}_v$.
-  - Từ đây suy ra $\text{ST}_x < \text{EN}_u \le \text{EN}_x < \text{ST}_v$.
+  - $\texttt{ST}_x \le \texttt{ST}_u \le \texttt{EN}_u \le \texttt{EN}_x$.
+  - Do $\texttt{ST}_u \le \texttt{ST}_v$, thời điểm duyệt xong cây con gốc $x$, ta chắc chắn chưa duyệt đến đỉnh $v$ nên $\texttt{EN}_x < \texttt{ST}_v$.
+  - Từ đây suy ra $\texttt{ST}_x < \texttt{EN}_u \le \texttt{EN}_x < \texttt{ST}_v$.
 - Trường hợp 2.2: Đỉnh $x$ là tổ tiên của $v$ và $x \neq d$.
-  - $\text{ST}_x \le \text{ST}_v \le \text{EN}_v \le \text{EN}_x$
-  - Do $\text{ST}_u \le \text{ST}_v$, thời điểm duyệt đến đỉnh $x$ thì chắc chắn đã duyệt xong cây con gốc $u$ nên $\text{EN}_u < \text{ST}_x$.
-  - Từ đây suy ra $\text{EN}_u < \text{ST}_x \le \text{ST}_v < \text{EN}_x$.
+  - $\texttt{ST}_x \le \texttt{ST}_v \le \texttt{EN}_v \le \texttt{EN}_x$
+  - Do $\texttt{ST}_u \le \texttt{ST}_v$, thời điểm duyệt đến đỉnh $x$ thì chắc chắn đã duyệt xong cây con gốc $u$ nên $\texttt{EN}_u < \texttt{ST}_x$.
+  - Từ đây suy ra $\texttt{EN}_u < \texttt{ST}_x \le \texttt{ST}_v < \texttt{EN}_x$.
 
-- Kết hợp hai trường hợp, ta sẽ có được đoạn cần xét là $[\text{EN}_u, \text{ST}_v]$, trên thứ tự $\text{E}$ thì đỉnh $x$ xuất hiện một lần ở vị trí $\text{EN}_x$ trong trường hợp 2.1, và ở $\text{ST}_x$ trong trường hợp 2.2. Với đỉnh $d$, dễ thấy $\text{ST}_d < \text{EN}_u < \text{ST}_v < \text{EN}_d$ nên đỉnh $d$ không xuất hiện lần nào trong đoạn này, vì vậy cần xét riêng đỉnh $d$.
+- Kết hợp hai trường hợp, ta sẽ có được đoạn cần xét là $[\texttt{EN}_u, \texttt{ST}_v]$, trên thứ tự $\texttt{E}$ thì đỉnh $x$ xuất hiện một lần ở vị trí $\texttt{EN}_x$ trong trường hợp 2.1, và ở $\texttt{ST}_x$ trong trường hợp 2.2. Với đỉnh $d$, dễ thấy $\texttt{ST}_d < \texttt{EN}_u < \texttt{ST}_v < \texttt{EN}_d$ nên đỉnh $d$ không xuất hiện lần nào trong đoạn này, vì vậy cần xét riêng đỉnh $d$.
 
 ---
-Bây giờ ta đã ánh xạ được các truy vấn $(u,v)$ về một đoạn liên tiếp trên $\text{E}$. Những đỉnh trên đường đi từ $u$ đến $v$ sẽ xuất hiện **một** lần trong đoạn này. Khi cài đặt thuật toán Mo, lúc thêm/xóa các đỉnh, ta dễ dàng có thể kiểm soát số lượng của các đỉnh để biết đỉnh nào đang nằm trên đường đi.
+Bây giờ ta đã ánh xạ được các truy vấn $(u,v)$ về một đoạn liên tiếp trên $\texttt{E}$. Những đỉnh trên đường đi từ $u$ đến $v$ sẽ xuất hiện **một** lần trong đoạn này. Khi cài đặt thuật toán Mo, lúc thêm/xóa các đỉnh, ta dễ dàng có thể kiểm soát số lượng của các đỉnh để biết đỉnh nào đang nằm trên đường đi.
 
 #### Bài tập
 - [Codeforces 100962F](https://codeforces.com/gym/100962/)
@@ -405,17 +429,17 @@ Bây giờ ta đã ánh xạ được các truy vấn $(u,v)$ về một đoạn
 Các bài toán sử dụng thuật toán Mo thường được kết hợp với các cấu trúc dữ liệu. Việc lựa chọn cấu trúc dữ liệu phù hợp sẽ ảnh hưởng rất nhiều đến độ phức tạp cuối cùng của lời giải.
 
 #### Bài toán
-Cho mảng $a$ gồm $n$ phần tử. Cho $q$ truy vấn dạng $(l,r)$, hãy tìm MEX của $a_l,a_{l+1},...,a_r$. Có thể trả lời các truy vấn offline.
+Cho mảng $a$ gồm $n$ phần tử. Cho $q$ truy vấn dạng $(l,r)$, hãy tìm MEX của $a_l, a_{l+1}, \ldots, a_r$. Có thể trả lời các truy vấn offline.
 
 Giới hạn:
-- $1 \le n \le 10^5$.
+- $1 \le n \le 10^{5}$.
 - $0 \le a_i \le n$.
 
 #### Thuật toán Mo
 Ta sẽ lưu một tập hợp (có thể cài dặt bằng `std::set`) những giá trị hiện đang **không tồn tại** trong đoạn đang xét. Đồng thời sẽ sử dụng thêm một mảng đếm để đếm số lượng của mỗi giá trị để thêm xóa tập hợp cho phù hợp.
 
 <center>
-<img src="https://codeforces.com/predownloaded/6f/0c/6f0c27b758e3c337768027e110dbed7602a37f80.png">
+<img src="/uploads/algo/data-structures/sqrt-decomposition-II-new/6f0c27b758e3c337768027e110dbed7602a37f80.png">
 
 <i style="font-size:small">Nguồn: Codeforces</i>
 </center>
@@ -430,7 +454,7 @@ Có thể thấy các thao tác thêm xóa cần thực hiện nhiều hơn như
 #### Cấu trúc dữ liệu chia căn
 Ta cần một cấu trúc dữ liệu có độ phức tạp thêm/xóa phần tử nhanh, đổi lại việc truy vấn trên cấu trúc dữ liệu có thể lâu hơn. Cấu trúc dữ liệu chia căn rất phù hợp.
 
-Quan tâm đến các giá trị $0,1,2,3...,n$, chia chúng thành các nhóm mỗi nhóm $\sqrt n$ phần tử. Với mỗi nhóm ta sẽ lưu số lượng giá trị ở trong nhóm này xuất hiện ở đoạn đang xét.
+Quan tâm đến các giá trị $0, 1, 2, 3, \ldots, n$, chia chúng thành các nhóm mỗi nhóm $\sqrt n$ phần tử. Với mỗi nhóm ta sẽ lưu số lượng giá trị ở trong nhóm này xuất hiện ở đoạn đang xét.
 
 Với thao tác thêm, xóa phần tử, ta chỉ cần cập nhật lại giá trị trong mảng đếm và trong nhóm. Hai thao tác có thể được xử lí trong độ phức tạp $\mathcal{O}(1)$.
 
@@ -451,18 +475,18 @@ Trường hợp không thể khai biến báo hằng số, có thể tính trư�
 ## Chọn hằng số phù hợp
 Việc lựa chọn hằng số phù hợp sẽ ảnh hưởng rất lớn đến độ phức tạp thời gian, không gian. Các bài toán trình bày ở trên hầu hết sẽ được chọn hằng số là $\sqrt n$ hoặc $\sqrt q$ để đỡ rườm rà, nhưng chúng có thể không phải hằng số tối ưu.
 
-Ví dụ ở bài toán [Yếu vị](#Bài-toán-3-MarisaOJ---Yếu-vị) được trình bày ở trên, nếu chọn mỗi nhóm có $S$ phần tử, thì thao tác khởi tạo có độ phức tạp $\mathcal{O}(\frac{n^2}{S})$ và thao tác truy vấn có độ phức tạp $\mathcal{O}(q \times S \times \log n)$. Chọn $S=\frac{n}{\sqrt{q \times \log n}}$ sẽ cho độ phức tạp tốt hơn là $\mathcal{O}(n \times \sqrt{q \times \log n})$.
+Ví dụ ở bài toán [Yếu vị](#Bài-toán-3-MarisaOJ---Yếu-vị) được trình bày ở trên, nếu chọn mỗi nhóm có $S$ phần tử, thì thao tác khởi tạo có độ phức tạp $\mathcal{O}\left(\frac{n^{2}}{S}\right)$ và thao tác truy vấn có độ phức tạp $\mathcal{O}(q \times S \times \log n)$. Chọn $S=\frac{n}{\sqrt{q \times \log n}}$ sẽ cho độ phức tạp tốt hơn là $\mathcal{O}(n \times \sqrt{q \times \log n})$.
 
-Tuy nhiên không phải hằng số trên lí thuyết này sẽ cho ra thời gian chạy tốt nhất. Lấy ví dụ bài toán [Codeforces 86D - Powerful array](https://codeforces.com/problemset/problem/86/D) được trình bày ở phần thuật toán Mo. Trên lí thuyết việc lựa chọn $S = \sqrt{ \frac{n^2}{q}}$ cho ra độ phức tạp thời gian tốt nhất. Để kiểm chứng, người viết đã sử dụng cùng một code và thử một số hằng số $S$ khác nhau, nộp bài sử dụng C++17:
+Tuy nhiên không phải hằng số trên lí thuyết này sẽ cho ra thời gian chạy tốt nhất. Lấy ví dụ bài toán [Codeforces 86D - Powerful array](https://codeforces.com/problemset/problem/86/D) được trình bày ở phần thuật toán Mo. Trên lí thuyết việc lựa chọn $S = \sqrt{ \frac{n^{2}}{q}}$ cho ra độ phức tạp thời gian tốt nhất. Để kiểm chứng, người viết đã sử dụng cùng một code và thử một số hằng số $S$ khác nhau, nộp bài sử dụng C++17:
 
 | $S$                             | Thời gian |
 |---------------------------------|-----------|
-| $\sqrt \frac{n^2}{q}$           | 2806 ms   |
-| $\sqrt{2 \times \frac{n^2}{q}}$ | 1954 ms   |
-| $\sqrt{3 \times \frac{n^2}{q}}$ | 2058 ms   |
-| $2 \times \sqrt \frac{n^2}{q}$  | 2246 ms   |
+| $\sqrt \frac{n^{2}}{q}$           | 2806 ms   |
+| $\sqrt{2 \times \frac{n^{2}}{q}}$ | 1954 ms   |
+| $\sqrt{3 \times \frac{n^{2}}{q}}$ | 2058 ms   |
+| $2 \times \sqrt \frac{n^{2}}{q}$  | 2246 ms   |
 
-Có thể thấy việc chọn $S=\sqrt{2 \times \frac{n^2}{q}}$ khiến code chạy nhanh hơn đáng kể. Thời gian chạy của code phụ thuộc vào nhiều yếu tố nên khá khó tính được chính xác hằng số $S$ phù hợp.
+Có thể thấy việc chọn $S=\sqrt{2 \times \frac{n^{2}}{q}}$ khiến code chạy nhanh hơn đáng kể. Thời gian chạy của code phụ thuộc vào nhiều yếu tố nên khá khó tính được chính xác hằng số $S$ phù hợp.
 
 Thay vào đó, ta có thể sinh một số test và chạy thử nghiệm với một vài hằng số $S$ khác nhau. Sau đó chọn ra giá trị $S$ cho thời gian chạy tốt nhất.
 

@@ -48,7 +48,7 @@ Do thuật toán Bellman-Ford dựa trên ý tưởng không một đường đi
 
 ## Shortest Path Faster Algorithm (SPFA)
 
-Mặc dù thời gian chạy lý thuyết tệ hơn nhiều so với Dijkstra nhưng trên một số đồ thị, Bellman-Ford có thời gian chạy rất ngắn. Giả sử trên một đồ thị mà đường đi ngắn nhất đến một đỉnh bất kỳ từ $S$ chứa không quá $5$ cạnh thì thực tế độ phức tạp chỉ là $O(5 \cdot M)$. Chúng ta có thể dừng việc duyệt qua các cạnh ngay khi không có đỉnh nào có khoảng cách ngắn hơn từ $S$ sau khi duyệt. (Tuy nhiên, cũng cần lưu ý rằng rất dễ để sinh test khiến Bellman-Ford có thời gian chạy tệ nhất).
+Mặc dù thời gian chạy lý thuyết tệ hơn nhiều so với Dijkstra nhưng trên một số đồ thị, Bellman-Ford có thời gian chạy rất ngắn. Giả sử trên một đồ thị mà đường đi ngắn nhất đến một đỉnh bất kỳ từ $S$ chứa không quá $5$ cạnh thì thực tế độ phức tạp chỉ là $\mathcal{O}(5 \cdot M)$. Chúng ta có thể dừng việc duyệt qua các cạnh ngay khi không có đỉnh nào có khoảng cách ngắn hơn từ $S$ sau khi duyệt. (Tuy nhiên, cũng cần lưu ý rằng rất dễ để sinh test khiến Bellman-Ford có thời gian chạy tệ nhất).
 
 Từ nhận xét trên, chúng ta đến với phần chính của bài viết này - **Shortest Path Faster Algorithm (SPFA)**.
 
@@ -63,7 +63,9 @@ SPFA cũng có thể phát hiện được cycle với tổng trọng số âm v
 ### Code
 
 ```cpp=
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+
+using namespace std;
 typedef pair<int, int> ii;
 const int MaxN = 1e5 + 5;
 const int Inf = 1e9;
@@ -76,7 +78,7 @@ int N;
 queue<int> q;
 
 bool spfa() {
-    for(int i = 1 ; i <= N ; i++) {
+    for (int i = 1; i <= N; i++) {
         Dist[i] = Inf;
         Cnt[i] = 0;
         inqueue[i] = false;
@@ -84,12 +86,12 @@ bool spfa() {
     Dist[S] = 0;
     q.push(S);
     inqueue[S] = true;
-    while(!q.empty()) {
+    while (!q.empty()) {
         int u = q.front();
         q.pop();
         inqueue[u] = false;
 
-        for (ii tmp: AdjList[u]) {
+        for (ii tmp : AdjList[u]) {
             int v = tmp.first;
             int w = tmp.second;
 
@@ -107,25 +109,24 @@ bool spfa() {
     }
     return true;
 }
-
 ```
 
 Trong đó:
-- Mảng $Dist$ được dùng để lưu đáp án.
-- Mảng $Cnt$ để lưu lại số lần một đỉnh được cải thiện đáp án (phục vụ việc tìm cycle có tổng trọng số âm). Cũng như Bellman-Ford, nếu đáp án của một đỉnh được cải thiện quá $N$ lần thì tồn tại cycle có tổng trọng số âm.
-- Mảng $inqueue$ dùng để kiểm tra xem đỉnh đã ở trong queue hay chưa vì chúng ta không muốn một đỉnh ở trong queue nhiều lần cùng một lúc. Đỉnh sẽ được đẩy vào queue ngay khi đáp án của đỉnh cải thiện.
+- Mảng $\texttt{Dist}$ được dùng để lưu đáp án.
+- Mảng $\texttt{Cnt}$ để lưu lại số lần một đỉnh được cải thiện đáp án (phục vụ việc tìm cycle có tổng trọng số âm). Cũng như Bellman-Ford, nếu đáp án của một đỉnh được cải thiện quá $N$ lần thì tồn tại cycle có tổng trọng số âm.
+- Mảng $\texttt{inqueue}$ dùng để kiểm tra xem đỉnh đã ở trong queue hay chưa vì chúng ta không muốn một đỉnh ở trong queue nhiều lần cùng một lúc. Đỉnh sẽ được đẩy vào queue ngay khi đáp án của đỉnh cải thiện.
 
 ### Độ phức tạp và một vài cách tối ưu
 
 #### Độ phức tạp
 
-Về cơ bản, cách implement của SPFA gần giống với BFS hay Dijkstra. Tuy nhiên khác biệt lớn nhất là việc queue trong BFS hay `priority_queue` trong Dijkstra được sử dụng để đảm bảo các đỉnh tuân theo một thứ tự nhất định (đáp án tốt nhất có thể). Queue trong SPFA chỉ đơn giản là để lưu lại các đỉnh còn có khả năng cải thiện, do vậy độ phức tạp về mặt lý thuyết của SPFA trong trường hợp tệ nhất vẫn là $O(MN)$.
+Về cơ bản, cách implement của SPFA gần giống với BFS hay Dijkstra. Tuy nhiên khác biệt lớn nhất là việc queue trong BFS hay `priority_queue` trong Dijkstra được sử dụng để đảm bảo các đỉnh tuân theo một thứ tự nhất định (đáp án tốt nhất có thể). Queue trong SPFA chỉ đơn giản là để lưu lại các đỉnh còn có khả năng cải thiện, do vậy độ phức tạp về mặt lý thuyết của SPFA trong trường hợp tệ nhất vẫn là $\mathcal{O}(MN)$.
 
-Tuy nhiên, thời gian chạy trung bình của SPFA là rất nhanh. Một số thử nghiệm cho thấy thời gian chạy trên đồ thị trung bình của SPFA chỉ là $O(M)$. Tuy nhiên, việc sinh test để chống lại SPFA vẫn là rất dễ tuy có khó hơn Bellman-Ford thông thường.
+Tuy nhiên, thời gian chạy trung bình của SPFA là rất nhanh. Một số thử nghiệm cho thấy thời gian chạy trên đồ thị trung bình của SPFA chỉ là $\mathcal{O}(M)$. Tuy nhiên, việc sinh test để chống lại SPFA vẫn là rất dễ tuy có khó hơn Bellman-Ford thông thường.
 
 #### Khi nào nên sử dụng SPFA
 
- Trên thực tế, có thể thấy rằng SPFA hoạt động tốt hơn nhiều khi đồ thị thưa, vì thế bạn đọc có thể cân nhắc sử dụng SPFA cho những bài toán với đồ thị có giới hạn số đỉnh và số cạnh gần bằng nhau (ví dụ $N \leq 10^5, M \leq 2 \times 10^5$).
+ Trên thực tế, có thể thấy rằng SPFA hoạt động tốt hơn nhiều khi đồ thị thưa, vì thế bạn đọc có thể cân nhắc sử dụng SPFA cho những bài toán với đồ thị có giới hạn số đỉnh và số cạnh gần bằng nhau (ví dụ $N \leq 10^{5}, M \leq 2 \times 10^{5}$).
 
 Đặc biệt, trong những cuộc thi chấm điểm theo test (thay vì subtask) hoặc trong những bài toán đồ thị được sinh random, SPFA có thể sẽ rất hiệu quả trong nhiều bài toán trong trường hợp cần tối ưu thời gian.
 
@@ -139,13 +140,13 @@ Nếu không muốn sử dụng priority_queue nhưng cũng không muốn thứ 
 
 **1) Small Label First**
 
-Giả sử chúng ta có một đỉnh $v$ đang chuẩn bị được cho vào queue. Nếu $Dist[v] < Dist[front(Q)]$ với $front(Q)$ là đỉnh đầu tiên trong queue thì chúng ta sẽ đẩy $v$ vào đầu thay vì cuối hàng đợi.
+Giả sử chúng ta có một đỉnh $v$ đang chuẩn bị được cho vào queue. Nếu $\texttt{Dist}[v] < \texttt{Dist}[\texttt{front}(Q)]$ với $\texttt{front}(Q)$ là đỉnh đầu tiên trong queue thì chúng ta sẽ đẩy $v$ vào đầu thay vì cuối hàng đợi.
 
 **2) Large Label Last**
 
-Giả sử đỉnh chuẩn bị xét có $Dist$ tệ hơn trung bình của các đỉnh trong hàng đợi, chúng ta đẩy đỉnh này xuống cuối và xét các đỉnh khác trước.
+Giả sử đỉnh chuẩn bị xét có $\texttt{Dist}$ tệ hơn trung bình của các đỉnh trong hàng đợi, chúng ta đẩy đỉnh này xuống cuối và xét các đỉnh khác trước.
 
-Bạn đọc có thể kết hợp cả hai cách tối ưu và nghĩ ra những cách tối ưu tương tự (đẩy những đỉnh có $Dist$ nhỏ hơn lên đầu, hạn chế dùng những đỉnh $Dist$ to) mà không tốn nhiều thời gian. 
+Bạn đọc có thể kết hợp cả hai cách tối ưu và nghĩ ra những cách tối ưu tương tự (đẩy những đỉnh có $\texttt{Dist}$ nhỏ hơn lên đầu, hạn chế dùng những đỉnh $\texttt{Dist}$ to) mà không tốn nhiều thời gian. 
 
 Do thời gian có thể phụ thuộc nhiều vào thứ tự các đỉnh, việc đảo lộn thứ tự theo một cách nhất định hoặc ngẫu nhiên đôi khi có thể tránh được những test được sinh để chống lại SPFA.
 
@@ -156,12 +157,12 @@ Do thời gian có thể phụ thuộc nhiều vào thứ tự các đỉnh, vi�
 
 | **Thuật toán**          | **Bài toán** | **Độ phức tạp**     | **Sử dụng được trọng số âm** | **Tìm được chu trình âm**                  |
 | ----------------------- | ------------ | ------------------- | ---------------------------- | ------------------------------------------ |
-| **DP theo thứ tự topo** | Một nguồn    | $O(M + N)$          | Có                           | Yêu cầu thuật toán: Đồ thị không chu trình |
-| **Dijkstra**            | Một nguồn    | $O(N^2 + M)$        | Không                        | Không                                      |
-| **Dijkstra + Min Heap** | Một nguồn    | $O((M + N) \log N)$ | Không                        | Không                                      |
-| **Bellman-Ford**        | Một nguồn    | $O(N \cdot M)$      | Có                           | Có                                         |
-| **Floyd-Warshall**      | Mọi cặp đỉnh | $O(N^3)$            | Có                           | Có                                         |
-| **SPFA**        | Một nguồn    | $O(N \cdot M)$      | Có                           | Có                                         |
+| **DP theo thứ tự topo** | Một nguồn    | $\mathcal{O}(M + N)$          | Có                           | Yêu cầu thuật toán: Đồ thị không chu trình |
+| **Dijkstra**            | Một nguồn    | $\mathcal{O}(N^{2} + M)$        | Không                        | Không                                      |
+| **Dijkstra + Min Heap** | Một nguồn    | $\mathcal{O}((M + N) \log N)$ | Không                        | Không                                      |
+| **Bellman-Ford**        | Một nguồn    | $\mathcal{O}(N \cdot M)$      | Có                           | Có                                         |
+| **Floyd-Warshall**      | Mọi cặp đỉnh | $\mathcal{O}(N^{3})$            | Có                           | Có                                         |
+| **SPFA**        | Một nguồn    | $\mathcal{O}(N \cdot M)$      | Có                           | Có                                         |
 
 ## Bài tập luyện tập
 

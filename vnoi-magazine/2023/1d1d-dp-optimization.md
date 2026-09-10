@@ -16,9 +16,9 @@ dateCreated: 2023-12-25T11:08:23.084Z
 Khi làm những bài toán quy hoạch động, đôi khi ta sẽ nghĩ ra những thuật toán có độ phức tạp rất lớn, ví dụ:
 
 - $f[i][j] = \min \limits_{0 \le k < j} f[i - 1][k] + w(k, j)$
-Công thức trên có độ phức tạp $O(n^3)$, có thể cải tiến xuống $O(n^2)$ hoặc $O(n^2 \log{n})$ bằng quy hoạch động bao lồi/chia để trị (trong một số điều kiện nhất định).
+Công thức trên có độ phức tạp $\mathcal{O}(n^{3})$, có thể cải tiến xuống $\mathcal{O}(n^{2})$ hoặc $\mathcal{O}(n^{2}\log{n})$ bằng quy hoạch động bao lồi/chia để trị (trong một số điều kiện nhất định).
 - $f[i] = \min \limits_{0 \le j < i} f[j] + w(j, i)$
-Công thức trên có độ phức tạp $O(n^2)$, có thể cải tiến xuống $O(n \log{n})$ hoặc $O(n)$ (trong một số điều kiện nhất định).
+Công thức trên có độ phức tạp $\mathcal{O}(n^{2})$, có thể cải tiến xuống $\mathcal{O}(n\log{n})$ hoặc $\mathcal{O}(n)$ (trong một số điều kiện nhất định).
 
 Ở bài viết này, chúng ta sẽ tìm hiểu về cách tối ưu công thức thứ $2$, hay còn gọi là *phương pháp tối ưu quy hoạch động $1$ chiều*.
 
@@ -31,8 +31,10 @@ $w(a, c) + w(b, d) \le w(a, d) + w(b, c)$ với mọi $a < b \le c < d$.
 
 </center>
 
-Ta sẽ tính toán công thức quy hoạch động sau với độ phức tạp nhanh hơn $O(n^2)$:
-$$f[i] = \min \limits_{0 \le j < i} f[j] + w(j, i)$$
+Ta sẽ tính toán công thức quy hoạch động sau với độ phức tạp nhanh hơn $\mathcal{O}(n^{2})$:
+$$
+f[i] = \min \limits_{0 \le j < i} f[j] + w(j, i)
+$$
 
 Một số ví dụ về hàm $w$ thỏa mãn bất đẳng thức tứ giác (bạn đọc có thể tự chứng minh):
 
@@ -78,30 +80,29 @@ int n, h[N];
 long long f[N];
 
 long long w(int j, int i) {
-  // một hàm cost bất kì thỏa mãn
-  // bất đẳng thức tứ giác
+    // một hàm cost bất kì thỏa mãn
+    // bất đẳng thức tứ giác
 }
 
 void solve() {
-  for (int i = 1; i <= n; ++i) {
-    // cập nhật f[i]
-    f[i] = f[h[i]] + w(h[i], i);
+    for (int i = 1; i <= n; ++i) {
+        // cập nhật f[i]
+        f[i] = f[h[i]] + w(h[i], i);
 
-    for (int j = i + 1; j <= n; ++j) {
-      // cập nhật lại h[i + 1..n]
-      if (
-        f[i] + w(i, j) < f[h[j]] + w(h[j], j)
-      ) {
-        h[j] = i;
-      }
+        for (int j = i + 1; j <= n; ++j) {
+            // cập nhật lại h[i + 1..n]
+            if (
+                f[i] + w(i, j) < f[h[j]] + w(h[j], j)) {
+                h[j] = i;
+            }
+        }
     }
-  }
 }
 ```
 
 ## Ý tưởng chính
 
-> *Dễ thấy thuật toán "ngây thơ" trên có độ phức tạp $O(n^2)$. Làm sao để cải tiến thuật toán? Liệu mảng $h$ có một tính chất đặc biệt nào có thể giúp ta dễ dàng cập nhật được không?*
+> *Dễ thấy thuật toán "ngây thơ" trên có độ phức tạp $\mathcal{O}(n^{2})$. Làm sao để cải tiến thuật toán? Liệu mảng $h$ có một tính chất đặc biệt nào có thể giúp ta dễ dàng cập nhật được không?*
 
 **Nhận xét $\dagger$.** *Ở mọi thời điểm, mảng $h$ luôn là dãy đơn điệu tăng (tức $h[1] \le h[2] \le \ldots \le h[n])$.* (chứng minh ở phần Phụ lục)
 
@@ -116,13 +117,15 @@ Chính vì thế, để cập nhật mảng $h$, ta sẽ tìm vị trí $z$ nh�
 **Thuật toán.**
 
 Ta sẽ biểu diễn mảng $h$ thành $m$ đoạn $(l[i], r[i], p[i])$ thỏa mãn:
-$$\left\{\begin{array}{l}
+$$
+\left\{\begin{array}{l}
 l[1] = 1\\
 r[m] = n\\
 p[i] = h[l[i]] = h[l[i] + 1] = \ldots = h[r[i]]\\
 l[i + 1] = r[i] + 1,\ \forall\ 1 \le i < m\\
 p[i] < p[i + 1],\ \forall\ 1 \le i < m
-\end{array}\right.$$
+\end{array}\right.
+$$
 
 - Ở thời điểm đầu tiên, mảng $h$ chỉ chứa đoạn $(1, n, 0)$.
 - Ở thời điểm thứ $i$:
@@ -139,8 +142,11 @@ p[i] < p[i + 1],\ \forall\ 1 \le i < m
 Ta có thể cài đặt thuật toán trên bằng cách sử dụng `deque`. Để thuận tiện cho việc cài đặt, ta sẽ không lưu lại các giá trị $h[i]$ đã qua sử dụng.
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 struct item {
-  int l, r, p;
+    int l, r, p;
 };
 
 const int N = 1e5 + 3;
@@ -148,67 +154,65 @@ int n;
 long long f[N];
 
 long long w(int j, int i) {
-  // một hàm cost bất kì thỏa mãn
-  // bất đẳng thức tứ giác
+    // một hàm cost bất kì thỏa mãn
+    // bất đẳng thức tứ giác
 }
 
 void solve() {
-  deque<item> dq;
-  dq.push_back({1, n, 0});
-  for (int i = 1; i <= n; ++i) {
-    f[i]=f[dq.front().p]+w(dq.front().p,i);
-    // deque chỉ lưu giá trị từ h[i + 1]
-    // tới h[n]
-    ++dq.front().l;
+    deque<item> dq;
+    dq.push_back({1, n, 0});
+    for (int i = 1; i <= n; ++i) {
+        f[i] = f[dq.front().p] + w(dq.front().p, i);
+        // deque chỉ lưu giá trị từ h[i + 1]
+        // tới h[n]
+        ++dq.front().l;
 
-    // nếu l > r, ta loại đoạn này khỏi deque
-    if (dq.front().l > dq.front().r) {
-      dq.pop_front();
-    }
-
-    while (!dq.empty()) {
-      auto [l, r, p] = dq.back();
-      if (f[i] + w(i, l) < f[p] + w(p, l)) {
-        dq.pop_back();
-        // p không còn là giá trị của
-        // h[l], h[l + 1], ..., h[r]
-        // lúc này, h[l]=h[l+1]=...=h[r]=i.
-      }
-      else break;
-    }
-
-    if (dq.empty()) {
-      dq.push_back({i + 1, n, i});
-      // h[i+1]=h[i+2]=...=h[n]=i
-    }
-    else {
-      // tìm nhị phân vị trí pos nhỏ nhất
-      // thỏa mãn h[pos] = i
-      auto& [l, r, p] = dq.back();
-      int low = l, high = r;
-      int pos = r + 1, mid;
-      while (low <= high) {
-        mid = (low + high) / 2;
-        if (f[i] + w(i, mid) < f[p] + w(p, mid)) {
-          pos = mid, high = mid - 1;
+        // nếu l > r, ta loại đoạn này khỏi deque
+        if (dq.front().l > dq.front().r) {
+            dq.pop_front();
         }
-        else {
-          low = mid + 1;
-        }
-      }
 
-      // cập nhật đoạn (l,r,p) thành (l,pos-1,p)
-      r = pos - 1;
-      if (pos <= n) {
-        dq.push_back({pos, n, i});
-        // h[pos]=h[pos+1]=...=h[n]=i
-      }
+        while (!dq.empty()) {
+            auto [l, r, p] = dq.back();
+            if (f[i] + w(i, l) < f[p] + w(p, l)) {
+                dq.pop_back();
+                // p không còn là giá trị của
+                // h[l], h[l + 1], ..., h[r]
+                // lúc này, h[l]=h[l+1]=...=h[r]=i.
+            } else
+                break;
+        }
+
+        if (dq.empty()) {
+            dq.push_back({i + 1, n, i});
+            // h[i+1]=h[i+2]=...=h[n]=i
+        } else {
+            // tìm nhị phân vị trí pos nhỏ nhất
+            // thỏa mãn h[pos] = i
+            auto &[l, r, p] = dq.back();
+            int low = l, high = r;
+            int pos = r + 1, mid;
+            while (low <= high) {
+                mid = (low + high) / 2;
+                if (f[i] + w(i, mid) < f[p] + w(p, mid)) {
+                    pos = mid, high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+
+            // cập nhật đoạn (l,r,p) thành (l,pos-1,p)
+            r = pos - 1;
+            if (pos <= n) {
+                dq.push_back({pos, n, i});
+                // h[pos]=h[pos+1]=...=h[n]=i
+            }
+        }
     }
-  }
 }
 ```
 
-Vì số đoạn tối đa được thêm vào deque trong cả quá trình là $n$, kết hợp với tìm kiếm nhị phân ở cuối mỗi thời điểm, ta được độ phức tạp cuối cùng là $O(n \log n)$.
+Vì số đoạn tối đa được thêm vào deque trong cả quá trình là $n$, kết hợp với tìm kiếm nhị phân ở cuối mỗi thời điểm, ta được độ phức tạp cuối cùng là $\mathcal{O}(n\log{n})$.
 
 # Bài toán 1
 
@@ -221,32 +225,40 @@ Cho $n$ cây được đánh số hiệu từ $1$ tới $n$, mỗi cây có đ�
 Alob và Bice có một cái cưa máy, mỗi lần sử dụng cưa có thể giảm độ cao của một cây bất kì xuống $1$. Tuy nhiên, sau mỗi lần sử dụng, cưa máy cần được sạc lại. Chi phí để sạc phụ thuộc vào những cây đã được chặt hoàn toàn (những cây đã được giảm độ cao về $0$): trong những cây đã được chặt hoàn toàn, giả sử cây có số hiệu lớn nhất là $i$, chi phí để sạc cưa máy là $b_i$. Nếu không có cây nào đã được chặt hoàn toàn, ta không thể sạc lại cưa máy.
 
 Điều kiện bài toán:
-$$\left\{\begin{matrix}
-1 \le n \le 10^5\\
-1 = a_1 < a_2 < \ldots < a_n \le 10^9\\
-10^9 \ge b_1 > b_2 > \ldots > b_n = 0
-\end{matrix}\right.$$
+$$
+\left\{\begin{matrix}
+1 \le n \le 10^{5}\\
+1 = a_1 < a_2 < \ldots < a_n \le 10^{9}\\
+10^{9} \ge b_1 > b_2 > \ldots > b_n = 0
+\end{matrix}\right.
+$$
 
 ## Ý tưởng
 
 Vì $b_n = 0$, ta sẽ tìm chi phí nhỏ nhất để chặt hoàn toàn cây $n$ (sau đó, ta có thể chặt bất kì cây nào mà không tốn chi phí).
 
 Gọi $f[i]$ là chi phí nhỏ nhất để chặt hoàn toàn cây thứ $i$. Nếu cây gần nhất được chặt hoàn toàn trước đó là $j$, chi phí nhỏ nhất để chặt hoàn toàn cây thứ $i$ sẽ là $f[j] + b_j \cdot a_i$. Vì vậy, ta có được công thức quy hoạch động sau:
-$$f[i] = \min \limits_{1 \le j < i} f[j] + b_j \cdot a_i$$
+$$
+f[i] = \min \limits_{1 \le j < i} f[j] + b_j \cdot a_i
+$$
 
 Nếu đặt $w(j, i) = b_j \cdot a_i$, hàm $w$ là một hàm thỏa mãn bất đẳng thức tứ giác.
 
 **Chứng minh.**
 
 Xét $4$ điểm $x < y \le z < t$, ta có:
-$$\begin{array}{cl}
+$$
+\begin{array}{cl}
   & w(x, z) + w(y, t) - w(x, t) - w(y, z) \\
 = & b_x \cdot a_z + b_y \cdot a_t - b_x \cdot a_t - b_y \cdot a_z \\
 = & (b_x - b_y)(a_z - a_t) \le 0
-\end{array}$$
+\end{array}
+$$
 
 Vì vậy,
-$$w(x, z) + w(y, t) \le w(x, t) + w(y, z)$$
+$$
+w(x, z) + w(y, t) \le w(x, t) + w(y, z)
+$$
 
 Từ đây, ta có thể áp dụng thuật toán đã nêu trong bài.
 
@@ -257,7 +269,7 @@ Từ đây, ta có thể áp dụng thuật toán đã nêu trong bài.
 using namespace std;
 
 struct item {
-  int l, r, p;
+    int l, r, p;
 };
 
 const int N = 1e5 + 3;
@@ -265,61 +277,59 @@ int n, a[N], b[N];
 long long f[N];
 
 long long w(int j, int i) {
-  return 1LL * b[j] * a[i];
+    return 1LL * b[j] * a[i];
 }
 
 void solve() {
-  deque<item> dq;
-  dq.push_back({2, n, 1});
-  for (int i = 2; i <= n; ++i) {
-    f[i] = f[dq.front().p] + w(dq.front().p, i);
-    ++dq.front().l;
-    if (dq.front().l > dq.front().r) {
-      dq.pop_front();
-    }
-
-    while (!dq.empty()) {
-      auto [l, r, p] = dq.back();
-      if (f[i] + w(i, l) < f[p] + w(p, l)) {
-        dq.pop_back();
-      }
-      else break;
-    }
-
-    if (dq.empty()) {
-      dq.push_back({i + 1, n, i});
-    }
-    else {
-      auto& [l, r, p] = dq.back();
-      int low = l, high = r, pos = r + 1, mid;
-      while (low <= high) {
-        mid = (low + high) / 2;
-        if (f[i] + w(i, mid) < f[p] + w(p, mid)) {
-          pos = mid, high = mid - 1;
+    deque<item> dq;
+    dq.push_back({2, n, 1});
+    for (int i = 2; i <= n; ++i) {
+        f[i] = f[dq.front().p] + w(dq.front().p, i);
+        ++dq.front().l;
+        if (dq.front().l > dq.front().r) {
+            dq.pop_front();
         }
-        else {
-          low = mid + 1;
-        }
-      }
 
-      r = pos - 1;
-      if (pos <= n) {
-        dq.push_back({pos, n, i});
-      }
+        while (!dq.empty()) {
+            auto [l, r, p] = dq.back();
+            if (f[i] + w(i, l) < f[p] + w(p, l)) {
+                dq.pop_back();
+            } else
+                break;
+        }
+
+        if (dq.empty()) {
+            dq.push_back({i + 1, n, i});
+        } else {
+            auto &[l, r, p] = dq.back();
+            int low = l, high = r, pos = r + 1, mid;
+            while (low <= high) {
+                mid = (low + high) / 2;
+                if (f[i] + w(i, mid) < f[p] + w(p, mid)) {
+                    pos = mid, high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+
+            r = pos - 1;
+            if (pos <= n) {
+                dq.push_back({pos, n, i});
+            }
+        }
     }
-  }
 }
 
 int main() {
-  cin >> n;
-  for (int i = 1; i <= n; ++i) {
-    cin >> a[i];
-  }
-  for (int i = 1; i <= n; ++i) {
-    cin >> b[i];
-  }
-  solve();
-  cout << f[n];
+    cin >> n;
+    for (int i = 1; i <= n; ++i) {
+        cin >> a[i];
+    }
+    for (int i = 1; i <= n; ++i) {
+        cin >> b[i];
+    }
+    solve();
+    cout << f[n];
 }
 ```
 
@@ -338,17 +348,21 @@ Hãy tìm cách chọn một số địa điểm sao cho tổng chi phí tổ ch
 Nói cách khác, nếu như ta chọn $m$ địa điểm, địa điểm thứ $i$ nằm cách nhà trưởng làng đúng $s_i$ km về phía đông, tổng chi phí tổ chức lễ hội và di chuyển sẽ là $k \cdot m + \sum \limits_{i = 1}^{n} \min \limits_{j = 1}^{m} \|a_i - s_j\|$.
 
 Điều kiện bài toán:
-$$\left\{\begin{array}{l}
-1 \le n \le 2 \cdot 10^5, 1 \le k \le 10^9\\
-0 = a_1 < a_2 < \ldots < a_n \le 10^9
-\end{array}\right.$$
+$$
+\left\{\begin{array}{l}
+1 \le n \le 2 \cdot 10^{5}, 1 \le k \le 10^{9}\\
+0 = a_1 < a_2 < \ldots < a_n \le 10^{9}
+\end{array}\right.
+$$
 
 ## Ý tưởng
 
 Ta có nhận xét sau: tất cả người dân nằm trên một đoạn liên tiếp sẽ đến cùng một địa điểm, vì thế bài toán có thể viết lại thành: chia $n$ người dân thành các đoạn liên tiếp sao cho tổng chi phí là nhỏ nhất, biết chi phí mỗi đoạn gồm chi phí tổ chức $k$ và chi phí di chuyển của người dân trong đoạn.
 
 Gọi $f[i]$ là chi phí nhỏ nhất để chia $i$ người dân thành các đoạn sao cho tổng chi phí là nhỏ nhất. Ta có công thức quy hoạch động sau:
-$$f[i] = k + \min \limits_{0 \le j < i} f[j] + w(j, i)$$
+$$
+f[i] = k + \min \limits_{0 \le j < i} f[j] + w(j, i)
+$$
 
 với $w(j, i)$ là chi phí di chuyển của người dân nằm trong đoạn $j + 1$ tới $i$.
 
@@ -361,29 +375,33 @@ Ta sẽ chứng minh hàm $w$ thỏa mãn bất đẳng thức tứ giác.
 Đặt $p[i] = a_1 + a_2 + \ldots + a_i$. Ta có $2$ trường hợp sau:
 
 - Nếu $t$ chẵn, phương án đặt địa điểm tập trung tối ưu nhất là ở giữa người thứ $\frac{t}{2}$ và người thứ $\frac{t}{2} + 1$.
-Chi phí di chuyển trong trường hợp này là $\sum \limits_{i = r - \frac{t}{2} + 1}^{r} a_i - \sum \limits_{i = l + 1}^{l + \frac{t}{2}} a_i$, hay $(p[r] - p[r - \frac{t}{2}]) - (p[l + \frac{t}{2}] - p[l])$.
+Chi phí di chuyển trong trường hợp này là $\sum \limits_{i = r - \frac{t}{2} + 1}^{r} a_i - \sum \limits_{i = l + 1}^{l + \frac{t}{2}} a_i$, hay $\left( p[r] - p\left[r - \frac{t}{2}\right] \right) - \left( p\left[l + \frac{t}{2}\right] - p[l] \right)$.
 
 - Ngược lại, phương án đặt địa điểm tập trung tối ưu nhất là ở nhà của người thứ $\frac{t + 1}{2}$.
-Chi phí di chuyển trong trường hợp này là $\sum \limits_{i = r - \frac{t - 1}{2} + 1}^{r} a_i - \sum \limits_{i = l + 1}^{l + \frac{t - 1}{2}} a_i$, hay $(p[r] - p[r - \frac{t - 1}{2}]) - (p[l + \frac{t - 1}{2}] - p[l])$.
+Chi phí di chuyển trong trường hợp này là $\sum \limits_{i = r - \frac{t - 1}{2} + 1}^{r} a_i - \sum \limits_{i = l + 1}^{l + \frac{t - 1}{2}} a_i$, hay $\left( p[r] - p\left[r - \frac{t - 1}{2}\right] \right) - \left( p\left[l + \frac{t - 1}{2}\right] - p[l] \right)$.
 
 Xét $4$ điểm $x < y \le z < t$. Để thuận tiện cho việc chứng minh, ta sẽ giả sử độ dài các đoạn đều là chẵn. Các trường hợp còn lại cũng có thể chứng minh tương tự.
 
-Với $r - l$ chẵn: $w(l, r) = (p[r] - p[r - \frac{k}{2}]) - (p[l + \frac{k}{2}] - p[l]) = p[l] + p[r] - 2 \cdot p[\frac{l + r}{2}]$.
+Với $r - l$ chẵn: $w(l, r) = \left( p[r] - p\left[r - \frac{k}{2}\right] \right) - \left( p\left[l + \frac{k}{2}\right] - p[l] \right) = p[l] + p[r] - 2 \cdot p\left[\frac{l + r}{2}\right]$.
 
 Đặt $b = \frac{x + z}{2}$, $c = \frac{y + t}{2}$, $d = \frac{x + t}{2}$, $e = \frac{y + z}{2}$. Ta có:
-$$\begin{array}{cl}
+$$
+\begin{array}{cl}
   & w(x, z) + w(y, t) - w(x, t) - w(y, z) \\
-= & 2 \cdot (-p[\frac{x + z}{2}] - p[\frac{y + t}{2}] + p[\frac{x + t}{2}] + p[\frac{y + z}{2}])  \\
+= & 2 \cdot \left( -p\left[\frac{x + z}{2}\right] - p\left[\frac{y + t}{2}\right] + p\left[\frac{x + t}{2}\right] + p\left[\frac{y + z}{2}\right] \right)  \\
 = & 2 \cdot (-p[b] - p[c] + p[d] + p[e]) \\
 = & 2 \cdot (p[d] - p[b]) - 2 \cdot (p[c] - p[e]) \\
 = & 2 \cdot (a_{b + 1} + a_{b + 2} + \ldots + a_d) \\
   & - 2 \cdot (a_{e + 1} + a_{e + 2} + \ldots + a_c) \\
 = & 2 \cdot(a_{b + 1} - a_{e + 1}) + 2 \cdot (a_{b + 2} - a_{e + 2}) + \ldots \\
   & + 2 \cdot (a_d - a_c) \le 0
-\end{array}$$
+\end{array}
+$$
 
 Vì vậy,
-$$w(x, z) + w(y, t) \le w(x, t) + w(y, z)$$
+$$
+w(x, z) + w(y, t) \le w(x, t) + w(y, z)
+$$
 
 ## Cài đặt mẫu
 
@@ -392,7 +410,7 @@ $$w(x, z) + w(y, t) \le w(x, t) + w(y, z)$$
 using namespace std;
 
 struct item {
-  int l, r, p;
+    int l, r, p;
 };
 
 const int N = 2e5 + 3;
@@ -400,60 +418,58 @@ int n, k, a[N];
 long long p[N], f[N];
 
 long long w(int l, int r) {
-  int t = (r - l) / 2;
-  return (p[r] - p[r - t]) - (p[l + t] - p[l]);
+    int t = (r - l) / 2;
+    return (p[r] - p[r - t]) - (p[l + t] - p[l]);
 }
 
 void solve() {
-  deque<item> dq;
-  dq.push_back({1, n, 0});
-  for (int i = 1; i <= n; ++i) {
-    f[i] = k + f[dq.front().p] + w(dq.front().p, i);
-    ++dq.front().l;
-    if (dq.front().l > dq.front().r) {
-      dq.pop_front();
-    }
-
-    while (!dq.empty()) {
-      auto [l, r, p] = dq.back();
-      if (f[i] + w(i, l) < f[p] + w(p, l)) {
-        dq.pop_back();
-      }
-      else break;
-    }
-
-    if (dq.empty()) {
-      dq.push_back({i + 1, n, i});
-    }
-    else {
-      auto& [l, r, p] = dq.back();
-      int low = l, high = r, pos = r + 1, mid;
-      while (low <= high) {
-        mid = (low + high) / 2;
-        if (f[i] + w(i, mid) < f[p] + w(p, mid)) {
-          pos = mid, high = mid - 1;
+    deque<item> dq;
+    dq.push_back({1, n, 0});
+    for (int i = 1; i <= n; ++i) {
+        f[i] = k + f[dq.front().p] + w(dq.front().p, i);
+        ++dq.front().l;
+        if (dq.front().l > dq.front().r) {
+            dq.pop_front();
         }
-        else {
-          low = mid + 1;
-        }
-      }
 
-      r = pos - 1;
-      if (pos <= n) {
-        dq.push_back({pos, n, i});
-      }
+        while (!dq.empty()) {
+            auto [l, r, p] = dq.back();
+            if (f[i] + w(i, l) < f[p] + w(p, l)) {
+                dq.pop_back();
+            } else
+                break;
+        }
+
+        if (dq.empty()) {
+            dq.push_back({i + 1, n, i});
+        } else {
+            auto &[l, r, p] = dq.back();
+            int low = l, high = r, pos = r + 1, mid;
+            while (low <= high) {
+                mid = (low + high) / 2;
+                if (f[i] + w(i, mid) < f[p] + w(p, mid)) {
+                    pos = mid, high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+
+            r = pos - 1;
+            if (pos <= n) {
+                dq.push_back({pos, n, i});
+            }
+        }
     }
-  }
 }
 
 int main() {
-  cin >> n >> k;
-  for (int i = 1; i <= n; ++i) {
-    cin >> a[i];
-    p[i] = p[i - 1] + a[i];
-  }
-  solve();
-  cout << f[n];
+    cin >> n >> k;
+    for (int i = 1; i <= n; ++i) {
+        cin >> a[i];
+        p[i] = p[i - 1] + a[i];
+    }
+    solve();
+    cout << f[n];
 }
 ```
 
@@ -462,17 +478,25 @@ int main() {
 ## Chứng minh nhận xét $\dagger$.
 
 Ta sẽ chứng minh bằng cách phản chứng: giả sử tồn tại vị trí $i$ thỏa mãn $h[i] > h[i + 1]$. Để thuận tiện cho việc chứng minh, ta sẽ đặt $a = h[i],\ b = h[i + 1]$ ($a > b$). Điều này tương đương với:
-$$\left\{\begin{matrix}
+$$
+\left\{\begin{matrix}
 f[a] + w(a, i) < f[b] + w(b, i)\\
 f[a] + w(a, i + 1) > f[b] + w(b, i + 1)
-\end{matrix}\right.$$
+\end{matrix}\right.
+$$
 
 Trừ hai bất đẳng thức theo vế, ta được:
-$$w(a, i) - w(a, i + 1) < w(b, i) - w(b, i + 1)$$
-$$\Leftrightarrow w(a, i) + w(b, i + 1) < w(a, i + 1) + w(b, i)$$
+$$
+w(a, i) - w(a, i + 1) < w(b, i) - w(b, i + 1)
+$$
+$$
+\Leftrightarrow w(a, i) + w(b, i + 1) < w(a, i + 1) + w(b, i)
+$$
 
 Tuy nhiên, theo tính chất của hàm $w$, xét bộ số $b < a < i < i + 1$, ta có:
-$$w(b, i) + w(a, i + 1) \le w(b, i + 1) + w(a, i)$$
+$$
+w(b, i) + w(a, i + 1) \le w(b, i + 1) + w(a, i)
+$$
 
 Điều này là vô lý. Vì vậy, ta có điều phải chứng minh.
 

@@ -26,7 +26,7 @@ Cho xâu A độ dài m, xâu B độ dài n. Hãy tìm độ dài xâu con chun
 
 **Giới hạn**
 
-- $m \le 10^6$
+- $m \le 10^{6}$
 - $n \le 5000$
 - Các kí tự trong cả hai xâu là các chữ cái tiếng Anh in hoa 'A'..'Z'
 
@@ -44,7 +44,7 @@ Kết quả = 3
 
 **Thuật toán đơn giản**
 
-Gọi $F(i, j)$ là LCS của hai tiền tố $A_{1..i}$ và $B_{1..j}$.
+Gọi $F(i, j)$ là LCS của hai tiền tố $A_{1\ldots i}$ và $B_{1\ldots j}$.
 
 Khi đó ta có thể maximize $F(i, j)$ theo $F(i-1, j)$ và $F(i, j-1)$.
 
@@ -52,21 +52,21 @@ Nếu $A_i = B_j$ thì ta có thể cập nhật $F(i, j)$ theo $F(i-1, j-1) + 1
 
 Kết quả bài toán là $F(m, n)$.
 
-Độ phức tạp của thuật toán này là $O(m*n)$, không khả thi với giới hạn của đề bài.
+Độ phức tạp của thuật toán này là $\mathcal{O}(m \times n)$, không khả thi với giới hạn của đề bài.
 
 **Đổi biến**
 
 Đặt $L = \min(m, n)$
 
-Để ý rằng trong hàm QHĐ trên, các giá trị của $F(i, j)$ sẽ không vượt quá $L$, trong khi đó chiều thứ hai của trạng thái có thể khá lớn (lên tới $MAXM = 10^6$).
+Để ý rằng trong hàm QHĐ trên, các giá trị của $F(i, j)$ sẽ không vượt quá $L$, trong khi đó chiều thứ hai của trạng thái có thể khá lớn (lên tới $MAXM = 10^{6}$).
 
-Để tối ưu hóa, ta sẽ đổi biến. Gọi $dp(i, j)$ là vị trí $k$ nhỏ nhất sao cho $LCS(A_{1..i}, B_{1..k}) = j$.
+Để tối ưu hóa, ta sẽ đổi biến. Gọi $dp(i, j)$ là vị trí $k$ nhỏ nhất sao cho $LCS(A_{1\ldots i}, B_{1\ldots k}) = j$.
 
 Để tính các giá trị của $dp$, ta sẽ QHĐ theo kiểu cập nhật đi, thay vì đi tìm công thức trực tiếp cho các $dp(i, j)$.
 
 Gọi $nextPos(i, c) = j > i$ nhỏ nhất mà $A_j = c$ (với $c$ là một ký tự từ 'A' đến 'Z').
 
-Mảng $nextPos$ có thể tính trong $T(M*26)$.
+Mảng $nextPos$ có thể tính trong $T(M \times 26)$.
 
 Như vậy ta có thể tính các giá trị QHĐ như sau:
 
@@ -93,12 +93,14 @@ int nextPos[M][26];
 int m, n;
 
 void minimize(int &a, int b) {
-    if (a == -1 || a > b) a = b;
+    if (a == -1 || a > b)
+        a = b;
 }
 
 int main() {
     cin >> a + 1 >> b + 1;
-    m = strlen(a + 1); n = strlen(b + 1);
+    m = strlen(a + 1);
+    n = strlen(b + 1);
     for (int c = 0; c < 26; ++c)
         for (int i = m - 1; i >= 0; --i)
             nextPos[i][c] = (a[i + 1] - 'A' == c) ? i + 1 : nextPos[i + 1][c];
@@ -106,18 +108,21 @@ int main() {
     memset(dp, -1, sizeof dp);
     dp[0][0] = 0;
     for (int i = 0; i < n; ++i) {
-        for (int j = 0; j <= i; ++j) if (dp[i][j] >= 0) {
-            minimize(dp[i + 1][j], dp[i][j]);
-            int new_value = nextPos[dp[i][j]][b[i + 1] - 'A'];
-            if (new_value > 0)
-                minimize(dp[i + 1][j + 1], new_value);
-        }
+        for (int j = 0; j <= i; ++j)
+            if (dp[i][j] >= 0) {
+                minimize(dp[i + 1][j], dp[i][j]);
+                int new_value = nextPos[dp[i][j]][b[i + 1] - 'A'];
+                if (new_value > 0)
+                    minimize(dp[i + 1][j + 1], new_value);
+            }
     }
     int ans = 0;
     for (int j = maxLength; j > 0; --j) {
         for (int i = j; i <= n; ++i)
-            if (dp[i][j] >= 0) ans = j;
-        if (ans != 0) break;
+            if (dp[i][j] >= 0)
+                ans = j;
+        if (ans != 0)
+            break;
     }
     cout << ans << endl;
     return 0;
@@ -182,13 +187,13 @@ Không cần tính toán cụ thể cũng có thể thấy thuật toán này kh
 
 Nhận xét rằng ta không cần quan tâm tới thứ tự về mức độ quan trọng của các phòng ban. Với một cách phân hoạch các máy tính sao cho mỗi phòng nhận được tổng giá trị không nhỏ hơn v, ta luôn có thể sắp xếp các bộ theo giá trị không giảm ứng với các phòng ban.
 
-Ta có trạng thái QHĐ là $F(i, x, y, value) = true$ nếu có thể phân bổ máy tính cho i phòng ban, đã dùng x máy tính để bàn và y máy tính xách tay, đã gom được tổng giá trị v cho phòng thứ $i+1$. Cách làm này số trạng thái vẫn như trước nhưng ta đã có thể chuyển trạng thái trong $O(1)$. Cụ thể từ $F(i, x, y, value)$ ta chuyển đến $F(i, x+1, y, value+a)$ hoặc $F(i, x, y+1, value+b)$, chú ý là chỉ có thể dùng thêm máy xách tay nếu $x<X$ và dùng thêm máy để bàn nếu $y<Y$, đồng thời nếu giá trị value đủ lớn hơn hoặc bằng v thì ta chuyển sang trạng thái $F(i+1, x, y, 0)$ luôn.
+Ta có trạng thái QHĐ là $F(i, x, y, value) = true$ nếu có thể phân bổ máy tính cho i phòng ban, đã dùng x máy tính để bàn và y máy tính xách tay, đã gom được tổng giá trị v cho phòng thứ $i+1$. Cách làm này số trạng thái vẫn như trước nhưng ta đã có thể chuyển trạng thái trong $\mathcal{O}(1)$. Cụ thể từ $F(i, x, y, value)$ ta chuyển đến $F(i, x+1, y, value+a)$ hoặc $F(i, x, y+1, value+b)$, chú ý là chỉ có thể dùng thêm máy xách tay nếu $x<X$ và dùng thêm máy để bàn nếu $y<Y$, đồng thời nếu giá trị value đủ lớn hơn hoặc bằng v thì ta chuyển sang trạng thái $F(i+1, x, y, 0)$ luôn.
 
 **Đổi biến**
 
 Ở bài này, ta có thể dễ dàng đổi biến value ra làm hàm mục tiêu. Nhưng không chỉ có vậy, ta có thể đẩy cả i ra ngoài! Cụ thể, $F(x, y)$ = một cặp số $(i, value)$ lần lượt là số phòng phân bố được và số tiền gom được. Hàm mục tiêu của $F(x, y)$ là một cặp số hoàn toàn có thể so sánh được, trong đó giá trị đầu (i) được ưu tiên so sánh trước.
 
-Cách cập nhật các $F(x, y)$ giống như phần trước, độ phức tạp vẫn là O(1) cho bước chuyển trạng thái, trong khi số trạng thái lúc này là đủ nhỏ đối với giới hạn của đề bài.
+Cách cập nhật các $F(x, y)$ giống như phần trước, độ phức tạp vẫn là $\mathcal{O}(1)$ cho bước chuyển trạng thái, trong khi số trạng thái lúc này là đủ nhỏ đối với giới hạn của đề bài.
 
 ```cpp
 #include <bits/stdc++.h>
@@ -211,15 +216,18 @@ pair<int, int> newState(pair<int, int> s, int a, int v) {
 }
 
 bool dp(int value) {
-    for (int i = 0; i <= x; ++i) for (int j = 0; j <= y; ++j)
-        F[i][j] = make_pair(0, 0);
-    for (int i = 0; i <= x; ++i) for (int j = 0; j <= y; ++j) {
-        if (F[i][j].first == n) return 1;
-        if (i < x)
-            F[i + 1][j] = max(F[i + 1][j], newState(F[i][j], a, value));
-        if (j < y)
-            F[i][j + 1] = max(F[i][j + 1], newState(F[i][j], b, value));
-    }
+    for (int i = 0; i <= x; ++i)
+        for (int j = 0; j <= y; ++j)
+            F[i][j] = make_pair(0, 0);
+    for (int i = 0; i <= x; ++i)
+        for (int j = 0; j <= y; ++j) {
+            if (F[i][j].first == n)
+                return 1;
+            if (i < x)
+                F[i + 1][j] = max(F[i + 1][j], newState(F[i][j], a, value));
+            if (j < y)
+                F[i][j + 1] = max(F[i][j + 1], newState(F[i][j], b, value));
+        }
     return 0;
 }
 
@@ -245,7 +253,6 @@ int main() {
     cout << solve() << endl;
     return 0;
 }
-
 ```
 
 ## Bài luyện tập
@@ -276,10 +283,10 @@ Viết chương trình:
 
 **Input**
 
-Dòng đầu tiên chứa số $n$ - số lượng cây $(2 \le n \le 20,000)$. Các cây được đánh số $1, 2, ..., n$, theo chiều từ đỉnh đồi đến chân đồi.
+Dòng đầu tiên chứa số $n$ - số lượng cây $(2 \le n \le 20,000)$. Các cây được đánh số $1, 2, \ldots, n$, theo chiều từ đỉnh đồi đến chân đồi.
 
 $n$ dòng tiếp theo mỗi dòng chứa hai số nguyên dương cách nhau bởi dấu cách. Dòng thứ $i + 1$ chứa $w_i$ - khối lượng tính theo kg của cái cây thử i và $d_i$ - khoảng cách tính theo mét giữa cây thứ i và cây $i + 1$, $1 \le w_i \le 10000, 0 \le d_i \le 10000$. Số cuối cùng, $d_n$ là khoảng cách từ cây thứ n đến chân đồi.
-Dữ liệu vào đảm bảo kết quả của bài toán không vượt quá $2 * 10^9$ cent.
+Dữ liệu vào đảm bảo kết quả của bài toán không vượt quá $2 \times 10^{9}$ cent.
 
 **Output**
 
@@ -306,29 +313,31 @@ Output
 26
 ```
 
-![](/uploads/dp_optimization_img1.png)
+![](/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img1.png)
 
 Hình vẽ trên minh họa cho test ví dụ. Các hình tròn được tô đen là các vị trí có nhà máy. Kết quả sẽ là:
 
-$1 * (2+1) + 2 * 1 + 1 * (1 + 2) + 3 * 2 + 2 * (1 + 2 + 1) + 1 * (2 + 1) + 1 * 1 = 26$.
+$$
+1 \times (2+1) + 2 \times 1 + 1 \times (1 + 2) + 3 \times 2 + 2 \times (1 + 2 + 1) + 1 \times (2 + 1) + 1 \times 1 = 26.
+$$
 
 #### Lời giải
 
 Trước hết ta sẽ giải quyết vấn đề tính chi phí vận chuyển nếu biết vị trí của hai nhà máy đặt thêm.
 
-Nếu ta có thể tính được chi phí này trong $O(1)$, bài toán sẽ có thể giải được trong $O(N^2)$ - ta có thể for hết các cặp vị trí có thể đặt nhà máy.
+Nếu ta có thể tính được chi phí này trong $\mathcal{O}(1)$, bài toán sẽ có thể giải được trong $\mathcal{O}(N^{2})$ - ta có thể for hết các cặp vị trí có thể đặt nhà máy.
 
 Gọi:
 
 - $sumW_i$ là tổng của các $w_j$ với $i \le j$.
 - $sumD_i$ là tổng của các $d_j$ với $i \le j$.
-- $sumWS_i$ là tổng của các $w_j \* sumD_j$ với $i \le j$.
+- $sumWS_i$ là tổng của các $w_j \times sumD_j$ với $i \le j$.
 
-Khi đó $cost(L, R)$ là chi phí vận chuyển các cây có chỉ số trong đoạn $[L,R]$ đến nhà máy đặt ở $R$ là: $sumWS_L - sumWS_R - sumD_R * (sumW_L - sumW_R)$.
+Khi đó $cost(L, R)$ là chi phí vận chuyển các cây có chỉ số trong đoạn $[L,R]$ đến nhà máy đặt ở $R$ là: $sumWS_L - sumWS_R - sumD_R \times (sumW_L - sumW_R)$.
 
 Như vậy ta có thể xây dựng hàm $eval(i, j)$ = chi phí nếu đặt thêm hai nhà máy ở i và j = $cost(1, i) + cost(i + 1, j) + cost(j + 1, n + 1)$.
 
-Tuy nhiên lời giải $O(N^2)$ là chưa đủ tốt để có thể giải quyết trọn vẹn bài toán này.
+Tuy nhiên lời giải $\mathcal{O}(N^{2})$ là chưa đủ tốt để có thể giải quyết trọn vẹn bài toán này.
 
 Gọi $best(i)$ là vị trí $j > i$ tốt nhất nếu ta đã đặt một nhà máy ở i.
 
@@ -341,11 +350,12 @@ Nhận xét:
 
 Như vậy ta có thuật toán sử dụng tư tưởng chia để trị như sau:
 
-Hàm $solve(L, R, from, to)$ sẽ đi tính các $best(L..R)$, biết rằng chúng nằm trong đoạn $[from..to]$.
+Hàm $solve(L, R, from, to)$ sẽ đi tính các $best(L\ldots R)$, biết rằng chúng nằm trong đoạn $[from\ldots to]$.
 
 ```cpp
 void solve(int L, int R, int from, int to) {
-    if (L > R) return;
+    if (L > R)
+        return;
     int mid = L + R >> 1;
     best[mid] = from;
     for (int i = from + 1; i <= to; ++i)
@@ -356,11 +366,11 @@ void solve(int L, int R, int from, int to) {
 }
 ```
 
-Đánh giá độ phức tạp thuật toán: vì mỗi lần gọi để quy khoảng $[L,R]$ được chia đôi, nên sẽ có $O(\log N)$ tầng, mỗi tầng vòng for chỉ chạy qua $O(N)$ phần tử, vì vậy độ phức tạp của thuật toán là $O(N\log N)$.
+Đánh giá độ phức tạp thuật toán: vì mỗi lần gọi để quy khoảng $[L,R]$ được chia đôi, nên sẽ có $\mathcal{O}(\log N)$ tầng, mỗi tầng vòng for chỉ chạy qua $\mathcal{O}(N)$ phần tử, vì vậy độ phức tạp của thuật toán là $\mathcal{O}(N\log N)$.
 
 ### SEQPART - [Hackerrank](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
 #### Đề bài
-Cho dãy $L$ số $C[1..L]$, cần chia dãy này thành $G$ đoạn liên tiếp. Với phần tử thứ $i$, ta định nghĩa chi phí của nó là tích của $C[i]$ và số lượng số nằm cùng đoạn liên tiếp với nó. Chi phí của dãy số ứng với một cách phân hoạch là tổng các chi phí của các phần tử.
+Cho dãy $L$ số $C[1\ldots L]$, cần chia dãy này thành $G$ đoạn liên tiếp. Với phần tử thứ $i$, ta định nghĩa chi phí của nó là tích của $C[i]$ và số lượng số nằm cùng đoạn liên tiếp với nó. Chi phí của dãy số ứng với một cách phân hoạch là tổng các chi phí của các phần tử.
 
 Hãy xác định cách phân hoạch dãy số để chi phí là nhỏ nhất.
 
@@ -377,7 +387,7 @@ Hãy xác định cách phân hoạch dãy số để chi phí là nhỏ nhất.
 
 - $1 \le L \le 8000$.
 - $1 \le G \le 800$.
-- $1 \le C(i) \le 10^9$.
+- $1 \le C(i) \le 10^{9}$.
 
 **Ví dụ**
 
@@ -397,7 +407,7 @@ Output
 
 **Giải thích**: cách tối ưu là $C[] = (11, 11, 11), (24, 26), (100)$.
 
-Chi phí là $11 * 3 + 11 * 3 + 11 * 3 + 24 * 2 + 26 * 2 + 100 * 1 = 299$.
+Chi phí là $11 \times 3 + 11 \times 3 + 11 \times 3 + 24 \times 2 + 26 \times 2 + 100 \times 1 = 299$.
 
 #### Lời giải
 
@@ -444,7 +454,8 @@ int main() {
                 F[g][i] = INF;
                 for (int k = 0; k <= i; ++k) {
                     long long new_cost = F[g - 1][k] + cost(k + 1, i);
-                    if (F[g][i] > new_cost) F[g][i] = new_cost;
+                    if (F[g][i] > new_cost)
+                        F[g][i] = new_cost;
                 }
             }
         }
@@ -452,10 +463,9 @@ int main() {
     cout << F[G][L] << endl;
     return 0;
 }
-
 ```
 
-Chú ý là ta sử dụng mảng $sum[]$ tiền xử lí $O(L)$ để có thể truy vấn tổng một đoạn (dùng ở hàm $cost()$) trong $O(1)$. Như vậy độ phức tạp của thuật toán này là $O(G \*L \* L)$.
+Chú ý là ta sử dụng mảng $sum[]$ tiền xử lí $\mathcal{O}(L)$ để có thể truy vấn tổng một đoạn (dùng ở hàm $cost()$) trong $\mathcal{O}(1)$. Như vậy độ phức tạp của thuật toán này là $\mathcal{O}(G \times L \times L)$.
 
 **Thuật toán tối ưu hơn**
 
@@ -463,7 +473,9 @@ Gọi $P(g, i)$ là k nhỏ nhất để cực tiểu hóa $F(g, i)$, nói cách
 
 Tính chất quan trọng để có thể tối ưu thuật toán trên là dựa vào tính đơn điệu của $P(g, i)$, cụ thể:
 
-$P(g, 0) \le P(g, 1) \le P(g, 2) \le \cdots \le P(g, L-1) \le P(g, L)$
+$$
+P(g, 0) \le P(g, 1) \le P(g, 2) \le \cdots \le P(g, L-1) \le P(g, L)
+$$
 
 Ta sẽ không chứng minh điều này ở đây, độc giả có thể tự thuyết phục rằng điều này là đúng.
 
@@ -471,11 +483,13 @@ Ta sẽ không chứng minh điều này ở đây, độc giả có thể tự 
 
 Để ý rằng để tính $F(g, i)$, ta chỉ cần quan tâm tới hàng trước $F(g-1)$ của ma trận:
 
-$F(g-1, 0), F(g-1, 1), ... , F(g-1, L)$.
+$$
+F(g-1, 0), F(g-1, 1), \ldots, F(g-1, L).
+$$
 
 Như vậy, ta có thể tính hàng $F(g)$ theo thứ tự bất kỳ.
 
-Ý tưởng là với hàng $g$, trước hết ta tính $F(g, mid)$ và $P(g, mid)$ với $mid=L/2$, sau đó sử dụng tính chất nêu trên $P(g, i) \le P(g, mid)$ với $i < mid$ và $P(g, i) \ge P(g, mid)$ với $i > mid$ để đi gọi đệ quy đi tính hai nửa còn lại.
+Ý tưởng là với hàng $g$, trước hết ta tính $F(g, mid)$ và $P(g, mid)$ với $mid=\frac{L}{2}$, sau đó sử dụng tính chất nêu trên $P(g, i) \le P(g, mid)$ với $i < mid$ và $P(g, i) \ge P(g, mid)$ với $i > mid$ để đi gọi đệ quy đi tính hai nửa còn lại.
 
 ```cpp
 #include <iostream>
@@ -490,12 +504,14 @@ long long F[MAXG][MAXL], sum[MAXL], C[MAXL];
 int P[MAXG][MAXL];
 
 long long cost(int i, int j) {
-    if (i > j) return 0;
+    if (i > j)
+        return 0;
     return (sum[j] - sum[i - 1]) * (j - i + 1);
 }
 
 void solve(int g, int L, int R, int optL, int optR) {
-    if (L > R) return;
+    if (L > R)
+        return;
     int mid = (L + R) / 2;
     F[g][mid] = INF;
     for (int i = optL; i <= optR; ++i) {
@@ -516,19 +532,20 @@ int main() {
         cin >> C[i];
         sum[i] = sum[i - 1] + C[i];
     }
-    for (int i = 1; i <= L; ++i) F[1][i] = cost(1, i);
-    for (int g = 2; g <= G; ++g) solve(g, 1, L, 1, L);
+    for (int i = 1; i <= L; ++i)
+        F[1][i] = cost(1, i);
+    for (int g = 2; g <= G; ++g)
+        solve(g, 1, L, 1, L);
     cout << F[G][L] << endl;
     return 0;
 }
-
 ```
 
 Chú ý rằng ta không thể đảm bảo rằng $P(g,mid)$ chia đôi đoạn $[optL, optR]$, thực tế một vài hàm $solve()$ sẽ chạy chậm hơn nhiều hàm $solve()$ khác.
 
-Tuy nhiên ta có thể chứng minh được, xét về tổng thế thuật toán này chạy đủ nhanh. Mỗi lần ta chia đôi đoạn $[L, R]$, nên ta sẽ đảm bảo có tối đa $O(\log L)$ tầng đệ quy, như vậy với mỗi hàng $g$, ta chỉ mất $O(L\log L)$ để tính. Toàn bộ thuật toán có độ phức tạp là $O(G \cdot L \cdot \log L)$.
+Tuy nhiên ta có thể chứng minh được, xét về tổng thế thuật toán này chạy đủ nhanh. Mỗi lần ta chia đôi đoạn $[L, R]$, nên ta sẽ đảm bảo có tối đa $\mathcal{O}(\log L)$ tầng đệ quy, như vậy với mỗi hàng $g$, ta chỉ mất $\mathcal{O}(L\log L)$ để tính. Toàn bộ thuật toán có độ phức tạp là $\mathcal{O}(G \cdot L \cdot \log L)$.
 
-![](/uploads/dp_optimization_img2.png)
+![](/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img2.png)
 
 ### Điều kiện để Chia để trị đúng
 
@@ -563,7 +580,7 @@ Các tính chất của stack cho phép ta xây dựng một số kỹ thuật �
 
 ### [BLOCKS - IZHO 2014](https://oj.uz/problem/view/IZhO14_blocks)
 #### Đề bài
-Cho dãy số nguyên dương $a[1], a[2], …, a[N]$.
+Cho dãy số nguyên dương $a[1], a[2], \ldots, a[N]$.
 Xét các chia dãy số $a$ thành $K$ nhóm sao cho mỗi nhóm chứa một đoạn liên tiếp các phần tử của $a$. Gọi trọng số của một cách chia là tổng các phần tử lớn nhất của mỗi nhóm.
 
 **Yêu cầu**
@@ -572,7 +589,7 @@ Tìm cách chia dãy số thành $K$ nhóm sao cho trọng số của cách chia
 
 **Input**
  - Dòng 1 chứa hai số nguyên dương $N$ và $K$ ($K \le N$)
- - Dòng 2 gồm $N$ số nguyên dương $a[1], a[2], …, a[N]$
+ - Dòng 2 gồm $N$ số nguyên dương $a[1], a[2], \ldots, a[N]$
 
 **Output**
  - Gồm một số nguyên duy nhất là trọng số tìm được
@@ -601,20 +618,20 @@ Output
 
 **Thuật toán QHĐ cơ sở**
 
-Gọi $F(i, j)$ là tổng trọng số nhỏ nhất để chia $j$ số đầu tiên của dãy thành $i$ nhóm. Công thức truy hồi là $F(i, j) = \min[F(i-1, j’) + \max(a[j’+1 .. j])]$ với $j’<j$.
+Gọi $F(i, j)$ là tổng trọng số nhỏ nhất để chia $j$ số đầu tiên của dãy thành $i$ nhóm. Công thức truy hồi là $F(i, j) = \min[F(i-1, j’) + \max(a[j’+1 \ldots j])]$ với $j’<j$.
 
-Công thức QHĐ này có thể giải trong $O(N^2 * K)$, tuy nhiên như vậy cũng chưa đạt yêu cầu.
+Công thức QHĐ này có thể giải trong $\mathcal{O}(N^{2} \times K)$, tuy nhiên như vậy cũng chưa đạt yêu cầu.
 
 **Nâng cấp thuật toán**
 
-Ta thấy rằng chi phí chuyển trạng thái của công thức QHĐ trên đang là $O(N)$, ta có thể tập trung để tối ưu hóa điểm này.
+Ta thấy rằng chi phí chuyển trạng thái của công thức QHĐ trên đang là $\mathcal{O}(N)$, ta có thể tập trung để tối ưu hóa điểm này.
 
 Với mỗi vị trí $i$, ta gọi $L[i]$ là vị trí $j < i$ lớn nhất thỏa mãn $a[j] > a[i]$.
 Như vậy trong công thức chuyển trạng thái trên, ta không cần phải for $j’ < L[i]$ vì khi đó ta chuyển trực tiếp $F(i, j) = F(i, L[j])$.
 
-Giờ ta chỉ cần quan tâm tới các $j’$ thuộc đoạn $[L[j], j)$. Lúc này $\max(a[j’+1..j]) = a[j]$, nên ta chỉ cần tìm $\min(F(i-1, j’))$. Đây là bài toán truy vấn đoạn có thể giải trong $O(\log N)$ mỗi truy vấn. Độ phức tạp bài toán đến đây là $O(N*K*\log N)$.
+Giờ ta chỉ cần quan tâm tới các $j’$ thuộc đoạn $[L[j], j)$. Lúc này $\max(a[j’+1\ldots j]) = a[j]$, nên ta chỉ cần tìm $\min(F(i-1, j’))$. Đây là bài toán truy vấn đoạn có thể giải trong $\mathcal{O}(\log N)$ mỗi truy vấn. Độ phức tạp bài toán đến đây là $\mathcal{O}(N \times K \times \log N)$.
 
-Ta vẫn có thể tối ưu hơn nữa bằng cách sử dụng stack để hỗ trợ xử lí các truy vấn. Ta duy trì môt stack, mỗi phần tử chứa hai tham số là $minF$ và $index$. Stack luôn chứa các $a[index]$ giảm dần, còn $minF$ được cập nhật lại để chứa $minF$ trong đoạn $[L[index]..index-1]$.
+Ta vẫn có thể tối ưu hơn nữa bằng cách sử dụng stack để hỗ trợ xử lí các truy vấn. Ta duy trì môt stack, mỗi phần tử chứa hai tham số là $minF$ và $index$. Stack luôn chứa các $a[index]$ giảm dần, còn $minF$ được cập nhật lại để chứa $minF$ trong đoạn $[L[index]\ldots index-1]$.
 
 ```cpp
 #include <bits/stdc++.h>
@@ -632,12 +649,14 @@ int n, k;
 
 int main() {
     cin >> n >> k;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     memset(dp, 0x3f, sizeof dp);
     dp[1][0] = 0;
-    for (int i = 1; i <= n; ++i) dp[1][i] = max(dp[1][i - 1], a[i]);
+    for (int i = 1; i <= n; ++i)
+        dp[1][i] = max(dp[1][i - 1], a[i]);
     for (int i = 2; i <= k; ++i) {
-        stack<pair<int, int> > S;
+        stack<pair<int, int>> S;
         for (int j = i; j <= n; ++j) {
             int minF = dp[i - 1][j - 1];
             while (!S.empty() && a[S.top().second] <= a[j]) {
@@ -670,12 +689,15 @@ int n, k;
 
 int main() {
     cin >> n >> k;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     memset(dp, 0x3f, sizeof dp);
     dp[1][0] = 0;
-    for (int i = 1; i <= n; ++i) dp[1][i] = max(dp[1][i - 1], a[i]);
     for (int i = 1; i <= n; ++i)
-        for (L[i] = i - 1; L[i] && a[L[i]] <= a[i]; ) L[i] = L[L[i]];
+        dp[1][i] = max(dp[1][i - 1], a[i]);
+    for (int i = 1; i <= n; ++i)
+        for (L[i] = i - 1; L[i] && a[L[i]] <= a[i];)
+            L[i] = L[L[i]];
     for (int i = 2; i <= k; ++i) {
         minF[i - 1] = INF;
         for (int j = i; j <= n; ++j) {
@@ -703,11 +725,11 @@ Do đó bài toán đặt ra đối với Hùng là: Xác định số lượng 
 
 **Dữ liệu**
  - Dòng đầu tiên ghi số nguyên dương $N$;
- - Dòng thứ hai chứa $N$ số nguyên dương $h_1, h_2, …, h_n$ được ghi cách nhau bởi dấu cách, mỗi số không vượt quá $10^6$.
+ - Dòng thứ hai chứa $N$ số nguyên dương $h_1, h_2, \ldots, h_n$ được ghi cách nhau bởi dấu cách, mỗi số không vượt quá $10^{6}$.
 
 **Kết quả**
  - Dòng đầu tiên ghi số nguyên dương $k$ là số lượng cây mà các công nhân cần cưa đổ;
- - Dòng thứ hai ghi dãy số nguyên $c_1, c_2, …, c_k$ trong đó $\|c_j\|$ ($1 \le j \le k$) là dãy chỉ số của các cây theo thứ tự các công nhân phải lần lượt cưa đổ, $c_j$ là số dương nếu cây cần cho đổ về bên phải và là số âm nếu cây cần cho đổ về bên trái.
+ - Dòng thứ hai ghi dãy số nguyên $c_1, c_2, \ldots, c_k$ trong đó $\|c_j\|$ ($1 \le j \le k$) là dãy chỉ số của các cây theo thứ tự các công nhân phải lần lượt cưa đổ, $c_j$ là số dương nếu cây cần cho đổ về bên phải và là số âm nếu cây cần cho đổ về bên trái.
 
 Nếu có nhiều cách thì chỉ cần đưa ra một cách tùy ý.
 
@@ -742,7 +764,7 @@ $L[i] = \min[i, \min(L[j])]$ với $i-h[i] < j < i$
 
 **Bước 2**: Quy hoạch động
 
-Gọi $F(i)$ là số cây cần phải đổ nhỏ nhất để các cây có chỉ số $1..i$ đều đổ.
+Gọi $F(i)$ là số cây cần phải đổ nhỏ nhất để các cây có chỉ số $1\ldots i$ đều đổ.
 
 Để tính $F(i)$ cần xét 2 trường hợp:
  - Nếu ta đẩy cây $i$ qua trái:
@@ -750,9 +772,9 @@ $F(i) = \min[ F(j-1) + 1 ]$ với $L[i] \le j \le i$              $(1)$
  - Nếu cây $i$ bị đẩy qua phải bởi cây $j$
 $F(i) = \min[ F(j-1) + 1 ]$ với $1 \le j \le i$ và $R[j] \ge i$    $(2)$
 
-Có thể dễ dàng tính các $F[]$ trong $O(N^2)$. Có thể dùng các cấu trúc dữ liệu quản lí đoạn để giảm xuống $O(N\log N)$.
+Có thể dễ dàng tính các $F[]$ trong $\mathcal{O}(N^{2})$. Có thể dùng các cấu trúc dữ liệu quản lí đoạn để giảm xuống $\mathcal{O}(N\log N)$.
 
-Ta có thể sử dụng $stack$ để giảm độ phức tạp xuống $O(N)$.
+Ta có thể sử dụng $stack$ để giảm độ phức tạp xuống $\mathcal{O}(N)$.
 
 Để xử lí $(1)$ ta có thể sử dụng kỹ thuật tương tự như bài BLOCK đã trình bày, tuy nhiên ta có thể đánh giá để cài đặt được ngắn gọn hơn:
 
@@ -777,39 +799,44 @@ void initialize() {
     for (int i = 1; i <= n; ++i) {
         L[i] = i;
         while (!S.empty() && S.back() > i - a[i])
-	    L[i] = min(L[i], L[S.back()]), S.pop_back();
+            L[i] = min(L[i], L[S.back()]), S.pop_back();
         S.push_back(i);
     }
     S.clear();
     for (int i = n; i >= 1; --i) {
         R[i] = i;
         while (!S.empty() && S.back() < i + a[i])
-	    R[i] = max(R[i], R[S.back()]), S.pop_back();
+            R[i] = max(R[i], R[S.back()]), S.pop_back();
         S.push_back(i);
     }
 }
 
 void solve() {
-    for (int i = 1; i <= n; ++i) dp[i] = i, trace[i] = -i;
+    for (int i = 1; i <= n; ++i)
+        dp[i] = i, trace[i] = -i;
     vector<int> S;
     for (int i = 1; i <= n; ++i) {
-        if (dp[i] > dp[L[i] - 1] + 1) dp[i] = dp[L[i] - 1] + 1, trace[i] = -(L[i]);
-        while (!S.empty() && R[S.back()] < i) S.pop_back();
+        if (dp[i] > dp[L[i] - 1] + 1)
+            dp[i] = dp[L[i] - 1] + 1, trace[i] = -(L[i]);
+        while (!S.empty() && R[S.back()] < i)
+            S.pop_back();
         if (!S.empty() && dp[i] > dp[S.back() - 1] + 1) {
             dp[i] = dp[S.back() - 1] + 1;
             trace[i] = S.back();
         }
-        if (S.empty() || (dp[S.back() - 1] > dp[i - 1])) S.push_back(i);
+        if (S.empty() || (dp[S.back() - 1] > dp[i - 1]))
+            S.push_back(i);
     }
     cout << dp[n] << endl;
     for (int i = n; i; i = abs(trace[i]) - 1)
-	cout << (trace[i] < 0 ? -i : trace[i]) << ' ';
+        cout << (trace[i] < 0 ? -i : trace[i]) << ' ';
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin >> n;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     initialize();
     solve();
     return 0;
@@ -828,7 +855,7 @@ Link: [Codeforces](https://codeforces.com/contest/713/problem/C)
 Cho dãy số $N$ phần tử. Mỗi phép biến đổi có thể tăng/giảm một phần tử bất kỳ của dãy 1 đơn vị. Hãy tìm số phép biến đổi ít nhất để dãy trở thành dãy tăng.
 
 **Input**
- - Dòng đầu tiên là số tự nhiên $N$. Dòng tiếp theo là $N$ số nguyên $A[1..N]$
+ - Dòng đầu tiên là số tự nhiên $N$. Dòng tiếp theo là $N$ số nguyên $A[1\ldots N]$
 
 **Output**
  - Một dòng duy nhất chứa số phép biến đổi ít nhất.
@@ -843,11 +870,11 @@ Trước hết ta gán $A[i] = A[i] - i$ với mọi $i$. Bài toán trở thàn
 
 **Thuật toán QHĐ cơ sở**
 
-Đặt $F(i, j) = $ số phép biến đổi ít nhất để biến đổi dãy $A[1..i]$ thành dãy không giảm sao cho $A[i] \le j$. Ta có:
+Đặt $F(i, j) = $ số phép biến đổi ít nhất để biến đổi dãy $A[1\ldots i]$ thành dãy không giảm sao cho $A[i] \le j$. Ta có:
  - Với $i = 1$: $F(i, j) = \|A[i] - j\|$
  - Với $i > 1$: $F(i, j) = \min(F(i - 1, k) + \|A[i] - k\|)$ $\forall k \le j$
 
-Kết hợp với nhận xét: Luôn tồn tại dãy cuối cùng với số phép biến đổi tối ưu mà chỉ chứa các giá trị có trong dãy ban đầu. Ta có thể giải công thức QHĐ này với độ phức tạp $O(N^2)$
+Kết hợp với nhận xét: Luôn tồn tại dãy cuối cùng với số phép biến đổi tối ưu mà chỉ chứa các giá trị có trong dãy ban đầu. Ta có thể giải công thức QHĐ này với độ phức tạp $\mathcal{O}(N^{2})$
 
 **Quan sát đồ thị của hàm QHĐ**
 
@@ -861,9 +888,9 @@ Hãy cố gắng phác họa hàm $F$ trên giấy để có thể dễ dàng h�
  - $Opt(i-1) \le a[i]$: Trường hợp này, dễ thấy dộ dốc của hàm số của tất cả những điểm nhỏ hơn $a[i]$ sẽ giảm đi $1$ (bởi vì phần này của hàm số được cộng thêm bởi một hàm bậc nhất có độ dốc là $-1$). Đồng thời $Opt(i) = a[i]$.
  - $Opt(i-1) > a[i]$: Trường hợp này ta cần đẩy $a[i]$ vào tập hợp $S$ hai lần. Bởi phần hàm số bên trái $a[i]$ sẽ có độ dốc giảm đi $1$, trong khi phần từ $a[i]$ đến $Opt(i-1)$ có độ dốc tăng thêm $1$. Để ý là $Opt(i-1)$ không còn là điểm đầu tiên mà từ đó hàm $F$ đạt cực tiểu nữa, ta xóa $Opt(i-1)$ khỏi tập hợp $S$.
 
-Các thao tác chèn xóa và lấy $max$ của tập hợp có thể dễ dàng cài đặt bằng std::multiset<int> trong C++, hay sử dụng Binary Heap nếu code Pascal.
+Các thao tác chèn xóa và lấy $\max$ của tập hợp có thể dễ dàng cài đặt bằng std::multiset<int> trong C++, hay sử dụng Binary Heap nếu code Pascal.
 
-Như vậy độ phức tạp của lời giải trên là $O(N\log N)$.
+Như vậy độ phức tạp của lời giải trên là $\mathcal{O}(N\log N)$.
 
 ```cpp
 #include <bits/stdc++.h>
@@ -871,14 +898,17 @@ Như vậy độ phức tạp của lời giải trên là $O(N\log N)$.
 using namespace std;
 
 int main() {
-    int n; cin >> n;
+    int n;
+    cin >> n;
     multiset<int> slope_changing_points;
     long long answer = 0;
     for (int i = 1; i <= n; ++i) {
-        int Ai; cin >> Ai;
+        int Ai;
+        cin >> Ai;
         Ai -= i;
         slope_changing_points.insert(Ai);
-        if (i == 1) continue;
+        if (i == 1)
+            continue;
         int opt = *slope_changing_points.rbegin();
         if (Ai < opt) {
             slope_changing_points.erase(--slope_changing_points.end());
@@ -894,7 +924,7 @@ int main() {
 Link: [Topcoder SRM 610 Div1.Level3](http://community.topcoder.com/stat?c=problem_statement&pm=12930)
 
 #### Đề bài
-Mỏ vàng là có thể được coi là một lưới gồm $(M+1)*(N+1)$ ô vuông. Các hàng được đánh số từ $0$ đến $N$, các cột được đánh số từ $0$ đến $M$.
+Mỏ vàng là có thể được coi là một lưới gồm $(M+1) \times (N+1)$ ô vuông. Các hàng được đánh số từ $0$ đến $N$, các cột được đánh số từ $0$ đến $M$.
 
 Bạn có thể làm việc ở mỏ vàng một vài ngày. Bạn có thể chọn vị trí để đào trong ngày đầu tiên (ngày $0$). Trong những ngày tiếp theo, bạn có thể giữ nguyên vị trí, hoặc di chuyển đến một ô vuông khác nằm trong giới hạn được mô tả sau đây.
 
@@ -977,7 +1007,7 @@ Trước hết ta tóm tắt lại đề bài. Có $K$ ngày ứng với $K$ s�
 
 Hàm mục tiêu là $N+M-\|e_i-x\|-\|e_j-y\|$, trong đó $(e_i, e_j)$ là vị trí xuất hiện vàng, còn giới hạn di chuyển là $d_i$ theo chiều dọc và $d_j$ theo chiều ngang. Như vậy lời giải của bài toán là độc lập đối với chiều tọa độ. Chỉ cần xem $N-\|e_i-x\|$ và $M-\|e_j-y\|$ là các thành phần độc lập của hàm mục tiêu.
 
-Bài toán hai chiều giờ trở thành hai bài toán một chiều: Có $N+1$ điểm $x[] = 0..N$; ở bước đầu tiên ta có thể chọn xuất phát ở điểm bất kỳ, sau sự kiện $i$ và bạn ở vị trí $e_i$, bạn kiếm được $N-\|e_i-x\|$ và có quyền tăng/giảm $x$ một lượng tối đa là $d_i$, nhưng không được ra ngoài đoạn $[0..N]$. Nếu ta giải được bài toán này, ta hoàn toàn có thể giải tương tự bài toán đối với trục $y$.
+Bài toán hai chiều giờ trở thành hai bài toán một chiều: Có $N+1$ điểm $x[] = 0\ldots N$; ở bước đầu tiên ta có thể chọn xuất phát ở điểm bất kỳ, sau sự kiện $i$ và bạn ở vị trí $e_i$, bạn kiếm được $N-\|e_i-x\|$ và có quyền tăng/giảm $x$ một lượng tối đa là $d_i$, nhưng không được ra ngoài đoạn $[0\ldots N]$. Nếu ta giải được bài toán này, ta hoàn toàn có thể giải tương tự bài toán đối với trục $y$.
 
 **Thuật toán quy hoạch động cơ sở**
 
@@ -987,29 +1017,29 @@ Nếu $i=K$, $F(i, x) = 0$.
 
 Với $i<K$, ta sẽ lời thêm $N-\|e_i-x\|$, và cần phải quyết định xem tiếp theo sẽ đi tới ô nào. Cần chọn một giá trị $x’$ thỏa mãn $0 \le x’ \le N$ và $\|x-x’\| \le d_i$, đồng thời giá trị $F(i+1, x’)$ là lớn nhất. Khi đó $F(i, x) = N-\|e_i-x\| + F(i+1, x’)$.
 
-Độ phức tạp của thuật toán nếu cài đặt thông thường là $O(NNK)$, có thể tối ưu thành $O(NK)$ sử dụng deque nhưng vẫn chưa đạt yêu cầu với giới hạn đề bài.
+Độ phức tạp của thuật toán nếu cài đặt thông thường là $\mathcal{O}(NNK)$, có thể tối ưu thành $\mathcal{O}(NK)$ sử dụng deque nhưng vẫn chưa đạt yêu cầu với giới hạn đề bài.
 
 **Đồ thị của hàm QHĐ**
 
 Ta có thể coi hàm QHĐ $F(i, x)$ ở trên là một hàm $f_i(x)$ nhận $x$ là biến. Xét đồ thị của hàm số này. Dễ thấy $f_k(x) = F(K, x) = 0$, đồ thị của hàm số này là một đường thẳng.
 
-Xét hàm số $f_{k-1}(x) = N - \|e_k-1 – x\|$. Đồ thị của nó sẽ có dạng:
+Xét hàm số $f_{k-1}(x) = N - \|e_k-1 - x\|$. Đồ thị của nó sẽ có dạng:
 
-<img src="/uploads/dp_optimization_img4.png" width="40%"/>
+<img src="/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img4.png" width="40%"/>
 
-Vấn đề trở nên phức tạp hơn với hàm $f_{k-2}$. Đặt $g_{k-1}(x) = \max(f_{k-1}(x’))$ với $\|x’ – x\| \le d_{k-2}$. Đồ thị của hàm số này có dạng tương tự như đồ thị của hàm số $f_{k-1}(x)$:
+Vấn đề trở nên phức tạp hơn với hàm $f_{k-2}$. Đặt $g_{k-1}(x) = \max(f_{k-1}(x’))$ với $\|x’ - x\| \le d_{k-2}$. Đồ thị của hàm số này có dạng tương tự như đồ thị của hàm số $f_{k-1}(x)$:
 
-<img src="/uploads/dp_optimization_img5.png" width="40%"/>
+<img src="/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img5.png" width="40%"/>
 
-Ta cộng thêm $N-\|e_{k-2} – x\|$ vào hàm $g_{k-1}(x)$, ta sẽ được đồ thị dạng:
+Ta cộng thêm $N-\|e_{k-2} - x\|$ vào hàm $g_{k-1}(x)$, ta sẽ được đồ thị dạng:
 
-<img src="/uploads/dp_optimization_img6.png" width="40%"/>
+<img src="/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img6.png" width="40%"/>
 
 Tương tự như vậy, ý tưởng ở đây là ta sẽ duy trì đồ thị của các hàm số $f_i(x)$ với $i$ từ $k$ về $0$. Để làm được điều này ta cần phải thực hiện một vài thao tác:
 
- - Tịnh tiến về hai phía: Để tìm được hàm $f(x)$ thì trước hết cần xây dựng được hàm $g(x) = \max(f_i(x’) : \|x’ – x\| \le d)$. Ta chỉ cần tìm được đỉnh của hàm số, rồi tịnh tiến cả hai phía trái phải của hàm thêm một khoảng $d$.
+ - Tịnh tiến về hai phía: Để tìm được hàm $f(x)$ thì trước hết cần xây dựng được hàm $g(x) = \max(f_i(x’) : \|x’ - x\| \le d)$. Ta chỉ cần tìm được đỉnh của hàm số, rồi tịnh tiến cả hai phía trái phải của hàm thêm một khoảng $d$.
 
-![](/uploads/dp_optimization_img7.png)
+![](/uploads/algo/dp/Mot-so-ky-thuat-toi-uu-hoa-thuat-toan-Quy-Hoach-Dong/dp_optimization_img7.png)
 
  - Tịnh tiến theo trục tung: Ta biểu diễn hàm số bằng danh sách các đỉnh của đường gấp khúc thì thao tác này có thể dễ dàng thực hiện.
 
@@ -1017,7 +1047,7 @@ Cuối cùng ta chỉ cần chứng minh hàm $f(x)$ luôn là hàm lõm thì c�
 
 **Độ phức tạp của thuật toán**
 
-Ta biểu diễn đồ thị của hàm số bằng danh sách các điểm, sau mỗi thao tác thì số định của đường gấp khúc tăng thêm tối đa là $1$, nên số đỉnh này là một đại lượng $O(K)$. Như vậy độ phức tạp của toàn bộ thuật toán là $O(K^2)$.
+Ta biểu diễn đồ thị của hàm số bằng danh sách các điểm, sau mỗi thao tác thì số định của đường gấp khúc tăng thêm tối đa là $1$, nên số đỉnh này là một đại lượng $\mathcal{O}(K)$. Như vậy độ phức tạp của toàn bộ thuật toán là $\mathcal{O}(K^{2})$.
 
 ```cpp
 #include <bits/stdc++.h>
@@ -1027,13 +1057,15 @@ using namespace std;
 const int INF = 2e9;
 
 void maximize(int &a, int b) {
-    if (a < b) a = b;
+    if (a < b)
+        a = b;
 }
 
 struct Point {
     long long x, y;
-    Point(long long x, long long y): x(x), y(y) {}
-    bool operator < (const Point &o) const {
+    Point(long long x, long long y) : x(x), y(y) {
+    }
+    bool operator<(const Point &o) const {
         return x < o.x;
     }
 };
@@ -1041,7 +1073,8 @@ struct Point {
 vector<Point> H;
 
 void incConst(int delta) {
-    for (int i = 0; i < H.size(); ++i) H[i].y += delta;
+    for (int i = 0; i < H.size(); ++i)
+        H[i].y += delta;
 }
 
 void expand(int delta) {
@@ -1057,18 +1090,23 @@ void expand(int delta) {
         H.insert(H.begin() + L + 1, H[L]);
         ++R;
     }
-    for (int i = 0; i <= L; ++i) H[i].x -= delta;
-    for (int i = R; i < H.size(); ++i) H[i].x += delta;
+    for (int i = 0; i <= L; ++i)
+        H[i].x -= delta;
+    for (int i = R; i < H.size(); ++i)
+        H[i].x += delta;
 }
 
 int calc(Point P, Point Q, int x) {
-    if (P.y == Q.y) return P.y;
+    if (P.y == Q.y)
+        return P.y;
     int diff = P.y - Q.y;
     long long y = min(P.y, Q.y);
     long long L = x - P.x;
     long long R = Q.x - x;
-    if (L == 0) return P.y;
-    if (R == 0) return Q.y;
+    if (L == 0)
+        return P.y;
+    if (R == 0)
+        return Q.y;
     if (diff < 0)
         y -= L * diff / (L + R);
     else
@@ -1077,30 +1115,35 @@ int calc(Point P, Point Q, int x) {
 }
 
 int eval(int x) {
-    for (int i = 0; i + 1 < H.size(); ++i) if (H[i].x <= x && x <= H[i + 1].x)
-        return calc(H[i], H[i + 1], x);
+    for (int i = 0; i + 1 < H.size(); ++i)
+        if (H[i].x <= x && x <= H[i + 1].x)
+            return calc(H[i], H[i + 1], x);
 }
 
 void mergeHull(int v) {
     //merge with y = -abs(x - v)
     int exist = -1;
-    for (int i = 0; i < H.size(); ++i) if (H[i].x == v) {
-        exist = i;
-        break;
-    }
+    for (int i = 0; i < H.size(); ++i)
+        if (H[i].x == v) {
+            exist = i;
+            break;
+        }
     if (exist == -1) {
         H.push_back(Point(v, eval(v)));
         sort(H.begin(), H.end());
     }
-    for (int i = 0; i < H.size(); ++i) H[i].y -= abs(H[i].x - v);
+    for (int i = 0; i < H.size(); ++i)
+        H[i].y -= abs(H[i].x - v);
 }
 
 int solve(int len, vector<int> pos, vector<int> range) {
     H.clear();
     int n = pos.size();
     H.push_back(Point(0, len - pos[0]));
-    if (pos[0] != 0) H.push_back(Point(pos[0], len));
-    if (pos[0] != len) H.push_back(Point(len, len - abs(pos[0] - len)));
+    if (pos[0] != 0)
+        H.push_back(Point(pos[0], len));
+    if (pos[0] != len)
+        H.push_back(Point(len, len - abs(pos[0] - len)));
     for (int i = 1; i < n; ++i) {
         expand(range[i - 1]);
         mergeHull(pos[i]);
@@ -1109,8 +1152,10 @@ int solve(int len, vector<int> pos, vector<int> range) {
     int ans = 0;
     int last = 0;
     for (int x = 0; x <= len; ++x) {
-        while (last < H.size() && H[last].x <= x) ++last;
-        if (last == H.size()) --last;
+        while (last < H.size() && H[last].x <= x)
+            ++last;
+        if (last == H.size())
+            --last;
         ans = max(ans, calc(H[last - 1], H[last], x));
     }
     return ans;
@@ -1124,10 +1169,14 @@ int main() {
     int N, M, D;
     cin >> N >> M >> D;
     vector<int> event_i(D), event_j(D), event_di(D - 1), event_dj(D - 1);
-    for (int i = 0; i < D; ++i) cin >> event_i[i];
-    for (int i = 0; i < D; ++i) cin >> event_j[i];
-    for (int i = 0; i < D - 1; ++i) cin >> event_di[i];
-    for (int i = 0; i < D - 1; ++i) cin >> event_dj[i];
+    for (int i = 0; i < D; ++i)
+        cin >> event_i[i];
+    for (int i = 0; i < D; ++i)
+        cin >> event_j[i];
+    for (int i = 0; i < D - 1; ++i)
+        cin >> event_di[i];
+    for (int i = 0; i < D - 1; ++i)
+        cin >> event_dj[i];
     cout << getMaximumGold(N, M, event_i, event_j, event_di, event_dj) << endl;
 }
 ```

@@ -1,0 +1,6 @@
+<svg width="145mm" height="336mm" version="1.1" viewBox="0 0 145 336" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect width="145" height="336" fill="#fff"/>
+ <g stroke-width="4"><path d="m24 168 104-60" stroke="#f00"/><path d="m24 168 97 55" stroke="#00f"/><path d="m128 108-4 13 19-22-29 5z" fill="#f00"/><path d="m121 223-12 5 28 5-19-23z" fill="#00f"/>
+ <g id="a"><path d="m24 168v-146" stroke="#939"/><path d="m24 22 10 8-10-28-10 28z" fill="#939"/></g><use transform="matrix(1 0 0-1 0 336)" xlink:href="#a"/><path d="m24 168v-50" stroke="#888"/><path d="m24 118 10 8-10-28-10 28z" fill="#888"/></g>
+ <circle cx="24" cy="168" r="7"/><path d="m43 179v-20l-19-11 22-13v20m14-8c16 9 17 32 1 42" fill="none" stroke="#000" stroke-width="2"/><path d="m10 130 4 4h-1l-4-2-4 2h-1l4-4z" fill="#888"/>
+ <g font-family="Times" font-weight="bold" text-anchor="middle" font-size="27px"><text x="58" y="46"><tspan fill="#00f">a</tspan>×<tspan fill="#f00">b</tspan></text><text x="86" y="125" fill="#f00">b</text><text x="86" y="223" fill="#00f">a</text><text x="9" y="148" fill="#888">n</text><text x="85" y="178" font-style="italic" font-weight="normal">θ</text><text x="57" y="283"><tspan fill="#f00">b</tspan>×<tspan fill="#00f">a</tspan></text><text x="74" y="306">= -<tspan fill="#00f">a</tspan>×<tspan fill="#f00">b</tspan></text></g>
+</svg>

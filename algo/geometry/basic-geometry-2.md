@@ -19,22 +19,26 @@ Một trong những bài toán con phổ biến nhất trong các bài toán hì
 
 Đầu tiên, ta có câu hỏi nhỏ là: đường thẳng được cho dưới dạng nào? và chúng ta muốn sử dụng ở dạng nào? Ở trường hợp lý tưởng thì đường thẳng sẽ ở dạng $Ax + By = C$, với $A, B, C$ là các hệ số xác định đường thẳng. Tuy nhiên, ta hiếm khi được cho đường thẳng ở dạng này, nhưng ta có thể dễ dàng có được từ hai điểm cho trước. Ví dụ có hai điểm **phân biệt** $(x_1,y_1)$ và $(x_2,y_2)$, và để tìm $A, B, C$ cho phương trình trên, ta đặt:
 
-$$\begin{cases}
+$$
+\begin{cases}
 A = y_2 - y_1\\
 B = x_1 - x_2\\
 C = Ax_1 + By_1 &= (y_2 - y_1)x_1 + (x_1 - x_2)y_1 \\
  &= x_1y_2 - x_1y_1 + x_1y_1 - x_2y_1 \\
  &= x_1y_2 - x_2y_1
-\end{cases}$$
+\end{cases}
+$$
 
 Bất kể đường thẳng được cho dưới dạng nào, ta luôn có thể chọn được hai điểm phân biệt thuộc đường thẳng, sau đó tính $A, B, C$.
 
 Tiếp theo, giả sử ta có hai đường thẳng, được cho bởi hai phương trình:
 
-$$\begin{cases}
+$$
+\begin{cases}
 A_1x + B_1y = C_1\\
 A_2x + B_2y = C_2
-\end{cases}$$
+\end{cases}
+$$
 
 Để tìm giao điểm của hai đường thẳng, ta chỉ cần giải hệ hai phương trình với hai ẩn $x,y$:
 
@@ -44,12 +48,10 @@ if (det == 0) {
     // Lines are parallel or coincident
     if (A1 * C2 == A2 * C1) {
         // Lines are coincident
-    }
-    else {
+    } else {
         // Lines are parallel
     }
-}
-else {
+} else {
     double x = (B2 * C1 - B1 * C2) / det;
     double y = (A1 * C2 - A2 * C1) / det;
 }
@@ -57,31 +59,39 @@ else {
 
 Để biết được công thức ở đoạn code trên từ đâu ra, ta nhân phương trình thứ nhất với $B_2$, và nhân phương trình thứ hai với $B_1$:
 
-$$\begin{cases}
+$$
+\begin{cases}
 A_1B_2x + B_1B_2y = B_2C_1\\
 A_2B_1x + B_1B_2y = B_1C_2
-\end{cases}$$
+\end{cases}
+$$
 
 Kế tiếp, lấy phương trình thứ nhất trừ phương trình thứ hai:
 
-$$\begin{array}{}
+$$
+\begin{array}{}
 A_1B_2x - A_2B_1x = B_2C_1 - B_1C_2
-\end{array}$$
+\end{array}
+$$
 
 Cuối cùng, chia cả hai vế cho $A_1B_2 - A_2B_1$, ta sẽ có phương trình giải $x$:
 
-$$\begin{array}{}
-x = \dfrac{B_2C_1 - B_1C_2}{A_1B_2 - A_2B_1}
-\end{array}$$
+$$
+\begin{array}{}
+x = \frac{B_2C_1 - B_1C_2}{A_1B_2 - A_2B_1}
+\end{array}
+$$
 
 Phương trình giải $y$ thu được bằng biến đổi tương tự:
 
-$$\begin{array}{}
-y = \dfrac{A_1C_2 - A_2C_1}{A_1B_2 - A_2B_1}
-\end{array}$$
+$$
+\begin{array}{}
+y = \frac{A_1C_2 - A_2C_1}{A_1B_2 - A_2B_1}
+\end{array}
+$$
 
 Như vậy ta sẽ có được toạ độ giao điểm của hai đường thẳng, nhưng sẽ thế nào nếu đây là hai đoạn thẳng? Trong trường hợp này, ta cần kiểm tra xem giao điểm tìm được có nằm trên hai đoạn thẳng hay không.
-Nếu đoạn thẳng nối hai điểm $(x_1, y_1)$ và $(x_2, y_2)$, để kiểm tra xem $(x, y)$ có thuộc đoạn thẳng hay không, ta chỉ cần kiểm tra $min(x_1, x_2) \le x \le max(x_1, x_2)$ và làm tương tự cho $y$.
+Nếu đoạn thẳng nối hai điểm $(x_1, y_1)$ và $(x_2, y_2)$, để kiểm tra xem $(x, y)$ có thuộc đoạn thẳng hay không, ta chỉ cần kiểm tra $\min(x_1, x_2) \le x \le \max(x_1, x_2)$ và làm tương tự cho $y$.
 
 Ta cũng nên cẩn thận với vấn đề về độ chính xác của số thực. Nếu giao điểm nằm ngay trên đầu mút của đoạn thẳng, hoặc nếu đoạn thẳng nằm ngang hoặc thẳng đứng, một phép so sánh tầm thường có thể có vấn đề. Trong những trường hợp đó, ta có thể thực hiện so sánh với một giá trị sai số nào đó (thường là $10^{-9}$) hoặc sử dụng phân số.
 
@@ -92,23 +102,23 @@ Ngoài ra, ta còn có thể sử dụng tích có hướng để kiểm tra hai
 
 **Nhắc lại phần 1**: Với góc $\alpha$ thỏa mãn $0° < \alpha < 180°$ thì $\sin(\alpha) > 0$ nên nếu góc ngược chiều kim đồng hồ $\theta < 180°$ thì tích có hướng **dương**, ngược lại tích có hướng **âm**.
 
-Để biết thứ tự của bộ 3 điểm $A,B,C$, ta tính tích có hướng $\overrightarrow{\rm AB} \times \overrightarrow{\rm AC}$:
-- Nếu $\overrightarrow{\rm AB} \times \overrightarrow{\rm AC} > 0$ thì $A,B,C$ ngược chiều kim đồng hồ (CCW).
-- Nếu $\overrightarrow{\rm AB} \times \overrightarrow{\rm AC} < 0$ thì $A,B,C$ cùng chiều kim đồng hồ (CW).
-- Nếu $\overrightarrow{\rm AB} \times \overrightarrow{\rm AC} = 0$ thì $A,B,C$ thẳng hàng.
+Để biết thứ tự của bộ 3 điểm $A,B,C$, ta tính tích có hướng $\overrightarrow{\mathrm{AB}} \times \overrightarrow{\mathrm{AC}}$:
+- Nếu $\overrightarrow{\mathrm{AB}} \times \overrightarrow{\mathrm{AC}} > 0$ thì $A,B,C$ ngược chiều kim đồng hồ (CCW).
+- Nếu $\overrightarrow{\mathrm{AB}} \times \overrightarrow{\mathrm{AC}} < 0$ thì $A,B,C$ cùng chiều kim đồng hồ (CW).
+- Nếu $\overrightarrow{\mathrm{AB}} \times \overrightarrow{\mathrm{AC}} = 0$ thì $A,B,C$ thẳng hàng.
 
-|![](https://i.imgur.com/Qz3w0Wg.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/Qz3w0Wg.png)|
 
 ### **Kiểm tra giao điểm của 2 đoạn thẳng**
 #### Tồn tại 3 điểm thẳng hàng
 Nếu tồn tại 3 trong 4 điểm đầu mút thẳng hàng, ta kiểm tra xem có tồn tại đầu mút của đoạn thẳng này thuộc đoạn thẳng kia hay không:
 - Nếu có thì rõ ràng là 2 đoạn thẳng giao nhau tại ít nhất 1 điểm (tại đầu mút vừa xét).
 
-|![](https://i.imgur.com/ikP58hq.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/ikP58hq.png)|
 
 - Nếu không thì rõ ràng là 2 đoạn thẳng không thể giao nhau.
 
-|![](https://i.imgur.com/wc6dups.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/wc6dups.png)|
 
 #### Không tồn tại 3 điểm thẳng hàng
 Nếu không tồn tại 3 trong 4 điểm đầu mút thẳng hàng thì 2 đoạn thẳng $AB$ và $CD$ giao nhau khi:
@@ -119,24 +129,28 @@ Nếu không tồn tại 3 trong 4 điểm đầu mút thẳng hàng thì 2 đo�
 - $A,B,C$ ngược chiều kim đồng hồ và $A,B,D$ cùng chiều kim đồng hồ *hoặc*
 - $A,B,C$ cùng chiều kim đồng hồ và $A,B,D$ ngược chiều kim đồng hồ.
 
-$\Longrightarrow (\overrightarrow{\rm AB} \times \overrightarrow{\rm AC}) \cdot (\overrightarrow{\rm AB} \times \overrightarrow{\rm AD}) < 0$
+$\Longrightarrow (\overrightarrow{\mathrm{AB}} \times \overrightarrow{\mathrm{AC}}) \cdot (\overrightarrow{\mathrm{AB}} \times \overrightarrow{\mathrm{AD}}) < 0$
 
 Từ đó, ta có hệ sau:
 
-$$\begin{cases}
-(\overrightarrow{\rm AB} \times \overrightarrow{\rm AC}) \cdot (\overrightarrow{\rm AB} \times \overrightarrow{\rm AD}) < 0 \\
-(\overrightarrow{\rm CD} \times \overrightarrow{\rm CA}) \cdot (\overrightarrow{\rm CD} \times \overrightarrow{\rm CB}) < 0
-\end{cases}$$
+$$
+\begin{cases}
+(\overrightarrow{\mathrm{AB}} \times \overrightarrow{\mathrm{AC}}) \cdot (\overrightarrow{\mathrm{AB}} \times \overrightarrow{\mathrm{AD}}) < 0 \\
+(\overrightarrow{\mathrm{CD}} \times \overrightarrow{\mathrm{CA}}) \cdot (\overrightarrow{\mathrm{CD}} \times \overrightarrow{\mathrm{CB}}) < 0
+\end{cases}
+$$
 
-|![](https://i.imgur.com/c5v5L4d.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/c5v5L4d.png)|
 
 Nhấn vào [**đây**][intersect] để tương tác với hình trên Desmos.
 
 ```cpp
 const double eps = 1e-9;
 int sign(double x) {
-    if (x > eps) return 1;
-    if (x < -eps) return -1;
+    if (x > eps)
+        return 1;
+    if (x < -eps)
+        return -1;
     return 0;
 }
 double cross(Vec AB, Vec AC) {
@@ -152,10 +166,14 @@ bool intersect(Point A, Point B, Point C, Point D) {
     int CDxCB = sign(cross(D - C, B - C));
     if (ABxAC == 0 || ABxAD == 0 || CDxCA == 0 || CDxCB == 0) {
         // C on segment AB if ABxAC = 0 and CA.CB <= 0
-        if (ABxAC == 0 && sign(dot(A - C, B - C)) <= 0) return true;
-        if (ABxAD == 0 && sign(dot(A - D, B - D)) <= 0) return true;
-        if (CDxCA == 0 && sign(dot(C - A, D - A)) <= 0) return true;
-        if (CDxCB == 0 && sign(dot(C - B, D - B)) <= 0) return true;
+        if (ABxAC == 0 && sign(dot(A - C, B - C)) <= 0)
+            return true;
+        if (ABxAD == 0 && sign(dot(A - D, B - D)) <= 0)
+            return true;
+        if (CDxCA == 0 && sign(dot(C - A, D - A)) <= 0)
+            return true;
+        if (CDxCB == 0 && sign(dot(C - B, D - B)) <= 0)
+            return true;
         return false;
     }
     return (ABxAC * ABxAD < 0 && CDxCA * CDxCB < 0);
@@ -167,7 +185,7 @@ Từ $3$ điểm không thẳng hàng, có duy nhất một đường tròn đi 
 
 Chúng ta sẽ tìm đường trung trực của 2 đoạn $XY$ và $YZ$, sau đó tìm giao điểm của hai đường này, điểm đó chính là tâm của đường tròn.
 
-![](https://i.imgur.com/bQrxrA8.png)
+![](/uploads/algo/geometry/basic-geometry-2/bQrxrA8.png)
 
 Nhấn vào [**đây**][circle] để tương tác với hình trên Desmos.
 
@@ -178,7 +196,7 @@ Các bước để tìm đường trung trực của đoạn $XY$:
 - **Bước 2:** tìm trung điểm $M$ của đoạn $XY$ bằng cách lấy trung bình cộng của $2$ hoành độ và trung bình cộng của $2$ tung độ.
 - **Bước 3:** viết phương trình đường thẳng của đường thẳng vuông góc với đường thẳng $XY$ có dạng là $-Bx + Ay = D$.
 
-![](https://i.imgur.com/jYRUgh8.png =700x500)
+![](/uploads/algo/geometry/basic-geometry-2/jYRUgh8.png =700x500)
 
 Nhấn vào [**đây**][pendicular] để tương tác với hình trên Desmos.
 
@@ -188,28 +206,34 @@ Nhấn vào [**đây**][pendicular] để tương tác với hình trên Desmos.
 Cho $2$ điểm $X(2,-3)$ và $Y(1,0)$, để tìm đường trung trực của đoạn $XY$, ta thực hiện như sau:
 - **Bước 1:** Tìm phương trình đường thẳng $XY$, ta đặt:
 
-$$\begin{cases}
+$$
+\begin{cases}
 A = Y_y - X_y = 0 - (-3) = 3 \\
 B = X_x - Y_x = 2 - 1 = 1 \\
 C = AX_x + BX_y = 3 \cdot 2 + 1 \cdot (-3) = 3
-\end{cases}$$
+\end{cases}
+$$
 
 $\Longrightarrow$ phương trình đường thẳng $XY$ có dạng: $3x + y = 3$
 
 - **Bước 2:** Đặt $M$ là trung điểm của đoạn $XY$, ta có:
 
-$$\begin{cases}
-M_x = \dfrac{X_x + Y_x}{2} = \dfrac{2 + 1}{2} = 1,5 \\
-M_y = \dfrac{X_y + Y_y}{2} = \dfrac{-3 + 0}{2} = -1,5
-\end{cases}$$
+$$
+\begin{cases}
+M_x = \frac{X_x + Y_x}{2} = \frac{2 + 1}{2} = 1,5 \\
+M_y = \frac{X_y + Y_y}{2} = \frac{-3 + 0}{2} = -1,5
+\end{cases}
+$$
 
 - **Bước 3:** Phương trình đường thẳng của đường thẳng vuông góc với đường thẳng $XY$ có dạng: $-x + 3y = D$
 
 - **Bước 4:** Thay tọa độ của trung điểm $M$ vào phương trình $-x + 3y = D$:
 
-$$\begin{array}{}
+$$
+\begin{array}{}
 -(1,5) + 3 \cdot (-1,5) = D \Rightarrow D = -6
-\end{array}$$
+\end{array}
+$$
 
 Vậy phương trình đường trung trực của đoạn $XY$ là: $-x + 3y = -6$
 
@@ -218,18 +242,30 @@ Làm tương tự cho đoạn $YZ$, chúng ta sẽ có hai phương trình của
 ```cpp
 struct Point {
     double x, y;
-    Point() { x = y = 0.0; }
-    Point(double x, double y) : x(x), y(y) {}
+    Point() {
+        x = y = 0.0;
+    }
+    Point(double x, double y) : x(x), y(y) {
+    }
 
-    Point operator + (const Point &a) const { return Point(x + a.x, y + a.y); }
-    Point operator - (const Point &a) const { return Point(x - a.x, y - a.y); }
-    Point operator * (double k) const { return Point(x * k, y * k); }
-    Point operator / (double k) const { return Point(x / k, y / k); }
+    Point operator+(const Point &a) const {
+        return Point(x + a.x, y + a.y);
+    }
+    Point operator-(const Point &a) const {
+        return Point(x - a.x, y - a.y);
+    }
+    Point operator*(double k) const {
+        return Point(x * k, y * k);
+    }
+    Point operator/(double k) const {
+        return Point(x / k, y / k);
+    }
 };
 
 struct Line { // Ax + By = C
     double a, b, c;
-    Line(double a = 0, double b = 0, double c = 0) : a(a), b(b), c(c) {}
+    Line(double a = 0, double b = 0, double c = 0) : a(a), b(b), c(c) {
+    }
     Line(Point A, Point B) {
         a = B.y - A.y;
         b = A.x - B.x;
@@ -256,35 +292,42 @@ Cho điểm $X(1,-3)$ và đường thẳng $(d):4x-3y=-5$, để tìm điểm $
 
 - **Bước 2**: Để tìm $D$, ta chỉ cần thay toạ độ của $X$ vào phương trình:
 
-$$3 \cdot 1 + 4 \cdot (-3) = D \iff D = -9 \Rightarrow (d'):3x + 4y = -9$$
+$$
+3 \cdot 1 + 4 \cdot (-3) = D \iff D = -9 \Rightarrow (d'):3x + 4y = -9
+$$
 
 - **Bước 3**: xác định giao điểm $Y$ của hai đường $(d)$ và $(d')$:
 
-$$\begin{cases}
-Y_x = \dfrac{B_2C_1 - B_1C_2}{A_1B_2 - A_2B_1} =
-\dfrac{4 \cdot (-5) - (-3) \cdot (-9)}{4 \cdot 4 - 3 \cdot (-3)} =
-\dfrac{-47}{25} = -1.88 \\
-Y_y = \dfrac{A_1C_2 - A_2C_1}{A_1B_2 - A_2B_1} =
-\dfrac{4 \cdot (-9) - 3 \cdot (-5)}{4 \cdot 4 - 3 \cdot (-3)} =
-\dfrac{-21}{25} = -0.84
-\end{cases}$$
+$$
+\begin{cases}
+Y_x = \frac{B_2C_1 - B_1C_2}{A_1B_2 - A_2B_1} =
+\frac{4 \cdot (-5) - (-3) \cdot (-9)}{4 \cdot 4 - 3 \cdot (-3)} =
+\frac{-47}{25} = -1.88 \\
+Y_y = \frac{A_1C_2 - A_2C_1}{A_1B_2 - A_2B_1} =
+\frac{4 \cdot (-9) - 3 \cdot (-5)}{4 \cdot 4 - 3 \cdot (-3)} =
+\frac{-21}{25} = -0.84
+\end{cases}
+$$
 
 - **Bước 4**: xác định $X'$ đối xứng với $X$ qua $Y$ bằng công thức:
 $X' = 2Y - X$ ($Y$ là trung điểm $X$ và $X’$ nên $X + X' = 2Y$).
 
-$$\begin{cases}
+$$
+\begin{cases}
 X'_x = 2Y_x - X_x = 2 \cdot (-1.88) - 1 = -4.76 \\
 X'_y = 2Y_y - X_y = 2 \cdot (-0.84) - (-3) = 1.32
-\end{cases}$$
+\end{cases}
+$$
 
-|![](https://i.imgur.com/wDQu2gx.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/wDQu2gx.png)|
 
 Nhấn vào [**đây**][symmetry] để tương tác với hình trên Desmos.
 
 ```cpp
 struct Line { // Ax + By = C
     double a, b, c;
-    Line(double a = 0, double b = 0, double c = 0) : a(a), b(b), c(c) {}
+    Line(double a = 0, double b = 0, double c = 0) : a(a), b(b), c(c) {
+    }
 };
 
 Point intersect(Line d1, Line d2) {
@@ -306,19 +349,23 @@ Point Symmetry(Point X, Line d) {
 # Phép quay
 Cho điểm $A(x,y)$, để quay điểm $A$ **ngược chiều kim đồng hồ** một góc $\theta$ quanh **gốc tọa độ**, ta đơn giản sử dụng công thức:
 
-$$\begin{cases}
+$$
+\begin{cases}
 x' = x\cos\theta - y\sin\theta \\
 y' = x\sin\theta + y\cos\theta
-\end{cases}$$
+\end{cases}
+$$
 
 **Lưu ý**: vì các ngôn ngữ lập trình sử dụng radian(rad) làm đơn vị chuẩn khi làm việc với các hàm số lượng giác nên ở trong desmos, mình sử dụng đơn vị của số đo góc là radian thay vì độ(°).
 
 Công thức chuyển đổi giữa radian và độ:
 
-$$\pi rad=180°\Longrightarrow \begin{cases}
-radian = \dfrac{độ \cdot \pi}{180} \\
-độ = \dfrac{radian \cdot 180}{\pi}
-\end{cases}$$
+$$
+\pi \text{ rad}=180°\Longrightarrow \begin{cases}
+\text{radian} = \frac{\text{độ} \cdot \pi}{180} \\
+\text{độ} = \frac{\text{radian} \cdot 180}{\pi}
+\end{cases}
+$$
 
 Bảng chuyển đổi một số giá trị thường dùng:
 
@@ -326,7 +373,7 @@ Bảng chuyển đổi một số giá trị thường dùng:
 |:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Radian|0 |$\frac{\pi}{12}$| $\frac{\pi}6$| $\frac{\pi}4$| $\frac{\pi}3$| $\frac{5\pi}{12}$| $\frac{\pi}2$| $\pi$|
 
-![](https://i.imgur.com/7iEnloB.png)
+![](/uploads/algo/geometry/basic-geometry-2/7iEnloB.png)
 
 Nhấn vào [**đây**][rotation1] để tương tác với hình trên Desmos.
 
@@ -338,19 +385,25 @@ Cho $2$ điểm $A(1,4)$ và $C(2,2)$, để quay $A$ ngược chiều kim đồ
 
 - **Bước 2:** quay $A'$ ngược chiều kim đồng hồ 1 góc $45°$ quanh gốc tọa độ được điểm $B'$:
 
-$$\begin{cases}
-x_{B'} = -1 \cdot \cos45° - 2 \cdot \sin45° = -\dfrac{3\sqrt{2}}{2} \\
-y_{B'} = -1 \cdot \sin45° + 2 \cdot \cos45° = \dfrac{\sqrt{2}}{2}
-\end{cases}$$
+$$
+\begin{cases}
+x_{B'} = -1 \cdot \cos45° - 2 \cdot \sin45° = -\frac{3\sqrt{2}}{2} \\
+y_{B'} = -1 \cdot \sin45° + 2 \cdot \cos45° = \frac{\sqrt{2}}{2}
+\end{cases}
+$$
 
 - **Bước 3:** tịnh tiến hệ tọa độ về vị trí ban đầu. Điểm $B'$ có tọa độ mới là:
 
-$$B=\left( -\dfrac{3\sqrt{2}}{2}+2, \dfrac{\sqrt{2}}{2}+2 \right)$$
+$$
+B=\left( -\frac{3\sqrt{2}}{2}+2, \frac{\sqrt{2}}{2}+2 \right)
+$$
 
 Vậy quay $A(1,4)$ ngược chiều kim đồng hồ 1 góc $45°$ quanh $C(2,2)$, ta được điểm
-$$B\left( -\dfrac{3\sqrt{2}}{2}+2, \dfrac{\sqrt{2}}{2}+2 \right)$$
+$$
+B\left( -\frac{3\sqrt{2}}{2}+2, \frac{\sqrt{2}}{2}+2 \right)
+$$
 
-|![](https://i.imgur.com/t66DtWV.png)|
+|![](/uploads/algo/geometry/basic-geometry-2/t66DtWV.png)|
 
 Nhấn vào [**đây**][rotation2] để tương tác với hình trên Desmos.
 

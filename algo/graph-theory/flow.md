@@ -31,7 +31,7 @@ Bài viết sẽ không nêu lại các khái niệm cơ bản về đồ thị.
 - **Ký hiệu đồ thị có $G(V, E)$**: Đồ thị tập các đỉnh là $V$ và tập các cạnh là $E$
 - **Cạnh đi vào đỉnh $u$**: Các cạnh có dạng $(v, u)$, với $v$ là đỉnh bất kỳ của đồ thị.
 - **Cạnh đi ra khỏi đỉnh $u$**: Các cạnh có dạng $(u, v)$, với $v$ là đỉnh bất kỳ của đồ thị.
-- **Đường đi đơn từ $s$ tới $t$**: Dãy các đỉnh $s, u_1, u_2, ..., u_k, t$ sao cho giữa hai đỉnh liên tiếp trong dãy tồn tại một cạnh nối chúng theo đúng chiều như trên.
+- **Đường đi đơn từ $s$ tới $t$**: Dãy các đỉnh $s, u_1, u_2, \ldots, u_k, t$ sao cho giữa hai đỉnh liên tiếp trong dãy tồn tại một cạnh nối chúng theo đúng chiều như trên.
 
 ## Bài toán Luồng cực đại
 
@@ -43,29 +43,36 @@ Một đồ thị $G(V, E)$ được gọi là **mạng** (network) nếu nó l�
 - Tồn tại một đỉnh $t$ không có cạnh đi ra, gọi là **đỉnh thu/đích** (sink)
 - Mỗi cạnh $(u, v)$ được gán một trọng số $c(u, v)$, gọi là **khả năng thông qua/dung lượng** (capacity) của cạnh.
 
-![](https://hackmd.io/_uploads/rkBl97iL3.png)
+![](/uploads/algo/graph-theory/flow/rkBl97iL3.png)
 
 *Một mạng hợp lệ. Đỉnh phát và đỉnh thu được đánh dấu bằng hai màu khác.*
 
 Một **luồng** (flow) trên mạng $G(V, E)$ là một phép gán cho mỗi cạnh $(u, v)$ một số thực $f(u, v)$ thoả mãn:
 - Luồng trên mỗi cạnh có giá trị không vượt quá khả năng thông qua của cạnh đó:
-$0 \le f(u, v) \le c(u, v), \forall u, v \in V$
+
+$$
+0 \le f(u, v) \le c(u, v), \forall u, v \in V
+$$
 - Với mọi đỉnh $v$ không trùng với đỉnh phát $s$ và đỉnh thu $t$, tổng luồng trên các cạnh đi vào $v$ bằng tổng luồng trên các cạnh đi ra $v$. Tính chất này tương đối giống với định luật I Kirchoff của dòng điện.
-$\sum\limits_{v \in V, \exists (v, u) \in E} f(v, u) =
-\sum\limits_{w \in V, \exists (u, w) \in E} f(u, w)$
+
+$$
+\sum\limits_{v \in V, \exists (v, u) \in E} f(v, u) = \sum\limits_{w \in V, \exists (u, w) \in E} f(u, w)
+$$
 - Giá trị $f(u, v)$ được gọi là **luồng trên cạnh $(u, v)$**
 - **Giá trị của luồng** là tổng luồng trên các cạnh đi ra khỏi đỉnh phát, cũng chính là tổng luồng trên các cạnh đi vào đỉnh thu.
 
-![](https://hackmd.io/_uploads/Syb-57oL2.png)
+![](/uploads/algo/graph-theory/flow/Syb-57oL2.png)
 
 *Một luồng hợp lệ. Giá trị `f/c` trên cạnh biểu diễn luồng/khả năng thông qua.*
 
 Một **lát cắt** (cut) $(A, B)$ trên mạng là một cách chia các đỉnh trên đồ thị mạng thành hai tập hợp sao cho $s \in A, t \in B$.
 Tổng các giá trị khả năng thông qua trên các cạnh nối giữa một đỉnh thuộc $A$ và một đỉnh thuộc $B$ được gọi là **khả năng thông qua** (cut value) của lát cắt $(A, B)$
 
- $c(A, B) = \sum\limits_{u \in A, v \in B} c(u, v)$
+$$
+c(A, B) = \sum\limits_{u \in A, v \in B} c(u, v)
+$$
 
- ![](https://hackmd.io/_uploads/BJm1po283.png)
+ ![](/uploads/algo/graph-theory/flow/BJm1po283.png)
 
 *Một lát cắt hợp lệ với hai tập $A = \{1, 2, 5\}$ và $B = \{3, 4, 6\}$. Mỗi tập con của lát cắt được đánh dấu bằng một màu khác nhau. Lát cắt này có khả năng thông qua là $6 + 5 + 1 + 6 = 18$.*
 
@@ -79,20 +86,16 @@ Tổng các giá trị khả năng thông qua trên các cạnh nối giữa m�
   
 Xét luồng có giá trị $f$ và lát cắt $(A, B)$ trên một mạng bất kỳ. Ta có:
 
-$f =
-\sum\limits_{u \in A, v \in B} f(u, v) -
-\sum\limits_{u \in B, v \in A} f(u, v) \\
-\le
-\sum\limits_{
-\begin{subarray}{l}
-   u \in A, v \in B
-\end{subarray}} f(u, v) \\
-\le
-\sum\limits_{
-\begin{subarray}{l}
-   u \in A, v \in B
-\end{subarray}} c(u, v) \\
-= c(A, B)$ (đpcm)
+$$
+\begin{aligned}
+f &= \sum\limits_{u \in A, v \in B} f(u, v) - \sum\limits_{u \in B, v \in A} f(u, v) \\
+&\le \sum\limits_{u \in A, v \in B} f(u, v) \\
+&\le \sum\limits_{u \in A, v \in B} c(u, v) \\
+&= c(A, B)
+\end{aligned}
+$$
+
+(đpcm)
 </div>
 </details>
 
@@ -133,11 +136,15 @@ Lưu ý rằng ta **không** định nghĩa $c(v, u) = c(u, v)$, giá trị này
 
 Định nghĩa **luồng thặng dư** (residual flow) trên một cạnh tại một thời điểm là hiệu của khả năng thông qua và giá trị luồng hiện tại trên cạnh đó:
 
-$r(u, v) = c(u, v) - f(u, v)$
+$$
+r(u, v) = c(u, v) - f(u, v)
+$$
 
 Giá trị này cũng áp dụng cho cả các cạnh đảo (cạnh có luồng âm), khi đó
 
-$r(v, u) = 0 - f(v, u) = f(u, v)$.
+$$
+r(v, u) = 0 - f(v, u) = f(u, v).
+$$
 
 Ta có thể hiểu rằng giá trị luồng thặng dư cho biết còn có thể thêm vào luồng này một lượng bao nhiêu.
 
@@ -147,11 +154,11 @@ Với các giá trị $r(u, v)$ này, ta có thể xây dựng một **đồ th�
 
 Một **đường tăng luồng** (augmenting path) là một đường đi đơn trên đồ thị thặng dư. Đối chiếu lại với đồ thị gốc, đó sẽ là một đường đi đơn (có thể đi ngược chiều cạnh) qua những cạnh có $r(u, v) > 0$. Trên đường này, chúng ta có thể thực hiện tăng giá trị của luồng trên mỗi cạnh.
 
-![](https://hackmd.io/_uploads/r1pDeY0v2.png)
+![](/uploads/algo/graph-theory/flow/r1pDeY0v2.png)
 
 Đường màu xanh là một đường tăng luồng trên đồ thị thặng dư trên. Các cạnh đứt chính là các cạnh "ngược" so với mạng ban đầu; chúng có giá trị $f$ âm.
 
-![](https://hackmd.io/_uploads/Bk0Wlt0w2.png)
+![](/uploads/algo/graph-theory/flow/Bk0Wlt0w2.png)
 
 Đem đối chiếu đồ thị thặng dư trên về đồ thị gốc, ta được đường tăng luồng như hình trên. Trong hình dưới, giá trị của luồng ($f$) trên các cạnh thuộc đường tăng luồng đã được tăng $1$ đơn vị so với đồ thị thặng dư bên trên.
 
@@ -170,7 +177,7 @@ Một cách dễ hiểu hơn thì tại bước này, ta tăng giá trị của 
 
 Ta lặp đi lặp lại việc tăng luồng cho đến khi nào không thể tìm được đường tăng luồng nữa thì thôi. Khi đó, giá trị của luồng trong cả mạng chính là luồng cực đại mà ta cần tìm.
 
-![upload_8b6e4036651cb9b372cf7d1592220a2e.gif](/algo/graph/flow/upload_8b6e4036651cb9b372cf7d1592220a2e.gif)
+![upload_8b6e4036651cb9b372cf7d1592220a2e.gif](/uploads/algo/graph-theory/flow/upload_8b6e4036651cb9b372cf7d1592220a2e.gif)
 [Link GIF](/algo/graph/flow/upload_8b6e4036651cb9b372cf7d1592220a2e.gif)
 
 Hình GIF trên mô tả phương pháp Ford-Fulkerson trên mạng ta vừa lấy ví dụ trong bài viết này. Chú ý rằng có một bước, chúng ta đã phải sử dụng cạnh ngược.
@@ -217,12 +224,15 @@ Lại gọi $(u', v')$ là một cạnh bất kỳ nối từ $T$ sang $S$, vớ
 <p>
   
 Lấy tổng tất cả các đẳng thức $f(u, v) = c(u, v)$ và $f(v', u') = 0$ với mọi cặp đỉnh thoả mãn một trong hai trường hợp trên, ta được:
-$f^* = c(A, B)$
+
+$$
+f^{*} = c(A, B)
+$$
 </p>
 
 <p>
   
-Nhưng theo định lý về luồng và lát cắt đã trình bày ở trên ta có $f^* \le c(A, B)$ nên đây là luồng cực đại. (đpcm)
+Nhưng theo định lý về luồng và lát cắt đã trình bày ở trên ta có $f^{*} \le c(A, B)$ nên đây là luồng cực đại. (đpcm)
 </p>
 </details>
 
@@ -231,7 +241,7 @@ Nhưng theo định lý về luồng và lát cắt đã trình bày ở trên t
 - Nếu mọi giá trị $c$ trên luồng đều là số nguyên thì giá trị luồng cực đại cũng là số nguyên.
 
 ### Cài đặt
-``` cpp
+```cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -239,29 +249,28 @@ using namespace std;
 const int MAXN = 1001;
 
 int n, m, s, t;
-vector <int> adj[MAXN];    //đồ thị lưu kiểu danh sách kề
+vector<int> adj[MAXN]; //đồ thị lưu kiểu danh sách kề
 int c[MAXN][MAXN], f[MAXN][MAXN], trace[MAXN], maxFlow;
 
 //BFS để tìm đường tăng luồng
-void bfs()
-{
+void bfs() {
     fill(trace, trace + n + 1, 0);
     trace[s] = -1;
 
-    queue <int> bfsQueue;
+    queue<int> bfsQueue;
     bfsQueue.push(s);
 
-    while (!bfsQueue.empty())
-    {
+    while (!bfsQueue.empty()) {
         int u = bfsQueue.front();
         bfsQueue.pop();
-        for (auto v : adj[u])
-        {
+        for (auto v : adj[u]) {
             //Không dẫm lại đường cũ theo đúng luật BFS
-            if (trace[v]) continue;
+            if (trace[v])
+                continue;
 
-	    //Không đi qua cạnh có r(u, v) = c(u, v) - f(u, v) = 0
-            if (f[u][v] - c[u][v] == 0) continue;
+            //Không đi qua cạnh có r(u, v) = c(u, v) - f(u, v) = 0
+            if (f[u][v] - c[u][v] == 0)
+                continue;
 
             //Các công việc còn lại của BFS
             trace[v] = u;
@@ -271,13 +280,11 @@ void bfs()
 }
 
 //Hàm tăng luồng
-void incFlow()
-{
+void incFlow() {
     //Đi ngược theo đường tăng luồng để tìm giá trị delta = c - f tốt nhất
     int delta = INT_MAX;
     int v = t;
-    while (v != s)
-    {
+    while (v != s) {
         int u = trace[v];
         delta = min(delta, c[u][v] - f[u][v]);
         v = u;
@@ -287,8 +294,7 @@ void incFlow()
 
     //Đi ngược theo đường tăng luồng một lần nữa để cập nhật giá trị f
     v = t;
-    while (v != s)
-    {
+    while (v != s) {
         int u = trace[v];
         f[u][v] += delta;
         f[v][u] -= delta;
@@ -296,43 +302,40 @@ void incFlow()
     }
 }
 
-int main()
-{
+int main() {
     cin >> n >> m >> s >> t;
-    for (int u, v, i = 1; i <= m; i ++)
-    {
+    for (int u, v, i = 1; i <= m; i++) {
         cin >> u >> v;
         cin >> c[u][v];
         adj[u].push_back(v);
-        adj[v].push_back(u);	//lưu thêm cạnh ngược để có thể chạy qua nó khi tăng luồng
+        adj[v].push_back(u); //lưu thêm cạnh ngược để có thể chạy qua nó khi tăng luồng
     }
 
     maxFlow = 0;
 
     //Tăng luồng đến khi không tăng được nữa
-    do
-    {
+    do {
         bfs();
-        if (trace[t]) incFlow();
+        if (trace[t])
+            incFlow();
     } while (trace[t]);
 
     cout << maxFlow;
 }
-
 ```
 
 ### Độ phức tạp
-Trong bài toán chúng ta xét, tất cả các khả năng thông qua của các cạnh đều là số nguyên. Do đó, mỗi bước tăng luồng đều làm tăng giá trị của luồng lên ít nhất $1$ đơn vị. Khi sử dụng thuật BFS hoặc DFS để tìm đường tăng luồng, độ phức tạp sẽ vào cỡ $O(E)$. Do đó, độ phức tạp của phương pháp Ford-Fulkerson sẽ là $O(Ef)$, với $f$ là giá trị của luồng cực đại trên mạng. Đây không phải là một độ phức tạp với thời gian đa thức trên kích thước đồ thị.
+Trong bài toán chúng ta xét, tất cả các khả năng thông qua của các cạnh đều là số nguyên. Do đó, mỗi bước tăng luồng đều làm tăng giá trị của luồng lên ít nhất $1$ đơn vị. Khi sử dụng thuật BFS hoặc DFS để tìm đường tăng luồng, độ phức tạp sẽ vào cỡ $\mathcal{O}(E)$. Do đó, độ phức tạp của phương pháp Ford-Fulkerson sẽ là $\mathcal{O}(Ef)$, với $f$ là giá trị của luồng cực đại trên mạng. Đây không phải là một độ phức tạp với thời gian đa thức trên kích thước đồ thị.
 
-Với thuật toán Edmonds-Karp, khi sử dụng BFS, sau $O(EV)$ lần tìm đường tăng luồng, chúng ta sẽ tìm được kết quả. Độ phức tạp của thuật toán này là $O(E^2V)$.
+Với thuật toán Edmonds-Karp, khi sử dụng BFS, sau $\mathcal{O}(EV)$ lần tìm đường tăng luồng, chúng ta sẽ tìm được kết quả. Độ phức tạp của thuật toán này là $\mathcal{O}(E^{2}V)$.
 Bạn có thể tham khảo chứng minh độ phức tạp này tại [đây](https://brilliant.org/wiki/edmonds-karp-algorithm/).
 
 Khi thực hiện giải thuật Edmonds-Karp, các đánh giá ban đầu về độ phức tạp có thể sai lệch nhiều so với thực tế. Mặc dù độ phức tạp của thuật toán là tương đối lớn trong trường hợp tệ nhất, nó vẫn hoạt động hiệu quả trong hầu hết các trường hợp.
 
 ## Thuật toán Dinic
-Như đã nói ở trên, tuy đánh giá về độ phức tạp của thuật Edmonds-Karp không hề đẹp, nó vẫn chạy đủ nhanh trong thực tế. Tất nhiên, vẫn có những trường hợp thuật này chạy chưa được ổn lắm, điển hình là khi mạng có rất nhiều cạnh, ví dụ có dạng của đồ thị đầy đủ với $\frac{V(V - 1)}{2}$ cạnh thì độ phức tạp của thuật toán sẽ là $O(V^5)$, rất khủng khiếp. Thuật toán Dinic sẽ làm giảm độ phức tạp của thuật đi một chút.
+Như đã nói ở trên, tuy đánh giá về độ phức tạp của thuật Edmonds-Karp không hề đẹp, nó vẫn chạy đủ nhanh trong thực tế. Tất nhiên, vẫn có những trường hợp thuật này chạy chưa được ổn lắm, điển hình là khi mạng có rất nhiều cạnh, ví dụ có dạng của đồ thị đầy đủ với $\frac{V(V - 1)}{2}$ cạnh thì độ phức tạp của thuật toán sẽ là $\mathcal{O}(V^{5})$, rất khủng khiếp. Thuật toán Dinic sẽ làm giảm độ phức tạp của thuật đi một chút.
 
-Thuật toán này được Yefim A. Dinitz (nhiều tài liệu để tên là E. A. Dinic) đề xuất năm 1970. Nó được chứng minh là có độ phức tạp $O(EV^2)$, tốt hơn thuật toán Edmonds-Karp.
+Thuật toán này được Yefim A. Dinitz (nhiều tài liệu để tên là E. A. Dinic) đề xuất năm 1970. Nó được chứng minh là có độ phức tạp $\mathcal{O}(EV^{2})$, tốt hơn thuật toán Edmonds-Karp.
 
 Thuật toán Dinic sử dụng nhiều ý tưởng của phương pháp Ford-Fulkerson để tìm đường tăng luồng. Để đọc và hiểu được phần dưới đây, bạn nên có kiến thức về phương pháp này trước.
 
@@ -341,7 +344,7 @@ Thuật toán Dinic sử dụng nhiều ý tưởng của phương pháp Ford-Fu
 - Một **luồng cản** (blocked flow) là một tập các cạnh trên đồ thị có dạng giống như luồng trên mạng sao cho mọi đường đi từ $s$ đến $t$ đều chứa ít nhất một cạnh thuộc tập này.
 - Gọi $d(u)$ là **mức/cấp** (level) của đỉnh $u$ - đường đi ngắn nhất (tính bằng số cạnh) để đi từ $s$ đến $u$ trên đồ thị thặng dư. Định nghĩa **đồ thị phân cấp** (layered network) của đồ thị ban đầu là đồ thị chỉ chứa các cạnh $(u, v)$ **có trọng số dương** thoả mãn $d(v) = d(u) + 1$, tức là các cạnh tham gia tạo thành đường đi ngắn nhất đến tất cả các đỉnh.
 
-![](https://hackmd.io/_uploads/S1bhMtRD2.png)
+![](/uploads/algo/graph-theory/flow/S1bhMtRD2.png)
 
 *Đồ thị phân cấp (tất cả các đường có màu) và luồng cản (xanh lam) của đồ thị thặng dư*
 
@@ -354,7 +357,7 @@ Ta dựng đồ thị phân cấp của đồ thị thặng dư. Trên đồ th�
 - Không dựng đồ thị thặng dư và đồ thị phân cấp. Cũng như thuật toán Edmonds-Karp, ta hoàn toàn có thể sử dụng thêm các "cạnh" ngược với giá trị luồng âm để biểu diễn các cạnh ngược trong đồ thị thặng dư. Việc sử dụng đồ thị phân cấp thì chỉ là đánh các nhãn $d(u)$ cho các đỉnh $u$ của đồ thị, rồi kiểm tra $c(u, v) - f(u, v) > 0$ và $d(u) + 1 = d(v)$ để biết cạnh $(u, v)$ (kể cả ngược) có thuộc đồ thị phân cấp không.
 - Tại mỗi đỉnh, chỉ DFS từ cạnh cuối cùng được xét trong lần tìm đường cản trước đó với cùng một bộ $d$ (hay cùng một đồ thị phân cấp) (xem code để hiểu phần này hơn). Việc tiếp tục sử dụng một cạnh nào đó của các đường trước đó để tăng luồng là vô nghĩa, vì trong những lần tìm trước đó, ta đã khẳng định là chúng không thể tạo ra đường cản mới rồi. Khi không tìm được bất kỳ đường cản nào nữa, luồng cản hiện tại coi như đã xong. Ta tăng luồng và đánh lại $d$ cho các đỉnh.
 
-![](https://hackmd.io/_uploads/rk_v4KRv3.gif)
+![](/uploads/algo/graph-theory/flow/rk_v4KRv3.gif)
 
 Hình GIF trên mô tả thuật toán Dinic. Tất cả các cạnh có màu đều là các cạnh nằm trên đồ thị phân cấp. Các cạnh màu xanh và đỏ là các cạnh nằm trên luồng cản tìm được sau mỗi bước.
 
@@ -375,7 +378,7 @@ Thuật toán Dinic dừng khi nó không thể tìm một đường cản trên
 
 ### Cài đặt
 Trong bước DFS, để lập trình đơn giản hơn một chút, ta sẽ kết hợp DFS và tăng luồng. Mỗi lần đi tìm đường cản, ta có thể kết hợp lưu lại giá trị $\Delta$ nhỏ nhất trên đường này luôn, và khi đường này đến được $t$, ta thực hiện tăng luồng trên những cạnh đã xét.
-``` cpp
+```cpp
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -384,29 +387,28 @@ const int MAXN = 1001;
 const int INF = 1e9 + 7;
 
 int n, m, s, t;
-vector <int> adj[MAXN];
+vector<int> adj[MAXN];
 int c[MAXN][MAXN], f[MAXN][MAXN], d[MAXN], maxFlow;
 
 //chỉ số của cạnh cuối cùng được xét trong danh sách kề
 int curVertexId[MAXN];
 
 //BFS để tìm mức (d) của mỗi đỉnh
-void bfs()
-{
+void bfs() {
     fill(d, d + n + 1, INF);
     d[s] = 0;
 
-    queue <int> bfsQueue;
+    queue<int> bfsQueue;
     bfsQueue.push(s);
 
-    while (!bfsQueue.empty())
-    {
+    while (!bfsQueue.empty()) {
         int u = bfsQueue.front();
         bfsQueue.pop();
-        for (auto v : adj[u])
-        {
-	    if (d[v] != INF) continue;
-            if (f[u][v] - c[u][v] == 0) continue;  //chỉ xét cạnh dương
+        for (auto v : adj[u]) {
+            if (d[v] != INF)
+                continue;
+            if (f[u][v] - c[u][v] == 0)
+                continue; //chỉ xét cạnh dương
             d[v] = d[u] + 1;
             bfsQueue.push(v);
         }
@@ -416,23 +418,26 @@ void bfs()
 //DFS tìm luồng cản.
 //curDelta: giá trị delta tốt nhất hiện có trên đường từ s tới u
 //Hàm trả về giá trị delta tốt nhất sau khi tìm xong đường cản.
-int dfs(int u, int curDelta)
-{
-    if (curDelta == 0) return 0;
-    if (u == t) return curDelta;
+int dfs(int u, int curDelta) {
+    if (curDelta == 0)
+        return 0;
+    if (u == t)
+        return curDelta;
 
     //Chỉ xét từ cạnh cuối cùng
-    for (; curVertexId[u] < adj[u].size(); curVertexId[u] ++)
-    {
+    for (; curVertexId[u] < adj[u].size(); curVertexId[u]++) {
         int v = adj[u][curVertexId[u]];
 
         //Chỉ xét cạnh thuộc đồ thị phân cấp
-        if (d[v] != d[u] + 1) continue;
-        if (f[u][v] == c[u][v]) continue;
+        if (d[v] != d[u] + 1)
+            continue;
+        if (f[u][v] == c[u][v])
+            continue;
 
         //Thực hiện tăng luồng
         int delta = dfs(v, min(c[u][v] - f[u][v], curDelta));
-        if (delta == 0) continue;
+        if (delta == 0)
+            continue;
         f[u][v] += delta;
         f[v][u] -= delta;
         return delta;
@@ -440,11 +445,9 @@ int dfs(int u, int curDelta)
     return 0;
 }
 
-int32_t main()
-{
+int32_t main() {
     cin >> n >> m >> s >> t;
-    for (int u, v, i = 1; i <= m; i ++)
-    {
+    for (int u, v, i = 1; i <= m; i++) {
         cin >> u >> v;
         cin >> c[u][v];
         adj[u].push_back(v);
@@ -452,22 +455,22 @@ int32_t main()
     }
     maxFlow = 0;
 
-    while (true)
-    {
+    while (true) {
         bfs();
-        if (d[t] == INF) break;
-        for (int i = 1; i <= n; i ++) curVertexId[i] = 0;
+        if (d[t] == INF)
+            break;
+        for (int i = 1; i <= n; i++)
+            curVertexId[i] = 0;
         while (int delta = dfs(s, INF))
             maxFlow += delta;
     }
 
     cout << maxFlow;
 }
-
 ```
 
 ### Độ phức tạp
-**Định lý**: Thuật toán Dinic có độ phức tạp là $O(EV^2)$
+**Định lý**: Thuật toán Dinic có độ phức tạp là $\mathcal{O}(EV^{2})$
 
 <details>
 <summary>
@@ -516,12 +519,12 @@ Theo bổ đề 2, $d(t)$ tăng nghiêm ngặt sau mỗi lần BFS, nhưng khôn
 
 <p>
   
-Chi phí cho một lần tìm luồng cản là $O(mn)$, với $O(n)$ dùng cho DFS trên đồ thị phân cấp, và $O(m)$ cho việc duyệt tất cả các cạnh để tìm đường DFS. Lưu ý do duyệt từ cạnh cuối cùng được DFS, đoạn này chỉ mất $O(mn)$ thay vì $O(m^2)$.
+Chi phí cho một lần tìm luồng cản là $\mathcal{O}(mn)$, với $\mathcal{O}(n)$ dùng cho DFS trên đồ thị phân cấp, và $\mathcal{O}(m)$ cho việc duyệt tất cả các cạnh để tìm đường DFS. Lưu ý do duyệt từ cạnh cuối cùng được DFS, đoạn này chỉ mất $\mathcal{O}(mn)$ thay vì $\mathcal{O}(m^{2})$.
 </p>
 
 <p>
   
-Tổng kết hai phần lại, chúng ta có độ phức tạp thuật toán Dinic là $O(mn^2)$. (đpcm)
+Tổng kết hai phần lại, chúng ta có độ phức tạp thuật toán Dinic là $\mathcal{O}(mn^{2})$. (đpcm)
 </p>
 </details>
 
@@ -553,7 +556,7 @@ Mạng của chúng ta sẽ có dạng như thế này
 
 <center>
 
-<img src="https://hackmd.io/_uploads/rkuCDQeOn.png"/>
+<img src="/uploads/algo/graph-theory/flow/rkuCDQeOn.png"/>
 </center>
 
 <p>
@@ -568,9 +571,9 @@ Phần cài đặt chi tiết thuật toán trên sẽ dành cho bạn đọc.
 ## Một số chú ý
 - Khi giải các bài toán về luồng hoặc lát cắt, loại bài liên quan đến **mạng đơn vị** (mạng có các khả năng thông qua trên các cạnh là $1$) khá phổ biến. Trên những mạng này, khi tìm thành công luồng cực đại, luồng các cạnh sẽ chỉ ở một trong hai trạng thái: đầy ($f = 1$) hoặc rỗng ($f = 0$); còn luồng cực đại sẽ có dạng một số đường đi không giao nhau.
 - Khi mạng đơn vị có dạng đồ thị hai phía (đồ thị có thể chia các đỉnh thành $2$ tập hợp sao cho không có hai đỉnh nào cùng một tập hợp có cạnh nối đến nhau) cùng với đỉnh nguồn và đỉnh đích, bài toán trở thành dạng **cặp ghép cực đại trên đồ thị hai phía**. Bạn đọc nên tìm hiểu thêm về bài toán này để đưa ra những giải thuật linh hoạt hơn trong từng trường hợp cụ thể.
-- Như đã nói ở trên, cách đánh giá độ phức tạp của các thuật toán trên có thể sai lệch tương đối so với thực tế. Vì vậy, khi làm những bài luồng, đôi lúc bạn có thể tính ra một độ phức tạp rất lớn, nhưng thuật toán lại chạy tốt. Ngay như bài NKFLOW ở trên, chúng ta vẫn AC được với độ phức tạp $O(E^2V)$.
+- Như đã nói ở trên, cách đánh giá độ phức tạp của các thuật toán trên có thể sai lệch tương đối so với thực tế. Vì vậy, khi làm những bài luồng, đôi lúc bạn có thể tính ra một độ phức tạp rất lớn, nhưng thuật toán lại chạy tốt. Ngay như bài NKFLOW ở trên, chúng ta vẫn AC được với độ phức tạp $\mathcal{O}(E^{2}V)$.
 - Tuy chênh lệch về độ phức tạp giữa thuật Edmonds-Karp và Dinic là có thể thấy ngay, nhưng khi chạy, thuật Dinic thường cũng không cải thiện được quá nhiều. Các tác giả của *Competitive Programing 3* cũng thừa nhận họ "chưa từng gặp một trường hợp đồ thị nào cho kết quả AC bằng Dinic mà chạy TLE bằng thuật Edmonds-Karp". Tuy nhiên, nếu muốn có sự tối ưu, hãy sử dụng thuật Dinic. Còn nếu bạn muốn một thuật dễ cài đặt, dễ nhớ và dễ hiểu hơn, có thể sử dụng Edmonds-Karp.
-- Edmonds-Karp và Dinic là hai thuật phổ biến nhưng không phải duy nhất để tìm luồng cực đại. Bạn có thể tìm hiểu thêm về thuật [push-relabel](https://cp-algorithms.com/graph/push-relabel.html) (1985) và [MPM](https://cp-algorithms.com/graph/mpm.html) (1978) tại CP Algorithms. Gần đây, đã có những thuật tinh vi hơn tìm được luồng với độ phức tạp $O(EV)$, như thuật của King, Rao, and Tarjan (1994), của Orlin (2012). Thậm chí, năm 2022, đã có thêm một thuật toán giải bài toán gần với bài này là min-cost flow với thời gian gần tuyến tính $O(E^{1+o(1)})$.
+- Edmonds-Karp và Dinic là hai thuật phổ biến nhưng không phải duy nhất để tìm luồng cực đại. Bạn có thể tìm hiểu thêm về thuật [push-relabel](https://cp-algorithms.com/graph/push-relabel.html) (1985) và [MPM](https://cp-algorithms.com/graph/mpm.html) (1978) tại CP Algorithms. Gần đây, đã có những thuật tinh vi hơn tìm được luồng với độ phức tạp $\mathcal{O}(EV)$, như thuật của King, Rao, and Tarjan (1994), của Orlin (2012). Thậm chí, năm 2022, đã có thêm một thuật toán giải bài toán gần với bài này là min-cost flow với thời gian gần tuyến tính $\mathcal{O}(E^{1+o(1)})$.
 
 
 ## Luyện tập

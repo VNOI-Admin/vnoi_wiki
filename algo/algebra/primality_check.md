@@ -36,8 +36,7 @@ Cách đơn giản nhất để kiểm tra tính nguyên tố của số tự nh
 Ta có thể cài đặt như sau:
 
 ```cpp
-bool primeCheck(int n)
-{
+bool primeCheck(int n) {
     if (n < 2)
         return false;
     for (int i = 2; i < n; ++i)
@@ -55,8 +54,7 @@ bool primeCheck(int n)
 Cài đặt thuật toán:
 
 ```cpp
-bool primeCheck(int n)
-{
+bool primeCheck(int n) {
     if (n < 2)
         return false;
     for (int i = 2; i * i <= n; ++i)
@@ -71,11 +69,9 @@ bool primeCheck(int n)
 Ta có thể mở rộng thuật toán trên thành thuật toán phân tích một số nguyên dương ra thừa số nguyên tố:
 
 ```cpp
-void primeFactorization(int n)
-{
+void primeFactorization(int n) {
     for (int i = 2; i * i <= n; ++i)
-        while (n % i == 0)
-        {
+        while (n % i == 0) {
             n /= i;
             cout << i << ' ';
         }
@@ -89,8 +85,7 @@ void primeFactorization(int n)
 Để ý nếu số nguyên tố $n$ lẻ thì $n$ không chia hết cho một số chẵn bất kì. Do đó nếu $n>2$, ta chỉ cần xét các số $i$ lẻ thuộc đoạn $\left[2,\left[\sqrt{n}\right]\right]$. Tương tự, nếu $n>3$ thì ta chỉ cần xét $i$ là các số không chia hết cho $3$. Từ hai nhận xét trên, nếu $n>3$ thì ta chỉ cần xét các số $i$ sao cho $i$ chia $6$ dư $1$ hoặc $5$.
 
 ```cpp
-bool primeCheck(int n)
-{
+bool primeCheck(int n) {
     if (n == 2 || n == 3)
         return true;
     if (n < 3 || n % 2 == 0 || n % 3 == 0)
@@ -101,9 +96,9 @@ bool primeCheck(int n)
     return true;
 }
 ```
-**Chú ý:** Có thể sử dụng nhiều số nguyên tố đầu tiên để tối ưu thuật toán hơn. Về lý thuyết, nếu $k$ là số số nguyên tố được dùng càng lớn thì vòng lặp chạy càng nhanh. Tuy nhiên, với $k=50$, độ phức tạp vòng lặp `for` là $\mathcal{O}\left(\frac{\sqrt{n}}{10}\right)$. Và kể cả với $k=6.10^5$ thì độ phức tạp thuật của vòng lặp `for` vẫn là $\mathcal{O}\left(\frac{\sqrt{n}}{30}\right)$.
+**Chú ý:** Có thể sử dụng nhiều số nguyên tố đầu tiên để tối ưu thuật toán hơn. Về lý thuyết, nếu $k$ là số số nguyên tố được dùng càng lớn thì vòng lặp chạy càng nhanh. Tuy nhiên, với $k=50$, độ phức tạp vòng lặp `for` là $\mathcal{O}\left(\frac{\sqrt{n}}{10}\right)$. Và kể cả với $k=6 \times 10^{5}$ thì độ phức tạp thuật của vòng lặp `for` vẫn là $\mathcal{O}\left(\frac{\sqrt{n}}{30}\right)$.
 
-Do đó thuật toán này có thể không đủ nhanh để giải quyết giới hạn $n\le10^{18}$, hoặc $n\le10^9$ nhưng phải kiểm tra $10^6$ số $n$ trở lên. Để giải quyết các bài toán có giới hạn lớn như thế, ta phải sử dụng đến các phương pháp xác suất.
+Do đó thuật toán này có thể không đủ nhanh để giải quyết giới hạn $n\le10^{18}$, hoặc $n\le10^{9}$ nhưng phải kiểm tra $10^{6}$ số $n$ trở lên. Để giải quyết các bài toán có giới hạn lớn như thế, ta phải sử dụng đến các phương pháp xác suất.
 
 # 2. Phép thử Fermat (Định lí Fermat nhỏ)
 
@@ -111,29 +106,27 @@ Do đó thuật toán này có thể không đủ nhanh để giải quyết gi�
 
 Theo định lí Fermat nhỏ, nếu $p$ là một số nguyên tố thì với mọi số nguyên $a$ thỏa mãn $\gcd\left(a,p\right)=1$, ta có:
 $$
-a^{p-1}\equiv 1\mod{p}
+a^{p-1}\equiv 1\pmod{p}
 $$
 
 Từ định lý Fermat ta có ý tưởng kiểm tra tính nguyên tố của số nguyên dương $n$ như sau:
 
-* Xét số nguyên $a\in\left[2,n-1\right]$, nếu $a^{n-1}\not\equiv1\mod{n}$ thì ta **chắc chắn** $n$ là hợp số hoặc $n<2$.
-* Ngược lại, nếu $a^{n-1}\equiv 1\mod{n}$ thì $n$ **có thể** là số nguyên tố.
+* Xét số nguyên $a\in\left[2,n-1\right]$, nếu $a^{n-1}\not\equiv1\pmod{n}$ thì ta **chắc chắn** $n$ là hợp số hoặc $n<2$.
+* Ngược lại, nếu $a^{n-1}\equiv 1\pmod{n}$ thì $n$ **có thể** là số nguyên tố.
 
-**Chú ý:** Phần in đậm của phép thử nghĩa là tồn tại các giá trị của $n$ và $a$ sao cho $n$ là hợp số và $a^{n-1}\equiv 1 \mod{n}$. Ví dụ, nếu $n=15$ và $a=4$ thì $4^{14}\equiv 1 \mod{15}$. Trong trường hợp này, $n$ được gọi là số giả nguyên tố cơ sở $a$, hoặc số nguyên tố xác suất cơ sở $a$.
+**Chú ý:** Phần in đậm của phép thử nghĩa là tồn tại các giá trị của $n$ và $a$ sao cho $n$ là hợp số và $a^{n-1}\equiv 1 \pmod{n}$. Ví dụ, nếu $n=15$ và $a=4$ thì $4^{14}\equiv 1 \pmod{15}$. Trong trường hợp này, $n$ được gọi là số giả nguyên tố cơ sở $a$, hoặc số nguyên tố xác suất cơ sở $a$.
 
 Về lý thuyết, nếu ta kiểm tra đẳng thức Fermat với mọi số $a$, ta có thể kết luận chắc chắn tính nguyên tố của $n$. Tuy nhiên, việc kiểm tra đẳng thức với mọi $a$ sẽ phức tạp hơn cả thuật toán ngây thơ. Do đó, phép thử Fermat sẽ thực hiện một số lần thử với các số $a$ được lấy ngẫu nhiên. Trong các bài toán lập trình thi đấu, phép thử vẫn có độ chính xác đủ tốt.
 
 ## 2.2. Cài đặt
-Ta có thể cài đặt kết quả của phép tính $a^{n-1}\mod{n}$ bằng lũy thừa nhị phân.
+Ta có thể cài đặt kết quả của phép tính $a^{n-1} \bmod{n}$ bằng lũy thừa nhị phân.
 
 ```cpp
 // Tính a^k (mod n)
-int binaryPower(long long a, int k, int n)
-{
+int binaryPower(long long a, int k, int n) {
     a = a % n;
     long long res = 1;
-    while (k)
-    {
+    while (k) {
         if (k & 1)
             res = (res * a) % n;
         a = (a * a) % n;
@@ -146,14 +139,12 @@ int binaryPower(long long a, int k, int n)
 Cài đặt phép thử Fermat:
 
 ```cpp
-bool isProbablyPrime(int n)
-{
+bool isProbablyPrime(int n) {
     if (n < 7)
         return n == 2 || n == 3 || n == 5;
 
     static const int repeatNum = 5;
-    for (int i = 0; i < repeatNum; ++i)
-    {
+    for (int i = 0; i < repeatNum; ++i) {
         int a = rand() % (n - 3) + 2;
         if (binaryPower(a, n - 1, n) != 1)
             return false;
@@ -168,12 +159,10 @@ Do thuật toán `binaryPower` có sử dụng phép tính `(a * a) % n` nên n�
 
 ```cpp
 // Tính a * b mod n
-long long binaryMul(long long a, long long b, long long n)
-{
+long long binaryMul(long long a, long long b, long long n) {
     a = a % n;
     long long res = 0;
-    while (b)
-    {
+    while (b) {
         if (b & 1)
             res = (res + a) % n;
         a = (2 * a) % n;
@@ -183,12 +172,10 @@ long long binaryMul(long long a, long long b, long long n)
 }
 
 // Tính a^b mod n
-long long binaryPow(long long a, long long k, long long n)
-{
+long long binaryPow(long long a, long long k, long long n) {
     a = a % n;
     long long res = 1;
-    while (k)
-    {
+    while (k) {
         if (k & 1)
             res = binaryMul(res, a, n);
         a = binaryMul(a, a, n) % n;
@@ -203,7 +190,7 @@ Khi đó độ phức tạp thuật toán là $\mathcal{O}\left(c\log^2{n}\right
 
 **Chú ý:** Do không có tính chính xác tuyệt đối nên phép thử Fermat không phải là một thuật toán.
 
-Tuy tốc độ cao và dễ cài đặt, vẫn có những trường hợp xác suất phép thử Fermat thất bại là rất cao. Ví dụ xét số $n=561 = 3 \times 11 \times 17$. Số này có tính chất với mọi số nguyên $a$ mà $\gcd(a,n)=1$ thì $a^{n-1}\equiv 1\mod n$. Do đó, trừ khi trong các lần thử ngẫu nhiên ta chọn được $a$ chia hết cho $3,11$ hoặc $17$ thì phép thử sẽ cho kết quả sai.
+Tuy tốc độ cao và dễ cài đặt, vẫn có những trường hợp xác suất phép thử Fermat thất bại là rất cao. Ví dụ xét số $n=561 = 3 \times 11 \times 17$. Số này có tính chất với mọi số nguyên $a$ mà $\gcd(a,n)=1$ thì $a^{n-1}\equiv 1 \pmod{n}$. Do đó, trừ khi trong các lần thử ngẫu nhiên ta chọn được $a$ chia hết cho $3,11$ hoặc $17$ thì phép thử sẽ cho kết quả sai.
 
 Các số có tính chất trên được gọi là số *Carmichael*.
 
@@ -226,8 +213,8 @@ $T(c)$ |$34\%$|$56\%$|$71\%$|$81\%$|$88\%$|$\ldots$
 Tức là kể cả ta có thử đến $5$ lần thì xác suất phép thử kết luận đúng vẫn không thể quá $90\%$.
 
 Một điều khá thú vị là các số Carmichael phân bố rất ít trong tập các số tự nhiên. Theo [OEIS-A055553](https://oeis.org/A055553):
-* Số các số Carmichael nhỏ hơn $10^6$ là $43$
-* Số các số Carmichael nhỏ hơn $10^9$ là $646$
+* Số các số Carmichael nhỏ hơn $10^{6}$ là $43$
+* Số các số Carmichael nhỏ hơn $10^{9}$ là $646$
 * Số các số Carmichael nhỏ hơn $10^{18}$ là $1401644$
 
 Do đó, các bạn có thể yên tâm khi sử dụng phép thử Fermat nếu test được sinh ngẫu nhiên, vì xác suất gặp số Carmichael rất thấp. Nếu test cố tình chọn số Carmichael thì phép thử không còn đáng tin cậy. Rất may là có những phép thử hiệu quả và chính xác hơn phép thử Fermat. Trong phần tiếp theo chúng ta sẽ cùng tìm hiểu thuật toán Rabin-Miller.
@@ -247,20 +234,20 @@ Do đó, xét số $n$, ta có thể phân tích $n-1$ thành $2^k\times m$, v�
 Theo định lý nhỏ Fermat, nếu $n$ là số nguyên tố thì với mọi $a$ sao cho $\gcd(a,n)=1$ ta có:
 
 $$
-a^{n-1}\equiv1\mod{n}\Leftrightarrow a^{2^k.m}-1\equiv0\mod{n} \\
-\Leftrightarrow \left(a^{2^{k-1}m}+1\right)\left(a^{2^{k-2}m}+1\right)\ldots\left(a^{m}+1\right)\left(a^m-1\right)\equiv0 \mod{n}
+a^{n-1}\equiv1\pmod{n}\Leftrightarrow a^{2^k \times m}-1\equiv0\pmod{n} \\
+\Leftrightarrow \left(a^{2^{k-1}m}+1\right)\left(a^{2^{k-2}m}+1\right)\ldots\left(a^{m}+1\right)\left(a^m-1\right)\equiv0 \pmod{n}
 $$
 
 Vì $n$ là số nguyên tố nên tồn tại ít nhất một trong các nhân tử của vế trái chia hết cho $n$. Do đó, thay vì kiểm tra kết luận của định lý Fermat nhỏ, ta sẽ kiểm tra điều kiện sau:
 
-* $a^m\equiv1\mod{n}$ hoặc
-* Tồn tại $0\le l \le k-1$ sao cho $a^{{2^l}m}\equiv-1\mod{n}$
+* $a^m\equiv1\pmod{n}$ hoặc
+* Tồn tại $0\le l \le k-1$ sao cho $a^{{2^l}m}\equiv-1\pmod{n}$
 
 Nếu cả hai điều kiện không được thỏa mãn thì chắc chắn $n$ là hợp số.
 
 Nhưng nếu cả hai điều kiện được thỏa mãn thì $n$ có phải số nguyên tố không?
 
-Câu trả lời là **không**. Ví dụ: với $n=28,a=19$ thì $n-1=2^0\times27$ và $19^{27}\equiv-1\mod{28}$.
+Câu trả lời là **không**. Ví dụ: với $n=28,a=19$ thì $n-1=2^0\times27$ và $19^{27}\equiv-1\pmod{28}$.
 
 Do đó, để áp dụng ý tưởng trên, ta có thể triển khai theo hai cách sau:
 
@@ -274,12 +261,10 @@ Nghĩa là với hợp số $n$ bất kì, xác suất để thuật toán chứ
 
 ```cpp
 // Tính a^k mod n
-long long binaryPower(long long a, long long k, long long n)
-{
+long long binaryPower(long long a, long long k, long long n) {
     a = a % n;
     long long res = 1;
-    while (k)
-    {
+    while (k) {
         if (k & 1)
             res = (res * a) % n;
         a = (a * a) % n;
@@ -289,13 +274,11 @@ long long binaryPower(long long a, long long k, long long n)
 }
 
 // Kiểm tra điều kiện thuật toán với a cố định
-bool test(long long a, long long n, long long k, long long m)
-{
+bool test(long long a, long long n, long long k, long long m) {
     long long mod = binaryPower(a, m, n);
     if (mod == 1 || mod == n - 1)
-            return true;
-    for (int l = 1; l < k; ++l)
-    {
+        return true;
+    for (int l = 1; l < k; ++l) {
         mod = (mod * mod) % n;
         if (mod == n - 1)
             return true;
@@ -303,8 +286,7 @@ bool test(long long a, long long n, long long k, long long m)
     return false;
 }
 
-bool RabinMiller(long long n)
-{
+bool RabinMiller(long long n) {
     // Kiểm tra với các giá trị nhỏ
     if (n == 2 || n == 3 || n == 5 || n == 7)
         return true;
@@ -313,16 +295,14 @@ bool RabinMiller(long long n)
 
     // Tính m và k
     long long k = 0, m = n - 1;
-    while (m % 2 == 0)
-    {
+    while (m % 2 == 0) {
         m /= 2;
         k++;
     }
 
     // Lặp lại bước kiểm tra với a ngẫu nhiên
     const static int repeatTime = 3;
-    for (int i = 0; i < repeatTime; ++i)
-    {
+    for (int i = 0; i < repeatTime; ++i) {
         long long a = rand() % (n - 3) + 2;
         if (!test(a, n, k, m))
             return false;
@@ -338,15 +318,14 @@ Phép thử xác suất có thể trở thành thuật toán bằng cách thay v
 
 Với $n$ đủ lớn thì vẫn có rất nhiều giá trị cần kiểm tra. Nhưng người ta cũng chứng minh được rằng:
 
-* Nếu $n\le 3.10^9$, chỉ cần xét $a\in\{2;3;5;7\}$
+* Nếu $n\le 3 \times 10^{9}$, chỉ cần xét $a\in\{2;3;5;7\}$
 * Nếu $n\le 2^{64}$, chỉ cần xét $a\in\{2;3;5;7;11;13;17;19;23;29;31;37\}$
 
 Do đó, ta có phiên bản thuật toán (độ chính xác $100\%$) của phép thử như sau:
 
 ```cpp
-bool MillerRabin(long long n)
-{
-    static vector<int> checkSet = {2,3,5,7,11,13,17,19,23,29,31,37};
+bool MillerRabin(long long n) {
+    static vector<int> checkSet = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
     for (auto a : checkSet)
         if (n == a)
             return true;
@@ -354,8 +333,7 @@ bool MillerRabin(long long n)
         return false;
 
     long long k = 0, m = n - 1;
-    while (m % 2 == 0)
-    {
+    while (m % 2 == 0) {
         m /= 2;
         k++;
     }

@@ -25,7 +25,7 @@ Với mọi cặp số nguyên tố cùng nhau $n$, $m \in N$ ta có $f(mn)=f(m)
 
 Xét hàm $f(n)$ là số ước của $n$. Ta có:
 
-```
+```text
 f(1) = 1
 f(2) = 2
 f(3) = 2
@@ -61,8 +61,8 @@ Giờ ta xét bài toán sau:
 Để làm những bài dạng này, ta sẽ có 3 bước:
 
 1. Chứng minh $f$ là hàm nhân tính.
-2. Tìm công thức cho $f(p^k)$ với p là số nguyên tố.
-3. Dùng sàng để tính $f$ trong $O(N\log N)$.
+2. Tìm công thức cho $f(p^{k})$ với p là số nguyên tố.
+3. Dùng sàng để tính $f$ trong $\mathcal{O}(N\log N)$.
 
 Nếu bạn chưa biết sàng có thể đọc [ở đây](/translate/topcoder/Mathematics-for-Topcoders).
 
@@ -74,7 +74,7 @@ Như đã chứng minh ở phần trước, $f$ là hàm nhân tính.
 
 ## 2.2. Bước 2
 
-Với một số nguyên tố $p$, ta có $f(p^k) = k + 1$, do các ước của $p^k$ là $1, p, p^2, ..., p^k$.
+Với một số nguyên tố $p$, ta có $f(p^{k}) = k + 1$, do các ước của $p^{k}$ là $1, p, p^{2}, \ldots, p^{k}$.
 
 
 ## 2.2. Bước 3
@@ -83,25 +83,28 @@ Với một số nguyên tố $p$, ta có $f(p^k) = k + 1$, do các ước của
 
 1. Biết được số nào là số nguyên tố.
 2. Với mỗi số không phải nguyên tố, tìm được 1 ước nguyên tố.
-3. Từ 2, ta nhanh chóng kiểm tra được 1 số có dạng $p^k$ hay không.
+3. Từ 2, ta nhanh chóng kiểm tra được 1 số có dạng $p^{k}$ hay không.
 
 Như vậy, ta có thể cài đặt như sau:
 
 ```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
 const int MN = 1e6 + 11;
 
 int sieve[MN];         // Sàng số nguyên tố. Sau khi sàng:
                        // - sieve[i] = 0 nếu i là số nguyên tố
                        // - ngược lại sieve[i] = một ước bất kỳ của i.
-pair<int,int> pk[MN];  // Nếu i có dạng p^k, pk[i] = {p, k}.
+pair<int, int> pk[MN]; // Nếu i có dạng p^k, pk[i] = {p, k}.
                        // Ngược lại, pk[i] = {-1, 0}
 int ndiv[MN];          // ndiv[i] = Số ước của i.
 
 int main() {
     // Sàng số nguyên tố
-    for (int i = 2; i <= 1000; i++)  // số không nguyên tố có 1 ước <= 10^3.
+    for (int i = 2; i <= 1000; i++) // số không nguyên tố có 1 ước <= 10^3.
         if (!sieve[i]) {
-            for (int j = i*i; j <= 1000000; j += i)
+            for (int j = i * i; j <= 1000000; j += i)
                 sieve[j] = i;
         }
 
@@ -112,15 +115,13 @@ int main() {
             // i là số nguyên tố.
             pk[i] = make_pair(i, 1);
             ndiv[i] = 2;
-        }
-        else {
-            int p = sieve[i];  // p là ước bất kỳ của i.
+        } else {
+            int p = sieve[i]; // p là ước bất kỳ của i.
 
-            if (pk[i/p].first == p) {  // i = p^k
-                pk[i] = make_pair(p, pk[i/p].second + 1);
-                ndiv[i] = pk[i].second + 1;  // ndiv[p^k] = k+1.
-            }
-            else {
+            if (pk[i / p].first == p) { // i = p^k
+                pk[i] = make_pair(p, pk[i / p].second + 1);
+                ndiv[i] = pk[i].second + 1; // ndiv[p^k] = k+1.
+            } else {
                 pk[i] = make_pair(-1, 0);
                 // Phân tích i = u*v, với gcd(u, v) = 1.
                 int u = i, v = 1;
@@ -133,7 +134,6 @@ int main() {
         }
     }
 }
-
 ```
 
 # 3. Ứng dụng 2
@@ -147,8 +147,8 @@ Chú ý ở bài toán trước ta cần tính nhiều giá trị của $f(N)$ v
 Cũng như trên, ta sẽ làm theo 3 bước chính:
 
 1. Chứng minh $f$ là hàm nhân tính.
-2. Tìm công thức cho $f(p^k)$ với p là số nguyên tố.
-3. Phân tích $N$ thành thừa số nguyê tố để tính $f(N)$ trong $O(\sqrt N)$.
+2. Tìm công thức cho $f(p^{k})$ với p là số nguyên tố.
+3. Phân tích $N$ thành thừa số nguyê tố để tính $f(N)$ trong $\mathcal{O}(\sqrt N)$.
 
 Vì 2 bước đầu giống hệt phần trước nên mình sẽ không nhắc lại.
 
@@ -156,25 +156,25 @@ Vì 2 bước đầu giống hệt phần trước nên mình sẽ không nhắc
 
 ```cpp
 int n;
-int res = 1;  // kết quả
-for (int i = 2; i*i <= n; i++) {
-  if (n % i == 0) {
-    // i là ước nguyên tố của n
-    // (nếu i không nguyên tố, và có ước p, thì ở bước trước đó,
-    // ta đã chia n cho p đến khi n không chia hết cho p).
-    int u = 1, k = 0;
-    // u = i^k là luỹ thừa lớn nhất của i mà là ước của n.
-    while (n % i == 0) {
-      n /= i;
-      u = u * i;
-      k += 1;
+int res = 1; // kết quả
+for (int i = 2; i * i <= n; i++) {
+    if (n % i == 0) {
+        // i là ước nguyên tố của n
+        // (nếu i không nguyên tố, và có ước p, thì ở bước trước đó,
+        // ta đã chia n cho p đến khi n không chia hết cho p).
+        int u = 1, k = 0;
+        // u = i^k là luỹ thừa lớn nhất của i mà là ước của n.
+        while (n % i == 0) {
+            n /= i;
+            u = u * i;
+            k += 1;
+        }
+        res = res * (k + 1);
     }
-    res = res * (k + 1);
-  }
 }
 
-if (n > 1) {  // giá trị hiện tại của n là số nguyên tố
-  res = res * 2;
+if (n > 1) { // giá trị hiện tại của n là số nguyên tố
+    res = res * 2;
 }
 ```
 
@@ -203,12 +203,14 @@ Xét $a$ và $b$ nguyên tố cùng nhau. Mỗi ước $d$ của $ab$ có thể 
 
 Do đó:
 
-$\begin{aligned}
+$$
+\begin{aligned}
 (f * g)(ab) &= \sum\limits_{r \mid a,\; s\mid b}{f(rs) \times g\left(\frac{ab}{rs}\right)}\\
 &= \sum\limits_{r \mid a,\; s\mid b}{f(r) \times f(s) \times g\left(\frac{a}{r}\right) \times g\left(\frac{b}{s}\right)}\\
 &= \sum\limits_{r \mid a}{f(r) \times g\left(\frac{a}{r}\right)} \sum\limits_{s\mid b}{f(s) \times g\left(\frac{b}{s}\right)}\\
 &= (f * g)(a) (f * g)(b)
-\end{aligned}$
+\end{aligned}
+$$
 
 Như vậy, $(f * g)$ cũng là hàm nhân tính.
 
@@ -219,7 +221,7 @@ Như vậy, $(f * g)$ cũng là hàm nhân tính.
 Xét hàm $f(n) = 1$ và $g(n) = 1$. Rõ ràng $f$ và $g$ đều là hàm nhân tính.
 
 $$
-(f * g)(n) = \sum_{d \mid n}{f(d) \times g\left(\frac{n}{d}\right)} = \sum_{d | n}{1} = \tau(n)
+(f * g)(n) = \sum_{d \mid n}{f(d) \times g\left(\frac{n}{d}\right)} = \sum_{d \mid n}{1} = \tau(n)
 $$
 
 Như vậy $(f * g)(n)$ là số ước của số $n$ và là hàm nhân tính.
@@ -234,22 +236,22 @@ $$
 
 Như vậy $(f * g)(n)$ là tổng các ước của $n$ và là hàm nhân tính.
 
-Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum\limits_{d \mid n}{d^k}$ là hàm nhân tính.
+Tổng quát hơn, với hằng số $k$ bất kỳ, hàm $f(n) = \sum\limits_{d \mid n}{d^{k}}$ là hàm nhân tính.
 
 ## 4.3. Các hàm nhân tính thường gặp
 
 Sau đây là các hàm nhân tính thường gặp. Bạn có thể thử chứng minh những hàm này là hàm nhân tính dựa theo định nghĩa hoặc Tích chập Dirichlet. Việc nắm được những hàm này sẽ giúp thuận lợi hơn trong việc gỉai những bài liên quan đến hàm nhân tính.
 
 - $I(n) = 1$, hàm $f$ luôn bằng 1 với tất cả các giá trị của $n$.
-- $id(n) = n$
-- $id_k(n) = n^k$
+- $\operatorname{id}(n) = n$
+- $\operatorname{id}_k(n) = n^{k}$
 - $\gcd(n, k)$ với k là hằng số
 - $\varphi(n)$: số số nguyên tố cùng nhau với $n$ và nhỏ hơn hoặc bằng $n$ (Phi hàm Euler)
 - $\mu(n)$: Hàm Mobius thường được dùng trong các bài toán đếm sử dụng nguyên lý bù trừ:
   - Nếu $n$ có ước là số chính phương khác 1, $\mu(n) = 0$.
   - Nếu $n$ có lẻ ước nguyên tố, $\mu(n) = -1$.
   - Nếu $n$ có chẵn ước nguyên tố, $\mu(n) = 1$. Chú ý $\mu(1) = 1$.
-- $f_k(n) = \sum\limits_{d \mid n}{d^k}$ với $k$ là hằng số. Trong đó:
+- $f_k(n) = \sum\limits_{d \mid n}{d^{k}}$ với $k$ là hằng số. Trong đó:
 	- $\tau(n) = f_0(n) = \sum\limits_{d \mid n}{1}$ là đếm số ước của $n$.
 	- $\sigma(n) = f_1(n) = \sum\limits_{d \mid n}{d}$ là tổng các ước của $n$.
 
@@ -257,7 +259,7 @@ Sau đây là các hàm nhân tính thường gặp. Bạn có thể thử chứ
 
 # 5. Tổng kết
 
-Như vậy, nếu bạn chứng minh được một hàm $f$ là hàm nhân tính, và tìm được công thức $O(1)$ cho $f(p^k)$ thì sẽ dễ dàng tính được tất cả các giá trị $f(i), i \le N$ trong $O(N \log N)$.
+Như vậy, nếu bạn chứng minh được một hàm $f$ là hàm nhân tính, và tìm được công thức $\mathcal{O}(1)$ cho $f(p^{k})$ thì sẽ dễ dàng tính được tất cả các giá trị $f(i), i \le N$ trong $\mathcal{O}(N \log N)$.
 
 Bạn cũng nên nắm được những hàm nhân tính thường gặp, từ đó giúp nhận dạng bài toán dễ dàng hơn.
 

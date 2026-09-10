@@ -21,27 +21,27 @@ Trong phần này của bài viết chúng ta sẽ tập trung vào việc ướ
 
 Ước lượng độ phức tạp của đoạn mã sau:
 ```cpp
-int result=0;                           //  1
-for (int i=0; i<N; i++)                 //  2
-  for (int j=i; j<N; j++) {             //  3
-    for (int k=0; k<M; k++) {           //  4
-      int x=0;                          //  5
-      while (x<N) { result++; x+=3; }   //  6
-    }                                   //  7
-    for (int k=0; k<2*M; k++)           //  8
-      if (k%7 == 4) result++;           //  9
-  }                                     // 10
+int result = 0;                             //  1
+for (int i = 0; i < N; i++)                 //  2
+    for (int j = i; j < N; j++) {           //  3
+        for (int k = 0; k < M; k++) {       //  4
+            int x = 0;                      //  5
+            while (x < N) { result++; x += 3; }   //  6
+        }                                   //  7
+        for (int k = 0; k < 2 * M; k++)     //  8
+            if (k % 7 == 4) result++;       //  9
+    }                                       // 10
 ```
 
-Rõ ràng độ phức tạp của vòng lặp `while` ở dòng 6 là $O(N)$ - số lần lặp không vượt quá $N/3+1$ lần.
+Rõ ràng độ phức tạp của vòng lặp `while` ở dòng 6 là $\mathcal{O}(N)$ - số lần lặp không vượt quá $\frac{N}{3}+1$ lần.
 
-Xét vòng lặp `for` ở các dòng 4 - 7. Dễ thấy biến $k$ được tăng lên $M$ lần. Mỗi lần như vậy thì toàn bộ vòng lặp `while` ở dòng 6 lại được thực thi. Như vậy tổng số độ phức tạp của đoạn lệnh từ dòng 4 tới 7 là $O(MN)$ (áp dụng quy tắc 3)
+Xét vòng lặp `for` ở các dòng 4 - 7. Dễ thấy biến $k$ được tăng lên $M$ lần. Mỗi lần như vậy thì toàn bộ vòng lặp `while` ở dòng 6 lại được thực thi. Như vậy tổng số độ phức tạp của đoạn lệnh từ dòng 4 tới 7 là $\mathcal{O}(MN)$ (áp dụng quy tắc 3)
 
-Độ phức tạp của vòng `for` ở các dòng 8 - 9 là $O(M)$. Như vậy tổng độ phức tạp của dòng từ 4 tới 9 là $O(MN + M) = O(MN)$ (áp dụng quy tắc 2 và loại đại lượng không đáng kể)
+Độ phức tạp của vòng `for` ở các dòng 8 - 9 là $\mathcal{O}(M)$. Như vậy tổng độ phức tạp của dòng từ 4 tới 9 là $\mathcal{O}(MN + M) = \mathcal{O}(MN)$ (áp dụng quy tắc 2 và loại đại lượng không đáng kể)
 
-Toàn bộ phần mã bên trong này được thực thi $O(N^2)$ lần - mỗi lần tương ứng với một tổ hợp của biến $i$ và $j$ (dòng 2 và 3) (chú ý là chỉ có $N(N + 1)/2$ giá trị khác nhau cho bộ số $[i,j]$. Mặc dù vậy $O(N^2)$ vẫn là cận trên đúng).
+Toàn bộ phần mã bên trong này được thực thi $\mathcal{O}(N^{2})$ lần - mỗi lần tương ứng với một tổ hợp của biến $i$ và $j$ (dòng 2 và 3) (chú ý là chỉ có $\frac{N(N + 1)}{2}$ giá trị khác nhau cho bộ số $[i,j]$. Mặc dù vậy $\mathcal{O}(N^{2})$ vẫn là cận trên đúng).
 
-Từ nhận xét trên ta có tổng độ phức tạp của thuật toán trong Ví dụ 1 là $O(N^2 MN) = O(MN^3)$.
+Từ nhận xét trên ta có tổng độ phức tạp của thuật toán trong Ví dụ 1 là $\mathcal{O}(N^{2}MN) = \mathcal{O}(MN^{3})$.
 
 Từ ví dụ trên người đọc đã có khả năng phân tích độ phức tạp của các phần mã đơn giản sử dụng phương pháp như đã trình bày. Chúng ta sẽ đi tới xem xét các chương trình có sử dụng đệ quy (tức là một hàm số mà trong thân hàm của nó sẽ gọi tới chính nó với tham số khác) và phân tích ảnh hưởng của những lời gọi đệ quy này tới độ phức tạp của chúng.
 
@@ -60,28 +60,28 @@ Một thuật toán quay lui đơn giản để sinh ra tất cả các hoán v�
 
 ```cpp
 vector<int> permutation(N);
-vector<int> used(N,0);
+vector<int> used(N, 0);
 
-void try(int which, int what) {
-  // try taking the number "what" as the "which"-th element
-  permutation[which] = what;
-  used[what] = 1;
+void trySolve(int which, int what) {
+    // try taking the number "what" as the "which"-th element
+    permutation[which] = what;
+    used[what] = 1;
 
-  if (which == N-1)
-    outputPermutation();
-  else
-    // try all possibilities for the next element
-    for (int next=0; next<N; next++)
-      if (!used[next])
-        try(which+1, next);
+    if (which == N - 1)
+        outputPermutation();
+    else
+        // try all possibilities for the next element
+        for (int next = 0; next < N; next++)
+            if (!used[next])
+                trySolve(which + 1, next);
 
-  used[what] = 0;
+    used[what] = 0;
 }
 
 int main() {
-  // try all possibilities for the first element
-  for (int first=0; first<N; first++)
-    try(0,first);
+    // try all possibilities for the first element
+    for (int first = 0; first < N; first++)
+        trySolve(0, first);
 }
 ```
 
@@ -97,7 +97,7 @@ Từ ví dụ 2 chúng ta có thể nhầm tưởng rằng đệ quy chạy khô
 
 Mã giả mô tả thuật toán sắp xếp trộn *MergeSort*
 
-```
+```cpp
 MergeSort(mảng S) {
   if (số phần tử của S <= 1) return S;
   chia đôi S thành hai mảng con S1 và S2 với số phần tử gần bằng nhau;
@@ -108,14 +108,14 @@ MergeSort(mảng S) {
 }
 ```
 
-Ta thấy là chỉ cần $O(N)$ (hoặc $O(1)$, tùy vào cách cài đặt) để chia một mảng $N$ phần tử thành hai mảng con. Trộn hai mảng con ngắn hơn đã sắp xếp này có thể làm trong $ \Theta(N)$: khởi tạo mảng $S$ rỗng. Tại mỗi bước phần tử nhỏ nhất mà chưa có trong $S$ là phần tử đầu của $S1$ hoặc $S2$. Lấy phần tử này cho vào cuối của $S$ và cứ thế tiếp tục.
+Ta thấy là chỉ cần $\mathcal{O}(N)$ (hoặc $\mathcal{O}(1)$, tùy vào cách cài đặt) để chia một mảng $N$ phần tử thành hai mảng con. Trộn hai mảng con ngắn hơn đã sắp xếp này có thể làm trong $\Theta(N)$: khởi tạo mảng $S$ rỗng. Tại mỗi bước phần tử nhỏ nhất mà chưa có trong $S$ là phần tử đầu của $S_1$ hoặc $S_2$. Lấy phần tử này cho vào cuối của $S$ và cứ thế tiếp tục.
 
-Như vậy tổng độ phức tạp cần để $MergeSort$ một mảng với $N$ phần tử là $\Theta(N)$ cộng với thời gian thực hiện hai lệnh gọi đệ quy.
+Như vậy tổng độ phức tạp cần để $\texttt{MergeSort}$ một mảng với $N$ phần tử là $\Theta(N)$ cộng với thời gian thực hiện hai lệnh gọi đệ quy.
 
 Gọi $f(N)$ là độ phức tạp của thuật toán *MergeSort* ở trên. Theo suy luận ở trên ta có:
 
 $$
-f(N) = f(\lfloor N/2 \rfloor) + f(\lceil N/2 \rceil) + p(N)
+f(N) = f\left(\left\lfloor \frac{N}{2} \right\rfloor\right) + f\left(\left\lceil \frac{N}{2} \right\rceil\right) + p(N)
 $$
 
 Với $p$ là hàm tuyến tính biểu thị tổng chi phí tính toán dành cho việc chia đôi mảng ban đầu và trộn hai mảng con vào kết quả cuối.
@@ -124,9 +124,9 @@ Công thức trên được gọi là công thức truy hồi. Nếu bạn khôn
 
 Để định nghĩa hoàn chỉnh một công thức truy hồi, ta cần chỉ ra giá trị của một vài trường hợp khởi tạo cơ bản - trong trường hợp này là $f(1)$. Các giá trị này (và hàm $p$) sẽ cho phép ta tính toán chính xác giá trị của hàm $f$.
 
-Tuy nhiên, như ta đã thấy ở phần 1, giá trị chính xác của hàm $f$ không phải là mục tiêu cần tính. Mặc dù về mặt lý thuyết ta có thể tính cụ thể biểu thức của hàm $f(N)$ theo dạng đóng, biểu thức đó có thể rất phức tạp và không thật sự cần thiết. Trong thực tế, ta chỉ quan tâm tới đánh giá $\Theta$ (hoặc cận trên $O-lớn$) của độ tăng của hàm $f$. Thông thường các đánh giá này có thể tính được một cách khá thuận lợi nếu ta nắm được các phương pháp tính thông dụng.
+Tuy nhiên, như ta đã thấy ở phần 1, giá trị chính xác của hàm $f$ không phải là mục tiêu cần tính. Mặc dù về mặt lý thuyết ta có thể tính cụ thể biểu thức của hàm $f(N)$ theo dạng đóng, biểu thức đó có thể rất phức tạp và không thật sự cần thiết. Trong thực tế, ta chỉ quan tâm tới đánh giá $\Theta$ (hoặc cận trên $\mathcal{O}$-lớn) của độ tăng của hàm $f$. Thông thường các đánh giá này có thể tính được một cách khá thuận lợi nếu ta nắm được các phương pháp tính thông dụng.
 
-Vì lý do trên, ta sẽ không cần tới dạng chính xác của hàm $p$ mà chỉ cần biết rằng $p(N) =  \Theta(N)$. Thêm vào đó, ta không cần giá trị khởi tạo của $p$. Ta chỉ cần biết rằng với $N$ nhỏ thì giá trị của $p$ sẽ dễ dàng tính được với độ phức tạp là hằng số.
+Vì lý do trên, ta sẽ không cần tới dạng chính xác của hàm $p$ mà chỉ cần biết rằng $p(N) = \Theta(N)$. Thêm vào đó, ta không cần giá trị khởi tạo của $p$. Ta chỉ cần biết rằng với $N$ nhỏ thì giá trị của $p$ sẽ dễ dàng tính được với độ phức tạp là hằng số.
 
 Lý do đằng sau việc đơn giản hóa $p$ như trên là do một nhận xét: việc thay đổi các giá trị khởi tạo chỉ thay đổi nghiệm của công thức truy hồi chứ không thay đổi cận trên tiệm cận của hàm số. (Bạn có thể thử bằng cách tìm một hàm $p$ bất kỳ và tính $f(8)$, $f(16)$ và $f(32)$ với các giá trị $f(1)$ khác nhau).
 
@@ -137,7 +137,7 @@ Các bạn có kỹ năng toán tốt nên thử tự chứng minh mệnh đề 
 Nhận định trên cho phép ta viết lại công thức truy hồi ở trên theo cách đơn giản hơn:
 
 $$
-f(N) = 2f(N/2) + \Theta(N) \space\space\space(1)
+f(N) = 2f\left( \frac{N}{2} \right) + \Theta(N) \qquad (1)
 $$
 
 Lưu ý rằng đây không phải là một "phương trình" theo nghĩa truyền thống. Ở phần 1 ta đã thấy rằng dấu bằng ở đây có nghĩa là **"tiệm cận bằng"**. Thông thường có rất nhiều hàm số khác nhau thỏa mãn phương trình trên. Tuy nhiên tất cả các hàm số đó sẽ có cùng độ tăng - và đây chính là điều mà ta hướng tới. Tổng quát hơn, ta muốn tìm cận trên nhỏ nhất của độ tăng của tất cả các hàm số thỏa mãn phương trình trên.
@@ -146,55 +146,55 @@ Trong các phần cuối cùng của bài viết này, ta sẽ bàn luận một
 
 # Lưu ý về hàm logarit
 
-Tới đây bạn có thể đặt câu hỏi: tác giả viết một vài thuật toán có độ phức tạp là hàm logarit ví dụ $O(NlogN)$, vậy cơ số của hàm logarit này là bao nhiêu? Tại sao ta không sử dụng cơ số 2 để có $O(Nlog_2N)$?
+Tới đây bạn có thể đặt câu hỏi: tác giả viết một vài thuật toán có độ phức tạp là hàm logarit ví dụ $\mathcal{O}(N\log N)$, vậy cơ số của hàm logarit này là bao nhiêu? Tại sao ta không sử dụng cơ số 2 để có $\mathcal{O}(N\log_2 N)$?
 
 Câu trả lời: cơ số của hàm logarit không quan trọng, tất cả cac hàm logarit (với cơ số lớn hơn 1) đều tiệm cận bằng nhau. Lý do là hai hàm logarit khác nhau tỷ lệ với nhau:
 
 $$
-	log_aN = \frac{log_bN}{log_ba}  		\space\space\space(2)
+	\log_a N = \frac{\log_b N}{\log_b a}  		\qquad (2)
 $$
 
-Lưu ý là với hai cơ số $a, b > 1$ thì tỷ lệ này là hằng số $log_ba$.
+Lưu ý là với hai cơ số $a, b > 1$ thì tỷ lệ này là hằng số $\log_b a$.
 
-Nhằm mục đích viết rõ ràng và dễ đọc, ta luôn sử dụng ký hiệu chung $logN$ bên trong hàm $O-lớn$, kể cả khi các hàm logarit khác nhau được sử dụng khi tính cận của độ phức tạp.
+Nhằm mục đích viết rõ ràng và dễ đọc, ta luôn sử dụng ký hiệu chung $\log N$ bên trong hàm $\mathcal{O}$-lớn, kể cả khi các hàm logarit khác nhau được sử dụng khi tính cận của độ phức tạp.
 
-Bên cạnh đó, ý nghĩa của cách viết $logN$ khác nhau giữa các quốc gia khác nhau. Để tránh nhầm lẫn ta quy ước như sau: $logN$ để chỉ cơ số $10$, $lnN$ để chỉ cơ số tự nhiên, $lgN$ cho cơ số $2$ và $log_bN$ cho các trường hợp chung khác.
+Bên cạnh đó, ý nghĩa của cách viết $\log N$ khác nhau giữa các quốc gia khác nhau. Để tránh nhầm lẫn ta quy ước như sau: $\log N$ để chỉ cơ số $10$, $\ln N$ để chỉ cơ số tự nhiên, $\lg N$ cho cơ số $2$ và $\log_b N$ cho các trường hợp chung khác.
 
 Tiếp theo đây ta sẽ xem xét một phài mẹo biến đổi hữu ích được dùng trong các phần sau. Gọi $a, b$ là các hằng số cho trước với $a, b > 1$.
 
 Từ (2) ta có:
 
 $$
-log_ab = \frac{log_bb}{log_ba} = \frac{1}{log_ba}
+\log_a b = \frac{\log_b b}{\log_b a} = \frac{1}{\log_b a}
 $$
 
-Sử dụng tính chất trên để biến đổi $a^{log_bN}$ ta được:
+Sử dụng tính chất trên để biến đổi $a^{\log_b N}$ ta được:
 $$
-a^{log_bN} = a^{log_aN/log_ab} = (a^{log_aN})^{1/log_ab} = N^{log_ba} \space\space\space(3)
+a^{\log_b N} = a^{\frac{\log_a N}{\log_a b}} = \left(a^{\log_a N}\right)^{\frac{1}{\log_a b}} = N^{\log_b a} \qquad (3)
 $$
 
 # Phương pháp Thay Thế
 
 Phương pháp này có thể được tổng kết trong một câu: dự đoán cận trên (tiệm cận) của $f$ và (cố gắng) chứng minh bằng quy nạp.
 
-Để minh họa, ta sẽ chứng minh rằng hàm $f$ thỏa mãn phương trình (1) là $O(NlogN)$
+Để minh họa, ta sẽ chứng minh rằng hàm $f$ thỏa mãn phương trình (1) là $\mathcal{O}(N \log N)$
 Từ (1) ta có:
 
 $$
-\forall N; f(N) \leq 2f(N/2) + cN
+\forall N; \ f(N) \leq 2f\left( \frac{N}{2} \right) + cN
 $$
 
-với một hằng số $c$ nào đó. Ta sẽ chứng minh rằng tồn tại một hằng số $d$ đủ lớn nào đó mà với mọi $N$ lớn ta có $f (N) \leq dN lg N$. Ta sẽ chứng minh bằng quy nạp.
+với một hằng số $c$ nào đó. Ta sẽ chứng minh rằng tồn tại một hằng số $d$ đủ lớn nào đó mà với mọi $N$ lớn ta có $f(N) \leq dN \lg N$. Ta sẽ chứng minh bằng quy nạp.
 
-Giả sử $f (N/2) \leq d (N/2)lg(N/2)$. Ta có:
+Giả sử $f\left( \frac{N}{2} \right) \leq d\frac{N}{2}\lg\frac{N}{2}$. Ta có:
 
-![](/uploads/topcoder_translate_new57.png)
+![](/uploads/translate/topcoder/Computational-Complexity-Section-2/topcoder_translate_new57.png)
 
 Nói cách khác, phép quy nạp sẽ đúng nếu $d>c$. Ta luôn luôn có thể chọn $d$ lớn thỏa mãn điều kiện này.
 
 Để hoàn thiện ta cần chứng minh rằng bất đẳng thức trên đúng với một vài giá trị đầu tiên của $N$. Phép chứng minh khá phức tạp. Ý tưởng chính là nếu giá trị $d$ ta tìm được chưa đủ lớn, ta luôn có thể tăng $d$ sao cho các trường hợp đầu tiên của $N$ thỏa mãn bất đẳng thức.
 
-Lưu ý rằng trong ví dụ trên ta không thể chứng minh khi $N = 1$ với vì $lg1 = 0$. Tuy nhiên, điều này không ảnh hưởng tới tính đúng đắn của phép chứng minh trên. Kết luận: từ (1) ta có  $f (N) = O(N lg N)$.
+Lưu ý rằng trong ví dụ trên ta không thể chứng minh khi $N = 1$ với vì $\lg 1 = 0$. Tuy nhiên, điều này không ảnh hưởng tới tính đúng đắn của phép chứng minh trên. Kết luận: từ (1) ta có  $f(N) = \mathcal{O}(N \lg N)$.
 
 # Phương pháp Cây Đệ Quy
 
@@ -209,24 +209,27 @@ Tương tự như các phần trên, ta chỉ quan tâm tới cận trên tiệm
 ## Ví dụ 4
 
 Cây đệ quy cho thuật toán *MergeSort* ở Ví dụ 3 với 5 phần tử.
-![](/uploads/topcoder_translate_tree1.png)
+![](/uploads/translate/topcoder/Computational-Complexity-Section-2/topcoder_translate_tree1.png)
 
 Cây đệ quy cho công thức truy hồi tương ứng của *MergeSort*. Số trong mỗi đỉnh biểu thị số bước mà thuật toán thực thi tại đỉnh đó.
 
-![](/uploads/topcoder_translate_tree2.png)
+![](/uploads/translate/topcoder/Computational-Complexity-Section-2/topcoder_translate_tree2.png)
 
 ## Ví dụ 5
 
 Cây đệ quy trong trường hợp xấu nhất của phương trình (1):
 
-![](/uploads/topcoder_translate_tree3.png)
+![](/uploads/translate/topcoder/Computational-Complexity-Section-2/topcoder_translate_tree3.png)
 
 Một cách xử lý phổ biến trong toán tổ hợp là tính tổng các cấu hình theo thứ tự mới khác với thứ tự mà các tổ hợp được tạo ra. Trong trường hợp này ta tính tổng theo từng mức trên cây (các đỉnh có cùng độ sâu). Không khó để nhận ra rằng tổng độ phức tạp ở mỗi mức là $cN$.
 
-Câu hỏi thứ hai là: cây trên có bao nhiêu mức? Rõ ràng là lớp lá tương ứng với trường hợp cơ bản của thuật toán. Chú ý là kích cỡ mảng cần xử lý giảm một nửa khi đi từ mức trên xuống mức dưới. Vì sau $lgN$ bước ta có bài toán cơ bản với mảng có $1$ phần tử, chiều cao của cây (tổng số mức) sẽ là $\Theta(logN)$.
+Câu hỏi thứ hai là: cây trên có bao nhiêu mức? Rõ ràng là lớp lá tương ứng với trường hợp cơ bản của thuật toán. Chú ý là kích cỡ mảng cần xử lý giảm một nửa khi đi từ mức trên xuống mức dưới. Vì sau $\lg N$ bước ta có bài toán cơ bản với mảng có $1$ phần tử, chiều cao của cây (tổng số mức) sẽ là $\Theta(\log N)$.
 
 Từ hai nhận xét trên ta thu được kết quả cuối cùng: tổng độ phức tạp cần thực hiện là
-$ \Theta(cN log N) = \Theta(N log N)$.
+
+$$
+\Theta(cN \log N) = \Theta(N \log N).
+$$
 
 Nếu bạn chưa hoàn toàn tin tưởng vào kết quả vừa thu được thì có thể áp dụng phương pháp Thay Thế ở trên để kiểm tra lại. Trong phần sau ta sẽ thấy là tồn tại những định lý cụ thể để có thể chứng minh chặt chẽ kết quả thu được ở trên.
 
@@ -241,30 +244,30 @@ Trả lời: Không và Có. Không, vì một lý do đơn giản mà ta sẽ x
 
 Ta thử áp dụng phương pháp Cây Đệ Quy để giải cho phương trình sau:
 $$
-f(N) = 3f(N/2) + \Theta(N^3)
+f(N) = 3f\left( \frac{N}{2} \right) + \Theta(N^{3})
 $$
 
 Cây đệ quy sẽ có dạng sau:
 
-![](/uploads/topcoder_translate_tree5.png)
+![](/uploads/translate/topcoder/Computational-Complexity-Section-2/topcoder_translate_tree5.png)
 
 Thử tính toán độ phức tạp tại vài mức đầu tiên, ta có:
 
 | level | 1    | 2                  | 3                       | …   |
 |:-----:|:----:|:------------------:|:-----------------------:|:---:|
-| work  | $cN$ | $ {3\over 8}cN^3 $ | $ {3^2 \over 8^2}cN^3 $ | ... |
+| work  | $cN$ | $\frac{3}{8}cN^{3}$ | $\frac{3^{2}}{8^{2}}cN^{3}$ | ... |
 
 
 
-Rõ ràng là ta càng đi sâu xuống cây thì tổng độ phức tạp càng giảm. Vậy tốc độ giảm là bao nhiêu? Khi ta đi xuống một mức thì sẽ phải giải số bài toán con gấp ba lần số bài toán ở mức hiện tại. Tuy nhiên, vì mỗi bài toán con chỉ phải giải có kích cỡ giảm một nửa, nên thời gian cần để giải bài toán con giảm còn bằng $1 \over 8$ bài toán cha. Như vậy tổng độ phức tạp giảm theo hệ số $3 \over 8$.
+Rõ ràng là ta càng đi sâu xuống cây thì tổng độ phức tạp càng giảm. Vậy tốc độ giảm là bao nhiêu? Khi ta đi xuống một mức thì sẽ phải giải số bài toán con gấp ba lần số bài toán ở mức hiện tại. Tuy nhiên, vì mỗi bài toán con chỉ phải giải có kích cỡ giảm một nửa, nên thời gian cần để giải bài toán con giảm còn bằng $\frac{1}{8}$ bài toán cha. Như vậy tổng độ phức tạp giảm theo hệ số $\frac{3}{8}$.
 
 Điều này có nghĩa là toàn bộ bảng số ở trên sẽ hình thành một dãy cấp số nhân. Giả sử rằng dãy cấp số nhân đó tăng tới vô cùng. Tổng của dãy sẽ là:
 
 $$
-S = \frac{cN^3}{1 - \frac{3}{8}} = \frac{8}{5}cN^3 = \Theta(N^3)
+S = \frac{cN^{3}}{1 - \frac{3}{8}} = \frac{8}{5}cN^{3} = \Theta(N^{3})
 $$
 
-Như vậy tổng độ phức tạp trên cây đệ quy là $O(N^3)$ (tổng tới vô cùng cho ta cận trên). Ta cũng thấy là ngay phần từ đầu tiên của dãy cấp số nhân đã là $ \Theta(N^3)$. Vậy ta kết luận tổng độ phức tạp của cây đệ quy trên là $ \Theta(N^3)$.
+Như vậy tổng độ phức tạp trên cây đệ quy là $\mathcal{O}(N^{3})$ (tổng tới vô cùng cho ta cận trên). Ta cũng thấy là ngay phần từ đầu tiên của dãy cấp số nhân đã là $\Theta(N^{3})$. Vậy ta kết luận tổng độ phức tạp của cây đệ quy trên là $\Theta(N^{3})$.
 
 Một nguyên lý tổng quát quan trọng ta có thể rút ra từ ví dụ này là: nếu tổng độ phức tạp của các mức của cây tạo nên một dãy cấp số nhân giảm, thì tổng độ phức tạp trên cả cây sẽ tiệm cận bằng với độ phức tạp ở gốc của cây.
 
@@ -273,31 +276,31 @@ Từ kết quả trên ta có một nhận xét quan trọng về thuật toán 
 ## Ví dụ 7
 Giờ chúng ta cùng thử áp dụng phương pháp Cây Đệ Quy để giải phương trình sau:
 $$
-f(N) = 5f(N/3) + \Theta(N)
+f(N) = 5f\left( \frac{N}{3} \right) + \Theta(N)
 $$
 Cây đệ quy sẽ có dạng sau
-![](/uploads/topcoder_translate_tree4.png)
+![](/uploads/translate/topcoder/Computational-Complexity-Section-2/topcoder_translate_tree4.png)
 
 Như trên, thử tính số lệnh cần thực thi ở vài mức đầu tiên. Ta có:
 
 | level | 1    | 2              | 3                   | …   |
 |:-----:|:----:|:--------------:|:-------------------:|:---:|
-| work  | $cN$ | ${5\over 3}cN$ | ${5^2 \over 3^2}cN$ | ... |
+| work  | $cN$ | $\frac{5}{3}cN$ | $\frac{5^{2}}{3^{2}}cN$ | ... |
 
 
-Ta có kết quả ngược với ví dụ 6: khi ta càng đi sâu xuống dưới thì tổng độ phức tạp lại càng tăng lên. Khi ta đi xuống một  mức, sẽ có gấp $5$ lần số bài toán con, mỗi bài toán con sẽ có kích cỡ bằng $1 \over 3$ bài toán cha. Vì thời gian xử lý là tuyến tính với kích cỡ bài toán nên ta có tổng độ phức tạp ở mức sau tăng gấp $5 \over 3 $ mức trước.
+Ta có kết quả ngược với ví dụ 6: khi ta càng đi sâu xuống dưới thì tổng độ phức tạp lại càng tăng lên. Khi ta đi xuống một  mức, sẽ có gấp $5$ lần số bài toán con, mỗi bài toán con sẽ có kích cỡ bằng $\frac{1}{3}$ bài toán cha. Vì thời gian xử lý là tuyến tính với kích cỡ bài toán nên ta có tổng độ phức tạp ở mức sau tăng gấp $\frac{5}{3}$ mức trước.
 
 Vẫn như trên ta hướng tới việc tính tổng độ phức tạp trên cả cây. Lần này việc tính toán sẽ khó hơn vì lượng công việc phải tính nằm ở mức sâu nhất. Ta cần biết độ sâu của cây.
 
-Mức thấp nhất tương ứng bài toán kích cỡ bằng $1$. Tổng quát, kích cỡ bài toán con ở mức $k$ là $N \over 3^k$. Giải phương trình $1 = N \over 3^k$ ta được $k = log_3N$. Lưu ý là ở đây ta viết rõ chỉ cơ số của hàm logarit vì cơ số này quan trọng trong việc phản ánh cấu trúc cây.
+Mức thấp nhất tương ứng bài toán kích cỡ bằng $1$. Tổng quát, kích cỡ bài toán con ở mức $k$ là $\frac{N}{3^{k}}$. Giải phương trình $1 = \frac{N}{3^{k}}$ ta được $k = \log_3 N$. Lưu ý là ở đây ta viết rõ chỉ cơ số của hàm logarit vì cơ số này quan trọng trong việc phản ánh cấu trúc cây.
 
-Như vậy cây đệ quy có $log_3N$ mức. Mỗi mức có $5$ lần số đỉnh so với mức trên nó, nên mức cuối cùng có $5^{log_3N}$ đỉnh. Tổng độ phức tạp ở mức cuối tương ứng là $c5^{log_3N}$.
+Như vậy cây đệ quy có $\log_3 N$ mức. Mỗi mức có $5$ lần số đỉnh so với mức trên nó, nên mức cuối cùng có $5^{\log_3 N}$ đỉnh. Tổng độ phức tạp ở mức cuối tương ứng là $c5^{\log_3 N}$.
 
-Sử dụng phương trình (3) ta viết lại giá trị này là $cN^{log_35}$.
+Sử dụng phương trình (3) ta viết lại giá trị này là $cN^{\log_3 5}$.
 
 Để tính tổng độ phức tạp trên toàn cây ta **đảo ngược** cây, tạo thành một dãy cấp số nhân **giảm** và như vậy ta có thể áp dụng cách tính ở trên. Xử lý tương tự ví dụ trước đó ta thu được tổng độ phức tạp là một giá trị tiệm cận bằng với phần tử lớn nhất trong dãy cấp số nhân.
 
-Ta kết luận rằng tổng độ phức tạp của thuật toán biểu diễn bởi phương trình trên là xấp xỉ $\Theta(N^{log_35}) \approx \Theta(N^{1.465}) $.
+Ta kết luận rằng tổng độ phức tạp của thuật toán biểu diễn bởi phương trình trên là xấp xỉ $\Theta(N^{\log_3 5}) \approx \Theta(N^{1.465})$.
 
 Lưu ý là cơ số 3 trong hàm logarit cho ta kết quả mũ chính xác, vì vậy cơ số này rất quan trọng. Nếu là cơ số khác thì giá trị tiệm cận cũng sẽ thay đổi.
 
@@ -312,13 +315,13 @@ Trong thực tế sẽ có một vài trường hợp mà quy luật trên gặp
 Cho $a \geq 1$ và $b > 1$ là hai hằng số nguyên dương. Gọi $p$ là một hàm số nguyên **không giảm**. Gọi $f$ là một hàm số bất kỳ thỏa mãn
 
 $$
-f(N) = af(N/b) + p(N)
+f(N) = af\left( \frac{N}{b} \right) + p(N)
 $$
 Ta có kết quả sau:
 
-1. Nếu $p(N) = O(N^{(log_ba) - \varepsilon})$ với một số $ \varepsilon$ > 0 nào đó thì $f(N) = \Theta(N^{log_ba})$
-2. Nếu $p(N) = O(N^{(log_ba) - \varepsilon})$  thì $f (N) = \Theta(p(N)log N)$.
-3. Nếu $p(N) = \Omega(N^{(log_ba) - \varepsilon})$ với một số $ \varepsilon$ > 0 nào đó, và nếu $ap(N/b) \leq cp(N)$ với $c < 1$ khi $N$ đủ lớn thì $ f (N) = \Theta(p(N))$.
+1. Nếu $p(N) = \mathcal{O}(N^{\log_b a - \varepsilon})$ với một số $ \varepsilon$ > 0 nào đó thì $f(N) = \Theta(N^{\log_b a})$
+2. Nếu $p(N) = \mathcal{O}(N^{\log_b a - \varepsilon})$  thì $f(N) = \Theta(p(N) \log N)$.
+3. Nếu $p(N) = \Omega(N^{\log_b a - \varepsilon})$ với một số $ \varepsilon$ > 0 nào đó, và nếu $ap\left( \frac{N}{b} \right) \leq cp(N)$ với $c < 1$ khi $N$ đủ lớn thì $f(N) = \Theta(p(N))$.
 
 
 Trường hợp $1$ tương với **Ví dụ 7**. Hầu hết thời gian thực thi được dành cho việc gọi lệnh đệ quy và số lần gọi đệ quy là đáng kể.
@@ -332,25 +335,25 @@ Lưu ý điều kiện thêm vào ở trường hợp $3$. Để trường hợp
 
 ## Ví dụ 8
 
-Gọi $f(N)$ là thời gian mà thuật toán nhân ma trận **Strassen** cần để nhân hai ma trận vuông kích cỡ $N$ x $N$. Đây là một thuật toán đệ quy, thực hiện $7$ lời gọi hàm đệ quy, mỗi hàm nhân hai ma trận có kích cỡ $N/2$ x $N/2$ và sau đó tổng hợp kết quả trong $\Theta(N^2)$.
+Gọi $f(N)$ là thời gian mà thuật toán nhân ma trận **Strassen** cần để nhân hai ma trận vuông kích cỡ $N$ x $N$. Đây là một thuật toán đệ quy, thực hiện $7$ lời gọi hàm đệ quy, mỗi hàm nhân hai ma trận có kích cỡ $\frac{N}{2}$ x $\frac{N}{2}$ và sau đó tổng hợp kết quả trong $\Theta(N^{2})$.
 
 Ta có công thức truy hồi sau:
 
 $$
-f(N) = 7f(N/2) + \Theta(N^2)
+f(N) = 7f\left( \frac{N}{2} \right) + \Theta(N^{2})
 $$
 
 
-Sử dụng định lý Tổng Quát, ta thấy Trường hợp $1$ có thể áp dụng được. Vì vậy độ phức tạp của thuật toán Strassen là $\Theta(N^{log_27}) \approx \Theta({N^{2.807}})$. Lưu ý là thuật toán cổ điển nhân ma trận theo định nghĩa có độ phức tạp $ \Theta(N^3)$.
+Sử dụng định lý Tổng Quát, ta thấy Trường hợp $1$ có thể áp dụng được. Vì vậy độ phức tạp của thuật toán Strassen là $\Theta(N^{\log_2 7}) \approx \Theta(N^{2.807})$. Lưu ý là thuật toán cổ điển nhân ma trận theo định nghĩa có độ phức tạp $\Theta(N^{3})$.
 
 ## Ví dụ 9
 Thỉnh thoảng ta có thể gặp trường hợp mà kích cỡ các bài toán con không bằng nhau. Một ví dụ là thuật toán **Trung vị của 5** để tìm phần tử lớn thứ *k* của một mảng số. Thuật toán trên được chứng minh là có độ phức tạp thỏa mãn công thức
 
 $$
-f(N) = f(N/5) + f(7N/10 + 6) + \Theta(N)
+f(N) = f\left( \frac{N}{5} \right) + f\left( \frac{7N}{10} + 6 \right) + \Theta(N)
 $$
 
-Công thức trên giải như thế nào? Phương pháp cây Đệ Quy có thể được áp dụng trong trường hợp bất đối xứng như vậy không? Có một phiên bản tổng quát hơn của Định lý Tổng Quát áp dụng cho trường hợp như vậy hay không? Và trong các trường hợp mà định lý Tổng Quát không áp dụng được, điển hình là với công thức $f (N) = 4f (N/4) + \Theta(N log N)$, ta cần xử lý thế nào?
+Công thức trên giải như thế nào? Phương pháp cây Đệ Quy có thể được áp dụng trong trường hợp bất đối xứng như vậy không? Có một phiên bản tổng quát hơn của Định lý Tổng Quát áp dụng cho trường hợp như vậy hay không? Và trong các trường hợp mà định lý Tổng Quát không áp dụng được, điển hình là với công thức $f(N) = 4f\left( \frac{N}{4} \right) + \Theta(N \log N)$, ta cần xử lý thế nào?
 
 Chúng ta sẽ không trả lời các câu hỏi trên tại đây, và tài liệu này cũng không phải là tài liệu duy nhất về chủ đề độ phức tạp thuật toán. Nếu bạn đang thắc mắc về các câu hỏi trên thì bạn đã nắm được cơ bản đủ để sử dụng trong các kỳ thi thuật toán. Nếu bạn muốn trả lời các câu hỏi trên thì có thể tìm đọc trong các sách chính thống.
 

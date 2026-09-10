@@ -31,7 +31,7 @@ Bùng nổ thông tin không phải là lý do duy nhất dẫn đến sự ra �
 
 Ngược dòng lịch sử, Machine Learning đã xuất hiện từ rất lâu trước khi mạng Internet ra đời. Một trong những thuật toán Machine Learning đầu tiên là thuật toán **Perceptron** được phát minh ra bởi *Frank Rosenblatt* vào năm 1957. Đây là một thuật toán kinh điển dùng để *phân loại* (classification) hai khái niệm. Một ví dụ đơn gỉan là phân loại thư rác (tam gíac) và thư bình thường (vuông). Chắc các bạn sẽ khó hình ra được làm thế nào để làm được điều đó. Đối với Perceptron, điều này không khác gì với việc vẽ một đường thẳng trên mặt phẳng để phân chia hai tập điểm:
 
-![](/uploads/cs_ml_ml101_classification.png)
+![](/uploads/comp-sci/ml/machine-learning-101/cs_ml_ml101_classification.png)
 
 Sơ lược quy trình phân loại thư được mô tả sau. Trước hết, ta cần một thuật toán để chuyển email thành những điểm dữ liệu. Công đoạn này rất rất quan trọng vì nếu chúng ta chọn được biểu diễn phù hợp, công việc của Perceptron sẽ nhẹ nhàng hơn rất nhiều. Tiếp theo, Perceptron sẽ đọc tọa độ của từng điểm và sử dụng thông tin này để cập nhật tham số của đường thẳng cần tìm. Các bạn có thể xem demo của Perceptron tại đây (điểm xanh lá cây là điểm Perceptron đang xử lý):
 
@@ -39,7 +39,7 @@ Sơ lược quy trình phân loại thư được mô tả sau. Trước hết, 
 
 Những điểm tam giác và vuông đại diện cho những email chúng ta đã biết nhãn trước. Chúng được dùng để “huấn luyện” (train) Perceptron. Sau khi vẽ đường thẳng chia hai tập điểm, ta nhận thêm các điểm chưa được dán nhãn, đại diện cho các email cần được phân loại (điểm tròn). Ta dán nhãn của một điểm theo nhãn của các điểm cùng nửa mặt phẳng với điểm đó. Vì là một thuật toán khá đơn giản, có rất nhiều vấn đề có thể nảy sinh với Perceptron, ví dụ như điểm cần phân loại nằm ngay trên đường thẳng phân chia. Hoặc tệ hơn là với một tập dữ liệu phức tạp hơn, đường thẳng phân chia không tồn tại:
 
-![](/uploads/cs_ml_ml101_classification2.png)
+![](/uploads/comp-sci/ml/machine-learning-101/cs_ml_ml101_classification2.png)
 
 Lúc này, ta cần các loại đường phân chia “không thẳng”. Nhưng đó lại là một câu chuyện khác.
 

@@ -22,7 +22,7 @@ Bài viết này sẽ giúp bạn tìm hiểu thêm về **kỹ thuật hai con 
 
 Cho hai dãy số nguyên đã được **sắp xếp không giảm** $a$ và $b$ lần lượt có $n$ và $m$ phần tử. Hãy ghép chúng thành dãy $c$ được bố trí theo thứ tự **không giảm**.
 
-Giới hạn: $n, m \leq 10^5$ và $0 \leq a_i, b_i \leq 10^{9}$.
+Giới hạn: $n, m \leq 10^{5}$ và $0 \leq a_i, b_i \leq 10^{9}$.
 
 ## Phân tích
 
@@ -30,9 +30,13 @@ Hãy cùng xem ví dụ sau đây.
 
 Cho trước hai dãy số $a$ và $b$ được sắp xếp không giảm:
 
-$$a=[1,3,6,8,10]$$
+$$
+a=[1,3,6,8,10]
+$$
 
-$$b=[2,6,7,12,14,15]$$
+$$
+b=[2,6,7,12,14,15]
+$$
 
 Làm cách nào để có thể ghép chúng thành một dãy số $c$ cũng được sắp xếp không giảm ?
 
@@ -44,11 +48,17 @@ Ta có thể so sánh hai phần tử nhỏ nhất của hai dãy $a$, $b$ và �
 
 Dãy $a$ và $b$ đã được sắp xếp không giảm, vì thế hai phần tử nhỏ nhất ở đây chính là hai phần tử ở vị trí đầu tiên ở mỗi dãy ($a[1]$ và $b[1]$).
 
-$$a=[\overset{\downarrow}{\color{red}1},3,6,8,10]$$
+$$
+a=[\overset{\downarrow}{\color{red}1},3,6,8,10]
+$$
 
-$$b=[\overset{\downarrow}{2},6,7,12,14,15]$$
+$$
+b=[\overset{\downarrow}{2},6,7,12,14,15]
+$$
 
-$$c=[{\color{red}1}]$$
+$$
+c=[{\color{red}1}]
+$$
 
 Bây giờ, phần tử tiếp theo của dãy $c$ sẽ là phần tử nhỏ nhất trong các phần tử chưa được đưa vào dãy $c$.
 
@@ -56,11 +66,17 @@ Dãy $a$ và $b$ đã được sắp xếp không giảm, vì thế sau khi đư
 
 So sánh $a[2]$ và $b[1]$, chọn phần tử có giá trị nhỏ hơn và đưa vào dãy $c$.
 
-$$a=[1,\overset{\downarrow}{3},6,8,10]$$
+$$
+a=[1,\overset{\downarrow}{3},6,8,10]
+$$
 
-$$b=[\overset{\downarrow}{\color{red}2},6,7,12,14,15]$$
+$$
+b=[\overset{\downarrow}{\color{red}2},6,7,12,14,15]
+$$
 
-$$c=[1,{\color{red}2}]$$
+$$
+c=[1,{\color{red}2}]
+$$
 
 Sau khi đưa $b[1]$ vào dãy $c$, $b[2]$ trở thành phần tử nhỏ nhất chưa được chọn ở dãy $b$.
 
@@ -68,11 +84,17 @@ Vẫn như thế, phần tử tiếp theo của dãy $c$ sẽ là phần tử nh
 
 So sánh $b[2]$ và $a[2]$, chọn phần tử có giá trị nhỏ hơn dãy và đưa vào dãy $c$.
 
-$$a=[1,\overset{\downarrow}{\color{red}3},6,8,10]$$
+$$
+a=[1,\overset{\downarrow}{\color{red}3},6,8,10]
+$$
 
-$$b=[2,\overset{\downarrow}{6},7,12,14,15]$$
+$$
+b=[2,\overset{\downarrow}{6},7,12,14,15]
+$$
 
-$$c=[1,2,{\color{red}3}]$$
+$$
+c=[1,2,{\color{red}3}]
+$$
 
 Sau khi đưa $a[2]$ vào dãy $c$, $a[3]$ trở thành phần tử nhỏ nhất chưa được chọn ở dãy $a$.
 
@@ -103,77 +125,129 @@ Dựa vào những phân tích ta có giải pháp sử dụng **hai con trỏ**
 
 Để hiểu rõ hơn, ta hãy cùng xem qua ví dụ sau đây:
 
-$a = [1, 3, 6, 8, 10], b = [2, 6, 7, 12, 14,15]$
+$$
+a = [1, 3, 6, 8, 10], b = [2, 6, 7, 12, 14,15]
+$$
 
 * Đặt $i = 1$ và $j = 1$. 
-$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}1}, 3, 6, 8, 10]$
-$b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14,15]$
+$$
+a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}1}, 3, 6, 8, 10]
+$$
+$$
+b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14,15]
+$$
 $c = []$
 
 * Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. 
-$a = [1,\overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 6, 8, 10]$
-$b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14,15]$
+$$
+a = [1,\overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 6, 8, 10]
+$$
+$$
+b = [\underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}2}, 6, 7, 12, 14,15]
+$$
 $c = [1]$
 
 * Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. 
-$a = [1, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 6, 8, 10]$
-$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$
+$$
+a = [1, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 6, 8, 10]
+$$
+$$
+b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]
+$$
 $c = [1, 2]$
 
 * Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. 
-$a = [1, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 8, 10]$
-$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$
-$c = [1, 2, 3]$
+$$
+a = [1, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 8, 10]
+$$
+$$
+b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]
+$$
+$$
+c = [1, 2, 3]
+$$
 
 * Vì $a[i]=b[j]$ nên ta có thể đưa bất kỳ một trong hai phần tử. Ở đây ta đưa phần tử $a[i]$ vào $c$ và tăng vị trí $i$ lên một.
-$a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$
-$b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]$
-$c = [1, 2, 3, 6]$
+$$
+a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]
+$$
+$$
+b = [2, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}6}, 7, 12, 14,15]
+$$
+$$
+c = [1, 2, 3, 6]
+$$
 
 * Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. 
-$a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$
-$b = [2, 6, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}7}, 12, 14,15]$
-$c = [1, 2, 3, 6, 6]$
+$$
+a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]
+$$
+$$
+b = [2, 6, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}7}, 12, 14,15]
+$$
+$$
+c = [1, 2, 3, 6, 6]
+$$
 
 * Vì $b[j]<a[i]$ nên ta đưa $b[j]$ vào mảng $c$ và tăng vị trí $j$ lên một. 
-$a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]$
-$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$
-$c = [1, 2, 3, 6, 6, 7]$
+$$
+a = [1, 3, 6, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}8}, 10]
+$$
+$$
+b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]
+$$
+$$
+c = [1, 2, 3, 6, 6, 7]
+$$
 
 * Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. 
-$a = [1, 3, 6, 8, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}10}]$
-$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$
-$c = [1, 2, 3, 6, 6, 7, 8]$
+$$
+a = [1, 3, 6, 8, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}10}]
+$$
+$$
+b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]
+$$
+$$
+c = [1, 2, 3, 6, 6, 7, 8]
+$$
 
 * Vì $a[i]<b[j]$ nên ta đưa $a[i]$ vào mảng $c$ và tăng vị trí $i$ lên một. 
-$a = [1, 3, 6, 8, 10]\overset{\underset{\downarrow}{\color{red}i}}{ }$
-$b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]$
-$c = [1, 2, 3, 6, 6, 7, 8, 10]$
+$$
+a = [1, 3, 6, 8, 10]\overset{\underset{\downarrow}{\color{red}i}}{ }
+$$
+$$
+b = [2, 6, 7, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 14,15]
+$$
+$$
+c = [1, 2, 3, 6, 6, 7, 8, 10]
+$$
 
 * Vì tất cả các phần tử trong dãy $a$ đều đã được đưa vào dãy $c$ nên từ đưa lần lượt các phần tử chưa được chọn trong dãy $b$ vào trong dãy $c$
-$c = [1, 2, 3, 6, 6, 7, 8, 10, 12, 14,15]$
+$$
+c = [1, 2, 3, 6, 6, 7, 8, 10, 12, 14,15]
+$$
 
-![](/algo/basic/two-pointers/two-pointers_(0).gif)
+![](/uploads/algo/basic/two-pointers/two-pointers_0_.gif)
 
 
 **Cài đặt**
 ```cpp
 int i = 1, j = 1;
 vector<int> c;
-while (i <= n || j <= m){
+while (i <= n || j <= m) {
     if (j == m + 1 || (i <= n && a[i] <= b[j]))
         c.push_back(a[i++]);
     else
         c.push_back(b[j++]);
 }
-for (auto it: c)
+for (auto it : c)
     cout << it << " ";
 ```
 **Độ phức tạp**
 
 Vị trí con trỏ $i$ luôn tăng và tăng quá không quá $n$ lần, vị trí con trỏ $j$ cũng luôn tăng và tăng không quá $m$ lần.
 
-Vì thế độ phức tạp của giải pháp là $O(n+m)$.
+Vì thế độ phức tạp của giải pháp là $\mathcal{O}(n+m)$.
 
 ## Luyện tập
 
@@ -186,7 +260,7 @@ Vì thế độ phức tạp của giải pháp là $O(n+m)$.
 
 Cho một mảng số nguyên $a$ có $n$ phần tử, mảng này đã được **sắp xếp tăng dần**. Hãy tìm hai vị trí **khác nhau** **bất kỳ** sao cho tổng của hai phần tử ở hai vị trí đó có giá trị là $x$.
 
-Giới hạn: $2 \leq n \leq 10^6$ và $0 \leq a_i, x \leq 10^9$
+Giới hạn: $2 \leq n \leq 10^{6}$ và $0 \leq a_i, x \leq 10^{9}$
 
 ## Phân tích
 
@@ -194,7 +268,9 @@ Hãy cùng xem ví dụ sau đây.
 
 Cho trước mảng số $a$ được sắp xếp tăng dần và $x=16$:
 
-$$a=[2,5,6,8,10,12,15]$$
+$$
+a=[2,5,6,8,10,12,15]
+$$
 
 Làm cách nào để có thể tìm hai vị trí khác nhau mà tổng hai phần tử ở hai vị trí đó có tổng là $x$ ?
 
@@ -204,19 +280,25 @@ Trước tiên, ta có một chút nhận xét sau:
 
 Có thể thấy, tổng của $a[7]$ với các phần tử khác trong dãy đều lớn hơn $X$. Vì thế ta không quan tâm đến $a[7]$ nữa.
 
-$$a=[2,5,6,8,10,12,{\color{red}15}]$$
+$$
+a=[2,5,6,8,10,12,{\color{red}15}]
+$$
 
 * $a[1]+a[6]=14<X \Rightarrow a[1]+a[2]<a[1]+a[3]<a[1]+a[4]<a[1]+a[5]<a[1]+a[6]<X$.
 
 Có thể thấy, tổng của $a[1]$ với các phần tử khác trong các phần tử ta quan tâm đều nhỏ hơn $x$. Vì thế ta không quan tâm đến $a[1]$ nữa.
 
-$$a=[{\color{red}2},5,6,8,10,12,{\color{red}15}]$$
+$$
+a=[{\color{red}2},5,6,8,10,12,{\color{red}15}]
+$$
 
 * $a[2]+a[6]=17>X \Rightarrow X<a[2]+a[6]<a[3]+a[6]<a[4]+a[6]<a[5]+a[6]$.
 
 Có thể thấy, tổng của $a[6]$ với các phần tử khác trong các phần tử ta quan tâm đều lớn hơn $x$. Vì thế ta không quan tâm đến $a[6]$ nữa.
 
-$$a=[{\color{red}2},5,6,8,10,{\color{red}12},{\color{red}15}]$$
+$$
+a=[{\color{red}2},5,6,8,10,{\color{red}12},{\color{red}15}]
+$$
 
 Như vậy, tại một thời điểm bất kỳ, những phần tử chúng ta cần quan tâm đến sẽ là các phần tử trong đoạn $[i,j]$ nào đó.
 
@@ -243,50 +325,74 @@ Từ những phân tích vừa rồi ta có giải pháp sử dụng hai con tr�
 **Ví dụ 1:** $a = [2, 5, 6, 8, 10, 12, 15]$ và $x = 16$.
 
 * Đặt $i=1$ và $j=N$. 
-$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, 12,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}15}]$
+$$
+a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, 12, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}15}]
+$$
 
 * Vì $a[i]+a[j]=2+15=17>x$ nên giảm vị trí $j$ đi một đơn vị.
-$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
+$$
+a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 5, 6, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]
+$$
 
 * Vì $a[i]+a[j]=2+12=14<x$ nên tăng vị trí $i$ lên một đơn vị.
-$a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 6, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
+$$
+a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 6, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]
+$$
 
 * Vì $a[i]+a[j]=5+12=17>x$ nên giảm vị trí $j$ đi một đơn vị.
-$a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 6, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]$
+$$
+a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}5}, 6, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]
+$$
 
 * Vì $a[i]+a[j]=5+10<x$ nên tăng vị trí $i$ lên một đơn vị.
-$a = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]$
+$$
+a = [2, 5, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}6}, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]
+$$
 
 * Vì $a[i]+a[j]=6+10=x$ nên hai vị trí cần tìm là hai vị trí $i$ và $j$.
 
-![](/algo/basic/two-pointers/two-pointers_(1).gif)
+![](/uploads/algo/basic/two-pointers/two-pointers_1_.gif)
 
 **Ví dụ 2:** $a = [2, 3, 7, 8, 10, 12, 15]$ và $x = 16$.
 
 * Đặt $i=1$ và $j=N$. 
-$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 3, 7, 8, 10, 12,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}15}]$
+$$
+a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 3, 7, 8, 10, 12, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}15}]
+$$
 
 * Vì $a[i]+a[j]=5+12=17>x$ nên giảm vị trí $j$ đi một đơn vị. 
-$a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 3, 7, 8, 10,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
+$$
+a = [\overset{\underset{\downarrow}{\color{red}i}}{\color{red}2}, 3, 7, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]
+$$
 
 * Vì $a[i]+a[j]=2+12=14<x$ nên tăng vị trí $i$ lên một đơn vị. 
-$a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 7, 8, 10,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
+$$
+a = [2, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}3}, 7, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]
+$$
 
 * Vì $a[i]+a[j]=3+12=15<x$ tăng vị trí $i$ lên một đơn vị. 
-$a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, 8, 10,  \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]$
+$$
+a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, 8, 10, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}12}, 15]
+$$
 
 * Vì $a[i]+a[j]=7+12=19>x$ giảm vị trí $j$ đi một đơn vị. 
-$a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]$
+$$
+a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, 8, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}10}, 12, 15]
+$$
 
 * Vì $a[i]+a[j]=7+10=17>x$ giảm vị trí $j$ đi một đơn vị. 
-$a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}8}, 10, 12, 15]$
+$$
+a = [2, 3, \overset{\underset{\downarrow}{\color{red}i}}{\color{red}7}, \underset{\overset{\uparrow}{\color{blue}j}}{\color{blue}8}, 10, 12, 15]
+$$
 
 * Vì $a[i]+a[j]=7+8=15<x$ tăng vị trí $i$ lên một đơn vị. 
-$a = [2, 3, 7, \overset{\underset{\downarrow}{\color{red}i}}{ \underset{\overset{\uparrow}{\color{blue}j}}{\color{purple}8}}, 10, 12, 15]$
+$$
+a = [2, 3, 7, \overset{\underset{\downarrow}{\color{red}i}}{ \underset{\overset{\uparrow}{\color{blue}j}}{\color{purple}8}}, 10, 12, 15]
+$$
 
 * Vì $i=j$ nên không tìm được hai vị trí cần tìm.
 
-![](/algo/basic/two-pointers/two-pointers_(2).gif)
+![](/uploads/algo/basic/two-pointers/two-pointers_2_.gif)
 
 **Cài đặt**
 ```cpp
@@ -309,7 +415,7 @@ Vị trí con trỏ $i$ luôn tăng, vị trí con trỏ $j$ thì luôn giảm.
 
 Hơn nữa, sự thay đổi vị trí hai con trỏ này sẽ dừng lại khi tổng hai phần tử ở hai vị trí con trỏ có tổng là $X$ hay khi vị trí $i$ bằng vị trí $j$.
 
-Vì thế, việc thay đổi vị trí hai con trỏ sẽ không quá $n$ lần, độ phức tạp của giải pháp là $O(n)$.
+Vì thế, việc thay đổi vị trí hai con trỏ sẽ không quá $n$ lần, độ phức tạp của giải pháp là $\mathcal{O}(n)$.
 
 ## Luyện tập
 - [LQDOJ - FINDPAIR](https://lqdoj.edu.vn/problem/findpair) 
@@ -322,19 +428,19 @@ Cho dãy số **nguyên dương** $a$ có $n$ phần tử. Hãy tìm độ dài 
 
 Dữ liệu đảm bảo các phần tử trong dãy $a$ đều có giá trị không quá $s$.
 
-Giới hạn: $1\leq n \leq 10^6$, $1 \leq a_i \leq 10^9$ và $s \leq 10^{18}$.
+Giới hạn: $1\leq n \leq 10^{6}$, $1 \leq a_i \leq 10^{9}$ và $s \leq 10^{18}$.
 
 ## Phân tích
 
 Để dễ dàng phân tích, ta tạm gọi
-* $sum(l,r)$ là tổng các phần tử trong đoạn $[l,r]$.
-* Một đoạn con $[l,r]$ là đoạn con "tốt" nếu $sum(l,r) \leq s$
+* $\operatorname{sum}(l,r)$ là tổng các phần tử trong đoạn $[l,r]$.
+* Một đoạn con $[l,r]$ là đoạn con "tốt" nếu $\operatorname{sum}(l,r) \leq s$
 
 Qua đây, bài toán của chúng ta sẽ là tìm độ dài đoạn con "tốt" dài nhất.
 
 Vì dãy $a$ là một dãy số nguyên dương cho nên
 
-* $sum(1,r)>sum(2,r)>...>sum(r-1,r)>sum(r,r)$.
+* $\operatorname{sum}(1,r)>\operatorname{sum}(2,r)> \cdots >\operatorname{sum}(r-1,r)>\operatorname{sum}(r,r)$.
 * Nếu đoạn con $[l,r]$ là đoạn con "tốt" thì với mọi $x\geq l$, đoạn $[x,r]$ là đoạn con "tốt".
 * Nếu đoạn con $[l,r]$ không là đoạn con "tốt" thì với mọi $x \leq l$, đoạn $[x,r]$ không là đoạn con "tốt".
 
@@ -350,25 +456,25 @@ Hãy cùng nhận xét vị trí của $l$ với mỗi $r$ từ $1$ đến $n$ q
 Cho trước dãy $a = [2, 6, 5, 3, 6, 8, 9]$ và $s=20$
 * $r=1 \rightarrow l=1$
     * $a = [\overset{\underset{\downarrow}{{\color{red}l},{\color{blue}r}}}{\color{green}2}, 6, 5, 3, 6, 8, 9]$
-    * $sum(l,r)=2$
+    * $\operatorname{sum}(l,r)=2$
 * $r=2 \rightarrow l=1$
     * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 5, 3, 6, 8, 9]$
-    * $sum(l,r)=8$
+    * $\operatorname{sum}(l,r)=8$
 * $r=3 \rightarrow l=1$
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}5}, 3, 6, 8, 9]$
-    * $sum(l,r)=13$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}5}, 3, 6, 8, 9]$
+    * $\operatorname{sum}(l,r)=13$
 * $r=4 \rightarrow l=1$
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}5},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
-    * $sum(l,r)=16$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}5}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
+    * $\operatorname{sum}(l,r)=16$
 * $r=5 \rightarrow l=2$
-    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}6}, {\color{green}5}, {\color{green}3},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 8, 9]$
-    * $sum(l,r)=20$
+    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}6}, {\color{green}5}, {\color{green}3}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 8, 9]$
+    * $\operatorname{sum}(l,r)=20$
 * $r=6 \rightarrow l=4$
-    * $a = [2, 6, 5, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}3}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}8}, 9]$
-    * $sum(l,r)=17$
+    * $a = [2, 6, 5, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}3}, {\color{green}6}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}8}, 9]$
+    * $\operatorname{sum}(l,r)=17$
 * $r=7 \rightarrow l=6$
     * $a = [2, 6, 5, 3, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}9}]$
-    * $sum(l,r)=17$
+    * $\operatorname{sum}(l,r)=17$
 
 | $r$      | $l$      | Độ dài đoạn con |
 | -------- |:--------:|:---------------:|
@@ -386,7 +492,7 @@ Cho trước dãy $a = [2, 6, 5, 3, 6, 8, 9]$ và $s=20$
 
 Qua ví dụ vừa rồi, ta thấy rằng, vị trí $l$ đối với các giá trị $r$ từ $1$ đến $n$ có giá trị không giảm.
 
-Thật vậy, với mọi $x<l$ thì $sum(x,r)>s \Rightarrow sum(x,r+1)>s$, vì thế giá trị $l$ đối với $r+1$ phải không quá giá trị $l$ đối với $r$.
+Thật vậy, với mọi $x<l$ thì $\operatorname{sum}(x,r)>s \Rightarrow \operatorname{sum}(x,r+1)>s$, vì thế giá trị $l$ đối với $r+1$ phải không quá giá trị $l$ đối với $r$.
 
 Hơn nữa vì các phần tử trong dãy $a$ đều có giá trị không quá $s$ cho nên luôn tồn tại vị trí $l \leq r$ sao cho đoạn $[l,r]$ là một đoạn "tốt".
 ## Giải pháp
@@ -396,8 +502,8 @@ Với những phân tích như trên, ta có giải quyết bài toán với ph�
     * Hai con trỏ này được thể hiện như hai vị trí $l$, $r$ như ở trên phần phân tích.
 * Di chuyển lần lượt con trỏ $r$ từ $1$ đến $n$.
     * Sau mỗi lần di chuyển con trỏ $r$, nếu
-        *  $sum(l,r) \leq s$: giữ nguyên vị trí con trỏ $l$.
-        *  $sum(l,r) > s$: tăng dần vị trí con trỏ $l$ cho đến khi $sum(l,r) \leq s$.
+        *  $\operatorname{sum}(l,r) \leq s$: giữ nguyên vị trí con trỏ $l$.
+        *  $\operatorname{sum}(l,r) > s$: tăng dần vị trí con trỏ $l$ cho đến khi $\operatorname{sum}(l,r) \leq s$.
     * Hiện tại với vị trí con trỏ $l$ và $r$, ta biết đoạn "tốt" dài nhất với vị trí kết thúc tại $r$ là đoạn $[l,r]$.
 * Độ dài đoạn con "tốt" dài nhất chính là giá trị độ dài lớn nhất của các đoạn "tốt" dài nhất với vị trí kết thúc tại $r$, với mỗi $r$ từ $1$ đến $n$.
 
@@ -410,59 +516,59 @@ $a = [2, 6, 5, 3, 6, 8, 9]$ và $s=20$
 * Đặt $l=1$ và $r=1$
     * $a = [\overset{\underset{\downarrow}{{\color{red}l},{\color{blue}r}}}{\color{green}2}, 6, 5, 3, 6, 8, 9]$
     * vì $a[1] \leq s$ nên đoạn $[1,1]$ là một đoạn "tốt".
-    * $ans = max(ans, r - l + 1)$
+    * $ans = \max(ans, r - l + 1)$
 
 * Tăng vị trí $r$ lên $1$ đơn vị
     * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 5, 3, 6, 8, 9]$
-    * vì $sum(l,r) = 8 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
-    * $ans = max(ans, r - l + 1)$
+    * vì $\operatorname{sum}(l,r) = 8 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = \max(ans, r - l + 1)$
 
 * Tăng vị trí $r$ lên $1$ đơn vị
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}5}, 3, 6, 8, 9]$
-    * vì $sum(l,r) = 13 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
-    * $ans = max(ans, r - l + 1)$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}5}, 3, 6, 8, 9]$
+    * vì $\operatorname{sum}(l,r) = 13 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = \max(ans, r - l + 1)$
 
 * Tăng vị trí $r$ lên $1$ đơn vị
-    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}5},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
-    * vì $sum(l,r) = 16 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
-    * $ans = max(ans, r - l + 1)$
+    * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{green}2}, {\color{green}6}, {\color{green}5}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}3}, 6, 8, 9]$
+    * vì $\operatorname{sum}(l,r) = 16 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = \max(ans, r - l + 1)$
 
 * Tăng vị trí $r$ lên $1$ đơn vị
     * $a = [\overset{\underset{\downarrow}{\color{red}l}}{\color{orange}2}, {\color{orange}6}, {\color{orange}5}, {\color{orange}3}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}6}, 8, 9]$
-    * vì $sum(l,r) = 22 > s$ nên tăng vị trí $l$.
+    * vì $\operatorname{sum}(l,r) = 22 > s$ nên tăng vị trí $l$.
 
 * Tăng vị trí $l$ lên $1$ đơn vị
-    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}6}, {\color{green}5}, {\color{green}3},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 8, 9]$
-    * vì $sum(l,r) = 20 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
-    * $ans = max(ans, r - l + 1)$
+    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}6}, {\color{green}5}, {\color{green}3}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}6}, 8, 9]$
+    * vì $\operatorname{sum}(l,r) = 20 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = \max(ans, r - l + 1)$
 
 * Tăng vị trí $r$ lên $1$ đơn vị
-    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}6}, {\color{orange}5}, {\color{orange}3}, {\color{orange}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}8}, 9]$
-    * vì $sum(l,r) = 28 > s$ nên tăng vị trí $l$.
+    * $a = [2, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}6}, {\color{orange}5}, {\color{orange}3}, {\color{orange}6}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}8}, 9]$
+    * vì $\operatorname{sum}(l,r) = 28 > s$ nên tăng vị trí $l$.
 
 * Tăng vị trí $l$ lên $1$ đơn vị
-    * $a = [2, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}5}, {\color{orange}3}, {\color{orange}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}8}, 9]$
-    * vì $sum(l,r) = 22 > s$ nên tăng vị trí $l$.
+    * $a = [2, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}5}, {\color{orange}3}, {\color{orange}6}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}8}, 9]$
+    * vì $\operatorname{sum}(l,r) = 22 > s$ nên tăng vị trí $l$.
 
 * Tăng vị trí $l$ lên $1$ đơn vị
-    * $a = [2, 6, 5, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}3}, {\color{green}6},  \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}8}, 9]$
-    * vì $sum(l,r) = 17 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
-    * $ans = max(ans, r - l + 1)$
+    * $a = [2, 6, 5, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}3}, {\color{green}6}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}8}, 9]$
+    * vì $\operatorname{sum}(l,r) = 17 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = \max(ans, r - l + 1)$
 
 * Tăng vị trí $r$ lên $1$ đơn vị
     * $a = [2, 6, 5, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}3}, {\color{orange}6}, {\color{orange}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}9}]$
-    * vì $sum(l,r) = 26 > s$ nên tăng vị trí $l$.
+    * vì $\operatorname{sum}(l,r) = 26 > s$ nên tăng vị trí $l$.
 
 * Tăng vị trí $l$ lên $1$ đơn vị
     * $a = [2, 6, 5, 3, \overset{\underset{\downarrow}{\color{red}l}}{\color{orange}6}, {\color{orange}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{orange}9}]$
-    * vì $sum(l,r) = 23 > s$ nên tăng vị trí $l$.
+    * vì $\operatorname{sum}(l,r) = 23 > s$ nên tăng vị trí $l$.
 
 * Tăng vị trí $l$ lên $1$ đơn vị
     * $a = [2, 6, 5, 3, 6, \overset{\underset{\downarrow}{\color{red}l}}{\color{green}8}, \overset{\underset{\downarrow}{\color{blue}r}}{\color{green}9}]$
-    * vì $sum(l,r) = 17 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
-    * $ans = max(ans, r - l + 1)$
+    * vì $\operatorname{sum}(l,r) = 17 \leq s$ nên đoạn $[l,r]$ là một đoạn tốt.
+    * $ans = \max(ans, r - l + 1)$
 
-![](/algo/basic/two-pointers/two-pointers_(3).gif)
+![](/uploads/algo/basic/two-pointers/two-pointers_3_.gif)
 
 **Cài đặt**
 
@@ -473,12 +579,13 @@ Sau khi di chuyển $r$ sang phải, biến $sum$ sẽ cộng thêm giá trị $
 Trước khi di chuyển $l$ sang phải, biến $sum$ sẽ trừ đi giá trị $a[l]$.
 
 ```cpp
-int ans = 0, sum = 0;
+int ans = 0;
+long long sum = 0;
 for (int l = 1, r = 1; r <= n; r++) {
     sum += a[r];
     while (sum > s) {
-      sum -= a[l];
-      l++;
+        sum -= a[l];
+        l++;
     }
     ans = max(ans, r - l + 1);
 }
@@ -490,7 +597,7 @@ Vị trí con trỏ $r$ luôn tăng, vị trí con trỏ $l$ luôn tăng và lu�
 
 Hơn nữa, mỗi vị trí $l$ và $r$ tăng không quá $n$ lần.
 
-Vì thế độ phức tạp của giải pháp là $O(n)$.
+Vì thế độ phức tạp của giải pháp là $\mathcal{O}(n)$.
 
 ## Luyện tập
 - [VNOJ - SOPENP](https://oj.vnoi.info/problem/sopenp)
@@ -502,21 +609,25 @@ Vì thế độ phức tạp của giải pháp là $O(n)$.
 Bạn được cho một dãy số nguyên như sau:
 
 * $x_0=1$
-* $x_{i+1} = (a \cdot x_i + x_i \ div \ b) \  mod \ c$.
+* $x_{i+1} = (a \cdot x_i + x_i \operatorname{div} b)  \bmod c$.
 
-Tìm $n$ nhỏ nhất sao cho tồn tại $m < n$ và $x_m = x_n$. Dữ liệu đảm bảo $n$ không quá $2 \cdot 10^7$.
+Tìm $n$ nhỏ nhất sao cho tồn tại $m < n$ và $x_m = x_n$. Dữ liệu đảm bảo $n$ không quá $2 \cdot 10^{7}$.
 
-Giới hạn: $1 \leq a \leq 10^4$ và $1 \leq b,c \leq 10^{14}$.
+Giới hạn: $1 \leq a \leq 10^{4}$ và $1 \leq b,c \leq 10^{14}$.
 
 ## Phân tích
 
 Để dễ dàng phân tích ta định nghĩa hàm $f$ như sau:
 
-$$f(x) = (a \cdot x + x \ div \ b) \  mod \ c$$
+$$
+f(x) = (a \cdot x + x \operatorname{div} b)  \bmod c
+$$
 
 Dãy số của chúng ta sẽ có dạng
 
-$$x_0 = 1, x_1=f(x_0), x_2=f(x_1),...,x_i=f(x_{i-1}),...$$
+$$
+x_0 = 1, x_1=f(x_0), x_2=f(x_1), \ldots, x_i=f(x_{i-1}), \ldots 
+$$
 
 Với phép chia lấy dư cho $c$ thì mọi $i > 0$, giá trị của $x_i$ sẽ có giá trị nằm trong khoảng $[0, c-1] $.
 
@@ -526,25 +637,33 @@ Có thể thấy, khi dãy tồn tại $x_m = x_n$, dãy sẽ xuất hiện chu 
 
 Gọi $n$ là giá trị nhỏ nhất thỏa mãn tồn tại $m < n$ sao cho $x_m=x_n$.
 
-$$x_0,x_1, x_2,...,\underset{\uparrow}{x_m},x_{m+1},...,x_{n-1},\underset{\uparrow}{x_n},...$$
+$$
+x_0,x_1, x_2, \ldots, \underset{\uparrow}{x_m},x_{m+1}, \ldots, x_{n-1},\underset{\uparrow}{x_n}, \ldots 
+$$
 
 Khi đó, dãy sẽ có chu kỳ lặp lại các phần tử từ $x_m$ đến $x_{n-1}$
 
-$${\color{blue}\underbrace{\color{black}x_0,x_1,...,x_{m-1}}_{}},{\color{red}\underbrace{\color{black}x_m,x_{m+1},...,x_{n-1}}_{}}, {\color{red}\underbrace{\color{black}x_m,x_{m+1},...,x_{n-1}}_{}}, {\color{red}\underbrace{\color{black}x_m,x_{m+1},...,x_{n-1}}_{}},...$$
+$$
+{\color{blue}\underbrace{\color{black}x_0,x_1, \ldots, x_{m-1}}_{}},{\color{red}\underbrace{\color{black}x_m,x_{m+1}, \ldots, x_{n-1}}_{}}, {\color{red}\underbrace{\color{black}x_m,x_{m+1}, \ldots, x_{n-1}}_{}}, {\color{red}\underbrace{\color{black}x_m,x_{m+1}, \ldots, x_{n-1}}_{}}, \ldots 
+$$
 
 Dãy số có thể biễu diễn như hình sau đây:
 
-![](/algo/basic/two-pointers/two-pointers.png)
+![](/uploads/algo/basic/two-pointers/two-pointers.png)
 
 Bài toán có thể giải quyết nếu chúng ta phần tử bắt đầu chu kỳ ($x_{\mu}$) và độ dài của chu kỳ $\lambda$.
 
 Cụ thể, xem ví dụ sau đây:
 
-$$a = 8, b = 2, c = 31$$
+$$
+a = 8, b = 2, c = 31
+$$
 
 Ta có dãy số
 
-$${\color{blue}\underbrace{\color{black}1, 8, 6, 20, 15}_{}},{\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}}, {\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}}, {\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}},...$$
+$$
+{\color{blue}\underbrace{\color{black}1, 8, 6, 20, 15}_{}},{\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}}, {\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}}, {\color{red}\underbrace{\color{black}3, 25, 26, 4}_{}}, \ldots 
+$$
 
 Giá trị $n$ cần tìm của bài toán là $n = 9$.
 
@@ -562,21 +681,21 @@ Giá trị $n = \mu + \lambda = 5 + 4 = 9$.
 
 ### Rùa và Thỏ
 
-Khởi tạo hai con trỏ, $toroise$ (rùa) và $hare$ (thỏ).
+Khởi tạo hai con trỏ, $tortoise$ (rùa) và $hare$ (thỏ).
 
 Tại mỗi thời điểm, ta tịnh tiến hai con trỏ này như sau:
 * Tortoise (rùa): tịnh tiến một "bước"
     * Nếu hiện tại con trỏ $tortoise$ đang là $x$, nó sẽ được tịnh tiến đến $f(x)$.
-    * $x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow x_3 \rightarrow x_4 \rightarrow ...$
+    * $x_0 \rightarrow x_1 \rightarrow x_2 \rightarrow x_3 \rightarrow x_4 \rightarrow \cdots$
     * Vì dãy số của chúng ta có chu kỳ nên ta có công thức tính giá trị của con trỏ $tortoise$ sau $t$ lần tịnh tiến:
         * $t < \mu$: $x_t$
-        * $t \geq \mu$: $x_{\mu+(t-\mu) \ mod \ \lambda}$
+        * $t \geq \mu$: $x_{\mu+(t-\mu) \bmod \lambda}$
 * Hare (thỏ): tịnh tiến hai "bước"
     * Nếu hiện tại con trỏ $hare$ đang là $x$, nó sẽ được tịnh tiến đến $f(f(x))$.
-    * $x_0 \rightarrow x_2 \rightarrow x_4 \rightarrow x_6 \rightarrow x_8 \rightarrow ...$
+    * $x_0 \rightarrow x_2 \rightarrow x_4 \rightarrow x_6 \rightarrow x_8 \rightarrow \cdots$
     * Vì dãy số của chúng ta có chu kỳ nên ta có công thức tính giá trị của con trỏ $hare$ sau $t$ lần tịnh tiến:
         * $2t < \mu$: $x_{2t}$
-        * $2t \geq \mu$: $x_{\mu+(2t-\mu) \ mod \ \lambda}$
+        * $2t \geq \mu$: $x_{\mu+(2t-\mu) \bmod \lambda}$
 
 Ngoài lúc ban đầu, hai con trỏ $tortoise$ và $hare$ sẽ luôn gặp nhau tại thời điểm nào đó. Thật vậy:
 * $2t < \mu$:
@@ -584,14 +703,14 @@ Ngoài lúc ban đầu, hai con trỏ $tortoise$ và $hare$ sẽ luôn gặp nha
     * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $x_0$ đến $x_{\mu + \lambda - 1}$ phải đôi một khác nhau.
     * Vì thế $x_t \neq x_{2t}$, $tortoise$ và $hare$ chưa gặp nhau lúc này.
 * $2t \geq \mu$ và $t < \mu$
-    * Sau $t$ lần tịnh tiến, $tortoise$ = $x_t$ và $hare$ = $x_{\mu+(2t-\mu) \ mod \ \lambda}$.
+    * Sau $t$ lần tịnh tiến, $tortoise$ = $x_t$ và $hare$ = $x_{\mu+(2t-\mu) \bmod \lambda}$.
     * Tuy nhiên, $\mu + \lambda$ mới bắt đầu lại chu kỳ cho nên các phần tử từ $x_0$ đến $x_{\mu + \lambda - 1}$ phải đôi một khác nhau.
-    * Vì thế $x_t \neq x_{\mu+(2t-\mu) \ mod \ \lambda}$, $tortoise$ và $hare$ chưa gặp nhau lúc này.
+    * Vì thế $x_t \neq x_{\mu+(2t-\mu) \bmod \lambda}$, $tortoise$ và $hare$ chưa gặp nhau lúc này.
 * $t \geq \mu$
-    * Sau $t$ lần tịnh tiến, $tortoise$ = $x_{\mu+(t-\mu) \ mod \ \lambda}$ và $hare$ = $x_{\mu+(2t-\mu) \ mod \ \lambda}$.
-    * Giả sử $tortoise$ và $hare$ gặp nhau thì $\mu+(t-\mu) \ mod \ \lambda = {\mu+(2t-\mu) \ mod \ \lambda} \Leftrightarrow t \ mod \ \lambda = 0$.
+    * Sau $t$ lần tịnh tiến, $tortoise$ = $x_{\mu+(t-\mu) \bmod \lambda}$ và $hare$ = $x_{\mu+(2t-\mu) \bmod \lambda}$.
+    * Giả sử $tortoise$ và $hare$ gặp nhau thì $\mu+(t-\mu) \bmod \lambda = {\mu+(2t-\mu) \bmod \lambda} \Leftrightarrow t \bmod \lambda = 0$.
     * Vậy, $tortoise$ và $hare$ sẽ gặp nhau sau $t$ lần tịnh tiến, trong đó $t$ là số nguyên có giá trị lớn hơn hoặc bằng $\mu$ và chia hết cho $\lambda$.
-    * Trừ lúc khởi tạo, hai con trỏ $tortoise$ và $hare$ sẽ gặp nhau khi giá trị của cả hai con trỏ là $x_{\mu+(\lambda -\mu \ mod \ \lambda) \ mod \ \lambda}$.
+    * Trừ lúc khởi tạo, hai con trỏ $tortoise$ và $hare$ sẽ gặp nhau khi giá trị của cả hai con trỏ là $x_{\mu+(\lambda -\mu \bmod \lambda) \bmod \lambda}$.
 
 Cách cài đặt để $tortoise$ và $hare$ gặp nhau:
 
@@ -601,7 +720,7 @@ while (true) {
     tortoise = f(tortoise);
     hare = f(f(hare));
     if (tortoise == hare)
-      break;
+        break;
 }
 ```
 ### Tìm $\mu$
@@ -617,7 +736,7 @@ Số lần tịnh tiến ở đây chính là $\mu$.
 * Trong những lần tịnh tiến từ $0$ đến $\mu - 1$, con trỏ $p$ nhận giá trị từ $x_0$ đến $x_{\mu -1}$ (các giá trị không có trong chu kỳ) . Còn con trỏ $tortoise$, vì đã nằm ở chu kỳ, nên giá trị của $tortoise$ sẽ nhận giá trị của các phần tử có trong chu kỳ. Vì thế $tortoise$ và $p$ chưa gặp nhau.
 * Hai con trỏ $p$ và $tortoise$ gặp nhau tại lần tịnh tiến thứ $\mu$:
     * Con trỏ $p$ có giá trị $x_{\mu}$.
-    * Lúc chưa tịnh tiến $p$, con trỏ $tortoise$ có giá trị $x_{\mu+(t-\mu) \ mod \ \lambda}$ (đã nêu ở mục Rùa và Thỏ). Vì đã ở trong chu kỳ cho nên, sau khi tịnh tiến $\mu$ lần con trỏ $tortoise$ sẽ có giá trị là $x_{\mu+(t) \ mod \ \lambda}$. Mà $t$ là số nguyên dương chia hết cho $\lambda$, cho nên con trỏ $tortoise$ có giá trị là $x_{\mu}$.
+    * Lúc chưa tịnh tiến $p$, con trỏ $tortoise$ có giá trị $x_{\mu+(t-\mu) \bmod \lambda}$ (đã nêu ở mục Rùa và Thỏ). Vì đã ở trong chu kỳ cho nên, sau khi tịnh tiến $\mu$ lần con trỏ $tortoise$ sẽ có giá trị là $x_{\mu+(t) \bmod \lambda}$. Mà $t$ là số nguyên dương chia hết cho $\lambda$, cho nên con trỏ $tortoise$ có giá trị là $x_{\mu}$.
 
 Cách cài đặt tìm $\mu$:
 
@@ -643,16 +762,20 @@ while (true) {
     lambda++;
     p = f(p);
     if (tortoise == p)
-      break;
+        break;
 }
 ```
 Để hiểu rõ hơn, ta hãy cùng xem qua một số ví dụ sau đây:
 
-$$a = 2, b = 2, c = 32$$
+$$
+a = 2, b = 2, c = 32
+$$
 
 Ta có dãy số
 
-$${\color{blue}\underbrace{\color{black}1, 2, 5, 12}_{}},{\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}},...$$
+$$
+{\color{blue}\underbrace{\color{black}1, 2, 5, 12}_{}},{\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, {\color{red}\underbrace{\color{black}30, 11, 27, 3, 7, 17, 10, 25}_{}}, \ldots 
+$$
 
 Giá trị $n$ cần tìm của bài toán là $n = 12$.
 
@@ -664,7 +787,7 @@ Ta có thể tính được giá trị này bằng cách xác định
 
 Giá trị $n = \mu + \lambda = 4 + 8 = 12$.
 
-![](/algo/basic/two-pointers/two-pointers_(4).gif)
+![](/uploads/algo/basic/two-pointers/two-pointers_4_.gif)
 
 **Độ phức tạp**
 
@@ -674,7 +797,7 @@ Cụ thể $t$ là số nguyên nhỏ nhất sao cho $t$ có giá trị lớn h�
 
 Vì thế việc xác định được vị trí $tortoise$ và $hare$ gặp nhau sẽ mất không quá $\mu + \lambda$ bước. Hơn nữa, việc xác định $\mu$ mất $\mu$ bước, xác định $\lambda$ mất $\lambda$ bước.
 
-Kết luận: độ phức tạp của bài toán là $O(\mu + \lambda)$. (trong đó $\mu + \lambda \leq 2 \cdot 10^7$)
+Kết luận: độ phức tạp của bài toán là $\mathcal{O}(\mu + \lambda)$. (trong đó $\mu + \lambda \leq 2 \cdot 10^{7}$)
 
 ## Luyện tập
 - [LODOJ - TORHAR](https://lqdoj.edu.vn/problem/torhar)

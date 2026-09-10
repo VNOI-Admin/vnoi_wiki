@@ -47,8 +47,8 @@ Trong cả 2 phần của bài viết này, ta sẽ giả sử rằng trọng s�
 #### Giới hạn
 
 - $1 \leq n \leq 100$
-- $1 \leq w_i \leq C \leq 10^5$
-- $1 \leq v_i \leq 10^9$
+- $1 \leq w_i \leq C \leq 10^{5}$
+- $1 \leq v_i \leq 10^{9}$
 
 ### Xây dựng trạng thái quy hoạch động
 
@@ -102,10 +102,11 @@ using ll = long long;
 bool ready[110][100010];
 ll dp[110][100010], w[110], v[110];
 
-ll solve (int i, int j) {
+ll solve(int i, int j) {
     if (i == 0)
         return (j == 0 ? 0 : LLONG_MIN);
-    if (ready[i][j]) return dp[i][j];
+    if (ready[i][j])
+        return dp[i][j];
 
     ready[i][j] = 1, dp[i][j] = solve(i - 1, j);
     if (j >= w[i] && solve(i - 1, j - w[i]) != LLONG_MIN)
@@ -168,11 +169,11 @@ Ta thậm chí còn có thể bỏ hẳn một chiều của bảng `dp` bằng 
 
 Lưu ý rằng việc duyệt $j$ từ $0$ đến $C$ sẽ cho ra giá trị sai, ta có thể quan sát ví dụ sau: do trạng thái $\texttt{dp}(i, j - w_i)$ đã được xử lý trước nên việc lấy lại ô nhớ thứ $j - w_i$ để cập nhật ô nhớ $j$ lại trở thành lấy $\texttt{dp}(i, j - w_i)$ để tính $\texttt{dp}(i, j)$.
 
-![dp_knapsack_opt_mem_1.png](/algo/dp_/knapsack/dp_knapsack_opt_mem_1.png)
+![dp_knapsack_opt_mem_1.png](/uploads/algo/dp/dp-knapsack-1/dp_knapsack_opt_mem_1.png)
 
 Thay vào đó, ta cần lấy $\texttt{dp}(i - 1, j - w_i)$ để tính $\texttt{dp}(i, j)$.
 
-![dp_knapsack_opt_mem_2.png](/algo/dp_/knapsack/dp_knapsack_opt_mem_2.png)
+![dp_knapsack_opt_mem_2.png](/uploads/algo/dp/dp-knapsack-1/dp_knapsack_opt_mem_2.png)
 
 :::spoiler Code tham khảo 2
 ```cpp=
@@ -217,14 +218,14 @@ Cuối cùng, ta tìm giá trị $j$ lớn nhất sao cho $\texttt{dp}(n, j) \le
 
 #### Đề bài
 
-> Cho $n$ món đồ và một số nguyên $C$, mỗi món đồ được gán trọng số $w_i$. Đếm số tập con các món đồ có tổng đúng bằng $C$, modulo $10^9 + 7$.
+> Cho $n$ món đồ và một số nguyên $C$, mỗi món đồ được gán trọng số $w_i$. Đếm số tập con các món đồ có tổng đúng bằng $C$, modulo $10^{9} + 7$.
 > 
-> Nói cách khác, đếm số tập $S \subseteq \{1, 2, \dots, n\}$ sao cho $\sum_{i \in S} w_i = C$, rồi in đáp án modulo $10^9 + 7$.
+> Nói cách khác, đếm số tập $S \subseteq \{1, 2, \dots, n\}$ sao cho $\sum_{i \in S} w_i = C$, rồi in đáp án modulo $10^{9} + 7$.
 
 #### Giới hạn
 
 - $1 \leq n \leq 100$.
-- $1 \leq w_i \leq C \leq 10^5$.
+- $1 \leq w_i \leq C \leq 10^{5}$.
 
 ### Lời giải Quy hoạch động
 
@@ -279,19 +280,19 @@ cout << dp[C];
 
 #### Giới hạn (thay đổi)
 
-- $1 \leq n \leq 10^6$
-- $1 \leq w_i \leq 10^6$
-- $1 \leq C \leq \sum w_i \leq 2 \cdot 10^6$
+- $1 \leq n \leq 10^{6}$
+- $1 \leq w_i \leq 10^{6}$
+- $1 \leq C \leq \sum w_i \leq 2 \cdot 10^{6}$
 
 #### Tối ưu 1
 
 Xét các truy hồi trên dòng thứ $i$ của bảng Quy hoạch động, ta thấy mọi ô ở dòng $i$ cột $j$ đều lấy giá trị từ dòng $i - 1$ cột $j$ và $j - w_i$ theo công thức truy hồi $\texttt{exist}(i - 1, j) \lor \texttt{exist}(i - 1, j - w_i)$:
 
-![dp_transition.png](/algo/dp_/knapsack/dp_transition.png)
+![dp_transition.png](/uploads/algo/dp/dp-knapsack-1/dp_transition.png)
 
 Điều này cũng tương tự với việc dịch chuyển toàn bộ các phần tử của $\texttt{dp}_{i-1}$ sang phải $w_i$ lần, rồi thực hiện bitwise OR với các phần tử ban đầu:
 
-![bitset_transition.png](/algo/dp_/knapsack/bitset_transition.png)
+![bitset_transition.png](/uploads/algo/dp/dp-knapsack-1/bitset_transition.png)
 
 Nếu lưu mỗi dòng của bảng Quy hoạch động dưới dạng cấu trúc dữ liệu [`bitset`](http://www.en.cppreference.com/w/cpp/utility/bitset.html), ta có thể biến đổi thao tác dịch chuyển các phần tử thành phép dịch bit sang trái. Khi đó, công thức truy hồi là:
 
@@ -354,7 +355,7 @@ $$
 \begin{align*}
 1 + 2 + 3 + \dots + \frac{n}{2} &\leq \frac{S}{2} \\
 \Longleftrightarrow \frac{\frac{n}{2} \cdot (\frac{n}{2} + 1)}{2} &\leq \frac{S}{2} \\
-\Longrightarrow \left( \frac{n}{2} \right)^2 &\leq S \\
+\Longrightarrow \left( \frac{n}{2} \right)^{2} &\leq S \\
 \Longrightarrow n &\leq 2 \sqrt{S}
 \end{align*}
 $$
@@ -373,15 +374,19 @@ Ta thực hiện xóa đi $2\Delta$ phần tử có trọng lượng $i$ rồi t
 :::spoiler Code tham khảo 4
 ```cpp=
 // chuẩn bị mảng thống kê
-for (int u : components) cnt[u]++;
+for (int u : components)
+    cnt[u]++;
 exist.set(0);
-         
+
 for (int i = 1; i <= S; i++) {
-    if (!cnt[i]) continue;
+    if (!cnt[i])
+        continue;
     int delta = (cnt[i] - 1) / 2;
     cnt[i] -= (delta * 2);
-    if (i * 2 <= S) cnt[i * 2] += delta;
-    for (int j = 0; j < cnt[i]; j++) exist |= (exist << i);
+    if (i * 2 <= S)
+        cnt[i * 2] += delta;
+    for (int j = 0; j < cnt[i]; j++)
+        exist |= (exist << i);
 }
 ```
 :::
@@ -412,7 +417,7 @@ for (int j = weight; j <= C; j++)
 
 > **Lưu ý khi cài đặt**
 >
-> Đối với các bài toán đếm liên quan đến Subset Sum, ta thường được yêu cầu in ra đáp án modulo một số nguyên tố (như $10^9 + 7$ hoặc $998 \space 244 \space 353$). Do đó, quá trình tính toán Quy hoạch động sẽ gọi toán tử modulo rất nhiều. Điều này có thể làm chậm tốc độ của chương trình.
+> Đối với các bài toán đếm liên quan đến Subset Sum, ta thường được yêu cầu in ra đáp án modulo một số nguyên tố (như $10^{9} + 7$ hoặc $998\,244\,353$). Do đó, quá trình tính toán Quy hoạch động sẽ gọi toán tử modulo rất nhiều. Điều này có thể làm chậm tốc độ của chương trình.
 >
 > Ta thường phải khử phép modulo bằng cách:
 > - Viết hàm `add(a, b)` và `sub(a, b)` để tính $(a + b) \bmod \texttt{MOD}$ và $(a - b) \bmod \texttt{MOD}$ với $0 \leq a, b < \texttt{MOD}$ (chỉ sử dụng phép cộng/trừ và `if`/`else`).
@@ -430,10 +435,10 @@ for (int j = weight; j <= C; j++)
 
 #### Giới hạn
 
-- $1 \leq n \leq 10^5$
+- $1 \leq n \leq 10^{5}$
 - $1 \leq w_i \leq C \leq 2000$
-- $1 \leq v_i \leq 10^6$
-- $1 \leq k_i \leq 10^9$
+- $1 \leq v_i \leq 10^{6}$
+- $1 \leq k_i \leq 10^{9}$
 
 *(Lưu ý, biến $S$ trong đề bài gốc đã được thay thế thành biến $C$ để đồng nhất với cách đặt tên biến trong bài viết này)*
 
@@ -447,7 +452,7 @@ $$
 \left\lfloor \frac{C}{1} \right\rfloor + \left\lfloor \frac{C}{2} \right\rfloor + \left\lfloor \frac{C}{1} \right\rfloor + \dots + \left\lfloor \frac{C}{C} \right\rfloor = \mathcal{O}(C \log C)
 $$
 
-Khi đó, nếu thực hiện quy hoạch động trên tập *món đồ tiềm năng*, độ phức tạp thời gian sẽ là $\mathcal{O}(C^2 \log C)$.
+Khi đó, nếu thực hiện quy hoạch động trên tập *món đồ tiềm năng*, độ phức tạp thời gian sẽ là $\mathcal{O}(C^{2} \log C)$.
 
 :::spoiler Code tham khảo 5
 ```cpp=
@@ -456,9 +461,9 @@ using namespace std;
 
 using ll = long long;
 using ld = long double;
-using pl = pair<ll,ll>;
-using pii = pair<int,int>;
-using tpl = tuple<int,int,int>;
+using pl = pair<ll, ll>;
+using pii = pair<int, int>;
+using tpl = tuple<int, int, int>;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
@@ -466,22 +471,24 @@ using tpl = tuple<int,int,int>;
 const int mn = 1e5 + 5;
 ll V[mn], W[mn], K[mn], dp[2020], used[2020];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int S, n; cin >> S >> n;
-    for (int i = 1; i <= n; i++) cin >> V[i] >> W[i] >> K[i];
+    int S, n;
+    cin >> S >> n;
+    for (int i = 1; i <= n; i++)
+        cin >> V[i] >> W[i] >> K[i];
 
     vector<int> ord(n);
     iota(ord.begin(), ord.end(), 1);
-    sort(all(ord), [&] (int a, int b) { return V[a] > V[b]; });
+    sort(all(ord), [&](int a, int b) { return V[a] > V[b]; });
 
     int t = 0, counter = 0;
     for (int i : ord) {
         for (int iter = 0; iter < K[i]; iter++) {
-            if (used[W[i]] * W[i] > S) break;
+            if (used[W[i]] * W[i] > S)
+                break;
             for (int j = S; j >= W[i]; j--)
                 dp[j] = max(dp[j], dp[j - W[i]] + V[i]);
             used[W[i]]++;
@@ -496,7 +503,7 @@ int main()
 
 #### Lời giải sử dụng deque trick
 
-Tuy nhiên, trong trường hợp giới hạn của $C$ lớn (ví dụ, $1 \leq C \leq 10^5$ và $1 \leq n \leq 200$), cách làm như trên là chưa hợp lý. Thay vào đó, ta có thể xử lý bài toán trên với lời giải thứ hai đó là sử dụng kỹ thuật [tìm max-min trong đoạn tịnh tiến](https://wiki.vnoi.info/vi/algo/data-structures/deque-min-max) hay deque trick.
+Tuy nhiên, trong trường hợp giới hạn của $C$ lớn (ví dụ, $1 \leq C \leq 10^{5}$ và $1 \leq n \leq 200$), cách làm như trên là chưa hợp lý. Thay vào đó, ta có thể xử lý bài toán trên với lời giải thứ hai đó là sử dụng kỹ thuật [tìm max-min trong đoạn tịnh tiến](https://wiki.vnoi.info/vi/algo/data-structures/deque-min-max) hay deque trick.
 
 Vẫn giữ nguyên cách đặt trạng thái $\texttt{dp}(i, j)$ là tổng giá trị lớn nhất có thể đạt được nếu chọn tập có tổng trọng lượng $j$ và chỉ xét $i$ loại đồ đầu tiên. Nếu chọn $a$ (với $1 \leq a \leq k_i$) món đồ cho loại đồ thứ $i$, tổng giá trị tối đa mà ta có là $\texttt{dp}(i - 1, j - w_i \cdot a) + v_i \cdot a$. Do đó, công thức truy hồi trong trường hợp này là:
 
@@ -506,7 +513,7 @@ $$
 
 Để đơn giản hóa bài toán, ta tạm bỏ qua giới hạn $k_i$. Khi đó, với mỗi trạng thái $(i, j)$ trên bảng quy hoạch động, ta truy hồi về các trạng thái trên dòng $i - 1$, cột $j - w_i, j - 2w_i, j - 3w_i, \dots$ tức các cột có chỉ số đồng dư với $j$ theo modulo $w_i$.
 
-![dp_transition_2.png](/algo/dp_/knapsack/dp_transition_2.png)
+![dp_transition_2.png](/uploads/algo/dp/dp-knapsack-1/dp_transition_2.png)
 
 Như vậy, ta có thể biến đổi công thức lại thành:
 
@@ -539,9 +546,9 @@ using namespace std;
 
 using ll = long long;
 using ld = long double;
-using pl = pair<ll,ll>;
-using pii = pair<int,int>;
-using tpl = tuple<int,int,int>;
+using pl = pair<ll, ll>;
+using pii = pair<int, int>;
+using tpl = tuple<int, int, int>;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
@@ -552,33 +559,39 @@ ll V[mn], W[mn], K[mn], dp[2][2020], used[2020];
 struct dqTrick {
     deque<ll> dq;
 
-    void push (ll x) {
-        while (dq.size() && dq.back() < x) dq.pop_back();
+    void push(ll x) {
+        while (dq.size() && dq.back() < x)
+            dq.pop_back();
         dq.push_back(x);
     }
 
-    void pop (ll x) {
-        if (dq.size() && dq.front() == x) dq.pop_front();
+    void pop(ll x) {
+        if (dq.size() && dq.front() == x)
+            dq.pop_front();
     }
 
-    ll best() { return (dq.empty() ? LLONG_MIN : dq.front()); }
+    ll best() {
+        return (dq.empty() ? LLONG_MIN : dq.front());
+    }
 };
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int S, n; cin >> S >> n;
-    for (int i = 1; i <= n; i++) cin >> V[i] >> W[i] >> K[i];
+    int S, n;
+    cin >> S >> n;
+    for (int i = 1; i <= n; i++)
+        cin >> V[i] >> W[i] >> K[i];
 
     vector<int> ord(n);
     iota(ord.begin(), ord.end(), 1);
-    sort(all(ord), [&] (int a, int b) { return V[a] > V[b]; });
+    sort(all(ord), [&](int a, int b) { return V[a] > V[b]; });
 
     int t = 0;
     for (int i : ord) {
-        if (used[W[i]] * W[i] > S) continue;
+        if (used[W[i]] * W[i] > S)
+            continue;
         vector<dqTrick> opt(W[i]);
         for (int j = 0; j <= S; j++) {
             int R = j % W[i], D = j / W[i];
@@ -610,7 +623,7 @@ Cho một hoán vị $p$ độ dài $n$ và một số nguyên $k$, đảm bảo
 
 #### Giới hạn
 
-- $2 \leq n \leq 10^6$
+- $2 \leq n \leq 10^{6}$
 - $0 \leq k \leq n$
 
 #### Biến đổi thành đồ thị
@@ -625,7 +638,7 @@ Ta sẽ lần lượt giải quyết từng yêu cầu của bài toán, bắt �
 
 Ví dụ, với chu trình gồm $7$ đỉnh, thứ tự xóa cạnh sau là tối ưu:
 
-![del_edge.png](/algo/dp_/knapsack/del_edge.png)
+![del_edge.png](/uploads/algo/dp/dp-knapsack-1/del_edge.png)
 
 Cụ thể hơn, xét một chu trình gồm $n$ đỉnh, khi xóa $\left\lfloor \frac{n}{2} \right\rfloor$ cạnh đầu tiên, ta xóa được $2$ đỉnh đặc biệt cho mỗi cạnh. Với $n \bmod 2$ cạnh tiếp theo, ta xóa được $1$ đỉnh đặc biệt cho mỗi cạnh. Các cạnh còn lại không đóng góp gì vào đáp án.
 
@@ -658,9 +671,9 @@ using namespace std;
 
 using ll = long long;
 using ld = long double;
-using pl = pair<ll,ll>;
-using pii = pair<int,int>;
-using tpl = tuple<int,int,int>;
+using pl = pair<ll, ll>;
+using pii = pair<int, int>;
+using tpl = tuple<int, int, int>;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
@@ -670,50 +683,56 @@ bool vis[mn];
 int p[mn], n, k;
 
 namespace solveMin {
-    bitset<mn> exist;
-    int cnt[mn];
+bitset<mn> exist;
+int cnt[mn];
 
-    int solve (const vector<int> &components) {
-        for (int u : components) cnt[u]++;
-        exist.set(0);
-        
-        for (int i = 1; i <= n; i++) {
-            if (!cnt[i]) continue;
-            int merged = (cnt[i] - 1) >> 1;
-            cnt[i] -= (merged << 1);
-            if ((i << 1) <= n) cnt[i << 1] += merged;
-            for (int j = 0; j < cnt[i]; j++) exist |= (exist << i);
-        }
+int solve(const vector<int> &components) {
+    for (int u : components)
+        cnt[u]++;
+    exist.set(0);
 
-        return k + (exist[k] == 0);
+    for (int i = 1; i <= n; i++) {
+        if (!cnt[i])
+            continue;
+        int merged = (cnt[i] - 1) >> 1;
+        cnt[i] -= (merged << 1);
+        if ((i << 1) <= n)
+            cnt[i << 1] += merged;
+        for (int j = 0; j < cnt[i]; j++)
+            exist |= (exist << i);
     }
-};
+
+    return k + (exist[k] == 0);
+}
+}; // namespace solveMin
 
 namespace solveMax {
-    int solve (const vector<int> &components) {
-        vector<int> cnt(3);
-        for (int u : components)
-            cnt[2] += u >> 1, cnt[1] += u & 1;
+int solve(const vector<int> &components) {
+    vector<int> cnt(3);
+    for (int u : components)
+        cnt[2] += u >> 1, cnt[1] += u & 1;
 
-        int pickTwo = min(cnt[2], k);
-        return (pickTwo << 1) + min(cnt[1], k - pickTwo);
-    }
-};
+    int pickTwo = min(cnt[2], k);
+    return (pickTwo << 1) + min(cnt[1], k - pickTwo);
+}
+}; // namespace solveMax
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     cin >> n >> k;
-    for (int i = 1; i <= n; i++) cin >> p[i];
+    for (int i = 1; i <= n; i++)
+        cin >> p[i];
 
     // thực hiện DFS khử đệ quy trên đồ thị hàm
     vector<int> components;
     for (int i = 1; i <= n; i++) {
-        if (vis[i]) continue;
+        if (vis[i])
+            continue;
         int counter = 0;
-        for (int node = i; !vis[node]; node = p[node]) counter++, vis[node] = 1;
+        for (int node = i; !vis[node]; node = p[node])
+            counter++, vis[node] = 1;
         components.push_back(counter);
     }
 

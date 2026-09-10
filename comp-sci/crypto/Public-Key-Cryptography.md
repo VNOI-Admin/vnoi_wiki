@@ -39,7 +39,7 @@ Năm 1976, Whitfield Diffie và Martin Hellman công bố bài báo [New Directi
 
 Khác với mã đối xứng, mã hóa khóa bất đối xứng sử dụng một cặp khóa: **khóa công khai** (**public key**) và **khóa bí mật** (**private key**). Hai khóa này được xây dựng sao cho từ một khóa, rất khó có cách sinh ra được khóa còn lại. Một khóa sẽ dành để mã hóa, khóa còn lại dùng để giải mã. Chỉ có người sở hữu nắm được khóa bí mật trong khi khóa công khai được phổ biến rộng rãi. Hình vẽ sau minh họa việc mã hóa và giải mã:
 
-![Hình minh họa](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Public_key_encryption.svg/500px-Public_key_encryption.svg.png)
+![Hình minh họa](/uploads/comp-sci/crypto/Public-Key-Cryptography/500px-Public_key_encryption.svg.png)
 
 # 3. Ứng dụng
 
@@ -55,7 +55,7 @@ Chữ ký điện tử là thông tin đi kèm với dữ liệu nhằm mục đ
 
 Một văn bản được _"ký"_ bằng khóa bí mật của người gửi và có thể được xác nhận bới bất kỳ ai có khóa công khai của người gửi.
 
-Cụ thể hơn, bên gửi sẽ tính ra mã hash $h$ của văn bản, sau đó dùng khóa bí mật để mã hóa $h$ thành $\sigma$ rồi gửi cho bên nhận văn bản đó cùng với _"chữ ký"_ $\sigma$ . Bên nhận thực hiện xác nhận như sau:
+Cụ thể hơn, bên gửi sẽ tính ra mã hash $h$ của văn bản, sau đó dùng khóa bí mật để mã hóa $h$ thành $\sigma$ rồi gửi cho bên nhận văn bản đó cùng với _"chữ ký"_ $\sigma$. Bên nhận thực hiện xác nhận như sau:
 
 - Tính mã hash $h$ của văn bản.
 - Giải mã _"chữ ký"_ $\sigma$ thành $h'$ bằng khóa công khai.
@@ -67,7 +67,9 @@ RSA là một trong những phương pháp mã hóa khóa công khai đầu tiê
 
 Nguyên lý cơ bản của RSA dựa trên nhận định là có thể tìm được 3 số nguyên dương rất lớn $e$, $d$ và $n$ mà:
 
-$(m^e)^d \equiv m \pmod n \quad \forall m$
+$$
+(m^{e})^{d} \equiv m \pmod{n} \quad \forall m
+$$
 
 và dù cho có biết cả $e$, $n$ hay cả $m$ thì cũng rất khó để tìm ra $d$.
 
@@ -79,7 +81,9 @@ Giả sử rằng Bob muốn gửi mẫu tin $M$ cho Alice.
 
 Đầu tiên thông điệp $M$ thành từng phần nhỏ, mỗi phần biểu diễn bởi một số nguyên $m$ sao cho $0 \leq m < n$. Việc chuyển đổi này cần đảm bảo là ngẫu nhiên và $m$ không nhận các giá trị không an toàn (ví dụ như số 0 hay 1) nhưng vẫn đảm bảo là có thể suy ra $M$ từ $m$. Tiếp theo, Bob tính ra bản mã hóa $c$, sử dụng khóa công khai $e$ của Alice như sau:
 
-$ c \equiv m^e \pmod n $
+$$
+c \equiv m^{e} \pmod{n}
+$$
 
 Bob gửi $c$ cho Alice.
 
@@ -89,7 +93,9 @@ Lưu ý rằng sao khi mã hóa, chính Bob cũng không thể giải mã đư�
 
 Alice tính lại ra $m$ từ $c$ dựa vào khóa bí mật $d$:
 
-$ c^d \equiv (m^e)^d \equiv m \pmod n $
+$$
+c^{d} \equiv (m^{e})^{d} \equiv m \pmod{n}
+$$
 
 Dựa vào $m$, Alice có thể khôi phục lại mẫu tin ban đầu $M$.
 
@@ -97,19 +103,19 @@ Dựa vào $m$, Alice có thể khôi phục lại mẫu tin ban đầu $M$.
 
 - Chọn 2 số nguyên tố khác nhau $p$ và $q$.
 
-- Tính $n = p * q$. Độ dài của $n$ (tính theo bit) chính là độ dài của khóa. Hiện nay người ta khuyến cáo sử dụng khóa có độ dài tối thiếu 2048 bit.
+- Tính $n = p \times q$. Độ dài của $n$ (tính theo bit) chính là độ dài của khóa. Hiện nay người ta khuyến cáo sử dụng khóa có độ dài tối thiếu 2048 bit.
 
 - Tính $\varphi(n) = \varphi(p)\varphi(q) = (p - 1)(q - 1) = n - (p + q - 1)$. Trong đó $\varphi(n)$ là phi hàm Euler. $\varphi(n) =$ số lượng số nguyên dương nhỏ hơn $n$ mà nguyên tố cùng nhau với $n$.
 
-- Chọn một số nguyên $e$ thỏa mãn $1 < e < \varphi(n)$ và $gcd(e, \varphi(n)) = 1$.
+- Chọn một số nguyên $e$ thỏa mãn $1 < e < \varphi(n)$ và $\gcd(e, \varphi(n)) = 1$.
 
 - Tính ra $d \equiv e^{-1} \pmod{\varphi(n)}$.
 
 **Chứng minh**
 
-Để chứng minh tính đúng đắn của thuật toán sinh khóa trên, ta cần chứng minh rằng $m^{ed} \equiv m \pmod n$ với $n = pq$.
+Để chứng minh tính đúng đắn của thuật toán sinh khóa trên, ta cần chứng minh rằng $m^{ed} \equiv m \pmod{n}$ với $n = pq$.
 
-**_1. Trường hợp $gcd(n, m) = 1$_**
+**_1. Trường hợp $\gcd(n, m) = 1$_**
 
 Ta có $ed \equiv 1 \pmod{\varphi(n)}$
 
@@ -117,32 +123,34 @@ Do $e$ và $d$ nguyên dương nên $ed = 1 + h\varphi(n)$ với $h$ là một s
 
 Do đó $m^{ed} = m^{1 + h\varphi{n}} = m(m^{\varphi(n)})^h$.
 
-Theo định lý Euler, $a^{\varphi(n)} \equiv 1 \pmod n \quad \forall a, n: gcd(a, n) = 1$ nên $m(m^{\varphi(n)})^h \equiv m(1)^h \equiv m \pmod n$.
+Theo định lý Euler, $a^{\varphi(n)} \equiv 1 \pmod{n} \quad \forall a, n: \gcd(a, n) = 1$ nên $m(m^{\varphi(n)})^h \equiv m(1)^h \equiv m \pmod{n}$.
 
-**_2. Trường hợp $gcd(n, m) \neq 1$_**
+**_2. Trường hợp $\gcd(n, m) \neq 1$_**
 
 Theo định lý phần dư Trung Hoa (Chinese Remainder Theorem), nếu $p$, $q$ nguyên tố cùng nhau thì:
 
-$x \equiv y \pmod p \quad và  \quad x \equiv y \pmod q \Rightarrow x \equiv y \pmod {pq}$.
+$$
+x \equiv y \pmod{p} \quad \text{và} \quad x \equiv y \pmod{q} \Rightarrow x \equiv y \pmod{pq}.
+$$
 
 Do vậy ta cần chứng mình 2 mệnh đề sau:
 
-- $m^{ed} \equiv m \pmod p$
-- $m^{ed} \equiv m \pmod q$
+- $m^{ed} \equiv m \pmod{p}$
+- $m^{ed} \equiv m \pmod{q}$
 
-Vì $gcd(m, n) \neq 1 \Rightarrow gcd(m, n) = p \quad hoặc \quad gcd(m, n) = q$.
+Vì $\gcd(m, n) \neq 1 \Rightarrow \gcd(m, n) = p \quad \text{hoặc} \quad \gcd(m, n) = q$.
 
-Không mất tính tổng quát, giả sử $gcd(m, n) = p$. Ta có:
+Không mất tính tổng quát, giả sử $\gcd(m, n) = p$. Ta có:
 
-- $gcd(m, p) = p \\ \Rightarrow m \equiv 0 \pmod p \\ \Rightarrow m^{ed} \equiv 0 \equiv m \pmod p$
+- $\gcd(m, p) = p \Rightarrow m \equiv 0 \pmod{p} \Rightarrow m^{ed} \equiv 0 \equiv m \pmod{p}$
 
-- $gcd(m, q) = 1 \\ \Rightarrow m^{ed} \equiv m \pmod q$
+- $\gcd(m, q) = 1 \Rightarrow m^{ed} \equiv m \pmod{q}$
 (chứng mình tương tự trong trường hợp 1)
 
 
 ## 4.4. Sample code
 
-```python
+```cpp
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 

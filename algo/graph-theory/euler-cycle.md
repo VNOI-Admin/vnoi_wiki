@@ -31,7 +31,7 @@ Khái niệm về đường đi và chu trình Euler lần đầu tiên được
 
 > Thành phố Konigsberg thuộc Phổ (nay là Kaliningrad thuộc Nga), được chia làm 4 vùng bằng các nhánh sông Pregel. Các vùng này gồm 2 vùng bên bờ sông (B, C), đảo Kneiphof (A) và một miền nằm giữa hai nhánh sông Pregel (D). Vào thế kỷ XVIII, người ta đã xây 7 chiếc cầu nối những vùng này với nhau. Người dân ở đây tự hỏi: Liệu có cách nào xuất phát tại một địa điểm trong thành phố, đi qua 7 chiếc cầu, mỗi chiếc đúng 1 lần rồi quay trở về nơi xuất phát không?
 >
-> | ![seven-bridges](https://upload.wikimedia.org/wikipedia/commons/5/5d/Konigsberg_bridges.png) |
+> | ![seven-bridges](/uploads/algo/graph-theory/euler-cycle/Konigsberg_bridges.png) |
 > |:--:|
 > | Minh hoạ 7 cây cầu ở Konigsberg - Nguồn: Wikipedia |
 
@@ -43,8 +43,8 @@ Một cách tổng quát hơn:
 
 Những kí hiệu sau sẽ được dùng xuyên suốt bài viết:
 
-- Với đỉnh $u$ thuộc một đồ thị **vô hướng** thì $deg(u)$ là bậc của $u$.
-- Với đỉnh $u$ thuộc một đồ thị **có hướng** thì $deg^+(u)$ là bán bậc ra của $u$ và $deg^-(u)$ là bán bậc vào của $u$.
+- Với đỉnh $u$ thuộc một đồ thị **vô hướng** thì $\deg(u)$ là bậc của $u$.
+- Với đỉnh $u$ thuộc một đồ thị **có hướng** thì $\deg^+(u)$ là bán bậc ra của $u$ và $\deg^-(u)$ là bán bậc vào của $u$.
 
 # Định nghĩa
 
@@ -57,26 +57,26 @@ Những kí hiệu sau sẽ được dùng xuyên suốt bài viết:
 ## Định lý 1
 
 Một đồ thị có hướng là đồ thị Euler nếu và chỉ nếu:
-- Với mọi đỉnh $u$ thuộc đồ thị, $deg^+(u) = deg^-(u)$
+- Với mọi đỉnh $u$ thuộc đồ thị, $\deg^+(u) = \deg^-(u)$
 - Tất cả đỉnh có bậc lớn hơn $0$ thuộc cùng một thành phần liên thông
 
 ### Ví dụ
 
 Đồ thị 1 (hình dưới) là một đồ thị Euler.
 
-Ta thấy rằng mọi đỉnh $u$ thuộc đồ thị đều có bán bậc ra bằng bán bậc vào: $deg^+(1) = 1 = deg^-(1)$, $deg^+(5) = 2 = deg^-(5)$.
+Ta thấy rằng mọi đỉnh $u$ thuộc đồ thị đều có bán bậc ra bằng bán bậc vào: $\deg^+(1) = 1 = \deg^-(1)$, $\deg^+(5) = 2 = \deg^-(5)$.
 
 Đồng thời, các đỉnh có bậc lớn hơn 0 là $1$, $2$, $3$, $4$ và $5$ đều nằm cùng một thành phần liên thông.
 
 Do đó ta kết luận đồ thị 1 là đồ thị Euler. Thật vậy, $2 \to 1 \to 5 \to 3 \to 4 \to 5 \to 2$ là một chu trình Euler trên đồ thị.
 
-|![graph1](https://i.imgur.com/neNBMhl.png)|
+|![graph1](/uploads/algo/graph-theory/euler-cycle/neNBMhl.png)|
 |:--:|
 |Đồ thị 1|
 
-Đồ thị 2 dưới có những đỉnh mà bán bậc vào khác bán bậc ra. Chẳng hạn, đỉnh $1$ có $1$ cạnh vào và $3$ cạnh ra, tức $deg^+(1) = 1 \ne 3 = deg^-(1)$. Do đó ta kết luận đồ thị 2 không phải là đồ thị Euler.
+Đồ thị 2 dưới có những đỉnh mà bán bậc vào khác bán bậc ra. Chẳng hạn, đỉnh $1$ có $1$ cạnh vào và $3$ cạnh ra, tức $\deg^+(1) = 1 \ne 3 = \deg^-(1)$. Do đó ta kết luận đồ thị 2 không phải là đồ thị Euler.
 
-|![graph2](https://i.imgur.com/MoCKbAl.png)|
+|![graph2](/uploads/algo/graph-theory/euler-cycle/MoCKbAl.png)|
 |:--:|
 |Đồ thị 2|
 
@@ -87,7 +87,7 @@ Do đó ta kết luận đồ thị 1 là đồ thị Euler. Thật vậy, $2 \t
 Giả sử đồ thị có hướng tồn tại chu trình Euler.
 
 - Vì chu trình Euler đi qua tất cả các cạnh nên cũng đi qua tất cả các đỉnh có bậc lớn hơn $0$. Vì thế tất cả các đỉnh có bậc lớn hơn $0$ thuộc cùng một thành phần liên thông.
-- Dễ thấy trong chu trình số lần ta đi vào một đỉnh bất kì bằng đúng số lần ta đi ra khỏi đỉnh đó nên với mỗi đỉnh $u$, $deg^+(u) = deg^-(u)$.
+- Dễ thấy trong chu trình số lần ta đi vào một đỉnh bất kì bằng đúng số lần ta đi ra khỏi đỉnh đó nên với mỗi đỉnh $u$, $\deg^+(u) = \deg^-(u)$.
 
 ### Chiều đảo
 
@@ -99,7 +99,7 @@ Nếu đồ thị có nhiều hơn một thành phần liên thông thì hiển 
 
 Xét đồ thị có hướng $G$ chỉ có một thành phần liên thông và tất cả các đỉnh trong đồ thị có bậc lớn hơn $0$.
 
-Ta cần chứng minh nếu với mỗi đỉnh $u \in G$, $deg^+(u) = deg^-(u)$ thì $G$ tồn tại chu trình Euler.
+Ta cần chứng minh nếu với mỗi đỉnh $u \in G$, $\deg^+(u) = \deg^-(u)$ thì $G$ tồn tại chu trình Euler.
 
 Dễ thấy nếu $G$ chỉ có $1$ đỉnh thì định lý đúng.
 
@@ -111,33 +111,33 @@ Dễ thấy nếu $G$ chỉ có $1$ đỉnh thì định lý đúng.
 >
 > Ta dựng một chu trình bắt đầu từ $u$.
 >
-> Bắt đầu từ $u$ ta chọn một cạnh ra từ $u$ đến $u'$ chưa thăm bất kì để đi. Lặp lại thao tác này cho đến khi ta đến một đỉnh $v$ mà ta đã thăm hết tất cả cạnh ra của $v$. Nếu $v \neq u$ thì luôn tìm được một cạnh ra chưa thăm để đi tiếp vì khi đi vào thì ta giảm $deg^-(v)$ đi $1$, tức ban đầu $deg^-(v) > 0$. Do điều kiện mọi đỉnh thuộc $G$ đều có bán bậc vào bằng bán bậc ra nên $deg^+(v) > 0$, tức tồn tại cạnh ra chưa thăm. Suy ra $v = u$. Như vậy ta đã chỉ ra được một chu trình chứa $u$ trong đồ thị.
+> Bắt đầu từ $u$ ta chọn một cạnh ra từ $u$ đến $u'$ chưa thăm bất kì để đi. Lặp lại thao tác này cho đến khi ta đến một đỉnh $v$ mà ta đã thăm hết tất cả cạnh ra của $v$. Nếu $v \neq u$ thì luôn tìm được một cạnh ra chưa thăm để đi tiếp vì khi đi vào thì ta giảm $\deg^-(v)$ đi $1$, tức ban đầu $\deg^-(v) > 0$. Do điều kiện mọi đỉnh thuộc $G$ đều có bán bậc vào bằng bán bậc ra nên $\deg^+(v) > 0$, tức tồn tại cạnh ra chưa thăm. Suy ra $v = u$. Như vậy ta đã chỉ ra được một chu trình chứa $u$ trong đồ thị.
 
-Giả sử điều phải chứng minh đúng với mọi đồ thị con $G' \subset G$ thoả điều kiện. Tức là ta tìm được một chu trình Euler $C'$ trên mọi $G' \subset G$ sao cho với mọi $v \in G'$, $deg^-(v) = deg^+(v)$.
+Giả sử điều phải chứng minh đúng với mọi đồ thị con $G' \subset G$ thoả điều kiện. Tức là ta tìm được một chu trình Euler $C'$ trên mọi $G' \subset G$ sao cho với mọi $v \in G'$, $\deg^-(v) = \deg^+(v)$.
 
 Ta chọn một đỉnh bất kì $u \in G$. Áp dụng bổ đề 1, giả sử ta tìm được một chu trình $C$ chứa $u$. Xoá tất cả các cạnh trên $G$ thuộc $C$.
 
 Nếu sau khi xoá $G$ không còn cạnh thì $C$ là một chu trình Euler.
 
-Ngược lại, ta thu được một số thành phần liên thông $G_1, G_2, \cdots, G_k$. Do khi ta đi theo chu trình $C$, mỗi khi ta đi vào một đỉnh, ta đi ra khỏi đỉnh ấy ngay bước tiếp theo nên với mọi $u \in G_i$ ($1 \leq i \leq k$), $deg^-(u) = deg^+(u)$.
+Ngược lại, ta thu được một số thành phần liên thông $G_1, G_2, \ldots, G_k$. Do khi ta đi theo chu trình $C$, mỗi khi ta đi vào một đỉnh, ta đi ra khỏi đỉnh ấy ngay bước tiếp theo nên với mọi $u \in G_i$ ($1 \leq i \leq k$), $\deg^-(u) = \deg^+(u)$.
 
 Theo giả sử thì với mọi $G_i$ ta tìm được một chu trình Euler $C_i$ đi qua tất cả các cạnh thuộc $G_i$. Nhận xét rằng mọi $C_i$ có ít nhất một đỉnh chung với $C$ do nếu $C_i$ và $C$ không có đỉnh chung nghĩa là $C$ không đi qua bất kì đỉnh nào trong $G_i$, tức $G$ và $G_i$ không liên thông, trái với điều kiện đặt ra là mọi đỉnh thuộc $G$ liên thông (lưu ý điều kiện đúng là mọi đỉnh có bậc lớn hơn $0$ trong $G$ thuộc cùng một thành phần liên thông, nhưng do ở đây ta đang xét trường hợp $G$ liên thông yếu). Lần lượt nối các chu trình con $C_i$ vào $C$, ta thu được một chu trình kết quả đi qua tất cả các cạnh trên $G$.
 
 > Đồ thị ban đầu, dễ thấy tồn tại chu trình $C = 1 \to 2 \to 3 \to 4 \to 5 \to 6 \to 1$
 >
-> ![graph3](https://i.imgur.com/aUE68Hj.png)
+> ![graph3](/uploads/algo/graph-theory/euler-cycle/aUE68Hj.png)
 >
 > Xoá các cạnh thuộc $C$, ta nhận thấy có $2$ chu trình con là $C_1 = 3 \to 9 \to 5 \to 3$ và $C_2 = 6 \to 8 \to 7 \to 6$
 >
-> ![graph4](https://i.imgur.com/fwSS7hb.png)
+> ![graph4](/uploads/algo/graph-theory/euler-cycle/fwSS7hb.png)
 >
 > Nhận thấy giữa $C$ và $C_1$ có đỉnh chung $5$. Nối $2$ chu trình lại ta thu được một chu trình $C$ mới lớn hơn: $C = 1 \to 2 \to 3 \to 4 \to 5 \to 3 \to 9 \to 5 \to 6 \to 1$.
 >
-> ![graph5](https://i.imgur.com/sekE1zw.png)
+> ![graph5](/uploads/algo/graph-theory/euler-cycle/sekE1zw.png)
 >
 > Tiếp tục, giữa $C$ và $C_2$ có đỉnh chung $6$. Nối $2$ chu trình lại ta thu được một chu trình $C$ mới: $C = 1 \to 2 \to 3 \to 4 \to 5 \to 3 \to 9 \to 5 \to 6 \to 7 \to 8 \to 6 \to 1$. Ta đã đi qua tất cả các cạnh và tìm được chu trình Euler trong đồ thị.
 >
-> ![graph6](https://i.imgur.com/l9EXMND.png)
+> ![graph6](/uploads/algo/graph-theory/euler-cycle/l9EXMND.png)
 
 
 # Đường đi Euler trên đồ thị có hướng
@@ -147,8 +147,8 @@ Theo giả sử thì với mọi $G_i$ ta tìm được một chu trình Euler $
 Đồ thị có hướng là đồ thị nửa Euler nếu và chỉ nếu đồ thị thoả **một trong hai** điều kiện sau:
 1. Tồn tại chu trình Euler
 2. Thoả tất cả các điều kiện sau:
-    1. Tồn tại trong đồ thị đúng $2$ đỉnh $s$ và $t$ sao cho $deg^-(s) = deg^+(s) + 1$ và $deg^-(t) = deg^+(t) - 1$
-    2. Với mọi đỉnh $u$ khác $s$ và $t$, $deg^+(u) = deg^-(u)$
+    1. Tồn tại trong đồ thị đúng $2$ đỉnh $s$ và $t$ sao cho $\deg^-(s) = \deg^+(s) + 1$ và $\deg^-(t) = \deg^+(t) - 1$
+    2. Với mọi đỉnh $u$ khác $s$ và $t$, $\deg^+(u) = \deg^-(u)$
     3. Tất cả các đỉnh có bậc lớn hơn $0$ thuộc cùng một thành phần liên thông
 
 Đỉnh $s$ và đỉnh $t$ cũng chính là đỉnh xuất phát và kết thúc của đường đi Euler trong đồ thị.
@@ -157,21 +157,21 @@ Theo giả sử thì với mọi $G_i$ ta tìm được một chu trình Euler $
 
 Đồ thị 3 dưới đây là một đồ thị nửa Euler.
 
-Đồ thị 3 có đỉnh $4$ có $deg^-(4) = 0$ và $deg^+(4) = 1$ và đỉnh $6$ có $deg^-(6) = 1$ và $deg^+(6) = 0$.
+Đồ thị 3 có đỉnh $4$ có $\deg^-(4) = 0$ và $\deg^+(4) = 1$ và đỉnh $6$ có $\deg^-(6) = 1$ và $\deg^+(6) = 0$.
 
-Các đỉnh khác ngoài $4$ và $6$ đều có bán bậc ra bằng bán bậc vào: $deg^-(1) = 1 = deg^+(1)$, $deg^-(5) = 0 = deg^+(5)$, \ldots
+Các đỉnh khác ngoài $4$ và $6$ đều có bán bậc ra bằng bán bậc vào: $\deg^-(1) = 1 = \deg^+(1)$, $\deg^-(5) = 0 = \deg^+(5)$, $\ldots$
 
 Đồng thời các đỉnh có bậc lớn hơn $0$ là $1$, $2$, $3$, $4$, $6$ thuộc cùng một thành phần liên thông.
 
 Do đó, ta kết luận tồn tại đường đi Euler trên đồ thị 3. Thật vậy, $4 \to 2 \to 3 \to 1 \to 2 \to 6$ là một đường đi Euler trên đồ thị.
 
-|![](https://i.imgur.com/qUYJzQW.png)|
+|![](/uploads/algo/graph-theory/euler-cycle/qUYJzQW.png)|
 |:--:|
 | Đồ thị 3 |
 
 Đồ thị 4 có hướng không tồn tại đường đi Euler do có các đỉnh có bậc ra khác bậc vào là $1$, $2$, $4$, $6$.
 
-|![](https://i.imgur.com/f3LfsIy.png)|
+|![](/uploads/algo/graph-theory/euler-cycle/f3LfsIy.png)|
 |:--:|
 | Đồ thị 4 |
 
@@ -182,9 +182,9 @@ Do đó, ta kết luận tồn tại đường đi Euler trên đồ thị 3. Th
 Giả sử tồn tại đường đi Euler bắt đầu từ $s$ và kết thúc tại $t$ trên đồ thị có hướng.
 - Nếu $s = t$, đồ thị có chu trình Euler. Dựa vào định lý 1, ta chứng minh được định lý đúng trong trường hợp này.
 - Nếu $s \neq t$, do đường đi Euler đi qua tất cả các cạnh nên nhận thấy:
-    - $deg^-(s) = deg^+(s) + 1$ do đường đi xuất phát nhưng không kết thúc tại $s$ nên $deg^-(s)$ phải ít hơn $deg^+(s)$ $1$ cạnh
-    - $deg^-(t) = deg^+(t) - 1$ do đường đi kết thúc nhưng không xuất phát tại $t$ nên $deg^-(t)$ phải nhiều hơn $deg^+(t)$ $1$ cạnh
-    - $deg^-(u) = deg^+(u)$ với mọi $u$ khác $s$ và $t$
+    - $\deg^-(s) = \deg^+(s) + 1$ do đường đi xuất phát nhưng không kết thúc tại $s$ nên $\deg^-(s)$ phải ít hơn $\deg^+(s)$ $1$ cạnh
+    - $\deg^-(t) = \deg^+(t) - 1$ do đường đi kết thúc nhưng không xuất phát tại $t$ nên $\deg^-(t)$ phải nhiều hơn $\deg^+(t)$ $1$ cạnh
+    - $\deg^-(u) = \deg^+(u)$ với mọi $u$ khác $s$ và $t$
     - Tất cả các đỉnh có bậc lớn hơn $0$ trong đồ thị thuộc cùng một thành phần liên thông
 
 ### Chiều đảo
@@ -192,9 +192,13 @@ Giả sử tồn tại đường đi Euler bắt đầu từ $s$ và kết thúc
 Trong trường hợp đồ thị có hướng tồn tại chu trình Euler, hiển nhiên đồ thị tồn tại đường đi Euler.
 
 Giả sử đồ thị có hướng thoả các điều kiện trong định lý 2. Thêm một cạnh $e$ nối từ $t$ đến $s$ vào đồ thị ($s$ và $t$ là $2$ đỉnh duy nhất trong đồ thị không thoả điều kiện bán bậc vào bằng bán bậc ra). Khi này mọi đỉnh trong đồ thị đều có bán bậc vào bằng bán bậc ra nên đồ thị tồn tại chu trình Euler đi qua $t$ và $s$:
-$$u_1\ u_2\ u_3\ \cdots\ t\ s\ \cdots\ u_{n - 1}\ u_n$$
+$$
+u_1\ u_2\ u_3\ \cdots\ t\ s\ \cdots\ u_{n - 1}\ u_n
+$$
 Ta nhận thấy trên đồ thị lúc sau tồn tại một đường đi qua tất cả các cạnh khác $e$ bắt đầu từ $s$ và kết thúc ở $t$.
-$$s\ \cdots\ u_{n - 1}\ u_n\ u_1\ u_2\ u_3\ \cdots\ t$$
+$$
+s\ \cdots\ u_{n - 1}\ u_n\ u_1\ u_2\ u_3\ \cdots\ t
+$$
 Do đó đồ thị ban đầu tồn tại một đường đi Euler.
 
 # Chu trình Euler trên đồ thị vô hướng
@@ -222,7 +226,7 @@ Ta cũng sử dụng phương pháp quy nạp để chứng minh.
 
 Dễ thấy định lý đúng khi đồ thị có một đỉnh.
 
-Xét một đồ thị vô hướng $G$ có $n$ đỉnh thoả $\forall u \in G$, $2 \mathrel{|} deg(u)$. Tương tự như trên đồ thị có hướng, ta chứng minh được:
+Xét một đồ thị vô hướng $G$ có $n$ đỉnh thoả $\forall u \in G$, $2 \mathrel{|} \deg(u)$. Tương tự như trên đồ thị có hướng, ta chứng minh được:
 - Chọn một đỉnh $u \in G$ bất kì thì luôn tìm được một chu trình $C$ chứa $u$.
 - Xoá các cạnh trên $G$ thuộc $C$:
     - Nếu sau khi xoá $G$ không còn cạnh thì $C$ chính là một chu trình Euler.
@@ -233,15 +237,15 @@ Xét một đồ thị vô hướng $G$ có $n$ đỉnh thoả $\forall u \in G$
 
 > Đồ thị ban đầu, dễ thấy chu trình $C = 1 \to 2 \to 3 \to 4 \to 1$
 >
-> ![](https://i.imgur.com/cid4lgG.png)
+> ![](/uploads/algo/graph-theory/euler-cycle/cid4lgG.png)
 >
 > Xoá các cạnh thuộc $C$, ta dễ thấy một chu trình $C_1 = 7 \to 4 \to 8 \to 1 \to 5 \to 2 \to 6 \to 3 \to 7$.
 >
-> ![](https://i.imgur.com/3BgtAJ0.png)
+> ![](/uploads/algo/graph-theory/euler-cycle/3BgtAJ0.png)
 >
 > Nhận thấy $C$ và $C_1$ có đỉnh chung $2$, nối $C$ và $C_1$ để tạo ra chu trình mới lớn hơn: $1 \to 2 \to 6 \to 3 \to 7 \to 4 \to 8 \to 1 \to 5 \to 2 \to 3 \to 4 \to 1$. Ta đã đi qua tất cả các cạnh và tìm được chu trình Euler trong đồ thị.
 >
-> ![](https://i.imgur.com/Cv1oPJH.png)
+> ![](/uploads/algo/graph-theory/euler-cycle/Cv1oPJH.png)
 
 # Đường đi Euler trên đồ thị vô hướng
 
@@ -298,11 +302,12 @@ Ngoài ra cài đặt mẫu sử dụng cấu trúc danh sách liên kết đôi
 struct Edge {
     int target, id;
 
-    Edge(int _target, int _id): target(_target), id(_id) {}
+    Edge(int _target, int _id) : target(_target), id(_id) {
+    }
 };
 
 vector<Edge> adj[N]; // Danh sách kề lưu cạnh và chỉ số
-bool used_edge[M]; // Mảng đánh dấu cạnh đã thăm
+bool used_edge[M];   // Mảng đánh dấu cạnh đã thăm
 
 list<int> euler_walk(int u) {
     // Sử dụng cấu trúc danh sách liên kết để lưu kết quả
@@ -324,7 +329,8 @@ list<int> euler_walk(int u) {
         adj[u].pop_back();
 
         // Bỏ qua nếu cạnh đã thăm
-        if (used_edge[eid]) continue;
+        if (used_edge[eid])
+            continue;
 
         // Đánh dấu cạnh đã đi qua
         used_edge[eid] = true;
@@ -355,7 +361,7 @@ list<int> euler_walk(int u) {
 }
 ```
 
-Độ phức tạp thời gian của cách cài đặt trên là $O(m)$ do việc nối hai chu trình được thực hiện trong thời gian $O(1)$ nếu chu trình được biểu diễn bằng danh sách liên kết. Nếu chúng ta biểu diễn chu trình bằng một số cấu trúc phổ biến khác như (chẳng hạn `vector`) thì độ phức tạp thời gian sẽ tăng lên do việc nối chu trình kém hiệu quả.
+Độ phức tạp thời gian của cách cài đặt trên là $\mathcal{O}(m)$ do việc nối hai chu trình được thực hiện trong thời gian $\mathcal{O}(1)$ nếu chu trình được biểu diễn bằng danh sách liên kết. Nếu chúng ta biểu diễn chu trình bằng một số cấu trúc phổ biến khác như (chẳng hạn `vector`) thì độ phức tạp thời gian sẽ tăng lên do việc nối chu trình kém hiệu quả.
 
 Độ phức tạp bộ nhớ là tuyến tính dựa vào số đỉnh và số cạnh.
 
@@ -365,7 +371,7 @@ list<int> euler_walk(int u) {
 
 ### Tóm tắt đề
 
-Tìm một đường đi Euler trên đồ thị có hướng $N \leq 10^5$ đỉnh, $M \leq 2 \cdot 10^5$ cạnh. In `IMPOSSIBLE` nếu không thể tìm được.
+Tìm một đường đi Euler trên đồ thị có hướng $N \leq 10^{5}$ đỉnh, $M \leq 2 \cdot 10^{5}$ cạnh. In `IMPOSSIBLE` nếu không thể tìm được.
 
 ### Lời giải
 
@@ -385,7 +391,8 @@ const int N = 1e5 + 2, M = 2e5 + 2;
 struct Edge {
     int target, id;
 
-    Edge(int _target, int _id): target(_target), id(_id) {}
+    Edge(int _target, int _id) : target(_target), id(_id) {
+    }
 };
 
 int n, m, in_deg[N];
@@ -443,7 +450,7 @@ int main() {
                 break;
             }
     }
-  return 0;
+    return 0;
 }
 ```
 
@@ -460,7 +467,9 @@ Nếu đồ thị không liên thông, có đỉnh bậc lẻ, hay tổng trọn
 Tìm một chu trình Euler bất kì trên đồ thị $C = u_0 u_1 \ldots u_{m}$. Lưu ý do $C$ là một chu trình nên đỉnh liền sau $u_m$ là $u_0$.
 
 Gọi $S$ là mảng tổng tiền tố của trọng số các cạnh trên $C$. Như vậy,
-$$S_i = \sum_{j = 0}^{i} W_{u_j, u_{j + 1}}$$
+$$
+S_i = \sum_{j = 0}^{i} W_{u_j, u_{j + 1}}
+$$
 Lưu ý $u_{j + 1}$ chỉ đỉnh liền sau $u_j$ trong $C$.
 
 Ta biết rằng $S_m \geq 0$ do như đã đề cập, nếu tổng trọng số các cạnh âm thì không tìm được chu trình thoả yêu cầu.
@@ -475,8 +484,8 @@ Như vậy với mọi $k < k_1 \leq m$ thì $S_{k_1} - S_k \geq 0$ hay tổng t
 
 Nhận thấy khi này nếu ta dịch chu trình $C$ ban đầu sao cho $u_k$ là đỉnh xuất phát thì sẽ tìm được một chu trình $C' = u_k \ldots u_m u_0 u_1 \ldots u_{k - 1}$ thoả yêu cầu do:
 
-- Với mọi $k < k_1 \leq m$, $W_{u_k,u_{k + 1}} + \ldots + W_{u_{k_1 - 1},u_{k_1}} = S_{k_1} - S_k \geq 0$.
-- Với mọi $0 \leq k_2 < k$, $W_{u_k,u_{k + 1}} + \ldots + W_{u_{m - 1},u_{m}} + W_{0,1} + \ldots + W_{k_2 - 1,k_2} = (S_{m} - S_k) + S_{k_2} = S_{m} + (S_{k_2} - S_k) \geq 0$
+- Với mọi $k < k_1 \leq m$, $W_{u_k,u_{k + 1}} + \cdots + W_{u_{k_1 - 1},u_{k_1}} = S_{k_1} - S_k \geq 0$.
+- Với mọi $0 \leq k_2 < k$, $W_{u_k,u_{k + 1}} + \cdots + W_{u_{m - 1},u_{m}} + W_{0,1} + \cdots + W_{k_2 - 1,k_2} = (S_{m} - S_k) + S_{k_2} = S_{m} + (S_{k_2} - S_k) \geq 0$
 
 ### Cài đặt
 
@@ -491,7 +500,8 @@ const int M = 40002;
 struct Edge {
     int target, id;
 
-    Edge(int _target, int _id): target(_target), id(_id) {}
+    Edge(int _target, int _id) : target(_target), id(_id) {
+    }
 };
 
 int n, m, w[M], deg[N], edge_id[N][N], S[M];
@@ -549,7 +559,8 @@ int main() {
     // Tìm k sao cho S[k] -> min
     int k = 0;
     for (int i = 1; i < cycle_size; ++i)
-        if (S[i] < S[k]) k = i;
+        if (S[i] < S[k])
+            k = i;
 
     // Dịch chu trình sao cho bắt đầu ở u[k]
     list<int> ans;
@@ -560,7 +571,8 @@ int main() {
     ans.push_back(*it);
     ans.insert(ans.begin(), it, (--cycle.end()));
 
-    for (int i : ans) cout << i << " ";
+    for (int i : ans)
+        cout << i << " ";
 
     return 0;
 }
@@ -571,17 +583,17 @@ int main() {
 ### Tóm tắt đề
 
 Số Ouroboros "bậc" $n$ là số nhị phân được định nghĩa như sau:
-- Đặt $2^n$ bit nhị phân thành một vòng tròn. Nếu ta có thể thu được $2^n$ dãy nhị phân độ dài $n$ khác nhau thì số đó là số Ouroboros.
+- Đặt $2^{n}$ bit nhị phân thành một vòng tròn. Nếu ta có thể thu được $2^{n}$ dãy nhị phân độ dài $n$ khác nhau thì số đó là số Ouroboros.
 
-Hãy trả lời các truy vấn với hai tham số $n$ và $k$. Với mỗi truy vấn, cho biết bit thứ $k$ (đánh số bắt đầu từ $0$) trong số Ouroboros độ dài $n$ nhỏ nhất theo thứ tự từ điển ($0 < n < 22$, $0 \leq k < 2^n$).
+Hãy trả lời các truy vấn với hai tham số $n$ và $k$. Với mỗi truy vấn, cho biết bit thứ $k$ (đánh số bắt đầu từ $0$) trong số Ouroboros độ dài $n$ nhỏ nhất theo thứ tự từ điển ($0 < n < 22$, $0 \leq k < 2^{n}$).
 
 ### Lời giải
 
 Bài toán này đề cập đến khái niệm về dãy de Bruijn. Độc giả có thể tìm hiểu kĩ hơn tại đây [de Bruijn sequence - Wikipedia](https://en.wikipedia.org/wiki/De_Bruijn_sequence). Bài viết chỉ đề cập đến những ý cần biết để giải quyết bài toán.
 
-Dãy de Bruijn $B(k, n)$ bậc $n$ của một tập $S$ gồm $k$ phần tử là một dãy vòng tròn sao cho với mỗi dãy $T$ độ dài $n$ chỉ gồm các phần tử thuộc $S$, $T$ xuất hiện đúng một lần trong $B(k, n)$ dưới dạng một dãy con liên tiếp. Hiển nhiên $B(k, n)$ có $k^n$ phần tử.
+Dãy de Bruijn $B(k, n)$ bậc $n$ của một tập $S$ gồm $k$ phần tử là một dãy vòng tròn sao cho với mỗi dãy $T$ độ dài $n$ chỉ gồm các phần tử thuộc $S$, $T$ xuất hiện đúng một lần trong $B(k, n)$ dưới dạng một dãy con liên tiếp. Hiển nhiên $B(k, n)$ có $k^{n}$ phần tử.
 
-Đồ thị de Bruijn là một khái niệm liên quan mật thiết đến dãy de Bruijn. Đồ thị de Bruijn $n$ chiều của một tập $S$ có $k$ phần tử là đồ thị có $k^n$ đỉnh, mỗi đỉnh $u$ đại diện cho một dãy $T_u$ độ dài $n$ chỉ gồm các phần từ trong $S$. Giữa hai đỉnh $u$ và $v$ có cạnh một chiều từ $u$ đến $v$ nếu **hậu tố** độ dài $n - 1$ của $T_u$ trùng với **tiền tố** độ dài $n - 1$ của $T_v$.
+Đồ thị de Bruijn là một khái niệm liên quan mật thiết đến dãy de Bruijn. Đồ thị de Bruijn $n$ chiều của một tập $S$ có $k$ phần tử là đồ thị có $k^{n}$ đỉnh, mỗi đỉnh $u$ đại diện cho một dãy $T_u$ độ dài $n$ chỉ gồm các phần từ trong $S$. Giữa hai đỉnh $u$ và $v$ có cạnh một chiều từ $u$ đến $v$ nếu **hậu tố** độ dài $n - 1$ của $T_u$ trùng với **tiền tố** độ dài $n - 1$ của $T_v$.
 
 Một tính chất quan trọng cần lưu ý là với cùng một tập $S$, đồ thị de Bruijn $n$ chiều là đồ thị đường *(line graph)* của đồ thị de Bruijn $n - 1$ chiều.
 
@@ -591,7 +603,7 @@ Một tính chất quan trọng cần lưu ý là với cùng một tập $S$, �
 
 Nhận thấy rằng dãy de Bruijn $B(k, n)$ chính là một chu trình Hamilton của đồ thị de Bruijn $n$ chiều và $k$ phần tử. Một hệ quả đáng lưu ý của các tính chất trên là do chu trình Hamilton của một đồ thị $G$ là chu trình Euler của đồ thị đường của $G$, nên $B(k, n)$ cũng chính là chu trình Euler của đồ thị de Bruijn $n - 1$ chiều và $k$ phần tử.
 
-Trong bài toán này, với mỗi giá trị $0 < n < 22$, ta có thể tìm trước dãy de Bruijn $B(n, 2)$ thứ tự từ điển nhỏ nhất để có thể truy cứu lại với mỗi truy vấn. Ta tận dụng hệ quả nêu trên để tìm số Ouroboros bậc $n$ thứ tự từ điển nhỏ nhất. Trước tiên, ta dựng đồ thị de Bruijn $n - 1$ chiều với $2$ phần tử $0$ và $1$: biểu diễn các số nhị phân từ $0$ đến $2^n - 1$ dưới dạng một đồ thị có $2^n$ đỉnh, đỉnh $i$ thể hiện số $i$ dưới dạng nhị phân. Giữa 2 đỉnh $u$ và $v$ của đồ thị có cạnh một chiều từ $u$ đến $v$ nếu $u = b_1b_2b_3 \ldots b_n$ và $v = b_2b_3 \ldots b_nb_{n + 1}$. Ta đặt trọng số của cạnh $(u, v)$ bằng với $b_{n + 1}$.
+Trong bài toán này, với mỗi giá trị $0 < n < 22$, ta có thể tìm trước dãy de Bruijn $B(n, 2)$ thứ tự từ điển nhỏ nhất để có thể truy cứu lại với mỗi truy vấn. Ta tận dụng hệ quả nêu trên để tìm số Ouroboros bậc $n$ thứ tự từ điển nhỏ nhất. Trước tiên, ta dựng đồ thị de Bruijn $n - 1$ chiều với $2$ phần tử $0$ và $1$: biểu diễn các số nhị phân từ $0$ đến $2^{n} - 1$ dưới dạng một đồ thị có $2^{n}$ đỉnh, đỉnh $i$ thể hiện số $i$ dưới dạng nhị phân. Giữa 2 đỉnh $u$ và $v$ của đồ thị có cạnh một chiều từ $u$ đến $v$ nếu $u = b_1b_2b_3 \ldots b_n$ và $v = b_2b_3 \ldots b_nb_{n + 1}$. Ta đặt trọng số của cạnh $(u, v)$ bằng với $b_{n + 1}$.
 
 Như vậy ban đầu mỗi đỉnh trong đồ thị có $2$ cạnh ra - $1$ cạnh có trọng số là $0$ và $1$ cạnh có trọng số là $1$ - và $2$ cạnh vào cũng có trọng số là $0$ và $1$. Do mỗi đỉnh trong đồ thị có bán bậc ra bằng bán bậc vào nên đồ thị vừa dựng là một đồ thị Euler. Khi này bài toán quy về tìm chu trình Euler có thứ tự từ điển nhỏ nhất trên đồ thị.
 
@@ -599,7 +611,7 @@ Ta dùng phương pháp tham lam để giải quyết yêu cầu tìm thứ tự
 - Khi tìm chu trình xuất phát từ một đỉnh, ta sẽ ưu tiên đi qua cạnh có trọng số là $0$ trước.
 - Sau khi có một chu trình bắt đầu từ một đỉnh, các cạnh còn lại trong đồ thị tạo thành các thành phần liên thông. Theo thuật toán, khi này ta tìm một đỉnh trên chu trình hiện tại có cạnh chưa thăm và gọi đệ quy tiếp tục tìm chu trình bắt đầu từ đỉnh đó. Do mỗi đỉnh chỉ có $2$ cạnh nên khi này nếu đỉnh còn cạnh chưa thăm, cạnh đó chắc chắn có trọng số $1$. Do ta cần thứ tự từ điển nhỏ nhất nên ta muốn đặt các cạnh trọng số $1$ càng về cuối chu trình càng tốt. Vì thế ta sẽ duyệt chu trình hiện tại từ cuối về đầu, và gọi đệ quy thủ tục nếu có đỉnh có cạnh chưa thăm.
 
-Với mỗi bậc $n$, độ phức tạp thời gian sẽ là $O(2^n)$. Như vậy độ phức tạp thời gian để tiền xử lí cho toàn bộ bậc sẽ là khoảng $1 + 2 + \ldots + 2^{21} \approx 2^{22}$ phép tính, đủ trong giới hạn cho phép.
+Với mỗi bậc $n$, độ phức tạp thời gian sẽ là $\mathcal{O}(2^{n})$. Như vậy độ phức tạp thời gian để tiền xử lí cho toàn bộ bậc sẽ là khoảng $1 + 2 + \cdots + 2^{21} \approx 2^{22}$ phép tính, đủ trong giới hạn cho phép.
 
 ### Cài đặt
 
@@ -611,7 +623,8 @@ using namespace std;
 struct Edge {
     int target, weight;
 
-    Edge(int _target, int _weight): target(_target), weight(_weight) {}
+    Edge(int _target, int _weight) : target(_target), weight(_weight) {
+    }
 };
 
 vector<vector<Edge>> build_graph(int n) {
@@ -638,8 +651,7 @@ list<Edge> euler_walk(int u, vector<vector<Edge>> &g) {
     // Duyệt chu trình hiện tại từ cuối về đầu và
     // gọi đệ quy nếu cần thiết
     auto it = --ans.end();
-    while (it != ans.begin())
-    {
+    while (it != ans.begin()) {
         auto tit = it;
         --tit;
         ans.splice(it, euler_walk(tit->target, g));
@@ -704,7 +716,8 @@ const int N = 1002;
 struct Point {
     int x, y;
 
-    Point(int _x, int _y): x(_x), y(_y) {}
+    Point(int _x, int _y) : x(_x), y(_y) {
+    }
 };
 
 struct Edge {
@@ -712,11 +725,11 @@ struct Edge {
     int id;
     bool fake;
 
-    Edge(int x, int y, int u, int v, int _id, bool _fake = false):
-        source(x, y),
-        target(u, v),
-        id(_id),
-        fake(_fake) {}
+    Edge(int x, int y, int u, int v, int _id, bool _fake = false) : source(x, y),
+                                                                    target(u, v),
+                                                                    id(_id),
+                                                                    fake(_fake) {
+    }
 };
 
 struct Graph {
@@ -731,7 +744,7 @@ struct Graph {
             graph[i].resize(N * 2);
     }
 
-    vector<vector<Edge>>& operator[](int i) {
+    vector<vector<Edge>> &operator[](int i) {
         return graph[i];
     }
 
@@ -752,8 +765,10 @@ struct Graph {
     }
 
     void addLine(int x1, int y1, int x2, int y2) {
-        if (x1 > x2) swap(x1, x2);
-        if (y1 > y2) swap(y1, y2);
+        if (x1 > x2)
+            swap(x1, x2);
+        if (y1 > y2)
+            swap(y1, y2);
 
         if (x1 == x2) { // nếu đoạn thẳng song song với trục Oy
             for (int i = y1; i < y2; ++i) {
@@ -772,7 +787,7 @@ vector<bool> avail;
 Graph g = Graph();
 vector<vector<Point>> ans;
 
-ostream& operator<<(ostream& out, Point p) {
+ostream &operator<<(ostream &out, Point p) {
     out << (p.x - N) << " " << (p.y - N);
     return out;
 }
@@ -784,15 +799,15 @@ list<Edge> euler_walk(Point u, Graph &g) {
     while (!g[u.x][u.y].empty()) {
         Edge e = g[u.x][u.y].back();
         g[u.x][u.y].pop_back();
-        if (!avail[e.id]) continue;
+        if (!avail[e.id])
+            continue;
         avail[e.id] = false;
         ans.emplace_back(e);
         u = e.target;
     }
 
     auto it = --ans.end();
-    while (it != ans.begin())
-    {
+    while (it != ans.begin()) {
         list<Edge>::iterator tit = it;
         --tit;
         ans.splice(it, euler_walk(it->source, g));
@@ -844,7 +859,8 @@ int main() {
                         stroke.push_back(it->target);
                     }
                 }
-                if (!stroke.empty()) ans.push_back(stroke);
+                if (!stroke.empty())
+                    ans.push_back(stroke);
             }
         }
     }
@@ -852,7 +868,8 @@ int main() {
     cout << ans.size() << "\n";
     for (vector<Point> v : ans) {
         cout << v.size() << "\n";
-        for (Point i : v) cout << i << "\n";
+        for (Point i : v)
+            cout << i << "\n";
     }
 
     return 0;

@@ -24,9 +24,9 @@ Hai lỗi đầu tiên rất dễ tránh nếu bạn làm như sau:
 ## Dịch lỗi
 
 <figure style="text-align: center">
-<img width="70%" src="https://i.imgur.com/imtNf6p.png">
-<img width="70%" src="https://i.imgur.com/KIPhy94.png">
-<img width="70%" src="https://i.imgur.com/E997wjd.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/imtNf6p.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/KIPhy94.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/E997wjd.png">
 <figcaption>Các nạn nhân xấu số :(</figcaption>
 </figure>
 
@@ -35,7 +35,7 @@ Một trong những lỗi "ngớ ngẩn" nhất có thể xảy ra trong kì thi
 Để phòng tránh thì đơn giản thôi: Trước khi bạn hoàn thành một bài, hãy compile lại nó một lần nữa để kiểm tra, sau đó đóng nó lại và không sửa gì nữa.
 
 <figure style="text-align: center">
-<img width="70%" src="https://i.imgur.com/qFKDGvI.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/qFKDGvI.png">
 <figcaption>Đừng thêm #define int long long lúc cuối giờ...</figcaption>
 </figure>
 
@@ -46,8 +46,8 @@ Do thể thức đọc/ghi qua file của VOI khác với các trang thi như Co
 - **Đọc kĩ (ít nhất hai lần) tên file dữ liệu** ở trang đầu tiên của đề thi.
 
 <figure style="text-align: center">
-<img width="70%" src="https://i.imgur.com/JRWhTaC.png">
-<img width="70%" src="https://i.imgur.com/mFoGwjK.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/JRWhTaC.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/mFoGwjK.png">
 <figcaption>Bạn có thấy lỗi sai không?</figcaption>
 </figure>
 
@@ -57,7 +57,7 @@ Do thể thức đọc/ghi qua file của VOI khác với các trang thi như Co
 
   ```cpp
   // Kiểm tra xem file "SEI.inp" có tồn tại hay không
-  if (fopen("SEI.inp", "r")){
+  if (fopen("SEI.inp", "r")) {
       // Nếu có, mở file "SEI.inp" để đọc và file "SEI.out" để ghi
       freopen("SEI.inp", "r", stdin);
       freopen("SEI.out", "w", stdout);
@@ -67,7 +67,7 @@ Do thể thức đọc/ghi qua file của VOI khác với các trang thi như Co
   **Lưu ý:** Chỉ nên dùng cách này nếu bạn chắc chắn bạn code đúng trong phòng thi.
 
 <figure style="text-align: center">
-<img width="70%" src="https://i.imgur.com/GxDRlyX.png">
+<img width="70%" src="/uploads/algo/skill/Kinh-nghiem-thi-VOI/GxDRlyX.png">
 <figcaption style="text-align:center">Nạn nhân xấu số khác</figcaption>
 </figure>
 
@@ -83,13 +83,15 @@ Trừ khi bạn dùng `cerr`...
 
 ```cpp
 int n, a[N];
-int tests; cin >> tests; while (tests--){
+int tests;
+cin >> tests;
+while (tests--) {
     cin >> n;
-    if (n % 2 == 0){
+    if (n % 2 == 0) {
         cout << "NO" << endl;
         continue;
     }
-    for (int i = 1; i <= n; i++){
+    for (int i = 1; i <= n; i++) {
         cin >> a[i];
     }
     ...
@@ -102,14 +104,16 @@ int tests; cin >> tests; while (tests--){
 
 ```cpp
 int n, a[N];
-int tests; cin >> tests; while (tests--){
+int tests;
+cin >> tests;
+while (tests--) {
     cin >> n;
-    for (int i = 1; i <= n; i++){
+    for (int i = 1; i <= n; i++) {
         cin >> a[i];
     }
 
     // Để phần xử lí trường hợp xuống dưới phần đọc dữ liệu
-    if (n % 2 == 0){
+    if (n % 2 == 0) {
         cout << "NO" << endl;
         continue;
     }
@@ -123,10 +127,10 @@ int tests; cin >> tests; while (tests--){
 int n, m, a[N][N];
 ... // Đọc input
 bool has_answer = false;
-for (int i = 1; i <= n; i++){
-    for (int j = 1; j <= m; j++){
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= m; j++) {
         // Nếu a[i][j] = 0, thì in ra i j và dừng lại
-        if (a[i][j] == 0){
+        if (a[i][j] == 0) {
             cout << i << ' ' << j << endl;
             has_answer = true;
             break;
@@ -134,7 +138,7 @@ for (int i = 1; i <= n; i++){
     }
 }
 // Nếu không có phần tử nào thoả mãn, thì in ra -1 -1
-if (!has_answer){
+if (!has_answer) {
     cout << -1 << ' ' << -1 << endl;
 }
 ```
@@ -144,10 +148,10 @@ Lỗi ở trên rất phổ biến: Nếu có hai hàng khác nhau chứa ô có
 Cách sửa dễ thấy nhất là thêm một lần if biến `has_answer` ở cuối vòng for trong, tuy nhiên code nhìn sẽ khá xấu. Mình thường viết một hàm riêng để kiểm tra như sau:
 
 ```cpp
-bool check(){
-    for (int i = 1; i <= n; i++){
-        for (int j = 1; j <= m; j++){
-            if (a[i][j] == 0){
+bool check() {
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            if (a[i][j] == 0) {
                 cout << i << ' ' << j << endl;
                 return true;
             }
@@ -156,7 +160,7 @@ bool check(){
     return false;
 }
 ...
-if (!check()){
+if (!check()) {
     cout << -1 << ' ' << -1 << endl;
 }
 ```
@@ -178,7 +182,7 @@ int a[N];
 
 Không nên truy cập mảng từ $0$ vì ai biết khi nào bạn truy cập nhầm vào `a[i - 1]` đâu, tốt nhất là bắt đầu từ $1$ để bạn tạo cho chính mình một vùng an toàn. Đây cũng chính là lí do bạn nên đặc biệt chú ý khi dùng std::vector hay bitmask, vốn hay được sử dụng để duyệt trâu các subtask nhỏ.
 
-Lưu ý một số giới hạn mảng đặc biệt: Segment Tree có giới hạn là $4\times n$, Euler Tour (trong cách cài đặt <$\mathcal O(n\log n)$, $\mathcal O(1)$> của LCA) có giới hạn là $2 \times n$.
+Lưu ý một số giới hạn mảng đặc biệt: Segment Tree có giới hạn là $4\times n$, Euler Tour (trong cách cài đặt <$\mathcal{O}(n\log n)$, $\mathcal{O}(1)$> của LCA) có giới hạn là $2 \times n$.
 
 ## Tràn số
 
@@ -186,22 +190,23 @@ Cách dễ nhất để đề phòng tràn số là thêm một dòng `#define i
 
 ### Tràn số khi modulo
 
-Với các bài yêu cầu tính đáp án theo một modulo nào đó (thường là $10^9 + 7$ hoặc $998244353$), thì bạn phải đặc biệt cẩn thận khi code. Chỉ cần quên một phép `%` thôi là bạn sẽ bay phần lớn điểm của bài.
+Với các bài yêu cầu tính đáp án theo một modulo nào đó (thường là $10^{9} + 7$ hoặc $998244353$), thì bạn phải đặc biệt cẩn thận khi code. Chỉ cần quên một phép `%` thôi là bạn sẽ bay phần lớn điểm của bài.
 
 Vậy các lỗi nào các bạn hay gặp?
 
 - Quên mod sau từng phép tính
   ```cpp
-  int a, b; cin >> a >> b;
+  int a, b;
+  cin >> a >> b;
 
-  int x1 = a + b; // Sai vì a + b có thể vượt quá mod
+  int x1 = a + b;         // Sai vì a + b có thể vượt quá mod
   int x2 = (a + b) % mod; // Đúng
 
-  int y1 = a * b; // Sai vì a * b có thể vượt quá mod
-  int y2 = (a * b) % mod; // Sai vì a * b vẫn có thể tràn số
+  int y1 = a * b;                    // Sai vì a * b có thể vượt quá mod
+  int y2 = (a * b) % mod;            // Sai vì a * b vẫn có thể tràn số
   int y3 = ((long long)a * b) % mod; // Đúng
 
-  int z1 = ((long long)a * b * c) % mod; // Sai vì a * b * c có thể tràn số
+  int z1 = ((long long)a * b * c) % mod;         // Sai vì a * b * c có thể tràn số
   int z2 = (((long long)a * b) % mod * c) % mod; // Đúng
   ```
 
@@ -213,7 +218,7 @@ Vậy các lỗi nào các bạn hay gặp?
 
 - Số âm sau khi trừ
   ```cpp
-  int x1 = (a - b) % mod; // Sai
+  int x1 = (a - b) % mod;               // Sai
   int x2 = ((a - b) % mod + mod) % mod; // Đúng
   ```
 
@@ -225,15 +230,15 @@ Mình sẽ code riêng các phép tính cộng, trừ, nhân ra thành hàm đ�
 
 ```cpp
 // Các hàm này giả sử 0 <= x, y < mod
-int add(int x, int y){
+int add(int x, int y) {
     return (x + y) % mod;
 }
 
-int sub(int x, int y){
+int sub(int x, int y) {
     return ((x - y) % mod + mod) % mod;
 }
 
-int mul(int x, int y){
+int mul(int x, int y) {
     return (long long)x * y % mod;
 }
 ```
@@ -257,13 +262,14 @@ Thay vào đó, hãy dùng các biến `const int inf = 1e9 + 7`, `const long lo
 ### Cộng trừ iterator và dereference
 
 ```cpp
-vector <int> b;
-... // Đọc vào b
+vector<int> b;
+...         // Đọc vào b
 sort(b.begin(), b.end()); // Lưu ý: đừng quên sort trước khi chặt nhị phân!
-int x; cin >> x;
-vector <int>::iterator itr1 = lower_bound(b.begin(), b.end(), x);
+int x;
+cin >> x;
+vector<int>::iterator itr1 = lower_bound(b.begin(), b.end(), x);
 cout << (*itr1) << endl;
-vector <int>::iterator itr2 = itr1;
+vector<int>::iterator itr2 = itr1;
 itr2--;
 cout << (*itr2) << endl;
 ```
@@ -277,11 +283,11 @@ Ngoài ra, nếu $itr1$ là $b.begin()$, thì dòng `itr2--;` cũng sẽ bị UB
 ### Các hàm STL đặc biệt cần lưu ý
 
 - Để chặt nhị phân trên `set`, các bạn phải dùng hàm riêng `set::lower_bound(value)`.
-  Dùng hàm `lower_bound(set::begin(), set::end(), value)` có độ phức tạp **ít nhất** là $\mathcal O(n)$. Tương tự cho các hàm khác như `upper_bound` và cấu trúc dữ liệu khác như `multiset`.
+  Dùng hàm `lower_bound(set::begin(), set::end(), value)` có độ phức tạp **ít nhất** là $\mathcal{O}(n)$. Tương tự cho các hàm khác như `upper_bound` và cấu trúc dữ liệu khác như `multiset`.
 - `multiset::erase(value)` xoá **toàn bộ** các giá trị $value$ trong multiset đó.
   Để xoá một phần tử duy nhất, dùng `multiset::erase(multiset::find(value))`. Lưu ý $value$ phải tồn tại trong multiset đó.
-- `multiset::count(value)` có độ phức tạp là số phần tử bằng $value$ trong multiset đó, tức là có thể lên đến $\mathcal O(n)$.
-  Để đếm trong $\mathcal O(\log n)$, bạn nên dùng `map`.
+- `multiset::count(value)` có độ phức tạp là số phần tử bằng $value$ trong multiset đó, tức là có thể lên đến $\mathcal{O}(n)$.
+  Để đếm trong $\mathcal{O}(\log n)$, bạn nên dùng `map`.
 - Bạn sẽ bị tràn số nếu bạn dùng `a.size() - 1` khi $a$ rỗng, do `a.size()` trả về một số unsigned.
   Để sửa thì bạn có thể dùng một dòng define chắp vá của mình: `#define isz(a) ((signed)(a).size()`
 
@@ -291,24 +297,24 @@ Ngoài ra, nếu $itr1$ là $b.begin()$, thì dòng `itr2--;` cũng sẽ bị UB
 
 ```cpp
 // Pass by value
-int ssize(vector <int> a){
+int ssize(vector<int> a) {
     return (int)a.size();
 }
 
 int n = 1e5;
-vector <int> a(n);
-for (int i = 1; i <= n; i++){
+vector<int> a(n);
+for (int i = 1; i <= n; i++) {
     cout << ssize(a) << endl;
 }
 ```
 
-Code trên có độ phức tạp là $\mathcal O(n^2)$, vì hàm `ssize` mất độ phức tạp là $\mathcal O(n)$. Lí do là vì mỗi khi gọi hàm, **toàn bộ** vector $a$ được copy lại, sau đó hàm `size` mới được gọi cho vector mới để trả về kết quả.
+Code trên có độ phức tạp là $\mathcal{O}(n^{2})$, vì hàm `ssize` mất độ phức tạp là $\mathcal{O}(n)$. Lí do là vì mỗi khi gọi hàm, **toàn bộ** vector $a$ được copy lại, sau đó hàm `size` mới được gọi cho vector mới để trả về kết quả.
 
-Để hàm `ssize` có độ phức tạp là $\mathcal O(1)$, ta sẽ sửa lại thành:
+Để hàm `ssize` có độ phức tạp là $\mathcal{O}(1)$, ta sẽ sửa lại thành:
 
 ```cpp
 // Pass by const reference
-int ssize(const vector <int>& a){
+int ssize(const vector<int> &a) {
     return (int)a.size();
 }
 ```
@@ -317,7 +323,7 @@ Còn nếu ta muốn sửa giá trị của $a$ trong hàm:
 
 ```cpp
 // Pass by reference
-int ssize(vector <int>& a){
+int ssize(vector<int> &a) {
     return (int)a.size();
 }
 ```
@@ -331,17 +337,20 @@ const int N = 1e5 + 5;
 int n;
 int ck[N];
 
-int tests; cin >> tests; while (tests--){
+int tests;
+cin >> tests;
+while (tests--) {
     cin >> n;
     memset(ck, 0, sizeof(ck));
-    for (int i = 1; i <= n; i++){
-        int x; cin >> x; // 1 <= x <= n
+    for (int i = 1; i <= n; i++) {
+        int x;
+        cin >> x; // 1 <= x <= n
         ck[x] = 1;
     }
 }
 ```
 
-Nếu bài có $10^5$ test $n=1$, thì code trên chạy `memset` $10^5$ lần và do vậy độ phức tạp của code là $\mathcal O(10^{10})$!.
+Nếu bài có $10^{5}$ test $n=1$, thì code trên chạy `memset` $10^{5}$ lần và do vậy độ phức tạp của code là $\mathcal{O}(10^{10})$!.
 
 Với các bài multitest, **tuyệt đối không được memset** (trừ khi bạn biết chính xác bạn đang làm gì). Bạn có thể dùng hàm `fill` hoặc for trâu để thay thế.
 
@@ -362,7 +371,10 @@ Các bạn có thể đọc thêm tại [đây](https://stackoverflow.com/questi
 Để đẩy tốc độ nhập/xuất nhanh hơn nữa, thêm hai dòng này ở trên cùng hàm `main`:
 
 ```cpp
-int main(){
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 }
@@ -395,23 +407,21 @@ Các bạn có thể đọc bài viết [này](/algo/data-structures/Stack#sử-
 Mình thấy nhiều bạn khi lưu cạnh của đồ thị thường hay dùng `pair <pair <int, int>, int>` hoặc `tuple <int, int, int>`. Code thế này sẽ làm giảm tốc độ code của bạn (phải gõ liên tục `edge[i].first.second`) và còn dễ bug nữa. Những lúc như thế này các bạn có thể dùng `struct` trong C++, là một công cụ khá hữu ích trong việc "đóng gói" dữ liệu.
 
 ```cpp
-struct edge{
+struct edge {
     int u, v, w;
 
     // Default constructor, khi bạn khởi tạo edge mà không có thông tin gì thêm
-    edge(): u(0), v(0), w(0){
-
+    edge() : u(0), v(0), w(0) {
     }
 
     // Constructor để bạn khởi tạo edge với hai đầu mút và trọng số của cạnh
-    edge(int u, int v, int w): u(u), v(v), w(w){
-
+    edge(int u, int v, int w) : u(u), v(v), w(w) {
     }
 };
 
 // Input cạnh
 edge a[N];
-for (int i = 1; i <= n; i++){
+for (int i = 1; i <= n; i++) {
     int u, v, w;
     cin >> u >> v >> w;
     a[i] = edge(u, v, w);
@@ -421,17 +431,17 @@ for (int i = 1; i <= n; i++){
 Giờ đây bạn có thể truy cập các biến trong cạnh rất dễ dàng: `a[i].u`, `a[i].v` và `a[i].w`. Nhưng không chỉ thế, bạn còn có thể code hàm nhập/xuất tuỳ ý cho struct nữa!
 
 ```cpp
-struct edge{
+struct edge {
     int u, v, w;
     ...
     // Hàm nhập edge vào từ in
-    istream& operator>> (istream& in, edge& e){
+    istream &operator>>(istream &in, edge &e) {
         in >> e.u >> e.v >> e.w;
         return in;
     }
 
     // Hàm xuất edge ra out
-    ostream& operator<< (ostream& out, const edge& e){
+    ostream &operator<<(ostream &out, const edge &e) {
         out << e.u << ' ' << e.v << ' ' << e.w;
         return out;
     }
@@ -439,7 +449,7 @@ struct edge{
 
 // Input/output cạnh
 edge a[N];
-for (int i = 1; i <= n; i++){
+for (int i = 1; i <= n; i++) {
     cin >> a[i];
     cout << a[i] << endl;
 }
@@ -456,7 +466,8 @@ ifstream out1(NAME + ".out"), out2(NAME + ".ans");
 
 // Viết checker. Output của code chuẩn đọc ở out1, của code trâu đọc ở out2.
 
-out1.close(); out2.close();
+out1.close();
+out2.close();
 cout << "Test " << iTest << ": CORRECT!\n";
 ```
 

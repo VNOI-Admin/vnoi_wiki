@@ -15,7 +15,7 @@ Note: Trong bài này có thể có nhiều phần bạn đã biết, bạn hoà
 
 Để hiểu rõ hơn hãy xem ví dụ sau:
 
-> Cho $N$ đồng xu và giá tiền của mỗi đồng ($V_0,V_1,...,V_{N-1}~$),  và số $S$. Tìm số đồng xu nhỏ nhất để tổng giá trị của chúng bằng $S$ (số lượng đồng xu không giới hạn).
+> Cho $N$ đồng xu và giá tiền của mỗi đồng ($V_0, V_1, \ldots, V_{N-1}$),  và số $S$. Tìm số đồng xu nhỏ nhất để tổng giá trị của chúng bằng $S$ (số lượng đồng xu không giới hạn).
 
 Bây giờ chúng ta sẽ xây dựng thuật giải:
 
@@ -137,9 +137,9 @@ Bài QHĐ trên còn có một cách tiếp cận khác nữa. Lần này, ta s�
 Bây giờ, chúng ta cùng đến một khái niệm mới, **công thức truy hồi (recurrent relation)**, mối liên hệ giữa những trạng thái.
 
 Ví dụ:
-Cho một dãy N số - $A[1], A[2], ..., A[N]$. Tìm dãy con không giảm dài nhất.
+Cho một dãy N số - $A[1], A[2], \ldots, A[N]$. Tìm dãy con không giảm dài nhất.
 
-Ta quy định trạng thái $S[i]$ là dãy con không giảm dài nhất kết thúc tại $A[i]$. Với $i>1$ và $j<i$, tính được $i$ khi tồn tại $A[j] \le A[i]$ (vì đây là dãy không giảm). Khi đó $S[i] = Max(S[i], S[j] + 1)$. Tiếp tục tính như vậy cho đến khi đến được trạng thái $S[N]$.
+Ta quy định trạng thái $S[i]$ là dãy con không giảm dài nhất kết thúc tại $A[i]$. Với $i>1$ và $j<i$, tính được $i$ khi tồn tại $A[j] \le A[i]$ (vì đây là dãy không giảm). Khi đó $S[i] = \max(S[i], S[j] + 1)$. Tiếp tục tính như vậy cho đến khi đến được trạng thái $S[N]$.
 
 Hãy xem bảng sau với dãy: 5, 3, 4, 8, 6, 7:
 
@@ -201,14 +201,14 @@ Gợi ý: Tại mỗi bước, chọn ra trong số các đỉnh chưa thăm mà
 Tới đây bạn sẽ được làm quen với QHĐ 2 chiều.
 
 **Bài toán:**
-Cho một bảng $M * N$, mỗi ô có một lượng táo. Bắt đầu từ ô trái trên, mỗi bước có thể đi sang phải hoặc xuống dưới. Bạn có thể ăn được nhiều nhất bao nhiêu quả táo ?
+Cho một bảng $M \times N$, mỗi ô có một lượng táo. Bắt đầu từ ô trái trên, mỗi bước có thể đi sang phải hoặc xuống dưới. Bạn có thể ăn được nhiều nhất bao nhiêu quả táo ?
 
 Cách giải bài này cũng tương tự như những bài trước.
 
 Đầu tiên là phải xác định trạng thái là gì. Ở mỗi ô có nhiều nhất 2 cách có thể tới được ô đó, từ ô bên trái và ô phía trên. Do vậy, để tìm trạng thái hiện tại, ta phải tính trước các ô có thể đến được nó.
 
 Ta có công thức truy hồi sau:
-$S[i][j]=A[i][j] + max(S[i-1][j], if$ $ i>0 ; S[i][j-1], if$  $j>0)$
+$S[i][j]=A[i][j] + \max(S[i-1][j], \text{if } i>0; \ S[i][j-1], \text{if } j>0)$
 (trong đó, $i$ là hàng, $j$ là cột, $A[i][j]$ là số táo ở ô $i,j$)
 $S[i][j]$ có thể được tính từ trái sang phải, từ trên xuống dưới, hoặc từ trên xuống, từ trái sang.
 
@@ -236,7 +236,7 @@ Cho đồ thị vô hướng $G$ có trọng số dương và $N$ đỉnh.
 
 Ban đầu bạn có số tiền là $M$. Để đi qua đỉnh $i$, bạn phải trả số tiền là $S[i]$. Và đương nhiên, nếu không đủ tiền thì bạn không đi được. Tìm đường đi ngắn nhất từ 1 tới $N$ thỏa mãn tiêu chí trên. Nếu có nhiều đường ngắn nhất, in ra đường với chi phí nhỏ nhất. Giới hạn: $1<N \le 100 $; $0 \le M \le 100$;  $0 \le S[i] \le 100$.
 
-Có thể dễ dàng thấy đây là một bài Dijkstra cơ bản, tuy nhiên chỉ khác ở chỗ nó có thêm một điều kiện. Trong bài toán Dijkstra cơ bản ta có  $Min[i]$ , là độ dài đường đi ngắn nhất từ 1 tới $i$. Còn ở đây, chúng ta cần phải quan tâm đến số tiền còn lại. Do đó chúng ta có thể mở rộng mảng này thành $Min[i][j]$ , là độ dài đường đi ngắn nhất tới $i$, và còn lại số tiền là $j$. Bằng cách này bài toán đã được đưa về bài toán Dijkstra quen thuộc. Tại mỗi bước ta tìm trạng thái $(i,j)$ có quãng đường ngắn nhất, đánh dấu là đã thăm rồi update cho các trạng thái cạnh nó. Đáp án sẽ là $Min[N][j]$ có giá trị nhỏ nhất (và $j$ lớn nhất trong số các $Min[N][j]$ có cùng giá trị).
+Có thể dễ dàng thấy đây là một bài Dijkstra cơ bản, tuy nhiên chỉ khác ở chỗ nó có thêm một điều kiện. Trong bài toán Dijkstra cơ bản ta có  $\texttt{Min}[i]$ , là độ dài đường đi ngắn nhất từ 1 tới $i$. Còn ở đây, chúng ta cần phải quan tâm đến số tiền còn lại. Do đó chúng ta có thể mở rộng mảng này thành $\texttt{Min}[i][j]$ , là độ dài đường đi ngắn nhất tới $i$, và còn lại số tiền là $j$. Bằng cách này bài toán đã được đưa về bài toán Dijkstra quen thuộc. Tại mỗi bước ta tìm trạng thái $(i,j)$ có quãng đường ngắn nhất, đánh dấu là đã thăm rồi update cho các trạng thái cạnh nó. Đáp án sẽ là $\texttt{Min}[N][j]$ có giá trị nhỏ nhất (và $j$ lớn nhất trong số các $\texttt{Min}[N][j]$ có cùng giá trị).
 
 **Mã giả:**
 
@@ -281,7 +281,7 @@ Những bài sau đây sẽ cần một chút kĩ năng phân tích để có th
 
 **Problem [StarAdventure](http://community.topcoder.com/tc?module=ProblemDetail&rd=5854&pm=2940) – SRM 208 Div 1:**
 
-Cho ma trận M hàng, N cột ($N * M$). Mỗi ô có một lượng táo.
+Cho ma trận M hàng, N cột ($N \times M$). Mỗi ô có một lượng táo.
 Bạn đang ở ô góc trái trên. Bạn chỉ có thể đi xuống hoặc sang phải. Bạn cần tới ô góc phải dưới. Rồi quay lại ô trái trên bằng cách lên hoặc sang trái. Cuối cùng, bạn quay lại ô phải dưới.
 Tìm số táo nhiều nhất mà bạn có thể ăn được.
 Khi đi qua một ô, toàn bộ táo của ô đấy sẽ bị ăn hết.
@@ -290,13 +290,13 @@ Giới hạn: $1 < N, M \le 50$ mỗi ô có từ 0 đến 1000 quả táo.
 
 Đọc đến đây, hẳn bạn sẽ thấy cái đề này quen quen, nó chính là bài mở rộng của bài toán phần Intermediate. Ta có thể thử đưa bài toán này về thành bài toán trên. Để ý thấy đường đi từ ô góc phải dưới lên trái trên cũng có thể coi là một đường đi từ góc trái trên xuống. Như vậy, chúng ta phải xử lý bài toán với 3 đường đi từ trái trên xuống. Gọi 3 đường này là trái, giữa và phải. Khi 2 đường giao nhau (như hình dưới):
 
-![enter image description here](https://www.topcoder.com/i/education/dynProg_1.gif)
+![enter image description here](/uploads/translate/topcoder/dynamic-programming/dynProg_1.gif)
 
 thì nó cũng tương đương với hình sau:
 
-![enter image description here](https://www.topcoder.com/i/education/dynProg_2.gif)
+![enter image description here](/uploads/translate/topcoder/dynamic-programming/dynProg_2.gif)
 
-Bằng cách này, chúng ta đã có một cái nhìn khác về bài toán. Các đường này sẽ không giao nhau (trừ ô góc trái trên và phải dưới). Với mỗi hàng y (không phải hàng đầu và cuối), tọa độ x ở mỗi đường sẽ là ($x1[y]$ , $x2[y]$ và $x3[y]$ ) : $x1[y] < x2[y] < x3[y]$ . Ta xét hàng thứ y. Giả sử, ta xét $x1[y-1]$ , $x2[y-1]$ and $x3[y-1]$ và số táo hiện giờ thu được là nhiều nhất. Từ đó ta có thể tối ưu cho hàng $y$. Chúng ta cần tìm cách chuyển trạng thái. Gọi $Max[i][j][k]$ là lượng táo nhiều nhất thu được đến hàng $y-1$ với 3 đường đang dừng ở cột $i$, $j$, và $k$. Với hàng $y$, thêm vào $Max[i][j][k]$  số lượng táo ở các ô $(y,i)$ , $(y,j)$ and $(y,k)$. Vì chúng ta đang đi xuống. Sau đó, chúng ta xét đến những đường có thể sang phải. Để tránh việc giao nhau, ta xét lần lượt các bước ở trái, phải rồi giữa.
+Bằng cách này, chúng ta đã có một cái nhìn khác về bài toán. Các đường này sẽ không giao nhau (trừ ô góc trái trên và phải dưới). Với mỗi hàng y (không phải hàng đầu và cuối), tọa độ x ở mỗi đường sẽ là ($x_1[y]$ , $x_2[y]$ và $x_3[y]$ ) : $x_1[y] < x_2[y] < x_3[y]$ . Ta xét hàng thứ y. Giả sử, ta xét $x_1[y-1]$ , $x_2[y-1]$ and $x_3[y-1]$ và số táo hiện giờ thu được là nhiều nhất. Từ đó ta có thể tối ưu cho hàng $y$. Chúng ta cần tìm cách chuyển trạng thái. Gọi $\texttt{Max}[i][j][k]$ là lượng táo nhiều nhất thu được đến hàng $y-1$ với 3 đường đang dừng ở cột $i$, $j$, và $k$. Với hàng $y$, thêm vào $\texttt{Max}[i][j][k]$  số lượng táo ở các ô $(y,i)$ , $(y,j)$ and $(y,k)$. Vì chúng ta đang đi xuống. Sau đó, chúng ta xét đến những đường có thể sang phải. Để tránh việc giao nhau, ta xét lần lượt các bước ở trái, phải rồi giữa.
 
 **Bài luyện tập thêm:**
 

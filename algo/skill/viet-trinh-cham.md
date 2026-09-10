@@ -72,7 +72,7 @@ Chương trình này có nhiệm vụ duyệt N lần, với N là số test c�
 
 [Link code](http://ideone.com/4cIx5a/)
 
-Đây là code trâu với độ phức tạp O(N * M), làm y như những gì đề bài bảo.
+Đây là code trâu với độ phức tạp $\mathcal{O}(N \times M)$, làm y như những gì đề bài bảo.
 
 ## Trình sinh test + Trình so test:
 
@@ -82,7 +82,7 @@ Vì đây là code C++ nên tác giả kết hợp trình sinh test với trình
 
 Chạy thử chương trình này, ta có thể sinh được một test sai như sau:
 
-```
+```text
 1 5
 6 6
 3 1 1 8
@@ -95,13 +95,13 @@ Chạy thử chương trình này, ta có thể sinh được một test sai nh�
 
 Trong đó, lời giải 1 ra output là:
 
-```
+```text
 1
 ```
 
 Lời giải 2 ra output là:
 
-```
+```text
 0
 ```
 
@@ -126,7 +126,7 @@ const int NTEST = 100;
 mt19937_64 rd(chrono::steady_clock::now().time_since_epoch().count());
 #define rand rd
 
-// Viết lại hàm random để sử dụng cho thuận tiện. 
+// Viết lại hàm random để sử dụng cho thuận tiện.
 // Hàm random này sinh ngẫu nhiên số trong phạm vi long long
 // Số sinh ra nằm trong [L;R].
 long long Rand(long long L, long long R) {
@@ -134,11 +134,9 @@ long long Rand(long long L, long long R) {
     return L + rd() % (R - L + 1);
 }
 
-int main()
-{
+int main() {
     srand(time(NULL));
-    for (int iTest = 1; iTest <= NTEST; iTest++)
-    {
+    for (int iTest = 1; iTest <= NTEST; iTest++) {
         ofstream inp((NAME + ".inp").c_str());
         // Code phần sinh test ở đây
         inp.close();
@@ -146,8 +144,7 @@ int main()
         system((NAME + ".exe").c_str());
         system((NAME + "_trau.exe").c_str());
         // Nếu dùng linux thì thay fc bằng diff
-        if (system(("fc " + NAME + ".out " + NAME + ".ans").c_str()) != 0)
-        {
+        if (system(("fc " + NAME + ".out " + NAME + ".ans").c_str()) != 0) {
             cout << "Test " << iTest << ": WRONG!\n";
             return 0;
         }

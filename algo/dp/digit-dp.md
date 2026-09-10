@@ -65,7 +65,9 @@ Trường hợp có giới hạn sẽ xảy ra nếu các số được điền 
 
 Từ $2$ trường hợp trên, ta có các trạng thái QHĐ cần thiết để giải một bài toán QHĐ chữ số:
 
-$$f(idx, smaller, S_1, S_2, \dots , S_k)$$
+$$
+f(idx, smaller, S_1, S_2, \dots, S_k)
+$$
 
 Trong đó:
 
@@ -73,17 +75,19 @@ Trong đó:
 - $smaller$ bằng $0/1$ với ý nghĩa:	
 	- $smaller = 0$ nếu rơi vào trường hợp có giới hạn.
 	- $smaller = 1$ nếu rơi vào trường hợp không giới hạn.
-- $S_1, S_2, \dots ,S_k$ là các tính chất của đoạn số $\overline{a_{n - 1}a_{n - 2}\dots a_{idx + 1}}$.
+- $S_1, S_2, \dots,S_k$ là các tính chất của đoạn số $\overline{a_{n - 1}a_{n - 2}\dots a_{idx + 1}}$.
 
 Khi này, ta sẽ gọi hàm $f$ để tính $G(X)$:
 
-$$G(X) = f(n - 1, 0, S_1, S_2, \dots , S_k)$$
+$$
+G(X) = f(n - 1, 0, S_1, S_2, \dots, S_k)
+$$
 
-Độ phức tạp của QHĐ chữ số thường sẽ có dạng: $O(D \times 2 \times n \times S_1 \times S_2 \times \dots \times S_k)$, trong đó:
+Độ phức tạp của QHĐ chữ số thường sẽ có dạng: $\mathcal{O}(D \times 2 \times n \times S_1 \times S_2 \times \dots \times S_k)$, trong đó:
 - $D$ là hệ cơ số của số đang xét.
 - $2$ là số trạng thái của $smaller$.
 - $n$ là số chữ số của $X$.
-- $S_1, S_2, \dots ,S_k$ là số trạng thái của các tính chất.
+- $S_1, S_2, \dots,S_k$ là số trạng thái của các tính chất.
 
 Ta cùng xem qua một số bài toán ví dụ để hiểu rõ hơn.
 
@@ -129,59 +133,62 @@ int x[20];
 long long f(int idx, bool smaller, int sum);
 long long G(long long X);
 
-int main () {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	long long a, b; cin >> a >> b;
-	cout << G(b) - G(a - 1);
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    long long a, b;
+    cin >> a >> b;
+    cout << G(b) - G(a - 1);
 
-	return 0;
+    return 0;
 }
 
-long long f(int idx, bool smaller, int sum){
-	if(idx < 0) return sum;
-	long long &memo = dp[smaller][idx][sum];
-	if(memo != -1) return memo;
-	// tìm limit
-	int lim = smaller ? 9 : x[idx]; 
-	memo = 0;
-	// điền chữ số
-	for(int digit = 0; digit <= lim; ++digit){
-		// chuyển trạng thái
-		memo += f(idx - 1, smaller || (digit < lim), sum + digit);
-	}	
-	return memo;
+long long f(int idx, bool smaller, int sum) {
+    if (idx < 0)
+        return sum;
+    long long &memo = dp[smaller][idx][sum];
+    if (memo != -1)
+        return memo;
+    // tìm limit
+    int lim = smaller ? 9 : x[idx];
+    memo = 0;
+    // điền chữ số
+    for (int digit = 0; digit <= lim; ++digit) {
+        // chuyển trạng thái
+        memo += f(idx - 1, smaller || (digit < lim), sum + digit);
+    }
+    return memo;
 }
 
-long long G(long long X){
-	// phân tích X thành các chữ số
-	int n = 0; x[n] = 0;
-	while(X > 0){
-		x[n++] = X % 10;
-		X /= 10;
-	}
+long long G(long long X) {
+    // phân tích X thành các chữ số
+    int n = 0;
+    x[n] = 0;
+    while (X > 0) {
+        x[n++] = X % 10;
+        X /= 10;
+    }
 
-	memset(dp, -1, sizeof(dp));  
-	// chưa điền số nào => sum = 0
-	return f(n - 1, 0, 0);    
+    memset(dp, -1, sizeof(dp));
+    // chưa điền số nào => sum = 0
+    return f(n - 1, 0, 0);
 }
-
 ```
-Độ phức tạp của thuật toán này là $O(10 \times n \times 2 \times sum)$.
+Độ phức tạp của thuật toán này là $\mathcal{O}(10 \times n \times 2 \times sum)$.
 
 Ngoài cách giải QHĐ chữ số, ta cũng có thể [giải bằng phương pháp khác](https://oj.vnoi.info/problem/fct003_digitsum#comment-5859).
 
 ### Bài 2: [Atcoder Educational DP Contest S - Digit Sum](https://oj.vnoi.info/problem/atcoder_dp_s)
 
-Tóm tắt: Cho hai số $K$ và $D$, đếm số lượng số từ $1$ đến $K$ có tổng chữ số chia hết cho $D$, modulo $10^9 + 7$.
+Tóm tắt: Cho hai số $K$ và $D$, đếm số lượng số từ $1$ đến $K$ có tổng chữ số chia hết cho $D$, modulo $10^{9} + 7$.
 
 Giới hạn: $1 \le K \lt 10^{10000}$, $D \lt 100$.
 
 Bài toán này tương tự với bài toán ở ví dụ $1$, có $3$ trạng thái QHĐ $(idx, smaller, sum)$ nhưng có một chút khác biệt.
 
-Nếu $idx = -1$, hàm $f$ của ta trả về $1$ nếu $sum = 0$ và $0$ trong các trường hợp còn lại. Đồng thời, việc chuyển trạng thái $sum$ sang $sum'$ cũng thay đổi thành $sum' = (sum + v) \mod{D}$.
+Nếu $idx = -1$, hàm $f$ của ta trả về $1$ nếu $sum = 0$ và $0$ trong các trường hợp còn lại. Đồng thời, việc chuyển trạng thái $sum$ sang $sum'$ cũng thay đổi thành $sum' = (sum + v) \bmod{D}$.
 
-Một điều nữa là hàm $f$ cũng sẽ xét cả số $0$ mặc dù bài toán không yêu cầu nên  kết quả bài toán sẽ là: $(G(K) - 1) \mod{10^9 + 7}$.
+Một điều nữa là hàm $f$ cũng sẽ xét cả số $0$ mặc dù bài toán không yêu cầu nên  kết quả bài toán sẽ là: $(G(K) - 1) \bmod{10^{9} + 7}$.
 
 ```cpp=
 #include <bits/stdc++.h>
@@ -196,36 +203,39 @@ string K;
 long long f(int idx, bool smaller, int sum);
 long long G(string &X);
 
-int main () {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	cin >> K >> D;
-	cout << G(K);		
-	
-	return 0;
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cin >> K >> D;
+    cout << G(K);
+
+    return 0;
 }
-long long f(int idx, bool smaller, int sum){
-	if(idx < 0) return sum == 0;
-	long long &memo = dp[smaller][sum][idx];
-	if(memo != -1) return memo;
-	memo = 0;
-	int lim = smaller ? 9 : x[idx];
-	for(int i = 0; i <= lim; ++i){
-		memo += f(idx - 1, smaller || (i < lim), (sum + i) % D);
-		memo %= MOD;
-	}
-	return memo;
+long long f(int idx, bool smaller, int sum) {
+    if (idx < 0)
+        return sum == 0;
+    long long &memo = dp[smaller][sum][idx];
+    if (memo != -1)
+        return memo;
+    memo = 0;
+    int lim = smaller ? 9 : x[idx];
+    for (int i = 0; i <= lim; ++i) {
+        memo += f(idx - 1, smaller || (i < lim), (sum + i) % D);
+        memo %= MOD;
+    }
+    return memo;
 }
-long long G(string &X){
-	int n = 0; x[n] = 0;
-	for(int i = X.length() - 1; i >= 0; --i){
-		x[n++] = X[i] - '0';
-	}
-	memset(dp, -1, sizeof dp);
-	return (f(n - 1, 0, 0) -1 + MOD) % MOD;
+long long G(string &X) {
+    int n = 0;
+    x[n] = 0;
+    for (int i = X.length() - 1; i >= 0; --i) {
+        x[n++] = X[i] - '0';
+    }
+    memset(dp, -1, sizeof dp);
+    return (f(n - 1, 0, 0) - 1 + MOD) % MOD;
 }
 ```
-Độ phức tạp của thuật toán này là $O(10 \times n \times 2 \times D)$.
+Độ phức tạp của thuật toán này là $\mathcal{O}(10 \times n \times 2 \times D)$.
 
 ### Bài 3: [Số lượng số](https://oj.vnoi.info/problem/snad)
 
@@ -235,7 +245,9 @@ Giới hạn: $T \lt 21$, $0 \lt X \le Y \lt 10^{19}$.
 
 Gọi $A$ là một số thỏa mãn điều kiện. Vì $A$ thỏa mãn điều kiện nên:
 
-$$X \le A \times s(A)\le Y$$
+$$
+X \le A \times s(A)\le Y
+$$
 
 Với $s(A)$ là tổng các chữ số của $A$.
 
@@ -243,7 +255,9 @@ Ta thấy rằng các số $X$, $Y$, $A$ là các số rất lớn, nhưng $s(A)
 
 Từ đây, ta có thể viết lại công thức trên như sau:
 
-$$\left\lfloor \frac{X}{s(A)}\right\rfloor \le A \le \left\lfloor \frac{Y}{s(A)}\right\rfloor$$
+$$
+\left\lfloor \frac{X}{s(A)}\right\rfloor \le A \le \left\lfloor \frac{Y}{s(A)}\right\rfloor
+$$
 
 Qua công thức này, ta đã chuyển đổi bài toán sang một dạng khác đơn giản hơn: Cho $S$ chạy từ $1$ đến $171$, đếm số lượng số từ $\left\lfloor \frac{X}{S}\right\rfloor$ đến $\left\lfloor \frac{Y}{S}\right\rfloor$ có tổng chữ số bằng $S$. 
 
@@ -260,51 +274,56 @@ Việc chuyển đổi trạng thái $(idx, smaller, sum)$, sang $(idx', smaller
 using namespace std;
 long long dp[2][20][180];
 int x[20];
-long long l, r; 
+long long l, r;
 long long s;
 
 long long f(int idx, bool smaller, int sum);
 long long G(long long X);
 
-int main () {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	int t; cin >> t;
-	while(t--){
-		cin >> l >> r;
-		--l;
-		long long sum = 0;
-		for(s = 1; s <= 171; ++s){
-			sum += G(r / s) - G(l / s);
-		}
-		cout << sum << '\n';
-	}
-	return 0;
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int t;
+    cin >> t;
+    while (t--) {
+        cin >> l >> r;
+        --l;
+        long long sum = 0;
+        for (s = 1; s <= 171; ++s) {
+            sum += G(r / s) - G(l / s);
+        }
+        cout << sum << '\n';
+    }
+    return 0;
 }
-long long f(int idx, bool smaller, int sum){
-	if(idx < 0) return sum == s;
-	long long &memo = dp[smaller][idx][sum];
-	if(memo != -1) return memo;
-	int lim = smaller ? 9 : x[idx];
-	memo = 0;
-	for(int digit = 0; digit <= lim; ++digit){
-		memo += f(idx - 1, smaller || (digit < lim), sum + digit);
-	}	
-	return memo;
+long long f(int idx, bool smaller, int sum) {
+    if (idx < 0)
+        return sum == s;
+    long long &memo = dp[smaller][idx][sum];
+    if (memo != -1)
+        return memo;
+    int lim = smaller ? 9 : x[idx];
+    memo = 0;
+    for (int digit = 0; digit <= lim; ++digit) {
+        memo += f(idx - 1, smaller || (digit < lim), sum + digit);
+    }
+    return memo;
 }
-long long G(long long X){
-	if(X <= 0) return 0;
-	int n = 0; x[n] = 0;
-	for(; X > 0; ++n){
-		x[n] = X % 10;
-		X /= 10;
-	}
-	memset(dp, -1, sizeof(dp));
-	return f(n - 1, 0, 0);
+long long G(long long X) {
+    if (X <= 0)
+        return 0;
+    int n = 0;
+    x[n] = 0;
+    for (; X > 0; ++n) {
+        x[n] = X % 10;
+        X /= 10;
+    }
+    memset(dp, -1, sizeof(dp));
+    return f(n - 1, 0, 0);
 }
 ```
 
-Độ phức tạp của thuật toán này là $O((10 \times n \times 2 \times sum) \times 171 \times T)$, với $171$ là giới hạn của tổng các chữ số đã được nhắc đến ở trên.
+Độ phức tạp của thuật toán này là $\mathcal{O}((10 \times n \times 2 \times sum) \times 171 \times T)$, với $171$ là giới hạn của tổng các chữ số đã được nhắc đến ở trên.
 
 #### Tối ưu QHĐ chữ số
 
@@ -329,56 +348,59 @@ long long dp[N][172];
 long long f(int idx, bool smaller, int sum);
 long long G(long long X, long long sum);
 
-int main () {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	memset(dp, -1, sizeof(dp));	
-	int t; cin >> t;
-	while(t--){
-		long long x, y; cin >> x >> y;
-		--x;
-		long long cnt = 0;
-		for(int i = 1; i < 172; ++i){
-			cnt += G(y / i, i) - G(x / i, i);
-		}
-		cout << cnt << '\n';
-	}
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    memset(dp, -1, sizeof(dp));
+    int t;
+    cin >> t;
+    while (t--) {
+        long long x, y;
+        cin >> x >> y;
+        --x;
+        long long cnt = 0;
+        for (int i = 1; i < 172; ++i) {
+            cnt += G(y / i, i) - G(x / i, i);
+        }
+        cout << cnt << '\n';
+    }
 
-
-	
-	return 0;
+    return 0;
 }
-long long f(int idx, bool smaller, int sum){
-	if(sum < 0) return 0;
-	if(idx < 0) return !sum;
-	long long &memo = dp[idx][sum];
-	if(smaller && memo != -1) return memo;
-	int lim = smaller ? 9 : x[idx];
-	long long ans = 0;
-	for(int i = 0; i <= lim; ++i){
-		ans += f(idx - 1, smaller || (i < lim), sum - i);
-	}
+long long f(int idx, bool smaller, int sum) {
+    if (sum < 0)
+        return 0;
+    if (idx < 0)
+        return !sum;
+    long long &memo = dp[idx][sum];
+    if (smaller && memo != -1)
+        return memo;
+    int lim = smaller ? 9 : x[idx];
+    long long ans = 0;
+    for (int i = 0; i <= lim; ++i) {
+        ans += f(idx - 1, smaller || (i < lim), sum - i);
+    }
 
-	if(smaller) return memo = ans;
-	return ans;
+    if (smaller)
+        return memo = ans;
+    return ans;
 }
-long long G(long long X, long long sum){
-	int n = 0;
-	while(X){
-		x[n++] = X % 10;
-		X /= 10;
-	}
-	return f(n - 1, 0, sum);
+long long G(long long X, long long sum) {
+    int n = 0;
+    while (X) {
+        x[n++] = X % 10;
+        X /= 10;
+    }
+    return f(n - 1, 0, sum);
 }
-
 ```
 </details>
 
-Độ phức tạp của thuật toán giờ đây giảm xuống còn: $O((10 \times n \times 2 \times sum) \times 171)$.
+Độ phức tạp của thuật toán giờ đây giảm xuống còn: $\mathcal{O}((10 \times n \times 2 \times sum) \times 171)$.
 
 ### Bài 4: [NUMTSN - 369 Numbers](https://www.spoj.com/problems/NUMTSN/)
 
-Tóm tắt: Cho $T$ cặp số $A$ và $B$, với mỗi cặp số, đếm số lượng số $369$ nằm trong đoạn $[A; B]$, modulo $10^9 + 7$.
+Tóm tắt: Cho $T$ cặp số $A$ và $B$, với mỗi cặp số, đếm số lượng số $369$ nằm trong đoạn $[A; B]$, modulo $10^{9} + 7$.
 
 Một số $X$ là số $369$ khi số lượng chữ số $3$ bằng số lượng chữ số $6$ và bằng số lượng chữ số $9$ và có ít nhất một chữ số $3$. 
 
@@ -395,7 +417,7 @@ Nếu trạng thái của ta đang là $(idx, smaller, three, six, nine)$, và t
 - $six' = six + 1$ nếu $v = 6$ hoặc $six' = six$ nếu $v \neq 6$.
 - $nine' = nine + 1$ nếu $v = 9$ hoặc $nine' = nine$ nếu $v \neq 9$.
 
-Vì $A, B$ là những số rất lớn, ta áp dụng cách tính thứ hai được nói ở phần lý thuyết: $(G(b) - G(a) + g(a))\mod{10^9 + 7}$.
+Vì $A, B$ là những số rất lớn, ta áp dụng cách tính thứ hai được nói ở phần lý thuyết: $(G(b) - G(a) + g(a))\bmod{10^{9} + 7}$.
 
 ```cpp=
 #include <bits/stdc++.h>
@@ -407,55 +429,58 @@ int x[51];
 long long f(int idx, bool smaller, int three, int six, int nine);
 long long G(string &X);
 bool g(string &X);
-int main (int argc, char const *argv[]) {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	memset(dp, -1, sizeof(dp));
-	int t; cin >> t;
-	while(t--){
-		string a, b; cin >> a >> b;
-		cout << (G(b) - G(a) + g(a) + MOD) % MOD << '\n';
-	}	
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    memset(dp, -1, sizeof(dp));
+    int t;
+    cin >> t;
+    while (t--) {
+        string a, b;
+        cin >> a >> b;
+        cout << (G(b) - G(a) + g(a) + MOD) % MOD << '\n';
+    }
 
-
-
-	
-	return 0;
+    return 0;
 }
-long long f(int idx, bool smaller, int three, int six, int nine){
-	if(idx < 0) return three > 0 && three == six && three == nine;
-	long long &memo = dp[idx][three][six][nine];
-	if(smaller && memo != -1) return memo;
-	long long ans = 0;
-	int lim = smaller ? 9 : x[idx];
-	for(int i = 0; i <= lim; ++i){
-		ans += f(idx - 1, smaller || (i < lim), three + (i == 3), six + (i == 6), nine + (i == 9));
-		ans %= MOD;
-	}
+long long f(int idx, bool smaller, int three, int six, int nine) {
+    if (idx < 0)
+        return three > 0 && three == six && three == nine;
+    long long &memo = dp[idx][three][six][nine];
+    if (smaller && memo != -1)
+        return memo;
+    long long ans = 0;
+    int lim = smaller ? 9 : x[idx];
+    for (int i = 0; i <= lim; ++i) {
+        ans += f(idx - 1, smaller || (i < lim), three + (i == 3), six + (i == 6), nine + (i == 9));
+        ans %= MOD;
+    }
 
-	if(smaller) memo = ans;
-	return ans;
+    if (smaller)
+        memo = ans;
+    return ans;
 }
 
-long long G(string &X){
-	int n = 0; x[n] = 0;
-	for(int i = X.length() - 1; i >= 0; --i){
-		x[n++] = X[i] - '0';
-	}
-	return f(n - 1, 0, 0, 0, 0);
+long long G(string &X) {
+    int n = 0;
+    x[n] = 0;
+    for (int i = X.length() - 1; i >= 0; --i) {
+        x[n++] = X[i] - '0';
+    }
+    return f(n - 1, 0, 0, 0, 0);
 }
-bool g(string &X){
-	int three = 0, six = 0, nine = 0;
-	for(char c : X){
-		three += c == '3';
-		six += c == '6';
-		nine += c == '9';
-	}
-	return three > 0 && three == six && three == nine;
+bool g(string &X) {
+    int three = 0, six = 0, nine = 0;
+    for (char c : X) {
+        three += c == '3';
+        six += c == '6';
+        nine += c == '9';
+    }
+    return three > 0 && three == six && three == nine;
 }
 ```
 
-Độ phức tạp của thuật toán là: $O(10 \times n \times three \times six \times nine)$.
+Độ phức tạp của thuật toán là: $\mathcal{O}(10 \times n \times three \times six \times nine)$.
 
 ### Bài 5: [Số đặc biệt](https://lqdoj.edu.vn/problem/pearlnum)
 
@@ -474,7 +499,7 @@ Nếu $idx = -1$, hàm $f$ trả về $1$ nếu $sum$ là một số đặc bi�
 Nếu trạng thái của ta đang là $(idx, smaller, sum)$, và ta điền $a_{idx} = v$, ta sẽ chuyển trạng thái tiếp theo $(idx', smaller', sum')$:
 
 - $idx'$, $smaller'$ giống các ví dụ trước.
-- $sum' = sum + v^2$.
+- $sum' = sum + v^{2}$.
 
 ```cpp=
 #include <bits/stdc++.h>
@@ -489,65 +514,73 @@ void dfs(int u);
 long long f(int idx, int smaller, int sum);
 long long G(long long X);
 
-int main () {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	memset(dp, -1, sizeof(dp));
-	for(int i = 1; i < N; ++i){
-		// xây dựng đồ thị với các cung: f(x) -> x
-		int x = i;
-		long long sum = 0;
-		while(x > 0){
-			int digit = x % 10;
-			x /= 10;
-			sum += digit * digit;
-		}
-		adj[sum].push_back(i);
-	}
-	
-	// tìm các số đặc biệt <= 1458
-	dfs(1);
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    memset(dp, -1, sizeof(dp));
+    for (int i = 1; i < N; ++i) {
+        // xây dựng đồ thị với các cung: f(x) -> x
+        int x = i;
+        long long sum = 0;
+        while (x > 0) {
+            int digit = x % 10;
+            x /= 10;
+            sum += digit * digit;
+        }
+        adj[sum].push_back(i);
+    }
 
-	int t; cin >> t;
-	while(t--){
-		long long l, r; cin >> l >> r;
-		cout << G(r) - G(l - 1) << '\n';
-	}	
-	
-	return 0;
+    // tìm các số đặc biệt <= 1458
+    dfs(1);
+
+    int t;
+    cin >> t;
+    while (t--) {
+        long long l, r;
+        cin >> l >> r;
+        cout << G(r) - G(l - 1) << '\n';
+    }
+
+    return 0;
 }
 
-void dfs(int u){
-	if(special[u]) return;
-	special[u] = 1;
-	for(int v : adj[u]) dfs(v);
+void dfs(int u) {
+    if (special[u])
+        return;
+    special[u] = 1;
+    for (int v : adj[u])
+        dfs(v);
 }
 
-long long f(int idx, int smaller, int sum){
-	if(idx < 0) return !special[sum];
-	long long &memo = dp[idx][sum];
-	if(smaller && memo != -1) return memo;
-	int lim = smaller ? 9 : x[idx];
-	long long ans = 0;
-	for(int i = 0; i <= lim; ++i){
-		ans += f(idx - 1, smaller || (i < lim), sum + i * i);
-	}
+long long f(int idx, int smaller, int sum) {
+    if (idx < 0)
+        return !special[sum];
+    long long &memo = dp[idx][sum];
+    if (smaller && memo != -1)
+        return memo;
+    int lim = smaller ? 9 : x[idx];
+    long long ans = 0;
+    for (int i = 0; i <= lim; ++i) {
+        ans += f(idx - 1, smaller || (i < lim), sum + i * i);
+    }
 
-	if(smaller) return memo = ans;
-	return ans;
+    if (smaller)
+        return memo = ans;
+    return ans;
 }
 
-long long G(long long X){
-	int n = 0; x[n] = 0;
-	for(; X > 0; ++n){
-		x[n] = X % 10;
-		X /= 10;
-	}
-	return f(n - 1, 0, 0);
+long long G(long long X) {
+    int n = 0;
+    x[n] = 0;
+    for (; X > 0; ++n) {
+        x[n] = X % 10;
+        X /= 10;
+    }
+    return f(n - 1, 0, 0);
 }
 ```
 
-Độ phức tạp của thuật toán này là: $O(10 \times n \times sum)$.
+Độ phức tạp của thuật toán này là: $\mathcal{O}(10 \times n \times sum)$.
 
 ### Bài 6: [LUCKY13](https://oj.vnoi.info/problem/lucky13)
 
@@ -573,42 +606,48 @@ long long dp[2][20];
 int x[20];
 long long f(int idx, bool one, bool smaller);
 long long G(long long X);
-int main () {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0);
-	memset(dp, -1, sizeof(dp));
-	long long a, b;
-	while(cin >> a >> b){
-		cout << G(b) - G(a - 1) << '\n';
-	}
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    memset(dp, -1, sizeof(dp));
+    long long a, b;
+    while (cin >> a >> b) {
+        cout << G(b) - G(a - 1) << '\n';
+    }
 
-	return 0;
+    return 0;
 }
-long long f(int idx, bool one, bool smaller){
-	if(idx < 0) return 1;
-	long long &memo = dp[one][idx];
-	if(smaller && memo != -1) return memo;
-	int lim = smaller ? 9 : x[idx];
-	long long sum = 0;
-	for(int digit = 0; digit <= lim; ++digit){
-		if(digit == 3 && one == 1) continue;
-		sum += f(idx - 1, digit == 1, smaller || (digit < lim));
-	}	
-	if(smaller) memo = sum;
-	return sum;
+long long f(int idx, bool one, bool smaller) {
+    if (idx < 0)
+        return 1;
+    long long &memo = dp[one][idx];
+    if (smaller && memo != -1)
+        return memo;
+    int lim = smaller ? 9 : x[idx];
+    long long sum = 0;
+    for (int digit = 0; digit <= lim; ++digit) {
+        if (digit == 3 && one == 1)
+            continue;
+        sum += f(idx - 1, digit == 1, smaller || (digit < lim));
+    }
+    if (smaller)
+        memo = sum;
+    return sum;
 }
-long long G(long long X){
-	if(X < 0) return 0;
-	int n = 0; x[n] = 0;
-	for(; X > 0; ++n){
-		x[n] = X % 10;
-		X /= 10;
-	}
-	return f(n - 1, 0, 0);
+long long G(long long X) {
+    if (X < 0)
+        return 0;
+    int n = 0;
+    x[n] = 0;
+    for (; X > 0; ++n) {
+        x[n] = X % 10;
+        X /= 10;
+    }
+    return f(n - 1, 0, 0);
 }
 ```
 
-Độ phức tạp của thuật toán này là $O(10 \times 2\times n)$. 
+Độ phức tạp của thuật toán này là $\mathcal{O}(10 \times 2\times n)$. 
 
 Ngoài các trạng thái biểu thị đoạn số $\overline{a_{n - 1}a_{n - 2}\dots a_{idx + 1}}$ quen thuộc như $sum$, ta còn có một số trạng thái phổ biến khác như:
 
@@ -616,7 +655,7 @@ Ngoài các trạng thái biểu thị đoạn số $\overline{a_{n - 1}a_{n - 2
 - $prevDigit$: biểu thị giá trị của $a_{idx + 1}$.
 - $isRising$: biểu thị nếu $a_{n - 1} \le a_{n - 2} \le \dots  \le a_{idx + 1}$ đúng hoặc sai.
 - $isFalling$: biểu thị nếu $a_{n - 1} \ge a_{n - 2} \ge \dots  \ge a_{idx + 1}$ đúng hoặc sai.
-- $s$: tập hợp các phần tử phân biệt $a_{n - 1}, a_{n - 2}, \dots , a_{idx + 1}$ 
+- $s$: tập hợp các phần tử phân biệt $a_{n - 1}, a_{n - 2}, \dots, a_{idx + 1}$ 
 - $\dots$
 
 ## Luyện tập

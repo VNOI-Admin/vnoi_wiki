@@ -20,7 +20,7 @@ dateCreated: 2023-12-25T10:59:48.774Z
 
 # Mở đầu
 
-![](https://hackmd.io/_uploads/BkRIUcdV2.jpg)
+![](/uploads/algo/basic/backtracking/BkRIUcdV2.jpg)
 *Búp bê Matryoshka (ảnh trên Google Images)*
 
 Trong cuộc sống, chúng ta đôi khi bắt gặp những hình ảnh về một vật mà chứa bên trong nó là một vật khác giống hệt nó, như búp bê Matryoska, cửa sổ OBS khi bạn cố dùng nó để quay màn hình của chính nó, sách giáo khoa Toán lớp 3 cũ, hoặc [link này](/algo/basic/backtracking), ... Tương tự như vậy, trong khoa học máy tính và lập trình, chúng ta xây dựng khái niệm về đệ quy.
@@ -31,7 +31,7 @@ Trong cuộc sống, chúng ta đôi khi bắt gặp những hình ảnh về m�
 
 *Ví dụ*:
 - Với $n!$ thì ta có $n! = (n - 1)! \times n$
-- Gọi $gcd(a, b)$ là ước chung lớn nhất của $a$ và $b$ ($a \geq b$) thì ta có $gcd(a, b) = gcd(b, a \bmod b)$ với $\bmod$ là phép lấy phần dư
+- Gọi $\gcd(a, b)$ là ước chung lớn nhất của $a$ và $b$ ($a \geq b$) thì ta có $\gcd(a, b) = \gcd(b, a \bmod b)$ với $\bmod$ là phép lấy phần dư
 
 Nếu một bài toán $P$ có lời giải được thực hiện bằng một bài toán con $P'$ có dạng giống $P$ thì đó là một giải thuật đệ quy. Ở đây, $P'$ cần là một bài toán đơn giản hơn $P$ (có kích cỡ dữ liệu nhỏ hơn, hoặc độ phức tạp nhỏ hơn, ...), và đương nhiên không cần đến $P$ để giải nó.
 
@@ -55,34 +55,31 @@ Lý thuyết suông thì quá khó hiểu, hãy cùng xem một số ví dụ:
 
 Lựa chọn thứ nhất có vẻ không khả thi, phần vì $(-1)!$ không xác định, mặt khác nếu thay tiếp thì chúng ta cũng chẳng biết dừng ở đâu cả. Với $0! = 1$, ta có thể thay vào để tính $1!$ rồi. Có $1!$ ta lại thay nó vào tiếp để tính $2!$, và chúng ta có thứ chúng ta cần.
 
-![Mô hình tính giai thừa đệ quy](https://i.imgur.com/OMVG6I2.png)
+![Mô hình tính giai thừa đệ quy](/uploads/algo/basic/backtracking/OMVG6I2.png)
 
 Phân tích thì dài dòng vậy thôi, còn cài đặt thì rất đơn giản:
-``` cpp
-void factorial(int n)
-{
-    if (n == 0) return 1;    //trường hợp cơ sở
-    return factorial(n - 1) * n;    //phần đệ quy
+```cpp
+int factorial(int n) {
+    if (n == 0)
+        return 1;                //trường hợp cơ sở
+    return factorial(n - 1) * n; //phần đệ quy
 }
 ```
 
 Nếu bạn chưa quen với cú pháp đệ quy như vậy thì có thể hiểu hàm trên tương đương với hàm `factorial_2()` trong đoạn code sau với $n = 2$:
-``` cpp
+```cpp
 //n = 0
-void factorial_0()
-{
+int factorial_0() {
     return 1;
 }
 
 //n = 1
-void factorial_1()
-{
+int factorial_1() {
     return factorial_0() * 1;
 }
 
 //n = 2
-void factorial_2()
-{
+int factorial_2() {
     return factorial_1() * 2;
 }
 ```
@@ -103,12 +100,13 @@ Văn vẻ hơn thì trong dãy này, mỗi số hạng bằng tổng của hai s
 
 Dựa vào công thức truy hồi đã cho và lập luận kiểu "để tính $f$ này thì ta cần có $f$ kia" như trên, chúng ta có thể cài đặt như sau:
 
-``` cpp
-int fibo(int n)
-{
-    if (n == 0) return 0;    //trường hợp cơ sở
-    if (n == 1) return 1;    //trường hợp cơ sở
-    return fibo(n - 2) + fibo(n - 1);    //phần đệ quy
+```cpp
+int fibo(int n) {
+    if (n == 0)
+        return 0; //trường hợp cơ sở
+    if (n == 1)
+        return 1;                     //trường hợp cơ sở
+    return fibo(n - 2) + fibo(n - 1); //phần đệ quy
 }
 ```
 
@@ -134,9 +132,9 @@ Tóm gọn lại, chúng ta đang xây dựng một danh sách gồm tất cả 
 - Tương tự, với mỗi trường hợp của ký tự thứ hai, ta xét nốt mọi trường hợp ở ký tự thứ ba. Các dãy nhận được là `000`, `001`, `010`, `011`, `100`, `101`, `110`, `111`
 Nếu bạn vẫn chưa hiểu các dãy này được tạo dựng theo thứ tự như thế nào, hãy xem sơ đồ ở phần dưới.
 
-Trên phương diện quy nạp, nếu cần dựng danh sách các tập hợp mà mỗi tập có dạng $\{x_1, x_2, ..., x_n\}$, ta xét mọi giá trị của $x_1$, rồi sau đó duyệt tiếp $\{x_2, x_3, ..., x_n\}$, tiếp tục xét mọi giá trị $x_2$, rồi lại duyệt $\{x_3, x_4, ..., x_n\}$, ..., cho đến khi nào tất cả các giá trị đều đã xác định. Lúc này, ta lưu tập vừa tạo lại vào danh sách và tiếp tục chuyển sang tập khác từ các giá trị khác của các $x_i$
+Trên phương diện quy nạp, nếu cần dựng danh sách các tập hợp mà mỗi tập có dạng $\{x_1, x_2, \ldots, x_n\}$, ta xét mọi giá trị của $x_1$, rồi sau đó duyệt tiếp $\{x_2, x_3, \ldots, x_n\}$, tiếp tục xét mọi giá trị $x_2$, rồi lại duyệt $\{x_3, x_4, \ldots, x_n\}$, ..., cho đến khi nào tất cả các giá trị đều đã xác định. Lúc này, ta lưu tập vừa tạo lại vào danh sách và tiếp tục chuyển sang tập khác từ các giá trị khác của các $x_i$
 
-```
+```cpp
 void backtrack(int pos)
 {
     // Trường hợp cơ sở
@@ -169,31 +167,31 @@ Ví dụ, với $n = 3$ ta có các dãy $000, 001, 010, 011, 100, 101, 110, 111
 **Phân tích:**
 Ở ví dụ phía trên, chúng ta đã nói về việc xét mọi trường hợp để xây dựng các dãy này như thế nào. Khi cài đặt đệ quy, sử dụng tư duy quy nạp "xây tập sau từ tập trước", thuật toán sẽ hoạt động như sau:
 
-![](https://i.imgur.com/QqypRGl.png)
+![](/uploads/algo/basic/backtracking/QqypRGl.png)
 
 Tại hàm `gen(1)`, ta xét từng giá trị của ký tự hiện tại, sau đó gọi `gen(2)` với từng ký tự đó. Tương tự như vậy, ta gọi `gen(3)` từ các ký tự ở `gen(2)` và rồi `gen(4)`. Tới `gen(4)`, ta đã duyệt hết các vị trí và không thể thử thêm nữa, nên có thể in ra xâu.
 
-``` cpp
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int n;
 string curString;
 
-void genString(int pos)
-{
-    if (pos > n)
-    {
+void genString(int pos) {
+    if (pos > n) {
         cout << curString << "\n";
         return;
     }
-    for (char i = '0'; i <= '1'; i ++)
-    {
-        curString.push_back(i);    //thêm ký tự mới vào dãy
+    for (char i = '0'; i <= '1'; i++) {
+        curString.push_back(i); //thêm ký tự mới vào dãy
         genString(pos + 1);
-        curString.pop_back();      //bỏ ký tự này đi
+        curString.pop_back(); //bỏ ký tự này đi
     }
 }
 
-int main()
-{
+int main() {
     cin >> n;
     curString = "";
     genString(1);
@@ -204,7 +202,7 @@ int main()
 Chú ý rằng, cách sinh này cũng chưa phải là tốt nhất nếu xét về độ dài của code. Sử dụng các phép toán trên bit của C++ sẽ giúp liệt kê tất cả các dãy trên với một đoạn code đơn giản hơn nhiều mà thời gian chạy vẫn không chậm hơn (tất nhiên là không cần sử dụng đệ quy).
 
 ## Sinh tổ hợp (tập hợp con)
-**Bài toán:** Cho tập $S = \{1, 2, 3, ..., n\}$. In ra tất cả các tập con có chính xác $k$ phần tử của $S$. Hai tập con là hoán vị của nhau chỉ tính là một.
+**Bài toán:** Cho tập $S = \{1, 2, 3, \ldots, n\}$. In ra tất cả các tập con có chính xác $k$ phần tử của $S$. Hai tập con là hoán vị của nhau chỉ tính là một.
 
 **Phân tích:**
 Có một số ý tưởng cho bài này, như biểu diễn tập hợp bằng một dãy nhị phân rồi tìm các dãy có đúng $k$ ký tự $1$, hay lần lượt xây dựng các số trong dãy sao cho số sau lớn hơn số trước đến khi đủ $k$. Mình sẽ trình bày hướng thứ hai.
@@ -215,31 +213,34 @@ Phần đệ quy sẽ kết thúc khi tập con đã có đủ $k$ phần tử.
 
 Sử dụng ý tưởng trên ta cài đặt như sau:
 
-``` cpp
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int n, k;
-vector <int> curSubset;
+vector<int> curSubset;
 
 //Hàm đệ quy
-void printSubset()
-{
-    for (int i : curSubset) cout << i << " ";
+void printSubset() {
+    for (int i : curSubset)
+        cout << i << " ";
     cout << "\n";
 }
 
-void genSubset(int pos)
-{
-    int lastNum = (curSubset.empty() ? 0 : curSubset.back());  //số cuối cùng được chọn
-    for (int i = lastNum + 1; i <= n; i ++)
-    {
+void genSubset(int pos) {
+    int lastNum = (curSubset.empty() ? 0 : curSubset.back()); //số cuối cùng được chọn
+    for (int i = lastNum + 1; i <= n; i++) {
         curSubset.push_back(i);
-        if (curSubset.size() == k) printSubset();
-        else genSubset(pos + 1);
+        if (curSubset.size() == k)
+            printSubset();
+        else
+            genSubset(pos + 1);
         curSubset.pop_back();
     }
 }
 
-int main()
-{
+int main() {
     cin >> n >> k;
     curSubset.clear();
     genSubset(1);
@@ -253,7 +254,7 @@ int main()
 Còn về hướng biểu diễn dãy nhị phân, bạn đọc hãy thử tự suy nghĩ và cài đặt. Trong lập trình thi đấu, khi phải duyệt mọi tập con, cách này dễ đọc và hiệu quả hơn hẳn. Nhưng đây là bài giới thiệu về đệ quy nên là...
 
 ## Bài toán phân tích số
-**Bài toán:** Ở một quốc gia có $n$ loại tiền gồm các mệnh giá $a_1, a_2, ..., a_n$ ($n \leq 10$). Có những cách nào để lấy các tờ tiền sao cho tổng mệnh giá của chúng là $S$? Biết rằng mỗi mệnh giá tiền có thể được lấy nhiều lần và hai cách lấy là hoán vị của nhau chỉ tính là một.
+**Bài toán:** Ở một quốc gia có $n$ loại tiền gồm các mệnh giá $a_1, a_2, \ldots, a_n$ ($n \leq 10$). Có những cách nào để lấy các tờ tiền sao cho tổng mệnh giá của chúng là $S$? Biết rằng mỗi mệnh giá tiền có thể được lấy nhiều lần và hai cách lấy là hoán vị của nhau chỉ tính là một.
 Ví dụ: với 3 loại tiền mệnh giá $10, 20, 50$, có $10$ cách lấy tiền để có tổng là $100$, bao gồm $10$ tờ $10$, hoặc $2$ tờ $50$, hoặc $3$ tờ $10$, $1$ tờ $20$ và $1$ tờ $50$, ...
 
 Một cách rất tự nhiên, chúng ta sẽ tiếp tục làm tương tự như bài trước: lưu các tờ tiền đã có vào một tập hợp, sau đó lấy tiền sao cho tờ sau có mệnh giá không nhỏ hơn tờ trước. Hàm đệ quy như thế sẽ có dạng `genMoneySet(int pos)`.
@@ -262,33 +263,35 @@ Vậy thì khi nào chúng ta dừng lại? Đó là khi tổng số tiền chú
 
 Trong quá trình cài đặt, song song với việc duy trì một tập hợp tiền đang xây dựng `curMoneySet`, chúng ta sẽ cần lưu thêm một giá trị tổng `curMoneySum` để đơn giản tính toán.
 
-``` cpp
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int n, a[15];
 long long S, curMoneySum;
-vector <int> curMoneySet;
+vector<int> curMoneySet;
 
-void printMoneySet()
-{
-    for (auto i : curMoneySet) cout << a[i] << " ";
+void printMoneySet() {
+    for (auto i : curMoneySet)
+        cout << a[i] << " ";
     cout << "\n";
 }
 
 //Hàm đệ quy
-void genMoneySet(int pos)
-{
+void genMoneySet(int pos) {
     int lastIndex = (curMoneySet.empty() ? 1 : curMoneySet.back());
-    for (int i = lastIndex; i <= n; i ++)
-    {
+    for (int i = lastIndex; i <= n; i++) {
         //Lấy thêm 1 tờ tiền mới vào tập hợp
         curMoneySet.push_back(i);
         curMoneySum += a[i];
 
         //Gọi đệ quy
-        if (curMoneySum >= S)
-        {
-            if (curMoneySum == S) printMoneySet();
-        }
-        else genMoneySet(pos + 1);
+        if (curMoneySum >= S) {
+            if (curMoneySum == S)
+                printMoneySet();
+        } else
+            genMoneySet(pos + 1);
 
         //Bỏ tờ tiền này ra khỏi tập hợp
         curMoneySet.pop_back();
@@ -296,10 +299,10 @@ void genMoneySet(int pos)
     }
 }
 
-int main()
-{
+int main() {
     cin >> n >> S;
-    for (int i = 1; i <= n; i ++) cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
     curMoneySet.clear();
     curMoneySum = 0;
     genMoneySet(1);
@@ -315,7 +318,7 @@ Nếu bạn đọc để ý kỹ thì chúng ta không sử dụng tham số `po
 
 **Bài toán:** Tìm tất cả các cách xếp $n$ ($n \leq 12$) quân Hậu lên một bàn cờ $n \times n$ sao cho không có hai quân Hậu nào có thể ăn được nhau. Nếu có hai cách là hoán vị của nhau (về vị trí) thì chỉ tính là một, ví dụ hai tập hợp $\{(1, 2), (3, 4), (5, 6)\}$ và $\{(1, 2), (5, 6), (3, 4)\}$ chỉ lấy $1$. Hai quân Hậu được gọi là có thể ăn được nhau nếu chúng nằm cùng hàng, cột hoặc đường chéo của bàn cờ.
 
-![](https://i.imgur.com/FQTQrW0.png)
+![](/uploads/algo/basic/backtracking/FQTQrW0.png)
 (Hình ảnh tìm trên Google Images)
 
 **Phân tích:**
@@ -337,7 +340,11 @@ Vậy thì, việc của chúng ta bây giờ chỉ là sinh ra những bộ to�
 
 Một vòng đệ quy sẽ kết thúc nếu ta sinh thành công $n$ quân Hậu. Lúc này, ta chỉ việc in kết quả, và đi tiếp tới các trường hợp khác.
 
-``` cpp
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int n;
 
 //mảng đánh dấu cột, đường chéo phụ và đường chéo chính
@@ -345,32 +352,32 @@ bool isInCol[13], isInDiag1[26], isInDiag2[26];
 
 //gọi 2 tập riêng chi hàng và cột
 //tập X có thể bỏ qua do các quân Hậu được sinh lần lượt theo từng hàng
-vector <int> curQueensSetX, curQueensSetY;
+vector<int> curQueensSetX, curQueensSetY;
 
 //In kết quả dạng (X, Y)
-void printQueensSet()
-{
-    for (int i = 0; i < n; i ++)
-    {
+void printQueensSet() {
+    for (int i = 0; i < n; i++) {
         cout << "(" << curQueensSetX[i] << ", " << curQueensSetY[i] << ")";
-        if (i < n - 1) cout << ", ";
+        if (i < n - 1)
+            cout << ", ";
     }
     cout << "\n";
 }
 
 //Hàm đệ quy
-void genQueensSet(int curRow)
-{
-    for (int curCol = 1; curCol <= n; curCol ++)
-    {
+void genQueensSet(int curRow) {
+    for (int curCol = 1; curCol <= n; curCol++) {
         //Xác định đường chéo phụ và chính hiện tại
         int curDiag1 = curRow + curCol;
-        int curDiag2 = curRow - curCol + 13;    //+13 để tránh chỉ số âm
+        int curDiag2 = curRow - curCol + 13; //+13 để tránh chỉ số âm
 
         //Kiểm tra toạ độ mới xem có thoả mãn không
-        if (isInCol[curCol] == true) continue;
-        if (isInDiag1[curDiag1] == true) continue;
-        if (isInDiag2[curDiag2] == true) continue;
+        if (isInCol[curCol] == true)
+            continue;
+        if (isInDiag1[curDiag1] == true)
+            continue;
+        if (isInDiag2[curDiag2] == true)
+            continue;
 
         //Thêm nó vào tập hợp hiện tại nếu thoả mãn
         curQueensSetX.push_back(curRow);
@@ -380,8 +387,10 @@ void genQueensSet(int curRow)
         isInDiag2[curDiag2] = true;
 
         //Gọi đệ quy thêm quân tiếp theo hoặc in kết quả
-        if (curQueensSetX.size() == n) printQueensSet();
-        else genQueensSet(curRow + 1);
+        if (curQueensSetX.size() == n)
+            printQueensSet();
+        else
+            genQueensSet(curRow + 1);
 
         //Xoá quân vừa thêm vào khỏi tập hợp
         curQueensSetX.pop_back();
@@ -392,8 +401,7 @@ void genQueensSet(int curRow)
     }
 }
 
-int main()
-{
+int main() {
     cin >> n;
 
     memset(isInCol, 0, sizeof(isInCol));
@@ -420,28 +428,28 @@ Quay trở lại bài toán phân tích số ở trên. Lần này, ta sẽ thê
 
 Vẫn với ý tưởng đệ quy như trên, chúng ta hoàn toàn có thể liệt kê tất cả cách xếp rồi lấy cách tốt nhất. Tuy nhiên, rõ ràng tại một số cách, số tiền còn lại khi duyệt tới những tờ giữa đã hơi "cấn" rồi. Ví dụ đã có một cách xếp $2 \times 20 + 1 \times 10 + 1 \times 50 = 100$, trong một bước khác mới xét tới $5 \times 10$ thôi đã chẳng còn ý nghĩa gì. Những cách đó có thể bỏ đi để chương trình chạy nhanh hơn.
 
-``` cpp
+```cpp
+#include <bits/stdc++.h>
+
+using namespace std;
+
 int n, a[15];
 long long S, curMoneySum;
-vector <int> curMoneySet, bestSet;
+vector<int> curMoneySet, bestSet;
 
-void genMoneySet(int pos)
-{
+void genMoneySet(int pos) {
     int lastIndex = (curMoneySet.empty() ? 1 : curMoneySet.back());
-    for (int i = lastIndex; i <= n; i ++)
-    {
+    for (int i = lastIndex; i <= n; i++) {
         curMoneySet.push_back(i);
         curMoneySum += a[i];
 
-        if (curMoneySum >= S)
-        {
-            if (curMoneySum == S)
-            {
+        if (curMoneySum >= S) {
+            if (curMoneySum == S) {
                 bestSet.clear();
-                for (int i : curMoneySet) bestSet.push_back(i);
+                for (int i : curMoneySet)
+                    bestSet.push_back(i);
             }
-        }
-        else if (bestSet.empty() || curMoneySet.size() < bestSet.size()) 	//loại ngay nếu không tối ưu
+        } else if (bestSet.empty() || curMoneySet.size() < bestSet.size()) //loại ngay nếu không tối ưu
             genMoneySet(pos + 1);
 
         curMoneySet.pop_back();
@@ -449,16 +457,17 @@ void genMoneySet(int pos)
     }
 }
 
-int main()
-{
+int main() {
     cin >> n >> S;
-    for (int i = 1; i <= n; i ++) cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
     curMoneySet.clear();
     curMoneySum = 0;
     bestSet.clear();
     genMoneySet(1);
 
-    for (int i : bestSet) cout << a[i] << " ";
+    for (int i : bestSet)
+        cout << a[i] << " ";
     cout << "\n";
 
     return 0;
@@ -478,17 +487,17 @@ Ngoài các bài toán sinh hoặc duyệt vét cạn, đệ quy còn được s
 
 ## Độ phức tạp của đệ quy
 Một hàm đệ quy có dạng như sau:
-``` cpp
-void recursive(int x)
-{
-    if (x > n) return;
-    for (int i = 1; i <= m; i ++)
+```cpp
+void recursive(int x) {
+    if (x > n)
+        return;
+    for (int i = 1; i <= m; i++)
         recursive(x + 1);
 }
 ```
-Hàm trên được gọi đệ quy $n$ lần, mỗi lần phải thực hiện $m$ lần vòng lặp nên độ phức tạp sẽ là $O(m^n)$.
+Hàm trên được gọi đệ quy $n$ lần, mỗi lần phải thực hiện $m$ lần vòng lặp nên độ phức tạp sẽ là $\mathcal{O}(m^{n})$.
 
-Có thể thấy, các thuật toán đệ quy có thể có độ phức tạp rất lớn, nhiều khi lên tới hàm mũ, tuy vậy lại có lúc nhỏ cỡ $log$ như hàm tính ƯCLN. Do vậy, việc xác định số lần bị gọi của hàm đệ quy rất quan trọng.
+Có thể thấy, các thuật toán đệ quy có thể có độ phức tạp rất lớn, nhiều khi lên tới hàm mũ, tuy vậy lại có lúc nhỏ cỡ $\log$ như hàm tính ƯCLN. Do vậy, việc xác định số lần bị gọi của hàm đệ quy rất quan trọng.
 
 Những bài toán yêu cầu duyệt vét cạn như ở trên thường đòi hỏi phải duyệt trên mọi trạng thái chưa biết, và vì thế dữ liệu đầu vào rất nhỏ.
 

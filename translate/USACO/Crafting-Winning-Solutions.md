@@ -74,43 +74,43 @@ Nên có một checklist cho những gì phải làm trước khi nộp bài:
 ## Độ phức tạp
 
 ### Những điều cơ bản và các kí hiệu khác
-Những khái niệm nền tảng của việc đánh giá độ phức tạp xoay quanh kí hiệu *"O lớn"*, ví dụ: $O(N)$. Kí hiệu $O(N)$ có nghĩa thời gian thực hiện thuật toán hay bộ nhớ sử dụng sẽ gấp đôi khi dữ liệu được gấp đôi. Một thuật toán $O(N^2)$ sẽ chạy chậm hơn bốn lần (hoặc dùng nhiều hơn 4x không gian lưu trữ) khi dữ liệu được gấp đôi. Thuật toán có độ phức tạp hằng số về thời gian hay không gian được kí hiệu là $O(1)$. Khái niệm này được áp dụng cho cả bộ nhớ và thời gian; ở đây chúng ta sẽ tập trung bàn luận về thời gian.
+Những khái niệm nền tảng của việc đánh giá độ phức tạp xoay quanh kí hiệu *"O lớn"*, ví dụ: $\mathcal{O}(N)$. Kí hiệu $\mathcal{O}(N)$ có nghĩa thời gian thực hiện thuật toán hay bộ nhớ sử dụng sẽ gấp đôi khi dữ liệu được gấp đôi. Một thuật toán $\mathcal{O}(N^{2})$ sẽ chạy chậm hơn bốn lần (hoặc dùng nhiều hơn 4x không gian lưu trữ) khi dữ liệu được gấp đôi. Thuật toán có độ phức tạp hằng số về thời gian hay không gian được kí hiệu là $\mathcal{O}(1)$. Khái niệm này được áp dụng cho cả bộ nhớ và thời gian; ở đây chúng ta sẽ tập trung bàn luận về thời gian.
 
-Để tính toán thời gian chạy $O()$ của một chương trình, ta đánh giá các vòng lặp của nó. Vòng lặp lồng nhau nhiều nhất (do đó chạy chậm nhất) quyết định thời gian chạy và sẽ là vòng lặp duy nhất được nhắc đến khi bàn về $O()$. Một chương trình có một vòng lặp đơn và một vòng lặp lồng nhau (giả sử mỗi vòng lặp đơn được thực hiện $N$ lần) là $O(N^2)$, mặc dù còn có một vòng lặp $O(N)$.
+Để tính toán thời gian chạy $\mathcal{O}$ của một chương trình, ta đánh giá các vòng lặp của nó. Vòng lặp lồng nhau nhiều nhất (do đó chạy chậm nhất) quyết định thời gian chạy và sẽ là vòng lặp duy nhất được nhắc đến khi bàn về $\mathcal{O}$. Một chương trình có một vòng lặp đơn và một vòng lặp lồng nhau (giả sử mỗi vòng lặp đơn được thực hiện $N$ lần) là $\mathcal{O}(N^{2})$, mặc dù còn có một vòng lặp $\mathcal{O}(N)$.
 
-Hiển nhiên, đệ quy cũng được xem là vòng lặp và chương trình đệ quy có độ phức tạp $O(b^N)$, $O(N!)$, hay thậm chí là $O(N^N)$.
+Hiển nhiên, đệ quy cũng được xem là vòng lặp và chương trình đệ quy có độ phức tạp $\mathcal{O}(b^{N})$, $\mathcal{O}(N!)$, hay thậm chí là $\mathcal{O}(N^{N})$.
 
 ### Rules of thumb (quy tắc ước lượng)
 *   Khi phân tích thuận toán để xác định nó sẽ chạy trong bao lâu với một bộ dữ liệu cho sẵn, điều đầu tiên cần nhớ là: các máy tính hiện đại (từ 2004) có thể xử lí 100 triệu phép tính trên giây. Trong một chương trình có giới hạn thời gian 5 giây, khoảng 500 triệu phép tính có thể được thực hiện. Những chương trình được tối ưu tốt có thể thực hiện gấp đôi hay thậm chí gấp bốn lần con số đó. Những thuật toán phức tạp có thể sẽ chỉ thực hiện được một nửa số đó. Những contest gần đây thường có giới hạn thời gian 1 giây cho những bộ dữ liệu lớn.
 *   Tối đa 16MB bộ nhớ
-*   $2^{10}$ ~gần bằng~ $10^3$
-*   Nếu bạn có $k$ vòng lặp lồng nhau, mỗi vòng lặp thực hiện $N$ lần thì chương trình có độ phức tạp $O(N^k)$.
-*   Nếu chương trình của bạn đệ quy với $b$ lần gọi đệ quy ở mỗi cấp và có $l$ cấp thì chương trình có độ phức tạp $O(b^l)$.
-*   Ghi nhớ rằng có $N!$ hoán vị, và $2^N$ tập con (hay tổ hợp) của $N$ phần tử khi làm việc với những thuật toán kiểu thế.
-*   Độ phức tạp thời gian tốt nhất để sắp xếp $N$ phần tử là $O(N logN)$
+*   $2^{10}$ ~gần bằng~ $10^{3}$
+*   Nếu bạn có $k$ vòng lặp lồng nhau, mỗi vòng lặp thực hiện $N$ lần thì chương trình có độ phức tạp $\mathcal{O}(N^{k})$.
+*   Nếu chương trình của bạn đệ quy với $b$ lần gọi đệ quy ở mỗi cấp và có $l$ cấp thì chương trình có độ phức tạp $\mathcal{O}(b^{l})$.
+*   Ghi nhớ rằng có $N!$ hoán vị, và $2^{N}$ tập con (hay tổ hợp) của $N$ phần tử khi làm việc với những thuật toán kiểu thế.
+*   Độ phức tạp thời gian tốt nhất để sắp xếp $N$ phần tử là $\mathcal{O}(N \log N)$
 *   **PHẢI LÀM TOÁN!** Thế số vào.
 
 #### Ví dụ
-Một vòng lặp với $N$ lần duyệt là $O(N)$:
+Một vòng lặp với $N$ lần duyệt là $\mathcal{O}(N)$:
 ```
 sum = 0
 for i = sum to n
     sum = sum + i
 ```
-Một vòng lặp kép thường sẽ là $O(N^2)$:
+Một vòng lặp kép thường sẽ là $\mathcal{O}(N^{2})$:
 ```
 for i = 1 to n-1
     for j = i + 1 to n
         if (a[i] > a[j])
             swap(a[i],a[j])
 ```
-Lưu ý rằng mặc dù vòng lặp thực hiện ${N * (N+1)/2}$ lần duyệt câu lệnh ``if``, nó vẫn là $O(N^2)$ vì gấp đô i $N$ vẫn làm gấp bốn lần thời gian thực hiện.
+Lưu ý rằng mặc dù vòng lặp thực hiện $\frac{N \times (N+1)}{2}$ lần duyệt câu lệnh ``if``, nó vẫn là $\mathcal{O}(N^{2})$ vì gấp đô i $N$ vẫn làm gấp bốn lần thời gian thực hiện.
 
 Xét một cây nhị phân cân bằng 4 levels:
 
-![cay-nhi-phan-can-bang-4-cap](https://s-media-cache-ak0.pinimg.com/564x/88/81/a1/8881a15ab475ed5adf771592871565a5.jpg)
+![cay-nhi-phan-can-bang-4-cap](/uploads/translate/USACO/Crafting-Winning-Solutions/8881a15ab475ed5adf771592871565a5.jpg)
 
-Một thuật toán tìm kiếm trên một cây nhị phân thông thường sẽ có độ phức tạp $O(2^N)$.
+Một thuật toán tìm kiếm trên một cây nhị phân thông thường sẽ có độ phức tạp $\mathcal{O}(2^{N})$.
 
 ## Các phương pháp tạo lập lời giải
 
@@ -125,7 +125,7 @@ Dù có dưới 20 thuật toán cơ bản dùng trong các kì thì lập trìn
 
 ### Tính Đối Xứng
 Nhiều bài toán có tính đối xứng (ví dụ: khoảng các giữa hai điểm thông thường là như nhau theo hai chiều). Tính đối xứng có thể là 2 chiều, 4 chiều, 8 chiều, và hơn thế nữa. Cố gắng tận dụng tính đối xứng để rút ngắn thời gian chạy.
-Một ví dụ cụ thể, với tính đối xứng 4 chiều, bạn chỉ cần giải $1/4$ bài toán và viết ra 4 kết quả đối xứng từ một đáp án duy nhất (cẩn thận với trường hợp tự đối xứng, hiển nhiên chỉ cần in ra một hay hai lần).
+Một ví dụ cụ thể, với tính đối xứng 4 chiều, bạn chỉ cần giải $\frac{1}{4}$ bài toán và viết ra 4 kết quả đối xứng từ một đáp án duy nhất (cẩn thận với trường hợp tự đối xứng, hiển nhiên chỉ cần in ra một hay hai lần).
 
 ### Xuôi vs. Ngược
 Điều bất ngờ là nhiều bài toán khi được giải ngược sẽ tốt hơn nhiều so với kiểu tiếp cận xuôi. Để ý việc xử lý dữ liệu theo thứ tự ngược hay xây dựng một các tiếp cận mà dữ liệu được nhìn theo thứ tự hay kiểu hình khác với điều dễ thấy.

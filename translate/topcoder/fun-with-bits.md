@@ -119,7 +119,7 @@ Việc duyệt qua tất cả các tập con của một tập con khác cũng r
 
 ```cpp
 // xét tất cả các tập con khác rỗng của S
-for (int i = S; i > 0; i = (i - 1) & S); {
+for (int i = S; i > 0; i = (i - 1) & S) {
 }
 ```
 
@@ -139,7 +139,7 @@ Có một số mẹo hay có thể sử dụng với thao tác bit.
 Những mẹo này khá hay để đem đi chém gió với bạn bè, nhưng thông thường hiệu quả cũng không cải thiện lắm ở thực tế.
 
 **Đảo thứ tự các bit trong một số nguyên**
-```
+```cpp
 x = ((x & 0xaaaaaaaa) >> 1) | ((x & 0x55555555) << 1);
 x = ((x & 0xcccccccc) >> 2) | ((x & 0x33333333) << 2);
 x = ((x & 0xf0f0f0f0) >> 4) | ((x & 0x0f0f0f0f) << 4);
@@ -151,16 +151,15 @@ Bài tập là bạn hãy dùng kĩ thuật phía trên để đếm số bit v�
 
 **Duyệt qua tất cả các tập con có k phần tử**
 
-```
+```cpp
 int s = (1 << k) - 1;
-while (!(s & 1 << N))
-{
-	//làm gì đó với s
-	int lo = s & ~(s - 1);   //bit 1 thấp nhất
-	int lz = (s + lo) & ~s;  //bit 0 thấp nhất trên lo
-	s |= lz;                       //thêm lz vào tập hợp
-	s &= ~(lz - 1);             //reset bit phía dưới lz
-	s |= (lz / lo / 2) - 1;     //đặt lại đúng số bit ở cuối
+while (!(s & 1 << N)) {
+    //làm gì đó với s
+    int lo = s & ~(s - 1);  //bit 1 thấp nhất
+    int lz = (s + lo) & ~s; //bit 0 thấp nhất trên lo
+    s |= lz;                //thêm lz vào tập hợp
+    s &= ~(lz - 1);         //reset bit phía dưới lz
+    s |= (lz / lo / 2) - 1; //đặt lại đúng số bit ở cuối
 }
 ```
 
@@ -175,22 +174,20 @@ Câu lệnh trên chạy được trên kiến trúc số bù 2 (tồn tại ở
 
 [TCCC 2006, Round 1B Medium](https://community.topcoder.com/stat?c=problem_statement&pm=6725&rd=10100)
 
-Với mỗi thành phố, giữ một bit-set của những thành phố kề nó. Một khi một phần của nhà máy đã được chọn (đệ quy), AND những bit-set đó lại sẽ cho ra một bit-set mới mô tả những vị trí có thể của những phần của nhà máy. Nếu bit-set này có k bit, thì có $C^k_m$ cách để chọn các phần của nhà máy.
+Với mỗi thành phố, giữ một bit-set của những thành phố kề nó. Một khi một phần của nhà máy đã được chọn (đệ quy), AND những bit-set đó lại sẽ cho ra một bit-set mới mô tả những vị trí có thể của những phần của nhà máy. Nếu bit-set này có k bit, thì có $C^{k}_{m}$ cách để chọn các phần của nhà máy.
 
 [TCO 2006, Round 1 Easy](http://www.topcoder.com/stat?c=problem_statement&pm=6095&rd=9917)
 
 Số lượng nút nhỏ cho thấy rằng bài này có thể giải quyết bằng việc xét tất cả các tập con. Với mỗi tập con ta xét 2 trường hợp: nút nhỏ nhất không có trao đổi gì cả, trong trường hợp ta xét tập con mà không có nó, hoặc nó trao đổi với một số nút, ta sẽ xét các tập hợp không có nó và các nút mà nó trao đổi. Code bài giải rất ngắn gọn:
 
-```
+```cpp
 static int dp[1 << 18];
 
-int SeparateConnections::howMany(vector <string> mat)
-{
+int SeparateConnections::howMany(vector<string> mat) {
     int N = mat.size();
     int N2 = 1 << N;
     dp[0] = 0;
-    for (int i = 1; i < N2; i++)
-    {
+    for (int i = 1; i < N2; i++) {
         int bot = i & ~(i - 1);
         int use = __builtin_ctz(bot);
         dp[i] = dp[i ^ bot];
@@ -209,10 +206,10 @@ Cái bảng chứa 36 hình vuông và những con cờ không thể phân biệ
 [SRM 320, Division 1 Hard](http://www.topcoder.com/stat?c=problem_statement&pm=6400&rd=10000)
 
 Điều kiện cho ta biết rằng chỉ có nhiều nhất 8 cột (nếu có nhiều hơn, ta có thể đổi giữa dòng và cột), nên chúng ta có thể xét từng cách để một dòng. Một khi chúng ta có thông tin này, ta có thể giải quyết vấn đề còn lại của bài toán (xem [tutorial](http://www.topcoder.com/tc?module=Static&d1=match_editorials&d2=srm320) để biết thêm chi tiết). Do đó ta cần một danh sách tất cả số nguyên n bit mà không có 2 bit 1 kề nhau, và ta cũng cần biết có bao nhiêu bit 1 trong mỗi dòng như vậy. Đây là code của mình:
-```
-for (int i = 0; i < (1 << n); i++)
-{
-    if (i & (i << 1)) continue;
+```cpp
+for (int i = 0; i < (1 << n); i++) {
+    if (i & (i << 1))
+        continue;
     pg.push_back(i);
     pgb.push_back(__builtin_popcount(i));
 }

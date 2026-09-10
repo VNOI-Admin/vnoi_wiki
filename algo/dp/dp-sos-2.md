@@ -52,7 +52,7 @@ $$
 \hat{h}(S) = \sum_{T_1 \subseteq S, T_2 \subseteq S} f(T_1) \cdot g(T_2) = \left( \sum_{T_1 \subseteq S} f(T_1) \right) \cdot \left( \sum_{T_2 \subseteq S} g(T_2) \right) = \hat{f}(S) \cdot \hat{g}(S)
 $$
 
-Chúng ta lại trở về với bài toán Sum over Subsets trên hàm $f, g$. Như vậy, ta đã giải quyết được bài toán trong $\mathcal{O}(2^n \cdot n)$.
+Chúng ta lại trở về với bài toán Sum over Subsets trên hàm $f, g$. Như vậy, ta đã giải quyết được bài toán trong $\mathcal{O}(2^{n} \cdot n)$.
 
 ### AND convolution
 
@@ -68,7 +68,7 @@ $$
 \hat{h}(S) = \sum_{T_1 \cap T_2 \supseteq S} f(T_1) \cdot g(T_2) = \left( \sum_{T_1 \supseteq S} f(T_1) \right) \cdot \left( \sum_{T_2 \supseteq S} g(T_2) \right)
 $$
 
-Cuối cùng, ta lại sử dụng DP SoS ngược để khôi phục $h(S)$ từ $\hat{h}(S)$. Độ phức tạp của thuật toán này cũng là $\mathcal{O}(2^n \cdot n)$.
+Cuối cùng, ta lại sử dụng DP SoS ngược để khôi phục $h(S)$ từ $\hat{h}(S)$. Độ phức tạp của thuật toán này cũng là $\mathcal{O}(2^{n} \cdot n)$.
 
 ### Cài đặt
 
@@ -76,22 +76,23 @@ Cuối cùng, ta lại sử dụng DP SoS ngược để khôi phục $h(S)$ t�
 
 :::spoiler Code tham khảo
 ```cpp=
-vector<int> sos (const vector<int> &f, int n, bool reversed = 0) {
+vector<int> sos(const vector<int> &f, int n, bool reversed = 0) {
     vector<int> dp = f;
     if (reversed) {
         for (int k = n - 1; k >= 0; k--)
             for (int mask = 0; mask < (1 << n); mask++)
-                if (mask & (1 << k)) dp[mask] -= dp[mask ^ (1 << k)];
-    }
-    else {
+                if (mask & (1 << k))
+                    dp[mask] -= dp[mask ^ (1 << k)];
+    } else {
         for (int k = 0; k < n; k++)
             for (int mask = 0; mask < (1 << n); mask++)
-                if (mask & (1 << k)) dp[mask] += dp[mask ^ (1 << k)];
+                if (mask & (1 << k))
+                    dp[mask] += dp[mask ^ (1 << k)];
     }
     return dp;
 }
 
-vector<int> orConvolution (const vector<int> &f, const vector<int> &g, int n) {
+vector<int> orConvolution(const vector<int> &f, const vector<int> &g, int n) {
     vector<int> hhat(1 << n), fhat = sos(f, n), ghat = sos(g, n);
     for (int mask = 0; mask < (1 << n); mask++)
         hhat[mask] = fhat[mask] * ghat[mask];
@@ -155,7 +156,7 @@ $$
 \hat{h}_i(S) = \sum_{0 \leq j \leq i} F_j(S) \cdot G_{i - j}(S)
 $$
 
-Ta lại sử dụng DP SoS ngược để khôi phục từng hàm $h_i(S)$ từ $\hat{h}_i(S)$ để đưa ra đáp án cuối cùng. Như vậy, thuật toán có độ phức tạp $\mathcal{O}(2^n \cdot n^2)$.
+Ta lại sử dụng DP SoS ngược để khôi phục từng hàm $h_i(S)$ từ $\hat{h}_i(S)$ để đưa ra đáp án cuối cùng. Như vậy, thuật toán có độ phức tạp $\mathcal{O}(2^{n} \cdot n^{2})$.
 
 ### Cài đặt
 
@@ -173,22 +174,23 @@ Sau khi đã có hàm $F_i(S), G_i(S)$, ta thực hiện các bước còn lại
 
 :::spoiler Code tham khảo
 ```cpp=
-vector<int> sos (const vector<int> &f, int n, bool reversed = 0) {
+vector<int> sos(const vector<int> &f, int n, bool reversed = 0) {
     vector<int> dp = f;
     if (reversed) {
         for (int k = n - 1; k >= 0; k--)
             for (int mask = 0; mask < (1 << n); mask++)
-                if (mask & (1 << k)) dp[mask] -= dp[mask ^ (1 << k)];
-    }
-    else {
+                if (mask & (1 << k))
+                    dp[mask] -= dp[mask ^ (1 << k)];
+    } else {
         for (int k = 0; k < n; k++)
             for (int mask = 0; mask < (1 << n); mask++)
-                if (mask & (1 << k)) dp[mask] += dp[mask ^ (1 << k)];
+                if (mask & (1 << k))
+                    dp[mask] += dp[mask ^ (1 << k)];
     }
     return dp;
 }
 
-vector<int> subsetConvolution (const vector<int> &f, const vector<int> &g, int n) {
+vector<int> subsetConvolution(const vector<int> &f, const vector<int> &g, int n) {
     vector<vector<int>> fhat(n + 1, vector<int>(1 << n)), ghat(n + 1, vector<int>(1 << n));
     for (int mask = 0; mask < (1 << n); mask++) {
         fhat[__builtin_popcount(mask)][mask] = f[mask];
@@ -251,25 +253,25 @@ Với phép hiệu đối xứng, ta cũng sử dụng mô hình tương tự, n
 
 Với WHT, ta chỉ xét các đa thức bậc $1$.
 
-Sự khác biệt giữa DFT và WHT là khi nhân hai số hạng $ax^i$ và $bx^j$ với nhau, DFT sẽ cho ra $(a \cdot b)x^{i+j}$, còn đối với WHT, ta mong muốn sẽ cho ra $(a \cdot b)x^{i \oplus j}$. Rõ ràng, WHT đang phá đi tính chất tự nhiên của phép nhân và lũy thừa.
+Sự khác biệt giữa DFT và WHT là khi nhân hai số hạng $ax^{i}$ và $bx^{j}$ với nhau, DFT sẽ cho ra $(a \cdot b)x^{i+j}$, còn đối với WHT, ta mong muốn sẽ cho ra $(a \cdot b)x^{i \oplus j}$. Rõ ràng, WHT đang phá đi tính chất tự nhiên của phép nhân và lũy thừa.
 
 Để giải quyết điều này, ta tách $x$ ra thành hàm $n$ thừa số, với số mũ của từng thừa số ứng với trạng thái bật/tắt của bit tương ứng trong biểu diễn nhị phân của $x$ (giả sử cần xét $n$ bit đầu tiên). Nói cách khác, mỗi số hạng bây giờ sẽ có dạng $a \cdot x_0^{z_0}x_1^{z_1} \dots x_{n-1}^{z_{n-1}}$ (với $0 \leq z_i \leq 1$ là trạng thái của bit thứ $i$, $a$ là hệ số của số hạng). Từ đây, ta có thể thấy rằng WHT về bản chất là FFT trên đa thức $n$ chiều bậc $1$.
 
-Với mỗi chiều của đa thức sau khi biến đổi, ta cần tính $2$ điểm phân biệt (tương tự FFT), vậy với cả đa thức, ta cần tính $2^n$ điểm.
+Với mỗi chiều của đa thức sau khi biến đổi, ta cần tính $2$ điểm phân biệt (tương tự FFT), vậy với cả đa thức, ta cần tính $2^{n}$ điểm.
 
-Trở lại với vấn đề nêu trên, lúc này, khi số mũ chỉ còn là một bit, ta có thể dễ dàng biến đổi $x^{i \oplus j}$ thành $x^{(i + j) \bmod 2}$. Tức là ta vẫn có thể nhân đa thức bình thường, nhưng hệ số của các số hạng $x^0, x^2, x^4, \dots$ và $x^1, x^3, x^5, \dots$ phải được gộp lại thành một. Nói cách khác, ta cần chọn hai điểm phân biệt để tính có $x$ thỏa:
+Trở lại với vấn đề nêu trên, lúc này, khi số mũ chỉ còn là một bit, ta có thể dễ dàng biến đổi $x^{i \oplus j}$ thành $x^{(i + j) \bmod 2}$. Tức là ta vẫn có thể nhân đa thức bình thường, nhưng hệ số của các số hạng $x^{0}, x^{2}, x^{4}, \dots$ và $x^{1}, x^{3}, x^{5}, \dots$ phải được gộp lại thành một. Nói cách khác, ta cần chọn hai điểm phân biệt để tính có $x$ thỏa:
 
 $$
 \begin{cases}
-x^0 = x^2 = x^4 = \dots \\
-x^1 = x^3 = x^5 = \dots \\
+x^{0} = x^{2} = x^{4} = \dots \\
+x^{1} = x^{3} = x^{5} = \dots \\
 \end{cases}
 $$
 
 Dễ thấy, hai giá trị $-1$ và $1$ thỏa mãn điều kiện này.
 
 :::info
-Như vậy, với Walsh-Hadamard Transform, ta được cho một đa thức $n$ chiều bậc $1$ có dạng $f(x_0, x_1, \dots, x_{n-1})$. Ta cần tính giá trị đa thức tại $2^n$ điểm có dạng $x = (\pm 1, \pm 1, \dots, \pm 1)$.
+Như vậy, với Walsh-Hadamard Transform, ta được cho một đa thức $n$ chiều bậc $1$ có dạng $f(x_0, x_1, \dots, x_{n-1})$. Ta cần tính giá trị đa thức tại $2^{n}$ điểm có dạng $x = (\pm 1, \pm 1, \dots, \pm 1)$.
 :::
 
 ### Fast Walsh-Hadamard Transform (sử dụng mô hình DP SoS)
@@ -286,21 +288,21 @@ $$
 
 Để tính $\hat{f}(S)$, ta xử lý từng bit của hàm. Xét hàm $n$ chiều $f(x_0, x_1, \dots, x_{n-1})$, ta có thể gom các số hạng của nó thành hai nhóm:
 
-- Các số hạng chứa $x_{n-1}^0$, đặt là $f_0(x_0, x_1, \dots, x_{n-2})$.
-- Các số hạng chứa $x_{n-1}^1$, đem $x_{n-1}$ ra ngoài làm nhân tử chung rồi đặt nhóm này là $x_{n-1} \cdot f_1(x_0, x_1, \dots, x_{n-2})$.
+- Các số hạng chứa $x_{n-1}^{0}$, đặt là $f_0(x_0, x_1, \dots, x_{n-2})$.
+- Các số hạng chứa $x_{n-1}^{1}$, đem $x_{n-1}$ ra ngoài làm nhân tử chung rồi đặt nhóm này là $x_{n-1} \cdot f_1(x_0, x_1, \dots, x_{n-2})$.
 
 Tương tự, để tính $f_0, f_1$, ta lại nhóm chúng thành hai nhóm theo số mũ của $x_{n-2}$. Ta sẽ có $4$ nhóm là:
 
 $$
 \begin{align*}
-x_{n-1}^0 \cdot x_{n-2}^0 \cdot f_{0, 0}(x_0, x_1, \dots, x_{n-3}) \\
-x_{n-1}^0 \cdot x_{n-2}^1 \cdot f_{0, 1}(x_0, x_1, \dots, x_{n-3}) \\
-x_{n-1}^1 \cdot x_{n-2}^0 \cdot f_{1, 0}(x_0, x_1, \dots, x_{n-3}) \\
-x_{n-1}^1 \cdot x_{n-2}^1 \cdot f_{1, 1}(x_0, x_1, \dots, x_{n-3}) \\
+x_{n-1}^{0} \cdot x_{n-2}^{0} \cdot f_{0, 0}(x_0, x_1, \dots, x_{n-3}) \\
+x_{n-1}^{0} \cdot x_{n-2}^{1} \cdot f_{0, 1}(x_0, x_1, \dots, x_{n-3}) \\
+x_{n-1}^{1} \cdot x_{n-2}^{0} \cdot f_{1, 0}(x_0, x_1, \dots, x_{n-3}) \\
+x_{n-1}^{1} \cdot x_{n-2}^{1} \cdot f_{1, 1}(x_0, x_1, \dots, x_{n-3}) \\
 \end{align*}
 $$
 
-Như vậy, ý tưởng là tại tầng đệ quy thứ $i$, ta nhóm các số hạng theo hậu tố chung độ dài $i$ rồi đem phần hậu tố này ra đặt làm nhân tử chung. Ta có $2^i$ nhóm và ở mỗi nhóm ta cần tính giá trị hàm tại $2^{n-i}$ điểm (do chỉ còn $n-i$ chưa được đặt làm nhân tử chung).
+Như vậy, ý tưởng là tại tầng đệ quy thứ $i$, ta nhóm các số hạng theo hậu tố chung độ dài $i$ rồi đem phần hậu tố này ra đặt làm nhân tử chung. Ta có $2^{i}$ nhóm và ở mỗi nhóm ta cần tính giá trị hàm tại $2^{n-i}$ điểm (do chỉ còn $n-i$ chưa được đặt làm nhân tử chung).
 
 Ta định nghĩa $f_{s_{n-1}, s_{n-2}, \dots, s_k}(x_0, x_1, \dots, x_{k-1})$ là đa thức gồm các số hạng có hậu tố chung là $x_{n-1}^{s_{n-1}} \cdot x_{n-2}^{s_{n-2}} \cdots x_k^{s_k}$ sau khi đã bỏ phần hậu tố chung này đi.
 
@@ -347,7 +349,7 @@ u - v & k - 1 \in \texttt{mask} \\
 \end{cases}
 $$
 
-Như vậy, ta đã có thuật toán biến đổi Walsh-Hadamard trong $\mathcal{O}(2^n \cdot n)$.
+Như vậy, ta đã có thuật toán biến đổi Walsh-Hadamard trong $\mathcal{O}(2^{n} \cdot n)$.
 
 ### Walsh-Hadamard Transform ngược
 
@@ -359,21 +361,21 @@ $$
 
 Vấn đề cuối cùng chưa được giải quyết là làm cách nào để khôi phục $h(S)$ từ $\hat{h}(S)$. Nói cách khác, làm thế nào để biến đổi Walsh-Hadamard ngược.
 
-Để giải quyết bài toán này, ta cần quay về cách giải thích FWHT nguyên thủy là phép nhân ma trận. Quá trình mà ta vừa thực hiện ở phần trên tương đương với việc biến hàm $f$ thành một vector $2^n \times 1$, gọi là $\mathbf{F}$. Khi đó, vector $\mathbf{\hat{F}}$ được tính qua phép nhân ma trận:
+Để giải quyết bài toán này, ta cần quay về cách giải thích FWHT nguyên thủy là phép nhân ma trận. Quá trình mà ta vừa thực hiện ở phần trên tương đương với việc biến hàm $f$ thành một vector $2^{n} \times 1$, gọi là $\mathbf{F}$. Khi đó, vector $\mathbf{\hat{F}}$ được tính qua phép nhân ma trận:
 
 $$
 \mathbf{\hat{F}} = \mathbf{H}_{2^n} \cdot \mathbf{F}
 $$
 
-với $\mathbf{H}_{2^n}$ là [ma trận Hadamard](https://en.wikipedia.org/wiki/Hadamard_matrix) bậc $2^n$.
+với $\mathbf{H}_{2^n}$ là [ma trận Hadamard](https://en.wikipedia.org/wiki/Hadamard_matrix) bậc $2^{n}$.
 
-Để khôi phục $\mathbf{F}$ từ $\mathbf{\hat{F}}$, ta cần tính $\mathbf{H}_{2^n}^{-1}$. May mắn thay, với tính chất đặc biệt của ma trận Hadamard, ma trận Hadamard nghịch đảo chính là ma trận Hadamard chia cho $2^n$. Tức là ta chỉ việc tính:
+Để khôi phục $\mathbf{F}$ từ $\mathbf{\hat{F}}$, ta cần tính $\mathbf{H}_{2^n}^{-1}$. May mắn thay, với tính chất đặc biệt của ma trận Hadamard, ma trận Hadamard nghịch đảo chính là ma trận Hadamard chia cho $2^{n}$. Tức là ta chỉ việc tính:
 
 $$
 \mathbf{F} = \frac{1}{2^n} \cdot \mathbf{H}_{2^n} \cdot \mathbf{\hat{F}}
 $$
 
-Như vậy, để khôi phục $h(S)$ từ $\hat{h}(S)$, ta thực hiện biến đổi Walsh-Hadamard trên $\hat{h}(S)$ rồi chia mọi hệ số của hàm đã được biến đổi cho $2^n$.
+Như vậy, để khôi phục $h(S)$ từ $\hat{h}(S)$, ta thực hiện biến đổi Walsh-Hadamard trên $\hat{h}(S)$ rồi chia mọi hệ số của hàm đã được biến đổi cho $2^{n}$.
 
 ### Cài đặt
 
@@ -383,7 +385,7 @@ Như vậy, để khôi phục $h(S)$ từ $\hat{h}(S)$, ta thực hiện biến
 
 :::spoiler Code tham khảo
 ```cpp=
-vector<int> fwht (const vector<int> &f, int n, bool inversed = 0) {
+vector<int> fwht(const vector<int> &f, int n, bool inversed = 0) {
     vector<vector<int>> dp(2, vector<int>(1 << n));
     dp[0] = f;
 
@@ -392,17 +394,20 @@ vector<int> fwht (const vector<int> &f, int n, bool inversed = 0) {
         int t = k & 1;
         for (int mask = 0; mask < sz; mask++) {
             int u = dp[t ^ 1][mask ^ (1 << (k - 1))], v = dp[t ^ 1][mask];
-            if (mask & (1 << (k - 1))) dp[t][mask] = u - v;
-            else dp[t][mask] = u + v;
+            if (mask & (1 << (k - 1)))
+                dp[t][mask] = u - v;
+            else
+                dp[t][mask] = u + v;
         }
     }
     if (inversed)
-        for (int mask = 0; mask < sz; mask++) dp[n & 1][mask] /= sz;
+        for (int mask = 0; mask < sz; mask++)
+            dp[n & 1][mask] /= sz;
 
     return dp[n & 1];
 }
 
-vector<int> xorConvolution (const vector<int> &f, const vector<int> &g, int n) {
+vector<int> xorConvolution(const vector<int> &f, const vector<int> &g, int n) {
     int sz = 1 << n;
     vector<int> hhat(sz), fhat = fwht(f, n), ghat = fwht(g, n);
     for (int mask = 0; mask < sz; mask++)
@@ -418,24 +423,26 @@ vector<int> xorConvolution (const vector<int> &f, const vector<int> &g, int n) {
 
 :::spoiler Code tham khảo
 ```cpp=
-vector<int> fwht (const vector<int> &f, int n, bool inversed = 0) {
+vector<int> fwht(const vector<int> &f, int n, bool inversed = 0) {
     vector<int> dp = f;
 
     int sz = 1 << n;
     for (int k = 0; k < n; k++) {
         for (int mask = 0; mask < sz; mask++) {
-            if (!(mask & (1 << k))) continue;
+            if (!(mask & (1 << k)))
+                continue;
             int u = dp[mask ^ (1 << k)], v = dp[mask];
             dp[mask ^ (1 << k)] = u + v, dp[mask] = u - v;
         }
     }
     if (inversed)
-        for (int mask = 0; mask < sz; mask++) dp[mask] /= sz;
+        for (int mask = 0; mask < sz; mask++)
+            dp[mask] /= sz;
 
     return dp;
 }
 
-vector<int> xorConvolution (const vector<int> &f, const vector<int> &g, int n) {
+vector<int> xorConvolution(const vector<int> &f, const vector<int> &g, int n) {
     int sz = 1 << n;
     vector<int> hhat(sz), fhat = fwht(f, n), ghat = fwht(g, n);
     for (int mask = 0; mask < sz; mask++)
@@ -464,13 +471,13 @@ Nhìn chung, có thể thấy rằng các phép nhân các hàm trên tập hợ
 Cho dãy $s$ gồm $n$ phần tử. Định nghĩa một bộ năm số nguyên $(a, b, c, d, e)$ là hợp lệ nếu:
 
 - $1 \leq a, b, c, d, e \leq n$.
-- $(s_a \mid s_b) \mathrel{\&} s_c \mathrel{\&} (s_d \oplus s_e) = 2^i$ (với $i$ là một số nguyên bất kì).
+- $(s_a \mid s_b) \mathrel{\&} s_c \mathrel{\&} (s_d \oplus s_e) = 2^{i}$ (với $i$ là một số nguyên bất kì).
 - $s_a \mathrel{\&} s_b = 0$
 
 Với mọi bộ năm hợp lệ, hãy tính tổng:
 
 $$
-\left[ \sum f(s_a \mid s_b) \cdot f(s_c) \cdot f(s_d \oplus s_e) \right] \bmod (10^9 + 7)
+\left[ \sum f(s_a \mid s_b) \cdot f(s_c) \cdot f(s_d \oplus s_e) \right] \bmod (10^{9} + 7)
 $$
 
 với $f(i)$ là số Fibonacci thứ $i$ được định nghĩa như sau:
@@ -485,7 +492,7 @@ $$
 
 #### Giới hạn
 
-- $1 \leq n \leq 10^6$.
+- $1 \leq n \leq 10^{6}$.
 - $0 \leq  s_i < 2^{17}$.
 
 #### Ý tưởng
@@ -515,7 +522,7 @@ $$
 Khi đó, đáp án cuối cùng là:
 
 $$
-\sum_{0 \leq i < 17} h(2^i)
+\sum_{0 \leq i < 17} h(2^{i})
 $$
 
 Bây giờ, ta sẽ tìm cách tính $g_i(S)$ cho từng nhóm:
@@ -528,7 +535,7 @@ $$
 g_1(S) = \sum_{s_a \mathrel{\&} s_b = 0} f(s_a \mid s_b) \cdot [s_a \mid s_b = S] = f(S) \cdot \sum_{s_a \mathrel{\&} s_b = 0} [s_a | s_b = S]
 $$
 
-Dễ thấy, phần $\sum_{s_a \mathrel{\&} s_b} [s_a \mid s_b = S]$ có thể được tính bằng phép nhân tập con (subset sum convolution) được định nghĩa ở trên trong $\mathcal{O}(s \log^2 s)$.
+Dễ thấy, phần $\sum_{s_a \mathrel{\&} s_b} [s_a \mid s_b = S]$ có thể được tính bằng phép nhân tập con (subset sum convolution) được định nghĩa ở trên trong $\mathcal{O}(s \log^{2} s)$.
 
 ##### Nhóm $c$
 
@@ -552,7 +559,7 @@ Tương tự nhóm $a, b$, phần $\sum[s_d \oplus s_e = S]$ có thể được 
 
 ##### Tổng kết
 
-Cuối cùng, ta thực hiện phép nhân gộp tập hợp trong $\mathcal{O}(s \log s)$. Như vậy, thuật toán có độ phức tạp $\mathcal{O}(n + s \log^2 s)$.
+Cuối cùng, ta thực hiện phép nhân gộp tập hợp trong $\mathcal{O}(s \log s)$. Như vậy, thuật toán có độ phức tạp $\mathcal{O}(n + s \log^{2} s)$.
 
 #### Cài đặt
 
@@ -564,131 +571,146 @@ using namespace std;
 const int mn = 1e6 + 6;
 const int MOD = 1e9 + 7;
 
-int add (int a, int b) { return a + b - (a + b < MOD ? 0 : MOD); }
-int sub (int a, int b) { return a - b + (a - b >= 0 ? 0 : MOD); }
-int mul (int a, int b) { return 1LL * a * b % MOD; }
+int add(int a, int b) {
+    return a + b - (a + b < MOD ? 0 : MOD);
+}
+int sub(int a, int b) {
+    return a - b + (a - b >= 0 ? 0 : MOD);
+}
+int mul(int a, int b) {
+    return 1LL * a * b % MOD;
+}
 
-int binpow (int a, int b) {
+int binpow(int a, int b) {
     int ans = 1;
     for (; b; b >>= 1, a = mul(a, a))
-        if (b & 1) ans = mul(ans, a);
+        if (b & 1)
+            ans = mul(ans, a);
     return ans;
 }
 
 namespace convolutions {
-    // hàm biến đổi Walsh-Hadamard và biến đổi ngược
-    vector<int> fwht (const vector<int> &f, int n, bool inversed = 0) {
-        vector<int> dp = f;
+// hàm biến đổi Walsh-Hadamard và biến đổi ngược
+vector<int> fwht(const vector<int> &f, int n, bool inversed = 0) {
+    vector<int> dp = f;
+    for (int k = 0; k < n; k++) {
+        for (int mask = 0; mask < (1 << n); mask++) {
+            if (!(mask & (1 << k)))
+                continue;
+            int u = dp[mask ^ (1 << k)], v = dp[mask];
+            dp[mask ^ (1 << k)] = add(u, v), dp[mask] = sub(u, v);
+        }
+    }
+    if (inversed) {
+        int inv = binpow(1 << n, MOD - 2);
+        for (int mask = 0; mask < (1 << n); mask++)
+            dp[mask] = mul(dp[mask], inv);
+    }
+
+    return dp;
+}
+
+// hàm DP sum over subset/superset và DP ngược
+vector<int> sos(const vector<int> &f, int n, bool subset, bool reversed = 0) {
+    vector<int> dp = f;
+    if (reversed) {
+        for (int k = n - 1; k >= 0; k--) {
+            for (int mask = 0; mask < (1 << n); mask++) {
+                bool flag = ((mask >> k & 1) == subset);
+                if (flag)
+                    dp[mask] = sub(dp[mask], dp[mask ^ (1 << k)]);
+            }
+        }
+    } else {
         for (int k = 0; k < n; k++) {
             for (int mask = 0; mask < (1 << n); mask++) {
-                if (!(mask & (1 << k))) continue;
-                int u = dp[mask ^ (1 << k)], v = dp[mask];
-                dp[mask ^ (1 << k)] = add(u, v), dp[mask] = sub(u, v);
+                bool flag = ((mask >> k & 1) == subset);
+                if (flag)
+                    dp[mask] = add(dp[mask], dp[mask ^ (1 << k)]);
             }
         }
-        if (inversed) {
-            int inv = binpow(1 << n, MOD - 2);
-            for (int mask = 0; mask < (1 << n); mask++) dp[mask] = mul(dp[mask], inv);
-        }
-
-        return dp;
     }
-
-    // hàm DP sum over subset/superset và DP ngược
-    vector<int> sos (const vector<int> &f, int n, bool subset, bool reversed = 0) {
-        vector<int> dp = f;
-        if (reversed) {
-            for (int k = n - 1; k >= 0; k--) {
-                for (int mask = 0; mask < (1 << n); mask++) {
-                    bool flag = ((mask >> k & 1) == subset);
-                    if (flag) dp[mask] = sub(dp[mask], dp[mask ^ (1 << k)]);
-                }
-            }
-        }
-        else {
-            for (int k = 0; k < n; k++) {
-                for (int mask = 0; mask < (1 << n); mask++) {
-                    bool flag = ((mask >> k & 1) == subset);
-                    if (flag) dp[mask] = add(dp[mask], dp[mask ^ (1 << k)]);
-                }
-            }
-        }
-        return dp;
-    }
-    
-    // phép gộp tập hợp
-    vector<int> andConvolution (const vector<int> &f1, const vector<int> &f2, const vector<int> &f3, int n) {
-        vector<int> g1 = sos(f1, n, 0), g2 = sos(f2, n, 0), g3 = sos(f3, n, 0), hhat(1 << n);
-        for (int mask = 0; mask < (1 << n); mask++)
-            hhat[mask] = mul(g1[mask], mul(g2[mask], g3[mask]));
-        return sos(hhat, n, 0, 1);
-    }
-    
-    // phép nhân tập con
-    vector<int> subsetConvolution (const vector<int> &f, const vector<int> &g, int n) {
-        vector<vector<int>> fhat(n + 1, vector<int>(1 << n)), ghat(n + 1, vector<int>(1 << n));
-        for (int mask = 0; mask < (1 << n); mask++) {
-            fhat[__builtin_popcount(mask)][mask] = f[mask];
-            ghat[__builtin_popcount(mask)][mask] = g[mask];
-        }
-        for (int i = 0; i <= n; i++)
-            fhat[i] = sos(fhat[i], n, 1), ghat[i] = sos(ghat[i], n, 1);
-
-        vector<vector<int>> hhat(n + 1, vector<int>(1 << n));
-        for (int i = 0; i <= n; i++)
-            for (int mask = 0; mask < (1 << n); mask++)
-                for (int j = 0; j <= i; j++)
-                    hhat[i][mask] = add(hhat[i][mask], mul(fhat[j][mask], ghat[i - j][mask]));
-        for (int i = 0; i <= n; i++)
-            hhat[i] = sos(hhat[i], n, 1, 1);
-
-        vector<int> h(1 << n);
-        for (int mask = 0; mask < (1 << n); mask++)
-            h[mask] = hhat[__builtin_popcount(mask)][mask];
-        return h;
-    }
-
-    // phép hiệu đối xứng
-    vector<int> xorConvolution (const vector<int> &f, const vector<int> &g, int n) {
-        int sz = 1 << n;
-        vector<int> hhat(sz), fhat = fwht(f, n), ghat = fwht(g, n);
-        for (int mask = 0; mask < sz; mask++)
-            hhat[mask] = mul(fhat[mask], ghat[mask]);
-        return fwht(hhat, n, 1);
-    }
+    return dp;
 }
+
+// phép gộp tập hợp
+vector<int> andConvolution(const vector<int> &f1, const vector<int> &f2, const vector<int> &f3, int n) {
+    vector<int> g1 = sos(f1, n, 0), g2 = sos(f2, n, 0), g3 = sos(f3, n, 0), hhat(1 << n);
+    for (int mask = 0; mask < (1 << n); mask++)
+        hhat[mask] = mul(g1[mask], mul(g2[mask], g3[mask]));
+    return sos(hhat, n, 0, 1);
+}
+
+// phép nhân tập con
+vector<int> subsetConvolution(const vector<int> &f, const vector<int> &g, int n) {
+    vector<vector<int>> fhat(n + 1, vector<int>(1 << n)), ghat(n + 1, vector<int>(1 << n));
+    for (int mask = 0; mask < (1 << n); mask++) {
+        fhat[__builtin_popcount(mask)][mask] = f[mask];
+        ghat[__builtin_popcount(mask)][mask] = g[mask];
+    }
+    for (int i = 0; i <= n; i++)
+        fhat[i] = sos(fhat[i], n, 1), ghat[i] = sos(ghat[i], n, 1);
+
+    vector<vector<int>> hhat(n + 1, vector<int>(1 << n));
+    for (int i = 0; i <= n; i++)
+        for (int mask = 0; mask < (1 << n); mask++)
+            for (int j = 0; j <= i; j++)
+                hhat[i][mask] = add(hhat[i][mask], mul(fhat[j][mask], ghat[i - j][mask]));
+    for (int i = 0; i <= n; i++)
+        hhat[i] = sos(hhat[i], n, 1, 1);
+
+    vector<int> h(1 << n);
+    for (int mask = 0; mask < (1 << n); mask++)
+        h[mask] = hhat[__builtin_popcount(mask)][mask];
+    return h;
+}
+
+// phép hiệu đối xứng
+vector<int> xorConvolution(const vector<int> &f, const vector<int> &g, int n) {
+    int sz = 1 << n;
+    vector<int> hhat(sz), fhat = fwht(f, n), ghat = fwht(g, n);
+    for (int mask = 0; mask < sz; mask++)
+        hhat[mask] = mul(fhat[mask], ghat[mask]);
+    return fwht(hhat, n, 1);
+}
+} // namespace convolutions
 
 int fib[mn];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     // tính số Fibonacci
     fib[0] = 0, fib[1] = 1;
-    for (int i = 2; i < mn; i++) fib[i] = add(fib[i - 1], fib[i - 2]);
+    for (int i = 2; i < mn; i++)
+        fib[i] = add(fib[i - 1], fib[i - 2]);
 
     // đọc input và tạo mảng thống kê
-    int n = 17, m; cin >> m;
+    int n = 17, m;
+    cin >> m;
     vector<int> freq(1 << n), g1, g2, g3;
 
     for (int i = 0; i < m; i++) {
-        int a; cin >> a;
+        int a;
+        cin >> a;
         freq[a]++;
     }
 
     // tính g1(S)
     g1 = convolutions::subsetConvolution(freq, freq, n);
-    for (int mask = 0; mask < (1 << n); mask++) g1[mask] = mul(g1[mask], fib[mask]);
+    for (int mask = 0; mask < (1 << n); mask++)
+        g1[mask] = mul(g1[mask], fib[mask]);
 
     // tính g2(S)
     g2 = freq;
-    for (int mask = 0; mask < (1 << n); mask++) g2[mask] = mul(g2[mask], fib[mask]);
+    for (int mask = 0; mask < (1 << n); mask++)
+        g2[mask] = mul(g2[mask], fib[mask]);
 
     // tính g3(S)
     g3 = convolutions::xorConvolution(freq, freq, n);
-    for (int mask = 0; mask < (1 << n); mask++) g3[mask] = mul(g3[mask], fib[mask]);
+    for (int mask = 0; mask < (1 << n); mask++)
+        g3[mask] = mul(g3[mask], fib[mask]);
 
     // tính h(S) và lấy kết quả
     vector<int> h = convolutions::andConvolution(g1, g2, g3, n);
@@ -706,20 +728,20 @@ int main()
 
 [Link đề gốc](https://codeforces.com/contest/1906/problem/K)
 
-Cho dãy $a$ gồm $n$ phần tử. Đếm số cách chọn hai dãy con không có phần chung (có thể chọn tập rỗng) sao cho tổng XOR$^\dagger$ của hai dãy con này là bằng nhau. In đáp án modulo $998 \space 244 \space 353$.
+Cho dãy $a$ gồm $n$ phần tử. Đếm số cách chọn hai dãy con không có phần chung (có thể chọn tập rỗng) sao cho tổng XOR$^\dagger$ của hai dãy con này là bằng nhau. In đáp án modulo $998\,244\,353$.
 
 $\dagger$ Tổng XOR của một dãy $b_1, b_2, \dots, b_m$ là $b_1 \oplus b_2 \oplus \dots \oplus b_m$.
 
 #### Giới hạn
 
-- $2 \leq n \leq 10^5$.
-- $1 \leq a_i \leq 10^5$.
+- $2 \leq n \leq 10^{5}$.
+- $1 \leq a_i \leq 10^{5}$.
 
 #### Các lời giải vét cạn
 
-Để duyệt hai dãy con không có phần chung, ta có thể duyệt mọi tập con làm dãy con đầu tiên, sau đó duyệt mọi tập con của tập các vị trí chưa được chọn làm tập con thứ hai. Có thể thấy, ta đang chia dãy $a$ thành $3$ tập: các phần tử được chọn cho dãy con thứ nhất, các phần tử được chọn cho dãy con thứ hai và các phần tử không được chọn cho tập nào. Độ phức tạp của thuật toán này là $\mathcal{O}(3^n)$.
+Để duyệt hai dãy con không có phần chung, ta có thể duyệt mọi tập con làm dãy con đầu tiên, sau đó duyệt mọi tập con của tập các vị trí chưa được chọn làm tập con thứ hai. Có thể thấy, ta đang chia dãy $a$ thành $3$ tập: các phần tử được chọn cho dãy con thứ nhất, các phần tử được chọn cho dãy con thứ hai và các phần tử không được chọn cho tập nào. Độ phức tạp của thuật toán này là $\mathcal{O}(3^{n})$.
 
-Ta có thể tối ưu thuật toán hơn bằng cách đưa ra nhận xét là tổng XOR của hai dãy con này luôn bằng $0$. Hơn nữa, khi có một dãy số có tổng XOR bằng $0$, mọi cách tách dãy số này ra thành hai phần không giao nhau đều cho ra hai dãy có tổng XOR bằng nhau. Ta có $2^m$ cách tách một dãy số có $m$ phần tử.
+Ta có thể tối ưu thuật toán hơn bằng cách đưa ra nhận xét là tổng XOR của hai dãy con này luôn bằng $0$. Hơn nữa, khi có một dãy số có tổng XOR bằng $0$, mọi cách tách dãy số này ra thành hai phần không giao nhau đều cho ra hai dãy có tổng XOR bằng nhau. Ta có $2^{m}$ cách tách một dãy số có $m$ phần tử.
 
 Từ đó, ta có thể tối ưu thuật toán trên thành: Duyệt mọi dãy con của $a$, gọi là $S$, nếu tổng XOR của chúng là $0$, tăng đáp án lên $2^{|S|}$.
 
@@ -731,10 +753,10 @@ Từ đó, ta có thể tối ưu thuật toán trên thành: Duyệt mọi dãy
 Một hàm ánh xạ tập hợp $f: U \rightarrow \mathbb{R}$ có thể được viết lại dưới dạng:
 
 $$
-g(x) = \sum_{S \subseteq U} f(S) \cdot x^S
+g(x) = \sum_{S \subseteq U} f(S) \cdot x^{S}
 $$
 
-Trong đó, ta gọi $g_S = f(S)$ là hệ số của số hạng $x^S$.
+Trong đó, ta gọi $g_S = f(S)$ là hệ số của số hạng $x^{S}$.
 
 Các phép toán được tìm hiểu ở phần trên (phép gộp tập hợp, nhân tập con và hiệu đối xứng) cũng được định nghĩa tương tự trên chuỗi lũy thừa tập hợp.
 :::
@@ -761,7 +783,7 @@ $$
 
 Lúc này, ta cần tính số cách chọn sao cho tổng XOR của hai dãy con bằng $0$. Nói cách khác, ta cần tính hàm $G$ là tích của các hàm sinh theo **phép hiệu đối xứng**. Đáp án khi đó sẽ là hệ số của số hạng $x^\varnothing$.
 
-Đến đây ta đã có thuật toán $\mathcal{O}(n \cdot 2^B)$ nếu nhân bằng thuật trâu (với $B = \lceil \log \max a \rceil$). Lưu ý rằng do số lượng số hạng có hệ số khác $0$ của từng hàm sinh là rất thấp nên việc áp dụng Fast Walsh-Hadamard Transform trực tiếp lên hàm sinh trong trường hợp này thậm chí còn làm chậm tốc độ chương trình.
+Đến đây ta đã có thuật toán $\mathcal{O}(n \cdot 2^{B})$ nếu nhân bằng thuật trâu (với $B = \lceil \log \max a \rceil$). Lưu ý rằng do số lượng số hạng có hệ số khác $0$ của từng hàm sinh là rất thấp nên việc áp dụng Fast Walsh-Hadamard Transform trực tiếp lên hàm sinh trong trường hợp này thậm chí còn làm chậm tốc độ chương trình.
 
 #### Thực hiện Walsh-Hadamard Transform
 
@@ -834,7 +856,7 @@ Từ cách tính $c_\texttt{even}, c_\texttt{odd}$ của bài toán trên, ta c�
 Khi biến đổi Walsh-Hadamard trên hàm thống kê của một dãy số. Ta được hàm $f$ sao cho $f(S)$ là số phần tử khi thực hiện bitwise AND với $S$ có số bit bật chẵn trừ đi số phần tử khi thực hiện bitwise AND với $S$ có số bit bật lẻ.
 :::
 
-Thuật toán cuối cùng của chúng ta có độ phức tạp $\mathcal{O}(n + 2^B \cdot B)$ và phần cài đặt ngắn (so với lời giải) một cách bất ngờ!
+Thuật toán cuối cùng của chúng ta có độ phức tạp $\mathcal{O}(n + 2^{B} \cdot B)$ và phần cài đặt ngắn (so với lời giải) một cách bất ngờ!
 
 :::spoiler Code tham khảo
 ```cpp=
@@ -843,22 +865,30 @@ using namespace std;
 
 const int MOD = 998'244'353;
 
-int add (int a, int b) { return a + b - (a + b < MOD ? 0 : MOD); }
-int sub (int a, int b) { return a - b + (a - b >= 0 ? 0 : MOD); }
-int mul (int a, int b) { return 1LL * a * b % MOD; }
+int add(int a, int b) {
+    return a + b - (a + b < MOD ? 0 : MOD);
+}
+int sub(int a, int b) {
+    return a - b + (a - b >= 0 ? 0 : MOD);
+}
+int mul(int a, int b) {
+    return 1LL * a * b % MOD;
+}
 
-int binpow (int a, int b) {
+int binpow(int a, int b) {
     int ans = 1;
     for (; b; b >>= 1, a = mul(a, a))
-        if (b & 1) ans = mul(ans, a);
+        if (b & 1)
+            ans = mul(ans, a);
     return ans;
 }
 
-vector<int> fwht (const vector<int> &f, int n) {
+vector<int> fwht(const vector<int> &f, int n) {
     vector<int> dp = f;
     for (int k = 0; k < n; k++) {
         for (int mask = 0; mask < (1 << n); mask++) {
-            if (mask & (1 << k)) continue;
+            if (mask & (1 << k))
+                continue;
             int u = dp[mask], v = dp[mask ^ (1 << k)];
             dp[mask] = u + v, dp[mask ^ (1 << k)] = u - v;
         }
@@ -866,17 +896,18 @@ vector<int> fwht (const vector<int> &f, int n) {
     return dp;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     /// read input
-    int n; cin >> n;
+    int n;
+    cin >> n;
     vector<int> freq(1 << 17);
 
     for (int i = 0; i < n; i++) {
-        int a; cin >> a;
+        int a;
+        cin >> a;
         freq[a]++;
     }
 
@@ -888,7 +919,8 @@ int main()
     for (int mask = 0; mask < (1 << 17); mask++) {
         int even = (n + diff[mask]) >> 1, odd = n - even;
         int wht = binpow(3, even);
-        if (odd & 1) wht = sub(0, wht);
+        if (odd & 1)
+            wht = sub(0, wht);
         ans = add(ans, wht);
     }
 

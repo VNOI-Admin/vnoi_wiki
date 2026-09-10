@@ -41,11 +41,11 @@ Xét ví dụ sau: cho đồ thị vô hướng liên thông $G$ gồm $n$ đỉ
 
 Ta dễ dàng nhận ra được là dưới định nghĩa tập độc lập như trên, nếu tập $T$ là cở sở của $E$, các cạnh trong $T$ dựng nên một cây khung của đồ thị $G$. Nói cách khác, các cây khung của $G$ dựng nên các cơ sở cho định nghĩa tập độc lập như trên. Đây là một cách định nghĩa tập độc lập trên tập các cạnh của đồ thị khá hữu ích.
 
-|![Figure_1](/algo/math/matroid1.png) |
+|![Figure_1](/uploads/algo/math/matroid/matroid1.png) |
 |:--:|
 |*Một tập cạnh độc lập. Đây còn là một cơ sở.*|
 
-|![Figure_2](/algo/math/matroid2.png)|
+|![Figure_2](/uploads/algo/math/matroid/matroid2.png)|
 |:--:|
 |*Một tập cạnh không độc lập.*|
 
@@ -77,13 +77,13 @@ Một số matroid điển hình bao gồm:
 - **Matroid đoạn hoành (transversal matroid).** Cho đồ thị hai phía $G$, với tập $E$ là tập các đỉnh ở phía trái đồ thị. Ta định nghĩa tập con các đỉnh của $E$ là tập độc lập nếu tồn tại một cách ghép tất cả các đỉnh của tập con này với các đỉnh ở phía phải đồ thị. Dưới định nghĩa này, ta thu được matroid đoạn hoành.
 
 ### Một số tính chất của matroid
-Với tập con $U \subseteq E$, ta định nghĩa hạng của $U$ ($\newcommand{\rank}{\operatorname{rank}} \rank(U)$) là kích cỡ tập con độc lập to nhất của $U$, thì ta thu được một số tính chất sau về hạng của $U$:
-- Hạng của $U$ không quá kích cỡ của $U$: $\rank(U) \le |U|$.
-- Nếu $U$ là tập độc lập, thì hạng của $U$ chính bằng kích cỡ của $U$: $U \in \mathcal{I} \Leftrightarrow \rank(U) = |U|$.
-- Hàm $\rank$ thỏa mãn tính chất môđun thứ (submodular): với $U, V \subseteq E$, ta có $\rank(U) + \rank(V) \ge \rank(U \cup V) + \rank(U \cap V)$.
+Với tập con $U \subseteq E$, ta định nghĩa hạng của $U$ ($\operatorname{rank}(U)$) là kích cỡ tập con độc lập to nhất của $U$, thì ta thu được một số tính chất sau về hạng của $U$:
+- Hạng của $U$ không quá kích cỡ của $U$: $\operatorname{rank}(U) \le |U|$.
+- Nếu $U$ là tập độc lập, thì hạng của $U$ chính bằng kích cỡ của $U$: $U \in \mathcal{I} \Leftrightarrow \operatorname{rank}(U) = |U|$.
+- Hàm $\operatorname{rank}$ thỏa mãn tính chất môđun thứ (submodular): với $U, V \subseteq E$, ta có $\operatorname{rank}(U) + \operatorname{rank}(V) \ge \operatorname{rank}(U \cup V) + \operatorname{rank}(U \cap V)$.
 
-Ta có thể định nghĩa thêm hạng $r$ của toàn bộ matroid là hạng của toàn bộ tập $E$ ($r = \rank(E)$), và cơ sở là các tập độc lập tối đa của matroid (ta không thể thêm phần tử nào khác vào mà vẫn giữ tập được độc lập), thì ta có tính chất sau:
-- Cơ sở của matroid là các tập độc lập $U$ mà $|U| = \rank(U) = r$.
+Ta có thể định nghĩa thêm hạng $r$ của toàn bộ matroid là hạng của toàn bộ tập $E$ ($r = \operatorname{rank}(E)$), và cơ sở là các tập độc lập tối đa của matroid (ta không thể thêm phần tử nào khác vào mà vẫn giữ tập được độc lập), thì ta có tính chất sau:
+- Cơ sở của matroid là các tập độc lập $U$ mà $|U| = \operatorname{rank}(U) = r$.
 - Với hai cơ sở khác nhau $U$ và $V$, và với mọi $u \in U \setminus V$, ta có thể tìm được $v \in V \setminus U$ sao cho $U - u + v$ vẫn là một cơ sở. Đây được gọi là tính chất trao đổi cơ sở (basis exchange property) của một matroid.
 
 ## Thuật toán tham lam tìm cơ sở nhỏ nhất/lớn nhất
@@ -98,12 +98,12 @@ Không mất tính tổng quát, ta sẽ giải bài toán tìm cơ sở lớn n
 3. Ta lặp qua các phần tử của $E$ sau khi đã sắp xếp. Với phần tử $e$ hiện tại, nếu $S + e$ vẫn còn là tập độc lập, ta thêm $e$ vào $S$ (gán $S := S + e$.)
 4. Sau khi lặp, ta trả lại $S$.
 
-Ta có thể chứng minh được thuật toán này trả về cơ sở lớn nhất của matroid. Ngoài ra, giả sử ta được cho một hàm kiểm tra tính độc lập: với tập độc lập $S$ và phần tử $e$ bất kì, ta có thể kiểm tra nếu $S + e$ là tập độc lập trong độ phức tạp $f(\mathcal{M})$, thì thấy rằng độ phức tạp của thuật toán trên là $O(n \log n + n f(\mathcal{M}))$.
+Ta có thể chứng minh được thuật toán này trả về cơ sở lớn nhất của matroid. Ngoài ra, giả sử ta được cho một hàm kiểm tra tính độc lập: với tập độc lập $S$ và phần tử $e$ bất kì, ta có thể kiểm tra nếu $S + e$ là tập độc lập trong độ phức tạp $f(\mathcal{M})$, thì thấy rằng độ phức tạp của thuật toán trên là $\mathcal{O}(n \log n + n f(\mathcal{M}))$.
 
 :::spoiler Chứng minh thuật toán
 Giả sử thuật toán trả về cơ sở $A = \{a_1, a_2, \dots, a_r\}$. Xét bất kì cơ sở nào khác $B = \{b_1, b_2, \dots, b_r\}$, và giả sử là ta đã sắp xếp $A$ và $B$ theo thứ tự trọng số giảm dần, tức là $w_{a_1} \ge w_{a_2} \ge \dots \ge w_{a_r}$ và $w_{b_1} \ge w_{b_2} \ge \dots \ge w_{b_r}$.
 
-Với mọi $k$ từ $1$ tới $r$, xét $A' = \{a_1, \dots, a_{k - 1}\}$ và $B' = \{b_1, \dots, b_k\}$. Vì $A$ và $B$ là tập độc lập, ta có $A'$ và $B'$ cũng là tập độc lập (tiên đề 2 của matroid). Ngoài ra, vì $|A'| = k - 1 < k = |B'|$, theo tiên đề 3 của matroid, tồn tại phần tử $b_j$ nào đó của $B'$ có thể cho vào $A'$ để $A'$ vẫn là tập độc lập (với $1 \le j \le k$). Tuy nhiên, theo thuật toán trên, $a_k$ là phần tử có trọng số lớn nhất có thể cho vào $A'$ để tập vẫn độc lập. Vậy nên ta có $w_{a_k} \ge w_{b_j} \ge w_{b_k}$. Vì ta chứng minh được điều này đúng với mọi $1 \le k \le r$, ta có $\sum_{i=1}^r w_{a_i} \ge \sum_{i=1}^r w_{b_i}$.
+Với mọi $k$ từ $1$ tới $r$, xét $A' = \{a_1, \dots, a_{k - 1}\}$ và $B' = \{b_1, \dots, b_k\}$. Vì $A$ và $B$ là tập độc lập, ta có $A'$ và $B'$ cũng là tập độc lập (tiên đề 2 của matroid). Ngoài ra, vì $|A'| = k - 1 < k = |B'|$, theo tiên đề 3 của matroid, tồn tại phần tử $b_j$ nào đó của $B'$ có thể cho vào $A'$ để $A'$ vẫn là tập độc lập (với $1 \le j \le k$). Tuy nhiên, theo thuật toán trên, $a_k$ là phần tử có trọng số lớn nhất có thể cho vào $A'$ để tập vẫn độc lập. Vậy nên ta có $w_{a_k} \ge w_{b_j} \ge w_{b_k}$. Vì ta chứng minh được điều này đúng với mọi $1 \le k \le r$, ta có $\sum_{i=1}^{r} w_{a_i} \ge \sum_{i=1}^{r} w_{b_i}$.
 :::
 
 Với bài toán tìm cơ sở nhỏ nhất, ta chỉ cần đổi thứ tự sắp xếp của $E$.
@@ -120,8 +120,11 @@ using namespace std;
 
 struct DSU {
     vector<int> par;
-    DSU(int n) : par(n, -1) {}
-    int comp(int u) { return par[u] < 0 ? u : par[u] = comp(par[u]); }
+    DSU(int n) : par(n, -1) {
+    }
+    int comp(int u) {
+        return par[u] < 0 ? u : par[u] = comp(par[u]);
+    }
     bool connect(int u, int v) {
         if ((u = comp(u)) == (v = comp(v))) {
             return false;
@@ -129,7 +132,8 @@ struct DSU {
         if (par[u] > par[v]) {
             swap(u, v);
         }
-        par[u] += par[v]; par[v] = u;
+        par[u] += par[v];
+        par[v] = u;
         return true;
     }
 };
@@ -138,7 +142,8 @@ struct GraphMat {
     vector<pair<int, int>> edges;
     int n;
     DSU d;
-    GraphMat(int n, vector<pair<int, int>> edges) : n(n), d(n), edges(edges) {}
+    GraphMat(int n, vector<pair<int, int>> edges) : n(n), d(n), edges(edges) {
+    }
     bool check(int x) {
         // kiểm tra nếu ta có thể thêm phần tử a vào tập S hiện tại
         auto [u, v] = edges[x];
@@ -149,10 +154,12 @@ struct GraphMat {
         auto [u, v] = edges[x];
         d.connect(u, v);
     }
-    void clear() { d = DSU(n); }
+    void clear() {
+        d = DSU(n);
+    }
 };
 
-template<class M>
+template <class M>
 vector<int> largestBasis(M mat, int n, vector<int> w) {
     vector<int> elem(n);
     iota(elem.begin(), elem.end(), 0);
@@ -176,7 +183,10 @@ int main() {
     vector<pair<int, int>> edges;
     vector<int> w(m);
     for (int i = 0; i < m; i++) {
-        int u, v; cin >> u >> v >> w[i]; u--; v--; // giả sử đồ thị cho đỉnh từ 1 tới n, ta biến thành từ 0 tới n - 1
+        int u, v;
+        cin >> u >> v >> w[i];
+        u--;
+        v--; // giả sử đồ thị cho đỉnh từ 1 tới n, ta biến thành từ 0 tới n - 1
         edges.push_back({u, v});
     }
     GraphMat mat(n, edges);

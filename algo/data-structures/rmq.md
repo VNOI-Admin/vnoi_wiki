@@ -21,17 +21,17 @@ dateCreated: 2023-12-25T11:01:47.736Z
 ---
 
 # Giới thiệu
-Bài toán $RMQ$ được phát biểu như sau:
+Bài toán $\text{RMQ}$ được phát biểu như sau:
 - Cho mảng $A$ gồm $N$ phần tử và $Q$ truy vấn có dạng $(l, r)$. Với mỗi truy vấn, in ra giá trị nhỏ nhất trong mảng $A$ từ $l$ đến $r$.
-Ví dụ: $A = [4, 6, 1, 5, 7, 3]\rightarrow min[2\ldots5] = min(6,1,5,7)=1$
+Ví dụ: $A = [4, 6, 1, 5, 7, 3]\rightarrow \min[2\ldots5] = \min(6,1,5,7)=1$
 
-Bài toán $RMQ$ có nhiều cách giải, nhưng $2$ cách phổ biến nhất là:
+Bài toán $\text{RMQ}$ có nhiều cách giải, nhưng $2$ cách phổ biến nhất là:
 - **Sparse Table**: $\mathcal{O}(N\log{N})$ tiền xử lý, $\mathcal{O}(1)$ mỗi truy vấn.
 - [Segment Tree](/algo/data-structures/segment-tree-basic): $\mathcal{O}(N)$ tiền xử lý, $\mathcal{O}(\log{N})$ mỗi truy vấn.
 
 Sự khác biệt giữa $2$ cách giải này nằm ở chỗ, [Segment Tree](/algo/data-structures/segment-tree-basic) có thể xử lý được **hoạt động sửa đổi** xen kẽ với các truy vấn, còn Sparse Table thì không.
 
-Nhưng Sparse Table không "phế", sức mạnh của Sparse Table nằm ở khả năng truy vấn trong $\mathcal{O}(1)$ khi các phép toán thoả mãn tính chất [Idempotence](https://en.wikipedia.org/wiki/Idempotence): "một giá trị có thể **xuất hiện nhiều lần** nhưng **không làm thay đổi kết quả** phép toán", ví dụ như $min,max,gcd,lcm,and,or,\ldots$
+Nhưng Sparse Table không "phế", sức mạnh của Sparse Table nằm ở khả năng truy vấn trong $\mathcal{O}(1)$ khi các phép toán thoả mãn tính chất [Idempotence](https://en.wikipedia.org/wiki/Idempotence): "một giá trị có thể **xuất hiện nhiều lần** nhưng **không làm thay đổi kết quả** phép toán", ví dụ như $\min, \max, \gcd, \operatorname{lcm}, \operatorname{and}, \operatorname{or}, \ldots$
 
 Và Sparse Table cũng có khả năng truy vấn trong $\mathcal{O}(\log{N})$ nếu phép toán không thoả mãn tính chất Idempotence (ví dụ như bài toán Range Sum Query ở [bên dưới](#range-sum-queries-rsq)).
 
@@ -50,11 +50,11 @@ void BuildLog2Array() {
 
 ## Range Minimum Query (RMQ)
 Cho mảng $A$ gồm $N$ phần tử và $Q$ truy vấn có dạng $(l, r)$. Với mỗi truy vấn, in ra giá trị nhỏ nhất trong mảng $A$ từ $l$ đến $r$.
-Giới hạn: $N, Q \le 10^5$
+Giới hạn: $N, Q \le 10^{5}$
 
 ### Thuật toán ngây thơ
 Ta duyệt qua tất cả phần tử.
-![](https://i.imgur.com/x2DCggl.gif)
+![](/uploads/algo/data-structures/rmq/x2DCggl.gif)
 ```cpp
 int a[N];
 int queryMin(int l, int r) {
@@ -74,10 +74,10 @@ Câu hỏi đặt ra là ta còn có thể tối ưu thời gian truy vấn đư
 - Nhận xét: Thay vì duyệt qua từng phần tử, ta có thể duyệt qua từng nhóm $2$ phần tử. Từ đó, ta có thể giảm thời gian truy vấn xuống còn $\mathcal{O}(\frac{N}2)$
 
 ### Thuật toán tối ưu 1.1
-- Ta xây dựng mảng $a2$ với công thức $a2_i = min(a_i, a_{i+1})$.
-![](https://i.imgur.com/ORCwi7l.gif)
-- Khi truy vấn, nếu độ dài đoạn cần truy vấn $len = 1$ thì ta in ra $a[l]$, nếu $len > 1$ thì ra dùng mảng $a2$:
-![](https://i.imgur.com/WE6aVdx.gif)
+- Ta xây dựng mảng $a2$ với công thức $a2_i = \min(a_i, a_{i+1})$.
+![](/uploads/algo/data-structures/rmq/ORCwi7l.gif)
+- Khi truy vấn, nếu độ dài đoạn cần truy vấn $\texttt{len} = 1$ thì ta in ra $a[l]$, nếu $\texttt{len} > 1$ thì ra dùng mảng $a2$:
+![](/uploads/algo/data-structures/rmq/WE6aVdx.gif)
 
 ```cpp
 int a[N], a2[N];
@@ -88,7 +88,8 @@ void preprocess() {
 }
 int queryMin(int l, int r) {
     int len = r - l + 1;
-    if (len == 1) return a[l];
+    if (len == 1)
+        return a[l];
 
     int mi = INT_MAX;
     for (int i = l; i + 1 <= r; i += 2) {
@@ -106,20 +107,20 @@ int queryMin(int l, int r) {
 
 #### Phân tích:
 - Độ phức tạp tiền xử lý: $\mathcal{O}(N)$ (tạo mảng $a2$)
-- Độ phức tạp truy vấn: $\mathcal{O}(\frac{N}2 + 1)$ ($1$ vòng for và $1$ lệnh if cho biến $len$)
+- Độ phức tạp truy vấn: $\mathcal{O}(\frac{N}2 + 1)$ ($1$ vòng for và $1$ lệnh if cho biến $\texttt{len}$)
 - Có $Q$ truy vấn, vì thế tổng độ phức tạp thời gian là $\mathcal{O}(N + Q \cdot (\frac{N}2 + 1))$
 - Độ phức tạp bộ nhớ: $\mathcal{O}(2N)$ ($2$ mảng $a$ và $a2$)
 
 ### Thuật toán tối ưu 1.2
 Tương tự 1.1, ta có nhận xét: Thay vì duyệt qua từng nhóm $2$ phần tử, ta có thể duyệt qua từng nhóm $4$ phần tử.
-![](https://i.imgur.com/dUAc0gY.gif)
+![](/uploads/algo/data-structures/rmq/dUAc0gY.gif)
 
 Từ đó, ta có thể giảm thời gian truy vấn xuống còn $\mathcal{O}(\frac{N}4)$
 Khi truy vấn:
-- Nếu độ dài đoạn cần truy vấn $len = 1$ thì ta in ra $a[l]$
-- Nếu độ dài đoạn cần truy vấn $len$ thoả mãn $1 < len < 4$ thì ta in ra $min(a2[l], a2[r - 1])$
-- nếu $len \geq 4$ thì ra dùng mảng $a4$:
-![](https://i.imgur.com/MsQwG4J.gif)
+- Nếu độ dài đoạn cần truy vấn $\texttt{len} = 1$ thì ta in ra $a[l]$
+- Nếu độ dài đoạn cần truy vấn $\texttt{len}$ thoả mãn $1 < \texttt{len} < 4$ thì ta in ra $\min(a2[l], a2[r - 1])$
+- nếu $\texttt{len} \geq 4$ thì ra dùng mảng $a4$:
+![](/uploads/algo/data-structures/rmq/MsQwG4J.gif)
 
 ```cpp
 int a[N], a2[N], a4[N];
@@ -133,7 +134,8 @@ void preprocess() {
 }
 int queryMin(int l, int r) {
     int len = r - l + 1;
-    if (len == 1) return a[l];
+    if (len == 1)
+        return a[l];
     if (len < 4) {
         return min(a2[l], a2[r - 1]);
         // dòng này hợp lý bởi vì chắc chắn 2 đoạn [l, l + 1] và [r - 1, r] sẽ giao nhau (vì 2 + 2 > len)
@@ -150,13 +152,13 @@ int queryMin(int l, int r) {
 
 #### Phân tích:
 - Độ phức tạp tiền xử lý: $\mathcal{O}(2N)$ (tạo mảng $a2$ và $a4$)
-- Độ phức tạp truy vấn: $\mathcal{O}(\frac{N}4 + 2)$ ($1$ vòng for và $2$ lệnh if cho biến $len$)
+- Độ phức tạp truy vấn: $\mathcal{O}(\frac{N}4 + 2)$ ($1$ vòng for và $2$ lệnh if cho biến $\texttt{len}$)
 - Có $Q$ truy vấn, vì thế tổng độ phức tạp thời gian là $\mathcal{O}(2N + Q \cdot (\frac{N}4 + 2))$
 - Độ phức tạp bộ nhớ: $\mathcal{O}(3N)$ ($3$ mảng $a$, $a2$ và $a4$)
 
 ### Thuật toán tối ưu 1.3
 Ta vẫn có thể tối ưu thời gian truy vấn bằng cách duyệt qua các nhóm lớn hơn (nhóm độ lớn $8$ phần tử).
-![](https://i.imgur.com/8SxlpId.gif)
+![](/uploads/algo/data-structures/rmq/8SxlpId.gif)
 
 ```cpp
 int a[N], a2[N], a4[N], a8[N];
@@ -173,9 +175,12 @@ void preprocess() {
 }
 int queryMin(int l, int r) {
     int len = r - l + 1;
-    if (len == 1) return a[l];
-    if (len < 4) return min(a2[l], a2[r - 1]);
-    if (len < 8) return min(a4[l], a4[r - 3]);
+    if (len == 1)
+        return a[l];
+    if (len < 4)
+        return min(a2[l], a2[r - 1]);
+    if (len < 8)
+        return min(a4[l], a4[r - 3]);
 
     int mi = INT_MAX;
     for (int i = l; i + 7 <= r; i += 8) {
@@ -188,34 +193,34 @@ int queryMin(int l, int r) {
 
 #### Phân tích:
 - Độ phức tạp tiền xử lý: $\mathcal{O}(3N)$ (tạo mảng $a2$, $a4$ và $a8$)
-- Độ phức tạp truy vấn: $\mathcal{O}(\frac{N}8 + 3)$ ($1$ vòng for và $3$ lệnh if cho biến $len$)
+- Độ phức tạp truy vấn: $\mathcal{O}(\frac{N}8 + 3)$ ($1$ vòng for và $3$ lệnh if cho biến $\texttt{len}$)
 - Có $Q$ truy vấn, vì thế tổng độ phức tạp thời gian là $\mathcal{O}(3N + Q \cdot (\frac{N}8 + 3))$
 - Độ phức tạp bộ nhớ: $\mathcal{O}(4N)$ ($4$ mảng $a$, $a2$, $a4$ và $a8$)
 
 ### Thuật toán tối ưu 1.n
-Nếu ta làm tiếp như thuật toán tối ưu $1.3$ (tiếp tục tạo các mảng $a16, a32, \dots, a65536$) ta sẽ có $\log_2(N)$ mảng $a$, độ phức tạp bài toán lúc này như sau:
+Nếu ta làm tiếp như thuật toán tối ưu 1.3 (tiếp tục tạo các mảng $a16, a32, \dots, a65536$) ta sẽ có $\log_2(N)$ mảng $a$, độ phức tạp bài toán lúc này như sau:
 - Độ phức tạp tiền xử lý: $\mathcal{O}(N \log N)$ ($\log_2$ mảng $a$)
-- Độ phức tạp truy vấn: $\mathcal{O}\left(\dfrac{N}{2^{\log N}} + \log N\right) = \mathcal{O}(\log N)$ ($1$ vòng for và $\log_2$ lệnh if cho biến $len$)
+- Độ phức tạp truy vấn: $\mathcal{O}\left(\frac{N}{2^{\log N}} + \log N\right) = \mathcal{O}(\log N)$ ($1$ vòng for và $\log_2$ lệnh if cho biến $\texttt{len}$)
 - Có $Q$ truy vấn, vì thế tổng độ phức tạp thời gian là $\mathcal{O}(N\log N + Q\log N)$
 - Độ phức tạp bộ nhớ: $\mathcal{O}(N\log N)$ (mảng $a$ ban đầu và $\log_2$ mảng $a$ tiền xử lý)
 
 ### Thuật toán tối ưu 2
 Nhưng nếu dùng $\log_2$ mảng $a$ sẽ mang đến cho ta nhiều bất tiện (code dài, dễ sai, ...). Do đó, ta có thể đặt:
-- $st[j][i]$ là giá trị nhỏ nhất của $2^j$ phần tử tính từ $i$ (min của $a[i\ldots i + 2^j - 1]$), tương ứng với $a(2^j)[i]$) ($st$ ở đây là viết tắt của $S$(parse)$T$(able)).
+- $st[j][i]$ là giá trị nhỏ nhất của $2^{j}$ phần tử tính từ $i$ (min của $a[i\ldots i + 2^{j} - 1]$), tương ứng với $a(2^{j})[i]$) ($st$ ở đây là viết tắt của $S$(parse)$T$(able)).
 - Ta có công thức truy hồi sau:
 $$st[j][i] =
 \begin{cases}
 a[i] & \text{ với } j = 0 \\
-min(st[j-1][i], st[j-1][i + 2^{j-1}]) & \text{ với } j > 0
+\min(st[j-1][i], st[j-1][i + 2^{j-1}]) & \text{ với } j > 0
 \end{cases}$$
 
 Nhận xét thêm:
-- $\log$ lệnh if trong $queryMin$ lúc này thật ra chỉ thực hiện nhiệm vụ: tìm $k$ nhỏ nhất thoả mãn $len < 2^{k+1} = 2^k + 2^k$ (hay nói cách khác là để chắc chắn $2$ đoạn $[l\ldots l+2^k-1]$ và $[r-2^k+1,r]$ giao nhau nhưng vẫn nằm trong đoạn $[l,r]$).
-![](https://i.imgur.com/Wh92peP.png)
+- $\log$ lệnh if trong $\texttt{queryMin}$ lúc này thật ra chỉ thực hiện nhiệm vụ: tìm $k$ nhỏ nhất thoả mãn $\texttt{len} < 2^{k+1} = 2^{k} + 2^{k}$ (hay nói cách khác là để chắc chắn $2$ đoạn $[l\ldots l+2^{k}-1]$ và $[r-2^{k}+1,r]$ giao nhau nhưng vẫn nằm trong đoạn $[l,r]$).
+![](/uploads/algo/data-structures/rmq/Wh92peP.png)
 - Ví dụ:
-    - $len=6\Rightarrow k=2$, vì $6 < 2^{k+1} = 8$
-    - $len=8\Rightarrow k=3$, vì $8 < 2^{k+1}=16$
-- Vậy nên, $k$ còn có một cách tính khác là $k=\texttt{\_\_lg}(len)$ (phần nguyên của phép $\log_2(len)$)
+    - $\texttt{len}=6\Rightarrow k=2$, vì $6 < 2^{k+1} = 8$
+    - $\texttt{len}=8\Rightarrow k=3$, vì $8 < 2^{k+1}=16$
+- Vậy nên, $k$ còn có một cách tính khác là $k=\texttt{\_\_lg}(\texttt{len})$ (phần nguyên của phép $\log_2(\texttt{len})$)
 - Từ đây, ta có thể giảm độ phức tạp truy vấn xuống còn $\mathcal{O}(1)!!!!!!!$
 
 ```cpp
@@ -223,7 +228,8 @@ Nhận xét thêm:
 // ví dụ: N = 10^5 thì LG = 16 vì 2^16 = 65536
 int a[N], st[LG + 1][N];
 void preprocess() {
-    for (int i = 1; i <= n; ++i) st[0][i] = a[i];
+    for (int i = 1; i <= n; ++i)
+        st[0][i] = a[i];
     for (int j = 1; j <= LG; ++j)
         for (int i = 1; i + (1 << j) - 1 <= n; ++i)
             st[j][i] = min(st[j - 1][i], st[j - 1][i + (1 << (j - 1))]);
@@ -242,20 +248,20 @@ int queryMin(int l, int r) {
 ## Range Sum Queries (RSQ)
 ### Bài toán
 Cho mảng $A$ gồm $N$ phần tử và $Q$ truy vấn có dạng $(l, r)$. Với mỗi truy vấn, in ra **tổng** các phần tử trong mảng $A$ từ $l$ đến $r$.
-Giới hạn: $N, Q \le 10^5$
+Giới hạn: $N, Q \le 10^{5}$
 
 ### Ý tưởng
 Giống như RMQ, ta vẫn sẽ dựng mảng $st[LG+1][N]$.
 
-Nhưng lúc này, ta không thể lấy $k = \texttt{\_\_lg}(len)$ rồi $res = sum[l\ldots l+2^k-1] + sum[r-2^k+1\ldots r]$ như RMQ được nữa (vì $2$ đoạn chắc chắn giao nhau).
+Nhưng lúc này, ta không thể lấy $k = \texttt{\_\_lg}(\texttt{len})$ rồi $\texttt{res} = \texttt{sum}[l\ldots l+2^{k}-1] + \texttt{sum}[r-2^{k}+1\ldots r]$ như RMQ được nữa (vì $2$ đoạn chắc chắn giao nhau).
 
-Nhận xét: Ta luôn có thể tách một số nguyên dương thành tổng các lũy thừa phân biệt của 2 (hệ nhị phân). Ví dụ: $25 = 2^4 + 2^3 + 2^0 = 11001_2$.
+Nhận xét: Ta luôn có thể tách một số nguyên dương thành tổng các lũy thừa phân biệt của 2 (hệ nhị phân). Ví dụ: $25 = 2^{4} + 2^{3} + 2^{0} = 11001_2$.
 
-Từ nhận xét trên, ta có thể tách $[l\ldots r]$ thành $\log_2$ đoạn có độ dài $2^x$ như sau:
-- Đặt $len = r - l + 1$
-- Duyệt $j$ từ $0$ đến $\texttt{\_\_lg}(len)$, nếu bit thứ $j$ của $len$ là $1$ thì:
-    - Ta tách $[l\ldots r]$ thành $[l\ldots l+2^j-1]$ và $[l+2^j\ldots r]$
-    - $l = l + 2^j$ (tiếp tục tách $[l+2^j\ldots r]$ như $[l\ldots r]$)
+Từ nhận xét trên, ta có thể tách $[l\ldots r]$ thành $\log_2$ đoạn có độ dài $2^{x}$ như sau:
+- Đặt $\texttt{len} = r - l + 1$
+- Duyệt $j$ từ $0$ đến $\texttt{\_\_lg}(\texttt{len})$, nếu bit thứ $j$ của $\texttt{len}$ là $1$ thì:
+    - Ta tách $[l\ldots r]$ thành $[l\ldots l+2^{j}-1]$ và $[l+2^{j}\ldots r]$
+    - $l = l + 2^{j}$ (tiếp tục tách $[l+2^{j}\ldots r]$ như $[l\ldots r]$)
 
 ### Cài đặt
 ```cpp
@@ -263,7 +269,8 @@ Từ nhận xét trên, ta có thể tách $[l\ldots r]$ thành $\log_2$ đoạn
 // ví dụ: N = 10^5 thì LG = 16 vì 2^16 = 65536
 int a[N], st[LG + 1][N];
 void preprocess() {
-    for (int i = 1; i <= n; ++i) st[0][i] = a[i];
+    for (int i = 1; i <= n; ++i)
+        st[0][i] = a[i];
     for (int j = 1; j <= LG; ++j)
         for (int i = 1; i + (1 << j) - 1 <= n; ++i)
             st[j][i] = st[j - 1][i] + st[j - 1][i + (1 << (j - 1))];
@@ -307,8 +314,8 @@ Vậy bài toán lúc này không thể dùng mảng cộng dồn, cũng không 
 Ta có bài toán như sau:
 - Cho một ma trận $2$ chiều độ lớn $M\times N$ và $Q$ truy vấn $(x_1, y_1, x_2, y_2)$. Với mỗi truy vấn, in ra giá trị nhỏ nhất trong ma trận con có góc trái dưới là $(x_1, y_1)$ và góc phải trên là $(x_2, y_2)$.
 - Giới hạn:
-    - $M, N \le 10^3$
-    - $Q \le 10^6$
+    - $M, N \le 10^{3}$
+    - $Q \le 10^{6}$
 
 Hiện tại, ta đang có $2$ thuật toán:
 - **Thuật toán ngây thơ:** Duyệt qua tất cả phần tử trong ma trận con.
@@ -328,18 +335,18 @@ Với giới hạn như trên, rõ ràng cả $2$ thuật toán đều không đ
 - Xem mỗi Sparse Table 1D của mỗi hàng như $1$ "nhóm" phần tử.
 - Để gộp $2$ "nhóm" phần tử, ta thực hiện gộp từng "phần tử" trong "nhóm".
 
-| ![](https://i.imgur.com/MPrrpbW.gif)          |
+| ![](/uploads/algo/data-structures/rmq/MPrrpbW.gif)          |
 | :-------------------------------------------: |
-| ![](https://i.imgur.com/MnTNZ41.png)          |
+| ![](/uploads/algo/data-structures/rmq/MnTNZ41.png)          |
 | Gộp $2$ "nhóm" Sparse Table                   |
 
 Từ ý tưởng trên, ta xây dựng công thức như sau:
-- Đặt $st(k, i)(l, j)$ là giá trị nhỏ nhất của hình chữ nhật $[i\ldots i+2^k-1][j\ldots j+2^l-1]$
-- Khi $k = 0$, ta dựng Sparse Table 1D của hàng $i$ (vì $2^k=1$), là $st(0,i)$:
+- Đặt $st(k, i)(l, j)$ là giá trị nhỏ nhất của hình chữ nhật $[i\ldots i+2^{k}-1][j\ldots j+2^{l}-1]$
+- Khi $k = 0$, ta dựng Sparse Table 1D của hàng $i$ (vì $2^{k}=1$), là $st(0,i)$:
 $$st(0,i)(l,j)=\left\{
 \begin{matrix}
 A[i][j] & \text{ với } l = 0 \\
-min\left\{st(0,i)(l-1,j), st(0,i)(l-1,j+2^{l-1})\right\} & \text{ với } l > 0
+\min\left\{st(0,i)(l-1,j), st(0,i)(l-1,j+2^{l-1})\right\} & \text{ với } l > 0
 \end{matrix}
 \right.$$
 - Khi $k > 0$, ta dựng $st(k,i)$ bằng cách gộp $st(k-1,i)$ và $st(k-1,i + 2^{k-1})$.
@@ -349,9 +356,9 @@ $$st(k,i)(l,j)=\left\{
 \begin{matrix}
 A[i][j]
 & \text{ với } k = 0 \text{ và } l = 0 \\
-min\left\{st(k,i)(l - 1,j), st(k,i)(l - 1,j+2^{l-1})\right\}
+\min\left\{st(k,i)(l - 1,j), st(k,i)(l - 1,j+2^{l-1})\right\}
 & \text{ với } k = 0 \text{ và } l > 0 \\
-min\left\{st(k - 1,i)(l,j), st(k - 1,i+2^{k-1})(l,j)\right\}
+\min\left\{st(k - 1,i)(l,j), st(k - 1,i+2^{k-1})(l,j)\right\}
 & \text{ với } k > 0 \\
 \end{matrix}
 \right.$$
@@ -366,12 +373,10 @@ void preprocess() {
                     if (k == 0) {
                         if (l == 0) {
                             st[0][i][0][j] = a[i][j];
-                        }
-                        else {
+                        } else {
                             st[0][i][l][j] = min(st[0][i][l - 1][j], st[0][i][l - 1][j + (1 << (l - 1))]);
                         }
-                    }
-                    else {
+                    } else {
                         st[k][i][l][j] = min(st[k - 1][i][l][j], st[k - 1][i + (1 << (k - 1))][l][j]);
                     }
                 }
@@ -380,24 +385,24 @@ void preprocess() {
     }
 }
 ```
-Để truy vấn $min([x\ldots a][y\ldots b])$ trong $\mathcal{O}(1)$ bằng Sparse Table 2D, ta làm tương tự như [Bài Toán RMQ](#Range-Minimum-Queries-RMQ), nhưng tách cả $2$ chiều $M$ và $N$, nghĩa là:
+Để truy vấn $\min([x\ldots a][y\ldots b])$ trong $\mathcal{O}(1)$ bằng Sparse Table 2D, ta làm tương tự như [Bài Toán RMQ](#Range-Minimum-Queries-RMQ), nhưng tách cả $2$ chiều $M$ và $N$, nghĩa là:
 $$\begin{cases}
 k = \log_2(a - x + 1) \\
 l = \log_2(b - y + 1) \\
-min([x\ldots a][y\ldots b]) = min(& min([x\ldots x+2^k][y\ldots y+2^l]), \\
-& min([x\ldots x+2^k][b-2^l+1\ldots b]), \\
-& min([a-2^k+1\ldots a][y\ldots y+2^l]), \\
-& min([a-2^k+1\ldots a][b-2^l+1\ldots b])
+\min([x\ldots a][y\ldots b]) = \min(& \min([x\ldots x+2^{k}][y\ldots y+2^{l}]), \\
+& \min([x\ldots x+2^{k}][b-2^{l}+1\ldots b]), \\
+& \min([a-2^{k}+1\ldots a][y\ldots y+2^{l}]), \\
+& \min([a-2^{k}+1\ldots a][b-2^{l}+1\ldots b])
 \end{cases}$$
 
 ```cpp
 int getMin(int x, int y, int a, int b) {
     int k = __lg(a - x + 1);
     int l = __lg(b - y + 1);
-    return min({ st[k][x][l][y],
-                 st[k][x][l][b - (1 << l) + 1],
-                 st[k][a - (1 << k) + 1][l][y],
-                 st[k][a - (1 << k) + 1][l][b - (1 << l) + 1] });
+    return min({st[k][x][l][y],
+                st[k][x][l][b - (1 << l) + 1],
+                st[k][a - (1 << k) + 1][l][y],
+                st[k][a - (1 << k) + 1][l][b - (1 << l) + 1]});
 ```
 
 ## Bài toán: [Codechef - Chef and Rectangle Array](https://www.codechef.com/problems/CHSQARR)
@@ -417,7 +422,7 @@ Giới hạn:
 - $1 \le b \le N$
 
 ## Ý tưởng
-- Duyệt qua tất cả các ma trận con $a \times b$, số thao tác tối thiểu để các phần tử của ma trận con $a \times b$ bằng nhau là $maxValue \times a \times b - sumValue$.
+- Duyệt qua tất cả các ma trận con $a \times b$, số thao tác tối thiểu để các phần tử của ma trận con $a \times b$ bằng nhau là $\texttt{maxValue} \times a \times b - \texttt{sumValue}$.
 
 ### Phân tích độ phức tạp
 - Độ phức tạp tiền xử lý: $\mathcal{O}(MN\log M\log N)$
@@ -450,12 +455,10 @@ void preprocess() {
                     if (k == 0) {
                         if (l == 0) {
                             st[0][i][0][j] = a[i][j];
-                        }
-                        else {
+                        } else {
                             st[0][i][l][j] = max(st[0][i][l - 1][j], st[0][i][l - 1][j + (1 << (l - 1))]);
                         }
-                    }
-                    else {
+                    } else {
                         st[k][i][l][j] = max(st[k - 1][i][l][j], st[k - 1][i + (1 << (k - 1))][l][j]);
                     }
                 }
@@ -469,10 +472,10 @@ int getSum(int x, int y, int a, int b) {
 int getMax(int x, int y, int a, int b) {
     int k = __lg(a - x + 1);
     int l = __lg(b - y + 1);
-    return max({ st[k][x][l][y],
-                 st[k][x][l][b - (1 << l) + 1],
-                 st[k][a - (1 << k) + 1][l][y],
-                 st[k][a - (1 << k) + 1][l][b - (1 << l) + 1] });
+    return max({st[k][x][l][y],
+                st[k][x][l][b - (1 << l) + 1],
+                st[k][a - (1 << k) + 1][l][y],
+                st[k][a - (1 << k) + 1][l][b - (1 << l) + 1]});
 }
 
 int main() {

@@ -34,7 +34,7 @@ Liệu ta có thể giúp anh ấy có một kỳ nghỉ tuyệt vời? Ta hoàn
 - John có thể thực hiện cả hoạt động $i$ và hoạt động $j$, nếu 2 khoảng thời gian $[L_i, R_i]$ và $[L_j, R_j]$ không giao nhau.
 - Là một lập trình viên tỉ mỉ, một khi đã đặt ra kế hoạch, anh ấy buộc phải thực hiện nó.
 
-Mỗi hoạt động chỉ có hai chọn lựa là có hoặc không. Với mỗi trường hợp chọn lựa cho hoạt động thứ nhất, ta lại có thêm 2 lựa chọn cho hoạt động thứ 2. Phân tích nhanh ta sẽ thấy được rằng có $2^n$ trường hợp, và trong tình huống này thì sẽ có $2^{10} = 1024$ trường hợp. Với mỗi trường hợp ta sẽ kiểm tra xem có thể thực hiện được các hoạt động đó không: có 2 cặp hoạt động nào bị trùng thời gian hay không. Sau khi xét hết các phương án, ta dễ dàng tìm ra 1 phương án có nhiều hoạt động nhất. Với khá nhiều sự chọn lựa như thế này, John buộc phải nhờ đến sự giúp đỡ của chiếc máy tính đang mệt mỏi. Nhưng điều gì sẽ xảy ra nếu John có tới 50 hoạt động trong danh sách? Thậm chí dùng đến cả siêu máy tính nhanh nhất thế giới thì cũng cần đến vài năm để tìm ra câu trả lời. Thế nên, phương án này khá phi thực tế.
+Mỗi hoạt động chỉ có hai chọn lựa là có hoặc không. Với mỗi trường hợp chọn lựa cho hoạt động thứ nhất, ta lại có thêm 2 lựa chọn cho hoạt động thứ 2. Phân tích nhanh ta sẽ thấy được rằng có $2^{n}$ trường hợp, và trong tình huống này thì sẽ có $2^{10} = 1024$ trường hợp. Với mỗi trường hợp ta sẽ kiểm tra xem có thể thực hiện được các hoạt động đó không: có 2 cặp hoạt động nào bị trùng thời gian hay không. Sau khi xét hết các phương án, ta dễ dàng tìm ra 1 phương án có nhiều hoạt động nhất. Với khá nhiều sự chọn lựa như thế này, John buộc phải nhờ đến sự giúp đỡ của chiếc máy tính đang mệt mỏi. Nhưng điều gì sẽ xảy ra nếu John có tới 50 hoạt động trong danh sách? Thậm chí dùng đến cả siêu máy tính nhanh nhất thế giới thì cũng cần đến vài năm để tìm ra câu trả lời. Thế nên, phương án này khá phi thực tế.
 
 
 ## Tiếp cận 1
@@ -60,7 +60,7 @@ Hãy thử một mánh khóe khác. Giờ ta sẽ bỏ những hoạt động ti
 Trong 10 hành động, ta đã lựa ra được 6 hành động, không tệ chút nào! Giờ thì thuật toán của ta vẫn chạy rất nhanh và đáng tin cậy hơn chút. Và quả thực, đáp án chính xác trong trường hợp này là 6. John rất hài lòng về sự hỗ trợ của chúng ta, nhưng sau khi trở về từ kỳ nghỉ với kế hoạch thông minh này, John đã phải đối mặt với những rắc rối nghiêm trọng khác:
 
 <div align="center">
-	<img src="http://community.topcoder.com/i/education/greedyAlg1.gif" alt="" border="0">
+	<img src="/uploads/translate/topcoder/Greedy-is-Good/greedyAlg1.gif" alt="" border="0">
 </div>
 
 Áp dụng thuật toán của ta, John đã tham gia một cuộc hẹn hò chóng vánh (màu đỏ), để rồi anh ấy đã bỏ lỡ cả bài thi trong trường (màu xanh da trời) lẫn trận đấu bóng rổ của đội anh ấy yêu thích (màu xanh lá). Là một **Topcoder**, chúng ta cần phải viết ra một chương trình hoàn toàn chính xác, chứ không phải chỉ đúng trong 1 số trường hợp. Chỉ cần một trường hợp duy nhất chúng ta không giải quyết được sẽ dẫn tới một thất bại toàn diện.
@@ -72,7 +72,7 @@ Những gì mà chúng ta thường làm trong tình huống này là phân tíc
 Để đảm bảo rằng phương pháp này hoàn toàn đúng đắn, lần này ta hãy thử chứng minh. Giờ giả sử ta đã lựa chọn hoạt động X, ta sẽ thử kiểm tra xem ta có thể lựa chọn hoạt động A và B (những hoạt động bị trùng lặp với X) thay vì X được hay không. Và A, B cũng không được trùng lặp nhau, nếu không ta cũng không thể tối ưu hóa kết quả. Bây giờ, ta sẽ quay về trường hợp trước đó (X trùng với 2 hoạt động, A và B trùng với 1 hoạt động). Trong trường hợp này, ta sẽ chọn A và B ngay từ đầu tiên. Một trong những cách để phản bác lại giả thiết này chính là cho hoạt động A và B trùng lặp với nhiều hoạt động hơn nữa chứ không chỉ hoạt động X. Nghe nó có vẻ không trực quan cho lắm, nhưng (thật không may) ta vẫn có thể xây dựng trường hợp đó như sau:
 
 <div align="center">
-	<img src="http://community.topcoder.com/i/education/greedyAlg2.gif" alt="" border="0">
+	<img src="/uploads/translate/topcoder/Greedy-is-Good/greedyAlg2.gif" alt="" border="0">
 </div>
 
 Nhưng hoạt động được biểu diễn bằng gạch màu xanh chính là những lựa chọn tối ưu trong thời gian biểu trên. Nhưng hoạt động tô màu đỏ trùng lặp với 2 hoạt động nên nó sẽ được chọn trước. Vẫn còn 4 hoạt động thích hợp khác trước hoạt động đỏ, nhưng chúng đều bị trùng lặp lẫn nhau, thế nên ta chỉ có thể lựa chọn thêm 1 hoạt động. Điều tương tự cũng xảy ra đối với 4 hoạt động sau hoạt động màu đỏ, nhưng ta vẫn chỉ có thể chọn 1. Vậy tổng cộng theo phương pháp này, ta vẫn chỉ có thể chọn 3 hoạt động, trong khi kết quả tối ưu là 4.
@@ -158,9 +158,9 @@ Việc đầu tiên mà ta cần làm là xây dựng một ma trận cho biết
 
 Ví dụ, hãy xét bộ `{"ACTAGAGAC", "AAAAAAAAA", "TAGTCATAC", "GCAGCATTC"}` được sử dụng ở ví dụ thứ 2.
 
-![Ví dụ](http://community.topcoder.com/i/education/greedyAlg3.gif)
+![Ví dụ](/uploads/translate/topcoder/Greedy-is-Good/greedyAlg3.gif)
 
-Ở góc phải - dưới của hình minh họa trên, ta có thể thấy kết quả của ma trận tần số đối với bộ đã cho. Tạm gọi nó là $F$. Giờ việc mà ta cần làm là tìm ra một ma trận $S$ sao cho tổng của các tích: $F[i, j] \* S[i, j]$ với $(1 \le i, j \le 4)$ là lớn nhất.
+Ở góc phải - dưới của hình minh họa trên, ta có thể thấy kết quả của ma trận tần số đối với bộ đã cho. Tạm gọi nó là $F$. Giờ việc mà ta cần làm là tìm ra một ma trận $S$ sao cho tổng của các tích: $F[i, j] \times S[i, j]$ với $(1 \le i, j \le 4)$ là lớn nhất.
 
 Giờ ta xét từng điều kiện cho ma trận cần tìm:
 
@@ -192,9 +192,9 @@ Do tính chất này, ta phải xét riêng hai loại phần tử:
 - 4 phần tử trên đường chéo (các phần tử đại diện cho `AA`, `CC`, `GG`, `TT`)
 - 6 phần tử không nằm trên đường chéo (các phần tử đại diện cho `AC + CA`, `AG + GA`, `AT + TA`, `CG + GC`, `CT + TC`, `GT +TG`).
 
-Ta xét tất cả các trường hợp chọn các phần tử của nhóm thứ nhất. Có $10^4 = 10,000$ trường hợp khác nhau. Với mỗi trường hợp của nhóm thứ nhất, ta sẽ tìm đáp án tối ưu cho nhóm thứ 2.
+Ta xét tất cả các trường hợp chọn các phần tử của nhóm thứ nhất. Có $10^{4} = 10,000$ trường hợp khác nhau. Với mỗi trường hợp của nhóm thứ nhất, ta sẽ tìm đáp án tối ưu cho nhóm thứ 2.
 
-- Với mỗi trường hợp, ta có tổng các phần tử của nhóm thứ nhất nằm trong khoảng $[4, 40]$, nên tổng các phần tử của nhóm thứ 2 nằm trong khoảng $[-20, -2] *(chú ý rằng nhóm thứ 2 đối xứng, mỗi phần tử xuất hiện 2 lần trong ma trận S, nên ta phải nhân đôi)*
+- Với mỗi trường hợp, ta có tổng các phần tử của nhóm thứ nhất nằm trong khoảng $[4, 40]$, nên tổng các phần tử của nhóm thứ 2 nằm trong khoảng $[-20, -2]$ *(chú ý rằng nhóm thứ 2 đối xứng, mỗi phần tử xuất hiện 2 lần trong ma trận $S$, nên ta phải nhân đôi)*
 - Vì các phần tử của nhóm 2 có chung tính chất, ta sử dụng Tham lam để tìm kết quả tối ưu cho nhóm thứ 2.
 
 Nhắc lại tư tưởng của Tham lam: tại mỗi bước, ta chọn một lựa chọn tối ưu cục bộ. Trong trường hợp này nghĩa là ta xét lần lượt từng phần tử, với mỗi phần tử, gán cho nó giá trị tối ưu.
@@ -217,11 +217,11 @@ Giờ ta cần chứng minh rằng phương pháp của mình là đúng.
 - Vì ta xét hết tất cả các trường hợp của nhóm 1, nên ta chỉ cần chứng minh cách chọn các phần tử của nhóm 2 là tối ưu.
 - Vì tổng các phần tử của nhóm 2 cố định, nên nếu ta tăng 1 phần tử, thì phải giảm 1 phần tử khác.
 - Gọi $f_1$ và $f_2$ là số lần xuất hiện của 2 số bất kỳ của nhóm 2. Ta có:
-  - $f_1 \* s_1 + f_2 \* s_2 = X$.
+  - $f_1 \times s_1 + f_2 \times s_2 = X$.
 - Không làm mất tính tổng quát, giả sử $f_1 \ge f_2$. Do cách tham, ta có $s_1 \ge s_2$. Ta cũng có $s_1$ là lớn nhất có thể, nên ta không thể tăng $s_1$.
 - Giả sử cách làm của ta không tối ưu, nghĩa là ta có một cách chọn 1 số $a$ sao cho:
-  - $f_1 \* (s_1 - a) + f_2 \* (s_2 + a) = Y$ với $a$ là số dương.
-  - Ta có $Y-X = a * (f2-f1)$. Bởi vì $f1 \ge f2$ nên $Y-X$ luôn âm.
+  - $f_1 \times (s_1 - a) + f_2 \times (s_2 + a) = Y$ với $a$ là số dương.
+  - Ta có $Y-X = a \times (f_2-f_1)$. Bởi vì $f_1 \ge f_2$ nên $Y-X$ luôn âm.
 
 Do vậy, cách làm của ta là tối ưu.
 
@@ -250,7 +250,7 @@ Endfor
 Return Best
 ```
 
-Đối với mảng lưu điểm đã cho (trong trường hợp của chúng ta là mảng $S$), ta sẽ tính kết quả cuối cùng bằng việc chỉ tính tổng của tích $F[I] \* S[I] (1 \le I \le 10)$.
+Đối với mảng lưu điểm đã cho (trong trường hợp của chúng ta là mảng $S$), ta sẽ tính kết quả cuối cùng bằng việc chỉ tính tổng của tích $F[I] \times S[I] (1 \le I \le 10)$.
 
 
 # [**GoldMine**](https://community.topcoder.com/stat?c=problem_statement&pm=1957&rd=4650)
@@ -259,11 +259,11 @@ Return Best
 
 Có $N$ mỏ vàng, mỗi mỏ vàng chứa được tối đa $6$ công nhân. Bằng cách phân bổ các công nhân, công ty sẽ thu được (hoặc mất đi) số tiền như sau:
 
-  - Nếu mỏ vàng có ít nhân công hơn trữ lượng của nó, công ty sẽ thu được $60$$ với mỗi công nhân.
+  - Nếu mỏ vàng có ít nhân công hơn trữ lượng của nó, công ty sẽ thu được $60 \$$ với mỗi công nhân.
 
-  - Nếu mỏ vàng có số công nhân bằng với trữ lượng của nó, công ty sẽ thu được $50$$ cho với mỗi công nhân.
+  - Nếu mỏ vàng có số công nhân bằng với trữ lượng của nó, công ty sẽ thu được $50 \$$ cho với mỗi công nhân.
 
-  - Nếu mỏ vàng có số công nhân nhiều hơn trữ lượng của nó, công ty sẽ được số tiền là $50$ nhân cho trữ lượng mỏ. Với mỗi công nhân bị thừa ra so với sản lượng mỏ, công ty sẽ bị mất đi $20$$.
+  - Nếu mỏ vàng có số công nhân nhiều hơn trữ lượng của nó, công ty sẽ được số tiền là $50$ nhân cho trữ lượng mỏ. Với mỗi công nhân bị thừa ra so với sản lượng mỏ, công ty sẽ bị mất đi $20 \$$.
 
 Dù cho có bị mất tiền đi chăng nữa thì công ty cũng buộc phải phân công đủ các công nhân vào các mỏ.
 
@@ -284,15 +284,15 @@ Trong ví dụ, ta có 4 công nhân cần được phân công. Bảng dưới 
 |      | Ban đầu | Người 1 | Người 2 | Người 3 | Người 4 | Người 5 | Người 6 |
 |:----:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|
 | Mỏ 1 | $-$     | $57$    | $30$    | $0$     | $-20$   | $-20$   | $-20$   |
-| Mỏ 2 | $-$     | $52$    | $14$    | $9$     | $  0$   | $-9 $   | $-20$   |
+| Mỏ 2 | $-$     | $52$    | $14$    | $9$     | $0$   | $-9$   | $-20$   |
 
 
 Ta để ý rằng, mỏ 1 sẽ tăng thêm 57 nếu ta thêm vào một công nhân, trong khi mỏ 2 chỉ tăng thêm 52. Thế nên, ta sẽ phân bố người đầu tiên vào mỏ 1.
 
 |      | Ban đầu | Người 1       | Người 2 | Người 3 | Người 4 | Người 5 | Người 6 |
 |:----:|:-------:|:-------------:|:-------:|:-------:|:-------:|:-------:|:-------:|
-| Mỏ 1 | $-$     | $\textbf{57}$ | $30$    | $0$     | $-20$   | $-20$   | -20     |
-| Mỏ 2 | $-$     | $52$          | $14$    | $9$     | $  0$   | $-9 $   | $-20$   |
+| Mỏ 1 | $-$     | $\textbf{57}$ | $30$    | $0$     | $-20$   | $-20$   | $-20$   |
+| Mỏ 2 | $-$     | $52$          | $14$    | $9$     | $0$   | $-9$   | $-20$   |
 
 
 Giờ, nếu ta thêm công nhân vào mỏ 1, ta chỉ tăng lợi nhuận được thêm 30. Bởi vậy nên ta sẽ thêm công nhân vào mỏ 2, lúc này lợi nhuận ta thu được sẽ tăng thêm 52.
@@ -300,7 +300,7 @@ Giờ, nếu ta thêm công nhân vào mỏ 1, ta chỉ tăng lợi nhuận đư
 |      | Ban đầu | Người 1       | Người 2 | Người 3 | Người 4 | Người 5 | Người 6 |
 |:----:|:-------:|:-------------:|:-------:|:-------:|:-------:|:-------:|:-------:|
 | Mỏ 1 | $-$     | $\textbf{57}$ | $30$    | $0$     | $-20$   | $-20$   | $-20$   |
-| Mỏ 2 | $-$     | $\textbf{52}$ | $14$    | $9$     | $0$     | $-9 $   | $-20$   |
+| Mỏ 2 | $-$     | $\textbf{52}$ | $14$    | $9$     | $0$     | $-9$   | $-20$   |
 
 
 Công nhân thứ 3 sẽ có ích hơn khi làm ở mỏ 1 với lợi nhuận thu được là 30.
@@ -323,31 +323,31 @@ Cuối cùng, hai công nhân còn lại sẽ được phân công bằng cách 
 
 **Khẳng định: Ta luôn luôn thu được tổng lợi nhuận lớn nhất khi lần lượt cho từng công nhân vào mỏ có lợi nhuận cao nhất ở thời điểm hiện tại**.
 
-**Chứng minh**: Gọi $A, B$ lần lượt là mỏ 1 và mỏ 2, $a1, b1, a2, b2$ được định nghĩa như sau:
+**Chứng minh**: Gọi $A, B$ lần lượt là mỏ 1 và mỏ 2, $a_1, b_1, a_2, b_2$ được định nghĩa như sau:
 
-* $a1$ - lợi nhuận thu được khi phân công thêm một công nhân vào $A$.
+* $a_1$ - lợi nhuận thu được khi phân công thêm một công nhân vào $A$.
 
-* $a1+a2$ - lợi nhuận thu được khi phân công thêm hai công nhân vào $A$.
+* $a_1+a_2$ - lợi nhuận thu được khi phân công thêm hai công nhân vào $A$.
 
-* $b1$ - lợi nhuận thu được khi phân công thêm một công nhân vào $B$.
+* $b_1$ - lợi nhuận thu được khi phân công thêm một công nhân vào $B$.
 
-* $b1+b2$ - lợi nhuận thu được khi phân công thêm hai công nhân vào $B$.
+* $b_1+b_2$ - lợi nhuận thu được khi phân công thêm hai công nhân vào $B$.
 
-Thuật toán Tham lam của ta sẽ gia tăng lợi nhuận bằng $a1$ cho công nhân đầu tiên và $(a2+b1)$ cho công nhân thứ 2. Tổng lợi nhuận lúc này sẽ là $a1+max(a2, b1)$. Nếu ban đầu ta chọn $b1$ thì lợi nhuận của công nhân thứ 2 thu được sẽ là $a1$ hoặc $b2$.
+Thuật toán Tham lam của ta sẽ gia tăng lợi nhuận bằng $a_1$ cho công nhân đầu tiên và $(a_2+b_1)$ cho công nhân thứ 2. Tổng lợi nhuận lúc này sẽ là $a_1 + \max(a_2, b_1)$. Nếu ban đầu ta chọn $b_1$ thì lợi nhuận của công nhân thứ 2 thu được sẽ là $a_1$ hoặc $b_2$.
 
-Trong trường hợp đầu tiên, ta sẽ có $a1+b1 \le a1+max(a2, b1)$.
+Trong trường hợp đầu tiên, ta sẽ có $a_1+b_1 \le a_1 + \max(a_2, b_1)$.
 
-Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b1+b2$. Ta cần phải chứng minh $b1+b2 \le a1+max(a2, b1)$. Mà ta luôn có $b1 \le b2$ vì **lợi nhuận thu được từ việc thêm một công nhân vào một mỏ luôn luôn lớn hơn hoặc bằng lợi nhuận thu được từ việc thêm một công nhân nữa vào mỏ đó**.
+Trong trường hợp thứ hai, tổng lợi nhuận sẽ là $b_1+b_2$. Ta cần phải chứng minh $b_1+b_2 \le a_1 + \max(a_2, b_1)$. Mà ta luôn có $b_1 \le b_2$ vì **lợi nhuận thu được từ việc thêm một công nhân vào một mỏ luôn luôn lớn hơn hoặc bằng lợi nhuận thu được từ việc thêm một công nhân nữa vào mỏ đó**.
 
 | Trạng thái của mỏ vàng                  | Lợi nhuận từ việc thêm 1 người | Lợi nhuận từ việc thêm 1 người |
 |:---------------------------------------:|:------------------------------:|:------------------------------:|
-| Số lượng mỏ $&gt;$số lượng người đào+2  | $60$                           | $60$                           |
+| Số lượng mỏ $>$số lượng người đào+2  | $60$                           | $60$                           |
 | Số lượng mỏ $=$ số lượng người đào+2    | $60$                           | $50$                           |
 | Số lượng mỏ $=$ số lượng người đào+1    | $50$                           | $-20$                          |
-| Số lượng mỏ $&lt;$ số lượng người đào+2 | $-20$                          | $-20$                          |
+| Số lượng mỏ $<$ số lượng người đào+2 | $-20$                          | $-20$                          |
 
 
-Vì $b1+b2 \le a1+a2 \le a1+b1 \le a1+max(a2, b1)$, **lựa chọn Tham lam** cũng chính là phương án tối ưu.
+Vì $b_1+b_2 \le a_1+a_2 \le a_1+b_1 \le a_1 + \max(a_2, b_1)$, **lựa chọn Tham lam** cũng chính là phương án tối ưu.
 
 Cài đặt thuật toán này hoàn toàn không khó, tuy nhiên ta cần phải xử lý thêm một vài trường hợp nữa (tất cả các công nhân đều phải được phân công, chỉ có tối đa sáu người trong một mỏ và nếu một công nhân có thể được đặt tối ưu ở nhiều mỏ, ưu tiên mỏ có chỉ số nhỏ hơn).
 
@@ -426,17 +426,17 @@ Không tồn tại một công thức chung nào cho việc áp dụng Tham lam,
 
 * Nhưng bài tập mà có vẻ cực kỳ phức tạp (như [TCSocks](http://www.topcoder.com/stat?c=problem_statement&pm=2894&rd=5853)) có thể xem như là dấu hiệu để tiếp cận bằng phương pháp Tham lam.
 
-* Nhưng bài toán mà dữ liệu đầu vào rất lớn (mà kể cả thuật toán có độ phức tạp $O(n^2)$ vẫn không kịp) thường được giải bằng tham lam hơn là quay lui hoặc [quy hoạch động](http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=dynProg).
+* Nhưng bài toán mà dữ liệu đầu vào rất lớn (mà kể cả thuật toán có độ phức tạp $\mathcal{O}(n^{2})$ vẫn không kịp) thường được giải bằng tham lam hơn là quay lui hoặc [quy hoạch động](http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=dynProg).
 
 * Mặc dù nó có vẻ rùng rợn, nhưng bạn nên nhìn thuật toán tham lam dưới đôi mắt của một thám tử chứ không phải là dưới cặp kính của một nhà toán học.
 
-![a](http://community.topcoder.com/i/education/greedyAlg4.gif)
+![a](/uploads/translate/topcoder/Greedy-is-Good/greedyAlg4.gif)
 **Một thám tử giỏi tham lam.**
 
-![b](http://community.topcoder.com/i/education/greedyAlg5.gif)
+![b](/uploads/translate/topcoder/Greedy-is-Good/greedyAlg5.gif)
 **Một người tham lam may mắn.**
 
-![c](http://community.topcoder.com/i/education/greedyAlg6.gif)
+![c](/uploads/translate/topcoder/Greedy-is-Good/greedyAlg6.gif)
 **Một người tham lam không may mắn.**
 
 * Ngoài ra, việc học tập một số thuật toán có sử dụng Tham lam sẽ giúp nắm vững phương pháp này hơn ([thuật toán Prim](http://weierstrass.is.tokushima-u.ac.jp/ikeda/suuri/dijkstra/Prim.shtml), [thuật toán Kruskal](http://weierstrass.is.tokushima-u.ac.jp/ikeda/suuri/kruskal/Kruskal.shtml), [thuật toán Dijkstra](http://www-b2.is.tokushima-u.ac.jp/~ikeda/suuri/dijkstra/Dijkstra.shtml))

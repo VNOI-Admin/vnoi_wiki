@@ -19,31 +19,30 @@ __Quy hoạch động (QHĐ) (Dynamic Programming)__ là một trong những kĩ
 ## Ví dụ 1
 
 > *Bạn An có $n$ chiếc ghế màu trắng, $n$ chiếc ghế màu đen và $n$ chiếc ghế màu đỏ. An muốn chọn ra $n$ chiếc ghế để xếp thành một hàng ngang. Do An không thích màu đỏ nên An không muốn xếp hai chiếc ghế đỏ cạnh nhau. Tính số cách xếp ghế thỏa mãn điều kiện đó.*
-> **Điều kiện:** $1\le n\le 10^5$.
+> **Điều kiện:** $1\le n\le 10^{5}$.
 
 ***Lưu ý**: hai cách xếp được xem là khác nhau khi tồn tại một vị trí mà hai cách có hai loại ghế khác nhau.*
 
-![](/uploads/basic-dynamic-programming-1_img1.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img1.png)
 
 Bây giờ ta sẽ xây dựng thuật giải:
 
 ### Thuật toán đệ quy
 
 Gọi số cách xếp $i$ cái ghế là $f[i]$. Ta xét chiếc ghế thứ $n$.
-* Nếu nó có màu đen hoặc trắng thì chiếc ghế cạnh nó có thể có một trong ba màu. Do đó ta chỉ cần bố trí $n-1$ chiếc ghế còn lại thỏa mãn yêu cầu. Do có 2 cách chọn màu cho ghế thứ $n$ và $f[n-1]$ cách chọn màu cho các ghế còn lại nên số cách xếp trong trường hợp này là $2 * f[n-1]$.
+* Nếu nó có màu đen hoặc trắng thì chiếc ghế cạnh nó có thể có một trong ba màu. Do đó ta chỉ cần bố trí $n-1$ chiếc ghế còn lại thỏa mãn yêu cầu. Do có 2 cách chọn màu cho ghế thứ $n$ và $f[n-1]$ cách chọn màu cho các ghế còn lại nên số cách xếp trong trường hợp này là $2 \times f[n-1]$.
 
-![](/uploads/basic-dynamic-programming-1_img2.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img2.png)
 
-* Nếu nó có màu đỏ thì chiếc ghế cạnh nó chỉ có thể có màu trắng hoặc đen. Do vậy nên chiếc ghế thứ $n-2$ có thể có một trong ba màu. Khi đó ta cũng chỉ cần bố trí $n-2$ chiếc ghế còn lại thỏa mãn yêu cầu. Số cách xếp trong trường hợp này là $1* 2* f[n-2]$.
+* Nếu nó có màu đỏ thì chiếc ghế cạnh nó chỉ có thể có màu trắng hoặc đen. Do vậy nên chiếc ghế thứ $n-2$ có thể có một trong ba màu. Khi đó ta cũng chỉ cần bố trí $n-2$ chiếc ghế còn lại thỏa mãn yêu cầu. Số cách xếp trong trường hợp này là $1 \times 2 \times f[n-2]$.
 
-![](/uploads/basic-dynamic-programming-1_img3.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img3.png)
 
 Với ý tưởng trên, ta có thể giải bài toán này như các bài toán đệ quy đơn giản. Cài đặt như sau:
 
 ```cpp
 // Tính số cách sắp xếp n cái ghế
-int solve(int n)
-{
+int solve(int n) {
     // Trường hợp cơ bản
     if (n == 1)
         return 3;
@@ -67,7 +66,7 @@ Giả sử cần tính `solve(1000)`. Khi đó cần tính `solve(999)` và `sol
 $\ldots$
 Ta có thể biểu diễn các hàm được gọi bằng một sơ đồ như sau:
 
-![](/uploads/basic-dynamic-programming-1_img4.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img4.png)
 
 Từ sơ đồ trên ta thấy có nhiều hàm bị gọi rất nhiều lần một cách không cần thiết:
 * `solve(998)` được gọi $2$ lần
@@ -80,22 +79,20 @@ Từ sơ đồ trên ta thấy có nhiều hàm bị gọi rất nhiều lần m
 ```cpp
 int d[100010];
 
-int solve(int n)
-{
+int solve(int n) {
     if (n == 1)
         return 3;
     else if (n == 2)
         return 8;
     else if (d[n] != 0)
         return d[n];
-    else
-    {
-        d[n] = 2 * f(n - 1) + 2 * f(n - 2);
+    else {
+        d[n] = 2 * solve(n - 1) + 2 * solve(n - 2);
         return d[n];
     }
 }
 ```
-Thuật toán trên có độ phức tạp $O(n)$.
+Thuật toán trên có độ phức tạp $\mathcal{O}(n)$.
 
 Với cách tiếp cận trên, ta quan tâm đến giá trị cuối cùng $f[n]$, sau đó mới xem xét những giá trị bé hơn cần thiết cho tính toán.
 
@@ -120,7 +117,7 @@ Ví dụ, trạng thái trong bài này là số cách sắp xếp $n$ chiếc g
 Gọi $f[i]$ là cách sắp xếp $i$ chiếc ghế thành một hàng dọc. Khi đó ta có:
 $$
 \begin{cases}
-f[1] = 3; f[2] = 8 \newline
+f[1] = 3; f[2] = 8 \\
 f[i] = 2f[i - 1] + 2f[i - 2], \forall i=3;4;\ldots;n(*)
 \end{cases}
 $$
@@ -137,8 +134,7 @@ using namespace std;
 
 long long n, f[100010];
 
-int main()
-{
+int main() {
     cin >> n;
     f[1] = 3;
     f[2] = 8;
@@ -148,7 +144,7 @@ int main()
     return 0;
 }
 ```
-Độ phức tạp của thuật toán trên là $O(n)$, nhưng cách thực hiện đơn giản hơn đệ quy có nhớ.
+Độ phức tạp của thuật toán trên là $\mathcal{O}(n)$, nhưng cách thực hiện đơn giản hơn đệ quy có nhớ.
 
 **Phân tích:** Từ ví dụ trên, ta thấy phương pháp QHĐ được triển khai theo các bước sau:
 * Xác định trạng thái của bài toán
@@ -174,11 +170,11 @@ Sau đây là ví dụ: ***Cho các đồng xu với giá tiền $1,3,5$. Và $S
 
 Đầu tiên, ta bắt đầu từ trạng thái cơ bản nhất: $f[0]=0$.
 
-Xét đến tổng $1$. Có duy nhất đồng xu $1$ nhỏ hơn hoặc bằng tổng $1$, nên ta có $f[1]=f[1−v_1]+1=f[0]+1=1$.
+Xét đến tổng $1$. Có duy nhất đồng xu $1$ nhỏ hơn hoặc bằng tổng $1$, nên ta có $f[1]=f[1 - v_1]+1=f[0]+1=1$.
 
-Xét đến tổng $2$. Cũng giống như tổng trước, chỉ có $1$ đổng xu không vượt quá $2$, suy ra $f[2]=f[2−v_1]+1=f[1]+1=2$.
+Xét đến tổng $2$. Cũng giống như tổng trước, chỉ có $1$ đổng xu không vượt quá $2$, suy ra $f[2]=f[2 - v_1]+1=f[1]+1=2$.
 
-Đến tổng $3$. Lần này có hai đồng xu không vượt quá $3$ là $1$ và $3$. Nếu ta chọn đồng $1$, ta có $f[3]=f[3−v_1]+1=f[2]+1=3$; nếu ta chọn đồng $3$, ta có $f[3]=f[3−v_2]+1=f[0]+1=1$. Rõ ràng $1 ≤ 3$ nên ta chọn đồng $3$ và $f[3]=1$.
+Đến tổng $3$. Lần này có hai đồng xu không vượt quá $3$ là $1$ và $3$. Nếu ta chọn đồng $1$, ta có $f[3]=f[3 - v_1]+1=f[2]+1=3$; nếu ta chọn đồng $3$, ta có $f[3]=f[3 - v_2]+1=f[0]+1=1$. Rõ ràng $1 \le 3$ nên ta chọn đồng $3$ và $f[3]=1$.
 
 Xét tiếp đến tổng $4,$ tổng $5,\ldots$ đến $11$ bằng cách như trên.
 
@@ -208,8 +204,7 @@ const int N = 1e3 + 10;
 int f[N], v[N], n, S;
 // Gán f[i] = -1 nếu không thể tìm được một số đồng xu tổng bằng i
 
-int main()
-{
+int main() {
     cin >> n >> S;
     for (int i = 1; i <= n; i++)
         cin >> v[i];
@@ -219,13 +214,12 @@ int main()
 
     for (int i = 1; i <= S; i++)
         for (int j = 1; j <= n; j++)
-            if (v[j] <= i && f[i - v[j]] != -1)
-                {
-                    if (f[i] != -1)
-                        f[i] = min(f[i], f[i - v[j]] + 1);
-                    else
-                        f[i] = f[i - v[j]] + 1;
-                }
+            if (v[j] <= i && f[i - v[j]] != -1) {
+                if (f[i] != -1)
+                    f[i] = min(f[i], f[i - v[j]] + 1);
+                else
+                    f[i] = f[i - v[j]] + 1;
+            }
     cout << f[S];
 }
 ```
@@ -237,27 +231,26 @@ Phần này giới thiệu một lớp bài toán QHĐ điển hình. Ta bắt �
 
 > *Cho dãy số nguyên dương $a_1,a_2,\ldots,a_n$. Tìm độ dài của dãy con không giảm dài nhất của dãy.
 > Dãy con của một dãy là dãy số thu được bằng cách bỏ đi một số phần tử của dãy ban đầu.*
-> **Điều kiện:** $1\le n\le 1000$ và $1\le a_1,a_2,\dots,a_n\le 10^9$.
+> **Điều kiện:** $1\le n\le 1000$ và $1\le a_1,a_2,\dots,a_n\le 10^{9}$.
 
 Đầu tiên cần xác định trạng thái của bài toán.
 
 Ta đặt $f[i]$ là độ dài của dãy con không giảm dài nhất kết thúc ở $a_i$. $f[i]$ là trạng thái của bài toán. Ta khởi tạo $f[i] = 1$ ($a_i$ là một dãy không giảm).
 
-Với $j<i$ mà $a_j \ge a_i$ thì ta có thể thêm $a_i$ vào dãy không giảm kết thúc ở $a_j$, do đó nếu $f[j] + 1$ lớn hơn giá trị hiện tại của $f[i]$ thì ta cập nhật $f[i] = f[j] + 1$.
+Với $j<i$ mà $a_j \le a_i$ thì ta có thể thêm $a_i$ vào dãy không giảm kết thúc ở $a_j$, do đó nếu $f[j] + 1$ lớn hơn giá trị hiện tại của $f[i]$ thì ta cập nhật $f[i] = f[j] + 1$.
 
 Cuối cùng để tìm được độ dài dãy con không giảm dài nhất ta tính $\max  (f[1],f[2],\ldots,f[n])$.
 
 ### Code tham khảo
 
-``` cpp
+```cpp
 #include <iostream>
 using namespace std;
 
 const int N = 1e3 + 10;
 int f[N], a[N], n;
 
-int main()
-{
+int main() {
     cin >> n;
     for (int i = 1; i <= n; i++)
         cin >> a[i];
@@ -301,18 +294,15 @@ using namespace std;
 const int N = 1e3 + 10;
 int f[N], a[N], d[N], n;
 
-int main()
-{
+int main() {
     cin >> n;
     for (int i = 1; i <= n; i++)
         cin >> a[i];
     // Bước QHĐ
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         f[i] = 1;
         for (int j = 1; j < i; j++)
-            if (a[j] <= a[i] && f[i] < f[j] + 1)
-            {
+            if (a[j] <= a[i] && f[i] < f[j] + 1) {
                 f[i] = f[j] + 1;
                 d[i] = j;
             }
@@ -324,8 +314,7 @@ int main()
             t = i;
     // In ra dãy con đó
     vector<int> seq;
-    while (t)
-    {
+    while (t) {
         seq.push_back(a[t]);
         t = d[t];
     }
@@ -336,30 +325,28 @@ int main()
 ### Bố trí phòng họp (mất tính thứ tự so với dãy ban đầu)
 
 > *Có $n$ cuộc họp, cuộc họp thứ $i$ bắt đầu vào thời điểm $A_i$ và kết thúc ở thời điểm $B_i$. Do chỉ có một phòng hội thảo nên 2 cuộc họp bất kì sẽ được cùng bố trí phục vụ nếu khoảng thời gian làm việc của chúng chỉ giao nhau tại đầu mút hoặc không giao nhau. Hãy bố trí phòng họp để phục vụ được nhiều cuộc họp nhất.*
-> **Điều kiện:** $1\le n\le1000$ và $1\le A_i\le B_i\le10^9$ với mọi $i=1;2;\dots;n$.
+> **Điều kiện:** $1\le n\le1000$ và $1\le A_i\le B_i\le10^{9}$ với mọi $i=1;2;\dots;n$.
 > **Input:** Số nguyên $n$ và $n$ dòng tiếp theo có dòng thứ $i$ là thời điểm bắt đầu $A_i$ và kết thúc $B_i$ của cuộc họp thứ $i$.
 > **Output:** một dòng gồm số thứ tự ban đầu của các cuộc họp được bố trí, theo thứ tự thời gian.
 
-![](/uploads/basic-dynamic-programming-1_img5.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img5.png)
 **Hướng dẫn**:
 
 Sắp xếp các cuộc họp tăng dần theo thời điểm bắt đầu $A_i$. Thế thì cuộc họp $i$ sẽ bố trí được sau cuộc họp $j$ khi và chỉ khi $j<i$ và $B_j \le A_i$. Yêu cầu bố trí được nhiều cuộc họp nhất có thể đưa về việc tìm dãy các cuộc họp dài nhất thoả mãn điều kiện trên.
 
-![](/uploads/basic-dynamic-programming-1_img6.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img6.png)
 
 ```cpp
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
-struct Meeting
-{
+struct Meeting {
     Meeting(int aa = 1, int bb = 1, int nn = 1)
-    : a(aa), b(bb), num(nn)
-    { };
-    int a; // Thời điểm bắt đầu cuộc họp
-    int b; // Thời điểm kết thúc cuộc họp
+        : a(aa), b(bb), num(nn) {};
+    int a;   // Thời điểm bắt đầu cuộc họp
+    int b;   // Thời điểm kết thúc cuộc họp
     int num; // Số thứ tự của cuộc họp
 };
 
@@ -368,27 +355,22 @@ int n, f[N], d[N];
 Meeting m[N];
 
 // Hàm so sánh để sắp xếp
-bool compare(const Meeting& x, const Meeting& y)
-{
+bool compare(const Meeting &x, const Meeting &y) {
     return x.a < y.a || (x.a == y.a && x.b < y.b);
 }
 
-int main()
-{
+int main() {
     cin >> n;
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         m[i].num = i;
         cin >> m[i].a >> m[i].b;
     }
     sort(m + 1, m + n + 1, compare);
     // Bước quy hoạch động
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         f[i] = 1;
         for (int j = 1; j < i; j++)
-            if (m[j].b <= m[i].a && f[i] < f[j] + 1)
-            {
+            if (m[j].b <= m[i].a && f[i] < f[j] + 1) {
                 f[i] = f[j] + 1;
                 d[i] = j;
             }
@@ -399,8 +381,7 @@ int main()
         if (f[i] > f[t])
             t = i;
     vector<int> seq;
-    while (t)
-    {
+    while (t) {
         seq.push_back(m[t].num);
         t = d[t];
     }
@@ -413,43 +394,40 @@ int main()
 ### Cho thuê máy
 
 > *Trung tâm tính toán hiệu năng cao nhận được đơn đặt hàng của $n$ khách hàng. Khách hàng $i$ muốn sử dụng máy trong khoảng thời gian từ $a_i$ đến $b_i$ và trả tiền thuê là $c_i$. Hãy bố trí lịch thuê máy để tổng số tiền thu được là lớn nhất mà thời gian sử dụng máy của 2 khách hàng bất kì được phục vụ đều không giao nhau (cả trung tâm chỉ có một máy cho thuê).*
-> **Điều kiện:** $1\le n\le1000$ và $1\le A_i\le B_i\le10^9, 1\le c_i\le10^6$ với mọi $i=1;2;\dots;n$.
+> **Điều kiện:** $1\le n\le1000$ và $1\le A_i\le B_i\le10^{9}, 1\le c_i\le10^{6}$ với mọi $i=1;2;\dots;n$.
 
 **Hướng dẫn**:
 
 Tương tự như bài toán bố trí phòng họp, nếu sắp xếp các đơn đặt hàng theo thời điểm bắt đầu, ta sẽ đưa được về bài toán **tìm dãy con có tổng lớn nhất**. Bài toán này là biến thể của bài toán tìm dãy con tăng dài nhất, ta có thể cài đặt bằng đoạn chương trình như sau:
 
 ```cpp
-struct Value
-{
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Value {
     Value(int aa = 1, int bb = 1, int cc = 1, int nn = 1)
-    : a(aa), b(bb), num(nn)
-    { };
-    int a; // Thời điểm bắt đầu thuê
-    int b; // Thời điểm kết thúc thuê
-    int c; // Tiền thuê
+        : a(aa), b(bb), c(cc), num(nn) {};
+    int a;   // Thời điểm bắt đầu thuê
+    int b;   // Thời điểm kết thúc thuê
+    int c;   // Tiền thuê
     int num; // Số thứ tự
-}
+};
 
 const int N = 1e3 + 10;
 int n, f[N], d[N];
 Value m[N];
 
-bool compare(const Value& x, const Value& y)
-{
+bool compare(const Value &x, const Value &y) {
     return x.a < y.a || (x.a == y.a && x.b < y.b);
 }
-int main()
-{
+int main() {
     // ...
     sort(m + 1, m + n + 1, compare);
     // Bước quy hoạch động
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         f[i] = m[i].c;
         for (int j = 1; j < i; j++)
-            if (m[j].b <= m[i].a && f[i] < f[j] + m[i].c)
-            {
+            if (m[j].b <= m[i].a && f[i] < f[j] + m[i].c) {
                 f[i] = f[j] + m[i].c;
                 d[i] = j;
             }
@@ -461,9 +439,9 @@ int main()
 ### Dãy tam giác bao nhau
 
 > *Cho $n$ tam giác trên mặt phẳng. Tam giác $i$ bao tam giác $j$ nếu 3 đỉnh của tam giác $j$ đều nằm trong tam giác $i$ (có thể nằm trên cạnh). Hãy tìm dãy tam giác bao nhau có nhiều tam giác nhất.*
-> **Điều kiện:** $1\le n\le 1000$ và tọa độ các đỉnh của các tam giác thuộc đoạn ${-10}^6$ đến $10^6$.
+> **Điều kiện:** $1\le n\le 1000$ và tọa độ các đỉnh của các tam giác thuộc đoạn ${-10}^{6}$ đến $10^{6}$.
 
-![](/uploads/basic-dynamic-programming-1_img7.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img7.png)
 
 **Hướng dẫn**:
 
@@ -476,13 +454,13 @@ Việc kiểm tra điểm $M$ có nằm trong tam giác $ABC$ không có thể d
 * Tính diện tích: điểm $M$ nằm trong nếu $S(ABC) = S(ABM) + S(ACM) + S(BCM)$.
 * Kẻ một tia song song $Ox$ từ $M$ và đếm số giao điểm với $3$ đoạn $AB,BC,CA$. Nếu số giao điểm là số lẻ thì $M$ nằm trong tam giác.
 
-![](/uploads/basic-dynamic-programming-1_img8.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img8.png)
 
 ### Dãy đổi dấu
 
 > *Cho dãy số nguyên gồm $n$ phần tử $a_1, a_2,\ldots, a_n$ và các số nguyên dương $L,U$. Hãy tìm dãy con đổi dấu dài nhất của dãy đó.*
 > Dãy con của dãy $a$ là dãy thu được bằng cách xóa đi một số phần tử của $a$.
-> **Điều kiện:** $1\le L\le n\le1000, 1\le U\le10^9$ và $1\le a_1, a_2,\dots, a_n\le10^9$.
+> **Điều kiện:** $1\le L\le n\le1000, 1\le U\le10^{9}$ và $1\le a_1, a_2,\dots, a_n\le10^{9}$.
 
 Dãy con đổi dấu $a_{i_1},a_{i_2},\ldots, a_{i_k}$ phải thoả mãn các điều kiện sau:
 
@@ -505,16 +483,14 @@ using namespace std;
 const int N = 1e3 + 10;
 int a[N], P[N], Q[N], n, U, L;
 
-int main()
-{
+int main() {
     cin >> n >> U >> L;
     for (int i = 1; i <= n; i++)
         cin >> a[i];
-    for (int i = 1; i <= n; i++)
-    {
-        P[i] = 1; Q[i] = 1;
-        for (int j = 1; j <= i - L; j++)
-        {
+    for (int i = 1; i <= n; i++) {
+        P[i] = 1;
+        Q[i] = 1;
+        for (int j = 1; j <= i - L; j++) {
             if (a[i] - U <= a[j] && a[j] < a[i])
                 Q[i] = max(Q[i], P[j] + 1);
             if (a[j] > a[i] && a[j] <= a[i] + U)
@@ -535,7 +511,7 @@ int main()
 > * $a_k\le a_{k-1} \le \ldots \le a_m$
 >
 > *Ví dụ dãy số `1 2 3 4 5 2 1` là 1 dãy WAVIO độ dài 7. Cho dãy $a$ gồm $n$ số nguyên, hãy chỉ ra một dãy con Wavio có độ dài lớn nhất trích ra từ dãy đó.*
-> **Điều kiện:** $1\le n\le 1000$ và $1\le a_1,a_2,\ldots,a_n\le10^9$ với mọi $i=1;2;\ldots;n$.
+> **Điều kiện:** $1\le n\le 1000$ và $1\le a_1,a_2,\ldots,a_n\le10^{9}$ với mọi $i=1;2;\ldots;n$.
 
 **Hướng dẫn**:
 
@@ -551,9 +527,9 @@ Khi đó, trong các dãy WAVIO có $i$ là đỉnh thì dãy dài nhất sẽ c
 Ở mục này, chúng ta sẽ làm quen với QHĐ hai chiều, ta bắt đầu bằng ví dụ sau:
 
 > *Cho một bảng ô vuông gồm $m$ hàng và $n$ cột. Kí hiệu $(i, j)$ là ô ở hàng $i$, cột $j$. Giả sử $(i, j)$ có $a_{i,j}$ quả táo. Bạn An muốn đi từ $(1, 1)$ đến $(m, n)$. Ở mỗi bước, An đi sang phải hoặc xuống dưới đúng một ô. Khi An ở ô $(i, j)$, An có thể lấy hết các quả táo ở ô đó. Tính số quả táo nhiều nhất mà An có thể lấy được.*
-> **Điều kiện:** $1\le mn\le10^6$ và $1\le a_{i, j}\le 10^9$ với mọi $i,j$.
+> **Điều kiện:** $1\le mn\le10^{6}$ và $1\le a_{i, j}\le 10^{9}$ với mọi $i,j$.
 
-![](/uploads/basic-dynamic-programming-1_img9.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img9.png)
 
 **Ý tưởng:**
 
@@ -563,11 +539,11 @@ Bài toán này cũng tương tự như các ví dụ trước.
 
 Đầu tiên ta khởi tạo $f[1][1] = a_{1,1}$.
 
-<!--![Minh họa](https://raw.githubusercontent.com/Ryu204/Picture/main/table2.png)-->
+<!--![Minh họa](/uploads/algo/dp/basic-dynamic-programming-1/table2.png)-->
 
 Với mọi $i,j\ge 2$, để đi từ $(1, 1)$ đến $(i, j)$ An có hai lựa chọn: đi qua $(i - 1, j)$ hoặc đi qua $(i, j - 1)$. An sẽ chọn đường đi thu được nhiều táo nhất, do đó $f[i][j] = a_{i, j} + \max(f[i][j - 1], f[i - 1][j])$.
 
-![](/uploads/basic-dynamic-programming-1_img10.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img10.png)
 
 ```cpp
 #include <iostream>
@@ -577,8 +553,7 @@ const int N = 1e3 + 10;
 int m, n, a[N][N];
 long long f[N][N];
 
-int main()
-{
+int main() {
     cin >> n >> m;
     for (int i = 1; i <= m; i++)
         for (int j = 1; j <= n; j++)
@@ -603,7 +578,7 @@ QHĐ hai chiều được áp dụng nhiều trong những bài toán phức t�
 
 Có $n$ đồ vật, vật thứ $i$ có trọng lượng $A_i$ và giá trị $B_i$. Hãy chọn ra một số các đồ vật, mỗi vật một cái để xếp vào 1 vali có trọng lượng tối đa $W$ sao cho tổng giá trị của vali là lớn nhất.
 
-![](/uploads/basic-dynamic-programming-1_img11.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img11.png)
 
 ## Công thức
 
@@ -622,13 +597,13 @@ Tóm lại ta có $L[i,j] = \max(L[i-1, j - A_i] + B_i, L[i-1, j])$.
 
 ## 2.3. Cài đặt
 
-``` cpp
-long long L[1010];
+```cpp
+long long L[1010][1010];
 
 for (int i = 1; i <= n; i++)
     for (int j = 1; j <= W; j++)
         if (A[i] <= j)
-            L[i][j] = max(L[i - 1][j - A[i]]  + B[i], L[i - 1][j]);
+            L[i][j] = max(L[i - 1][j - A[i]] + B[i], L[i - 1][j]);
         else
             L[i][j] = L[i - 1][j];
 ```
@@ -638,7 +613,7 @@ for (int i = 1; i <= n; i++)
 ### Dãy con có tổng bằng S
 
 > *Cho dãy $A_1,A_2,\ldots, A_N$. Tìm một dãy con của dãy đó có tổng bằng $S$.*
-> **Điều kiện:** $1\le n\le 1000$ và $1\le A_1,A_2,\ldots,A_n\le10^9$.
+> **Điều kiện:** $1\le n\le 1000$ và $1\le A_1,A_2,\ldots,A_n\le10^{9}$.
 
 **Hướng dẫn**:
 
@@ -648,7 +623,7 @@ Ta có thể tính $L[i,t]$ theo công thức: $L[i,t]=1$ nếu $L[i-1,t]=1$ ho�
 
 **Cài đặt**:
 
-Nếu áp dụng luôn công thức trên thì ta cần dùng bảng phương án hai chiều. Ta có thể nhận xét rằng để tính dòng thứ $i$, ta chỉ cần dòng $i-1$. Bảng phương án khi đó chỉ cần 1 mảng 1 chiều $L[0..S]$ và được tính như sau:
+Nếu áp dụng luôn công thức trên thì ta cần dùng bảng phương án hai chiều. Ta có thể nhận xét rằng để tính dòng thứ $i$, ta chỉ cần dòng $i-1$. Bảng phương án khi đó chỉ cần 1 mảng 1 chiều $L[0\ldots S]$ và được tính như sau:
 
 
 ```cpp
@@ -661,7 +636,7 @@ for (int i = 1; i <= n; i++)
             L[t] = 1;
 ```
 
-Dễ thấy độ phức tạp bộ nhớ của cách cài đặt trên là $O(m)$, độ phức tạp thời gian là $O(nm)$, với $m$ là tổng của $n$ số.
+Dễ thấy độ phức tạp bộ nhớ của cách cài đặt trên là $\mathcal{O}(m)$, độ phức tạp thời gian là $\mathcal{O}(nm)$, với $m$ là tổng của $n$ số.
 
 **Bonus:** Hãy thử kiểm tra xem vì sao trong vòng ```for``` thứ hai, $t$ được duyệt từ $S$ về $a[i]$ chứ không phải từ $a[i]$ lên $S$.
 
@@ -674,14 +649,14 @@ Dễ thấy độ phức tạp bộ nhớ của cách cài đặt trên là $O(m
 
 Gọi $T$ là tổng số kẹo của $n$ gói. Chúng ta cần tìm số $S$ lớn nhất thoả mãn:
 
-- $S \le T/2$.
+- $S \le \frac{T}{2}$.
 - Có một dãy con của dãy $a$ có tổng bằng $S$.
 
-Khi đó sẽ có cách chia với chênh lệch 2 phần là $T-2S$ là nhỏ nhất và dãy con có tổng bằng $S$ ở trên gồm các phần tử là các gói kẹo thuộc phần thứ nhất. Phần thứ hai là các gói kẹo còn lại. Ta quy hoạch động mảng $L[i,j]$ $(j\le \frac{T}{2})$ như sau: $L[i,j]=true$ nếu tồn tại một số phần tử của dãy $a$ từ $1$ đến $i$ có tổng bằng $j$. Khi đó:
-* Nếu $L[i-1,j]=true$ thì $L[i,j] = true$.
-* Nếu $L[i-1,j-a[i]]=true$ thì $L[i,j] = true$.
+Khi đó sẽ có cách chia với chênh lệch 2 phần là $T-2S$ là nhỏ nhất và dãy con có tổng bằng $S$ ở trên gồm các phần tử là các gói kẹo thuộc phần thứ nhất. Phần thứ hai là các gói kẹo còn lại. Ta quy hoạch động mảng $L[i,j]$ $(j\le \frac{T}{2})$ như sau: $L[i,j]=\texttt{true}$ nếu tồn tại một số phần tử của dãy $a$ từ $1$ đến $i$ có tổng bằng $j$. Khi đó:
+* Nếu $L[i-1,j]=\texttt{true}$ thì $L[i,j] = \texttt{true}$.
+* Nếu $L[i-1,j-a[i]]=\texttt{true}$ thì $L[i,j] = \texttt{true}$.
 
-Cuối cùng, ta cần tìm số $j$ lớn nhất không vượt quá $\frac{T}{2}$ sao cho tồn tại số nguyên dương $i$ để $L[i,j]=true$, hay $L[n,j]=true$.
+Cuối cùng, ta cần tìm số $j$ lớn nhất không vượt quá $\frac{T}{2}$ sao cho tồn tại số nguyên dương $i$ để $L[i,j]=\texttt{true}$, hay $L[n,j]=\texttt{true}$.
 ```cpp
 #include <iostream>
 using namespace std;
@@ -690,20 +665,17 @@ const int N = 310;
 int n, a[N];
 bool L[N][N];
 
-int main()
-{
+int main() {
     cin >> n;
     int t = 0;
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         cin >> a[i];
         t += a[i];
     }
     for (int i = 0; i <= n; i++)
         L[i][0] = true;
     for (int i = 1; i <= n; i++)
-        for (int j = 1; 2 * j <= t; j++)
-        {
+        for (int j = 1; 2 * j <= t; j++) {
             L[i][j] |= L[i - 1][j];
             if (a[i] <= j)
                 L[i][j] |= L[i - 1][j - a[i]];
@@ -727,7 +699,7 @@ int main()
 
 Thực chất bài toán là tìm các số $S$ mà có một dãy con của dãy $a$ có tổng bằng $S$.
 
-Ta có thể dùng phương pháp đánh dấu của bài chia kẹo ở trên rồi đếm các giá trị $t$ mà $L[n, t]=true$.
+Ta có thể dùng phương pháp đánh dấu của bài chia kẹo ở trên rồi đếm các giá trị $t$ mà $L[n, t]=\texttt{true}$.
 
 ### Điền dấu
 
@@ -758,7 +730,7 @@ Bài này có một biến thể là đặt dấu sao cho kết quả là một 
 
 > *Một người có $N$ mảnh đất và $M$ dải đất. Các mảnh đất có thể coi là một tứ giác và các dải đất thì coi như một đường thẳng. Dọc theo các dải đất ông ta trồng các cây bách, dải đất thứ $i$ có $A_i$ cây bách. Ông ta cũng trồng các cây bách trên viền của các mảnh đất, mảnh đất thứ $j$ có $B_j$ cây bách. Cả ở trên các mảnh đất và dải đất, xen giữa 2 cây bách ông ta trồng một cây ôliu. Ông ta cho con trai được chọn các mảnh đất và dải đất tuỳ ý với điều kiện tổng số cây bách không vượt quá $Q$. Người con trai phải chọn thế nào để có nhiều cây ôliu (loài cây mà anh ta thích) nhất.*
 
-![](/uploads/basic-dynamic-programming-1_img12.png)
+![](/uploads/algo/dp/basic-dynamic-programming-1/basic-dynamic-programming-1_img12.png)
 
 **Hướng dẫn**
 

@@ -38,7 +38,9 @@ Các nhà khoa học đã dự đoán được sự xuất hiện của $K$ cơn
 
 Với mỗi tổ chức thành viên, cho biết thời điểm sớm nhất mà tổ chức đó thu thập đủ số mảnh yêu cầu.
 
-$1\le N, M, K \le 3\times 10^5, 1\le o_i, l_i, r_i\le N, 1\le g_i\le 10^9, 1\le x_i\le 10^9$
+$$
+1\le N, M, K \le 3\times 10^{5}, 1\le o_i, l_i, r_i\le N, 1\le g_i\le 10^{9}, 1\le x_i\le 10^{9}
+$$
 
 
 #### Ngây thơ
@@ -46,7 +48,7 @@ Với mỗi tổ chức, thực hiện chặt nhị phân để tìm thời đi�
 
 Để kiểm tra xem đến thời điểm $t$ thì tổ chức $i$ đã thu thập được bao nhiêu mảnh, ta duyệt qua các cơn mưa sao băng có thời điểm xuất hiện không quá $t$, dùng cấu trúc dữ liệu Fenwick Tree (cây BIT) để cập nhật các thông tin và cuối cùng lấy tổng các mảnh đá tại những vị trí mà $i$ sở hữu trên quỹ đạo.
 
-Với cách làm trên, độ phức tạp để tìm đáp án cho tổ chức $i$ là $O((K + C_i) \times log(K) \times log(M))$, trong đó $C_i$ là số vị trí mà $i$ sở hữu. Tổng độ phức tạp là $O((N \times K + M) \times log(K) \times log(M))$, tất nhiên là quá giới hạn thời gian.
+Với cách làm trên, độ phức tạp để tìm đáp án cho tổ chức $i$ là $\mathcal{O}((K + C_i) \times \log(K) \times \log(M))$, trong đó $C_i$ là số vị trí mà $i$ sở hữu. Tổng độ phức tạp là $\mathcal{O}((N \times K + M) \times \log(K) \times \log(M))$, tất nhiên là quá giới hạn thời gian.
 
 ```cpp=
 #define For(i, a, b) for (int i = a; i <= b; ++i)
@@ -59,8 +61,7 @@ BIT bit;
 void update_info(int i, int d) {
     if (L[i] <= R[i]) {
         bit.add(L[i], R[i], d * A[i]);
-    }
-    else {
+    } else {
         bit.add(L[i], m, d * A[i]);
         bit.add(1, R[i], d * A[i]);
     }
@@ -101,11 +102,15 @@ int main() {
         int l = 0, r = k + 1;
         while (l < r) {
             int g = (l + r) / 2;
-            if (check(i, g)) r = g;
-            else l = g + 1;
+            if (check(i, g))
+                r = g;
+            else
+                l = g + 1;
         }
-        if (r > k) cout << "NIE\n";
-        else cout << r << "\n";
+        if (r > k)
+            cout << "NIE\n";
+        else
+            cout << r << "\n";
     }
 
     return 0;
@@ -120,14 +125,14 @@ Giả sử ta gọi hàm $check(t, K)$, cần xét qua tất cả $K$ thông tin
 
 Tiếp tục ý tưởng trên, gọi $l[i], r[i]$ là đoạn chứa đáp án cho tổ chức thứ $i$. 
 
-Lần lượt xét qua từng thông tin về các cơn mưa và cập nhật lên cây BIT, tại thông tin thứ $k$, đồng thời gọi hàm $check(t, k)$ với $t$ là những tổ chức mà $(l[t] + r[t]) / 2 = k$. Vậy từ $l[t], r[t]$ và $check(t, k)$ ta có thể cập nhật lại $l[t]$ và $r[t]$ giống như chặt nhị phân.
+Lần lượt xét qua từng thông tin về các cơn mưa và cập nhật lên cây BIT, tại thông tin thứ $k$, đồng thời gọi hàm $check(t, k)$ với $t$ là những tổ chức mà $\frac{l[t] + r[t]}{2} = k$. Vậy từ $l[t], r[t]$ và $check(t, k)$ ta có thể cập nhật lại $l[t]$ và $r[t]$ giống như chặt nhị phân.
 
 Tính toán lại, với mỗi lần xét qua $K$ thông tin như vậy, ta có:
 * Độ phức tạp cho việc cập nhật các thông tin là $K \times \log(M)$.
 * Độ phức tạp cho việc gọi hàm $check$ là $M \times \log(M)$ (vì mỗi vị trí trên quỹ đạo được xét qua nhiều nhất $1$ lần).
 * Với mọi tổ chức $t$, độ dài đoạn $l[t], r[t]$ được giảm đi một nửa.
 
-Vậy chỉ cần lặp lại việc xét duyệt như trên đến khi đoạn $l[t], r[t]$ của mọi tổ chức $t$ có độ dài $1$. Cần nhiều nhất $\log(K)$ lần xét, độ phức tạp là $O((M + K) \times \log(M) \times \log(K))$.
+Vậy chỉ cần lặp lại việc xét duyệt như trên đến khi đoạn $l[t], r[t]$ của mọi tổ chức $t$ có độ dài $1$. Cần nhiều nhất $\log(K)$ lần xét, độ phức tạp là $\mathcal{O}((M + K) \times \log(M) \times \log(K))$.
 
 #### Cài đặt
 
@@ -146,11 +151,13 @@ bool check(int o) {
 }
 
 int main() {
-    int n, m; cin >> n >> m;
+    int n, m;
+    cin >> n >> m;
     For(i, 1, m) cin >> owner[i];
     For(i, 1, n) cin >> req[i];
 
-    int k; cin >> k;
+    int k;
+    cin >> k;
     For(i, 1, k) {
         cin >> L[i] >> R[i] >> A[i];
     }
@@ -171,7 +178,8 @@ int main() {
         bit.makeBIT(m);
 
         For(o, 1, n) {
-            if (l[o] >= r[o]) continue;
+            if (l[o] >= r[o])
+                continue;
             processing = 1;
             queries[(l[o] + r[o]) / 2].push_back(o);
         }
@@ -180,15 +188,16 @@ int main() {
             if (ki) {
                 if (L[ki] <= R[ki]) {
                     bit.add(L[ki], R[ki], A[ki]);
-                }
-                else {
+                } else {
                     bit.add(L[ki], m, A[ki]);
                     bit.add(1, R[ki], A[ki]);
                 }
             }
             for (int o : queries[ki]) {
-                if (check(o)) r[o] = ki;
-                else l[o] = ki + 1;
+                if (check(o))
+                    r[o] = ki;
+                else
+                    l[o] = ki + 1;
             }
         }
 
@@ -197,8 +206,10 @@ int main() {
     }
 
     For(o, 1, n) {
-        if (r[o] <= k) cout << r[o] << "\n";
-        else cout << "NIE\n";
+        if (r[o] <= k)
+            cout << r[o] << "\n";
+        else
+            cout << "NIE\n";
     }
 
     return 0;
@@ -207,7 +218,7 @@ int main() {
 
 Trong cài đặt trên, hàm $check(o, k)$ được thay bằng $check(o)$, vì đã có cây BIT "chung" chứa thông tin của $k$ cơn mưa đầu tiên.
 
-Lưu ý, việc xóa dữ liệu của $bit$ và $queries$ sau mỗi lần chặt đảm bảo độ phức tạp không gian cho thuật toán là $O(N + M + K)$, nếu không xóa sẽ dẫn đến $O((M + K) \times \log(K))$.
+Lưu ý, việc xóa dữ liệu của $bit$ và $queries$ sau mỗi lần chặt đảm bảo độ phức tạp không gian cho thuật toán là $\mathcal{O}(N + M + K)$, nếu không xóa sẽ dẫn đến $\mathcal{O}((M + K) \times \log(K))$.
 
 Một cách cài đặt khác sử dụng đệ quy như sau:
 
@@ -266,7 +277,7 @@ Ví dụ với dạng bài toán: Cho $Q$ cập nhật được thực hiện l�
 
 Thuật toán như sau:
 
-```
+```cpp
 Lặp lại log(Q) lần:
     reset cấu trúc dữ liệu
     reset mảng check

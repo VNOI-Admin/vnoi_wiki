@@ -39,12 +39,12 @@ Với hai điểm $P(x_P, y_P)$ và $Q(x_Q, y_Q)$:
 
 <center>
 
-![](/uploads/Sweep-Line_img1.png =300x)
+![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img1.png =300x)
 </center>
 
 <center>
 
-Các đường màu đỏ, xanh lam, vàng biểu diễn khoảng cách Manhattan có cùng độ dài $(12)$, trong khi đường màu xanh lục biểu diễn khoảng cách Euclid với độ dài $6 * \sqrt2 \approx 8.48$.
+Các đường màu đỏ, xanh lam, vàng biểu diễn khoảng cách Manhattan có cùng độ dài $(12)$, trong khi đường màu xanh lục biểu diễn khoảng cách Euclid với độ dài $6 \times \sqrt2 \approx 8.48$.
 </center>
 
 Như đã đề cập ở phía trên, khi ứng dụng thuật toán đường quét, việc quét qua tất cả các điểm trên mặt phẳng là bất khả thi, và chúng ta cần sử dụng một số kĩ thuật hay cấu trúc dữ liệu khác - chẳng hạn, *[kĩ thuật hai con trỏ](/algo/basic/two-pointers.md), [kĩ thuật nén số](/algo/trick/Roi-rac-hoa-va-ung-dung.md), [cây phân đoạn](/algo/data-structures/segment-tree-basic.md), [cây Fenwick (cây chỉ số nhị phân)](/algo/data-structures/fenwick.md)* - để lọc ra và xử lí các điểm thiết yếu cần quan tâm. Do đó, độc giả nên nắm kĩ các chủ đề liên quan nêu trên trước khi đọc bài viết.
@@ -62,13 +62,13 @@ Cho một danh sách $n$ điểm. Tìm khoảng cách Euclid ngắn nhất tạo
 Giới hạn:
 
 - $2 \leqslant n \leqslant 50000$
-- Toạ độ các điểm là số nguyên $-10^6 \leqslant x, y \leqslant 10^6$
+- Toạ độ các điểm là số nguyên $-10^{6} \leqslant x, y \leqslant 10^{6}$
 
 ## Phân tích
 
-Ta có thể dễ dàng nhận thấy bài này có thể giải quyết với độ phức tạp $O(n^2)$, nhưng sẽ không thể qua được giới hạn thời gian 1 giây. Tuy vậy, áp dụng thuật toán đường quét, chúng ta có thể giảm độ phức tạp xuống $O(n\log{n})$.
+Ta có thể dễ dàng nhận thấy bài này có thể giải quyết với độ phức tạp $\mathcal{O}(n^2)$, nhưng sẽ không thể qua được giới hạn thời gian 1 giây. Tuy vậy, áp dụng thuật toán đường quét, chúng ta có thể giảm độ phức tạp xuống $\mathcal{O}(n\log{n})$.
 
-Trước tiên, chúng ta sẽ sắp xếp lại danh sách điểm theo thứ tự hoành độ các điểm tăng dần. Lần lượt duyệt qua từng điểm trong danh sách đã sắp xếp. Ý tưởng chính của thuật toán cải tiến so với thuật toán trâu bò đó là thay vì phải duyệt qua tất cả cặp điểm, với mỗi điểm, ta chỉ phải xét điểm đó với một số ít các điểm khác đáng quan tâm, chi phí để tìm các điểm đáng quan tâm là $O(\log{n})$, do đó thuật toán cải tiến có độ phức tạp $O(n \log{n})$.
+Trước tiên, chúng ta sẽ sắp xếp lại danh sách điểm theo thứ tự hoành độ các điểm tăng dần. Lần lượt duyệt qua từng điểm trong danh sách đã sắp xếp. Ý tưởng chính của thuật toán cải tiến so với thuật toán trâu bò đó là thay vì phải duyệt qua tất cả cặp điểm, với mỗi điểm, ta chỉ phải xét điểm đó với một số ít các điểm khác đáng quan tâm, chi phí để tìm các điểm đáng quan tâm là $\mathcal{O}(\log{n})$, do đó thuật toán cải tiến có độ phức tạp $\mathcal{O}(n \log{n})$.
 
 Giả sử chúng ta đã xử lí xong $N - 1$ điểm đầu tiên và khoảng cách ngắn nhất hiện có là $d$. Như vậy từ điểm thứ $N$ về sau, ta chỉ quan tâm đến các cặp điểm có khoảng cách bé hơn $d$. Gọi điểm thứ $N$ (cũng là điểm đang xét) là điểm $P$.
 
@@ -78,11 +78,11 @@ Giả sử chúng ta đã xử lí xong $N - 1$ điểm đầu tiên và khoản
 >
 > **Chứng minh**
 >
-> Từ $P$, vẽ $8$ hình vuông xung quanh, mỗi hình vuông có cạnh đúng bằng $d/2$, như hình dưới (điểm màu xanh là $P$).
+> Từ $P$, vẽ $8$ hình vuông xung quanh, mỗi hình vuông có cạnh đúng bằng $\frac{d}{2}$, như hình dưới (điểm màu xanh là $P$).
 >
 ><center>
 >
-> ![](/uploads/Sweep-Line_img2.png =300x)
+> ![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img2.png =300x)
 ></center>
 >
 > Hiển nhiên tất cả các điểm từ $1$ đến $N - 1$ đều nằm về phía bên trái của điểm đang xét do ta duyệt danh sách theo thứ tự tăng dần về hoành độ. Nhận xét rằng từ $P$, ta không cần quan tâm đến những điểm $T$ không nằm trong $8$ hình vuông bên trên do khi đó khoảng cách giữa $P$ và $T$ lớn hơn $d$.
@@ -98,7 +98,7 @@ Thuật toán của chúng ta cụ thể như sau. Đầu tiên sắp xếp danh
 - Tìm các điểm trong $T$ có chênh lệch tung độ không quá $d$, tính khoảng cách giữa các điểm này và điểm đang xét, và cập nhật $d$.
 - Thêm điểm đang xét vào $T$.
 
-Ta nhận thấy mỗi điểm được thêm vào và xoá khỏi $T$ đúng một lần. Do đó tổng chi phí cho các thao tác thêm và xoá điểm là $O(n \log{n})$. Tại mỗi bước, chi phí tìm kiếm là $O(\log{n})$ và có $O(1)$ điểm ta cần xét. Tóm lại, độ phức tạp thời gian của thuật toán là $O(n \log{n})$.
+Ta nhận thấy mỗi điểm được thêm vào và xoá khỏi $T$ đúng một lần. Do đó tổng chi phí cho các thao tác thêm và xoá điểm là $\mathcal{O}(n \log{n})$. Tại mỗi bước, chi phí tìm kiếm là $\mathcal{O}(\log{n})$ và có $\mathcal{O}(1)$ điểm ta cần xét. Tóm lại, độ phức tạp thời gian của thuật toán là $\mathcal{O}(n \log{n})$.
 
 ## Cài đặt mẫu
 
@@ -111,19 +111,21 @@ using namespace std;
 
 #define ll long long
 
-struct Point{
+struct Point {
     ll x, y;
     int id;
 
-    bool operator < (const Point& other) {
-        if (x != other.x) return x < other.x;
+    bool operator<(const Point &other) {
+        if (x != other.x)
+            return x < other.x;
         return y < other.y;
     }
 };
 
-struct cmp{
-    bool operator () (const Point& a, const Point& b) const {
-        if (a.y != b.y) return a.y < b.y;
+struct cmp {
+    bool operator()(const Point &a, const Point &b) const {
+        if (a.y != b.y)
+            return a.y < b.y;
         return a.x < b.x;
     }
 };
@@ -133,12 +135,13 @@ vector<Point> points; // Vector chứa tất cả các điểm
 set<Point, cmp> T;
 
 ll squared_dist(Point a, Point b) { // Nhận vào hai điểm, trả vể
-                                     // bình phương khoảng cách giữa hai điểm
+                                    // bình phương khoảng cách giữa hai điểm
     return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
 }
 
-signed main() {
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     cin >> n;
     for (int i = 0; i < n; i++) {
@@ -162,27 +165,30 @@ signed main() {
         while (1) { // Tìm tất cả các điểm có tung độ trong khoảng [y - d, y + d]
             auto it = T.upper_bound(cur);
 
-            if (it == T.end()) break;
+            if (it == T.end())
+                break;
 
             cur = *it;
-            if (cur.y > y + d) break; // Dừng lại nếu điểm có tung độ lớn hơn y + d
+            if (cur.y > y + d)
+                break; // Dừng lại nếu điểm có tung độ lớn hơn y + d
 
             if (cur.x < x - d) {
                 T.erase(it);
                 continue;
             } // Xóa điểm nếu điểm này có hoành độ bé hơn x - d
 
-
             if (squared_dist(p, cur) < squared_d) {
                 squared_d = squared_dist(p, cur);
-                res_id1 = id; res_id2 = cur.id;
+                res_id1 = id;
+                res_id2 = cur.id;
             } // Gán đáp án mới nếu tìm được d nhỏ hơn
         }
 
         T.insert(p); // Thêm điểm hiện tại vào T
     }
 
-    if (res_id1 > res_id2) swap(res_id1, res_id2);
+    if (res_id1 > res_id2)
+        swap(res_id1, res_id2);
     cout << res_id1 << " " << res_id2 << " ";
     cout << fixed << setprecision(6) << sqrt(squared_d);
 }
@@ -219,7 +225,7 @@ Chúng ta sẽ quét từ trái sang phải. Khi đoạn quét di chuyển, ta d
 
 <center>
 
-![](/uploads/Sweep-Line_img3.png =200x)
+![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img3.png =200x)
 </center>
 
 Với mỗi đoạn thẳng nằm dọc $v_i$, để đếm $t_i$ là số đoạn thẳng nằm ngang cắt $v_i$, ta chỉ việc tìm trong tập $S$ những đoạn thẳng có tung độ nằm giữa hai đầu mút của $v$. Hiển nhiên ta thấy rằng tổng của các $t_i$ cũng là số giao điểm ta cần tìm.
@@ -230,15 +236,15 @@ Như vậy ta thấy tập $S$ là một yếu tố quan trọng để giải qu
 2. Xoá một phần tử có khoá $k$ khỏi tập.
 3. Cho một khoảng $[L, R]$, trả về số lượng phần tử trong tập có khoá $k \in [L, R]$.
 
-Để thoả mãn các yêu cầu trên, ta sẽ cài đặt tập $S$ bằng kĩ thuật nén số và cây Fenwick. Ta sẽ nén tung độ của các đoạn thẳng thành $O(n)$ điểm. Dựng cây Fenwick dựa trên $O(n)$ điểm này, mỗi nút trong cây cho biết có bao nhiêu đoạn thẳng ngang đang cắt các điểm trong đoạn con mà nút quản lý. Như vậy, mỗi thao tác thêm một đoạn thẳng vào tập $S$ tương ứng với một thao tác cộng $1$ vào giá trị lưu ở các nút tương ứng và mỗi thao tác xoá một đoạn thẳng khỏi $S$ tương ứng với một thao tác giảm giá trị lưu ở các nút tương ứng đi $1$. Chi phí để thực hiện cả hai thao tác trên là $O(\log{n})$. Để tìm số lượng đoạn thẳng ngang có tung độ trong khoảng $[L, R]$, ta có thể tính tổng các điểm trong khoảng $[L, R]$ trong cây Fenwick trong $O(\log{n})$. Chi tiết tham khảo ở cài đặt mẫu.
+Để thoả mãn các yêu cầu trên, ta sẽ cài đặt tập $S$ bằng kĩ thuật nén số và cây Fenwick. Ta sẽ nén tung độ của các đoạn thẳng thành $\mathcal{O}(n)$ điểm. Dựng cây Fenwick dựa trên $\mathcal{O}(n)$ điểm này, mỗi nút trong cây cho biết có bao nhiêu đoạn thẳng ngang đang cắt các điểm trong đoạn con mà nút quản lý. Như vậy, mỗi thao tác thêm một đoạn thẳng vào tập $S$ tương ứng với một thao tác cộng $1$ vào giá trị lưu ở các nút tương ứng và mỗi thao tác xoá một đoạn thẳng khỏi $S$ tương ứng với một thao tác giảm giá trị lưu ở các nút tương ứng đi $1$. Chi phí để thực hiện cả hai thao tác trên là $\mathcal{O}(\log{n})$. Để tìm số lượng đoạn thẳng ngang có tung độ trong khoảng $[L, R]$, ta có thể tính tổng các điểm trong khoảng $[L, R]$ trong cây Fenwick trong $\mathcal{O}(\log{n})$. Chi tiết tham khảo ở cài đặt mẫu.
 
-Dễ thấy thuật toán của chúng ta duyệt qua một danh sách có $O(n)$ phần tử, với mỗi phần tử chi phí xử lí là $O(\log{n})$. Do đó độ phức tạp thời gian của thuật toán là $O(n \log{n})$. Độ phức tạp bộ nhớ là $O(n)$.
+Dễ thấy thuật toán của chúng ta duyệt qua một danh sách có $\mathcal{O}(n)$ phần tử, với mỗi phần tử chi phí xử lí là $\mathcal{O}(\log{n})$. Do đó độ phức tạp thời gian của thuật toán là $\mathcal{O}(n \log{n})$. Độ phức tạp bộ nhớ là $\mathcal{O}(n)$.
 
 Minh họa thuật toán:
 
 <center>
 
-<img src="https://i.imgur.com/xj1XD68.gif"  style="width: 60%">
+<img src="/uploads/algo/geometry/Sweep-Line/xj1XD68.gif"  style="width: 60%">
 </center>
 
 ## Cài đặt mẫu
@@ -253,30 +259,33 @@ using namespace std;
 const int N = 1e5 + 5;
 const double EPS = 1e-9;
 
-struct Event{
+struct Event {
     double x;
     int y, y2, type;
 
-    bool operator < (const Event& other) const {
+    bool operator<(const Event &other) const {
         return x < other.x;
     }
 };
 
-struct FenwickTree{
+struct FenwickTree {
     int n;
     vector<int> s;
 
     FenwickTree(int n) : n(n), s(n + 5) {
-        for (int i = 1; i <= n; i++) s[i] = 0;
+        for (int i = 1; i <= n; i++)
+            s[i] = 0;
     }
 
     void update(int i, int val) {
-        for (; i <= n; i += i & -i) s[i] += val;
+        for (; i <= n; i += i & -i)
+            s[i] += val;
     }
 
     int getsum(int i) {
         int res = 0;
-        for (; i; i -= i & -i) res += s[i];
+        for (; i; i -= i & -i)
+            res += s[i];
         return res;
     }
 
@@ -290,21 +299,24 @@ double blue_x1[N], blue_x2[N], blue_y[N], red_y1[N], red_y2[N], red_x[N];
 vector<double> compress_y;
 vector<Event> events;
 
-signed main() {
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     cin >> n;
     for (int i = 1; i <= n; i++) {
         cin >> blue_x1[i] >> blue_x2[i] >> blue_y[i];
 
-        if (blue_x1[i] > blue_x2[i]) swap(blue_x1[i], blue_x2[i]);
+        if (blue_x1[i] > blue_x2[i])
+            swap(blue_x1[i], blue_x2[i]);
         compress_y.push_back(blue_y[i]);
     }
 
     for (int i = 1; i <= n; i++) {
         cin >> red_y1[i] >> red_y2[i] >> red_x[i];
 
-        if (red_y1[i] > red_y2[i]) swap(red_y1[i], red_y2[i]);
+        if (red_y1[i] > red_y2[i])
+            swap(red_y1[i], red_y2[i]);
         compress_y.push_back(red_y1[i]);
         compress_y.push_back(red_y2[i]);
     }
@@ -330,9 +342,12 @@ signed main() {
     FenwickTree FT(n * 3); // Có tối đa n * 3 tung độ khác nhau
     ll res = 0;
     for (auto e : events) {
-        if (e.type == 1) FT.update(e.y, 1);
-        else if (e.type == 2) FT.update(e.y, -1);
-        else res += FT.query(e.y, e.y2);
+        if (e.type == 1)
+            FT.update(e.y, 1);
+        else if (e.type == 2)
+            FT.update(e.y, -1);
+        else
+            res += FT.query(e.y, e.y2);
     }
 
     cout << res;
@@ -358,28 +373,28 @@ Tương tự như bài toán tìm giao điểm của các đoạn thẳng, chún
 
 <center>
 
-![](/uploads/Sweep-Line_img4.png =300x)
+![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img4.png =300x)
 </center>
 
 Ta biết được những hình chữ nhật nào đang bị cắt bởi đường quét của chúng ta (màu đỏ). Để tìm tổng diện tích được bao phủ, ta sẽ tìm diện tích từng phần bị bao phủ giữa mỗi cặp hai "sự kiện" liền nhau và tính tổng của chúng. Để tìm phần diện tích được bao phủ giữa hai sự kiện liền nhau, ta cần biết tổng độ dài phần đường quét đi qua chúng (nét liền màu xanh trong hình trên). Nhân độ dài này với khoảng cách giữa hai sự kiện liền nhau, ta được diện tích của phần hình chữ nhật giữa hai "sự kiện" đó.
 
 Vấn đề đặt ra là làm thế nào để tìm tổng độ dài của các phần "nét liền màu xanh" như trên hình. Nhớ rằng tại mỗi bước ta duy trì một tập $S$ các hình chữ nhật mà đường thẳng quét cắt qua. Hiển nhiên ta thấy tổng độ dài của phần "nét liền màu xanh" chính là hợp của tất cả các hình chữ nhật trong tập $S$ tại mỗi bước.
 
-Để tính hợp của tất cả các hình chữ nhật trong tập $S$, một thuật toán đơn giản là ta sẽ duyệt qua hết tất cả các hình chữ nhật hiện có trong $S$. Độ phức tạp thời gian để giải bài toán khi này là $O(n^2)$ - chúng ta duyệt qua $O(n)$ sự kiện, tại mỗi "sự kiện", ta lại duyệt qua $O(n)$ hình chữ nhật mà đường quét của chúng ta đang cắt (dĩ nhiên chúng ta cũng phải thêm các hình mới và xoá bớt những hình mà đường quét không còn cắt khỏi tập $S$).
+Để tính hợp của tất cả các hình chữ nhật trong tập $S$, một thuật toán đơn giản là ta sẽ duyệt qua hết tất cả các hình chữ nhật hiện có trong $S$. Độ phức tạp thời gian để giải bài toán khi này là $\mathcal{O}(n^2)$ - chúng ta duyệt qua $\mathcal{O}(n)$ sự kiện, tại mỗi "sự kiện", ta lại duyệt qua $\mathcal{O}(n)$ hình chữ nhật mà đường quét của chúng ta đang cắt (dĩ nhiên chúng ta cũng phải thêm các hình mới và xoá bớt những hình mà đường quét không còn cắt khỏi tập $S$).
 
 Minh họa thuật toán:
 <center>
 
-<img src="https://i.imgur.com/h7RJef6.gif" style="width: 60%">
+<img src="/uploads/algo/geometry/Sweep-Line/h7RJef6.gif" style="width: 60%">
 </center>
 
 <br>
 
 <!-- Chúng ta có thể xác định được độ dài đoạn được cắt bằng cách cũng sử dụng thuật toán này, nhưng quay 90 độ. Bỏ qua các hình chữ nhật ngoài tập trên ra, ta cho một đường quét chạy từ trên xuống, với các sự kiện giờ là các cạnh ngang của hình chữ nhật, và mỗi khi đường quét chạm vào một trong số chúng, ta chỉ cần tăng hoặc giảm biến đếm số lượng hình chữ nhật đang đè lên nhau ở thời điểm đó. Độ dài đoạn cắt này sẽ tăng nếu biến đếm khác 0. Tất nhiên, chúng ta sẽ không tăng liên tục, mà sẽ đi từ sự kiện này sang sự kiện khác.
 
-Nếu sử dụng đúng cấu trúc dữ liệu, bài toán có thể giải quyết với độ phức tạp $(O(n^2))$ (gợi ý: sử dụng một mảng `bool` để chứa tập, thay vì sử dụng cây nhị phân cân bằng, và sắp xếp lại tất cả các cạnh nằm ngang trước tiên). Trên thực tế, đường quét nằm trong có thể thay thế bởi một vài thao tác thông minh trên cây nhị phân, qua đó giảm độ phức tạp xuống $O(n\log(n))$, nhưng khi đó, bài toán sẽ là một bài cấu trúc dữ liệu thay vì là một bài hình học, nên nó sẽ được để lại cho bạn đọc tự giải. Thuật toán này vẫn có thể áp dụng tới một số bài toán tương tự như tìm chu vi của các hình chữ nhật hoặc tìm số hình chữ nhật đè lên nhau nhiều nhất. -->
+Nếu sử dụng đúng cấu trúc dữ liệu, bài toán có thể giải quyết với độ phức tạp $(\mathcal{O}(n^2))$ (gợi ý: sử dụng một mảng `bool` để chứa tập, thay vì sử dụng cây nhị phân cân bằng, và sắp xếp lại tất cả các cạnh nằm ngang trước tiên). Trên thực tế, đường quét nằm trong có thể thay thế bởi một vài thao tác thông minh trên cây nhị phân, qua đó giảm độ phức tạp xuống $\mathcal{O}(n\log(n))$, nhưng khi đó, bài toán sẽ là một bài cấu trúc dữ liệu thay vì là một bài hình học, nên nó sẽ được để lại cho bạn đọc tự giải. Thuật toán này vẫn có thể áp dụng tới một số bài toán tương tự như tìm chu vi của các hình chữ nhật hoặc tìm số hình chữ nhật đè lên nhau nhiều nhất. -->
 
-Để tối ưu thuật toán, chúng ta có thể sử dụng kĩ thuật nén số và cây phân đoạn. Ta sẽ nén hoành độ của các "sự kiện" thành $O(n)$ điểm, các điểm này chia đường thẳng quét của chúng ta thành $O(n)$ đoạn thẳng con. Ta dựng cây phân đoạn với $O(n)$ đoạn thẳng con này là các nút lá. Tại mỗi nút trong cây phân đoạn ta sẽ lưu hai giá trị để trả lời cho hai câu hỏi:
+Để tối ưu thuật toán, chúng ta có thể sử dụng kĩ thuật nén số và cây phân đoạn. Ta sẽ nén hoành độ của các "sự kiện" thành $\mathcal{O}(n)$ điểm, các điểm này chia đường thẳng quét của chúng ta thành $\mathcal{O}(n)$ đoạn thẳng con. Ta dựng cây phân đoạn với $\mathcal{O}(n)$ đoạn thẳng con này là các nút lá. Tại mỗi nút trong cây phân đoạn ta sẽ lưu hai giá trị để trả lời cho hai câu hỏi:
 
 1) Hiện có bao nhiêu hình chữ nhật đang phủ đoạn con mà nút quản lý?
 2) Tổng độ dài các phần được ít nhất một hình chữ nhật phủ trong đoạn con mà nút quản lý là bao nhiêu?
@@ -397,28 +412,33 @@ using namespace std;
 
 const int MX = 30000;
 
-struct Segment{
+struct Segment {
     int x, y1, y2, type;
 
-    bool operator < (const Segment& other) const {
+    bool operator<(const Segment &other) const {
         return x < other.x;
     }
 };
 
-struct SegmentTree{
+struct SegmentTree {
     vector<pair<int, int>> s;
 
     SegmentTree(int n) : s(n * 4 + 5) {
-        for (int i = 1; i <= 4 * n; i++) s[i] = {0, 0};
+        for (int i = 1; i <= 4 * n; i++)
+            s[i] = {0, 0};
     }
 
     void update(int id, int l, int r, int tl, int tr, int val) {
-        if (l > tr || r < tl) return;
+        if (l > tr || r < tl)
+            return;
         if (l >= tl && r <= tr) {
             s[id].second += val;
-            if (s[id].second != 0) s[id].first = r - l + 1;
-            else if (l != r) s[id].first = s[id * 2].first + s[id * 2 + 1].first;
-            else s[id].first = 0;
+            if (s[id].second != 0)
+                s[id].first = r - l + 1;
+            else if (l != r)
+                s[id].first = s[id * 2].first + s[id * 2 + 1].first;
+            else
+                s[id].first = 0;
             return;
         }
 
@@ -426,16 +446,19 @@ struct SegmentTree{
         update(id * 2, l, m, tl, tr, val);
         update(id * 2 + 1, m + 1, r, tl, tr, val);
 
-        if (s[id].second != 0) s[id].first = r - l + 1;
-        else s[id].first = s[id * 2].first + s[id * 2 + 1].first;
+        if (s[id].second != 0)
+            s[id].first = r - l + 1;
+        else
+            s[id].first = s[id * 2].first + s[id * 2 + 1].first;
     }
 };
 
 int n;
 vector<Segment> segments;
 
-signed main() {
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     cin >> n;
     for (int i = 1; i <= n; i++) {
@@ -473,7 +496,7 @@ Giới hạn:
 
 ## Phân tích
 
-Ý tưởng chính của thuật giải là nếu như số cạnh ta cần xét là $O(n)$ thì ta có thể sử dụng các thuật toán tìm cây khung nhỏ nhất như Kruskal hay Prim để giải bài toán trong $O(n \log{n})$.
+Ý tưởng chính của thuật giải là nếu như số cạnh ta cần xét là $\mathcal{O}(n)$ thì ta có thể sử dụng các thuật toán tìm cây khung nhỏ nhất như Kruskal hay Prim để giải bài toán trong $\mathcal{O}(n \log{n})$.
 
 > **Bổ đề 2**
 >
@@ -481,10 +504,10 @@ Giới hạn:
 >
 ><center>
 >
-> ![](/uploads/Sweep-Line_img5.png)
+> ![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img5.png)
 ></center>
 >
-> Thực hiện thao tác trên với tất cả các điểm được cho, ta thu được một đồ thị $G$ có $O(n)$ cạnh. Ta sẽ chứng minh rằng cây khung nhỏ nhất trên đồ thị $G$ là một đáp án cho bài toán.
+> Thực hiện thao tác trên với tất cả các điểm được cho, ta thu được một đồ thị $G$ có $\mathcal{O}(n)$ cạnh. Ta sẽ chứng minh rằng cây khung nhỏ nhất trên đồ thị $G$ là một đáp án cho bài toán.
 >
 > **Chứng minh**
 >
@@ -492,7 +515,7 @@ Giới hạn:
 >
 > Xét cạnh $(u, v) \in T$. Không mất tính tổng quát, giả sử $v$ thuộc phần tám thứ nhất so với $u$. Giả sử tồn tại một điểm $w$ trong tập điểm ban đầu sao cho $d(u, w) < d(u, v)$. Đồng thời ta biết rằng $d(v, w) < d(u, v)$ (nhìn hình minh hoạ bên dưới). Do đó ta sẽ có một cây khung nhỏ hơn nếu ta bỏ $(u, v)$ và thay bằng một trong hai cạnh $(u, w)$ hay $(v, w)$. Điều này trái giả thiết $T$ là cây khung nhỏ nhất. Do đó, không tồn tại điểm $w$ sao cho $d(u, w) < d(u, v)$ - tức $v$ là điểm trong phần tám thứ nhất của $u$ có khoảng cách Manhattan gần nhất. Chứng minh tương tự với các trường hợp $v$ thuộc các phần tám còn lại của $u$.
 >
-> | ![](/uploads/Sweep-Line_img6.png =300x) |
+> | ![](/uploads/algo/geometry/Sweep-Line/Sweep-Line_img6.png =300x) |
 > | :--------: |
 > | $\forall w$ thuộc vùng màu xanh, $d(v, w) \leq d(u, v)$ |
 
@@ -503,13 +526,15 @@ Qua bổ đề 2, ta thấy bài toán đặt ra hiện tại là làm sao để
 > Gọi $d(P, Q)$ là khoảng cách Manhattan giữa hai điểm $P$ và $Q$. Gọi $A(x_A, y_A)$, $B(x_B, y_B)$, $C(x_C, y_C)$, $D(x_D, y_D)$ là bốn điểm trên mặt phẳng sao cho $x_A, x_B \leqslant x_C, x_D$ và $y_A, y_B \leqslant y_C, y_D$. Ta có $d(A, C) \leqslant d(A, D)$ tương đương với $d(B, C) \leqslant d(B, D)$.
 >
 > **Chứng minh**
-> $$\begin{align}
+> $$
+> \begin{align}
 > d(A, C) &\leqslant d(A, D)\\
 > x_C - x_A + y_C - y_A &\leqslant x_D - x_A + y_D - y_A\\
 > x_C + y_C &\leqslant x_D + y_D\\
 > x_C - x_B + y_C - y_B &\leqslant x_D - x_B + y_D - y_B\\
 > d(B, C) &\leqslant d(B, D)
-> \end{align}$$
+> \end{align}
+> $$
 
 Ta sẽ sử dụng phương pháp chia để trị để giải quyết bài toán. Đầu tiên ta sẽ sắp xếp $n$ điểm theo thứ tự tăng dần về hoành độ. Tại mỗi bước ta chia $n$ điểm thành $2$ tập con $L$ và $R$. Gọi đệ quy giải bài toán với từng tập con. Nhận xét rằng lời giải cho tập $R$ cũng chính là lời giải đúng, do đó ta chỉ cần cập nhật lời giải cho các điểm trong tập $L$.
 
@@ -521,21 +546,21 @@ Dùng con trỏ 1 để duyệt các điểm trong $L$. Gọi điểm đang đư
 2) Điểm được con trỏ 2 trỏ tới có tung độ lớn hơn hoặc bằng tung độ của $T$ và có khoảng cách Manhattan tới $T$ lớn hơn khoảng cách Manhattan giữa $T$ và $U$: Khi này ta không làm gì cả.
 3) Điểm được con trỏ 2 trỏ tới có tung độ lớn hơn hoặc bằng tung độ của $T$ và có khoảng cách Manhattan tới $T$ bé hơn khoảng cách Manhattan giữa $T$ và $U$: Khi này ta trỏ con trỏ 3 đến điểm đang được trỏ bới con trỏ 2.
 
-Nhờ có tính chất được đề cập trong bổ đề 3, ta nhận thấy vòng lặp trên sẽ cho chúng ta đáp án chính xác. Cả ba con trỏ đều "thăm" mỗi điểm trong $L$ hoặc $R$ đúng một lần nên độ phức tập của mỗi "tầng" trong cây đệ quy của chúng ta sẽ là $O(n)$. Do ta sẽ có $O(\log{n})$, độ phức tạp của thuật toán trên là $O(n \log{n})$.
+Nhờ có tính chất được đề cập trong bổ đề 3, ta nhận thấy vòng lặp trên sẽ cho chúng ta đáp án chính xác. Cả ba con trỏ đều "thăm" mỗi điểm trong $L$ hoặc $R$ đúng một lần nên độ phức tập của mỗi "tầng" trong cây đệ quy của chúng ta sẽ là $\mathcal{O}(n)$. Do ta sẽ có $\mathcal{O}(\log{n})$, độ phức tạp của thuật toán trên là $\mathcal{O}(n \log{n})$.
 
-<!-- Trước hết, chúng ta sẽ chia bài toán này thành những bài toán nhỏ hơn. Bài toán cây khung nhỏ nhất trong đồ thị bình thường (bạn có thể tìm hiểu ở [đây](/algo/graph-theory/minimum-spanning-tree.md)) có một số thuật toán để giải (như Prim chẳng hạn). Prim có thể giúp chúng ta giải quyết bài toán trong độ phức tạp $O((E + N)\log N)$ với $E$ cạnh. Tuy vậy, nếu chúng ta tận dụng được yếu tố hình học, ta có thể đưa số cạnh về $O(N)$, tức là thuật toán sẽ gần như là $O(N\log N)$.
+<!-- Trước hết, chúng ta sẽ chia bài toán này thành những bài toán nhỏ hơn. Bài toán cây khung nhỏ nhất trong đồ thị bình thường (bạn có thể tìm hiểu ở [đây](/algo/graph-theory/minimum-spanning-tree.md)) có một số thuật toán để giải (như Prim chẳng hạn). Prim có thể giúp chúng ta giải quyết bài toán trong độ phức tạp $\mathcal{O}((E + N)\log N)$ với $E$ cạnh. Tuy vậy, nếu chúng ta tận dụng được yếu tố hình học, ta có thể đưa số cạnh về $\mathcal{O}(N)$, tức là thuật toán sẽ gần như là $\mathcal{O}(N\log N)$.
 
 Trên thực tế, với mỗi điểm $P$, ta có thể xét những điểm gần $P$ nhất trong những góc phần tám của mặt phẳng (xem hình dưới). Hình vẽ mô tả việc xử lí trong 1 góc của hình: Tây - Tây Bắc. Giả sử điểm $Q$ là điểm gần nhất, với đường nét đứt là những điểm có khoảng cách Manhattan cùng với $Q$, và $R$ là một điểm bất kì khác nằm trong góc phần tám đó. Nếu $PR$ là một cạnh trong cây khung, chúng ta có thể bỏ nó đi, bởi $PQ$ hoặc $QR$ sẽ cho ra cây khung tốt hơn.
 
-![Image](https://images.ctfassets.net/piwi0eufbb2g/5CCfXOgbKPyavwlhCdfQmW/1f393c0e52220f20583f4f95ecc104c8/octants.png)
+![Image](/uploads/algo/geometry/Sweep-Line/octants.png)
 
 Bài toán bây giờ trở thành tìm điểm gần nhất với $P$ ở mỗi góc phần tám. Chúng ta sẽ chỉ xử lí ở góc trong hình, bởi những góc còn lại có thể giải quyết tương tự. Ta có thể thấy rõ ràng rằng bài toán tìm điểm gần nhất tương đương với việc tìm điểm có $x - y$ đạt lớn nhất, với chặn trên và chặn dưới lần lượt là $x + y$ và $y$.
 
 Tưởng tượng rằng, một lúc nào đó, cận dưới $y$ không tồn tại. Trong trường họp này, chúng ta sẽ giải quyết vấn đề cho mọi điểm $P$ như sau: quét qua các điểm theo thứ tự tăng dần của $x + y$ và $Q$ sẽ là điểm trong số chúng với $x - y$ lớn nhất. Đây là lúc chúng ta vận dụng ý tưởng chia để trị: Ta chia tập điểm thành 2 nửa bằng một đường nằm ngang, và xử lí cho mỗi nửa. Với các điểm $P$ ở nửa trên, chúng ta có thể giải quyết mà không dùng gì mới, bởi những điểm ở nửa dưới không thể đóng vai trò là điểm $Q$ cho những điểm $P$ ở nửa trên. Xét tới nửa dưới, chúng ta phải để ý rằng do đã bỏ qua ở nửa trên nên chúng ta có thể chưa xét tới một số điểm gần hơn. Tuy vậy, những điểm này hoàn toàn có thể giải bằng cách chúng ta đã làm: quét qua tất cả các điểm theo thứ tự $x + y$, và lưu lại điểm có $x - y$ lớn nhất ở nửa trên, và với mỗi điểm ở nửa dưới, kiểm tra điểm tốt nhất ở nửa trên liệu có tốt hơn so với điểm kề hiện tại không.
 
-Chúng ta đã nói về cách chia các điểm và về cách quét theo thứ tự $x + y$ mà chưa nói tới việc làm chúng như thế nào. Trên thực tế, vẻ đẹp của cách làm kết hợp chia để trị và đường quét là việc nó có cấu trúc giống như làm sắp xếp trộn (merge sort). Vì thế, thuật toán có độ phức tạp $O(N\log N)$.
+Chúng ta đã nói về cách chia các điểm và về cách quét theo thứ tự $x + y$ mà chưa nói tới việc làm chúng như thế nào. Trên thực tế, vẻ đẹp của cách làm kết hợp chia để trị và đường quét là việc nó có cấu trúc giống như làm sắp xếp trộn (merge sort). Vì thế, thuật toán có độ phức tạp $\mathcal{O}(N\log N)$.
 
-Ý tưởng tìm cặp điểm gần nhất ở mỗi góc có thể giải quyết cả bài toán Cây khung nhỏ nhất với khoảng cách Euclid, nhưng độ phức tạp sẽ không còn là $O(N\log N)$ trong trường hợp xấu nhất, bởi khoảng cách giờ không còn là phương trình tuyến tính nữa. Giải quyết bài toán này trong $O(N\log N)$ không phải là điều không thể, bởi khi đó, nó là một bài toán con của phép tam giác hoá Delaunay. -->
+Ý tưởng tìm cặp điểm gần nhất ở mỗi góc có thể giải quyết cả bài toán Cây khung nhỏ nhất với khoảng cách Euclid, nhưng độ phức tạp sẽ không còn là $\mathcal{O}(N\log N)$ trong trường hợp xấu nhất, bởi khoảng cách giờ không còn là phương trình tuyến tính nữa. Giải quyết bài toán này trong $\mathcal{O}(N\log N)$ không phải là điều không thể, bởi khi đó, nó là một bài toán con của phép tam giác hoá Delaunay. -->
 
 ## Cài đặt mẫu
 
@@ -549,18 +574,24 @@ const int INF = 1e8;
 
 struct Point {
     int x, y, id;
-    int diff_yx() const { return y - x; }
-    int sum_xy() const { return x + y; }
+    int diff_yx() const {
+        return y - x;
+    }
+    int sum_xy() const {
+        return x + y;
+    }
 };
 
-int manhattan_dist(const Point& u, const Point& v) {
+int manhattan_dist(const Point &u, const Point &v) {
     return abs(u.x - v.x) + abs(u.y - v.y);
 }
 
 struct DSU {
     vector<int> par;
-    DSU() {}
-    DSU(int n): par(n, -1) {}
+    DSU() {
+    }
+    DSU(int n) : par(n, -1) {
+    }
 
     int find_set(int u) {
         return par[u] < 0 ? u : par[u] = find_set(par[u]);
@@ -569,8 +600,10 @@ struct DSU {
     bool join(int u, int v) {
         u = find_set(u);
         v = find_set(v);
-        if (u == v) return false;
-        if (-par[u] < -par[v]) swap(u, v);
+        if (u == v)
+            return false;
+        if (-par[u] < -par[v])
+            swap(u, v);
         par[u] += par[v];
         par[v] = u;
         return true;
@@ -581,17 +614,18 @@ struct Edge {
     int u, v, cost;
 };
 
-bool operator<(const Edge& u, const Edge& v) {
+bool operator<(const Edge &u, const Edge &v) {
     return u.cost < v.cost;
 }
 
-Edge edge_from_point(const Point& u, const Point& v) {
+Edge edge_from_point(const Point &u, const Point &v) {
     return {u.id, v.id, manhattan_dist(u, v)};
 }
 
 vector<Edge> potential_edges; // Các cạnh tối ưu cần xét
 vector<Point> solve_single_recur(vector<Point> p) {
-    if (p.size() <= 1) return p;
+    if (p.size() <= 1)
+        return p;
     int upper_size = (int)p.size() / 2;
     auto upper = solve_single_recur({p.begin(), p.begin() + upper_size});
     auto lower = solve_single_recur({p.begin() + upper_size, p.end()});
@@ -619,21 +653,21 @@ vector<Point> solve_single_recur(vector<Point> p) {
 }
 
 void solve_single(vector<Point> p) { // Giải bài toán với một góc phần tám
-    sort(p.begin(), p.end(), [](const Point& u, const Point& v) {
+    sort(p.begin(), p.end(), [](const Point &u, const Point &v) {
         return u.y == v.y ? u.x < v.x : u.y > v.y;
     });
     solve_single_recur(p);
 }
 
-void rotate_90(vector<Point>& p) { // Xoay tất cả các điểm 90 độ
-    for (auto& cur: p) {
+void rotate_90(vector<Point> &p) { // Xoay tất cả các điểm 90 độ
+    for (auto &cur : p) {
         int x = cur.x, y = cur.y;
         cur.x = -y;
         cur.y = x;
     }
 }
-void flip(vector<Point>& p) { // Đối xứng các điểm qua trục Ox
-    for (auto& cur: p) {
+void flip(vector<Point> &p) { // Đối xứng các điểm qua trục Ox
+    for (auto &cur : p) {
         cur.y = -cur.y;
     }
 }
@@ -651,7 +685,7 @@ int solve(vector<Point> p) {
     DSU dsu((int)p.size());
     sort(potential_edges.begin(), potential_edges.end());
 
-    for (const auto& e : potential_edges) {
+    for (const auto &e : potential_edges) {
         if (dsu.join(e.u, e.v)) {
             ans += e.cost;
         }
@@ -662,7 +696,8 @@ int solve(vector<Point> p) {
 }
 
 int main() {
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     int n;
     cin >> n;

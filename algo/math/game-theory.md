@@ -54,11 +54,11 @@ Trò chơi ở trên chính là một ví dụ điển hình cho trò chơi tổ
 
 > Trong trò chơi ví dụ, giả sử $n = 8$ thì mỗi trạng thái sẽ là số sỏi còn lại hiện tại của trò chơi. Do đó tập trạng thái của trò chơi là $S = \{0,1,\ldots, 8\}$ (hình dưới).
 >
-> ![](/uploads/game_theory_decrease_state.png)
+> ![](/uploads/algo/math/game-theory/game_theory_decrease_state.png)
 >
 > Giả sử đang ở trạng thái $x = 7$, ta có thể di chuyển hợp lệ đến trạng thái $x' = 6$ (lấy ra $1$ viên sỏi), $x' = 5$ (lấy ra $2$ viên sỏi) hoặc $x' = 4$ (lấy ra $3$ viên sỏi). Do đó ta có các phần tử $(7, 6), (7,5), (7,4)$ thuộc tập di chuyển hợp lệ $Q$ (hình dưới).
 >
-> ![](/uploads/game_theory_decrease_transition.png)
+> ![](/uploads/algo/math/game-theory/game_theory_decrease_transition.png)
 >
 > Từ đó, ta nhận xét được tập các bước di chuyển hợp lệ $Q$ của cả hai người chơi sẽ là tất cả những cặp số nguyên $(x,x - c)$ ($0 \leq x \leq n$) sao cho $c \in \{1, 2, 3\}$ (từ trạng thái có số sỏi $x$ chỉ có thể lấy ra $1$, $2$, hoặc $3$ viên sỏi) và $x - c \geq 0$ (số sỏi lấy ra không được phép lớn hơn số sỏi đang có).
 >
@@ -96,7 +96,7 @@ Qua đó, ta thấy được ý nghĩa của việc đặt tên tập $P$ và $N
 
 ### Thuật toán xác định tập P và N
 Ta có ý tưởng thuật toán để tìm tập $P$ và $N$ như sau:
-```
+```cpp
 // Hàm kiểm tra một trạng thái thuộc P (true) hay N (false)
 bool isInP(State u) {
     if (u in T) // nếu u là trạng thái kết thúc thì u thuộc P
@@ -120,8 +120,8 @@ Tuy nhiên, thuật toán này có một nhược điểm, đó là **gọi lạ
 
 ### Ví dụ cài đặt thuật toán cho trò chơi bốc sỏi
 Đầu tiên, ta cần thêm các thư viện cần thiết, cũng như khai báo mảng $dp$ để nhớ kết quả của những trạng thái đã đệ quy.
-```c++
-#include<bits/stdc++.h>
+```cpp
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -130,7 +130,7 @@ int dp[MAX_N];
 ```
 
 Sau đó, ta viết hàm xác định xem trạng thái $u$ có thuộc $P$ không như sau
-```c++
+```cpp
 bool isInP(int u) {
     if (dp[u] != -1) // nếu u đã được tính trước đó thì
         return dp[u];
@@ -154,26 +154,28 @@ bool isInP(int u) {
 ```
 
 Ở đây quy ước giá trị của mảng $dp$ như sau:
-- $dp[u] = 0$ nghĩa là trạng thái $u$ đã xét và $u$ không thuộc $P$, hay nói cách khác $u$ thuộc $N$.
-- $dp[u] = 1$ nghĩa là trạng thái $u$ đã xét và $u$ thuộc $P$.
-- $dp[u] = -1$ nghĩa là trạng thái $u$ chưa xét.
+- $\texttt{dp}[u] = 0$ nghĩa là trạng thái $u$ đã xét và $u$ không thuộc $P$, hay nói cách khác $u$ thuộc $N$.
+- $\texttt{dp}[u] = 1$ nghĩa là trạng thái $u$ đã xét và $u$ thuộc $P$.
+- $\texttt{dp}[u] = -1$ nghĩa là trạng thái $u$ chưa xét.
 
-Sở dĩ ta quy ước như vậy vì c++ có cơ chế [implicit casting](https://www.cplusplus.com/doc/oldtutorial/typecasting/). Nói đơn giản, khi trả về $dp[u]$ trong hàm `isInP(u)`, $dp[u]$ sẽ được tự động ép kiểu về `bool` với quy tắc: $0$ là $\texttt{false}$, các giá trị khác là $\texttt{true}$.
+Sở dĩ ta quy ước như vậy vì c++ có cơ chế [implicit casting](https://www.cplusplus.com/doc/oldtutorial/typecasting/). Nói đơn giản, khi trả về $\texttt{dp}[u]$ trong hàm `isInP(u)`, $\texttt{dp}[u]$ sẽ được tự động ép kiểu về `bool` với quy tắc: $0$ là $\texttt{false}$, các giá trị khác là $\texttt{true}$.
 
 Cài đặt này tối ưu thời gian đệ quy bằng hai ý sau:
 1. Khi tính xong, trước khi trả về giá trị thì ta lưu giá trị lại vào một mảng $dp$ và ở đầu hàm $isInP(u)$
-2. Ta trả về $dp[u]$ nếu $dp[u] \neq -1$ (tức $u$ đã được tính trước đó).
+2. Ta trả về $\texttt{dp}[u]$ nếu $\texttt{dp}[u] \neq -1$ (tức $u$ đã được tính trước đó).
 
 Cuối cùng, ta viết hàm main để nhập xuất và kết luận nghiệm. Lưu ý trước khi thực hiện quá trình tìm tập $P$ và $N$ ta phải khởi tạo mảng $dp$ thành toàn $-1$ bằng hàm `fill` do thư viện chuẩn của c++ cung cấp.
-```c++
+```cpp
 int main() {
     int n;
 
     cin >> n;
 
     fill(dp, dp + n + 1, -1);
-    if (!isInP(n)) cout << "A win";
-    else cout << "B win";
+    if (!isInP(n))
+        cout << "A win";
+    else
+        cout << "B win";
 
     return 0;
 }
@@ -208,7 +210,9 @@ Tiếp theo, chúng ta sẽ tìm cách ghép các đống sỏi đơn lại thà
 Ba thuộc tính này, đặc biệt nhất là tính chất $A \oplus A = 0$ giúp chúng ta tìm ra một ứng cử viên tìm năng, đó là **phép [bitwise XOR](https://vi.wikipedia.org/wiki/Ph%C3%A9p_to%C3%A1n_thao_t%C3%A1c_bit#XOR)**. Và quả thật phép toán này cũng chính là đáp án chúng ta cần tìm, định lý Bouton được trình bày ở phía dưới sẽ chứng minh tính đúng đắn của việc này.
 
 Thực chất, phép bitwise XOR chỉ là phép cộng modulo $2$ trên từng bit, do đó chúng ta hay gọi giá trị Nim là *tổng Nim*. Tổng Nim của một trò chơi có trạng thái $(p_1, p_2, \ldots, p_n)$ thu được bằng cách thực hiện phép XOR các $p_i$ lại với nhau.
-$$g = p_1 \oplus p_2 \oplus \ldots \oplus p_n$$
+$$
+g = p_1 \oplus p_2 \oplus \ldots \oplus p_n
+$$
 
 Ví dụ: với trò chơi Nim có ba đống sỏi với số sỏi lần lượt là $5$, $7$, $3$ thì tổng Nim là $0101 \oplus 0111 \oplus 0011 = 0001$.
 
@@ -225,12 +229,14 @@ Gọi $\hat{P}$ là tập gồm các trạng thái có tổng Nim bằng $0$ và
 
 Thứ hai, với một trạng thái thuộc $\hat{N}$ ($g > 0$), ta luôn có thể đi tới một trạng thái thuộc $\hat{P}$ ($g = 0$). Để chứng minh, chọn một đống sỏi thứ $i$ có $p_i$ sỏi và biến nó thành $p'_i$ sao cho $p'_i = g \oplus p_i < p_i$, ta có được tổng Nim mới $g'$ như sau:
 
-$$\begin{align*}
+$$
+\begin{align*}
     g' &= p_1 \oplus p_2 \oplus \ldots \oplus p'_i \oplus \ldots \oplus p_n \\
         &=  p_1 \oplus p_2 \oplus \ldots \oplus [p_i \oplus g] \oplus \ldots \oplus p_n \\
         &=  (p_1 \oplus p_2 \oplus \ldots \oplus p_i \oplus \ldots \oplus p_n) \oplus g \\
         &= g \oplus g = 0
-\end{align*}$$
+\end{align*}
+$$
 
 Lưu ý rằng phép XOR không giống phép cộng thông thường. Ở phép cộng hai số nguyên dương, kết quả luôn lớn hơn các toán hạng ban đầu. Tuy nhiên, trong phép XOR điều này không xảy ra, kết quả có thể lớn hơn hoặc nhỏ hơn các toán hạng ban đầu. Do đó việc ta có thể đảm bảo luôn tồn tại đống sỏi $i$ thỏa mãn yêu cầu $p'_i = g \oplus p_i < p_i$ không phải là điều hiển nhiên và **cần được chứng minh**.
 
@@ -238,33 +244,35 @@ Vì $g > 0$ nên  biểu diễn nhị phân của $g$ luôn tồn tại bit trá
 
 > Ví dụ, nếu trò chơi Nim hiện tại có $4$ cột có số sỏi lần lượt là $7$, $10$, $12$, $5$, thì thao tác tính tổng Nim và chọn cột để lấy sỏi ra sẽ diễn ra như hình dưới
 >
-> ![](/uploads/game_theory_bouton_proof_2.png)
+> ![](/uploads/algo/math/game-theory/game_theory_bouton_proof_2.png)
 
 Cuối cùng, với một trạng thái thuộc $\hat{P}$ (tức $g = 0$), mọi cách đi đều dẫn tới trạng thái thuộc $\hat{N}$ (tức $g > 0$). Ta có thể chứng minh dễ dàng bằng phương pháp phản chứng. Giả sử trạng thái trò chơi hiện tại là $(p_1, \ldots, p_n)$ có tổng Nim $g = 0$ và tồn tại một đống sỏi $i$ sao cho khi lấy bớt sỏi từ $i$ ra trạng thái trò chơi mới có tổng Nim $g' = 0$. Khi đó
 
-$$\begin{align*}
+$$
+\begin{align*}
     g' &= 0 = g
     \\ \Leftrightarrow
     p_1 \oplus p_2 \oplus \ldots \oplus p'_i \oplus \ldots \oplus p_n &=  p_1 \oplus p_2 \oplus \ldots \oplus p_i \oplus \ldots \oplus p_n
     \\ \Leftrightarrow
     p'_i &= p_i
-\end{align*}$$
+\end{align*}
+$$
 
 Điều này có nghĩa là ta không bốc viên sỏi nào từ đống $p_i$ ra cả, mà theo giả thuyết ta phải bốc ít nhất một viên ($p'_i < p_i$), vì vậy không thể tồn tại đống sỏi $i$ nào thỏa mãn yêu cầu.
 > Ví dụ, nếu trò chơi Nim hiện tại có $3$ đống có số sỏi lần lượt là $5$, $6$, $3$, thì tổng Nim $g = 0$. Xét bit đầu tiên từ phải qua, ta thấy được số lượng bit được bật tại vị trí này là số chẵn ($2$, tương ứng với bit đầu tiên của $5$ và $3$). Tương tự, số lượng các bit được bật tại các vị trị khác đều có tính chất này. Điều này không phải là trùng hợp mà do tính chất của phép XOR, nếu muốn bit thứ $i$ trong kết quả bằng $0$ thì số lượng bit thứ $i$ được bật trong các toán hạng phải là số chẵn. Từ đây ta nhận thấy, việc bỏ sỏi ở một đống sỏi chỉ có thể làm thay đổi số lượng bit được bật tại mỗi vị trí $i$ lên hoặc xuống 1 đơn vị, do đó dù cho lấy sỏi ở cột nào đi nữa thì vẫn sẽ xuất hiện một vị trí có số bit được bật là lẻ.
 >
-> ![](/uploads/game_theory_bouton_proof_3.png)
+> ![](/uploads/algo/math/game-theory/game_theory_bouton_proof_3.png)
 
 Rõ ràng $\hat{P}$ và $\hat{N}$ thỏa mãn ba điều kiện theo định nghĩa của tập $P$ và $N$ trong trò chơi tổng quát, vì vậy $P = \hat{P}$ và $N = \hat{N}$. $\square$
 
 Qua định lý Bouton, chúng ta có một cách xác định tập $P$ và $N$ dựa trên tổng Nim, hơn thế nữa với việc chứng minh định lý Bouton, ta không chỉ biết được trạng thái thắng/thua của trò chơi mà còn có thể xây dựng được một chiến thuật thắng cụ thể.
 
 ## Cài đặt
-Hàm `isInP` trong trường hợp này rất đơn giản, nếu lưu số lượng sỏi mỗi đống vào vector số nguyên thì thuật toán chỉ đơn giản là XOR của các phần tử với nhau, độ phức tạp thuật toán là $O(n)$.
-```c++
+Hàm `isInP` trong trường hợp này rất đơn giản, nếu lưu số lượng sỏi mỗi đống vào vector số nguyên thì thuật toán chỉ đơn giản là XOR của các phần tử với nhau, độ phức tạp thuật toán là $\mathcal{O}(n)$.
+```cpp
 bool isInP(vector<int> v) {
     int g = 0;
-    for (auto p: v)
+    for (auto p : v)
         g ^= p;
     return (g == 0);
 }
@@ -284,7 +292,7 @@ Nếu xem mỗi trạng thái trong tập trạng thái $S$ là một đỉnh, m
 
 > Ví dụ: trong trò chơi bốc sỏi ở phần đầu, giả sử ta chỉ có một đống sỏi $4$ viên, thì đồ thị của trò chơi sẽ như hình dưới, trạng thái kết thúc $0$ có bậc ra bằng $0$.
 >
-> ![](/uploads/game_theory_graph_state.png)
+> ![](/uploads/algo/math/game-theory/game_theory_graph_state.png)
 
 Cũng cần chú ý rằng các trò chơi được xem xét trong phần định lý Sprague-Grundy có một tính chất quan trọng, đó là chúng sẽ **kết thúc trong hữu hạn bước**. Khi đó, hiển nhiên đồ thị trò chơi phải không tồn tại chu trình, vì nếu tồn tại chu trình, sẽ tồn tại trường hợp người chơi cố tình đi theo chu trình đó và sẽ không bao giờ đến được đỉnh kết thúc, nghĩa là khi đó trò chơi sẽ lặp vĩnh viễn. Loại đồ thị có hướng không có chu trình như trên còn có thể gọi tắt là DAG ([Directed Acyclic Graph](https://en.wikipedia.org/wiki/Directed_acyclic_graph)).
 
@@ -294,7 +302,7 @@ Cũng cần chú ý rằng các trò chơi được xem xét trong phần địn
 **Trò chơi tổng**: Cho trò chơi $G_1(S_1,Q_1, T_1)$ và $G_2(S_2,Q_2,T_2)$ với $S_i,Q_i, T_i$ là tập trạng thái, tập các bước di chuyển hợp lệ và tập trạng thái kết thúc ứng với trò chơi $1$ và $2$, trò chơi tổng $G = G_1 + G_2$ là trò chơi có:
 - Tập trạng thái $S = S_1 \times S_2$, tức trạng thái của trò chơi tổng là các cặp trạng thái $(x_1, x_2)$ với $x_1$ là trạng thái thuộc $S_1$ và $x_2$ là trạng thái thuộc $S_2$.
 - Tập các bước di chuyển hợp lệ $Q = (Q_1\times \{x_2\}) \cup (\{x_1\} \times Q_2)$, nghĩa là một bước di chuyển hợp lệ trong trò chơi tổng sẽ tương ứng với việc thực hiện một bước di chuyển hợp lệ trong trò chơi con $G_1$ hoặc $G_2$ và giữ nguyên trạng thái trò chơi còn lại.
-- Tập các trạng thái kết thúc $$T = \{ (x_1, x_2) : x_1 \in T_1 \wedge x_2 \in T_2 \}$$, nghĩa là trạng thái kết thúc của trò chơi tổng là trạng thái mà cả hai trò chơi $G_1$ và $G_2$ đều kết thúc.
+- Tập các trạng thái kết thúc $T = \{ (x_1, x_2) : x_1 \in T_1 \wedge x_2 \in T_2 \}$, nghĩa là trạng thái kết thúc của trò chơi tổng là trạng thái mà cả hai trò chơi $G_1$ và $G_2$ đều kết thúc.
 
 > Ví dụ: trò chơi Nim có $3$ đống sỏi có thể xem như trò chơi tổng của ba trò chơi $G_1$, $G_2$ và $G_3$, với $G_1$ là trò chơi chỉ bốc ở đống sỏi thứ $1$, $G_2$ là trò chơi chỉ bốc ở đống sỏi thứ $2$, $G_3$ là trò chơi chỉ bốc ở đống sỏi thứ $3$.
 
@@ -308,22 +316,22 @@ Hãy lấy ví dụ với một biến thể của trò chơi Nim chuẩn, trong
 Đầu tiên, ta cũng xét trò chơi ở dạng đơn giản nhất: chỉ có một đống sỏi duy nhất với $p$ viên. Vậy làm thế nào để bạn biết đó là trạng thái thuộc $P$ hay trạng thái thuộc $N$?
 
 Hãy nhìn trò chơi dưới góc độ đồ thị. Đồ thị này có $p + 1$ đỉnh có nhãn lần lượt là các số nguyên từ $0$ đến $p$. Mỗi đỉnh đồ thị tương ứng với một trạng thái trò chơi, trong đó nhãn của nó cho biết có bao nhiêu sỏi còn lại trong đống hiện tại. Hình dưới là ví dụ trò chơi với một đống sỏi có số sỏi $p = 5$.
-![](/uploads/game_theory_custom-nim.png)
+![](/uploads/algo/math/game-theory/game_theory_custom-nim.png)
 
 Rõ ràng đỉnh $0$ là đỉnh kết thúc, do đó nó là đỉnh thuộc $P$. Các đỉnh tiếp theo có thể xác định là thuộc $P$ hay $N$ như hình dưới
-![](/uploads/game_theory_custom_nim_PN.gif)
+![](/uploads/algo/math/game-theory/game_theory_custom_nim_PN.gif)
 
 Tuy nhiên, cách làm ở trên chỉ cho ta trạng thái định tính của từng trạng thái, để phục vụ cho việc ghép các trò chơi lại, ta cần một hàm định lượng. Hàm mà chúng ta sẽ dùng có tên là hàm Sprague-Grundy, với một trạng thái $x \in S$ thì giá trị Sprague-Grundy được định nghĩa như sau:
 $$
-g(x) = \text{mex}(\{g(y): (x,y) \in Q\})
+g(x) = \operatorname{mex}(\{g(y): (x,y) \in Q\})
 $$
 
-Trong định nghĩa trên có dùng hàm mex (minimum excludant), hàm này sẽ nhận vào một tập hợp và trả về **số nguyên không âm $u$ nhỏ nhất sao cho $u$ không nằm trong tập hợp**, ví dụ $\text{mex}(\{0,1,2,5,7\}) = 3$. Ngoài ra, quy ước $\text{mex}(\varnothing)=0$. Từ đó, ta có thể phát biểu bằng lời rằng giá trị Sprague-Grundy của một đỉnh $x$ sẽ là mex của tập hợp các giá trị Sprague-Grundy của $y$ sao cho từ $x$ có thể di chuyển trực tiếp đến $y$.
+Trong định nghĩa trên có dùng hàm mex (minimum excludant), hàm này sẽ nhận vào một tập hợp và trả về **số nguyên không âm $u$ nhỏ nhất sao cho $u$ không nằm trong tập hợp**, ví dụ $\operatorname{mex}(\{0,1,2,5,7\}) = 3$. Ngoài ra, quy ước $\operatorname{mex}(\varnothing)=0$. Từ đó, ta có thể phát biểu bằng lời rằng giá trị Sprague-Grundy của một đỉnh $x$ sẽ là mex của tập hợp các giá trị Sprague-Grundy của $y$ sao cho từ $x$ có thể di chuyển trực tiếp đến $y$.
 
 Câu hỏi đặt ra là: tại sao lại là hàm Sprague-Grundy? Hàm này có ý nghĩa gì trong việc giải các trò chơi tổ hợp cân bằng?
 
 Để thấy rõ hơn ý nghĩa của hàm Sprague-Grundy, ta có thể ví dụ biến thể của trò chơi Nim ở trên.
-![](/uploads/game_theory_custom_nim_spfunc.png)
+![](/uploads/algo/math/game-theory/game_theory_custom_nim_spfunc.png)
 
 Quan sát ví dụ ở trên, ta có nhận xét rằng các trạng thái $u$ thuộc $P$ đều có $g(u) = 0$ và các trạng thái $u$ thuộc $N$ đều có $g(u) > 0$. Điều này làm ta nhận ra sự tương đồng của giá trị Sprague-Grundy với một đại lượng ở phần trước - giá trị Nim. Đó là cảm nhận ban đầu để có định lý sau.
 
@@ -341,9 +349,9 @@ Với $g, g_1, \ldots, g_n$ lần lượt là hàm Sprague-Grundy của trò ch�
 
 Hai định lý 1 và 2 trong phần này có ý nghĩa rất quan trọng, nó cho ta cách giải bất cứ trò chơi tổ hợp cân bằng nào, miễn là trò chơi đó luôn kết thúc trong hữu hạn bước, hay nói cách khác đồ thị của trò chơi là một DAG. Định lý 2 giúp chúng ta phân rã trò chơi phức tạp ra thành những trò chơi thành phần đơn giản hơn và định lý 1 giúp chúng ta giải quyết những trò chơi thành phần đơn giản đó.
 
-Như vậy, ta thấy rằng thực ra cách giải trò chơi Nim cũng chỉ là một trường hợp riêng của cách giải với giá trị Sprague-Grundy này, trong đó giá trị Nim của trò chơi Nim chỉ có một đống $n$ viên sỏi tương đương với giá trị Sprague-Grundy $\text{mex}(\{0,1,\ldots,n-1\}) = n$
+Như vậy, ta thấy rằng thực ra cách giải trò chơi Nim cũng chỉ là một trường hợp riêng của cách giải với giá trị Sprague-Grundy này, trong đó giá trị Nim của trò chơi Nim chỉ có một đống $n$ viên sỏi tương đương với giá trị Sprague-Grundy $\operatorname{mex}(\{0,1,\ldots,n-1\}) = n$
 > Ví dụ với trò chơi Nim chỉ có một đống $3$ viên sỏi
-> ![](/uploads/game_theory_nim_SP.gif)
+> ![](/uploads/algo/math/game-theory/game_theory_nim_SP.gif)
 
 và định lý Bouton tương đương định lý 2.
 
@@ -361,13 +369,13 @@ Ta sẽ ví dụ với trò chơi sau
 
 Cho bàn cờ $N \times N$ với $K$ quân mã trên đó. Không giống như quân mã trong cờ vua truyền thống, những quân mã này chỉ có thể di chuyển như thể hiện trong hình bên dưới (vì vậy tọa độ của các con sẽ chỉ bị giảm chứ không tăng, đảm bảo trò chơi kết thúc trong hữu hạn bước). Cùng một lúc có thể có nhiều quân ở cùng một ô của bàn cờ. Hai người chơi thay phiên nhau di chuyển. Khi tới lượt, người chơi chọn một trong các quân mã và di chuyển nó. Người chơi không thể thực hiện nước đi ở lượt của mình là người thua.
 
-![](/uploads/game_theory_sp_exercise.png)
+![](/uploads/algo/math/game-theory/game_theory_sp_exercise.png)
 
 Đầu tiên, vì luật chơi cho phép có nhiều quân mã trên cùng ô nên các quân mã có thể di chuyển độc lập với nhau, như vậy ta có thể coi trò chơi có $K$ quân mã là trò chơi tổng của $K$ trò chơi thành phần, trong đó trò chơi thành phần thứ $i$ chỉ có quân mã thứ $i$ trên bàn cờ.
 
 Ta sẽ giải trò chơi với một quân mã trước. Rõ ràng kết quả của trò chơi khi này chỉ phụ thuộc vào vị trí của quân mã, do đó một trạng thái của trò chơi tương ứng với một cặp số nguyên $(i,j)$ cho biệt vị trí của quân mã. Khi đó ta sẽ tính giá trị Sprague-Grundy của từng vị trí bằng hàm sau
 
-```c++
+```cpp
 // khai báo các thông tin của trò chơi
 const int MAXN = 100;
 int N;
@@ -376,10 +384,10 @@ int di[] = {-2, -2, -1, 1};
 int dj[] = {1, -1, -2, -2};
 
 // hàm tính mex của một vector U
-int mex(vector<int>& U) {
+int mex(vector<int> &U) {
     int res = 0;
     sort(U.begin(), U.end());
-    for (int x: U)
+    for (int x : U)
         if (res == x)
             ++res;
     return res;
@@ -408,21 +416,21 @@ int calculateGValue(int i, int j) {
 Ý tưởng của hàm trên chỉ đơn giản là tại mỗi vị trí $(i,j)$ ta tính mex bằng công thức đệ quy như định nghĩa. Để di chuyển đến các vị trí hợp lệ, ta có hai mảng hằng số `di` và `dj` kích thước $4$ tương ứng với bốn bước di chuyển $(i-2,j+1), (i-2,j-1), (i-1,j-2), (i+1,j-2)$ như đề bài miêu tả, với mỗi vị trí ta xét xem vị trí có nằm trên bàn cờ không, nếu có thì mới thêm thêm giá trị Grundy tại vị trí đó vào vector `U`. Lưu ý là ở đây để tối ưu thời gian chạy thì ta sẽ dùng kỹ thuật đệ quy có nhớ đã trình bày ở phần **Trò chơi tổ hợp cân bằng**, do đó trước khi gọi tính giá trị Sprague-Grundy của từng ô trong bảng thì phải khởi tạo tất cả giá trị của mảng $g$ bằng $-1$.
 
 Trước tiên, ta định nghĩa cấu trúc dữ liệu để lưu trữ thông tin của một quân mã, đó một `struct` gồm hai thông tin $row, col$ tương ứng là tọa độ dòng và cột của quân mã.
-```c++
+```cpp
 struct Cell {
-  int row, col;
+    int row, col;
 };
 ```
 Khi đã có giá trị Grundy của tất cả các ô từ $(1,1)$ đến $(N,N)$, để tính giá trị Sprague-Grundy của trò chơi có $K$ quân mã ta chỉ cần áp dụng định lý 2, đó là XOR $K$ giá trị Sprague-Grundy của $K$ quân mã lại. Thuật toán sẽ như sau:
-```c++
+```cpp
 bool isFirstWin(vector<Cell> Q) {
     int res = 0;
-    for (Cell x: Q)
+    for (Cell x : Q)
         res ^= g[x.row][x.col];
     return (res > 0);
 }
 ```
-Độ phức tạp thời gian của thao tác tính giá trị Sprague-Grundy của trò chơi thành phần là $O(N^2)$ do ta phải duyệt tất cả các ô trong bàn cờ, nhưng do dùng đệ quy có nhớ nên ta không phải tính một ô nào quá $1$ lần. Độ phức tạp thời gian của thao tác XOR $K$ giá trị Sprague-Grundy là $O(K)$, mà $K \leq N^2$, do đó độ phức tạp thời gian của toàn bộ thuật toán là $O(N^2)$.
+Độ phức tạp thời gian của thao tác tính giá trị Sprague-Grundy của trò chơi thành phần là $\mathcal{O}(N^{2})$ do ta phải duyệt tất cả các ô trong bàn cờ, nhưng do dùng đệ quy có nhớ nên ta không phải tính một ô nào quá $1$ lần. Độ phức tạp thời gian của thao tác XOR $K$ giá trị Sprague-Grundy là $\mathcal{O}(K)$, mà $K \leq N^{2}$, do đó độ phức tạp thời gian của toàn bộ thuật toán là $\mathcal{O}(N^{2})$.
 
 ## Bài tập luyện tập
 - [VNOI Parigame](https://oj.vnoi.info/problem/parigame)
@@ -442,11 +450,11 @@ $$
 \hat{P}=P, \: \hat{N}=N
 $$
 
-Thứ nhất, các trạng thái kết thúc $t$ chắc chắn sẽ thuộc $\hat{P}$ do $g(t) = \text{mex}(\varnothing) = 0$.
+Thứ nhất, các trạng thái kết thúc $t$ chắc chắn sẽ thuộc $\hat{P}$ do $g(t) = \operatorname{mex}(\varnothing) = 0$.
 
-Thứ hai, với một trạng thái $u$ thuộc $\hat{N}$, khi đó $g(u) > 0$, điều đó có nghĩa là trong các trạng thái $v_1,\ldots,v_k$ đến được từ $u$ luôn tồn tại một trạng thái $v_i$ có $g(v_i) = 0$, tức $v$ thuộc $\hat{P}$. Ta có thể chứng minh dễ dàng bằng phản chứng rằng nếu tất cả các trạng thái $v_1,\ldots,v_k$ đến được từ $u$ có $g(v_i) > 0$ thì rõ ràng phần tử nhỏ nhất không nằm trong tập $\{g(v_1),\ldots,g(v_k)\}$ là $0$, tức khi đó $g(u) = \text{mex}(\{g(v_),\ldots,g(v_k)\}) = 0$ trái với giả thuyết ban đầu là $g(u) > 0$.
+Thứ hai, với một trạng thái $u$ thuộc $\hat{N}$, khi đó $g(u) > 0$, điều đó có nghĩa là trong các trạng thái $v_1,\ldots,v_k$ đến được từ $u$ luôn tồn tại một trạng thái $v_i$ có $g(v_i) = 0$, tức $v$ thuộc $\hat{P}$. Ta có thể chứng minh dễ dàng bằng phản chứng rằng nếu tất cả các trạng thái $v_1,\ldots,v_k$ đến được từ $u$ có $g(v_i) > 0$ thì rõ ràng phần tử nhỏ nhất không nằm trong tập $\{g(v_1),\ldots,g(v_k)\}$ là $0$, tức khi đó $g(u) = \operatorname{mex}(\{g(v_),\ldots,g(v_k)\}) = 0$ trái với giả thuyết ban đầu là $g(u) > 0$.
 
-Thứ ba, với mọi trạng thái $u$ thuộc $\hat{P}$ mà $u$ không phải trạng thái kết thúc, khi đó với mọi trạng thái $v_1,\ldots,v_k$ đến được từ $u$ thì $g(v_i) > 0$, tức mọi cách đi từ $u \in \hat{P}$ luôn dẫn đến trạng thái $v \in \hat{N}$. Ta cũng sẽ chứng minh phát biểu này bằng phản chứng, giả sử tồn tại một $v_i$ trong các trạng thái đến được từ $u$ có $g(v_i) = 0$, lúc đó rõ ràng $g(v)=\text{mex}(\{0,g(v_1),\ldots\}) > 0$, trái với giả thuyết ban đầu là $g(u) = 0$.
+Thứ ba, với mọi trạng thái $u$ thuộc $\hat{P}$ mà $u$ không phải trạng thái kết thúc, khi đó với mọi trạng thái $v_1,\ldots,v_k$ đến được từ $u$ thì $g(v_i) > 0$, tức mọi cách đi từ $u \in \hat{P}$ luôn dẫn đến trạng thái $v \in \hat{N}$. Ta cũng sẽ chứng minh phát biểu này bằng phản chứng, giả sử tồn tại một $v_i$ trong các trạng thái đến được từ $u$ có $g(v_i) = 0$, lúc đó rõ ràng $g(v)=\operatorname{mex}(\{0,g(v_1),\ldots\}) > 0$, trái với giả thuyết ban đầu là $g(u) = 0$.
 
 Từ ba tính chất vừa chứng minh, ta thấy rõ ràng tập $\hat{P}$ và $\hat{N}$ tương đương với tập $P$ và $N$ theo định nghĩa của hai tập này. $\square$
 
@@ -459,11 +467,13 @@ Với $g, g_1, \ldots, g_n$ lần lượt là hàm Sprague-Grundy của trò ch�
 **Chứng minh**:
 
 Do $G$ là một trò chơi tổ hợp cân bằng, do đó theo định lý 1 thì
-$$g(x_1, \ldots, x_n) = mex(\{g(y_1, \ldots, y_n) | (x_1, \ldots, x_n) \rightarrow (y_1, \ldots, y_n) \in Q\})$$
+$$
+g(x_1, \ldots, x_n) = \operatorname{mex}(\{g(y_1, \ldots, y_n) | (x_1, \ldots, x_n) \rightarrow (y_1, \ldots, y_n) \in Q\})
+$$
 
 Từ đó, nếu gọi $U = \{g(y_1, \ldots, y_n) | (x_1, \ldots, x_n) \rightarrow (y_1, \ldots, y_n) \in Q\}$, ta thấy nếu muốn chứng minh $g(x_1, \ldots, x_n) = g_1(x_1) \oplus \ldots \oplus g_n(x_n) = s$ thì ta cần chứng minh
 $$
-\text{mex(U)} = s
+\operatorname{mex}(U) = s
 $$
 
 Chi tiết hơn, ta cần chứng minh hai điều sau:
@@ -472,7 +482,8 @@ Chi tiết hơn, ta cần chứng minh hai điều sau:
 
 Để chứng minh ý 1, với một $0 \leq t < s$ bất kỳ, ta xét $s \oplus t$, vì $s > 0$ nên biểu diễn nhị phân của $s \oplus t$ luôn tồn tại bit trái nhất bằng $1$ (tạm gọi là $d$).Khi đó, bit thứ $d$ của một trong hai số $s$ và $t$ phải bằng $1$ và bit thứ $d$ của số còn lại bằng bằng $0$. Tuy nhiên, do $s > t$ nên bit thứ $d$ của $s$ bằng $1$ và bit thứ $d$ của $t$ bằng $0$, trường hợp kia không thể xảy ra. Lập luận tiếp rằng $s = g_1(x_1) \oplus \ldots \oplus g_n(x_n)$, tương tự như khi chứng minh định lý Bouton, nếu bit thứ $d$ của $s$ là $1$ thì ta có số lượng $g_i(x_i)$ có giá trị Sprague-Grundy có bit thứ $d$ bằng $1$ phải lẻ (theo tính chất của phép XOR), do đó luôn tồn tại một trò chơi có bit thứ $d$ bằng $1$. Chọn trò chơi mà giá trị Sprague-Grundy có bit thứ $d$ bằng $1$ để thực hiện bốc sỏi, ta thấy $(s \oplus t) \oplus g_i(x_i) < g_i(x_i)$ nên theo định nghĩa hàm Sprague-Grundy chắc chắn tồn tại $x'_i$ có $g_i(x'_i) = (s \oplus t) \oplus g_i(x_i)$ và từ $x_i$ có thể di chuyển đến $x'_i$. Theo định nghĩa trò chơi tổng, khi đó bước di chuyển từ $(x_1,\ldots, x_i, \ldots, x_n)$ tới $(x_1,\ldots, x'_i, \ldots, x_n)$ là hợp lệ và:
 
-$$\begin{align*}
+$$
+\begin{align*}
 g_1(x_1) &\oplus \ldots \oplus g_i(x'_i) \oplus \ldots \oplus g_n(x_n)
 \\
 &= g_1(x_1) \oplus \ldots \oplus [(s \oplus t) \oplus g_i(x_i)] \oplus \ldots \oplus g_n(x_n)
@@ -480,17 +491,20 @@ g_1(x_1) &\oplus \ldots \oplus g_i(x'_i) \oplus \ldots \oplus g_n(x_n)
 &= (s \oplus t) \oplus [g_1(x_1) \oplus \ldots \oplus \oplus g_i(x_i) \oplus \ldots \oplus g_n(x_n)]
 \\
 &= s \oplus t \oplus s = t
-\end{align*}$$
+\end{align*}
+$$
 
 Vậy $t \in U$.
 
 Để chứng minh ý 2 ta dùng phản chứng, giả sử trạng thái hiện tại là $(x_1, \ldots, x_n)$, khi đó giả sử tồn tại một trạng thái $(y_1, \ldots, y_n)$ có $g(y_1, \ldots, y_n) = s$. Theo định nghĩa mỗi bước di chuyển trong trò chơi tổng sẽ tương ứng với việc chọn một trò chơi thành phần ra và di chuyển, các trò chơi còn lại giữ nguyên, do đó ta có thể viết $(y_1, \ldots, y_n) = (x_1, \ldots, x'_i, \ldots, x_n)$ với $i$ là trò chơi ta chọn để di chuyển trạng thái. Khi đó
 
-$$\begin{align*}
+$$
+\begin{align*}
 s = g_1(x_1) \oplus \ldots \oplus g_i(x_i) \oplus \ldots \oplus g_n(x_n) &= g_1(x_1) \oplus \ldots \oplus g_i(x'_i) \oplus \ldots \oplus g_n(x_n)
 \\ \Leftrightarrow
 g(x'_i) &= g(x_i)
-\end{align*}$$
+\end{align*}
+$$
 
 Điều này là mâu thuẫn với giả thuyết ban đầu là ta chọn trò chơi thành phần $i$ để di chuyển trạng thái (khi đó $x'_i \neq x_i$).
 

@@ -66,10 +66,11 @@ public class QuipuReader {
 
 ```cpp
 class QuipuReader {
-public:
-vector<int> readKnots(vector<string> knots) {
-    // code
-}
+  public:
+    vector<int> readKnots(vector<string> knots) {
+        // code
+    }
+};
 ```
 
 Chú ý rằng phần định nghĩa hàm sẽ phụ thuộc vào ngôn ngữ mặc định của bạn.

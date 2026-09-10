@@ -6,9 +6,9 @@ Bài viết gốc: [Seam Carving Algorithm - K. Lykov Blog](http://kirilllykov.g
 
 **Seam carving** là một thuật toán dùng để thay đổi kích thước hình ảnh, nó được giới thiệu trong bài báo cáo khoa học của [S. Avidan & A. Shamir](http://www.win.tue.nl/~wstahw/edu/2IV05/seamcarving.pdf). Trong bài báo, việc thay đổi kích thước ảnh được thực hiện bằng cách loại bỏ đi các điểm ảnh ít quan trọng và giữ lại các điểm ảnh quan trọng. Bức ảnh dưới đây là minh họa điều này (ảnh bên trên là ảnh gốc với kích thước 332x480 và ảnh bên dưới là ảnh sau khi áp dụng thuật toán seam carving đẻ thu nhỏ còn lại kích thước là 272x400).
 
-![](http://kirilllykov.github.io/images/seamcarving/sea-thai.jpg) 
+![](/uploads/comp-sci/imageprocessing/Seam-Carving/sea-thai.jpg) 
 
-![](http://kirilllykov.github.io/images/seamcarving/sea-thai-reduced.jpg)
+![](/uploads/comp-sci/imageprocessing/Seam-Carving/sea-thai-reduced.jpg)
 
 Thuật toán này khá phổ biến nên có thể dễ dàng tìm thấy rất nhiều bài viết nói về nó. Tuy nhiên hầu hết đa số các tác giả đã không đọc bài báo cáo ban đầu và chỉ cung cấp cách cài đặt thuật toán khá cơ bản. Trong bài viết này tôi sẽ mô tả thuật toán đầy đủ các chi tiết như trong bài viết của Avidan & Shamir, dưới góc nhìn của một lập trình viên. Ở đây ta sẽ sử dụng matlab để cài đặt thuật toán. Phần chứng minh cụ thể các bạn xem ở phần tham khảo.
 
@@ -16,15 +16,17 @@ Thuật toán này khá phổ biến nên có thể dễ dàng tìm thấy rất
 
 Để đơn giản, bài viết này chỉ tập trung nói về việc làm giảm kích thước hình ảnh. Tuy nhiên việc làm tăng kích thước hình ảnh cũng có thể làm tương tự, và sẽ được mô tả sơ qua ở phần sau. Ý tưởng chính của thuật toán là việc loại bỏ các nội dung có ít ý nghĩa đối với người sử dụng (chứa ít thông tin). Ta gọi thông tin này là **Năng lượng** (Energy). Vì vậy ta cần định nghĩa hàm năng lượng để tính năng lượng điểm ảnh từ các điểm ảnh của ảnh gốc. Ví dụ, ở đây ta có thể tính năng lượng của ảnh thông qua đạo hàm của từng điểm ảnh theo các hướng:
 
-$e_{1}=\left \| \frac{\delta I}{\delta x} \right \| + \left \| \frac{\delta I}{\delta y} \right \|$. 
+$$
+e_{1}=\left \| \frac{\delta I}{\delta x} \right \| + \left \| \frac{\delta I}{\delta y} \right \|.
+$$
 
 Nếu như ảnh có 3 kênh màu thì ta lấy tổng giá trị năng lượng của 3 kênh này lại với nhau. Đoạn code Matlab dưới đây sẽ mô tả quá trình tính. Hàm `imfilter` được áp dụng cho các điểm ảnh được đánh dấu, do đó kết quả là
 
-$dI(i, j)/dx = I(i+1)-I(i-1)/dx$ với $dx = 1$.
+$\frac{dI(i, j)}{dx} = I(i+1)-\frac{I(i-1)}{dx}$ với $dx = 1$.
 
-Tương tự cho $dI(i, j)/dy$:
+Tương tự cho $\frac{dI(i, j)}{dy}$:
 
-$dI(i, j)/dy = I(j+1)-I(j-1)/dy$ với $dy = 1$.
+$\frac{dI(i, j)}{dy} = I(j+1)-\frac{I(j-1)}{dy}$ với $dy = 1$.
 
 ```matlab
 function res = energyRGB(I)
@@ -44,27 +46,27 @@ end
 
 Năng lượng thu được:
 
-![](http://kirilllykov.github.io/images/seamcarving/sea-thai-energy.jpg)
+![](/uploads/comp-sci/imageprocessing/Seam-Carving/sea-thai-energy.jpg)
 
 
 ## Seam
 
 Nếu chúng ta xóa đi các điểm ảnh có nặng lượng thấp nhất ở các vị trí ngẫu nhiên, ta sẽ ra một hình ảnh méo mó. Nếu chúng ta xóa theo cột hoặc hàng với năng lượng tối thiểu, ta sẽ nhận được một bức ảnh hoàn chỉnh được thu nhỏ kích thước lại. Ở đây cột j nghĩa là tập hợp *{(i, j) với j cố định}* và một hàng i nghĩa là tập hợp *{(i, j) với i cố định}*.
 
-Thuật toán Seam Carving xóa các hàng và cột tổng quát (được gọi là đường seam). Cụ thể hơn, gọi $I$ là một bức ảnh có kích thước $n \* m$, một đường seam dọc là $(s^x)i = (i, x(i))s.t.\forall i, \|x(i) - x(i - 1)\| \leq 1$ trong đó $x[1..n] \to [1..m]$. Nói một cách dễ hiểu hơn, một đường seam dọc (**vertical seam**) là một đường đi từ biên trên của bức ảnh xuống biên dưới của bức ảnh với độ dài đường đi bằng chiều cao của bức ảnh, và với mỗi phần vị trí $(i, j)$ của đường seam, ta có thể đi tiếp đến các phần tử $(i + 1, j - 1)$, $(i + 1, j)$, $(i + 1, j + 1)$. Tương tự ta cũng có thể định nghĩa cho đường seam ngang (**horizontal seam**). Ví dụ về các đường màu đen là các đường seam trong hình dưới đây.
+Thuật toán Seam Carving xóa các hàng và cột tổng quát (được gọi là đường seam). Cụ thể hơn, gọi $I$ là một bức ảnh có kích thước $n \times m$, một đường seam dọc là $(s^{x})i = (i, x(i)) \text{ s.t. } \forall i, \|x(i) - x(i - 1)\| \leq 1$ trong đó $x[1 \ldots n] \to [1 \ldots m]$. Nói một cách dễ hiểu hơn, một đường seam dọc (**vertical seam**) là một đường đi từ biên trên của bức ảnh xuống biên dưới của bức ảnh với độ dài đường đi bằng chiều cao của bức ảnh, và với mỗi phần vị trí $(i, j)$ của đường seam, ta có thể đi tiếp đến các phần tử $(i + 1, j - 1)$, $(i + 1, j)$, $(i + 1, j + 1)$. Tương tự ta cũng có thể định nghĩa cho đường seam ngang (**horizontal seam**). Ví dụ về các đường màu đen là các đường seam trong hình dưới đây.
 
-![](http://kirilllykov.github.io/images/seamcarving/sea-thai-seams.jpg)
+![](/uploads/comp-sci/imageprocessing/Seam-Carving/sea-thai-seams.jpg)
 
-Chúng ta sẽ tìm kiếm một đường seam sao cho có tổng giá trị năng lượng là nhỏ nhất (theo chiều chúng ta chọn): $s^*= [\min \limits_{s} \sum\limits_{i=1}^n e(I(s_{i}))]$. Cách để tìm được kết quả tối ưu cho bài toàn là sử dụng phương pháp quy hoạch động.
+Chúng ta sẽ tìm kiếm một đường seam sao cho có tổng giá trị năng lượng là nhỏ nhất (theo chiều chúng ta chọn): $s^{*}= \left[ \min \limits_{s} \sum\limits_{i=1}^n e(I(s_{i})) \right]$. Cách để tìm được kết quả tối ưu cho bài toàn là sử dụng phương pháp quy hoạch động.
 
 1. Tìm đường seam tối ưu từ biên trên của ảnh đến mỗi điểm ảnh $(i, j)$.
-    - Gọi $M[i, j]$ là giá trị năng lượng nhỏ nhất đi từ biên trên của ảnh đến điểm ảnh $(i, j)$.
-    - $M[1, j] = e(1, j)$ với $e(i, j)$ là năng lượng điểm ảnh tại $(i, j)$.
-    - $M[i, j] = min(M[i - 1, j - 1], M[i - 1, j], M[i - 1, j + 1]) + e(i, j)$.
+    - Gọi $M_{i, j}$ là giá trị năng lượng nhỏ nhất đi từ biên trên của ảnh đến điểm ảnh $(i, j)$.
+    - $M_{1, j} = e(1, j)$ với $e(i, j)$ là năng lượng điểm ảnh tại $(i, j)$.
+    - $M_{i, j} = \min(M_{i - 1, j - 1}, M_{i - 1, j}, M_{i - 1, j + 1}) + e(i, j)$.
 
 2. Ở biên dưới của ảnh, ta tìm điểm đường seam tối ưu (tổng giá trị năng lượng thấp nhất thông qua bảng phương án $M$) và đi ngược về để tìm đường đi tối ưu.
 
-**Lưu ý**: trong đoạn code dưới đây trả về một ma trận $n \* m$ chỉ gồm 0 và 1 với các điểm ảnh trên đường đi seam sẽ có giá trị là 0 và ngược lại. Để tìm đường seam ngang, ta chỉ cần chuyển vị ma trận năng lượng lại.
+**Lưu ý**: trong đoạn code dưới đây trả về một ma trận $n \times m$ chỉ gồm 0 và 1 với các điểm ảnh trên đường đi seam sẽ có giá trị là 0 và ngược lại. Để tìm đường seam ngang, ta chỉ cần chuyển vị ma trận năng lượng lại.
 
 ```matlab
 function [optSeamMask, seamEnergy] = findOptSeam(energy)
@@ -135,8 +137,8 @@ function imageReduced = reduceImageByMaskHorizontal(image, seamMask)
 end
 ```
 
-Đây là một thuật toán hiệu quả để làm giám kích thước ảnh theo một chiều - chỉ cần việc tìm và xóa các đường seam nhiều lần như bạn cần. Nhưng nếu làm giảm kích thước theo cả hai chiều, ta cần phải làm như thế nào? Làm sao để quyết định rằng ở mỗi lần lắp đưa ra quyết định là xóa theo dòng hay cột sẽ tốt hơn? Vấn đề này một lần nữa được giải quyết bằng quy hoạch động. Ta gọi $T(i, j)$ là giá trị năng lượng thấp nhất khi ta loại bỏ i đường seam theo chiều dọc và j đường seam theo chiều ngang.  Cụ thể: $T(i, j) = min(T(i, j-1) + E(seamVertical), T(i-1,j) + E(seamHorizontal))$. Trong đó $E(seamVertical)$ là giá trị nhỏ nhất (tối ưu) đường seam dọc loại bỏ đi, $E(seamHorizontal)$ là giá trị nhỏ nhất (tối ưu) đường seam ngang loại bỏ đi.
-Ta sử dụng thêm một mảng $transBitMask(i, j)$ lưu truy vết đường đi cho bản phương án $T(i, j)$ .  $transBitMask(i, j) = 1$ bỏ đi đường seam dọc, $transBitMask(i, j) = 0$  bỏ đi đường seam ngang. Nhìn một đoạn code giả dưới đây để có thể dễ hình dung.
+Đây là một thuật toán hiệu quả để làm giám kích thước ảnh theo một chiều - chỉ cần việc tìm và xóa các đường seam nhiều lần như bạn cần. Nhưng nếu làm giảm kích thước theo cả hai chiều, ta cần phải làm như thế nào? Làm sao để quyết định rằng ở mỗi lần lắp đưa ra quyết định là xóa theo dòng hay cột sẽ tốt hơn? Vấn đề này một lần nữa được giải quyết bằng quy hoạch động. Ta gọi $T(i, j)$ là giá trị năng lượng thấp nhất khi ta loại bỏ i đường seam theo chiều dọc và j đường seam theo chiều ngang.  Cụ thể: $T(i, j) = \min(T(i, j-1) + E(\texttt{seamVertical}), T(i-1,j) + E(\texttt{seamHorizontal}))$. Trong đó $E(\texttt{seamVertical})$ là giá trị nhỏ nhất (tối ưu) đường seam dọc loại bỏ đi, $E(\texttt{seamHorizontal})$ là giá trị nhỏ nhất (tối ưu) đường seam ngang loại bỏ đi.
+Ta sử dụng thêm một mảng $\texttt{transBitMask}(i, j)$ lưu truy vết đường đi cho bản phương án $T(i, j)$.  $\texttt{transBitMask}(i, j) = 1$ bỏ đi đường seam dọc, $\texttt{transBitMask}(i, j) = 0$  bỏ đi đường seam ngang. Nhìn một đoạn code giả dưới đây để có thể dễ hình dung.
 
 ```
 1) T(0, 0) = 0;

@@ -60,7 +60,7 @@ Các toán tử này thuộc loại "Toán tử Bit Logic". Việc sử dụng c
 
     Ví dụ, ta có:
 
-    ```c++
+    ```text
       0b11100010
     & 0b10101111
     = 0b10100010
@@ -70,7 +70,7 @@ Các toán tử này thuộc loại "Toán tử Bit Logic". Việc sử dụng c
 
     Ví dụ, ta có:
 
-    ```c++
+    ```text
       0b11100010
     | 0b10101111
     = 0b11101111
@@ -80,7 +80,7 @@ Các toán tử này thuộc loại "Toán tử Bit Logic". Việc sử dụng c
 
     Ví dụ, ta có:
 
-    ```c++
+    ```text
       0b11100010
     ^ 0b10101111
     = 0b01001101
@@ -101,7 +101,7 @@ Toán tử Bitwise NOT có lẽ là toán tử đơn giản nhất. Toán tử n
 
 Ví dụ, ta có:
 
-```c++
+```text
  ~0b10100100
 = 0b01011011
 ```
@@ -116,7 +116,7 @@ Khi sử dụng phép NOT, những bit không sử dụng ở bên trái cũng s
 
 Ví dụ, xét số ```5 = 0b101```, nếu thực hiện phép toán ```0b101<<2```, ta nhận được ```0b10100 = 20```.
 
-Nếu quan sát kỹ, bạn sẽ nhận thấy một tính chất thú vị sau của phép toán Bitshift Left: ```a << b``` $= a * 2^b$. Ta có tính chất này do phép toán Bitshift Left ```a << b``` có thể hiểu là thêm ```b``` chữ số $0$ vào cuối biểu diễn nhị phân của số ```a```. Điều này tương tự như việc thêm một chữ số $0$ vào cuối biểu diễn thập phân của một số sẽ nhân số đó thêm 10 lần.
+Nếu quan sát kỹ, bạn sẽ nhận thấy một tính chất thú vị sau của phép toán Bitshift Left: ```a << b``` $= a \times 2^{b}$. Ta có tính chất này do phép toán Bitshift Left ```a << b``` có thể hiểu là thêm ```b``` chữ số $0$ vào cuối biểu diễn nhị phân của số ```a```. Điều này tương tự như việc thêm một chữ số $0$ vào cuối biểu diễn thập phân của một số sẽ nhân số đó thêm 10 lần.
 
 ### Chú ý
 
@@ -130,11 +130,11 @@ Nếu như Left Shift là thêm chữ số $0$ vào bên phải của một số
 
 Ví dụ, xét số ```13 = 0b1101```, ta có ```0b1101 >> 2 = 0b11```.
 
-Tương tự với Bitshift Left, ta cũng có tính chất ```a >> b``` $= \lfloor \frac{a}{2^b} \rfloor$ với $a$ nguyên không âm. Nếu $b < 0$ hoặc $b \geq L$, kết quả trả về của phép toán là không xác định. Dù trên thực tế không sử dụng nhiều, nhưng nếu bạn đọc cảm thấy tò mò về trường hợp $a < 0$ thì có thể tham khảo phần [Phân biệt LRS và ARS](#phân-biệt-logical-right-shift-và-arithmetic-right-shift).
+Tương tự với Bitshift Left, ta cũng có tính chất ```a >> b``` $= \lfloor \frac{a}{2^{b}} \rfloor$ với $a$ nguyên không âm. Nếu $b < 0$ hoặc $b \geq L$, kết quả trả về của phép toán là không xác định. Dù trên thực tế không sử dụng nhiều, nhưng nếu bạn đọc cảm thấy tò mò về trường hợp $a < 0$ thì có thể tham khảo phần [Phân biệt LRS và ARS](#phân-biệt-logical-right-shift-và-arithmetic-right-shift).
 
 # Các hàm thao tác Bit
 
-Compiler GCC (là Compiler đi kèm với Codeforces, Dev-C++, và được sử dụng trên các OJ phổ biến) hiện nay hỗ trợ một số các hàm liên quan tới xử lý bit giúp ta thực hiện một số các phép tính thông dụng với độ phức tạp thời gian $O(1)$.
+Compiler GCC (là Compiler đi kèm với Codeforces, Dev-C++, và được sử dụng trên các OJ phổ biến) hiện nay hỗ trợ một số các hàm liên quan tới xử lý bit giúp ta thực hiện một số các phép tính thông dụng với độ phức tạp thời gian $\mathcal{O}(1)$.
 
 Nếu bạn tới đây để đọc lại tên hàm, đây là bảng TL;DR:
 
@@ -181,7 +181,7 @@ Chẳng hạn, để truy cập bit thứ $i$ trong bitmask $A$, ta có thể s�
 
 Xét ```A = 0b1010010```. Để truy cập bit thứ $4$, ta thực hiện phép toán ```0b1010010 & (1<<4)``` như sau:
 
-```c++
+```text
   0b1010010
 & 0b0010000
 = 0b0010000
@@ -193,16 +193,16 @@ Ngoài ra cũng có một số các cách khác để truy cập bit, ví dụ n
 
 Chú ý: Một lỗi rất hay gặp phải khi sử dụng bitshift để truy cập và chỉnh sửa bit là tràn số. Chẳng hạn, xét dòng code sau đây:
 
-```c++
-bool get_bit(unsigned long long mask, int pos){
-    return mask & (1<<pos)
+```cpp
+bool get_bit(unsigned long long mask, int pos) {
+    return mask & (1 << pos);
 }
 ```
 
 Trong trường hợp $pos \geq 32$, biểu thức ```1<<pos``` sẽ bị tràn số do cả ```1``` và ```pos``` đều có kiểu ```int```. Để tránh bị tràn số, ta đổi đoạn code trên thành như sau:
 
-```c++
-bool get_bit(unsigned long long mask, int pos){
+```cpp
+bool get_bit(unsigned long long mask, int pos) {
     return mask & (1ULL << pos);
 }
 ```
@@ -235,7 +235,7 @@ Từ các phần [Truy cập Bit](#truy-cập-bit), [Chỉnh sửa Bit](#chỉnh
 |Hợp                        |$A\cup B$       |```A | B```        |
 |Hiệu                       |$A\backslash B$ |```(A ^ B) & A```   |
 |Hiệu đối xứng              |$A\Delta B$     |```A ^ B```         |
-|Phần bù                    |$A^C$ hay $A'$  |```~A & (1<<n)-1``` |
+|Phần bù                    |$A^{C}$ hay $A'$  |```~A & (1<<n)-1``` |
 |Kiểm tra tập con           |$A \subseteq B$ |```(A & B) == A```    |
 |Tập hợp chỉ có phần tử $i$ |$\{i\}$         |```1 << i```        |
 
@@ -252,12 +252,12 @@ Từ các phần [Truy cập Bit](#truy-cập-bit), [Chỉnh sửa Bit](#chỉnh
 
 Để lặp qua mọi tập con $A$ của một tập $S$ cho trước, ta viết vòng ```for``` như sau:
 
-```c++
-void loop_subset(const vector<int> &s){
-    for (int mask=0; mask<(1<<s.size()); mask++){
+```cpp
+void loop_subset(const vector<int> &s) {
+    for (int mask = 0; mask < (1 << s.size()); mask++) {
         vector<int> a;
-        for (int i=0; i<s.size(); i++){
-            if (mask & (1<<i))
+        for (int i = 0; i < s.size(); i++) {
+            if (mask & (1 << i))
                 a.push_back(s[i]);
         }
         // Thực hiện thao tác gì đó với tập con A
@@ -283,17 +283,20 @@ Phần chứng minh cho bài toán này bạn đọc có thể tham khảo ở b
 
 ### Cài đặt
 
-```c++
-unsigned long long solve(const vector<unsigned long long> &a, unsigned long long n){
+```cpp
+unsigned long long solve(const vector<unsigned long long> &a, unsigned long long n) {
     unsigned long long result = 0;
-    for (int i = 0; i < 1<<a.size(); i++){
+    for (int i = 0; i < 1 << a.size(); i++) {
         unsigned long long b = 1;
-        for (int j=0; j<a.size(); j++){
-            if (i & 1<<j) b *= a[j];
+        for (int j = 0; j < a.size(); j++) {
+            if (i & 1 << j)
+                b *= a[j];
         }
-        unsigned long long x = result / b + 1;
-        if (__builtin_parity(i)) result -= x;
-        else result += x;
+        unsigned long long x = n / b + 1;
+        if (__builtin_parity(i))
+            result -= x;
+        else
+            result += x;
     }
     return result;
 }
@@ -332,40 +335,43 @@ Một lỗi thường gặp của những bạn mới làm quen với các toán
 
 Để lặp qua mọi tập con của $S$, ta viết vòng lặp ```for``` như sau:
 
-```c++
-void loop_mask_subset(int S){
-    for (int mask=S; true; mask = (mask-1) & S){
+```cpp
+void loop_mask_subset(int S) {
+    for (int mask = S; true; mask = (mask - 1) & S) {
         // Thực hiện thao tác nào đó với tập con mask của S
-        if (mask == 0) break;
+        if (mask == 0)
+            break;
     }
 }
 ```
 
 Độ phức tạp của vòng lặp trên là $2^{\|S\|}$ với $\|S\|$ là số lượng bit bật của $S$, chính là số tập con của $S$.
 
-Như vậy, ta có cách để lặp mọi tập $S$ từ $0$ tới $2^n$, sau đó lặp mọi tập con $T$ của $S$ một cách hiệu quả.
+Như vậy, ta có cách để lặp mọi tập $S$ từ $0$ tới $2^{n}$, sau đó lặp mọi tập con $T$ của $S$ một cách hiệu quả.
 
-```c++
-void loop_subset_of_all_masks(int n){
-    for (int S = 0; S < 1<<n; S++){
+```cpp
+void loop_subset_of_all_masks(int n) {
+    for (int S = 0; S < 1 << n; S++) {
         // Thực hiện thao tác nào đó với tập con S
-        for (int T=S; true; T = (T-1) & S){
+        for (int T = S; true; T = (T - 1) & S) {
             // Thực hiện thao tác nào đó với tập con T của S
+            if (T == 0)
+                break;
         }
     }
 }
 ```
 
-Cách cài đặt trên có độ phức tạp thời gian tối ưu do tất cả các lần lặp đều tạo ra một bộ $(S, T)$ thỏa mãn, và đôi một phân biệt. Ta sẽ chứng minh tổng độ phức tạp thời gian của hai vòng lặp này là $O(3^n)$, thay vì $O(4^n)$.
+Cách cài đặt trên có độ phức tạp thời gian tối ưu do tất cả các lần lặp đều tạo ra một bộ $(S, T)$ thỏa mãn, và đôi một phân biệt. Ta sẽ chứng minh tổng độ phức tạp thời gian của hai vòng lặp này là $\mathcal{O}(3^{n})$, thay vì $\mathcal{O}(4^{n})$.
 
 Dễ dàng nhận thấy, số bước lặp của hai vòng lặp trên có thể viết là:
 $$
-\begin{align}
-\sum_{S \subseteq 2^n} \sum_{T \subseteq S} 1 &= \sum_{S \subseteq 2^n} 2^{|S|} \\
-&= \sum_{k = 0}^n \sum_{S \subseteq 2^n, |S| = k} 2^k \\
-&= \sum_{k = 0}^n \binom{n}{k} 2^k \\
-&= 3^n
-\end{align}
+\begin{aligned}
+\sum_{S \subseteq 2^{n}} \sum_{T \subseteq S} 1 &= \sum_{S \subseteq 2^{n}} 2^{|S|} \\
+&= \sum_{k = 0}^{n} \sum_{S \subseteq 2^{n}, |S| = k} 2^{k} \\
+&= \sum_{k = 0}^{n} \binom{n}{k} 2^{k} \\
+&= 3^{n}
+\end{aligned}
 $$
 
 Nếu bạn thấy chứng minh trên khó hiểu, hãy xem chứng minh của Ứng dụng tiếp theo.
@@ -378,7 +384,7 @@ Cho một tập $S$ độ dài $n$ và một số $x$. Hãy in ra tất cả cá
 
 ### Nhận xét
 
-Rõ ràng, có $O(x^n)$ tập hợp thỏa mãn. Như vậy, độ phức tạp tốt nhất của bài toán này là $O(x^n)$.
+Rõ ràng, có $\mathcal{O}(x^{n})$ tập hợp thỏa mãn. Như vậy, độ phức tạp tốt nhất của bài toán này là $\mathcal{O}(x^{n})$.
 
 ### Trường hợp $x = 2$
 
@@ -394,50 +400,53 @@ Bước thứ hai, ta sẽ lặp mọi tập con $C$ của tập $A$ để nhậ
 
 Cài đặt cho trường hợp này như sau:
 
-```c++
-void loop_triplets(int n){
-    int S = (1<<n) - 1;
-    for (int A = S; true; A = (A - 1) & S){
+```cpp
+void loop_triplets(int n) {
+    int S = (1 << n) - 1;
+    for (int A = S; true; A = (A - 1) & S) {
         int B = S ^ A;
-        for (int C = A; true; C = (C - 1) & A){
+        for (int C = A; true; C = (C - 1) & A) {
             // In ra B, A^C, C
-            if (C == 0) break;
+            if (C == 0)
+                break;
         }
-        if (A == 0) break;
+        if (A == 0)
+            break;
     }
 }
 ```
 
-Để ý rằng vòng lặp đầu tiên tương đương với việc lặp $A$ trong khoảng $[0, 2^n)$. Nếu thực hiện thay đổi này, ta sẽ nhận được cài đặt tương đương với hàm ```void loop_subset_of_all_masks(int n)``` ở trên. Đây cũng là một cách hiểu cho độ phức tạp $O(3^n)$ của hàm này.
+Để ý rằng vòng lặp đầu tiên tương đương với việc lặp $A$ trong khoảng $[0, 2^{n})$. Nếu thực hiện thay đổi này, ta sẽ nhận được cài đặt tương đương với hàm ```void loop_subset_of_all_masks(int n)``` ở trên. Đây cũng là một cách hiểu cho độ phức tạp $\mathcal{O}(3^{n})$ của hàm này.
 
-### Trường hợp tổng quát $x \in Z^+$
+### Trường hợp tổng quát $x \in Z^{+}$
 
-```c++
-void generate_partitions(vector<int> &sets, int mask, int x){
-    if (x == 1){
+```cpp
+void generate_partitions(vector<int> &sets, int mask, int x) {
+    if (x == 1) {
         sets.push_back(mask);
         // Hàm thực hiện thao tác gì đó đối với sets
         solve_for_sets(sets);
         sets.pop_back();
         return;
     }
-    for (int s = mask; true; s = (s - 1) & mask){
+    for (int s = mask; true; s = (s - 1) & mask) {
         sets.push_back(s);
-        generate_partitions(sets, mask ^ s, x-1);
+        generate_partitions(sets, mask ^ s, x - 1);
         sets.pop_back();
-        if (s == 0) break;
+        if (s == 0)
+            break;
     }
 }
-int main(){
+int main() {
     int n = 10, parts = 5;
     vector<int> sets;
-    generate_partitions(sets, (1<<n)-1, parts);
+    generate_partitions(sets, (1 << n) - 1, parts);
 }
 ```
 
 ## Tăng tốc cho code
 
-Nếu sử dụng kiểu dữ liệu ```unsigned long long```, ta có thể thực hiện 64 phép AND, OR, XOR, hoặc NOT trong một thao tác. Trên thực tế, khi dịch, một số các compiler có thể giúp bạn thực hiện $256$ hay thậm chí $512$ phép toán như vậy cùng một lúc. Như vậy, một số bài toán với giới hạn như $n \leq 5*10^4$ hay thậm chí $n \leq 10^5$ có thể chạy qua được với độ phức tạp $O(n^2)$. Tuy nhiên, do giới hạn của bài viết, chủ đề này sẽ không được bàn đến ở đây.
+Nếu sử dụng kiểu dữ liệu ```unsigned long long```, ta có thể thực hiện 64 phép AND, OR, XOR, hoặc NOT trong một thao tác. Trên thực tế, khi dịch, một số các compiler có thể giúp bạn thực hiện $256$ hay thậm chí $512$ phép toán như vậy cùng một lúc. Như vậy, một số bài toán với giới hạn như $n \leq 5 \times 10^{4}$ hay thậm chí $n \leq 10^{5}$ có thể chạy qua được với độ phức tạp $\mathcal{O}(n^{2})$. Tuy nhiên, do giới hạn của bài viết, chủ đề này sẽ không được bàn đến ở đây.
 
 ## Phân biệt Logical Right Shift và Arithmetic Right Shift
 
@@ -447,7 +456,7 @@ Khác biệt duy nhất giữa hai loại phép toán này là Logical Right Shi
 
 Chẳng hạn, ta sử dụng kiểu số ```char``` có 8 bit, và thực hiện phép toán ```0b```**```101```**```01101 >> 5```. Logical Right Shift sẽ trả về kết quả ```0b00000```**```101```**, nhưng Arithmetic Right Shift sẽ trả về ```0b11111```**```101```**.
 
-Chắc chắn khi đọc đến đây, các bạn sẽ tự hỏi về ý nghĩa của phép Arithmetic Right Shift. Trong trường hợp toán hạng ```a``` là số không âm, hai phép toán hoạt động tương đương. Tuy nhiên, trong trường hợp ```a``` âm, phép Logical Right Shift không có ý nghĩa về mặt toán học, mà đơn giản chỉ là đẩy các bit sang phải. Trong khi đó, phép Arithmetic Right Shift sẽ vẫn đảm bảo tính chất ```a >> b``` $= \lfloor \frac{a}{2^b} \rfloor$. Chú ý rằng kết quả của phép toán sẽ được làm tròn xuống, chẳng hạn như ```-7 >> 2``` $= \frac{-7}{2^2} = -1.75$ được làm tròn xuống $-2$.
+Chắc chắn khi đọc đến đây, các bạn sẽ tự hỏi về ý nghĩa của phép Arithmetic Right Shift. Trong trường hợp toán hạng ```a``` là số không âm, hai phép toán hoạt động tương đương. Tuy nhiên, trong trường hợp ```a``` âm, phép Logical Right Shift không có ý nghĩa về mặt toán học, mà đơn giản chỉ là đẩy các bit sang phải. Trong khi đó, phép Arithmetic Right Shift sẽ vẫn đảm bảo tính chất ```a >> b``` $= \lfloor \frac{a}{2^{b}} \rfloor$. Chú ý rằng kết quả của phép toán sẽ được làm tròn xuống, chẳng hạn như ```-7 >> 2``` $= \frac{-7}{2^{2}} = -1.75$ được làm tròn xuống $-2$.
 
 Lý do phép toán trên hoạt động là vì các số nguyên âm được biểu diễn dưới dạng two's complement. Do giới hạn của bài viết, người viết sẽ không đi sâu hơn vào loại biểu diễn này.
 
@@ -455,13 +464,13 @@ Trong C++, phép Logical Right Shift sẽ được sử dụng nếu toán tử 
 
 ## Sử dụng Pragma
 
-Đối với gần như tất cả ($>99\%$) những máy tính mà bạn sẽ gặp trong đời, các hàm phía trên có thể được thực hiện với chỉ $1$ instruction, hay nói cách khác là trong $O(1)$. Tuy nhiên, để hỗ trợ những máy tính rất cũ hoặc rất low-end, compiler GCC mặc định cài đặt các hàm trên bằng toán tử bit, chạy trong $O(\log_2 \log_2 n)$, với $n$ là số lượng bit trong kiểu số của bạn.
+Đối với gần như tất cả ($>99\%$) những máy tính mà bạn sẽ gặp trong đời, các hàm phía trên có thể được thực hiện với chỉ $1$ instruction, hay nói cách khác là trong $\mathcal{O}(1)$. Tuy nhiên, để hỗ trợ những máy tính rất cũ hoặc rất low-end, compiler GCC mặc định cài đặt các hàm trên bằng toán tử bit, chạy trong $\mathcal{O}(\log_2 \log_2 n)$, với $n$ là số lượng bit trong kiểu số của bạn.
 
 Để mở khóa các instruction mới, các bạn cần phải sử dụng định hướng biên dịch ```#pragma GCC target```.
 
 Hầu hết mỗi hàm đều có một "flag" riêng biệt mà khi bật lên sẽ mở khóa instruction cho hàm đó. Tuy nhiên, nếu bạn mở khóa thừa thì code bạn vẫn chạy. Vì vậy, để code chạy nhanh hơn, bạn chỉ cần paste dòng sau vào đầu code (trước dòng ```#include```):
 
-```c++
+```cpp
 #pragma GCC target("popcnt,lzcnt,bmi,bmi2,abm")
 ```
 

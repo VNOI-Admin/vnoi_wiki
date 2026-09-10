@@ -6,7 +6,7 @@ Cấu trúc dữ liệu đơn giản nhất chính là các biến (variable). C
 
 Một khái niệm hơi khó hơn mặc dù không kém phần căn bản là con trỏ (pointer). Con trỏ thay vì giữ một giá trị, nó lại giữ một địa chỉ vùng nhớ:
 
-![](/uploads/data_structures_basic_pointer.png)
+![](/uploads/algo/data-structures/array-vs-linked-lists/data_structures_basic_pointer.png)
 
 Trong hình trên:
 
@@ -49,10 +49,10 @@ Trong C++ STL, có CTDL `vector`, được gọi là mảng động. CTDL này c
 
 Nếu ta thêm $N$ phần tử vào cuối mảng, thì độ phức tạp là:
 
-- $\mathcal{O}(1 + 2 + 4 + 8 + 16 + ...)$ cho các thao tác cấp phát bộ nhớ
+- $\mathcal{O}(1 + 2 + 4 + 8 + 16 + \cdots)$ cho các thao tác cấp phát bộ nhớ
 - $\mathcal{O}(1)$ cho việc ghi phần tử mới vào phần bộ nhớ trống.
 
-Do đó độ phức tạp tổng không quá $\mathcal{O(N)}$, và độ phức tạp trung bình của 1 thao tác là $\mathcal{O}(1)$.
+Do đó độ phức tạp tổng không quá $\mathcal{O}(N)$, và độ phức tạp trung bình của 1 thao tác là $\mathcal{O}(1)$.
 
 
 # Danh sách liên kết (Linked Lists)
@@ -61,7 +61,7 @@ Danh sách liên kết là một cấu trúc dữ liệu có thể giữ một s
 
 Danh sách liên kết, hiểu theo cách đơn giản nhất là một con trỏ trỏ tới một nút dữ liệu. Mỗi nút dữ liệu bao gồm dữ liệu cần chứa và một con trỏ trỏ tới nút tiếp theo. Tại điểm cuối cùng, con trỏ trỏ tới giá trị NULL.
 
-![](/uploads/data_structures_basic_linked_list.png)
+![](/uploads/algo/data-structures/array-vs-linked-lists/data_structures_basic_linked_list.png)
 
 Với thiết kế như ban đầu, một danh sách liên kết thích hợp để lưu trữ dữ liệu khi chưa biết trước được số lượng các phần tử hoặc các phần tử thường xuyên thay đổi. Tuy vậy, chúng ta không thể truy cập một cách ngẫu nhiên các phần tử của danh sách liên kết. Để tìm kiếm một giá trị, ta phải bắt đầu tại phần tử đầu tiên và duyệt tuần tự qua các phần tử cho tới khi bắt gặp được giá trị mà mình cần tìm kiếm. Để chèn một nút vào danh sách liên kết, bạn cũng phải thực hiện tương tự. Độ phức tạp của cả 2 thao tác này là $\mathcal{O}(N)$. Tuy nhiên, nếu ta biết được con trỏ trỏ đến phần tử cần xóa, thì độ phức tạp chỉ là $\mathcal{O}(1)$. Dễ dàng nhận thấy, thao tác tìm kiếm và chèn trong danh sách liên kết không thật sự hiệu quả.
 
@@ -69,16 +69,16 @@ Sau đây là cài đặt kiểu dữ liệu danh sách liên kết thông thư�
 
 ```cpp
 struct ListNode {
-    int data; // dữ liệu được lưu ở nút của linked list
-    ListNode* nextNode; // con trỏ trỏ tới phần tử tiếp theo của linked list.
+    int data;           // dữ liệu được lưu ở nút của linked list
+    ListNode *nextNode; // con trỏ trỏ tới phần tử tiếp theo của linked list.
 };
-ListNode* firstNode;
+ListNode *firstNode;
 ```
 
 Bạn có thể chèn một nút mới vào bằng cách chèn chúng vào đầu danh sách. Thao tác này có độ phức tạp là $\mathcal{O}(1)$.
 
 ```cpp
-ListNode* newNode = new ListNode();
+ListNode *newNode = new ListNode();
 newNode->nextNode = firstNode;
 firstNode = newNode;
 ```
@@ -86,10 +86,10 @@ firstNode = newNode;
 Duyệt qua toàn bộ danh sách liên kết rất đơn giản như sau:
 
 ```cpp
-ListNode* curNode = firstNode;
+ListNode *curNode = firstNode;
 while (curNode != NULL) {
-   cout << curNode->data << endl;
-   curNode = curNode->nextNode;
+    cout << curNode->data << endl;
+    curNode = curNode->nextNode;
 }
 ```
 
