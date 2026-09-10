@@ -2,7 +2,7 @@
 title: Chia căn (sqrt decomposition) và ứng dụng: Phần 1
 description: 
 published: true
-date: 2024-08-28T16:11:45.953Z
+date: 2026-09-10T08:26:39.225Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T11:02:01.152Z
