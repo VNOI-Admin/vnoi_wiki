@@ -200,7 +200,8 @@ void dfs(int u, int parent_of_u) {
             dfs(v, u);
         }
     }
-    if (u != root) add(parent_of_u);
+    if (u != root)
+        add(parent_of_u);
 }
 
 int main() {
@@ -317,23 +318,25 @@ Trong đoạn code dưới đây, hàm $\texttt{change}(u, x)$ cho phép tăng g
 
 const int N = 100000 + 5;
 
-int bit[N]; // cây BIT
+int bit[N];       // cây BIT
 int st[N], en[N]; // các mảng lưu vị trí đầu tiên / sau cùng của đỉnh, lưu ý rằng mảng en đã có sự thay đổi ý nghĩa
 
 // BIT
 void add(int i, int x) {
-    for (; i <= n; i += i & (-i)) bit[i] += x;
+    for (; i <= n; i += i & (-i))
+        bit[i] += x;
 }
 long long sumPrefix(int i) {
     long long ans = 0;
-    for (; i > 0; i &= (i - 1)) ans += bit[i];
+    for (; i > 0; i &= (i - 1))
+        ans += bit[i];
     return ans;
 }
 
 // Truy vấn
 void change(int u, int v) {
     // thay đổi giá trị đỉnh u
-    add(st[u], x);
+    add(st[u], v);
 }
 long long sumSubtree(int u) {
     // tính tống đoạn st[u]..en[u]
@@ -530,37 +533,39 @@ void dfs(int u, int p) {
     R[++m][0] = u;
     st[u] = m;
     for (int v : g[u]) {
-    	if (v != p) {
-    		dfs(v, u);
-    		R[++m][0] = u;
-    	}
+        if (v != p) {
+            dfs(v, u);
+            R[++m][0] = u;
+        }
     }
 }
 
 void solve() {
     cin >> n >> q;
     for (int i = 2; i <= n; ++i) {
-    	int p; cin >> p;
-    	g[p].push_back(i);
+        int p;
+        cin >> p;
+        g[p].push_back(i);
     }
 
     dfs(1, 0);
 
     for (int k = 0; (1 << (k + 1)) <= m; ++k) {
-    	for (int i = 1; i + (1 << (k + 1)) - 1 <= m; ++i) {
-    		R[i][k + 1] = (h[R[i][k]] < h[R[i + (1 << k)][k]] ? R[i][k] : R[i + (1 << k)][k]);
-    	}
+        for (int i = 1; i + (1 << (k + 1)) - 1 <= m; ++i) {
+            R[i][k + 1] = (h[R[i][k]] < h[R[i + (1 << k)][k]] ? R[i][k] : R[i + (1 << k)][k]);
+        }
     }
 
     while (q--) {
-    	int u, v;
-    	cin >> u >> v;
+        int u, v;
+        cin >> u >> v;
 
-    	int l = st[u], r = st[v];
-    	if (l > r) swap(l, r);
+        int l = st[u], r = st[v];
+        if (l > r)
+            swap(l, r);
 
-    	int k = log2(r - l + 1);
-    	cout << (h[R[l][k]] < h[R[r - (1 << k) + 1][k]] ? R[l][k] : R[r - (1 << k) + 1][k]) << "\n";
+        int k = log2(r - l + 1);
+        cout << (h[R[l][k]] < h[R[r - (1 << k) + 1][k]] ? R[l][k] : R[r - (1 << k) + 1][k]) << "\n";
     }
 }
 

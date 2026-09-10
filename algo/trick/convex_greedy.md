@@ -126,7 +126,8 @@ using namespace std;
 struct carrot {
     int a, b;
 
-    carrot(int _a, int _b) : a(_a), b(_b) {}
+    carrot(int _a, int _b) : a(_a), b(_b) {
+    }
 
     long long value() const {
         // tính f_i(b). mỗi phần có độ dài là a / b hoặc là a / b + 1, và có a % b phần có độ dài là a / b + 1
@@ -138,7 +139,7 @@ struct carrot {
         return carrot(a, b).value() - carrot(a, b + 1).value();
     }
 
-    long long operator<(const carrot& oth) const {
+    long long operator<(const carrot &oth) const {
         return next() < oth.next();
     }
 };
@@ -146,11 +147,13 @@ struct carrot {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    int n, k; cin >> n >> k;
+    int n, k;
+    cin >> n >> k;
     long long ans = 0;
     priority_queue<carrot> pq;
     for (int i = 0; i < n; i++) {
-        int a; cin >> a;
+        int a;
+        cin >> a;
         carrot cur(a, 1);
         ans += cur.value();
         pq.push(cur);
@@ -158,7 +161,8 @@ int main() {
     // để ý rằng x_1 = x_2 = ... = x_n = 1; ta tiếp tục từ đây
     // ta cũng không cần phải quan tâm trường hợp ta cắt một củ cà rốt thành nhiều hơn a[i] phần, vì lúc đó .next() sẽ bằng 0 thay vì là một số âm
     for (int i = n; i < k; i++) {
-        carrot u = pq.top(); pq.pop();
+        carrot u = pq.top();
+        pq.pop();
         ans -= u.next();
         pq.push({u.a, u.b + 1});
     }
@@ -219,8 +223,10 @@ int get_last(long long a, long long t) {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    int n; cin >> n;
-    long long k; cin >> k;
+    int n;
+    cin >> n;
+    long long k;
+    cin >> k;
     vector<int> a(n);
     for (int i = 0; i < n; i++) {
         cin >> a[i];
@@ -365,14 +371,18 @@ long double solve(long double c, long double b, long double t) {
 }
 
 int main() {
-    int n, x; cin >> n >> x;
+    int n, x;
+    cin >> n >> x;
     vector<int> c(n);
     vector<vector<int>> adj(n);
     for (int i = 0; i < n; i++) {
         cin >> c[i];
     }
     for (int i = 1; i < n; i++) {
-        int u, v; cin >> u >> v; u--; v--;
+        int u, v;
+        cin >> u >> v;
+        u--;
+        v--;
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
@@ -427,7 +437,8 @@ int main() {
     }
     // chạy thêm bài bước tham chi phí tăng
     while (tot < x && !pq.empty()) {
-        auto [ignore, c, b, i] = pq.top(); pq.pop();
+        auto [ignore, c, b, i] = pq.top();
+        pq.pop();
         ans[i]++;
         tot++;
         pq.push({cost(c, b, ans[i]), c, b, i});

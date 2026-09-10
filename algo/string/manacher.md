@@ -81,9 +81,9 @@ string S;
 int N;
 
 void Calc_D_odd() {
-    for(int i = 1 ; i <= N ; i++) {
+    for (int i = 1; i <= N; i++) {
         D_odd[i] = 0;
-        while(i - D_odd[i] - 1 > 0 && i + D_odd[i] + 1 <= N && S[i - D_odd[i] - 1] == S[i + D_odd[i] + 1]) {
+        while (i - D_odd[i] - 1 > 0 && i + D_odd[i] + 1 <= N && S[i - D_odd[i] - 1] == S[i + D_odd[i] + 1]) {
             D_odd[i]++;
         }
     }
@@ -92,24 +92,25 @@ void Calc_D_odd() {
 void Calc_D_even() {
     int L = 1;
     int R = 0;
-    for(int i = 1 ; i < N ; i++) {
+    for (int i = 1; i < N; i++) {
         int j = i + 1;
         D_even[i] = 0;
-        while(i - D_even[i] > 0 && j + D_even[i] <= N && S[i - D_even[i]] == S[j + D_even[i]]) {
+        while (i - D_even[i] > 0 && j + D_even[i] <= N && S[i - D_even[i]] == S[j + D_even[i]]) {
             D_even[i]++;
         }
     }
 }
 
-signed main() {
+int main() {
     ios_base::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
+    cin.tie(0);
+    cout.tie(0);
     cin >> S;
     N = S.length();
     S = ' ' + S; // for 1-base
     Calc_D_odd();
     Calc_D_even();
-    for(int i = 1 ; i < N ; i++) {
+    for (int i = 1; i < N; i++) {
         cout << D_odd[i] * 2 + 1 << ' ' << D_even[i] * 2 << ' ';
     }
     cout << D_odd[N] * 2 + 1;
@@ -183,14 +184,16 @@ int N;
 void Calc_D_odd() {
     int L = 1;
     int R = 0;
-    for(int i = 1 ; i <= N ; i++) {
-        if(i > R) D_odd[i] = 0;
-        else D_odd[i] = min(R - i, D_odd[L + (R - i)]);
-        while(i - D_odd[i] - 1 > 0 && i + D_odd[i] + 1 <= N && S[i - D_odd[i] - 1] == S[i + D_odd[i] + 1]) {
+    for (int i = 1; i <= N; i++) {
+        if (i > R)
+            D_odd[i] = 0;
+        else
+            D_odd[i] = min(R - i, D_odd[L + (R - i)]);
+        while (i - D_odd[i] - 1 > 0 && i + D_odd[i] + 1 <= N && S[i - D_odd[i] - 1] == S[i + D_odd[i] + 1]) {
             D_odd[i]++;
         }
 
-        if(i + D_odd[i] > R) {
+        if (i + D_odd[i] > R) {
             R = i + D_odd[i];
             L = i - D_odd[i];
         }
@@ -200,29 +203,32 @@ void Calc_D_odd() {
 void Calc_D_even() {
     int L = 1;
     int R = 0;
-    for(int i = 1 ; i < N ; i++) {
+    for (int i = 1; i < N; i++) {
         int j = i + 1;
-        if(j > R) D_even[i] = 0;
-        else D_even[i] = min(R - j + 1, D_even[L + (R - j)]);
-        while(i - D_even[i] > 0 && j + D_even[i] <= N && S[i - D_even[i]] == S[j + D_even[i]]) {
+        if (j > R)
+            D_even[i] = 0;
+        else
+            D_even[i] = min(R - j + 1, D_even[L + (R - j)]);
+        while (i - D_even[i] > 0 && j + D_even[i] <= N && S[i - D_even[i]] == S[j + D_even[i]]) {
             D_even[i]++;
         }
-        if(i + D_even[i] > R) {
+        if (i + D_even[i] > R) {
             R = i + D_even[i];
             L = j - D_even[i];
         }
     }
 }
 
-signed main() {
+int main() {
     ios_base::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
+    cin.tie(0);
+    cout.tie(0);
     cin >> S;
     N = S.length();
     S = ' ' + S; // for 1-base
     Calc_D_odd();
     Calc_D_even();
-    for(int i = 1 ; i < N ; i++) {
+    for (int i = 1; i < N; i++) {
         cout << D_odd[i] * 2 + 1 << ' ' << D_even[i] * 2 << ' ';
     }
     cout << D_odd[N] * 2 + 1;
@@ -267,27 +273,33 @@ int D_odd[MaxN];
 int D_even[MaxN];
 char c[MaxN][MaxN];
 bool Ok[MaxN];
-int N,M;
+int N, M;
 int Ans = 0;
 bool Equal(int Row1, int Row2) {
-    if(!Ok[Row1]) return false;
-    if(!Ok[Row2]) return false;
-    for(int j = 0 ; j < 26 ; j++) {
-        if(Cnt[Row1][j] != Cnt[Row2][j]) return false;
+    if (!Ok[Row1])
+        return false;
+    if (!Ok[Row2])
+        return false;
+    for (int j = 0; j < 26; j++) {
+        if (Cnt[Row1][j] != Cnt[Row2][j])
+            return false;
     }
     return true;
 }
 void Calc_D_odd() {
     int L = 1;
     int R = 0;
-    for(int i = 1 ; i <= N ; i++) {
-        if(i > R) D_odd[i] = 0;
-        else D_odd[i] = min(R - i, D_odd[L + (R - i)]);
-        if (Ok[i]) while(i - D_odd[i] - 1 > 0 && i + D_odd[i] + 1 <= N && Equal(i - D_odd[i] - 1, i + D_odd[i] + 1)) {
-            D_odd[i]++;
-        }
+    for (int i = 1; i <= N; i++) {
+        if (i > R)
+            D_odd[i] = 0;
+        else
+            D_odd[i] = min(R - i, D_odd[L + (R - i)]);
+        if (Ok[i])
+            while (i - D_odd[i] - 1 > 0 && i + D_odd[i] + 1 <= N && Equal(i - D_odd[i] - 1, i + D_odd[i] + 1)) {
+                D_odd[i]++;
+            }
         Ans += (D_odd[i] + Ok[i]);
-        if(i + D_odd[i] > R) {
+        if (i + D_odd[i] > R) {
             R = i + D_odd[i];
             L = i - D_odd[i];
         }
@@ -298,45 +310,52 @@ void Calc_D_even() {
     // D_even[i] is the value for the space between i and i + 1
     int L = 1;
     int R = 0;
-    for(int i = 1 ; i < N ; i++) {
+    for (int i = 1; i < N; i++) {
         int j = i + 1;
-        if(j > R) D_even[i] = 0;
-        else D_even[i] = min(R - j + 1, D_even[L + (R - j)]);
-        while(i - D_even[i] > 0 && j + D_even[i] <= N && Equal(i - D_even[i], j + D_even[i])) {
+        if (j > R)
+            D_even[i] = 0;
+        else
+            D_even[i] = min(R - j + 1, D_even[L + (R - j)]);
+        while (i - D_even[i] > 0 && j + D_even[i] <= N && Equal(i - D_even[i], j + D_even[i])) {
             D_even[i]++;
         }
         Ans += D_even[i];
-        if(i + D_even[i] > R) {
+        if (i + D_even[i] > R) {
             R = i + D_even[i];
             L = j - D_even[i];
         }
     }
 }
-signed main() {
+int main() {
     ios_base::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
+    cin.tie(0);
+    cout.tie(0);
     cin >> N >> M;
-    for(int i = 1 ; i <= N ; i++) {
+    for (int i = 1; i <= N; i++) {
         cin >> c[i] + 1;
     }
-    for(int c1 = 1 ; c1 <= M ; c1++) {
-        for(int c2 = c1 ; c2 <= M ; c2++) {
+    for (int c1 = 1; c1 <= M; c1++) {
+        for (int c2 = c1; c2 <= M; c2++) {
             bool ok = true;
-            for(int i = 1 ; i <= N ; i++) {
+            for (int i = 1; i <= N; i++) {
                 int t = c[i][c2] - 'a';
                 Cnt[i][t]++;
 
-                if(Cnt[i][t] & 1) Cnt_Odd[i]++;
-                else Cnt_Odd[i]--;
+                if (Cnt[i][t] & 1)
+                    Cnt_Odd[i]++;
+                else
+                    Cnt_Odd[i]--;
 
-                if(Cnt_Odd[i] > ((c2 - c1 + 1) & 1)) Ok[i] = false;
-                else Ok[i] = true;
+                if (Cnt_Odd[i] > ((c2 - c1 + 1) & 1))
+                    Ok[i] = false;
+                else
+                    Ok[i] = true;
             }
             Calc_D_odd();
             Calc_D_even();
         }
-        for(int i = 1 ; i <= N ; i++) {
-            for(int j = 0 ; j < 26 ; j++) {
+        for (int i = 1; i <= N; i++) {
+            for (int j = 0; j < 26; j++) {
                 Cnt[i][j] = 0;
             }
             Cnt_Odd[i] = 0;

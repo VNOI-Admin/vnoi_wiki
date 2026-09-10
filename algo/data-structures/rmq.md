@@ -88,7 +88,8 @@ void preprocess() {
 }
 int queryMin(int l, int r) {
     int len = r - l + 1;
-    if (len == 1) return a[l];
+    if (len == 1)
+        return a[l];
 
     int mi = INT_MAX;
     for (int i = l; i + 1 <= r; i += 2) {
@@ -133,7 +134,8 @@ void preprocess() {
 }
 int queryMin(int l, int r) {
     int len = r - l + 1;
-    if (len == 1) return a[l];
+    if (len == 1)
+        return a[l];
     if (len < 4) {
         return min(a2[l], a2[r - 1]);
         // dòng này hợp lý bởi vì chắc chắn 2 đoạn [l, l + 1] và [r - 1, r] sẽ giao nhau (vì 2 + 2 > len)
@@ -173,9 +175,12 @@ void preprocess() {
 }
 int queryMin(int l, int r) {
     int len = r - l + 1;
-    if (len == 1) return a[l];
-    if (len < 4) return min(a2[l], a2[r - 1]);
-    if (len < 8) return min(a4[l], a4[r - 3]);
+    if (len == 1)
+        return a[l];
+    if (len < 4)
+        return min(a2[l], a2[r - 1]);
+    if (len < 8)
+        return min(a4[l], a4[r - 3]);
 
     int mi = INT_MAX;
     for (int i = l; i + 7 <= r; i += 8) {
@@ -223,7 +228,8 @@ Nhận xét thêm:
 // ví dụ: N = 10^5 thì LG = 16 vì 2^16 = 65536
 int a[N], st[LG + 1][N];
 void preprocess() {
-    for (int i = 1; i <= n; ++i) st[0][i] = a[i];
+    for (int i = 1; i <= n; ++i)
+        st[0][i] = a[i];
     for (int j = 1; j <= LG; ++j)
         for (int i = 1; i + (1 << j) - 1 <= n; ++i)
             st[j][i] = min(st[j - 1][i], st[j - 1][i + (1 << (j - 1))]);
@@ -263,7 +269,8 @@ Từ nhận xét trên, ta có thể tách $[l\ldots r]$ thành $\log_2$ đoạn
 // ví dụ: N = 10^5 thì LG = 16 vì 2^16 = 65536
 int a[N], st[LG + 1][N];
 void preprocess() {
-    for (int i = 1; i <= n; ++i) st[0][i] = a[i];
+    for (int i = 1; i <= n; ++i)
+        st[0][i] = a[i];
     for (int j = 1; j <= LG; ++j)
         for (int i = 1; i + (1 << j) - 1 <= n; ++i)
             st[j][i] = st[j - 1][i] + st[j - 1][i + (1 << (j - 1))];
@@ -366,12 +373,10 @@ void preprocess() {
                     if (k == 0) {
                         if (l == 0) {
                             st[0][i][0][j] = a[i][j];
-                        }
-                        else {
+                        } else {
                             st[0][i][l][j] = min(st[0][i][l - 1][j], st[0][i][l - 1][j + (1 << (l - 1))]);
                         }
-                    }
-                    else {
+                    } else {
                         st[k][i][l][j] = min(st[k - 1][i][l][j], st[k - 1][i + (1 << (k - 1))][l][j]);
                     }
                 }
@@ -450,12 +455,10 @@ void preprocess() {
                     if (k == 0) {
                         if (l == 0) {
                             st[0][i][0][j] = a[i][j];
-                        }
-                        else {
+                        } else {
                             st[0][i][l][j] = max(st[0][i][l - 1][j], st[0][i][l - 1][j + (1 << (l - 1))]);
                         }
-                    }
-                    else {
+                    } else {
                         st[k][i][l][j] = max(st[k - 1][i][l][j], st[k - 1][i + (1 << (k - 1))][l][j]);
                     }
                 }
@@ -469,10 +472,10 @@ int getSum(int x, int y, int a, int b) {
 int getMax(int x, int y, int a, int b) {
     int k = __lg(a - x + 1);
     int l = __lg(b - y + 1);
-    return max({ st[k][x][l][y],
-                 st[k][x][l][b - (1 << l) + 1],
-                 st[k][a - (1 << k) + 1][l][y],
-                 st[k][a - (1 << k) + 1][l][b - (1 << l) + 1] });
+    return max({st[k][x][l][y],
+                st[k][x][l][b - (1 << l) + 1],
+                st[k][a - (1 << k) + 1][l][y],
+                st[k][a - (1 << k) + 1][l][b - (1 << l) + 1]});
 }
 
 int main() {

@@ -340,14 +340,17 @@ for (int i = 0; i <= breakPoint; i++) {
     for (int j = 0; j <= n - breakPoint; j++) {
         for (int sigma = C - W; sigma <= C + W; sigma++) {
             int cur = sigma - offset;
-            if (!exist[i][j][cur]) continue;
+            if (!exist[i][j][cur])
+                continue;
             if (i < breakPoint) {
                 exist[i + 1][j][cur] = 1;
-                if (sigma > C) exist[i + 1][j][cur - w[i + 1]] = 1;
+                if (sigma > C)
+                    exist[i + 1][j][cur - w[i + 1]] = 1;
             }
             if (j < n - breakPoint) {
                 exist[i][j + 1][cur] = 1;
-                if (sigma <= C) exist[i][j + 1][cur + w[breakPoint + j + 1]] = 1;
+                if (sigma <= C)
+                    exist[i][j + 1][cur + w[breakPoint + j + 1]] = 1;
             }
         }
     }
@@ -370,7 +373,8 @@ exist[0][0][curSum - offset] = 1;
 /// thực hiện QHĐ
 for (int i = 0; i <= breakPoint; i++) {
     for (int j = 0; j <= n - breakPoint; j++) {
-        if (max(i, j) == 0) continue;
+        if (max(i, j) == 0)
+            continue;
         for (int sigma = C - W; sigma <= C + W; sigma++) {
             int cur = sigma - offset;
             exist[i][j][cur] = (i ? exist[i - 1][j][cur] : 0) | (j ? exist[i][j - 1][cur] : 0);
@@ -460,7 +464,8 @@ change[0][curSum - offset] = 0;
 for (int i = 0; i <= breakPoint; i++) {
     for (int sigma = C - W; sigma <= C + W; sigma++) {
         int cur = sigma - offset, delta = change[i][cur];
-        if (delta == INT_MAX) continue;
+        if (delta == INT_MAX)
+            continue;
 
         if (i < breakPoint) // bước 1
             change[i + 1][cur] = min(change[i + 1][cur], delta);

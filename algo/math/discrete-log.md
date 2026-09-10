@@ -184,8 +184,10 @@ int discrete_log_BSGS(int a, int b, int m) {
 
     int k = 1, add = 0, g;
     while ((g = __gcd(a, m)) > 1) {
-        if (b == k) return add;
-        if (b % g) return -1;
+        if (b == k)
+            return add;
+        if (b % g)
+            return -1;
         b /= g, m /= g, ++add;
         a %= m;
         k = (k * 1ll * a / g) % m;
@@ -254,7 +256,7 @@ Tổng độ phức tạp thuật toán trên là $\mathcal{O}\left(\sqrt[4] m \
 using ll = long long;
 ll powMod(ll x, ll p, ll md);
 ll gcd(ll x, ll y);
-// danh sách các ước nguyên tố của x (có thể trùng nhau) 
+// danh sách các ước nguyên tố của x (có thể trùng nhau)
 vector<ll> factorize(ll x);
 // hàm phi Euler
 ll phi(ll n) {
@@ -295,31 +297,41 @@ using ld = long double;
 ll mult(ll x, ll y, ll md) {
     ull q = (ld)x * y / md;
     ll res = ((ull)x * y - q * md);
-    if (res >= md) res -= md;
-    if (res < 0) res += md;
+    if (res >= md)
+        res -= md;
+    if (res < 0)
+        res += md;
     return res;
 }
 
 ll powMod(ll x, ll p, ll md) {
-    if (p == 0) return 1;
-    if (p & 1) return mult(x, powMod(x, p - 1, md), md);
+    if (p == 0)
+        return 1;
+    if (p & 1)
+        return mult(x, powMod(x, p - 1, md), md);
     return powMod(mult(x, x, md), p / 2, md);
 }
 
 bool checkMillerRabin(ll x, ll md, ll s, int k) {
     x = powMod(x, s, md);
-    if (x == 1) return true;
+    if (x == 1)
+        return true;
     while (k--) {
-        if (x == md - 1) return true;
+        if (x == md - 1)
+            return true;
         x = mult(x, x, md);
-        if (x == 1) return false;
+        if (x == 1)
+            return false;
     }
     return false;
 }
 bool isPrime(ll x) {
-    if (x == 2 || x == 3 || x == 5 || x == 7) return true;
-    if (x % 2 == 0 || x % 3 == 0 || x % 5 == 0 || x % 7 == 0) return false;
-    if (x < 121) return x > 1;
+    if (x == 2 || x == 3 || x == 5 || x == 7)
+        return true;
+    if (x % 2 == 0 || x % 3 == 0 || x % 5 == 0 || x % 7 == 0)
+        return false;
+    if (x < 121)
+        return x > 1;
     ll s = x - 1;
     int k = 0;
     while (s % 2 == 0) {
@@ -328,17 +340,21 @@ bool isPrime(ll x) {
     }
     if (x < 1LL << 32) {
         for (ll z : {2, 7, 61}) {
-            if (!checkMillerRabin(z, x, s, k)) return false;
+            if (!checkMillerRabin(z, x, s, k))
+                return false;
         }
     } else {
         for (ll z : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
-            if (!checkMillerRabin(z, x, s, k)) return false;
+            if (!checkMillerRabin(z, x, s, k))
+                return false;
         }
     }
     return true;
 }
 
-ll gcd(ll x, ll y) { return y == 0 ? x : gcd(y, x % y); }
+ll gcd(ll x, ll y) {
+    return y == 0 ? x : gcd(y, x % y);
+}
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 long long get_rand(long long r) {
@@ -355,7 +371,8 @@ void pollard(ll x, vector<ll> &ans) {
         c = 1 + get_rand(x - 1);
         auto f = [&](ll y) {
             ll res = mult(y, y, x) + c;
-            if (res >= x) res -= x;
+            if (res >= x)
+                res -= x;
             return res;
         };
         ll y = 2;
@@ -392,7 +409,8 @@ void pollard(ll x, vector<ll> &ans) {
                     z = f(z);
                 }
             }
-            if (g == x) break;
+            if (g == x)
+                break;
             assert(g != 1);
             pollard(g, ans);
             pollard(x / g, ans);
@@ -430,11 +448,13 @@ ll phi(ll n) {
 }
 
 ll ord(ll a, ll m) {
-    if (gcd(a, m) != 1) return -1;
+    if (gcd(a, m) != 1)
+        return -1;
     ll res = phi(m);
     auto ps = factorize(res);
     for (auto p : ps)
-        if (powMod(a, res / p, m) == 1) res /= p;
+        if (powMod(a, res / p, m) == 1)
+            res /= p;
     return res;
 }
 

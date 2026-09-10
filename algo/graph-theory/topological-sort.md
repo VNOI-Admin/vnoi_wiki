@@ -235,21 +235,22 @@ using namespace std;
 const int maxN = 110;
 
 int n, m;
-int visit[maxN], ans[maxN];
-vector <int> g[maxN];
-stack <int> topo;
+int visited[maxN], ans[maxN];
+vector<int> g[maxN];
+stack<int> topo;
 
 void dfs(int u) {
-    visit[u] = 1;
+    visited[u] = 1;
     for (auto v : g[u]) {
-        if (visit[v] == 1) {
+        if (visited[v] == 1) {
             cout << "Error: graph contains a cycle";
             exit(0);
         }
-        if (!visit[v]) dfs(v);
+        if (!visited[v])
+            dfs(v);
     }
     topo.push(u);
-    visit[u] = 2;
+    visited[u] = 2;
 }
 
 int main() {
@@ -260,7 +261,8 @@ int main() {
         g[u].push_back(v);
     }
     for (int i = 1; i <= n; ++i)
-        if (!visit[i]) dfs(i);
+        if (!visited[i])
+            dfs(i);
 
     /* Sau khi xác định được thứ tự Tô-pô của đồ thị, ta sử dụng
        mảng ans để đánh số lại các đỉnh */
@@ -357,15 +359,16 @@ using namespace std;
 const int maxN = 1e5 + 7;
 
 int n, m;
-int visit[maxN], dp[maxN];
-vector <int> g[maxN], revTopo;
+int visited[maxN], dp[maxN];
+vector<int> g[maxN], revTopo;
 
 void dfs(int u) {
-    visit[u] = 1;
+    visited[u] = 1;
     for (auto v : g[u])
-        if (!visit[v]) dfs(v);
+        if (!visited[v])
+            dfs(v);
     revTopo.push_back(u);
-    visit[u] = 2;
+    visited[u] = 2;
 }
 
 int main() {
@@ -376,13 +379,14 @@ int main() {
         g[u].push_back(v);
     }
     for (int i = 1; i <= n; ++i)
-        if (!visit[i]) dfs(i);
+        if (!visited[i])
+            dfs(i);
 
     int ans = 0;
     for (auto u : revTopo) {
-    	for (auto v : g[u])
+        for (auto v : g[u])
             dp[u] = max(dp[u], dp[v] + 1);
-    	ans = max(ans, dp[u]);
+        ans = max(ans, dp[u]);
     }
     cout << ans;
 }
@@ -497,13 +501,15 @@ void printImpossible() {
 
 // Sắp xếp Tô-pô bằng DFS
 void dfs(int u) {
-    visit[u] = 1;
+    visited[u] = 1;
     for (auto v : g[u]) {
-        if (visit[v] == 1) printImpossible();
-        if (!visit[v]) dfs(v);
+        if (visited[v] == 1)
+            printImpossible();
+        if (!visited[v])
+            dfs(v);
     }
     topo.push(u);
-    visit[u] = 2;
+    visited[u] = 2;
 }
 
 // Xây dựng các cạnh của đồ thị
@@ -516,18 +522,21 @@ void solve(string x, string y) {
 
     /* Trường hợp y là tiền tố của x => x luôn lớn hơn y
          => không có cách xếp thỏa mãn */
-    if (x.size() > y.size()) printImpossible();
+    if (x.size() > y.size())
+        printImpossible();
 }
 
 int main() {
     cin >> n;
     for (int i = 0; i < n; ++i) {
         cin >> s[i];
-        if (i) solve(s[i - 1], s[i]);
+        if (i)
+            solve(s[i - 1], s[i]);
     }
 
     for (int i = 0; i < 26; ++i)
-        if (!visit[i]) dfs(i);
+        if (!visited[i])
+            dfs(i);
 
     while (!topo.empty()) {
         cout << char(topo.top() + 'a');

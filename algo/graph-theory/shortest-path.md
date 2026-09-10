@@ -90,7 +90,7 @@ void dfs(int u) {
 
 long long spDAG() {
     for (int u = 0; u < n; u++) {
-        if (!visit[u]) {
+        if (!visited[u]) {
             dfs(u);
         }
     }
@@ -117,7 +117,7 @@ long long spDAG() {
 
 vector<int> path() {
     vector<int> ret;
-    if (d[t] != INF) {
+    if (d[t] == INF) {
         return ret;
     }
     int u = t;
@@ -258,22 +258,25 @@ void dijkstra(int n, int S, vector<vector<Edge>> E,
     D[S] = 0;
 
     for (int i = 0; i < n; i++) {
-        int uBest; // tìm đỉnh u chưa dùng, có khoảng cách nhỏ nhất
+        int uBest = -1; // tìm đỉnh u chưa dùng, có khoảng cách nhỏ nhất
         long long Max = INF;
         for (int u = 0; u < n; u++) {
-            if(D[u] < Max && P[u] == false) {
+            if (D[u] < Max && P[u] == false) {
                 uBest = u;
                 Max = D[u];
             }
         }
 
+        if (uBest == -1)
+            break; // các đỉnh còn lại không đến được từ S
+
         // cải tiến các đường đi qua u
         int u = uBest;
         P[u] = true;
-        for(auto x : E[u]) {
+        for (auto x : E[u]) {
             int v = x.v;
             long long w = x.w;
-            if(D[v] > D[u] + w) {
+            if (D[v] > D[u] + w) {
                 D[v] = D[u] + w;
                 trace[v] = u;
             }
@@ -327,20 +330,20 @@ void dijkstraSparse(int n, int s, vector<vector<Edge>> &E, vector<long long> &D,
     priority_queue<Node, vector<Node>, cmp> h; // hàng đợi ưu tiên, sắp xếp theo dist[u] nhỏ nhất trước
     h.push({s, D[s]});
 
-    while(!h.empty()) {
+    while (!h.empty()) {
         Node x = h.top();
         h.pop();
 
         int u = x.u;
-        if(P[u] == true) // Đỉnh u đã được chọn trước đó, bỏ qua
+        if (P[u] == true) // Đỉnh u đã được chọn trước đó, bỏ qua
             continue;
 
         P[u] = true; // Đánh dấu đỉnh u đã được chọn
-        for(auto e : E[u]) {
+        for (auto e : E[u]) {
             int v = e.v;
             long long w = e.w;
 
-            if(D[v] > D[u] + w) {
+            if (D[v] > D[u] + w) {
                 D[v] = D[u] + w;
                 h.push({v, D[v]});
                 trace[v] = u;

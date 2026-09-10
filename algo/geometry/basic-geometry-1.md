@@ -259,9 +259,11 @@ double linePointDist(pii A, pii B, pii C, bool isSegment) {
     double dist = abs(cross(A, B, C)) / distance(A, B);
     if (isSegment) {
         int dot1 = dot(B, A, C);
-        if (dot1 < 0) return distance(B, C);
+        if (dot1 < 0)
+            return distance(B, C);
         int dot2 = dot(A, B, C);
-        if (dot2 < 0) return distance(A, C);
+        if (dot2 < 0)
+            return distance(A, C);
     }
     return dist;
 }
@@ -287,8 +289,8 @@ struct vec {
         return sqrt(x * x + y * y);
     }
 };
-using point = vec; // or use 'typedef vec point'
-vec operator - (const point &B, const point &A) { // vecAB = B - A
+using point = vec;                              // or use 'typedef vec point'
+vec operator-(const point &B, const point &A) { // vecAB = B - A
     return vec(B.x - A.x, B.y - A.y);
 }
 
@@ -297,9 +299,11 @@ db linePointDist(const point &A, const point &B, const point &C, bool isSegment)
     db dist = abs((B - A).cross(C - A)) / (A - B).length();
     if (isSegment) {
         db dot1 = (A - B).dot(C - B);
-        if (dot1 < 0) return (B - C).length();
+        if (dot1 < 0)
+            return (B - C).length();
         db dot2 = (B - A).dot(C - A);
-        if (dot2 < 0) return (A - C).length();
+        if (dot2 < 0)
+            return (A - C).length();
     }
     return dist;
 }

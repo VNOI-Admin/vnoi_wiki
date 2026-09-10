@@ -299,10 +299,10 @@ void genMoneySet(int pos) {
     }
 }
 
-int main()
-{
+int main() {
     cin >> n >> S;
-    for (int i = 1; i <= n; i ++) cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
     curMoneySet.clear();
     curMoneySum = 0;
     genMoneySet(1);
@@ -352,32 +352,32 @@ bool isInCol[13], isInDiag1[26], isInDiag2[26];
 
 //gọi 2 tập riêng chi hàng và cột
 //tập X có thể bỏ qua do các quân Hậu được sinh lần lượt theo từng hàng
-vector <int> curQueensSetX, curQueensSetY;
+vector<int> curQueensSetX, curQueensSetY;
 
 //In kết quả dạng (X, Y)
-void printQueensSet()
-{
-    for (int i = 0; i < n; i ++)
-    {
+void printQueensSet() {
+    for (int i = 0; i < n; i++) {
         cout << "(" << curQueensSetX[i] << ", " << curQueensSetY[i] << ")";
-        if (i < n - 1) cout << ", ";
+        if (i < n - 1)
+            cout << ", ";
     }
     cout << "\n";
 }
 
 //Hàm đệ quy
-void genQueensSet(int curRow)
-{
-    for (int curCol = 1; curCol <= n; curCol ++)
-    {
+void genQueensSet(int curRow) {
+    for (int curCol = 1; curCol <= n; curCol++) {
         //Xác định đường chéo phụ và chính hiện tại
         int curDiag1 = curRow + curCol;
-        int curDiag2 = curRow - curCol + 13;    //+13 để tránh chỉ số âm
+        int curDiag2 = curRow - curCol + 13; //+13 để tránh chỉ số âm
 
         //Kiểm tra toạ độ mới xem có thoả mãn không
-        if (isInCol[curCol] == true) continue;
-        if (isInDiag1[curDiag1] == true) continue;
-        if (isInDiag2[curDiag2] == true) continue;
+        if (isInCol[curCol] == true)
+            continue;
+        if (isInDiag1[curDiag1] == true)
+            continue;
+        if (isInDiag2[curDiag2] == true)
+            continue;
 
         //Thêm nó vào tập hợp hiện tại nếu thoả mãn
         curQueensSetX.push_back(curRow);
@@ -387,8 +387,10 @@ void genQueensSet(int curRow)
         isInDiag2[curDiag2] = true;
 
         //Gọi đệ quy thêm quân tiếp theo hoặc in kết quả
-        if (curQueensSetX.size() == n) printQueensSet();
-        else genQueensSet(curRow + 1);
+        if (curQueensSetX.size() == n)
+            printQueensSet();
+        else
+            genQueensSet(curRow + 1);
 
         //Xoá quân vừa thêm vào khỏi tập hợp
         curQueensSetX.pop_back();
@@ -399,8 +401,7 @@ void genQueensSet(int curRow)
     }
 }
 
-int main()
-{
+int main() {
     cin >> n;
 
     memset(isInCol, 0, sizeof(isInCol));
@@ -456,16 +457,17 @@ void genMoneySet(int pos) {
     }
 }
 
-int main()
-{
+int main() {
     cin >> n >> S;
-    for (int i = 1; i <= n; i ++) cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
     curMoneySet.clear();
     curMoneySum = 0;
     bestSet.clear();
     genMoneySet(1);
 
-    for (int i : bestSet) cout << a[i] << " ";
+    for (int i : bestSet)
+        cout << a[i] << " ";
     cout << "\n";
 
     return 0;

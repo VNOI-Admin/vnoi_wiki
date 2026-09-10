@@ -78,23 +78,22 @@ int cnt[N];
 vector<int> value;
 vector<vector<int>> prefix_sums;
 
-
 // Phần khởi tạo
-void init(){
-    for(int i = 1; i <= n; i++){
+void init() {
+    for (int i = 1; i <= n; i++) {
         cin >> a[i];
         if (a[i] <= n)
             cnt[a[i]]++;
     }
 
-    for(int x = 1; x <= n; x++){
+    for (int x = 1; x <= n; x++) {
         // Điều kiện để giá trị x được xét là có số lần xuất hiện ít nhất x lần, có không quá 2 * sqrt(n) giá trị cần xét
-        if(cnt[x] >= x){
+        if (cnt[x] >= x) {
             value.push_back(x);
 
             // Mảng cộng dồn phục vụ việc đếm số lượng giá trị x nằm trong một đoạn liên tiếp với độ phức tạp thời gian O(1)
             vector<int> prefix_sum(n + 1);
-            for(int i = 1; i <= n; i++){
+            for (int i = 1; i <= n; i++) {
                 prefix_sum[i] = prefix_sum[i - 1] + (a[i] == x);
             }
             prefix_sums.push_back(prefix_sum);
@@ -103,11 +102,11 @@ void init(){
 }
 
 // Phần truy vấn
-int query(int l, int r){
+int query(int l, int r) {
     int answer = 0;
 
-    for(int i = 0, _ = value.size(); i < _; i++){
-        if(prefix_sums[i][r] - prefix_sums[i][l - 1] == value[i]){
+    for (int i = 0, _ = value.size(); i < _; i++) {
+        if (prefix_sums[i][r] - prefix_sums[i][l - 1] == value[i]) {
             answer++;
         }
     }
@@ -177,13 +176,13 @@ vector<int> lengths;
 
 ...
 
-T = "#" + T;
+    T = "#" + T;
 
-for(int i = 1; i < T.size(); i++){
-    for(int &p : lengths){
+for (int i = 1; i < T.size(); i++) {
+    for (int &p : lengths) {
         int64_t hash_value = get_hash(i - p + 1, i);
 
-        if(H[p].count(hash_value)){
+        if (H[p].count(hash_value)) {
             count[i] += count[i - p];
         }
     }
@@ -296,7 +295,7 @@ Ví dụ, nếu trước đó ta xử lí truy vấn $[3, 7]$ và truy vấn k�
 
 int current_answer;
 
-void update(long long value, int delta){
+void update(long long value, int delta) {
     // Khi thay đổi giá trị trong mảng đếm đồng thời cập nhật lại đáp án hiện tại
     current_answer -= count[value] * count[value] * value;
     count[value] += delta;
@@ -666,31 +665,31 @@ void apply_lazy(int b) {
 }
 
 // Cập nhật thủ công từ phần tử l đến r
-void manual_update(int l, int r, int x){
+void manual_update(int l, int r, int x) {
     int b = l / S;
-    for(int i = l; i <= r; i++){
+    for (int i = l; i <= r; i++) {
         count[b][a[i]]--;
-        
-        if(count[b][a[i]] == 0){
+
+        if (count[b][a[i]] == 0) {
             count[b].erase(a[i]);
         }
-        
+
         a[i] += x;
         count[b][a[i]]++;
     }
 }
 
-void update(int l, int r, int x){
+void update(int l, int r, int x) {
     int block_l = l / S;
     int block_r = r / S;
 
     // Không quên trường hợp đặc biệt l, r nằm cùng trong một block
-    if(block_l == block_r){
+    if (block_l == block_r) {
         apply_lazy(block_l);
         manual_update(l, r, x);
-    }else{
+    } else {
         update_block(block_l, block_r, x);
-        
+
         // Phải cập nhật lazy vào các block chứa l, r trước khi cập nhật phần thừa
         apply_lazy(block_l);
         apply_lazy(block_r);

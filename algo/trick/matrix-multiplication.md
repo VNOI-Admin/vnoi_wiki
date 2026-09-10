@@ -164,36 +164,46 @@ using namespace std;
 using type = int; // Kiểu dữ liệu các phần tử của ma trận
 
 struct Matrix {
-    vector <vector <type> > data;
+    vector<vector<type>> data;
 
     // Số lượng hàng của ma trận
-    int row() const { return data.size(); }
+    int row() const {
+        return data.size();
+    }
 
     // Số lượng hàng của ma trận
-    int col() const { return data[0].size(); }
+    int col() const {
+        return data[0].size();
+    }
 
-    auto & operator [] (int i) { return data[i]; }
+    auto &operator[](int i) {
+        return data[i];
+    }
 
-    const auto & operator[] (int i) const { return data[i]; }
+    const auto &operator[](int i) const {
+        return data[i];
+    }
 
     Matrix() = default;
 
-    Matrix(int r, int c): data(r, vector <type> (c)) { }
+    Matrix(int r, int c) : data(r, vector<type>(c)) {
+    }
 
-    Matrix(const vector <vector <type> > &d): data(d) {
-
+    Matrix(const vector<vector<type>> &d) : data(d) {
         // Kiểm tra các hàng có cùng size không và size có lớn hơn 0 hay không
         // Tuy nhiên không thực sự cần thiết, ta có thể bỏ các dòng /**/ đi
         /**/ assert(d.size());
         /**/ int size = d[0].size();
         /**/ assert(size);
-        /**/ for (auto x : d) assert(x.size() == size);
+        /**/ for (auto x : d)
+            assert(x.size() == size);
     }
 
     // In ra ma trận.
-    friend ostream & operator << (ostream &out, const Matrix &d) {
+    friend ostream &operator<<(ostream &out, const Matrix &d) {
         for (auto x : d.data) {
-            for (auto y : x) out << y << ' ';
+            for (auto y : x)
+                out << y << ' ';
             out << '\n';
         }
         return out;
@@ -202,12 +212,13 @@ struct Matrix {
     // Ma trận đơn  vị
     static Matrix identity(long long n) {
         Matrix a = Matrix(n, n);
-        while (n--) a[n][n] = 1;
+        while (n--)
+            a[n][n] = 1;
         return a;
     }
 
     // Nhân ma trận
-    Matrix operator * (const Matrix &b) {
+    Matrix operator*(const Matrix &b) {
         Matrix a = *this;
 
         // Kiểm tra điều kiện nhân ma trận
@@ -223,27 +234,23 @@ struct Matrix {
 
     // Lũy thừa ma trận
     Matrix pow(long long exp) {
-
         // Kiểm tra điều kiện lũy thừa ma trận (là ma trận vuông)
         assert(row() == col());
 
         Matrix base = *this, ans = identity(row());
         for (; exp > 0; exp >>= 1, base = base * base)
-            if (exp & 1) ans = ans * base;
+            if (exp & 1)
+                ans = ans * base;
         return ans;
     }
 };
 
-int main(){
-    Matrix a({
-        {1, 2},
-        {3, 4}
-    });
+int main() {
+    Matrix a({{1, 2},
+              {3, 4}});
 
-    Matrix b({
-        {0, 10, 100},
-        {1,  1,  10}
-    });
+    Matrix b({{0, 10, 100},
+              {1, 1, 10}});
 
     cout << a * b << '\n';
     // 2 12 120
@@ -391,25 +398,36 @@ const int mod = 111539786;
 using type = int;
 
 struct Matrix {
-    vector <vector <type> > data;
+    vector<vector<type>> data;
 
-    int row() const { return data.size(); }
+    int row() const {
+        return data.size();
+    }
 
-    int col() const { return data[0].size(); }
+    int col() const {
+        return data[0].size();
+    }
 
-    auto & operator [] (int i) { return data[i]; }
+    auto &operator[](int i) {
+        return data[i];
+    }
 
-    const auto & operator[] (int i) const { return data[i]; }
+    const auto &operator[](int i) const {
+        return data[i];
+    }
 
     Matrix() = default;
 
-    Matrix(int r, int c): data(r, vector <type> (c)) { }
+    Matrix(int r, int c) : data(r, vector<type>(c)) {
+    }
 
-    Matrix(const vector <vector <type> > &d): data(d) { }
+    Matrix(const vector<vector<type>> &d) : data(d) {
+    }
 
-    friend ostream & operator << (ostream &out, const Matrix &d) {
+    friend ostream &operator<<(ostream &out, const Matrix &d) {
         for (auto x : d.data) {
-            for (auto y : x) out << y << ' ';
+            for (auto y : x)
+                out << y << ' ';
             out << '\n';
         }
         return out;
@@ -417,17 +435,18 @@ struct Matrix {
 
     static Matrix identity(long long n) {
         Matrix a = Matrix(n, n);
-        while (n--) a[n][n] = 1;
+        while (n--)
+            a[n][n] = 1;
         return a;
     }
 
-    Matrix operator * (const Matrix &b) {
+    Matrix operator*(const Matrix &b) {
         Matrix a = *this;
         assert(a.col() == b.row());
         Matrix c(a.row(), b.col());
         for (int i = 0; i < a.row(); ++i)
             for (int j = 0; j < b.col(); ++j)
-                for (int k = 0; k < a.col(); ++k){
+                for (int k = 0; k < a.col(); ++k) {
                     c[i][j] += 1ll * a[i][k] % mod * (b[k][j] % mod) % mod;
                     c[i][j] %= mod;
                 }
@@ -438,16 +457,15 @@ struct Matrix {
         assert(row() == col());
         Matrix base = *this, ans = identity(row());
         for (; exp > 0; exp >>= 1, base = base * base)
-            if (exp & 1) ans = ans * base;
+            if (exp & 1)
+                ans = ans * base;
         return ans;
     }
 };
 
-int main(){
-    Matrix a({
-        {1, 1},
-        {1, 0}
-    });
+int main() {
+    Matrix a({{1, 1},
+              {1, 0}});
 
     int t;
     cin >> t;
@@ -561,17 +579,18 @@ struct Matrix {
 
     static Matrix identity(long long n) {
         Matrix a = Matrix(n, n);
-        while (n--) a[n][n] = 1;
+        while (n--)
+            a[n][n] = 1;
         return a;
     }
 
-    Matrix operator * (const Matrix &b) {
+    Matrix operator*(const Matrix &b) {
         Matrix a = *this;
         assert(a.col() == b.row());
         Matrix c(a.row(), b.col());
         for (int i = 0; i < a.row(); ++i)
             for (int j = 0; j < b.col(); ++j)
-                for (int k = 0; k < a.col(); ++k){
+                for (int k = 0; k < a.col(); ++k) {
                     c[i][j] += 1ll * a[i][k] % mod * (b[k][j] % mod) % mod;
                     c[i][j] %= mod;
                 }
@@ -582,33 +601,42 @@ struct Matrix {
         assert(row() == col());
         Matrix base = *this, ans = identity(row());
         for (; exp > 0; exp >>= 1, base = base * base)
-            if (exp & 1) ans = ans * base;
+            if (exp & 1)
+                ans = ans * base;
         return ans;
     }
 };
 
 int b[15], c[15];
 
-int main(){
+int main() {
     int t;
     cin >> t;
     while (t--) {
         int n, k;
         cin >> k;
-        for (int i = 1; i <= k; ++i) cin >> b[i];
-        for (int i = 1; i <= k; ++i) cin >> c[i];
+        for (int i = 1; i <= k; ++i)
+            cin >> b[i];
+        for (int i = 1; i <= k; ++i)
+            cin >> c[i];
         cin >> n;
 
-        if (n <= k) { cout << b[n] << '\n'; continue; }
+        if (n <= k) {
+            cout << b[n] << '\n';
+            continue;
+        }
 
         // Xây dựng ma trận cơ sở
         Matrix base(k, 1);
-        for (int i = 1; i <= k; ++i) base[i - 1][0] = b[i];
+        for (int i = 1; i <= k; ++i)
+            base[i - 1][0] = b[i];
 
         // Xây dựng ma trận hệ số D
         Matrix d(k, k);
-        for (int i = 0; i < k - 1; ++i) d[i][i + 1] = 1;
-        for (int i = 0; i < k; ++i) d[k - 1][i] = c[k - i];
+        for (int i = 0; i < k - 1; ++i)
+            d[i][i + 1] = 1;
+        for (int i = 0; i < k; ++i)
+            d[k - 1][i] = c[k - i];
 
         Matrix ans = d.pow(n - k) * base;
         cout << ans[k - 1][0] << '\n';
@@ -747,11 +775,12 @@ int n;
 int dp[10005][6][6][6];
 
 long long digit_dp(int added, int ewoc, int owoc, int added_odd) {
-
     // Khi đã chọn đủ n chữ số
-    if (added == n) return (!ewoc && owoc == added_odd);
+    if (added == n)
+        return (!ewoc && owoc == added_odd);
 
-    if (dp[added][ewoc][owoc][added_odd] != -1) return dp[added][ewoc][owoc][added_odd];
+    if (dp[added][ewoc][owoc][added_odd] != -1)
+        return dp[added][ewoc][owoc][added_odd];
     long long cur = 0;
 
     // Thêm vào 1 số chẵn đã xuất hiện lẻ lần
@@ -775,7 +804,8 @@ long long digit_dp(int added, int ewoc, int owoc, int added_odd) {
         cur += digit_dp(added + 1, ewoc, owoc + 1, added_odd) * (added_odd - owoc);
 
     // Không nhất thiết phải chọn đủ n chữ số
-    if (!ewoc && owoc == added_odd) ++cur;
+    if (!ewoc && owoc == added_odd)
+        ++cur;
 
     return dp[added][ewoc][owoc][added_odd] = cur % mod;
 }
@@ -785,7 +815,8 @@ int solve(int n1) {
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < 6; ++j)
             for (int k = 0; k < 6; ++k)
-                for (int l = 0; l < 6; ++l) dp[i][j][k][l] = -1;
+                for (int l = 0; l < 6; ++l)
+                    dp[i][j][k][l] = -1;
 
     // Loại trường hợp chọn phải số 0 vô nghĩa bằng cách đặt trước chữ số đầu tiên
     long long tmp1 = digit_dp(1, 1, 0, 0) * 4;
@@ -825,37 +856,48 @@ const int mod = 1e9 + 123;
 using type = int;
 
 struct Matrix {
-    vector <vector <type> > data;
+    vector<vector<type>> data;
 
-    int row() const { return data.size(); }
+    int row() const {
+        return data.size();
+    }
 
-    int col() const { return data[0].size(); }
+    int col() const {
+        return data[0].size();
+    }
 
-    auto & operator [] (int i) { return data[i]; }
+    auto &operator[](int i) {
+        return data[i];
+    }
 
-    const auto & operator[] (int i) const { return data[i]; }
+    const auto &operator[](int i) const {
+        return data[i];
+    }
 
     Matrix() = default;
 
-    Matrix(int r, int c): data(r, vector <type> (c)) { }
+    Matrix(int r, int c) : data(r, vector<type>(c)) {
+    }
 
-    Matrix(const vector <vector <type> > &d): data(d) { }
+    Matrix(const vector<vector<type>> &d) : data(d) {
+    }
 
-    friend ostream & operator << (ostream &out, const Matrix &d) {
+    friend ostream &operator<<(ostream &out, const Matrix &d) {
         for (auto x : d.data) {
-            for (auto y : x) out << y << ' ';
+            for (auto y : x)
+                out << y << ' ';
             out << '\n';
         }
         return out;
     }
 
-    Matrix operator * (const Matrix &b) {
+    Matrix operator*(const Matrix &b) {
         Matrix a = *this;
         assert(a.col() == b.row());
         Matrix c(a.row(), b.col());
         for (int i = 0; i < a.row(); ++i)
             for (int j = 0; j < b.col(); ++j)
-                for (int k = 0; k < a.col(); ++k){
+                for (int k = 0; k < a.col(); ++k) {
                     c[i][j] += 1ll * a[i][k] % mod * (b[k][j] % mod) % mod;
                     c[i][j] %= mod;
                 }
@@ -866,7 +908,7 @@ struct Matrix {
 int last;
 int odd_id[6][6];
 Matrix coef, base;
-vector <Matrix> coef_pow;
+vector<Matrix> coef_pow;
 
 int id(int ewoc, int owoc, int added_odd) {
     assert(owoc <= added_odd);
@@ -881,7 +923,6 @@ void build_coef() {
     for (int added_odd = 0; added_odd <= 5; ++added_odd)
         for (int ewoc = 0; ewoc <= 5; ++ewoc)
             for (int owoc = 0; owoc <= added_odd; ++owoc) {
-
                 int cur_id = id(ewoc, owoc, added_odd);
                 if (ewoc)
                     coef[id(ewoc - 1, owoc, added_odd)][cur_id] += ewoc;
@@ -898,7 +939,8 @@ void build_coef() {
                 if (owoc < added_odd)
                     coef[id(ewoc, owoc + 1, added_odd)][cur_id] += added_odd - owoc;
 
-                if (!ewoc && owoc == added_odd) ++coef[ans_id][cur_id];
+                if (!ewoc && owoc == added_odd)
+                    ++coef[ans_id][cur_id];
             }
 
     coef[ans_id][ans_id] = 1;
@@ -930,7 +972,8 @@ int main() {
     while (cin >> n) {
         Matrix ans = base;
         for (int i = 0; n > 0; n >>= 1, ++i)
-            if (n & 1) ans = coef_pow[i] * ans;
+            if (n & 1)
+                ans = coef_pow[i] * ans;
         cout << ans[ans.row() - 1][0] << '\n';
     }
 }
@@ -1022,7 +1065,7 @@ struct Matrix {
         return a;
     }
 
-    Matrix operator * (const Matrix &b) {
+    Matrix operator*(const Matrix &b) {
         Matrix a = *this, c;
         for (int i = 0; i < a.row; ++i)
             for (int j = 0; j < b.col; ++j)
@@ -1037,7 +1080,8 @@ struct Matrix {
     bool iszero() {
         for (int i = 0; i < size; ++i)
             for (int j = 0; j < size; ++j)
-                if (data[i][j]) return false;
+                if (data[i][j])
+                    return false;
 
         return true;
     }
@@ -1062,7 +1106,8 @@ void build(int id, int l, int r) {
 }
 
 void fix(int id, int l, int r) {
-    if (lazy[id].iszero()) return;
+    if (lazy[id].iszero())
+        return;
 
     long long a = lazy[id][0][1];
     long long b = lazy[id][0][0];
@@ -1080,7 +1125,8 @@ void fix(int id, int l, int r) {
 
 void update(int id, int l, int r, int u, int v) {
     fix(id, l, r);
-    if (l >  v || r <  u) return;
+    if (l > v || r < u)
+        return;
     if (l >= u && r <= v) {
         lazy[id] = lazy[id] + base_pow[l - u + 1];
         fix(id, l, r);
@@ -1094,8 +1140,10 @@ void update(int id, int l, int r, int u, int v) {
 
 int get(int id, int l, int r, int u, int v) {
     fix(id, l, r);
-    if (l >  v || r <  u) return 0;
-    if (l >= u && r <= v) return st[id];
+    if (l > v || r < u)
+        return 0;
+    if (l >= u && r <= v)
+        return st[id];
 
     int mid = (l + r) >> 1;
     int g1 = get(id << 1, l, mid, u, v);
@@ -1105,7 +1153,8 @@ int get(int id, int l, int r, int u, int v) {
 
 main() {
     cin >> n >> m;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     build(1, 1, n);
 
     // Xây dựng lũy thừa ma trận hệ số của dãy Fibonacci
@@ -1231,32 +1280,43 @@ const int mod = 10;
 using type = int;
 
 struct Matrix {
-    vector <vector <type> > data;
+    vector<vector<type>> data;
 
-    int row() const { return data.size(); }
+    int row() const {
+        return data.size();
+    }
 
-    int col() const { return data[0].size(); }
+    int col() const {
+        return data[0].size();
+    }
 
-    auto & operator [] (int i) { return data[i]; }
+    auto &operator[](int i) {
+        return data[i];
+    }
 
-    const auto & operator[] (int i) const { return data[i]; }
+    const auto &operator[](int i) const {
+        return data[i];
+    }
 
     Matrix() = default;
 
-    Matrix(int r, int c): data(r, vector <type> (c)) { }
+    Matrix(int r, int c) : data(r, vector<type>(c)) {
+    }
 
-    Matrix(const vector <vector <type> > &d): data(d) { }
+    Matrix(const vector<vector<type>> &d) : data(d) {
+    }
 
-    friend ostream & operator << (ostream &out, const Matrix &d) {
+    friend ostream &operator<<(ostream &out, const Matrix &d) {
         for (auto x : d.data) {
-            for (auto y : x) out << y << ' ';
+            for (auto y : x)
+                out << y << ' ';
             out << '\n';
         }
         return out;
     }
 
     // Phép trừ ma trận
-    Matrix operator - (const Matrix &b) {
+    Matrix operator-(const Matrix &b) {
         Matrix a = *this;
 
         // Kiểm tra điều kiện phép trừ ma trận
@@ -1268,13 +1328,13 @@ struct Matrix {
         return a;
     }
 
-    Matrix operator * (const Matrix &b) {
+    Matrix operator*(const Matrix &b) {
         Matrix a = *this;
         assert(a.col() == b.row());
         Matrix c(a.row(), b.col());
         for (int i = 0; i < a.row(); ++i)
             for (int j = 0; j < b.col(); ++j)
-                for (int k = 0; k < a.col(); ++k){
+                for (int k = 0; k < a.col(); ++k) {
                     c[i][j] += a[i][k] % mod * (b[k][j] % mod) % mod;
                     c[i][j] %= mod;
                 }
@@ -1284,21 +1344,25 @@ struct Matrix {
 
 mt19937 rd(chrono::steady_clock::now().time_since_epoch().count());
 
-int random(int l, int r) { return l + rd() % (r - l + 1); }
+int random(int l, int r) {
+    return l + rd() % (r - l + 1);
+}
 
 bool check(Matrix a, Matrix b, Matrix c, int n) {
     int k = 5;
     while (k--) {
         Matrix v(n, 1);
-        for (int i = 0; i < n; ++i) v[i][0] = random(0, 1);
+        for (int i = 0; i < n; ++i)
+            v[i][0] = random(0, 1);
         Matrix p = (a * (b * v)) - (c * v);
         for (int i = 0; i < n; ++i)
-            if (p[i][0]) return false;
+            if (p[i][0])
+                return false;
     }
     return true;
 }
 
-int main(){
+int main() {
     int t;
     cin >> t;
     while (t--) {

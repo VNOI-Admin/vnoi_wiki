@@ -156,8 +156,10 @@ int main() {
 
     // type[i] = 0 nếu a[i] thuộc nhóm nhỏ, 1 nếu thuộc nhóm lớn
     vector<int> type(2 * n);
-    for (int i = 0; i < n; ++i) type[a[i].second] = 0;     // N số nhỏ nhất
-    for (int i = n; i < 2 * n; ++i) type[a[i].second] = 1; // N số lớn nhất
+    for (int i = 0; i < n; ++i)
+        type[a[i].second] = 0; // N số nhỏ nhất
+    for (int i = n; i < 2 * n; ++i)
+        type[a[i].second] = 1; // N số lớn nhất
 
     stack<int> st; // Lưu loại (0 hoặc 1) của ngoặc mở chưa được ghép
     string ans = "";
@@ -168,7 +170,7 @@ int main() {
         if (!st.empty() && st.top() != type[i]) {
             ans += ')';
             st.pop();
-        } 
+        }
         // Ngược lại: Cùng loại hoặc stack rỗng => Phải mở ngoặc mới
         else {
             ans += '(';
@@ -461,7 +463,7 @@ int main() {
 
     // Sắp xếp theo Exchange Argument
     // Hàm nào có độ ưu tiên cao hơn (B/(A-1) lớn hơn) sẽ được xét trước
-    sort(funcs.begin(), funcs.end(), [](const Func& x, const Func& y) {
+    sort(funcs.begin(), funcs.end(), [](const Func &x, const Func &y) {
         // So sánh: x.b / (x.a - 1) > y.b / (y.a - 1)
         // Chuyển vế nhân để tránh chia cho 0 và sai số số thực
         return (long long)x.b * (y.a - 1) > (long long)y.b * (x.a - 1);
@@ -472,7 +474,7 @@ int main() {
     dp[0] = 1; // Giá trị khởi đầu đề bài cho là 1
 
     // Với mỗi hàm, ta xem xét thêm nó vào hợp của j - 1 hàm đã áp dụng trước đó
-    for (const auto& f : funcs) {
+    for (const auto &f : funcs) {
         // Duyệt ngược để đảm bảo mỗi hàm chỉ dùng 1 lần cho mỗi trạng thái
         for (int j = k; j >= 1; --j) {
             if (dp[j - 1] > -INF) {
@@ -551,17 +553,17 @@ int main() {
 
         // Kiểm tra xem có thể bán (hoặc sửa lại lựa chọn) để có lời không
         if (pq.top() < current_price) {
-            // Giá thấp nhất trong quá khứ 
+            // Giá thấp nhất trong quá khứ
             long long buy_price = pq.top();
-            
+
             // Cộng lợi nhuận giả định vào tổng
             total_profit += current_price - buy_price;
-            
+
             // Xóa giá mua đó đi (vì đã được dùng để khớp với lệnh bán này)
             pq.pop();
-            
+
             // Cơ chế sửa lại lựa chọn: Push giá cổ phiếu hiện tại vào lại PQ
-            // Ý nghĩa: Ta vừa bán ở 'current_price', nhưng ta trao cho tương lai quyền 
+            // Ý nghĩa: Ta vừa bán ở 'current_price', nhưng ta trao cho tương lai quyền
             // "mua lại" chính cổ phiếu này với giá 'current_price' để bán ở mức cao hơn.
             // Về toán học: (p_new - p_old) + (p_future - p_new) = p_future - p_old.
             pq.push(current_price);

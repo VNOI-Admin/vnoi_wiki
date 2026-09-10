@@ -215,7 +215,8 @@ struct Complex {
     Complex pow(long long k) {
         Complex res = Complex(1, 0), A = *this;
         while (k) {
-            if (k & 1) res = res * A;
+            if (k & 1)
+                res = res * A;
             A = A * A;
             k >>= 1;
         }
@@ -227,13 +228,16 @@ int Cipolla(long long a, long long p) {
     if (p == 2) {
         return (a & 1);
     }
+    ::p = p; // struct Complex sử dụng biến toàn cục p và k
     // Tìm k = b^2 - a, sao cho k không chính phương
     int b = 2;
     while (true) {
         b %= p;
         k = (b * b - a) % p;
-        if (k < 0) k += p;
-        if (legendre_symbol(k, p) == p - 1) break;
+        if (k < 0)
+            k += p;
+        if (legendre_symbol(k, p) == p - 1)
+            break;
         b++;
     }
     // Ta cần tìm <b, 1>^((p+1)/2)
@@ -348,7 +352,8 @@ long long N, K;
 int pow_mod(long long A, long long k) {
     long long res = 1;
     while (k) {
-        if (k & 1) res = res * A % MOD;
+        if (k & 1)
+            res = res * A % MOD;
         A = A * A % MOD;
         k >>= 1;
     }
@@ -357,7 +362,8 @@ int pow_mod(long long A, long long k) {
 
 void add(int &x, const int &y) {
     x += y;
-    if (x >= MOD) x -= MOD;
+    if (x >= MOD)
+        x -= MOD;
 }
 
 struct Complex {
@@ -368,7 +374,9 @@ struct Complex {
         im = b;
     }
 
-    bool operator==(const Complex &o) { return re == o.re && im == o.im; }
+    bool operator==(const Complex &o) {
+        return re == o.re && im == o.im;
+    }
 
     Complex operator+(const Complex &o) {
         Complex res = *this;
@@ -396,10 +404,12 @@ struct Complex {
     }
 
     Complex pow(long long k) {
-        if (k < 0) return this->pow(-k).inv();
+        if (k < 0)
+            return this->pow(-k).inv();
         Complex res = Complex(1, 0), A = *this;
         while (k) {
-            if (k & 1) res = res * A;
+            if (k & 1)
+                res = res * A;
             A = A * A;
             k >>= 1;
         }
@@ -411,15 +421,19 @@ struct Complex {
                pow_mod((1LL * re * re + 5LL * (MOD - im) * im) % MOD, MOD - 2);
     }
 
-    Complex operator-() { return Complex(MOD - re, MOD - im); }
+    Complex operator-() {
+        return Complex(MOD - re, MOD - im);
+    }
 };
 const Complex unit = Complex(1, 0);
 
 void factorial() {
     fact[0] = 1;
-    for (int i = 1; i <= MAX; ++i) fact[i] = 1LL * fact[i - 1] * i % MOD;
+    for (int i = 1; i <= MAX; ++i)
+        fact[i] = 1LL * fact[i - 1] * i % MOD;
     ifact[MAX] = pow_mod(fact[MAX], MOD - 2);
-    for (int i = MAX; i >= 1; --i) ifact[i - 1] = 1LL * ifact[i] * i % MOD;
+    for (int i = MAX; i >= 1; --i)
+        ifact[i - 1] = 1LL * ifact[i] * i % MOD;
 }
 
 int C(int n, int k, int p) {
@@ -433,7 +447,8 @@ int main() {
     Complex res;
     for (int i = 0; i <= K; ++i) {
         Complex V1 = Complex(inv, inv).pow(2 * i - K);
-        if ((K - i) & 1) V1 = -V1;
+        if ((K - i) & 1)
+            V1 = -V1;
 
         Complex V2;
 

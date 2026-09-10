@@ -41,7 +41,7 @@ Sau đó với mỗi truy vấn tìm LCA của hai đỉnh rồi tìm min và ma
 using namespace std;
 #define fi first
 #define se second
-#define bit(x, k) (1ll&((x) >> (k)))
+#define bit(x, k) (1ll & ((x) >> (k)))
 
 const int N = 1e5 + 11;
 const int INF = 1e9 + 11;
@@ -52,13 +52,15 @@ struct Data {
 
 int n, q, h[N];
 Data up[N][21];
-vector < pair<int, int> > g[N];
+vector<pair<int, int>> g[N];
 
 void dfs(int u, int p) { // xây dựng mảng up, mảng h
     up[u][0].par = p;
     for (auto &e : g[u]) {
-        int v = e.fi; int c = e.se;
-        if (v == p) continue;
+        int v = e.fi;
+        int c = e.se;
+        if (v == p)
+            continue;
         h[v] = h[u] + 1; // độ sâu của nút v
         up[v][0].maxc = up[v][0].minc = c;
         dfs(v, u);
@@ -68,7 +70,8 @@ void dfs(int u, int p) { // xây dựng mảng up, mảng h
 void solve(int u, int v) {
     Data res;
     // mặc định u có độ sâu lớn hơn v
-    if (h[u] < h[v]) swap(u, v);
+    if (h[u] < h[v])
+        swap(u, v);
     int depth = h[u] - h[v];
     // từ u nhảy lên cha có cùng độ sâu với v đồng thời cập nhật max, min các cạnh
     for (int i = 20; i >= 0; i--) {
@@ -89,7 +92,8 @@ void solve(int u, int v) {
         if (up[u][i].par != up[v][i].par) {
             res.maxc = max({res.maxc, up[u][i].maxc, up[v][i].maxc});
             res.minc = min({res.minc, up[u][i].minc, up[v][i].minc});
-            u = up[u][i].par; v = up[v][i].par;
+            u = up[u][i].par;
+            v = up[v][i].par;
         }
     }
     res.maxc = max({res.maxc, up[u][0].maxc, up[v][0].maxc});
@@ -109,7 +113,9 @@ void buildLCA() {
 }
 
 int main() {
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
     cin >> n;
     for (int i = 1; i <= n - 1; i++) {

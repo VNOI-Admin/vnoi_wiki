@@ -134,11 +134,9 @@ using namespace std;
 
 ll POW[maxn], hashT[maxn];
 
-
-ll getHashT(int i,int j) {
+ll getHashT(int i, int j) {
     return (hashT[j] - hashT[i - 1] * POW[j - i + 1] + MOD * MOD) % MOD;
 }
-
 
 int main() {
     // Input
@@ -160,7 +158,7 @@ int main() {
         hashT[i] = (hashT[i - 1] * base + T[i] - 'a' + 1) % MOD;
 
     // Calculate hash value of P
-    ll hashP=0;
+    ll hashP = 0;
     for (int i = 1; i <= lenP; i++)
         hashP = (hashP * base + P[i] - 'a' + 1) % MOD;
 

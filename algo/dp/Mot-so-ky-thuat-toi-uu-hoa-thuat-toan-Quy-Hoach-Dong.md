@@ -93,12 +93,14 @@ int nextPos[M][26];
 int m, n;
 
 void minimize(int &a, int b) {
-    if (a == -1 || a > b) a = b;
+    if (a == -1 || a > b)
+        a = b;
 }
 
 int main() {
     cin >> a + 1 >> b + 1;
-    m = strlen(a + 1); n = strlen(b + 1);
+    m = strlen(a + 1);
+    n = strlen(b + 1);
     for (int c = 0; c < 26; ++c)
         for (int i = m - 1; i >= 0; --i)
             nextPos[i][c] = (a[i + 1] - 'A' == c) ? i + 1 : nextPos[i + 1][c];
@@ -106,18 +108,21 @@ int main() {
     memset(dp, -1, sizeof dp);
     dp[0][0] = 0;
     for (int i = 0; i < n; ++i) {
-        for (int j = 0; j <= i; ++j) if (dp[i][j] >= 0) {
-            minimize(dp[i + 1][j], dp[i][j]);
-            int new_value = nextPos[dp[i][j]][b[i + 1] - 'A'];
-            if (new_value > 0)
-                minimize(dp[i + 1][j + 1], new_value);
-        }
+        for (int j = 0; j <= i; ++j)
+            if (dp[i][j] >= 0) {
+                minimize(dp[i + 1][j], dp[i][j]);
+                int new_value = nextPos[dp[i][j]][b[i + 1] - 'A'];
+                if (new_value > 0)
+                    minimize(dp[i + 1][j + 1], new_value);
+            }
     }
     int ans = 0;
     for (int j = maxLength; j > 0; --j) {
         for (int i = j; i <= n; ++i)
-            if (dp[i][j] >= 0) ans = j;
-        if (ans != 0) break;
+            if (dp[i][j] >= 0)
+                ans = j;
+        if (ans != 0)
+            break;
     }
     cout << ans << endl;
     return 0;
@@ -211,15 +216,18 @@ pair<int, int> newState(pair<int, int> s, int a, int v) {
 }
 
 bool dp(int value) {
-    for (int i = 0; i <= x; ++i) for (int j = 0; j <= y; ++j)
-        F[i][j] = make_pair(0, 0);
-    for (int i = 0; i <= x; ++i) for (int j = 0; j <= y; ++j) {
-        if (F[i][j].first == n) return 1;
-        if (i < x)
-            F[i + 1][j] = max(F[i + 1][j], newState(F[i][j], a, value));
-        if (j < y)
-            F[i][j + 1] = max(F[i][j + 1], newState(F[i][j], b, value));
-    }
+    for (int i = 0; i <= x; ++i)
+        for (int j = 0; j <= y; ++j)
+            F[i][j] = make_pair(0, 0);
+    for (int i = 0; i <= x; ++i)
+        for (int j = 0; j <= y; ++j) {
+            if (F[i][j].first == n)
+                return 1;
+            if (i < x)
+                F[i + 1][j] = max(F[i + 1][j], newState(F[i][j], a, value));
+            if (j < y)
+                F[i][j + 1] = max(F[i][j + 1], newState(F[i][j], b, value));
+        }
     return 0;
 }
 
@@ -446,7 +454,8 @@ int main() {
                 F[g][i] = INF;
                 for (int k = 0; k <= i; ++k) {
                     long long new_cost = F[g - 1][k] + cost(k + 1, i);
-                    if (F[g][i] > new_cost) F[g][i] = new_cost;
+                    if (F[g][i] > new_cost)
+                        F[g][i] = new_cost;
                 }
             }
         }
@@ -495,12 +504,14 @@ long long F[MAXG][MAXL], sum[MAXL], C[MAXL];
 int P[MAXG][MAXL];
 
 long long cost(int i, int j) {
-    if (i > j) return 0;
+    if (i > j)
+        return 0;
     return (sum[j] - sum[i - 1]) * (j - i + 1);
 }
 
 void solve(int g, int L, int R, int optL, int optR) {
-    if (L > R) return;
+    if (L > R)
+        return;
     int mid = (L + R) / 2;
     F[g][mid] = INF;
     for (int i = optL; i <= optR; ++i) {
@@ -638,12 +649,14 @@ int n, k;
 
 int main() {
     cin >> n >> k;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     memset(dp, 0x3f, sizeof dp);
     dp[1][0] = 0;
-    for (int i = 1; i <= n; ++i) dp[1][i] = max(dp[1][i - 1], a[i]);
+    for (int i = 1; i <= n; ++i)
+        dp[1][i] = max(dp[1][i - 1], a[i]);
     for (int i = 2; i <= k; ++i) {
-        stack<pair<int, int> > S;
+        stack<pair<int, int>> S;
         for (int j = i; j <= n; ++j) {
             int minF = dp[i - 1][j - 1];
             while (!S.empty() && a[S.top().second] <= a[j]) {
@@ -676,12 +689,15 @@ int n, k;
 
 int main() {
     cin >> n >> k;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     memset(dp, 0x3f, sizeof dp);
     dp[1][0] = 0;
-    for (int i = 1; i <= n; ++i) dp[1][i] = max(dp[1][i - 1], a[i]);
     for (int i = 1; i <= n; ++i)
-        for (L[i] = i - 1; L[i] && a[L[i]] <= a[i]; ) L[i] = L[L[i]];
+        dp[1][i] = max(dp[1][i - 1], a[i]);
+    for (int i = 1; i <= n; ++i)
+        for (L[i] = i - 1; L[i] && a[L[i]] <= a[i];)
+            L[i] = L[L[i]];
     for (int i = 2; i <= k; ++i) {
         minF[i - 1] = INF;
         for (int j = i; j <= n; ++j) {
@@ -783,39 +799,44 @@ void initialize() {
     for (int i = 1; i <= n; ++i) {
         L[i] = i;
         while (!S.empty() && S.back() > i - a[i])
-	    L[i] = min(L[i], L[S.back()]), S.pop_back();
+            L[i] = min(L[i], L[S.back()]), S.pop_back();
         S.push_back(i);
     }
     S.clear();
     for (int i = n; i >= 1; --i) {
         R[i] = i;
         while (!S.empty() && S.back() < i + a[i])
-	    R[i] = max(R[i], R[S.back()]), S.pop_back();
+            R[i] = max(R[i], R[S.back()]), S.pop_back();
         S.push_back(i);
     }
 }
 
 void solve() {
-    for (int i = 1; i <= n; ++i) dp[i] = i, trace[i] = -i;
+    for (int i = 1; i <= n; ++i)
+        dp[i] = i, trace[i] = -i;
     vector<int> S;
     for (int i = 1; i <= n; ++i) {
-        if (dp[i] > dp[L[i] - 1] + 1) dp[i] = dp[L[i] - 1] + 1, trace[i] = -(L[i]);
-        while (!S.empty() && R[S.back()] < i) S.pop_back();
+        if (dp[i] > dp[L[i] - 1] + 1)
+            dp[i] = dp[L[i] - 1] + 1, trace[i] = -(L[i]);
+        while (!S.empty() && R[S.back()] < i)
+            S.pop_back();
         if (!S.empty() && dp[i] > dp[S.back() - 1] + 1) {
             dp[i] = dp[S.back() - 1] + 1;
             trace[i] = S.back();
         }
-        if (S.empty() || (dp[S.back() - 1] > dp[i - 1])) S.push_back(i);
+        if (S.empty() || (dp[S.back() - 1] > dp[i - 1]))
+            S.push_back(i);
     }
     cout << dp[n] << endl;
     for (int i = n; i; i = abs(trace[i]) - 1)
-	cout << (trace[i] < 0 ? -i : trace[i]) << ' ';
+        cout << (trace[i] < 0 ? -i : trace[i]) << ' ';
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin >> n;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     initialize();
     solve();
     return 0;
@@ -877,14 +898,17 @@ Như vậy độ phức tạp của lời giải trên là $\mathcal{O}(N\log N)
 using namespace std;
 
 int main() {
-    int n; cin >> n;
+    int n;
+    cin >> n;
     multiset<int> slope_changing_points;
     long long answer = 0;
     for (int i = 1; i <= n; ++i) {
-        int Ai; cin >> Ai;
+        int Ai;
+        cin >> Ai;
         Ai -= i;
         slope_changing_points.insert(Ai);
-        if (i == 1) continue;
+        if (i == 1)
+            continue;
         int opt = *slope_changing_points.rbegin();
         if (Ai < opt) {
             slope_changing_points.erase(--slope_changing_points.end());
@@ -1033,13 +1057,15 @@ using namespace std;
 const int INF = 2e9;
 
 void maximize(int &a, int b) {
-    if (a < b) a = b;
+    if (a < b)
+        a = b;
 }
 
 struct Point {
     long long x, y;
-    Point(long long x, long long y): x(x), y(y) {}
-    bool operator < (const Point &o) const {
+    Point(long long x, long long y) : x(x), y(y) {
+    }
+    bool operator<(const Point &o) const {
         return x < o.x;
     }
 };
@@ -1047,7 +1073,8 @@ struct Point {
 vector<Point> H;
 
 void incConst(int delta) {
-    for (int i = 0; i < H.size(); ++i) H[i].y += delta;
+    for (int i = 0; i < H.size(); ++i)
+        H[i].y += delta;
 }
 
 void expand(int delta) {
@@ -1063,18 +1090,23 @@ void expand(int delta) {
         H.insert(H.begin() + L + 1, H[L]);
         ++R;
     }
-    for (int i = 0; i <= L; ++i) H[i].x -= delta;
-    for (int i = R; i < H.size(); ++i) H[i].x += delta;
+    for (int i = 0; i <= L; ++i)
+        H[i].x -= delta;
+    for (int i = R; i < H.size(); ++i)
+        H[i].x += delta;
 }
 
 int calc(Point P, Point Q, int x) {
-    if (P.y == Q.y) return P.y;
+    if (P.y == Q.y)
+        return P.y;
     int diff = P.y - Q.y;
     long long y = min(P.y, Q.y);
     long long L = x - P.x;
     long long R = Q.x - x;
-    if (L == 0) return P.y;
-    if (R == 0) return Q.y;
+    if (L == 0)
+        return P.y;
+    if (R == 0)
+        return Q.y;
     if (diff < 0)
         y -= L * diff / (L + R);
     else
@@ -1083,30 +1115,35 @@ int calc(Point P, Point Q, int x) {
 }
 
 int eval(int x) {
-    for (int i = 0; i + 1 < H.size(); ++i) if (H[i].x <= x && x <= H[i + 1].x)
-        return calc(H[i], H[i + 1], x);
+    for (int i = 0; i + 1 < H.size(); ++i)
+        if (H[i].x <= x && x <= H[i + 1].x)
+            return calc(H[i], H[i + 1], x);
 }
 
 void mergeHull(int v) {
     //merge with y = -abs(x - v)
     int exist = -1;
-    for (int i = 0; i < H.size(); ++i) if (H[i].x == v) {
-        exist = i;
-        break;
-    }
+    for (int i = 0; i < H.size(); ++i)
+        if (H[i].x == v) {
+            exist = i;
+            break;
+        }
     if (exist == -1) {
         H.push_back(Point(v, eval(v)));
         sort(H.begin(), H.end());
     }
-    for (int i = 0; i < H.size(); ++i) H[i].y -= abs(H[i].x - v);
+    for (int i = 0; i < H.size(); ++i)
+        H[i].y -= abs(H[i].x - v);
 }
 
 int solve(int len, vector<int> pos, vector<int> range) {
     H.clear();
     int n = pos.size();
     H.push_back(Point(0, len - pos[0]));
-    if (pos[0] != 0) H.push_back(Point(pos[0], len));
-    if (pos[0] != len) H.push_back(Point(len, len - abs(pos[0] - len)));
+    if (pos[0] != 0)
+        H.push_back(Point(pos[0], len));
+    if (pos[0] != len)
+        H.push_back(Point(len, len - abs(pos[0] - len)));
     for (int i = 1; i < n; ++i) {
         expand(range[i - 1]);
         mergeHull(pos[i]);
@@ -1115,8 +1152,10 @@ int solve(int len, vector<int> pos, vector<int> range) {
     int ans = 0;
     int last = 0;
     for (int x = 0; x <= len; ++x) {
-        while (last < H.size() && H[last].x <= x) ++last;
-        if (last == H.size()) --last;
+        while (last < H.size() && H[last].x <= x)
+            ++last;
+        if (last == H.size())
+            --last;
         ans = max(ans, calc(H[last - 1], H[last], x));
     }
     return ans;

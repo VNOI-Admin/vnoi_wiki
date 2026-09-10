@@ -129,14 +129,12 @@ void merge(int id, int x, int y) { // chúng ta merge như bình thường
     sz[x] += sz[y];
     root[y] = x;
 }
- 
+
 // cập nhật một cạnh tồn tại trong khoảng (l, r)
-void upd(int id, int l, int r, int L, int R, edge cur_edge)
-{
+void upd(int id, int l, int r, int L, int R, edge cur_edge) {
     if (l > R || r < L)
         return;
-    if (l >= L && r <= R)
-    {
+    if (l >= L && r <= R) {
         nw_edges[id].push_back(cur_edge);
         return;
     }
@@ -144,25 +142,22 @@ void upd(int id, int l, int r, int L, int R, edge cur_edge)
     upd(id << 1, l, mid, L, R, cur_edge);
     upd(id << 1 | 1, mid + 1, r, L, R, cur_edge);
 }
- 
-void get_ans(int id, int l, int r)
-{ 
+
+void get_ans(int id, int l, int r) {
     // giả sử ta đang ở đoạn (l, r)
     // thêm vào những cạnh được lưu trong đỉnh này
     // ngoài ra lưu những node thay đổi root và size trong DSU
-    for (auto e : nw_edges[id])
-    {
+    for (auto e : nw_edges[id]) {
         merge(id, e.u, e.v);
     }
     // mỗi lần merge chúng ta cộng total_rollback[id] lên 2
     cur_comp -= ((int)total_rollback[id] >> 1);
-    if (l == r)
-    {
+    if (l == r) {
         answer[l] = cur_comp; // đáp án cho query thứ l là số component hiện tại
         // lưu đáp án
     }
     // đi xuống các node con
-    else{
+    else {
         int mid = (l + r) >> 1;
         get_ans(id << 1, l, mid);
         get_ans(id << 1 | 1, mid + 1, r);
@@ -172,8 +167,7 @@ void get_ans(int id, int l, int r)
     // xóa đi những cạnh vừa được thêm vào theo thứ tự ngược lại.
     // lưu ý rằng sau khi ra khỏi node hiện tại thì ta
     // quay về trạng thái trước khi vào node
-    while (total_rollback[id])
-    {
+    while (total_rollback[id]) {
         int node = rollback.top().node, old_size = rollback.top().old_size;
         rollback.pop();
         root[node] = node;

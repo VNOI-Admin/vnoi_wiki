@@ -314,13 +314,15 @@ using cd = complex<long double>;
 void fft(vector<cd> &a, bool invert) {
     /// invert = true tương ứng với biến đổi ngược
     int n = a.size();
-    if (n == 1) return;
+    if (n == 1)
+        return;
     vector<cd> a0, a1;
     for (int i = 0; i < n / 2; i++) {
         a0.push_back(a[2 * i]);
         a1.push_back(a[2 * i + 1]);
     }
-    fft(a0, invert); fft(a1, invert);
+    fft(a0, invert);
+    fft(a1, invert);
     cd w = 1, wn = polar(1.0L, acos(-1.0L) / n * (invert ? -2 : 2));
     /// polar(r, t) = r * exp(it) và acos(-1.0L) = pi
     /// thay wn = wn^-1 ở biến đổi ngược
@@ -329,7 +331,8 @@ void fft(vector<cd> &a, bool invert) {
         a[i + n / 2] = a0[i] - w * a1[i];
         /// Ta sẽ chia 2 ở mỗi tầng đệ quy thay cho việc chia n ở cuối
         if (invert) {
-            a[i] /= 2; a[i + n / 2] /= 2;
+            a[i] /= 2;
+            a[i + n / 2] /= 2;
         }
         w *= wn;
     }
@@ -385,7 +388,8 @@ void fft(vector<cd> &a, bool invert) {
     vector<int> rev(n);
     for (int i = 0; i < n; i++) {
         rev[i] = (rev[i >> 1] | (i & 1) << L) >> 1;
-        if (i < rev[i]) swap(a[i], a[rev[i]]);
+        if (i < rev[i])
+            swap(a[i], a[rev[i]]);
     }
     for (int len = 2; len <= n; len <<= 1) {
         cd wlen = polar(1.0L, acos(-1.0L) / len * (invert ? -2 : 2));
@@ -477,7 +481,7 @@ vector<int> conv(const vector<int> &a, const vector<int> &b) {
         int j = -i & (n - 1);
         out[i] = in[i] - conj(in[j]);
     }
-    fft(out, true)
+    fft(out, true);
     vector<int> res(n);
     /// ở trên ta không chia cho 4i nên kết quả sẽ nằm trong phần ảo
     for (int i = 0; i < n; i++)
@@ -519,13 +523,14 @@ const int root = 15311432;
 const int root_1 = 469870224;
 const int root_pw = 1 << 23;
 
-void fft(vector<int> & a, bool invert) {
+void fft(vector<int> &a, bool invert) {
     int n = a.size(), L = __builtin_ctz(n);
-    
+
     vector<int> rev(n);
     for (int i = 0; i < n; i++) {
         rev[i] = (rev[i >> 1] | (i & 1) << L) >> 1;
-        if (i < rev[i]) swap(a[i], a[rev[i]]);
+        if (i < rev[i])
+            swap(a[i], a[rev[i]]);
     }
 
     for (int len = 2; len <= n; len <<= 1) {
@@ -547,7 +552,7 @@ void fft(vector<int> & a, bool invert) {
 
     if (invert) {
         int n_1 = inverse(n, mod);
-        for (int & x : a)
+        for (int &x : a)
             x = 1ll * x * n_1 % mod;
     }
 }
@@ -583,18 +588,20 @@ Cài đặt:
 using ll = long long;
 
 vector<int> convMod(const vector<int> &a, const vector<int> &b, int M) {
-    if (a.empty() || b.empty()) return {};
+    if (a.empty() || b.empty())
+        return {};
     vector<int> res(a.size() + b.size() - 1);
     int B = 32 - __builtin_clz(res.size());
     int n = 1 << B, cut = sqrt(M);
-    
+
     vector<cd> L(n), R(n), outs(n), outl(n);
-    
+
     for (int i = 0; i < int(a.size()); i++)
         L[i] = cd(a[i] / cut, a[i] % cut);
     for (int i = 0; i < int(b.size()); i++)
         R[i] = cd(b[i] / cut, b[i] % cut);
-    fft(L, false); fft(R, false);
+    fft(L, false);
+    fft(R, false);
 
     for (int i = 0; i < n; i++) {
         /// j = (n - i) % n

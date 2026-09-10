@@ -425,28 +425,26 @@ constexpr int N = 5e2 + 5;
 constexpr ll Inf = 1e17;
 // Mình tính cnt(i,j) trong hai modulo nguyên tố là 1e9+7 và 998244353
 constexpr int mod[2] = {
-  1000000007,
-  998244353
-};
+    1000000007,
+    998244353};
 
-inline void Add(int & x,
-  const int & y,
-    const int & mod) { // Chỉ là template cộng mod mà thôi
-  x += y;
-  if (x >= mod)
-    x -= mod;
+inline void Add(int &x,
+                const int &y,
+                const int &mod) { // Chỉ là template cộng mod mà thôi
+    x += y;
+    if (x >= mod)
+        x -= mod;
 }
 
 int n, m;
 
 struct Edge {
-  int u, v, w;
-}
-e[N * N];
+    int u, v, w;
+} e[N * N];
 int ans[N * N];
 
-vector < pair < int, int >> adj[N];
-vector < int > candidate;
+vector<pair<int, int>> adj[N];
+vector<int> candidate;
 
 ll d[N][N];
 int cnt[N][N][2];

@@ -85,17 +85,17 @@ struct HashTable {
 
     int find(int key) {
         int hkey = getHash(key);
-        for(auto p : h[hkey]) {
+        for (auto p : h[hkey]) {
             if (p.first == key) {
                 // ton tai key trong Hash table, return value
-                return p.value;
+                return p.second;
             }
         }
         // Khong tim thay
         return 0;
     }
 
-private:
+  private:
     int getHash(int key) {
         // Cho 1 key, tra lai Hash value la key % P
         return key % P;

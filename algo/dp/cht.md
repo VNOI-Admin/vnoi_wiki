@@ -173,7 +173,7 @@ const int N = 3e5 + 7;
 int n;
 pair<int, int> p[N];
 
-int ptr; // Con trỏ lưu vị trí của đường thẳng trả về kết quả của truy vấn trước đó
+int ptr;      // Con trỏ lưu vị trí của đường thẳng trả về kết quả của truy vấn trước đó
 vector<ll> A; //  Hệ số góc  của các đường thẳng trong bao lồi
 vector<ll> B; // Tung độ gốc của các đường thẳng trong bao lồi
 
@@ -379,25 +379,33 @@ struct operation {
     int pos, top;
     Line overwrite;
     operation(int _p, int _t, Line _o) {
-        pos = _p; top = _t; overwrite = _o;
+        pos = _p;
+        top = _t;
+        overwrite = _o;
     }
 };
 vector<operation> undoLst;
 Line lines[N];
 int n, top;
 
-ll eval(Line line, ll x) { return line.X * x + line.Y; }
+ll eval(Line line, ll x) {
+    return line.X * x + line.Y;
+}
 bool bad(Line a, Line b, Line c) {
     return (double)(b.Y - a.Y) / (a.X - b.X) >= (double)(c.Y - a.Y) / (a.X - c.X);
 }
 
 ll getMin(ll coord) {
-    int l = 0, r = top - 1; ll ans = eval(lines[l], coord);
+    int l = 0, r = top - 1;
+    ll ans = eval(lines[l], coord);
     while (l < r) {
         int mid = l + r >> 1;
         ll x = eval(lines[mid], coord);
         ll y = eval(lines[mid + 1], coord);
-        if (x > y) l = mid + 1; else r = mid;
+        if (x > y)
+            l = mid + 1;
+        else
+            r = mid;
         ans = min(ans, min(x, y));
     }
     return ans;
@@ -408,9 +416,10 @@ bool insertLine(Line newLine) {
     while (l <= r) {
         int mid = l + r >> 1;
         if (bad(lines[mid - 1], lines[mid], newLine)) {
-            k = mid; r = mid - 1;
-        }
-        else l = mid + 1;
+            k = mid;
+            r = mid - 1;
+        } else
+            l = mid + 1;
     }
     undoLst.push_back(operation(k, top, lines[k]));
     top = k + 1;
@@ -419,8 +428,10 @@ bool insertLine(Line newLine) {
 }
 
 void undo() {
-    operation ope = undoLst.back(); undoLst.pop_back();
-    top = ope.top; lines[ope.pos] = ope.overwrite;
+    operation ope = undoLst.back();
+    undoLst.pop_back();
+    top = ope.top;
+    lines[ope.pos] = ope.overwrite;
 }
 
 ll f[N], S[N], V[N], d[N];
@@ -433,7 +444,8 @@ void dfs(int u, int par) {
     for (vector<Line>::iterator it = a[u].begin(); it != a[u].end(); ++it) {
         int v = it->X;
         int uv = it->Y;
-        if (v == par) continue;
+        if (v == par)
+            continue;
         d[v] = d[u] + uv;
         dfs(v, u);
     }
@@ -565,9 +577,9 @@ bool isect(multiset<Line>::iterator x, multiset<Line>::iterator y) {
         // => hàm nào có b lớn hơn thì "tiềm năng"
         if (x->b > y->b)
             x->p = INF;
-        else x->p = -INF;
-    }
-    else {
+        else
+            x->p = -INF;
+    } else {
         // 2 đường thẳng giao nhau
         // => x->p là vị trí giao nhau đó
         x->p = (double)(y->b - x->b) / (x->a - y->a);
@@ -620,26 +632,28 @@ void add(int a, int b) {
     //// đầu tiên, ta thêm y=ax+b vào 'myLC'
     // từ C++11 trở đi, ta có thể sử dụng từ khoá 'auto' để thay thế
     // 'multiset<Line>::iterator' vì sự tiện lợi và ngắn gọn
-    multiset<Line>::iterator x = myLC.insert({ a, b, 0 }); // p=0 là không có 
+    multiset<Line>::iterator x = myLC.insert({a, b, 0}); // p=0 là không có
     // 'multiset::insert' trả về con trỏ đến vị trí mà Line được thêm vào
-    
+
     //// tiếp theo, ta cần xoá các đường thẳng "không tiềm năng"
     //// liền sau 'x' và tính `x->p`
     // hàm 'next' trả về con trỏ đến vị trí liền sau của 'x' trong myLC
     multiset<Line>::iterator y = next(x);
     // "isect(x, y)" trả về 'true' nếu 'y' không còn
     // là hàm "tiềm năng" => xoá 'y' và tiếp tục vòng lặp
-    while (isect(x, y)) y = myLC.erase(y);
+    while (isect(x, y))
+        y = myLC.erase(y);
     // hàm 'erase' sẽ xoá 'y' và trả về con trỏ đến vị trí liền sau
     // của 'y' trong myLC
     //// sau bước này, các liền sau của 'x' đều là các hàm "tiềm năng"
-    
+
     //// sau khi đã tính được 'x->p'
     //// ta cần kiểm tra xem 'x' có phải một "hàm tiềm năng" hay không
     if (x != myLC.begin()) {
         // hàm 'prev' trả về con trỏ đến vị trí liền trước của 'x' trong myLC
         y = prev(x);
-        if (isect(y, x)) isect(y, myLC.erase(x));
+        if (isect(y, x))
+            isect(y, myLC.erase(x));
         // sau bước này, 'y->p' đã được tính lại dù có xoá 'x' hay không
     }
 
@@ -659,8 +673,7 @@ void add(int a, int b) {
             // 'y' trở nên "không tiềm năng" => xoá 'y' và tính lại 'x->p'
             isect(x, myLC.erase(y));
             y = x; // đặt lại 'y' là đường thẳng liền trước của 'y' cũ
-        }
-        else {
+        } else {
             // 'y' và các đường thẳng phía trước là "tiềm năng"
             // => thoát khỏi vòng lặp
             break;
@@ -786,8 +799,10 @@ Từ đó, ta dựng hàm `f` có khả năng thực hiện phép chia và làm 
 int f(int a, int b) {
     int res = a / b;
     if (a % b) {
-        if (a > 0 && b < 0) --res;
-        if (a < 0 && b > 0) --res;
+        if (a > 0 && b < 0)
+            --res;
+        if (a < 0 && b > 0)
+            --res;
     }
     return res;
 }
@@ -826,8 +841,9 @@ const int INF = INT_MAX;
 struct Line {
     int a, b;
     mutable int p;
-    bool operator<(const Line& o) const {
-        if (o.a == INT_MAX && o.b == INT_MAX) return p < o.p;
+    bool operator<(const Line &o) const {
+        if (o.a == INT_MAX && o.b == INT_MAX)
+            return p < o.p;
         return a < o.a;
     }
 };
@@ -837,20 +853,25 @@ struct LineContainer {
         return a / b - ((a ^ b) < 0 && a % b);
     }
     bool isect(multiset<Line>::iterator x, multiset<Line>::iterator y) {
-        if (y == myLC.end()) return x->p = INF, false;
-        if (x->a == y->a) x->p = (x->b > y->b) ? INF : -INF;
-        else x->p = div(y->b - x->b, x->a - y->a);
+        if (y == myLC.end())
+            return x->p = INF, false;
+        if (x->a == y->a)
+            x->p = (x->b > y->b) ? INF : -INF;
+        else
+            x->p = div(y->b - x->b, x->a - y->a);
         return x->p >= y->p;
     }
     void add(int a, int b) {
-        auto x = myLC.insert({ a, b, 0 }), y = next(x);
-        while (isect(x, y)) y = myLC.erase(y);
-        if ((y = x) != myLC.begin() && isect(--y, x)) isect(y, myLC.erase(x));
+        auto x = myLC.insert({a, b, 0}), y = next(x);
+        while (isect(x, y))
+            y = myLC.erase(y);
+        if ((y = x) != myLC.begin() && isect(--y, x))
+            isect(y, myLC.erase(x));
         while ((x = y) != myLC.begin() && (--x)->p >= y->p)
             isect(x, myLC.erase(y)), y = x;
     }
     int query(int x) {
-        Line l = *myLC.lower_bound({ INT_MAX, INT_MAX, x });
+        Line l = *myLC.lower_bound({INT_MAX, INT_MAX, x});
         return l.a * x + l.b;
     }
 };
@@ -921,8 +942,9 @@ const ll INF = LLONG_MAX;
 struct Line {
     ll a, b;
     mutable ll p;
-    bool operator<(const Line& o) const {
-        if (o.a == LLONG_MAX && o.b == LLONG_MAX) return p < o.p;
+    bool operator<(const Line &o) const {
+        if (o.a == LLONG_MAX && o.b == LLONG_MAX)
+            return p < o.p;
         return a < o.a;
     }
 };
@@ -932,20 +954,25 @@ struct LineContainer {
         return a / b - ((a ^ b) < 0 && a % b);
     }
     bool isect(multiset<Line>::iterator x, multiset<Line>::iterator y) {
-        if (y == myLC.end()) return x->p = INF, false;
-        if (x->a == y->a) x->p = (x->b > y->b) ? INF : -INF;
-        else x->p = div(y->b - x->b, x->a - y->a);
+        if (y == myLC.end())
+            return x->p = INF, false;
+        if (x->a == y->a)
+            x->p = (x->b > y->b) ? INF : -INF;
+        else
+            x->p = div(y->b - x->b, x->a - y->a);
         return x->p >= y->p;
     }
     void add(ll a, ll b) {
-        auto x = myLC.insert({ a, b, 0 }), y = next(x);
-        while (isect(x, y)) y = myLC.erase(y);
-        if ((y = x) != myLC.begin() && isect(--y, x)) isect(y, myLC.erase(x));
+        auto x = myLC.insert({a, b, 0}), y = next(x);
+        while (isect(x, y))
+            y = myLC.erase(y);
+        if ((y = x) != myLC.begin() && isect(--y, x))
+            isect(y, myLC.erase(x));
         while ((x = y) != myLC.begin() && (--x)->p >= y->p)
             isect(x, myLC.erase(y)), y = x;
     }
     ll query(ll x) {
-        Line l = *myLC.lower_bound({ LLONG_MAX, LLONG_MAX, x });
+        Line l = *myLC.lower_bound({LLONG_MAX, LLONG_MAX, x});
         return l.a * x + l.b;
     }
 };
@@ -1047,8 +1074,9 @@ const int INF = INT_MAX;
 struct Line {
     int a, b;
     mutable int p;
-    bool operator<(const Line& o) const {
-        if (o.a == INT_MAX && o.b == INT_MAX) return p < o.p;
+    bool operator<(const Line &o) const {
+        if (o.a == INT_MAX && o.b == INT_MAX)
+            return p < o.p;
         return a < o.a;
     }
 };
@@ -1058,20 +1086,25 @@ struct LineContainer {
         return a / b - ((a ^ b) < 0 && a % b);
     }
     bool isect(multiset<Line>::iterator x, multiset<Line>::iterator y) {
-        if (y == myLC.end()) return x->p = INF, false;
-        if (x->a == y->a) x->p = (x->b > y->b) ? INF : -INF;
-        else x->p = div(y->b - x->b, x->a - y->a);
+        if (y == myLC.end())
+            return x->p = INF, false;
+        if (x->a == y->a)
+            x->p = (x->b > y->b) ? INF : -INF;
+        else
+            x->p = div(y->b - x->b, x->a - y->a);
         return x->p >= y->p;
     }
     void add(int a, int b) {
-        auto x = myLC.insert({ a, b, 0 }), y = next(x);
-        while (isect(x, y)) y = myLC.erase(y);
-        if ((y = x) != myLC.begin() && isect(--y, x)) isect(y, myLC.erase(x));
+        auto x = myLC.insert({a, b, 0}), y = next(x);
+        while (isect(x, y))
+            y = myLC.erase(y);
+        if ((y = x) != myLC.begin() && isect(--y, x))
+            isect(y, myLC.erase(x));
         while ((x = y) != myLC.begin() && (--x)->p >= y->p)
             isect(x, myLC.erase(y)), y = x;
     }
     int query(int x) {
-        Line l = *myLC.lower_bound({ INT_MAX, INT_MAX, x });
+        Line l = *myLC.lower_bound({INT_MAX, INT_MAX, x});
         return l.a * x + l.b;
     }
 } seg[N << 2];
@@ -1082,7 +1115,8 @@ void addLine(int u, int l, int r, int p, int k, int m) {
         int mid = (l + r) >> 1;
         if (p <= mid)
             addLine(u << 1, l, mid, p, k, m);
-        else addLine(u << 1 | 1, mid + 1, r, p, k, m);
+        else
+            addLine(u << 1 | 1, mid + 1, r, p, k, m);
     }
 }
 void init() {
@@ -1098,7 +1132,8 @@ int query(int u, int l, int r, int a, int b, int x) {
         // đổi dấu kết quả để truy vấn min
         return -seg[u].query(x);
     }
-    if (b < l || r < a) return INT_MAX;
+    if (b < l || r < a)
+        return INT_MAX;
 
     int mid = (l + r) >> 1, u1 = u << 1, u2 = u1 | 1;
     return min(query(u1, l, mid, a, b, x), query(u2, mid + 1, r, a, b, x));

@@ -210,24 +210,27 @@ int n, m;
 bool joint[maxN];
 int timeDfs = 0, bridge = 0;
 int low[maxN], num[maxN];
-vector <int> g[maxN];
+vector<int> g[maxN];
 
 void dfs(int u, int pre) {
     int child = 0; // Số lượng con trực tiếp của đỉnh u trong cây DFS
     num[u] = low[u] = ++timeDfs;
     for (int v : g[u]) {
-        if (v == pre) continue;
+        if (v == pre)
+            continue;
         if (!num[v]) {
             dfs(v, u);
             low[u] = min(low[u], low[v]);
-            if (low[v] == num[v]) bridge++;
+            if (low[v] == num[v])
+                bridge++;
             child++;
             if (u == pre) { // Nếu u là đỉnh gốc của cây DFS
-                if (child > 1) joint[u] = true;
-            }
-            else if (low[v] >= num[u]) joint[u] = true;
-        }
-        else low[u] = min(low[u], num[v]);
+                if (child > 1)
+                    joint[u] = true;
+            } else if (low[v] >= num[u])
+                joint[u] = true;
+        } else
+            low[u] = min(low[u], num[v]);
     }
 }
 
@@ -240,10 +243,12 @@ int main() {
         g[v].push_back(u);
     }
     for (int i = 1; i <= n; i++)
-        if (!num[i]) dfs(i, i);
+        if (!num[i])
+            dfs(i, i);
 
     int cntJoint = 0;
-    for (int i = 1; i <= n; i++) cntJoint += joint[i];
+    for (int i = 1; i <= n; i++)
+        cntJoint += joint[i];
 
     cout << cntJoint << ' ' << bridge;
 }
@@ -377,14 +382,14 @@ yes
 
 using namespace std;
 
-const int maxN  = 100010;
+const int maxN = 100010;
 
 int n, m, q;
 int timeDfs = 0;
 int low[maxN], num[maxN], tail[maxN];
 int depth[maxN], p[maxN][20];
 bool joint[maxN];
-vector <int> g[maxN];
+vector<int> g[maxN];
 
 /* Tính mảng p */
 void calP() {
@@ -397,7 +402,8 @@ void calP() {
 /* Tìm tổ tiên của đỉnh u là con trực tiếp của đỉnh par */
 int findParent(int u, int par) {
     for (int i = 19; i >= 0; i--)
-        if (depth[p[u][i]] > depth[par]) u = p[u][i];
+        if (depth[p[u][i]] > depth[par])
+            u = p[u][i];
     return u;
 }
 
@@ -405,8 +411,9 @@ int findParent(int u, int par) {
 void dfs(int u, int pre) {
     int child = 0;
     num[u] = low[u] = ++timeDfs;
-    for (int v : g[u]){
-        if (v == pre) continue;
+    for (int v : g[u]) {
+        if (v == pre)
+            continue;
         if (!num[v]) {
             child++;
             p[v][0] = u;
@@ -414,11 +421,12 @@ void dfs(int u, int pre) {
             dfs(v, u);
             low[u] = min(low[u], low[v]);
             if (u == pre) {
-                if (child > 1) joint[u] = true;
-            }
-            else if (low[v] >= num[u]) joint[u] = true;
-        }
-        else low[u] = min(low[u], num[v]);
+                if (child > 1)
+                    joint[u] = true;
+            } else if (low[v] >= num[u])
+                joint[u] = true;
+        } else
+            low[u] = min(low[u], num[v]);
     }
     tail[u] = timeDfs;
 }
@@ -432,28 +440,40 @@ bool checkInSubtree(int u, int root) {
 bool solve1(int a, int b, int g1, int g2) {
     /* Vì ta coi g2 là con trực tiếp của g1 nên khi g1 là con của g2,
     ta phải đổi chỗ 2 giá trị g1 và g2 cho nhau */
-    if (num[g1] > num[g2]) swap(g1, g2);
+    if (num[g1] > num[g2])
+        swap(g1, g2);
 
     /* Kiểm tra nếu cạnh (g1, g2) không phải là cầu */
-    if (low[g2] != num[g2]) return true;
+    if (low[g2] != num[g2])
+        return true;
 
-    if (checkInSubtree(a, g2) && !checkInSubtree(b, g2)) return false;
-    if (checkInSubtree(b, g2) && !checkInSubtree(a, g2)) return false;
+    if (checkInSubtree(a, g2) && !checkInSubtree(b, g2))
+        return false;
+    if (checkInSubtree(b, g2) && !checkInSubtree(a, g2))
+        return false;
     return true;
 }
 
 /* Xử lí truy vấn 2 */
 bool solve2(int a, int b, int c) {
-    if (!joint[c]) return true;
+    if (!joint[c])
+        return true;
     int pa = 0, pb = 0;
-    if (checkInSubtree(a, c)) pa = findParent(a, c);
-    if (checkInSubtree(b, c)) pb = findParent(b, c);
+    if (checkInSubtree(a, c))
+        pa = findParent(a, c);
+    if (checkInSubtree(b, c))
+        pb = findParent(b, c);
 
-    if (!pa && !pb) return true;
-    if (pa == pb) return true;
-    if (!pa && low[pb] < num[c]) return true;
-    if (!pb && low[pa] < num[c]) return true;
-    if (pa && pb && low[pa] < num[c] && low[pb] < num[c]) return true;
+    if (!pa && !pb)
+        return true;
+    if (pa == pb)
+        return true;
+    if (!pa && low[pb] < num[c])
+        return true;
+    if (!pb && low[pa] < num[c])
+        return true;
+    if (pa && pb && low[pa] < num[c] && low[pb] < num[c])
+        return true;
 
     return false;
 }
@@ -478,8 +498,7 @@ int main() {
         if (type == 1) {
             cin >> a >> b >> g1 >> g2;
             cout << (solve1(a, b, g1, g2) ? "yes\n" : "no\n");
-        }
-        else {
+        } else {
             cin >> a >> b >> c;
             cout << (solve2(a, b, c) ? "yes\n" : "no\n");
         }
@@ -572,20 +591,23 @@ vector<int> g[maxN];
 edge E[maxN * 2];
 
 void minimize(int &a, int b) {
-    if (a > b) a = b;
+    if (a > b)
+        a = b;
 }
 
 void dfs(int u) {
     num[u] = low[u] = ++timeDfs;
     for (int i : g[u]) {
         edge &e = E[i];
-        if (e.used) continue;
+        if (e.used)
+            continue;
         e.used = true;
         int v = e.other(u);
         if (!num[v]) {
             dfs(v);
             minimize(low[u], low[v]);
-            if (low[v] > num[u]) bridge++;
+            if (low[v] > num[u])
+                bridge++;
         } else {
             minimize(low[u], num[v]);
         }
@@ -738,19 +760,20 @@ int n, m;
 int timeDfs = 0, scc = 0;
 int low[maxN], num[maxN];
 bool deleted[maxN];
-vector <int> g[maxN];
-stack <int> st;
+vector<int> g[maxN];
+stack<int> st;
 
 void dfs(int u) {
     num[u] = low[u] = ++timeDfs;
     st.push(u);
     for (int v : g[u]) {
-    	if (deleted[v]) continue;
-        if (!num[v]){
+        if (deleted[v])
+            continue;
+        if (!num[v]) {
             dfs(v);
             low[u] = min(low[u], low[v]);
-        }
-        else low[u] = min(low[u], num[v]);
+        } else
+            low[u] = min(low[u], num[v]);
     }
     if (low[u] == num[u]) {
         scc++;
@@ -759,8 +782,7 @@ void dfs(int u) {
             v = st.top();
             st.pop();
             deleted[v] = true;
-        }
-        while (v != u);
+        } while (v != u);
     }
 }
 
@@ -772,7 +794,8 @@ int main() {
         g[u].push_back(v);
     }
     for (int i = 1; i <= n; i++)
-        if (!num[i]) dfs(i);
+        if (!num[i])
+            dfs(i);
 
     cout << scc;
 }
@@ -890,18 +913,19 @@ int root[maxN];
 int low[maxN], num[maxN];
 bool deleted[maxN];
 int timeDfs = 0, scc = 0;
-stack <int> st;
+stack<int> st;
 
 void dfs(int u) {
     low[u] = num[u] = ++timeDfs;
     st.push(u);
     for (int v : g[u]) {
-        if (deleted[v]) continue;
+        if (deleted[v])
+            continue;
         if (!num[v]) {
             dfs(v);
             low[u] = min(low[u], low[v]);
-        }
-        else low[u] = min(low[u], num[v]);
+        } else
+            low[u] = min(low[u], num[v]);
     }
 
     if (num[u] == low[u]) {
@@ -921,15 +945,17 @@ void dfs(int u) {
     }
 }
 
-
 /* Quy hoạch động trên đồ thị DAG */
 int f[maxN];
 
 int solve(int u) {
-    if (h[u].empty()) return totalScc[u];
-    if (f[u] != -1) return f[u];
+    if (h[u].empty())
+        return totalScc[u];
+    if (f[u] != -1)
+        return f[u];
     int cur = -INF;
-    for (int v : h[u]) cur = max(cur, solve(v) + totalScc[u]);
+    for (int v : h[u])
+        cur = max(cur, solve(v) + totalScc[u]);
     return f[u] = cur;
 }
 
@@ -947,9 +973,12 @@ int main() {
     for (int i = 1; i <= m; ++i) {
         for (int j = 1; j <= n; ++j) {
             int u = getId(i, j);
-            if (a[u] == '#') continue;
-            if (check(i, j + 1)) g[u].push_back(getId(i, j + 1));
-            if (check(i + 1, j)) g[u].push_back(getId(i + 1, j));
+            if (a[u] == '#')
+                continue;
+            if (check(i, j + 1))
+                g[u].push_back(getId(i, j + 1));
+            if (check(i + 1, j))
+                g[u].push_back(getId(i + 1, j));
 
             if (a[u] == 'W' && check(i, j - 1))
                 g[u].push_back(getId(i, j - 1));
@@ -961,21 +990,23 @@ int main() {
 
     /* Tìm thành phần liên thông mạnh*/
     for (int i = 1; i <= m; ++i)
-        for (int j = 1; j <= n; ++j){
+        for (int j = 1; j <= n; ++j) {
             int u = getId(i, j);
-            if (!num[u] && check(i, j)) dfs(u);
+            if (!num[u] && check(i, j))
+                dfs(u);
         }
 
     /* Xây dựng đồ thị mới */
     for (int i = 1; i <= m; ++i) {
         for (int j = 1; j <= n; ++j) {
-            if (!check(i, j)) continue;
-            int u  = getId(i, j);
+            if (!check(i, j))
+                continue;
+            int u = getId(i, j);
             int ru = root[u];
             for (int v : g[u]) {
                 int rv = root[v];
                 if (ru != rv) {
-                /* Có cung đi từ ru đến rv trên đồ thị mới do đỉnh
+                    /* Có cung đi từ ru đến rv trên đồ thị mới do đỉnh
                 u trong TPLTM ru đi được tới đỉnh v trong TPLTM rv*/
                     h[ru].push_back(rv);
                 }

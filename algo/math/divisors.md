@@ -125,7 +125,8 @@ void sieve() {
     isPrime.assign(MAXN + 1, 1);
     isPrime[0] = isPrime[1] = 0;
     for (int i = 2; i <= MAXN; i++) {
-        if (!isPrime[i]) continue;
+        if (!isPrime[i])
+            continue;
         primes.push_back(i);
         for (int j = i + i; j <= MAXN; j += i) {
             isPrime[j] = 0;
@@ -134,7 +135,8 @@ void sieve() {
 }
 
 int countDiv(long long n) {
-    if (n == 1) return 1;
+    if (n == 1)
+        return 1;
     vector<int> powV;
     for (auto p : primes) {
         int cnt = 0;
@@ -142,11 +144,14 @@ int countDiv(long long n) {
             n /= p;
             ++cnt;
         }
-        if (cnt) powV.push_back(cnt);
+        if (cnt)
+            powV.push_back(cnt);
     }
-    if (n != 1) powV.push_back(1);
+    if (n != 1)
+        powV.push_back(1);
     int ret = 1;
-    for (auto i : powV) ret *= (i + 1);
+    for (auto i : powV)
+        ret *= (i + 1);
     return ret;
 }
 
@@ -185,7 +190,8 @@ void sieve() {
     isPrime.assign(MAXN + 1, 1);
     isPrime[0] = isPrime[1] = 0;
     for (int i = 2; i <= MAXN; i++) {
-        if (!isPrime[i]) continue;
+        if (!isPrime[i])
+            continue;
         primes.push_back(i);
         for (int j = i + i; j <= MAXN; j += i) {
             isPrime[j] = 0;
@@ -208,7 +214,7 @@ long long binaryPower(long long a, long long k, long long n) {
 bool test(long long a, long long n, long long k, long long m) {
     long long mod = binaryPower(a, m, n);
     if (mod == 1 || mod == n - 1)
-            return 1;
+        return 1;
     for (int l = 1; l < k; ++l) {
         mod = (mod * mod) % n;
         if (mod == n - 1)
@@ -223,7 +229,8 @@ bool isPrimeRabinMiller(long long n) {
                             23, 29, 31, 37};
     if (n <= 37) {
         for (int i : checkSet) {
-            if (i == n) return 1;
+            if (i == n)
+                return 1;
         }
         return 0;
     }
@@ -240,13 +247,14 @@ bool isPrimeRabinMiller(long long n) {
     return 1;
 }
 
-bool isSquare(long long n){
+bool isSquare(long long n) {
     long long c = sqrt(n + 4);
     return c * c == n || (c - 1) * (c - 1) == n;
 }
 
 int countDiv(long long n) {
-    if (n == 1) return 1;
+    if (n == 1)
+        return 1;
     vector<int> powV;
     for (auto p : primes) {
         int cnt = 0;
@@ -254,18 +262,22 @@ int countDiv(long long n) {
             n /= p;
             ++cnt;
         }
-        if (cnt) powV.push_back(cnt);
+        if (cnt)
+            powV.push_back(cnt);
     }
     if (n != 1) {
-        if (isPrimeRabinMiller(n)) powV.push_back(1);
-        else if (isSquare(n)) powV.push_back(2);
+        if (isPrimeRabinMiller(n))
+            powV.push_back(1);
+        else if (isSquare(n))
+            powV.push_back(2);
         else {
             powV.push_back(1);
             powV.push_back(1);
         }
     }
     int ret = 1;
-    for (auto i : powV) ret *= (i + 1);
+    for (auto i : powV)
+        ret *= (i + 1);
     return ret;
 }
 
@@ -301,7 +313,8 @@ vector<int> minPDiv;
 void sieve() {
     minPDiv.resize(MAXN + 1);
     for (int i = 2; i <= MAXN; i++) {
-        if (minPDiv[i]) continue;
+        if (minPDiv[i])
+            continue;
         minPDiv[i] = i;
         for (int j = i + i; j <= MAXN; j += i) {
             minPDiv[j] = i;
@@ -310,22 +323,26 @@ void sieve() {
 }
 
 int countDiv(int n) {
-    if (n == 1) return 1;
+    if (n == 1)
+        return 1;
     vector<int> powV;
     int lastDiv = 0;
     int cnt = 0;
     while (n != 1) {
         if (minPDiv[n] != lastDiv) {
-            if (cnt) powV.push_back(cnt);
+            if (cnt)
+                powV.push_back(cnt);
             cnt = 0;
         }
         ++cnt;
         lastDiv = minPDiv[n];
         n /= minPDiv[n];
     }
-    if (cnt) powV.push_back(cnt);
+    if (cnt)
+        powV.push_back(cnt);
     int ret = 1;
-    for (auto i : powV) ret *= (i + 1);
+    for (auto i : powV)
+        ret *= (i + 1);
     return ret;
 }
 

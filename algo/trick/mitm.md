@@ -24,12 +24,13 @@ long long cnt;
 // trong i-1 phần tử đầu, tổng các t[i] trong tập là sum
 void Try(int i, int sum) {
     // tiếp tục quay lui với tập có sum > x là không cần thiết
-    if (sum > x) return;
+    if (sum > x)
+        return;
 
     if (i > n) {
-        if (sum == x) ++cnt;
-    }
-    else {
+        if (sum == x)
+            ++cnt;
+    } else {
         // không lấy phần tử thứ i
         Try(i + 1, sum);
         // lấy phần tử thứ i
@@ -70,18 +71,22 @@ int t[N];
 vector<int> A, B;
 
 void TryX(int i, int sum) {
-    if (sum > x) return;
+    if (sum > x)
+        return;
 
-    if (i > n / 2) A.push_back(sum);
+    if (i > n / 2)
+        A.push_back(sum);
     else {
         TryX(i + 1, sum);
         TryX(i + 1, sum + t[i]);
     }
 }
 void TryY(int i, int sum) {
-    if (sum > x) return;
+    if (sum > x)
+        return;
 
-    if (i > n) B.push_back(sum);
+    if (i > n)
+        B.push_back(sum);
     else {
         TryY(i + 1, sum);
         TryY(i + 1, sum + t[i]);
@@ -90,7 +95,8 @@ void TryY(int i, int sum) {
 
 int main() {
     cin >> n >> x;
-    for (int i = 1; i <= n; ++i) cin >> t[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> t[i];
 
     // Quay lui 2 tập X và Y
     TryX(1, 0);
@@ -103,8 +109,7 @@ int main() {
     // - Đếm số lượng phần tử trong B có giá trị bằng x - A[i]
     long long cnt = 0;
     for (int sum : A) {
-        cnt += upper_bound(B.begin(), B.end(), x - sum)
-             - lower_bound(B.begin(), B.end(), x - sum);
+        cnt += upper_bound(B.begin(), B.end(), x - sum) - lower_bound(B.begin(), B.end(), x - sum);
     }
     cout << cnt << '\n';
 }
@@ -171,7 +176,8 @@ int sumWB[MaxSize];
 long long maxSumVB[MaxSize];
 
 void TryX(int i, int sumW, long long sumV) {
-    if (sumW > m) return;
+    if (sumW > m)
+        return;
     if (i > n / 2) {
         ++sizeA;
         sumWA[sizeA] = sumW;
@@ -183,10 +189,11 @@ void TryX(int i, int sumW, long long sumV) {
 }
 
 void TryY(int i, int sumW, long long sumV) {
-    if (sumW > m) return;
+    if (sumW > m)
+        return;
     if (i > n) {
         ++sizeB;
-        B[sizeB].first  = sumW;
+        B[sizeB].first = sumW;
         B[sizeB].second = sumV;
         return;
     }
@@ -196,19 +203,20 @@ void TryY(int i, int sumW, long long sumV) {
 
 int main() {
     cin >> n >> m;
-    for (int i = 1; i <= n; ++i) cin >> w[i] >> v[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> w[i] >> v[i];
 
     TryX(1, 0, 0);
     TryY(n / 2 + 1, 0, 0);
     sort(B + 1, B + sizeB + 1);
     for (int i = 1; i <= sizeB; ++i) {
-        sumWB[i]    = B[i].first;
+        sumWB[i] = B[i].first;
         maxSumVB[i] = max(maxSumVB[i - 1], B[i].second);
     }
 
     long long maxValue = 0;
     for (int i = 1; i <= sizeA; ++i) {
-        int j    = upper_bound(sumWB + 1, sumWB + sizeB + 1, m - sumWA[i]) - sumWB - 1;
+        int j = upper_bound(sumWB + 1, sumWB + sizeB + 1, m - sumWA[i]) - sumWB - 1;
         maxValue = max(maxValue, sumVA[i] + maxSumVB[j]);
     }
     cout << maxValue;
@@ -235,10 +243,12 @@ Với mỗi $j$, ta đếm số lượng $i<j$ thoả $a_i < a_j$ và $k>j$ tho�
 for (int j = 0; j < n; ++j) {
     int smaller = 0, bigger = 0;
     for (int i = 0; i < j; ++i) {
-        if (a[i] < a[j]) ++smaller;
+        if (a[i] < a[j])
+            ++smaller;
     }
     for (int k = j + 1; k < n; ++k) {
-        if (a[k] > a[j]) ++bigger;
+        if (a[k] > a[j])
+            ++bigger;
     }
     answer += smaller * bigger;
 }
@@ -283,7 +293,8 @@ int a[N];
 
 int main() {
     cin >> n >> x;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
 
     // preprocess
     map<int, pair<int, int>> mp;
@@ -372,19 +383,24 @@ void readData() {
 
 vector<int> getAns(vector<int> res) {
     set<int> s;
-    for (int u : res) s.insert(c[u]);
+    for (int u : res)
+        s.insert(c[u]);
 
     for (int v0 : g[0][res.back()]) {
-        if (s.count(c[v0])) continue;
+        if (s.count(c[v0]))
+            continue;
         s.insert(c[v0]);
         for (int v1 : g[0][v0]) {
-            if (s.count(c[v1])) continue;
+            if (s.count(c[v1]))
+                continue;
             s.insert(c[v1]);
             for (int v2 : g[0][v1]) {
-                if (s.count(c[v2])) continue;
+                if (s.count(c[v2]))
+                    continue;
                 s.insert(c[v2]);
                 for (int v3 : g[0][v2]) {
-                    if (s.count(c[v3])) continue;
+                    if (s.count(c[v3]))
+                        continue;
 
                     res.push_back(v0);
                     res.push_back(v1);
@@ -405,7 +421,8 @@ int cnt[N * N * N * N];
 int getHash(const array<int, 4> &a, int msk) {
     int hsh = 0;
     for (int i = 0; i < 4; ++i) {
-        if (msk >> i & 1) hsh = hsh * N + c[a[i]];
+        if (msk >> i & 1)
+            hsh = hsh * N + c[a[i]];
     }
     return hsh;
 }
@@ -413,15 +430,19 @@ vector<int> solve(int u) {
     vector<int> sav(1, 0);
 
     for (int v0 : g[0][u]) {
-        if (c[v0] == c[u]) continue;
+        if (c[v0] == c[u])
+            continue;
         for (int v1 : g[0][v0]) {
-            if (c[v1] == c[v0] || c[v1] == c[u]) continue;
+            if (c[v1] == c[v0] || c[v1] == c[u])
+                continue;
             for (int v2 : g[0][v1]) {
-                if (c[v2] == c[v1] || c[v2] == c[v0] || c[v2] == c[u]) continue;
+                if (c[v2] == c[v1] || c[v2] == c[v0] || c[v2] == c[u])
+                    continue;
                 for (int v3 : g[0][v2]) {
-                    if (c[v3] == c[v2] || c[v3] == c[v1] || c[v3] == c[v0] || c[v3] == c[u]) continue;
+                    if (c[v3] == c[v2] || c[v3] == c[v1] || c[v3] == c[v0] || c[v3] == c[u])
+                        continue;
 
-                    array<int, 4> a = { c[v0], c[v1], c[v2], c[v3] };
+                    array<int, 4> a = {c[v0], c[v1], c[v2], c[v3]};
                     sort(a.begin(), a.end());
                     for (int msk = 0; msk < 16; ++msk) {
                         int hsh = getHash(a, msk);
@@ -434,15 +455,19 @@ vector<int> solve(int u) {
     }
 
     for (int v0 : g[1][u]) {
-        if (c[v0] == c[u]) continue;
+        if (c[v0] == c[u])
+            continue;
         for (int v1 : g[1][v0]) {
-            if (c[v1] == c[v0] || c[v1] == c[u]) continue;
+            if (c[v1] == c[v0] || c[v1] == c[u])
+                continue;
             for (int v2 : g[1][v1]) {
-                if (c[v2] == c[v1] || c[v2] == c[v0] || c[v2] == c[u]) continue;
+                if (c[v2] == c[v1] || c[v2] == c[v0] || c[v2] == c[u])
+                    continue;
                 for (int v3 : g[1][v2]) {
-                    if (c[v3] == c[v2] || c[v3] == c[v1] || c[v3] == c[v0] || c[v3] == c[u]) continue;
+                    if (c[v3] == c[v2] || c[v3] == c[v1] || c[v3] == c[v0] || c[v3] == c[u])
+                        continue;
 
-                    array<int, 4> a = { c[v0], c[v1], c[v2], c[v3] };
+                    array<int, 4> a = {c[v0], c[v1], c[v2], c[v3]};
                     sort(a.begin(), a.end());
                     int sum = 0;
                     for (int msk = 0; msk < 16; ++msk) {
@@ -450,7 +475,7 @@ vector<int> solve(int u) {
                         sum += cnt[hsh] * (cntbit[msk] & 1 ? -1 : 1);
                     }
                     if (sum > 0) {
-                        vector<int> res = { v3, v2, v1, v0, u };
+                        vector<int> res = {v3, v2, v1, v0, u};
                         return getAns(res);
                     }
                 }
@@ -458,7 +483,8 @@ vector<int> solve(int u) {
         }
     }
 
-    for (int x : sav) cnt[x] = 0;
+    for (int x : sav)
+        cnt[x] = 0;
     return vector<int>();
 }
 
@@ -466,7 +492,8 @@ void solve() {
     for (int i = 1; i <= n; ++i) {
         vector<int> vec = solve(i);
         if (!vec.empty()) {
-            for (int x : vec) cout << x << ' ';
+            for (int x : vec)
+                cout << x << ' ';
             return;
         }
     }

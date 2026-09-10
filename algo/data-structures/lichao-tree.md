@@ -231,10 +231,12 @@ Ban đầu, tất cả các nút của Li-chao tree chứa đường thẳng $0x
 struct liChao {
     vector<line> tr;
 
-    liChao() {}
-    liChao (int sz) : tr(4 * sz, line(0, LLONG_MAX)) {}
+    liChao() {
+    }
+    liChao(int sz) : tr(4 * sz, line(0, LLONG_MAX)) {
+    }
 
-    void update (line f, int k, int l, int r) {
+    void update(line f, int k, int l, int r) {
         /*
             f: đường thẳng cần cập nhật
             k: nút hiện tại
@@ -245,20 +247,21 @@ struct liChao {
             return;
         }
         int mid = (l + r) >> 1;
-        
+
         // để giảm số trường hợp cần xử lý, giả sử tr[k] tốt hơn f cho vị trí mid
-        if (f.calc(mid) < tr[k].calc(mid)) swap(tr[k], f);
-        
+        if (f.calc(mid) < tr[k].calc(mid))
+            swap(tr[k], f);
+
         // trường hợp 1.1, đường thẳng f được đưa xuống cây con trái
         if (f.slope() > tr[k].slope())
-            update(f, 2 * k, l, mid); 
-        
+            update(f, 2 * k, l, mid);
+
         // trường hợp 1.2, đường thẳng f được đưa xuống cây con phải
         if (f.slope() < tr[k].slope())
             update(f, 2 * k + 1, mid + 1, r);
     }
 
-    ll query (int pos, int k, int l, int r) {
+    ll query(int pos, int k, int l, int r) {
         /*
             pos: vị trí được truy vấn
             k: nút hiện tại
@@ -325,31 +328,35 @@ Với cách làm này, không khó để chứng minh rằng ta chỉ cần đú
 struct liChao {
     vector<line> tr;
 
-    liChao() {}
-    liChao (int sz) : tr(sz + 1, line(0, LLONG_MAX)) {}
+    liChao() {
+    }
+    liChao(int sz) : tr(sz + 1, line(0, LLONG_MAX)) {
+    }
 
-    void update (line f, int l, int r) {
+    void update(line f, int l, int r) {
         /*
             f: đường thẳng cần cập nhật
             mid: nút hiện tại
             l..r: khoảng mà nút quản lý
         */
-        if (l > r) return;
+        if (l > r)
+            return;
         int mid = (l + r) >> 1;
         if (l == r) {
             tr[mid] = (f.calc(l) < tr[mid].calc(l) ? f : tr[mid]);
             return;
         }
-        
+
         // việc cập nhật được thực hiện tương tự Li-chao tree cơ bản
-        if (f.calc(mid) < tr[mid].calc(mid)) swap(tr[mid], f);
+        if (f.calc(mid) < tr[mid].calc(mid))
+            swap(tr[mid], f);
         if (f.slope() > tr[mid].slope())
             update(f, l, mid - 1); // trường hợp 1.1
         if (f.slope() < tr[mid].slope())
             update(f, mid + 1, r); // trường hợp 1.2
     }
 
-    ll query (int p, int l, int r) {
+    ll query(int p, int l, int r) {
         /*
             p: vị trí được truy vấn
             mid: nút hiện tại
@@ -410,10 +417,12 @@ Truy vấn loại $2$ được xử lý bình thường trong $\mathcal{O}(\log 
 struct liChao {
     vector<line> tr;
 
-    liChao() {}
-    liChao (int sz) : tr(4 * sz, line(0, LLONG_MAX)) {}
+    liChao() {
+    }
+    liChao(int sz) : tr(4 * sz, line(0, LLONG_MAX)) {
+    }
 
-    void addLine (line f, int k, int l, int r) {
+    void addLine(line f, int k, int l, int r) {
         /*
             f: đường thẳng cần cập nhật
             k: nút hiện tại
@@ -424,33 +433,36 @@ struct liChao {
             return;
         }
         int mid = (l + r) >> 1;
-        if (f.calc(mid) < tr[k].calc(mid)) swap(tr[k], f);
+        if (f.calc(mid) < tr[k].calc(mid))
+            swap(tr[k], f);
         if (f.slope() > tr[k].slope())
             addLine(f, 2 * k, l, mid); // trường hợp 1.1
         if (f.slope() < tr[k].slope())
             addLine(f, 2 * k + 1, mid + 1, r); // trường hợp 1.2
     }
 
-    void update (int a, int b, line f, int k, int l, int r) {
+    void update(int a, int b, line f, int k, int l, int r) {
         /*
             a..b: khoảng cần cập nhật
             f: đường thẳng cần nhập nhật
             k: nút hiện tại
             l..r: khoảng mà nút quản lý
         */
-        if (b < l || r < a) return;
-        
+        if (b < l || r < a)
+            return;
+
         // thực hiện thao tác cập nhật của Li-chao tree cơ bản
         // khi khoảng mà nút quản lý nằm gọn trong khoảng cần cập nhật
-        if (a <= l && r <= b) return addLine(f, k, l, r), void();
-        
+        if (a <= l && r <= b)
+            return addLine(f, k, l, r), void();
+
         // chia để trị tương tự Segment tree
         int mid = (l + r) >> 1;
         update(a, b, f, 2 * k, l, mid);
         update(a, b, f, 2 * k + 1, mid + 1, r);
     }
 
-    ll query (int pos, int k, int l, int r) {
+    ll query(int pos, int k, int l, int r) {
         /*
             pos: vị trí được truy vấn
             k: nút hiện tại
@@ -485,13 +497,14 @@ struct node {
     line tr;
     node *lpt, *rpt;
 
-    node() : tr(0, LLONG_MAX), lpt(nullptr), rpt(nullptr) {}
+    node() : tr(0, LLONG_MAX), lpt(nullptr), rpt(nullptr) {
+    }
 
-    int divi (int a, int b) { // phép chia làm tròn xuống
+    int divi(int a, int b) { // phép chia làm tròn xuống
         return a / b - ((a ^ b) < 0 && a % b);
     }
 
-    void update (line f, int l = -M, int r = M) {
+    void update(line f, int l = -M, int r = M) {
         /*
             f: đường thẳng cần cập nhật
             l..r: khoảng mà nút quản lý
@@ -501,26 +514,30 @@ struct node {
             return;
         }
         int mid = divi(l + r, 2);
-        if (f.calc(mid) < tr.calc(mid)) swap(tr, f);
+        if (f.calc(mid) < tr.calc(mid))
+            swap(tr, f);
         if (f.slope() > tr.slope()) {
-            if (lpt == nullptr) lpt = new node(); // khởi tạo bộ nhớ cho cây con trái
+            if (lpt == nullptr)
+                lpt = new node();   // khởi tạo bộ nhớ cho cây con trái
             lpt->update(f, l, mid); // trường hợp 1.1
         }
         if (f.slope() < tr.slope()) {
-            if (rpt == nullptr) rpt = new node(); // khởi tạo bộ nhớ cho cây con phải
+            if (rpt == nullptr)
+                rpt = new node();       // khởi tạo bộ nhớ cho cây con phải
             rpt->update(f, mid + 1, r); // trường hợp 1.2
         }
     }
 
-    ll query (int pos, int l = -M, int r = M) {
+    ll query(int pos, int l = -M, int r = M) {
         /*
             pos: vị trí được truy vấn
             l..r: khoảng mà nút quản lý
         */
         ll cur = tr.calc(pos);
         int mid = divi(l + r, 2);
-        if (l == r) return cur;
-        
+        if (l == r)
+            return cur;
+
         // lưu ý: chỉ được di chuyển xuống cây con khi nó được khởi tạo bộ nhớ sẵn
         if (pos <= mid)
             return min(cur, lpt == nullptr ? LLONG_MAX : lpt->query(pos, l, mid));
@@ -580,25 +597,28 @@ struct liChao {
     vector<vector<line>> tr;
     int mkth;
 
-    liChao (int sz, int k) : tr(4 * sz), mkth(k) {}
+    liChao(int sz, int k) : tr(4 * sz), mkth(k) {
+    }
 
-    void update (line cur, int k, int l, int r) {
+    void update(line cur, int k, int l, int r) {
         /*
             cur: đường thẳng cần cập nhật
             k: nút hiện tại
             l..r: khoảng mà nút quản lý
         */
         tr[k].push_back(cur);
-        if (tr[k].size() <= 2 * mkth - 1) return;
+        if (tr[k].size() <= 2 * mkth - 1)
+            return;
 
         // chèn đường thẳng mới vào và đưa đường thẳng tệ nhất ra ngoài
         int mid = (l + r) >> 1;
         nth_element(tr[k].begin(), tr[k].end() - 1, tr[k].end(),
-                    [&] (line a, line b) {return a.calc(mid) < b.calc(mid);}); // đưa đường thẳng tệ nhất ra cuối vector
+                    [&](line a, line b) { return a.calc(mid) < b.calc(mid); }); // đưa đường thẳng tệ nhất ra cuối vector
         line worst = tr[k].back();
         tr[k].pop_back();
 
-        if (l == r) return;
+        if (l == r)
+            return;
 
         // đếm số đường thẳng được lưu ở nút hiện tại mà tốt hơn đường thẳng tệ nhất
         // trong khoảng [l; mid], bằng cách so sánh hệ số góc của chúng
@@ -608,11 +628,13 @@ struct liChao {
 
         // đường thẳng tệ nhất được đưa xuống cây con có
         // số đường thẳng tốt hơn nó ít hơn "mkth"
-        if (dominateLeft < mkth) update(worst, 2 * k, l, mid);
-        else update(worst, 2 * k + 1, mid + 1, r);
+        if (dominateLeft < mkth)
+            update(worst, 2 * k, l, mid);
+        else
+            update(worst, 2 * k + 1, mid + 1, r);
     }
 
-    void push (vector<ll> &cand, ll val, int kth) {
+    void push(vector<ll> &cand, ll val, int kth) {
         // thêm một giá trị vào vector và giữ lại k giá trị tốt nhất
         cand.push_back(val);
         if (cand.size() > kth) {
@@ -621,7 +643,7 @@ struct liChao {
         }
     }
 
-    void walk (vector<ll> &cand, int pos, int kth, int k, int l, int r) {
+    void walk(vector<ll> &cand, int pos, int kth, int k, int l, int r) {
         /*
             cand: vector để duy trì k giá trị tốt nhất
             pos: vị trí được truy vấn
@@ -629,16 +651,19 @@ struct liChao {
             k: nút hiện tại
             l..r: khoảng mà nút quản lý
         */
-        for (line cur : tr[k]) push(cand, cur.calc(pos), kth);
-        if (l == r) return;
+        for (line cur : tr[k])
+            push(cand, cur.calc(pos), kth);
+        if (l == r)
+            return;
 
         int mid = (l + r) >> 1;
         if (pos <= mid)
             walk(cand, pos, kth, 2 * k, l, mid);
-        else walk(cand, pos, kth, 2 * k + 1, mid + 1, r);
+        else
+            walk(cand, pos, kth, 2 * k + 1, mid + 1, r);
     }
 
-    ll query (int pos, int kth, int k, int l, int r) {
+    ll query(int pos, int kth, int k, int l, int r) {
         /*
             pos: vị trí được truy vấn
             kth: thứ hạng của đường thẳng cần tìm
@@ -700,17 +725,23 @@ Bên cạnh đó, cần đảm bảo rằng khi thực hiện thao tác loại $
 struct line {
     ll a, b;
 
-    line() : a(0), b(0) {}
-    line (ll a, ll b) : a(a), b(b) {}
+    line() : a(0), b(0) {
+    }
+    line(ll a, ll b) : a(a), b(b) {
+    }
 
-    ll calc (ll x) { return (b == LLONG_MAX ? LLONG_MAX : a * x + b); }
-    ll slope() { return a; }
+    ll calc(ll x) {
+        return (b == LLONG_MAX ? LLONG_MAX : a * x + b);
+    }
+    ll slope() {
+        return a;
+    }
 
-    ll add (ll a, ll b) { // phép cộng chống tràn số
+    ll add(ll a, ll b) { // phép cộng chống tràn số
         return (max(a, b) == LLONG_MAX ? LLONG_MAX : a + b);
     }
 
-    void operator += (line o) {
+    void operator+=(line o) {
         a = add(a, o.a), b = add(b, o.b);
     }
 };
@@ -718,28 +749,31 @@ struct line {
 struct liChao {
     vector<line> tr, lazy;
 
-    liChao() {}
-    liChao (int sz) : tr(4 * sz, line(0, LLONG_MAX)), lazy(4 * sz) {}
+    liChao() {
+    }
+    liChao(int sz) : tr(4 * sz, line(0, LLONG_MAX)), lazy(4 * sz) {
+    }
 
-    void apply (int k, line f) {
+    void apply(int k, line f) {
         tr[k] += f, lazy[k] += f;
     }
 
-    void pushDown (int k) {
+    void pushDown(int k) {
         // đẩy "hàm cập nhật" theo cập nhật tăng đoạn xuống các cây con
         // để tránh ảnh hưởng của cập nhật chèn đường thẳng
-        if (!lazy[k].a && !lazy[k].b) return;
+        if (!lazy[k].a && !lazy[k].b)
+            return;
         apply(2 * k, lazy[k]), apply(2 * k + 1, lazy[k]);
         lazy[k] = line(0, 0);
     }
 
-    void insertLine (line f, int k, int l, int r) {
+    void insertLine(line f, int k, int l, int r) {
         /*
             f: đường thẳng cần cập nhật
             k: nút hiện tại
             l..r: khoảng mà nút quản lý
         */
-        
+
         // thực hiện cập nhật đường thẳng như Li-chao tree cơ bản, thêm
         // thao tác "pushDown" để không cập nhật đè lên các cập nhật tăng đoạn
         if (l == r) {
@@ -748,14 +782,15 @@ struct liChao {
         }
         pushDown(k);
         int mid = (l + r) >> 1;
-        if (f.calc(mid) < tr[k].calc(mid)) swap(tr[k], f);
+        if (f.calc(mid) < tr[k].calc(mid))
+            swap(tr[k], f);
         if (f.slope() > tr[k].slope())
             insertLine(f, 2 * k, l, mid);
         else if (f.slope() < tr[k].slope())
             insertLine(f, 2 * k + 1, mid + 1, r);
     }
 
-    void pushLine (int k, int l, int r) {
+    void pushLine(int k, int l, int r) {
         // đẩy hàm của Li-chao tree xuống các cây con để tránh
         // ảnh hưởng của cập nhật tăng đoạn
         int mid = (l + r) >> 1;
@@ -766,17 +801,18 @@ struct liChao {
         }
     }
 
-    void updateInsert (int a, int b, line f, int k, int l, int r) {
+    void updateInsert(int a, int b, line f, int k, int l, int r) {
         /*
             a..b: khoảng cần cập nhật
             f: đường thẳng cần cập nhật
             k: nút hiện tại
             l..r: khoảng mà nút quản lý
         */
-        
+
         // thực hiện cập nhật đoạn thẳng như Li-chao tree cơ bản, thêm
         // thao tác "pushDown" để không cập nhật đè lên các cập nhật tăng đoạn
-        if (b < l || r < a) return;
+        if (b < l || r < a)
+            return;
         if (a <= l && r <= b)
             return insertLine(f, k, l, r), void();
         pushDown(k);
@@ -785,17 +821,18 @@ struct liChao {
         updateInsert(a, b, f, 2 * k + 1, mid + 1, r);
     }
 
-    void updateIncrease (int a, int b, line f, int k, int l, int r) {
+    void updateIncrease(int a, int b, line f, int k, int l, int r) {
         /*
             a..b: khoảng cần cập nhật
             f: đường thẳng cần cập nhật
             k: nút hiện tại
             l..r: khoảng mà nút quản lý
         */
-        
+
         // thực hiện cập nhật đoạn tương tự Segment tree, thêm thao tác
         // "pushDown" và "pushLine" để không cập nhật đè lên các cập nhật trước đó
-        if (b < l || r < a) return;
+        if (b < l || r < a)
+            return;
         if (a <= l && r <= b)
             return apply(k, f), void();
         pushDown(k), pushLine(k, l, r);
@@ -804,7 +841,7 @@ struct liChao {
         updateIncrease(a, b, f, 2 * k + 1, mid + 1, r);
     }
 
-    ll query (int pos, int k, int l, int r) {
+    ll query(int pos, int k, int l, int r) {
         /*
             pos: vị trí được truy vấn
             k: nút hiện tại
@@ -1093,9 +1130,9 @@ using namespace std;
 
 typedef long long ll;
 typedef long double ld;
-typedef pair<ll,ll> pl;
-typedef pair<int,int> pii;
-typedef tuple<int,int,int> tt;
+typedef pair<ll, ll> pl;
+typedef pair<int, int> pii;
+typedef tuple<int, int, int> tt;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
@@ -1103,52 +1140,67 @@ typedef tuple<int,int,int> tt;
 struct line {
     ll a, b;
 
-    line() : a(0), b(LLONG_MIN) {}
-    line (ll a, ll b) : a(a), b(b) {}
+    line() : a(0), b(LLONG_MIN) {
+    }
+    line(ll a, ll b) : a(a), b(b) {
+    }
 
-    ll calc (ll x) { return b == LLONG_MIN ? LLONG_MIN : a * x + b; }
-    ll slope() { return a; }
+    ll calc(ll x) {
+        return b == LLONG_MIN ? LLONG_MIN : a * x + b;
+    }
+    ll slope() {
+        return a;
+    }
 };
 
 struct liChao {
     vector<line> tr;
-    liChao (int sz) : tr(sz + 1) {}
+    liChao(int sz) : tr(sz + 1) {
+    }
 
-    void update (line cur, int l, int r) {
-        if (l > r) return;
+    void update(line cur, int l, int r) {
+        if (l > r)
+            return;
         if (l == r)
             return tr[l] = (cur.calc(l) > tr[l].calc(l) ? cur : tr[l]), void();
 
         int mid = (l + r) >> 1;
-        if (cur.calc(mid) > tr[mid].calc(mid)) swap(cur, tr[mid]);
-        if (cur.slope() < tr[mid].slope()) update(cur, l, mid - 1);
-        if (cur.slope() > tr[mid].slope()) update(cur, mid + 1, r);
+        if (cur.calc(mid) > tr[mid].calc(mid))
+            swap(cur, tr[mid]);
+        if (cur.slope() < tr[mid].slope())
+            update(cur, l, mid - 1);
+        if (cur.slope() > tr[mid].slope())
+            update(cur, mid + 1, r);
     }
 
-    ll query (int pos, int l, int r) {
-        if (l > r) return LLONG_MIN;
+    ll query(int pos, int l, int r) {
+        if (l > r)
+            return LLONG_MIN;
         int mid = (l + r) >> 1;
         ll cur = tr[mid].calc(pos);
 
-        if (l == r) return cur;
+        if (l == r)
+            return cur;
         if (l <= pos && pos < mid)
             return max(query(pos, l, mid - 1), cur);
         return max(query(pos, mid + 1, r), cur);
     }
 
     // reset các giá trị của Li-chao tree
-    void refresh() { fill(all(tr), line(0, LLONG_MIN)); }
+    void refresh() {
+        fill(all(tr), line(0, LLONG_MIN));
+    }
 };
 
 const int mn = 2e5 + 5;
 ll a[mn], pre[mn], shiftRight[mn], shiftLeft[mn];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n; cin >> n;
+    int n;
+    cin >> n;
     for (int i = 1; i <= n; i++) {
         cin >> a[i];
         pre[i] = pre[i - 1] + a[i] * i;
@@ -1156,7 +1208,8 @@ int main()
         shiftLeft[i] = shiftLeft[i - 1] + a[i] * (i - 1);
     }
 
-    liChao tree(n); ll ans = pre[n];
+    liChao tree(n);
+    ll ans = pre[n];
     for (int i = 1; i <= n; i++) { // xử lý các trường hợp j < i
         ll best = tree.query(i, 1, n);
         if (best != LLONG_MIN)
@@ -1249,9 +1302,9 @@ using namespace std;
 
 typedef long long ll;
 typedef long double ld;
-typedef pair<ll,ll> pl;
-typedef pair<int,int> pii;
-typedef tuple<int,int,int> tt;
+typedef pair<ll, ll> pl;
+typedef pair<int, int> pii;
+typedef tuple<int, int, int> tt;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
@@ -1259,40 +1312,54 @@ typedef tuple<int,int,int> tt;
 struct line {
     ll a, b;
 
-    line() : a(0), b(LLONG_MIN) {}
-    line (ll a, ll b) : a(a), b(b) {}
+    line() : a(0), b(LLONG_MIN) {
+    }
+    line(ll a, ll b) : a(a), b(b) {
+    }
 
-    ll calc (ll x) { return (b == LLONG_MIN ? b : a * x + b); }
+    ll calc(ll x) {
+        return (b == LLONG_MIN ? b : a * x + b);
+    }
 
-    ll slope() { return a; }
+    ll slope() {
+        return a;
+    }
 };
 
 const int M = 2e5;
 
 struct liChao {
-    unordered_map<int,line> tr; // sử dụng tối ưu bộ nhớ kết hợp Li-chao tree trên mảng thưa
-    liChao() {}
+    unordered_map<int, line> tr; // sử dụng tối ưu bộ nhớ kết hợp Li-chao tree trên mảng thưa
+    liChao() {
+    }
 
-    void update (line cur, int l = 1, int r = M) {
-        if (l > r) return;
+    void update(line cur, int l = 1, int r = M) {
+        if (l > r)
+            return;
         if (l == r)
             return tr[l] = (cur.calc(l) > tr[l].calc(l) ? cur : tr[l]), void();
 
         int mid = (l + r) >> 1;
-        if (cur.calc(mid) > tr[mid].calc(mid)) swap(cur, tr[mid]);
-        if (cur.slope() < tr[mid].slope()) update(cur, l, mid - 1);
-        if (cur.slope() > tr[mid].slope()) update(cur, mid + 1, r);
+        if (cur.calc(mid) > tr[mid].calc(mid))
+            swap(cur, tr[mid]);
+        if (cur.slope() < tr[mid].slope())
+            update(cur, l, mid - 1);
+        if (cur.slope() > tr[mid].slope())
+            update(cur, mid + 1, r);
     }
 
-    ll query (int pos, int l = 1, int r = M) {
-        if (l > r) return LLONG_MIN;
+    ll query(int pos, int l = 1, int r = M) {
+        if (l > r)
+            return LLONG_MIN;
         int mid = (l + r) >> 1;
         ll cur = tr[mid].calc(pos);
 
-        if (l == r) return cur;
+        if (l == r)
+            return cur;
         if (l <= pos && pos < mid)
             return max(query(pos, l, mid - 1), cur);
-        else return max(query(pos, mid + 1, r), cur);
+        else
+            return max(query(pos, mid + 1, r), cur);
     }
 };
 
@@ -1302,33 +1369,36 @@ int sz[mn], depth[mn];
 vector<int> adj[mn];
 bool del[mn];
 
-int szDfs (int u, int p) { // hàm tính kích thước từng cây con
+int szDfs(int u, int p) { // hàm tính kích thước từng cây con
     sz[u] = 1;
     for (int v : adj[u])
-        if (v != p && !del[v]) sz[u] += szDfs(v, u);
+        if (v != p && !del[v])
+            sz[u] += szDfs(v, u);
     return sz[u];
 }
 
-int centroid (int u, int p, int sztr) { // hàm tìm kiếm trọng tâm
+int centroid(int u, int p, int sztr) { // hàm tìm kiếm trọng tâm
     for (int v : adj[u])
         if (v != p && !del[v] && sz[v] > sztr / 2)
             return centroid(v, u, sztr);
     return u;
 }
 
-void dfs (int u, int p, int d, bool start, vector<int> &leaves) { // hàm tính lại các giá trị "depth", "pre",
-                                                                  // "gUp", "gDown" trong cây con sau khi đặt gốc mới
+void dfs(int u, int p, int d, bool start, vector<int> &leaves) { // hàm tính lại các giá trị "depth", "pre",
+                                                                 // "gUp", "gDown" trong cây con sau khi đặt gốc mới
     depth[u] = d, pre[u] = pre[p] + a[u];
     gUp[u] = a[u] * (depth[u] + 1) + gUp[p];
     gDown[u] = gDown[p] + pre[u];
 
     int child = 0;
     for (int v : adj[u])
-        if (v != p && !del[v]) child++, dfs(v, u, d + 1, 0, leaves);
-    if (!child) leaves.push_back(u);
+        if (v != p && !del[v])
+            child++, dfs(v, u, d + 1, 0, leaves);
+    if (!child)
+        leaves.push_back(u);
 }
 
-void solve (int root) { // hàm chia để trị trên cây
+void solve(int root) { // hàm chia để trị trên cây
     /// phần template của thuật toán phân rã trọng tâm
     root = centroid(root, root, szDfs(root, root));
     pre[root] = gUp[root] = gDown[root] = a[root];
@@ -1336,16 +1406,18 @@ void solve (int root) { // hàm chia để trị trên cây
     vector<vector<int>> leaves(adj[root].size());
     for (int i = 0; i < adj[root].size(); i++) {
         int v = adj[root][i];
-        if (del[v]) continue;
+        if (del[v])
+            continue;
 
         dfs(v, root, 1, 1, leaves[i]);
     }
 
     // tìm f(u, v) lớn nhất với lca(u, v) = root
-    function<void(void)> calc = [&] () {
+    function<void(void)> calc = [&]() {
         liChao tree;
         for (int i = 0; i < adj[root].size(); i++) {
-            if (del[adj[root][i]]) continue;
+            if (del[adj[root][i]])
+                continue;
             for (int leaf : leaves[i]) {
                 ans = max({ans, gUp[leaf], gDown[leaf]}); // trường hợp lá đến gốc và từ gốc đến lá
                 ll best = tree.query(depth[leaf]);
@@ -1366,21 +1438,24 @@ void solve (int root) { // hàm chia để trị trên cây
     // phần template của thuật toán phân rã trọng tâm
     del[root] = 1;
     for (int v : adj[root])
-        if (!del[v]) solve(v);
+        if (!del[v])
+            solve(v);
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n; cin >> n;
+    int n;
+    cin >> n;
     for (int i = 1; i < n; i++) {
-        int u, v; cin >> u >> v;
+        int u, v;
+        cin >> u >> v;
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-    for (int i = 1; i <= n; i++) cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
     solve(1);
 
     cout << ans;
@@ -1432,9 +1507,9 @@ using namespace std;
 
 typedef long long ll;
 typedef long double ld;
-typedef pair<ll,ll> pl;
-typedef pair<int,int> pii;
-typedef tuple<int,int,int> tt;
+typedef pair<ll, ll> pl;
+typedef pair<int, int> pii;
+typedef tuple<int, int, int> tt;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
@@ -1442,12 +1517,18 @@ typedef tuple<int,int,int> tt;
 struct line {
     ll a, b;
 
-    line() : a(0), b(0) {}
-    line (ll a, ll b) : a(a), b(b) {}
+    line() : a(0), b(0) {
+    }
+    line(ll a, ll b) : a(a), b(b) {
+    }
 
-    ll calc (ll x) { return a * x + b; }
+    ll calc(ll x) {
+        return a * x + b;
+    }
 
-    ll slope() { return a; }
+    ll slope() {
+        return a;
+    }
 };
 
 struct node {
@@ -1455,35 +1536,39 @@ struct node {
     int mkth;
     node *lpt, *rpt;
 
-    node (int mkth) : mkth(mkth), lpt(nullptr), rpt(nullptr) {}
+    node(int mkth) : mkth(mkth), lpt(nullptr), rpt(nullptr) {
+    }
 
-    void update (line cur, int l, int r) {
+    void update(line cur, int l, int r) {
         tr.push_back(cur);
-        if (tr.size() <= mkth * 2 - 1) return;
+        if (tr.size() <= mkth * 2 - 1)
+            return;
 
         int mid = (l + r) >> 1;
         nth_element(tr.begin(), tr.end() - 1, tr.end(),
-                    [&] (line a, line b) { return a.calc(mid) > b.calc(mid); });
+                    [&](line a, line b) { return a.calc(mid) > b.calc(mid); });
         line worst = tr.back();
         tr.pop_back();
 
-        if (l == r) return;
+        if (l == r)
+            return;
 
         int dominantLeft = 0;
         for (line it : tr)
             dominantLeft += (it.slope() < worst.slope());
 
         if (dominantLeft < mkth) {
-            if (lpt == nullptr) lpt = new node(mkth);
+            if (lpt == nullptr)
+                lpt = new node(mkth);
             lpt->update(worst, l, mid);
-        }
-        else {
-            if (rpt == nullptr) rpt = new node(mkth);
+        } else {
+            if (rpt == nullptr)
+                rpt = new node(mkth);
             rpt->update(worst, mid + 1, r);
         }
     }
 
-    void push (vector<ll> &cand, ll cur, int kth) {
+    void push(vector<ll> &cand, ll cur, int kth) {
         cand.push_back(cur);
         if (cand.size() > kth) {
             nth_element(cand.begin(), cand.end() - 1, cand.end(), greater<ll>());
@@ -1491,20 +1576,23 @@ struct node {
         }
     }
 
-    void walk (vector<ll> &cand, int pos, int kth, int l, int r) {
-        for (line cur : tr) push(cand, cur.calc(pos), kth);
-        if (l == r) return;
+    void walk(vector<ll> &cand, int pos, int kth, int l, int r) {
+        for (line cur : tr)
+            push(cand, cur.calc(pos), kth);
+        if (l == r)
+            return;
 
         int mid = (l + r) >> 1;
         if (l <= pos && pos <= mid) {
-            if (lpt != nullptr) lpt->walk(cand, pos, kth, l, mid);
-        }
-        else {
-            if (rpt != nullptr) rpt->walk(cand, pos, kth, mid + 1, r);
+            if (lpt != nullptr)
+                lpt->walk(cand, pos, kth, l, mid);
+        } else {
+            if (rpt != nullptr)
+                rpt->walk(cand, pos, kth, mid + 1, r);
         }
     }
 
-    ll query (int pos, int kth, int l, int r) {
+    ll query(int pos, int kth, int l, int r) {
         vector<ll> cand;
         walk(cand, pos, kth, l, r);
         nth_element(cand.begin(), cand.end() - 1, cand.end(), greater<ll>());
@@ -1516,8 +1604,9 @@ struct presfx {
     vector<ll> pre, sfx;
     int n;
 
-    presfx (vector<ll> a) : pre(a.size()), sfx(a.size()), n(a.size()) {
-        if (!n) return;
+    presfx(vector<ll> a) : pre(a.size()), sfx(a.size()), n(a.size()) {
+        if (!n)
+            return;
         pre[0] = a[0], sfx[n - 1] = a[n - 1];
         for (int i = 1; i < n; i++)
             pre[i] = max(pre[i - 1], a[i]);
@@ -1525,13 +1614,19 @@ struct presfx {
             sfx[i] = max(sfx[i + 1], a[i]);
     }
 
-    ll getPre (int p) { return (0 <= p && p < n ? pre[p] : 0); }
+    ll getPre(int p) {
+        return (0 <= p && p < n ? pre[p] : 0);
+    }
 
-    ll getSfx (int p) { return (0 <= p && p < n ? sfx[p] : 0); }
+    ll getSfx(int p) {
+        return (0 <= p && p < n ? sfx[p] : 0);
+    }
 
     // lấy giá trị lớn nhất ngoại trừ vị trí "exc", bằng cách duy trì
     // giá trị tốt nhất cho các tiền tố và hậu tố
-    ll query (int exc) { return max(getPre(exc - 1), getSfx(exc + 1)); }
+    ll query(int exc) {
+        return max(getPre(exc - 1), getSfx(exc + 1));
+    }
 };
 
 const int mn = 2e5 + 5;
@@ -1540,11 +1635,14 @@ const int M = 1e9;
 ll dpDown[mn], dpUp[mn], bestPath[mn];
 vector<pii> adj[mn], qry[mn];
 
-void dfsDown (int u, int p) {
+void dfsDown(int u, int p) {
     vector<ll> a(adj[u].size());
     for (int i = 0; i < adj[u].size(); i++) {
-        int v; ll w; tie(v, w) = adj[u][i];
-        if (v == p) continue;
+        int v;
+        ll w;
+        tie(v, w) = adj[u][i];
+        if (v == p)
+            continue;
 
         dfsDown(v, u);
         dpDown[u] = max(dpDown[u], w + dpDown[v]);
@@ -1554,15 +1652,19 @@ void dfsDown (int u, int p) {
 
     // ghép cạnh (u, v) với một đường đi từ u xuống nút lá khác hướng u -> v
     for (int i = 0; i < adj[u].size(); i++) {
-        int v; ll w; tie(v, w) = adj[u][i];
-        if (v != p) dpUp[v] = max(dpUp[v], w + helper.query(i));
+        int v;
+        ll w;
+        tie(v, w) = adj[u][i];
+        if (v != p)
+            dpUp[v] = max(dpUp[v], w + helper.query(i));
     }
 }
 
-void dfsUp (int u, int p, ll toParent) {
+void dfsUp(int u, int p, ll toParent) {
     node tree(2);
     for (auto [v, w] : adj[u])
-        if (v != p) tree.update(line(w, dpDown[v]), 1, M);
+        if (v != p)
+            tree.update(line(w, dpDown[v]), 1, M);
 
     if (u != p) { // u không phải nút gốc
         dpUp[u] = max(dpUp[u], toParent + dpUp[p]);
@@ -1571,29 +1673,35 @@ void dfsUp (int u, int p, ll toParent) {
 
     // trả lời các truy vấn gắn với nút u
     for (auto [multiplier, id] : qry[u]) {
-        if (adj[u].size() == 1) bestPath[id] = tree.query(multiplier, 1, 1, M);
-        else bestPath[id] = tree.query(multiplier, 1, 1, M) + tree.query(multiplier, 2, 1, M);
+        if (adj[u].size() == 1)
+            bestPath[id] = tree.query(multiplier, 1, 1, M);
+        else
+            bestPath[id] = tree.query(multiplier, 1, 1, M) + tree.query(multiplier, 2, 1, M);
     }
 
     for (auto [v, w] : adj[u])
-        if (v != p) dfsUp(v, u, w);
+        if (v != p)
+            dfsUp(v, u, w);
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n; cin >> n;
+    int n;
+    cin >> n;
     for (int i = 1; i < n; i++) {
-        int u, v, w; cin >> u >> v >> w;
+        int u, v, w;
+        cin >> u >> v >> w;
         adj[u].emplace_back(v, w);
         adj[v].emplace_back(u, w);
     }
 
-    int q; cin >> q;
+    int q;
+    cin >> q;
     for (int i = 0; i < q; i++) {
-        int u, k; cin >> u >> k;
+        int u, k;
+        cin >> u >> k;
         qry[u].emplace_back(k, i);
     }
 
@@ -1694,95 +1802,112 @@ using namespace std;
 
 typedef long long ll;
 typedef long double ld;
-typedef pair<ll,ll> pl;
-typedef pair<int,int> pii;
-typedef tuple<int,int,int> tt;
+typedef pair<ll, ll> pl;
+typedef pair<int, int> pii;
+typedef tuple<int, int, int> tt;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
 
-const int M = 5e14;
+const long long M = 5e14;
 
 struct line {
     ll a, b;
 
-    line() : a(0), b(0) {}
-    line (ll a, ll b) : a(a), b(b) {}
+    line() : a(0), b(0) {
+    }
+    line(ll a, ll b) : a(a), b(b) {
+    }
 
-    pl calc (ll x) { return make_pair(a * x + b, a); }
+    pl calc(ll x) {
+        return make_pair(a * x + b, a);
+    }
 
-    ll slope() { return a; }
+    ll slope() {
+        return a;
+    }
 };
 
 struct node {
     line tr;
     node *lpt, *rpt;
 
-    node() : tr(0, LLONG_MAX), lpt(nullptr), rpt(nullptr) {}
+    node() : tr(0, LLONG_MAX), lpt(nullptr), rpt(nullptr) {
+    }
 
-    ll divi (ll a, ll b) {
+    ll divi(ll a, ll b) {
         return a / b - ((a ^ b) < 0 && a % b);
     }
 
-    void update (line cur, ll l = -M, ll r = M) {
+    void update(line cur, ll l = -M, ll r = M) {
         if (l == r) {
-            if (cur.calc(l) < tr.calc(l)) tr = cur;
+            if (cur.calc(l) < tr.calc(l))
+                tr = cur;
             return;
         }
         ll mid = divi(l + r, 2);
-        if (cur.calc(mid) < tr.calc(mid)) swap(cur, tr);
+        if (cur.calc(mid) < tr.calc(mid))
+            swap(cur, tr);
         if (cur.slope() > tr.slope()) {
-            if (lpt == nullptr) lpt = new node();
+            if (lpt == nullptr)
+                lpt = new node();
             lpt->update(cur, l, mid);
-        }
-        else if (cur.slope() < tr.slope()) {
-            if (rpt == nullptr) rpt = new node();
+        } else if (cur.slope() < tr.slope()) {
+            if (rpt == nullptr)
+                rpt = new node();
             rpt->update(cur, mid + 1, r);
         }
     }
 
-    pl query (ll x, ll l = -M, ll r = M) {
+    pl query(ll x, ll l = -M, ll r = M) {
         pl cur = tr.calc(x);
         ll mid = divi(l + r, 2);
-        if (l == r) return cur;
+        if (l == r)
+            return cur;
         if (x <= mid) {
-            if (lpt == nullptr) return cur;
+            if (lpt == nullptr)
+                return cur;
             return min(cur, lpt->query(x, l, mid));
-        }
-        else {
-            if (rpt == nullptr) return cur;
+        } else {
+            if (rpt == nullptr)
+                return cur;
             return min(cur, rpt->query(x, mid + 1, r));
         }
     }
 };
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n, q; cin >> n >> q;
+    int n, q;
+    cin >> n >> q;
     ll head = 1, tail = n, P = 0, T = 0;
 
-    node tree; tree.update(line(head, 0));
+    node tree;
+    tree.update(line(head, 0));
     while (q--) {
-        int type; cin >> type;
+        int type;
+        cin >> type;
         if (type == 1) {
-            int k; cin >> k;
+            int k;
+            cin >> k;
             head -= k;
-            tree.update(line(head, - head * P - T));
-        }
-        else if (type == 2) {
-            int k; cin >> k;
-            tree.update(line(tail + 1, - (tail + 1) * P - T));
+            tree.update(line(head, -head * P - T));
+        } else if (type == 2) {
+            int k;
+            cin >> k;
+            tree.update(line(tail + 1, -(tail + 1) * P - T));
             tail += k;
-        }
-        else {
-            int b, s; cin >> b >> s;
+        } else {
+            int b, s;
+            cin >> b >> s;
             P += s, T += b - head * s;
         }
 
-        ll best; int pos; tie(best, pos) = tree.query(P);
+        ll best;
+        int pos;
+        tie(best, pos) = tree.query(P);
         cout << pos - head + 1 << " " << best + T << "\n";
     }
 
@@ -1832,9 +1957,9 @@ using namespace std;
 
 typedef long long ll;
 typedef long double ld;
-typedef pair<ll,ll> pl;
-typedef pair<int,int> pii;
-typedef tuple<int,int,int> tt;
+typedef pair<ll, ll> pl;
+typedef pair<int, int> pii;
+typedef tuple<int, int, int> tt;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
@@ -1842,16 +1967,20 @@ typedef tuple<int,int,int> tt;
 struct line {
     int a, b;
 
-    line() : a(0), b(0) {}
-    line (int a, int b) : a(a), b(b) {}
+    line() : a(0), b(0) {
+    }
+    line(int a, int b) : a(a), b(b) {
+    }
 
-    int calc (int x) { return a * x + b; }
+    int calc(int x) {
+        return a * x + b;
+    }
 
-    bool operator != (const line &o) const {
+    bool operator!=(const line &o) const {
         return a != o.a || b != o.b;
     }
 
-    bool operator == (const line &o) const {
+    bool operator==(const line &o) const {
         return a == o.a && b == o.b;
     }
 };
@@ -1863,16 +1992,20 @@ struct node {
     line asgn;
     node *lpt, *rpt;
 
-    node() : tr(0), lazy(0), asgn(init), lpt(nullptr), rpt(nullptr) {}
+    node() : tr(0), lazy(0), asgn(init), lpt(nullptr), rpt(nullptr) {
+    }
 
-    int get (int l, int r) {
-        if (asgn == init) return lazy + tr;
+    int get(int l, int r) {
+        if (asgn == init)
+            return lazy + tr;
         return lazy + max(asgn.calc(l), asgn.calc(r));
     }
 
-    void pushDown (int l, int r, int mid) {
-        if (lpt == nullptr) lpt = new node();
-        if (rpt == nullptr) rpt = new node();
+    void pushDown(int l, int r, int mid) {
+        if (lpt == nullptr)
+            lpt = new node();
+        if (rpt == nullptr)
+            rpt = new node();
 
         bool change = 0;
         if (asgn != init)
@@ -1883,58 +2016,67 @@ struct node {
             tr = max(lpt->get(l, mid), rpt->get(mid + 1, r));
     }
 
-    void assignLine (int a, int b, line cur, int l, int r) {
+    void assignLine(int a, int b, line cur, int l, int r) {
         /*
             a..b: khoảng cần cập nhật
             cur: đường thẳng cần cập nhật
             l..r: khoảng mà nút quản lý
         */
-        if (b < l || r < a) return;
+        if (b < l || r < a)
+            return;
         if (a <= l && r <= b) {
             asgn = cur, lazy = 0;
             return;
         }
-        int mid = (l + r) >> 1; pushDown(l, r, mid);
+        int mid = (l + r) >> 1;
+        pushDown(l, r, mid);
         lpt->assignLine(a, b, cur, l, mid);
         rpt->assignLine(a, b, cur, mid + 1, r);
         tr = max(lpt->get(l, mid), rpt->get(mid + 1, r));
     }
 
-    void addConstant (int a, int b, int delta, int l, int r) {
+    void addConstant(int a, int b, int delta, int l, int r) {
         /*
             a..b: khoảng cần cập nhật
             delta: giá trị cần nhập nhật
             l..r: khoảng mà nút quản lý
         */
-        if (b < l || r < a) return;
+        if (b < l || r < a)
+            return;
         if (a <= l && r <= b) {
             lazy += delta;
             return;
         }
-        int mid = (l + r) >> 1; pushDown(l, r, mid);
+        int mid = (l + r) >> 1;
+        pushDown(l, r, mid);
         lpt->addConstant(a, b, delta, l, mid);
         rpt->addConstant(a, b, delta, mid + 1, r);
         tr = max(lpt->get(l, mid), rpt->get(mid + 1, r));
     }
 
-    int walk (int targ, int l, int r) {
+    int walk(int targ, int l, int r) {
         /*
             targ: tìm vị trí nhỏ nhất > targ
             l..r: khoảng mà nút quản lý
         */
-        if (l == r) return l;
-        int mid = (l + r) >> 1; pushDown(l, r, mid);
-        if (lpt->get(l, mid) > targ) return lpt->walk(targ, l, mid);
+        if (l == r)
+            return l;
+        int mid = (l + r) >> 1;
+        pushDown(l, r, mid);
+        if (lpt->get(l, mid) > targ)
+            return lpt->walk(targ, l, mid);
         return rpt->walk(targ, mid + 1, r);
     }
 
-    int query (int pos, int l, int r) {
+    int query(int pos, int l, int r) {
         /*
             pos: vị trí được truy vấn
             l..r: khoảng mà nút quản lý
         */
-        if (l == r) return get(l, r);
-        if (asgn != init) return asgn.calc(pos) + lazy;
+        if (l == r)
+            return get(l, r);
+        if (asgn != init)
+            return asgn.calc(pos) + lazy;
         int mid = (l + r) >> 1;
         if (l <= pos && pos <= mid)
             return lazy + (lpt == nullptr ? 0 : lpt->query(pos, l, mid));
@@ -1943,26 +2085,28 @@ struct node {
     }
 };
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n; cin >> n;
+    int n;
+    cin >> n;
     node tree;
 
     char type;
     while (cin >> type) {
-        if (type == 'E') return 0;
+        if (type == 'E')
+            return 0;
         if (type == 'I') {
-            int a, b, D; cin >> a >> b >> D;
+            int a, b, D;
+            cin >> a >> b >> D;
             int curL = (a > 1 ? tree.query(a - 1, 1, n) : 0), curR = tree.query(b, 1, n);
             tree.assignLine(a, b, line(D, curL - D * (a - 1)), 1, n);
             if (b < n)
                 tree.addConstant(b + 1, n, tree.query(b, 1, n) - curR, 1, n);
-        }
-        else {
-            int h; cin >> h;
+        } else {
+            int h;
+            cin >> h;
             cout << (tree.get(1, n) <= h ? n : tree.walk(h, 1, n) - 1) << "\n";
         }
     }

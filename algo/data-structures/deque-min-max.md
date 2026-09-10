@@ -263,10 +263,12 @@ Tuy nhiên ta nhận thấy rằng, đây chính là **bài toán tìm min trong
 int ans = 0;
 dq.push_back(0);
 for (int i = 1; i <= N + 1; ++i) {
-    while (dq.size() && dq.front() < i - K) dq.pop_front();
+    while (dq.size() && dq.front() < i - K)
+        dq.pop_front();
     dp[i] = dp[dq.front()] + A[i];
     ans += A[i];
-    while (dq.size() && dp[dq.back()] >= dp[i]) dq.pop_back();
+    while (dq.size() && dp[dq.back()] >= dp[i])
+        dq.pop_back();
     dq.push_back(i);
 }
 cout << ans - dp[N + 1] << '\n';

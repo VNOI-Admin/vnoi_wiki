@@ -78,7 +78,7 @@ int N;
 queue<int> q;
 
 bool spfa() {
-    for(int i = 1 ; i <= N ; i++) {
+    for (int i = 1; i <= N; i++) {
         Dist[i] = Inf;
         Cnt[i] = 0;
         inqueue[i] = false;
@@ -86,12 +86,12 @@ bool spfa() {
     Dist[S] = 0;
     q.push(S);
     inqueue[S] = true;
-    while(!q.empty()) {
+    while (!q.empty()) {
         int u = q.front();
         q.pop();
         inqueue[u] = false;
 
-        for (ii tmp: AdjList[u]) {
+        for (ii tmp : AdjList[u]) {
             int v = tmp.first;
             int w = tmp.second;
 

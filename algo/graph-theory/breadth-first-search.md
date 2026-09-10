@@ -96,8 +96,8 @@ void bfs(int s) { // Với s là đỉnh xuất phát (đỉnh nguồn)
         q.pop();
         for (auto v : g[u]) {
             if (!visit[v]) {
-                d[v]     = d[u] + 1;
-                par[v]   = u;
+                d[v] = d[u] + 1;
+                par[v] = u;
                 visit[v] = true;
                 q.push(v);
             }
@@ -345,14 +345,14 @@ int moveY[] = {1, -1, 0, 0};
 void reset() {
     slicks.clear();
     for (int i = 1; i <= n; ++i)
-        fill_n(visit[i], m + 1, false);
+        fill_n(visited[i], m + 1, false);
 }
 
 int bfs(int sx, int sy) {
     int sizeSlicks = 1; // Biến đếm số lượng đỉnh thuộc thành phần liên thông
-    queue < pair <int, int> > q;
+    queue<pair<int, int>> q;
     q.push({sx, sy});
-    visit[sx][sy] = true;
+    visited[sx][sy] = true;
     while (!q.empty()) {
         int x = q.front().first;
         int y = q.front().second;
@@ -362,12 +362,14 @@ int bfs(int sx, int sy) {
             int u = x + moveX[i];
             int v = y + moveY[i];
 
-            if (u > n || u < 1) continue;
-            if (v > m || v < 1) continue;
+            if (u > n || u < 1)
+                continue;
+            if (v > m || v < 1)
+                continue;
 
-            if (a[u][v] && !visit[u][v]) {
+            if (a[u][v] && !visited[u][v]) {
                 ++sizeSlicks;
-                visit[u][v] = true;
+                visited[u][v] = true;
                 q.push({u, v});
             }
         }
@@ -377,14 +379,16 @@ int bfs(int sx, int sy) {
 
 int main() {
     while (cin >> n >> m) {
-        if (!n && !m) return 0;
-
-        for (int i = 1; i <= n; ++i)
-            for (int j = 1; j <= m; ++j) cin >> a[i][j];
+        if (!n && !m)
+            return 0;
 
         for (int i = 1; i <= n; ++i)
             for (int j = 1; j <= m; ++j)
-                if (a[i][j] && !visit[i][j])
+                cin >> a[i][j];
+
+        for (int i = 1; i <= n; ++i)
+            for (int j = 1; j <= m; ++j)
+                if (a[i][j] && !visited[i][j])
                     slicks.push_back(bfs(i, j));
 
         cout << slicks.size() << '\n';
@@ -397,8 +401,8 @@ int main() {
                 cout << pre << ' ' << number << '\n';
                 pre = v;
                 number = 1;
-            }
-            else ++number;
+            } else
+                ++number;
 
         reset();
     }
@@ -528,8 +532,14 @@ int main() {
     for (int i = 1; i <= r; ++i)
         for (int j = 1; j <= c; ++j) {
             cin >> a[i][j];
-            if (a[i][j] == 'C') { sx = i; sy = j; }
-            if (a[i][j] == 'B') { tx = i; ty = j; }
+            if (a[i][j] == 'C') {
+                sx = i;
+                sy = j;
+            }
+            if (a[i][j] == 'B') {
+                tx = i;
+                ty = j;
+            }
         }
 
     bfs(sx, sy);
@@ -962,8 +972,10 @@ void bfs(int s) {
 
             if (d[v] > d[u] + w) {
                 d[v] = d[u] + w;
-                if (w) q.push_back(v);
-                else q.push_front(v);
+                if (w)
+                    q.push_back(v);
+                else
+                    q.push_front(v);
             }
         }
     }
@@ -1110,8 +1122,9 @@ bool checkBipartiteGraph() {
 }
 
 int main() {
-    while (cin >> n){
-        if (!n) return 0;
+    while (cin >> n) {
+        if (!n)
+            return 0;
 
         cin >> l;
         while (l--) {

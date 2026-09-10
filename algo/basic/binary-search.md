@@ -42,13 +42,13 @@ Dưới đây là code minh họa viết bằng ngôn ngữ C++. Trong trường
 int binary_search(int A[], int sizeA, int target) {
     int lo = 1, hi = sizeA;
     while (lo <= hi) {
-        int mid = lo + (hi - lo)/2;
+        int mid = lo + (hi - lo) / 2;
         if (A[mid] == target)
             return mid;
         else if (A[mid] < target)
-            lo = mid+1;
+            lo = mid + 1;
         else
-            hi = mid-1;
+            hi = mid - 1;
     }
     // không tìm thấy giá trị target trong mảng A
     return -1;
@@ -233,7 +233,7 @@ bool check(int capacity, const vector<int> &weights, int days) {
 }
 
 // hàm tìm kiếm nhị phân
-int shipWithinDays(const vector<int>& weights, int days) {
+int shipWithinDays(const vector<int> &weights, int days) {
     int lo = 0, hi = 0;
     for (int i = 0; i < weights.size(); ++i) {
         lo = max(lo, weights[i]);
@@ -241,7 +241,7 @@ int shipWithinDays(const vector<int>& weights, int days) {
     }
 
     while (lo < hi) {
-        int mid = lo + (hi - lo)/2;
+        int mid = lo + (hi - lo) / 2;
         if (check(mid, weights, days))
             hi = mid;
         else
@@ -275,7 +275,7 @@ bool isTerminated(double lo, double hi) {
 
 double binary_search(double lo, double hi) {
     while (isTerminated(lo, hi) == false) {
-        double mid = lo + (hi-lo)/2;
+        double mid = lo + (hi - lo) / 2;
         if (P(mid) == true)
             hi = mid;
         else

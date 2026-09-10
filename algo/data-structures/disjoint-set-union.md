@@ -99,7 +99,8 @@ void union_sets(int a, int b) {
     a = find_set(a);
     b = find_set(b);
     if (a != b) {
-        if (sz[a] < sz[b]) swap(a, b); // Đặt biến a là gốc của cây có kích cỡ lớn hơn
+        if (sz[a] < sz[b])
+            swap(a, b); // Đặt biến a là gốc của cây có kích cỡ lớn hơn
         parent[b] = a;
         sz[a] += sz[b]; // Cập nhật kích cỡ của cây mới gộp lại
     }
@@ -197,7 +198,8 @@ void union_sets(int a, int b) {
     b = find_set(b);
 
     if (a != b) {
-        if (lab[a] > lab[b]) swap(a, b);
+        if (lab[a] > lab[b])
+            swap(a, b);
         lab[a] += lab[b];
         lab[b] = a;
     }
@@ -227,7 +229,8 @@ void union_sets(int a, int b) {
     a = find_set(a);
     b = find_set(b);
     if (a != b) {
-        if (sz[a] < sz[b]) swap(a, b);
+        if (sz[a] < sz[b])
+            swap(a, b);
         parent[b] = a;
         sz[a] += sz[b];
         sum[a] += sum[b];
@@ -300,7 +303,8 @@ void union_sets(int a, int b) {
     a = find_set(a);
     b = find_set(b);
     if (a != b) {
-        if (sz[a] < sz[b]) swap(a, b);
+        if (sz[a] < sz[b])
+            swap(a, b);
         parent[b] = a;
         sz[a] += sz[b];
         mx[a] = max(mx[a], mx[b]);
@@ -359,7 +363,7 @@ int n, ans;
 int a[N], p[N], res[N];
 bool flag[N];
 
-struct DSU{
+struct DSU {
     vector<int> parent, sz, sum;
 
     DSU(int n) : parent(n), sz(n), sum(n) {};
@@ -378,7 +382,8 @@ struct DSU{
         a = find_set(a);
         b = find_set(b);
         if (a != b) {
-            if (sz[a] < sz[b]) swap(a,b);
+            if (sz[a] < sz[b])
+                swap(a, b);
             parent[b] = a;
             sz[a] += sz[b];
             sum[a] += sum[b];
@@ -448,7 +453,8 @@ Hàm `union_sets`, tương tự, cũng cần phải được thay đổi và đ�
 void union_sets(int a, int b) {
     pair<int, int> valA = find_set(a),
                    valB = find_set(b);
-    a = valA.first; b = valB.first;
+    a = valA.first;
+    b = valB.first;
 
     if (a == b) {
         if (valA.second != valB.second) {
@@ -508,7 +514,7 @@ const int N = 1e5 + 5;
 int n, q;
 int a[N];
 
-struct DSU{
+struct DSU {
     vector<map<int, int>> color;
     vector<int> parent, sz;
 
@@ -521,7 +527,8 @@ struct DSU{
     }
 
     int find_set(int v) {
-        if (v == parent[v]) return v;
+        if (v == parent[v])
+            return v;
         int p = find_set(parent[v]);
         parent[v] = p;
         return p;
@@ -531,11 +538,13 @@ struct DSU{
         a = find_set(a);
         b = find_set(b);
         if (a != b) {
-            if (sz[a] < sz[b]) swap(a, b);
+            if (sz[a] < sz[b])
+                swap(a, b);
             parent[b] = a;
             sz[a] += sz[b];
 
-            for (auto p : color[b]) color[a][p.first] += p.second;
+            for (auto p : color[b])
+                color[a][p.first] += p.second;
             color[b].clear();
         }
     }
@@ -591,31 +600,40 @@ int cnt[N];
 void pre_dfs(int u, int p) { // Một hàm dfs chạy trước
                              // để tính được độ lớn của từng cây con
     sz[u] = 1;
-    for (auto v : g[u]) if (v != p) {
-        pre_dfs(v, u);
-        sz[u] += sz[v];
-    }
+    for (auto v : g[u])
+        if (v != p) {
+            pre_dfs(v, u);
+            sz[u] += sz[v];
+        }
 }
 
 void update(int u, int p, int delta) {
     cnt[color[u]] += delta;
-    for (auto v : g[u]) if (v != p) update(v, u, delta);
+    for (auto v : g[u])
+        if (v != p)
+            update(v, u, delta);
 }
 
 void dfs(int u, int p) {
     int bigChild = -1;
-    for (auto v : g[u]) if (v != p) {
-        if (bigChild == -1 || sz[v] > sz[bigChild]) bigChild = v;
-    } // Tìm cây con lớn nhất trong
-      // các con trực tiếp của đỉnh u
+    for (auto v : g[u])
+        if (v != p) {
+            if (bigChild == -1 || sz[v] > sz[bigChild])
+                bigChild = v;
+        } // Tìm cây con lớn nhất trong
+    // các con trực tiếp của đỉnh u
 
-    for (auto v : g[u]) if (v != p && v != bigChild) {
-        dfs(v, u);
-        update(v, u, -1);
-    }
-    if (bigChild != -1) dfs(bigChild, u);
+    for (auto v : g[u])
+        if (v != p && v != bigChild) {
+            dfs(v, u);
+            update(v, u, -1);
+        }
+    if (bigChild != -1)
+        dfs(bigChild, u);
 
-    for (auto v : g[u]) if (v != p && v != bigChild) update(v, u, 1);
+    for (auto v : g[u])
+        if (v != p && v != bigChild)
+            update(v, u, 1);
     cnt[color[u]]++;
 
     // Trả lời các truy vấn tại đỉnh u, với cnt[c]
@@ -673,49 +691,60 @@ int sz[N];
 int cnt[N];
 int res[N]; // res[i] là đáp án của truy vấn thứ i
 vector<pair<int, int>> queries[N];
-        // cặp (a, b) trong queries[v] có nghĩa là ở đỉnh v
-        // có truy vấn hỏi có bao nhiêu đỉnh trong cây con có màu a
-        // và số thứ tự của truy vấn là b
+// cặp (a, b) trong queries[v] có nghĩa là ở đỉnh v
+// có truy vấn hỏi có bao nhiêu đỉnh trong cây con có màu a
+// và số thứ tự của truy vấn là b
 vector<int> g[N];
 
 void pre_dfs(int u, int p) {
     sz[u] = 1;
-    for (auto v : g[u]) if (v != p) {
-        pre_dfs(v, u);
-        sz[u] += sz[v];
-    }
+    for (auto v : g[u])
+        if (v != p) {
+            pre_dfs(v, u);
+            sz[u] += sz[v];
+        }
 }
 
 void update(int u, int p, int delta) {
     cnt[color[u]] += delta;
-    for (auto v : g[u]) if (v != p) update(v, u, delta);
+    for (auto v : g[u])
+        if (v != p)
+            update(v, u, delta);
 }
 
 void dfs(int u, int p) {
     int bigChild = -1;
-    for (auto v : g[u]) if (v != p) {
-        if (bigChild == -1 || sz[v] > sz[bigChild]) bigChild = v;
-    }
+    for (auto v : g[u])
+        if (v != p) {
+            if (bigChild == -1 || sz[v] > sz[bigChild])
+                bigChild = v;
+        }
 
-    for (auto v : g[u]) if (v != p && v != bigChild) {
-        dfs(v, u);
-        update(v, u, -1);
-    }
-    if (bigChild != -1) dfs(bigChild, u);
+    for (auto v : g[u])
+        if (v != p && v != bigChild) {
+            dfs(v, u);
+            update(v, u, -1);
+        }
+    if (bigChild != -1)
+        dfs(bigChild, u);
 
-    for (auto v : g[u]) if (v != p && v != bigChild) update(v, u, 1);
+    for (auto v : g[u])
+        if (v != p && v != bigChild)
+            update(v, u, 1);
     cnt[color[u]]++;
 
-    for (auto p : queries[u]) res[p.second] = cnt[p.first];
+    for (auto p : queries[u])
+        res[p.second] = cnt[p.first];
 }
 
-signed main() {
-
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     cin >> n >> q;
 
-    for (int i = 1; i <= n; i++) cin >> color[i];
+    for (int i = 1; i <= n; i++)
+        cin >> color[i];
 
     for (int i = 1; i < n; i++) {
         int a, b;

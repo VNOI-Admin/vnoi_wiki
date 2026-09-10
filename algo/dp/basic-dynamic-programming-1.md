@@ -134,8 +134,7 @@ using namespace std;
 
 long long n, f[100010];
 
-int main()
-{
+int main() {
     cin >> n;
     f[1] = 3;
     f[2] = 8;
@@ -205,8 +204,7 @@ const int N = 1e3 + 10;
 int f[N], v[N], n, S;
 // Gán f[i] = -1 nếu không thể tìm được một số đồng xu tổng bằng i
 
-int main()
-{
+int main() {
     cin >> n >> S;
     for (int i = 1; i <= n; i++)
         cin >> v[i];
@@ -296,18 +294,15 @@ using namespace std;
 const int N = 1e3 + 10;
 int f[N], a[N], d[N], n;
 
-int main()
-{
+int main() {
     cin >> n;
     for (int i = 1; i <= n; i++)
         cin >> a[i];
     // Bước QHĐ
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         f[i] = 1;
         for (int j = 1; j < i; j++)
-            if (a[j] <= a[i] && f[i] < f[j] + 1)
-            {
+            if (a[j] <= a[i] && f[i] < f[j] + 1) {
                 f[i] = f[j] + 1;
                 d[i] = j;
             }
@@ -319,8 +314,7 @@ int main()
             t = i;
     // In ra dãy con đó
     vector<int> seq;
-    while (t)
-    {
+    while (t) {
         seq.push_back(a[t]);
         t = d[t];
     }
@@ -361,27 +355,22 @@ int n, f[N], d[N];
 Meeting m[N];
 
 // Hàm so sánh để sắp xếp
-bool compare(const Meeting& x, const Meeting& y)
-{
+bool compare(const Meeting &x, const Meeting &y) {
     return x.a < y.a || (x.a == y.a && x.b < y.b);
 }
 
-int main()
-{
+int main() {
     cin >> n;
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         m[i].num = i;
         cin >> m[i].a >> m[i].b;
     }
     sort(m + 1, m + n + 1, compare);
     // Bước quy hoạch động
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         f[i] = 1;
         for (int j = 1; j < i; j++)
-            if (m[j].b <= m[i].a && f[i] < f[j] + 1)
-            {
+            if (m[j].b <= m[i].a && f[i] < f[j] + 1) {
                 f[i] = f[j] + 1;
                 d[i] = j;
             }
@@ -392,8 +381,7 @@ int main()
         if (f[i] > f[t])
             t = i;
     vector<int> seq;
-    while (t)
-    {
+    while (t) {
         seq.push_back(m[t].num);
         t = d[t];
     }
@@ -495,16 +483,14 @@ using namespace std;
 const int N = 1e3 + 10;
 int a[N], P[N], Q[N], n, U, L;
 
-int main()
-{
+int main() {
     cin >> n >> U >> L;
     for (int i = 1; i <= n; i++)
         cin >> a[i];
-    for (int i = 1; i <= n; i++)
-    {
-        P[i] = 1; Q[i] = 1;
-        for (int j = 1; j <= i - L; j++)
-        {
+    for (int i = 1; i <= n; i++) {
+        P[i] = 1;
+        Q[i] = 1;
+        for (int j = 1; j <= i - L; j++) {
             if (a[i] - U <= a[j] && a[j] < a[i])
                 Q[i] = max(Q[i], P[j] + 1);
             if (a[j] > a[i] && a[j] <= a[i] + U)
@@ -567,8 +553,7 @@ const int N = 1e3 + 10;
 int m, n, a[N][N];
 long long f[N][N];
 
-int main()
-{
+int main() {
     cin >> n >> m;
     for (int i = 1; i <= m; i++)
         for (int j = 1; j <= n; j++)
@@ -680,20 +665,17 @@ const int N = 310;
 int n, a[N];
 bool L[N][N];
 
-int main()
-{
+int main() {
     cin >> n;
     int t = 0;
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         cin >> a[i];
         t += a[i];
     }
     for (int i = 0; i <= n; i++)
         L[i][0] = true;
     for (int i = 1; i <= n; i++)
-        for (int j = 1; 2 * j <= t; j++)
-        {
+        for (int j = 1; 2 * j <= t; j++) {
             L[i][j] |= L[i - 1][j];
             if (a[i] <= j)
                 L[i][j] |= L[i - 1][j - a[i]];

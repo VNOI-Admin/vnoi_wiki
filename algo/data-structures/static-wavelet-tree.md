@@ -135,14 +135,16 @@ struct Node {
     vector<int> B;
 
     // constructor tạo cây rỗng
-    Node() : lpt(nullptr), rpt(nullptr) {}
-    
+    Node() : lpt(nullptr), rpt(nullptr) {
+    }
+
     // constructor xây dựng cây từ mảng được cho bởi hai con trỏ from và to
     // ứng với đoạn [from; to) với miền giá trị [x; y].
-    Node (int* from, int* to, int low, int high) {
-        if (low == high || from >= to) return;
+    Node(int *from, int *to, int low, int high) {
+        if (low == high || from >= to)
+            return;
         int mid = (low + high) / 2;
-        function<bool(int)> f = [mid] (int x) {
+        function<bool(int)> f = [mid](int x) {
             return x <= mid;
         };
 
@@ -327,7 +329,7 @@ for (int i = 0; i < n; i++) {
         // Bật bit thứ (i % 64) trong khối thứ (i / 64)
         b[i / 64] |= (1ULL << (i % 64));
         // Tạm thời đếm số bit 1 nội bộ trong khối này
-        c[i / 64 + 1]++; 
+        c[i / 64 + 1]++;
     }
 }
 
@@ -412,25 +414,28 @@ vector<int> offlineWaveletTree(vector<int> A, vector<tuple<int, int, int, int>> 
     cutpoint[0] = cutpoint[N] = true;
 
     for (int b = 29; b >= 0; b--) {
-        function<bool(int)> f = [b] (int x) {
+        function<bool(int)> f = [b](int x) {
             // việc so sánh với mid trong Wavelet Tree tương đương
             // với việc xét bit thứ b của giá trị cần so sánh
             return (x >> b & 1) ^ 1;
         };
-        
+
         int lastStart = 0, queryIterator = 0;
         for (int i = 1; i <= N; i++) {
-            if (!cutpoint[i]) continue;
-            
+            if (!cutpoint[i])
+                continue;
+
             // xử lý đoạn [lastStart; i) ứng với một nút của Wavelet Tree
-            for (int j = lastStart; j < i; j++) B[j] = f(A[j]);
+            for (int j = lastStart; j < i; j++)
+                B[j] = f(A[j]);
             partial_sum(B.begin() + lastStart, B.begin() + i, B.begin() + lastStart);
             int pivot = stable_partition(A.begin() + lastStart, A.begin() + i, f) - A.begin();
 
             // xử lý các truy vấn trong phạm vi quản lý của nút hiện tại
             int cntLeft = B[i - 1], lastQuery = queryIterator;
             while (queryIterator < Q && get<0>(queries[queryIterator]) < i) {
-                int l, r, k, id, offset; tie(l, r, k, id) = queries[queryIterator];
+                int l, r, k, id, offset;
+                tie(l, r, k, id) = queries[queryIterator];
                 int toLeft = B[r] - (l > lastStart ? B[l - 1] : 0);
                 if (k < toLeft) // đi sang cây con trái
                     l = (l > lastStart ? B[l - 1] : 0), r = B[r] - 1, offset = lastStart;
@@ -439,15 +444,15 @@ vector<int> offlineWaveletTree(vector<int> A, vector<tuple<int, int, int, int>> 
                 l += offset, r += offset;
                 queries[queryIterator++] = make_tuple(l, r, k, id);
             }
-            
+
             // xử lý các truy vấn trong đoạn [lastQuery; queryIterator) và sắp xếp lại thứ tự
             if (lastQuery < queryIterator) {
-                function<bool(tuple<int,int,int,int>)> pred = [pivot] (tuple<int,int,int,int> e) {
+                function<bool(tuple<int, int, int, int>)> pred = [pivot](tuple<int, int, int, int> e) {
                     return get<0>(e) < pivot;
                 };
                 stable_partition(queries.begin() + lastQuery, queries.begin() + queryIterator, pred);
             }
-            
+
             // tách nút hiện tại thành 2 nút con bằng cách đánh dấu thêm điểm cách
             cutpoint[pivot] = true, lastStart = i;
         }
@@ -670,15 +675,12 @@ Ta duyệt $j$ từ $1$ đến $n$, tại mỗi bước sử dụng Wavelet Tree
 const int N = 1e5 + 2;
 int n, MAX, MIN, ID[N];
 long long K, sum[N], MAX2, MIN2;
-vector <long long> C;
+vector<long long> C;
 
-bool Check(long long mid)
-{
+bool Check(long long mid) {
     long long cnt = 0;
-    for (int j = 1; j <= n; ++j)
-    {
-
-        cnt += wvl.countLEQ(1, j, upper_bound(C.begin() , C.end(), sum[j] - mid) - C.begin());
+    for (int j = 1; j <= n; ++j) {
+        cnt += wvl.countLEQ(1, j, upper_bound(C.begin(), C.end(), sum[j] - mid) - C.begin());
     }
 
     return cnt >= K;
@@ -686,39 +688,40 @@ bool Check(long long mid)
 
 long long sum2[N];
 
-int main()
-{
+int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
 
-    cin >> n >> K; sum[0] = 0;
-    for (int i = 1; i <= n; ++i)
-    {
+    cin >> n >> K;
+    sum[0] = 0;
+    for (int i = 1; i <= n; ++i) {
         int a;
         cin >> a;
         MAX = max(MAX, a);
-        MIN  = min(MIN, a);
+        MIN = min(MIN, a);
         sum[i] = sum[i - 1] + a;
     }
 
-    long long l = (long long) MIN * n, r = (long long) MAX * n, ans = r;
+    long long l = (long long)MIN * n, r = (long long)MAX * n, ans = r;
 
     C.push_back(0);
-    for (int i = 1; i <= n; ++i) C.push_back(sum[i]);
+    for (int i = 1; i <= n; ++i)
+        C.push_back(sum[i]);
 
-    sort(C.begin() , C.end());
-    C.erase(unique(C.begin() , C.end()), C.end());
+    sort(C.begin(), C.end());
+    C.erase(unique(C.begin(), C.end()), C.end());
 
     for (int i = 1; i <= n + 1; ++i)
-        ID[i] = lower_bound(C.begin() , C.end(), sum[i - 1]) - C.begin() + 1;
+        ID[i] = lower_bound(C.begin(), C.end(), sum[i - 1]) - C.begin() + 1;
 
     wvl = Wavelet_Tree(ID + 1, ID + n + 2, 1, C.size());
 
-    while (l <= r)
-    {
+    while (l <= r) {
         long long mid = l + (r - l) / 2;
-        if (Check(mid)) ans = mid, l = mid + 1;
-        else r = mid - 1;
+        if (Check(mid))
+            ans = mid, l = mid + 1;
+        else
+            r = mid - 1;
     }
     cout << ans;
 
@@ -857,22 +860,23 @@ int main() {
         ID[i] = lower_bound(C.begin(), C.end(), a[i]) - C.begin();
 
     vector<vector<int>> pos(C.size());
-    for (int i = 0; i < n; ++i) pos[ID[i]].push_back(i);
+    for (int i = 0; i < n; ++i)
+        pos[ID[i]].push_back(i);
 
     wvl = Wavelet_Tree(ID, ID + n, 0, C.size() - 1);
 
-    while (q--)
-    {
+    while (q--) {
         int k, i, l;
         cin >> k >> i >> l;
         int d = wvl.kthSmallest(1, i + 1, k);
-        if (d < 0 || d >= C.size())
-        {
+        if (d < 0 || d >= C.size()) {
             cout << -1 << '\n';
             continue;
         }
-        if (pos[d].size() < l) cout << -1 << '\n';
-        else cout << pos[d][l - 1] << '\n';
+        if (pos[d].size() < l)
+            cout << -1 << '\n';
+        else
+            cout << pos[d][l - 1] << '\n';
     }
     return 0;
 }
@@ -901,22 +905,28 @@ using namespace std;
 
 struct BIT {
     vector<int> tr;
-    BIT (int sz = 0) : tr(sz + 1) {}
-
-    int p (int k) const { return k & -k; }
-
-    void add (int i, int v) {
-        for (; i < tr.size(); i += p(i)) tr[i] += v;
+    BIT(int sz = 0) : tr(sz + 1) {
     }
 
-    int sum (int i) const {
+    int p(int k) const {
+        return k & -k;
+    }
+
+    void add(int i, int v) {
+        for (; i < tr.size(); i += p(i))
+            tr[i] += v;
+    }
+
+    int sum(int i) const {
         int ans = 0;
-        for (; i > 0; i -= p(i)) ans += tr[i];
+        for (; i > 0; i -= p(i))
+            ans += tr[i];
         return ans;
     }
 
-    int range (int l, int r) const {
-        if (l > r) return 0;
+    int range(int l, int r) const {
+        if (l > r)
+            return 0;
         return sum(r) - sum(l - 1);
     }
 };
@@ -928,10 +938,8 @@ struct WaveletTree {
     BIT active;
 
     // xây dựng Wavelet Tree
-    WaveletTree (vector<pair<int, int>>::iterator b,
-                 vector<pair<int, int>>::iterator e, int mn, int mx) :
-                 lo(mn), hi(mx), L(nullptr), R(nullptr), len(0) {
-
+    WaveletTree(vector<pair<int, int>>::iterator b,
+                vector<pair<int, int>>::iterator e, int mn, int mx) : lo(mn), hi(mx), L(nullptr), R(nullptr), len(0) {
         if (b >= e) {
             mid = lo;
             return;
@@ -943,11 +951,12 @@ struct WaveletTree {
         for (auto it = b; it != e; ++it)
             leftCnt.push_back(leftCnt.back() + (it->first <= mid));
         auto mpos = stable_partition(b, e,
-            [&](const pair<int, int> &p) { return p.first <= mid; }
-        );
+                                     [&](const pair<int, int> &p) { return p.first <= mid; });
         active = BIT(len);
-        for (int i = 1; i <= len; ++i) active.add(i, 1);
-        if (lo == hi) return;
+        for (int i = 1; i <= len; ++i)
+            active.add(i, 1);
+        if (lo == hi)
+            return;
         L = new WaveletTree(b, mpos, lo, mid);
         R = new WaveletTree(mpos, e, mid + 1, hi);
     }
@@ -955,26 +964,27 @@ struct WaveletTree {
     // thay đổi (lật bit) trạng thái của phần tử thứ pos (0: tăng 1, 1: giảm 1)
     void toggle(int pos, const int &val, const int &state) {
         active.add(pos, state == 0 ? +1 : -1);
-        if (lo == hi) return;
+        if (lo == hi)
+            return;
         if (val <= mid) {
             int childPos = leftCnt[pos];
             L->toggle(childPos, val, state);
-        }
-        else {
+        } else {
             int childPos = pos - leftCnt[pos];
             R->toggle(childPos, val, state);
         }
     }
 
     // đếm số phần tử được bật có giá trị bằng x trong đoạn [l; r]
-    int query (int l, int r, int x) const {
-        if (l > r || x < lo || x > hi) return 0;
-        if (lo == hi) return active.range(l, r);
+    int query(int l, int r, int x) const {
+        if (l > r || x < lo || x > hi)
+            return 0;
+        if (lo == hi)
+            return active.range(l, r);
         if (x <= mid) {
             int nl = leftCnt[l - 1] + 1, nr = leftCnt[r];
             return L ? L->query(nl, nr, x) : 0;
-        }
-        else {
+        } else {
             int nl = (l - 1) - leftCnt[l - 1] + 1, nr = r - leftCnt[r];
             return R ? R->query(nl, nr, x) : 0;
         }
@@ -984,11 +994,13 @@ struct WaveletTree {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    
+
     int N, Q;
-    if (!(cin >> N >> Q)) return 0;
+    if (!(cin >> N >> Q))
+        return 0;
     vector<int> A(N);
-    for (int i = 0; i < N; ++i) cin >> A[i];
+    for (int i = 0; i < N; ++i)
+        cin >> A[i];
 
     vector<pair<int, int>> vp(N); // mảng lưu các cặp (giá trị, vị trí ban đầu)
     int mn = INT_MAX, mx = INT_MIN;
@@ -1005,18 +1017,21 @@ int main() {
     vector<int> state(N, 1);
 
     while (Q--) {
-        int t; cin >> t;
+        int t;
+        cin >> t;
         if (t == 0) {
-            int l, r, k; cin >> l >> r >> k;
+            int l, r, k;
+            cin >> l >> r >> k;
             int ans = 0;
-            if (l <= r) ans = wt.query(l + 1, r + 1, k);
+            if (l <= r)
+                ans = wt.query(l + 1, r + 1, k);
             cout << ans << '\n';
-        }
-        else {
-            int i; cin >> i;
+        } else {
+            int i;
+            cin >> i;
             int pos = i + 1;
             int val = A[i];
-            int st = state[i] ? 1 : 0; 
+            int st = state[i] ? 1 : 0;
             wt.toggle(pos, val, st);
             state[i] ^= 1;
         }

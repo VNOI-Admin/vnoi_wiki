@@ -117,12 +117,11 @@ String thực chất là một `vector<char>` có bổ sung thêm một số hà
   #include <iostream>
   #include <string>
   using namespace std;
-  int main ()
-  {
+  int main() {
       string str;
       short age;
-      cout << "Please enter full name and age"<< endl;
-      getline( cin, str) >> age;
+      cout << "Please enter full name and age" << endl;
+      getline(cin, str) >> age;
       cout << "Thank you " << str << "!\n";
       return 0;
   }
@@ -264,7 +263,7 @@ int main() {
   str.replace(int pos, int nchar, string s);
   str.replace(int pos, int nchar, int n, int ch);
 
-  string str="con cho la con cho con. Con meo ko phai la con cho";
+  string str = "con cho la con cho con. Con meo ko phai la con cho";
   str.replace(4, 3, "CHO"); // "con CHO la con cho con. Con meo ko phai la con cho";
   cout << str << endl;
   getchar();
@@ -354,20 +353,20 @@ Sau đây là ví dụ bên trên được viết lại dùng hàm thành viên 
 #include <iostream>
 #include <string.h>
 #include <string>
+using std::cout;
+using std::endl;
 using std::string;
-int main ()
-{
-    char* cstr;
-    char* p;
-    string str ("Xin chao tat ca cac ban");
-    cstr = new char [str.size()+1];
-    strcpy (cstr, str.c_str());
+int main() {
+    char *cstr;
+    char *p;
+    string str("Xin chao tat ca cac ban");
+    cstr = new char[str.size() + 1];
+    strcpy(cstr, str.c_str());
     // cstr là 1 bản sao c-string của str
-    p=strtok (cstr," ");
-    while (p!=NULL)
-    {
+    p = strtok(cstr, " ");
+    while (p != NULL) {
         cout << p << endl;
-        p=strtok(NULL," ");
+        p = strtok(NULL, " ");
     }
     delete[] cstr;
     return 0;

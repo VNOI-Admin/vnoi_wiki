@@ -79,22 +79,23 @@ const int MAX_N = 2e5 + 5;
 
 int N;
 
-int C[MAX_N];                       //
-long long dp1[MAX_N], dp2[MAX_N];   // Khai báo cây và mảng lưu trạng thái quy hoạch động
-vector<int> adj[MAX_N];             //
+int C[MAX_N];                     //
+long long dp1[MAX_N], dp2[MAX_N]; // Khai báo cây và mảng lưu trạng thái quy hoạch động
+vector<int> adj[MAX_N];           //
 
 void calc(int V, int pV) { // hàm tính dp1[V] và dp2[V]
     dp1[V] = 0;
     dp2[V] = C[V];
-    for(int v_i: adj[V]) {
-        if(v_i == pV)continue;
+    for (int v_i : adj[V]) {
+        if (v_i == pV)
+            continue;
         calc(v_i, V); // DFS xuống và tính các đỉnh con
         dp1[V] += max(dp1[v_i], dp2[v_i]);
         dp2[V] += dp1[v_i];
     }
 }
 
-long long solve(){ // hàm tính và trả về đáp án
+long long solve() { // hàm tính và trả về đáp án
     calc(1, 0);
     return max(dp1[1], dp2[1]);
 }
@@ -165,17 +166,18 @@ const int MAX_N = 2e5 + 5;
 int N;
 
 long long dp[MAX_N], sz[MAX_N], ans[MAX_N];
-vector<pair<int, int>> adj[MAX_N];  // mảng kề lưu pair (chỉ số, trọng số cạnh)
+vector<pair<int, int>> adj[MAX_N]; // mảng kề lưu pair (chỉ số, trọng số cạnh)
 
-void pre_calc(int V, int pV) {  // hàm tính sz và dp ban đầu
+void pre_calc(int V, int pV) { // hàm tính sz và dp ban đầu
     dp[V] = 0;
     sz[V] = 1;
-    for(pair<int, int> edge: adj[V]) {
+    for (pair<int, int> edge : adj[V]) {
         int v_i = edge.first;
         int w = edge.second;
-        if(v_i == pV)continue;
+        if (v_i == pV)
+            continue;
         pre_calc(v_i, V);
-        dp[V] += sz[v_i]*w + dp[v_i];
+        dp[V] += sz[v_i] * w + dp[v_i];
         sz[V] += sz[v_i];
     }
 }
@@ -184,25 +186,26 @@ void calc(int V, int pV) { // hàm chuyển gốc theo thứ tự DFS trong cây
 
     ans[V] = dp[V]; // đáp án tại đỉnh V là dp[V] khi V là gốc
 
-    for(pair<int, int> edge: adj[V]) {
+    for (pair<int, int> edge : adj[V]) {
         int v_i = edge.first;
         int w = edge.second;
-        if(v_i == pV)continue;
-        long long old_dp_v_i = dp[v_i]; //
-        long long old_dp_V = dp[V];     // Khai báo các giá trị old. Giá trị new thay đổi trực tiếp vào mảng dp và sz
-        long long old_sz_v_i = sz[v_i]; //
-        long long old_sz_V = sz[V];     //
-        dp[V] = old_dp_V - (old_sz_v_i*w + old_dp_v_i); //
-        sz[V] = old_sz_V - old_sz_v_i;                  // Chuyển gốc từ V thành v_i
-        dp[v_i] = old_dp_v_i + (sz[V]*w + dp[V]);       //
-        sz[v_i] = N;                                    //
+        if (v_i == pV)
+            continue;
+        long long old_dp_v_i = dp[v_i];                   //
+        long long old_dp_V = dp[V];                       // Khai báo các giá trị old. Giá trị new thay đổi trực tiếp vào mảng dp và sz
+        long long old_sz_v_i = sz[v_i];                   //
+        long long old_sz_V = sz[V];                       //
+        dp[V] = old_dp_V - (old_sz_v_i * w + old_dp_v_i); //
+        sz[V] = old_sz_V - old_sz_v_i;                    // Chuyển gốc từ V thành v_i
+        dp[v_i] = old_dp_v_i + (sz[V] * w + dp[V]);       //
+        sz[v_i] = N;                                      //
 
         calc(v_i, V); // tiếp tục chuyển gốc trong cây con v_i
 
-        dp[V] = old_dp_V;       //
-        sz[V] = old_sz_V;       // Chuyển gốc từ v_i thành V
-        dp[v_i] = old_dp_v_i;   //
-        sz[v_i] = old_sz_v_i;   //
+        dp[V] = old_dp_V;     //
+        sz[V] = old_sz_V;     // Chuyển gốc từ v_i thành V
+        dp[v_i] = old_dp_v_i; //
+        sz[v_i] = old_sz_v_i; //
     }
 }
 
@@ -265,32 +268,36 @@ int N;
 int C[MAX_N], K[MAX_N], sz[MAX_N];
 long long dp[MAX_N][MAX_N];
 long long fV[MAX_N][MAX_N];
-vector<int> child[MAX_N];   // child[V] chứa các con của V
+vector<int> child[MAX_N]; // child[V] chứa các con của V
 
-void calc(int V){
+void calc(int V) {
     int n = child[V].size();
 
-    for(int v_i: child[V]) {
+    for (int v_i : child[V]) {
         calc(v_i);
     }
 
-    for(int i = 0; i <= n; i++)fill(fV[i], fV[i] + N + 1, -INF);    // Khởi tạo giá trị cho fV
-    fV[0][0] = 0;                                                   //
+    for (int i = 0; i <= n; i++)
+        fill(fV[i], fV[i] + N + 1, -INF); // Khởi tạo giá trị cho fV
+    fV[0][0] = 0;                         //
 
-    for(int i = 1; i <= n; i++){
+    for (int i = 1; i <= n; i++) {
         int v_i = child[V][i - 1];
-        for(int k = 0; k <= N; k++){
-            for(int j = 0; j <= k; j++){
-                fV[i][k] = max(fV[i][k], fV[i-1][j] + dp[v_i][k - j]);  // Tính fV[i][k]
+        for (int k = 0; k <= N; k++) {
+            for (int j = 0; j <= k; j++) {
+                fV[i][k] = max(fV[i][k], fV[i - 1][j] + dp[v_i][k - j]); // Tính fV[i][k]
             }
         }
     }
 
-    for(int k = 0; k <= N; k++){
-        if(k > K[V])dp[V][k] = -INF;                                //
-        else {                                                      // Tính dp[V][k]
-            if(k > 0)dp[V][k] = max(fV[n][k], fV[n][k-1] + C[V]);   //
-            else dp[V][k] = fV[n][k];                               //
+    for (int k = 0; k <= N; k++) {
+        if (k > K[V])
+            dp[V][k] = -INF; //
+        else {               // Tính dp[V][k]
+            if (k > 0)
+                dp[V][k] = max(fV[n][k], fV[n][k - 1] + C[V]); //
+            else
+                dp[V][k] = fV[n][k]; //
         }
     }
 }
@@ -323,33 +330,37 @@ int N;
 int C[MAX_N], K[MAX_N], sz[MAX_N];
 long long dp[MAX_N][MAX_N];
 long long fV[MAX_N][MAX_N];
-vector<int> child[MAX_N];   // child[V] chứa các con của V
+vector<int> child[MAX_N]; // child[V] chứa các con của V
 
-void calc(int V){
+void calc(int V) {
     int n = child[V].size();
 
-    for(int v_i: child[V]) {
+    for (int v_i : child[V]) {
         calc(v_i);
     }
 
-    for(int i = 0; i <= n; i++)fill(fV[i], fV[i] + N + 1, -INF);    // Khởi tạo giá trị cho fV
-    fV[0][0] = 0;                                                   //
+    for (int i = 0; i <= n; i++)
+        fill(fV[i], fV[i] + N + 1, -INF); // Khởi tạo giá trị cho fV
+    fV[0][0] = 0;                         //
 
-    for(int i = 1; i <= n; i++){
+    for (int i = 1; i <= n; i++) {
         int v_i = child[V][i - 1];
-        for(int a = 0; a <= sz[V]; a++){        // sz[V] lưu tổng sz[v_i] từ 1 đến i - 1
-            for(int b = 0; b <= sz[v_i]; b++){
-                fV[i][a+b] = max(fV[i][a+b], fV[i-1][a] + dp[v_i][b]);  // Cập nhật fV[i][a+b] từ fV[i-1][a] và dp[v_i][b]  
+        for (int a = 0; a <= sz[V]; a++) { // sz[V] lưu tổng sz[v_i] từ 1 đến i - 1
+            for (int b = 0; b <= sz[v_i]; b++) {
+                fV[i][a + b] = max(fV[i][a + b], fV[i - 1][a] + dp[v_i][b]); // Cập nhật fV[i][a+b] từ fV[i-1][a] và dp[v_i][b]
             }
         }
         sz[V] += sz[v_i];
     }
 
-    for(int k = 0; k <= N; k++){
-        if(k > K[V])dp[V][k] = -INF;                                //
-        else {                                                      // Tính dp[V][k]
-            if(k > 0)dp[V][k] = max(fV[n][k], fV[n][k-1] + C[V]);   //
-            else dp[V][k] = fV[n][k];                               //
+    for (int k = 0; k <= N; k++) {
+        if (k > K[V])
+            dp[V][k] = -INF; //
+        else {               // Tính dp[V][k]
+            if (k > 0)
+                dp[V][k] = max(fV[n][k], fV[n][k - 1] + C[V]); //
+            else
+                dp[V][k] = fV[n][k]; //
         }
     }
     sz[V]++;

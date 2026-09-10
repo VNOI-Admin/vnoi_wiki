@@ -170,7 +170,8 @@ for (int mask = 0; mask < (1 << n); mask++) {
     for (int k = 1; k <= n; k++) {
         if (mask & (1 << (k - 1)))
             dp[mask][k] = dp[mask ^ (1 << (k - 1))][k - 1] + dp[mask][k - 1];
-        else dp[mask][k] = dp[mask][k - 1];
+        else
+            dp[mask][k] = dp[mask][k - 1];
     }
     f[mask] = dp[mask][n];
 }
@@ -386,7 +387,8 @@ for (int mask = 0; mask < (1 << n); mask++)
 
 for (int k = 0; k < n; k++)
     for (int mask = 0; mask < (1 << n); mask++)
-        if (mask & (1 << k)) sos[mask] += sos[mask ^ (1 << k)];
+        if (mask & (1 << k))
+            sos[mask] += sos[mask ^ (1 << k)];
 
 for (int mask = 0; mask < (1 << n); mask++)
     a[mask] = sos[mask] * (__builtin_parity(mask) ? -1 : 1);
@@ -439,8 +441,8 @@ for (int mask = 0; mask < (1 << n); mask++) {
         if (mask & (1 << (k - 1))) {
             int sub = mask ^ (1 << (k - 1));
             dp[mask][k] = dp[mask][k - 1] + dp[sub][k - 1] + f[sub];
-        }
-        else dp[mask][k] = dp[mask][k - 1];
+        } else
+            dp[mask][k] = dp[mask][k - 1];
     }
     f[mask] = h(dp[mask][n]) + a[mask]; // tính f
 }
@@ -475,17 +477,18 @@ for (int mask = 0; mask < (1 << n); mask++) {
         if (mask & (1 << (k - 1))) { // truy hồi theo kiểu proper subset
             int sub = mask ^ (1 << (k - 1));
             dpG[mask][k] = dpG[mask][k - 1] + dpG[sub][k - 1] + g[sub];
-        }
-        else dpG[mask][k] = dpG[mask][k - 1];
+        } else
+            dpG[mask][k] = dpG[mask][k - 1];
     }
     f[mask] = h1(dpG[mask][n]) + a[mask];
-    
+
     // tính dpF và g
     dpF[mask][0] = f[mask];
     for (int k = 1; k <= n; k++) {
         if (mask & (1 << (k - 1))) // truy hồi theo kiểu subset
             dpF[mask][k] = dpF[mask][k - 1] + dpF[mask ^ (1 << (k - 1))][k - 1];
-        else dpF[mask][k] = dpF[mask][k - 1];
+        else
+            dpF[mask][k] = dpF[mask][k - 1];
     }
     g[mask] = h2(dpF[mask][n]) + b[mask];
 }
@@ -546,12 +549,12 @@ using namespace std;
 const int full = (1 << 20) - 1;
 int a[1 << 20], sosSub[1 << 20], sosSup[1 << 20];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n; cin >> n;
+    int n;
+    cin >> n;
     for (int i = 0; i < n; i++) {
         cin >> a[i];
         sosSub[a[i]]++, sosSup[a[i]]++;
@@ -559,8 +562,10 @@ int main()
 
     for (int k = 0; k < 20; k++) {
         for (int mask = 0; mask < (1 << 20); mask++) {
-            if (mask & (1 << k)) sosSub[mask] += sosSub[mask ^ (1 << k)];
-            else sosSup[mask] += sosSup[mask ^ (1 << k)];
+            if (mask & (1 << k))
+                sosSub[mask] += sosSub[mask ^ (1 << k)];
+            else
+                sosSup[mask] += sosSup[mask ^ (1 << k)];
         }
     }
 
@@ -629,30 +634,35 @@ using namespace std;
 
 struct helper {
     int best, secBest;
-    helper() : best(0), secBest(0) {}
-
-    void push (int cur) {
-        if (cur > best) secBest = best, best = cur;
-        else secBest = max(secBest, cur);
+    helper() : best(0), secBest(0) {
     }
 
-    void push (const helper &o) {
-        if (best >= o.best) secBest = max(secBest, o.best);
-        else secBest = max(best, o.secBest), best = o.best;
+    void push(int cur) {
+        if (cur > best)
+            secBest = best, best = cur;
+        else
+            secBest = max(secBest, cur);
+    }
+
+    void push(const helper &o) {
+        if (best >= o.best)
+            secBest = max(secBest, o.best);
+        else
+            secBest = max(best, o.secBest), best = o.best;
     }
 } sos[1 << 21];
 int a[1 << 20], n;
 
-bool ok (int mask) {
+bool ok(int mask) {
     for (int i = 1; i <= n - 2; i++) {
         int miss = mask ^ (mask & a[i]);
-        if (i < sos[miss].secBest) return 1;
+        if (i < sos[miss].secBest)
+            return 1;
     }
     return 0;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
@@ -664,11 +674,13 @@ int main()
 
     for (int k = 0; k < 21; k++)
         for (int mask = 0; mask < (1 << 21); mask++)
-            if (!(mask & (1 << k))) sos[mask].push(sos[mask ^ (1 << k)]);
+            if (!(mask & (1 << k)))
+                sos[mask].push(sos[mask ^ (1 << k)]);
 
     int ans = 0;
     for (int mask = 1 << 20; mask > 0; mask >>= 1)
-        if (ok(ans | mask)) ans |= mask;
+        if (ok(ans | mask))
+            ans |= mask;
     cout << ans;
 
     return 0;
@@ -725,59 +737,74 @@ const int MOD = 1e9 + 7;
 const int mn = 1e6 + 6;
 int fact[mn], ifac[mn], sos[1 << 20];
 
-int add (int a, int b) { return a + b - (a + b < MOD ? 0 : MOD); }
-int sub (int a, int b) { return a - b + (a - b >= 0 ? 0 : MOD); }
-int mul (int a, int b) { return 1LL * a * b % MOD; }
+int add(int a, int b) {
+    return a + b - (a + b < MOD ? 0 : MOD);
+}
+int sub(int a, int b) {
+    return a - b + (a - b >= 0 ? 0 : MOD);
+}
+int mul(int a, int b) {
+    return 1LL * a * b % MOD;
+}
 
-int binpow (int a, int b = MOD - 2) {
+int binpow(int a, int b = MOD - 2) {
     int ans = 1;
     for (; b; b >>= 1) {
-        if (b & 1) ans = mul(ans, a);
+        if (b & 1)
+            ans = mul(ans, a);
         a = mul(a, a);
     }
     return ans;
 }
 
-int C (int n, int k) {
-    if (n < k) return 0;
+int C(int n, int k) {
+    if (n < k)
+        return 0;
     int ans = mul(fact[n], ifac[k]);
     return mul(ans, ifac[n - k]);
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     // tiền xử lý của tổ hợp
     fact[0] = 1;
-    for (int i = 1; i < mn; i++) fact[i] = mul(fact[i - 1], i);
+    for (int i = 1; i < mn; i++)
+        fact[i] = mul(fact[i - 1], i);
     ifac[mn - 1] = binpow(fact[mn - 1]);
-    for (int i = mn - 2; i >= 0; i--) ifac[i] = mul(ifac[i + 1], i + 1);
+    for (int i = mn - 2; i >= 0; i--)
+        ifac[i] = mul(ifac[i + 1], i + 1);
 
     // nhập dữ liệu
-    int n, k, L, R; cin >> n >> k >> L >> R;
+    int n, k, L, R;
+    cin >> n >> k >> L >> R;
     for (int i = 0; i < n; i++) {
-        int a; cin >> a;
+        int a;
+        cin >> a;
         sos[a]++;
     }
 
     // tính f bằng DP SoS truyền thống
     for (int k = 0; k < 20; k++)
         for (int mask = 0; mask < (1 << 20); mask++)
-            if (mask & (1 << k)) sos[mask] += sos[mask ^ (1 << k)];
+            if (mask & (1 << k))
+                sos[mask] += sos[mask ^ (1 << k)];
 
     // tính sub bằng tổ hợp
-    for (int mask = 0; mask < (1 << 20); mask++) sos[mask] = C(sos[mask], k);
+    for (int mask = 0; mask < (1 << 20); mask++)
+        sos[mask] = C(sos[mask], k);
 
     // tính count bằng DP SoS ngược
     for (int k = 19; k >= 0; k--)
         for (int mask = 0; mask < (1 << 20); mask++)
-            if (mask & (1 << k)) sos[mask] = sub(sos[mask], sos[mask ^ (1 << k)]);
+            if (mask & (1 << k))
+                sos[mask] = sub(sos[mask], sos[mask ^ (1 << k)]);
 
     // lấy đáp án
     int ans = 0;
-    for (int mask = 3 * (L / 3 + (L % 3 ? 1 : 0)); mask <= R; mask += 3) ans = add(ans, sos[mask]);
+    for (int mask = 3 * (L / 3 + (L % 3 ? 1 : 0)); mask <= R; mask += 3)
+        ans = add(ans, sos[mask]);
     cout << ans;
 
     return 0;
@@ -849,34 +876,41 @@ using namespace std;
 
 int toxic[1 << 20], sosSub[1 << 20], sosSuper[1 << 20];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int k, Q; cin >> k >> Q;
+    int k, Q;
+    cin >> k >> Q;
     for (int i = 0; i < (1 << k); i++) {
-        char c; cin >> c;
+        char c;
+        cin >> c;
         toxic[i] = sosSub[i] = sosSuper[i] = c - '0';
     }
 
     for (int i = 0; i < k; i++) {
         for (int mask = 0; mask < (1 << k); mask++) {
-            if (mask & (1 << i)) sosSub[mask] += sosSub[mask ^ (1 << i)];
-            else sosSuper[mask] += sosSuper[mask ^ (1 << i)];
+            if (mask & (1 << i))
+                sosSub[mask] += sosSub[mask ^ (1 << i)];
+            else
+                sosSuper[mask] += sosSuper[mask ^ (1 << i)];
         }
     }
 
     int full = (1 << k) - 1;
     while (Q--) {
-        string s; cin >> s;
+        string s;
+        cin >> s;
         reverse(s.begin(), s.end());
 
         int maskZ = 0, maskO = 0, maskQ = 0;
         for (int i = 0; i < s.size(); i++) {
-            if (s[i] == '0') maskZ |= (1 << i);
-            if (s[i] == '1') maskO |= (1 << i);
-            if (s[i] == '?') maskQ |= (1 << i);
+            if (s[i] == '0')
+                maskZ |= (1 << i);
+            if (s[i] == '1')
+                maskO |= (1 << i);
+            if (s[i] == '?')
+                maskQ |= (1 << i);
         }
 
         int ans = 0;
@@ -884,19 +918,21 @@ int main()
             ans = toxic[maskO];
             for (int sub = maskQ; sub; sub = (sub - 1) & maskQ)
                 ans += toxic[sub | maskO];
-        }
-        else if (__builtin_popcount(maskO) <= 6) {
+        } else if (__builtin_popcount(maskO) <= 6) {
             ans = sosSub[maskQ] * (__builtin_parity(maskO) ? -1 : 1);
             for (int sub = maskO; sub; sub = (sub - 1) & maskO) {
-                if (__builtin_parity(sub) ^ __builtin_parity(maskO)) ans -= sosSub[sub | maskQ];
-                else ans += sosSub[sub | maskQ];
+                if (__builtin_parity(sub) ^ __builtin_parity(maskO))
+                    ans -= sosSub[sub | maskQ];
+                else
+                    ans += sosSub[sub | maskQ];
             }
-        }
-        else if (__builtin_popcount(maskZ) <= 6) {
+        } else if (__builtin_popcount(maskZ) <= 6) {
             ans = sosSuper[maskO];
             for (int sub = maskZ; sub; sub = (sub - 1) & maskZ) {
-                if (__builtin_parity(sub)) ans -= sosSuper[sub | maskO];
-                else ans += sosSuper[sub | maskO];
+                if (__builtin_parity(sub))
+                    ans -= sosSuper[sub | maskO];
+                else
+                    ans += sosSuper[sub | maskO];
             }
         }
         cout << ans << "\n";

@@ -226,10 +226,11 @@ long long prefSum[MAXN], prefMin[MAXN], ans = -INF;
 
 int main() {
     cin >> n;
-    for (int i = 1; i <= n; i++) cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
     prefSum[0] = prefMin[0] = 0;
     for (int i = 1; i <= n; i++)
-      prefSum[i] = prefSum[i - 1] + a[i], prefMin[i] = min(prefMin[i - 1], prefSum[i]);
+        prefSum[i] = prefSum[i - 1] + a[i], prefMin[i] = min(prefMin[i - 1], prefSum[i]);
     for (int i = 1; i <= n; i++)
         ans = max(ans, prefSum[i] - prefMin[i - 1]);
     cout << ans;
@@ -295,12 +296,14 @@ int query(int a, int b) {
 int main() {
     cin >> n >> k >> q;
     for (int i = 0; i < n; i++) {
-        int l, r; cin >> l >> r;
+        int l, r;
+        cin >> l >> r;
         update(l, r);
     }
     buildPrefixSum();
     for (int i = 0; i < q; i++) {
-        int a, b; cin >> a >> b;
+        int a, b;
+        cin >> a >> b;
         cout << query(a, b) << endl;
     }
 }

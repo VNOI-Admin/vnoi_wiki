@@ -209,7 +209,7 @@ int n, m;
 vector<int> G[maxN << 1];
 
 // Lấy giá trị phủ định của x
-int NOT(int x) { 
+int NOT(int x) {
     return x + (x <= n ? n : -n); // -x
 }
 
@@ -223,24 +223,27 @@ void add_clause(int u, int v) {
 int id[maxN << 1];
 int num[maxN << 1], low[maxN << 1];
 int timeDFS = 0, scc = 0;
-int st[maxN << 1]; 
+int st[maxN << 1];
 
 void dfs(int u) {
     num[u] = low[u] = ++timeDFS;
     st[++st[0]] = u;
-    for(const int& v : G[u]) {
-        if(id[v] != 0) continue; 
-        if(num[v] == 0) {
+    for (const int &v : G[u]) {
+        if (id[v] != 0)
+            continue;
+        if (num[v] == 0) {
             dfs(v);
             low[u] = min(low[u], low[v]);
-        } else low[u] = min(low[u], num[v]);
+        } else
+            low[u] = min(low[u], num[v]);
     }
 
-    if(num[u] == low[u]) {
-        for(++scc; true; ) {
+    if (num[u] == low[u]) {
+        for (++scc; true;) {
             int v = st[st[0]--];
             id[v] = scc;
-            if(v == u) break;
+            if (v == u)
+                break;
         }
     }
 }
@@ -327,53 +330,58 @@ int n, q;
 
 vector<int> G[maxN << 1];
 
-int NOT(int x) { 
-    return x + (x <= n ? n : -n); 
+int NOT(int x) {
+    return x + (x <= n ? n : -n);
 }
 
 void add_clause(int u, int v) {
-    G[NOT(u)].push_back(v); 
-    G[NOT(v)].push_back(u); 
+    G[NOT(u)].push_back(v);
+    G[NOT(v)].push_back(u);
 }
 
 int id[maxN << 1];
 int num[maxN << 1], low[maxN << 1];
 int timeDFS = 0, scc = 0;
-int st[maxN << 1]; 
+int st[maxN << 1];
 
 void dfs(int u) {
     num[u] = low[u] = ++timeDFS;
     st[++st[0]] = u;
-    for(const int& v : G[u]) {
-        if(id[v] != 0) continue; 
-        if(num[v] == 0) {
+    for (const int &v : G[u]) {
+        if (id[v] != 0)
+            continue;
+        if (num[v] == 0) {
             dfs(v);
             low[u] = min(low[u], low[v]);
-        } else low[u] = min(low[u], num[v]);
+        } else
+            low[u] = min(low[u], num[v]);
     }
 
-    if(num[u] == low[u]) {
-        for(++scc; true; ) {
+    if (num[u] == low[u]) {
+        for (++scc; true;) {
             int v = st[st[0]--];
             id[v] = scc;
-            if(v == u) break;
+            if (v == u)
+                break;
         }
     }
 }
 
 int main() {
     cin.tie(0)->sync_with_stdio(0);
-    if(ifstream("recruit.inp")) {
+    if (ifstream("recruit.inp")) {
         freopen("recruit.inp", "r", stdin);
         freopen("recruit.out", "w", stdout);
     }
 
     cin >> n >> q;
-    for(int i = 1; i <= q; ++i) {
+    for (int i = 1; i <= q; ++i) {
         vector<int> val;
-        for(int j = 0; j < 3; ++j) {
-            int u, v; cin >> u >> v;
-            if(v == 0) u = NOT(u);
+        for (int j = 0; j < 3; ++j) {
+            int u, v;
+            cin >> u >> v;
+            if (v == 0)
+                u = NOT(u);
             val.push_back(u);
         }
         add_clause(val[0], val[1]);
@@ -445,7 +453,7 @@ int n, m;
 
 vector<int> G[maxN << 1];
 
-int NOT(int x) { 
+int NOT(int x) {
     return x + (x <= n ? n : -n);
 }
 
@@ -457,24 +465,27 @@ void add_clause(int u, int v) {
 int id[maxN << 1];
 int num[maxN << 1], low[maxN << 1];
 int timeDFS = 0, scc = 0;
-int st[maxN << 1]; 
+int st[maxN << 1];
 
 void dfs(int u) {
     num[u] = low[u] = ++timeDFS;
     st[++st[0]] = u;
-    for(const int& v : G[u]) {
-        if(id[v] != 0) continue; 
-        if(num[v] == 0) {
+    for (const int &v : G[u]) {
+        if (id[v] != 0)
+            continue;
+        if (num[v] == 0) {
             dfs(v);
             low[u] = min(low[u], low[v]);
-        } else low[u] = min(low[u], num[v]);
+        } else
+            low[u] = min(low[u], num[v]);
     }
 
-    if(num[u] == low[u]) {
-        for(++scc; true; ) {
+    if (num[u] == low[u]) {
+        for (++scc; true;) {
             int v = st[st[0]--];
             id[v] = scc;
-            if(v == u) break;
+            if (v == u)
+                break;
         }
     }
 }

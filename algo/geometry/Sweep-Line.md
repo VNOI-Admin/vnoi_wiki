@@ -111,19 +111,21 @@ using namespace std;
 
 #define ll long long
 
-struct Point{
+struct Point {
     ll x, y;
     int id;
 
-    bool operator < (const Point& other) {
-        if (x != other.x) return x < other.x;
+    bool operator<(const Point &other) {
+        if (x != other.x)
+            return x < other.x;
         return y < other.y;
     }
 };
 
-struct cmp{
-    bool operator () (const Point& a, const Point& b) const {
-        if (a.y != b.y) return a.y < b.y;
+struct cmp {
+    bool operator()(const Point &a, const Point &b) const {
+        if (a.y != b.y)
+            return a.y < b.y;
         return a.x < b.x;
     }
 };
@@ -133,12 +135,13 @@ vector<Point> points; // Vector chứa tất cả các điểm
 set<Point, cmp> T;
 
 ll squared_dist(Point a, Point b) { // Nhận vào hai điểm, trả vể
-                                     // bình phương khoảng cách giữa hai điểm
+                                    // bình phương khoảng cách giữa hai điểm
     return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
 }
 
-signed main() {
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     cin >> n;
     for (int i = 0; i < n; i++) {
@@ -162,27 +165,30 @@ signed main() {
         while (1) { // Tìm tất cả các điểm có tung độ trong khoảng [y - d, y + d]
             auto it = T.upper_bound(cur);
 
-            if (it == T.end()) break;
+            if (it == T.end())
+                break;
 
             cur = *it;
-            if (cur.y > y + d) break; // Dừng lại nếu điểm có tung độ lớn hơn y + d
+            if (cur.y > y + d)
+                break; // Dừng lại nếu điểm có tung độ lớn hơn y + d
 
             if (cur.x < x - d) {
                 T.erase(it);
                 continue;
             } // Xóa điểm nếu điểm này có hoành độ bé hơn x - d
 
-
             if (squared_dist(p, cur) < squared_d) {
                 squared_d = squared_dist(p, cur);
-                res_id1 = id; res_id2 = cur.id;
+                res_id1 = id;
+                res_id2 = cur.id;
             } // Gán đáp án mới nếu tìm được d nhỏ hơn
         }
 
         T.insert(p); // Thêm điểm hiện tại vào T
     }
 
-    if (res_id1 > res_id2) swap(res_id1, res_id2);
+    if (res_id1 > res_id2)
+        swap(res_id1, res_id2);
     cout << res_id1 << " " << res_id2 << " ";
     cout << fixed << setprecision(6) << sqrt(squared_d);
 }
@@ -253,30 +259,33 @@ using namespace std;
 const int N = 1e5 + 5;
 const double EPS = 1e-9;
 
-struct Event{
+struct Event {
     double x;
     int y, y2, type;
 
-    bool operator < (const Event& other) const {
+    bool operator<(const Event &other) const {
         return x < other.x;
     }
 };
 
-struct FenwickTree{
+struct FenwickTree {
     int n;
     vector<int> s;
 
     FenwickTree(int n) : n(n), s(n + 5) {
-        for (int i = 1; i <= n; i++) s[i] = 0;
+        for (int i = 1; i <= n; i++)
+            s[i] = 0;
     }
 
     void update(int i, int val) {
-        for (; i <= n; i += i & -i) s[i] += val;
+        for (; i <= n; i += i & -i)
+            s[i] += val;
     }
 
     int getsum(int i) {
         int res = 0;
-        for (; i; i -= i & -i) res += s[i];
+        for (; i; i -= i & -i)
+            res += s[i];
         return res;
     }
 
@@ -290,21 +299,24 @@ double blue_x1[N], blue_x2[N], blue_y[N], red_y1[N], red_y2[N], red_x[N];
 vector<double> compress_y;
 vector<Event> events;
 
-signed main() {
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     cin >> n;
     for (int i = 1; i <= n; i++) {
         cin >> blue_x1[i] >> blue_x2[i] >> blue_y[i];
 
-        if (blue_x1[i] > blue_x2[i]) swap(blue_x1[i], blue_x2[i]);
+        if (blue_x1[i] > blue_x2[i])
+            swap(blue_x1[i], blue_x2[i]);
         compress_y.push_back(blue_y[i]);
     }
 
     for (int i = 1; i <= n; i++) {
         cin >> red_y1[i] >> red_y2[i] >> red_x[i];
 
-        if (red_y1[i] > red_y2[i]) swap(red_y1[i], red_y2[i]);
+        if (red_y1[i] > red_y2[i])
+            swap(red_y1[i], red_y2[i]);
         compress_y.push_back(red_y1[i]);
         compress_y.push_back(red_y2[i]);
     }
@@ -330,9 +342,12 @@ signed main() {
     FenwickTree FT(n * 3); // Có tối đa n * 3 tung độ khác nhau
     ll res = 0;
     for (auto e : events) {
-        if (e.type == 1) FT.update(e.y, 1);
-        else if (e.type == 2) FT.update(e.y, -1);
-        else res += FT.query(e.y, e.y2);
+        if (e.type == 1)
+            FT.update(e.y, 1);
+        else if (e.type == 2)
+            FT.update(e.y, -1);
+        else
+            res += FT.query(e.y, e.y2);
     }
 
     cout << res;
@@ -397,28 +412,33 @@ using namespace std;
 
 const int MX = 30000;
 
-struct Segment{
+struct Segment {
     int x, y1, y2, type;
 
-    bool operator < (const Segment& other) const {
+    bool operator<(const Segment &other) const {
         return x < other.x;
     }
 };
 
-struct SegmentTree{
+struct SegmentTree {
     vector<pair<int, int>> s;
 
     SegmentTree(int n) : s(n * 4 + 5) {
-        for (int i = 1; i <= 4 * n; i++) s[i] = {0, 0};
+        for (int i = 1; i <= 4 * n; i++)
+            s[i] = {0, 0};
     }
 
     void update(int id, int l, int r, int tl, int tr, int val) {
-        if (l > tr || r < tl) return;
+        if (l > tr || r < tl)
+            return;
         if (l >= tl && r <= tr) {
             s[id].second += val;
-            if (s[id].second != 0) s[id].first = r - l + 1;
-            else if (l != r) s[id].first = s[id * 2].first + s[id * 2 + 1].first;
-            else s[id].first = 0;
+            if (s[id].second != 0)
+                s[id].first = r - l + 1;
+            else if (l != r)
+                s[id].first = s[id * 2].first + s[id * 2 + 1].first;
+            else
+                s[id].first = 0;
             return;
         }
 
@@ -426,16 +446,19 @@ struct SegmentTree{
         update(id * 2, l, m, tl, tr, val);
         update(id * 2 + 1, m + 1, r, tl, tr, val);
 
-        if (s[id].second != 0) s[id].first = r - l + 1;
-        else s[id].first = s[id * 2].first + s[id * 2 + 1].first;
+        if (s[id].second != 0)
+            s[id].first = r - l + 1;
+        else
+            s[id].first = s[id * 2].first + s[id * 2 + 1].first;
     }
 };
 
 int n;
 vector<Segment> segments;
 
-signed main() {
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     cin >> n;
     for (int i = 1; i <= n; i++) {
@@ -551,18 +574,24 @@ const int INF = 1e8;
 
 struct Point {
     int x, y, id;
-    int diff_yx() const { return y - x; }
-    int sum_xy() const { return x + y; }
+    int diff_yx() const {
+        return y - x;
+    }
+    int sum_xy() const {
+        return x + y;
+    }
 };
 
-int manhattan_dist(const Point& u, const Point& v) {
+int manhattan_dist(const Point &u, const Point &v) {
     return abs(u.x - v.x) + abs(u.y - v.y);
 }
 
 struct DSU {
     vector<int> par;
-    DSU() {}
-    DSU(int n): par(n, -1) {}
+    DSU() {
+    }
+    DSU(int n) : par(n, -1) {
+    }
 
     int find_set(int u) {
         return par[u] < 0 ? u : par[u] = find_set(par[u]);
@@ -571,8 +600,10 @@ struct DSU {
     bool join(int u, int v) {
         u = find_set(u);
         v = find_set(v);
-        if (u == v) return false;
-        if (-par[u] < -par[v]) swap(u, v);
+        if (u == v)
+            return false;
+        if (-par[u] < -par[v])
+            swap(u, v);
         par[u] += par[v];
         par[v] = u;
         return true;
@@ -583,17 +614,18 @@ struct Edge {
     int u, v, cost;
 };
 
-bool operator<(const Edge& u, const Edge& v) {
+bool operator<(const Edge &u, const Edge &v) {
     return u.cost < v.cost;
 }
 
-Edge edge_from_point(const Point& u, const Point& v) {
+Edge edge_from_point(const Point &u, const Point &v) {
     return {u.id, v.id, manhattan_dist(u, v)};
 }
 
 vector<Edge> potential_edges; // Các cạnh tối ưu cần xét
 vector<Point> solve_single_recur(vector<Point> p) {
-    if (p.size() <= 1) return p;
+    if (p.size() <= 1)
+        return p;
     int upper_size = (int)p.size() / 2;
     auto upper = solve_single_recur({p.begin(), p.begin() + upper_size});
     auto lower = solve_single_recur({p.begin() + upper_size, p.end()});
@@ -621,21 +653,21 @@ vector<Point> solve_single_recur(vector<Point> p) {
 }
 
 void solve_single(vector<Point> p) { // Giải bài toán với một góc phần tám
-    sort(p.begin(), p.end(), [](const Point& u, const Point& v) {
+    sort(p.begin(), p.end(), [](const Point &u, const Point &v) {
         return u.y == v.y ? u.x < v.x : u.y > v.y;
     });
     solve_single_recur(p);
 }
 
-void rotate_90(vector<Point>& p) { // Xoay tất cả các điểm 90 độ
-    for (auto& cur: p) {
+void rotate_90(vector<Point> &p) { // Xoay tất cả các điểm 90 độ
+    for (auto &cur : p) {
         int x = cur.x, y = cur.y;
         cur.x = -y;
         cur.y = x;
     }
 }
-void flip(vector<Point>& p) { // Đối xứng các điểm qua trục Ox
-    for (auto& cur: p) {
+void flip(vector<Point> &p) { // Đối xứng các điểm qua trục Ox
+    for (auto &cur : p) {
         cur.y = -cur.y;
     }
 }
@@ -653,7 +685,7 @@ int solve(vector<Point> p) {
     DSU dsu((int)p.size());
     sort(potential_edges.begin(), potential_edges.end());
 
-    for (const auto& e : potential_edges) {
+    for (const auto &e : potential_edges) {
         if (dsu.join(e.u, e.v)) {
             ans += e.cost;
         }
@@ -664,7 +696,8 @@ int solve(vector<Point> p) {
 }
 
 int main() {
-    ios_base::sync_with_stdio(false); cin.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     int n;
     cin >> n;

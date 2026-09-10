@@ -73,7 +73,7 @@ Có $2$ cách chính để sử dụng $\texttt{mt19937}$ trong sinh test:
 // để đảm bảo lần nào generator cũng generate ra những test giống nhau.
 // Như vậy, các bạn đảm bảo rằng code của mình thỏa mãn tất cả những test từng sai
 mt19937 rng(7405);
- 
+
 // Còn nếu các bạn muổn random hoàn toàn (để check lại
 // lần cuối chẳng hạn) có thể dùng
 mt19937 rng2(chrono::steady_clock::now().time_since_epoch().count());
@@ -169,18 +169,19 @@ void dfs(int u, int p) {
         }
         sz[u] += sz[v];
     }
-    for(int i = a; i <= b; i++){
+    for (int i = a; i <= b; i++) {
         ans += dp[u][i][k];
-        for(auto v : Adj[u]){
-            if(v == p) continue;
+        for (auto v : Adj[u]) {
+            if (v == p)
+                continue;
             ans -= dp[v][i - 1][k];
         }
     }
 }
- 
-void process(){
+
+void process() {
     cin >> n >> k >> a >> b;
-    for(int i = 1; i < n; i++){
+    for (int i = 1; i < n; i++) {
         int x, y;
         cin >> x >> y;
         Adj[x].pb(y), Adj[y].pb(x);
@@ -188,8 +189,8 @@ void process(){
     dfs(1, 1);
     cout << ans << "\n";
 }
- 
-signed main(){
+
+signed main() {
     ios_base::sync_with_stdio(0);
     freopen("comnet.inp", "r", stdin);
     freopen("comnet.out", "w", stdout);
@@ -301,18 +302,19 @@ void process() {
         cout << ans;
         return;
     }
-    if(k == 3){
+    if (k == 3) {
         int ans = 0;
-        for(int i = 1; i <= n; i++){
+        for (int i = 1; i <= n; i++) {
             d[i] = 0;
-            for(int j = 1; j <= n; j++) nodes[j].clear();
+            for (int j = 1; j <= n; j++)
+                nodes[j].clear();
             root = i;
             dfs(i, i);
-            for(int j = i + 1; j <= n; j++){
-                for(int k = j + 1; k <= n; k++){
+            for (int j = i + 1; j <= n; j++) {
+                for (int k = j + 1; k <= n; k++) {
                     int temp = d[j] + d[k] - d[lca[j][k]];
                     //cout << i << " " << j << " " << k << " " << temp << "\n";
-                    if(temp >= a && temp <= b){
+                    if (temp >= a && temp <= b) {
                         ans++;
                     }
                 }
@@ -321,19 +323,20 @@ void process() {
         cout << ans;
         return;
     }
-    if(k == 4){
+    if (k == 4) {
         int ans = 0;
-        for(int i = 1; i <= n; i++){
+        for (int i = 1; i <= n; i++) {
             d[i] = 0;
-            for(int j = 1; j <= n; j++) nodes[j].clear();
+            for (int j = 1; j <= n; j++)
+                nodes[j].clear();
             root = i;
             dfs(i, i);
-            for(int j = i + 1; j <= n; j++){
-                for(int k = j + 1; k <= n; k++){
-                    for(int h = k + 1; h <= n; h++){
+            for (int j = i + 1; j <= n; j++) {
+                for (int k = j + 1; k <= n; k++) {
+                    for (int h = k + 1; h <= n; h++) {
                         int temp = d[j] + d[k] - d[lca[j][k]];
                         temp += d[h] - max(d[lca[j][h]], d[lca[k][h]]);
-                        if(temp >= a && temp <= b){
+                        if (temp >= a && temp <= b) {
                             ans++;
                         }
                     }
@@ -343,9 +346,9 @@ void process() {
         cout << ans;
     }
 }
- 
-signed main(){
-    ios_base::sync_with_stdio(0);   
+
+signed main() {
+    ios_base::sync_with_stdio(0);
     freopen("comnet.inp", "r", stdin);
     freopen("comnet.ans", "w", stdout);
     process();
@@ -405,30 +408,29 @@ void generate_test() {
     a = rnd(2, n - 1);
     b = rnd(a, n - 1);
     inp << n << " " << k << " " << a << " " << b << "\n";
-    for(int i = 2; i <= n; i++){
+    for (int i = 2; i <= n; i++) {
         // Ở đây mình sử dụng cách nối đỉnh i với một đỉnh bất kì trong khoảng [1, i - 1], đảm bảo tạo ra một cây thỏa mãn
         inp << rnd(1, i - 1) << " " << i << "\n";
     }
     // Ta cần đóng lại luồng này
     inp.close();
 }
- 
+
 // Ở khá nhiều bài, việc check output chỉ đơn thuần là so sánh xem output của file .out và .ans có ra giống hệt nhau không.
 // Đây là một trong những bài đó
-bool check_test(){
+bool check_test() {
     // Lệnh dưới đây kiểm tra hai file có giống hệt nhau hay không
-    if(system(("fc " + NAME + ".out " + NAME + ".ans").c_str()) != 0){// 2 file khác nhau
+    if (system(("fc " + NAME + ".out " + NAME + ".ans").c_str()) != 0) { // 2 file khác nhau
         return 0;
-    }
-    else{
+    } else {
         return 1;
     }
 }
- 
+
 // Hàm này được dùng để kiểm tra output của một bài bất kì
 // Tuy không cần thiết cho bài này, nhưng sẽ hữu ích cho những bài khác
-bool general_check_test(){
-    // Ta nhập vào output từ file output được sinh ra từ 
+bool general_check_test() {
+    // Ta nhập vào output từ file output được sinh ra từ
     ifstream out1((NAME + ".out").c_str());
     ifstream out2((NAME + ".ans").c_str());
     int ans1 = -1, ans2 = -1;
@@ -436,25 +438,24 @@ bool general_check_test(){
     out2 >> ans2;
     return (ans1 == ans2);
 }
- 
-void process(){
-    for(int itest = 1; itest <= TEST; itest++){
+
+void process() {
+    for (int itest = 1; itest <= TEST; itest++) {
         generate_test();
         // 2 dòng tiếp theo để chạy 2 code mẫu và code trâu
         system((".\\" + NAME + ".exe").c_str());
         system((".\\" + NAME + "_trau.exe").c_str());
         bool ok = check_test();
-        if(!ok){
+        if (!ok) {
             cout << "TEST " << itest << ": WA\n";
-            exit(0);// Dừng lại ngay khi tìm được test sai
-        }
-        else{
+            exit(0); // Dừng lại ngay khi tìm được test sai
+        } else {
             cout << "TEST " << itest << ": AC\n";
         }
     }
 }
- 
-signed main(){
+
+signed main() {
     // Việc không để ios_base::sync_with_stdio(0)/cin.tie(0) là để dễ xem trạng thái của từng test
     process();
 }
@@ -563,18 +564,19 @@ void process() {
         cout << ans;
         return;
     }
-    if(k == 3){
+    if (k == 3) {
         int ans = 0;
-        for(int i = 1; i <= n; i++){
+        for (int i = 1; i <= n; i++) {
             d[i] = 0;
-            for(int j = 1; j <= n; j++) nodes[j].clear();
+            for (int j = 1; j <= n; j++)
+                nodes[j].clear();
             root = i;
             dfs(i, i);
-            for(int j = i + 1; j <= n; j++){
-                for(int k = j + 1; k <= n; k++){
+            for (int j = i + 1; j <= n; j++) {
+                for (int k = j + 1; k <= n; k++) {
                     int temp = d[j] + d[k] - d[lca[j][k]];
                     //cout << i << " " << j << " " << k << " " << temp << "\n";
-                    if(temp >= a && temp <= b){
+                    if (temp >= a && temp <= b) {
                         ans++;
                     }
                 }
@@ -583,19 +585,20 @@ void process() {
         cout << ans;
         return;
     }
-    if(k == 4){
+    if (k == 4) {
         int ans = 0;
-        for(int i = 1; i <= n; i++){
+        for (int i = 1; i <= n; i++) {
             d[i] = 0;
-            for(int j = 1; j <= n; j++) nodes[j].clear();
+            for (int j = 1; j <= n; j++)
+                nodes[j].clear();
             root = i;
             dfs(i, i);
-            for(int j = i + 1; j <= n; j++){
-                for(int k = j + 1; k <= n; k++){
-                    for(int h = k + 1; h <= n; h++){
+            for (int j = i + 1; j <= n; j++) {
+                for (int k = j + 1; k <= n; k++) {
+                    for (int h = k + 1; h <= n; h++) {
                         int temp = d[j] + d[k] - d[lca[j][k]];
                         temp += d[h] - max(d[lca[j][h]], d[lca[k][h]]);
-                        if(temp >= a && temp <= b){
+                        if (temp >= a && temp <= b) {
                             ans++;
                         }
                     }
@@ -605,9 +608,9 @@ void process() {
         cout << ans;
     }
 }
- 
-signed main(){
-    ios_base::sync_with_stdio(0);   
+
+signed main() {
+    ios_base::sync_with_stdio(0);
     freopen("comnet.inp", "r", stdin);
     freopen("comnet.ans", "w", stdout);
     process();

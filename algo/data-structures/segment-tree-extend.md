@@ -56,21 +56,21 @@ Cài đặt như sau:
 void update(int id, int l, int r, int i, int v) {
     if (i < l || r < i) {
         // i nằm ngoài đoạn [l, r], ta bỏ qua nút i
-        return ;
+        return;
     }
     if (l == r) {
         // Đoạn chỉ gồm 1 phần tử, không có nút con
         ST[id] = v;
-        return ;
+        return;
     }
 
     // Gọi đệ quy để xử lý các nút con của nút id
     int mid = (l + r) / 2;
-    update(id*2, l, mid, i, v);
-    update(id*2 + 1, mid+1, r, i, v);
+    update(id * 2, l, mid, i, v);
+    update(id * 2 + 1, mid + 1, r, i, v);
 
     // Cập nhật lại giá trị max của đoạn [l, r] theo 2 nút con:
-    ST[id] = max(ST[id*2], ST[id*2 + 1]);
+    ST[id] = max(ST[id * 2], ST[id * 2 + 1]);
 }
 
 // Truy vấn: tìm max đoạn [u, v]
@@ -164,6 +164,9 @@ struct Node {
     int open;
     int close;
 
+    Node() {
+    }
+
     Node(int opt, int o, int c) { // Khởi tạo struct Node
         optimal = opt;
         open = o;
@@ -205,13 +208,15 @@ Ban đầu ta có thể khởi tạo cây như sau:
 void build(int id, int l, int r) {
     if (l == r) {
         // Đoạn [l, r] chỉ có 1 phần tử.
-        if (s[l] == '(') st[id] = Node(0, 1, 0);
-        else st[id] = Node(0, 0, 1);
-        return ;
+        if (s[l] == '(')
+            st[id] = Node(0, 1, 0);
+        else
+            st[id] = Node(0, 0, 1);
+        return;
     }
     int mid = (l + r) / 2;
     build(id * 2, l, mid);
-    build(id * 2 + 1, mid+1, r);
+    build(id * 2 + 1, mid + 1, r);
 
     st[id] = st[id * 2] + st[id * 2 + 1];
 }
@@ -281,7 +286,7 @@ sort(queries.begin(), queries.end());
 
 // Khởi tạo Segment Tree
 
-for(Query q : queries) {
+for (Query q : queries) {
     while (a[id[i]] <= q.k) {
         b[id[i]] = 0;
         // Cập nhật cây Segment Tree.
@@ -447,8 +452,8 @@ int get(int id, int l, int r, int u, int v) {
     int mid = (l + r) / 2;
     down(id); // đẩy giá trị lazy propagation xuống các con
 
-    return max(get(id*2, l, mid, u, v),
-        get(id*2+1, mid+1, r, u, v));
+    return max(get(id * 2, l, mid, u, v),
+               get(id * 2 + 1, mid + 1, r, u, v));
     // Trong các bài toán tổng quát, giá trị ở nút id có thể bị thay đổi (do ta đẩy lazy propagation
     // xuống các con). Khi đó, ta cần cập nhật lại thông tin của nút id dựa trên thông tin của các con.
 }

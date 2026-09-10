@@ -61,8 +61,7 @@ BIT bit;
 void update_info(int i, int d) {
     if (L[i] <= R[i]) {
         bit.add(L[i], R[i], d * A[i]);
-    }
-    else {
+    } else {
         bit.add(L[i], m, d * A[i]);
         bit.add(1, R[i], d * A[i]);
     }
@@ -103,11 +102,15 @@ int main() {
         int l = 0, r = k + 1;
         while (l < r) {
             int g = (l + r) / 2;
-            if (check(i, g)) r = g;
-            else l = g + 1;
+            if (check(i, g))
+                r = g;
+            else
+                l = g + 1;
         }
-        if (r > k) cout << "NIE\n";
-        else cout << r << "\n";
+        if (r > k)
+            cout << "NIE\n";
+        else
+            cout << r << "\n";
     }
 
     return 0;
@@ -148,11 +151,13 @@ bool check(int o) {
 }
 
 int main() {
-    int n, m; cin >> n >> m;
+    int n, m;
+    cin >> n >> m;
     For(i, 1, m) cin >> owner[i];
     For(i, 1, n) cin >> req[i];
 
-    int k; cin >> k;
+    int k;
+    cin >> k;
     For(i, 1, k) {
         cin >> L[i] >> R[i] >> A[i];
     }
@@ -173,7 +178,8 @@ int main() {
         bit.makeBIT(m);
 
         For(o, 1, n) {
-            if (l[o] >= r[o]) continue;
+            if (l[o] >= r[o])
+                continue;
             processing = 1;
             queries[(l[o] + r[o]) / 2].push_back(o);
         }
@@ -182,15 +188,16 @@ int main() {
             if (ki) {
                 if (L[ki] <= R[ki]) {
                     bit.add(L[ki], R[ki], A[ki]);
-                }
-                else {
+                } else {
                     bit.add(L[ki], m, A[ki]);
                     bit.add(1, R[ki], A[ki]);
                 }
             }
             for (int o : queries[ki]) {
-                if (check(o)) r[o] = ki;
-                else l[o] = ki + 1;
+                if (check(o))
+                    r[o] = ki;
+                else
+                    l[o] = ki + 1;
             }
         }
 
@@ -199,8 +206,10 @@ int main() {
     }
 
     For(o, 1, n) {
-        if (r[o] <= k) cout << r[o] << "\n";
-        else cout << "NIE\n";
+        if (r[o] <= k)
+            cout << r[o] << "\n";
+        else
+            cout << "NIE\n";
     }
 
     return 0;

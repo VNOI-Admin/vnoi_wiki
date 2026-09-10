@@ -99,13 +99,12 @@ int m, n;
 string a, b;
 vector<vector<int>> L;
 
-int main()
-{
+int main() {
     cin >> a >> b;
     m = a.length();
     n = b.length();
     L.resize(m + 1);
-    for (auto& i : L)
+    for (auto &i : L)
         i.resize(n + 1);
     /* Vì a và b bắt đầu từ chỉ số 1 nên
      * chèn thêm 1 kí tự vào đầu 2 xâu */
@@ -117,13 +116,12 @@ int main()
     for (int j = 0; j <= n; j++)
         L[0][j] = j;
     for (int i = 1; i <= m; i++)
-        for (int j = 1; j <= n; j++)
-        {
+        for (int j = 1; j <= n; j++) {
             if (a[i] == b[j])
                 L[i][j] = L[i - 1][j - 1];
             else
                 L[i][j] = 1 + min(L[i - 1][j - 1],
-                              min(L[i - 1][j], L[i][j - 1]));
+                                  min(L[i - 1][j], L[i][j - 1]));
         }
     cout << L[m][n];
 }
@@ -165,8 +163,7 @@ Nếu đề bài yêu cầu phải in ra xâu con dài nhất thì phải thực
 using namespace std;
 
 // Struct dùng để truy vết
-struct Trace
-{
+struct Trace {
     // Vị trí của kí tự trước đó trong A và B
     int i;
     int j;
@@ -174,8 +171,7 @@ struct Trace
     // (có thể là kí tự NULL)
     char c;
     Trace(int ii = 0, int jj = 0, char cc = '\0')
-      : i(ii), j(jj), c(cc)
-    { };
+        : i(ii), j(jj), c(cc) {};
 };
 
 int m, n;
@@ -183,16 +179,15 @@ string a, b;
 vector<vector<int>> L;
 vector<vector<Trace>> Tr;
 
-int main()
-{
+int main() {
     cin >> a >> b;
     m = a.length();
     n = b.length();
     L.resize(m + 1);
     Tr.resize(m + 1);
-    for (auto& i : L)
+    for (auto &i : L)
         i.resize(n + 1);
-    for (auto& i : Tr)
+    for (auto &i : Tr)
         i.resize(n + 1);
     // Vì a và b bắt đầu từ chỉ số 1 nên
     // chèn thêm 1 kí tự vào đầu 2 xâu
@@ -204,20 +199,14 @@ int main()
     for (int j = 0; j <= n; j++)
         L[0][j] = 0;
     for (int i = 1; i <= m; i++)
-        for (int j = 1; j <= n; j++)
-        {
-            if (a[i] == b[j])
-            {
+        for (int j = 1; j <= n; j++) {
+            if (a[i] == b[j]) {
                 L[i][j] = L[i - 1][j - 1] + 1;
                 Tr[i][j] = Trace(i - 1, j - 1, a[i]);
-            }
-            else if (L[i - 1][j] > L[i][j - 1])
-            {
+            } else if (L[i - 1][j] > L[i][j - 1]) {
                 L[i][j] = L[i - 1][j];
                 Tr[i][j] = Trace(i - 1, j);
-            }
-            else
-            {
+            } else {
                 L[i][j] = L[i][j - 1];
                 Tr[i][j] = Trace(i, j - 1);
             }
@@ -225,8 +214,7 @@ int main()
     // Truy vết xâu con chung dài nhất từ Tr[m][n]
     Trace t = Tr[m][n];
     string ans = "";
-    while (true)
-    {
+    while (true) {
         if (t.c != '\0')
             ans = t.c + ans;
         if (t.i == 0 && t.j == 0)
@@ -315,15 +303,12 @@ const int N = 5010;
 int n, d[N][N];
 string s;
 
-int calc(int i, int j)
-{
+int calc(int i, int j) {
     // Nếu L[i, j] chưa được tính thì lưu giá trị vào d[i][j]
-    if (d[i][j] == -1)
-    {
+    if (d[i][j] == -1) {
         if (i >= j)
             d[i][j] = 0;
-        else
-        {
+        else {
             if (s[i] == s[j])
                 d[i][j] = calc(i + 1, j - 1);
             else
@@ -390,24 +375,21 @@ using namespace std;
 long long n, w;
 vector<long long> a, b, L, P;
 
-int main()
-{
+int main() {
     cin >> n >> w;
     a.resize(n + 1);
     b.resize(n + 1);
     for (int i = 1; i <= n; i++)
-    	cin >> a[i] >> b[i];
+        cin >> a[i] >> b[i];
     P = L = vector<long long>(w + 1);
-    for (int i = 1; i <= n; i++)
-    {
-    	for (int j = 1; j <= w; j++)
-    	{
-    	    if (a[i] > j)
-    	    	L[j] = P[j];
-    	    else
-    	        L[j] = max(P[j], L[j - a[i]] + b[i]);
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= w; j++) {
+            if (a[i] > j)
+                L[j] = P[j];
+            else
+                L[j] = max(P[j], L[j - a[i]] + b[i]);
         }
-    	P = L;
+        P = L;
     }
     cout << L[w];
 }
@@ -446,10 +428,9 @@ Kết quả của bài toán là $L[n][m]$ hoặc $-1$ nếu $L[n][m ]=\inf$. Đ
 using namespace std;
 
 // Struct để truy vết
-struct Trace
-{
+struct Trace {
     int coin; // Chỉ số đồng tiền được thêm vào
-    int i; // i và j dùng để truy vết trong bảng QHĐ
+    int i;    // i và j dùng để truy vết trong bảng QHĐ
     int j;
 
     Trace(int c = 0, int row = 0, int col = 0)
@@ -461,8 +442,7 @@ int n, m, A[N];
 vector<int> L, P;
 vector<vector<Trace>> d;
 
-int main()
-{
+int main() {
     cin >> n >> m;
     for (int i = 1; i <= n; i++)
         cin >> A[i];
@@ -473,41 +453,31 @@ int main()
     d = vector<vector<Trace>>(n + 1, vector<Trace>(m + 1));
 
     // Bước QHĐ
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         L[0] = 0;
         for (int j = 1; j <= m; j++)
-            if (A[i] > j)
-            {
+            if (A[i] > j) {
                 L[j] = P[j];
                 d[i][j] = Trace(0, i - 1, j);
-            }
-            else
-            {
+            } else {
                 // L[j] = min(P[j], L[j - A[i]]);
                 // Nếu P[j] và L[j - A[i]] khác inf
-                if (P[j] != -1 && L[j - A[i]] != -1)
-                {
-                    if (P[j] < L[j - A[i]] + 1)
-                    {
+                if (P[j] != -1 && L[j - A[i]] != -1) {
+                    if (P[j] < L[j - A[i]] + 1) {
                         L[j] = P[j];
                         d[i][j] = Trace(0, i - 1, j);
-                    }
-                    else
-                    {
+                    } else {
                         L[j] = L[j - A[i]] + 1;
                         d[i][j] = Trace(i, i, j - A[i]);
                     }
                 }
                 // Chỉ L[j - A[i]] là inf
-                else if (P[j] != -1)
-                {
+                else if (P[j] != -1) {
                     L[j] = P[j];
                     d[i][j] = Trace(0, i - 1, j);
                 }
                 // Chỉ P[j] là inf
-                else if (L[j - A[i]] != -1)
-                {
+                else if (L[j - A[i]] != -1) {
                     L[j] = L[j - A[i]] + 1;
                     d[i][j] = Trace(i, i, j - A[i]);
                 }
@@ -520,12 +490,10 @@ int main()
     cout << L[m] << '\n';
 
     // Truy vết
-    if (L[m] != -1)
-    {
+    if (L[m] != -1) {
         vector<int> cnt(n + 1);
         Trace t = d[n][m];
-        while (t.coin != 0 && t.j != 0)
-        {
+        while (t.coin != 0 && t.j != 0) {
             cnt[t.coin]++;
             t = d[t.i][t.j];
         }
@@ -575,14 +543,11 @@ using namespace std;
 const int N = 310;
 int d[N], L[N][N], n;
 
-int calc(int i, int j)
-{
-    if (L[i][j] == -1)
-    {
+int calc(int i, int j) {
+    if (L[i][j] == -1) {
         if (i == j)
             L[i][j] = 0;
-        else
-        {
+        else {
             L[i][j] = calc(i + 1, j) + d[i - 1] * d[i] * d[j];
             for (int k = i; k < j; k++)
                 L[i][j] = min(L[i][j], calc(i, k) + calc(k + 1, j) + d[i - 1] * d[k] * d[j]);
@@ -610,14 +575,12 @@ using namespace std;
 const int N = 310;
 int d[N], L[N][N], n;
 
-int main()
-{
+int main() {
     cin >> n;
     for (int i = 0; i <= n; i++)
         cin >> d[i];
     for (int dis = 1; dis < n; dis++)
-        for (int i = 1; i + dis <= n; i++)
-        {
+        for (int i = 1; i + dis <= n; i++) {
             int j = i + dis;
             L[i][j] = L[i + 1][j] + d[i - 1] * d[i] * d[j];
             for (int k = i; k < j; k++)
@@ -674,15 +637,13 @@ int n;
 double L[N][N];
 Point p[N];
 
-int main()
-{
+int main() {
     cin >> n;
     for (int i = 1; i <= n; i++)
         cin >> p[i].x >> p[i].y;
 
     for (int dis = 3; dis <= n - 1; dis++)
-        for (int i = 1; i + dis <= n; i++)
-        {
+        for (int i = 1; i + dis <= n; i++) {
             int j = i + dis;
             L[i][j] = L[i + 1][j] + distance(p[i + 1], p[j]);
             for (int k = i + 1; k <= j - 1; k++)

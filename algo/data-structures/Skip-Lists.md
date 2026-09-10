@@ -135,7 +135,7 @@ SkipLists::SkipLists() {
     tail = new Column;
     head->value = 0;
     tail->value = 0;
-    for(int i = 0; i < MAX_LEVEL; i++) {
+    for (int i = 0; i < MAX_LEVEL; i++) {
         head->cells.push_back((Cell){NULL, tail});
         tail->cells.push_back((Cell){head, NULL});
     }
@@ -187,7 +187,7 @@ Với hàm `insert()`, ta sẽ chia thành 3 bước sau:
 void SkipLists::insert(int value) {
     // Kiểm tra value đã tồn tại chưa
     Column *temp = lower_bound(value);
-    if(temp != tail && temp->value == value) {
+    if (temp != tail && temp->value == value) {
         return;
     }
     // Tạo inserted_column là cột chứa value để chèn vào SkipLists
@@ -195,16 +195,16 @@ void SkipLists::insert(int value) {
     inserted_column->value = value;
     inserted_column->cells.push_back((Cell){NULL, NULL});
     // Tung đồng xu tăng chiều cao
-    while(inserted_column->cells.size() < MAX_LEVEL && rand() % 2 == 0) {
+    while (inserted_column->cells.size() < MAX_LEVEL && rand() % 2 == 0) {
         inserted_column->cells.push_back((Cell){NULL, NULL});
     }
     // Duyệt để chèn
     Column *iter = head;
-    for(int level = MAX_LEVEL - 1; level >= 0; level--) {
-        while(iter->cells[level].next_column != tail && iter->cells[level].next_column->value < value) {
+    for (int level = MAX_LEVEL - 1; level >= 0; level--) {
+        while (iter->cells[level].next_column != tail && iter->cells[level].next_column->value < value) {
             iter = iter->cells[level].next_column;
         }
-        if(level < inserted_column->cells.size()) {
+        if (level < inserted_column->cells.size()) {
             // Nối iter với inserted_column, nối inserted_column với next_iter
             Column *next_iter = iter->cells[level].next_column;
             iter->cells[level].next_column = inserted_column;
@@ -225,16 +225,16 @@ Với hàm `erase()`, ta sẽ chia thành 3 bước sau:
 void SkipLists::erase(int value) {
     // Kiểm tra value đã tồn tại chưa
     Column *erased_column = lower_bound(value);
-    if(erased_column == tail || erased_column->value != value) {
+    if (erased_column == tail || erased_column->value != value) {
         return;
     }
     // Duyệt để xóa
     Column *iter = head;
-    for(int level = MAX_LEVEL - 1; level >= 0; level--) {
-        while(iter->cells[level].next_column != tail && iter->cells[level].next_column->value <= value) {
+    for (int level = MAX_LEVEL - 1; level >= 0; level--) {
+        while (iter->cells[level].next_column != tail && iter->cells[level].next_column->value <= value) {
             iter = iter->cells[level].next_column;
         }
-        if(iter == erased_column) {
+        if (iter == erased_column) {
             // Nối previous_iter với next_iter
             Column *previous_iter = iter->cells[level].previous_column, *next_iter = iter->cells[level].next_column;
             previous_iter->cells[level].next_column = next_iter;

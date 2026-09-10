@@ -278,9 +278,10 @@ typedef long long ll;
 
 // Hàm tính C(n, k) (số cách chọn k từ n)
 ll C(ll n, ll k) {
-    if(k < 0 || k > n) return 0;
+    if (k < 0 || k > n)
+        return 0;
     ll res = 1;
-    for(ll i = 1; i <= k; i++) {
+    for (ll i = 1; i <= k; i++) {
         res = res * (n - i + 1) / i;
     }
     return res;
@@ -290,38 +291,43 @@ ll C(ll n, ll k) {
 ll eulerWays(ll m, int n, vector<int> &L) {
     ll sumL = accumulate(L.begin(), L.end(), 0LL);
     m -= sumL;
-    if(m < 0) return 0;
+    if (m < 0)
+        return 0;
     return C(m + n - 1, n - 1);
 }
 
 int main() {
     int K; // số người
-    ll M; // tổng số kẹo
+    ll M;  // tổng số kẹo
     cin >> K >> M;
 
     vector<int> L(K), U(K);
-    for(int i = 0; i < K; i++) cin >> L[i]; // cận dưới
-    for(int i = 0; i < K; i++) cin >> U[i]; // cận trên
+    for (int i = 0; i < K; i++)
+        cin >> L[i]; // cận dưới
+    for (int i = 0; i < K; i++)
+        cin >> U[i]; // cận trên
 
     // Tính tổng số cách chia tự do (chỉ cận dưới)
     ll total = eulerWays(M, K, L);
 
     // Bao hàm–loại trừ để trừ các trường hợp vi phạm cận trên
     ll bad = 0;
-    for(int mask = 1; mask < (1 << K); mask++) {
+    for (int mask = 1; mask < (1 << K); mask++) {
         vector<int> Lmod = L;
         int bits = __builtin_popcount(mask);
         ll subtract = 0;
 
-        for(int i = 0; i < K; i++) {
-            if(mask & (1 << i)) {
+        for (int i = 0; i < K; i++) {
+            if (mask & (1 << i)) {
                 // Nếu i-th người vi phạm, ta đặt xi > Ui => xi >= Ui+1
                 Lmod[i] = U[i] + 1;
             }
         }
         ll ways = eulerWays(M, K, Lmod);
-        if(bits % 2 == 1) bad += ways;
-        else bad -= ways;
+        if (bits % 2 == 1)
+            bad += ways;
+        else
+            bad -= ways;
     }
 
     ll answer = total - bad;
@@ -471,7 +477,8 @@ int query(int x) {
         multiple[mask] = multiple[mask ^ (1 << cur)] * vec[cur];
         if (__builtin_parity(mask))
             ans += countMultiple[multiple[mask]];
-        else ans -= countMultiple[multiple[mask]];
+        else
+            ans -= countMultiple[multiple[mask]];
     }
     return ans;
 }
@@ -520,30 +527,42 @@ vector<long long> facd(long long n) {
     vector<long long> p;
     if (n % 2 == 0) {
         p.push_back(2);
-        while (n % 2 == 0) n /= 2;
+        while (n % 2 == 0)
+            n /= 2;
     }
     for (long long i = 3; i * i <= n; i += 2) {
         if (n % i == 0) {
             p.push_back(i);
-            while (n % i == 0) n /= i;
+            while (n % i == 0)
+                n /= i;
         }
     }
-    if (n > 1) p.push_back(n);
+    if (n > 1)
+        p.push_back(n);
     return p;
 }
 
 // Đếm số không cùng nhau trong [1..x]
-long long cntn(long long x, const vector<long long>& p) {
-    if (x <= 0) return 0;
-    int k = p.size(); long long s = 0, tot = 1 << k;
+long long cntn(long long x, const vector<long long> &p) {
+    if (x <= 0)
+        return 0;
+    int k = p.size();
+    long long s = 0, tot = 1 << k;
     for (int m = 1; m < tot; ++m) {
-        long long pr = 1; int b = 0; bool ov = 0;
-        for (int i = 0; i < k; ++i) if (m & (1 << i)) {
-            ++b;
-            if (pr > x / p[i]) { ov = 1; break; }
-            pr *= p[i];
-        }
-        if (ov) continue;
+        long long pr = 1;
+        int b = 0;
+        bool ov = 0;
+        for (int i = 0; i < k; ++i)
+            if (m & (1 << i)) {
+                ++b;
+                if (pr > x / p[i]) {
+                    ov = 1;
+                    break;
+                }
+                pr *= p[i];
+            }
+        if (ov)
+            continue;
         long long c = x / pr;
         s += (b % 2 ? c : -c);
     }
@@ -656,9 +675,11 @@ const long long MOD = 998244353LL;
 
 // lũy thừa nhị phân mod MOD
 long long pw(long long a, long long e) {
-    long long r = 1 % MOD; a %= MOD;
+    long long r = 1 % MOD;
+    a %= MOD;
     while (e) {
-        if (e & 1) r = r * a % MOD;
+        if (e & 1)
+            r = r * a % MOD;
         a = a * a % MOD;
         e >>= 1;
     }
@@ -666,17 +687,20 @@ long long pw(long long a, long long e) {
 }
 
 // tiền xử lý giai thừa và nghịch đảo giai thừa
-void prep(int n, vector<long long>& f, vector<long long>& inv) {
+void prep(int n, vector<long long> &f, vector<long long> &inv) {
     f.assign(n + 1, 1);
     inv.assign(n + 1, 1);
-    for (int i = 1; i <= n; ++i) f[i] = f[i - 1] * i % MOD;
+    for (int i = 1; i <= n; ++i)
+        f[i] = f[i - 1] * i % MOD;
     inv[n] = pw(f[n], MOD - 2);
-    for (int i = n; i >= 1; --i) inv[i - 1] = inv[i] * i % MOD;
+    for (int i = n; i >= 1; --i)
+        inv[i - 1] = inv[i] * i % MOD;
 }
 
 // C(n, r) mod MOD
-long long C(int n, int r, const vector<long long>& f, const vector<long long>& inv) {
-    if (r < 0 || r > n) return 0;
+long long C(int n, int r, const vector<long long> &f, const vector<long long> &inv) {
+    if (r < 0 || r > n)
+        return 0;
     return f[n] * inv[r] % MOD * inv[n - r] % MOD;
 }
 
@@ -684,7 +708,8 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
 
-    int T; cin >> T;
+    int T;
+    cin >> T;
     vector<int> n(T), m(T), k(T);
     int mx = 0;
     for (int i = 0; i < T; ++i) {
@@ -707,8 +732,10 @@ int main() {
             long long w1 = C(M, j, f, inv);
             long long w2 = C(K - j * N + M - 1, M - 1, f, inv);
             long long cur = w1 * w2 % MOD;
-            if (j & 1) ans = (ans - cur + MOD) % MOD;
-            else ans = (ans + cur) % MOD;
+            if (j & 1)
+                ans = (ans - cur + MOD) % MOD;
+            else
+                ans = (ans + cur) % MOD;
         }
         cout << ans << '\n';
     }
@@ -780,36 +807,35 @@ using namespace std;
 static const int MAXA = 300000;
 static const int MOD = 1000000007;
 
-long long pw(long long a, long long e)
-{
+long long pw(long long a, long long e) {
     long long r = 1;
-    while (e)
-    {
-        if (e & 1) r = r * a % MOD;
+    while (e) {
+        if (e & 1)
+            r = r * a % MOD;
         a = a * a % MOD;
         e >>= 1;
     }
     return r;
 }
 
-long long C(int n, int k)
-{
-    if (n < k || k < 0) return 0;
+long long C(int n, int k) {
+    if (n < k || k < 0)
+        return 0;
     static long long fact[MAXA + 1], invfact[MAXA + 1];
     static bool built = false;
-    if (!built)
-    {
+    if (!built) {
         fact[0] = 1;
-        for (int i = 1; i <= MAXA; i++) fact[i] = fact[i - 1] * i % MOD;
+        for (int i = 1; i <= MAXA; i++)
+            fact[i] = fact[i - 1] * i % MOD;
         invfact[MAXA] = pw(fact[MAXA], MOD - 2);
-        for (int i = MAXA; i > 0; i--) invfact[i - 1] = invfact[i] * i % MOD;
+        for (int i = MAXA; i > 0; i--)
+            invfact[i - 1] = invfact[i] * i % MOD;
         built = true;
     }
     return fact[n] * invfact[k] % MOD * invfact[n - k] % MOD;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
@@ -817,10 +843,12 @@ int main()
     cin >> n;
 
     vector<int> a(n);
-    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
 
     vector<int> freq(MAXA + 1, 0);
-    for (int x : a) freq[x]++;
+    for (int x : a)
+        freq[x]++;
 
     vector<int> cnt(MAXA + 1, 0);
     for (int i = 1; i <= MAXA; i++)
@@ -830,17 +858,14 @@ int main()
     static long long dp[8][MAXA + 1];
     memset(dp, 0, sizeof(dp));
 
-    for (int i = 1; i <= 7; i++)
-    {
-        for (int j = MAXA; j >= 1; j--)
-        {
+    for (int i = 1; i <= 7; i++) {
+        for (int j = MAXA; j >= 1; j--) {
             long long val = C(cnt[j], i);
             for (int k = 2; k * j <= MAXA; k++)
                 val = (val - dp[i][k * j] + MOD) % MOD;
             dp[i][j] = val;
         }
-        if (dp[i][1] > 0)
-        {
+        if (dp[i][1] > 0) {
             cout << i;
             return 0;
         }

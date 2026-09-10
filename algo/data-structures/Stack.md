@@ -77,13 +77,12 @@ Ví dụ:
 
 using namespace std;
 
-int main()
-{
+int main() {
     stack<int> st;
-    st.push(5); // thêm 5 vào stack
-    st.push(10); // thêm 10 vào stack
+    st.push(5);               // thêm 5 vào stack
+    st.push(10);              // thêm 10 vào stack
     cout << st.top() << endl; // In ra 10
-    st.pop(); // loại bỏ phần tử ở cuối
+    st.pop();                 // loại bỏ phần tử ở cuối
     cout << st.top() << endl; // In ra 5
     return 0;
 }
@@ -160,8 +159,7 @@ int evaluate(string s) {
         }
     }
 
-    if (!op.empty())
-    {
+    if (!op.empty()) {
         process_op(val, op.back());
         op.pop_back();
     }
@@ -232,8 +230,7 @@ int evaluate(string s) {
     // lần lượt như trong bài toán chỉ có + và -
     // chú ý là ta xử lý ngược từ đáy về đầu, nên các toán tử được xử lý
     // sẽ tạo thành một dãy giảm theo thứ tự ưu tiên
-    while (!op.empty())
-    {
+    while (!op.empty()) {
         process_op(val, op.back());
         op.pop_back();
     }

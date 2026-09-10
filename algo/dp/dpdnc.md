@@ -121,17 +121,18 @@ int C(int l, int r);
 
 // tính dp_cur[l], ..., dp_cur[r]
 void compute(int l, int r, int optl, int optr) {
-    if (l > r) return;
+    if (l > r)
+        return;
 
-    int mid             = (l + r) >> 1;
-    pair<int, int> best = { INT_MAX, -1 };
+    int mid = (l + r) >> 1;
+    pair<int, int> best = {INT_MAX, -1};
 
     // tính dp_cur[mid] và opt[i][mid] dựa vào dp_before và hàm chi phí
     for (int k = optl; k <= min(mid, optr); ++k) {
-        best = min(best, { dp_before[k] + C(k, mid), k });
+        best = min(best, {dp_before[k] + C(k, mid), k});
     }
     dp_cur[mid] = best.first;
-    int opt     = best.second;
+    int opt = best.second;
 
     // đệ quy để tính dp_cur[l..mid-1] và dp_cur[mid+1..r]
     compute(l, mid - 1, optl, opt);
@@ -198,19 +199,23 @@ int bit[N * 2];
 
 int calcPos(int optl, int optr, int bi) {
     prf[optl - 1] = suf[optr + 1] = 0;
-    for (int i = optl; i <= optr; ++i) prf[i] = prf[i - 1] + (a[i] > bi);
-    for (int i = optr; i >= optl; --i) suf[i] = suf[i + 1] + (bi > a[i]);
+    for (int i = optl; i <= optr; ++i)
+        prf[i] = prf[i - 1] + (a[i] > bi);
+    for (int i = optr; i >= optl; --i)
+        suf[i] = suf[i + 1] + (bi > a[i]);
 
     int pos = optl;
     for (int i = optl + 1; i <= optr; ++i)
-        if (prf[pos - 1] + suf[pos] > prf[i - 1] + suf[i]) pos = i;
+        if (prf[pos - 1] + suf[pos] > prf[i - 1] + suf[i])
+            pos = i;
     return pos;
 }
 void compute(int l, int r, int optl, int optr) {
-    if (l > r) return;
+    if (l > r)
+        return;
 
     int mid = (l + r) >> 1;
-    p[mid]  = calcPos(optl, optr, b[mid]);
+    p[mid] = calcPos(optl, optr, b[mid]);
 
     compute(l, mid - 1, optl, p[mid]);
     compute(mid + 1, r, p[mid], optr);
@@ -223,26 +228,32 @@ void compress_c() {
         c[i] = lower_bound(tmp.begin(), tmp.end(), c[i]) - tmp.begin() + 1;
 }
 void upd(int p, int v) {
-    for (; p; p ^= p & -p) bit[p] += v;
+    for (; p; p ^= p & -p)
+        bit[p] += v;
 }
 int get(int p) {
     int res = 0;
-    for (; p <= n; p += p & -p) res += bit[p];
+    for (; p <= n; p += p & -p)
+        res += bit[p];
     return res;
 }
 
 long long solve() {
     cin >> n >> m;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
-    for (int i = 1; i <= m; ++i) cin >> b[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
+    for (int i = 1; i <= m; ++i)
+        cin >> b[i];
     a[n + 1] = INT_MAX;
     sort(b + 1, b + m + 1);
     compute(1, m, 1, n + 1);
 
     // dựng mảng c từ mảng a, b và p
     for (int i = 1, j = 1, sz = 0; i <= n + 1; ++i) {
-        while (j <= m && p[j] == i) c[++sz] = b[j++];
-        if (i <= n) c[++sz] = a[i];
+        while (j <= m && p[j] == i)
+            c[++sz] = b[j++];
+        if (i <= n)
+            c[++sz] = a[i];
     }
     n += m;
     compress_c();
@@ -316,16 +327,17 @@ long long C(int l, int r) {
     return (prf2[r] - prf2[l - 1]) - 1LL * l * (prf1[r] - prf1[l - 1]);
 }
 void compute(int l, int r, int optl, int optr) {
-    if (l > r) return;
+    if (l > r)
+        return;
 
-    int mid                   = (l + r) >> 1;
-    pair<long long, int> best = { LONG_LONG_MAX, -1 };
+    int mid = (l + r) >> 1;
+    pair<long long, int> best = {LONG_LONG_MAX, -1};
 
     for (int i = optl; i <= min(mid, optr); ++i) {
-        best = min(best, { dp_before[i] + C(i + 1, mid), i });
+        best = min(best, {dp_before[i] + C(i + 1, mid), i});
     }
     dp_cur[mid] = best.first;
-    int opt     = best.second;
+    int opt = best.second;
 
     compute(l, mid - 1, optl, opt);
     compute(mid + 1, r, opt, optr);

@@ -48,12 +48,10 @@ if (det == 0) {
     // Lines are parallel or coincident
     if (A1 * C2 == A2 * C1) {
         // Lines are coincident
-    }
-    else {
+    } else {
         // Lines are parallel
     }
-}
-else {
+} else {
     double x = (B2 * C1 - B1 * C2) / det;
     double y = (A1 * C2 - A2 * C1) / det;
 }
@@ -168,10 +166,14 @@ bool intersect(Point A, Point B, Point C, Point D) {
     int CDxCB = sign(cross(D - C, B - C));
     if (ABxAC == 0 || ABxAD == 0 || CDxCA == 0 || CDxCB == 0) {
         // C on segment AB if ABxAC = 0 and CA.CB <= 0
-        if (ABxAC == 0 && sign(dot(A - C, B - C)) <= 0) return true;
-        if (ABxAD == 0 && sign(dot(A - D, B - D)) <= 0) return true;
-        if (CDxCA == 0 && sign(dot(C - A, D - A)) <= 0) return true;
-        if (CDxCB == 0 && sign(dot(C - B, D - B)) <= 0) return true;
+        if (ABxAC == 0 && sign(dot(A - C, B - C)) <= 0)
+            return true;
+        if (ABxAD == 0 && sign(dot(A - D, B - D)) <= 0)
+            return true;
+        if (CDxCA == 0 && sign(dot(C - A, D - A)) <= 0)
+            return true;
+        if (CDxCB == 0 && sign(dot(C - B, D - B)) <= 0)
+            return true;
         return false;
     }
     return (ABxAC * ABxAD < 0 && CDxCA * CDxCB < 0);

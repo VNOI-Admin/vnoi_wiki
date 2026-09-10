@@ -242,8 +242,9 @@ int fact[N + 5], ifact[N + 5];
 // Hàm lũy thừa nhanh
 long long binpow(long long a, long long b) {
     long long ans = 1;
-    while (b > 0){
-        if (b % 2) ans = ans * a % MOD;
+    while (b > 0) {
+        if (b % 2)
+            ans = ans * a % MOD;
         a = a * a % MOD;
         b /= 2;
     }
@@ -251,12 +252,12 @@ long long binpow(long long a, long long b) {
 }
 
 // Chuẩn bị
-void prepare(){
+void prepare() {
     // Tính fact[]
     fact[0] = 1;
     for (int i = 1; i <= N; i++)
         fact[i] = 1LL * fact[i - 1] * i % MOD;
-        
+
     // Tính ifact[]
     ifact[N] = binpow(fact[N], MOD - 2);
     for (int i = N - 1; i >= 1; i--)
@@ -264,17 +265,20 @@ void prepare(){
 }
 
 // Hàm tính nCk
-int C(int n, int k){
-    if (k > n) return 0;
+int C(int n, int k) {
+    if (k > n)
+        return 0;
     return (1LL * fact[n] * ifact[k] % MOD) * ifact[n - k] % MOD;
 }
 
-int main(){
-    prepare();        
+int main() {
+    prepare();
     // Truy vấn
-    int q; cin >> q;
-    while (q--){
-        int n, k; cin >> n >> k;
+    int q;
+    cin >> q;
+    while (q--) {
+        int n, k;
+        cin >> n >> k;
         cout << C(n, k) << '\n';
     }
 }
@@ -332,12 +336,12 @@ long long binpow(long long a, long long b) {
 }
 
 // Chuẩn bị
-void prepare(){
+void prepare() {
     // Tính fact[]
     fact[0] = 1;
     for (int i = 1; i < MOD; i++)
         fact[i] = 1LL * fact[i - 1] * i % MOD;
-        
+
     // Tính ifact[]
     ifact[MOD - 1] = binpow(fact[MOD - 1], MOD - 2);
     for (int i = MOD - 2; i >= 0; i--)
@@ -486,7 +490,9 @@ long long calc(long long N, long long K, long long R) {
     int vp2 = count_carry(N, K, R, prime, MOD);
     while (N > 0) {
         res = (res * C(N % MOD, K % MOD, R % MOD)) % MOD;
-        N /= prime; K /= prime; R /= prime;
+        N /= prime;
+        K /= prime;
+        R /= prime;
     }
     res = res * binpow(prime, vp, MOD) % MOD;
     if ((vp2 % 2 == 1) && (prime != 2 || MOD <= 4))
@@ -600,11 +606,9 @@ int rem[4];
 vector<ll> fact[4], ifact[4];
 int t;
 
-ll binpow(ll a, ll n, ll mod)
-{
+ll binpow(ll a, ll n, ll mod) {
     ll res = 1;
-    for (; n > 0; n >>= 1)
-    {
+    for (; n > 0; n >>= 1) {
         if (n & 1)
             res = res * a % mod;
         a = a * a % mod;
@@ -612,13 +616,11 @@ ll binpow(ll a, ll n, ll mod)
     return res;
 }
 
-void init(int x)
-{
+void init(int x) {
     fact[x].assign(primes_pw[x], 0);
     ifact[x].assign(primes_pw[x], 0);
     fact[x][0] = 1;
-    for (int i = 1; i < primes_pw[x]; i++)
-    {
+    for (int i = 1; i < primes_pw[x]; i++) {
         if (i % primes[x] != 0)
             fact[x][i] = (fact[x][i - 1] * i) % primes_pw[x];
         else
@@ -627,8 +629,7 @@ void init(int x)
     ifact[x][primes_pw[x] - 1] = binpow(fact[x][primes_pw[x] - 1],
                                         primes_pw[x] / primes[x] * (primes[x] - 1) - 1,
                                         primes_pw[x]);
-    for (int i = primes_pw[x] - 1; i > 0; i--)
-    {
+    for (int i = primes_pw[x] - 1; i > 0; i--) {
         if (i % primes[x] != 0)
             ifact[x][i - 1] = (ifact[x][i] * i) % primes_pw[x];
         else
@@ -637,24 +638,20 @@ void init(int x)
 }
 
 /*i is the order of prime*/
-ll C(ll N, ll K, ll R, int i)
-{
+ll C(ll N, ll K, ll R, int i) {
     return (fact[i][N] * ifact[i][R] % primes_pw[i]) * ifact[i][K] % primes_pw[i];
 }
 
-int count_carry(ll n, ll k, ll r, ll p, ll t)
-{
+int count_carry(ll n, ll k, ll r, ll p, ll t) {
     ll res = 0;
-    while (n >= t)
-    {
+    while (n >= t) {
         res += (n / t - k / t - r / t);
         t *= p;
     }
     return res;
 }
 
-ll calc(ll N, ll K, ll R, int ord_pr)
-{
+ll calc(ll N, ll K, ll R, int ord_pr) {
     if (K > N)
         return 0;
     int prime = primes[ord_pr];
@@ -662,8 +659,7 @@ ll calc(ll N, ll K, ll R, int ord_pr)
     ll res = 1;
     int vp = count_carry(N, K, R, prime, prime);
     int vp2 = count_carry(N, K, R, prime, mod);
-    while (N > 0)
-    {
+    while (N > 0) {
         res = (res * C(N % mod, K % mod, R % mod, ord_pr)) % mod;
         N /= prime;
         K /= prime;
@@ -676,35 +672,29 @@ ll calc(ll N, ll K, ll R, int ord_pr)
     return res;
 }
 
-ll CRT(ll N, ll K)
-{
+ll CRT(ll N, ll K) {
     ll res = 0;
-    for (int i = 0; i <= 3; i++)
-    {
+    for (int i = 0; i <= 3; i++) {
         int ans = calc(N, K, N - K, i) * rem[i] % MOD;
         res = (res + ans) % MOD;
     }
     return res;
 }
 
-void solve()
-{
-    for (int i = 0; i <= 3; i++)
-    {
+void solve() {
+    for (int i = 0; i <= 3; i++) {
         init(i);
         int tmp = MOD / primes_pw[i];
         rem[i] = tmp * binpow(tmp, phi[i] - 1, primes_pw[i]) % MOD;
     }
-    while (t--)
-    {
+    while (t--) {
         ll N, K;
         cin >> N >> K;
         cout << CRT(N, K) << '\n';
     }
 }
 
-int main()
-{
+int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(NULL);
     cin >> t;

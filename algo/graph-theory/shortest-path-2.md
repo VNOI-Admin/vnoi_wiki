@@ -131,7 +131,7 @@ void bellmanFord(int n, int S, vector<Edge> &e,
     trace.resize(n, -1);
 
     D[S] = 0;
-    for(int T = 1; T < n; T++) {
+    for (int T = 1; T < n; T++) {
         for (auto E : e) {
             int u = E.u;
             int v = E.v;
@@ -223,7 +223,8 @@ bool findNegativeCycle(int n, vector<Edge> &e, vector<long long> &D,
         }
     }
 
-    if (negStart == -1) return false; // không có chu trình âm
+    if (negStart == -1)
+        return false; // không có chu trình âm
 
     int u = negStart;
     for (int i = 0; i < n; i++) {

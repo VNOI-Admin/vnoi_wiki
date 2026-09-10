@@ -62,7 +62,8 @@ const double EPS = 1e-9;
 // Kiểu điểm
 struct Point {
     int x, y;
-    Point(int x = 0, int y = 0) : x(x), y(y) {}
+    Point(int x = 0, int y = 0) : x(x), y(y) {
+    }
     bool operator==(const Point &o) {
         return x == o.x && y == o.y;
     }
@@ -89,11 +90,13 @@ double calcAngle(const Point &A, const Point &B) {
 
 // Trả về bao lồi với thứ tự các điểm được liệt kê cùng chiều kim đồng hồ
 vector<Point> convexHull(vector<Point> p, int n) {
-    if (n <= 2) return p;
+    if (n <= 2)
+        return p;
 
     // Đưa điểm trái nhất lên đầu tập
     for (int i = 1; i < p.size(); ++i) {
-        if (p[0].x > p[i].x) swap(p[0], p[i]);
+        if (p[0].x > p[i].x)
+            swap(p[0], p[i]);
     }
 
     // Tập bao lồi
@@ -111,28 +114,28 @@ vector<Point> convexHull(vector<Point> p, int n) {
         Point P0 = (hull.size() == 1 ? Point(P.x, P.y - 1) : hull[hull.size() - 2]);
 
         // Q là đỉnh tiếp theo của tập hull
-        Point Q      = p[0];
+        Point Q = p[0];
         double angle = calcAngle(P0 - P, Q - P);
 
         for (int i = 1; i < n; ++i) {
             if (Q == P || Q == P0) {
-                Q     = p[i];
+                Q = p[i];
                 angle = calcAngle(P0 - P, Q - P);
                 continue;
             }
-            if (p[i] == P || p[i] == P0) continue;
+            if (p[i] == P || p[i] == P0)
+                continue;
 
             double newAngle = calcAngle(P0 - P, p[i] - P);
             // Nếu góc (P0, P, Q) nhỏ hơn góc (P0, P, p[i]) thì gán Q = p[i]
             if (abs(angle - newAngle) > EPS) {
                 if (angle < newAngle) {
-                    Q     = p[i];
+                    Q = p[i];
                     angle = newAngle;
                 }
-            }
-            else {
+            } else {
                 if ((Q - P).length() > (p[i] - P).length()) {
-                    Q     = p[i];
+                    Q = p[i];
                     angle = newAngle;
                 }
             }
@@ -183,8 +186,10 @@ long long cross(const Point &A, const Point &B, const Point &C) {
 // A -> B -> C đi theo thứ tự theo chiều kim đồng hồ (-1), thẳng hàng (0), ngược chiều kim đồng hồ (1)
 int ccw(const Point &A, const Point &B, const Point &C) {
     long long S = cross(A, B, C);
-    if (S < 0) return -1;
-    if (S == 0) return 0;
+    if (S < 0)
+        return -1;
+    if (S == 0)
+        return 0;
     return 1;
 }
 
@@ -200,8 +205,10 @@ vector<Point> convexHull(vector<Point> p, int n) {
     // Sắp xếp các điểm I theo góc tạo bởi trục hoành theo chiều dương và OI
     sort(p.begin() + 1, p.end(), [&p](const Point &A, const Point &B) {
         int c = ccw(p[0], A, B);
-        if (c > 0) return true;
-        if (c < 0) return false;
+        if (c > 0)
+            return true;
+        if (c < 0)
+            return false;
         return A.x < B.x || (A.x == B.x && A.y < B.y);
     });
 
@@ -264,7 +271,8 @@ bool ccw(const Point &A, const Point &B, const Point &C) {
 vector<Point> convexHull(vector<Point> p, int n) {
     // Sắp xếp các điểm theo tọa độ x, nếu bằng nhau sắp xếp theo y
     sort(p.begin(), p.end(), [](const Point &A, const Point &B) {
-        if (A.x != B.x) return A.x < B.x;
+        if (A.x != B.x)
+            return A.x < B.x;
         return A.y < B.y;
     });
 
@@ -289,7 +297,8 @@ vector<Point> convexHull(vector<Point> p, int n) {
     }
 
     // Xoá đỉểm đầu được lặp lại ở cuối
-    if (n > 1) hull.pop_back();
+    if (n > 1)
+        hull.pop_back();
 
     return hull;
 }
@@ -402,7 +411,8 @@ bool ccw(const Point &A, const Point &B, const Point &C) {
 vector<Point> convexHull(vector<Point> p, int n) {
     // Sắp xếp các điểm theo tọa độ x, nếu bằng nhau sắp xếp theo y
     sort(p.begin(), p.end(), [](const Point &A, const Point &B) {
-        if (A.x != B.x) return A.x < B.x;
+        if (A.x != B.x)
+            return A.x < B.x;
         return A.y < B.y;
     });
 
@@ -427,7 +437,8 @@ vector<Point> convexHull(vector<Point> p, int n) {
     }
 
     // Xoá đỉểm đầu được lặp lại ở cuối
-    if (n > 1) hull.pop_back();
+    if (n > 1)
+        hull.pop_back();
 
     return hull;
 }
@@ -437,11 +448,14 @@ bool checkInHull(vector<Point> &hull, Point P) {
     int n = hull.size();
 
     // Xử lý trường hợp suy biến có diện tích bao lồi = 0
-    if (n == 1) return (hull[0] == P);
-    if (n == 2) return onSegment(hull[0], hull[1], P);
+    if (n == 1)
+        return (hull[0] == P);
+    if (n == 2)
+        return onSegment(hull[0], hull[1], P);
 
     // Nếu (hull[0], hull[1], P) ngược chiều kim đồng hồ thì P nằm ngoài bao lồi
-    if (ccw(hull[0], hull[1], P)) return false;
+    if (ccw(hull[0], hull[1], P))
+        return false;
 
     // Nếu (hull[n - 1], hull[0], P) không cùng chiều kim đồng hồ thì P chỉ thoả
     // nếu P nằm trên đoạn (hull[n - 1], hull[0])
@@ -456,10 +470,10 @@ bool checkInHull(vector<Point> &hull, Point P) {
         // Nếu (hull[0], hull[mid], P) ngược chiều kim đồng hồ thì
         // tia (hull[0], hull[mid]) nằm ở phía bên phải của P
         if (ccw(hull[0], hull[mid], P)) {
-            x  = mid;
+            x = mid;
             hi = mid - 1;
-        }
-        else lo = mid + 1;
+        } else
+            lo = mid + 1;
     }
 
     // P nằm trong tam giác (hull[0], hull[x - 1], hull[x])

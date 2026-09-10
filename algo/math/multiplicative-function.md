@@ -115,15 +115,13 @@ int main() {
             // i là số nguyên tố.
             pk[i] = make_pair(i, 1);
             ndiv[i] = 2;
-        }
-        else {
-            int p = sieve[i];  // p là ước bất kỳ của i.
+        } else {
+            int p = sieve[i]; // p là ước bất kỳ của i.
 
-            if (pk[i/p].first == p) {  // i = p^k
-                pk[i] = make_pair(p, pk[i/p].second + 1);
-                ndiv[i] = pk[i].second + 1;  // ndiv[p^k] = k+1.
-            }
-            else {
+            if (pk[i / p].first == p) { // i = p^k
+                pk[i] = make_pair(p, pk[i / p].second + 1);
+                ndiv[i] = pk[i].second + 1; // ndiv[p^k] = k+1.
+            } else {
                 pk[i] = make_pair(-1, 0);
                 // Phân tích i = u*v, với gcd(u, v) = 1.
                 int u = i, v = 1;

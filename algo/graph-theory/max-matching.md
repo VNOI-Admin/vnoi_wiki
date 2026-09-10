@@ -230,20 +230,21 @@ int matchL[N], matchR[N];
 
 // Tìm kiếm đường tăng luồng bắt đầu từ u
 bool kuhn(int u) {
-
     // Nếu "thời gian" lần cuối thăm đỉnh u bằng với "thời gian" hiện tại.
     // Ta nói u đã được thăm trước đó và không tìm kiếm lần nữa.
     // Ngược lại, lưu lại "thời gian" cuối cùng thăm đỉnh u bằng "thời gian" hiện tại.
     // và thực hiện tìm kiếm tại u.
-    if(seen[u] == iteration) return 0;
+    if (seen[u] == iteration)
+        return 0;
     seen[u] = iteration;
-    
-    for(int v : G[u]) {
+
+    for (int v : G[u]) {
         // Kiểm tra đỉnh v có phải là đỉnh tự do
         // hoặc có cách nối khác từ đỉnh đang ghép với v
-        if(matchR[v] == -1 || kuhn(matchR[v])) {
+        if (matchR[v] == -1 || kuhn(matchR[v])) {
             // Ghi nhận cặp ghép (u, v) và thông báo có cách ghép từ đỉnh u
-            matchL[u] = v; matchR[v] = u;
+            matchL[u] = v;
+            matchR[v] = u;
             return 1;
         }
     }
@@ -253,28 +254,29 @@ bool kuhn(int u) {
 }
 
 int matching(int M, int N, vector<pair<int, int>> E) {
-    
     // Trạng thái ban đầu chưa có cặp ghép
     fill(matchL + 1, matchL + M + 1, -1);
     fill(matchR + 1, matchR + N + 1, -1);
-    
+
     // Xây dựng danh sách kề
-    for(int i = 0; i < (int) E.size(); ++i) { 
+    for (int i = 0; i < (int)E.size(); ++i) {
         int u = E[i].first, v = E[i].second;
         G[u].push_back(v);
     }
-    
-    for(int u = 1; u <= M; ++u) {
+
+    for (int u = 1; u <= M; ++u) {
         // Khởi tạo nhanh mảng đánh dấu
         ++iteration;
         // Với mỗi đỉnh ta sẽ tìm cặp ghép từ đỉnh u
         kuhn(u);
     }
-    
+
     // Tính số cặp ghép lớn nhất
     int ans = 0;
-    for(int u = 1; u <= M; ++u) {
-        if(matchL[u] != -1) { ++ans; }
+    for (int u = 1; u <= M; ++u) {
+        if (matchL[u] != -1) {
+            ++ans;
+        }
     }
     return ans;
 }
@@ -429,73 +431,78 @@ int dist[N], matchL[N], matchR[N];
 
 // Tìm kiếm đường tăng luồng bắt đầu từ u
 bool dfs(int u) {
-
     // Nếu đỉnh u đã được thăm trước đó, ta sẽ không thăm lại nữa
-    if(seen[u] == iteration) return 0;
+    if (seen[u] == iteration)
+        return 0;
     seen[u] = iteration;
 
-    for(int v : G[u])
+    for (int v : G[u])
         // Kiểm tra đỉnh v có phải là đỉnh tự do hay không
-        if(matchR[v] == -1) { 
-            matchL[u] = v; matchR[v] = u; 
-            return 1; 
+        if (matchR[v] == -1) {
+            matchL[u] = v;
+            matchR[v] = u;
+            return 1;
         }
 
-    for(int v : G[u]) 
+    for (int v : G[u])
         // Kiểm tra đỉnh đang được ghép với v có đi được từ đỉnh u không
         // và có cách nối khác từ đỉnh đang ghép với v không
-        if(dist[matchR[v]] == dist[u] + 1 && dfs(matchR[v])) { 
+        if (dist[matchR[v]] == dist[u] + 1 && dfs(matchR[v])) {
             // Ghi nhận cặp ghép (u, v) và thông báo có cách ghép từ đỉnh u
-            matchL[u] = v; matchR[v] = u; 
-            return 1; 
+            matchL[u] = v;
+            matchR[v] = u;
+            return 1;
         }
 
     return 0;
 }
 
 int matching(int M, int N, vector<pair<int, int>> E) {
-
     // Trạng thái ban đầu chưa có cặp ghép
     fill(matchL + 1, matchL + M + 1, -1);
     fill(matchR + 1, matchR + N + 1, -1);
 
     // Xây dựng danh sách kề
-    for(int i = 0; i < (int) E.size(); ++i) { 
+    for (int i = 0; i < (int)E.size(); ++i) {
         int u = E[i].first, v = E[i].second;
         G[u].push_back(v);
     }
 
     int ans = 0;
 
-    while(true) {
+    while (true) {
         // Xây dựng các đỉnh nguồn
         queue<int> q;
-        for(int u = 1; u <= M; ++u) {
-            if(matchL[u] == -1) {
-                dist[u] = 0; q.push(u); 
+        for (int u = 1; u <= M; ++u) {
+            if (matchL[u] == -1) {
+                dist[u] = 0;
+                q.push(u);
             } else {
                 dist[u] = -1;
             }
         }
-        
+
         // Thuật toán loang (BFS)
-        while(q.size()) {
-            int u = q.front(); q.pop();
-            for(int v : G[u]) {
-                if(matchR[v] != -1 && dist[matchR[v]] == -1) {
+        while (q.size()) {
+            int u = q.front();
+            q.pop();
+            for (int v : G[u]) {
+                if (matchR[v] != -1 && dist[matchR[v]] == -1) {
                     dist[matchR[v]] = dist[u] + 1;
                     q.push(matchR[v]);
                 }
             }
         }
-        
+
         // Tìm đường tăng luồng
         int newMatches = 0;
         ++iteration;
-        for(int u = 1; u <= M; ++u) {
-            if(matchL[u] == -1) newMatches += dfs(u);
+        for (int u = 1; u <= M; ++u) {
+            if (matchL[u] == -1)
+                newMatches += dfs(u);
         }
-        if(newMatches == 0) break;
+        if (newMatches == 0)
+            break;
         // Cập nhật số lượng cặp ghép mới vào số cặp ghép hiện tại
         ans += newMatches;
     }

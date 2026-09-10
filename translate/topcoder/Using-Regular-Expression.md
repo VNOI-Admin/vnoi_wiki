@@ -212,7 +212,7 @@ string pattern = "([a-z]+).\\1";
 string str = "top-topcoder|coder";
 
 re_pattern_buffer buffer;
-  char map[256];
+char map[256];
 
 buffer.translate = 0;
 buffer.fastmap = map;
@@ -220,7 +220,7 @@ buffer.buffer = 0;
 buffer.allocated = 0;
 
 re_set_syntax(RE_SYNTAX_POSIX_EXTENDED);
-const char* status = re_compile_pattern(pattern.c_str(),pattern.size(),&buffer);
+const char *status = re_compile_pattern(pattern.c_str(), pattern.size(), &buffer);
 if (status) {
     cout << "Error: " << status << endl;
 }

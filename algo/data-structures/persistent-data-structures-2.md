@@ -74,11 +74,11 @@ int cur[MAXN * 20];
 // tol_node lưu tổng số node hiện tại
 int tolnode;
 
-long long init(int id, int l, int r){
+long long init(int id, int l, int r) {
     tolnode++;
     // version ban đầu của node id là node id :)
     cur[id] = id;
-    if(l == r){
+    if (l == r) {
         val[id] = a[l];
         return a[l];
     }
@@ -90,9 +90,8 @@ long long init(int id, int l, int r){
     return sum;
 }
 
-
-void upd(int id, int l, int r, int pos, long long v){
-    if(l == r){
+void upd(int id, int l, int r, int pos, long long v) {
+    if (l == r) {
         tolnode++;
         val[tolnode] = v;
         return;
@@ -103,7 +102,7 @@ void upd(int id, int l, int r, int pos, long long v){
     cur[id] = nw_id;
     int mid = (l + r) >> 1;
     // Trong TH này, ta sẽ tạo ra một node mới là con bên trái của node hiện tại, và node con bên phải sẽ là cur[id << 1 | 1]
-    if(pos <= mid){
+    if (pos <= mid) {
         upd(id << 1, l, mid, pos, v);
         // lưu ý rằng index của node con sẽ được tạo ra ngay sau node này nên index của nó là nw_id + 1
         le[nw_id] = nw_id + 1;
@@ -111,7 +110,7 @@ void upd(int id, int l, int r, int pos, long long v){
         val[nw_id] = val[le[nw_id]] + val[ri[nw_id]];
     }
     // Trong TH này, ta sẽ tạo ra một node mới là con bên phải của node hiện tại, và node con bên trái sẽ là cur[id << 1]
-    else{
+    else {
         upd(id << 1 | 1, mid + 1, r, pos, v);
         le[nw_id] = cur[id << 1];
         ri[nw_id] = nw_id + 1;
@@ -122,9 +121,11 @@ void upd(int id, int l, int r, int pos, long long v){
 // gọi k là thời điểm hỏi
 // id ở đây, thay vì là id của segment tree ban đầu, thì là cur[id] ở thời điểm k
 
-long long get(int id, int l, int r, int L, int R){
-    if(R < l || r < L) return 0;
-    if(l >= L && r <= R) return val[id];
+long long get(int id, int l, int r, int L, int R) {
+    if (R < l || r < L)
+        return 0;
+    if (l >= L && r <= R)
+        return val[id];
     int mid = (l + r) >> 1;
     return get(le[id], l, mid, L, R) + get(ri[id], mid + 1, r, L, R);
 }
@@ -181,17 +182,18 @@ vector<pair<int, long long>> updates[MAXN][MAXN];
 // tính giá trị ban đầu
 long long pref[MAXN][MAXN];
 int range[MAXN];
-void init(){
+void init() {
     // xác định khoảng mà vị trí i quản lý trong BIT
-    for(int i = 1; i <= max(N, M); i++){
+    for (int i = 1; i <= max(N, M); i++) {
         range[i] = (i & (i - 1)) + 1;
-    }    
-    // ta dùng prefix sum để có được ĐPT O(n * m)
-    for(int i = 1; i <= N; i++){
-        for(int j = 1; j <= M; j++) pref[i][j] = pref[i - 1][j] + pref[i][j - 1] - pref[i - 1][j - 1];
     }
-    for(int i = 1; i <= N; i++){
-        for(int j = 1; j <= M; j++){
+    // ta dùng prefix sum để có được ĐPT O(n * m)
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= M; j++)
+            pref[i][j] = pref[i - 1][j] + pref[i][j - 1] - pref[i - 1][j - 1];
+    }
+    for (int i = 1; i <= N; i++) {
+        for (int j = 1; j <= M; j++) {
             int x1 = range[i], y1 = range[j], x2 = i, y2 = j;
             long long startval = pref[x2][y2] - pref[x1 - 1][y2] - pref[x2][y1 - 1] + pref[x1 - 1][y1 - 1];
             updates[i][j].push_back({0, startval});
@@ -199,22 +201,22 @@ void init(){
     }
 }
 
-void upd(int x, int y, int k, long long val){
-    for(int i = x; i <= N; i += i & -i){
-        for(int j = y; j <= M; j += j & -j){
+void upd(int x, int y, int k, long long val) {
+    for (int i = x; i <= N; i += i & -i) {
+        for (int j = y; j <= M; j += j & -j) {
             // giá trị gần nhất của phần tử (i, j)
             long long lst = updates[i][j].back().second;
             lst += val;
-            updates[i][j].push_back(make_pair(k, val));
+            updates[i][j].push_back(make_pair(k, lst));
         }
     }
 }
 
 // hàm get() sẽ tính giá trị của hcn con (1, 1), (x, y)
-long long get(int x, int y, int k){
+long long get(int x, int y, int k) {
     long long ans = 0;
-    for(int i = x; i; i -= i & -i){
-        for(int j = y; j; j -= j & -j){
+    for (int i = x; i; i -= i & -i) {
+        for (int j = y; j; j -= j & -j) {
             // ta lower_bound cặp (k, oo) để chắc chắn ra được vị trí nhỏ nhất có thời gian > k, và sau đó ta -1 để ra vị trí cần tìm.
             int pos = lower_bound(updates[i][j].begin(), updates[i][j].end(), make_pair(k, infty)) - updates[i][j].begin() - 1;
             ans += updates[i][j][pos].second;

@@ -269,7 +269,7 @@ Từ đây, ta có thể áp dụng thuật toán đã nêu trong bài.
 using namespace std;
 
 struct item {
-  int l, r, p;
+    int l, r, p;
 };
 
 const int N = 1e5 + 3;
@@ -410,7 +410,7 @@ $$
 using namespace std;
 
 struct item {
-  int l, r, p;
+    int l, r, p;
 };
 
 const int N = 2e5 + 3;

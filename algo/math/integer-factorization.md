@@ -131,9 +131,9 @@ vector<long long> trial_division3(long long n) {
             n /= d;
         }
     }
-    
+
     const int increments[] = {4, 2, 4, 2, 4, 6, 2, 6};
-    
+
     int i = 0;
     for (long long d = 7; d * d <= n; d += increments[i++]) {
         while (n % d == 0) {
@@ -529,35 +529,45 @@ using ld = long double;
 ll mult(ll x, ll y, ll md) {
     ull q = (ld)x * y / md;
     ll res = ((ull)x * y - q * md);
-    if (res >= md) res -= md;
-    if (res < 0) res += md;
+    if (res >= md)
+        res -= md;
+    if (res < 0)
+        res += md;
     return res;
 }
 
 // Hàm tính lũy thừa nhanh
 ll powMod(ll x, ll p, ll md) {
-    if (p == 0) return 1;
-    if (p & 1) return mult(x, powMod(x, p - 1, md), md);
+    if (p == 0)
+        return 1;
+    if (p & 1)
+        return mult(x, powMod(x, p - 1, md), md);
     return powMod(mult(x, x, md), p / 2, md);
 }
 
 // Thuật toán Rabin Miller hỗ trợ kiểm tra các số nguyên tố lớn
 bool checkMillerRabin(ll x, ll md, ll s, int k) {
     x = powMod(x, s, md);
-    if (x == 1) return true;
+    if (x == 1)
+        return true;
     while (k--) {
-        if (x == md - 1) return true;
+        if (x == md - 1)
+            return true;
         x = mult(x, x, md);
-        if (x == 1) return false;
+        if (x == 1)
+            return false;
     }
     return false;
 }
 
 // Hàm kiểm tra nhanh một số có nguyên tố hay không
 bool isPrime(ll x) {
-    if (x == 2 || x == 3 || x == 5 || x == 7) return true;
-    if (x % 2 == 0 || x % 3 == 0 || x % 5 == 0 || x % 7 == 0) return false;
-    if (x < 121) return x > 1;
+    if (x == 2 || x == 3 || x == 5 || x == 7)
+        return true;
+    if (x % 2 == 0 || x % 3 == 0 || x % 5 == 0 || x % 7 == 0)
+        return false;
+    if (x < 121)
+        return x > 1;
     ll s = x - 1;
     int k = 0;
     while (s % 2 == 0) {
@@ -566,17 +576,21 @@ bool isPrime(ll x) {
     }
     if (x < 1LL << 32) {
         for (ll z : {2, 7, 61}) {
-            if (!checkMillerRabin(z, x, s, k)) return false;
+            if (!checkMillerRabin(z, x, s, k))
+                return false;
         }
     } else {
         for (ll z : {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {
-            if (!checkMillerRabin(z, x, s, k)) return false;
+            if (!checkMillerRabin(z, x, s, k))
+                return false;
         }
     }
     return true;
 }
 
-ll gcd(ll x, ll y) { return y == 0 ? x : gcd(y, x % y); }
+ll gcd(ll x, ll y) {
+    return y == 0 ? x : gcd(y, x % y);
+}
 
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 long long get_rand(long long r) {
@@ -594,7 +608,8 @@ void pollard(ll x, vector<ll> &ans) {
         c = 1 + get_rand(x - 1);
         auto f = [&](ll y) {
             ll res = mult(y, y, x) + c;
-            if (res >= x) res -= x;
+            if (res >= x)
+                res -= x;
             return res;
         };
         ll y = 2;
@@ -632,7 +647,8 @@ void pollard(ll x, vector<ll> &ans) {
                     z = f(z);
                 }
             }
-            if (g == x) break;
+            if (g == x)
+                break;
             assert(g != 1);
             // Thay vì kết thúc như thuật toán Brent,
             // tiếp tục phân tích hai phần g và x / g
@@ -668,7 +684,8 @@ vector<pair<ll, int>> factorize_pk(ll x) {
         if (p == last)
             ++cnt;
         else {
-            if (last > 0) res.emplace_back(last, cnt);
+            if (last > 0)
+                res.emplace_back(last, cnt);
             last = p;
             cnt = 1;
         }

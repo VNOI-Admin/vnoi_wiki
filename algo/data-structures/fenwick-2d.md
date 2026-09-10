@@ -287,7 +287,7 @@ void add(int u, int v, int x) {
     }
 }
 
-void rectAdd(int a, int b, int u, int v, int x){
+void rectAdd(int a, int b, int u, int v, int x) {
     add(a, b, x);
     add(a, v + 1, -x);
     add(u + 1, b, -x);
@@ -327,14 +327,14 @@ Tuy nhiên, ta nhận thấy rằng, với mỗi truy vấn, chỉ có $\log N$ 
 vector<int> pos[N];
 vector<int> BIT[N];
 
-void fakeAdd(int u, int v, int x){
-    for(u; u <= n; u += u&(-u)){
+void fakeAdd(int u, int v, int x) {
+    for (u; u <= n; u += u & (-u)) {
         pos[u].push_back(v);
     }
 }
 
-void fakeQuery(int u, int v){
-    for(u; u > 0; u -= u&(-u)){
+void fakeQuery(int u, int v) {
+    for (u; u > 0; u -= u & (-u)) {
         pos[u].push_back(v);
     }
 }

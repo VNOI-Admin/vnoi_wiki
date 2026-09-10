@@ -72,8 +72,7 @@ int n;
 int cnt[N / BLOCK_SIZE + 2][N];
 int a[N];
 
-void preprocess()
-{
+void preprocess() {
     for (int i = 0; i < n; ++i)
         ++cnt[i / BLOCK_SIZE][a[i]];
 }
@@ -93,10 +92,12 @@ int query(int l, int r, int k) {
         sum += cnt[i][k];
 
     for (int i = l, lim = blockL * BLOCK_SIZE; i < lim; ++i)
-        if (a[i] == k) ++sum;
+        if (a[i] == k)
+            ++sum;
 
     for (int i = blockR * BLOCK_SIZE; i <= r; ++i)
-        if (a[i] == k) ++sum;
+        if (a[i] == k)
+            ++sum;
 
     return sum;
 }

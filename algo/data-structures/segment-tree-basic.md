@@ -215,7 +215,8 @@ void build(int id, int l, int r) {
 // Thủ tục cập nhật
 void update(int id, int l, int r, int i, int val) {
     // i nằm ngoài đoạn [l, r], ta bỏ qua nút id
-    if (l > i || r < i) return;
+    if (l > i || r < i)
+        return;
 
     // Đoạn chỉ gồm 1 phần tử, không có nút con
     if (l == r) {
@@ -232,15 +233,16 @@ void update(int id, int l, int r, int i, int val) {
     st[id] = min(st[2 * id], st[2 * id + 1]);
 }
 
-
 // Hàm lấy giá trị
 int get(int id, int l, int r, int u, int v) {
     // Đoạn [u, v] không giao với đoạn [l, r], ta bỏ qua đoạn này
-    if (l >  v || r <  u) return inf;
+    if (l > v || r < u)
+        return inf;
 
     /* Đoạn [l, r] nằm hoàn toàn trong đoạn [u, v] mà ta đang truy vấn,
         ta trả lại thông tin lưu ở nút id */
-    if (l >= u && r <= v) return st[id];
+    if (l >= u && r <= v)
+        return st[id];
 
     // Gọi đệ quy với các nút con của nút id
     int mid = l + r >> 1; // (l + r) / 2
@@ -365,7 +367,8 @@ long long st[4 * maxN];
 
 // Thủ tục cập nhật
 void update(int id, int l, int r, int i, int val) {
-    if (l > i || r < i) return;
+    if (l > i || r < i)
+        return;
     if (l == r) {
         st[id] = val;
         return;
@@ -378,8 +381,10 @@ void update(int id, int l, int r, int i, int val) {
 
 // Hàm lấy tổng giá trị
 long long get(int id, int l, int r, int u, int v) {
-    if (l >  v || r <  u) return 0;
-    if (l >= u && r <= v) return st[id];
+    if (l > v || r < u)
+        return 0;
+    if (l >= u && r <= v)
+        return st[id];
 
     int mid = l + r >> 1;
     long long get1 = get(2 * id, l, mid, u, v);
@@ -490,9 +495,9 @@ int a[maxN];
 node st[4 * maxN];
 
 // Thủ tục xây dựng cây phân đoạn
-void build(int id, int l ,int r) {
+void build(int id, int l, int r) {
     if (l == r) {
-        st[id] = { a[l], a[l], a[l], a[l] };
+        st[id] = {a[l], a[l], a[l], a[l]};
         return;
     }
     int mid = l + r >> 1;
@@ -502,9 +507,11 @@ void build(int id, int l ,int r) {
 }
 
 // Hàm lấy giá trị
-node get(int id, int l, int r, int u, int v){
-    if (l >  v || r <  u) return node::base();
-    if (l >= u && r <= v) return st[id];
+node get(int id, int l, int r, int u, int v) {
+    if (l > v || r < u)
+        return node::base();
+    if (l >= u && r <= v)
+        return st[id];
 
     int mid = l + r >> 1;
     node g1 = get(2 * id, l, mid, u, v);
@@ -514,7 +521,8 @@ node get(int id, int l, int r, int u, int v){
 
 int main() {
     cin >> n;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     build(1, 1, n);
 
     cin >> m;
@@ -586,11 +594,13 @@ void build(int id, int l, int r) {
     build(2 * id + 1, mid + 1, r);
 
     st[id] = st[2 * id + 1];
-    for (auto x : st[2 * id]) st[id].insert(x);
+    for (auto x : st[2 * id])
+        st[id].insert(x);
 }
 
 void update(int id, int l, int r, int i, int old, int val) {
-    if (l > i || r < i) return;
+    if (l > i || r < i)
+        return;
     if (l == r) {
         st[id].clear();
         st[id].insert(val);
@@ -604,10 +614,12 @@ void update(int id, int l, int r, int i, int old, int val) {
 }
 
 int get(int id, int l, int r, int u, int v, int k) {
-    if (l >  v || r <  u) return inf;
+    if (l > v || r < u)
+        return inf;
     if (l >= u && r <= v) {
         auto it = st[id].lower_bound(k);
-        if (it == st[id].end()) return inf;
+        if (it == st[id].end())
+            return inf;
         return *it;
     }
 
@@ -619,18 +631,18 @@ int get(int id, int l, int r, int u, int v, int k) {
 
 int main() {
     cin >> n >> m;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     build(1, 1, n);
 
-    while (m--){
+    while (m--) {
         int type, l, r, k;
         cin >> type;
         if (type == 1) {
             cin >> l >> k;
             update(1, 1, n, l, a[l], k);
             a[l] = k;
-        }
-        else {
+        } else {
             cin >> l >> r >> k;
             int ans = get(1, 1, n, l, r, k);
             cout << ((ans == inf) ? -1 : ans) << '\n';
@@ -762,11 +774,12 @@ void build(int id, int l, int r) {
 
 // Cập nhật nút đang xét và đẩy giá trị lazy xuống các nút con
 void fix(int id, int l, int r) {
-    if (!lazy[id]) return;
+    if (!lazy[id])
+        return;
     st[id] += lazy[id];
 
     // Nếu id không phải là nút lá thì đẩy giá trị xuống các nút con
-    if (l != r){
+    if (l != r) {
         lazy[2 * id] += lazy[id];
         lazy[2 * id + 1] += lazy[id];
     }
@@ -776,7 +789,8 @@ void fix(int id, int l, int r) {
 
 void update(int id, int l, int r, int u, int v, int val) {
     fix(id, l, r);
-    if (l >  v || r <  u) return;
+    if (l > v || r < u)
+        return;
     if (l >= u && r <= v) {
         /* Khi cài đặt, ta LUÔN ĐẢM BẢO giá trị của nút được cập nhật ĐỒNG THỜI với
         giá trị Lazy Propagation. Như vậy sẽ tránh sai sót. */
@@ -792,10 +806,12 @@ void update(int id, int l, int r, int u, int v, int val) {
 
 long long get(int id, int l, int r, int u, int v) {
     fix(id, l, r);
-    if (l >  v || r <  u) return -inf;
-    if (l >= u && r <= v) return st[id];
+    if (l > v || r < u)
+        return -inf;
+    if (l >= u && r <= v)
+        return st[id];
 
-    int mid  = l + r >> 1;
+    int mid = l + r >> 1;
     long long get1 = get(2 * id, l, mid, u, v);
     long long get2 = get(2 * id + 1, mid + 1, r, u, v);
     return max(get1, get2);
@@ -897,7 +913,8 @@ int st[30][4 * maxN], lazy[30][4 * maxN];
 
 void build(int id, int l, int r) {
     // Khởi tạo giá trị mảng lazy ban đầu bằng -1
-    for (int ch = 0; ch <= 25; ++ch) lazy[ch][id] = -1;
+    for (int ch = 0; ch <= 25; ++ch)
+        lazy[ch][id] = -1;
 
     if (l == r) {
         st[s[l - 1] - 'a'][id] = 1;
@@ -911,10 +928,10 @@ void build(int id, int l, int r) {
 }
 
 void fix(int id, int l, int r, int ch) {
-    if (lazy[ch][id] == -1) return;
+    if (lazy[ch][id] == -1)
+        return;
     st[ch][id] = lazy[ch][id] * (r - l + 1);
-    if (l != r){
-
+    if (l != r) {
         /* Vì là thao tác gán giá trị chứ KHÔNG phải là tăng thêm một lượng
         nên lazy của nút con sẽ gán bằng lazy của nút cha */
         lazy[ch][2 * id] = lazy[ch][id];
@@ -925,7 +942,8 @@ void fix(int id, int l, int r, int ch) {
 
 void update(int id, int l, int r, int u, int v, int val, int ch) {
     fix(id, l, r, ch);
-    if (l >  v || r <  u) return;
+    if (l > v || r < u)
+        return;
     if (l >= u && r <= v) {
         lazy[ch][id] = val;
         fix(id, l, r, ch);
@@ -939,10 +957,12 @@ void update(int id, int l, int r, int u, int v, int val, int ch) {
 
 int get(int id, int l, int r, int u, int v, int ch) {
     fix(id, l, r, ch);
-    if (l >  v || r <  u) return 0;
-    if (l >= u && r <= v) return st[ch][id];
+    if (l > v || r < u)
+        return 0;
+    if (l >= u && r <= v)
+        return st[ch][id];
 
-    int mid  = l + r >> 1;
+    int mid = l + r >> 1;
     int get1 = get(2 * id, l, mid, u, v, ch);
     int get2 = get(2 * id + 1, mid + 1, r, u, v, ch);
     return get1 + get2;
@@ -1035,9 +1055,9 @@ void fix(int id, int l, int r) {
     st[id] %= mod;
 
     if (l != r) {
-        lazy[2 * id].first  = (lazy[2 * id].first  + a) % mod;
+        lazy[2 * id].first = (lazy[2 * id].first + a) % mod;
         lazy[2 * id].second = (lazy[2 * id].second + b) % mod;
-        lazy[2 * id + 1].first  = (lazy[2 * id + 1].first  + a) % mod;
+        lazy[2 * id + 1].first = (lazy[2 * id + 1].first + a) % mod;
         lazy[2 * id + 1].second = (lazy[2 * id + 1].second + b) % mod;
     }
     lazy[id] = {0, 0};
@@ -1045,9 +1065,10 @@ void fix(int id, int l, int r) {
 
 void update(int id, int l, int r, int u, int v, int a, int b) {
     fix(id, l, r);
-    if (l >  v || r <  u) return;
+    if (l > v || r < u)
+        return;
     if (l >= u && r <= v) {
-        lazy[id].first  = a;
+        lazy[id].first = a;
         lazy[id].second = (1ll * b - 1ll * u * a + 1ll * mod * mod) % mod;
         fix(id, l, r);
         return;
@@ -1060,10 +1081,12 @@ void update(int id, int l, int r, int u, int v, int a, int b) {
 
 int get(int id, int l, int r, int u, int v) {
     fix(id, l, r);
-    if (l >  v || r <  u) return 0;
-    if (l >= u && r <= v) return st[id];
+    if (l > v || r < u)
+        return 0;
+    if (l >= u && r <= v)
+        return st[id];
 
-    int mid  = l + r >> 1;
+    int mid = l + r >> 1;
     int get1 = get(2 * id, l, mid, u, v);
     int get2 = get(2 * id + 1, mid + 1, r, u, v);
     return (get1 + get2) % mod;

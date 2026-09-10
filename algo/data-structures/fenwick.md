@@ -284,7 +284,7 @@ void updateRange(int l, int r, int v) {
     updatePoint(bit2, r + 1, -v);
 }
 
-int getSumOnBIT(vector<int>& b, int u) {
+int getSumOnBIT(vector<int> &b, int u) {
     int idx = u, ans = 0;
     while (idx > 0) {
         ans += b[idx];

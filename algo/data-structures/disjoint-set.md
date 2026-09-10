@@ -42,18 +42,18 @@ _Code C++ ([bmerry](http://codeforces.com/profile/bmerry))_
 int root(int v) {
     // Cho 1 số v, tìm hộp chứa viên sỏi v
     return par[v] < 0
-            ? v
-            : (par[v] = root(par[v])); // Viên sỏi v nằm trong cùng hộp với viên sỏi chứa par[v]
-                                       // Chú ý ở đây ta gán lại par[v] = root(par[v]), kĩ thuật này
-                                       // được gọi là Path Compression, giúp giảm độ phức tạp mỗi
-                                       // thao tác xuống log(n)
+               ? v
+               : (par[v] = root(par[v])); // Viên sỏi v nằm trong cùng hộp với viên sỏi chứa par[v]
+                                          // Chú ý ở đây ta gán lại par[v] = root(par[v]), kĩ thuật này
+                                          // được gọi là Path Compression, giúp giảm độ phức tạp mỗi
+                                          // thao tác xuống log(n)
 }
 
 void merge(int x, int y) {
     // Gộp 2 hộp chứa viên sỏi x và y vào cùng 1 hộp
-    if ((x = root(x)) == (y = root(y)) {
+    if ((x = root(x)) == (y = root(y))) {
         // 2 viên sỏi x và y đã thuộc cùng 1 hộp, ta không cần làm gì cả
-        return ;
+        return;
     }
     if (par[y] < par[x]) {
         // Ta gộp vào hộp chứa nhiều sỏi hơn. Kĩ thuật này gọi là Union-by-rank, và cũng giúp giảm

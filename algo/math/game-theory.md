@@ -384,10 +384,10 @@ int di[] = {-2, -2, -1, 1};
 int dj[] = {1, -1, -2, -2};
 
 // hàm tính mex của một vector U
-int mex(vector<int>& U) {
+int mex(vector<int> &U) {
     int res = 0;
     sort(U.begin(), U.end());
-    for (int x: U)
+    for (int x : U)
         if (res == x)
             ++res;
     return res;

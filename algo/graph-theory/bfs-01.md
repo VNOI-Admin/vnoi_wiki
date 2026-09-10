@@ -158,7 +158,7 @@ int vis[MAXN][MAXN];
 
 const pair<int, int> mv[4] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
-bool in_bound(int a, int b){
+bool in_bound(int a, int b) {
     return 1 <= a && a <= n && 1 <= b && b <= m && board[a][b] == '.';
 }
 
@@ -167,8 +167,8 @@ int main() {
     cin.tie(0);
     cout.tie(0);
     cin >> n >> m >> r >> c >> x >> y;
-    for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= m; j++){
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
             cin >> board[i][j];
             d[i][j] = INF;
         }
@@ -177,29 +177,35 @@ int main() {
 
     deque<pair<int, int>> dq;
     dq.push_back({r, c});
-    while(!dq.empty()){
+    while (!dq.empty()) {
         pair<int, int> u = dq.front();
         dq.pop_front();
-        if(vis[u.first][u.second])continue;
+        if (vis[u.first][u.second])
+            continue;
         vis[u.first][u.second] = 1;
-        for(pair<int, int> v: mv){
+        for (pair<int, int> v : mv) {
             int nwx = v.first + u.first, nwy = v.second + u.second;
             int w;
-            if(v == make_pair(0, -1))w = 1;
-            else w = 0;
-            if(in_bound(nwx, nwy) && d[nwx][nwy] > d[u.first][u.second] + w){
+            if (v == make_pair(0, -1))
+                w = 1;
+            else
+                w = 0;
+            if (in_bound(nwx, nwy) && d[nwx][nwy] > d[u.first][u.second] + w) {
                 d[nwx][nwy] = d[u.first][u.second] + w;
-                if(w == 0)dq.push_front({nwx, nwy});
-                else dq.push_back({nwx, nwy});
+                if (w == 0)
+                    dq.push_front({nwx, nwy});
+                else
+                    dq.push_back({nwx, nwy});
             }
         }
     }
 
     int ans = 0;
-    for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= m; j++){
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
             int l = d[i][j], r = l + j - c;
-            if(l <= x && r <= y)ans++;
+            if (l <= x && r <= y)
+                ans++;
         }
     }
     cout << ans;
@@ -267,35 +273,41 @@ int main() {
     cin.tie(0);
     int n, m;
     cin >> n >> m;
-    for(int i = 1; i <= n; i++){
-        for(int j = 1; j <= m; j++){
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
             char x;
             cin >> x;
             d[encode(1, i, j)] = INF;
             d[encode(2, i, j)] = INF;
-            if(x == '#')add_edge(encode(1, i, j), encode(2, i, j), 1);
-            if(j > 1)add_edge(encode(1, i, j-1), encode(1, i, j), 0);
-            if(i > 1)add_edge(encode(2, i-1, j), encode(2, i, j), 0);
+            if (x == '#')
+                add_edge(encode(1, i, j), encode(2, i, j), 1);
+            if (j > 1)
+                add_edge(encode(1, i, j - 1), encode(1, i, j), 0);
+            if (i > 1)
+                add_edge(encode(2, i - 1, j), encode(2, i, j), 0);
         }
     }
-    
+
     deque<int> dq;
     d[encode(1, 1, 1)] = 0;
     dq.push_front(encode(1, 1, 1));
-    while(!dq.empty()){
+    while (!dq.empty()) {
         auto u = dq.front();
-        if(u == encode(1, n, m)){
+        if (u == encode(1, n, m)) {
             cout << d[u];
             return 0;
         }
         dq.pop_front();
-        if(vis[u])continue;;
+        if (vis[u])
+            continue;
         vis[u] = 1;
-        for(pair<int, int> v: g[u]){
-            if(d[v.first] > d[u] + v.second){
+        for (pair<int, int> v : g[u]) {
+            if (d[v.first] > d[u] + v.second) {
                 d[v.first] = d[u] + v.second;
-                if(!v.second)dq.push_front(v.first);
-                else dq.push_back(v.first);
+                if (!v.second)
+                    dq.push_front(v.first);
+                else
+                    dq.push_back(v.first);
             }
         }
     }

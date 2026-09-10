@@ -120,8 +120,11 @@ using namespace std;
 
 struct DSU {
     vector<int> par;
-    DSU(int n) : par(n, -1) {}
-    int comp(int u) { return par[u] < 0 ? u : par[u] = comp(par[u]); }
+    DSU(int n) : par(n, -1) {
+    }
+    int comp(int u) {
+        return par[u] < 0 ? u : par[u] = comp(par[u]);
+    }
     bool connect(int u, int v) {
         if ((u = comp(u)) == (v = comp(v))) {
             return false;
@@ -129,7 +132,8 @@ struct DSU {
         if (par[u] > par[v]) {
             swap(u, v);
         }
-        par[u] += par[v]; par[v] = u;
+        par[u] += par[v];
+        par[v] = u;
         return true;
     }
 };
@@ -138,7 +142,8 @@ struct GraphMat {
     vector<pair<int, int>> edges;
     int n;
     DSU d;
-    GraphMat(int n, vector<pair<int, int>> edges) : n(n), d(n), edges(edges) {}
+    GraphMat(int n, vector<pair<int, int>> edges) : n(n), d(n), edges(edges) {
+    }
     bool check(int x) {
         // kiểm tra nếu ta có thể thêm phần tử a vào tập S hiện tại
         auto [u, v] = edges[x];
@@ -149,10 +154,12 @@ struct GraphMat {
         auto [u, v] = edges[x];
         d.connect(u, v);
     }
-    void clear() { d = DSU(n); }
+    void clear() {
+        d = DSU(n);
+    }
 };
 
-template<class M>
+template <class M>
 vector<int> largestBasis(M mat, int n, vector<int> w) {
     vector<int> elem(n);
     iota(elem.begin(), elem.end(), 0);
@@ -176,7 +183,10 @@ int main() {
     vector<pair<int, int>> edges;
     vector<int> w(m);
     for (int i = 0; i < m; i++) {
-        int u, v; cin >> u >> v >> w[i]; u--; v--; // giả sử đồ thị cho đỉnh từ 1 tới n, ta biến thành từ 0 tới n - 1
+        int u, v;
+        cin >> u >> v >> w[i];
+        u--;
+        v--; // giả sử đồ thị cho đỉnh từ 1 tới n, ta biến thành từ 0 tới n - 1
         edges.push_back({u, v});
     }
     GraphMat mat(n, edges);

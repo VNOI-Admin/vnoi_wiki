@@ -68,13 +68,13 @@ int factmod(int n, int p) {
     vector<int> f(p);
     f[0] = 1;
     for (int i = 1; i < p; i++)
-        f[i] = f[i-1] * i % p;
+        f[i] = f[i - 1] * i % p;
 
     int res = 1;
     while (n > 1) {
-        if ((n/p) % 2)
+        if ((n / p) % 2)
             res = p - res;
-        res = res * f[n%p] % p;
+        res = res * f[n % p] % p;
         n /= p;
     }
     return res;
@@ -198,11 +198,11 @@ Có thể chạy đến $5 \cdot 10^{10}$ tùy thuộc vào lượng hằng số
     const int MOD = 1e9 + 7;
     const int S = 1e7;
 
-    // Phần này thực hiện ở code khác 
+    // Phần này thực hiện ở code khác
     // và lấy kết quả vào mảng fact[] trong code chính.
-    void prepare(){
+    void prepare() {
         int tmp = 1;
-        for (int i = 1; i < MOD; i++){
+        for (int i = 1; i < MOD; i++) {
             tmp = 1LL * tmp * i % MOD;
             if (i % S == 0) {
                 cout << tmp << ", ";
@@ -221,7 +221,7 @@ Có thể chạy đến $5 \cdot 10^{10}$ tùy thuộc vào lượng hằng số
     // Dãy được copy từ kết quả in ra của code bên trên
     int fact[] = {1, 641102369, 578095319, 5832229, ...};
 
-    int get_fact(int n){
+    int get_fact(int n) {
         int t = n / S;
         int res = fact[t];
         for (int i = t * S + 1; i <= n; i++)
@@ -336,18 +336,18 @@ long long inv(long long x);
 // hàm trả về đa thức a * b
 vector<long long> NTT(vector<long long> a, vector<long long> b);
 
-void mul(long long &x, long long y){
+void mul(long long &x, long long y) {
     x = __int128(x) * y % MOD;
 }
 
 // Biết h(0), h(1), ..., h(d)
 // Hàm trả về h(m), h(m + 1), ..., h(m + cnt - 1)
 // m > d
-vector<long long> Lagrange(vector<long long> h, long long m, int cnt){
+vector<long long> Lagrange(vector<long long> h, long long m, int cnt) {
     int d = h.size() - 1;
     // tính h[i] = (-1)^(d-i) h(i)/(i! (d-i)!)
     // hệ số x^i
-    for (int i = 0; i <= d; i++){
+    for (int i = 0; i <= d; i++) {
         mul(h[i], (ifact[i] * ifact[d - i]) % MOD);
         if ((d - i) & 1)
             h[i] = (MOD - h[i]) % MOD;
@@ -359,7 +359,7 @@ vector<long long> Lagrange(vector<long long> h, long long m, int cnt){
     long long now = m - d;
 
     for (int i = 0; i < d + cnt; i++)
-        f[i] = inv(now+i);
+        f[i] = inv(now + i);
 
     // Nhân 2 đa thức và hệ số được lấy mod p
     h = NTT(f, h);
@@ -373,7 +373,7 @@ vector<long long> Lagrange(vector<long long> h, long long m, int cnt){
 
     mul(h[0], now);
 
-    for (int i = 1; i < cnt; i++){
+    for (int i = 1; i < cnt; i++) {
         mul(now, m + i);
         mul(now, inv(m + i - d - 1));
         mul(h[i], now);
@@ -382,19 +382,21 @@ vector<long long> Lagrange(vector<long long> h, long long m, int cnt){
     return h;
 }
 
-long long factorial(long long n, long long p){
-    if (n >= p) return 0;
-    if (n < 2) return 1;
+long long factorial(long long n, long long p) {
+    if (n >= p)
+        return 0;
+    if (n < 2)
+        return 1;
     int s = __builtin_sqrtl(n);
     MOD = p;
     vector<long long> h{1, s + 1};
-    for (int bit = __lg(s) - 1, d = 1; bit >= 0; bit--){
+    for (int bit = __lg(s) - 1, d = 1; bit >= 0; bit--) {
         // Hiện tại h(i) = (i * s + 1) * (i * s + 1) ... (i * s + d)
         // Tính h(d+1), ..., h(2d)
         auto nh1 = Lagrange(h, d + 1, d);
         // Tính h(d.inv(s)), ..., h(d.inv(s) + 2d)
         // Như vậy, nh2(i) = (i * s + d + 1) * (i * s + d + 2) ... (i * s + d * 2)
-        auto nh2 = Lagrange(h, 1LL * inv(s) * d % mod, 2 * d + 1);
+        auto nh2 = Lagrange(h, 1LL * inv(s) * d % MOD, 2 * d + 1);
         // h giờ đây là h(0), h(1), ..., h(2d)
         h.insert(h.end(), nh1.begin(), nh1.end());
         // d --> d * 2
@@ -402,12 +404,12 @@ long long factorial(long long n, long long p){
 
         // Hiện tại h(i) = (i * s + 1) * (i * s + 2) ... (i * s + d/2)
         // Còn nh2(i) = (i * s + d/2 + 1) * (i * s + d/2 + 2) ... (i * s + d)
-        for (int i = 0 ; i <= d; i++)
+        for (int i = 0; i <= d; i++)
             h[i] *= nh2[i];
         // Tại đây h(i) = (i * s + 1) * (i * s + 1) ... (i * s + d)
 
         // Nếu bit hiện tại của s là 1
-        if (s >> bit & 1){
+        if (s >> bit & 1) {
             d |= 1;
             long long tmp = d;
 
@@ -420,7 +422,7 @@ long long factorial(long long n, long long p){
             // last = (d*s+1)(d*s+2)...(d*s+d)
             for (int i = 1; i <= d; i++)
                 tj++, last *= tj;
-            
+
             // Thêm biến last vào h
             h.emplace_back(last);
         }

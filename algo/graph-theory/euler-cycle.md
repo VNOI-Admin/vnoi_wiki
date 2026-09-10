@@ -302,11 +302,12 @@ Ngoài ra cài đặt mẫu sử dụng cấu trúc danh sách liên kết đôi
 struct Edge {
     int target, id;
 
-    Edge(int _target, int _id): target(_target), id(_id) {}
+    Edge(int _target, int _id) : target(_target), id(_id) {
+    }
 };
 
 vector<Edge> adj[N]; // Danh sách kề lưu cạnh và chỉ số
-bool used_edge[M]; // Mảng đánh dấu cạnh đã thăm
+bool used_edge[M];   // Mảng đánh dấu cạnh đã thăm
 
 list<int> euler_walk(int u) {
     // Sử dụng cấu trúc danh sách liên kết để lưu kết quả
@@ -328,7 +329,8 @@ list<int> euler_walk(int u) {
         adj[u].pop_back();
 
         // Bỏ qua nếu cạnh đã thăm
-        if (used_edge[eid]) continue;
+        if (used_edge[eid])
+            continue;
 
         // Đánh dấu cạnh đã đi qua
         used_edge[eid] = true;
@@ -389,7 +391,8 @@ const int N = 1e5 + 2, M = 2e5 + 2;
 struct Edge {
     int target, id;
 
-    Edge(int _target, int _id): target(_target), id(_id) {}
+    Edge(int _target, int _id) : target(_target), id(_id) {
+    }
 };
 
 int n, m, in_deg[N];
@@ -497,7 +500,8 @@ const int M = 40002;
 struct Edge {
     int target, id;
 
-    Edge(int _target, int _id): target(_target), id(_id) {}
+    Edge(int _target, int _id) : target(_target), id(_id) {
+    }
 };
 
 int n, m, w[M], deg[N], edge_id[N][N], S[M];
@@ -555,7 +559,8 @@ int main() {
     // Tìm k sao cho S[k] -> min
     int k = 0;
     for (int i = 1; i < cycle_size; ++i)
-        if (S[i] < S[k]) k = i;
+        if (S[i] < S[k])
+            k = i;
 
     // Dịch chu trình sao cho bắt đầu ở u[k]
     list<int> ans;
@@ -566,7 +571,8 @@ int main() {
     ans.push_back(*it);
     ans.insert(ans.begin(), it, (--cycle.end()));
 
-    for (int i : ans) cout << i << " ";
+    for (int i : ans)
+        cout << i << " ";
 
     return 0;
 }
@@ -617,7 +623,8 @@ using namespace std;
 struct Edge {
     int target, weight;
 
-    Edge(int _target, int _weight): target(_target), weight(_weight) {}
+    Edge(int _target, int _weight) : target(_target), weight(_weight) {
+    }
 };
 
 vector<vector<Edge>> build_graph(int n) {
@@ -644,8 +651,7 @@ list<Edge> euler_walk(int u, vector<vector<Edge>> &g) {
     // Duyệt chu trình hiện tại từ cuối về đầu và
     // gọi đệ quy nếu cần thiết
     auto it = --ans.end();
-    while (it != ans.begin())
-    {
+    while (it != ans.begin()) {
         auto tit = it;
         --tit;
         ans.splice(it, euler_walk(tit->target, g));
@@ -710,7 +716,8 @@ const int N = 1002;
 struct Point {
     int x, y;
 
-    Point(int _x, int _y): x(_x), y(_y) {}
+    Point(int _x, int _y) : x(_x), y(_y) {
+    }
 };
 
 struct Edge {
@@ -718,11 +725,11 @@ struct Edge {
     int id;
     bool fake;
 
-    Edge(int x, int y, int u, int v, int _id, bool _fake = false):
-        source(x, y),
-        target(u, v),
-        id(_id),
-        fake(_fake) {}
+    Edge(int x, int y, int u, int v, int _id, bool _fake = false) : source(x, y),
+                                                                    target(u, v),
+                                                                    id(_id),
+                                                                    fake(_fake) {
+    }
 };
 
 struct Graph {
@@ -737,7 +744,7 @@ struct Graph {
             graph[i].resize(N * 2);
     }
 
-    vector<vector<Edge>>& operator[](int i) {
+    vector<vector<Edge>> &operator[](int i) {
         return graph[i];
     }
 
@@ -758,8 +765,10 @@ struct Graph {
     }
 
     void addLine(int x1, int y1, int x2, int y2) {
-        if (x1 > x2) swap(x1, x2);
-        if (y1 > y2) swap(y1, y2);
+        if (x1 > x2)
+            swap(x1, x2);
+        if (y1 > y2)
+            swap(y1, y2);
 
         if (x1 == x2) { // nếu đoạn thẳng song song với trục Oy
             for (int i = y1; i < y2; ++i) {
@@ -778,7 +787,7 @@ vector<bool> avail;
 Graph g = Graph();
 vector<vector<Point>> ans;
 
-ostream& operator<<(ostream& out, Point p) {
+ostream &operator<<(ostream &out, Point p) {
     out << (p.x - N) << " " << (p.y - N);
     return out;
 }
@@ -790,15 +799,15 @@ list<Edge> euler_walk(Point u, Graph &g) {
     while (!g[u.x][u.y].empty()) {
         Edge e = g[u.x][u.y].back();
         g[u.x][u.y].pop_back();
-        if (!avail[e.id]) continue;
+        if (!avail[e.id])
+            continue;
         avail[e.id] = false;
         ans.emplace_back(e);
         u = e.target;
     }
 
     auto it = --ans.end();
-    while (it != ans.begin())
-    {
+    while (it != ans.begin()) {
         list<Edge>::iterator tit = it;
         --tit;
         ans.splice(it, euler_walk(it->source, g));
@@ -850,7 +859,8 @@ int main() {
                         stroke.push_back(it->target);
                     }
                 }
-                if (!stroke.empty()) ans.push_back(stroke);
+                if (!stroke.empty())
+                    ans.push_back(stroke);
             }
         }
     }
@@ -858,7 +868,8 @@ int main() {
     cout << ans.size() << "\n";
     for (vector<Point> v : ans) {
         cout << v.size() << "\n";
-        for (Point i : v) cout << i << "\n";
+        for (Point i : v)
+            cout << i << "\n";
     }
 
     return 0;

@@ -83,10 +83,13 @@ struct point {
 };
 
 struct cmp {
-    bool operator() (point a, point b) {
-        if (a.x != b.x) return a.x > b.x;
-        if (a.y != b.y) return a.y < b.y;
-        if (a.z != b.z) return a.z < b.z;
+    bool operator()(point a, point b) {
+        if (a.x != b.x)
+            return a.x > b.x;
+        if (a.y != b.y)
+            return a.y < b.y;
+        if (a.z != b.z)
+            return a.z < b.z;
         return a.i < b.i;
     }
 };
@@ -105,23 +108,24 @@ Hàm ``dnc(l,r)`` thường có dạng như sau (cài đặt ngắn hơn ở ph�
 vector<point> v;
 
 void dnc(int l, int r) {
-    if (l == r) return;
+    if (l == r)
+        return;
 
-    int m = (l + r) >> 1; 
+    int m = (l + r) >> 1;
     int lptr = l, rptr = m + 1;
-    
-    dnc(l, m); dnc(m + 1, r); // Thực hiện trên 2 khoảng
-    
-    vector<point> tmp; // Mảng lưu lại đoạn [l..r] sau khi sort theo y
+
+    dnc(l, m);
+    dnc(m + 1, r); // Thực hiện trên 2 khoảng
+
+    vector<point> tmp;  // Mảng lưu lại đoạn [l..r] sau khi sort theo y
     vector<int> revert; // Mảng lưu lại những vị trí đã cập nhật để đảo ngược sau khi kết thúc phần Kết hợp
 
     while (lptr <= m && rptr <= r) {
         if (v[lptr].y > v[rptr].y) {
             // Cập nhật ctdl
-            revert.push_back(v[lptr].z); 
+            revert.push_back(v[lptr].z);
             tmp.push_back(v[lptr++]);
-        }
-        else {
+        } else {
             // Truy vấn ctdl
             tmp.push_back(v[rptr++]);
         }
@@ -238,17 +242,17 @@ Bài toán này ngược lại với ví dụ, thay vì đếm số điểm ở 
 
     void upd(ll u, ll v) {
         while (u) {
-            bit[u] += v; 
-            u -= (u&(-u));
+            bit[u] += v;
+            u -= (u & (-u));
         }
     }
 
     ll get(ll u) {
-        ll sum = 0; 
-        while (u < mxn) {
+        ll sum = 0;
+        while (u < maxN) {
             sum += bit[u];
-            u += (u&(-u));
-        } 
+            u += (u & (-u));
+        }
         return sum;
     }
 
@@ -257,22 +261,23 @@ Bài toán này ngược lại với ví dụ, thay vì đếm số điểm ở 
     vector<point> v;
 
     void dnc(int l, int r) {
-        if (l == r) return;
+        if (l == r)
+            return;
 
-        int m = (l + r) >> 1; 
+        int m = (l + r) >> 1;
         int lptr = l, rptr = m + 1;
 
-        dnc(l, m); dnc(m + 1, r);
-        vector<point> tmp; 
+        dnc(l, m);
+        dnc(m + 1, r);
+        vector<point> tmp;
         vector<int> revert;
 
         while (lptr <= m && rptr <= r) {
             if (v[lptr].y > v[rptr].y) {
-                upd(v[lptr].z,1); // Cập nhật lên Fenwick Tree
+                upd(v[lptr].z, 1);           // Cập nhật lên Fenwick Tree
                 revert.push_back(v[lptr].z); // Lưu lại vị trí vừa cập nhật để đảo ngược
-                tmp.push_back(v[lptr++]); // Vị trí mới sau khi Merge Sort
-            }
-            else {
+                tmp.push_back(v[lptr++]);    // Vị trí mới sau khi Merge Sort
+            } else {
                 ans[v[rptr].i] |= get(v[rptr].z + 1); // Kiểm tra xem có phần tử nào thỏa mãn không
                 tmp.push_back(v[rptr++]);
             }
@@ -445,35 +450,45 @@ Với một số bài toán, việc thêm chiều là thời gian cũng khá d�
 using namespace std;
 #define fi first
 #define se second
-const int mxn = 1e5+7;
+const int mxn = 1e5 + 7;
+const int mod = 1e9 + 7;
 
-int n, l, w, l_i[mxn]; 
+int n, l, w, l_i[mxn];
 long long w_i[mxn];
-vector<vector<pair<int,int>>> g(mxn);
+vector<vector<pair<int, int>>> g(mxn);
 
 int sz[mxn];
 bool del[mxn];
 
 // template tìm centroid và kích thước subtree
-    
-void dfs_sz(int u, int v) {} // kích thước
-    
-int dfs_ctr(int u, int v, int szx) {} // tìm centroid
+
+void dfs_sz(int u, int v) {
+} // kích thước
+
+int dfs_ctr(int u, int v, int szx) {
+} // tìm centroid
 
 // điểm và sort dùng trong CDQ
 struct point {
-    int x, y, z, v, i; 
-    
-    point() {x = -mod;}
-    
+    int x, y, z, v, i;
+
+    point() {
+        x = -mod;
+    }
+
     point(int xx, long long yy, int zz, int vv, int ii) {
-        x = xx; y = yy; z = zz; v = vv; i = ii;
+        x = xx;
+        y = yy;
+        z = zz;
+        v = vv;
+        i = ii;
     }
 };
-    
+
 struct cmp {
-    bool operator() (point a, point b) {
-        if (a.x != b.x) return a.x < b.x;
+    bool operator()(point a, point b) {
+        if (a.x != b.x)
+            return a.x < b.x;
         return a.v > b.v;
     }
 };
@@ -481,71 +496,79 @@ struct cmp {
 // template BIT / Fenwick Tree
 int bit[mxn];
 long long ans[2];
-    
+
 void upd(int u, int v) {
     while (u < mxn) {
-        bit[u] += v; 
-        u += (u&(-u));
+        bit[u] += v;
+        u += (u & (-u));
     }
 }
-                   
+
 int get(int u) {
-    int sum = 0; 
-                   
+    int sum = 0;
+
     while (u) {
-        sum += bit[u]; 
-        u -= (u&(-u));
-    } 
-                   
+        sum += bit[u];
+        u -= (u & (-u));
+    }
+
     return sum;
 }
 
 // template CDQ
 vector<point> v;
-    
+
 void cdq(int l_l, int r) {
-    if (l_l == r) return;
-    
-    int m = (r+l_l)>>1; int a = l_l, b = m+1;
-    
-    cdq(l_l,m); cdq(m+1,r);
-    
-    vector<point> tmp; vector<pair<int,int>> revert;
-    
+    if (l_l == r)
+        return;
+
+    int m = (r + l_l) >> 1;
+    int a = l_l, b = m + 1;
+
+    cdq(l_l, m);
+    cdq(m + 1, r);
+
+    vector<point> tmp;
+    vector<pair<int, int>> revert;
+
     while (a <= m && b <= r) {
         if (v[a].y <= v[b].y) {
             if (v[a].v) {
-                upd(v[a].z,v[a].v); 
-                revert.push_back({v[a].z,v[a].v}); 
+                upd(v[a].z, v[a].v);
+                revert.push_back({v[a].z, v[a].v});
             }
             tmp.push_back(v[a++]);
-        }
-        else {
-            if (v[b].i) ans[v[b].i] += get(v[b].z-1); 
+        } else {
+            if (v[b].i)
+                ans[v[b].i] += get(v[b].z - 1);
             tmp.push_back(v[b++]);
         }
     }
-                            
-    while (a <= m) tmp.push_back(v[a++]);
-    
+
+    while (a <= m)
+        tmp.push_back(v[a++]);
+
     while (b <= r) {
-        if (v[b].i) ans[v[b].i] += get(v[b].z-1); 
+        if (v[b].i)
+            ans[v[b].i] += get(v[b].z - 1);
         tmp.push_back(v[b++]);
     }
-                 
-    for (int i = l_l; i <= r; i++) v[i] = tmp[i-l_l];
-    
-    for (pair<int,int> i : revert) upd(i.fi,-i.se);
+
+    for (int i = l_l; i <= r; i++)
+        v[i] = tmp[i - l_l];
+
+    for (pair<int, int> i : revert)
+        upd(i.fi, -i.se);
 }
 
 // hàm dfs để tính độ dài và tổng trọng số từ gốc đến 1 đỉnh
 void dfs_l_w(int u, int vv) {
-    for (pair<int,int> i : g[u]) {
+    for (pair<int, int> i : g[u]) {
         if (i.fi != vv && !del[i.fi]) {
-            l_i[i.fi] = l_i[u]+1;
-            w_i[i.fi] = w_i[u]+i.se;
-    
-            dfs_l_w(i.fi,u);
+            l_i[i.fi] = l_i[u] + 1;
+            w_i[i.fi] = w_i[u] + i.se;
+
+            dfs_l_w(i.fi, u);
         }
     }
 }

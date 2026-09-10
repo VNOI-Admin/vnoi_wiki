@@ -197,27 +197,27 @@ const int N = 10;
 int n, a[N + 5];
 bool used[N + 5];
 
-void print(){
+void print() {
     for (int i = 1; i <= n; i++)
         cout << a[i];
     cout << '\n';
 }
 
-void backtrack(int i){
-    if (i == n + 1){
+void backtrack(int i) {
+    if (i == n + 1) {
         print();
         return;
     }
-    for (int j = 1; j <= n; j++) if (used[j] == false) {
-        a[i] = j;
-        used[j] = true;
-        backtrack(i + 1);
-        used[j] = 0;
-    }
+    for (int j = 1; j <= n; j++)
+        if (used[j] == false) {
+            a[i] = j;
+            used[j] = true;
+            backtrack(i + 1);
+            used[j] = 0;
+        }
 }
 
-int main()
-{
+int main() {
     cin >> n;
     backtrack(1);
 }

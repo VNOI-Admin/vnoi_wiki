@@ -214,47 +214,43 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const long long INF = LLONG_MAX;
 
-struct Point
-{
+struct Point {
     double x, y;
 
-    void inp()
-    {
+    void inp() {
         cin >> x >> y;
     }
 
-    bool operator < (Point other)
-    {
-        if (x == other.x) return (y < other.y);
+    bool operator<(Point other) {
+        if (x == other.x)
+            return (y < other.y);
         return (x < other.x);
     }
-}a[MAXN], middleArea[MAXN];
+} a[MAXN], middleArea[MAXN];
 
-bool ascendingY(Point p1, Point p2) {return make_pair(p1.y, p1.x) < make_pair(p2.y, p2.x);}
+bool ascendingY(Point p1, Point p2) {
+    return make_pair(p1.y, p1.x) < make_pair(p2.y, p2.x);
+}
 
-double dist(Point p1, Point p2)
-{
+double dist(Point p1, Point p2) {
     return hypot(1.0 * p1.x - p2.x, 1.0 * p1.y - p2.y);
 }
 
 //Tìm cặp điểm gần nhất trong các điểm thuộc middleAreaa
-double nearestMiddle(int middleAreaSize, double d)
-{
+double nearestMiddle(int middleAreaSize, double d) {
     double ret = INT_MAX;
     for (int i = 1; i <= middleAreaSize; i++)
-        for (int j = i + 1; j <= middleAreaSize; j++)
-        {
-            if (middleArea[j].y - middleArea[i].y >= d) break;
+        for (int j = i + 1; j <= middleAreaSize; j++) {
+            if (middleArea[j].y - middleArea[i].y >= d)
+                break;
             ret = min(ret, dist(middleArea[i], middleArea[j]));
         }
     return ret;
 }
 
 //Tìm cặp điểm gần nhất trong các điểm thuộc mảng a độ dài n
-double nearest(Point a[], int n)
-{
-    if (n <= 3)
-    {
+double nearest(Point a[], int n) {
+    if (n <= 3) {
         sort(a + 1, a + n + 1, ascendingY);
         double ret = INF;
         for (int i = 1; i <= n; i++)
@@ -363,60 +359,58 @@ const int MAXN = 1e6;
 int n, a[MAXN], b[MAXN], mod, acc[21][MAXN], mask[MAXN];
 
 /// Khởi tạo acc
-void calc(int l, int r, int level)
-{
-    if (l == r) return;
+void calc(int l, int r, int level) {
+    if (l == r)
+        return;
     int mid = (l + r) / 2;
     calc(l, mid, level + 1);
     calc(mid + 1, r, level + 1);
 
     acc[level][mid] = a[mid];
-    for (int i = mid - 1; i >= l; i --)
+    for (int i = mid - 1; i >= l; i--)
         acc[level][i] = 1ll * acc[level][i + 1] * a[i] % mod;
     acc[level][mid + 1] = a[mid + 1];
-    for (int i = mid + 2; i <= r; i ++)
+    for (int i = mid + 2; i <= r; i++)
         acc[level][i] = 1ll * acc[level][i - 1] * a[i] % mod;
 
-    for (int i = mid + 1; i <= r; i ++) mask[i] |= (1 << level);
+    for (int i = mid + 1; i <= r; i++)
+        mask[i] |= (1 << level);
 }
 
 /// Giải quyết 1 truy vấn
-void solve()
-{
+void solve() {
     int q;
     cin >> n >> mod >> q;
-    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
 
     for (int i = 0; i < n; i++)
         for (int l = 0; (1 << l) < n; l++)
             acc[l][i] = 1;
-    for (int i = 0; i < n; i ++) mask[i] = 0;
+    for (int i = 0; i < n; i++)
+        mask[i] = 0;
     calc(0, n - 1, 0);
 
     int res = 0;
-    for (int i = 0; i < q / 64 + 2; i++)
-    {
+    for (int i = 0; i < q / 64 + 2; i++) {
         cin >> b[i];
     }
-    for (int i = 0, lq = 0, rq = 0; i < q; i++)
-    {
+    for (int i = 0, lq = 0, rq = 0; i < q; i++) {
         // Nhận truy vấn tiếp theo theo cách đề bài mô tả
-        if (i % 64 == 0)
-        {
+        if (i % 64 == 0) {
             lq = (b[i / 64] + res) % n;
             rq = (b[i / 64 + 1] + res) % n;
-        }
-        else
-        {
+        } else {
             lq = (lq + res) % n;
             rq = (rq + res) % n;
         }
-        if (lq > rq) swap(lq, rq);
+        if (lq > rq)
+            swap(lq, rq);
 
         // Tìm kết quả cho đoạn [lq, rq] vừa tìm được
-        if (lq == rq) res = a[lq];
-        else
-        {
+        if (lq == rq)
+            res = a[lq];
+        else {
             int lvl = __builtin_ctz(mask[lq] ^ mask[rq]);
             res = 1ll * acc[lvl][lq] * acc[lvl][rq] % mod;
         }

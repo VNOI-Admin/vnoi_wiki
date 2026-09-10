@@ -189,8 +189,8 @@ struct Congruence {
 };
 
 // Hàm trả về ƯCLN của a và b, biến đổi x, y thoả mãn ax + by = gcd(a, b)
-long long extEuclid(long long a, long long b, 
-                    long long &x, long long& y) {
+long long extEuclid(long long a, long long b,
+                    long long &x, long long &y) {
     if (b == 0) {
         x = 1;
         y = 0;
@@ -218,15 +218,15 @@ long long invMod(long long num, long long mod) {
 }
 
 // Nghiệm của phương trình là một đồng dư thức mà, đúng không?
-Congruence solveCongruenceEqSet(vector <Congruence>& eqSet) {
+Congruence solveCongruenceEqSet(vector<Congruence> &eqSet) {
     Congruence sol(0, 1);
 
     for (int i = 0; i < (int)eqSet.size(); i++) {
         sol.mod *= eqSet[i].mod;
     }
 
-    vector <long long> p;
-    vector <long long> pInv;
+    vector<long long> p;
+    vector<long long> pInv;
     for (int i = 0; i < (int)eqSet.size(); i++) {
         p.push_back(sol.mod / eqSet[i].mod);
         pInv.push_back(invMod(p[i], eqSet[i].mod));
@@ -292,7 +292,7 @@ int minPDiv[MAXX];
 
 // Sàng nguyên tố (nhớ gọi hàm này trước khi làm bất cứ việc gì)
 void sieve() {
-    for (int i = 2; i < MAXX; i ++) {
+    for (int i = 2; i < MAXX; i++) {
         if (minPDiv[i]) {
             continue;
         }
@@ -334,7 +334,7 @@ bool compCongruenceByModuloBase(
 
 // Tách các phương trình thành các phương trình nhỏ hơn với modulo
 // nguyên tố cùng nhau
-bool factor(vector<Congruence>& eqSet) {
+bool factor(vector<Congruence> &eqSet) {
     // Phân tích các modulo ra thừa số nguyên tố
     vector<Congruence> pEqSet;
     for (auto eq : eqSet) {
@@ -343,11 +343,11 @@ bool factor(vector<Congruence>& eqSet) {
             pEqSet.push_back(Congruence(eq.rem, d));
         }
     }
-    
+
     // Sắp xếp các phương trình theo cơ số của modulo
     sort(pEqSet.begin(), pEqSet.end(),
          compCongruenceByModuloBase);
-    
+
     // Kiểm tra hệ phương trình vô nghiệm
     for (int i = 1; i < (int)pEqSet.size(); i++) {
         auto eq1 = pEqSet[i - 1];
@@ -358,19 +358,18 @@ bool factor(vector<Congruence>& eqSet) {
             }
         }
     }
-    
+
     // Loại bỏ các modulo nhỏ
     eqSet.clear();
     for (int i = pEqSet.size() - 1; i >= 0; i--) {
-        if (eqSet.empty() || minPDiv[pEqSet[i].mod] 
-            != minPDiv[eqSet.back().mod]) {
+        if (eqSet.empty() || minPDiv[pEqSet[i].mod] != minPDiv[eqSet.back().mod]) {
             eqSet.push_back(pEqSet[i]);
         }
     }
     return 1;
 }
 
-Congruence solveCongruenceEqSet(vector<Congruence>& eqSet) {
+Congruence solveCongruenceEqSet(vector<Congruence> &eqSet) {
     if (!factor(eqSet)) {
         return Congruence(0, 0);
     }
@@ -381,8 +380,8 @@ Congruence solveCongruenceEqSet(vector<Congruence>& eqSet) {
         sol.mod *= eqSet[i].mod;
     }
 
-    vector <long long> p;
-    vector <long long> pInv;
+    vector<long long> p;
+    vector<long long> pInv;
     for (int i = 0; i < (int)eqSet.size(); i++) {
         p.push_back(sol.mod / eqSet[i].mod);
         pInv.push_back(invMod(p[i], eqSet[i].mod));
@@ -460,12 +459,12 @@ Congruence solveInduction(vector<Congruence> &eqSet, int solved) {
     if (!lastSol.mod) {
         return Congruence(0, 0);
     }
-    
+
     // Tìm cặp số x, y để ax + by = gcd(a, b)
     pair<long long, long long> p = {0, 0};
-    long long d = extEuclid(lastSol.mod, eqSet[solved].mod, 
+    long long d = extEuclid(lastSol.mod, eqSet[solved].mod,
                             p.first, p.second);
-    
+
     // Điều kiện vô nghiệm của phương trình Diophantus
     if ((eqSet[solved].rem - lastSol.rem) % d) {
         return Congruence(0, 0);
@@ -473,9 +472,7 @@ Congruence solveInduction(vector<Congruence> &eqSet, int solved) {
 
     // Đưa ra nghiệm đúng của phương trình Diophantus và
     // tìm nghiệm của hệ đến phương trình hiện tại
-    sol.rem = p.first * (eqSet[solved].rem - lastSol.rem) / d 
-        % (eqSet[solved].mod / d) * lastSol.mod 
-        + lastSol.rem;
+    sol.rem = p.first * (eqSet[solved].rem - lastSol.rem) / d % (eqSet[solved].mod / d) * lastSol.mod + lastSol.rem;
     sol.mod = lastSol.mod * eqSet[solved].mod / d;
     sol.rem %= sol.mod;
     if (sol.rem < 0) {
@@ -484,7 +481,7 @@ Congruence solveInduction(vector<Congruence> &eqSet, int solved) {
     return sol;
 }
 
-Congruence solveCongruenceEqSet(vector <Congruence>& eqSet) {
+Congruence solveCongruenceEqSet(vector<Congruence> &eqSet) {
     if (eqSet.size() == 1) {
         return eqSet.front();
     }

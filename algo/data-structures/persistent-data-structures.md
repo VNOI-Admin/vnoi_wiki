@@ -94,10 +94,9 @@ int update(int l, int r, int u, int x, int oldId) {
         it[cur].left = update(l, mid, u, x, it[oldId].left);
         it[cur].right = it[oldId].right;
         refine(cur);
-    }
-    else {
+    } else {
         it[cur].left = it[oldId].left;
-        it[cur].right = update(mid+1, r, u, x, it[oldId].right);
+        it[cur].right = update(mid + 1, r, u, x, it[oldId].right);
         refine(cur);
     }
 
@@ -161,17 +160,16 @@ Code BIT trích từ bài IPSC 2011 - Grid Surveillance:
 #define _(x) (x & (-(x)))
 
 // Persistent BIT
-vector< pair<int,int> > bit[4100][4100];
+vector<pair<int, int>> bit[4100][4100];
 
 // Add val to cell (x, y) at time = time
 void update(int x, int y, int val, int time) {
-    for(int u = x; u <= 4096; u += _(u))
-        for(int v = y; v <= 4096; v += _(v)) {
+    for (int u = x; u <= 4096; u += _(u))
+        for (int v = y; v <= 4096; v += _(v)) {
             if (bit[u][v].empty()) {
                 bit[u][v].push_back(make_pair(time, val));
-            }
-            else {
-                int cur = bit[u][v][bit[u][v].size()-1].second;
+            } else {
+                int cur = bit[u][v][bit[u][v].size() - 1].second;
                 bit[u][v].push_back(make_pair(time, cur + val));
             }
         }

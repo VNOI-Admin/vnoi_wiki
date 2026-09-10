@@ -33,7 +33,7 @@ class MyQueue {
       StateNode returnValue = null;
       if (queueBack > queueFront) {
       returnValue = queueData[queueFront];
-      QueueFront++;
+      queueFront++;
    }
    return returnValue;
    }

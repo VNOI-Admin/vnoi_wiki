@@ -127,10 +127,10 @@ while (tests--) {
 int n, m, a[N][N];
 ... // Đọc input
 bool has_answer = false;
-for (int i = 1; i <= n; i++){
-    for (int j = 1; j <= m; j++){
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j <= m; j++) {
         // Nếu a[i][j] = 0, thì in ra i j và dừng lại
-        if (a[i][j] == 0){
+        if (a[i][j] == 0) {
             cout << i << ' ' << j << endl;
             has_answer = true;
             break;
@@ -337,11 +337,14 @@ const int N = 1e5 + 5;
 int n;
 int ck[N];
 
-int tests; cin >> tests; while (tests--){
+int tests;
+cin >> tests;
+while (tests--) {
     cin >> n;
     memset(ck, 0, sizeof(ck));
-    for (int i = 1; i <= n; i++){
-        int x; cin >> x; // 1 <= x <= n
+    for (int i = 1; i <= n; i++) {
+        int x;
+        cin >> x; // 1 <= x <= n
         ck[x] = 1;
     }
 }
@@ -446,7 +449,7 @@ struct edge {
 
 // Input/output cạnh
 edge a[N];
-for (int i = 1; i <= n; i++){
+for (int i = 1; i <= n; i++) {
     cin >> a[i];
     cout << a[i] << endl;
 }

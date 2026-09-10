@@ -102,10 +102,11 @@ using ll = long long;
 bool ready[110][100010];
 ll dp[110][100010], w[110], v[110];
 
-ll solve (int i, int j) {
+ll solve(int i, int j) {
     if (i == 0)
         return (j == 0 ? 0 : LLONG_MIN);
-    if (ready[i][j]) return dp[i][j];
+    if (ready[i][j])
+        return dp[i][j];
 
     ready[i][j] = 1, dp[i][j] = solve(i - 1, j);
     if (j >= w[i] && solve(i - 1, j - w[i]) != LLONG_MIN)
@@ -460,9 +461,9 @@ using namespace std;
 
 using ll = long long;
 using ld = long double;
-using pl = pair<ll,ll>;
-using pii = pair<int,int>;
-using tpl = tuple<int,int,int>;
+using pl = pair<ll, ll>;
+using pii = pair<int, int>;
+using tpl = tuple<int, int, int>;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
@@ -470,22 +471,24 @@ using tpl = tuple<int,int,int>;
 const int mn = 1e5 + 5;
 ll V[mn], W[mn], K[mn], dp[2020], used[2020];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int S, n; cin >> S >> n;
-    for (int i = 1; i <= n; i++) cin >> V[i] >> W[i] >> K[i];
+    int S, n;
+    cin >> S >> n;
+    for (int i = 1; i <= n; i++)
+        cin >> V[i] >> W[i] >> K[i];
 
     vector<int> ord(n);
     iota(ord.begin(), ord.end(), 1);
-    sort(all(ord), [&] (int a, int b) { return V[a] > V[b]; });
+    sort(all(ord), [&](int a, int b) { return V[a] > V[b]; });
 
     int t = 0, counter = 0;
     for (int i : ord) {
         for (int iter = 0; iter < K[i]; iter++) {
-            if (used[W[i]] * W[i] > S) break;
+            if (used[W[i]] * W[i] > S)
+                break;
             for (int j = S; j >= W[i]; j--)
                 dp[j] = max(dp[j], dp[j - W[i]] + V[i]);
             used[W[i]]++;
@@ -543,9 +546,9 @@ using namespace std;
 
 using ll = long long;
 using ld = long double;
-using pl = pair<ll,ll>;
-using pii = pair<int,int>;
-using tpl = tuple<int,int,int>;
+using pl = pair<ll, ll>;
+using pii = pair<int, int>;
+using tpl = tuple<int, int, int>;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
@@ -556,33 +559,39 @@ ll V[mn], W[mn], K[mn], dp[2][2020], used[2020];
 struct dqTrick {
     deque<ll> dq;
 
-    void push (ll x) {
-        while (dq.size() && dq.back() < x) dq.pop_back();
+    void push(ll x) {
+        while (dq.size() && dq.back() < x)
+            dq.pop_back();
         dq.push_back(x);
     }
 
-    void pop (ll x) {
-        if (dq.size() && dq.front() == x) dq.pop_front();
+    void pop(ll x) {
+        if (dq.size() && dq.front() == x)
+            dq.pop_front();
     }
 
-    ll best() { return (dq.empty() ? LLONG_MIN : dq.front()); }
+    ll best() {
+        return (dq.empty() ? LLONG_MIN : dq.front());
+    }
 };
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int S, n; cin >> S >> n;
-    for (int i = 1; i <= n; i++) cin >> V[i] >> W[i] >> K[i];
+    int S, n;
+    cin >> S >> n;
+    for (int i = 1; i <= n; i++)
+        cin >> V[i] >> W[i] >> K[i];
 
     vector<int> ord(n);
     iota(ord.begin(), ord.end(), 1);
-    sort(all(ord), [&] (int a, int b) { return V[a] > V[b]; });
+    sort(all(ord), [&](int a, int b) { return V[a] > V[b]; });
 
     int t = 0;
     for (int i : ord) {
-        if (used[W[i]] * W[i] > S) continue;
+        if (used[W[i]] * W[i] > S)
+            continue;
         vector<dqTrick> opt(W[i]);
         for (int j = 0; j <= S; j++) {
             int R = j % W[i], D = j / W[i];
@@ -662,9 +671,9 @@ using namespace std;
 
 using ll = long long;
 using ld = long double;
-using pl = pair<ll,ll>;
-using pii = pair<int,int>;
-using tpl = tuple<int,int,int>;
+using pl = pair<ll, ll>;
+using pii = pair<int, int>;
+using tpl = tuple<int, int, int>;
 
 #define all(a) a.begin(), a.end()
 #define filter(a) a.erase(unique(all(a)), a.end())
@@ -674,50 +683,56 @@ bool vis[mn];
 int p[mn], n, k;
 
 namespace solveMin {
-    bitset<mn> exist;
-    int cnt[mn];
+bitset<mn> exist;
+int cnt[mn];
 
-    int solve (const vector<int> &components) {
-        for (int u : components) cnt[u]++;
-        exist.set(0);
-        
-        for (int i = 1; i <= n; i++) {
-            if (!cnt[i]) continue;
-            int merged = (cnt[i] - 1) >> 1;
-            cnt[i] -= (merged << 1);
-            if ((i << 1) <= n) cnt[i << 1] += merged;
-            for (int j = 0; j < cnt[i]; j++) exist |= (exist << i);
-        }
+int solve(const vector<int> &components) {
+    for (int u : components)
+        cnt[u]++;
+    exist.set(0);
 
-        return k + (exist[k] == 0);
+    for (int i = 1; i <= n; i++) {
+        if (!cnt[i])
+            continue;
+        int merged = (cnt[i] - 1) >> 1;
+        cnt[i] -= (merged << 1);
+        if ((i << 1) <= n)
+            cnt[i << 1] += merged;
+        for (int j = 0; j < cnt[i]; j++)
+            exist |= (exist << i);
     }
-};
+
+    return k + (exist[k] == 0);
+}
+}; // namespace solveMin
 
 namespace solveMax {
-    int solve (const vector<int> &components) {
-        vector<int> cnt(3);
-        for (int u : components)
-            cnt[2] += u >> 1, cnt[1] += u & 1;
+int solve(const vector<int> &components) {
+    vector<int> cnt(3);
+    for (int u : components)
+        cnt[2] += u >> 1, cnt[1] += u & 1;
 
-        int pickTwo = min(cnt[2], k);
-        return (pickTwo << 1) + min(cnt[1], k - pickTwo);
-    }
-};
+    int pickTwo = min(cnt[2], k);
+    return (pickTwo << 1) + min(cnt[1], k - pickTwo);
+}
+}; // namespace solveMax
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     cin >> n >> k;
-    for (int i = 1; i <= n; i++) cin >> p[i];
+    for (int i = 1; i <= n; i++)
+        cin >> p[i];
 
     // thực hiện DFS khử đệ quy trên đồ thị hàm
     vector<int> components;
     for (int i = 1; i <= n; i++) {
-        if (vis[i]) continue;
+        if (vis[i])
+            continue;
         int counter = 0;
-        for (int node = i; !vis[node]; node = p[node]) counter++, vis[node] = 1;
+        for (int node = i; !vis[node]; node = p[node])
+            counter++, vis[node] = 1;
         components.push_back(counter);
     }
 

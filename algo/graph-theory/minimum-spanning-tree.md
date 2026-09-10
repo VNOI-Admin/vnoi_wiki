@@ -132,7 +132,7 @@ using namespace std;
 // u, v là 2 đỉnh, c là trọng số cạnh
 struct Edge {
     int u, v, c;
-    Edge(int _u, int _v, int _c): u(_u), v(_v), c(_c) {};
+    Edge(int _u, int _v, int _c) : u(_u), v(_v), c(_c) {};
 };
 
 struct Dsu {
@@ -140,17 +140,21 @@ struct Dsu {
 
     void init(int n) {
         par.resize(n + 5, 0);
-        for (int i = 1; i <= n; i++) par[i] = i;
+        for (int i = 1; i <= n; i++)
+            par[i] = i;
     }
 
     int find(int u) {
-        if (par[u] == u) return u;
+        if (par[u] == u)
+            return u;
         return par[u] = find(par[u]);
     }
 
     bool join(int u, int v) {
-        u = find(u); v = find(v);
-        if (u == v) return false;
+        u = find(u);
+        v = find(v);
+        if (u == v)
+            return false;
         par[v] = u;
         return true;
     }
@@ -159,11 +163,13 @@ struct Dsu {
 // n và m là số đỉnh và số cạnh
 // totalWeight là tổng trọng số các cạnh trong cây khung nhỏ nhất
 int n, m, totalWeight = 0;
-vector < Edge > edges;
+vector<Edge> edges;
 
 int main() {
     // Fast IO
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
     cin >> n >> m;
 
@@ -176,14 +182,15 @@ int main() {
     dsu.init(n);
 
     // Sắp xếp lại các cạnh theo trọng số tăng dần
-    sort(edges.begin(), edges.end(), [](Edge & x, Edge & y) {
+    sort(edges.begin(), edges.end(), [](Edge &x, Edge &y) {
         return x.c < y.c;
     });
 
     // Duyệt qua các cạnh theo thứ tự đã sắp xếp
     for (auto e : edges) {
         // Nếu không hợp nhất được 2 đỉnh u và v thì bỏ qua
-        if (!dsu.join(e.u, e.v)) continue;
+        if (!dsu.join(e.u, e.v))
+            continue;
 
         // Nếu hợp nhất được u, v ta thêm trọng số cạnh vào kết quả
         totalWeight += e.c;
@@ -268,7 +275,7 @@ Ví dụ các bước giải bài toán tìm cây khung nhỏ nhất với thu�
 3 4 3
 4 1 4
 */
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 #define fi first
 #define se second
@@ -278,7 +285,7 @@ const int INF = 1e9;
 
 // khai báo đồ thị. g[u] chứa các cạnh nối với đỉnh u. Các cạnh sẽ được lưu dưới dạng pair<v,c>
 int n, m;
-vector <pair<int, int>> g[N];
+vector<pair<int, int>> g[N];
 
 int dis[N]; // mảng d lưu khoảng cách của toàn bộ đỉnh
 
@@ -288,10 +295,11 @@ int prim(int s) { // thuật toán Prim bắt đầu chạy từ đỉnh nguồn
     // Vì priority_queue.top luôn là phần tử lớn nhất, ta sẽ phải sử dụng greater<pair<int,int>>
     // để priority_queue.top là phần tử nhỏ nhất
     // các phần tử lưu trong priority queue sẽ có dạng pair<dis[u],u>
-    priority_queue<pair<int, int>, vector<pair<int,int>>, greater<pair<int,int>>> q;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
 
     // khởi tạo khoảng cách của các đỉnh là vô cùng lớn
-    for (int i = 1; i <= n; i++) dis[i] = INF;
+    for (int i = 1; i <= n; i++)
+        dis[i] = INF;
 
     // khởi tạo đỉnh nguồn có khoảng cách là 0 và push đỉnh này vào
     dis[s] = 0;
@@ -299,27 +307,34 @@ int prim(int s) { // thuật toán Prim bắt đầu chạy từ đỉnh nguồn
 
     while (!q.empty()) {
         // lấy đỉnh có khoảng cách nhỏ nhất chưa được kết nạp
-        auto top = q.top(); q.pop();
-        int curDis = top.fi; int u = top.se;
+        auto top = q.top();
+        q.pop();
+        int curDis = top.fi;
+        int u = top.se;
 
-        if (curDis != dis[u]) continue;
+        if (curDis != dis[u])
+            continue;
 
         // kết nạp đỉnh u vào cây khung
-        ret += dis[u]; dis[u] = -INF;
+        ret += dis[u];
+        dis[u] = -INF;
 
         // cập nhất khoảng cách cho các đỉnh kề u
         for (auto &e : g[u]) {
-            int v = e.fi; int c = e.se;
+            int v = e.fi;
+            int c = e.se;
             if (dis[v] > c) {
                 dis[v] = c;
-                q.push({ dis[v], v});
+                q.push({dis[v], v});
             }
         }
     }
     return ret;
 }
 int main() {
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
     cin >> n >> m;
 
@@ -365,7 +380,7 @@ using namespace std;
 
 struct Edge {
     int u, v, c;
-    Edge(int _u, int _v, int _c): u(_u), v(_v), c(_c) {};
+    Edge(int _u, int _v, int _c) : u(_u), v(_v), c(_c) {};
 };
 
 struct Dsu {
@@ -373,27 +388,33 @@ struct Dsu {
 
     void init(int n) {
         par.resize(n + 5, 0);
-        for (int i = 1; i <= n; i++) par[i] = i;
+        for (int i = 1; i <= n; i++)
+            par[i] = i;
     }
 
     int find(int u) {
-        if (par[u] == u) return u;
+        if (par[u] == u)
+            return u;
         return par[u] = find(par[u]);
     }
 
     bool join(int u, int v) {
-        u = find(u); v = find(v);
-        if (u == v) return false;
+        u = find(u);
+        v = find(v);
+        if (u == v)
+            return false;
         par[v] = u;
         return true;
     }
 } dsu;
 
 int n, m, maxWeight = 0;
-vector < Edge > edges;
+vector<Edge> edges;
 
 int main() {
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
     cin >> n >> m;
 
@@ -405,12 +426,13 @@ int main() {
 
     dsu.init(n);
 
-    sort(edges.begin(), edges.end(), [](Edge & x, Edge & y) {
+    sort(edges.begin(), edges.end(), [](Edge &x, Edge &y) {
         return x.c < y.c;
     });
 
     for (auto e : edges) {
-        if (!dsu.join(e.u, e.v)) continue;
+        if (!dsu.join(e.u, e.v))
+            continue;
         maxWeight = max(maxWeight, e.c);
     }
 
@@ -448,7 +470,7 @@ Cho đồ thị vô hướng $G$ gồm $n$ đỉnh và $m$ cạnh. Yêu cầu v�
 using namespace std;
 #define fi first
 #define se second
-#define bit(x, k) (1ll&(x >> k))
+#define bit(x, k) (1ll & (x >> k))
 
 using ll = long long;
 const int N = 2e5 + 5;
@@ -456,11 +478,12 @@ const ll INF = 1e18;
 
 struct Edge {
     int u, v, c, id;
-    Edge(int _u, int _v, int _c, int _id): u(_u), v(_v), c(_c), id(_id) {};
+    Edge(int _u, int _v, int _c, int _id) : u(_u), v(_v), c(_c), id(_id) {};
 };
 
 struct Data {
-    int par; ll maxc = -INF;
+    int par;
+    ll maxc = -INF;
 };
 
 struct Dsu {
@@ -468,33 +491,41 @@ struct Dsu {
 
     void init(int n) {
         par.resize(n + 5, 0);
-        for (int i = 1; i <= n; i++) par[i] = i;
+        for (int i = 1; i <= n; i++)
+            par[i] = i;
     }
 
     int find(int u) {
-        if (par[u] == u) return u;
+        if (par[u] == u)
+            return u;
         return par[u] = find(par[u]);
     }
 
     bool join(int u, int v) {
-        u = find(u); v = find(v);
-        if (u == v) return false;
+        u = find(u);
+        v = find(v);
+        if (u == v)
+            return false;
         par[v] = u;
         return true;
     }
 } dsu;
 
-int n, m; ll mstWeight = 0;
-int h[N]; ll res[N];
-vector <Edge> edges;
-vector <pair <int, int>> g[N];
+int n, m;
+ll mstWeight = 0;
+int h[N];
+ll res[N];
+vector<Edge> edges;
+vector<pair<int, int>> g[N];
 Data up[N][21];
 
 void dfs(int u, int p) {
     up[u][0].par = p;
     for (auto &e : g[u]) {
-        int v = e.fi; int c = e.se;
-        if (v == p) continue;
+        int v = e.fi;
+        int c = e.se;
+        if (v == p)
+            continue;
         h[v] = h[u] + 1;
         up[v][0].maxc = c;
         dfs(v, u);
@@ -504,7 +535,8 @@ void dfs(int u, int p) {
 // tìm cạnh có trọng số lớn nhất trên đường đi u, v như bài LUBENICA
 ll lca(int u, int v) {
     ll ret = -INF;
-    if (h[u] < h[v]) swap(u, v);
+    if (h[u] < h[v])
+        swap(u, v);
     int depth = h[u] - h[v];
     for (int i = 0; i <= 20; i++) {
         if (bit(depth, i)) {
@@ -513,12 +545,14 @@ ll lca(int u, int v) {
         }
     }
 
-    if (u == v) return ret;
+    if (u == v)
+        return ret;
 
     for (int i = 20; i >= 0; i--) {
         if (up[u][i].par != up[v][i].par) {
             ret = max({ret, up[u][i].maxc, up[v][i].maxc});
-            u = up[u][i].par; v = up[v][i].par;
+            u = up[u][i].par;
+            v = up[v][i].par;
         }
     }
     ret = max({ret, up[u][0].maxc, up[v][0].maxc});
@@ -527,12 +561,13 @@ ll lca(int u, int v) {
 
 void buildMST() {
     dsu.init(n);
-    sort(edges.begin(), edges.end(), [](Edge & x, Edge & y) {
+    sort(edges.begin(), edges.end(), [](Edge &x, Edge &y) {
         return x.c < y.c;
     });
 
     for (auto &e : edges) {
-        if (!dsu.join(e.u, e.v)) continue;
+        if (!dsu.join(e.u, e.v))
+            continue;
         g[e.u].push_back({e.v, e.c});
         g[e.v].push_back({e.u, e.c});
         res[e.id] = -1; // đánh dấu là cạnh này thuộc cây khung nhỏ nhất
@@ -551,7 +586,9 @@ void buildLCA() {
 }
 
 int main() {
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
     cin >> n >> m;
     for (int i = 1; i <= m; i++) {
         int u, v, c;
@@ -614,7 +651,7 @@ $\Rightarrow$ Như vậy, độ phức tạp tổng của bài toán là $\mathc
 2 4 2
 3 4 1
 */
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 #define fi first
 #define se second
@@ -623,13 +660,13 @@ const int N = 1e5 + 5;
 
 enum EdgeType {
     NONE, // không cây nào chứa
-    ANY, // tất cả các cây đều chứa
-    ATL // ít nhất 1 cây chứa
+    ANY,  // tất cả các cây đều chứa
+    ATL   // ít nhất 1 cây chứa
 };
 
 struct Edge {
     int u, v, c, id;
-    Edge(int _u, int _v, int _c, int _id): u(_u), v(_v), c(_c), id(_id) {};
+    Edge(int _u, int _v, int _c, int _id) : u(_u), v(_v), c(_c), id(_id) {};
 };
 
 struct Dsu {
@@ -637,33 +674,39 @@ struct Dsu {
 
     void init(int n) {
         par.resize(n + 5, 0);
-        for (int i = 1; i <= n; i++) par[i] = i;
+        for (int i = 1; i <= n; i++)
+            par[i] = i;
     }
 
     int find(int u) {
-        if (par[u] == u) return u;
+        if (par[u] == u)
+            return u;
         return par[u] = find(par[u]);
     }
 
     bool join(int u, int v) {
-        u = find(u); v = find(v);
-        if (u == v) return false;
+        u = find(u);
+        v = find(v);
+        if (u == v)
+            return false;
         par[v] = u;
         return true;
     }
 } dsu;
 
-vector <pair<int, int>> g[N];
+vector<pair<int, int>> g[N];
 int low[N], num[N], Time = 0;
 int n, m;
 EdgeType res[N];
-vector <Edge> edges;
+vector<Edge> edges;
 
 void dfs(int u, int idx) {
     num[u] = low[u] = ++Time;
     for (auto &e : g[u]) {
-        int v = e.fi; int id = e.se;
-        if (id == idx) continue;
+        int v = e.fi;
+        int id = e.se;
+        if (id == idx)
+            continue;
         if (num[v] == 0) {
             dfs(v, id);
             low[u] = min(low[u], low[v]);
@@ -671,21 +714,22 @@ void dfs(int u, int idx) {
                 // nếu cạnh là cầu thì mọi cây đều phải chứa
                 res[id] = EdgeType::ANY;
             }
-        }
-        else {
+        } else {
             low[u] = min(low[u], num[v]);
         }
     }
 }
 void solve(vector<Edge> &pen) { // xử lý các nhóm cạnh có cùng trọng số
-    if (pen.empty()) return;
+    if (pen.empty())
+        return;
 
     // khởi tạo đồ thị nối các thành phần liên thông
     for (int i = 0; i < pen.size(); i++) {
-
         // sử dụng đỉnh cha trong dsu làm đỉnh đại diện cho thành phần liên thông
-        pen[i].u = dsu.find(pen[i].u); pen[i].v = dsu.find(pen[i].v);
-        g[pen[i].u].clear(); g[pen[i].v].clear();
+        pen[i].u = dsu.find(pen[i].u);
+        pen[i].v = dsu.find(pen[i].v);
+        g[pen[i].u].clear();
+        g[pen[i].v].clear();
         num[pen[i].u] = num[pen[i].v] = 0;
     }
 
@@ -693,8 +737,7 @@ void solve(vector<Edge> &pen) { // xử lý các nhóm cạnh có cùng trọng 
         if (e.u == e.v) {
             // nếu 2 đỉnh cùng thuộc 1 thành phần liên thông
             res[e.id] = EdgeType::NONE;
-        }
-        else {
+        } else {
             // nếu 2 đỉnh nối 2 thành phần liên thông khác nhau lại với nhau
             res[e.id] = EdgeType::ATL;
             // thêm cạnh vào đồ thị
@@ -704,13 +747,18 @@ void solve(vector<Edge> &pen) { // xử lý các nhóm cạnh có cùng trọng 
     }
 
     // tìm cạnh cầu
-    for (auto &e : pen) if (num[e.u] == 0) dfs(e.u, -1);
+    for (auto &e : pen)
+        if (num[e.u] == 0)
+            dfs(e.u, -1);
     // sau khi hoàn thành, ta thực hiện hợp các cạnh vào cây khung
-    for (auto &e : pen) dsu.join(e.u, e.v);
+    for (auto &e : pen)
+        dsu.join(e.u, e.v);
 }
 
 int main() {
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
 
     cin >> n >> m;
     for (int i = 1; i <= m; i++) {
@@ -729,8 +777,7 @@ int main() {
     for (auto &e : edges) {
         if (!pen.empty() && pen.back().c == e.c) {
             pen.push_back(e);
-        }
-        else {
+        } else {
             solve(pen);
             pen = {e};
         }

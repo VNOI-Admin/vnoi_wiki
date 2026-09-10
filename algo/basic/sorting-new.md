@@ -152,7 +152,7 @@ Ta đếm tần suất xuất hiện của các phần tử, sau đó duyệt to
 const int MAXV = 10000000;
 int cnt[MAXV + 1];
 
-void countingSort(int a[], int n){
+void countingSort(int a[], int n) {
     for (int i = 0; i < n; i++) {
         cnt[a[i]]++;
     }
@@ -588,22 +588,26 @@ Ngược lại, nếu điều kiện trên thỏa mãn, ta có thể dùng thu�
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
-    ios::sync_with_stdio(false); 
+int main() {
+    ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int t;
     cin >> t;
-    while(t--){
-        int n; cin >> n;
+    while (t--) {
+        int n;
+        cin >> n;
         vector<int> a(n), b(n);
-        for(int i = 0; i < n; i++) cin >> a[i];
-        for(int i = 0; i < n; i++) cin >> b[i];
+        for (int i = 0; i < n; i++)
+            cin >> a[i];
+        for (int i = 0; i < n; i++)
+            cin >> b[i];
 
         vector<int> tmp(n);
         iota(tmp.begin(), tmp.end(), 0);
 
         sort(tmp.begin(), tmp.end(), [&](int i, int j) {
-            if (a[i] == a[j]) return b[i] < b[j];
+            if (a[i] == a[j])
+                return b[i] < b[j];
             return a[i] < a[j];
         });
 
@@ -615,9 +619,10 @@ int main(){
                 break;
             }
         }
-        if (!ok) continue;
+        if (!ok)
+            continue;
 
-        vector<pair<int,int>> ans;
+        vector<pair<int, int>> ans;
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - 1; j++) {
                 if (a[j] > a[j + 1] || b[j] > b[j + 1]) {
@@ -668,33 +673,38 @@ long long cnt = 0;
 vector<long long> a, tmp;
 
 void merge_sort(int l, int r) {
-    if (l >= r) return;
+    if (l >= r)
+        return;
     int mid = (l + r) / 2;
     merge_sort(l, mid);
     merge_sort(mid + 1, r);
 
     int i = l, j = mid + 1, k = l;
-    while(i <= mid && j <= r){
-        if(a[i] <= a[j]){
+    while (i <= mid && j <= r) {
+        if (a[i] <= a[j]) {
             tmp[k++] = a[i++];
-        } 
-        else{
+        } else {
             tmp[k++] = a[j++];
             cnt += (mid - i + 1); // đếm nghịch thế
         }
     }
-    while(i <= mid) tmp[k++] = a[i++];
-    while(j <= r) tmp[k++] = a[j++];
-    for (int p = l; p <= r; p++) a[p] = tmp[p];
+    while (i <= mid)
+        tmp[k++] = a[i++];
+    while (j <= r)
+        tmp[k++] = a[j++];
+    for (int p = l; p <= r; p++)
+        a[p] = tmp[p];
 }
 
-int main(){
+int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    int n; cin >> n;
+    int n;
+    cin >> n;
     a.resize(n);
     tmp.resize(n);
-    for (int i = 0; i < n; i++) cin >> a[i];
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
     merge_sort(0, n - 1);
     cout << cnt;
     return 0;

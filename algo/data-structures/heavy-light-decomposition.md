@@ -132,14 +132,16 @@ void Hld(int s, int p = -1) {
     Arr[CurPos] = s;
     CurPos++;
     int nxt = 0;
-    for(int u: AdjList[s]) {
-        if(u != p) {
-            if(nxt == 0 || Sz[u] > Sz[nxt]) nxt = u;
+    for (int u : AdjList[s]) {
+        if (u != p) {
+            if (nxt == 0 || Sz[u] > Sz[nxt])
+                nxt = u;
         }
     }
-    if(nxt) Hld(nxt, s);
-    for(int u: AdjList[s]) {
-        if(u != p && u != nxt) {
+    if (nxt)
+        Hld(nxt, s);
+    for (int u : AdjList[s]) {
+        if (u != p && u != nxt) {
             CurChain++;
             Hld(u, s);
         }
@@ -198,7 +200,8 @@ void Build(int id, int l, int r) {
 }
 
 void Upd(int id, int l, int r, int pos, int val) {
-    if (l > pos || r < pos) return;
+    if (l > pos || r < pos)
+        return;
     if (l == r && l == pos) {
         ST[id] = val;
         return;
@@ -210,8 +213,10 @@ void Upd(int id, int l, int r, int pos, int val) {
 }
 
 int Calc(int id, int tl, int tr, int l, int r) {
-    if (tl > r || tr < l) return 0;
-    if (l <= tl && tr <= r) return ST[id];
+    if (tl > r || tr < l)
+        return 0;
+    if (l <= tl && tr <= r)
+        return ST[id];
     int mid = (tl + tr) / 2;
     return Calc(id * 2, tl, mid, l, r) ^ Calc(id * 2 + 1, mid + 1, tr, l, r);
 }
@@ -230,18 +235,17 @@ void Update(int x, int val) {
 int Query(int u, int v) {
     int lca = LCA(u, v);
     int ans = 0;
-    while(ChainID[u] != ChainID[lca]) {
+    while (ChainID[u] != ChainID[lca]) {
         ans ^= Calc(1, 1, N, Pos[ChainHead[ChainID[u]]], Pos[u]);
         u = Par[ChainHead[ChainID[u]]];
     }
-    while(ChainID[v] != ChainID[lca]) {
+    while (ChainID[v] != ChainID[lca]) {
         ans ^= Calc(1, 1, N, Pos[ChainHead[ChainID[v]]], Pos[v]);
         v = Par[ChainHead[ChainID[v]]];
     }
-    if(Depth[u] < Depth[v]) {
+    if (Depth[u] < Depth[v]) {
         ans ^= Calc(1, 1, N, Pos[u], Pos[v]);
-    }
-    else {
+    } else {
         ans ^= Calc(1, 1, N, Pos[v], Pos[u]);
     }
     return ans;
@@ -270,19 +274,20 @@ int N, Q;
 int Val[MaxN];
 vector<int> AdjList[MaxN]; // input
 
-int Par[MaxN]; // parent
-int Depth[MaxN]; // do sau cua node
-int Sz[MaxN]; // kich thuoc cua cay con cho cac node
-int Pos[MaxN]; // vi tri trong mang cua node
-int Arr[MaxN]; // gia tri cua cac phan tu trong mang
-int ChainID[MaxN]; // ChainID[i]: Chain ma i nam trong
+int Par[MaxN];       // parent
+int Depth[MaxN];     // do sau cua node
+int Sz[MaxN];        // kich thuoc cua cay con cho cac node
+int Pos[MaxN];       // vi tri trong mang cua node
+int Arr[MaxN];       // gia tri cua cac phan tu trong mang
+int ChainID[MaxN];   // ChainID[i]: Chain ma i nam trong
 int ChainHead[MaxN]; // ChainHead[i]: Node dau tien trong chain i
 int CurChain, CurPos;
 
 void Dfs(int s, int p = -1) {
     Sz[s] = 1;
-    for(int u: AdjList[s]) {
-        if(u == p) continue;
+    for (int u : AdjList[s]) {
+        if (u == p)
+            continue;
         Par[u] = s;
         Depth[u] = Depth[s] + 1;
         Dfs(u, s);
@@ -291,7 +296,7 @@ void Dfs(int s, int p = -1) {
 }
 
 void Hld(int s, int p = -1) {
-    if(!ChainHead[CurChain]) {
+    if (!ChainHead[CurChain]) {
         ChainHead[CurChain] = s;
     }
     ChainID[s] = CurChain;
@@ -299,14 +304,16 @@ void Hld(int s, int p = -1) {
     Arr[CurPos] = s;
     CurPos++;
     int nxt = 0;
-    for(int u: AdjList[s]) {
-        if(u != p) {
-            if(nxt == 0 || Sz[u] > Sz[nxt]) nxt = u;
+    for (int u : AdjList[s]) {
+        if (u != p) {
+            if (nxt == 0 || Sz[u] > Sz[nxt])
+                nxt = u;
         }
     }
-    if(nxt) Hld(nxt, s);
-    for(int u: AdjList[s]) {
-        if(u != p && u != nxt) {
+    if (nxt)
+        Hld(nxt, s);
+    for (int u : AdjList[s]) {
+        if (u != p && u != nxt) {
             CurChain++;
             Hld(u, s);
         }
@@ -316,15 +323,15 @@ void Hld(int s, int p = -1) {
 // find LCA
 
 int LCA(int u, int v) {
-    while(ChainID[u] != ChainID[v]) {
-        if(ChainID[u] > ChainID[v]) {
+    while (ChainID[u] != ChainID[v]) {
+        if (ChainID[u] > ChainID[v]) {
             u = Par[ChainHead[ChainID[u]]];
-        }
-        else {
+        } else {
             v = Par[ChainHead[ChainID[v]]];
         }
     }
-    if(Depth[u] < Depth[v]) return u;
+    if (Depth[u] < Depth[v])
+        return u;
     return v;
 }
 
@@ -332,7 +339,7 @@ int LCA(int u, int v) {
 
 int ST[MaxN * 4];
 void Build(int id, int l, int r) {
-    if(l == r) {
+    if (l == r) {
         ST[id] = Val[Arr[l]];
         return;
     }
@@ -343,7 +350,8 @@ void Build(int id, int l, int r) {
 }
 
 void Upd(int id, int l, int r, int pos, int val) {
-    if (l > pos || r < pos) return;
+    if (l > pos || r < pos)
+        return;
     if (l == r && l == pos) {
         ST[id] = val;
         return;
@@ -355,8 +363,10 @@ void Upd(int id, int l, int r, int pos, int val) {
 }
 
 int Calc(int id, int tl, int tr, int l, int r) {
-    if (tl > r || tr < l) return 0;
-    if (l <= tl && tr <= r) return ST[id];
+    if (tl > r || tr < l)
+        return 0;
+    if (l <= tl && tr <= r)
+        return ST[id];
     int mid = (tl + tr) / 2;
     return Calc(id * 2, tl, mid, l, r) ^ Calc(id * 2 + 1, mid + 1, tr, l, r);
 }
@@ -370,18 +380,17 @@ void Update(int x, int val) {
 int Query(int u, int v) {
     int lca = LCA(u, v);
     int ans = 0;
-    while(ChainID[u] != ChainID[lca]) {
+    while (ChainID[u] != ChainID[lca]) {
         ans ^= Calc(1, 1, N, Pos[ChainHead[ChainID[u]]], Pos[u]);
         u = Par[ChainHead[ChainID[u]]];
     }
-    while(ChainID[v] != ChainID[lca]) {
+    while (ChainID[v] != ChainID[lca]) {
         ans ^= Calc(1, 1, N, Pos[ChainHead[ChainID[v]]], Pos[v]);
         v = Par[ChainHead[ChainID[v]]];
     }
-    if(Depth[u] < Depth[v]) {
+    if (Depth[u] < Depth[v]) {
         ans ^= Calc(1, 1, N, Pos[u], Pos[v]);
-    }
-    else {
+    } else {
         ans ^= Calc(1, 1, N, Pos[v], Pos[u]);
     }
     return ans;
@@ -389,16 +398,17 @@ int Query(int u, int v) {
 
 // main
 
-signed main() {
+int main() {
     ios_base::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
+    cin.tie(0);
+    cout.tie(0);
     freopen("cowland.in", "r", stdin);
     freopen("cowland.out", "w", stdout);
     cin >> N >> Q;
-    for(int i = 1; i <= N; i++) {
+    for (int i = 1; i <= N; i++) {
         cin >> Val[i];
     }
-    for(int i = 1; i < N; i++) {
+    for (int i = 1; i < N; i++) {
         int u, v;
         cin >> u >> v;
         AdjList[u].push_back(v);
@@ -408,16 +418,15 @@ signed main() {
     Dfs(1);
     Hld(1);
     Build(1, 1, N);
-    while(Q--) {
+    while (Q--) {
         int type;
         cin >> type;
-        if(type == 1) {
+        if (type == 1) {
             // Update
             int x, val;
             cin >> x >> val;
             Update(x, val);
-        }
-        else {
+        } else {
             int u, v;
             cin >> u >> v;
             cout << Query(u, v) << '\n';

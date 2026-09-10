@@ -394,17 +394,20 @@ vector<int> fwht(const vector<int> &f, int n, bool inversed = 0) {
         int t = k & 1;
         for (int mask = 0; mask < sz; mask++) {
             int u = dp[t ^ 1][mask ^ (1 << (k - 1))], v = dp[t ^ 1][mask];
-            if (mask & (1 << (k - 1))) dp[t][mask] = u - v;
-            else dp[t][mask] = u + v;
+            if (mask & (1 << (k - 1)))
+                dp[t][mask] = u - v;
+            else
+                dp[t][mask] = u + v;
         }
     }
     if (inversed)
-        for (int mask = 0; mask < sz; mask++) dp[n & 1][mask] /= sz;
+        for (int mask = 0; mask < sz; mask++)
+            dp[n & 1][mask] /= sz;
 
     return dp[n & 1];
 }
 
-vector<int> xorConvolution (const vector<int> &f, const vector<int> &g, int n) {
+vector<int> xorConvolution(const vector<int> &f, const vector<int> &g, int n) {
     int sz = 1 << n;
     vector<int> hhat(sz), fhat = fwht(f, n), ghat = fwht(g, n);
     for (int mask = 0; mask < sz; mask++)
@@ -568,131 +571,146 @@ using namespace std;
 const int mn = 1e6 + 6;
 const int MOD = 1e9 + 7;
 
-int add (int a, int b) { return a + b - (a + b < MOD ? 0 : MOD); }
-int sub (int a, int b) { return a - b + (a - b >= 0 ? 0 : MOD); }
-int mul (int a, int b) { return 1LL * a * b % MOD; }
+int add(int a, int b) {
+    return a + b - (a + b < MOD ? 0 : MOD);
+}
+int sub(int a, int b) {
+    return a - b + (a - b >= 0 ? 0 : MOD);
+}
+int mul(int a, int b) {
+    return 1LL * a * b % MOD;
+}
 
-int binpow (int a, int b) {
+int binpow(int a, int b) {
     int ans = 1;
     for (; b; b >>= 1, a = mul(a, a))
-        if (b & 1) ans = mul(ans, a);
+        if (b & 1)
+            ans = mul(ans, a);
     return ans;
 }
 
 namespace convolutions {
-    // hàm biến đổi Walsh-Hadamard và biến đổi ngược
-    vector<int> fwht (const vector<int> &f, int n, bool inversed = 0) {
-        vector<int> dp = f;
+// hàm biến đổi Walsh-Hadamard và biến đổi ngược
+vector<int> fwht(const vector<int> &f, int n, bool inversed = 0) {
+    vector<int> dp = f;
+    for (int k = 0; k < n; k++) {
+        for (int mask = 0; mask < (1 << n); mask++) {
+            if (!(mask & (1 << k)))
+                continue;
+            int u = dp[mask ^ (1 << k)], v = dp[mask];
+            dp[mask ^ (1 << k)] = add(u, v), dp[mask] = sub(u, v);
+        }
+    }
+    if (inversed) {
+        int inv = binpow(1 << n, MOD - 2);
+        for (int mask = 0; mask < (1 << n); mask++)
+            dp[mask] = mul(dp[mask], inv);
+    }
+
+    return dp;
+}
+
+// hàm DP sum over subset/superset và DP ngược
+vector<int> sos(const vector<int> &f, int n, bool subset, bool reversed = 0) {
+    vector<int> dp = f;
+    if (reversed) {
+        for (int k = n - 1; k >= 0; k--) {
+            for (int mask = 0; mask < (1 << n); mask++) {
+                bool flag = ((mask >> k & 1) == subset);
+                if (flag)
+                    dp[mask] = sub(dp[mask], dp[mask ^ (1 << k)]);
+            }
+        }
+    } else {
         for (int k = 0; k < n; k++) {
             for (int mask = 0; mask < (1 << n); mask++) {
-                if (!(mask & (1 << k))) continue;
-                int u = dp[mask ^ (1 << k)], v = dp[mask];
-                dp[mask ^ (1 << k)] = add(u, v), dp[mask] = sub(u, v);
+                bool flag = ((mask >> k & 1) == subset);
+                if (flag)
+                    dp[mask] = add(dp[mask], dp[mask ^ (1 << k)]);
             }
         }
-        if (inversed) {
-            int inv = binpow(1 << n, MOD - 2);
-            for (int mask = 0; mask < (1 << n); mask++) dp[mask] = mul(dp[mask], inv);
-        }
-
-        return dp;
     }
-
-    // hàm DP sum over subset/superset và DP ngược
-    vector<int> sos (const vector<int> &f, int n, bool subset, bool reversed = 0) {
-        vector<int> dp = f;
-        if (reversed) {
-            for (int k = n - 1; k >= 0; k--) {
-                for (int mask = 0; mask < (1 << n); mask++) {
-                    bool flag = ((mask >> k & 1) == subset);
-                    if (flag) dp[mask] = sub(dp[mask], dp[mask ^ (1 << k)]);
-                }
-            }
-        }
-        else {
-            for (int k = 0; k < n; k++) {
-                for (int mask = 0; mask < (1 << n); mask++) {
-                    bool flag = ((mask >> k & 1) == subset);
-                    if (flag) dp[mask] = add(dp[mask], dp[mask ^ (1 << k)]);
-                }
-            }
-        }
-        return dp;
-    }
-    
-    // phép gộp tập hợp
-    vector<int> andConvolution (const vector<int> &f1, const vector<int> &f2, const vector<int> &f3, int n) {
-        vector<int> g1 = sos(f1, n, 0), g2 = sos(f2, n, 0), g3 = sos(f3, n, 0), hhat(1 << n);
-        for (int mask = 0; mask < (1 << n); mask++)
-            hhat[mask] = mul(g1[mask], mul(g2[mask], g3[mask]));
-        return sos(hhat, n, 0, 1);
-    }
-    
-    // phép nhân tập con
-    vector<int> subsetConvolution (const vector<int> &f, const vector<int> &g, int n) {
-        vector<vector<int>> fhat(n + 1, vector<int>(1 << n)), ghat(n + 1, vector<int>(1 << n));
-        for (int mask = 0; mask < (1 << n); mask++) {
-            fhat[__builtin_popcount(mask)][mask] = f[mask];
-            ghat[__builtin_popcount(mask)][mask] = g[mask];
-        }
-        for (int i = 0; i <= n; i++)
-            fhat[i] = sos(fhat[i], n, 1), ghat[i] = sos(ghat[i], n, 1);
-
-        vector<vector<int>> hhat(n + 1, vector<int>(1 << n));
-        for (int i = 0; i <= n; i++)
-            for (int mask = 0; mask < (1 << n); mask++)
-                for (int j = 0; j <= i; j++)
-                    hhat[i][mask] = add(hhat[i][mask], mul(fhat[j][mask], ghat[i - j][mask]));
-        for (int i = 0; i <= n; i++)
-            hhat[i] = sos(hhat[i], n, 1, 1);
-
-        vector<int> h(1 << n);
-        for (int mask = 0; mask < (1 << n); mask++)
-            h[mask] = hhat[__builtin_popcount(mask)][mask];
-        return h;
-    }
-
-    // phép hiệu đối xứng
-    vector<int> xorConvolution (const vector<int> &f, const vector<int> &g, int n) {
-        int sz = 1 << n;
-        vector<int> hhat(sz), fhat = fwht(f, n), ghat = fwht(g, n);
-        for (int mask = 0; mask < sz; mask++)
-            hhat[mask] = mul(fhat[mask], ghat[mask]);
-        return fwht(hhat, n, 1);
-    }
+    return dp;
 }
+
+// phép gộp tập hợp
+vector<int> andConvolution(const vector<int> &f1, const vector<int> &f2, const vector<int> &f3, int n) {
+    vector<int> g1 = sos(f1, n, 0), g2 = sos(f2, n, 0), g3 = sos(f3, n, 0), hhat(1 << n);
+    for (int mask = 0; mask < (1 << n); mask++)
+        hhat[mask] = mul(g1[mask], mul(g2[mask], g3[mask]));
+    return sos(hhat, n, 0, 1);
+}
+
+// phép nhân tập con
+vector<int> subsetConvolution(const vector<int> &f, const vector<int> &g, int n) {
+    vector<vector<int>> fhat(n + 1, vector<int>(1 << n)), ghat(n + 1, vector<int>(1 << n));
+    for (int mask = 0; mask < (1 << n); mask++) {
+        fhat[__builtin_popcount(mask)][mask] = f[mask];
+        ghat[__builtin_popcount(mask)][mask] = g[mask];
+    }
+    for (int i = 0; i <= n; i++)
+        fhat[i] = sos(fhat[i], n, 1), ghat[i] = sos(ghat[i], n, 1);
+
+    vector<vector<int>> hhat(n + 1, vector<int>(1 << n));
+    for (int i = 0; i <= n; i++)
+        for (int mask = 0; mask < (1 << n); mask++)
+            for (int j = 0; j <= i; j++)
+                hhat[i][mask] = add(hhat[i][mask], mul(fhat[j][mask], ghat[i - j][mask]));
+    for (int i = 0; i <= n; i++)
+        hhat[i] = sos(hhat[i], n, 1, 1);
+
+    vector<int> h(1 << n);
+    for (int mask = 0; mask < (1 << n); mask++)
+        h[mask] = hhat[__builtin_popcount(mask)][mask];
+    return h;
+}
+
+// phép hiệu đối xứng
+vector<int> xorConvolution(const vector<int> &f, const vector<int> &g, int n) {
+    int sz = 1 << n;
+    vector<int> hhat(sz), fhat = fwht(f, n), ghat = fwht(g, n);
+    for (int mask = 0; mask < sz; mask++)
+        hhat[mask] = mul(fhat[mask], ghat[mask]);
+    return fwht(hhat, n, 1);
+}
+} // namespace convolutions
 
 int fib[mn];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     // tính số Fibonacci
     fib[0] = 0, fib[1] = 1;
-    for (int i = 2; i < mn; i++) fib[i] = add(fib[i - 1], fib[i - 2]);
+    for (int i = 2; i < mn; i++)
+        fib[i] = add(fib[i - 1], fib[i - 2]);
 
     // đọc input và tạo mảng thống kê
-    int n = 17, m; cin >> m;
+    int n = 17, m;
+    cin >> m;
     vector<int> freq(1 << n), g1, g2, g3;
 
     for (int i = 0; i < m; i++) {
-        int a; cin >> a;
+        int a;
+        cin >> a;
         freq[a]++;
     }
 
     // tính g1(S)
     g1 = convolutions::subsetConvolution(freq, freq, n);
-    for (int mask = 0; mask < (1 << n); mask++) g1[mask] = mul(g1[mask], fib[mask]);
+    for (int mask = 0; mask < (1 << n); mask++)
+        g1[mask] = mul(g1[mask], fib[mask]);
 
     // tính g2(S)
     g2 = freq;
-    for (int mask = 0; mask < (1 << n); mask++) g2[mask] = mul(g2[mask], fib[mask]);
+    for (int mask = 0; mask < (1 << n); mask++)
+        g2[mask] = mul(g2[mask], fib[mask]);
 
     // tính g3(S)
     g3 = convolutions::xorConvolution(freq, freq, n);
-    for (int mask = 0; mask < (1 << n); mask++) g3[mask] = mul(g3[mask], fib[mask]);
+    for (int mask = 0; mask < (1 << n); mask++)
+        g3[mask] = mul(g3[mask], fib[mask]);
 
     // tính h(S) và lấy kết quả
     vector<int> h = convolutions::andConvolution(g1, g2, g3, n);
@@ -847,22 +865,30 @@ using namespace std;
 
 const int MOD = 998'244'353;
 
-int add (int a, int b) { return a + b - (a + b < MOD ? 0 : MOD); }
-int sub (int a, int b) { return a - b + (a - b >= 0 ? 0 : MOD); }
-int mul (int a, int b) { return 1LL * a * b % MOD; }
+int add(int a, int b) {
+    return a + b - (a + b < MOD ? 0 : MOD);
+}
+int sub(int a, int b) {
+    return a - b + (a - b >= 0 ? 0 : MOD);
+}
+int mul(int a, int b) {
+    return 1LL * a * b % MOD;
+}
 
-int binpow (int a, int b) {
+int binpow(int a, int b) {
     int ans = 1;
     for (; b; b >>= 1, a = mul(a, a))
-        if (b & 1) ans = mul(ans, a);
+        if (b & 1)
+            ans = mul(ans, a);
     return ans;
 }
 
-vector<int> fwht (const vector<int> &f, int n) {
+vector<int> fwht(const vector<int> &f, int n) {
     vector<int> dp = f;
     for (int k = 0; k < n; k++) {
         for (int mask = 0; mask < (1 << n); mask++) {
-            if (mask & (1 << k)) continue;
+            if (mask & (1 << k))
+                continue;
             int u = dp[mask], v = dp[mask ^ (1 << k)];
             dp[mask] = u + v, dp[mask ^ (1 << k)] = u - v;
         }
@@ -870,17 +896,18 @@ vector<int> fwht (const vector<int> &f, int n) {
     return dp;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     /// read input
-    int n; cin >> n;
+    int n;
+    cin >> n;
     vector<int> freq(1 << 17);
 
     for (int i = 0; i < n; i++) {
-        int a; cin >> a;
+        int a;
+        cin >> a;
         freq[a]++;
     }
 
@@ -892,7 +919,8 @@ int main()
     for (int mask = 0; mask < (1 << 17); mask++) {
         int even = (n + diff[mask]) >> 1, odd = n - even;
         int wht = binpow(3, even);
-        if (odd & 1) wht = sub(0, wht);
+        if (odd & 1)
+            wht = sub(0, wht);
         ans = add(ans, wht);
     }
 

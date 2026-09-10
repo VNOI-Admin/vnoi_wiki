@@ -65,7 +65,7 @@ Trong bài này, các điểm, vector và đa giác sẽ được cài đặt b�
 
 using namespace std;
 
-struct Point{
+struct Point {
     int x;
     int y;
 
@@ -73,7 +73,8 @@ struct Point{
     Point();
 
     // Khởi tạo điểm từ toạ độ
-    Point(int __x, int __y): x(__x), y(__y) {}
+    Point(int x_, int y_) : x(x_), y(y_) {
+    }
 };
 
 struct Vector {
@@ -84,10 +85,11 @@ struct Vector {
     Vector();
 
     // Khởi tạo vector từ điểm đầu và điểm cuối
-    Vector(Point p, Point q): x(q.x - p.x), y(q.y - p.y) {}
-    
+    Vector(Point p, Point q) : x(q.x - p.x), y(q.y - p.y) {
+    }
+
     // Tích có hướng của vector hiện tại và một vector khác
-    long long operator ^ (const Vector &v2) const {
+    long long operator^(const Vector &v2) const {
         return 1ll * x * v2.y - 1ll * y * v2.x;
     }
 };
@@ -95,19 +97,21 @@ struct Vector {
 struct Polygon {
     // Số đỉnh thuộc đa giác
     int nVertices;
-    
+
     // Danh sách các đỉnh thuộc đa giác
-    vector <Point> vertices;
+    vector<Point> vertices;
 
     // Khởi tạo mặc định
     Polygon();
-    
+
     // Khởi tạo tam giác từ các đỉnh
-    Polygon(Point A, Point B, Point C) : vertices({A, B, C}), nVertices(3) {}
+    Polygon(Point A, Point B, Point C) : vertices({A, B, C}), nVertices(3) {
+    }
 
     // Khởi tạo đa giác từ danh sách đỉnh
-    Polygon(const vector <Point> &__vertices) : vertices(__vertices), nVertices(__vertices.size()) {}
-    
+    Polygon(const vector<Point> &__vertices) : vertices(__vertices), nVertices(__vertices.size()) {
+    }
+
     // Diện tích, được cài đặt tại phần Diện tích đa giác
     double area();
 
@@ -301,7 +305,7 @@ Nếu bạn thích dùng tích có hướng như công thức $(7)$ thì có th�
 long long Polygon::area2() {
     long long s = 0;
     Point o(0, 0);
-    for (int i = 0; i < nVertices; i ++) {
+    for (int i = 0; i < nVertices; i++) {
         int i1 = (i + 1) % nVertices;
         Vector vi(o, vertices[i]);
         Vector vi1(o, vertices[i1]);
@@ -407,7 +411,7 @@ PointPolygonPosition position(Polygon plg, Point p) {
     // Kiểm tra P có thuộc A1An không
     Vector pa1(p, plg.vertices[0]);
     Vector pan(p, plg.vertices[plg.nVertices - 1]);
-    if (pa1 ^ pan == 0) {
+    if ((pa1 ^ pan) == 0) {
         if (1ll * pa1.x * pan.x <= 0) {
             return BOUNDARY;
         }
@@ -428,17 +432,18 @@ PointPolygonPosition position(Polygon plg, Point p) {
     if (k == plg.nVertices - 1) {
         return OUTSIDE;
     }
-    
+
     // Kiểm tra xem P có thuộc tam giác không
-    if (Vector(p, plg.vertices[k]) ^ Vector(p, plg.vertices[k + 1]) == 0) {
+    if ((Vector(p, plg.vertices[k]) ^ Vector(p, plg.vertices[k + 1])) == 0) {
         return BOUNDARY;
     }
     long long ss = 0;
     ss += Polygon(p, plg.vertices[0], plg.vertices[k]).area2();
     ss += Polygon(p, plg.vertices[k], plg.vertices[k + 1]).area2();
     ss += Polygon(p, plg.vertices[k + 1], plg.vertices[0]).area2();
-    if (ss == Polygon(plg.vertices[0], plg.vertices[k], 
-                      plg.vertices[k + 1]).area2()) {
+    if (ss == Polygon(plg.vertices[0], plg.vertices[k],
+                      plg.vertices[k + 1])
+                  .area2()) {
         return INSIDE;
     }
     return OUTSIDE;
@@ -470,7 +475,7 @@ PointPolygonPosition position(Polygon plg, Point p) {
         int i1 = (i + 1) % plg.nVertices;
         auto vpi = Vector(p, plg.vertices[i]);
         auto vpj = Vector(p, plg.vertices[i1]);
-        
+
         // Trường hợp nằm trên cạnh
         if ((vpi ^ vpj) == 0) {
             int xl = min(plg.vertices[i].x, plg.vertices[i1].x);
@@ -481,15 +486,13 @@ PointPolygonPosition position(Polygon plg, Point p) {
                 return BOUNDARY;
             }
         }
-        
+
         // Trường hợp các đỉnh của đa giác ngược chiều kim đồng hồ
         // Chú ý rằng chỉ có một bên của bất đẳng thức có dấu bằng
-        isIn ^= (plg.vertices[i].y <= p.y 
-                 && p.y < plg.vertices[i1].y && (vpi ^ vpj) > 0);
-        
+        isIn ^= (plg.vertices[i].y <= p.y && p.y < plg.vertices[i1].y && (vpi ^ vpj) > 0);
+
         // Trường hợp các đỉnh của đa giác cùng chiều kim đồng hồ
-        isIn ^= (plg.vertices[i1].y <= p.y 
-                 && p.y < plg.vertices[i].y && (vpj ^ vpi) > 0);
+        isIn ^= (plg.vertices[i1].y <= p.y && p.y < plg.vertices[i].y && (vpj ^ vpi) > 0);
     }
     if (isIn) {
         return INSIDE;

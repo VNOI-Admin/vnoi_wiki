@@ -291,14 +291,16 @@ struct aho_corasick {
         }
         g[p].cnt++;
     }
-    void build_automaton(){
-        for (deque<int> q = {0}; q.size(); q.pop_front()){
+    void build_automaton() {
+        for (deque<int> q = {0}; q.size(); q.pop_front()) {
             int v = q.front(), suffix_link = g[v].suffix_link;
-            if (v) g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
-            for (int i=0; i<26; i++){
+            if (v)
+                g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
+            for (int i = 0; i < 26; i++) {
                 int &nxt = g[v].nxt[i], nxt_sf = v ? g[suffix_link].nxt[i] : 0;
-                if (nxt == -1) nxt = nxt_sf;
-                else{
+                if (nxt == -1)
+                    nxt = nxt_sf;
+                else {
                     g[nxt].suffix_link = nxt_sf;
                     q.push_back(nxt);
                 }
@@ -336,56 +338,62 @@ struct aho_corasick {
         }
         g[p].leaf.push_back(sidx);
     }
-    void build_automaton(){
-        for (deque<int> q = {0}; q.size(); q.pop_front()){
+    void build_automaton() {
+        for (deque<int> q = {0}; q.size(); q.pop_front()) {
             int v = q.front(), suffix_link = g[v].suffix_link;
-            if (v) g[v].exit_link = g[suffix_link].leaf.size() ? suffix_link : g[suffix_link].exit_link;
-            for (int i=0; i<128; i++){
+            if (v)
+                g[v].exit_link = g[suffix_link].leaf.size() ? suffix_link : g[suffix_link].exit_link;
+            for (int i = 0; i < 128; i++) {
                 int &nxt = g[v].nxt[i], nxt_sf = v ? g[suffix_link].nxt[i] : 0;
-                if (nxt == -1) nxt = nxt_sf;
-                else{
+                if (nxt == -1)
+                    nxt = nxt_sf;
+                else {
                     g[nxt].suffix_link = nxt_sf;
                     q.push_back(nxt);
                 }
             }
         }
     }
-    vector<int> get_sindex(int p){
+    vector<int> get_sindex(int p) {
         vector<int> a;
         for (int v = g[p].leaf.size() ? p : g[p].exit_link; v != -1; v = g[v].exit_link)
-            for (int j: g[v].leaf)
+            for (int j : g[v].leaf)
                 a.push_back(j);
         return a;
     }
 };
 
-signed main(){
+int main() {
     cin.tie(0)->sync_with_stdio(0);
     string n_line;
-    while (getline(cin, n_line)){
+    while (getline(cin, n_line)) {
         int n = stoi(n_line);
 
         vector<int> s_size(n);
         aho_corasick ac;
-        for (int i=0; i<n; i++){
-            string s; getline(cin, s);
+        for (int i = 0; i < n; i++) {
+            string s;
+            getline(cin, s);
             ac.insert_string(s, i);
             s_size[i] = s.size();
         }
         ac.build_automaton();
 
         vector<vector<int>> result(n);
-        string t; getline(cin, t);
-        for (int i=0, p=0; i<t.size(); i++){
+        string t;
+        getline(cin, t);
+        for (int i = 0, p = 0; i < t.size(); i++) {
             p = ac.g[p].nxt[t[i]];
-            for (int j: ac.get_sindex(p))
+            for (int j : ac.get_sindex(p))
                 result[j].push_back(i - s_size[j] + 1);
         }
-        
-        for (const vector<int> &v: result){
-            if (v.size() == 0) cout << "\n";
-            else for (int i=0; i<v.size(); i++)
-                cout << v[i] << " \n"[i == v.size()-1];
+
+        for (const vector<int> &v : result) {
+            if (v.size() == 0)
+                cout << "\n";
+            else
+                for (int i = 0; i < v.size(); i++)
+                    cout << v[i] << " \n"[i == v.size() - 1];
         }
     }
 }
@@ -551,37 +559,40 @@ struct aho_corasick {
         g[ptr.back()].cnt++;
         return ptr;
     }
-    void build_automaton(){
-        for (deque<int> q = {0}; q.size(); q.pop_front()){
+    void build_automaton() {
+        for (deque<int> q = {0}; q.size(); q.pop_front()) {
             int v = q.front(), suffix_link = g[v].suffix_link;
-            if (v) g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
-            for (int i=0; i<26; i++){
+            if (v)
+                g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
+            for (int i = 0; i < 26; i++) {
                 int &nxt = g[v].nxt[i], nxt_sf = v ? g[suffix_link].nxt[i] : 0;
-                if (nxt == -1) nxt = nxt_sf;
-                else{
+                if (nxt == -1)
+                    nxt = nxt_sf;
+                else {
                     g[nxt].suffix_link = nxt_sf;
                     q.push_back(nxt);
                 }
             }
         }
     }
-    vector<vector<int>> to_tree(){
+    vector<vector<int>> to_tree() {
         vector<vector<int>> tree(g.size());
-        for (int i=1; i<g.size(); i++)
+        for (int i = 1; i < g.size(); i++)
             tree[g[i].suffix_link].push_back(i);
         return tree;
     }
 };
 
-struct BIT{
+struct BIT {
     static const int OFFSET = 2;
     vector<int> g;
-    BIT(int n): g(n + OFFSET, 0) {}
-    void update(int p, int v){
+    BIT(int n) : g(n + OFFSET, 0) {
+    }
+    void update(int p, int v) {
         for (p += OFFSET; p < g.size(); p += p & (-p))
             g[p] += v;
     }
-    int query(int p){
+    int query(int p) {
         int v = 0;
         for (p += OFFSET; p; p -= p & (-p))
             v += g[p];
@@ -589,22 +600,25 @@ struct BIT{
     }
 };
 
-void dfs(const vector<vector<int>> &g, int &tdfs, vector<int> &tin, vector<int> &tout, int v){
+void dfs(const vector<vector<int>> &g, int &tdfs, vector<int> &tin, vector<int> &tout, int v) {
     tin[v] = tdfs++;
-    for (int u: g[v])
+    for (int u : g[v])
         dfs(g, tdfs, tin, tout, u);
-    tout[v] = tdfs-1;
+    tout[v] = tdfs - 1;
 }
-signed main(){
+int main() {
     cin.tie(0)->sync_with_stdio(0);
-    int n, q; cin >> n >> q;
+    int n, q;
+    cin >> n >> q;
 
     vector<string> s(n);
-    for (int i=0; i<n; i++) cin >> s[i];
+    for (int i = 0; i < n; i++)
+        cin >> s[i];
 
     aho_corasick ac;
     vector<vector<int>> ptrs(n);
-    for (int i=0; i<n; i++) ptrs[i] = ac.insert_string(s[i]);
+    for (int i = 0; i < n; i++)
+        ptrs[i] = ac.insert_string(s[i]);
     ac.build_automaton();
 
     vector<vector<int>> g = ac.to_tree();
@@ -682,48 +696,54 @@ struct aho_corasick {
         g[ptr.back()].cnt++;
         return ptr;
     }
-    void build_automaton(){
-        for (deque<int> q = {0}; q.size(); q.pop_front()){
+    void build_automaton() {
+        for (deque<int> q = {0}; q.size(); q.pop_front()) {
             int v = q.front(), suffix_link = g[v].suffix_link;
-            if (v) g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
-            for (int i=0; i<26; i++){
+            if (v)
+                g[v].exit_link = g[suffix_link].cnt ? suffix_link : g[suffix_link].exit_link;
+            for (int i = 0; i < 26; i++) {
                 int &nxt = g[v].nxt[i], nxt_sf = v ? g[suffix_link].nxt[i] : 0;
-                if (nxt == -1) nxt = nxt_sf;
-                else{
+                if (nxt == -1)
+                    nxt = nxt_sf;
+                else {
                     g[nxt].suffix_link = nxt_sf;
                     q.push_back(nxt);
                 }
             }
         }
     }
-    vector<vector<int>> to_tree(){
+    vector<vector<int>> to_tree() {
         vector<vector<int>> tree(g.size());
-        for (int i=1; i<g.size(); i++)
+        for (int i = 1; i < g.size(); i++)
             tree[g[i].suffix_link].push_back(i);
         return tree;
     }
 };
 
-void dfs(const vector<vector<int>> &g, int &tdfs, vector<int> &tin, vector<int> &tout, int v){
+void dfs(const vector<vector<int>> &g, int &tdfs, vector<int> &tin, vector<int> &tout, int v) {
     tin[v] = tdfs++;
-    for (int u: g[v])
+    for (int u : g[v])
         dfs(g, tdfs, tin, tout, u);
-    tout[v] = tdfs-1;
+    tout[v] = tdfs - 1;
 }
-signed main(){
+int main() {
     cin.tie(0)->sync_with_stdio(0);
-    int n, q; cin >> n >> q;
+    int n, q;
+    cin >> n >> q;
 
     vector<string> s(n);
-    for (int i=0; i<n; i++) cin >> s[i];
+    for (int i = 0; i < n; i++)
+        cin >> s[i];
 
     vector<int> pfs(n);
-    for (int i=0; i<n; i++) pfs[i] = s[i].size();
+    for (int i = 0; i < n; i++)
+        pfs[i] = s[i].size();
     partial_sum(pfs.begin(), pfs.end(), pfs.begin());
 
     aho_corasick ac;
     vector<vector<int>> ptrs(n);
-    for (int i=0; i<n; i++) ptrs[i] = ac.insert_string(s[i]);
+    for (int i = 0; i < n; i++)
+        ptrs[i] = ac.insert_string(s[i]);
     ac.build_automaton();
 
     vector<vector<int>> g = ac.to_tree();

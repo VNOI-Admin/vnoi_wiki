@@ -80,7 +80,8 @@ void dfs(int u) {
 
 int lca(int u, int v) {
     // Không mất tính tổng quát, xét h[u] >= h[v]
-    if (h[u] < h[v]) swap(u, v);
+    if (h[u] < h[v])
+        swap(u, v);
 
     // cho u nhảy lên cha đến khi h[u] = h[v]
     while (h[u] > h[v])
@@ -321,8 +322,8 @@ int solve(int u, int x) {
         if (calc_dist(u, mid) <= x) {
             ans = mid;
             lo = mid + 1;
-        }
-        else hi = mid - 1;
+        } else
+            hi = mid - 1;
     }
     return ancestor_k(u, ans);
 }
@@ -403,7 +404,8 @@ Cách tìm LCA giống hệt thuật toán ngây thơ 1, nhưng để tăng tố
 int h[N], up[N][20];
 int lca(int u, int v) {
     if (h[u] != h[v]) {
-        if (h[u] < h[v]) swap(u, v);
+        if (h[u] < h[v])
+            swap(u, v);
 
         // Tìm tổ tiên u' của u sao cho h(u') = h(v)
         int k = h[u] - h[v];
@@ -411,7 +413,8 @@ int lca(int u, int v) {
             if (k >> j & 1) // Nếu bit thứ j của k là 1
                 u = up[u][j];
     }
-    if (u == v) return u;
+    if (u == v)
+        return u;
 
     // Tìm lca(u, v)
     int k = __lg(h[u]);
@@ -467,7 +470,8 @@ int h[N], f[N], up[N][10];
 void dfs(int u) {
     for (Edge &e : g[u]) {
         int v = e.v, w = e.w;
-        if (v == up[u][0]) continue;
+        if (v == up[u][0])
+            continue;
 
         h[v] = h[u] + 1;
         f[v] = f[u] + w;
@@ -482,14 +486,16 @@ void dfs(int u) {
 
 int lca(int u, int v) {
     if (h[u] != h[v]) {
-        if (h[u] < h[v]) swap(u, v);
+        if (h[u] < h[v])
+            swap(u, v);
 
         int k = h[u] - h[v];
         for (int j = 0; (1 << j) <= k; ++j)
             if (k >> j & 1)
                 u = up[u][j];
     }
-    if (u == v) return u;
+    if (u == v)
+        return u;
 
     int k = __lg(h[u]);
     for (int j = k; j >= 0; --j)
@@ -513,7 +519,8 @@ int main() {
     }
 
     dfs(1);
-    int u, v; while (q--) {
+    int u, v;
+    while (q--) {
         cin >> u >> v;
         cout << dist(u, v) << '\n';
     }
@@ -567,14 +574,16 @@ void dfs(int u) {
 
 int lca(int u, int v) {
     if (h[u] != h[v]) {
-        if (h[u] < h[v]) swap(u, v);
+        if (h[u] < h[v])
+            swap(u, v);
 
         int k = h[u] - h[v];
         for (int j = 0; (1 << j) <= k; ++j)
             if (k >> j & 1)
                 u = up[u][j];
     }
-    if (u == v) return u;
+    if (u == v)
+        return u;
 
     int k = __lg(h[u]);
     for (int j = k; j >= 0; --j)
@@ -614,7 +623,8 @@ int main() {
         cin >> x >> up[i][0];
         group[x].push_back(i);
         g[up[i][0]].push_back(i);
-        if (up[i][0] == 0) root = i;
+        if (up[i][0] == 0)
+            root = i;
     }
 
     dfs(root);
@@ -654,7 +664,8 @@ vector<int> g[N];
 int h[N], up[N][17];
 void dfs(int u) {
     for (int v : g[u]) {
-        if (v == up[u][0]) continue;
+        if (v == up[u][0])
+            continue;
         h[v] = h[u] + 1;
 
         up[v][0] = u;
@@ -667,14 +678,16 @@ void dfs(int u) {
 
 int lca(int u, int v) {
     if (h[u] != h[v]) {
-        if (h[u] < h[v]) swap(u, v);
+        if (h[u] < h[v])
+            swap(u, v);
 
         int k = h[u] - h[v];
         for (int j = 0; (1 << j) <= k; ++j)
             if (k >> j & 1)
                 u = up[u][j];
     }
-    if (u == v) return u;
+    if (u == v)
+        return u;
 
     int k = __lg(h[u]);
     for (int j = k; j >= 0; --j)
@@ -686,7 +699,8 @@ int lca(int u, int v) {
 int main() {
     cin.tie(NULL)->sync_with_stdio(false);
     while (cin >> n, n) {
-        for (int i = 1; i <= n; ++i) g[i].clear();
+        for (int i = 1; i <= n; ++i)
+            g[i].clear();
         for (int i = 1, u, v; i < n; ++i) {
             cin >> u >> v;
             g[u].push_back(v);
@@ -695,9 +709,12 @@ int main() {
         dfs(1);
 
         char c;
-        int m, root(1), u, v; cin >> m; while (m--) {
+        int m, root(1), u, v;
+        cin >> m;
+        while (m--) {
             cin >> c;
-            if (c == '!') cin >> root;
+            if (c == '!')
+                cin >> root;
             else {
                 cin >> u >> v;
                 int uv = lca(u, v);

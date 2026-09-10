@@ -136,8 +136,8 @@ Bây giờ ta có thể phân tích một số ra thừa số nguyên tố:
 vector<int> factorize(int n) {
     vector<int> res;
     while (n != 1) {
-        res.push_back(minPrime[n]);
-        n /= minPrime[n];
+        res.push_back(min_prime[n]);
+        n /= min_prime[n];
     }
     return res;
 }
@@ -614,11 +614,11 @@ int num_in_offsets[wheel_size];
 vector<bool> is_prime;
 
 // vị trí trong mảng is_prime
-int pos(const int &v){
+int pos(const int &v) {
     return v / wheel_size * num_offsets + num_in_offsets[v % wheel_size] - 1;
 }
 
-void sieve_with_wheel(int n){
+void sieve_with_wheel(int n) {
     for (int i = 0; i < num_offsets; i++)
         num_in_offsets[wheel_offsets[i]] = i + 1;
 
@@ -725,8 +725,12 @@ uint64_t si[SIEVE_SIZE];
 // be primes)
 uint64_t pattern[WHEEL];
 
-inline void mark(uint64_t* s, int o) { s[o >> 6] |= ONES[o & 63]; }
-inline int test(uint64_t* s, int o) { return (s[o >> 6] & ONES[o & 63]) == 0; }
+inline void mark(uint64_t *s, int o) {
+    s[o >> 6] |= ONES[o & 63];
+}
+inline int test(uint64_t *s, int o) {
+    return (s[o >> 6] & ONES[o & 63]) == 0;
+}
 
 // update_sieve
 void update_sieve(int offset) {
@@ -745,11 +749,14 @@ void update_sieve(int offset) {
     // sieve for primes >= 17 (stored in `small_primes`)
     for (int i = 0; i < N_SMALL_PRIMES; ++i) {
         int j = small_primes[i] * small_primes[i];
-        if (j > offset + SIEVE_SPAN - 1) break;
-        if (j > offset) j = (j - offset) >> 1;
+        if (j > offset + SIEVE_SPAN - 1)
+            break;
+        if (j > offset)
+            j = (j - offset) >> 1;
         else {
             j = small_primes[i] - offset % small_primes[i];
-            if ((j & 1) == 0) j += small_primes[i];
+            if ((j & 1) == 0)
+                j += small_primes[i];
             j >>= 1;
         }
         while (j < SIEVE_SPAN / 2) {
@@ -759,15 +766,16 @@ void update_sieve(int offset) {
     }
 }
 
-
 void sieve() {
     // init small primes {{{
-    for (int i = 0; i < 64; ++i) ONES[i] = 1ULL << i;
+    for (int i = 0; i < 64; ++i)
+        ONES[i] = 1ULL << i;
 
     // sieve to find small primes
     for (int i = 3; i < 256; i += 2) {
         if (test(si, i >> 1)) {
-            for (int j = i*i / 2; j < 32768; j += i) mark(si, j);
+            for (int j = i * i / 2; j < 32768; j += i)
+                mark(si, j);
         }
     }
     // store primes >= 17 in `small_primes` (we will sieve differently
@@ -775,29 +783,36 @@ void sieve() {
     {
         int m = 0;
         for (int i = 8; i < 32768; ++i) {
-            if (test(si, i)) small_primes[m++] = i*2 + 1;
+            if (test(si, i))
+                small_primes[m++] = i * 2 + 1;
         }
         assert(m == N_SMALL_PRIMES);
     }
     // }}}
 
     // For primes 3, 5, 7, 11, 13: we initialize wheel pattern..
-    for (int i = 1; i < WHEEL * 64; i += 3) mark(pattern, i);
-    for (int i = 2; i < WHEEL * 64; i += 5) mark(pattern, i);
-    for (int i = 3; i < WHEEL * 64; i += 7) mark(pattern, i);
-    for (int i = 5; i < WHEEL * 64; i += 11) mark(pattern, i);
-    for (int i = 6; i < WHEEL * 64; i += 13) mark(pattern, i);
+    for (int i = 1; i < WHEEL * 64; i += 3)
+        mark(pattern, i);
+    for (int i = 2; i < WHEEL * 64; i += 5)
+        mark(pattern, i);
+    for (int i = 3; i < WHEEL * 64; i += 7)
+        mark(pattern, i);
+    for (int i = 5; i < WHEEL * 64; i += 11)
+        mark(pattern, i);
+    for (int i = 6; i < WHEEL * 64; i += 13)
+        mark(pattern, i);
 
     // Segmented sieve
     long long sum_primes = 2;
     for (int offset = 0; offset < MAX; offset += SIEVE_SPAN) {
         update_sieve(offset);
 
-        for (uint32_t j = 0; j < SIEVE_SIZE; j++){
+        for (uint32_t j = 0; j < SIEVE_SIZE; j++) {
             uint64_t x = ~si[j];
-            while (x){
+            while (x) {
                 uint32_t p = offset + (j << 7) + (__builtin_ctzll(x) << 1) + 1;
-                if (p > offset + SIEVE_SPAN - 1) break;
+                if (p > offset + SIEVE_SPAN - 1)
+                    break;
                 if (p <= MAX) {
                     sum_primes += p;
                 }
@@ -847,23 +862,19 @@ void sieve() {
         reset[2 * i] = reset[2 * i + 1] = ~(1 << i);
 
     int s = 3;
-    for (int low = 0; low <= lim; low += segment_size)
-    {
+    for (int low = 0; low <= lim; low += segment_size) {
         fill(mark.begin(), mark.end(), 0xff);
         int high = min(low + segment_size - 1, lim);
         sieve_size = (high - low) / 16 + 1;
 
-        for (; s * s <= high; s += 2)
-        {
-            if (is_prime[s])
-            {
+        for (; s * s <= high; s += 2) {
+            if (is_prime[s]) {
                 seg_prime.push_back(s);
                 seg_multi.push_back(s * s - low);
             }
         }
 
-        for (size_t i = 0; i < seg_prime.size(); ++i)
-        {
+        for (size_t i = 0; i < seg_prime.size(); ++i) {
             int j = seg_multi[i];
             for (int k = seg_prime[i] * 2; j < segment_size; j += k)
                 mark[j >> 4] &= reset[j % 16];
@@ -871,17 +882,14 @@ void sieve() {
             seg_multi[i] = j - segment_size;
         }
 
-        if (high == lim)
-        {
+        if (high == lim) {
             int bits = 0xff << ((lim % 16) + 1) / 2;
             mark[sieve_size - 1] &= ~bits;
         }
 
-        for (int n = 0; n < sieve_size; n++)
-        {
+        for (int n = 0; n < sieve_size; n++) {
             for (int i = 0; i < 8; i++)
-                if (mark[n] & (1 << i))
-                {
+                if (mark[n] & (1 << i)) {
                     auto p = low + n * 16 + i * 2 + 1;
                     sum_primes += (p > 1) ? p : 2;
                 }

@@ -103,31 +103,34 @@ struct Trie {
                             // ta tăng biến exist của đỉnh lên 1
     }
 
-    bool delete_string_recursive(int pos, string& s, int i) { // Trả về liệu đỉnh pos
+    bool delete_string_recursive(int pos, string &s, int i) { // Trả về liệu đỉnh pos
                                                               // có bị xóa đi hay không
-        if (i != (int)s.size()) { // Nếu chưa đến đỉnh tương ứng với xâu s
-                                  // thì tiếp tục đệ quy xuống dưới
+        if (i != (int)s.size()) {                             // Nếu chưa đến đỉnh tương ứng với xâu s
+                                                              // thì tiếp tục đệ quy xuống dưới
             int c = s[i] - 'a';
             bool isChildDeleted = delete_string_recursive(nodes[pos].child[c], s, i + 1);
-            if (isChildDeleted) nodes[pos].child[c] = -1; // Nếu đỉnh con tương ứng bị xóa thì
-                                                          // ta gán lại đỉnh tương ứng bằng -1
-        }
-        else nodes[pos].exist--; // Nếu đã đến đỉnh tương ứng với xâu s
-                                 // thì ta giảm biến exist của đỉnh đi 1
+            if (isChildDeleted)
+                nodes[pos].child[c] = -1; // Nếu đỉnh con tương ứng bị xóa thì
+                                          // ta gán lại đỉnh tương ứng bằng -1
+        } else
+            nodes[pos].exist--; // Nếu đã đến đỉnh tương ứng với xâu s
+                                // thì ta giảm biến exist của đỉnh đi 1
 
         if (pos != 0) { // Nếu đỉnh đang xét không phải gốc thì ta giảm biến cnt của đỉnh đi 1
                         // và kiểm tra đỉnh có bị xóa đi hay không
                         // Đỉnh bị xóa nếu không còn xâu nào đi qua nó, nói cách khác là
                         // không còn xâu nào có tiền tố là xâu được thể hiện bởi đỉnh pos
             nodes[pos].cnt--;
-            if (nodes[pos].cnt == 0) return true;
+            if (nodes[pos].cnt == 0)
+                return true;
         }
         return false;
     }
 
     void delete_string(string s) {
-        if (find_string(s) == false) return; // Kiểm tra xâu s có trong
-                                             // trie hay không
+        if (find_string(s) == false)
+            return;                       // Kiểm tra xâu s có trong
+                                          // trie hay không
         delete_string_recursive(0, s, 0); // Gọi hàm đệ quy xóa xâu s khỏi trie
     }
 
@@ -135,7 +138,8 @@ struct Trie {
         int pos = 0;
         for (auto f : s) {
             int c = f - 'a';
-            if (nodes[pos].child[c] == -1) return false;
+            if (nodes[pos].child[c] == -1)
+                return false;
             pos = nodes[pos].child[c];
         }
         return (nodes[pos].exist != 0); // Kiểm tra có xâu nào
@@ -180,19 +184,20 @@ struct Trie {
         p->exist++;
     }
 
-    bool delete_string_recursive(Node* p, string& s, int i) {
+    bool delete_string_recursive(Node *p, string &s, int i) {
         if (i != (int)s.size()) {
             int c = s[i] - 'a';
             bool isChildDeleted = delete_string_recursive(p->child[c], s, i + 1);
-            if (isChildDeleted) p->child[c] = NULL;
-        }
-        else p->exist--;
+            if (isChildDeleted)
+                p->child[c] = NULL;
+        } else
+            p->exist--;
 
         if (p != root) {
             p->cnt--;
             if (p->cnt == 0) {
-                delete(p); // Khác với cài đặt bằng mảng,
-                           // ta có thể thực sự xóa đỉnh này đi
+                delete (p); // Khác với cài đặt bằng mảng,
+                            // ta có thể thực sự xóa đỉnh này đi
                 return true;
             }
         }
@@ -200,16 +205,18 @@ struct Trie {
     }
 
     void delete_string(string s) {
-        if (find_string(s) == false) return;
+        if (find_string(s) == false)
+            return;
 
         delete_string_recursive(root, s, 0);
     }
 
     bool find_string(string s) {
-        Node* p = root;
+        Node *p = root;
         for (auto f : s) {
             int c = f - 'a';
-            if (p->child[c] == NULL) return false;
+            if (p->child[c] == NULL)
+                return false;
             p = p->child[c];
         }
         return (p->exist != 0);
@@ -270,7 +277,8 @@ struct Trie {
         int pos = 0;
         for (int i = LG; i >= 0; i--) {
             int c = (x >> i) & 1;
-            if (nodes[pos].child[c] == -1) nodes[pos].child[c] = new_node();
+            if (nodes[pos].child[c] == -1)
+                nodes[pos].child[c] = new_node();
             pos = nodes[pos].child[c];
             nodes[pos].cnt++;
         }
@@ -278,7 +286,8 @@ struct Trie {
     }
 
     void delete_number(int x) {
-        if (find_number(x) == false) return;
+        if (find_number(x) == false)
+            return;
         int pos = 0;
         for (int i = LG; i >= 0; i--) {
             int c = (x >> i) & 1;
@@ -299,7 +308,8 @@ struct Trie {
         int pos = 0;
         for (int i = LG; i >= 0; i--) {
             int c = (x & (1 << i) ? 1 : 0);
-            if (nodes[pos].child[c] == -1) return false;
+            if (nodes[pos].child[c] == -1)
+                return false;
             pos = nodes[pos].child[c];
         }
         return (nodes[pos].exist != 0);
@@ -383,18 +393,20 @@ string find_kth_string(int k) {
     string res = "";
 
     while (true) {
-        if (nodes[pos].exist >= k) break;
+        if (nodes[pos].exist >= k)
+            break;
         k -= nodes[pos].exist;
 
-        for (int i = 0; i < 26; i++) if (nodes[pos].child[i] != -1) {
-            int nxt = nodes[pos].child[i];
-            if (nodes[nxt].cnt >= k) {
-                res += char(i + 'a');
-                pos = nxt;
-                break;
+        for (int i = 0; i < 26; i++)
+            if (nodes[pos].child[i] != -1) {
+                int nxt = nodes[pos].child[i];
+                if (nodes[nxt].cnt >= k) {
+                    res += char(i + 'a');
+                    pos = nxt;
+                    break;
+                }
+                k -= nodes[nxt].cnt;
             }
-            k -= nodes[nxt].cnt;
-        }
     }
 
     return res;
@@ -434,8 +446,7 @@ int query(int x) {
         if (nodes[pos].child[c ^ 1] != -1) {
             res += (1ll << i);
             pos = nodes[pos].child[c ^ 1];
-        }
-        else {
+        } else {
             pos = nodes[pos].child[c];
         }
     }
@@ -476,28 +487,30 @@ using namespace std;
 
 const int LG = 18;
 const int INF = 1e9;
-struct Trie{
-    struct Node{
-        Node* child[2];
+struct Trie {
+    struct Node {
+        Node *child[2];
         int mn;
 
         Node() {
-            for (int i = 0; i < 2; i++) child[i] = NULL;
+            for (int i = 0; i < 2; i++)
+                child[i] = NULL;
             mn = INF;
         }
     };
 
     int cur;
-    Node* root;
+    Node *root;
     Trie() : cur(0) {
         root = new Node();
     };
 
     void add_number(int x) {
-        Node* p = root;
+        Node *p = root;
         for (int i = LG; i >= 0; i--) {
             int c = (x >> i) & 1;
-            if (p->child[c] == NULL) p->child[c] = new Node();
+            if (p->child[c] == NULL)
+                p->child[c] = new Node();
 
             p = p->child[c];
             p->mn = min(p->mn, x);
@@ -505,16 +518,16 @@ struct Trie{
     }
 
     int query(int x, int val) {
-        Node* p = root;
+        Node *p = root;
         int res = 0;
         for (int i = LG; i >= 0; i--) {
             int c = (x >> i) & 1;
             if (p->child[c ^ 1] != NULL && p->child[c ^ 1]->mn <= val) {
                 res += ((c ^ 1) << i);
                 p = p->child[c ^ 1];
-            }
-            else {
-                if (p->child[c] == NULL || p->child[c]->mn > val) return -1;
+            } else {
+                if (p->child[c] == NULL || p->child[c]->mn > val)
+                    return -1;
                 p = p->child[c];
                 res += (c << i);
             }
@@ -527,12 +540,14 @@ const int N = 1e5;
 Trie tries[N + 5];
 vector<int> d[N + 5];
 
-signed main() {
-
-    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
     for (int i = 1; i <= N; i++) {
-        for (int j = i; j <= N; j += i) d[j].push_back(i);
+        for (int j = i; j <= N; j += i)
+            d[j].push_back(i);
     }
 
     int q;
@@ -596,8 +611,8 @@ using namespace std;
 
 const int NUMBEROFNODES = 5400005;
 const int LG = 18;
-struct Trie{
-    struct Node{
+struct Trie {
+    struct Node {
         int child[2];
         int cnt;
     } nodes[NUMBEROFNODES];
@@ -619,7 +634,8 @@ struct Trie{
         int pos = 0;
         for (int i = LG; i >= 0; i--) {
             int c = (x >> i) & 1;
-            if (nodes[pos].child[c] == -1) nodes[pos].child[c] = new_node();
+            if (nodes[pos].child[c] == -1)
+                nodes[pos].child[c] = new_node();
             pos = nodes[pos].child[c];
             nodes[pos].cnt++;
         }
@@ -633,18 +649,20 @@ struct Trie{
             if (nodes[pos].child[c] != -1 && nodes[nodes[pos].child[c]].cnt == (1 << i)) {
                 pos = nodes[pos].child[c ^ 1];
                 res += (1 << i);
-            }
-            else pos = nodes[pos].child[c];
+            } else
+                pos = nodes[pos].child[c];
 
-            if (pos == -1) break;
+            if (pos == -1)
+                break;
         }
         return res;
     }
 };
 
-signed main() {
-
-    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
     int n, m;
     cin >> n >> m;
@@ -706,50 +724,54 @@ ll sqr(ll x) {
     return x * x;
 }
 
-struct Trie{
-    struct Node{
-        Node* child[26][26];
+struct Trie {
+    struct Node {
+        Node *child[26][26];
         int cnt;
 
         Node() {
             for (int i = 0; i < 26; i++)
-                for (int j = 0; j < 26; j++) child[i][j] = NULL;
+                for (int j = 0; j < 26; j++)
+                    child[i][j] = NULL;
             cnt = 0;
         }
     };
 
-    Node* root;
+    Node *root;
     Trie() {
         root = new Node();
     };
 
     void add_string(string s) {
-        Node* p = root;
+        Node *p = root;
         int n = (int)s.size();
         for (int i = 0; i < n; i++) {
             int c1 = s[i] - 'a';
             int c2 = s[n - i - 1] - 'a';
 
-            if (p->child[c1][c2] == NULL) p->child[c1][c2] = new Node();
+            if (p->child[c1][c2] == NULL)
+                p->child[c1][c2] = new Node();
             p = p->child[c1][c2];
             p->cnt++;
         }
     }
 
-    ll solve(Node* p, int depth) {
+    ll solve(Node *p, int depth) {
         ll res = (p == root ? 0 : (ll)(p->cnt / 2) * (sqr(depth) - sqr(depth - 1)));
         for (int c1 = 0; c1 < 26; c1++) {
-            for (int c2 = 0; c2 < 26; c2++) if (p->child[c1][c2] != NULL) {
-                res += solve(p->child[c1][c2], depth + 1);
-            }
+            for (int c2 = 0; c2 < 26; c2++)
+                if (p->child[c1][c2] != NULL) {
+                    res += solve(p->child[c1][c2], depth + 1);
+                }
         }
         return res;
     }
 };
 
-signed main() {
-
-    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
     int t;
     cin >> t;
@@ -802,39 +824,47 @@ Với mỗi truy vấn $j$, ta tìm đỉnh trên trie thứ nhất thể hiện
 using namespace std;
 
 int get_val(char f) {
-    if (f == 'A') return 0;
-    if (f == 'G') return 1;
-    if (f == 'C') return 2;
+    if (f == 'A')
+        return 0;
+    if (f == 'G')
+        return 1;
+    if (f == 'C')
+        return 2;
     return 3;
 }
 
 char get_char(int x) {
-    if (x == 0) return 'A';
-    if (x == 1) return 'G';
-    if (x == 2) return 'C';
+    if (x == 0)
+        return 'A';
+    if (x == 1)
+        return 'G';
+    if (x == 2)
+        return 'C';
     return 'U';
 }
 
 const int NUMBEROFNODES = 2e6 + 5;
 const int INF = 1e9;
-struct Trie{
-    struct Node{
+struct Trie {
+    struct Node {
         int child[4];
         int l, r;
         int exist;
-    } nodes[numberOfNodes];
+    } nodes[NUMBEROFNODES];
 
     int cur;
     Trie() : cur(0) {
         memset(nodes[0].child, -1, sizeof(nodes[cur].child));
-        nodes[0].l = INF; nodes[0].r = -INF;
+        nodes[0].l = INF;
+        nodes[0].r = -INF;
         nodes[0].exist = 0;
     };
 
     int new_node() {
         cur++;
         memset(nodes[cur].child, -1, sizeof(nodes[cur].child));
-        nodes[cur].l = INF; nodes[cur].r = -INF;
+        nodes[cur].l = INF;
+        nodes[cur].r = -INF;
         nodes[cur].exist = 0;
         return cur;
     }
@@ -843,7 +873,8 @@ struct Trie{
         int pos = 0;
         for (auto f : s) {
             int c = get_val(f);
-            if (nodes[pos].child[c] == -1) nodes[pos].child[c] = new_node();
+            if (nodes[pos].child[c] == -1)
+                nodes[pos].child[c] = new_node();
             pos = nodes[pos].child[c];
 
             nodes[pos].l = min(nodes[pos].l, id);
@@ -856,20 +887,23 @@ struct Trie{
         int pos = 0;
         for (auto f : s) {
             int c = get_val(f);
-            if (nodes[pos].child[c] == -1) return {-1, -1};
+            if (nodes[pos].child[c] == -1)
+                return {-1, -1};
             pos = nodes[pos].child[c];
         }
         return {nodes[pos].l, nodes[pos].r};
     }
 
-    void dfs(int pos, string& current_string, vector<string>& res) {
-        for (int i = 1; i <= nodes[pos].exist; i++) res.push_back(current_string);
+    void dfs(int pos, string &current_string, vector<string> &res) {
+        for (int i = 1; i <= nodes[pos].exist; i++)
+            res.push_back(current_string);
 
-        for (int i = 0; i < 4; i++) if (nodes[pos].child[i] != -1) {
-            current_string += get_char(i);
-            dfs(nodes[pos].child[i], current_string, res);
-            current_string.pop_back();
-        }
+        for (int i = 0; i < 4; i++)
+            if (nodes[pos].child[i] != -1) {
+                current_string += get_char(i);
+                dfs(nodes[pos].child[i], current_string, res);
+                current_string.pop_back();
+            }
     }
 
     vector<string> sort_strings() {
@@ -880,8 +914,8 @@ struct Trie{
     }
 };
 
-struct ReversedTrie{
-    struct Node{
+struct ReversedTrie {
+    struct Node {
         int child[4];
         vector<int> ids;
     } nodes[NUMBEROFNODES];
@@ -904,7 +938,8 @@ struct ReversedTrie{
         int pos = 0;
         for (auto f : s) {
             int c = get_val(f);
-            if (nodes[pos].child[c] == -1) nodes[pos].child[c] = new_node();
+            if (nodes[pos].child[c] == -1)
+                nodes[pos].child[c] = new_node();
             pos = nodes[pos].child[c];
             nodes[pos].ids.push_back(id);
         }
@@ -915,7 +950,8 @@ struct ReversedTrie{
         int pos = 0;
         for (auto f : s) {
             int c = get_val(f);
-            if (nodes[pos].child[c] == -1) return 0;
+            if (nodes[pos].child[c] == -1)
+                return 0;
             pos = nodes[pos].child[c];
         }
 
@@ -928,13 +964,15 @@ struct ReversedTrie{
 
 vector<string> sort_strings(vector<string> v) {
     Trie list;
-    for (auto s : v) list.add_string(s, -1);
+    for (auto s : v)
+        list.add_string(s, -1);
     return list.sort_strings();
 }
 
-signed main() {
-
-    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
     int n, m;
     cin >> n >> m;
@@ -1003,14 +1041,15 @@ Lúc này, bạn đọc có thể tưởng tượng trie như một [cây phân 
 using namespace std;
 
 const int MOD = 998244353;
-void add(int& a, int b) {
-    if ((a += b) >= MOD) a -= MOD;
+void add(int &a, int b) {
+    if ((a += b) >= MOD)
+        a -= MOD;
 }
 
 const int NUMBEROFNODES = 18000005;
 const int LG = 60;
-struct Trie{
-    struct Node{
+struct Trie {
+    struct Node {
         int child[2];
         int sum;
     } nodes[NUMBEROFNODES];
@@ -1032,7 +1071,8 @@ struct Trie{
         int pos = 0;
         for (int i = LG; i >= 0; i--) {
             int c = (x >> i) & 1;
-            if (nodes[pos].child[c] == -1) nodes[pos].child[c] = new_node();
+            if (nodes[pos].child[c] == -1)
+                nodes[pos].child[c] = new_node();
             pos = nodes[pos].child[c];
             add(nodes[pos].sum, val);
         }
@@ -1045,16 +1085,19 @@ struct Trie{
             int c2 = (k >> i) & 1;
 
             if (c2 == 1) {
-                if (nodes[pos].child[c1 ^ 1] == -1) break;
+                if (nodes[pos].child[c1 ^ 1] == -1)
+                    break;
                 pos = nodes[pos].child[c1 ^ 1];
-            }
-            else {
-                if (nodes[pos].child[c1 ^ 1] != -1) add(res, nodes[nodes[pos].child[c1 ^ 1]].sum);
-                if (nodes[pos].child[c1] == -1) break;
+            } else {
+                if (nodes[pos].child[c1 ^ 1] != -1)
+                    add(res, nodes[nodes[pos].child[c1 ^ 1]].sum);
+                if (nodes[pos].child[c1] == -1)
+                    break;
                 pos = nodes[pos].child[c1];
             }
 
-            if (i == 0) add(res, nodes[pos].sum);
+            if (i == 0)
+                add(res, nodes[pos].sum);
         }
         return res;
     }
@@ -1065,12 +1108,14 @@ int n;
 ll k;
 ll a[N];
 
-signed main() {
-
-    ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
     cin >> n >> k;
-    for (int i = 1; i <= n; i++) cin >> a[i];
+    for (int i = 1; i <= n; i++)
+        cin >> a[i];
     sort(a + 1, a + n + 1);
 
     Trie trie;

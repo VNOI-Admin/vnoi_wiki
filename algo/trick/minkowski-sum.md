@@ -147,55 +147,96 @@ using namespace std;
 
 /// KACTL
 
-#define rep(i, a, b) for(int i = a; i < (b); ++i)
+#define rep(i, a, b) for (int i = a; i < (b); ++i)
 #define all(x) begin(x), end(x)
 #define sz(x) (int)(x).size()
 typedef long long ll;
 typedef pair<int, int> pii;
 typedef vector<int> vi;
 
-template <class T> int sgn(T x) { return (x > 0) - (x < 0); }
-template<class T>
+template <class T>
+int sgn(T x) {
+    return (x > 0) - (x < 0);
+}
+template <class T>
 struct Point {
     typedef Point P;
     T x, y;
-    explicit Point(T x=0, T y=0) : x(x), y(y) {}
-    bool operator<(P p) const { return tie(x,y) < tie(p.x,p.y); }
-    bool operator==(P p) const { return tie(x,y)==tie(p.x,p.y); }
-    P operator+(P p) const { return P(x+p.x, y+p.y); }
-    P operator-(P p) const { return P(x-p.x, y-p.y); }
-    P operator*(T d) const { return P(x*d, y*d); }
-    P operator/(T d) const { return P(x/d, y/d); }
-    T dot(P p) const { return x*p.x + y*p.y; }
-    T cross(P p) const { return x*p.y - y*p.x; }
-    T cross(P a, P b) const { return (a-*this).cross(b-*this); }
-    T dist2() const { return x*x + y*y; }
-    double dist() const { return sqrt((double)dist2()); }
+    explicit Point(T x = 0, T y = 0) : x(x), y(y) {
+    }
+    bool operator<(P p) const {
+        return tie(x, y) < tie(p.x, p.y);
+    }
+    bool operator==(P p) const {
+        return tie(x, y) == tie(p.x, p.y);
+    }
+    P operator+(P p) const {
+        return P(x + p.x, y + p.y);
+    }
+    P operator-(P p) const {
+        return P(x - p.x, y - p.y);
+    }
+    P operator*(T d) const {
+        return P(x * d, y * d);
+    }
+    P operator/(T d) const {
+        return P(x / d, y / d);
+    }
+    T dot(P p) const {
+        return x * p.x + y * p.y;
+    }
+    T cross(P p) const {
+        return x * p.y - y * p.x;
+    }
+    T cross(P a, P b) const {
+        return (a - *this).cross(b - *this);
+    }
+    T dist2() const {
+        return x * x + y * y;
+    }
+    double dist() const {
+        return sqrt((double)dist2());
+    }
     // angle to x-axis in interval [-pi, pi]
-    double angle() const { return atan2(y, x); }
-    P unit() const { return *this/dist(); } // makes dist()=1
-    P perp() const { return P(-y, x); } // rotates +90 degrees
-    P normal() const { return perp().unit(); }
+    double angle() const {
+        return atan2(y, x);
+    }
+    P unit() const {
+        return *this / dist();
+    } // makes dist()=1
+    P perp() const {
+        return P(-y, x);
+    } // rotates +90 degrees
+    P normal() const {
+        return perp().unit();
+    }
     // returns point rotated 'a' radians ccw around the origin
     P rotate(double a) const {
-        return P(x*cos(a)-y*sin(a),x*sin(a)+y*cos(a)); }
-    friend ostream& operator<<(ostream& os, P p) {
-        return os << "(" << p.x << "," << p.y << ")"; }
+        return P(x * cos(a) - y * sin(a), x * sin(a) + y * cos(a));
+    }
+    friend ostream &operator<<(ostream &os, P p) {
+        return os << "(" << p.x << "," << p.y << ")";
+    }
 };
 
-template<class P> bool onSegment(P s, P e, P p) {
+template <class P>
+bool onSegment(P s, P e, P p) {
     return p.cross(s, e) == 0 && (s - p).dot(e - p) <= 0;
 }
 
-template<class P>
-int sideOf(P s, P e, P p) { return sgn(s.cross(e, p)); }
+template <class P>
+int sideOf(P s, P e, P p) {
+    return sgn(s.cross(e, p));
+}
 
 using P = Point<double>;
-bool inHull(const vector<P>& l, P p, bool strict = true) {
+bool inHull(const vector<P> &l, P p, bool strict = true) {
     int a = 1, b = sz(l) - 1, r = !strict;
-    if (sz(l) < 3) return r && onSegment(l[0], l.back(), p);
-    if (sideOf(l[0], l[a], l[b]) > 0) swap(a, b);
-    if (sideOf(l[0], l[a], p) >= r || sideOf(l[0], l[b], p)<= -r)
+    if (sz(l) < 3)
+        return r && onSegment(l[0], l.back(), p);
+    if (sideOf(l[0], l[a], l[b]) > 0)
+        swap(a, b);
+    if (sideOf(l[0], l[a], p) >= r || sideOf(l[0], l[b], p) <= -r)
         return false;
     while (abs(a - b) > 1) {
         int c = (a + b) / 2;
@@ -205,28 +246,34 @@ bool inHull(const vector<P>& l, P p, bool strict = true) {
 }
 
 double segDist(P s, P e, P p) {
-    if (s==e) return (p-s).dist();
-    auto d = (e-s).dist2(), t = min(d,max(.0,(p-s).dot(e-s)));
-    return ((p-s)*d-(e-s)*t).dist()/d;
+    if (s == e)
+        return (p - s).dist();
+    auto d = (e - s).dist2(), t = min(d, max(.0, (p - s).dot(e - s)));
+    return ((p - s) * d - (e - s) * t).dist() / d;
 }
 
 /// END KACTL
 
-template<class P>
+template <class P>
 vector<P> minkowskiSum(vector<P> a, vector<P> b) {
     rotate(begin(a), min_element(begin(a), end(a)), end(a));
     rotate(begin(b), min_element(begin(b), end(b)), end(b));
     int n = a.size(), m = b.size();
-    vector<P> h(n + m + 1); h[0] = a[0] + b[0];
+    vector<P> h(n + m + 1);
+    h[0] = a[0] + b[0];
     int t = 1;
-    for (int i = 0, j = 0; i < n || j < m; ) {
-        if (i == n) j++;
-        else if (j == m) i++;
+    for (int i = 0, j = 0; i < n || j < m;) {
+        if (i == n)
+            j++;
+        else if (j == m)
+            i++;
         else {
             P pa = a[(i + 1) % n] - a[i], pb = b[(j + 1) % m] - b[j];
             auto cr = pa.cross(pb);
-            if (cr >= 0) i++;
-            if (cr <= 0) j++;
+            if (cr >= 0)
+                i++;
+            if (cr <= 0)
+                j++;
         }
         h[t++] = (a[i % n] + b[j % m]);
     }
@@ -236,7 +283,8 @@ vector<P> minkowskiSum(vector<P> a, vector<P> b) {
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    int n, m; cin >> n >> m;
+    int n, m;
+    cin >> n >> m;
     vector<P> a(n), b(m);
     vector<vector<P>> poly(n, {P(0, 0)});
     for (int i = 0; i < n; i++) {

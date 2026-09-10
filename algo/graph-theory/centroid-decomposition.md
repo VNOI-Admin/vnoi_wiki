@@ -67,7 +67,7 @@ void countChild(int u, int parent) {
 int findCentroid(int u, int parent) {
     for (int v : adj[u]) {
         if (v != parent) {
-            if (child[v] > n/2) { // tìm được v thỏa mãn
+            if (child[v] > n / 2) { // tìm được v thỏa mãn
                 return findCentroid(v, u);
             }
         }
@@ -270,40 +270,42 @@ long long pw[N];
 vector<int> adj[N];
 unordered_map<long long, bool> f[N];
 
-void countChild(int u, int p)
-{
+void countChild(int u, int p) {
     child[u] = 1;
-    for (int v : adj[u]) if (v != p && valid[v])
-    {
-        countChild(v, u);
-        child[u] += child[v];
-    }
+    for (int v : adj[u])
+        if (v != p && valid[v]) {
+            countChild(v, u);
+            child[u] += child[v];
+        }
 }
 
-bool dfs(int u, int p, int h, long long hshdown, long long hshup)
-{
-    if (h > Len) return false;
+bool dfs(int u, int p, int h, long long hshdown, long long hshup) {
+    if (h > Len)
+        return false;
 
     if (p)
         hshdown = (hshdown * base + a[u]) % mod;
     hshup = (hshup + 1LL * a[u] * pw[h - 1]) % mod;
 
-    long long x =  (hshup * pw[Len - h] - hshdown + mod) % mod;
-    if (!p) f[h][x] = true;
+    long long x = (hshup * pw[Len - h] - hshdown + mod) % mod;
+    if (!p)
+        f[h][x] = true;
 
-    if (f[Len - h + 1].find(x) != f[Len - h + 1].end() )
+    if (f[Len - h + 1].find(x) != f[Len - h + 1].end())
         return true;
 
-    for (int v : adj[u]) if (v != p && valid[v])
-    {
-        if (!p) b.clear();
+    for (int v : adj[u])
+        if (v != p && valid[v]) {
+            if (!p)
+                b.clear();
 
-        if (dfs(v, u, h + 1, hshdown, hshup))
-            return true;
+            if (dfs(v, u, h + 1, hshdown, hshup))
+                return true;
 
-        if (!p)
-            for (pair<int, long long> x : b) f[x.first][x.second] = true;
-    }
+            if (!p)
+                for (pair<int, long long> x : b)
+                    f[x.first][x.second] = true;
+        }
 
     maxDep = max(maxDep, h);
     b.push_back({h, x});
@@ -311,17 +313,14 @@ bool dfs(int u, int p, int h, long long hshdown, long long hshup)
     return false;
 }
 
-bool CD(int u, int n)
-{
+bool CD(int u, int n) {
     countChild(u, 0);
 
     int flag = 1, half = n / 2;
-    while (flag)
-    {
+    while (flag) {
         flag = 0;
         for (int v : adj[u])
-            if (valid[v] && child[v] < child[u] && child[v] > half)
-            {
+            if (valid[v] && child[v] < child[u] && child[v] > half) {
                 u = v;
                 flag = 1;
                 break;
@@ -330,31 +329,32 @@ bool CD(int u, int n)
 
     countChild(u, 0);
 
-    if (dfs(u, 0, 1, 0, 0)) return true;
+    if (dfs(u, 0, 1, 0, 0))
+        return true;
 
     For(i, 1, maxDep) f[i].clear();
     maxDep = 0;
 
     valid[u] = false;
-    for (int v : adj[u]) if (valid[v])
-        if (CD(v, child[v])) return true;
+    for (int v : adj[u])
+        if (valid[v])
+            if (CD(v, child[v]))
+                return true;
     return false;
 }
 
-bool check(int len)
-{
+bool check(int len) {
     Len = len;
     For(i, 1, n) valid[i] = 1, f[i].clear();
     return CD(1, n);
 }
 
-void solve()
-{
+void solve() {
     cin >> n;
     For(i, 1, n) cin >> a[i];
-    For(i, 1, n - 1)
-    {
-        int u, v; cin >> u >> v;
+    For(i, 1, n - 1) {
+        int u, v;
+        cin >> u >> v;
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
@@ -438,7 +438,8 @@ map<int, int> d[N];
 int countChild(int u, int p) {
     child[u] = 1;
     for (int v : adj[u]) {
-        if (v == p || del[v]) continue;
+        if (v == p || del[v])
+            continue;
         child[u] += countChild(v, u);
     }
     return child[u];
@@ -446,7 +447,8 @@ int countChild(int u, int p) {
 
 int centroid(int u, int p, int m) {
     for (int v : adj[u]) {
-        if (v == p || del[v]) continue;
+        if (v == p || del[v])
+            continue;
         if (child[v] > m / 2)
             return centroid(v, u, m);
     }
@@ -455,7 +457,8 @@ int centroid(int u, int p, int m) {
 
 void calcDist(int u, int p, int root) {
     for (int v : adj[u]) {
-        if (v == p || del[v]) continue;
+        if (v == p || del[v])
+            continue;
         d[v][root] = d[u][root] + 1;
         calcDist(v, u, root);
     }
@@ -467,27 +470,31 @@ int cd(int u = 1) {
     calcDist(u, 0, u);
     del[u] = 1;
     for (int v : adj[u]) {
-        if (del[v]) continue;
+        if (del[v])
+            continue;
         int x = cd(v);
         par[x] = u;
     }
     return u;
 }
 
-void solve()
-{
-    int n; cin >> n;
+void solve() {
+    int n;
+    cin >> n;
     for (int i = 1; i < n; ++i) {
-        int u, v; cin >> u >> v;
+        int u, v;
+        cin >> u >> v;
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
     int root = cd();
 
-    int q; cin >> q;
+    int q;
+    cin >> q;
     vector<int> col(n + 5, 1);
     while (q--) {
-        int t, u; cin >> t >> u;
+        int t, u;
+        cin >> t >> u;
         if (t == 0) {
             int p = u;
             col[u] ^= 1;
@@ -496,15 +503,13 @@ void solve()
                     s[p].erase(s[p].lower_bound(d[u][p]));
                     p = par[p];
                 }
-            }
-            else {
+            } else {
                 while (p) {
                     s[p].insert(d[u][p]);
                     p = par[p];
                 }
             }
-        }
-        else {
+        } else {
             int ans = oo, p = u;
             while (p) {
                 if (s[p].size()) {
