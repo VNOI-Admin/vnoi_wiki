@@ -2,7 +2,7 @@
 title: Tham lam
 description: 
 published: true
-date: 2026-09-09T13:41:12.397Z
+date: 2026-09-10T08:32:28.414Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-05T15:52:25.934Z
@@ -344,6 +344,23 @@ $\Rightarrow$ Ta vẫn tạo được mọi giá trị từ $1$ đến $S_{i+1}$
 2. $c_{i+1} > S_i + 1$. Ta có $S_i + 1$ không nằm trong đoạn $[0, S_i]$ và $S_i + 1$ nhỏ hơn $c_{i+1}$ (theo giả thiết trường hợp này), nên nó cũng không nằm trong đoạn $[c_{i+1}, S_{i+1}]$. Suy ra không có cách nào tạo ra được $S_i + 1$. Theo giả thiết quy nạp, ta đã có cách tạo được hết các giá trị $1 \dots S_i$, nên $S_i + 1$ chính là giá trị nhỏ nhất không thể tạo được. Ta có điều phải chứng minh.
 :::
 
+## Tham lam và tìm kiếm nhị phân
+
+Trong một số bài toán, tham lam không đứng một mình mà đóng vai trò hàm kiểm tra cho tìm kiếm nhị phân. Nếu đáp án có tính đơn điệu -- "làm được với $X$" kéo theo "làm được với mọi $X' \ge X$" -- thì ta có thể giải bài toán bằng tìm kiếm nhị phân trên $X$, với mỗi $X$ cần trả lời nhanh câu hỏi có/không. Câu hỏi có/không này thường dễ hơn hẳn bài toán tìm $X$ tối ưu ban đầu, và tham lam là một trong những công cụ tự nhiên để trả lời nó.
+
+### Ví dụ: [Array Division - CSES](https://cses.fi/alon/task/1085)
+
+Cho mảng $n$ số nguyên dương, chia mảng thành $k$ đoạn liên tiếp sao cho tổng lớn nhất trong các đoạn là nhỏ nhất. In ra tổng nhỏ nhất này.
+
+:::spoiler Lời giải và chứng minh
+
+Ta giải bài toán này bằng tìm kiếm nhị phân đáp án. Với $X$ cố định, câu hỏi là: có chia được thành không quá $k$ đoạn, mỗi đoạn tổng $\le X$ hay không? Ta có thể giải bài toán này bằng tham lam đơn giản: duyệt từ trái sang phải, cứ thêm phần tử vào đoạn hiện tại chừng nào tổng còn $\le X$, nếu không được nữa thì mở đoạn mới. Nếu số đoạn $\le k$ thì trả lời có. (Chia được thành ít đoạn hơn $k$ thì cũng chia được thành đúng $k$ đoạn, bằng cách tách nhỏ một đoạn nào đó.) 
+
+Vì sao tham lam trả lời đúng? Gọi $r_1 < r_2 < \dots$ là các vị trí kết thúc đoạn của tham lam, và $r'_1 < r'_2 < \dots$ là của một cách chia hợp lệ bất kỳ. Ta chứng minh $r_j \ge r'_j$ với mọi $j$ bằng quy nạp: đoạn thứ $j$ của tham lam bắt đầu tại $r_{j-1} + 1 \ge r'_{j-1} + 1$, tức không sớm hơn đoạn thứ $j$ của cách chia kia. Vì các phần tử đều dương, đoạn $[r_{j-1} + 1, r'_j]$ là một phần của đoạn $[r'_{j-1} + 1, r'_j]$ nên có tổng $\le X$, và tham lam kéo dài tối đa nên kết thúc không sớm hơn $r'_j$. Do đó tham lam dùng số đoạn ít nhất trong mọi cách chia hợp lệ; nếu tham lam cần nhiều hơn $k$ đoạn thì không có cách chia mảng thoả mãn.
+
+Độ phức tạp của bài toán là $\mathcal{O}(n \log \sum a_i)$.
+:::
+
 
 ## Exchange Argument - Lập luận hoán đổi
 
@@ -584,23 +601,6 @@ Kĩ thuật sửa lại lựa chọn này có liên hệ với bài toán tìm l
 
 Thuật toán cơ bản và dễ tiếp cận nhất của bài toán luồng cực đại là Ford-Fulkerson sửa điều này bằng cách thêm **cạnh ngược**: mỗi khi đẩy $f$ đơn vị qua cạnh $u \to v$, ta thêm cạnh ngược $v \to u$ với sức chứa $f$. Đường tăng luồng đi qua cạnh ngược có nghĩa là "rút lại" một phần luồng đã đẩy trước đó. Trong ví dụ trên, sau bước đầu ta có đường $s \to v \to u \to t$, trong đó $v \to u$ là cạnh ngược: nó huỷ quyết định đẩy luồng qua $u \to v$, và kết quả là hai đường $s \to u \to t$, $s \to v \to t$ như mong muốn. Toàn bộ mục này là những bài toán mà ta có thể cài đặt một cơ chế "cạnh ngược" như vậy một cách gọn hơn nhiều so với việc dựng đồ thị luồng thật sự.
 
-:::
-
-## Tham lam và tìm kiếm nhị phân
-
-Một kiểu mẫu rất phổ biến khác trong lập trình thi đấu là tham lam không đứng một mình mà đóng vai trò hàm kiểm tra cho tìm kiếm nhị phân. Nếu đáp án có tính đơn điệu -- "làm được với $X$" kéo theo "làm được với mọi $X' \ge X$" -- thì ta có thể giải bài toán bằng tìm kiếm nhị phân trên $X$, với mỗi $X$ cần trả lời nhanh câu hỏi có/không. Câu hỏi có/không này thường dễ hơn hẳn bài toán tìm $X$ tối ưu ban đầu, và tham lam là một trong những công cụ tự nhiên để trả lời nó.
-
-### Ví dụ: [Array Division - CSES](https://cses.fi/alon/task/1085)
-
-Cho mảng $n$ số nguyên dương, chia mảng thành $k$ đoạn liên tiếp sao cho tổng lớn nhất trong các đoạn là nhỏ nhất. In ra tổng nhỏ nhất này.
-
-:::spoiler Lời giải và chứng minh
-
-Ta giải bài toán này bằng tìm kiếm nhị phân đáp án. Với $X$ cố định, câu hỏi là: có chia được thành không quá $k$ đoạn, mỗi đoạn tổng $\le X$ hay không? Ta có thể giải bài toán này bằng tham lam đơn giản: duyệt từ trái sang phải, cứ thêm phần tử vào đoạn hiện tại chừng nào tổng còn $\le X$, nếu không được nữa thì mở đoạn mới. Nếu số đoạn $\le k$ thì trả lời có. (Chia được thành ít đoạn hơn $k$ thì cũng chia được thành đúng $k$ đoạn, bằng cách tách nhỏ một đoạn nào đó.) 
-
-Vì sao tham lam trả lời đúng? Gọi $r_1 < r_2 < \dots$ là các vị trí kết thúc đoạn của tham lam, và $r'_1 < r'_2 < \dots$ là của một cách chia hợp lệ bất kỳ. Ta chứng minh $r_j \ge r'_j$ với mọi $j$ bằng quy nạp: đoạn thứ $j$ của tham lam bắt đầu tại $r_{j-1} + 1 \ge r'_{j-1} + 1$, tức không sớm hơn đoạn thứ $j$ của cách chia kia. Vì các phần tử đều dương, đoạn $[r_{j-1} + 1, r'_j]$ là một phần của đoạn $[r'_{j-1} + 1, r'_j]$ nên có tổng $\le X$, và tham lam kéo dài tối đa nên kết thúc không sớm hơn $r'_j$. Do đó tham lam dùng số đoạn ít nhất trong mọi cách chia hợp lệ; nếu tham lam cần nhiều hơn $k$ đoạn thì không có cách chia mảng thoả mãn.
-
-Độ phức tạp của bài toán là $\mathcal{O}(n \log \sum a_i)$.
 :::
 
 ## Kĩ thuật và lưu ý khi cài đặt
