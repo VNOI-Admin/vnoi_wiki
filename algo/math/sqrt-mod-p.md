@@ -2,7 +2,7 @@
 title: Căn bậc hai modulo
 description: 
 published: true
-date: 2026-09-04T18:56:59.251Z
+date: 2026-09-10T08:33:05.430Z
 tags: math, number theory
 editor: markdown
 dateCreated: 2024-09-04T06:31:48.123Z
@@ -28,16 +28,16 @@ Việc xuất hiện $\sqrt5$ đặt ra nhiều thách thức cho việc tính t
     Khi này, $x$ được gọi là căn bậc hai của $a$ modulo $p$.
 - **Ký hiệu Legendre**: với  $p$ là số nguyên tố lẻ
 
-<center>
+<!-- <center>
 
 <img src="/uploads/algo/math/sqrt-mod-p/legendre.png" width=475></img>
-</center>
+</center>  -->
 
-<!-- $$\left(\frac{a}{p}\right) = \begin{cases}
+$$\left(\frac{a}{p}\right) = \begin{cases}
     0, &{\text{ nếu }} a\equiv 0 \pmod{p}\\
     1, &{\text{ nếu }} a {\text{ là thặng dư bình phương}} \bmod p\\
     -1, &{\text{ nếu }} a {\text{ không là thặng dư bình phương}} \bmod p
-    \end{cases}$$  -->
+    \end{cases}$$
     
 ## Kiểm tra thặng dư bình phương
 Ta sử dụng **tiêu chuẩn Euler** (Euler's criterion) như sau. Với $p$ nguyên tố lẻ:
