@@ -1,5 +1,5 @@
 ---
-title: Hình học tính toán phần 3: Đa giác
+title: "Hình học tính toán phần 3: Đa giác"
 description: 
 published: true
 date: 2026-01-16T10:44:37.023Z

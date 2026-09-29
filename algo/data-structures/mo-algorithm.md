@@ -1,5 +1,5 @@
 ---
-title: Chia căn (sqrt decomposition) và ứng dụng: Phần 2
+title: "Chia căn (sqrt decomposition) và ứng dụng: Phần 2"
 description: 
 published: true
 date: 2026-09-10T08:26:55.512Z

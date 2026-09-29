@@ -1,5 +1,5 @@
 ---
-title: Hình học tính toán phần 1: Những khái niệm cơ bản
+title: "Hình học tính toán phần 1: Những khái niệm cơ bản"
 description: 
 published: true
 date: 2024-09-23T09:14:01.021Z

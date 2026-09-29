@@ -1,5 +1,5 @@
 ---
-title: Hash: A String Matching Algorithm
+title: "Hash: A String Matching Algorithm"
 description: 
 published: true
 date: 2025-02-02T14:00:17.685Z
