@@ -2,11 +2,21 @@
 title: Home Wiki
 description: 
 published: false
-date: 2026-10-08T13:50:26.435Z
+date: 2026-10-08T13:54:38.008Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-11T12:48:55.842Z
 ---
+
+<style>
+a:has(.progress-marker--completed) {
+    background: #e8f5e9 !important;
+}
+
+a:has(.progress-marker--completed) .progress-marker {
+    display: none !important;
+}
+</style>
 
 <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px; width:100%; margin:12px 0;">
 <a href="/algo/algebra/pie" style="display:block; min-width:0; box-sizing:border-box; padding:14px; border:1px solid #adb5bd; border-radius:8px; text-decoration:none; color:inherit; background:transparent; transition:0.2s;">
