@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2026-10-01T06:14:01.260Z
+date: 2026-10-08T15:58:12.345Z
 tags: no-progress
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -13,16 +13,6 @@ dateCreated: 2023-12-25T10:57:53.828Z
 Thư viện VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học đến với tất cả mọi người. Bạn có thể đọc bài giới thiệu của bọn mình [ở đây](/about).
 
 Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](https://www.facebook.com/groups/163215593699283/) hoặc [Discord From VNOI with love](https://discord.gg/m5rVAz7DXx).
-
-Ở trang chủ này, các bài viết về thuật toán được đánh dấu về độ khó từ (1⭐) đến (5⭐) với ý nghĩa:
-
-| Độ khó | Mô tả |
-|--------|-------|
-| ⭐ | Cơ bản |
-| ⭐⭐ | Kiến thức cần biết để thi HSG QG, ACM ICPC |
-| ⭐⭐⭐ | Kiến thức nâng cao, dành cho các bạn có mục tiêu đạt giải cao trong HSG QG |
-| ⭐⭐⭐⭐ | Kiến thức rất khó |
-| ⭐⭐⭐⭐⭐ | Kiến thức rất chuyên sâu về một vấn đề nào đó, chỉ áp dụng được với rất ít bài khó |
 
 # Các bài viết mới
 
