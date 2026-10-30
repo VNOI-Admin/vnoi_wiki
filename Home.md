@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2026-10-30T08:09:39.046Z
+date: 2026-10-30T08:10:32.586Z
 tags: no-progress
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -12,9 +12,11 @@ dateCreated: 2023-12-25T10:57:53.828Z
 
 Thư viện VNOI được xây dựng với mục đích chia sẻ kiến thức Tin học đến với tất cả mọi người. Bạn có thể đọc bài giới thiệu của bọn mình [ở đây](/about).
 
-<font size="5">**Bài viết của VNOI các bạn xem [ở đây](/articles).**</font>
 
 Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](https://www.facebook.com/groups/163215593699283/) hoặc [Discord From VNOI with love](https://discord.gg/m5rVAz7DXx).
+
+# Bài viết
+Bài viết của VNOI các bạn xem [ở đây](/articles).
 
 # VNOI Roadmap 
 🔥VNOI Roadmap là một lộ trình hoàn chỉnh bao gồm các chủ đề được đánh giá độ khó từ 1 đến 5 sao, dành cho mọi đối tượng từ học sinh đến sinh viên, đặc biệt là các bạn mới bắt đầu tiếp xúc với Tin học.
