@@ -2,7 +2,7 @@
 title: VNOI Wiki
 description: 
 published: true
-date: 2026-10-30T08:10:32.586Z
+date: 2026-11-04T10:28:59.869Z
 tags: no-progress
 editor: markdown
 dateCreated: 2023-12-25T10:57:53.828Z
@@ -15,14 +15,14 @@ Thư viện VNOI được xây dựng với mục đích chia sẻ kiến thức
 
 Bạn đọc bài viết nhưng không hiểu? Hãy hỏi ở [Group Facebook](https://www.facebook.com/groups/163215593699283/) hoặc [Discord From VNOI with love](https://discord.gg/m5rVAz7DXx).
 
-# Bài viết
+<!--# Bài viết
 Bài viết của VNOI các bạn xem [ở đây](/articles).
 
 # VNOI Roadmap 
 🔥VNOI Roadmap là một lộ trình hoàn chỉnh bao gồm các chủ đề được đánh giá độ khó từ 1 đến 5 sao, dành cho mọi đối tượng từ học sinh đến sinh viên, đặc biệt là các bạn mới bắt đầu tiếp xúc với Tin học.
 ❤️‍🔥 Được đúc kết từ kinh nghiệm của các thế hệ đi trước đã vượt qua nhiều cuộc thi, đóng góp cho nền Tin học Việt Nam trong suốt những năm vừa qua, chúng mình tin rằng VNOI Roadmap sẽ là một hành trang bổ ích trên con đường chinh phục Tin học của các bạn đấy!
 🆕 Hiện nay, VNOI Roadmap đã được tích hợp trên hệ thống VNOI Wiki, giúp bạn đọc dễ dàng tìm kiếm tài liệu tương ứng với từng chủ đề thuộc roadmap và theo dõi quá trình học tập.
-🔗 Các bạn có thể tìm đọc VNOI Roadmap [tại đây](/roadmaps).
+🔗 Các bạn có thể tìm đọc VNOI Roadmap [tại đây](/roadmaps). -->
 <!--🔗 Link roadmap: https://roadmap.sh/r/vnoi-roadmap -->
 
 # Các kỳ thi
