@@ -1,5 +1,5 @@
 ---
-title: "Nhảy nhị phân" với bộ nhớ O(n)
+title: '"Nhảy nhị phân" với bộ nhớ O(n)'
 description: 
 published: true
 date: 2025-02-19T11:04:56.740Z
