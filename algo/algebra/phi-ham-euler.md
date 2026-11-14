@@ -2,7 +2,7 @@
 title: Phi hàm Euler
 description: 
 published: true
-date: 2025-10-08T01:11:41.605Z
+date: 2026-11-14T06:53:58.543Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-07T03:54:37.458Z
@@ -12,7 +12,7 @@ dateCreated: 2025-10-07T03:54:37.458Z
 
 **Tác giả:**
 
-- Võ Đức Đoàn - THPT Chuyên Nguyễn Tất Thành, Quãng Ngãi.
+- Võ Đức Đoàn - THPT Chuyên Nguyễn Tất Thành, Quảng Ngãi.
 
 **Reviewer:**
 
