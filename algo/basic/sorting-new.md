@@ -2,7 +2,7 @@
 title: Thuật toán sắp xếp
 description: 
 published: true
-date: 2026-06-11T15:24:57.224Z
+date: 2026-11-14T06:55:29.095Z
 tags: 
 editor: markdown
 dateCreated: 2025-12-19T01:32:35.401Z
@@ -12,7 +12,7 @@ dateCreated: 2025-12-19T01:32:35.401Z
 
 **Người viết:**
 
-- Đoàn Quang Huy - THPT Chuyên Nguyễn Tất Thành, Quãng Ngãi.
+- Đoàn Quang Huy - THPT Chuyên Nguyễn Tất Thành, Quảng Ngãi.
 
 **Reviewer:**
 
