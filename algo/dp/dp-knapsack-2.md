@@ -2,7 +2,7 @@
 title: Quy hoạch động cái túi, phần 2
 description: 
 published: true
-date: 2025-12-21T09:21:38.161Z
+date: 2026-11-14T06:54:30.958Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-27T14:26:54.031Z
@@ -18,7 +18,7 @@ dateCreated: 2025-11-27T14:26:54.031Z
 
 - Nguyễn Quang Minh - Michigan State University.
 - Võ Khắc Triệu - National University of Singapore.
-- Võ Đức Đoàn - THPT Chuyên Nguyễn Tất Thành, Quãng Ngãi.
+- Võ Đức Đoàn - THPT Chuyên Nguyễn Tất Thành, Quảng Ngãi.
 - Nguyễn Minh Hiển - Trường Đại học Công nghệ, ĐHQGHN.
 
 ## Giới thiệu
