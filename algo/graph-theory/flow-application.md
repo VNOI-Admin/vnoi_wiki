@@ -2,7 +2,7 @@
 title: Ứng dụng của luồng trên mạng
 description: 
 published: true
-date: 2026-02-25T06:17:11.176Z
+date: 2026-11-14T06:55:06.846Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-25T05:49:41.942Z
@@ -11,7 +11,7 @@ dateCreated: 2026-02-25T05:49:41.942Z
 # Ứng dụng của luồng trên mạng
 
 **Tác giả:** 
-- Võ Đức Đoàn - THPT Chuyên Nguyễn Tất Thành, Quãng Ngãi.
+- Võ Đức Đoàn - THPT Chuyên Nguyễn Tất Thành, Quảng Ngãi.
 
 **Reviewer:**
 - Nguyễn Tiến Mạnh - Đại học Bách khoa Hà Nội.
