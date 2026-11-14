@@ -2,7 +2,7 @@
 title: Bao hàm loại trừ
 description: 
 published: true
-date: 2026-03-06T06:37:46.749Z
+date: 2026-11-14T06:55:38.228Z
 tags: 
 editor: markdown
 dateCreated: 2026-02-07T15:28:59.507Z
@@ -14,8 +14,8 @@ dateCreated: 2026-02-07T15:28:59.507Z
 - Phạm Vũ Phương - Trường THPT Chuyên Hà Tĩnh, Hà Tĩnh.
 
 **Reviewer:**
-- Đoàn Quang Huy - THPT Chuyên Nguyễn Tất Thành, Quãng Ngãi.
-- Võ Đức Đoàn - THPT Chuyên Nguyễn Tất Thành, Quãng Ngãi.
+- Đoàn Quang Huy - THPT Chuyên Nguyễn Tất Thành, Quảng Ngãi.
+- Võ Đức Đoàn - THPT Chuyên Nguyễn Tất Thành, Quảng Ngãi.
 - Nguyễn Tấn Minh - Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM.
 
 Trong giới lập trình thi đấu, nguyên lý **Bao hàm – Loại trừ** (*Principle of Inclusion-Exclusion*, viết tắt là PIE) là một công cụ toán học rất hữu ích để giải các bài toán đếm, đặc biệt là các bài toán có sự xuất hiện của các tập hợp có phần chung chồng chất nhau.
