@@ -1,8 +1,8 @@
 ---
-title: '"Nhảy nhị phân" với bộ nhớ O(n)'
+title: "Nhảy nhị phân" với bộ nhớ O(n)
 description: 
 published: true
-date: 2025-02-19T11:04:56.740Z
+date: 2026-11-17T08:12:03.555Z
 tags: 
 editor: markdown
 dateCreated: 2023-12-25T11:08:27.643Z
@@ -13,7 +13,7 @@ dateCreated: 2023-12-25T11:08:27.643Z
 
 # Giới thiệu
 
-Trước khi đọc bài viết bài, người viết giả dụ bạn đọc đã đọc và hiểu về [binary lifting](https://vnoi.info/wiki/algo/data-structures/lca-binlift.md) (Nâng nhị phân).
+Trước khi đọc bài viết bài, người viết giả dụ bạn đọc đã đọc và hiểu về [binary lifting](https://vnoi.info/wiki/algo/data-structures/lca-binlift.md) (Nâng nhị phân)
 
 Bài viết này sẽ giới thiệu một thuật toán được công bố năm 1983 bởi tiến sĩ Eugene W. Myers. Như thuật toán binary lifting đã được giới thiệu trước trên VNOI Wiki, thuật toán giới thiệu trong bài này cũng có độ phức tạp truy vấn là $\mathcal{O}(\log{n})$. Tuy nhiên, với thuật toán này, ta có thể thêm hoặc bớt một lá trong cây trong $\mathcal{O}(1)$, tức tổng bộ nhớ cần thiết chỉ là $\mathcal{O}(n)$ thay vì $\mathcal{O}(n \log{n})$.
 
