@@ -2,7 +2,7 @@
 title: Static Wavelet Tree
 description: 
 published: true
-date: 2026-05-30T10:56:05.383Z
+date: 2026-11-17T08:21:15.650Z
 tags: 
 editor: markdown
 dateCreated: 2026-04-27T11:21:44.122Z
@@ -12,14 +12,14 @@ dateCreated: 2026-04-27T11:21:44.122Z
 
 **Người viết:**
 
-- Nguyễn Tiến Mạnh - Đại học Bách khoa Hà Nội.
-- Nguyễn Tấn Minh - Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM.
+- Nguyễn Tiến Mạnh - Đại học Bách khoa Hà Nội
+- Nguyễn Tấn Minh - Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM
 
 **Reviewer:**
 
-- Phạm Vũ Phương - THPT Chuyên Hà Tĩnh, Hà Tĩnh.
-- Nguyễn Quang Minh - Michigan State University.
-- Nguyễn Minh Hiển - Đại học Công nghệ, Đại học Quốc gia Hà Nội.
+- Phạm Vũ Phương - THPT Chuyên Hà Tĩnh, Hà Tĩnh
+- Nguyễn Quang Minh - Michigan State University
+- Nguyễn Minh Hiển - Đại học Công nghệ, Đại học Quốc gia Hà Nội
 
 ##  Giới thiệu
 
