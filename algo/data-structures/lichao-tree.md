@@ -2,7 +2,7 @@
 title: Li-chao Tree
 description: 
 published: true
-date: 2024-10-27T10:34:29.779Z
+date: 2026-11-17T08:20:33.020Z
 tags: 
 editor: markdown
 dateCreated: 2024-10-27T10:34:29.779Z
@@ -11,7 +11,7 @@ dateCreated: 2024-10-27T10:34:29.779Z
 # Li-chao Tree (Cây phân đoạn trên tập đường thẳng)
 
 **Tác giả:**
-- Nguyễn Tấn Minh - THPT Chuyên Lê Hồng Phong, TPHCM.
+- Nguyễn Tấn Minh - THPT Chuyên Lê Hồng Phong, TPHCM
 
 **Reviewer:**
 - Đoàn Gia Huy - HUS High School for Gifted Students
